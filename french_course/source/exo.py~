@@ -1,0 +1,8 @@
+from scipy import ndimage
+
+dat = imread('MV_HFV_012.jpg')
+dat = dat[60:]
+filtdat = ndimage.median_filter(dat, size=(7,7))
+
+hi_dat = np.histogram(dat, bins=np.arange(256))
+hi_filtdat = np.histogram(filtdat, bins=np.arange(256))

@@ -1,0 +1,44 @@
+#log# Automatic Logger file. *** THIS MUST BE THE FIRST LINE ***
+#log# DO NOT CHANGE THIS LINE OR THE TWO BELOW
+#log# opts = Struct({'__allownew': True, 'logfile': 'help'})
+#log# args = []
+#log# It is safe to make manual edits below here.
+#log#-----------------------------------------------------------------------
+from suites import fib
+fib(10)
+_ip.magic("doctest_mode ")
+fib(10)
+from suites import *
+_ip.magic("whos ")
+help(whos)
+_ip.magic("who ")
+_ip.magic("logstate ")
+_ip.magic("logon ")
+_ip.magic("logstart help")
+
+_ip.magic("hist ")
+_ip.magic("hist -g tomog")
+_ip.magic("hist -g camera")
+_ip.magic("hist -g manip")
+_ip.magic("hist -g process")
+_ip.magic("hist -g 8bit")
+_ip.magic("rep 0984")
+_ip.magic("edit ")
+a = 3
+#?%run
+_ip.magic("whos ")
+linear_recurrence(5)
+linear_recurrence(5)
+_ip.magic("doctest_mode ")
+_ip.magic("who ")
+del a
+_ip.magic("who ")
+_ip.magic("whos ")
+help(isinstance)
+isinstance(suites, module)
+import suites
+isinstance(suites, module)
+isinstance(suites, 'module')
+type(suites)
+type(suites)
+h

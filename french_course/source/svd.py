@@ -1,0 +1,21 @@
+l = scipy.lena()
+rows, weight, columns = linalg.svd(l, full_matrices=False)
+white_lena = np.dot(rows, columns)
+weight[20:]=0
+W = mat(linalg.diagsvd(weight,512,512))
+filtered_lena = np.dot(rows, np.dot(W, columns))
+
+figure(figsize=(12,4))
+subplot(131)
+imshow(l, cmap=cm.gray)
+axis('off')
+title('Lena')
+subplot(132)
+imshow(white_lena, cmap=cm.gray)
+axis('off')
+title('blanchissement')
+subplot(133)
+imshow(filtered_lena, cmap=cm.gray)
+axis('off')
+title('flitre')
+
