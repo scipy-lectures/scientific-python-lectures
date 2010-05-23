@@ -1,28 +1,28 @@
-Les briques de l'informatique scientifique avec Python
-========================================================
+Bricks of scientific computing with Python
+==========================================
 
-* **Python**, un langage de programmation généraliste et moderne.  
+* **Python**, a generic and modern computing language
 
-    * Le langage Python : types de données (``string``, ``int``), contrôle
-      de flux, conteneurs (listes, dictionnaires), patterns, etc.
+    * Python language : data types (``string``, ``int``), flow control,
+      data collections (lists, dictionaries), patterns, etc.
 
-    * Les modules de la librairie standard
+    * Modules of the standard library.
 
-    * Un grand nombre d'autres modules spécialisés ou d'applications :
-      protocoles web, frameworks web, etc. ... et calcul scientifique.
+    * A large number of specialized modules or applications written in
+      Python: web protocols, web framework, etc. ... and scientific
+      computing.
 
-    * Outils de développement (tests automatisés, génération de
-      documentation, etc.)
+    * Development tools (automatic tests, documentation generation)
 
-* **IPython**, un interpréteur avec des fonctionnalités avancées.
+* **IPython**, an advanced Python shell
 
   http://ipython.scipy.org/moin/
  
 .. image:: snapshot_ipython.png
       :align: center
 
-* **Numpy** : fournit l'objet tableau (de données) et les routines pour
-  manipuler ces tableaux::
+* **Numpy** : provides powerful numerical arrays objects, and routines to
+  manipulate them.
 
     >>> import numpy as np
     >>> t = np.arange(10)
@@ -37,8 +37,8 @@ Les briques de l'informatique scientifique avec Python
 .. 
     >>> np.random.seed(4)
 
-* **Scipy** : routines haut-niveau de traitement de données.
-  Optimisation, régression, interpolation, etc::
+* **Scipy** : high-level data processing routines.
+  Optimization, regression, interpolation, etc::
 
     >>> import numpy as np
     >>> import scipy 
@@ -51,7 +51,7 @@ Les briques de l'informatique scientifique avec Python
 
   http://www.scipy.org/
 
-* **Matplotlib** : visualisation 2-D, figures "publication-ready"
+* **Matplotlib** : 2-D visualization, "publication-ready" plots
 
   http://matplotlib.sourceforge.net/
 
@@ -62,7 +62,7 @@ Les briques de l'informatique scientifique avec Python
       :height: 300px
   
 
-* **Mayavi** : visualisation 3-D
+* **Mayavi** : 3-D visualization
   
   http://code.enthought.com/projects/mayavi/
 

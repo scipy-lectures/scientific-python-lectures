@@ -1,17 +1,17 @@
-Le traitement d'images avec Numpy et Scipy 
+Image processing with Numpy and Scipy 
 ===========================================
 
-Le module consacré au traitement d'image est `scipy.ndimage`
+The submodule dedicated to image processing in scipy is `scipy.ndimage`.
 
 ::
 
     >>> from scipy import ndimage
 
+Image processing routines may be sorted according to the category of
+processing they perform.
 
-Les routines de traitement d'image disponibles peuvent être classées par
-type de traitement.
 
-* **Transformations géométriques des images** : orientation, résolution, ..
+* **Geometrical transformations on images** : orientation, resolution, ..
 
 ::
 
@@ -42,7 +42,7 @@ type de traitement.
     In [39]: # etc.
 
 
-* **Utilisation de filtres**
+* **Using filters**
 
 ::
 
@@ -59,27 +59,25 @@ type de traitement.
 
 
 
-Et bien d'autres filtres dans ``scipy.ndimage.filters`` et
-``scipy.signal``.
+And many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``.
 
-**Exercice** : comparer les histogrammes des différentes images filtrées de
-Lena.
+**Exercise** : compare histograms for the different filtered images.
 
-* **Morphologie mathématique**
+* **Mathematical morphology**
 
-La morphologie mathématique est une théorie mathématique issue de la
-théorie des ensembles, qui caractérise et transforme des structures
-géométriques. Elle s'applique en particulier aux images binaires ; les
-ensembles sont alors les groupes de pixels voisins non-nuls. On peut
-également étendre la théorie aux images en niveaux de gris.
+Mathematical morphology is a mathematical theory that stems from set
+theory. It characterizes and transforms geometrical structures. Binary
+(black and white) images, in particular, can be transformed using this
+theory: the sets to be transformed are the sets of neighboring
+non-zero-valued pixels. The theory was also extended to gray-valued images.
 
 .. image:: morpho_mat.png
    :align: center 
 
-Pour les opérations de base de la morphologie mathématique, on se sert
-d'un "élément structurant" pour modifier d'autres éléments.
+Elementary mathematical-morphology operations use a *structuring element*
+in order to modify other geometrical structures.
 
-Génération d'un élément structurant ::
+Let us first generate a structuring element ::
 
     >>> el = ndimage.generate_binary_structure(2, 1)
     >>> el
@@ -121,7 +119,7 @@ Erosion ::
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]])
 
-Dilatation
+Dilation
 ::
 
     >>> a = np.zeros((5, 5))
@@ -139,7 +137,7 @@ Dilatation
            [ 0.,  0.,  1.,  0.,  0.],
            [ 0.,  0.,  0.,  0.,  0.]])
 
-Ouverture
+Opening
 
 ::
     >>> a = np.zeros((5,5), dtype=np.int)
@@ -165,12 +163,14 @@ Ouverture
            [0, 0, 1, 0, 0],
            [0, 0, 0, 0, 0]])
 
-**Exercice** : vérifier que l'ouverture correspond bien à la succession d'une
-érosion et d'une dilatation.
+Closing: ``ndimage.binary_closing``
 
-Une ouverture permet de supprimer les petits éléments, et une fermeture
-de refermer les petits trous : on peut donc utiliser ces opérations pour
-"nettoyer" une image.
+**Exercise** : check that opening amounts to eroding, then dilating.
+
+An opening operation removes small structures, while a closing operation
+fills small holes. Such operation can therefore be used to "clean" an
+image.
+
 ::
 
     >>> a = np.zeros((50, 50))
@@ -183,13 +183,15 @@ de refermer les petits trous : on peut donc utiliser ces opérations pour
 .. image:: morpho.png
    :align: center 
 
-**Exercice** : vérifier que le carré reconstruit a une aire inférieure à
-l'aire du carré initial. (Ce serait le contraire si on faisait la
-fermeture avant l'ouverture).
+**Exercise** : check that the area of the reconstructed square is smaller
+than the area of the initial square. (The opposite would occur if the
+closing step was performed *before* the opening).
 
-En **niveaux de gris**, l'érosion (resp. la dilatation) correspond à
-remplacer un pixel par le minimum (resp. le maximum) des pixels
-recouverts par l'élément structurant. 
+
+For **gray-valued** images, eroding (resp. dilating) amounts to replacing
+a pixel by the minimal (resp. maximal) value among pixels covered by the
+structuring element centered on the pixel of interest.
+
 ::
 
     >>> a = np.zeros((7,7), dtype=np.int)
@@ -213,13 +215,18 @@ recouverts par l'élément structurant.
            [0, 0, 0, 0, 0, 0, 0]])
 
 
-* **Mesures sur l'image**
+* **Measures on the image**
+
+Let us first generate a nice synthetic binary image.
 
 ::
 
     >>> x, y = np.indices((100, 100))
     >>> sig = np.sin(2*np.pi*x/50.)*np.sin(2*np.pi*y/50.)*(1+x*y/50.**2)**2
     >>> mask = sig > 1
+
+Now we look for various information about the objects in the image::
+
     >>> labels, nb = ndimage.label(mask)
     >>> nb
     8
@@ -240,38 +247,43 @@ recouverts par l'élément structurant.
 .. image:: measures.png
    :align: center 
 
-Application à une image réelle : comptage des infondus dans un verre
----------------------------------------------------------------------
+Application: counting bubbles and unmolten grains
+----------------------------------------------------
 
 .. image:: MV_HFV_012.jpg
    :align: center 
    :width: 600px
 
 
-1. Ouvrir l'image MV_HFV_012.jpg. On cherche à déterminer la fraction du
-matériau occupée par des grains infondus (gris foncés), du verre (gris
-clair), et des bulles (noir). On veut aussi estimer la taille typique des
-grains de sable, leur nombre, les voisinages entre grains, etc.
+1. Open the image file MV_HFV_012.jpg and display it. Browse through the
+keyword arguments in the docstring of ``imshow`` to display the image
+with the "right" orientation (origin in the bottom left corner, and not
+the upper left corner as for standard arrays).
 
-2. Enlever le bandeau avec les informations de mesure.
+This Scanning Element Microscopy image shows a glass sample (light gray
+matrix) with some bubbles (on black) and unmolten sand grains (dark
+gray). We wish to determine the fraction of the sample covered by these
+three phases, and to estimate the typical size of sand grains and
+bubbles, their sizes, etc.
 
-3. Filtrer légèrement l'image avec un filtre médian afin d'affiner
-l'histogramme des niveaux d'intensité. Vérifier sur les histogrammes.
+2. Crop the image to remove the lower panel with measure information.
 
-4. A partir de l'image filtrée, déterminer des seuils permettant de
-définir un masque pour les pixels du sable, un pour le verre et un pour
-les bulles. Variante : écrire une fonction permettant de détecter
-automatiquement les pics à partir de l'histogramme.
+3. Slightly filter the image with a median filter in order to refine its
+histograme. Check how the histogram changes.
 
-5. Afficher une image où les trois phases sont coloriées chacune dans une
-couleur différente. 
+4. Using the histogram of the filtered image, determine thresholds that
+allow to define masks for sand pixels, glass pixels and bubble pixels.
+Other option (homework): write a function that determines automatically
+the thresholds from the minima of the histogram.
 
-6. Utiliser la morphologie mathématique pour nettoyer les différentes phases. 
+5. Display an image in which the three phases are colored with three
+different colors.
 
-7. Attribuer un label à chaque bulle et chaque grain de sable, et
-supprimer les grains de sable de taille plus petite que 10 pixels. Pour
-celà, utiliser ``ndimage.sum`` ou ``np.bincount`` afin d'obtenir la taille 
-des grains.
+6. Use mathematical morphology to clean the different phases.
 
-8. Calculer la taille moyenne des bulles.
+7. Attribute labels to all bubbles and sand grains, and remove from the
+sand mask grains that are smaller than 10 pixels. To do so, use
+``ndimage.sum`` or ``np.bincount`` to compute the grain sizes.
+
+8. Compute the mean size of bubbles.
 

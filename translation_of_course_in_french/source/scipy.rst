@@ -1,4 +1,4 @@
-Scipy : le calcul numérique haut-niveau
+Scipy : high-level scientific computing
 =========================================
 
 ..
@@ -38,24 +38,25 @@ Scipy : le calcul numérique haut-niveau
     définir les méthodes numériques dont il a besoin, et de chercher ce qu'il
     peut utiliser à l'intérieur des sous-modules pertinents.
 
-Pour commencer ::
+To begin with ::
 
     >>> import scipy
 
-Fonctions spéciales : ``scipy.special``
+Special functions: ``scipy.special``
 ----------------------------------------
 
-Une bibliothèque de fonctions spéciales qu'on retrouve fréquemment.
-Beaucoup de fonctions courantes sont déjà dans numpy 
+A library of special functions.
+
+The most standard functions are found in numpy 
 
 .. sourcecode:: ipython
 
     [In 57]: np.cos, np.sinc, np.tanh
     (<ufunc 'cos'>, <function sinc at 0x8adb6bc>, <ufunc 'tanh'>)
 
-il faut chercher les autres dans ``scipy.special``.
+more specialized functions are in ``scipy.special``.
 
-**Exemple** : fonctions de Bessel du premier type
+**Exemple** : first-type Bessel function
 
 .. image:: bessel-eq.png
    :align: left
@@ -73,15 +74,15 @@ http://www.linuxmag-france.org/produit.php?produit=609, Gaël Varoquaux)
     >>> x = np.linspace(0, 10, 200)
     >>> y = jn(index, x)
 
-Et bien d'autres fonctions : ``gamma, beta, erf, airy, legendre,
+And many other functions: ``gamma, beta, erf, airy, legendre,
 fonctions elliptiques``, etc.
 
-Algèbre linéaire : ``scipy.linalg``
+Linear algebra: ``scipy.linalg``
 ------------------------------------
 
-Les opérations classiques d'algèbre linéaire. 
+Standard linear algebra operations.
 
-**Opérations basiques** ::
+**Basic operations** ::
 
     >>> from scipy import linalg
     >>> a = np.array([[1, 2], [3, 4]])
@@ -97,10 +98,10 @@ Les opérations classiques d'algèbre linéaire.
     array([[-2. ,  1. ],
            [ 1.5, -0.5]])
 
-... **ou moins basiques**. Exemple : décomposition en valeurs singulières
+... and more advanced operations. Example: singular-value decomposition
 (SVD) ::
  
-    >>> A = scipy.mat('[1 3 2; 1 2 3]') #matrice non carrée
+    >>> A = scipy.mat('[1 3 2; 1 2 3]') #non-square matrix
     >>> U,s,Vh = linalg.svd(A)
     >>> s # spectre de A
     array([ 5.19615242,  1.        ])
@@ -124,7 +125,7 @@ La SVD est très employée en statistiques ou en traitement du signal.::
 On trouve dans ``scipy.linalg`` bien d'autres décompositions classiques
 (QR, LU, Cholesky, Schur), des solveurs de systèmes linéaires, etc.
 
-Interpolation : ``scipy.interpolate``
+Interpolation: ``scipy.interpolate``
 ---------------------------------------
 
 ::
@@ -160,7 +161,7 @@ Pour des méthodes d'interpolation par splines plus général, voir
 tableaux 2D.
 (mettre une image ?)
 
-Intégration : ``scipy.integrate``
+Integration: ``scipy.integrate``
 -----------------------------------
 
 Différentes routines d'intégration numérique. ``scipy.integrate.quad``
@@ -300,13 +301,13 @@ Si on est paresseux on peut dans ce cas-ci se ramener à un fit polynomial
 mais ce n'est pas conseillé, car ce n'est plus le même problème
 d'optimisation.
 
-Traitement d'images : ``scipy.ndimage``
+Image processing: ``scipy.ndimage``
 -----------------------------------------
 
-Ce sous-module propose des routines de traitement d'images à n dimensions
-(générique pour 2-D, 3-D, etc.).
+This submodule offers image processing routines for n-dimensional arrays
+(the routines can be used on arrays with a different number of dimensions, 2-D, 3-D, etc.).
 
-Un exemple ::
+Example ::
 
     >>> import scipy.ndimage
     >>> lena = scipy.lena()

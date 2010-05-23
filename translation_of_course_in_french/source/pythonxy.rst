@@ -1,19 +1,26 @@
 .. _pythonxy:
 
-L'environnement Python(x,y)
+The Python(x,y) environment 
 ===========================
 
 http://www.pythonxy.com/
 
-Python(x,y) est un logiciel développé par Pierre Raybaut (CEA, DAM) qui
-regroupe ensemble une suite de modules liés au calcul scientifique, dont
-il a agrégé les exécutables au sein de Python(x,y). Sous l'environnement
-MS Windows, installer Python(x,y) est donc une manière pratique
-d'installer d'un seul coup un grand nombre de modules pour le calcul
-scientifique.
+Python(x,y) is a software that integrates a suite of standard
+scientific-computing modules written in Python. Users of MS Windows may
+find it easier to install once Python(x,y) than installing separately all
+thses modules. Installing Python(x,y) is enough to start you off working
+(and in particular, run all the examples of the tutorials).
 
-Premiers pas sous Python(x,y)
+Another solution is the Enthought Python Distribution (EPD), which is a
+commercial product available for a larger choice of environments and with
+commercial support.  
+
+
+First steps with Python(x,y)
 -----------------------------
+
+Below the starting menu of Python(x,y) is displayed. You can choose
+between running an application (a third-party software), or launching an 
 
 Voici le menu de démarrage de Python(x,y). Il propose de choisir entre
 lancer une application (un logiciel indépendant), ou de lancer une
