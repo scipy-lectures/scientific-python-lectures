@@ -1,0 +1,2 @@
+To build the course, type "make html". The html output files are found in
+the directory build/html.
