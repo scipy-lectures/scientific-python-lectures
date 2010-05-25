@@ -15,7 +15,7 @@ Contents:
    pythonxy.rst
    python.rst
    numpy.rst
-   aide.rst
+   help.rst
    reponses1.rst
    scipy.rst
    image_processing.rst 

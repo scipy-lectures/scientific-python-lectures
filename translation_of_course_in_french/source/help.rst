@@ -1,4 +1,4 @@
-.. _aide:
+.. _help:
 
 Help and documentation
 =======================

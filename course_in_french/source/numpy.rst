@@ -731,7 +731,7 @@ sous-tableau, et non une vue ::
     >>> a
     array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
 
-L'indexation grâce masques peut être très utile pour l'assignation d'une
+L'indexation grâce aux masques peut être très utile pour l'affectation d'une
 nouvelle valeur à un sous-tableau :: 
 
     >>> a[mask] = 0 
@@ -813,7 +813,7 @@ tableaux pour qu'ils aient tous la même taille : on appelle cette
 transformation le **broadcasting** (jeu de mots intraduisible en
 français).
 
-L'image ci-dessous donne un exemple de 
+L'image ci-dessous donne un exemple de broadcasting:
 
 .. image:: numpy_broadcasting.png
    :align: center
@@ -837,7 +837,7 @@ On a déjà utilisé le broadcasting sans le savoir ::
            [ 5,  6,  7,  8,  9],
            [10, 11, 12, 13, 14],
            [15, 16, 17, 18, 19]])
-    >>> a[0] = 1 # on égale deux tableaux de dimension 1 et 0
+    >>> a[0] = 1 # on affecte un tableau de dimension 0 à un de dimension 1
     >>> a[:3] = np.arange(1,6)
     >>> a
     array([[ 1,  2,  3,  4,  5],

@@ -1,32 +1,31 @@
-Comment créer et manipuler les données numériques : autour de Numpy
-=======================================================================
+Creating and manipulating numerical data : around Numpy
+=======================================================
 
-.. topic:: Le tableau : l'outil de base du calcul scientifique
+.. topic:: The array: the basic tool for scientific computing
 
     .. image:: simple_histo.jpg
        :align: right 
 
-    Manipulation fréquente d'**ensembles ordonnés discrets** :
+    Frequent manipulation of **discrete sorted datasets** :
  
-    * temps discrétisé d'une expérience/simulation
+    * discretized time of an experiment/simulation
 
-    * signal enregistré par un appareil de mesure
+    * signal recorded by a measurement device
 
-    * pixels d'une image, ...
+    * pixels of an image, ...
 
-    Le module **Numpy** permet de 
+    The **Numpy** module allows to 
 
-    * créer d'un coup ces ensembles de données
+    * create such datasets in one shot
 
-    * réaliser des opérations en "batch" sur les tableaux de données (pas
-      de boucle sur les éléments).
+    * realize batch operations on data arrays (no loops on their items)
 
-    Tableau de données := ``numpy.ndarray``
+    Data arrays := ``numpy.ndarray``
 
-La création de tableaux de données Numpy
--------------------------------------------
+Creating NumPy data arrays
+--------------------------
 
-Un petit exemple pour commencer::
+A small introductory example::
 
     >>> import numpy as np
     >>> a = np.array([0, 1, 2])
@@ -39,19 +38,19 @@ Un petit exemple pour commencer::
     array([[ 0.,  1.],
            [ 2.,  3.]])
 
-Dans la pratique, on rentre rarement les éléments un par un...
+In practice, we rarely enter items one by one...
 
-    * Valeurs espacées régulièrement::
+    * Evenly spaced values::
 
         >>> import numpy as np
         >>> a = np.arange(10) # de 0 a n-1
         >>> a
         array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-        >>> b = np.arange(1., 9., 2) # syntaxe : debut, fin, saut
+        >>> b = np.arange(1., 9., 2) # syntax : start, end, step
         >>> b
         array([ 1.,  3.,  5.,  7.])
 
-      ou encore, en spécifiant le nombre de points::
+      or by specifying the number of points::
 
         >>> c = np.linspace(0, 1, 6)
         >>> c
@@ -60,7 +59,7 @@ Dans la pratique, on rentre rarement les éléments un par un...
         >>> d
         array([ 0. ,  0.2,  0.4,  0.6,  0.8])
 
-    * Constructeurs pour des tableaux classiques::
+    * Constructors for common arrays::
 
         >>> a = np.ones((3,3))
         >>> a
@@ -84,40 +83,39 @@ Dans la pratique, on rentre rarement les éléments un par un...
 
 
 
-La représentation graphique des données : matplotlib et mayavi
----------------------------------------------------------------
+Graphical data representation : matplotlib and mayavi
+-----------------------------------------------------
 
-Maintenant que nous avons nos premiers tableaux de données, nous allons
-les visualiser. **Matplotlib** est un package de plot 2-D, on importe ces
-fonctions de la manière suivante ::
+Now that we have our first data arrays, we are going to visualize them.
+**Matplotlib** is a 2D plotting package. We can import its functions as below::
 
     >>> import pylab
-    >>> # ou
-    >>> from pylab import * # pour tout importer dans le namespace
+    >>> # or
+    >>> from pylab import * # imports everything in the namespace
  
     
-Si vous avec lancé Ipython avec python(x,y), ou avec l'option ``ipython
--pylab`` (sous linux), toutes les fonctions/objets de pylab ont déjà été
-importées, comme si on avait fait ``from pylab import *``. Dans la suite
-on suppose qu'on a fait ``from pylab import *`` ou lancé ``ipython
--pylab``: on n'écrira donc pas ``pylab.fonction()`` mais directement
-``fonction``. 
+If you launched Ipython with python(x,y), or with ``ipython
+-pylab`` (under Linux), all the functions/objects of pylab are already
+imported, without needing ``from pylab import *``. In the remainder of this
+tutorial, we assume you have already run ``from pylab import *`` or ``ipython
+-pylab``: as a consequence, we won't write ``pylab.function()`` but directly
+``function``.
 
-**Tracé de courbes 1-D**
+**1D curve plotting**
 
 .. sourcecode:: ipython
 
     In [6]: a = np.arange(20)
     In [7]: plot(a, a**2) # line plot
     Out[7]: [<matplotlib.lines.Line2D object at 0x95abd0c>]
-    In [8]: plot(a, a**2, 'o') # symboles ronds
+    In [8]: plot(a, a**2, 'o') # dotted plot
     Out[8]: [<matplotlib.lines.Line2D object at 0x95b1c8c>]
     In [9]: clf() # clear figure
     In [10]: loglog(a, a**2)
     Out[10]: [<matplotlib.lines.Line2D object at 0x95abf6c>]
-    In [11]: xlabel('x') # un peu petit
+    In [11]: xlabel('x') # a bit too small
     Out[11]: <matplotlib.text.Text object at 0x98923ec>
-    In [12]: xlabel('x', fontsize=26) # plus gros
+    In [12]: xlabel('x', fontsize=26) # bigger
     Out[12]: <matplotlib.text.Text object at 0x98923ec>
     In [13]: ylabel('y')
     Out[13]: <matplotlib.text.Text object at 0x9892b8c>
@@ -129,11 +127,11 @@ on suppose qu'on a fait ``from pylab import *`` ou lancé ``ipython
    :align: center 
    
 
-**Tableaux 2-D** (images par exemple)   
+**2D arrays** (such as images)   
 
 .. sourcecode:: ipython
 
-    In [48]: # Tableaux 30x30 de nombres aleatoires entre 0 et 1
+    In [48]: # 30x30 array with random floats btw 0 and 1
     In [49]: image = np.random.rand(30,30) 
     In [50]: imshow(image)
     Out[50]: <matplotlib.image.AxesImage object at 0x9e954ac>
@@ -141,27 +139,26 @@ on suppose qu'on a fait ``from pylab import *`` ou lancé ``ipython
     In [52]: hot()
     In [53]: imshow(image, cmap=cm.gray)
     Out[53]: <matplotlib.image.AxesImage object at 0xa23972c>
-    In [54]: axis('off') # on enleve les ticks et les labels    
+    In [54]: axis('off') # we remove ticks and labels    
 
 .. image:: imshow.png
    :align: center
 
-Il y a bien d'autres fonctionnalités dans matplotlib : choix de couleurs
-ou des tailles de marqueurs, fontes latex, inserts à l'intérieur d'une
-figure, histogrammes, etc.
+There are many other features in matplotlib: color choice, marker size,
+latex font, inclusions within figures, histograms, etc.
 
-Pour aller plus loin :
+To go further :
 
-    * la documentation de matplotlib
+    * matplotlib documentation
       http://matplotlib.sourceforge.net/contents.html
 
-    * une gallerie d'exemples accompagnés du code source
+    * an example gallery with corresponding sourcecode
       http://matplotlib.sourceforge.net/gallery.html
 
-**Représentation en 3-D**
+**3D plotting**
 
-Pour la visualisation 3-D, on utilise un autre package : **Mayavi**. Un
-exemple rapide : commencez par **relancer ipython** avec les options 
+For 3D visualization, we use another package: **Mayavi**. A quick example:
+start with **relaunching iPython** with these options:
 **ipython -pylab -wthread**
 
 .. sourcecode:: ipython
@@ -179,21 +176,20 @@ exemple rapide : commencez par **relancer ipython** avec les options
 .. image:: surf.png
    :align: center
 
-La fenêtre mayavi/mlab qui s'ouvre est interactive : en cliquant sur le
-bouton gauche de la souris vous pouvez faire tourner l'image, on peut
-zoomer avec la molette, etc.
+The mayavi/mlab window that opens is interactive : by clicking on the left mouse button
+you can rotate the image, zoom with the mouse wheel, etc.
 
 .. image:: potential.jpg
    :align: center
 
-Pour plus d'informations sur Mayavi :
+For more information on Mayavi :
 http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/index.html
 
-Indexage 
-----------
+Indexing 
+--------
 
-On peut accéder aux éléments des tableaux Numpy (indexer) d'une manière
-similaire que pour les autres séquences Python (``list``, ``tuple``) ::
+The items of an array can be accessed the same way as other Python sequences
+(``list``, ``tuple``) ::
 
     >>> a = np.arange(10)
     >>> a
@@ -201,12 +197,10 @@ similaire que pour les autres séquences Python (``list``, ``tuple``) ::
     >>> a[0], a[2], a[-1]
     (0, 2, 9)
 
-Attention ! L'indexage commence à partir de 0, comme pour les autres
-séquences Python (et comme en C/C++). En Fortran ou Matlab, l'indexage
-commence à 1.
+Warning! Indexes begin at 0, like other Python sequences (and C/C++).
+In Fortran or Matlab, indexes begin with 1.
 
-Pour les tableaux multidimensionnels, l'indice d'un élément est donné par
-un n-uplet d'entiers ::
+For multidimensional arrays, indexes are tuples of integers::
 
     >>> a = np.diag(np.arange(5))
     >>> a
@@ -217,7 +211,7 @@ un n-uplet d'entiers ::
            [0, 0, 0, 0, 4]])
     >>> a[1,1]
     1
-    >>> a[2,1] = 10 # deuxième ligne, première colonne
+    >>> a[2,1] = 10 # third line, second column
     >>> a
     array([[ 0,  0,  0,  0,  0],
            [ 0,  1,  0,  0,  0],
@@ -227,31 +221,30 @@ un n-uplet d'entiers ::
     >>> a[1]
     array([0, 1, 0, 0, 0])
 
-A retenir :
+Note that:
 
-* En 2-D, la première dimension correspond aux lignes, la seconde aux
-  colonnes.
-* Pour un tableau ``a`` à plus qu'une dimension,`a[0]` est interprété
-  en prenant tous les éléments dans les dimensions non-spécifiés.  
+* In 2D, the first dimension corresponds to lines, the second to columns.
+* for an array ``a`` with more than one dimension,`a[0]` is interpreted by
+  taking all elements in the unspecified dimensions.
 
-Slicing (parcours régulier des éléments)
------------------------------------------
+Slicing
+-------
 
-Comme l'indexage, similaire au slicing des autres séquences Python::
+Like indexing, it's similar to Python sequences slicing::
 
     >>> a = np.arange(10)
     >>> a
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> a[2:9:3] # [début:fin:pas]
+    >>> a[2:9:3] # [start:end:step]
     array([2, 5, 8])
 
-Attention, le dernier indice n'est pas inclus ::
+Note that the last index is not included!::
 
     >>> a[:4]
     array([0, 1, 2, 3])
 
-``début:fin:pas`` est un objet ``slice``, qui représente l'ensemble d'indices
-``range(début, fin, pas)``. On peut créer explicitement un ``slice`` ::
+``start:end:step`` is a ``slice`` object which represents the set of indexes
+``range(start, end, step)``. A ``slice`` can be explicitly created::
 
     >>> sl = slice(1, 9, 2)
     >>> a = np.arange(10)
@@ -261,8 +254,8 @@ Attention, le dernier indice n'est pas inclus ::
     >>> a[sl], b[sl]
     (array([1, 3, 5, 7]), array([ 3,  7, 11, 15]))
 
-On n'est pas obligé de spécifier à la fois le début (indice 0 par
-défaut), la fin (dernier indice par défaut) et le pas (1 par défaut)::
+All three slice components are not required: by default, `start` is 0, `end` is the
+last and `step` is 1::
 
     >>> a[1:3]
     array([1, 2])
@@ -271,7 +264,7 @@ défaut), la fin (dernier indice par défaut) et le pas (1 par défaut)::
     >>> a[3:]
     array([3, 4, 5, 6, 7, 8, 9])
 
-Et bien sûr, ça marche pour les tableaux à plusieurs dimensions::
+Of cource, it works for multidimensional arrays::
 
     >>> a = np.eye(5)
     >>> a
@@ -280,12 +273,11 @@ Et bien sûr, ça marche pour les tableaux à plusieurs dimensions::
            [ 0.,  0.,  1.,  0.,  0.],
            [ 0.,  0.,  0.,  1.,  0.],
            [ 0.,  0.,  0.,  0.,  1.]])
-    >>> a[2:4,:3] #2è et 3è lignes, trois premières colonnes
+    >>> a[2:4,:3] #3rd and 4th lines, 3 first columns
     array([[ 0.,  0.,  1.],
            [ 0.,  0.,  0.]])
 
-On peut changer la valeur de tous les éléments indexés par une slice de
-façon très simple ::
+All elements specified by a slice can be easily modified::
 
     >>> a[:3,:3] = 4
     >>> a
@@ -295,16 +287,14 @@ façon très simple ::
            [ 0.,  0.,  0.,  1.,  0.],
            [ 0.,  0.,  0.,  0.,  1.]])
 
-Une petite illustration en résumé de l'indexage et du slicing avec
-Numpy...
+A small illustrated summary of Numpy indexing and slicing...
 
 .. image:: numpy_indexing.png
    :align: center
 
-Une opération de slicing crée une **vue** (**view**) du tableau
-d'origine, c'est-à-dire une manière d'aller lire dans la mémoire. Le
-tableau d'origine n'est donc pas copié. **Quand on modifie la vue, on
-modife aussi le tableau d'origine.**::
+A slicing operation creates a **view** on the original array, which is just a way of
+accessing array data. Thus the original array is not copied in memory. *When
+modifying the view, the original array is modified as well**::
 
     >>> a = np.arange(10)
     >>> a 
@@ -317,15 +307,15 @@ modife aussi le tableau d'origine.**::
     >>> a # a a été modifié aussi !
     array([12,  1,  2,  3,  4,  5,  6,  7,  8,  9])
 
-Ce comportement peut surprendre au début... mais est bien pratique pour
-gérer la mémoire de façon économe.
+This behaviour can be surprising at first sight... but it allows to save a lot
+of memory.
 
 
-Manipuler la forme des tableaux
-----------------------------------
+Manipulating the shape of arrays
+---------------------------------
 
-On obtient la forme d'un tableau grâce à la méthode ``ndarray.shape`` qui
-retourne un tuple des dimensions du tableau ::
+The shape of an array can be retrieved with the ``ndarray.shape`` method which
+returns a tuple with the dimensions of the array::
 
     >>> a = np.arange(10)
     >>> a.shape
@@ -333,23 +323,23 @@ retourne un tuple des dimensions du tableau ::
     >>> b = np.ones((3,4))
     >>> b.shape
     (3, 4)
-    >>> b.shape[0] # on peut accéder aux élements du tuple b.shape
+    >>> b.shape[0] # the shape tuple elements can be accessed
     3
-    >>> # et on peut aussi faire
+    >>> # an other way of doing the same
     >>> np.shape(b)
     (3, 4)
- 
-Par ailleurs on obtient la longueur de la première dimension avec
-``np.alen`` (par analogie avec ``len`` pour une liste) et le nombre total
-d'éléments avec ``ndarray.size``::
+
+Moreover, the length of the first dimension can be queried with ``np.alen`` (by
+analogy with ``len`` for a list) and the total number of elements with
+``ndarray.size``::
 
     >>> np.alen(b)
     3
     >>> b.size
     12
 
-Il existe plusieurs fonctions Numpy qui permettent de créer un tableau de
-taille différente à partir d'un tableau de départ.::
+Several NumPy functions allow to create an array with a different shape, from
+another array::
 
     >>> a = np.arange(36)
     >>> b = a.reshape((6, 6))
@@ -361,7 +351,7 @@ taille différente à partir d'un tableau de départ.::
            [24, 25, 26, 27, 28, 29],
            [30, 31, 32, 33, 34, 35]])
 
-``ndarray.reshape`` renvoie une vue, et pas une copie ::
+``ndarray.reshape`` returns a view, not a copy::
 
     >>> b[0,0] = 10
     >>> a 
@@ -369,7 +359,7 @@ taille différente à partir d'un tableau de départ.::
            17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
            34, 35])
 
-On peut aussi créer un tableau avec un nombre d'éléments différents avec ``ndarray.resize``::
+An array with a different number of elements can also be created with ``ndarray.resize``::
 
     >>> a = np.arange(36)
     >>> a.resize((4,2))
@@ -385,7 +375,7 @@ On peut aussi créer un tableau avec un nombre d'éléments différents avec ``n
            [2, 3],
            [0, 0]])
 
-Ou paver un grand tableau à partir d'un tableau plus petit ::
+A large array can be tiled with a smaller one::
 
     >>> a = np.arange(4).reshape((2,2))
     >>> a
@@ -397,14 +387,13 @@ Ou paver un grand tableau à partir d'un tableau plus petit ::
            [0, 1, 0, 1, 0, 1],
            [2, 3, 2, 3, 2, 3]])
 
-Exercices : quelques gammes avec les tableaux numpy
-------------------------------------------------------
+Exercises : some simple array creations
+---------------------------------------
 
-Grâce aux divers constructeurs, à l'indexage et au slicing, et aux
-opérations simples sur les tableaux (+/-/x/:), on peut facilement créer
-des tableaux de grande taille correspondant à des motifs variés.
+By using miscellaneous constructors, indexing, slicing, and simple operations
+(+/-/x/:), large arrays with various patterns can be created.
 
-**Exemple** : comment créer le tableau::
+**Example** : create this array::
 
     [[ 0  1  2  3  4]
      [ 5  6  7  8  9]
@@ -412,15 +401,14 @@ des tableaux de grande taille correspondant à des motifs variés.
      [15 16 17 18 19]
      [20 21 22 23 24]]
 
-**Réponse**
+**Answer**
 
 ::
 
     >>> a = np.arange(25).reshape((5,5))
     >>> a[2, 4] = 0
 
-**Exercices** : créer les tableaux suivants de la manière la plus simple
-possible (pas élément par élement) ::
+**Exercises** : Create the following array with the simplest solution::
 
     [[ 1.  1.  1.  1.]
      [ 1.  1.  1.  1.]
@@ -434,17 +422,16 @@ possible (pas élément par élement) ::
      [0 0 0 5 0]
      [0 0 0 0 6]]
 
-**Réponses** :ref:`reponses1`
+**Answers** :ref:`reponses1`
 
-De "vraies données" : lire et écrire des tableaux dans des fichiers
---------------------------------------------------------------------
+Real data: read/write arrays from/to files
+------------------------------------------
 
-Bien souvent, nos expériences ou nos simulations écrivent leurs résultats
-dans des fichiers. Il faut ensuite les charger dans Python sous la forme
-de tableaux Numpy pour les manipuler. De même, on peut vouloir sauver les
-tableaux qu'on a obtenus dans des fichiers.
+Often, our experiments or simulations write some results in files. These results
+must then be loaded in Python as NumPy arrays to be able to manipulate them. We
+also need to save some arrays into files.
 
-**Aller dans le bon répertoire**
+**Going to the right folder**
 
 
 ..
@@ -452,50 +439,50 @@ tableaux qu'on a obtenus dans des fichiers.
     >>> os.chdir('/home/gouillar/sandbox')
 
     
-Pour se déplacer dans une arborescence de fichiers :
+To move in a folder hierarchy:
 
-    * utiliser les fonctionnalités d'Ipython : ``cd``, ``pwd``,
+    * use the iPython commands: ``cd``, ``pwd``,
       tab-completion.
 
 .. sourcecode:: ipython
 
-	In [1]: mkdir python_scripts
+  In [1]: mkdir python_scripts
 
-	In [2]: cd python_scripts/ 
-	/home/gouillar/python_scripts
+  In [2]: cd python_scripts/ 
+  /home/gouillar/python_scripts
 
-	In [3]: pwd
-	Out[3]: '/home/gouillar/python_scripts'
+  In [3]: pwd
+  Out[3]: '/home/gouillar/python_scripts'
 
-	In [4]: ls
+  In [4]: ls
 
-	In [5]: np.savetxt('integers.txt', np.arange(10))
+  In [5]: np.savetxt('integers.txt', np.arange(10))
 
-	In [6]: ls
-	integers.txt
+  In [6]: ls
+  integers.txt
 
 
 .. 
 
-    * modules os (routines système) et os.path (gestion des chemins) ::
+    * os (system routines) and os.path (path management) modules::
 
-	>>> import os, os.path  
-	>>> current_dir = os.getcwd()
-	>>> current_dir
-	'/home/gouillar/sandbox'
-	>>> data_dir = os.path.join(current_dir, 'data')
-	>>> data_dir
-	'/home/gouillar/sandbox/data'
-	>>> if not(os.path.exists(data_dir)):
+  >>> import os, os.path  
+  >>> current_dir = os.getcwd()
+  >>> current_dir
+  '/home/gouillar/sandbox'
+  >>> data_dir = os.path.join(current_dir, 'data')
+  >>> data_dir
+  '/home/gouillar/sandbox/data'
+  >>> if not(os.path.exists(data_dir)):
         ...     os.mkdir('data')
-        ...     print "creation du repertoire 'data'"
+        ...     print "created 'data' folder"
         ...     
-	>>> os.chdir(data_dir) # ou dans Ipython : cd data
+  >>> os.chdir(data_dir) # or in Ipython : cd data
 
-On peut en fait se servir de Ipython comme d'un véritable shell grâce aux
-fonctionnalités d'Ipython et au module ``os``.
+IPython can actually be used like a shell, thanks to its integrated features and
+the os module.
 
-**Ecrire un tableau de données dans un fichier**
+**Writing a data array in a file**
 
 ::
 
@@ -504,53 +491,53 @@ fonctionnalités d'Ipython et au module ``os``.
 
          
 
-* Ecriture dans un fichier texte (en ascii) ::
+* Writing a text file (in ASCII)::
 
     >>> np.savetxt('data_a.txt', a)
 
-* Ecriture dans un fichier en binaire (extension ``.npy``, format conseillé) ::
+* Writing a binary file (``.npy`` extension, recommended format) ::
 
     >>> np.save('data_a.npy', a)
 
-**Charger un tableau de données à partir d'un fichier**
+**Loading a data array from a file**
 
-* Lecture dans un fichier texte ::
+* Reading from a text file::
 
     >>> b = np.loadtxt('data_a.txt')
 
-* Lecture dans un fichier binaire ::
+* Reading from a binary file::
 
     >>> c = np.load('data_a.npy')
 
-.. topic:: Pour lire les fichiers de données matlab
+.. topic:: To read matlab data files
 
-    ``scipy.io.loadmat`` : la structure matlab d'un fichier .mat est
-    stockée dans un dictionnaire.
+    ``scipy.io.loadmat`` : the matlab structure of a .mat file is stored as a
+    dictionary.
 
-**Ouvrir et enregistrer des images : imsave et imread**
+**Opening and saving images: imsave and imread**
 
 ::
 
-	>>> import scipy
-	>>> from pylab import imread, imsave, savefig
-	>>> lena = scipy.lena()
-	>>> imsave('lena.png', lena, cmap=cm.gray)
-	>>> lena_reloaded = imread('lena.png')
-	>>> imshow(lena_reloaded, cmap=gray)
-	<matplotlib.image.AxesImage object at 0x989e14c>
-	>>> savefig('lena_figure.png')
+  >>> import scipy
+  >>> from pylab import imread, imsave, savefig
+  >>> lena = scipy.lena()
+  >>> imsave('lena.png', lena, cmap=cm.gray)
+  >>> lena_reloaded = imread('lena.png')
+  >>> imshow(lena_reloaded, cmap=gray)
+  <matplotlib.image.AxesImage object at 0x989e14c>
+  >>> savefig('lena_figure.png')
 
 .. image:: lena_figure.png
    :align: center
    :width: 500px
 
-**Pour sélectionner un fichier dans une liste**
+**Selecting a file from a list**
 
-On va sauver chaque ligne de ``a`` dans un fichier différent ::
+Each line of ``a`` will be saved in a different file::
 
     >>> for i, l in enumerate(a):
     ...     print i, l
-    ...     np.savetxt('ligne_'+str(i), l)
+    ...     np.savetxt('line_'+str(i), l)
     ...     
     0 [0 1 2 3 4 5 6 7 8 9]
     1 [10 11 12 13 14 15 16 17 18 19]
@@ -563,57 +550,53 @@ On va sauver chaque ligne de ``a`` dans un fichier différent ::
     8 [80 81 82 83 84 85 86 87 88 89]
     9 [90 91 92 93 94 95 96 97 98 99]
 
-Pour obtenir une liste de tous les fichiers commençant par ``ligne``, on
-fait appel au module ``glob`` qui "gobe" tous les chemins correspondant à
-un motif. Exemple ::
+To get a list of all files beginning with ``line``, we use the ``glob`` module
+which matches all paths corresponding to a pattern. Example::
 
     >>> import glob
-    >>> filelist = glob.glob('ligne*')
+    >>> filelist = glob.glob('line*')
     >>> filelist
-    ['ligne_0', 'ligne_1', 'ligne_2', 'ligne_3', 'ligne_4', 'ligne_5', 'ligne_6', 'ligne_7', 'ligne_8', 'ligne_9']
-    >>> # attention la liste n'est pas toujours ordonnee
+    ['line_0', 'line_1', 'line_2', 'line_3', 'line_4', 'line_5', 'line_6', 'line_7', 'line_8', 'line_9']
+    >>> # Note that the line is not always sorted
     >>> filelist.sort()
     >>> l2 = np.loadtxt(filelist[2])
 
-Remarque : il est aussi possible de créer des tableaux à partir de
-fichiers Excel/Calc, de fichiers hdf5, etc. (mais à l'aide de modules
-supplémentaires non décrits ici : xlrd, pytables, etc.).
+Note: arrays can also be created from Excel/Calc files, HDF5 files, etc.
+(but with additional modules not described here: xlrd, pytables, etc.).
 
-Opérations mathématiques et statistiques simples sur les tableaux
--------------------------------------------------------------------
+Simple mathematical and statistical operations on arrays
+--------------------------------------------------------
 
-Un certain nombre d'opérations sur les tableaux sont codées directement
-dans numpy (et sont donc en général très efficaces)::
+Some operations on arrays are natively available in NumPy (and are generally
+very efficient)::
 
     >>> a = np.arange(10)
-    >>> a.min() # ou np.min(a)
+    >>> a.min() # or np.min(a)
     0
-    >>> a.max() # ou np.max(a)
+    >>> a.max() # or np.max(a)
     9
-    >>> a.sum() # ou np.sum(a)
+    >>> a.sum() # or np.sum(a)
     45
 
-Il est possible de réaliser l'opération le long d'un axe uniquement,
-plutôt que sur tous les éléments ::
+Operations can also be run along an axis, instead of on all elements::
 
     >>> a = np.array([[1, 3], [9, 6]])
     >>> a
     array([[1, 3],
            [9, 6]])
-    >>> a.mean(axis=0) # tableau contenant la moyenne de chaque colonne 
+    >>> a.mean(axis=0) # the array contains the mean of each column 
     array([ 5. ,  4.5])
-    >>> a.mean(axis=1) # tableau contenant la moyenne de chaque ligne
+    >>> a.mean(axis=1) # the array contains the mean of each line
     array([ 2. ,  7.5])
 
-Il y en a encore bien d'autres opérations possibles : on en découvrira
-quelques unes au fil de ce cours.
+Many other operations are available. We will discover some of them in this
+course.
 
 .. note::
 
-    Les opérations arithmétiques sur les tableaux correspondent à des
-    opérations élément par élément. En particulier, le produit n'est pas
-    un produit matriciel (**contrairement à Matlab**) ! Le produit
-    matriciel est fourni par ``np.dot``::
+    Arithmetic operations on arrays correspond to operations on each individual
+    element. In particular, the multiplication is not a matrix multiplication
+    (**unlike Matlab**)! The matrix multiplication is provided by ``np.dot``::
 
         >>> a = np.ones((2,2))
         >>> a*a
@@ -623,29 +606,29 @@ quelques unes au fil de ce cours.
         array([[ 2.,  2.],
                [ 2.,  2.]])
 
-**Exemple** : simulation de diffusion avec un marcheur aléatoire
+**Example** : diffusion simulation using a random walk algorithm
 
 .. image:: random_walk.png
    :align: center 
 
-Quelle est la distance typique d'un marcheur aléatoire à l'origine, après
-t sauts à droite ou à gauche ?
+What is the typical distance from the origin of a random walker after ``t`` left
+or right jumps?
 
 .. image:: random_walk_schema.png
    :align: center
 
 ::
 
-    >>> nreal = 1000 # nombre de réalisations de la marche
-    >>> tmax = 200 # temps sur lequel on suit le marcheur
-    >>> # On tire au hasard tous les pas 1 ou -1 de la marche
+    >>> nreal = 1000 # number of walks
+    >>> tmax = 200 # time during which we follow the walker
+    >>> # We randomly choose all the steps 1 or -1 of the walk
     >>> walk = 2 * ( np.random.random_integers(0, 1, (nreal,tmax)) - 0.5 )
-    >>> np.unique(walk) # Vérification : tous les pas font bien 1 ou -1
+    >>> np.unique(walk) # Verification : all steps are 1 or -1
     array([-1.,  1.])
-    >>> # On construit les marches en sommant ces pas au cours du temps
-    >>> cumwalk = np.cumsum(walk, axis=1) # axis = 1 : dimension du temps
+    >>> # We build the walks by summing steps along the time
+    >>> cumwalk = np.cumsum(walk, axis=1) # axis = 1 : dimension of time
     >>> sq_distance = cumwalk**2
-    >>> # On moyenne dans le sens des réalisations  
+    >>> # We get the mean in the axis of the steps
     >>> mean_sq_distance = np.mean(sq_distance, axis=0) 
 
 .. sourcecode:: ipython
@@ -659,56 +642,48 @@ t sauts à droite ou à gauche ?
    :align: center
    :width: 750px
 
-On retrouve bien que la distance grandit comme la racine carrée du temps
-!
+We find again that the distance grows like the square root of the time!
 
-**Exercice** : statistiques des femmes dans la recherche (données INSEE)
+**Exercise** : statistics on the number of women in research (INSEE data)
 
-1. Récupérer les fichiers ``organismes.txt`` et ``pourcentage_femmes.txt``
-   (clé USB du cours ou http://www.dakarlug.org/pat/scientifique/data/).
+1. Get the following files ``organisms.txt`` and ``women_percentage.txt``
+   (from the USB key of the training or http://www.dakarlug.org/pat/scientifique/data/).
 
-2. Créer un tableau ``data`` en ouvrant le fichier ``pourcentage_femmes.txt``
-   avec ``np.loadtxt``. Quelle est la taille de ce tableau ? 
+2. Create a ``data`` array by opening the ``women_percentage.txt`` file
+   with ``np.loadtxt``. What is the size of this array? 
 
-3. Les colonnes correspondent aux années 2006 à 2001. Créer un tableau
-   ``annees`` (sans accent !) contenant les entiers correspondant à ces
-   années.
+3. The columns correspond to year 2006 to 2001. Create a ``years`` array with
+   integers corresponding to these years.
 
-4. Les différentes lignes correspondent à différents organismes de
-   recherche dont les noms sont stockés dans le fichier
-   ``organismes.txt``. Créer un tableau ``organisms`` en ouvrant ce
-   fichier. **Attention** : comme ``np.loadtxt`` crée par défaut des tableaux
-   de flottant, il faut lui préciser qu'on veut créer un tableau de
-   strings : ``organisms = np.loadtxt('organismes.txt', dtype=str)``
+4. The different lines correspond to the research organisms whose names are
+   stored in the ``organisms.txt`` file. Create a ``organisms`` array by
+   opening this file. Beware that ``np.loadtxt`` creates float arrays by default,
+   and it must be specified to use strings instead: ``organisms =
+   np.loadtxt('organisms.txt', dtype=str)``
 
-5. Vérifier que le nombre de lignes de data est égal au nombre
-   d'organismes.
+5. Check that the number of lines of ``data`` equals the number of lines of the
+   organisms.
 
-6. Quel est le pourcentage maximal de femmes dans tous les organismes, 
-   toutes années confondues ?
+6. What is the maximal percentage of women in all organisms, for all years taken
+   together? 
 
-7. Créer un tableau contenant la moyenne temporelle du pourcentage de
-   femmes pour chaque organisme (i.e., faire la moyenne de ``data`` suivant
-   l'axe No 1).
+7. Create an array with the temporal mean of the percentage of women for each
+   organism? (i.e. the mean of ``data`` along axis 1).
 
-8. Quel organisme avait le pourcentage de femmes le plus élevé en 2004 ?
-   (Indice np.argmax). 
+8. Which organism had the highest percentage of women in 2004? (hint: np.argmax)
 
-9. Représenter un histogramme du pourcentage de femmes dans les
-    différents organismes en 2006 (indice : np.histogram, puis bar ou
-    plot de matplotlib pour la visualisation).
+9. Create a histogram of the percentage of women the different organisms in 2006
+   (hint: np.histogram, then matplotlib bar or plot for visulalization)
 
-**Réponses** :ref:`stat_recherche`
+**Answers** :ref:`stat_recherche`
 
-L'indexage avancé (fancy indexing)
------------------------------------
+Fancy indexing
+--------------
 
+Numpy arrays can be indexed with slices, but also with boolean or integer arrays
+(**masks**). This method is called *fancy indexing*.
 
-On peut indexer des tableaux numpy avec des slices, mais aussi par des tableaux
-de booléens (les **masques**) ou d'entiers : on appelle ces opérations plus
-évoluées du *fancy indexing*. 
-
-**Les masques** ::
+**Masks** ::
 
     >>> np.random.seed(3)
     >>> a = np.random.random_integers(0, 20, 15)
@@ -718,40 +693,40 @@ de booléens (les **masques**) ou d'entiers : on appelle ces opérations plus
     array([False,  True, False,  True, False, False, False,  True, False,
             True,  True, False,  True, False, False], dtype=bool)
     >>> mask = (a%3 == 0)
-    >>> extract_from_a = a[mask] #on pourrait écrire directement a[a%3==0]
-    >>> extract_from_a #on extrait un sous-tableau grâce au masque
+    >>> extract_from_a = a[mask] #one could directly write a[a%3==0]
+    >>> extract_from_a # extract a sub-array with the mask
     array([ 3,  0,  9,  6,  0, 12])
 
-Extraire un sous-tableau avec un masque produit une copie de ce
-sous-tableau, et non une vue ::
+Extracting a sub-array using a mask produces a copy of this sub-array, not a
+view::
 
     >>> extract_from_a = -1
     >>> a
     array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
 
-L'indexation grâce masques peut être très utile pour l'assignation d'une
-nouvelle valeur à un sous-tableau :: 
+
+Indexing with a mask can be very useful to assign a new value to a sub-array::
 
     >>> a[mask] = 0 
     >>> a
     array([10,  0,  8,  0, 19, 10, 11,  0, 10,  0,  0, 20,  0,  7, 14])
 
-**Indexer avec un tableau d'entiers** ::
+**Indexing with an array of integers** ::
 
     >>> a = np.arange(10)
-    >>> a[::2] +=3 #pour ne pas avoir toujours le même np.arange(10)...
+    >>> a[::2] +=3 #to avoid having always the same np.arange(10)...
     >>> a
     array([ 3,  1,  5,  3,  7,  5,  9,  7, 11,  9])
-    >>> a[[2, 5, 1, 8]] # ou a[np.array([2, 5, 1, 8])]
+    >>> a[[2, 5, 1, 8]] # or a[np.array([2, 5, 1, 8])]
     array([ 5,  5,  1, 11])
 
-On peut indexer avec des tableaux d'entiers où le même indice est répété
-plusieurs fois ::
+Indexing can be done with an array of integers, where the same index is repeated
+several time::
 
     >>> a[[2, 3, 2, 4, 2]]
     array([5, 3, 5, 7, 5])
 
-On peut assigner de nouvelles valeurs avec ce type d'indexation ::
+New values can be assigned with this kind of indexing::
 
     >>> a[[9, 7]] = -10
     >>> a
@@ -760,8 +735,8 @@ On peut assigner de nouvelles valeurs avec ce type d'indexation ::
     >>> a
     array([  3,   1,   6,   4,   8,   5,   9, -10,  11, -10])
 
-Quand on crée un tableau en indexant avec un tableau d'entiers, le
-nouveau tableau a la même forme que le tableau d'entiers ::
+When a new array is created by indexing with an array of integers, the new array
+has the same shape than the array of integers::
 
     >>> a = np.arange(10)
     >>> idx = np.array([[3, 4], [9, 7]])
@@ -787,47 +762,45 @@ nouveau tableau a la même forme que le tableau d'entiers ::
 .. image:: numpy_fancy_indexing.png
    :align: center
 
-**Exercice** 
+**Exercise** 
 
-Reprenons nos données de statistiques du pourcentage de femmes dans la
-recherche (tableaux ``data`` et ``organisms``)
+Let's take the same statistics about the percentage of women in the research
+(``data`` and ``organisms`` arrays)
 
-1. Créer un tableau ``sup30`` de même taille que ``data`` valant 1 si la 
-   valeur de ``data`` est supérieure à 30%, et 0 sinon.
+1. Create a ``sup30`` array of the same size that ``data`` with a value of 1 if
+   the value of ``data`` is greater than 30%, 0 otherwise.
 
-2. Créez un tableau contenant l'organisme avec le pourcentage de femmes 
-   le plus élévé de chaque année.
+2. Create an array containing the organisme having the greatest percentage of
+women of each year.
 
-**Réponses** :ref:`stat_recherche`
+**Answers** :ref:`stat_recherche`
 
-Le broadcasting
-------------------
 
-Les opérations élémentaires sur les tableaux ``numpy`` (addition, etc.)
-sont faites élément par élément et opèrent donc des tableaux
-de même taille. Il est néanmoins possible de faire des opérations sur des
-tableaux de taille différente si ``numpy``` arrive à transformer les
-tableaux pour qu'ils aient tous la même taille : on appelle cette
-transformation le **broadcasting** (jeu de mots intraduisible en
-français).
+Broadcasting
+------------
 
-L'image ci-dessous donne un exemple de 
+Basic operations on ``numpy`` arrays (addition, etc.) are done element by
+element, thus work on arrays of the same size. Nevertheless, it's possible to do
+operations on arrays of different sizes if ``numpy`` can transform these arrays
+so that they all have the same size: this conversion is called **broadcasting**.
+
+The image below gives an example of broadcasting:
 
 .. image:: numpy_broadcasting.png
    :align: center
 
-ce qui donne dans Ipython::
+which gives the following in Ipython::
 
     >>> a = np.arange(0, 40, 10)
     >>> b = np.arange(0, 3)
-    >>> a = a.reshape((4,1)) #il faut transformer a en tableau "vertical"
+    >>> a = a.reshape((4,1)) # a must be changed into a vertical array
     >>> a + b
     array([[ 0,  1,  2],
            [10, 11, 12],
            [20, 21, 22],
            [30, 31, 32]])
 
-On a déjà utilisé le broadcasting sans le savoir ::
+We actually already used broadcasting without knowing it!::
 
     >>> a = np.arange(20).reshape((4,5))
     >>> a
@@ -835,7 +808,7 @@ On a déjà utilisé le broadcasting sans le savoir ::
            [ 5,  6,  7,  8,  9],
            [10, 11, 12, 13, 14],
            [15, 16, 17, 18, 19]])
-    >>> a[0] = 1 # on égale deux tableaux de dimension 1 et 0
+    >>> a[0] = 1 # we assign an array of dimension 0 to an array of dimension 1
     >>> a[:3] = np.arange(1,6)
     >>> a
     array([[ 1,  2,  3,  4,  5],
@@ -843,8 +816,8 @@ On a déjà utilisé le broadcasting sans le savoir ::
            [ 1,  2,  3,  4,  5],
            [15, 16, 17, 18, 19]])
 
-On peut même utiliser en même temps le fancy indexing et le broadcasting
-: reprenons un exemple déjà utilisé plus haut
+We can even use fancy indexing and broadcasting at the same time. Take again the
+same example as above::
 ::
 
     >>> a = np.arange(12).reshape(3,4)
@@ -854,26 +827,25 @@ On peut même utiliser en même temps le fancy indexing et le broadcasting
            [ 8,  9, 10, 11]])
     >>> i = np.array( [ [0,1],                        
     ...              [1,2] ] )
-    >>> a[i, 2] # même chose que a[i, 2*np.ones((2,2), dtype=int)]
+    >>> a[i, 2] # same as a[i, 2*np.ones((2,2), dtype=int)]
     array([[ 2,  6],
            [ 6, 10]])
-    
-Le broadcasting peut sembler un peu magique, mais il est en fait assez
-naturel de l'utiliser dès qu'on veut veut résoudre un problème où on
-obtient en sortie un tableau avec plus de dimensions que les données en
-entrée. 
 
-**Exemple** : construisons un tableau de distances (en miles) entre
-les villes de la route 66 : Chicago, Springfield, Saint-Louis, Tulsa,
-Oklahoma City, Amarillo, Santa Fe, Albucquerque, Flagstaff et Los
+Broadcasting seems a bit magical, but it is actually quite natural to use it
+when we want to solve a problem whose output data is an array with more
+dimensions than input data.
+
+**Example**: let's construct an array of distances (in miles) between cities of
+Route 66: Chicago, Springfield, Saint-Louis, Tulsa,
+Oklahoma City, Amarillo, Santa Fe, Albucquerque, Flagstaff and Los
 Angeles. 
 
 ::
 
     >>> mileposts = np.array([0, 198, 303, 736, 871, 1175, 1475, 1544,
-    ...				1913, 2448])
-    >>> tableau_de_distances = np.abs(mileposts - mileposts[:,np.newaxis])
-    >>> tableau_de_distances
+    ...        1913, 2448])
+    >>> ditance_array = np.abs(mileposts - mileposts[:,np.newaxis])
+    >>> ditance_array
     array([[   0,  198,  303,  736,  871, 1175, 1475, 1544, 1913, 2448],
            [ 198,    0,  105,  538,  673,  977, 1277, 1346, 1715, 2250],
            [ 303,  105,    0,  433,  568,  872, 1172, 1241, 1610, 2145],
@@ -889,29 +861,25 @@ Angeles.
 .. image:: route66.png
    :align: center
 
-.. warning:: Bonnes pratiques
+.. warning:: Good practices
 
-    Sur l'exemple précédent, on peut noter quelques bonnes (et mauvaises)
-    pratiques :
+    In the previous example, we can note some good (and bad) practices:
 
-    * Donner des noms de variables explicites (pas besoin d'un
-      commentaire pour expliquer ce qu'il y a dans la variable).   
+    * Give explicit variable names (no need of a comment to explain what is in
+      the variable)
 
-    * Mettre des espaces après les virgules, autour des ``=``, etc. Un
-      certain nombre de règles pour écrire du "beau" code (et surtout,
-      utiliser les mêmes conventions que tout le monde !) sont données
-      par le `Style Guide for Python Code
-      <http://www.python.org/dev/peps/pep-0008>`_ et la page `Docstring
-      Conventions <http://www.python.org/dev/peps/pep-0257>`_ (pour organiser
-      les messages d'aide).
+    * Put spaces after commas, around ``=``, etc. A certain number of rules
+      for writing "beautiful" code (and more importantly using the same
+      conventions as anybody else!) are given in the `Style Guide for Python
+      Code <http://www.python.org/dev/peps/pep-0008>`_ and the `Docstring
+      Conventions <http://www.python.org/dev/peps/pep-0257>`_ page (to manage
+      help strings).
 
-    * Sauf exception (ex : cours pour francophones ?), donner des noms de
-      variables en anglais, et écrire les commentaires en anglais
-      (imaginez récupérer un code commenté en russe...). 
+    * Except some rare cases, write variable names and comments in english.
 
-Beaucoup de problèmes sur grille ou réseau peuvent aussi utiliser du
-broadcasting. Par exemple, si on veut calculer la distance à l'origine
-des points sur une grille 10x10, on peut faire ::
+A lot of grid-based or network-based problems can also use broadcasting. For instance,
+if we want to compute the distance from the origin of points on a 10x10 grid, we
+can do::
 
     >>> x, y = np.arange(5), np.arange(5)
     >>> distance = np.sqrt(x**2 + y[:, np.newaxis]**2)
@@ -923,16 +891,15 @@ des points sur une grille 10x10, on peut faire ::
            [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
 
 
-On peut représenter les valeurs du tableau distance en niveau de couleurs
-grâce à la fonction ``pylab.imshow`` (syntaxe :
-``pylab.imshow(distance)``. voir l'aide pour plus d'options).
+The values of the distance array can be represented in colour, thanks to the
+``pylab.imshow`` function (syntax: ``pylab.imshow(distance)``. See help for
+other options).
 
 .. image:: distance.png
     :align: center
 
-**Remarque** : la fonction ``numpy.ogrid`` permet de créer directement
-les vecteurs x et y de l'exemple précédent avec deux "dimensions
-significatives" différentes ::
+**Remark** : the ``numpy.ogrid`` function allows to directly create vectors x
+and y of the previous example, with two "significant dimensions"::
 
     >>> x, y = np.ogrid[0:5, 0:5]
     >>> x, y
@@ -945,9 +912,9 @@ significatives" différentes ::
     ((5, 1), (1, 5))
     >>> distance = np.sqrt(x**2 + y**2)
 
-``np.ogrid`` est donc très utile dès qu'on a des calculs à faire sur un
-réseau. ``np.mgrid`` fournit par contre directement des matrices pleines
-d'indices pour les cas où on ne peut/veut pas profiter du broadcasting ::
+So, ``np.ogrid`` is very useful as soon as we have to handle computations on a
+network. On the other hand, ``np.mgrid`` directly provides matrices full of
+indices for cases where we can't (or don't want to) benefit from broadcasting::
 
     >>> x, y = np.mgrid[0:4, 0:4]
     >>> x
@@ -963,23 +930,23 @@ d'indices pour les cas où on ne peut/veut pas profiter du broadcasting ::
 
  
  
-Exercice de synthèse : un médaillon pour Lena
------------------------------------------------
+Synthesis exercises: a locket with Lena
+---------------------------------------
 
-Nous allons faire quelques manipulations sur les tableaux numpy en partant de
-la célébre image de Lena (http://www.cs.cmu.edu/~chuck/lennapg/). ``scipy`` fournit un tableau 2D de l'image de Lena avec la fonction ``scipy.lena`` ::
+Let's do some manipulations on numpy arrays by starting with the famous image of
+Lena (http://www.cs.cmu.edu/~chuck/lennapg/). ``scipy`` provides a 2D array of
+this image with the ``scipy.lena`` function::
 
     >>> import scipy
     >>> lena = scipy.lena()
 
-Voici quelques images que nous allons obtenir grâce à nos manipulations :
-utiliser différentes colormaps, recadrer l'image, modifier certaines
-parties de l'image.
+Here are a few images we will be able to obtain with our manipulations:
+use different colormaps, crop the image, change some parts of the image.
 
 .. image:: lenas.png
    :align: center
 
-* Utilisons la fonction imshow de pylab pour afficher l'image de Lena.
+* Let's use the imshow function of pylab to display the image.
 
 .. sourcecode:: ipython
     
@@ -987,8 +954,8 @@ parties de l'image.
     In [4]: lena = scipy.lena()
     In [5]: pylab.imshow(lena)
 
-* Lena s'affiche alors en fausses couleurs, il faut spécifier une
-  colormap pour qu'elle s'affiche en niveaux de gris.
+* Lena is then displayed in false colors. A colormap must be specified for her
+  to be displayed in grey.
 
 .. sourcecode:: ipython
 
@@ -996,32 +963,31 @@ parties de l'image.
     In [7]: # ou
     In [8]: gray()
 
-* Créez un tableau où le cadrage de Lena est plus serré : enlevez par
-  exemple 30 pixels de tous les côtés de l'image. Affichez ce nouveau
-  tableau avec ``imshow`` pour vérifier.
+* Create an array of the image with a narrower centring : for example,
+  remove 30 pixels from all the borders of the image. To check the result,
+  display this new array with ``imshow``.
 
 .. sourcecode:: ipython
 
     In [9]: crop_lena = lena[30:-30,30:-30]
 
-* On veut maintenant entourer le visage de Lena d'un médaillon noir. Pour
-  cela, il faut
+* We will now frame Lena's face with a black locket. For this, we need to
 
-    * créer un masque correspondant aux pixels qu'on veut mettre en noir.
-      Le masque est défini par la condition ``(y-256)**2 + (x-256)**2``
+    * create a mask corresponding to the pixels we want to be black.
+      The mask is defined by this condition ``(y-256)**2 + (x-256)**2``
       
 .. sourcecode:: ipython
 
-    In [15]: y, x = np.ogrid[0:512,0:512] # les indices x et y des pixels 
+    In [15]: y, x = np.ogrid[0:512,0:512] # x and y indices of pixels 
     In [16]: y.shape, x.shape
     Out[16]: ((512, 1), (1, 512))
-    In [17]: centerx, centery = (256, 256) # centre de l'image
+    In [17]: centerx, centery = (256, 256) # center of the image
     In [18]: mask = ((y - centery)**2 + (x - centerx)**2)> 230**2
 
-puis
+then
 
-    * affecter la valeur 0 aux pixels de l'image correspondant au masque.
-      La syntaxe pour cela est extrêmement simple et intuitive :
+    * assign the value 0 to the pixels of the image corresponding to the mask.
+      The syntax is extremely simple and intuitive:
 
 .. sourcecode:: ipython
 
@@ -1029,30 +995,29 @@ puis
     In [20]: imshow(lena)
     Out[20]: <matplotlib.image.AxesImage object at 0xa36534c>
 
-* Question subsidiaire : recopier toutes les instructions de cet exercice
-  dans un script ``medaillon_lena.py`` puis exécuter ce script dans
-  Ipython avec ``%run medaillon_lena.py``.    
+* Subsidiary question : copy all instructions of this exercise in a script
+  called ``lena_locket.py`` then execute this script in iPython with ``%run
+  lena_locket.py``.
 
-.. topic:: Conclusion : que faut-il savoir faire sur les tableaux numpy pour démarrer ?
+.. topic:: Conclusion : what do you need to know about numpy arrays to start?
 
-    * Savoir créer des tableaux : ``array``, ``arange``, ``ones``,
+    * Know how to create arrays : ``array``, ``arange``, ``ones``,
       ``zeros``.
 
-    * Connaître la forme du tableau avec ``array.shape``, puis faire du
-      slicing pour obtenir différentes vues du tableau : ``array[::2]``,
-      etc. Changer la forme du tableau avec ``reshape``.
+    * Know the shape of the array with ``array.shape``, then use slicing
+      to obtain different views of the array: ``array[::2]``,
+      etc. Change the shape of the array using ``reshape``.
 
-    * Obtenir une partie des éléments d'un tableau et/ou en modifier la
-      valeur grâce aux masques ::
-	
-	>>> a[a<0] = 0
+    * Obtain a subset of the elements of an array and/or modify their values
+      with masks::
+  
+  >>> a[a<0] = 0
 
-    * Savoir faire quelques opérations sur les tableaux comme trouver le
-      max ou la moyenne (``array.max()``, ``array.mean()``). Pas la peine 
-      de tout retenir, mais avoir le réflexe de chercher dans la doc 
-      (voir :ref:`aide`) !! 
+    * Know miscellaneous operations on arrays, like finding the mean or max
+      (``array.max()``, ``array.mean()``). No need to retain everything, but
+      have the reflex to search in the documentation (see :ref:`help`) !!
 
-    * Pour une utilisation plus avancée : maîtriser l'indexation avec des
-      tableaux d'indices entiers, et le broadcasting. Connaître plus de
-      fonctions de numpy permettant de réaliser des opérations sur les
-      tableaux.  
+    * For advanced use: master the indexing with arrays of integers, as well as
+      broadcasting. Know more functions of numpy allowing to handle array
+      operations.
+
