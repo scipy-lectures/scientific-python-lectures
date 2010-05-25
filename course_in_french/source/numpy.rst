@@ -219,7 +219,7 @@ un n-uplet d'entiers ::
            [0, 0, 0, 0, 4]])
     >>> a[1,1]
     1
-    >>> a[2,1] = 10 # deuxième ligne, première colonne
+    >>> a[2,1] = 10 # troisième ligne, deuxième colonne
     >>> a
     array([[ 0,  0,  0,  0,  0],
            [ 0,  1,  0,  0,  0],
