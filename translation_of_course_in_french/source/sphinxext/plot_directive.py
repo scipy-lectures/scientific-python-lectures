@@ -117,7 +117,7 @@ def makefig(fullpath, outdir):
             plt.savefig(outname, dpi=dpi)
     pickle.dump(figure_basenames, file(pickle_filename, 'w'))
     return figure_basenames
-    
+
 
 def run(arguments, options, state_machine, lineno):
     reference = directives.uri(arguments[0])
@@ -153,7 +153,7 @@ def run(arguments, options, state_machine, lineno):
 
     for basename in figure_basenames:
         lines.extend((this_template % locals()).split('\n'))
-    
+
     if has_align:
         lines.extend("""
 
@@ -184,6 +184,7 @@ except ImportError:
     _directives['plot'] = plot_directive
 else:
     class plot_directive(Directive):
+        __doc__ = property(lambda x: __doc__)
         required_arguments = 1
         optional_arguments = 0
         final_argument_whitespace = True
@@ -191,7 +192,6 @@ else:
         def run(self):
             return run(self.arguments, self.options,
                        self.state_machine, self.lineno)
-    plot_directive.__doc__ = __doc__
 
     directives.register_directive('plot', plot_directive)
 
