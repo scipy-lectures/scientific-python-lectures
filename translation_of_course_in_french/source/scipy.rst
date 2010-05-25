@@ -9,34 +9,31 @@ Scipy : high-level scientific computing
     .. image:: square_wheels_edited.png
        :align: right
 
-    Le module ``scipy`` regroupe un certain nombre de sous modules qui
-    sont autant de boîtes à outils de routines courantes de calcul numérique, 
-    regroupées par fonction : fonctions spéciales, interpolation,
-    intégration, optimisation, traitement d'images. 
+    The ``scipy`` package contains various toolboxes dedicated to common
+    issues in scientific computing. Its different submodules correspond
+    to different applications, such as interpolation, integration,
+    optimization, image processing, statistics, special functions, etc.
 
-    Il existe dans le monde du calcul scientifique d'autres bibliothèques
-    standard d'outils de calcul numériques (ex : la GSL - GNU Scientific 
-    Library pour les programmes en C/C++, ou les toolboxes de Matlab). Les
-    scientifiques ont trop souvent tendance à oublier leur existence et à
-    **réinventer la roue** en reprogrammant leur algorithmes d'intégration,
-    d'optimisation, etc. Quand c'est possible, il vaut mieux se servir
-    des outils déjà écrits (testés et optimisés !).
-    
-    Le type de base en entrée des routines scipy est le tableau
-    ``numpy.ndarray``, ce qui permet d'appliquer ces opérations
-    haut-niveau directement aux tableaux numpy (et de façon très
-    efficace).
+    ``scipy`` can be compared to other standard scientific-computing
+    libraries, such as the GSL (GNU Scientific  Library for C and C++),
+    or Matlab's toolboxes. ``scipy`` is the core package for scientific
+    routines in Python; it is meant to operate efficiently on ``numpy``
+    arrays, so that numpy and scipy work hand in hand. 
+
+    Before implementing a routine, if is worth checking if the desired
+    data processing is not already implemented in Scipy. As
+    non-professional programmers, scientists often tend to **re-invent the
+    wheel**, which leads to buggy, non-optimal, difficult-to-share and
+    unmaintainable code. By contrast, ``Scipy``'s routines are optimized
+    and tested, and should therefore be used when possible.
 
 
 .. warning:: 
 
-    Ce cours n'est pas une introduction aux méthodes de calcul
-    scientifique, et il serait bien ennuyeux d'énumérer une longue liste
-    des différentes fonctions et modules de scipy. On a donc choisi de se
-    concentrer ici sur quelques exemples simples pour donner une idée générale
-    de ce que scipy peut apporter à ses utilisateurs. A chacun ensuite de
-    définir les méthodes numériques dont il a besoin, et de chercher ce qu'il
-    peut utiliser à l'intérieur des sous-modules pertinents.
+    This tutorial is far from an introduction to numerical computing.
+    As enumerating the different submodules and functions in scipy would
+    be very boring, we concentrate instead on a few examples to give a
+    general idea of how to use ``scipy`` for scientific computing.
 
 To begin with ::
 
@@ -86,15 +83,15 @@ Standard linear algebra operations.
 
     >>> from scipy import linalg
     >>> a = np.array([[1, 2], [3, 4]])
-    >>> a = scipy.mat(a) # la transformation tableau -->  matrice est tres simple !
-    >>> linalg.eigvals(a) # valeurs propres
+    >>> a = scipy.mat(a) # array to matrix
+    >>> linalg.eigvals(a) # eigenvalues
     array([-0.37228132+0.j,  5.37228132+0.j])
     >>> linalg.det(a) # determinant
     -2.0
-    >>> a.I # matrice inverse
+    >>> a.I # inverse
     matrix([[-2. ,  1. ],
             [ 1.5, -0.5]])
-    >>> linalg.inv(a) # autre ecriture possible
+    >>> linalg.inv(a) # other possibility for inverse
     array([[-2. ,  1. ],
            [ 1.5, -0.5]])
 
@@ -103,14 +100,14 @@ Standard linear algebra operations.
  
     >>> A = scipy.mat('[1 3 2; 1 2 3]') #non-square matrix
     >>> U,s,Vh = linalg.svd(A)
-    >>> s # spectre de A
+    >>> s # A's spectrum
     array([ 5.19615242,  1.        ])
     >>> print U
     [[-0.70710678 -0.70710678]
      [-0.70710678  0.70710678]]
 
 
-La SVD est très employée en statistiques ou en traitement du signal.::
+SVD is commonly used in statistics or signal processing::
 
     >>> l = scipy.lena()
     >>> rows, weight, columns = linalg.svd(l, full_matrices=False)
@@ -122,8 +119,10 @@ La SVD est très employée en statistiques ou en traitement du signal.::
 .. image:: svd_lena.png
    :align: center
 
-On trouve dans ``scipy.linalg`` bien d'autres décompositions classiques
-(QR, LU, Cholesky, Schur), des solveurs de systèmes linéaires, etc.
+
+Many other standard decompositions (QR, LU, Cholesky, Schur), as well as
+solvers for linear systems, are available in ``scipy.linalg``.
+
 
 Interpolation: ``scipy.interpolate``
 ---------------------------------------
@@ -133,8 +132,8 @@ Interpolation: ``scipy.interpolate``
     >>> import scipy.interpolate
     >>> x = np.linspace(0, 1, 10)
     >>> y = np.sin(2*np.pi*x)
-    >>> linear_interp = scipy.interpolate.interp1d(x, y) #par defaut, interpolateur lineaire
-    >>> cubic_interp = scipy.interpolate.interp1d(x, y, kind='cubic') #interpolateur cubique
+    >>> linear_interp = scipy.interpolate.interp1d(x, y) # default is linear interpolation
+    >>> cubic_interp = scipy.interpolate.interp1d(x, y, kind='cubic') # cubic interpolator
     >>> fine_x = np.linspace(0, 1, 50)
     >>> y_fromlinearinterp = linear_interp(fine_x)
     >>> y_fromcubicinterp = cubic_interp(fine_x)
@@ -144,47 +143,45 @@ Interpolation: ``scipy.interpolate``
 
 .. sourcecode:: ipython
 
-    In [246]: plot(x, y, 'o', ms=6, label='points originaux')
+    In [246]: plot(x, y, 'o', ms=6, label='original data')
     Out[246]: [<matplotlib.lines.Line2D object at 0x9ba55ec>]
     In [247]: plot(fine_x, y_fromlinearinterp, '-', lw=2,
-    label='interpolation lineaire')
+    label='linear interpolation')
     Out[247]: [<matplotlib.lines.Line2D object at 0xc8300cc>]
-    In [248]: plot(fine_x, y_fromcubicinterp, '-', lw=2, label='interpolation
-    cubique')
+    In [248]: plot(fine_x, y_fromcubicinterp, '-', lw=2, label='cubic
+    interpolation')
     Out[248]: [<matplotlib.lines.Line2D object at 0xc616b4c>]
 
 
-Pour des méthodes d'interpolation par splines plus général, voir
-``scipy.interpolate.splrep`` et ``scipy.interpolate.splev``.
+For spline interpolation, see ``scipy.interpolate.splrep`` and
+``scipy.interpolate.splev``.
 
-``scipy.interpolate.interp2d`` est similaire à ``interp1d``, pour des
-tableaux 2D.
-(mettre une image ?)
+``scipy.interpolate.interp2d``  is similar to ``interp1d``, but for 2-D
+arrays.
 
 Integration: ``scipy.integrate``
 -----------------------------------
 
-Différentes routines d'intégration numérique. ``scipy.integrate.quad``
-est la plus générale
+Numerical integration routines. ``scipy.integrate.quad`` is the more
+generic one.
 
 .. sourcecode:: ipython
 
     In [92]: from scipy.integrate import quad
     In [93]: quad(np.sin, 0, np.pi/2)
     Out[93]: (0.99999999999999989, 1.1102230246251564e-14)
-    In [94]: #erreur très faible (l'erreur souhaitée est un paramètre optionnel de quad)
+    In [94]: # small error
     In [95]: 1 - Out[93][0] 
     Out[95]: 1.1102230246251565e-16
 
-mais il en existe d'autres dans ce sous-module.
 
-**Equations différentielles ordinaires (ODE)**
+**Ordinary differential equations (ODE)**
 
-Dans ce sous-module, on trouve également un solveur d'équations
-différentielles ordinaires, ``scipy.integrate.odeint``. Il s'agit d'un
-solveur générique assez sophistiqué, adapté pour les problèmes raides
-(stiff en anglais) ou non raides. ``odeint`` résout des systèmes d'ODE du
-premier ordre de la forme
+``scipy.integrate`` also features routines for ODE integration. In
+particular, ``scipy.integrate.odeint`` is a general-purpose integrator,
+that is suited for stiff and non-stiff problems. ``odeint`` solves
+first-order ODE systems of the form
+
 
 ``dy1/dt = rhs1(y1, y2, .., t0,...)``
 
@@ -192,11 +189,12 @@ premier ordre de la forme
 
 ...
 
-Exemple : résolvons l'ODE ``dy/dt = -2y`` entre ``t=0..10``, pour
+Example : let us solve the ODE ``dy/dt = -2y`` between ``t=0..10``, with
+initial condition
 ``y(t=0)=1``.::
 
     >>> from scipy.integrate import odeint
-    >>> def rhs(y, t): #second membre de l'equa diff
+    >>> def rhs(y, t): #ODE right hand side
     ...     return -2*y
     ...
     >>> t = np.linspace(0, 10, 100)
@@ -214,11 +212,11 @@ Exemple : résolvons l'ODE ``dy/dt = -2y`` entre ``t=0..10``, pour
     In [346]: semilogy(t, y)
     Out[346]: [<matplotlib.lines.Line2D object at 0xd0eebec>]
 
-Exemple : oscillation amortie d'une masse au bout d'un ressort (ODE du 2è ordre)
+Other example: damped spring-mass oscillator (2nd order oscillator)
 
-La position de la masse obéit à l'ODE ``y'' + nu y' + om^2 y = 0``, que
-l'on peut transformer en un système de deux équations différentielles du
-premier ordre, en résolvant pour le vecteur ``Y=(y, y')``. ::
+The position of a mass attached to a spring obeys the 2nd order ODE ``y''
++ nu y' + om^2 y = 0``, that can be transformed in a system of two
+first-order equations for the vector ``Y=(y, y')``. ::
 
     >>> def rhs(y,t, om, nu):
     ...     return (y[1], -om**2*y[0] - nu*y[1])
@@ -244,40 +242,40 @@ premier ordre, en résolvant pour le vecteur ``Y=(y, y')``. ::
 
     .. image:: dendrite.png
 
-    Pour les EDP il n'y a pas de solver dans scipy. Il existe néanmoins
-    des packages de solvers d'EDP pour Python, notamment **fipy**
-    (http://www.ctcms.nist.gov/fipy/).
+    There is no EDP solver in scipy. Some EDP packages are written in
+    Python, such as **fipy** (http://www.ctcms.nist.gov/fipy/) or **SfePy**
+    (http://code.google.com/p/sfepy/).
 
-Optimisation et fit : ``scipy.optimize``
+Optimization and fits : ``scipy.optimize``
 -----------------------------------------
 
-**Exemple : simulation d'une marche aléatoire**
+**Exemple : random walker simulation (cont'd)**
 
 .. image:: random_walk.png
    :align: center 
 
-Reprenons notre exemple de marcheur aléatoire ::
+Let us go back to the random walker example ::
 
-    >>> nreal = 1000 # nombre de réalisations de la marche
-    >>> tmax = 200 # temps sur lequel on suit le marcheur
-    >>> # On tire au hasard tous les pas 1 ou -1 de la marche
+    >>> nreal = 1000 # realizations number of the walk
+    >>> tmax = 200 # number of time steps for the walk
+    >>> # 1 and -1 steps are drawn at random
     >>> walk = 2 * ( np.random.random_integers(0, 1, (nreal,200)) - 0.5 )
-    >>> np.unique(walk) # Vérification : tous les pas font bien 1 ou -1
+    >>> np.unique(walk) # Check that all steps have 1 or -1 values.
     array([-1.,  1.])
-    >>> # On construit les marches en sommant ces pas au cours du temps
-    >>> cumwalk = np.cumsum(walk, axis=1) # axis = 1 : dimension du temps
+    >>> # The position of the walker is obtained by summing the steps
+    >>> cumwalk = np.cumsum(walk, axis=1) # axis = 1 : time dimension
     >>> sq_distance = cumwalk**2
-    >>> # On moyenne dans le sens des réalisations  
+    >>> # Now let us mean over realizations of the walk 
     >>> mean_distance = np.sqrt(np.mean(sq_distance, axis=0)) 
 
-On va fitter le tableau ``mean_distance`` par une racine carrée.
+We now fit the ``mean_distance`` array by the square root function.
 
 .. sourcecode:: ipython
 
     In [40]: plot(mean_distance)
     In [41]: t = np.arange(tmax)
     In [42]: def f(A, y, x): 
-       ....:	 """la fonction à optimiser"""
+       ....:	 """function to optimize"""
        ....:     err = y - A*np.sqrt(x)
        ....:     return err
        ....: 
@@ -290,7 +288,8 @@ On va fitter le tableau ``mean_distance`` par une racine carrée.
 .. image:: diffusion.png
    :align: center
 
-Si on est paresseux on peut dans ce cas-ci se ramener à un fit polynomial
+A linear fit using ``np.polyfit`` of the squared distance also gives a
+good estimation,
 
 .. sourcecode:: ipython
 
@@ -298,8 +297,7 @@ Si on est paresseux on peut dans ce cas-ci se ramener à un fit polynomial
     In [48]: np.polyfit(t, mean_distance**2, 1)
     Out[48]: array([ 1.00452036, -0.08389612])
 
-mais ce n'est pas conseillé, car ce n'est plus le même problème
-d'optimisation.
+however, this other fit solves a different optimization problem.
 
 Image processing: ``scipy.ndimage``
 -----------------------------------------
