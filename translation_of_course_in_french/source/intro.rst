@@ -1,132 +1,126 @@
-L'informatique scientifique : qu'est-ce que c'est ?
-=====================================================
+Scientific computing: what is it?
+=================================
 
 ..
     .. image:: phd053104s.png
       :align: center
 
-Les besoins du scientifique
------------------------------
-
-* Acquérir des données (simulations, contrôle d'expérience)
-
-* Manipuler et traiter ces données.
-
-* Visualiser les résultats... pour comprendre ce qu'on fait !
-
-* Communiquer sur les résultats : produire des figures pour des rapports
-  ou des publications, écrire des présentations.
-
-Cahier des charges
+The scientist's needs
 ---------------------
 
-* Riche collections de **briques** déjà toutes programmées correspondant
-  aux méthodes numériques classiques ou aux actions de base : on ne veut 
-  pas avoir à reprogrammer le tracé d'une courbe, un algorithme de
-  transformée de Fourier ou de fit. Minimiser la réinvention de la roue !
+* Acquire data (simulation, experiment control)
 
-* Rapide à apprendre : l'informatique n'est pas notre métier ni notre
-  formation. On veut pouvoir tracer une courbe, lisser un signal, faire
-  une transformée de Fourier sans avoir besoin de chercher des heures 
-  comment faire.
+* Manipulate and process data.
 
-* Communication facile avec les collaborateurs, étudiants, clients, pour
-  faire vivre le code au sein d'un labo ou d'une entreprise : le
-  code devrait pouvoir se lire comme un livre. Le langage doit donc
-  contenir le moins possible de syntaxe ou de procédures "parasite", 
-  qui détournent l'attention de la signification
-  mathématique/scientifique du code
+* Visualize results... to understand what we are doing!
 
-* Codes efficaces qui s'exécutent rapidement... mais rien ne sert de faire 
-  du code rapide si on met plus de temps à l'écrire qu'à l'exécuter. 
-  Il faut donc une bonne vitesse de développement et une bonne vitesse 
-  d'exécution.
+* Communicate on results: produce figures for reports or publications,
+  write presentations.
 
-* Un seul environnement/langage pour tout faire, si possible, pour ne pas
-  réapprendre un logiciel à chaque nouveau problème.
+Specifications
+--------------
 
-Solutions existantes
-----------------------
+* Rich collection of already existing **bricks** corresponding to classical
+  numerical methods or basic actions: we don't want to re-program the drawing of
+  a curve, a Fourier transform or a fitting algorithm. Don't reinvent the wheel!
 
-Quelles solutions les scientifiques utilisent-ils pour travailler ?
+* Easy to learn: computer science neither is our job nor our education. We want to
+  be able to draw a curve, smooth a signal, do a Fourier transform without
+  spending hours finding out how to do.
 
-* Langages compilés : C, C++, Fortran, etc.
+* Easy communication with collaborators, students, customers, to make the code
+  live within a labo or company: the code should be as readable as a book.
+  Thus, the language should contain as few syntax symbols or unneeded routines
+  that would divert the reader from the mathematical or scientific understanding
+  of the code.
 
-    * Avantages :
+* Efficient code that executes quickly... But needless to say that a very fast
+  code becomes useless if we spend too much time writing it. So, we need both a quick
+  development time and a quick execution time.
 
-	* Très grande efficacité. Compilateurs très optimisés. Pour des
-	  calculs "brute force", c'est difficile de battre la vitesse
-	  d'éxécution des codes programmés avec ces langages. 
+* A single environment/language for eveything, if possible, to avoid learning
+  new software for each new problem.
 
-	* Des librairies scientifiques très optimisées ont été écrites
-	  pour ces langages. Ex : blas (manipulation de tableaux de nombres).
+Existing solutions
+------------------
 
-    * Inconvénients :
+Which solutions do the scientists use to work?
 
-	* Utilisation lourde : pas d'interactivité dans le développement
-	  (étape de compilation peut être pénible). Syntaxe "verbeuse"
-	  (&, ::, }}, ; etc.). Gestion de la mémoire délicate en C. Ce
-	  sont des **langages difficiles** à manier pour le
-	  non-informaticien.
+**Compiled languages: C, C++, Fortran, etc.**
 
-* Langages de scripts : Matlab
+* Advantages:
 
-    * Avantages : 
+  * Very fast. Very optimized compilers. For heavy computations, it's difficult
+    to surpass these languages.
 
-	* collection très riche de librairies avec de nombreux
-          algorithmes, dans des domaines très variés. Exécution rapide
-	  car les librairies sont souvent écrites dans un langage
-	  compilé.
+  * Some very optimized scientific libraries have been written for these
+    languages. Ex: blas (vector/matric operations)
 
-	* environnement de développement très agréable : aide complète et
-	  bien organisée, éditeur intégré, etc.
+* Drawbacks:
 
-	* support commercial disponible
+  * Painful usage: no interactivity during development,
+    mandatory compilation steps, verbose syntax (&, ::, }}, ; etc.),
+    manual memory management (delicate in C). These are **difficult
+    languages** for non computer scientists.
 
-    * Inconvénients : 
+**Scripting languages: Matlab**
 
-	* langage de base assez pauvre, qui peut se révéler limitant pour
-          des utilisations avancées.
+* Advantages: 
 
-	* prix élevé
+  * Very rich collection of libraries with numerous algorithms, for many
+    different domains. Fast execution because these libraries are often written
+    in a compiled language.
 
-* Autres langages de scripts : Scilab, Octave, Igor, R, IDL, etc.
+  * Pleasant development environment: comprehensive and well organized help,
+    integrated editor, etc.
 
-    * Avantages : libres/gratuits/moins chers que Matlab. Certaines
-      fonctionnalités peuvent être très développées (statistiques dans
-      R, figures pour Igor, etc.). 
+  * commercial support availability
 
-    * Inconvénients : moins d'algorithmes disponibles que dans Matlab, et
-      langage pas plus évolué. 
+* Drawbacks: 
 
-* Logiciels spécialisés pour une utilisation. Ex : Gnuplot ou xmgrace
-  pour tracer des courbes. Ces logiciels sont très puissants, par contre
-  leur utilisation est limitée au seul plot. C'est dommage d'avoir à
-  apprendre un logiciel rien que pour ça.
+  * Base language is quite poor and can become restrictive for advanced users.
 
-* **Et Python ?**
+  * high price
 
-    * Avantages :
+**Other script languages: Scilab, Octave, Igor, R, IDL, etc.**
+
+* Advantages:
+
+  *  open-source, free, or at least cheaper than Matlab.
+
+  * Some features can be very advanced (statistics in R, figures in Igor, etc.)
+
+* Drawbacks:
+
+  * fewer available algorithms than in Matlab, and the language
+    is not more advanced.
+
+  * Software dedicated to one domain. Ex: Gnuplot or xmgrace
+    to draw curves. These programs are very powerful, but they are tied to 
+    a single type of usage: plotting. It's a pity to be forced to learn a program
+    just for that.
+
+**What about Python?**
+
+* Advantages:
+  
+  * Very rich scientific computing libraries (a bit less than Matlab,
+    though)
     
-	* Librairies très riches de calcul scientifique (un peu moins de
-	  choses que dans Matlab cependant).
-    
-	* Langage très bien pensé permettant d'écrire du code très
-	  lisible, et très bien structuré : on "code ce qu'on pense".
+  * Well-thought language, allowing to write very readable and well structured
+    code: we "code what we think".
 
-	* Librairies pour d'autres applications que le calcul
-	  scientifique (gestion d'un serveur web, d'un port série, etc.). 
+  * Many libraries for other tasks than scientific computing (web server
+    management, serial port access, etc.)
 
-	* Logiciel libre, largement distribué avec une communauté
-	  dynamique d'utilisateurs.
+  * Free and open-source software, widely spread, with a vibrant community.
 
-    * Inconvénients :  
+* Drawbacks:  
 
-	* environnement de développement un peu moins agréable que par
-	  exemple Matlab (c'est un peu plus "pour les geeks").
+  * less pleasant development environment than, for example, Matlab. (More
+    geek-oriented).
 
-	* les librairies scientifiques ne proposent pas l'intégralité des
-	  toolboxes de Matlab (en contrepartie, certaines parties de ces
-	  librairies peuvent être plus complètes ou mieux faites).
+  * Scientific libraries don't provide a toolset as comprehensive as Matlab.
+    But some of them can be more full-featured or better designed than Matlab.
 
 
