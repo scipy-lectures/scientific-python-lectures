@@ -282,7 +282,7 @@ Et bien sûr, ça marche pour les tableaux à plusieurs dimensions::
            [ 0.,  0.,  1.,  0.,  0.],
            [ 0.,  0.,  0.,  1.,  0.],
            [ 0.,  0.,  0.,  0.,  1.]])
-    >>> a[2:4,:3] #2è et 3è lignes, trois premières colonnes
+    >>> a[2:4,:3] #3è et 4è lignes, trois premières colonnes
     array([[ 0.,  0.,  1.],
            [ 0.,  0.,  0.]])
 
