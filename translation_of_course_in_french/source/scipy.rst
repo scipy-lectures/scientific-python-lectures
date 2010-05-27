@@ -236,13 +236,13 @@ first-order equations for the vector ``Y=(y, y')``. ::
     Out[387]: <matplotlib.legend.Legend object at 0xd67e26c>
 
 
-.. topic:: EDP
+.. topic:: PDE
 
     .. image:: cahn.png
 
     .. image:: dendrite.png
 
-    There is no EDP solver in scipy. Some EDP packages are written in
+    There is no PDE solver in scipy. Some PDE packages are written in
     Python, such as **fipy** (http://www.ctcms.nist.gov/fipy/) or **SfePy**
     (http://code.google.com/p/sfepy/).
 
