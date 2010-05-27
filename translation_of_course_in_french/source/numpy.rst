@@ -767,7 +767,7 @@ has the same shape than the array of integers::
 Let's take the same statistics about the percentage of women in the research
 (``data`` and ``organisms`` arrays)
 
-1. Create a ``sup30`` array of the same size that ``data`` with a value of 1 if
+1. Create a ``sup30`` array of the same size than ``data`` with a value of 1 if
    the value of ``data`` is greater than 30%, 0 otherwise.
 
 2. Create an array containing the organisme having the greatest percentage of
