@@ -247,7 +247,7 @@ first-order equations for the vector ``Y=(y, y')``. ::
     (http://code.google.com/p/sfepy/).
 
 Optimization and fits : ``scipy.optimize``
------------------------------------------
+------------------------------------------
 
 **Exemple : random walker simulation (cont'd)**
 
