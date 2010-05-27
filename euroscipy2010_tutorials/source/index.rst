@@ -10,11 +10,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
  
-   scientific_python.rst
-   numpy.rst
-   matplotlib.rst
    scipy.rst
-   sympy.rst
 
 
 Indices and tables
