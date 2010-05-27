@@ -264,7 +264,7 @@ last and `step` is 1::
     >>> a[3:]
     array([3, 4, 5, 6, 7, 8, 9])
 
-Of course, it works for multidimensional arrays::
+Of course, it works with multidimensional arrays::
 
     >>> a = np.eye(5)
     >>> a
@@ -644,7 +644,7 @@ or right jumps?
 
 We find again that the distance grows like the square root of the time!
 
-**Exercise** : statistics on the number of women in research (INSEE data)
+**Exercise** : statistics on the number of women in french research (INSEE data)
 
 1. Get the following files ``organisms.txt`` and ``women_percentage.txt``
    (from the USB key of the training or http://www.dakarlug.org/pat/scientifique/data/).

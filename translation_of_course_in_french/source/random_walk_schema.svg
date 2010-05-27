@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
+
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -12,12 +13,13 @@
    height="1052.3622047"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.46"
+   inkscape:version="0.47 r22583"
    sodipodi:docname="random_walk_schema.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    inkscape:export-filename="/home/gouillar/travail/sgr/2009/talks/dakar_python/cours/gael/essai/source/random_walk_schema.png"
    inkscape:export-xdpi="90"
-   inkscape:export-ydpi="90">
+   inkscape:export-ydpi="90"
+   version="1.1">
   <defs
      id="defs4">
     <marker
@@ -60,8 +62,9 @@
      inkscape:snap-global="true"
      inkscape:window-width="1166"
      inkscape:window-height="726"
-     inkscape:window-x="50"
-     inkscape:window-y="25">
+     inkscape:window-x="313"
+     inkscape:window-y="289"
+     inkscape:window-maximized="0">
     <inkscape:grid
        type="xygrid"
        id="grid2383" />
@@ -291,7 +294,7 @@
          y="541.50507">1</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
        x="192.71429"
        y="441.64789"
        id="text5065"
@@ -299,30 +302,30 @@
          sodipodi:role="line"
          id="tspan5067"
          x="192.71429"
-         y="441.64789">temps </tspan></text>
+         y="441.64789">time </tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:28.00000954px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       style="font-size:28.00000954px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
        x="-641.92242"
        y="39.847946"
        id="text5073"
        sodipodi:linespacing="100%"
-       transform="matrix(1.2221153e-2,-0.9999253,0.9999253,1.2221153e-2,0,0)"><tspan
+       transform="matrix(0.01222115,-0.9999253,0.9999253,0.01222115,0,0)"><tspan
          sodipodi:role="line"
          id="tspan5075"
          x="-641.92242"
-         y="39.847946">histoires</tspan></text>
+         y="39.847946">stories</tspan></text>
     <text
        xml:space="preserve"
-       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
-       x="90.571426"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       x="140.57143"
        y="401.64789"
        id="text5085"
        sodipodi:linespacing="100%"><tspan
          sodipodi:role="line"
          id="tspan5087"
-         x="90.571426"
-         y="401.64789">Sauts tirés au hasard</tspan></text>
+         x="140.57143"
+         y="401.64789">shuffled jumps</tspan></text>
     <path
        id="path5089"
        d="M 533.42857,475.21933 L 893.42857,473.79075"
@@ -536,34 +539,34 @@
        id="text5175"
        y="441.64789"
        x="662.71429"
-       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
        xml:space="preserve"><tspan
          y="441.64789"
          x="662.71429"
          id="tspan5177"
-         sodipodi:role="line">temps </tspan></text>
+         sodipodi:role="line">time </tspan></text>
     <text
-       transform="matrix(1.2221153e-2,-0.9999253,0.9999253,1.2221153e-2,0,0)"
+       transform="matrix(0.01222115,-0.9999253,0.9999253,0.01222115,0,0)"
        sodipodi:linespacing="100%"
        id="text5179"
        y="509.81223"
        x="-636.17578"
-       style="font-size:28.00000954px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       style="font-size:28.00000954px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
        xml:space="preserve"><tspan
          y="509.81223"
          x="-636.17578"
          id="tspan5181"
-         sodipodi:role="line">histoires</tspan></text>
+         sodipodi:role="line">stories</tspan></text>
     <text
        sodipodi:linespacing="100%"
        id="text5183"
        y="402.36218"
-       x="448"
-       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
+       x="488"
+       style="font-size:28px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:100%;writing-mode:lr-tb;text-anchor:start;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Bitstream Vera Sans"
        xml:space="preserve"><tspan
          y="402.36218"
-         x="448"
+         x="488"
          id="tspan5185"
-         sodipodi:role="line">Position : somme cumulée des sauts</tspan></text>
+         sodipodi:role="line">Position : cumulated jumps sum</tspan></text>
   </g>
 </svg>
