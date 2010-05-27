@@ -264,7 +264,7 @@ last and `step` is 1::
     >>> a[3:]
     array([3, 4, 5, 6, 7, 8, 9])
 
-Of cource, it works for multidimensional arrays::
+Of course, it works for multidimensional arrays::
 
     >>> a = np.eye(5)
     >>> a
