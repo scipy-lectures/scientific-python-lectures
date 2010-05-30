@@ -757,6 +757,12 @@ Pour lire dans un fichier ::
 
 Pour plus de détails : http://docs.python.org/tutorial/inputoutput.html
 
+.. toctree::
+    :maxdepth: 1
+
+    language/exceptions.rst
+
+
 Erreurs et exceptions
 ------------------------
 
