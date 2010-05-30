@@ -763,26 +763,6 @@ Pour plus de détails : http://docs.python.org/tutorial/inputoutput.html
     language/exceptions.rst
 
 
-Erreurs et exceptions
-------------------------
-
-Si vous avez essayé d'exécuter tous les exemples précédents, il serait
-bien étonnant que vous n'ayez pas rencontré une erreur à un moment... :-? 
-
-Vous avez alors peut-être remarqué qu'il y a plusieurs types d'erreurs :
-``SyntaxError, ImportError, ValueError``, accompagnée chacune d'un
-message d'erreur. Le nom de l'erreur comme le message d'erreur
-renseignent sur l'origine de l'erreur et aident donc au débuggage.
-Chaque utilisateur peut également prévoir des cas où son code va
-retourner une erreur (par exemple si un paramètre d'entrée n'a pas le
-type attendu). 
-
-Pour bien profiter de la richesse de Python, il faut donc se servir des
-erreurs, par exemple pour prévoir des cas où les utilisateurs font appel
-à une fonction pour une utilisation non prévue. Nous laissons
-le lecteur se référer à http://docs.python.org/tutorial/errors.html pour
-plus de détails sur la gestion des erreurs et des exceptions.
-
 Programmation orientée objet
 ----------------------------- 
 
