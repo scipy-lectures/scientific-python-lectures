@@ -16,7 +16,7 @@ Contents:
    python.rst
    numpy.rst
    help.rst
-   reponses1.rst
+   answers_numpy.rst
    scipy.rst
    image_processing.rst 
    answers_image_processing.rst
