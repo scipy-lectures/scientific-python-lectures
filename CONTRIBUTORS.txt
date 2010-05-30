@@ -1,0 +1,11 @@
+Contributors, listed by alphabetical order.
+
+- Christophe Combelles
+
+- André Espaze
+
+- Emmanuelle Gouillart
+
+- Gaël Varoquaux
+
+
