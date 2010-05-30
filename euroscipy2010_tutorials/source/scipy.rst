@@ -17,8 +17,8 @@ the end of the section.
 
 The annual wind speeds maxima are loaded by using numpy::
 
-    >>> import numpy as N
-    >>> max_speeds = N.load('data/max-speeds.npy')
+    >>> import numpy as np
+    >>> max_speeds = np.load('data/max-speeds.npy')
     >>> years_nb = max_speeds.shape[0]
 
 In order to guess extreme wind speed, the chosen model is based on the
@@ -27,11 +27,11 @@ probabilty ``p_i`` for a given year ``i`` is defined as
 ``p_i = i/(N+1)`` with ``N = 21``, the number of measured years. As
 a result, the cumulative probability of the measured data will be::
 
-    >>> cprob = (N.arange(years_nb, dtype=N.float32) + 1)/(years_nb + 1)
+    >>> cprob = (np.arange(years_nb, dtype=np.float32) + 1)/(years_nb + 1)
 
 and the corresponding wind speeds are::
 
-    >>> sorted_max_speeds = N.sort(max_speeds)
+    >>> sorted_max_speeds = np.sort(max_speeds)
 
 From there, a function giving a wind speed from a probability value
 is wanted. The interpolate module of scipy provides the ``UnivariateSpline``
@@ -57,7 +57,7 @@ used because a spline of degree 3 seems to correctly fit the data::
 The function is now going to be evaluated from the full range
 of probabilties::
 
-    >>> nprob = N.linspace(0, 1, 1e2)
+    >>> nprob = np.linspace(0, 1, 1e2)
     >>> fitted_max_speeds = speed_spline(nprob)
 
 In the current model, the maximum wind speed occuring every 50 years

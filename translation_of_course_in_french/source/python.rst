@@ -741,78 +741,15 @@ To read from a file::
 
 For more details: http://docs.python.org/tutorial/inputoutput.html
 
-Errors and exceptions
----------------------
 
-If you have tried to execute all the previous examples, you probably fell on an
-error at least one. :-?
+.. toctree::
+    :maxdepth: 1
 
-So you have probably noticed there are several kind or errors:
-``SyntaxError, ImportError, ValueError``, which all come with an error message.
-The name of the error, as well as the error itself, helps discovering the origin
-of the problem, thus help with debugging.
-Each user can also anticipate cases where his code might return an error (for
-instance, if some input parameter does not have the expected type).
+    language/exceptions.rst
 
-To benefit from all the power of Python, you should use errors, in cases such as
-unexpected use of a function. Refer to
-http://docs.python.org/tutorial/errors.html for more details about errors and
-exception handling.
 
-Object oriented programming
---------------------------- 
+.. toctree::
+    :maxdepth: 1
 
-The goals of object oriented programming is
-
-    * organize code in a hierarchical way
-
-    * improve code reusability, and avoid copy-pasting similar code in similar
-      contexts.
-
-Here is a small example: we create a Student **class**, which is an object
-gathering several custom functions (**methods**) and variables (**attributes**),
-we will be able to use::
-
-    >>> class Student(object):
-    ...     def __init__(self, name):
-    ...         self.name = name
-    ...     def set_age(self, age):
-    ...         self.age = age
-    ...     def set_major(self, major):
-    ...         self.major = major
-    ...         
-    >>> anna = Student('anna')
-    >>> anna.set_age(21)
-    >>> anna.set_major('physics')
-
-In the previous example, the Student class has ``__init__``, ``set_age`` and
-``set_major`` methods. Its attributes are ``name``, ``age`` and ``major``. We
-can call these methods and attributes with the following notation:
-``classinstance.method`` or  ``classinstance.attribute``.  The ``__init__``
-constructor is a special method we call with: ``MyClass(init parameters if
-any)``.
-
-Now, suppose we want to create a new class MasterStudent with the same methods
-and attributes as the previous one, but with an additional ``stage`` attribute.
-We won't copy the previous class, but **inherit** from it::
-
-    >>> class MasterStudent(Student):
-    ...     stage = 'mandatory, from march to june'
-    ...     
-    >>> james = MasterStudent('james')
-    >>> james.stage
-    'mandatory, from march to june'
-    >>> james.set_age(23)
-    >>> james.age
-    23
-
-The MasterStudent class inherited from the Student attributes and methods.
-
-Thanks to classes and object oriented programming, we can organize code with
-different classes corresponding to different objects we encounter (a Manip
-class, an Image class, a Flow class, etc.), with their own methods and
-attributes. Then we can use inheritance to consider variations around a base
-class and **share** code. Ex : from a Turbulent base class, we can create
-derived StokesFlow, NewtonianFlow, PotentialFlow, etc.
-
+    language/oop.rst
 
