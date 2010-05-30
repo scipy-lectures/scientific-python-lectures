@@ -1,5 +1,5 @@
 A (very short) introduction to Python
-======================================
+=====================================
 
 
 .. topic:: Python for scientific computing
@@ -12,7 +12,7 @@ A (very short) introduction to Python
 
 
 What is Python?
-----------------------
+---------------
 
 .. image:: python-logo.png
    :align: right
@@ -31,7 +31,7 @@ etc. Some specific features of Python are as follows:
   software.
 
 * **multi-platform**: Python is available for all major operating
-  systems, Windows, Linu/Unix, MacOS X, most likely your mobile phone OS,
+  systems, Windows, Linux/Unix, MacOS X, most likely your mobile phone OS,
   etc.
 
 * a very readable language with clear non-verbose syntax
@@ -51,12 +51,12 @@ etc. Some specific features of Python are as follows:
 See http://www.python.org/about/ for more information about
 distinguishing features of Python. 
 
-Premiers pas
----------------
+First steps
+-----------
 
-Start the **Ipython** shell (an enhanced interactive Python shell) by
+Start the **Ipython** shell (an enhanced interactive Python shell):
 
-* type "Ipython" from a Linux/Mac terminal, or from the Windows cmd shell,
+* by typing "Ipython" from a Linux/Mac terminal, or from the Windows cmd shell,
 * **or** by starting the program from a menu, e.g. in the Python(x,y) or
   EPD menu if you have installed one these scientific-Python suites.
 
@@ -110,8 +110,8 @@ repetition.
 
 .. topic:: A bag of Ipython tricks
 
-    * Several Linux shell commands work in Ipython, such as ls, pwd,
-      cd, etc.
+    * Several Linux shell commands work in Ipython, such as ``ls``, ``pwd``,
+      ``cd``, etc.
 
     * To get help about objects, functions, etc., type ``help object``.
       Just type help() to get started.
@@ -122,7 +122,7 @@ repetition.
       available names. If many names are possible, a list of names is 
       displayed.
 
-    * **History**: press the up (resp. down) arrow to go through all
+    * **History**: press the `up` (resp. `down`) arrow to go through all
       previous (resp. next) instructions starting with the expression on
       the left of the cursor (put the cursor at the beginning of the line
       to go through all previous commands) 
@@ -173,7 +173,7 @@ Complex numbers are a native type in Python ::
     0.5
 
 A Python shell can therefore replace your pocket calculator, with the
-basic arithmetic operations +, -, \*, /, % (modulo) natively implemented::
+basic arithmetic operations ``+``, ``-``, ``\*``, ``/``, ``%`` (modulo) natively implemented::
 
     >>> 7 * 3.
     21.0
@@ -208,7 +208,7 @@ Strings are delimited by simple or double quotes::
     SyntaxError: invalid syntax
 
 
-As seen abobe, strings are concatenated with + and repeated with * ::
+As seen above, strings are concatenated with ``+`` and repeated with ``*`` ::
 
     >>> "how " + "are" + " you?" 
     'how are you?'
@@ -250,12 +250,12 @@ called a **slice**
     >>> a[::-1] # running backwards
     '!dlrow ,olleh'
 
-Accents and special characters can also be handled in Unicode strigs (see
+Accents and special characters can also be handled in Unicode strings (see
 http://docs.python.org/tutorial/introduction.html#unicode-strings).
 
 
-A string is an immutable objects and it is not possible to modify its
-characters. One may however create new strings from an orginal one.
+A string is an immutable object and it is not possible to modify its
+characters. One may however create new strings from an original one.
 
 .. sourcecode:: ipython
 
@@ -279,7 +279,7 @@ characters. One may however create new strings from an orginal one.
     Python offers advanced possibilities for manipulating strings,
     looking for patterns or formatting. Due to lack of time this topic is
     not addressed here, but the interested reader is referred to
-    http://docs.python.org/library/stdtypes.html#string-methods et
+    http://docs.python.org/library/stdtypes.html#string-methods and
     http://docs.python.org/library/string.html#new-string-formatting
 
 **Lists**
@@ -305,7 +305,7 @@ Also, sub-lists are obtained by **slicing** ::
     >>> l[::2]
     [3, 'hello']
 
-Unlike strings, a list is mutable and its elements can be modified ::
+Unlike strings, a list is mutable and its elements can be modified::
 
     >>> l[0] = 1
     >>> l
@@ -342,10 +342,8 @@ through this tutorial.
 
 **Tuples**
 
-Tuples are basically immutable lists. 
-
-En gros, les tuples sont des listes immutables. The elements of a tuple
-are written between brackets, or just separated by commas ::
+Tuples are basically immutable lists. The elements of a tuple are written
+between brackets, or just separated by commas::
 
 
     >>> t = 12345, 54321, 'hello!'
@@ -358,7 +356,7 @@ are written between brackets, or just separated by commas ::
 **Dictionnaries**
 
 A dictionnary is basically a hash table that **maps keys to values**. It
-is therefore an unordered container. ::
+is therefore an unordered container::
 
 
     >>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
@@ -378,16 +376,16 @@ http://docs.python.org/tutorial/datastructures.html#dictionaries
 for more information.
 
 Flow control
---------------------
+------------
 
 **Defining functions**
 
 We now define a function that computes the ``n`` first terms of Fibonacci
 sequence. Now type the following line in your Python interpreter, and be
-careful to **respect the identation depth**. The Ipython shells
-automatically increases the indentation depth after a **:** sign; for
-decreasing the identation depth go four spaces to the left with the
-Backspace key. Press the Enter key twice for leaving the function
+careful to **respect the indentation depth**. The Ipython shells
+automatically increases the indentation depth after a **:** sign; to
+decrease the indentation depth, go four spaces to the left with the
+Backspace key. Press the Enter key twice to leave the function
 definition. ::
 
     >>> def fib(n):    
@@ -412,7 +410,7 @@ definition. ::
     55
  
 
-Another example ::
+Another example::
 
     >>> def message(name, country='France'):
     ...     message = "Hello, my name is %s and I live in %s."%(name, country)
@@ -441,7 +439,7 @@ Note the syntax to define a function:
       ``return object``.
 
 Note that it is possible to define **optional arguments**, the default
-value of which is set in the defintion of the function. These arguments
+value of which is set in the definition of the function. These arguments
 are known as **keyword arguments**. This is a very convenient feature for
 defining functions with a variable number of arguments, especially when
 default values are to be used in most calls to the function.
@@ -451,27 +449,27 @@ default values are to be used in most calls to the function.
     Indenting is compulsory in Python. Every commands block following a
     colon bears an additional indentation level with respect to the
     previous line with a colon. One must therefore indent after 
-    ``def f():`` or ``while:``. At the end of such a logical blocks, one
+    ``def f():`` or ``while:``. At the end of such logical blocks, one
     decreases the indentation depth (and re-increases it if a new block is
     entered, etc.)
 
     Strict respect of indentation is the price to pay for getting rid of
     ``{`` or ``;`` characters that delineate logical blocks in other
-    languages. Improper identation leads to errors such as
+    languages. Improper indentation leads to errors such as
 
     .. sourcecode:: ipython
 
 	------------------------------------------------------------
 	IndentationError: unexpected indent (test.py, line 2)
 
-    In particular, one should not start a newline if the middle of an
+    In particular, one should not start a newline in the middle of an
     instruction. Long lines can nevertheless be broken with ``\``::
    
 	>>> long_line = "Here is a very very long line \
 	... that we break in two parts."
  
     All this indentation business can be a bit confusing in the
-    beginning. However, with the clear identation,  and in the absence of
+    beginning. However, with the clear indentation, and in the absence of
     extra characters, the resulting code is very nice to read compared to
     other languages.
 
@@ -500,12 +498,12 @@ conditions with ``if`` and ``else`` ::
     8
     odd number
 
-Note that ``if`` and ``else`` have the same identation depth (use the
-backspace key to decrease the identation depth in Ipython).
+Note that ``if`` and ``else`` have the same indentation depth (use the
+backspace key to decrease the indentation depth in Ipython).
 
 It is possible to loop over other objects than integer indices. For
 example, Python can loop over the elements of a list or the characters of
-a string. ::
+a string::
 
     >>> message = "hello"
     >>> for c in message:
@@ -562,9 +560,9 @@ called **test.py** ::
 
 In order to execute this script, you may
 
-    * l'exécuter dans une console (console linux/Mac ou console cmd
-      Windows). Par exemple, si on est dans le même répertoire que le
-      fichier test.py, on peut exécuter dans une console
+    * execute it in a console (Linux/Mac console or cmd
+      Windows console). For example, if we are in the same directory as the
+      test.py file, we can execute this in a console:
 
 .. sourcecode:: bash 
 
@@ -574,13 +572,11 @@ In order to execute this script, you may
     are
     you?
 
-Cependant, il ne s'agit pas d'une utilisation interactive, et dans
-le cadre du calcul scientifique, on travail (le plus) souvent en mode
-interactif, c'est-à-dire à l'intérieur d'un interpréteur :
+However, this is not an interactive use, and for scientific computing we mostly
+work in interactive mode, inside an interpreter:
 
-    * dans Ipython, la syntaxe pour exécuter un script est ``%run
-      script.py`` (ne pas oublier le ``%`` devant ``run`` !). Par
-      exemple, 
+    * in Ipython, the syntax to execute a script is ``%run
+      script.py`` (don't forget the ``%`` in front of ``run`` !). For example, 
 
 .. sourcecode:: ipython
 
@@ -593,15 +589,14 @@ interactif, c'est-à-dire à l'intérieur d'un interpréteur :
     In [2]: message
     Out[2]: 'Hello how are you?'
 
-    
-Le script s'est exécuté, qui plus est les variables définies dans le
-script sont maintenant accessibles (comme ``message``).
 
-Si on veut écrire des programmes un peu plus longs et plus organisés, où
-on définit des objets (variables, fonctions, classes) que l'on
-souhaiterait pouvoir réutiliser plusieurs fois, on définit un **module**.
-Voici un exemple de module contenu dans le fichier suites.py (recopier le
-contenu dans un fichier appelé suites.py) ::
+The script has been executed. Moreover the variables defined in the script now
+are accessible (such as ``message``).
+
+If we want to write larger and better organized programs, where some objects are defined,
+(variables, functions, classes) and that we want to reuse several times, we have
+to create a **module**. Below is an example of a module, contained in the
+suites.py file (copy-paste the contents in a file named suites.py)::
 
     def fib(n):
         "return nth term of Fibonacci sequence"
@@ -623,12 +618,11 @@ contenu dans un fichier appelé suites.py) ::
             u, v = v, w
             i +=1
         return w
- 
-Dans ce fichier, on a défini deux types de suite. Supposons maintenant
-qu'on veuille appeler la fonction ``fib`` à partir de l'interpréteur. On
-pourrait exécuter le module comme un script, mais puiqu'il n'y a pas
-d'instructions à exécuter à l'intérieur, nous allons plutôt l'**importer
-en tant que module**. La syntaxe est la suivante :: 
+
+In this file, we defined two kinds of suite. Suppose we want to call the ``fib``
+function from the interpreter. We could execute the module as a script, but
+since there is no instructions to execute, we are rather going to **import it as
+a module**. The syntax is as follows::
 
     >>> import suites
     >>> suites.linear_recurrence(10)
@@ -642,14 +636,13 @@ en tant que module**. La syntaxe est la suivante ::
     3 3
     4 5
 
-Le code du fichier n'est pas exécuté lors de l'import du module. Par
-contre, on peut se servir des objets qu'il définit grâce à la syntaxe
-``module.objet``. Il ne faut pas oublier de rajouter le nom du module
-devant le nom de l'objet, sinon Python ne reconnaît pas l'instruction. 
+The code in the file is executed during import of the module. Then we can use
+the objects it defines, thanks to the ``module.object`` syntax. Don't forget to
+put the module name before the object name, otherwise Python won't recognize the
+instruction.
 
-Si on veut éviter de taper à chaque fois ``module.objet``, on peut
-importer certains ou tous les objets du module dans l'"espace de nommage"
-principal (main namespace en anglais). Par exemple ::
+If we want to avoid typing ``module.object`` each time, we can import some or
+all of the objects into the main namespace. For instance::
 
     >>>from suites import fib
     >>> fib(10)
@@ -672,26 +665,21 @@ principal (main namespace en anglais). Par exemple ::
     linear_recurrence   function    <function linear_recurrence at 0x96eb9cc>
 
 
-Quand on utilise ``from module import *``, il faut faire attention à ne
-pas écraser un objet déjà existant (par exemple, si on avait déjà une
-fonction ou une variable appelée ``fib``). Il faut donc éviter cet usage
-pour les modules avec beaucoup d'objets, ou quand on a des noms d'objets
-courants (max, mean, etc.). 
+When using ``from module import *``, be careful to not overwrite an already
+existing object (for example, if we already had a function or a variable named
+``fib``). This method should be avoided with module containing a lot of objects,
+or conflicting names (max, mean, etc.).
 
 
-
-
-Pour raccourcir les noms qu'on tape, on peut importer un module sous un
-nom plus court. Par exemple, c'est une convention très classique
-d'importer le module ``numpy`` (tableaux de données, que nous allons étudier
-par le suite) sous le nom ``np`` ::
+To shorten the names, we can import a module as another name. For example, a
+convention is to import ``numpy`` (which we are soon going to learn) as
+``np``::
 
     >>> import numpy as np
     >>> type(np)
     <type 'module'>
 
-On peut définir des
-sous-modules à l'intérieur d'un module ::
+Submodules can be defined in modules::
 
     >>> import scipy # routines de calcul scientifique
     >>> import scipy.optimize # sous-module d'optimisation
@@ -700,44 +688,40 @@ sous-modules à l'intérieur d'un module ::
     >>> import scipy.optimize as opti # plus court !
 
 
-Les modules sont donc un moyen d'organiser un code de façon hiérarchique. En fait, tous les
-packages
-d'informatique scientifique que nous allons utiliser avec Python seront 
-des modules ::
+Modules are thus a good way to organize code in a hierarchical way. Actually,
+all the scientific computing tools we are going to use are modules::
 
-    >>> import numpy as np # tableaux de donnees
+    >>> import numpy as np # data arrays
     >>> np.linspace(0, 10, 6)
     array([  0.,   2.,   4.,   6.,   8.,  10.])
-    >>> import scipy # calcul scientifique
-    >>> from pylab import * # plot de donnees 
-    >>> # appeler Ipython avec le switch -pylab est equivalent
-    >>> # à la ligne precedente (ipython -pylab)
+    >>> import scipy # scientific computing
+    >>> from pylab import * # plotting
+    >>> # calling Ipython with the -pylab switch is equivalent
+    >>> # to the previous line (ipython -pylab)
 
-Et comme on l'a déjà vu, quand on écrit un fichier de code organisé (ex :
-``suites.py``,  on crée un module.
+As we've already seen, when we are writing a well-organized code file (ex:
+``suites.py``, we are just creating a module.
 
-Dans le logiciel Python(x,y), Ipython(x,y) exécute au démarrage les
-imports suivants::
+In Python(x,y) software, Ipython(x,y) execute the following imports at startup::
 
     >>> import numpy	
     >>> import numpy as np
     >>> from pylab import *
     >>> import scipy
 
-et il n'est donc pas nécessaire de refaire ces imports.
+then we won't have to replay these imports.
 
 
 
-Input et Output
+Input and Output
 ----------------
 
-Par souci d'exhaustivité, voici quelques informations sur l'input et
-l'output dans Python. Néanmoins, nous nous servirons des méthodes de
-Numpy pour lire et écrire dans des fichiers, on peut donc sauter ce
-paragraphe en première lecture.
+To be exhaustive, here are some informations about input and output in Python.
+Since we will use the Numpy methods to read and write files, you can skip this
+chapter in first read.
 
-On écrit et on lit des **strings** dans les fichiers (il faut convertir
-les autres types en strings). Pour écrire dans un fichier 
+We write or read **strings** to/from files (other types must be converted to
+strings). To write in a file::
 ::
 
     >>> f = open('workfile', 'w') # ouvre le fichier workfile
@@ -746,7 +730,7 @@ les autres types en strings). Pour écrire dans un fichier
     >>> f.write('Ceci est un test \nEncore un test')
     >>> f.close()
 
-Pour lire dans un fichier ::
+To read from a file::
 
     >>> f = open('workfile', 'r')
     >>> s = f.read()
@@ -755,45 +739,41 @@ Pour lire dans un fichier ::
     Encore un test
     >>> f.close()
 
-Pour plus de détails : http://docs.python.org/tutorial/inputoutput.html
+For more details: http://docs.python.org/tutorial/inputoutput.html
 
-Erreurs et exceptions
-------------------------
+Errors and exceptions
+---------------------
 
-Si vous avez essayé d'exécuter tous les exemples précédents, il serait
-bien étonnant que vous n'ayez pas rencontré une erreur à un moment... :-? 
+If you have tried to execute all the previous examples, you probably fell on an
+error at least one. :-?
 
-Vous avez alors peut-être remarqué qu'il y a plusieurs types d'erreurs :
-``SyntaxError, ImportError, ValueError``, accompagnée chacune d'un
-message d'erreur. Le nom de l'erreur comme le message d'erreur
-renseignent sur l'origine de l'erreur et aident donc au débuggage.
-Chaque utilisateur peut également prévoir des cas où son code va
-retourner une erreur (par exemple si un paramètre d'entrée n'a pas le
-type attendu). 
+So you have probably noticed there are several kind or errors:
+``SyntaxError, ImportError, ValueError``, which all come with an error message.
+The name of the error, as well as the error itself, helps discovering the origin
+of the problem, thus help with debugging.
+Each user can also anticipate cases where his code might return an error (for
+instance, if some input parameter does not have the expected type).
 
-Pour bien profiter de la richesse de Python, il faut donc se servir des
-erreurs, par exemple pour prévoir des cas où les utilisateurs font appel
-à une fonction pour une utilisation non prévue. Nous laissons
-le lecteur se référer à http://docs.python.org/tutorial/errors.html pour
-plus de détails sur la gestion des erreurs et des exceptions.
+To benefit from all the power of Python, you should use errors, in cases such as
+unexpected use of a function. Refer to
+http://docs.python.org/tutorial/errors.html for more details about errors and
+exception handling.
 
-Programmation orientée objet
------------------------------ 
+Object oriented programming
+--------------------------- 
 
-La programmation orientée objet a pour but de 
+The goals of object oriented programming is
 
-    * hiérarchiser/organiser du code
+    * organize code in a hierarchical way
 
-    * favoriser la réutilisation de code pour ne pas recopier le même
-      bout de code à différents endroits dans des contextes proches mais
-      différents.
+    * improve code reusability, and avoid copy-pasting similar code in similar
+      contexts.
 
-En voici un petit exemple : on va créer une **classe** Etudiant,
-c'est-à-dire un objet regroupant un certain nombre de fonction (des
-**méthodes**) et de variables (des **attributs**) qui lui sont propre, et
-qu'on pourra appeler ::
+Here is a small example: we create a Student **class**, which is an object
+gathering several custom functions (**methods**) and variables (**attributes**),
+we will be able to use::
 
-    >>> class Etudiant(object):
+    >>> class Student(object):
     ...     def __init__(self, name):
     ...         self.name = name
     ...     def set_age(self, age):
@@ -801,44 +781,38 @@ qu'on pourra appeler ::
     ...     def set_major(self, major):
     ...         self.major = major
     ...         
-    >>> anne = Etudiant('anne')
-    >>> anne.set_age(21)
-    >>> anne.set_major('physique')
+    >>> anna = Student('anna')
+    >>> anna.set_age(21)
+    >>> anna.set_major('physics')
 
-Dans l'exemple précédent, la classe Etudiant a comme méthode ``__init__,
-set_age`` et ``set_major``. Ses attributs sont ``name, age`` et
-``major``. On appelle les méthodes et les attributs avec la notation
-``InstanceDeLaClasse.methode`` ou  ``InstanceDeLaClasse.attribut``. Le
-constructeur ``__init__`` est une méthode à part, qu'on appelle sous la
-forme ``InstanceDeLaClasse(paramètres de __init__ s'il y en a)``.
+In the previous example, the Student class has ``__init__``, ``set_age`` and
+``set_major`` methods. Its attributes are ``name``, ``age`` and ``major``. We
+can call these methods and attributes with the following notation:
+``classinstance.method`` or  ``classinstance.attribute``.  The ``__init__``
+constructor is a special method we call with: ``MyClass(init parameters if
+any)``.
 
-Supposons maintenant qu'on veuille créer une nouvelle classe
-EtudiantMaster avec les
-mêmes méthodes et attributs que la précédente, mais avec un attribut
-``stage`` supplémentaire. On ne va pas réécrire toute la classe
-précédente, mais **hériter** de la classe Etudiant :: 
+Now, suppose we want to create a new class MasterStudent with the same methods
+and attributes as the previous one, but with an additional ``stage`` attribute.
+We won't copy the previous class, but **inherit** from it::
 
-    >>> class EtudiantMaster(Etudiant):
-    ...     stage = 'obligatoire, de mars a juin'
+    >>> class MasterStudent(Student):
+    ...     stage = 'mandatory, from march to june'
     ...     
-    >>> benoit = EtudiantMaster('benoit')
-    >>> benoit.stage
-    'obligatoire, de mars a juin'
-    >>> benoit.set_age(23)
-    >>> benoit.age
+    >>> james = MasterStudent('james')
+    >>> james.stage
+    'mandatory, from march to june'
+    >>> james.set_age(23)
+    >>> james.age
     23
 
-La classe EtudiantMaster a **hérité** des méthodes et attributs de la
-classe Etudiant. 
+The MasterStudent class inherited from the Student attributes and methods.
 
-Grâce aux classes et à la programmation orientée objet, on peut donc
-organiser son code avec différentes classes correspondant à différents
-objets qu'on rencontre (une classe Manip, une class Image, une classe
-Ecoulement, etc.), avec leurs méthodes et leurs attributs. On peut alors
-se servir de l'héritage pour considérer des variations autour d'une
-classe de base, et **mutualiser** ainsi du code. Ex : d'une classe de
-base turbulent, on peut faire hériter une sous-classe EcoulementStokes,
-EcoulementNewtonien, EcoulementPotentiel, etc.
-
+Thanks to classes and object oriented programming, we can organize code with
+different classes corresponding to different objects we encounter (a Manip
+class, an Image class, a Flow class, etc.), with their own methods and
+attributes. Then we can use inheritance to consider variations around a base
+class and **share** code. Ex : from a Turbulent base class, we can create
+derived StokesFlow, NewtonianFlow, PotentialFlow, etc.
 
 

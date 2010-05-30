@@ -561,7 +561,7 @@ Pour exécuter ce petit script, on peut :
     you?
 
 Cependant, il ne s'agit pas d'une utilisation interactive, et dans
-le cadre du calcul scientifique, on travail (le plus) souvent en mode
+le cadre du calcul scientifique, on travaille (le plus) souvent en mode
 interactif, c'est-à-dire à l'intérieur d'un interpréteur :
 
     * dans Ipython, la syntaxe pour exécuter un script est ``%run
@@ -628,13 +628,13 @@ en tant que module**. La syntaxe est la suivante ::
     3 3
     4 5
 
-Le code du fichier n'est pas exécuté lors de l'import du module. Par
-contre, on peut se servir des objets qu'il définit grâce à la syntaxe
+Le code du fichier est exécuté lors de l'import du module. 
+On peut ensuite se servir des objets qu'il définit grâce à la syntaxe
 ``module.objet``. Il ne faut pas oublier de rajouter le nom du module
 devant le nom de l'objet, sinon Python ne reconnaît pas l'instruction. 
 
 Si on veut éviter de taper à chaque fois ``module.objet``, on peut
-importer certains ou tous les objets du module dans l'"espace de nommage"
+importer certains ou tous les objets du module dans l'"espace de noms"
 principal (main namespace en anglais). Par exemple ::
 
     >>>from suites import fib
@@ -794,9 +794,9 @@ qu'on pourra appeler ::
 Dans l'exemple précédent, la classe Etudiant a comme méthode ``__init__,
 set_age`` et ``set_major``. Ses attributs sont ``name, age`` et
 ``major``. On appelle les méthodes et les attributs avec la notation
-``InstanceDeLaClasse.methode`` ou  ``InstanceDeLaClasse.attribut``. Le
+``instancedelaclasse.methode`` ou  ``instancedelaclasse.attribut``. Le
 constructeur ``__init__`` est une méthode à part, qu'on appelle sous la
-forme ``InstanceDeLaClasse(paramètres de __init__ s'il y en a)``.
+forme ``instancedelaclasse(paramètres de __init__ s'il y en a)``.
 
 Supposons maintenant qu'on veuille créer une nouvelle classe
 EtudiantMaster avec les
@@ -823,7 +823,7 @@ objets qu'on rencontre (une classe Manip, une class Image, une classe
 Ecoulement, etc.), avec leurs méthodes et leurs attributs. On peut alors
 se servir de l'héritage pour considérer des variations autour d'une
 classe de base, et **mutualiser** ainsi du code. Ex : d'une classe de
-base turbulent, on peut faire hériter une sous-classe EcoulementStokes,
+base Turbulent, on peut faire hériter une sous-classe EcoulementStokes,
 EcoulementNewtonien, EcoulementPotentiel, etc.
 
 Quelques exercices pour terminer cette introduction
