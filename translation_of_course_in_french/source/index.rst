@@ -19,7 +19,7 @@ Contents:
    reponses1.rst
    scipy.rst
    image_processing.rst 
-   exo.rst 
+   answers_image_processing.rst
 
 
 Indices and tables

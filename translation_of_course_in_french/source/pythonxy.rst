@@ -20,18 +20,13 @@ First steps with Python(x,y)
 -----------------------------
 
 Below the starting menu of Python(x,y) is displayed. You can choose
-between running an application (a third-party software), or launching an 
+between running an application (a third-party software), or launching an
+interactive Python shell. For a scientific-computing session, we choose
+to launch a Python shell, from which we will execute commands and launch
+scripts.
 
-Voici le menu de démarrage de Python(x,y). Il propose de choisir entre
-lancer une application (un logiciel indépendant), ou de lancer une
-"console interactive" Python, c'est-à-dire un interpréteur Python (shell
-en anglais). Pour une session de calcul scientifique, nous choisissons de
-lancer un interpréteur qui permettra d'exécuter nos différentes commandes
-ainsi que des scripts. 
-
-Parmi les différents interpréteurs disponibles, on peut conseiller
-`Ipython`, qui est un interpréteur généraliste (utilisé ailleurs que dans
-Python(x,y), et dans d'autres contextes que le calcul scientifique). 
+Among the available interpreters, we recommend to use
+`Ipython`, which is a general-purpose advanced shell.
 
 .. image:: Python_xy_1.png
    :align: left
@@ -39,14 +34,11 @@ Python(x,y), et dans d'autres contextes que le calcul scientifique).
 .. image:: Python_xy_2.png
    :align: center
 
-On choisit d'ouvrir `Ipython` dans la "console 2", ce qui permet d'avoir
-une représentation graphique plus esthétique que le shell Windows cmd. 
 
-Une console s'ouvre alors, il faut attendre quelques secondes avant
-d'avoir la main dans l'interpréteur car plusieurs modules sont importés
-au début de la session.
+A shell opens up, and you have to wait a few seconds before getting the
+command prompt, are many modules are imported before the session starts.
 
-Commençons par quelques commandes pour vérifier que tout marche::
+Let us start by a few commands to check that everything works::
 
     >>> a = "hello world"
     >>>> print a
@@ -58,11 +50,17 @@ Commençons par quelques commandes pour vérifier que tout marche::
     >>> x, y, z = np.random.random((3,20))
     >>> mlab.points3d(x, y, z, z) 
 
-Parmi les applications fournies par Python(x,y), on peut utiliser
-l'éditeur de texte ``Scite`` (cf. flèche ci-dessous). ``Scite`` gère
-correctement la coloration syntaxique de Python, l'indentation ou encore
-l'exécution de scripts. Les fichiers python ont pour **extension .py**;
-dès que Scite connaît l'extension il active la coloration syntaxique.   
+If you get an error while typing::
+
+    >>> from enthought.mayavi import mlab # 3D visualization
+
+you probably did not install the **full** version of Python(x,y).
+
+Among all applications available with Python(x,y), you can use the text
+editor ``Scite`` (see arrow below). ``Scite`` handles well Python syntax
+highlighting and indentation, as well as script execution. The
+**extension** for Python files is **.py**,  saving files with the **.py**
+is needed for activating syntax highlighting.
 
 .. image:: Python_scite.png
    :align: center

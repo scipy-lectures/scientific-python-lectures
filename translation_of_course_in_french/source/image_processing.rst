@@ -287,3 +287,5 @@ sand mask grains that are smaller than 10 pixels. To do so, use
 
 8. Compute the mean size of bubbles.
 
+Answers can be found in 
+:ref:`image-answers` 

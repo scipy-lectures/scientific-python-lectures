@@ -422,7 +422,7 @@ By using miscellaneous constructors, indexing, slicing, and simple operations
      [0 0 0 5 0]
      [0 0 0 0 6]]
 
-**Answers** :ref:`reponses1`
+**Answers** :ref:`answers1`
 
 Real data: read/write arrays from/to files
 ------------------------------------------
@@ -650,9 +650,9 @@ We find again that the distance grows like the square root of the time!
    (from the USB key of the training or http://www.dakarlug.org/pat/scientifique/data/).
 
 2. Create a ``data`` array by opening the ``women_percentage.txt`` file
-   with ``np.loadtxt``. What is the size of this array? 
+   with ``np.loadtxt``. What is the shape of this array? 
 
-3. The columns correspond to year 2006 to 2001. Create a ``years`` array with
+3. Columns correspond to year 2006 to 2001. Create a ``years`` array with
    integers corresponding to these years.
 
 4. The different lines correspond to the research organisms whose names are
@@ -674,6 +674,9 @@ We find again that the distance grows like the square root of the time!
 
 9. Create a histogram of the percentage of women the different organisms in 2006
    (hint: np.histogram, then matplotlib bar or plot for visulalization)
+
+10. Create an array that contains the organism where the highest women's
+    percentage is found for the different years.
 
 **Answers** :ref:`stat_recherche`
 
@@ -930,7 +933,7 @@ indices for cases where we can't (or don't want to) benefit from broadcasting::
 
  
  
-Synthesis exercises: a locket with Lena
+Synthesis exercises: framing Lena
 ---------------------------------------
 
 Let's do some manipulations on numpy arrays by starting with the famous image of

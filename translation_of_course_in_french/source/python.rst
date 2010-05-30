@@ -544,24 +544,23 @@ you often don't care about.
 Scripts and modules
 ---------------------
 
-Pour le moment nous avons tapé toutes nos instructions dans
-l'interpréteur. Bien sûr, il faut changer de méthode pour écrire des
-programmes plus longs ! On va alors écrire notre code dans des fichiers à
-l'aide d'un éditeur de texte (votre éditeur préféré, ou celui fourni par
-votre distribution de Python si vous utilisez Python à l'intérieur d'une
-suite de calcul scientifique comme EPD ou Python(x,y)). 
+For now, we have typed all instructions in the interpreter. For longer
+sets of instructions we need to change tack and write the code in
+scripts, using a text editor. Use your favorite text editor (provided it
+offers syntax highlighting for Python), or the editor that comes with the
+Scientific Python Suite you may be using (e.g., Scite with Python(x,y)). 
 
-Commençons par écrire un **script**, c'est-à-dire un fichier contenant
-une simple série d'instructions, qu'on peut par exemple copier-coller à
-partir de l'interpréteur (mais en respectant l'indentation !!).
-L'extension d'un fichier avec du code python est **.py**. Copier-coller
-dans un fichier **test.py** les lignes suivantes ::
+Let us first write a **script**, that is a file with a sequence of
+instructions, that may be e.g. copied-and-pasted from the interpreter
+(but take care to respect indentation rules!). The extension for Python
+files is **.py**. Write or copy-and-paste the following lines in a file
+called **test.py** ::
 
     message = "Hello how are you?"
     for word in message.split():
         print word
 
-Pour exécuter ce petit script, on peut :
+In order to execute this script, you may
 
     * l'exécuter dans une console (console linux/Mac ou console cmd
       Windows). Par exemple, si on est dans le même répertoire que le

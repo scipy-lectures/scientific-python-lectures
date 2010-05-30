@@ -1,15 +1,15 @@
 
-Réponses des exercices numpy
+Answers to Numpy's exercises
 =============================
 
 
-.. _reponses1:
+.. _answers1:
 
-Création de tableaux
+Array creation
 ---------------------
 
-**Exercices** : créer les tableaux suivants de la manière la plus simple
-possible (pas élément par élement) ::
+**Exercices** : create the following arrays in the easiest possible way
+(and not element by element) ::
 
     [[ 1.  1.  1.  1.]
      [ 1.  1.  1.  1.]
@@ -23,12 +23,12 @@ possible (pas élément par élement) ::
      [0 0 0 5 0]
      [0 0 0 0 6]]
 
-Voilà les réponses !
+
 
 ..
    >>> import numpy as np
 
-Réponses ::
+Answers ::
 
     >>> a = np.ones((4,4))
     >>> a[3,1] = 6
@@ -50,39 +50,36 @@ Réponses ::
 
 .. _stat_recherche:
 
-Statistiques du pourcentage de femmes dans la recherche française
+Statistics of women's representation in French Research
 -------------------------------------------------------------------
 
-1. Récupérer les fichiers ``organismes.txt`` et
-   ``pourcentage_femmes.txt`` (clé USB).
+1. Get the following files ``organisms.txt`` and ``women_percentage.txt``
+   (from the USB key of the training or
+http://www.dakarlug.org/pat/scientifique/data/).
 
-2. Créer un tableau ``data`` en ouvrant le fichier
-   ``pourcentage_femmes.txt`` avec ``np.loadtxt``. 
-   Quelle est la taille de ce tableau ?
+2. Create a ``data`` array by opening the ``women_percentage.txt`` file
+   with ``np.loadtxt``. What is the shape of this array?
 
 ::
 
-    >>> data = np.loadtxt('pourcentage_femmes.txt')
+    >>> data = np.loadtxt('women_percentage.txt')
     >>> data.shape
     (21, 6)
 
-
-3. Les colonnes correspondent aux années 2006 à 2001. Créer un tableau
-   ``annees`` (sans accent !) contenant les entiers correspondant à ces
-   années.
+3. Columns correspond to year 2006 to 2001. Create a ``years`` array with
+   integers corresponding to these years.
 
 ::
 
-    >>> annees = np.arange(2006, 2000, -1)
-    >>> annees
+    >>> years = np.arange(2006, 2000, -1)
+    >>> years
     array([2006, 2005, 2004, 2003, 2002, 2001])
 
-4. Les différentes lignes correspondent à différents organismes de
-   recherche dont les noms sont stockés dans le fichier
-   ``organismes.txt``. Créer un tableau ``organisms`` en ouvrant ce
-   fichier. **Attention** : comme ``np.loadtxt`` crée par défaut des
-   tableaux de flottants, il faut lui préciser qu'on veut créer un tableau de
-   strings : ``organisms = np.loadtxt('organismes.txt', dtype=str)``
+4. The different lines correspond to the research organisms whose names
+   are stored in the ``organisms.txt`` file. Create a ``organisms`` array by
+   opening this file. Beware that ``np.loadtxt`` creates float arrays by
+   default, and it must be specified to use strings instead: ``organisms =
+   np.loadtxt('organisms.txt', dtype=str)``
 
 ::
 
@@ -93,25 +90,24 @@ Statistiques du pourcentage de femmes dans la recherche française
            'IRD', 'IRSN', 'LCPC', 'ONERA', 'Pasteur', 'Universites'], 
           dtype='|S11')
 
-5. Vérifier que le nombre de lignes de data est égal au nombre
-   d'organismes.
+5. Check that the number of lines of ``data`` equals the number of lines
+   of the organisms.
 
 ..
 
     >>> data.shape[0] == organisms.shape[0]
     True
 
-6. Quel est le pourcentage maximal de femmes dans tous les organismes, 
-   toutes années confondues ?
+6. What is the maximal percentage of women in all organisms, for all
+   years taken together?
 
 ..
 
-    >>> data.max() # max sur tout le tableau
+    >>> data.max() # max on the whole array
     56.299999999999997
 
-7. Créer un tableau contenant la moyenne temporelle du pourcentage de
-   femmes pour chaque organisme (i.e., faire la moyenne de ``data`` suivant
-   l'axe No 1).
+7. Create an array with the temporal mean of the percentage of women for
+   each organism? (i.e. the mean of ``data`` along axis 1).
 
 ..
 
@@ -124,8 +120,8 @@ Statistiques du pourcentage de femmes dans la recherche française
             33.45      ,  15.18333333,  14.35      ,  49.86666667,  33.41666667])
 
 
-8. Quel organisme avait le pourcentage de femmes le plus élevé en 2004 ?
-   (Indice np.argmax).
+8. Which organism had the highest percentage of women in 2004? (hint:
+   use np.argmax)
 
 ..
 
@@ -137,22 +133,12 @@ Statistiques du pourcentage de femmes dans la recherche française
     'INED'
 
 
-9. Un peu plus compliqué : créez un tableau contenant l'organisme avec le
-   pourcentage de femmes le plus élévé de chaque année.
-
-::
-
-    >>> indices = np.argmax(data, axis=0)
-    >>> indices
-    array([ 9,  9,  9,  9,  9, 19])
-    >>> organisms[indices]
-    array(['INED', 'INED', 'INED', 'INED', 'INED', 'Pasteur'], 
-	  dtype='|S11')
 
 
-10. Représenter un histogramme du pourcentage de femmes dans les 
-    différents organismes en 2006 (indice : np.histogram, puis bar ou 
-    plot de matplotlib pour la visualisation).
+
+9. Create a histogram of the percentage of women the different organisms
+   in 2006 (hint: np.histogram, then matplotlib bar or plot for visulalization)
+
 
 .. 
 
@@ -167,17 +153,9 @@ Statistiques du pourcentage de femmes dans la recherche française
 .. image:: barplot.png
    :align: center
 
-**Suite de l'exercice**
+10. Create an array that contains the organism where the highest women's
+    percentage is found for the different years.
 
-1. 1. Créer un tableau ``sup30`` de même taille que ``data`` valant 1 si
-   la valeur de ``data`` est supérieure à 30%, et 0 sinon.
-
-::
-
-    >>> sup30 = data>30
-
-2. Un peu plus compliqué : créez un tableau contenant l'organisme avec le
-   pourcentage de femmes le plus élévé de chaque année.
 
 ::
 
@@ -186,5 +164,6 @@ Statistiques du pourcentage de femmes dans la recherche française
     array([ 9,  9,  9,  9,  9, 19])
     >>> organisms[indices]
     array(['INED', 'INED', 'INED', 'INED', 'INED', 'Pasteur'], 
-	  dtype='|S11')
+          dtype='|S11')
+
 
