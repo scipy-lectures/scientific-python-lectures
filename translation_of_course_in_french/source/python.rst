@@ -299,7 +299,7 @@ Also, sub-lists are obtained by **slicing** ::
     >>> l[0]
     3
     >>> l[-1]
-    'bonjour'
+    'hello'
     >>> l[1:]
     [2, 'hello']
     >>> l[::2]
