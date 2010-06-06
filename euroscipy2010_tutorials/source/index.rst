@@ -8,8 +8,9 @@ Euroscipy 2010 tutorials
 Contents:
 
 .. toctree::
-   :maxdepth: 1
- 
+   :maxdepth: 2
+
+   language/python_language.rst  
    scipy.rst
 
 
