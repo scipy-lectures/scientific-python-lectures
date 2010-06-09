@@ -12,6 +12,7 @@ Contents:
 
    language/python_language.rst  
    scipy.rst
+   summary-exercices/index.rst
 
 
 Indices and tables

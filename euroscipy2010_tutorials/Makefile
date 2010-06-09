@@ -29,15 +29,15 @@ test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst source/*[a-z].rst
 
 
-source/cumulative-wind-speed-prediction.png:
+source/summary-exercices/cumulative-wind-speed-prediction.png:
 	python data/cumulative-wind-speed-prediction.py
 
 # Generate as well sprog-annual-maxima.png
-source/gumbell-wind-speed-prediction.png:
+source/summary-exercices/gumbell-wind-speed-prediction.png:
 	python data/gumbell-wind-speed-prediction.py
 
-sources: source/cumulative-wind-speed-prediction.png \
-		 source/gumbell-wind-speed-prediction.png
+sources: source/summary-exercices/cumulative-wind-speed-prediction.png \
+		 source/summary-exercices/gumbell-wind-speed-prediction.png
 
 html: sources
 	mkdir -p build/html build/doctrees
