@@ -26,7 +26,7 @@ clean:
 	-rm -rf build/*
 
 test:
-	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst source/*[a-z].rst
+	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst source/*[a-z].rst source/summary-exercices/*.rst
 
 
 source/summary-exercices/cumulative-wind-speed-prediction.png:
