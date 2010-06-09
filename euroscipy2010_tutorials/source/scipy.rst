@@ -4,5 +4,77 @@ Scipy : high-level scientific computing
 .. topic:: Scipy
 
     The ``scipy`` package contains various toolboxes dedicated to common
-    issues in scientific computing.
+    issues in scientific computing. Its different submodules correspond
+    to different applications, such as interpolation, integration,
+    optimization, image processing, statistics, special functions, etc.
+
+    ``scipy`` can be compared to other standard scientific-computing
+    libraries, such as the GSL (GNU Scientific  Library for C and C++),
+    or Matlab's toolboxes. ``scipy`` is the core package for scientific
+    routines in Python; it is meant to operate efficiently on ``numpy``
+    arrays, so that numpy and scipy work hand in hand.
+
+    Before implementing a routine, if is worth checking if the desired
+    data processing is not already implemented in Scipy. As
+    non-professional programmers, scientists often tend to **re-invent the
+    wheel**, which leads to buggy, non-optimal, difficult-to-share and
+    unmaintainable code. By contrast, ``Scipy``'s routines are optimized
+    and tested, and should therefore be used when possible.
+
+
+.. warning::
+
+    This tutorial is far from an introduction to numerical computing.
+    As enumerating the different submodules and functions in scipy would
+    be very boring, we concentrate instead on a few examples to give a
+    general idea of how to use ``scipy`` for scientific computing.
+
+To begin with ::
+
+    >>> import numpy as np
+    >>> import scipy
+
+Interpolation: ``scipy.interpolate``
+---------------------------------------
+The ``scipy.interpolate`` is useful for fitting a function from experimental
+data and thus evaluating points where no measure exists. The module is based
+on the `FITPACK Fortran subroutines`_ from the netlib_ project.
+
+.. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
+.. _netlib : http://www.netlib.org
+
+By imagining experimental data close to a sinus function::
+
+    >>> measured_time = np.linspace(0, 1, 10)
+    >>> noise = (np.random.random(10)*2 - 1) * 1e-1
+    >>> measures = np.sin(2 * np.pi * measured_time) + noise
+
+The ``interp1d`` class can built a linear interpolation function::
+
+    >>> from scipy.interpolate import interp1d
+    >>> linear_interp = interp1d(measured_time, measures)
+
+Then the ``linear_interp`` instance needs to be evaluated on time of
+interest::
+
+    >>> computed_time = np.linspace(0, 1, 50)
+    >>> linear_results = linear_interp(computed_time)
+
+A cubic interpolation can also be selected by providing the ``kind`` optional
+keyword argument::
+
+    >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
+    >>> cubic_results = cubic_interp(computed_time)
+
+The results are now gathered on a Matplotlib figure.
+
+.. image:: interpolation.png
+   :align: center
+
+``scipy.interpolate.interp2d`` is similar to ``interp1d``, but for 2-D
+arrays. Note that for the ``interp`` family, the computed time must stay
+within the measured time range. See the summary exercice  on `Maximum
+wind speed prediction at the Sprogø station`_ for a more advance spline
+interpolation example.
+
 

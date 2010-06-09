@@ -28,6 +28,8 @@ clean:
 test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst source/*[a-z].rst source/summary-exercices/*.rst
 
+source/interpolation.png:
+	python data/scipy-interpolation.py
 
 source/summary-exercices/cumulative-wind-speed-prediction.png:
 	python data/cumulative-wind-speed-prediction.py
@@ -36,7 +38,8 @@ source/summary-exercices/cumulative-wind-speed-prediction.png:
 source/summary-exercices/gumbell-wind-speed-prediction.png:
 	python data/gumbell-wind-speed-prediction.py
 
-sources: source/summary-exercices/cumulative-wind-speed-prediction.png \
+sources: source/interpolation.png \
+		 source/summary-exercices/cumulative-wind-speed-prediction.png \
 		 source/summary-exercices/gumbell-wind-speed-prediction.png
 
 html: sources
