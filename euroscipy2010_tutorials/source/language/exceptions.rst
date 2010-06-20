@@ -1,5 +1,5 @@
 Exceptions handling in Python
-==============================
+=============================
 
 It is highly unlikely that you haven't yet raised Exceptions if you have
 typed all the previous commands of the tutorial. For example, you may
@@ -86,7 +86,6 @@ Important for resource management (e.g. closing a file)
 Easier to ask for forgiveness than for permission
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Don't enforce contracts before hand.
 
   .. sourcecode:: ipython
 
@@ -164,8 +163,4 @@ Raising exceptions
 **Use exceptions to notify certain conditions are met (e.g.
 StopIteration) or not (e.g. custom error raising)**
 
-.. warning:: 
-
-    Capturing and not raising exception can lead to difficult debuging.
-	     
 

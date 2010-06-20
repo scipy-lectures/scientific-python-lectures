@@ -31,26 +31,28 @@ can call these methods and attributes with the following notation:
 constructor is a special method we call with: ``MyClass(init parameters if
 any)``.
 
-Now, suppose we want to create a new class MasterStudent with the same methods
-and attributes as the previous one, but with an additional ``stage`` attribute.
-We won't copy the previous class, but **inherit** from it::
+Now, suppose we want to create a new class MasterStudent with the same
+methods and attributes as the previous one, but with an additional
+``internship`` attribute. We won't copy the previous class, but
+**inherit** from it::
 
     >>> class MasterStudent(Student):
-    ...     stage = 'mandatory, from march to june'
+    ...     internship = 'mandatory, from March to June'
     ...     
     >>> james = MasterStudent('james')
-    >>> james.stage
-    'mandatory, from march to june'
+    >>> james.internship
+    'mandatory, from March to June'
     >>> james.set_age(23)
     >>> james.age
     23
 
 The MasterStudent class inherited from the Student attributes and methods.
 
-Thanks to classes and object oriented programming, we can organize code with
-different classes corresponding to different objects we encounter (a Manip
-class, an Image class, a Flow class, etc.), with their own methods and
-attributes. Then we can use inheritance to consider variations around a base
-class and **share** code. Ex : from a Turbulent base class, we can create
-derived StokesFlow, NewtonianFlow, PotentialFlow, etc.
+Thanks to classes and object-oriented programming, we can organize code
+with different classes corresponding to different objects we encounter
+(an Experiment class, an Image class, a Flow class, etc.), with their own
+methods and attributes. Then we can use inheritance to consider
+variations around a base class and **re-use** code. Ex : from a Flow
+base class, we can create derived StokesFlow, TurbulentFlow,
+PotentialFlow, etc.
 

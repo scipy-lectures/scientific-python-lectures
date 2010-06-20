@@ -1,6 +1,5 @@
-==================
- Standard Library
-==================
+Standard Library
+================
 
 .. note:: Reference document for this section:
 
