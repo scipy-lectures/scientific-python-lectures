@@ -27,6 +27,7 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest',
         'plot_directive',
         'ipython_console_highlighting',
         #'matplotlib.sphinxext.only_directives',
+         'sphinx.ext.pngmath',
         ]#'sphinx.ext.intersphinx']
 
 doctest_test_doctest_blocks = 'true'
