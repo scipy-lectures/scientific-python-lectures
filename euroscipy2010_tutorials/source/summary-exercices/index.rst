@@ -12,4 +12,4 @@ Summary exercices
     :maxdepth: 1
 
     stats-interpolate.rst
-
+    optimize-fit.rst
