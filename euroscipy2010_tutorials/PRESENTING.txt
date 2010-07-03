@@ -1,0 +1,8 @@
+
+Here is the way I (Gael) tend to present these course is to use the html
+output created by Sphinx and display it in a fullscreen browser. On top
+of that I use 'yeahconsole' to type in the examples (it stays nicely on
+top of the browser, in an area where everybody can see it, even in a
+crowded room). I use the accompagning shell script to start yeahconsole:
+it defines the right font size, and 'Ctr-Alt-Y' to show/hide the console.
+
