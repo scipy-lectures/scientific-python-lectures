@@ -16,9 +16,8 @@ SymPy is a Python library for symbolic mathematics. It aims become a
 full featured computer algebra system thatn can compete directly with
 commercial alternatives (Mathematica, Maple) while keeping the code as
 simple as possible in order to be comprehensible and easily
-extensible. Commercial alternatives include Mathematica and Maple.
-SymPy is written entirely in Python and does not require any external
-libraries.
+extensible.  SymPy is written entirely in Python and does not require
+any external libraries.
 
 
 
@@ -235,7 +234,7 @@ Higher derivatives can be calculated using the ``diff(func, var, n)`` method::
 Exercises
 ---------
 
-  1. 
+  1. Derivate log(x) for x.
   2.
 
 
@@ -384,8 +383,6 @@ Equations. sympy.ode.dsolve works like this ::
 
     In [5]: dsolve(f(x).diff(x, x) + f(x), f(x))
     Out[5]: C₁*sin(x) + C₂*cos(x)
-
-
 
 TODO: more on this, current status of the ODE solver, PDES ??
 
