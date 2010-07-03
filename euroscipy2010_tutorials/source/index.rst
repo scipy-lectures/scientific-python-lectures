@@ -10,10 +10,11 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   language/python_language.rst  
+   language/python_language.rst 
+   matplotlib/matplotlib.rst 
    scipy.rst
    summary-exercices/index.rst
-
+   sympy.rst
 
 Indices and tables
 ==================
