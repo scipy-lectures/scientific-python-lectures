@@ -3,19 +3,22 @@
 
 .. TODO: bench and fit in 1:30
 
-========
-Tutorial
-========
+======================================
+Sympy : Symbolic Mathematics in Python
+======================================
 
 .. role:: input(strong)
 
 Introduction
 ============
 
-SymPy is a Python library for symbolic mathematics. It aims to become a
-full-featured computer algebra system (CAS) while keeping the code as simple as
-possible in order to be comprehensible and easily extensible.  SymPy is written
-entirely in Python and does not require any external libraries.
+SymPy is a Python library for symbolic mathematics. It aims become a
+full featured computer algebra system thatn can compete directly with
+commercial alternatives (Mathematica, Maple) while keeping the code as
+simple as possible in order to be comprehensible and easily
+extensible. Commercial alternatives include Mathematica and Maple.
+SymPy is written entirely in Python and does not require any external
+libraries.
 
 
 
@@ -99,14 +102,18 @@ And substitute them for other symbols or numbers using ``subs(old, new)``::
 Exercises
 ---------
 
-  1. Calculate :math:`\sqrt(2)` with 100 decimals.
-  2. TODO.
+  1. Calculate :math:`\sqrt{2}` with 100 decimals.
+  2. Calculate :math:`\pi + 1` with 100 decimals.
+  3. Calculate :math:`1/2 + 1/3` in rational arithmetic (without
+    converting to floating point numbers).
 
 
 Algebra
 =======
 
-For partial fraction decomposition, use ``apart(expr, x)``::
+One of the most cumbersome algebraic operations are partial fraction
+decomposition.  For partial fraction decomposition, use ``apart(expr,
+x)``::
 
     In [1]: 1/( (x+2)*(x+1) )
     Out[1]:
@@ -312,28 +319,6 @@ Also improper integrals are supported as well::
     -1
 
 
-
-.. index:: equations; differential, diff, dsolve
-
-Differential Equations
-----------------------
-
-In ``isympy``::
-
-    In [4]: f(x).diff(x, x) + f(x)
-    Out[4]:
-       2
-      d
-    ─────(f(x)) + f(x)
-    dx dx
-
-    In [5]: dsolve(f(x).diff(x, x) + f(x), f(x))
-    Out[5]: C₁*sin(x) + C₂*cos(x)
-
-
-TODO: more on this, current status of the ODE solver, PDES ??
-
-
 .. index:: equations; algebraic, solve
 
 Algebraic equations
@@ -379,43 +364,33 @@ unline a numpy array, you can also put Symbols in it::
     [1 + x*y,     2*x]
     [    2*y, 1 + x*y]
 
-For more information an examples with Matrices, see the LinearAlgebraTutorial.
 
-.. index:: pattern matching, match, Wild, WildFunction
 
-Pattern matching
-================
 
-Use the ``.match()`` method, along with the ``Wild`` class, to perform pattern
-matching on expressions. The method will return a dictionary with the required
-substitutions, as follows::
+.. index:: equations; differential, diff, dsolve
 
-    >>> from sympy import *
-    >>> x = Symbol('x')
-    >>> p = Wild('p')
-    >>> (5*x**2).match(p*x**2)
-    {p_: 5}
+Differential Equations
+----------------------
 
-    >>> q = Wild('q')
-    >>> (x**2).match(p*x**q)
-    {p_: 1, q_: 2}
+SymPy is capable of solving (some) Ordinary Differential
+Equations. sympy.ode.dsolve works like this ::
 
-If the match is unsuccessful, it returns ``None``::
+    In [4]: f(x).diff(x, x) + f(x)
+    Out[4]:
+       2
+      d
+    ─────(f(x)) + f(x)
+    dx dx
 
-    >>> print (x+1).match(p**x)
-    None
+    In [5]: dsolve(f(x).diff(x, x) + f(x), f(x))
+    Out[5]: C₁*sin(x) + C₂*cos(x)
 
-One can also use the exclude parameter of the ``Wild`` class to ensure that
-certain things do not show up in the result::
 
-    >>> x = Symbol('x')
-    >>> p = Wild('p', exclude=[1,x])
-    >>> print (x+1).match(x+p) # 1 is excluded
-    None
-    >>> print (x+1).match(p+1) # x is excluded
-    None
-    >>> print (x+1).match(x+2+p) # -1 is not excluded
-    {p_: -1}
+
+TODO: more on this, current status of the ODE solver, PDES ??
+
+
+
 
 .. _printing-tutorial:
 

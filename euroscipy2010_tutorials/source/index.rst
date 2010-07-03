@@ -14,7 +14,7 @@ Contents:
    matplotlib/matplotlib.rst 
    scipy.rst
    summary-exercices/index.rst
-
+   sympy.rst
 
 Indices and tables
 ==================
