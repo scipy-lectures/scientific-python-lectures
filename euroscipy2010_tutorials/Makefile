@@ -11,6 +11,14 @@ PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 
+# Data to ship with the HTML version
+HTML_DATA = \
+	data/max-speeds.npy \
+	data/cumulative-wind-speed-prediction.py \
+	data/sprog-windspeeds.npy \
+	data/gumbell-wind-speed-prediction.py \
+	data/scipy-interpolation.py
+
 .PHONY: help clean html web pickle htmlhelp latex changes linkcheck
 
 help:
@@ -45,6 +53,8 @@ sources: source/interpolation.png \
 html: sources
 	mkdir -p build/html build/doctrees
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
+	mkdir -p build/html/data
+	cp ${HTML_DATA} build/html/data
 	@echo
 	@echo "Build finished. The HTML pages are in build/html."
 
