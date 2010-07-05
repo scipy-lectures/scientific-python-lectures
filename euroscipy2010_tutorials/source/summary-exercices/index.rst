@@ -13,3 +13,4 @@ Summary exercices
 
     stats-interpolate.rst
     optimize-fit.rst
+    image-processing.rst

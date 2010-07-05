@@ -1,8 +1,8 @@
-Point extraction in topographical lidar data
---------------------------------------------
+Non linear least squares curve fitting: application to point extraction in topographical lidar data
+---------------------------------------------------------------------------------------------------
 
-The goal of this exercise is to extract information from raw topographical
-lidar data in python using the ``scipy.optimize`` module [#data]_.
+The goal of this exercise is to fit a model to some data. The data used in this tutorial are lidar data and are described in details in the following introductory paragraph. If you're impatient and want to practise now, please skip it ang go directly to :ref:`first_step`.
+
 
 Introduction
 ~~~~~~~~~~~~
@@ -17,20 +17,22 @@ platforms. They measure distances between the platform and the Earth, so as to
 deliver information on the Earth's topography (see [Mallet09]_ for more details).
 
 In this tutorial, the goal is to analyze the waveform recorded by the lidar
-system and extract peaks. When the footprint of the laser beam is around 1m on
-the Earth surface, the beam can hit multiple targets during the two-way
-propagation (for example the ground and the top of a tree or building). The sum
-of the contributions of each target hit by the laser beam produces a complex
-signal. This is what we want to process.
+system [#data]_. Such a signal contains peaks whose center and amplitude permit to
+compute the position and some characteristics of the hit target. When the
+footprint of the laser beam is around 1m on the Earth surface, the beam can hit
+multiple targets during the two-way propagation (for example the ground and the
+top of a tree or building). The sum of the contributions of each target hit by
+the laser beam then produces a complex signal with multiple peaks, each one
+containing information about one target.
 
 One state of the art method to extract information from these data is to
 decompose them in a sum of Gaussian functions where each function represents the
 contribution of a target hit by the laser beam.
 
-Therefore, we use the ``scipy.optimize`` module to fit a waveform to a sum of
+Therefore, we use the ``scipy.optimize`` module to fit a waveform to one or a sum of
 Gaussian functions.
 
-
+.. _first_step:
 
 Loading and visualization
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44,7 +46,7 @@ and visualize it:
 
 .. doctest::
 
-    >>> import matplotlib.pylab as plt
+    >>> import matplotlib.pyplot as plt
     >>> t = np.arange(len(waveform_1))
     >>> plt.plot(t, waveform_1) # doctest:+SKIP
     >>> plt.show() # doctest:+SKIP
@@ -128,6 +130,8 @@ And visualize the solution:
     >>> plt.plot(t, waveform_1, t, model(t, x)) # doctest:+SKIP
     >>> plt.legend(['waveform', 'model']) # doctest:+SKIP
     >>> plt.show() # doctest:+SKIP
+
+*Remark:* from scipy v0.8 and above, you should rather use ``scipy.optimize.curve_fit`` which takes the model and the data as arguments, so you don't need to define the residuals any more.
 
 
 

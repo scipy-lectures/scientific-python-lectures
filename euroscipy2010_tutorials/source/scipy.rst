@@ -34,8 +34,9 @@ To begin with ::
     >>> import numpy as np
     >>> import scipy
 
+
 Interpolation: ``scipy.interpolate``
----------------------------------------
+------------------------------------
 The ``scipy.interpolate`` is useful for fitting a function from experimental
 data and thus evaluating points where no measure exists. The module is based
 on the `FITPACK Fortran subroutines`_ from the netlib_ project.
@@ -79,5 +80,28 @@ arrays. Note that for the ``interp`` family, the computed time must stay
 within the measured time range. See the summary exercice  on `Maximum
 wind speed prediction at the Sprogø station`_ for a more advance spline
 interpolation example.
+
+
+Optimization and fit: ``scipy.optimize``
+----------------------------------------
+
+The ``scipy.optimize`` module provides useful algorithms for function
+minimization (scalar or multi-dimensional), curve fitting and root finding.
+
+
+**Example: using brute force**
+
+
+See the summary exercise on non linear curve fitting applied lidar data for a
+more advanced example.
+
+
+
+
+
+Image processing: ``scipy.ndimage``
+-----------------------------------
+
+.. include:: image_processing/image_processing.rst
 
 
