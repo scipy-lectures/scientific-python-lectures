@@ -207,8 +207,8 @@ latex_preamble = """
 
 latex_elements = {
     'classoptions': ',oneside,openany',
-    'babel': '\usepackage[french]{babel}',
-    'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
+    'babel': '\usepackage[english]{babel}',
+    #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 } 
 
 # Example configuration for intersphinx: refer to the Python standard library.
