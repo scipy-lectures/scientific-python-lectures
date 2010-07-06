@@ -89,10 +89,52 @@ The ``scipy.optimize`` module provides useful algorithms for function
 minimization (scalar or multi-dimensional), curve fitting and root finding.
 
 
-**Example: using brute force**
+**Example: Minimizing a scalar function using different algorithms**
+
+Let's define the following function: ::
+
+    >>> def f(x): return x**2 + 10*np.sin(x)
+
+and plot it:
+
+.. doctest::
+
+    >>> x = np.arange(-10,10,0.1)
+    >>> plt.plot(x, f(x)) # doctest:+SKIP
+    >>> plt.show() # doctest:+SKIP
+
+.. image:: minima-function.png
+   :align: center
+
+This function has a global minimum around -1.3 and a local minimum around 3.8.
 
 
-See the summary exercise on non linear curve fitting applied lidar data for a
+To find the global minimum, the simplest algorithm is the brute force algorithm,
+in which the function is evaluated on each point of a given grid: ::
+
+    >>> from scipy import optimize
+    >>> grid = (-10, 10, 0.1)
+    >>> optimize.brute(f, (grid,))
+    array([-1.30641113])
+
+This simple alorithm becomes very slow as the size of the grid grows, so you
+should use ``optimize.brent`` instead for scalar functions: ::
+
+    >>> optimize.brent(f)
+    -1.3064400120612139
+
+To find the local minimum, let's add some constraints on the variable using
+``optimize.fminbound``: ::
+
+    >>> # search the minimum only between 0 and 10
+    >>> optimize.fminbound(f, 0, 10)
+    array([ 3.83746712])
+
+You can find algorithms with the same functionalities for multi-dimensional
+problems in ``scipy.optimize``.
+
+
+See the summary exercise on :ref:`summary_exercise_optimize` for a
 more advanced example.
 
 
@@ -116,6 +158,8 @@ providing real life examples on scientific computing with Python. Once the
 groundwork is introduced, the interested user is invited to try some exercices.
 
 
+Exercises:
+
 .. toctree::
     :maxdepth: 1
 
@@ -123,3 +167,9 @@ groundwork is introduced, the interested user is invited to try some exercices.
     summary-exercices/optimize-fit.rst
     summary-exercices/image-processing.rst
 
+Proposed solutions:
+
+.. toctree::
+    :maxdepth: 1
+
+    summary-exercices/answers_image_processing.rst

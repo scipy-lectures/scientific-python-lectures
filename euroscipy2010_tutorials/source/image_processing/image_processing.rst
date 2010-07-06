@@ -231,7 +231,7 @@ Now we look for various information about the objects in the image::
    :align: center
 
 
-See the summary exercise on counting bubbles and unmolten grains for a more
+See the summary exercise on :ref:`summary_exercise_image_processing` for a more
 advanced example.
 
 

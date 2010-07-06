@@ -1,3 +1,5 @@
+.. _summary_exercise_image_processing:
+
 Image processing application: counting bubbles and unmolten grains
 ------------------------------------------------------------------
 
@@ -38,5 +40,4 @@ sand mask grains that are smaller than 10 pixels. To do so, use
 
 8. Compute the mean size of bubbles.
 
-Answers can be found in
-:ref:`image-answers`
+Answers can be found in :ref:`image-answers`.

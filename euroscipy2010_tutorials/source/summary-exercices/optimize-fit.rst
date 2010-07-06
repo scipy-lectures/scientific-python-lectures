@@ -1,3 +1,5 @@
+.. _summary_exercise_optimize:
+
 Non linear least squares curve fitting: application to point extraction in topographical lidar data
 ---------------------------------------------------------------------------------------------------
 
