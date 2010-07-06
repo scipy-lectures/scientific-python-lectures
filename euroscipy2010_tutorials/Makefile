@@ -97,6 +97,6 @@ linkcheck:
 	      "or in build/linkcheck/output.txt."
 
 pdf: latex
-	cd build/latex ; make all-pdf ; pdftk A=PythonScientific.pdf cat A1 A3-end output PythonScientific_.pdf ; pdfcrop PythonScientific_.pdf ; pdfnup PythonScientific_.pdf
+	cd build/latex ; make all-pdf ; pdftk A=PythonScientific.pdf cat A1 A3-end output PythonScientific_.pdf ; pdfnup PythonScientific_.pdf
 	cp build/latex/PythonScientific_-2x1.pdf PythonScientific.pdf
 	#cd build/latex ; make all-pdf ; pdfnup python4science.pdf

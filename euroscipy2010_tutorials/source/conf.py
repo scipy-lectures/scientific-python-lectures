@@ -174,6 +174,9 @@ htmlhelp_basename = 'PythonScientic'
 # The font size ('10pt', '11pt' or '12pt').
 #latex_font_size = '10pt'
 
+# Latex references with page numbers (only Sphinx 1.0)
+latex_show_pagerefs = True
+ 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
@@ -204,7 +207,7 @@ latex_preamble = """
 latex_elements = {
     'classoptions': ',oneside,openany',
     'babel': '\usepackage[french]{babel}',
-    'tableofcontents': '%\\tableofcontents',
+    'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 } 
 
 # Example configuration for intersphinx: refer to the Python standard library.
