@@ -92,6 +92,24 @@ Signal processing
 * Signal has filtering (Gaussian, median filter, Wiener), but we will
   discuss this in the image paragraph.
 
+Special functions
+-------------------
+
+Special functions are transcendal functions. The docstring of the module
+is well-written and we will not list them. Frequently used ones are:
+
+ * Bessel function, such as `special.jn` (nth integer order Bessel
+   function)
+
+ * Elliptic function (`special.ellipj` for the Jacobian elliptic
+   function, ...)
+
+ * Gamma function: `special.gamma`, alos note `special.gammaln` which
+   will give the log of Gamma to a higher numerical precision.
+
+ * Erf, the area under a Gaussian curve: `special.erf`
+
+
 Linear algebra operations with ``scipy.linalg``
 -----------------------------------------------
 First, the linalg module provides standard linear algebra operations.
