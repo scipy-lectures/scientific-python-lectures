@@ -183,7 +183,6 @@ observations are significantly different
 
 .. TODO: ttest, ftest
 
-
 Linear algebra operations with ``scipy.linalg``
 -----------------------------------------------
 First, the linalg module provides standard linear algebra operations.
