@@ -5,7 +5,12 @@
 
 from docutils.nodes import Body, Element
 from docutils.writers.html4css1 import HTMLTranslator
-from sphinx.latexwriter import LaTeXTranslator
+try:
+    from sphinx.builders.latex import LaTeXBuilder
+except ImportError:
+    # Old Sphinx versions
+    from sphinx.latexwriter import LaTeXTranslator as LaTeXBuilder
+    
 from docutils.parsers.rst import directives
 
 class html_only(Body, Element):
@@ -81,7 +86,7 @@ def setup(app):
     HTMLTranslator.visit_latex_only = visit_ignore
     HTMLTranslator.depart_latex_only = depart_ignore
 
-    LaTeXTranslator.visit_html_only = visit_ignore
-    LaTeXTranslator.depart_html_only = depart_ignore
-    LaTeXTranslator.visit_latex_only = visit_perform
-    LaTeXTranslator.depart_latex_only = depart_perform
+    LaTeXBuilder.visit_html_only = visit_ignore
+    LaTeXBuilder.depart_html_only = depart_ignore
+    LaTeXBuilder.visit_latex_only = visit_perform
+    LaTeXBuilder.depart_latex_only = depart_perform

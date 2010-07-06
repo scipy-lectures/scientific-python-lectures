@@ -333,7 +333,7 @@ examples on **lists**, **dictionaries**, **strings**, etc...
 Exercices
 ---------
 
-.. topic:: Quicksort
+.. topic:: Exercice: Quicksort
 
     Implement the quicksort algorithm, as defined by wikipedia::
 
@@ -347,9 +347,9 @@ Exercices
 		else append x to greater
 	    return concatenate(quicksort(less), pivot, quicksort(greater))
 
-:ref:`quick_sort`
+.. :ref:`quick_sort`
 
-.. topic:: Fibonacci sequence
+.. topic:: Exercice: Fibonacci sequence
 
     Write a function that displays the ``n`` first terms of the Fibonacci
     sequence, defined by:
@@ -357,4 +357,4 @@ Exercices
     * ``u_0 = 1; u_1 = 1``
     * ``u_(n+2) = u_(n+1) + u_n``
 
-:ref:`fibonacci`
+.. :ref:`fibonacci`

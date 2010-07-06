@@ -34,8 +34,9 @@ To begin with ::
     >>> import numpy as np
     >>> import scipy
 
-Scipy needs Numpy
------------------
+Scipy builds upon Numpy
+-------------------------
+
 Numpy is required for running Scipy but also for using it. The most
 important type introduced to Python is the N dimensional array,
 and it can be seen that Scipy uses the same::
@@ -51,6 +52,137 @@ Moreover most of the Scipy usual functions are provided by Numpy::
 If you would like to know the objects used from Numpy, have a look at
 the  ``scipy.__file__[:-1]`` file. On version '0.6.0', the whole Numpy
 namespace is imported by the line ``from numpy import *``.
+
+Signal processing
+==================
+
+::
+
+    >>> from scipy import signal
+
+* Detrend: remove linear trend from signal::
+
+    t = np.linspace(0, 5, 100)
+    x = t + np.random.normal(size=100)
+
+    pl.plot(t, x, linewidth=3)
+    pl.plot(t, signal.detrend(x), linewidth=3)
+
+  .. plot:: demo_detrend.py
+    :hide-links:
+
+* Resample: resample a signal to `n` points using FFT. ::
+
+    t = np.linspace(0, 5, 100)
+    x = np.sin(t)
+    
+    pl.plot(t, x, linewidth=3)
+    pl.plot(t[::2], signal.resample(x, 50), 'ko')
+
+  .. plot:: demo_resample.py
+    :hide-links:
+
+  .. only:: latex
+
+     Notice how on the side of the window the resampling is less accurate
+     and has a rippling effect.
+
+* Signal has many window function: `hamming`, `bartlett`, `blackman`...
+
+* Signal has filtering (Gaussian, median filter, Wiener), but we will
+  discuss this in the image paragraph.
+
+Special functions
+-------------------
+
+Special functions are transcendal functions. The docstring of the module
+is well-written and we will not list them. Frequently used ones are:
+
+ * Bessel function, such as `special.jn` (nth integer order Bessel
+   function)
+
+ * Elliptic function (`special.ellipj` for the Jacobian elliptic
+   function, ...)
+
+ * Gamma function: `special.gamma`, alos note `special.gammaln` which
+   will give the log of Gamma to a higher numerical precision.
+
+ * Erf, the area under a Gaussian curve: `special.erf`
+
+Statistics and random numbers
+===================================
+
+Histogram and probability density function
+--------------------------------------------
+
+Given observations of a random process, there histogram is an estimator of 
+the random process's PDF (probability density function): ::
+
+    >>> a = np.random.normal(size=1000)
+    >>> bins = np.arange(-4, 5)
+    >>> bins
+    array([-4, -3, -2, -1,  0,  1,  2,  3,  4])
+    >>> histogram = np.histogram(a, bins=bins)
+    >>> bins = 0.5*(bins[1:] + bins[:-1])
+    >>> bins
+    array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
+    >>> from scipy import stats
+    >>> b = stats.norm.pdf(bins)
+
+.. sourcecode:: ipython
+
+    In [1]: pl.plot(bins, histogram)
+    In [2]: pl.plot(bins, b)
+
+.. plot:: normal_distribution.py
+    :hide-links:
+
+If we know that the random process belongs to a given family of random
+processes, such as normal processes, we can do a maximum-likelihood fit
+of the observations to estimate the parameters of the underlying 
+distribution. Here we fit a normal process to the observed data::
+
+    >>> loc, std = stats.norm.fit(a)
+    >>> loc
+    0.003738964114102075
+    >>> std
+    0.97450996668871193
+
+Percentiles
+------------
+
+The median is the value with half of the observations below, and half
+above:
+
+    >>> np.median(a)
+    0.0071645570292782519
+
+It is also called the percentile 50, because 50% of the observation are
+below it:
+
+    >>> stats.scoreatpercentile(a, 50)
+    0.0071645570292782519
+
+Similarly, we can calculate the percentile 90:
+
+    >>> stats.scoreatpercentile(a, 90)
+    1.2729556087871292
+
+The percentile is an estimator of the CDF: cumulative distribution
+function.
+
+.. XXX: Check what CDF means
+
+Statistical tests
+-------------------
+
+A statistical test is a decision indicator. For instance, if we have 2
+sets of observations, that we assume are generated from Gaussian
+processes, we can use a T-test to decide whether the two sets of
+observations are significantly different
+
+.. TODO: ttest, ftest
+
 
 Linear algebra operations with ``scipy.linalg``
 -----------------------------------------------
@@ -420,19 +552,30 @@ The summary exercices use mainly Numpy, Scipy and Matplotlib. They first aim at
 providing real life examples on scientific computing with Python. Once the
 groundwork is introduced, the interested user is invited to try some exercices.
 
+.. only:: latex
 
-Exercises:
+    .. toctree::
+       :maxdepth: 1
 
-.. toctree::
-    :maxdepth: 1
+       summary-exercices/stats-interpolate.rst
+       summary-exercices/optimize-fit.rst
+       summary-exercices/image-processing.rst
+       summary-exercices/answers_image_processing.rst
 
-    summary-exercices/stats-interpolate.rst
-    summary-exercices/optimize-fit.rst
-    summary-exercices/image-processing.rst
+.. only:: html
 
-Proposed solutions:
+   Exercises:
 
-.. toctree::
-    :maxdepth: 1
+   .. toctree::
+       :maxdepth: 1
 
-    summary-exercices/answers_image_processing.rst
+       summary-exercices/stats-interpolate.rst
+       summary-exercices/optimize-fit.rst
+       summary-exercices/image-processing.rst
+
+   Proposed solutions:
+
+   .. toctree::
+      :maxdepth: 1
+
+      summary-exercices/answers_image_processing.rst

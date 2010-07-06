@@ -10,16 +10,10 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   language/python_language.rst
-   numpy/numpy.rst 
+   language/python_language.rst 
    matplotlib/matplotlib.rst 
    scipy.rst
    sympy.rst
+   3d_plotting/index.rst
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
