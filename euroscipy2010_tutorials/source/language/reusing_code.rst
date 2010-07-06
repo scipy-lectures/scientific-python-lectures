@@ -287,7 +287,7 @@ Importing it:
 
 Running it:
 
-.. sourcecode:: ipython
+ .. sourcecode:: ipython
 
     In [13]: %run demo2
     b

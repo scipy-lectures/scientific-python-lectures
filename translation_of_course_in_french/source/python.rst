@@ -596,7 +596,7 @@ are accessible (such as ``message``).
 If we want to write larger and better organized programs, where some objects are defined,
 (variables, functions, classes) and that we want to reuse several times, we have
 to create a **module**. Below is an example of a module, contained in the
-sequences.py file (copy-paste the contents in a file named sequences.py)::
+suites.py file (copy-paste the contents in a file named suites.py)::
 
     def fib(n):
         "return nth term of Fibonacci sequence"
@@ -619,16 +619,16 @@ sequences.py file (copy-paste the contents in a file named sequences.py)::
             i +=1
         return w
 
-In this file, we defined two kinds of sequence. Suppose we want to call
-the ``fib`` function from the interpreter. We could execute the module as
-a script, but since there is no instructions to execute, we are rather
-going to **import it as a module**. The syntax is as follows::
+In this file, we defined two kinds of suite. Suppose we want to call the ``fib``
+function from the interpreter. We could execute the module as a script, but
+since there is no instructions to execute, we are rather going to **import it as
+a module**. The syntax is as follows::
 
-    >>> import sequences
-    >>> sequences.linear_recurrence(10)
+    >>> import suites
+    >>> suites.linear_recurrence(10)
     1024
     >>> for i in range(5):
-    ...     print i, sequences.fib(i)
+    ...     print i, suites.fib(i)
     ...     
     0 1
     1 1
@@ -644,11 +644,11 @@ instruction.
 If we want to avoid typing ``module.object`` each time, we can import some or
 all of the objects into the main namespace. For instance::
 
-    >>>from sequences import fib
+    >>>from suites import fib
     >>> fib(10)
     89
     >>> # ou
-    >>> from sequences import *
+    >>> from suites import *
     >>> linear_recurrence(5)
     32
 
