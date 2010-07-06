@@ -420,19 +420,30 @@ The summary exercices use mainly Numpy, Scipy and Matplotlib. They first aim at
 providing real life examples on scientific computing with Python. Once the
 groundwork is introduced, the interested user is invited to try some exercices.
 
+.. only:: latex
 
-Exercises:
+    .. toctree::
+       :maxdepth: 1
 
-.. toctree::
-    :maxdepth: 1
+       summary-exercices/stats-interpolate.rst
+       summary-exercices/optimize-fit.rst
+       summary-exercices/image-processing.rst
+       summary-exercices/answers_image_processing.rst
 
-    summary-exercices/stats-interpolate.rst
-    summary-exercices/optimize-fit.rst
-    summary-exercices/image-processing.rst
+.. only:: html
 
-Proposed solutions:
+   Exercises:
 
-.. toctree::
-    :maxdepth: 1
+   .. toctree::
+       :maxdepth: 1
 
-    summary-exercices/answers_image_processing.rst
+       summary-exercices/stats-interpolate.rst
+       summary-exercices/optimize-fit.rst
+       summary-exercices/image-processing.rst
+
+   Proposed solutions:
+
+   .. toctree::
+      :maxdepth: 1
+
+      summary-exercices/answers_image_processing.rst
