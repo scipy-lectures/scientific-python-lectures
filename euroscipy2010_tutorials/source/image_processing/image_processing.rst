@@ -8,6 +8,7 @@ processing they perform.
 
 * **Geometrical transformations on images** : orientation, resolution, .. ::
 
+    >>> import scipy
     >>> lena = scipy.lena()
     >>> shifted_lena = ndimage.shift(lena, (50, 50))
     >>> shifted_lena2 = ndimage.shift(lena, (50, 50), mode='nearest')
@@ -38,9 +39,10 @@ processing they perform.
 * **Using filters** ::
 
     >>> lena = scipy.lena()
+    >>> import numpy as np
     >>> noisy_lena = np.copy(lena)
     >>> noisy_lena += lena.std()*0.5*np.random.standard_normal(lena.shape)
-    >>> gaussian_lena = ndimage.gaussian_filter(noisy_lena, sigma=3)
+    >>> blurred_lena = ndimage.gaussian_filter(noisy_lena, sigma=3)
     >>> median_lena = ndimage.median_filter(blurred_lena, size=5)
     >>> import scipy.signal
     >>> wiener_lena = scipy.signal.wiener(blurred_lena, (5,5))
@@ -213,10 +215,10 @@ Now we look for various information about the objects in the image::
     >>> labels, nb = ndimage.label(mask)
     >>> nb
     8
-    >>> areas = ndimage.sum(mask, labels, np.arange(1, labels.max()+1))
+    >>> areas = ndimage.sum(mask, labels, xrange(1, labels.max()+1))
     >>> areas
     [190.0, 45.0, 424.0, 278.0, 459.0, 190.0, 549.0, 424.0]
-    >>> maxima = ndimage.maximum(sig, labels, np.arange(1, labels.max()+1))
+    >>> maxima = ndimage.maximum(sig, labels, xrange(1, labels.max()+1))
     >>> maxima
     [1.8023823799830032, 1.1352760475048373, 5.5195407887291426,
     2.4961181804217221, 6.7167361922608864, 1.8023823799830032,
@@ -224,7 +226,7 @@ Now we look for various information about the objects in the image::
     >>> ndimage.find_objects(labels==4)
     [(slice(30, 48, None), slice(30, 48, None))]
     >>> sl = ndimage.find_objects(labels==4)
-    >>> imshow(sig[sl[0])
+    >>> imshow(sig[sl[0]])
 
 
 .. image:: image_processing/measures.png
