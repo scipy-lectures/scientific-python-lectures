@@ -180,13 +180,13 @@ latex_show_pagerefs = True
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'PythonScientific.tex', ur'Python Scientific',
+  ('index', 'PythonScientific.tex', ur'Python Scientific: \\Euroscipy 2010 tutorials',
    ur'EuroScipy tutorial team', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-#latex_logo = None
+latex_logo = 'euroscipy_logo.png'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -206,8 +206,8 @@ latex_preamble = """
 
 latex_elements = {
     'classoptions': ',oneside,openany',
-    'babel': '\usepackage[french]{babel}',
-    'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
+    'babel': '\usepackage[english]{babel}',
+    'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} \\tableofcontents',
 } 
 
 # Example configuration for intersphinx: refer to the Python standard library.
