@@ -14,7 +14,7 @@ Exceptions
 
 Exceptions are raised by errors in Python:
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [1]: 1/0
     ---------------------------------------------------------------------------
@@ -48,7 +48,7 @@ Catching exceptions
 try/except
 ~~~~~~~~~~~
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [8]: while True:
      ....:     try:
@@ -68,7 +68,7 @@ try/except
 try/finally
 ~~~~~~~~~~~~
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [10]: try:
      ....:    x = int(raw_input('Please enter a number: '))
@@ -87,7 +87,7 @@ Easier to ask for forgiveness than for permission
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [11]: def print_sorted(collection):
        ....:     try:
