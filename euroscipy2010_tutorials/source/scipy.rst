@@ -34,6 +34,269 @@ To begin with ::
     >>> import numpy as np
     >>> import scipy
 
+Scipy needs Numpy
+-----------------
+Numpy is required for running Scipy but also for using it. The most
+important type introduced to Python is the N dimensional array,
+and it can be seen that Scipy uses the same::
+
+    >>> scipy.ndarray is np.ndarray
+    True
+
+Moreover most of the Scipy usual functions are provided by Numpy::
+
+    >>> scipy.cos is np.cos
+    True
+
+If you would like to know the objects used from Numpy, have a look at
+the  ``scipy.__file__[:-1]`` file. On version '0.6.0', the whole Numpy
+namespace is imported by the line ``from numpy import *``.
+
+Linear algebra operations with ``scipy.linalg``
+-----------------------------------------------
+First, the linalg module provides standard linear algebra operations.
+The ``det`` function computes the determinant of a square matrix::
+
+    >>> from scipy import linalg
+    >>> arr = np.array([[1, 2],
+    ...                 [3, 4]])
+    >>> linalg.det(arr)
+    -2.0
+    >>> arr = np.array([[3, 2],
+    ...                 [6, 4]])
+    >>> linalg.det(arr)
+    0.0
+    >>> linalg.det(np.ones((3, 4)))
+    Traceback (most recent call last):
+    ...
+    ValueError: expected square matrix
+
+The ``inv`` function computes the inverse of a square matrix::
+
+    >>> arr = np.array([[1, 2],
+    ...                 [3, 4]])
+    >>> iarr = linalg.inv(arr)
+    >>> iarr
+    array([[-2. ,  1. ],
+           [ 1.5, -0.5]])
+    >>> np.allclose(np.dot(arr, iarr), np.eye(2))
+    True
+
+Note that in case you use the matrix type, the inverse is computed when
+requesting the ``I`` attribute::
+
+    >>> ma = np.matrix(arr, copy=False)
+    >>> np.allclose(ma.I, iarr)
+    True
+
+Finally computing the inverse of a singular matrix (its determinant is zero)
+will raise ``LinAlgError``::
+
+    >>> arr = np.array([[3, 2],
+    ...                 [6, 4]])
+    >>> linalg.inv(arr)
+    Traceback (most recent call last):
+    ...
+    LinAlgError: singular matrix
+
+More advanced operations are available like singular-value decomposition
+(SVD)::
+
+    >>> arr = np.arange(12).reshape((3, 4)) + 1
+    >>> uarr, spec, vharr = linalg.svd(arr)
+
+The resulting array spectrum is::
+
+    >>> spec
+    array([  2.54368356e+01,   1.72261225e+00,   5.14037515e-16])
+
+For the recomposition, an alias for manipulating matrix will first
+be defined::
+
+    >>> asmat = np.asmatrix
+
+then the steps are::
+
+    >>> sarr = np.zeros((3, 4))
+    >>> sarr.put((0, 5, 10), spec)
+    >>> svd_mat = asmat(uarr) * asmat(sarr) * asmat(vharr)
+    >>> np.allclose(svd_mat, arr)
+    True
+
+SVD is commonly used in statistics or signal processing.  Many other
+standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
+for linear systems, are available in ``scipy.linalg``.
+
+Numerical integration with ``scipy.integrate``
+----------------------------------------------
+The most generic integration routine is ``scipy.integrate.quad``::
+
+    >>> from scipy.integrate import quad
+    >>> res, err = quad(np.sin, 0, np.pi/2)
+    >>> np.allclose(res, 1)
+    True
+    >>> np.allclose(err, 1 - res)
+    True
+
+Others integration schemes are available with ``fixed_quad``,
+``quadrature``, ``romberg``.
+
+``scipy.integrate`` also features routines for Ordinary differential
+equations (ODE) integration. In particular, ``scipy.integrate.odeint``
+is a general-purpose integrator using LSODA (Livermore solver for
+ordinary differential equations with automatic method switching
+for stiff and nonstiff problems), see the `ODEPACK Fortran library`_
+for more details.
+
+.. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
+
+``odeint`` solves first-order ODE systems of the form::
+
+``dy/dt = rhs(y1, y2, .., t0,...)``
+
+As an introduction, let us solve the ODE ``dy/dt = -2y`` between ``t =
+0..4``, with the  initial condition ``y(t=0) = 1``. First the function
+computing the derivative of the position needs to be defined::
+
+    >>> def calc_derivative(ypos, time, counter_arr):
+    ...     counter_arr += 1
+    ...     return -2*ypos
+    ...
+
+An extra argument ``counter_arr`` has been added to illustrate that the
+function may be called several times for a single time step, until solver
+convergence. The counter array is defined as::
+
+    >>> counter = np.zeros((1,), np.uint16)
+
+The trajectory will now be computed::
+
+    >>> from scipy.integrate import odeint
+    >>> time_vec = np.linspace(0, 4, 40)
+    >>> yvec, info = odeint(calc_derivative, 1, time_vec,
+    ...                     args=(counter,), full_output=True)
+
+Thus the derivative function has been called more than 40 times::
+
+    >>> counter
+    array([129], dtype=uint16)
+
+and the cumulative iterations number for the 10 first convergences
+can be obtained by::
+
+    >>> info['nfe'][:10]
+    array([31, 35, 43, 49, 53, 57, 59, 63, 65, 69], dtype=int32)
+
+The solver requires more iterations at start. The final trajectory is
+seen on the Matplotlib figure computed with odeint-introduction.py_.
+
+.. image:: odeint-introduction.png
+   :align: center
+
+.. _odeint-introduction.py : data/odeint-introduction.py
+
+Another example with ``odeint`` will be a damped spring-mass oscillator
+(2nd order oscillator). The position of a mass attached to a spring obeys
+the 2nd order ODE ``y'' + 2 eps wo  y' + wo^2 y = 0`` with ``wo^2 = k/m``
+being ``k`` the spring constant, ``m`` the mass and ``eps=c/(2 m wo)``
+with ``c`` the damping coefficient.
+For a computing example, the parameters will be::
+
+    >>> mass = 0.5 # kg
+    >>> kspring = 4 # N/m
+    >>> cviscous = 0.4 # N s/m
+
+so the system will be underdamped because::
+
+    >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
+    >>> eps < 1
+    True
+
+For the ``odeint`` solver the 2nd order equation needs to be transformed in a
+system of two first-order equations for the vector ``Y=(y, y')``.  It will
+be convenient to define ``nu = 2 eps wo = c / m`` and ``om = wo^2 = k/m``::
+
+    >>> nu_coef = cviscous/mass
+    >>> om_coef = kspring/mass
+
+Thus the function will calculate the velocity and acceleration by::
+
+    >>> def calc_deri(yvec, time, nuc, omc):
+    ...     return (yvec[1], -nuc * yvec[1] - omc * yvec[0])
+    ...
+    >>> time_vec = np.linspace(0, 10, 100)
+    >>> yarr = odeint(calc_deri, (1, 0), time_vec, args=(nu_coef, om_coef))
+
+The final position and velocity are shown on a Matplotlib figure
+built with the odeint-damped-spring-mass.py_ script.
+
+.. image:: odeint-damped-spring-mass.png
+   :align: center
+
+.. _odeint-damped-spring-mass.py: data/odeint-damped-spring-mass.py
+
+There is no Partial Differential Equations (PDE) solver
+in scipy. Some PDE packages are written in Python, such
+as fipy_ or SfePy_.
+
+.. _fipy: http://www.ctcms.nist.gov/fipy/
+.. _SfePy: http://code.google.com/p/sfepy/
+
+Fast Fourier transforms with ``scipy.fftpack``
+----------------------------------------------
+The ``fftpack`` module allows to compute fast Fourier transforms.
+As an illustration, an input signal may look like::
+
+    >>> time_step = 0.1
+    >>> period = 5.
+    >>> time_vec = np.arange(0, 20, time_step)
+    >>> sig = np.sin(2 * np.pi / period * time_vec) + \
+    ...       np.cos(10 * np.pi * time_vec)
+
+However the observer does not know the signal frequency, only
+the sampling time step of the signal ``sig``. But the signal
+is supposed to come from a real function so the Fourier transform
+will be symmetric.
+The ``fftfreq`` function will generate the sampling frequencies and
+``fft`` will compute the fast fourier transform::
+
+    >>> from scipy import fftpack
+    >>> sample_freq = fftpack.fftfreq(sig.size, d=time_step)
+    >>> sig_fft = fftpack.fft(sig)
+
+Nevertheless only the positive part will be used for finding the frequency
+because the resulting power is symmetric::
+
+    >>> pidxs = np.where(sample_freq > 0)
+    >>> freqs = sample_freq[pidxs]
+    >>> power = np.abs(sig_fft)[pidxs]
+
+.. image:: fftpack-frequency.png
+   :align: center
+
+Thus the signal frequency can be found by::
+
+    >>> freq = freqs[power.argmax()]
+    >>> np.allclose(freq, 1./period)
+    True
+
+Now only the main signal component will be extracted from the
+Fourier transform::
+
+    >>> sig_fft[np.abs(sample_freq) > freq] = 0
+
+The resulting signal can be computed by the ``ifft`` function::
+
+    >>> main_sig = fftpack.ifft(sig_fft)
+
+The result is shown on the Matplotlib figure generated by the
+fftpack-illustration.py_ script.
+
+.. image:: fftpack-signals.png
+   :align: center
+
+.. _fftpack-illustration.py: data/fftpack-illustration.py
+
 
 Interpolation: ``scipy.interpolate``
 ------------------------------------
