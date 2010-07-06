@@ -54,7 +54,7 @@ the  ``scipy.__file__[:-1]`` file. On version '0.6.0', the whole Numpy
 namespace is imported by the line ``from numpy import *``.
 
 Signal processing
-==================
+-------------------
 
 ::
 
@@ -110,10 +110,10 @@ is well-written and we will not list them. Frequently used ones are:
  * Erf, the area under a Gaussian curve: `special.erf`
 
 Statistics and random numbers
-===================================
+--------------------------------------------
 
 Histogram and probability density function
---------------------------------------------
+...............................................
 
 Given observations of a random process, there histogram is an estimator of 
 the random process's PDF (probability density function): ::
@@ -149,7 +149,7 @@ distribution. Here we fit a normal process to the observed data::
     0.97450996668871193
 
 Percentiles
-------------
+.............
 
 The median is the value with half of the observations below, and half
 above:
@@ -174,7 +174,7 @@ function.
 .. XXX: Check what CDF means
 
 Statistical tests
--------------------
+...................
 
 A statistical test is a decision indicator. For instance, if we have 2
 sets of observations, that we assume are generated from Gaussian
@@ -182,6 +182,7 @@ processes, we can use a T-test to decide whether the two sets of
 observations are significantly different
 
 .. TODO: ttest, ftest
+
 
 Linear algebra operations with ``scipy.linalg``
 -----------------------------------------------
