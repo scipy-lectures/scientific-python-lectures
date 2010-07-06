@@ -25,6 +25,7 @@ sys.path.append(os.path.abspath('sphinxext'))
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 
         #'matplotlib.sphinxext.plot_directive', 
         'plot_directive',
+        'only_directives',
         'ipython_console_highlighting',
         #'matplotlib.sphinxext.only_directives',
          'sphinx.ext.pngmath',

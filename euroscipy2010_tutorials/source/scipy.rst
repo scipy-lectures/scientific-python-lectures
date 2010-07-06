@@ -34,8 +34,9 @@ To begin with ::
     >>> import numpy as np
     >>> import scipy
 
-Scipy needs Numpy
------------------
+Scipy builds upon Numpy
+-------------------------
+
 Numpy is required for running Scipy but also for using it. The most
 important type introduced to Python is the N dimensional array,
 and it can be seen that Scipy uses the same::
@@ -51,6 +52,16 @@ Moreover most of the Scipy usual functions are provided by Numpy::
 If you would like to know the objects used from Numpy, have a look at
 the  ``scipy.__file__[:-1]`` file. On version '0.6.0', the whole Numpy
 namespace is imported by the line ``from numpy import *``.
+
+Signal processing
+==================
+
+* Detrend:
+
+  .. plot:: demo_detrend.py
+    :include-source:
+    :hide-links:
+
 
 Linear algebra operations with ``scipy.linalg``
 -----------------------------------------------
