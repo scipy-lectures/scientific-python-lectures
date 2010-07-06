@@ -268,7 +268,7 @@ List Comprehensions
     .. image:: pi_formula.png
 	:align: center
 
-:ref:`pi_wallis`
+.. :ref:`pi_wallis`
 
 
 .. Note:: **Good practices**

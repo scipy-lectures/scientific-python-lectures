@@ -6,7 +6,10 @@ Image processing routines may be sorted according to the category of
 processing they perform.
 
 
-* **Geometrical transformations on images** : orientation, resolution, .. ::
+Geometrical transformations on images
+.......................................
+
+Changing orientation, resolution, .. ::
 
     >>> import scipy
     >>> lena = scipy.lena()
@@ -36,7 +39,10 @@ processing they perform.
     In [39]: # etc.
 
 
-* **Using filters** ::
+Image filtering
+...................
+
+::
 
     >>> lena = scipy.lena()
     >>> import numpy as np
@@ -52,11 +58,15 @@ processing they perform.
 
 
 
-And many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``.
+And many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``
+can be applied to images
 
-**Exercise** : compare histograms for the different filtered images.
+.. topic:: Exercise
 
-* **Mathematical morphology**
+    Compare histograms for the different filtered images.
+
+Mathematical morphology
+........................
 
 Mathematical morphology is a mathematical theory that stems from set
 theory. It characterizes and transforms geometrical structures. Binary
@@ -82,7 +92,7 @@ Let us first generate a structuring element ::
 	   [1, 1, 1],
            [0, 1, 0]])
 
-Erosion ::
+* **Erosion** ::
 
     >>> a = np.zeros((7,7), dtype=np.int)
     >>> a[1:6, 2:5] = 1
@@ -112,7 +122,7 @@ Erosion ::
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]])
 
-Dilation ::
+* **Dilation** ::
 
     >>> a = np.zeros((5, 5))
     >>> a[2, 2] = 1
@@ -129,7 +139,7 @@ Dilation ::
            [ 0.,  0.,  1.,  0.,  0.],
            [ 0.,  0.,  0.,  0.,  0.]])
 
-Opening ::
+* **Opening** ::
 
     >>> a = np.zeros((5,5), dtype=np.int)
     >>> a[1:4, 1:4] = 1; a[4, 4] = 1
@@ -154,9 +164,11 @@ Opening ::
            [0, 0, 1, 0, 0],
            [0, 0, 0, 0, 0]])
 
-Closing: ``ndimage.binary_closing``
+* **Closing:** ``ndimage.binary_closing``
 
-**Exercise** : check that opening amounts to eroding, then dilating.
+.. topic:: Exercise
+
+    Check that opening amounts to eroding, then dilating.
 
 An opening operation removes small structures, while a closing operation
 fills small holes. Such operation can therefore be used to "clean" an
@@ -172,9 +184,11 @@ image. ::
 .. image:: image_processing/morpho.png
    :align: center
 
-**Exercise** : check that the area of the reconstructed square is smaller
-than the area of the initial square. (The opposite would occur if the
-closing step was performed *before* the opening).
+.. topic:: Exercise
+
+    Check that the area of the reconstructed square is smaller
+    than the area of the initial square. (The opposite would occur if the
+    closing step was performed *before* the opening).
 
 
 For **gray-valued** images, eroding (resp. dilating) amounts to replacing
@@ -202,7 +216,8 @@ structuring element centered on the pixel of interest. ::
            [0, 0, 0, 0, 0, 0, 0]])
 
 
-* **Measures on the image**
+Measurements on images
+........................
 
 Let us first generate a nice synthetic binary image. ::
 
