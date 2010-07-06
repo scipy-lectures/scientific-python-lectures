@@ -21,11 +21,11 @@ Changing orientation, resolution, .. ::
     >>> zoomed_lena.shape
     (1024, 1024)
 
-  .. image:: image_processing/lena_transforms.png
+.. image:: image_processing/lena_transforms.png
    :align: center
 
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [35]: subplot(151)
     Out[35]: <matplotlib.axes.AxesSubplot object at 0x925f46c>
