@@ -22,7 +22,7 @@ bubbles, their sizes, etc.
 2. Crop the image to remove the lower panel with measure information.
 
 3. Slightly filter the image with a median filter in order to refine its
-histograme. Check how the histogram changes.
+histogram. Check how the histogram changes.
 
 4. Using the histogram of the filtered image, determine thresholds that
 allow to define masks for sand pixels, glass pixels and bubble pixels.
