@@ -12,6 +12,8 @@ Euroscipy 2010 tutorials
 .. toctree::
    :maxdepth: 2
 
+   intro/intro.rst
+   intro/workflow.rst 
    language/python_language.rst
    numpy/numpy.rst 
    matplotlib/matplotlib.rst 
