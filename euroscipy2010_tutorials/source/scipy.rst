@@ -56,12 +56,41 @@ namespace is imported by the line ``from numpy import *``.
 Signal processing
 ==================
 
-* Detrend:
+::
+
+    >>> from scipy import signal
+
+* Detrend: remove linear trend from signal::
+
+    t = np.linspace(0, 5, 100)
+    x = t + np.random.normal(size=100)
+
+    pl.plot(t, x, linewidth=3)
+    pl.plot(t, signal.detrend(x), linewidth=3)
 
   .. plot:: demo_detrend.py
-    :include-source:
     :hide-links:
 
+* Resample: resample a signal to `n` points using FFT. ::
+
+    t = np.linspace(0, 5, 100)
+    x = np.sin(t)
+    
+    pl.plot(t, x, linewidth=3)
+    pl.plot(t[::2], signal.resample(x, 50), 'ko')
+
+  .. plot:: demo_resample.py
+    :hide-links:
+
+  .. only:: latex
+
+     Notice how on the side of the window the resampling is less accurate
+     and has a rippling effect.
+
+* Signal has many window function: `hamming`, `bartlett`, `blackman`...
+
+* Signal has filtering (Gaussian, median filter, Wiener), but we will
+  discuss this in the image paragraph.
 
 Linear algebra operations with ``scipy.linalg``
 -----------------------------------------------
