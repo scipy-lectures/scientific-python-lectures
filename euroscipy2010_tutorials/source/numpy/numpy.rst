@@ -647,7 +647,7 @@ We find again that the distance grows like the square root of the time!
 **Exercise** : statistics on the number of women in french research (INSEE data)
 
 1. Get the following files ``organisms.txt`` and ``women_percentage.txt``
-   (from the USB key of the training or http://www.dakarlug.org/pat/scientifique/data/).
+   in the ``data`` directory. 
 
 2. Create a ``data`` array by opening the ``women_percentage.txt`` file
    with ``np.loadtxt``. What is the shape of this array? 
