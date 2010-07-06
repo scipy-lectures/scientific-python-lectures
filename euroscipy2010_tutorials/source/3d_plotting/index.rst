@@ -1,7 +1,9 @@
 3D plotting with Mayavi
 ========================
 
-.. image:: mayavi-logo.png
+.. only:: html
+
+    .. image:: mayavi-logo.png
 
 __________
 

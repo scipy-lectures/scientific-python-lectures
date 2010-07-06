@@ -4,7 +4,7 @@
 Points
 -------
   
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [1]: import numpy as np
 
@@ -21,7 +21,7 @@ Points
 Lines
 ------
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [5]: mlab.clf()
 
@@ -36,7 +36,7 @@ Lines
 Elevation surface
 -------------------
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [8]: mlab.clf()
 
@@ -55,7 +55,7 @@ Elevation surface
 Arbitrary regular mesh
 -----------------------
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [13]: mlab.clf()
 
@@ -89,7 +89,7 @@ connectivity information**
 Volumetric data
 ----------------
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [20]: mlab.clf()
 
@@ -107,5 +107,6 @@ Volumetric data
 
     .. image:: viz_volume_structure.png
 	:align: center
+	:scale: 70
 
 

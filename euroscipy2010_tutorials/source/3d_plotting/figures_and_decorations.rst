@@ -4,6 +4,11 @@ Figures and decorations
 Figure management
 -----------------
 
+.. only:: latex
+
+    Here is a list of functions useful to control the current figure
+
+
 ================================ ==============================================================
 ================================ ==============================================================
 Get the current figure:		  `mlab.gcf()`
@@ -19,6 +24,13 @@ Change the view:		  mlab.view(azimuth=45, elevation=54, distance=1.)
 
 Changing plot properties
 -------------------------
+
+.. only:: latex
+
+    In general, many properties of the various objects on the figure can
+    be changed. If these visualization are created via `mlab` functions, 
+    the easiest way to change them is to use the keyword arguments of
+    these functions, as described in the docstrings.
 
 .. topic:: **Example docstring:** `mlab.mesh`
 
@@ -104,7 +116,7 @@ Changing plot properties
 
 Example:
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [1]: import numpy as np
 
@@ -127,9 +139,15 @@ Example:
 
 .. image:: polar_mesh.png
     :align: center
+    :scale: 70
 
 Decorations
 -----------------
+
+.. only:: latex
+
+    Different items can be added to the figure to carry extra
+    information, such as a colorbar or a title.
 
 .. sourcecode:: ipython
 
@@ -147,6 +165,7 @@ Decorations
 
 .. image:: decorations.png
     :align: center
+    :scale: 80
 
 .. warning:: 
 
