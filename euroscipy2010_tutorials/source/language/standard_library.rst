@@ -158,7 +158,7 @@ Walking a directory
 Environment variables:
 ~~~~~~~~~~~~~~~~~~~~~~
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [9]: import os
 
