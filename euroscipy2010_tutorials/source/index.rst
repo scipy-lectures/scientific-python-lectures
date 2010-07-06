@@ -5,7 +5,9 @@
 Euroscipy 2010 tutorials
 ===================================================================
 
-Contents:
+.. only:: html
+
+    Contents:
 
 .. toctree::
    :maxdepth: 2
