@@ -162,7 +162,7 @@ html_use_index = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'PythonScientifique'
+htmlhelp_basename = 'PythonScientic'
 
 
 # Options for LaTeX output
@@ -177,8 +177,8 @@ htmlhelp_basename = 'PythonScientifique'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'PythonScientifique.tex', ur'Python Scientifique',
-   ur'Emmanuelle Gouillart', 'manual'),
+  ('index', 'PythonScientific.tex', ur'Python Scientific',
+   ur'EuroScipy tutorial team', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

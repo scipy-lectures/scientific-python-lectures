@@ -1,6 +1,4 @@
-The submodule dedicated to image processing in scipy is `scipy.ndimage`.
-
-::
+The submodule dedicated to image processing in scipy is `scipy.ndimage`. ::
 
     >>> from scipy import ndimage
 
@@ -8,9 +6,7 @@ Image processing routines may be sorted according to the category of
 processing they perform.
 
 
-* **Geometrical transformations on images** : orientation, resolution, ..
-
-::
+* **Geometrical transformations on images** : orientation, resolution, .. ::
 
     >>> lena = scipy.lena()
     >>> shifted_lena = ndimage.shift(lena, (50, 50))
@@ -21,11 +17,11 @@ processing they perform.
     >>> zoomed_lena.shape
     (1024, 1024)
 
-.. image:: image_processing/lena_transforms.png
+  .. image:: image_processing/lena_transforms.png
    :align: center
 
 
-.. sourcecode:: ipython
+  .. sourcecode:: ipython
 
     In [35]: subplot(151)
     Out[35]: <matplotlib.axes.AxesSubplot object at 0x925f46c>
@@ -39,9 +35,7 @@ processing they perform.
     In [39]: # etc.
 
 
-* **Using filters**
-
-::
+* **Using filters** ::
 
     >>> lena = scipy.lena()
     >>> noisy_lena = np.copy(lena)
@@ -116,8 +110,7 @@ Erosion ::
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]])
 
-Dilation
-::
+Dilation ::
 
     >>> a = np.zeros((5, 5))
     >>> a[2, 2] = 1
@@ -134,9 +127,8 @@ Dilation
            [ 0.,  0.,  1.,  0.,  0.],
            [ 0.,  0.,  0.,  0.,  0.]])
 
-Opening
+Opening ::
 
-::
     >>> a = np.zeros((5,5), dtype=np.int)
     >>> a[1:4, 1:4] = 1; a[4, 4] = 1
     >>> a
@@ -166,9 +158,7 @@ Closing: ``ndimage.binary_closing``
 
 An opening operation removes small structures, while a closing operation
 fills small holes. Such operation can therefore be used to "clean" an
-image.
-
-::
+image. ::
 
     >>> a = np.zeros((50, 50))
     >>> a[10:-10, 10:-10] = 1
@@ -187,9 +177,7 @@ closing step was performed *before* the opening).
 
 For **gray-valued** images, eroding (resp. dilating) amounts to replacing
 a pixel by the minimal (resp. maximal) value among pixels covered by the
-structuring element centered on the pixel of interest.
-
-::
+structuring element centered on the pixel of interest. ::
 
     >>> a = np.zeros((7,7), dtype=np.int)
     >>> a[1:6, 1:6] = 3
@@ -214,9 +202,7 @@ structuring element centered on the pixel of interest.
 
 * **Measures on the image**
 
-Let us first generate a nice synthetic binary image.
-
-::
+Let us first generate a nice synthetic binary image. ::
 
     >>> x, y = np.indices((100, 100))
     >>> sig = np.sin(2*np.pi*x/50.)*np.sin(2*np.pi*y/50.)*(1+x*y/50.**2)**2
