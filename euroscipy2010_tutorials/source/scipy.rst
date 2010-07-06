@@ -105,3 +105,21 @@ Image processing: ``scipy.ndimage``
 .. include:: image_processing/image_processing.rst
 
 
+
+
+
+Summary exercices on scientific computing
+-----------------------------------------
+
+The summary exercices use mainly Numpy, Scipy and Matplotlib. They first aim at
+providing real life examples on scientific computing with Python. Once the
+groundwork is introduced, the interested user is invited to try some exercices.
+
+
+.. toctree::
+    :maxdepth: 1
+
+    summary-exercices/stats-interpolate.rst
+    summary-exercices/optimize-fit.rst
+    summary-exercices/image-processing.rst
+
