@@ -548,15 +548,19 @@ interpolation example.
 Optimization and fit: ``scipy.optimize``
 ----------------------------------------
 
-The ``scipy.optimize`` module provides useful algorithms for function
-minimization (scalar or multi-dimensional), curve fitting and root finding.
+Optimization is the problem of finding a numerical solution to a
+minimization or equality.
 
+The ``scipy.optimize`` module provides useful algorithms for function
+minimization (scalar or multi-dimensional), curve fitting and root
+finding.
 
 **Example: Minimizing a scalar function using different algorithms**
 
 Let's define the following function: ::
 
-    >>> def f(x): return x**2 + 10*np.sin(x)
+    >>> def f(x): 
+    ...     return x**2 + 10*np.sin(x)
 
 and plot it:
 
@@ -571,6 +575,31 @@ and plot it:
 
 This function has a global minimum around -1.3 and a local minimum around 3.8.
 
+Local (convex) optimization
+..............................
+
+The general and efficient way to find a minimum for this function is to 
+conduct a gradient descent starting from a given initial point. The BFGS
+algorithm is a good way of doing this::
+
+    >>> optimize.fmin_bfgs(f, 0)
+    Optimization terminated successfully.
+	    Current function value: -7.945823
+	    Iterations: 5
+	    Function evaluations: 24
+	    Gradient evaluations: 8
+    array([-1.30644003])
+
+This resolution takes 4.11ms on our computer.
+
+The problem with this approach is that, if the function has local minima (is 
+not convex), the algorithm may find these local minima instead of the
+global minimum depending on the initial point. If we don't know the
+neighborhood of the global minima to choose the initial point, we need to
+resort to costlier global opimtization.
+
+Global optimization
+.....................
 
 To find the global minimum, the simplest algorithm is the brute force algorithm,
 in which the function is evaluated on each point of a given grid: ::
@@ -579,6 +608,8 @@ in which the function is evaluated on each point of a given grid: ::
     >>> grid = (-10, 10, 0.1)
     >>> optimize.brute(f, (grid,))
     array([-1.30641113])
+
+This approach take 20 ms on our computer.
 
 This simple alorithm becomes very slow as the size of the grid grows, so you
 should use ``optimize.brent`` instead for scalar functions: ::
@@ -595,7 +626,6 @@ To find the local minimum, let's add some constraints on the variable using
 
 You can find algorithms with the same functionalities for multi-dimensional
 problems in ``scipy.optimize``.
-
 
 See the summary exercise on :ref:`summary_exercise_optimize` for a
 more advanced example.
