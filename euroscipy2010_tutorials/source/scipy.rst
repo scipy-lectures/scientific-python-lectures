@@ -1,6 +1,10 @@
 Scipy : high-level scientific computing
 =========================================
 
+.. only:: latex
+
+  :authors: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël Varoquaux
+
 .. topic:: Scipy
 
     The ``scipy`` package contains various toolboxes dedicated to common
@@ -34,6 +38,27 @@ To begin with ::
     >>> import numpy as np
     >>> import scipy
 
+`scipy` is mainly composed of task-specific sub-modules:
+
+============= ===============================================
+cluster         Vector quantization / Kmeans
+fftpack         Fourier transform
+integrate       Integration routines
+interpolate     Interpolation
+io              Data input and output
+linalg          Linear algebra routines
+maxentropy      Routines for fitting maximum entropy models
+ndimage         n-dimensional image package
+odr             Orthogonal distance regression
+optimize        Optimization
+signal          Signal processing
+sparse          Sparse matrices
+spatial         Spatial data structures and algorithms
+special         Any special mathematical functions
+stats           Statistics
+============= ===============================================
+
+
 Scipy builds upon Numpy
 -------------------------
 
@@ -53,8 +78,33 @@ If you would like to know the objects used from Numpy, have a look at
 the  ``scipy.__file__[:-1]`` file. On version '0.6.0', the whole Numpy
 namespace is imported by the line ``from numpy import *``.
 
-Signal processing
--------------------
+File input/output: ``scipy.io``
+----------------------------------
+
+* Loading and saving matlab files::
+
+    >>> from scipy import io
+    >>> struct = io.loadmat('file.mat', struct_as_record=True)
+    >>> io.savemat('file.mat', struct)
+
+See also:
+
+    * Load text files::
+
+        np.loadtxt/np.savetxt
+
+    * Clever loading of text/csv files::
+
+        np.genfromtxt/np.recfromcsv
+
+    * Fast an efficient, but numpy-specific, binary format::
+
+        np.save/np.load
+
+
+
+Signal processing: ``scipy.signal``
+------------------------------------
 
 ::
 
@@ -70,6 +120,7 @@ Signal processing
 
   .. plot:: demo_detrend.py
     :hide-links:
+    :scale: 50
 
 * Resample: resample a signal to `n` points using FFT. ::
 
@@ -81,6 +132,7 @@ Signal processing
 
   .. plot:: demo_resample.py
     :hide-links:
+    :scale: 50
 
   .. only:: latex
 
@@ -92,8 +144,8 @@ Signal processing
 * Signal has filtering (Gaussian, median filter, Wiener), but we will
   discuss this in the image paragraph.
 
-Special functions
--------------------
+Special functions: ``scipy.special``
+---------------------------------------
 
 Special functions are transcendal functions. The docstring of the module
 is well-written and we will not list them. Frequently used ones are:
@@ -109,13 +161,17 @@ is well-written and we will not list them. Frequently used ones are:
 
  * Erf, the area under a Gaussian curve: `special.erf`
 
-Statistics and random numbers
---------------------------------------------
+Statistics and random numbers: ``scipy.stats``
+-----------------------------------------------
+
+The module `scipy.stats` contains statistical tools and probabilistic
+description of random processes. Random number generators for various
+random process can be found in `numpy.random`.
 
 Histogram and probability density function
 ...............................................
 
-Given observations of a random process, there histogram is an estimator of 
+Given observations of a random process, their histogram is an estimator of 
 the random process's PDF (probability density function): ::
 
     >>> a = np.random.normal(size=1000)
@@ -136,6 +192,7 @@ the random process's PDF (probability density function): ::
 
 .. plot:: normal_distribution.py
     :hide-links:
+    :scale: 50
 
 If we know that the random process belongs to a given family of random
 processes, such as normal processes, we can do a maximum-likelihood fit
@@ -184,7 +241,7 @@ observations are significantly different
 .. TODO: ttest, ftest
 
 
-Linear algebra operations with ``scipy.linalg``
+Linear algebra operations: ``scipy.linalg``
 -----------------------------------------------
 First, the linalg module provides standard linear algebra operations.
 The ``det`` function computes the determinant of a square matrix::
@@ -259,8 +316,8 @@ SVD is commonly used in statistics or signal processing.  Many other
 standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
 for linear systems, are available in ``scipy.linalg``.
 
-Numerical integration with ``scipy.integrate``
-----------------------------------------------
+Numerical integration: ``scipy.integrate``
+------------------------------------------------
 The most generic integration routine is ``scipy.integrate.quad``::
 
     >>> from scipy.integrate import quad
@@ -374,7 +431,7 @@ as fipy_ or SfePy_.
 .. _fipy: http://www.ctcms.nist.gov/fipy/
 .. _SfePy: http://code.google.com/p/sfepy/
 
-Fast Fourier transforms with ``scipy.fftpack``
+Fast Fourier transforms: ``scipy.fftpack``
 ----------------------------------------------
 The ``fftpack`` module allows to compute fast Fourier transforms.
 As an illustration, an input signal may look like::

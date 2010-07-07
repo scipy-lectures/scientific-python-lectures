@@ -1,6 +1,10 @@
 Building blocks of scientific computing with Python
 ===================================================
 
+.. only:: latex
+
+    :author: Emmanuelle Gouillart
+
 * **Python**, a generic and modern computing language
 
     * Python language: data types (``string``, ``int``), flow control,
@@ -20,6 +24,7 @@ Building blocks of scientific computing with Python
  
 .. image:: snapshot_ipython.png
       :align: center
+      :scale: 70
 
 * **Numpy** : provides powerful numerical arrays objects, and routines to
   manipulate them.
@@ -56,10 +61,10 @@ Building blocks of scientific computing with Python
   http://matplotlib.sourceforge.net/
 
 .. image:: random_c.jpg
-      :height: 300px
+      :scale: 70
 
 .. image:: hexbin_demo.png
-      :height: 300px
+      :scale: 50
   
 
 * **Mayavi** : 3-D visualization
@@ -67,7 +72,7 @@ Building blocks of scientific computing with Python
   http://code.enthought.com/projects/mayavi/
 
 .. image:: example_surface_from_irregular_data.jpg
-      :align: center 
+      :scale: 60
 
 * and many others.   
 

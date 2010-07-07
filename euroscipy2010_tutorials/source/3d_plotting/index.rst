@@ -1,6 +1,10 @@
 3D plotting with Mayavi
 ========================
 
+.. only:: latex
+
+    :author: Gaël Varoquaux
+
 .. only:: html
 
     .. image:: mayavi-logo.png

@@ -1,6 +1,10 @@
 NumPy: creating and manipulating numerical data 
 ================================================
 
+.. only:: latex
+
+    :authors: Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux
+
 .. topic:: The array: the basic tool for scientific computing
 
     .. image:: simple_histo.jpg
@@ -83,7 +87,7 @@ In practice, we rarely enter items one by one...
 
 
 
-Graphical data representation : matplotlib and mayavi
+Graphical data representation : matplotlib and Mayavi
 -----------------------------------------------------
 
 Now that we have our first data arrays, we are going to visualize them.
@@ -125,6 +129,7 @@ tutorial, we assume you have already run ``from pylab import *`` or ``ipython
 
 .. image:: plot.png
    :align: center 
+   :scale: 80
    
 
 **2D arrays** (such as images)   
@@ -143,6 +148,7 @@ tutorial, we assume you have already run ``from pylab import *`` or ``ipython
 
 .. image:: imshow.png
    :align: center
+   :scale: 80
 
 There are many other features in matplotlib: color choice, marker size,
 latex font, inclusions within figures, histograms, etc.
@@ -175,12 +181,14 @@ start with **relaunching iPython** with these options:
 
 .. image:: surf.png
    :align: center
+   :scale: 60
 
 The mayavi/mlab window that opens is interactive : by clicking on the left mouse button
 you can rotate the image, zoom with the mouse wheel, etc.
 
 .. image:: potential.jpg
    :align: center
+   :scale: 60
 
 For more information on Mayavi :
 http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/index.html
@@ -401,7 +409,7 @@ By using miscellaneous constructors, indexing, slicing, and simple operations
      [15 16 17 18 19]
      [20 21 22 23 24]]
 
-**Answer**
+**Solution**
 
 ::
 
@@ -422,7 +430,6 @@ By using miscellaneous constructors, indexing, slicing, and simple operations
      [0 0 0 5 0]
      [0 0 0 0 6]]
 
-**Answers** :ref:`answers1`
 
 Real data: read/write arrays from/to files
 ------------------------------------------
@@ -529,7 +536,7 @@ the os module.
 
 .. image:: lena_figure.png
    :align: center
-   :width: 500px
+   :width: 60
 
 **Selecting a file from a list**
 
@@ -640,7 +647,7 @@ or right jumps?
 
 .. image:: diffuse.png
    :align: center
-   :width: 750px
+   :scale: 70
 
 We find again that the distance grows like the square root of the time!
 
@@ -863,6 +870,7 @@ Angeles.
 
 .. image:: route66.png
    :align: center
+   :scale: 60
 
 .. warning:: Good practices
 
@@ -900,6 +908,7 @@ other options).
 
 .. image:: distance.png
     :align: center
+    :scale: 70
 
 **Remark** : the ``numpy.ogrid`` function allows to directly create vectors x
 and y of the previous example, with two "significant dimensions"::

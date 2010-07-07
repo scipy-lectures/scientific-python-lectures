@@ -16,6 +16,7 @@ Euroscipy 2010 tutorials
    intro/workflow.rst 
    language/python_language.rst
    numpy/numpy.rst 
+   help/help.rst
    matplotlib/matplotlib.rst 
    scipy.rst
    sympy.rst

@@ -1,6 +1,10 @@
 Scientific computing: why Python?
 =================================
 
+.. only:: latex
+
+    :authors: Fernando Perez, Emmanuelle Gouillart
+
 ..
     .. image:: phd053104s.png
       :align: center

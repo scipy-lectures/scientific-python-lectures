@@ -182,7 +182,9 @@ latex_show_pagerefs = True
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
   ('index', 'PythonScientific.tex', ur'Python Scientific lecture notes',
-   ur'EuroScipy tutorial team', 'manual'),
+   ur"""EuroScipy tutorial team""",
+   #{\normalsize Editors: Emmanuelle Gouillart, Gaël Varoquaux}""", 
+   'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

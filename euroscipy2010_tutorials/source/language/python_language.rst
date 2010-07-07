@@ -1,6 +1,9 @@
 A (very short) introduction to Python
 =====================================
 
+.. only:: latex
+
+  :authors: Chris Burns, Emmanuelle Gouillart, Gaël Varoquaux
 
 .. topic:: Python for scientific computing
 

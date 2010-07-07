@@ -7,6 +7,10 @@
 Sympy : Symbolic Mathematics in Python
 ======================================
 
+.. only:: latex
+
+    :author: Fabian Pedregosa
+
 .. role:: input(strong)
 
 Introduction
