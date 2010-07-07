@@ -182,8 +182,7 @@ latex_show_pagerefs = True
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
   ('index', 'PythonScientific.tex', ur'Python Scientific lecture notes',
-   ur"""EuroScipy tutorial team""",
-   #{\normalsize Editors: Emmanuelle Gouillart, Gaël Varoquaux}""", 
+   ur"""EuroScipy tutorial team \\\relax\normalfont Editors: Emmanuelle Gouillart, Gaël Varoquaux""", 
    'manual'),
 ]
 

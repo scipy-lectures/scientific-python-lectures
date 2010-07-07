@@ -3,6 +3,10 @@
 Getting help and finding documentation
 =========================================
 
+.. only:: latex
+
+    :author: Emmanuelle Gouillart
+
 Rather than knowing all functions in Numpy and Scipy, it is important to
 find rapidly information throughout the documentation and the available
 help. Here are some ways to get information:
