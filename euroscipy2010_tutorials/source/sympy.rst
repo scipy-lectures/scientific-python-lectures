@@ -1,7 +1,7 @@
-.. _tutorial:
-
 
 .. TODO: bench and fit in 1:30
+
+.. TODO: plotting <- seems to be broken in dev version ??
 
 ======================================
 Sympy : Symbolic Mathematics in Python
@@ -10,6 +10,18 @@ Sympy : Symbolic Mathematics in Python
 .. only:: latex
 
     :author: Fabian Pedregosa
+
+Objectives
+==========
+
+At the end of this session you will be able to:
+
+  1. Evaluate numerical expressions with arbitrary precission.
+  2. Perform algebraic manipulations on symbolic expressions.
+  3. Perform basic calculus tasks (limits, differentiation and
+     integration) with symbolic expressions.
+  4. Solve polynomial and trascendental equations.
+  5. Solve some differential equations.
 
 .. role:: input(strong)
 
@@ -24,7 +36,6 @@ extensible.  SymPy is written entirely in Python and does not require
 any external libraries.
 
 
-
 First Steps with SymPy
 ======================
 
@@ -34,9 +45,9 @@ Using SymPy as a calculator
 
 Sympy has three built-in numeric types: Real, Rational and Integer.
 
-The Rational class represents a rational number as a pair of two Integers: the numerator and the denominator, so Rational(1,2) represents 1/2, Rational(5,2) 5/2 and so on.
-
-::
+The Rational class represents a rational number as a pair of two
+Integers: the numerator and the denominator, so Rational(1,2)
+represents 1/2, Rational(5,2) 5/2 and so on::
 
     >>> from sympy import *
     >>> a = Rational(1,2)
@@ -51,8 +62,10 @@ The Rational class represents a rational number as a pair of two Integers: the n
     1/88817841970012523233890533447265625
 
 
-SymPy uses mpmath in  the background, which makes it possible to perform computations using arbitrary - precission arithmetic. That way, some special constants, like e, pi, oo (Infinity), that are treated as symbols and
-have arbitrary precission::
+SymPy uses mpmath in the background, which makes it possible to
+perform computations using arbitrary - precission arithmetic. That
+way, some special constants, like e, pi, oo (Infinity), are treated as
+symbols and can be evaluated with arbitrary precission::
 
     >>> pi**2
     pi**2
@@ -63,14 +76,16 @@ have arbitrary precission::
     >>> (pi+exp(1)).evalf()
     5.85987448204884
 
-as you see, evalf evaluates the expression to a floating-point number
+as you see, evalf evaluates the expression to a floating-point number.
 
-There is also a class representing mathematical infinity, called ``oo``::
+There is also a class representing mathematical infinity, called
+``oo``::
 
     >>> oo > 99999
     True
     >>> oo + 1
     oo
+
 
 Symbols
 -------
@@ -82,7 +97,7 @@ symbolic variables explicitly::
     >>> x = Symbol('x')
     >>> y = Symbol('y')
 
-Then you can play with them::
+Then you can manipulate them::
 
     >>> x+y+x-y
     2*x
@@ -90,85 +105,64 @@ Then you can play with them::
     >>> (x+y)**2
     (x + y)**2
 
-    >>> ((x+y)**2).expand()
-    2*x*y + x**2 + y**2
-
-And substitute them for other symbols or numbers using ``subs(old, new)``::
-
-    >>> ((x+y)**2).subs(x, 1)
-    (1 + y)**2
-
-    >>> ((x+y)**2).subs(x, y)
-    4*y**2
+Symbols can now be manipulated using some of python operators: +, -,
+*, ** (arithmetic), &, |, ~ , >>, << (boolean).
 
 
 Exercises
 ---------
 
   1. Calculate :math:`\sqrt{2}` with 100 decimals.
-  2. Calculate :math:`\pi + 1` with 100 decimals.
-  3. Calculate :math:`1/2 + 1/3` in rational arithmetic (without
-    converting to floating point numbers).
+  2. Calculate :math:`1/2 + 1/3` in rational arithmetic.
 
 
-Algebra
-=======
+Algebraic manipulations
+=======================
 
-One of the most cumbersome algebraic operations are partial fraction
-decomposition.  For partial fraction decomposition, use ``apart(expr,
-x)``::
+SymPy is capable of performing powerful algebraic manipulations.
 
-    In [1]: 1/( (x+2)*(x+1) )
-    Out[1]:
-           1
-    ───────────────
-    (2 + x)*(1 + x)
+Expand
+------
 
-    In [2]: apart(1/( (x+2)*(x+1) ), x)
-    Out[2]:
-      1       1
-    ───── - ─────
-    1 + x   2 + x
+Use this to expand an algebraic expression. It will try to denest
+powers and multiplications::
 
-    In [3]: (x+1)/(x-1)
-    Out[3]:
-    -(1 + x)
-    ────────
-     1 - x
+    In [23]: expand((x+y)**3)
+    Out[23]: 3*x*y**2 + 3*y*x**2 + x**3 + y**3
 
-    In [4]: apart((x+1)/(x-1), x)
-    Out[4]:
-          2
-    1 - ─────
-        1 - x
+Further options can be given in form on keywords::
 
-To combine things back together, use ``together(expr, x)``::
+    In [28]: expand(x+y, complex=True)
+    Out[28]: I*im(x) + I*im(y) + re(x) + re(y)
 
-    In [7]: together(1/x + 1/y + 1/z)
-    Out[7]:
-    x*y + x*z + y*z
-    ───────────────
-         x*y*z
-
-    In [8]: together(apart((x+1)/(x-1), x), x)
-    Out[8]:
-    -1 - x
-    ──────
-    1 - x
-
-    In [9]: together(apart(1/( (x+2)*(x+1) ), x), x)
-    Out[9]:
-           1
-    ───────────────
-    (2 + x)*(1 + x)
+    In [30]: expand(cos(x+y), trig=True)
+    Out[30]: cos(x)*cos(y) - sin(x)*sin(y)
 
 
-.. index:: calculus
+Simplify
+--------
 
+Use simplify if you would like to transform an expression into a
+simpler form::
+
+    In [19]: simplify((x+x*y)/x)
+    Out[19]: 1 + y
+
+
+
+
+Exercises
+--------
+
+  1. Calculate the expanded form of :math:`(x+y)^6`.
+
+
+
+  
 Calculus
 ========
 
-.. index:: limits
+
 
 Limits
 ------
@@ -193,9 +187,6 @@ you can also calculate the limit at infinity::
    >>> limit(x**x, x, 0)
    1
 
-for some non-trivial examples on limits, you can read the test file
-`test_demidovich.py
-<http://git.sympy.org/?p=sympy.git;a=blob;f=sympy/series/tests/test_demidovich.py>`_
 
 .. index:: differentiation, diff
 
@@ -231,50 +222,24 @@ Higher derivatives can be calculated using the ``diff(func, var, n)`` method::
     -8*cos(2*x)
 
 
-.. index::
-    single: series expansion
-    single: expansion; series
+Series expansion
+----------------
+
+SymPy also knows how to compute the Taylor series of an expression at
+a point. Use ``series(expr, var)``::
+
+    >>> series(cos(x), x)
+    1 - x**2/2 + x**4/24 + O(x**6)
+    >>> series(1/cos(x), x)
+    1 + x**2/2 + 5*x**4/24 + O(x**6)
+
 
 Exercises
 ---------
 
-  1. Derivate log(x) for x.
-  2.
+  1. Calculate :math:`\lim{x->0, sin(x)/x}`
+  2. Calulate the derivative of log(x) for x.
 
-
-Series expansion
-----------------
-
-Use ``.series(var, point, order)``::
-
-    >>> from sympy import *
-    >>> x = Symbol('x')
-    >>> cos(x).series(x, 0, 10)
-    1 - x**2/2 + x**4/24 - x**6/720 + x**8/40320 + O(x**10)
-    >>> (1/cos(x)).series(x, 0, 10)
-    1 + x**2/2 + 5*x**4/24 + 61*x**6/720 + 277*x**8/8064 + O(x**10)
-
-Another simple example::
-
-    from sympy import Integral, Symbol, pprint
-
-    x = Symbol("x")
-    y = Symbol("y")
-
-    e = 1/(x + y)
-    s = e.series(x, 0, 5)
-
-    print(s)
-    pprint(s)
-
-That should print the following after the execution::
-
-    1/y + x**2*y**(-3) + x**4*y**(-5) - x*y**(-2) - x**3*y**(-4) + O(x**5)
-         2    4         3
-    1   x    x    x    x
-    ─ + ── + ── - ── - ── + O(x**5)
-    y    3    5    2    4
-        y    y    y    y
 
 .. index:: integration
 
@@ -318,26 +283,49 @@ Also improper integrals are supported as well::
 
     >>> integrate(exp(-x), (x, 0, oo))
     1
-    >>> integrate(log(x), (x, 0, 1))
-    -1
+    >>> integrate(exp(-x**2), (x, -oo, oo))
+    pi**(1/2)
 
 
 .. index:: equations; algebraic, solve
 
-Algebraic equations
--------------------
-SymPy is able to solve algebraic equations, in one and several variables.
+Equation solving
+----------------
 
-In ``isympy``::
+SymPy is able to solve algebraic equations, in one and several
+variables::
 
     In [7]: solve(x**4 - 1, x)
-    Out[7]: [ⅈ, 1, -1, -ⅈ]
+    Out[7]: [I, 1, -1, -I]
+
+It is able to solve a large part of polynomial equations, and is also
+capable of solving multiple equations with respect to multiple
+variables giving a tuple as second argument::
 
     In [8]: solve([x + 5*y - 2, -3*x + 6*y - 15], [x, y])
     Out[8]: {y: 1, x: -3}
 
 
-.. index:: linear algebra
+It also has (limited) support for trascendental equations::
+
+   In [9]: solve(exp(x) + 1, x)
+   Out[9]: [pi*I]
+
+SymPy is also able to solve boolean equations, that is, to decide if a
+certain boolean expression is satisfiable or not. For this, we use the
+function satisfiable::
+
+   In [10]: satisfiable(x & y)
+   Out[10]: {x: True, y: True}
+
+This tells us that (x & y) is True whenever x and y are both True. If
+an expression cannot be true, i.e. no values of its arguments can make
+the expression True, it will return False.
+
+   In [11]: satisfiable(x & ~x)
+   Out[11]: False
+
+
 
 Linear Algebra
 ==============
@@ -391,142 +379,6 @@ Equations. sympy.ode.dsolve works like this ::
 TODO: more on this, current status of the ODE solver, PDES ??
 
 
+TODO: some application example.
 
 
-.. _printing-tutorial:
-
-Printing
-========
-
-There are many ways how expressions can be printed.
-
-**Standard**
-
-This is what ``str(expression)`` returns and it looks like this:
-
-    >>> from sympy import Integral
-    >>> from sympy.abc import x
-    >>> print x**2
-    x**2
-    >>> print 1/x
-    1/x
-    >>> print Integral(x**2, x)
-    Integral(x**2, x)
-    >>>
-
-
-**Pretty printing**
-
-This is a nice ascii-art printing produced by a ``pprint`` function:
-
-    >>> from sympy import Integral, pprint
-    >>> from sympy.abc import x
-    >>> pprint(x**2) #doctest: +NORMALIZE_WHITESPACE
-     2
-    x
-    >>> pprint(1/x)
-    1
-    -
-    x
-    >>> pprint(Integral(x**2, x))
-      /     
-     |      
-     |  2   
-     | x  dx
-     |      
-    /       
-
-
-See also the wiki `Pretty Printing
-<http://wiki.sympy.org/wiki/Pretty_Printing>`_ for more examples of a nice
-unicode printing.
-
-Tip: To make the pretty printing default in the python interpreter, use::
-
-    $ python
-    Python 2.5.2 (r252:60911, Jun 25 2008, 17:58:32) 
-    [GCC 4.3.1] on linux2
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> from sympy import *
-    >>> import sys
-    >>> sys.displayhook = pprint
-    >>> var("x")
-    x
-    >>> x**3/3
-     3
-    x 
-    --
-    3 
-    >>> Integral(x**2, x) #doctest: +NORMALIZE_WHITESPACE
-      /     
-     |      
-     |  2   
-     | x  dx
-     |      
-    /     
-
-
-**Python printing**
-
-    >>> from sympy.printing.python import python
-    >>> from sympy import Integral
-    >>> from sympy.abc import x
-    >>> print python(x**2)
-    x = Symbol('x')
-    e = x**2
-    >>> print python(1/x)
-    x = Symbol('x')
-    e = 1/x
-    >>> print python(Integral(x**2, x))
-    x = Symbol('x')
-    e = Integral(x**2, x)
-
-
-**LaTeX printing**
-
-    >>> from sympy import Integral, latex
-    >>> from sympy.abc import x
-    >>> latex(x**2)
-    x^{2}
-    >>> latex(x**2, mode='inline')
-    $x^{2}$
-    >>> latex(x**2, mode='equation')
-    \begin{equation}x^{2}\end{equation}
-    >>> latex(x**2, mode='equation*')
-    \begin{equation*}x^{2}\end{equation*}
-    >>> latex(1/x)
-    \frac{1}{x}
-    >>> latex(Integral(x**2, x))
-    \int x^{2}\,dx
-    >>>
-
-**MathML**
-
-::
-
-    >>> from sympy.printing.mathml import mathml
-    >>> from sympy import Integral, latex
-    >>> from sympy.abc import x
-    >>> print mathml(x**2)
-    <apply><power/><ci>x</ci><cn>2</cn></apply>
-    >>> print mathml(1/x)
-    <apply><power/><ci>x</ci><cn>-1</cn></apply>
-
-**Pyglet**
-
-    >>> from sympy import Integral, preview
-    >>> from sympy.abc import x
-    >>> preview(Integral(x**2, x)) #doctest:+SKIP
-
-And a pyglet window with the LaTeX rendered expression will popup:
-
-.. image:: pics/pngview1.png
-
-Notes
------
-
-``isympy`` calls ``pprint`` automatically, so that's why you see pretty
-printing by default.
-
-Note that there is also a printing module available, ``sympy.printing``.  Other
-printing methods available trough this module are:

@@ -22,7 +22,7 @@ HTML_DATA = \
 	data/odeint-damped-spring-mass.py \
 	data/fftpack-illustration.py
 
-.PHONY: help clean html web pickle htmlhelp latex changes linkcheck
+.PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -115,3 +115,10 @@ pdf: latex
 	cd build/latex ; make all-pdf ; pdfnup PythonScientific.pdf
 	cp build/latex/PythonScientific-2x1.pdf PythonScientific.pdf
 	#cd build/latex ; make all-pdf ; pdfnup python4science.pdf
+
+zip: html pdf
+	mkdir -p euroscipy_beginners_lecture_notes ;
+	cp -r build/html euroscipy_beginners_lecture_notes ;
+	cp -r data euroscipy_beginners_lecture_notes ;
+	cp PythonScientific.pdf euroscipy_beginners_lecture_notes;
+	zip -r euroscipy_beginners_lecture_notes.zip euroscipy_beginners_lecture_notes  
