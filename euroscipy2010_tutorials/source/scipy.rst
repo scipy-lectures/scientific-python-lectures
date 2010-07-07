@@ -228,18 +228,29 @@ Similarly, we can calculate the percentile 90:
 The percentile is an estimator of the CDF: cumulative distribution
 function.
 
-.. XXX: Check what CDF means
-
 Statistical tests
 ...................
 
 A statistical test is a decision indicator. For instance, if we have 2
 sets of observations, that we assume are generated from Gaussian
 processes, we can use a T-test to decide whether the two sets of
-observations are significantly different
+observations are significantly different::
 
-.. TODO: ttest, ftest
+    >>> a = np.random.normal(0, 1, size=100)
+    >>> b = np.random.normal(1, 1, size=10)
+    >>> stats.ttest_ind(a, b)
+    (-2.389876434401887, 0.018586471712806949)
 
+The resulting output is composed of:
+
+    * The T statistic value: it is a number the sign of which is
+      proportional to the difference between the two random processes and
+      the magnitude is related to the significance of this difference.
+
+    * the *p value*: the probability of both process being identical. If
+      it is close to 1, the two process are almost certainly identical.
+      The closer it is to zero, the more likely it is that the processes
+      have different mean.
 
 Linear algebra operations: ``scipy.linalg``
 -----------------------------------------------
