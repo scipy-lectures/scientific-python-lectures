@@ -1,10 +1,10 @@
 
 .. only:: html
 
-  .. _image-answers:
-  
-  Example of solution for the image processing exercise: unmolten grains in glass
-  ===============================================================================
+.. _image-answers:
+
+Example of solution for the image processing exercise: unmolten grains in glass
+===============================================================================
 
 
   .. image:: ../image_processing/MV_HFV_012.jpg
