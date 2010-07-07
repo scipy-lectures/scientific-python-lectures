@@ -1,7 +1,7 @@
 
 .. TODO: bench and fit in 1:30
 
-.. TODO: plotting <- seems to be broken in dev version ??
+.. TODO: plotting <- broken in OSX
 
 ======================================
 Sympy : Symbolic Mathematics in Python
@@ -149,14 +149,16 @@ simpler form::
     Out[19]: 1 + y
 
 
-
+Simplification is a somewhat vague term, and more precises
+alternatives to simplify exists: powsimp (simplification of
+exponents), trigsimp (for trigonometrical expressions) , logcombine,
+radsimp, together.
 
 Exercises
 --------
 
   1. Calculate the expanded form of :math:`(x+y)^6`.
-
-
+  2. Symplify the trigonometrical expression sin(x) / cos(x)
 
   
 Calculus
@@ -289,8 +291,14 @@ Also improper integrals are supported as well::
 
 .. index:: equations; algebraic, solve
 
+
+Exercises
+---------
+
+  
+
 Equation solving
-----------------
+================
 
 SymPy is able to solve algebraic equations, in one and several
 variables::
@@ -298,9 +306,11 @@ variables::
     In [7]: solve(x**4 - 1, x)
     Out[7]: [I, 1, -1, -I]
 
-It is able to solve a large part of polynomial equations, and is also
-capable of solving multiple equations with respect to multiple
-variables giving a tuple as second argument::
+As you can see it takes as first argument an expression that is
+supposed to be equaled to 0. It is able to solve a large part of
+polynomial equations, and is also capable of solving multiple
+equations with respect to multiple variables giving a tuple as second
+argument::
 
     In [8]: solve([x + 5*y - 2, -3*x + 6*y - 15], [x, y])
     Out[8]: {y: 1, x: -3}
@@ -326,6 +336,13 @@ the expression True, it will return False.
    Out[11]: False
 
 
+Exercises
+---------
+
+  1. Solve the system of equations x + y = 2, 2*x + y = 0
+  2. Are there boolean values A, B that make (~A | B) & (~B | A) true
+  ?
+
 
 Linear Algebra
 ==============
@@ -342,7 +359,7 @@ Matrices are created as instances from the Matrix class::
     [1, 0]
     [0, 1]
 
-unline a numpy array, you can also put Symbols in it::
+unlike a numpy array, you can also put Symbols in it::
 
     >>> x = Symbol('x')
     >>> y = Symbol('y')
@@ -356,15 +373,13 @@ unline a numpy array, you can also put Symbols in it::
     [    2*y, 1 + x*y]
 
 
-
-
 .. index:: equations; differential, diff, dsolve
 
 Differential Equations
 ----------------------
 
 SymPy is capable of solving (some) Ordinary Differential
-Equations. sympy.ode.dsolve works like this ::
+Equations. sympy.ode.dsolve works like this::
 
     In [4]: f(x).diff(x, x) + f(x)
     Out[4]:
@@ -376,9 +391,20 @@ Equations. sympy.ode.dsolve works like this ::
     In [5]: dsolve(f(x).diff(x, x) + f(x), f(x))
     Out[5]: C₁*sin(x) + C₂*cos(x)
 
-TODO: more on this, current status of the ODE solver, PDES ??
+Keyword arguments can be given to this function in order to help if
+find the best possible resolution system. For example, if you know
+that it is a separable equations, you can use keyword hint='separable'
+to force dsolve to resolve it as a separable equation.
+
+   In [6]: dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x),
+   ...     hint='separable')
+   Out[6]: -log(1 - sin(f(x))**2)/2 == C1 + log(1 - sin(x)**2)/2
 
 
-TODO: some application example.
+Exercises
+---------
 
+  1. Solve the Bernoulli differential equation x*f(x).diff(x) + f(x) -
+  f(x)**2
+  2. Solve the same equation using hint='Bernoulli'. What do you observe ?
 
