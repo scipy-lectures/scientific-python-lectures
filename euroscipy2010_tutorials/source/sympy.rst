@@ -16,7 +16,7 @@ Objectives
 
 At the end of this session you will be able to:
 
-  1. Evaluate numerical expressions with arbitrary precission.
+  1. Evaluate expressions with arbitrary precission.
   2. Perform algebraic manipulations on symbolic expressions.
   3. Perform basic calculus tasks (limits, differentiation and
      integration) with symbolic expressions.
@@ -25,8 +25,8 @@ At the end of this session you will be able to:
 
 .. role:: input(strong)
 
-Introduction
-============
+What is SymPy?
+==============
 
 SymPy is a Python library for symbolic mathematics. It aims become a
 full featured computer algebra system thatn can compete directly with
@@ -43,7 +43,7 @@ First Steps with SymPy
 Using SymPy as a calculator
 ---------------------------
 
-Sympy has three built-in numeric types: Real, Rational and Integer.
+Sympy defines three numerical types: Real, Rational and Integer.
 
 The Rational class represents a rational number as a pair of two
 Integers: the numerator and the denominator, so Rational(1,2)
@@ -57,10 +57,6 @@ represents 1/2, Rational(5,2) 5/2 and so on::
 
     >>> a*2
     1
-
-    >>> Rational(2)**50/Rational(10)**50
-    1/88817841970012523233890533447265625
-
 
 SymPy uses mpmath in the background, which makes it possible to
 perform computations using arbitrary - precission arithmetic. That
@@ -87,6 +83,13 @@ There is also a class representing mathematical infinity, called
     oo
 
 
+Exercises
+---------
+
+  1. Calculate :math:`\sqrt{2}` with 100 decimals.
+  2. Calculate :math:`1/2 + 1/3` in rational arithmetic.
+
+
 Symbols
 -------
 
@@ -109,17 +112,12 @@ Symbols can now be manipulated using some of python operators: +, -,
 *, ** (arithmetic), &, |, ~ , >>, << (boolean).
 
 
-Exercises
----------
-
-  1. Calculate :math:`\sqrt{2}` with 100 decimals.
-  2. Calculate :math:`1/2 + 1/3` in rational arithmetic.
-
 
 Algebraic manipulations
 =======================
 
-SymPy is capable of performing powerful algebraic manipulations.
+SymPy is capable of performing powerful algebraic manipulations. We'll
+take a look into some of the most frequently used: expand and simplify.
 
 Expand
 ------
@@ -164,8 +162,6 @@ Exercises
 Calculus
 ========
 
-
-
 Limits
 ------
 
@@ -173,8 +169,6 @@ Limits are easy to use in sympy, they follow the syntax limit(function,
 variable, point), so to compute the limit of f(x) as x -> 0, you would issue
 limit(f, x, 0)::
 
-   >>> from sympy import *
-   >>> x=Symbol("x")
    >>> limit(sin(x)/x, x, 0)
    1
 
@@ -195,10 +189,9 @@ you can also calculate the limit at infinity::
 Differentiation
 ---------------
 
-You can differentiate any SymPy expression using ``diff(func, var)``. Examples::
+You can differentiate any SymPy expression using ``diff(func,
+var)``. Examples::
 
-    >>> from sympy import *
-    >>> x = Symbol('x')
     >>> diff(sin(x), x)
     cos(x)
     >>> diff(sin(2*x), x)
@@ -251,12 +244,7 @@ Integration
 SymPy has support for indefinite and definite integration of transcendental
 elementary and special functions via `integrate()` facility, which uses
 powerful extended Risch-Norman algorithm and some heuristics and pattern
-matching::
-
-    >>> from sympy import *
-    >>> x, y = symbols('xy')
-
-You can integrate elementary functions::
+matching. You can integrate elementary functions::
 
     >>> integrate(6*x**5, x)
     x**6
@@ -315,33 +303,53 @@ argument::
     In [8]: solve([x + 5*y - 2, -3*x + 6*y - 15], [x, y])
     Out[8]: {y: 1, x: -3}
 
-
 It also has (limited) support for trascendental equations::
 
    In [9]: solve(exp(x) + 1, x)
    Out[9]: [pi*I]
 
+Another alternative in the case of polynomial equations is
+`factor`. `factor` returns the polynomial factorized into irreducible
+terms, and is capable of computing the factorization over various
+domains::
+
+   In [10]: f = x**4 - 3*x**2 + 1
+   In [11]: factor(f)
+   Out[11]: (1 + x - x**2)*(1 - x - x**2)
+
+   In [12]: factor(f, modulus=5)
+   Out[12]: (2 + x)**2*(2 - x)**2
+
+
+
 SymPy is also able to solve boolean equations, that is, to decide if a
 certain boolean expression is satisfiable or not. For this, we use the
 function satisfiable::
 
-   In [10]: satisfiable(x & y)
-   Out[10]: {x: True, y: True}
+   In [13]: satisfiable(x & y)
+   Out[13]: {x: True, y: True}
 
 This tells us that (x & y) is True whenever x and y are both True. If
 an expression cannot be true, i.e. no values of its arguments can make
-the expression True, it will return False.
+the expression True, it will return False::
 
-   In [11]: satisfiable(x & ~x)
-   Out[11]: False
+   In [14]: satisfiable(x & ~x)
+   Out[14]: False
 
 
 Exercises
 ---------
 
   1. Solve the system of equations x + y = 2, 2*x + y = 0
-  2. Are there boolean values A, B that make (~A | B) & (~B | A) true
+  2. Are there boolean values x, y that make (~x | y) & (~y | x) true
   ?
+
+
+.. Polynomial computations
+.. =======================
+
+.. Sympy has a rich module of efficient polynomial routines. Some of the
+.. most commonly used methods are factor, gcd
 
 
 Linear Algebra
@@ -396,8 +404,7 @@ find the best possible resolution system. For example, if you know
 that it is a separable equations, you can use keyword hint='separable'
 to force dsolve to resolve it as a separable equation.
 
-   In [6]: dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x),
-   ...     hint='separable')
+   In [6]: dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable')
    Out[6]: -log(1 - sin(f(x))**2)/2 == C1 + log(1 - sin(x)**2)/2
 
 
