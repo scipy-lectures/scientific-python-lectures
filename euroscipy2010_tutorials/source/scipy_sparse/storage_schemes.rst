@@ -75,10 +75,10 @@ Summary
      - note
    * - DIA
      - sparsetools
-     - -
-     - -
-     - -
-     - -
+     - .
+     - .
+     - .
+     - .
      - iterative
      - has data array, specialized
    * - LIL
@@ -99,10 +99,10 @@ Summary
      - O(1) item access, incremental construction
    * - COO
      - sparsetools
-     - -
-     - -
-     - -
-     - -
+     - .
+     - .
+     - .
+     - .
      - iterative
      - has data array, facilitates fast conversion
    * - CSR
@@ -110,7 +110,7 @@ Summary
      - yes
      - yes
      - slow
-     - -
+     - .
      - any
      - has data array, fast row-wise ops
    * - CSC
@@ -118,14 +118,14 @@ Summary
      - yes
      - yes
      - slow
-     - -
+     - .
      - any
      - has data array, fast column-wise ops
    * - BSR
      - sparsetools
-     - -
-     - -
-     - -
-     - -
+     - .
+     - .
+     - .
+     - .
      - specialized
      - has data array, specialized

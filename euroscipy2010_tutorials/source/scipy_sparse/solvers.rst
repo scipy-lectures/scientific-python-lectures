@@ -167,25 +167,25 @@ A Few Notes on Preconditioning
 Eigenvalue Problem Solvers
 --------------------------
 
-* the :mod:`eigen` module contains:
-    * ``arpack``
-        * a collection of Fortran77 subroutines designed to
-          solve large scale eigenvalue problems
-    * ``lobpcg`` (Locally Optimal Block Preconditioned Conjugate
-      Gradient Method)
-        * works very well in combination with `PyAMG
-          <http://code.google.com/p/pyamg/>`_
-	* example by Nathan Bell:
+The :mod:`eigen` module
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-	  .. literalinclude:: examples/pyamg_with_lobpcg.py
+* ``arpack``
+  * a collection of Fortran77 subroutines designed to
+    solve large scale eigenvalue problems
 
+* ``lobpcg`` (Locally Optimal Block Preconditioned Conjugate
+  Gradient Method)
+  * works very well in combination with `PyAMG <http://code.google.com/p/pyamg/>`_
+  * example by Nathan Bell:
 
-        * :download:`examples/pyamg_with_lobpcg.py`
+  .. literalinclude:: examples/pyamg_with_lobpcg.py
 
+  * :download:`examples/pyamg_with_lobpcg.py`
 
 * example by Nils Wagner:
 
-    * :download:`examples/lobpcg_sakurai.py`
+  * :download:`examples/lobpcg_sakurai.py`
 
 * output::
 

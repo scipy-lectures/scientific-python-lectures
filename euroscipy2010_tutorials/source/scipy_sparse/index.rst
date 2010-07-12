@@ -1,7 +1,7 @@
 Sparse Matrices in SciPy
 ========================
 
-Contents:
+:author: Robert Cimrman
 
 .. toctree::
    :maxdepth: 3
@@ -11,4 +11,3 @@ Contents:
    solvers
    other_packages
 
-* :ref:`search`
