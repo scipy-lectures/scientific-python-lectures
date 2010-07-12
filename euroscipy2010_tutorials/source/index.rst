@@ -19,6 +19,7 @@ Euroscipy 2010 tutorials
    help/help.rst
    matplotlib/matplotlib.rst 
    scipy.rst
+   scipy_sparse/index.rst
    sympy.rst
    3d_plotting/index.rst
 
