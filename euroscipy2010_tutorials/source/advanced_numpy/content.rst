@@ -82,10 +82,10 @@ Memory address of the data:
 Reminder: two :class:`ndarrays <ndarray>` may share the same memory:
 
 >>> x = np.array([1,2,3,4])
->>> y = np.asarray(x)
+>>> y = x[:-1]
 >>> x[0] = 9
 >>> y
-array([9, 2, 3, 4])
+array([9, 2, 3])
 
 Memory does not need to be owned by an :class:`ndarray`:
 
