@@ -178,7 +178,7 @@ the random process's PDF (probability density function): ::
     >>> bins = np.arange(-4, 5)
     >>> bins
     array([-4, -3, -2, -1,  0,  1,  2,  3,  4])
-    >>> histogram = np.histogram(a, bins=bins)
+    >>> histogram = np.histogram(a, bins=bins, normed=True)[0]
     >>> bins = 0.5*(bins[1:] + bins[:-1])
     >>> bins
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
