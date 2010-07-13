@@ -2,7 +2,7 @@ Contents
 --------
 
 This repository gathers some course materials that may be used in the
-intro tutorials at Euroscipy 2010.
+intro (and some advanced) tutorials at Euroscipy 2010.
 
 * euroscipy2010_tutorials: where to put the "official" tutorials for
   Euroscipy 2010.

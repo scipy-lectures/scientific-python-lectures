@@ -213,4 +213,12 @@ latex_elements = {
 } 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'http://docs.python.org/dev': None}
+intersphinx_mapping = {
+    'http://docs.python.org/dev': None,
+    'http://docs.scipy.org/doc/numpy': None,
+}
+
+# Increase pngmath font size
+pngmath_dvipng_args = ['-gamma 1.5', '-D 180']
+pngmath_use_preview = True
+

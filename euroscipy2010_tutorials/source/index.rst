@@ -22,5 +22,6 @@ Euroscipy 2010 tutorials
    scipy_sparse/index.rst
    sympy.rst
    3d_plotting/index.rst
+   advanced_numpy/index.rst
 
 

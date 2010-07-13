@@ -1,3 +1,6 @@
 *.pyc
 *~
 *.swp
+*.so
+build
+/euroscipy2010_tutorials/source/advanced_numpy/examples/mandel.c
