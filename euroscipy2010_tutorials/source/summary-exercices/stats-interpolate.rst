@@ -81,7 +81,7 @@ of probabilties::
     >>> fitted_max_speeds = quantile_func(nprob)
 
 In the current model, the maximum wind speed occuring every 50 years
-V_50 is defined as the upper 2% quantile. As a result, the cumulative
+V50 is defined as the upper 2% quantile. As a result, the cumulative
 probability value will be::
 
     >>> fifty_prob = 1. - 0.02
