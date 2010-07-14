@@ -9,8 +9,8 @@ Image processing application: counting bubbles and unmolten grains
 
 .. only:: latex
 
-  Statement of the problem
-  ..........................
+Statement of the problem
+..........................
 
 1. Open the image file MV_HFV_012.jpg and display it. Browse through the
 keyword arguments in the docstring of ``imshow`` to display the image
@@ -48,6 +48,6 @@ sand mask grains that are smaller than 10 pixels. To do so, use
 
    .. _image-answers:
 
-   Proposed solution
-   ....................
+Proposed solution
+....................
 
