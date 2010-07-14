@@ -17,7 +17,7 @@ speed occuring every 50 years requires the opposite approach, the result
 needs to be found from a defined probabilty. That is the quantile function
 role and the exercice goal will be to find it. In the current model,
 it is supposed that the maximum wind speed occuring every 50 years is
-defined as the upper 2% quantile.
+defined as the upper 2$%$ quantile.
 
 By definition, the quantile function is the inverse of the cumulative
 distribution function. The latter describes the probability distribution
@@ -80,11 +80,14 @@ of probabilties::
     >>> nprob = np.linspace(0, 1, 1e2)
     >>> fitted_max_speeds = quantile_func(nprob)
 
-In the current model, the maximum wind speed occuring every 50 years
-V50 is defined as the upper 2% quantile. As a result, the cumulative
-probability value will be::
+2%
 
+In the current model, the maximum wind speed occuring every 50 years is
+defined as the upper 2% quantile. As a result, the cumulative probability
+value will be::
+    
     >>> fifty_prob = 1. - 0.02
+
 
 So the storm wind speed occuring every 50 years can be guessed by::
 
