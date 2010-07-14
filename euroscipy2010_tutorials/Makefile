@@ -113,12 +113,12 @@ linkcheck:
 
 pdf: latex
 	cd build/latex ; make all-pdf ; pdfnup PythonScientific.pdf
-	cp build/latex/PythonScientific-2x1.pdf PythonScientific.pdf
+	cp build/latex/PythonScientific-2x1.pdf build/PythonScientific.pdf
 	#cd build/latex ; make all-pdf ; pdfnup python4science.pdf
 
 zip: html pdf
-	mkdir -p euroscipy_beginners_lecture_notes ;
-	cp -r build/html euroscipy_beginners_lecture_notes ;
-	cp -r data euroscipy_beginners_lecture_notes ;
-	cp PythonScientific.pdf euroscipy_beginners_lecture_notes;
-	zip -r euroscipy_beginners_lecture_notes.zip euroscipy_beginners_lecture_notes  
+	mkdir -p build/euroscipy_beginners_lecture_notes ;
+	cp -r build/html build/euroscipy_beginners_lecture_notes ;
+	cp -r data build/euroscipy_beginners_lecture_notes ;
+	cp PythonScientific.pdf build/euroscipy_beginners_lecture_notes;
+	zip -r build/euroscipy_beginners_lecture_notes.zip build/euroscipy_beginners_lecture_notes  
