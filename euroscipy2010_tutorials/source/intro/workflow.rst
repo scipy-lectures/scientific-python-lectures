@@ -26,6 +26,16 @@ Building blocks of scientific computing with Python
       :align: center
       :scale: 70
 
+.. sourcecode:: ipython
+
+    In [1]: a = 2
+
+    In [2]: print "hello"
+    hello
+
+    In [3]: %run my_script.py
+
+
 * **Numpy** : provides powerful numerical arrays objects, and routines to
   manipulate them.
 
