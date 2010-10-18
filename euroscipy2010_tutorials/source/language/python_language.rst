@@ -58,6 +58,7 @@ distinguishing features of Python.
     first_steps.rst
     pythonxy.rst
     basic_types.rst
+    assignment.rst
     control_flow.rst
     functions.rst
     reusing_code.rst
