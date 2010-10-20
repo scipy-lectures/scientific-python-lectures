@@ -32,8 +32,7 @@ etc. Some specific features of Python are as follows:
 
 * **multi-platform**: Python is available for all major operating
   systems, Windows, Linux/Unix, MacOS X, most likely your mobile phone
-OS,
-  etc.
+  OS, etc.
 
 * a very readable language with clear non-verbose syntax
 
