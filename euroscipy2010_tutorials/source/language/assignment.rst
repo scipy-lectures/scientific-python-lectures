@@ -55,3 +55,7 @@ Things to note:
 
     * mutable objects can be changed in place
     * immutable objects cannot be modified once created
+
+A very good and detailed explanation of the above issues can be found
+in David M. Beazley's article `Types and Objects in Python
+<http://www.informit.com/articles/article.aspx?p=453682>`_.
