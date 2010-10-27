@@ -36,7 +36,7 @@ and booleans::
 
 
 A Python shell can therefore replace your pocket calculator, with the
-basic arithmetic operations ``+``, ``-``, ``\*``, ``/``, ``%`` (modulo)
+basic arithmetic operations ``+``, ``-``, ``*``, ``/``, ``%`` (modulo)
 natively implemented::
 
     >>> 7 * 3.
