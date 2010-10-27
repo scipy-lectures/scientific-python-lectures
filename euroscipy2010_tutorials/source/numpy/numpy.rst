@@ -755,19 +755,27 @@ has the same shape than the array of integers::
            [9, 7]])
     >>> b = np.arange(10) 
 
-    >>> a = np.arange(12).reshape(3,4)
+    >>> a = np.arange(12).reshape(3, 4)
     >>> a
     array([[ 0,  1,  2,  3],
            [ 4,  5,  6,  7],
            [ 8,  9, 10, 11]])
-    >>> i = np.array( [ [0,1],                        
-    ...              [1,2] ] )
-    >>> j = np.array( [ [2,1],                     
-    ...              [3,3] ] )
-    >>> a[i,j]                                     
+    >>> i = np.array([0, 1, 1, 2])
+    >>> j = np.array([2, 1, 3, 3])
+    >>> a[i, j]
+    array([ 2,  5,  7, 11])
+
+    >>> i = np.array([[0, 1], [1, 2]])
+    >>> j = np.array([[2, 1], [3, 3]])
+    >>> i
+    array([[0, 1],
+           [1, 2]])
+    >>> j
+    array([[2, 1],
+           [3, 3]])
+    >>> a[i, j]
     array([[ 2,  5],
            [ 7, 11]])
-
 
 .. image:: numpy_fancy_indexing.png
    :align: center
