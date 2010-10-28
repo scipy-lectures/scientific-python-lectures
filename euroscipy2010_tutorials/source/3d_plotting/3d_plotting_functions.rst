@@ -59,13 +59,13 @@ Arbitrary regular mesh
 
     In [13]: mlab.clf()
 
-    In [14]: phi, theta = np.mgrid[0:pi:11j, 0:2*pi:11j]
+    In [14]: phi, theta = np.mgrid[0:np.pi:11j, 0:2*np.pi:11j]
 
-    In [15]: x = sin(phi)*cos(theta)
+    In [15]: x = np.sin(phi) * np.cos(theta)
 
-    In [16]: y = sin(phi)*sin(theta)
+    In [16]: y = np.sin(phi) * np.sin(theta)
 
-    In [17]: z = cos(phi)
+    In [17]: z = np.cos(phi)
 
     In [18]: mlab.mesh(x, y, z)
 
