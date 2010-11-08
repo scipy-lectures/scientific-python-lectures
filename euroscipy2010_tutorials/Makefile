@@ -5,6 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
+PYTHON        = pythonw
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -40,23 +41,23 @@ test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst source/*[a-z].rst source/summary-exercices/*.rst
 
 source/interpolation.png:
-	python data/scipy-interpolation.py
+	$(PYTHON) data/scipy-interpolation.py
 
 source/odeint-introduction.png:
-	python data/odeint-introduction.py
+	$(PYTHON) data/odeint-introduction.py
 
 source/odeint-damped-spring-mass.png:
-	python data/odeint-damped-spring-mass.py
+	$(PYTHON) data/odeint-damped-spring-mass.py
 
 source/fftpack-signals.png:
-	python data/fftpack-illustration.py
+	$(PYTHON) data/fftpack-illustration.py
 
 source/summary-exercices/cumulative-wind-speed-prediction.png:
-	python data/cumulative-wind-speed-prediction.py
+	$(PYTHON) data/cumulative-wind-speed-prediction.py
 
 # Generate as well sprog-annual-maxima.png
 source/summary-exercices/gumbell-wind-speed-prediction.png:
-	python data/gumbell-wind-speed-prediction.py
+	$(PYTHON) data/gumbell-wind-speed-prediction.py
 
 sources: source/interpolation.png \
 		 source/odeint-introduction.png \
