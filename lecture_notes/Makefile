@@ -123,3 +123,14 @@ zip: html pdf
 	cp -r data build/euroscipy_beginners_lecture_notes ;
 	cp PythonScientific.pdf build/euroscipy_beginners_lecture_notes;
 	zip -r build/euroscipy_beginners_lecture_notes.zip build/euroscipy_beginners_lecture_notes  
+
+install: html
+	rm -rf build/scipy-lectures.github.com
+	cd build/ && \
+	git clone git@github.com:scipy-lectures/scipy-lectures.github.com.git && \
+	cp -r html/* scipy-lectures.github.com && \
+	cd scipy-lectures.github.com && \
+	git add *
+	git commit -a -m 'Make install' && \
+	git push
+ 
