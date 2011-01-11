@@ -1,19 +1,8 @@
 Contents
 --------
 
-This repository gathers some course materials that may be used in the
+This repository gathers some course materials that were used in the
 intro (and some advanced) tutorials at Euroscipy 2010.
-
-* euroscipy2010_tutorials: where to put the "official" tutorials for
-  Euroscipy 2010.
-
-* course_in_french : general introduction to scientific Python, aimed
-  mostly at beginners. Covers Python, Numpy, Scipy, a bit of Matplotlib.
-  **Written in French** (alas), as it was given first at Dakar during the
-  Python African Tour (http://www.dakarlug.org/pat/).
-
-* translation_of_course_in_french : the ongoing translation of the course
-  in French.
 
 These documents are written with the rest markup language (.rst
 extension) and built using Sphinx.
@@ -21,7 +10,7 @@ extension) and built using Sphinx.
 Building instructions
 ---------------------
 
-In each directory (course_in_french, etc.), type
+Type
 
 make html
 
