@@ -4,6 +4,7 @@ initial condition y(t=0) = 1.
 
 import numpy as np
 from scipy.integrate import odeint
+import pylab as pl
 
 def calc_derivative(ypos, time):
     return -2*ypos
@@ -11,9 +12,8 @@ def calc_derivative(ypos, time):
 time_vec = np.linspace(0, 4, 40)
 yvec = odeint(calc_derivative, 1, time_vec)
 
-import pylab as P
-P.plot(time_vec, yvec)
-P.xlabel('Time [s]')
-P.ylabel('y position [m]')
-P.savefig('source/odeint-introduction.png')
+pl.plot(time_vec, yvec)
+pl.xlabel('Time [s]')
+pl.ylabel('y position [m]')
+pl.savefig('source/intro/odeint-introduction.png')
 

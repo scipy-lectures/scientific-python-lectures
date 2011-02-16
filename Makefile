@@ -10,7 +10,7 @@ PYTHON        = python
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
-ALLSPHINXOPTS   = -d build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
+ALLSPHINXOPTS   = -d build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 # Data to ship with the HTML version
 HTML_DATA = \
@@ -38,33 +38,33 @@ clean:
 	-rm -rf build/*
 
 test:
-	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst source/*[a-z].rst source/summary-exercices/*.rst
+	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst intro/*[a-z].rst advanced/*[a-z].rst intro/summary-exercices/*.rst
 
-source/interpolation.png:
+intro/interpolation.png:
 	$(PYTHON) data/scipy-interpolation.py
 
-source/odeint-introduction.png:
+intro/odeint-introduction.png:
 	$(PYTHON) data/odeint-introduction.py
 
-source/odeint-damped-spring-mass.png:
+intro/odeint-damped-spring-mass.png:
 	$(PYTHON) data/odeint-damped-spring-mass.py
 
-source/fftpack-signals.png:
+intro/fftpack-signals.png:
 	$(PYTHON) data/fftpack-illustration.py
 
-source/summary-exercices/cumulative-wind-speed-prediction.png:
+intro/summary-exercices/cumulative-wind-speed-prediction.png:
 	$(PYTHON) data/cumulative-wind-speed-prediction.py
 
 # Generate as well sprog-annual-maxima.png
-source/summary-exercices/gumbell-wind-speed-prediction.png:
+intro/summary-exercices/gumbell-wind-speed-prediction.png:
 	$(PYTHON) data/gumbell-wind-speed-prediction.py
 
-sources: source/interpolation.png \
-		 source/odeint-introduction.png \
-		 source/odeint-damped-spring-mass.png \
-		 source/fftpack-signals.png \
-		 source/summary-exercices/cumulative-wind-speed-prediction.png \
-		 source/summary-exercices/gumbell-wind-speed-prediction.png
+sources: intro/interpolation.png \
+		 intro/odeint-introduction.png \
+		 intro/odeint-damped-spring-mass.png \
+		 intro/fftpack-signals.png \
+		 intro/summary-exercices/cumulative-wind-speed-prediction.png \
+		 intro/summary-exercices/gumbell-wind-speed-prediction.png
 
 html: sources
 	mkdir -p build/html build/doctrees
@@ -118,11 +118,11 @@ pdf: latex
 	#cd build/latex ; make all-pdf ; pdfnup python4science.pdf
 
 zip: html pdf
-	mkdir -p build/euroscipy_beginners_lecture_notes ;
-	cp -r build/html build/euroscipy_beginners_lecture_notes ;
-	cp -r data build/euroscipy_beginners_lecture_notes ;
-	cp PythonScientific.pdf build/euroscipy_beginners_lecture_notes;
-	zip -r build/euroscipy_beginners_lecture_notes.zip build/euroscipy_beginners_lecture_notes  
+	mkdir -p build/scipy_lecture_notes ;
+	cp -r build/html build/scipy_lecture_notes ;
+	cp -r data build/scipy_lecture_notes ;
+	cp PythonScientific.pdf build/scipy_lecture_notes;
+	zip -r build/scipy_lecture_notes.zip build/scipy_lecture_notes  
 
 install: html
 	rm -rf build/scipy-lectures.github.com

@@ -65,3 +65,7 @@ on github (this site) and click on the `fork` button, on the top right of this
 page. You can use git to pull from your `fork`, and push back to it the 
 changes. If you want to contribute the changes back, just fill a `pull request`,
 using the button on the top of your fork's page.
+
+Please refrain from modifying the Makefile unless it is absolutely
+necessary. The figure should be generated from Python source files and
+rst files using the plot directive Sphinx extension.
