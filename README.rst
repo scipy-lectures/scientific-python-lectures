@@ -21,15 +21,19 @@ reviewed and edited by the original authors.
 Building instructions
 ---------------------
 
-Type::
+To generate the html output for on-screen display, Type::
 
     make html
 
-to generate the html output in build/ (from the files in source/), and::
+the generated html files can be found in `build/html`
+
+To generate the pdf file for printing::
 
     make pdf
 
-should generate a pdf output as well, but there may be bugs.
+The pdf builder is a pointy and you might have some TeX errors. Tweaking
+the layout in the rst files is usually enough to work around these
+problems.
 
 Editorial policy
 -----------------

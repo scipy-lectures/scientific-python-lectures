@@ -171,8 +171,7 @@ The :mod:`eigen` module
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 * ``arpack``
-  * a collection of Fortran77 subroutines designed to
-    solve large scale eigenvalue problems
+  * a collection of Fortran77 subroutines designed to solve large scale eigenvalue problems
 
 * ``lobpcg`` (Locally Optimal Block Preconditioned Conjugate
   Gradient Method)

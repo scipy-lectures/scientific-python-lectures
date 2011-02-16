@@ -108,8 +108,8 @@ Then you can manipulate them::
     >>> (x+y)**2
     (x + y)**2
 
-Symbols can now be manipulated using some of python operators: +, -,
-*, ** (arithmetic), &, |, ~ , >>, << (boolean).
+Symbols can now be manipulated using some of python operators: +, -, *, ** 
+(arithmetic), &, |, ~ , >>, << (boolean).
 
 
 
@@ -153,7 +153,7 @@ exponents), trigsimp (for trigonometrical expressions) , logcombine,
 radsimp, together.
 
 Exercises
---------
+---------
 
   1. Calculate the expanded form of :math:`(x+y)^6`.
   2. Symplify the trigonometrical expression sin(x) / cos(x)
@@ -341,8 +341,7 @@ Exercises
 ---------
 
   1. Solve the system of equations x + y = 2, 2*x + y = 0
-  2. Are there boolean values x, y that make (~x | y) & (~y | x) true
-  ?
+  2. Are there boolean values x, y that make (~x | y) & (~y | x) true?
 
 
 .. Polynomial computations
