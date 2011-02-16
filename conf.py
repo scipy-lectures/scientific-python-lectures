@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u"Euroscipy 2010 tutorials"
+project = u"Scipy lecture notes"
 copyright = u'2010'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -108,10 +108,10 @@ html_theme_options = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "Euroscipy 2010 tutorials"
+html_title = "Scipy lecture notes"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = "Euroscipy 2010"
+#html_short_title = "Scipy"
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -193,7 +193,7 @@ latex_logo = 'euroscipy_back.pdf'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+latex_use_parts = False
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
@@ -205,6 +205,7 @@ latex_logo = 'euroscipy_back.pdf'
 latex_preamble = """
 \definecolor{VerbatimColor}{rgb}{0.95,1,0.833}
 \definecolor{VerbatimBorderColor}{rgb}{0.6,0.6,0.6}
+\setcounter{tocdepth}{2}
 """
 
 latex_elements = {

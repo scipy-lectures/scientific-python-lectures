@@ -1,23 +1,74 @@
 Python Scientific Lecture Notes 
 ===================================================================
 
+.. raw:: html
+
+  <style type="text/css">
+    div.bodywrapper blockquote {
+        margin: 0 ;
+    }
+
+    div.toctree-wrapper ul {
+        margin: 0 ;
+        padding-left: 0px ;
+    }
+
+    li.toctree-l1 {
+        padding: 0 ;
+        list-style-type: none;
+        font-size: 150% ;
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+        font-weight: normal;
+        color: #20435c;
+        margin-left: 0;
+        margin-bottom: 1em;
+        font-weight: bold;
+        }
+
+    li.toctree-l1 a {
+        padding: 0 0 0 10px ;
+    }
+
+    li.toctree-l2 {
+        padding: 0.25em 0 0.25em 0 ;
+        list-style-type: none;
+        background-color: #FFFFFF;
+        font-size: 90% ;
+        font-weight: bold;
+    }
+
+    li.toctree-l2 ul {
+        padding-left: 40px ;
+    }
+
+    li.toctree-l3 {
+        font-size: 70% ;
+        list-style-type: square;
+        font-weight: normal;
+    }
+
+    li.toctree-l4 {
+        font-size: 85% ;
+        list-style-type: circle;
+        font-weight: normal;
+    }
+
+  </style>
+
+
+
 .. only:: html
 
-    Contents:
+    Download printable version: :download:`PythonScientific.pdf`
+
+
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
+   :numbered:
 
-   intro/intro.rst
-   intro/workflow.rst 
-   intro/language/python_language.rst
-   intro/numpy/numpy.rst 
-   intro/help/help.rst
-   intro/matplotlib/matplotlib.rst 
-   intro/scipy.rst
-   advanced/scipy_sparse/index.rst
-   advanced/sympy.rst
-   advanced/3d_plotting/index.rst
-   advanced/advanced_numpy/index.rst
+   intro/index.rst
+   advanced/index.rst
 
 
