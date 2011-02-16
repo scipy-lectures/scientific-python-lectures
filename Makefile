@@ -114,7 +114,7 @@ linkcheck:
 
 pdf: latex
 	cd build/latex ; make all-pdf ; pdfnup PythonScientific.pdf
-	cp build/latex/PythonScientific-2x1.pdf build/PythonScientific.pdf
+	cp build/latex/PythonScientific-nup.pdf build/PythonScientific.pdf
 	#cd build/latex ; make all-pdf ; pdfnup python4science.pdf
 
 zip: html pdf
