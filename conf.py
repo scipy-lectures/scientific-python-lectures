@@ -193,7 +193,7 @@ latex_logo = 'euroscipy_back.pdf'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-latex_use_parts = False
+latex_use_parts = True
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []
