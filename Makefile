@@ -114,7 +114,7 @@ linkcheck:
 
 pdf: latex
 	cd build/latex ; make all-pdf ; pdfnup PythonScientific.pdf
-	cp build/latex/PythonScientific-nup.pdf build/PythonScientific.pdf
+	cp build/latex/PythonScientific-nup.pdf PythonScientific.pdf
 	#cd build/latex ; make all-pdf ; pdfnup python4science.pdf
 
 zip: html pdf
@@ -124,13 +124,13 @@ zip: html pdf
 	cp PythonScientific.pdf build/scipy_lecture_notes;
 	zip -r build/scipy_lecture_notes.zip build/scipy_lecture_notes  
 
-install: html
+install: pdf html 
 	rm -rf build/scipy-lectures.github.com
 	cd build/ && \
 	git clone git@github.com:scipy-lectures/scipy-lectures.github.com.git && \
 	cp -r html/* scipy-lectures.github.com && \
 	cd scipy-lectures.github.com && \
-	git add *
+	git add * && \
 	git commit -a -m 'Make install' && \
 	git push
  

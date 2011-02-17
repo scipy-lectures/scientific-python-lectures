@@ -205,7 +205,7 @@ latex_use_parts = True
 latex_preamble = """
 \definecolor{VerbatimColor}{rgb}{0.95,1,0.833}
 \definecolor{VerbatimBorderColor}{rgb}{0.6,0.6,0.6}
-\setcounter{tocdepth}{2}
+\setcounter{tocdepth}{1}
 """
 
 latex_elements = {
