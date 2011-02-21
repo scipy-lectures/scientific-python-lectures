@@ -119,8 +119,7 @@ Signal processing: ``scipy.signal``
     pl.plot(t, signal.detrend(x), linewidth=3)
 
   .. plot:: demo_detrend.py
-    :hide-links:
-    :scale: 50
+    :scale: 70
 
 * Resample: resample a signal to `n` points using FFT. ::
 
@@ -131,8 +130,7 @@ Signal processing: ``scipy.signal``
     pl.plot(t[::2], signal.resample(x, 50), 'ko')
 
   .. plot:: demo_resample.py
-    :hide-links:
-    :scale: 50
+    :scale: 70
 
   .. only:: latex
 
@@ -191,8 +189,7 @@ the random process's PDF (probability density function): ::
     In [2]: pl.plot(bins, b)
 
 .. plot:: normal_distribution.py
-    :hide-links:
-    :scale: 50
+    :scale: 70
 
 If we know that the random process belongs to a given family of random
 processes, such as normal processes, we can do a maximum-likelihood fit
@@ -391,6 +388,7 @@ The solver requires more iterations at start. The final trajectory is
 seen on the Matplotlib figure:
 
   .. plot:: odeint_introduction.py
+    :scale: 70
 
 Another example with ``odeint`` will be a damped spring-mass oscillator
 (2nd order oscillator). The position of a mass attached to a spring obeys
@@ -427,6 +425,7 @@ Thus the function will calculate the velocity and acceleration by::
 The final position and velocity are shown on the following Matplotlib figure:
 
 .. plot:: odeint_damped_spring_mass.py
+    :scale: 70
 
 There is no Partial Differential Equations (PDE) solver
 in scipy. Some PDE packages are written in Python, such
@@ -465,6 +464,7 @@ because the resulting power is symmetric::
     >>> power = np.abs(sig_fft)[pidxs]
 
 .. plot:: fftpack_frequency.py
+    :scale: 70
 
 Thus the signal frequency can be found by::
 
@@ -484,6 +484,7 @@ The resulting signal can be computed by the ``ifft`` function::
 The result is shown on the Matplotlib figure:
 
 .. plot:: fftpack_signals.py
+    :scale: 70
 
 Interpolation: ``scipy.interpolate``
 ------------------------------------
@@ -520,6 +521,7 @@ keyword argument::
 The results are now gathered on the following Matplotlib figure:
 
 .. plot:: scipy_interpolation.py
+    :scale: 70
 
 ``scipy.interpolate.interp2d`` is similar to ``interp1d``, but for 2-D
 arrays. Note that for the ``interp`` family, the computed time must stay
@@ -554,7 +556,7 @@ and plot it:
     >>> plt.show() # doctest:+SKIP
 
 .. image:: minima-function.png
-   :align: center
+   :scale: 70
 
 This function has a global minimum around -1.3 and a local minimum around 3.8.
 
