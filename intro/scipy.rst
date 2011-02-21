@@ -424,13 +424,9 @@ Thus the function will calculate the velocity and acceleration by::
     >>> time_vec = np.linspace(0, 10, 100)
     >>> yarr = odeint(calc_deri, (1, 0), time_vec, args=(nu_coef, om_coef))
 
-The final position and velocity are shown on a Matplotlib figure
-built with the odeint-damped-spring-mass.py_ script.
+The final position and velocity are shown on the following Matplotlib figure:
 
-.. image:: odeint-damped-spring-mass.png
-   :align: center
-
-.. _odeint-damped-spring-mass.py: data/odeint-damped-spring-mass.py
+.. plot:: odeint_damped_spring_mass.py
 
 There is no Partial Differential Equations (PDE) solver
 in scipy. Some PDE packages are written in Python, such

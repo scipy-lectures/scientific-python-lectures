@@ -21,5 +21,4 @@ yarr = odeint(calc_deri, (1, 0), time_vec, args=(nu_coef, om_coef))
 pl.plot(time_vec, yarr[:, 0], label='y')
 pl.plot(time_vec, yarr[:, 1], label="y'")
 pl.legend()
-pl.savefig('intro/odeint-damped-spring-mass.png')
 
