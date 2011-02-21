@@ -388,12 +388,9 @@ can be obtained by::
     array([31, 35, 43, 49, 53, 57, 59, 63, 65, 69], dtype=int32)
 
 The solver requires more iterations at start. The final trajectory is
-seen on the Matplotlib figure computed with odeint-introduction.py_.
+seen on the Matplotlib figure:
 
-.. image:: odeint-introduction.png
-   :align: center
-
-.. _odeint-introduction.py : data/odeint-introduction.py
+  .. plot:: odeint_introduction.py
 
 Another example with ``odeint`` will be a damped spring-mass oscillator
 (2nd order oscillator). The position of a mass attached to a spring obeys

@@ -19,7 +19,6 @@ HTML_DATA = \
 	data/sprog-windspeeds.npy \
 	data/gumbell-wind-speed-prediction.py \
 	data/scipy-interpolation.py \
-	data/odeint-introduction.py \
 	data/odeint-damped-spring-mass.py \
 	data/fftpack-illustration.py
 
@@ -43,9 +42,6 @@ test:
 intro/interpolation.png:
 	$(PYTHON) data/scipy-interpolation.py
 
-intro/odeint-introduction.png:
-	$(PYTHON) data/odeint-introduction.py
-
 intro/odeint-damped-spring-mass.png:
 	$(PYTHON) data/odeint-damped-spring-mass.py
 
@@ -60,7 +56,6 @@ intro/summary-exercices/gumbell-wind-speed-prediction.png:
 	$(PYTHON) data/gumbell-wind-speed-prediction.py
 
 sources: intro/interpolation.png \
-		 intro/odeint-introduction.png \
 		 intro/odeint-damped-spring-mass.png \
 		 intro/fftpack-signals.png \
 		 intro/summary-exercices/cumulative-wind-speed-prediction.png \
