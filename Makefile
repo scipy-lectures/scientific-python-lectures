@@ -18,7 +18,6 @@ HTML_DATA = \
 	data/cumulative-wind-speed-prediction.py \
 	data/sprog-windspeeds.npy \
 	data/gumbell-wind-speed-prediction.py \
-	data/scipy-interpolation.py \
 
 .PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip
 
@@ -37,9 +36,6 @@ clean:
 test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst intro/*[a-z].rst advanced/*[a-z].rst intro/summary-exercices/*.rst
 
-intro/interpolation.png:
-	$(PYTHON) data/scipy-interpolation.py
-
 intro/summary-exercices/cumulative-wind-speed-prediction.png:
 	$(PYTHON) data/cumulative-wind-speed-prediction.py
 
@@ -47,8 +43,7 @@ intro/summary-exercices/cumulative-wind-speed-prediction.png:
 intro/summary-exercices/gumbell-wind-speed-prediction.png:
 	$(PYTHON) data/gumbell-wind-speed-prediction.py
 
-sources: intro/interpolation.png \
-		 intro/summary-exercices/cumulative-wind-speed-prediction.png \
+sources: intro/summary-exercices/cumulative-wind-speed-prediction.png \
 		 intro/summary-exercices/gumbell-wind-speed-prediction.png
 
 html: sources
