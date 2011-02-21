@@ -95,15 +95,9 @@ So the storm wind speed occuring every 50 years can be guessed by::
     >>> fifty_wind
     array([ 32.97989825])
 
-The results are now gathered on a Matplotlib figure.
+The results are now gathered on a Matplotlib figure:
 
-.. image:: cumulative-wind-speed-prediction.png
-   :align: center
-
-All those steps have been gathered in the script
-cumulative-wind-speed-prediction.py_.
-
-.. _cumulative-wind-speed-prediction.py: ../data/cumulative-wind-speed-prediction.py
+.. plot:: pyplots/cumulative_wind_speed_prediction.py
 
 Exercice with the Gumbell distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

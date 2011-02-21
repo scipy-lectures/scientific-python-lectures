@@ -15,7 +15,6 @@ ALLSPHINXOPTS   = -d build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 # Data to ship with the HTML version
 HTML_DATA = \
 	data/max-speeds.npy \
-	data/cumulative-wind-speed-prediction.py \
 	data/sprog-windspeeds.npy \
 	data/gumbell-wind-speed-prediction.py \
 
@@ -36,15 +35,11 @@ clean:
 test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst intro/*[a-z].rst advanced/*[a-z].rst intro/summary-exercices/*.rst
 
-intro/summary-exercices/cumulative-wind-speed-prediction.png:
-	$(PYTHON) data/cumulative-wind-speed-prediction.py
-
 # Generate as well sprog-annual-maxima.png
 intro/summary-exercices/gumbell-wind-speed-prediction.png:
 	$(PYTHON) data/gumbell-wind-speed-prediction.py
 
-sources: intro/summary-exercices/cumulative-wind-speed-prediction.png \
-		 intro/summary-exercices/gumbell-wind-speed-prediction.png
+sources: intro/summary-exercices/gumbell-wind-speed-prediction.png
 
 html: sources
 	mkdir -p build/html build/doctrees
