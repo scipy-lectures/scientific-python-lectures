@@ -23,7 +23,7 @@ axes = pl.axes([0.3, 0.3, 0.5, 0.5])
 pl.title('Peak frequency')
 pl.plot(freqs[:8], power[:8])
 pl.setp(axes, yticks=[])
-pl.savefig('source/fftpack-frequency.png')
+pl.savefig('intro/fftpack-frequency.png')
 
 sig_fft[np.abs(sample_freq) > freq] = 0
 main_sig = fftpack.ifft(sig_fft)
@@ -33,5 +33,5 @@ pl.plot(time_vec, sig)
 pl.plot(time_vec, main_sig, linewidth=3)
 pl.ylabel('Amplitude')
 pl.xlabel('Time [s]')
-pl.savefig('source/fftpack-signals.png')
+pl.savefig('intro/fftpack-signals.png')
 
