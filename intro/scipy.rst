@@ -118,7 +118,7 @@ Signal processing: ``scipy.signal``
     pl.plot(t, x, linewidth=3)
     pl.plot(t, signal.detrend(x), linewidth=3)
 
-  .. plot:: demo_detrend.py
+  .. plot:: pyplots/demo_detrend.py
     :scale: 70
 
 * Resample: resample a signal to `n` points using FFT. ::
@@ -129,7 +129,7 @@ Signal processing: ``scipy.signal``
     pl.plot(t, x, linewidth=3)
     pl.plot(t[::2], signal.resample(x, 50), 'ko')
 
-  .. plot:: demo_resample.py
+  .. plot:: pyplots/demo_resample.py
     :scale: 70
 
   .. only:: latex
@@ -188,7 +188,7 @@ the random process's PDF (probability density function): ::
     In [1]: pl.plot(bins, histogram)
     In [2]: pl.plot(bins, b)
 
-.. plot:: normal_distribution.py
+.. plot:: pyplots/normal_distribution.py
     :scale: 70
 
 If we know that the random process belongs to a given family of random
@@ -387,7 +387,7 @@ can be obtained by::
 The solver requires more iterations at start. The final trajectory is
 seen on the Matplotlib figure:
 
-  .. plot:: odeint_introduction.py
+  .. plot:: pyplots/odeint_introduction.py
     :scale: 70
 
 Another example with ``odeint`` will be a damped spring-mass oscillator
@@ -424,7 +424,7 @@ Thus the function will calculate the velocity and acceleration by::
 
 The final position and velocity are shown on the following Matplotlib figure:
 
-.. plot:: odeint_damped_spring_mass.py
+.. plot:: pyplots/odeint_damped_spring_mass.py
     :scale: 70
 
 There is no Partial Differential Equations (PDE) solver
@@ -463,7 +463,7 @@ because the resulting power is symmetric::
     >>> freqs = sample_freq[pidxs]
     >>> power = np.abs(sig_fft)[pidxs]
 
-.. plot:: fftpack_frequency.py
+.. plot:: pyplots/fftpack_frequency.py
     :scale: 70
 
 Thus the signal frequency can be found by::
@@ -483,7 +483,7 @@ The resulting signal can be computed by the ``ifft`` function::
 
 The result is shown on the Matplotlib figure:
 
-.. plot:: fftpack_signals.py
+.. plot:: pyplots/fftpack_signals.py
     :scale: 70
 
 Interpolation: ``scipy.interpolate``
@@ -520,7 +520,7 @@ keyword argument::
 
 The results are now gathered on the following Matplotlib figure:
 
-.. plot:: scipy_interpolation.py
+.. plot:: pyplots/scipy_interpolation.py
     :scale: 70
 
 ``scipy.interpolate.interp2d`` is similar to ``interp1d``, but for 2-D
