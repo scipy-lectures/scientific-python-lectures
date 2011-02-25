@@ -167,7 +167,7 @@ Lists are *mutable* objects and can be modified::
     i `th` element of a list has a complexity O(i). For collections of
     numerical data that all have the same type, it is **more efficient** to use
     the **array** type provided by the **Numpy** module, which is a sequence
-    of regularly-spaced chunks of memory containing fixed-sized data istems.
+    of regularly-spaced chunks of memory containing fixed-sized data items.
     With Numpy arrays, accessing the i`th` element has a complexity of O(1)
     because the elements are regularly spaced in memory.
 

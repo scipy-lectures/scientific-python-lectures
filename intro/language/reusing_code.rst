@@ -172,7 +172,7 @@ Let us create a module `demo` contained in the file `demo.py`:
 In this file, we defined two functions `print_a` and `print_b`. Suppose
 we want to call the `print_a` function from the interpreter. We could
 execute the file as a script, but since we just want to have access to
-the function `test_a`, we are rather going to **import it as a module**.
+the function `print_a`, we are rather going to **import it as a module**.
 The syntax is as follows.
 
 
