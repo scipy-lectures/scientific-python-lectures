@@ -22,6 +22,7 @@ Coordinate Format (COO)
     * facilitates fast conversion among sparse formats
     * when converting to other format (usually CSR or CSC), duplicate
       entries are summed together
+
         * facilitates efficient construction of finite element 
           matrices
 

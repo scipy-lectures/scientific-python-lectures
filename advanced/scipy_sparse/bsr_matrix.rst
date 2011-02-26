@@ -3,6 +3,7 @@ Block Compressed Row Format (BSR)
 
 * basically a CSR with dense sub-matrices of fixed shape instead of scalar
   items
+
     * block size `(R, C)` must evenly divide the shape of the matrix 
       `(M, N)`
     * three NumPy arrays: `indices`, `indptr`, `data`
