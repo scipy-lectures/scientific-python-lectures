@@ -473,18 +473,18 @@ To move in a folder hierarchy:
 
     * os (system routines) and os.path (path management) modules::
 
-      >>> import os, os.path  
-      >>> current_dir = os.getcwd()
-      >>> current_dir
-      '/home/gouillar/sandbox'
-      >>> data_dir = os.path.join(current_dir, 'data')
-      >>> data_dir
-      '/home/gouillar/sandbox/data'
-      >>> if not(os.path.exists(data_dir)):
-      ...     os.mkdir('data')
-      ...     print "created 'data' folder"
-      ...     
-      >>> os.chdir(data_dir) # or in Ipython : cd data
+    >>> import os, os.path  
+    >>> current_dir = os.getcwd()
+    >>> current_dir
+    '/home/gouillar/sandbox'
+    >>> data_dir = os.path.join(current_dir, 'data')
+    >>> data_dir
+    '/home/gouillar/sandbox/data'
+    >>> if not(os.path.exists(data_dir)):
+    ...     os.mkdir('data')
+    ...     print "created 'data' folder"
+    ...     
+    >>> os.chdir(data_dir) # or in Ipython : cd data
 
 IPython can actually be used like a shell, thanks to its integrated features and
 the os module.
