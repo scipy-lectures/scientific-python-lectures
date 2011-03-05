@@ -979,7 +979,7 @@ use different colormaps, crop the image, change some parts of the image.
 
 .. sourcecode:: ipython
 
-    In [6]: pylab.imshow(lena, pl.cm.gray)
+    In [6]: pylab.imshow(lena, pylab.cm.gray)
     In [7]: # ou
     In [8]: gray()
 
