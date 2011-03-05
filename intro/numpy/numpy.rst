@@ -451,40 +451,40 @@ To move in a folder hierarchy:
     * use the iPython commands: ``cd``, ``pwd``,
       tab-completion.
 
-.. sourcecode:: ipython
-
-  In [1]: mkdir python_scripts
-
-  In [2]: cd python_scripts/ 
-  /home/gouillar/python_scripts
-
-  In [3]: pwd
-  Out[3]: '/home/gouillar/python_scripts'
-
-  In [4]: ls
-
-  In [5]: np.savetxt('integers.txt', np.arange(10))
-
-  In [6]: ls
-  integers.txt
+    .. sourcecode:: ipython
+     
+      In [1]: mkdir python_scripts
+     
+      In [2]: cd python_scripts/ 
+      /home/gouillar/python_scripts
+     
+      In [3]: pwd
+      Out[3]: '/home/gouillar/python_scripts'
+     
+      In [4]: ls
+     
+      In [5]: np.savetxt('integers.txt', np.arange(10))
+     
+      In [6]: ls
+      integers.txt
 
 
 .. 
 
     * os (system routines) and os.path (path management) modules::
 
-  >>> import os, os.path  
-  >>> current_dir = os.getcwd()
-  >>> current_dir
-  '/home/gouillar/sandbox'
-  >>> data_dir = os.path.join(current_dir, 'data')
-  >>> data_dir
-  '/home/gouillar/sandbox/data'
-  >>> if not(os.path.exists(data_dir)):
-        ...     os.mkdir('data')
-        ...     print "created 'data' folder"
-        ...     
-  >>> os.chdir(data_dir) # or in Ipython : cd data
+      >>> import os, os.path  
+      >>> current_dir = os.getcwd()
+      >>> current_dir
+      '/home/gouillar/sandbox'
+      >>> data_dir = os.path.join(current_dir, 'data')
+      >>> data_dir
+      '/home/gouillar/sandbox/data'
+      >>> if not(os.path.exists(data_dir)):
+      ...     os.mkdir('data')
+      ...     print "created 'data' folder"
+      ...     
+      >>> os.chdir(data_dir) # or in Ipython : cd data
 
 IPython can actually be used like a shell, thanks to its integrated features and
 the os module.
@@ -996,24 +996,24 @@ use different colormaps, crop the image, change some parts of the image.
     * create a mask corresponding to the pixels we want to be black.
       The mask is defined by this condition ``(y-256)**2 + (x-256)**2``
       
-.. sourcecode:: ipython
-
-    In [15]: y, x = np.ogrid[0:512,0:512] # x and y indices of pixels 
-    In [16]: y.shape, x.shape
-    Out[16]: ((512, 1), (1, 512))
-    In [17]: centerx, centery = (256, 256) # center of the image
-    In [18]: mask = ((y - centery)**2 + (x - centerx)**2)> 230**2
-
-then
+    .. sourcecode:: ipython
+     
+        In [15]: y, x = np.ogrid[0:512,0:512] # x and y indices of pixels 
+        In [16]: y.shape, x.shape
+        Out[16]: ((512, 1), (1, 512))
+        In [17]: centerx, centery = (256, 256) # center of the image
+        In [18]: mask = ((y - centery)**2 + (x - centerx)**2)> 230**2
+     
+  then
 
     * assign the value 0 to the pixels of the image corresponding to the mask.
       The syntax is extremely simple and intuitive:
 
-.. sourcecode:: ipython
-
-    In [19]: lena[mask]=0
-    In [20]: imshow(lena)
-    Out[20]: <matplotlib.image.AxesImage object at 0xa36534c>
+    .. sourcecode:: ipython
+     
+        In [19]: lena[mask]=0
+        In [20]: imshow(lena)
+        Out[20]: <matplotlib.image.AxesImage object at 0xa36534c>
 
 * Subsidiary question : copy all instructions of this exercise in a script
   called ``lena_locket.py`` then execute this script in iPython with ``%run
@@ -1031,7 +1031,7 @@ then
     * Obtain a subset of the elements of an array and/or modify their values
       with masks::
   
-  >>> a[a<0] = 0
+      >>> a[a<0] = 0
 
     * Know miscellaneous operations on arrays, like finding the mean or max
       (``array.max()``, ``array.mean()``). No need to retain everything, but
