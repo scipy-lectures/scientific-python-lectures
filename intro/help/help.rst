@@ -15,13 +15,13 @@ help. Here are some ways to get information:
   type the beginning of the function's name and use tab completion to
   display the matching functions.
 
-.. sourcecode:: ipython
-
-    In [204]: help np.v
-    np.vander     np.vdot       np.version    np.void0      np.vstack
-    np.var        np.vectorize  np.void       np.vsplit     
-    
-    In [204]: help np.vander
+  .. sourcecode:: ipython
+  
+      In [204]: help np.v
+      np.vander     np.vdot       np.version    np.void0      np.vstack
+      np.var        np.vectorize  np.void       np.vsplit     
+      
+      In [204]: help np.vander
 	
 In Ipython it is not possible to open a separated window for help and
 documentation; however one can always open a second ``Ipython`` shell
@@ -37,9 +37,9 @@ just to display help and docstrings...
   docstrings are found on this website.
 
 
-.. image:: scipy_doc.png
-   :align: center
-   :scale: 80
+  .. image:: scipy_doc.png
+     :align: center
+     :scale: 80
 
 * Numpy's and Scipy's documentation is enriched and updated on a regular
   basis by users on a wiki http://docs.scipy.org/numpy/. As a result,
@@ -50,9 +50,9 @@ just to display help and docstrings...
   contribute to an open-source project and improve the tools you are
   using!
 
-.. image:: docwiki.png
-   :align: center
-   :scale: 80
+  .. image:: docwiki.png
+     :align: center
+     :scale: 80
 
 * Scipy's cookbook http://www.scipy.org/Cookbook gives recipes on many
   common problems frequently encountered, such as fitting data points,
@@ -65,9 +65,9 @@ just to display help and docstrings...
   learning by example. More standard documentation is also available. 
 
 
-.. image:: matplotlib.png
-   :align: center
-   :scale: 80
+  .. image:: matplotlib.png
+     :align: center
+     :scale: 80
 
 * Mayavi's website
   http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/
@@ -75,9 +75,9 @@ just to display help and docstrings...
   http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/auto/examples.html
   in which one can browse for different visualization solutions.
 
-.. image:: mayavi_website.png
-   :align: center
-   :scale: 80
+  .. image:: mayavi_website.png
+     :align: center
+     :scale: 80
 
 Finally, two more "technical" possibilities are useful as well:
 
@@ -86,41 +86,41 @@ Finally, two more "technical" possibilities are useful as well:
   the exact name  of a function.
 
 
-.. sourcecode:: ipython
-
-    In [3]: import numpy as np
-    In [4]: %psearch np.diag*
-    np.diag
-    np.diagflat
-    np.diagonal
+  .. sourcecode:: ipython
+  
+      In [3]: import numpy as np
+      In [4]: %psearch np.diag*
+      np.diag
+      np.diagflat
+      np.diagonal
 
 * numpy.lookfor looks for keywords inside the docstrings of specified modules.
 
-.. sourcecode:: ipython
-
-    In [45]: numpy.lookfor('convolution')
-    Search results for 'convolution'
-    --------------------------------
-    numpy.convolve
-        Returns the discrete, linear convolution of two one-dimensional
-    sequences.
-    numpy.bartlett
-        Return the Bartlett window.
-    numpy.correlate
-        Discrete, linear correlation of two 1-dimensional sequences.
-    In [46]: numpy.lookfor('remove', module='os')
-    Search results for 'remove'
-    ---------------------------
-    os.remove
-        remove(path)
-    os.removedirs
-        removedirs(path)
-    os.rmdir
-        rmdir(path)
-    os.unlink
-        unlink(path)
-    os.walk
-        Directory tree generator.
+  .. sourcecode:: ipython
+  
+      In [45]: numpy.lookfor('convolution')
+      Search results for 'convolution'
+      --------------------------------
+      numpy.convolve
+          Returns the discrete, linear convolution of two one-dimensional
+      sequences.
+      numpy.bartlett
+          Return the Bartlett window.
+      numpy.correlate
+          Discrete, linear correlation of two 1-dimensional sequences.
+      In [46]: numpy.lookfor('remove', module='os')
+      Search results for 'remove'
+      ---------------------------
+      os.remove
+          remove(path)
+      os.removedirs
+          removedirs(path)
+      os.rmdir
+          rmdir(path)
+      os.unlink
+          unlink(path)
+      os.walk
+          Directory tree generator.
 
 
 

@@ -968,28 +968,28 @@ use different colormaps, crop the image, change some parts of the image.
 
 * Let's use the imshow function of pylab to display the image.
 
-.. sourcecode:: ipython
-    
-    In [3]: import pylab 
-    In [4]: lena = scipy.lena()
-    In [5]: pylab.imshow(lena)
+  .. sourcecode:: ipython
+      
+      In [3]: import pylab 
+      In [4]: lena = scipy.lena()
+      In [5]: pylab.imshow(lena)
 
 * Lena is then displayed in false colors. A colormap must be specified for her
   to be displayed in grey.
 
-.. sourcecode:: ipython
-
-    In [6]: pylab.imshow(lena, pylab.cm.gray)
-    In [7]: # ou
-    In [8]: gray()
+  .. sourcecode:: ipython
+  
+      In [6]: pylab.imshow(lena, pylab.cm.gray)
+      In [7]: # ou
+      In [8]: gray()
 
 * Create an array of the image with a narrower centring : for example,
   remove 30 pixels from all the borders of the image. To check the result,
   display this new array with ``imshow``.
 
-.. sourcecode:: ipython
-
-    In [9]: crop_lena = lena[30:-30,30:-30]
+  .. sourcecode:: ipython
+  
+      In [9]: crop_lena = lena[30:-30,30:-30]
 
 * We will now frame Lena's face with a black locket. For this, we need to
 

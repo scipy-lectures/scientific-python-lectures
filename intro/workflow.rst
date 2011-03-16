@@ -22,18 +22,18 @@ Building blocks of scientific computing with Python
 
   http://ipython.scipy.org/moin/
  
-.. image:: snapshot_ipython.png
-      :align: center
-      :scale: 70
-
-.. sourcecode:: ipython
-
-    In [1]: a = 2
-
-    In [2]: print "hello"
-    hello
-
-    In [3]: %run my_script.py
+  .. image:: snapshot_ipython.png
+        :align: center
+        :scale: 70
+  
+  .. sourcecode:: ipython
+  
+      In [1]: a = 2
+  
+      In [2]: print "hello"
+      hello
+  
+      In [3]: %run my_script.py
 
 
 * **Numpy** : provides powerful numerical arrays objects, and routines to
@@ -70,19 +70,19 @@ Building blocks of scientific computing with Python
 
   http://matplotlib.sourceforge.net/
 
-.. image:: random_c.jpg
-      :scale: 70
-
-.. image:: hexbin_demo.png
-      :scale: 50
+  .. image:: random_c.jpg
+        :scale: 70
+  
+  .. image:: hexbin_demo.png
+        :scale: 50
   
 
 * **Mayavi** : 3-D visualization
   
   http://code.enthought.com/projects/mayavi/
 
-.. image:: example_surface_from_irregular_data.jpg
-      :scale: 60
+  .. image:: example_surface_from_irregular_data.jpg
+        :scale: 60
 
 * and many others.   
 
