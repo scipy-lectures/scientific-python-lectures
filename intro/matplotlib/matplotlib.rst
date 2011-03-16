@@ -39,7 +39,7 @@ Simple Plots
 
 Let's start an interactive session::
 
-    $python ipython.py -pylab
+    $ ipython -pylab
 
 This brings us to the IPython prompt:
 
@@ -192,54 +192,54 @@ There are three possibilities to set them:
 
 Lines have several properties as shown in the following table:
 
-=============== ========================================
+=============== =====================================================================
 Property        Value
-=============== ========================================
+=============== =====================================================================
 alpha           alpha transparency on 0-1 scale
 antialiased     True or False - use antialised rendering
 color           matplotlib color arg
 data_clipping   whether to use numeric to clip data
 label           string optionally used for legend
-linestyle       one of - : -. -
+linestyle       one of ``-`` ``:`` ``-.`` ``-``
 linewidth       float, the line width in points
-marker          one of + , o . s v x > <, etc
+marker          one of ``+`` ``,`` ``o`` ``.`` ``s`` ``v`` ``x`` ``>`` ``<``, etc
 markeredgewidth line width around the marker symbol
 markeredgecolor edge color if a marker is used
 markerfacecolor face color if a marker is used
 markersize      size of the marker in points
-=============== ========================================
+=============== =====================================================================
 
 There are many line styles that can be specified with symbols:
 
 =========== ======================================
 Symbol      Description
 =========== ======================================
-    \-      solid line
-    --      dashed line
-    -.      dash-dot line
-    :       dotted line
-    .       points
-    ,       pixels
-    o       circle symbols
-    ^       triangle up symbols
-    v       triangle down symbols
-    <       triangle left symbols
-    >       triangle right symbols
-    s       square symbols
-   \+       plus symbols
-    x       cross symbols
-    D       diamond symbols
-    d       thin diamond symbols
-    1       tripod down symbols
-    2       tripod up symbols
-    3       tripod left symbols
-    4       tripod right symbols
-    h       hexagon symbols
-    H       rotated hexagon symbols
-    p       pentagon symbols
-   \|       vertical line symbols
-    \_       horizontal line symbols
-    steps   use gnuplot style 'steps' # kwarg only
+ ``-``      solid line
+ ``--``     dashed line
+ ``-.``     dash-dot line
+ ``:``      dotted line
+ ``.``      points
+ ``,``      pixels
+ ``o``      circle symbols
+ ``^``      triangle up symbols
+ ``v``      triangle down symbols
+ ``<``      triangle left symbols
+ ``>``      triangle right symbols
+ ``s``      square symbols
+ ``+``      plus symbols
+ ``x``      cross symbols
+ ``D``      diamond symbols
+ ``d``      thin diamond symbols
+ ``1``      tripod down symbols
+ ``2``      tripod up symbols
+ ``3``      tripod left symbols
+ ``4``      tripod right symbols
+ ``h``      hexagon symbols
+ ``H``      rotated hexagon symbols
+ ``p``      pentagon symbols
+ ``|``      vertical line symbols
+ ``_``      horizontal line symbols
+ ``steps``  use gnuplot style 'steps' # kwarg only
 =========== ======================================
  
 Colors can be given in many ways: one-letter abbreviations, gray scale
@@ -330,7 +330,8 @@ use annotations:
 
 .. code-block:: python
 
-    In [4]: ax.annotate('Here is something special', xy = (1, 1))
+    In [4]: ax = gca()
+    In [5]: ax.annotate('Here is something special', xy = (1, 1))
 
 We will write the text at the position (1, 1) in terms of data.
 There are many optional arguments that help to customize
@@ -407,7 +408,7 @@ AutoLocator     choose a MultipleLocator and dynamically reassign
 All of these locators derive from the base class ``matplotlib.ticker.Locator``.
 You can make your own locator deriving from it.
 
-Handling dates as ticks can be especially tricky. Therefore, ``matplotlib
+Handling dates as ticks can be especially tricky. Therefore, ``matplotlib``
 provides special locators in ``matplotlib.dates``:
 
 ======================= ===========================================
@@ -1039,7 +1040,7 @@ The Class Library
 -----------------
 
 So far we have used the ``pylab`` interface only. As the name
-suggests it is just wrapper around the class library. All ``pylabb``
+suggests it is just wrapper around the class library. All ``pylab``
 commands can be invoked via the class library using an object-oriented
 approach.
 
@@ -1130,19 +1131,19 @@ We save our figure in a png-file with a resolution of 80 dpi (``#11``).
 We can use several GUI toolkits directly. So we import Tkinter (``#12``)
 as well as the corresponding backend (``#13``).
 Now we have to do some basic GUI programming work. We make a root
-object for our GUI (``#13``) and feed it together with our figure to
-the backend to get our canvas (``14``). We call the show method (``#15``),
-pack our widget (``#16``), and call the Tkinter mainloop to start
-the application (``#17``). You should see GUI window with the figure
+object for our GUI (``#14``) and feed it together with our figure to
+the backend to get our canvas (``15``). We call the show method (``#16``),
+pack our widget (``#17``), and call the Tkinter mainloop to start
+the application (``#18``). You should see GUI window with the figure
 on your screen. After closing the screen, the next part, the script, will
 be executed.
 
 We would like to create a screen display just as we would use
-``pylab``. Therefore we import a helper (``#18``) and ``pylab``
-itself (``#19``). We create a normal figure with ``pylab` (``20``)
-and get the corresponding figure manager (``#21``). Now let's set
-our figure we created above to be the current figure (``#22``)
-and let ``pylab`` show the result (``#23``).
+``pylab``. Therefore we import a helper (``#19``) and ``pylab``
+itself (``#20``). We create a normal figure with ``pylab` (``21``)
+and get the corresponding figure manager (``#22``). Now let's set
+our figure we created above to be the current figure (``#23``)
+and let ``pylab`` show the result (``#24``).
 The lower part of the figure might be cover by the toolbar.
 If so, please adjust the ``figsize`` for ``pylab`` accordingly.
 

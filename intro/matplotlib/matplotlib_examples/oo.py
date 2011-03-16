@@ -20,16 +20,16 @@ canvas.print_figure("oo.png", dpi=80)         #11
 import Tkinter as Tk                          #12
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg #13
 
-root = Tk.Tk()                                #13
-canvas2 = FigureCanvasTkAgg(fig, master=root) #14
-canvas2.show()                                #15
-canvas2.get_tk_widget().pack(side=Tk.TOP, fill=Tk.BOTH, expand=1) #16
-Tk.mainloop()                                 #17
+root = Tk.Tk()                                #14
+canvas2 = FigureCanvasTkAgg(fig, master=root) #15
+canvas2.show()                                #16
+canvas2.get_tk_widget().pack(side=Tk.TOP, fill=Tk.BOTH, expand=1) #17
+Tk.mainloop()                                 #18
 
-from matplotlib import _pylab_helpers         #18
-import pylab                                  #19
+from matplotlib import _pylab_helpers         #19
+import pylab                                  #20
 
-pylab_fig = pylab.figure(1, figsize=figsize)  #20
-figManager = _pylab_helpers.Gcf.get_active()  #21
-figManager.canvas.figure = fig                #22
-pylab.show()                                  #23
+pylab_fig = pylab.figure(1, figsize=figsize)  #21
+figManager = _pylab_helpers.Gcf.get_active()  #22
+figManager.canvas.figure = fig                #23
+pylab.show()                                  #24
