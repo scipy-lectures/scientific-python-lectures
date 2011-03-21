@@ -381,11 +381,11 @@ Ticks
 Where and What
 ++++++++++++++
 
-Well formated ticks are an important part of publishing-ready
+Well formatted ticks are an important part of publishing-ready
 figures. ``matplotlib`` provides a totally configurable system
 for ticks. There are tick locators to specify where ticks
 should appear and tick formatters to make ticks look like the way you want.
-Major and minor ticks can be located and formated independently from
+Major and minor ticks can be located and formatted independently from
 each other. Per default minor ticks are not shown, i.e. there is only
 an empty list for them because it is as ``NullLocator`` (see below).
 

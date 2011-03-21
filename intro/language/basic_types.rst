@@ -272,7 +272,7 @@ Different string syntaxes (simple, double or triple quotes)::
     SyntaxError: invalid syntax
 
 
-The newline character is ``\n``, and the tab characted is
+The newline character is ``\n``, and the tab character is
 ``\t``.
 
 Strings are collections as lists. Hence they can be indexed and sliced,
@@ -350,10 +350,10 @@ Remember the ``a.`` object-oriented notation and use tab completion or
     'processing_of_dataset_102.txt'
 
 
-Dictionnaries
+Dictionaries
 ~~~~~~~~~~~~~
 
-A dictionnary is basically a hash table that **maps keys to values**. It
+A dictionary is basically a hash table that **maps keys to values**. It
 is therefore an **unordered** container::
 
 
@@ -375,7 +375,7 @@ associated to a name (a string for a date, a name, etc.). See
 http://docs.python.org/tutorial/datastructures.html#dictionaries
 for more information.
 
-A dictionnary can have keys (resp. values) with different types::
+A dictionary can have keys (resp. values) with different types::
 
     >>> d = {'a':1, 'b':2, 3:'hello'}
     >>> d

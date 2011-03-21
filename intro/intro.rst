@@ -99,7 +99,7 @@ Which solutions do the scientists use to work?
   * fewer available algorithms than in Matlab, and the language
     is not more advanced.
 
-  * Some softwares are dedicated to one domain. Ex: Gnuplot or xmgrace
+  * Some software are dedicated to one domain. Ex: Gnuplot or xmgrace
     to draw curves. These programs are very powerful, but they are
     restricted to a single type of usage, such as plotting. 
 
@@ -124,5 +124,5 @@ Which solutions do the scientists use to work?
     geek-oriented).
 
   * Not all the algorithms that can be found in more specialized
-    softwares or toolboxes.
+    software or toolboxes.
 

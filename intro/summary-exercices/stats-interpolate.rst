@@ -2,7 +2,7 @@
 
 Maximum wind speed prediction at the Sprogø station
 ---------------------------------------------------
-The exercice goal is to predict the maximum wind speed occuring every
+The exercice goal is to predict the maximum wind speed occurring every
 50 years even if no measure exists for such a period. The available
 data are only measured over 21 years at the Sprogø meteorological
 station located in Denmark. First, the statistical steps will be given
@@ -15,15 +15,15 @@ Statistical approach
 The annual maxima are supposed to fit a normal probability density
 function. However such function is not going to be estimated because
 it gives a probability from a wind speed maxima. Finding the maximum wind
-speed occuring every 50 years requires the opposite approach, the result
-needs to be found from a defined probabilty. That is the quantile function
+speed occurring every 50 years requires the opposite approach, the result
+needs to be found from a defined probability. That is the quantile function
 role and the exercice goal will be to find it. In the current model,
-it is supposed that the maximum wind speed occuring every 50 years is
-defined as the upper 2$%$ quantile.
+it is supposed that the maximum wind speed occurring every 50 years is
+defined as the upper 2% quantile.
 
 By definition, the quantile function is the inverse of the cumulative
 distribution function. The latter describes the probability distribution
-of an annual maxima. In the exercice, the cumulative probabilty ``p_i``
+of an annual maxima. In the exercice, the cumulative probability ``p_i``
 for a given year ``i`` is defined as ``p_i = i/(N+1)`` with ``N = 21``,
 the number of measured years. Thus it will be possible to calculate
 the cumulative probability of every measured wind speed maxima.
@@ -32,8 +32,8 @@ very useful for fitting the quantile function. Finally the 50 years
 maxima is going to be evaluated from the cumulative probability
 of the 2% quantile.
 
-Computing the cumulative probabilites
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Computing the cumulative probabilities
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The annual wind speeds maxima have already been computed and saved in
 the numpy format in the file max-speeds.npy_, thus they will be loaded
 by using numpy::
@@ -59,10 +59,10 @@ Prediction with UnivariateSpline
 In this section the quantile function will be estimated by using the
 ``UnivariateSpline`` class which can represent a spline from points. The
 default behavior is to build a spline of degree 3 and points can
-have different weights according to their reliability. Variantes are
+have different weights according to their reliability. Variants are
 ``InterpolatedUnivariateSpline`` and ``LSQUnivariateSpline`` on which
 errors checking is going to change.  In case a 2D spline is wanted,
-the ``BivariateSpline`` class family is provided. All thoses classes
+the ``BivariateSpline`` class family is provided. All those classes
 for 1D and 2D splines use the FITPACK Fortran subroutines, that's why a
 lower library access is available through the ``splrep`` and ``splev``
 functions for respectively representing and evaluating a spline.
@@ -77,21 +77,21 @@ used because a spline of degree 3 seems to correctly fit the data::
     >>> quantile_func = UnivariateSpline(cprob, sorted_max_speeds)
 
 The quantile function is now going to be evaluated from the full range
-of probabilties::
+of probabilities::
 
     >>> nprob = np.linspace(0, 1, 1e2)
     >>> fitted_max_speeds = quantile_func(nprob)
 
 2%
 
-In the current model, the maximum wind speed occuring every 50 years is
+In the current model, the maximum wind speed occurring every 50 years is
 defined as the upper 2% quantile. As a result, the cumulative probability
 value will be::
     
     >>> fifty_prob = 1. - 0.02
 
 
-So the storm wind speed occuring every 50 years can be guessed by::
+So the storm wind speed occurring every 50 years can be guessed by::
 
     >>> fifty_wind = quantile_func(fifty_prob)
     >>> fifty_wind
@@ -133,7 +133,7 @@ in numpy format inside the file sprog-windspeeds.npy_.
    :align: center
 
 * The last step will be to find 34.23 m/s for the maximum wind speed
-  occuring every 50 years.
+  occurring every 50 years.
 
 Once done, you may compare your code with a solution example available in the
 script gumbell-wind-speed-prediction.py_.

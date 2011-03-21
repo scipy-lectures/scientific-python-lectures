@@ -156,7 +156,7 @@ is well-written and we will not list them. Frequently used ones are:
  * Elliptic function (`special.ellipj` for the Jacobian elliptic
    function, ...)
 
- * Gamma function: `special.gamma`, alos note `special.gammaln` which
+ * Gamma function: `special.gamma`, also note `special.gammaln` which
    will give the log of Gamma to a higher numerical precision.
 
  * Erf, the area under a Gaussian curve: `special.erf`
@@ -345,7 +345,7 @@ Others integration schemes are available with ``fixed_quad``,
 equations (ODE) integration. In particular, ``scipy.integrate.odeint``
 is a general-purpose integrator using LSODA (Livermore solver for
 ordinary differential equations with automatic method switching
-for stiff and nonstiff problems), see the `ODEPACK Fortran library`_
+for stiff and non-stiff problems), see the `ODEPACK Fortran library`_
 for more details.
 
 .. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
@@ -458,7 +458,7 @@ the sampling time step of the signal ``sig``. But the signal
 is supposed to come from a real function so the Fourier transform
 will be symmetric.
 The ``fftfreq`` function will generate the sampling frequencies and
-``fft`` will compute the fast fourier transform::
+``fft`` will compute the fast Fourier transform::
 
     >>> from scipy import fftpack
     >>> sample_freq = fftpack.fftfreq(sig.size, d=time_step)
@@ -596,7 +596,7 @@ The problem with this approach is that, if the function has local minima (is
 not convex), the algorithm may find these local minima instead of the
 global minimum depending on the initial point. If we don't know the
 neighborhood of the global minima to choose the initial point, we need to
-resort to costlier global opimtization.
+resort to costlier global optimization.
 
 Global optimization
 .....................
@@ -611,7 +611,7 @@ in which the function is evaluated on each point of a given grid: ::
 
 This approach take 20 ms on our computer.
 
-This simple alorithm becomes very slow as the size of the grid grows, so you
+This simple algorithm becomes very slow as the size of the grid grows, so you
 should use ``optimize.brent`` instead for scalar functions: ::
 
     >>> optimize.brent(f)

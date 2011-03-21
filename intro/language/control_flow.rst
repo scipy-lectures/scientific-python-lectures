@@ -196,7 +196,7 @@ Iterate over any *sequence*
     are
     you?
 
-Few languages (in particular, languages for scienfic computing) allow to
+Few languages (in particular, languages for scientific computing) allow to
 loop over anything but integers/indices. With Python it is possible to
 loop exactly over the objects of interest without bothering with indices
 you often don't care about.

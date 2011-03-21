@@ -1,7 +1,7 @@
 Input and Output
 ================
 
-To be exhaustive, here are some informations about input and output in Python.
+To be exhaustive, here are some information about input and output in Python.
 Since we will use the Numpy methods to read and write files, you may skip this
 chapter at first reading.
 

@@ -315,7 +315,7 @@ modifying the view, the original array is modified as well**::
     >>> a # a a été modifié aussi !
     array([12,  1,  2,  3,  4,  5,  6,  7,  8,  9])
 
-This behaviour can be surprising at first sight... but it allows to save a lot
+This behavior can be surprising at first sight... but it allows to save a lot
 of memory.
 
 
@@ -680,7 +680,7 @@ We find again that the distance grows like the square root of the time!
 8. Which organism had the highest percentage of women in 2004? (hint: np.argmax)
 
 9. Create a histogram of the percentage of women the different organisms in 2006
-   (hint: np.histogram, then matplotlib bar or plot for visulalization)
+   (hint: np.histogram, then matplotlib bar or plot for visualization)
 
 10. Create an array that contains the organism where the highest women's
     percentage is found for the different years.
@@ -788,7 +788,7 @@ Let's take the same statistics about the percentage of women in the research
 1. Create a ``sup30`` array of the same size than ``data`` with a value of 1 if
    the value of ``data`` is greater than 30%, 0 otherwise.
 
-2. Create an array containing the organisme having the greatest percentage of
+2. Create an array containing the organism having the greatest percentage of
 women of each year.
 
 **Answers** :ref:`stat_recherche`
@@ -855,15 +855,15 @@ dimensions than input data.
 
 **Example**: let's construct an array of distances (in miles) between cities of
 Route 66: Chicago, Springfield, Saint-Louis, Tulsa,
-Oklahoma City, Amarillo, Santa Fe, Albucquerque, Flagstaff and Los
+Oklahoma City, Amarillo, Santa Fe, Albuquerque, Flagstaff and Los
 Angeles. 
 
 ::
 
     >>> mileposts = np.array([0, 198, 303, 736, 871, 1175, 1475, 1544,
     ...        1913, 2448])
-    >>> ditance_array = np.abs(mileposts - mileposts[:,np.newaxis])
-    >>> ditance_array
+    >>> distance_array = np.abs(mileposts - mileposts[:,np.newaxis])
+    >>> distance_array
     array([[   0,  198,  303,  736,  871, 1175, 1475, 1544, 1913, 2448],
            [ 198,    0,  105,  538,  673,  977, 1277, 1346, 1715, 2250],
            [ 303,  105,    0,  433,  568,  872, 1172, 1241, 1610, 2145],
@@ -894,7 +894,7 @@ Angeles.
       Conventions <http://www.python.org/dev/peps/pep-0257>`_ page (to manage
       help strings).
 
-    * Except some rare cases, write variable names and comments in english.
+    * Except some rare cases, write variable names and comments in English.
 
 A lot of grid-based or network-based problems can also use broadcasting. For instance,
 if we want to compute the distance from the origin of points on a 10x10 grid, we
@@ -983,7 +983,7 @@ use different colormaps, crop the image, change some parts of the image.
       In [7]: # ou
       In [8]: gray()
 
-* Create an array of the image with a narrower centring : for example,
+* Create an array of the image with a narrower centering : for example,
   remove 30 pixels from all the borders of the image. To check the result,
   display this new array with ``imshow``.
 

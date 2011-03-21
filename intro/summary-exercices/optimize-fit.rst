@@ -3,7 +3,7 @@
 Non linear least squares curve fitting: application to point extraction in topographical lidar data
 ---------------------------------------------------------------------------------------------------
 
-The goal of this exercise is to fit a model to some data. The data used in this tutorial are lidar data and are described in details in the following introductory paragraph. If you're impatient and want to practise now, please skip it ang go directly to :ref:`first_step`.
+The goal of this exercise is to fit a model to some data. The data used in this tutorial are lidar data and are described in details in the following introductory paragraph. If you're impatient and want to practice now, please skip it and go directly to :ref:`first_step`.
 
 
 Introduction
@@ -12,7 +12,7 @@ Introduction
 Lidars systems are optical rangefinders that analyze property of scattered light
 to measure distances. Most of them emit a short light impulsion towards a target
 and record the reflected signal. This signal is then processed to extract the
-distance between the lidar sytem and the target.
+distance between the lidar system and the target.
 
 Topographical lidar systems are such systems embedded in airborne
 platforms. They measure distances between the platform and the Earth, so as to
@@ -63,7 +63,7 @@ As you can notice, this waveform is a 80-bin-length signal with a single peak.
 Fitting a waveform with a simple Gaussian model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The signal is very simple and can be modelled as a single Gaussian function and
+The signal is very simple and can be modeled as a single Gaussian function and
 an offset corresponding to the background noise. To fit the signal with the
 function, we must:
 
@@ -75,7 +75,7 @@ function, we must:
 Model
 ^^^^^
 
-A gaussian function defined by
+A Gaussian function defined by
 
 .. math::
    B + A \exp\left\{-\left(\frac{t-\mu}{\sigma}\right)^2\right\}

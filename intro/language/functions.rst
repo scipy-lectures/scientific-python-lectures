@@ -153,7 +153,7 @@ In Python, such a distinction is somewhat artificial, and it is a bit
 subtle whether your variables are going to be modified or not.
 Fortunately, there exist clear rules.
 
-Parameters to functions are refereence to objects, which are passed by
+Parameters to functions are references to objects, which are passed by
 value. When you pass a variable to a function, python passes the
 reference to the object to which the variable refers (the **value**).
 Not the variable itself.
@@ -266,7 +266,7 @@ Special forms of parameters:
 Docstrings
 ----------
 
-Documention about what the function does and it's parameters.  General
+Documentation about what the function does and it's parameters.  General
 convention:
 
 .. sourcecode:: ipython

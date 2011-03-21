@@ -261,7 +261,7 @@ modules.  Initialized from PYTHONPATH:
 ``pickle``: easy persistence
 -------------------------------
 
-Useful to store arbritrary objects to a file. Not safe or fast!
+Useful to store arbitrary objects to a file. Not safe or fast!
 
 .. sourcecode:: ipython
 
