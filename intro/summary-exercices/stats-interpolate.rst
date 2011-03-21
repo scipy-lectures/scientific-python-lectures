@@ -1,3 +1,5 @@
+.. _summary_exercise_stat_interp:
+
 Maximum wind speed prediction at the Sprogø station
 ---------------------------------------------------
 The exercice goal is to predict the maximum wind speed occuring every
@@ -40,7 +42,7 @@ by using numpy::
     >>> max_speeds = np.load('data/max-speeds.npy')
     >>> years_nb = max_speeds.shape[0]
 
-.. _max-speeds.npy : ../data/max-speeds.npy
+.. _max-speeds.npy : ../../data/max-speeds.npy
 
 Following the cumulative probability definition ``p_i`` from the previous
 section, the corresponding values will be::
@@ -103,7 +105,7 @@ The results are now gathered on a Matplotlib figure.
 All those steps have been gathered in the script
 cumulative-wind-speed-prediction.py_.
 
-.. _cumulative-wind-speed-prediction.py: ../data/cumulative-wind-speed-prediction.py
+.. _cumulative-wind-speed-prediction.py: ../../data/cumulative-wind-speed-prediction.py
 
 Exercice with the Gumbell distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -113,7 +115,7 @@ minutes (the original period was around 10 minutes but the file size has
 been reduced for making the exercice setup easier). The data are stored
 in numpy format inside the file sprog-windspeeds.npy_.
 
-.. _sprog-windspeeds.npy : ../data/sprog-windspeeds.npy
+.. _sprog-windspeeds.npy : ../../data/sprog-windspeeds.npy
 
 * The first step will be to find the annual maxima by using numpy
   and plot them as a matplotlib bar figure.
@@ -136,5 +138,5 @@ in numpy format inside the file sprog-windspeeds.npy_.
 Once done, you may compare your code with a solution example available in the
 script gumbell-wind-speed-prediction.py_.
 
-.. _gumbell-wind-speed-prediction.py : ../data/gumbell-wind-speed-prediction.py
+.. _gumbell-wind-speed-prediction.py : ../../data/gumbell-wind-speed-prediction.py
 

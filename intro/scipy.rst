@@ -393,7 +393,7 @@ seen on the Matplotlib figure computed with odeint-introduction.py_.
 .. image:: odeint-introduction.png
    :align: center
 
-.. _odeint-introduction.py : data/odeint-introduction.py
+.. _odeint-introduction.py : ../data/odeint-introduction.py
 
 Another example with ``odeint`` will be a damped spring-mass oscillator
 (2nd order oscillator). The position of a mass attached to a spring obeys
@@ -433,7 +433,7 @@ built with the odeint-damped-spring-mass.py_ script.
 .. image:: odeint-damped-spring-mass.png
    :align: center
 
-.. _odeint-damped-spring-mass.py: data/odeint-damped-spring-mass.py
+.. _odeint-damped-spring-mass.py: ../data/odeint-damped-spring-mass.py
 
 There is no Partial Differential Equations (PDE) solver
 in scipy. Some PDE packages are written in Python, such
@@ -495,7 +495,7 @@ fftpack-illustration.py_ script.
 .. image:: fftpack-signals.png
    :align: center
 
-.. _fftpack-illustration.py: data/fftpack-illustration.py
+.. _fftpack-illustration.py: ../data/fftpack-illustration.py
 
 
 Interpolation: ``scipy.interpolate``
@@ -536,13 +536,13 @@ the script scipy-interpolation.py_.
 .. image:: interpolation.png
    :align: center
 
-.. _scipy-interpolation.py : data/scipy-interpolation.py
+.. _scipy-interpolation.py : ../data/scipy-interpolation.py
 
 ``scipy.interpolate.interp2d`` is similar to ``interp1d``, but for 2-D
 arrays. Note that for the ``interp`` family, the computed time must stay
-within the measured time range. See the summary exercice  on `Maximum
-wind speed prediction at the Sprogø station`_ for a more advance spline
-interpolation example.
+within the measured time range. See the summary exercice on
+:ref:`summary_exercise_stat_interp` for a more advance spline interpolation
+example.
 
 
 Optimization and fit: ``scipy.optimize``
