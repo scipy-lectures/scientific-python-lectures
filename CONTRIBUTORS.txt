@@ -1,4 +1,4 @@
-Contributors, listed by alphabetical order.
+Chapter authors, listed by alphabetical order.
 
 - Christopher Burns
 
@@ -19,4 +19,8 @@ Contributors, listed by alphabetical order.
 - Gaël Varoquaux
 
 - Pauli Virtanen
+
+Contributors:
+
+- Akihiro Uchida: many fixes
 
