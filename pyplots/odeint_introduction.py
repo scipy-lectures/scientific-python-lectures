@@ -15,5 +15,4 @@ yvec = odeint(calc_derivative, 1, time_vec)
 pl.plot(time_vec, yvec)
 pl.xlabel('Time [s]')
 pl.ylabel('y position [m]')
-pl.savefig('intro/odeint-introduction.png')
 

@@ -1,3 +1,4 @@
+
 """Generate the exercice results on the Gumbell distribution
 """
 import numpy as np
@@ -9,7 +10,7 @@ def gumbell_dist(arr):
     return -np.log(-np.log(arr))
 
 years_nb = 21
-wspeeds = np.load('data/sprog-windspeeds.npy')
+wspeeds = np.load('../data/sprog-windspeeds.npy')
 max_speeds = np.array([arr.max() for arr in np.array_split(wspeeds, years_nb)])
 sorted_max_speeds = np.sort(max_speeds)
 
@@ -27,15 +28,3 @@ pl.bar(np.arange(years_nb) + 1, max_speeds)
 pl.axis('tight')
 pl.xlabel('Year')
 pl.ylabel('Annual wind speed maxima [$m/s$]')
-pl.savefig('intro/summary-exercices/sprog-annual-maxima.png')
-
-pl.figure()
-pl.plot(sorted_max_speeds, gprob, 'o')
-pl.plot(fitted_max_speeds, nprob, 'g--')
-pl.plot([fifty_wind], [fifty_prob], 'o', ms=8., mfc='y', mec='y')
-pl.plot([fifty_wind, fifty_wind], [pl.axis()[2], fifty_prob], 'k--')
-pl.text(35, -1, r'$V_{50} = %.2f \, m/s$' % fifty_wind)
-pl.xlabel('Annual wind speed maxima [$m/s$]')
-pl.ylabel('Gumbell cumulative probability')
-pl.savefig('intro/summary-exercices/gumbell-wind-speed-prediction.png')
-

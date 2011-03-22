@@ -15,13 +15,7 @@ ALLSPHINXOPTS   = -d build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 # Data to ship with the HTML version
 HTML_DATA = \
 	data/max-speeds.npy \
-	data/cumulative-wind-speed-prediction.py \
 	data/sprog-windspeeds.npy \
-	data/gumbell-wind-speed-prediction.py \
-	data/scipy-interpolation.py \
-	data/odeint-introduction.py \
-	data/odeint-damped-spring-mass.py \
-	data/fftpack-illustration.py
 
 .PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip
 
@@ -40,33 +34,7 @@ clean:
 test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst intro/*[a-z].rst advanced/*[a-z].rst intro/summary-exercices/*.rst
 
-intro/interpolation.png:
-	$(PYTHON) data/scipy-interpolation.py
-
-intro/odeint-introduction.png:
-	$(PYTHON) data/odeint-introduction.py
-
-intro/odeint-damped-spring-mass.png:
-	$(PYTHON) data/odeint-damped-spring-mass.py
-
-intro/fftpack-signals.png:
-	$(PYTHON) data/fftpack-illustration.py
-
-intro/summary-exercices/cumulative-wind-speed-prediction.png:
-	$(PYTHON) data/cumulative-wind-speed-prediction.py
-
-# Generate as well sprog-annual-maxima.png
-intro/summary-exercices/gumbell-wind-speed-prediction.png:
-	$(PYTHON) data/gumbell-wind-speed-prediction.py
-
-sources: intro/interpolation.png \
-		 intro/odeint-introduction.png \
-		 intro/odeint-damped-spring-mass.png \
-		 intro/fftpack-signals.png \
-		 intro/summary-exercices/cumulative-wind-speed-prediction.png \
-		 intro/summary-exercices/gumbell-wind-speed-prediction.png
-
-html: sources
+html:
 	mkdir -p build/html build/doctrees
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
 	mkdir -p build/html/data

@@ -20,5 +20,3 @@ pl.plot(measured_time, measures, 'o', ms=6, label='measures')
 pl.plot(computed_time, linear_results, label='linear interp')
 pl.plot(computed_time, cubic_results, label='cubic interp')
 pl.legend()
-pl.savefig('intro/interpolation.png')
-

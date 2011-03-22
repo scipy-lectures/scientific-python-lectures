@@ -97,31 +97,25 @@ So the storm wind speed occurring every 50 years can be guessed by::
     >>> fifty_wind
     array([ 32.97989825])
 
-The results are now gathered on a Matplotlib figure.
+The results are now gathered on a Matplotlib figure:
 
-.. image:: cumulative-wind-speed-prediction.png
-   :align: center
-
-All those steps have been gathered in the script
-cumulative-wind-speed-prediction.py_.
-
-.. _cumulative-wind-speed-prediction.py: ../../data/cumulative-wind-speed-prediction.py
+.. plot:: pyplots/cumulative_wind_speed_prediction.py
 
 Exercice with the Gumbell distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The interested readers are now invited to make an exercice by using the
-wind speeds measured over 21 years. The measurement period is around 90
-minutes (the original period was around 10 minutes but the file size has
-been reduced for making the exercice setup easier). The data are stored
-in numpy format inside the file sprog-windspeeds.npy_.
+The interested readers are now invited to make an exercice by using the wind
+speeds measured over 21 years. The measurement period is around 90 minutes (the
+original period was around 10 minutes but the file size has been reduced for
+making the exercice setup easier). The data are stored in numpy format inside
+the file sprog-windspeeds.npy_. Do not look at the source code for the plots
+until you have completed the exercise.
 
 .. _sprog-windspeeds.npy : ../../data/sprog-windspeeds.npy
 
 * The first step will be to find the annual maxima by using numpy
   and plot them as a matplotlib bar figure.
 
-.. image:: sprog-annual-maxima.png
-   :align: center
+.. plot:: pyplots/sprog_annual_maxima.py
 
 * The second step will be to use the Gumbell distribution on cumulative
   probabilities ``p_i`` defined as ``-log( -log(p_i) )`` for fitting
@@ -129,14 +123,8 @@ in numpy format inside the file sprog-windspeeds.npy_.
   of the ``UnivariateSpline``). Plotting the annual maxima versus the
   Gumbell distribution should give you the following figure.
 
-.. image:: gumbell-wind-speed-prediction.png
-   :align: center
+.. plot:: pyplots/gumbell_wind_speed_prediction.py
 
 * The last step will be to find 34.23 m/s for the maximum wind speed
   occurring every 50 years.
-
-Once done, you may compare your code with a solution example available in the
-script gumbell-wind-speed-prediction.py_.
-
-.. _gumbell-wind-speed-prediction.py : ../../data/gumbell-wind-speed-prediction.py
 

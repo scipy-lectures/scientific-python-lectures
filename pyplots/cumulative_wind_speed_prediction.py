@@ -6,7 +6,9 @@ import numpy as np
 from scipy.interpolate import UnivariateSpline
 import pylab as pl
 
-max_speeds = np.load('data/max-speeds.npy')
+# since its called from intro/summary-exercises
+# we need to ../
+max_speeds = np.load('../data/max-speeds.npy')
 years_nb = max_speeds.shape[0]
 
 cprob = (np.arange(years_nb, dtype=np.float32) + 1)/(years_nb + 1)
@@ -26,4 +28,3 @@ pl.text(30, 0.05, '$V_{50} = %.2f \, m/s$' % fifty_wind)
 pl.plot([fifty_wind, fifty_wind], [pl.axis()[2], fifty_prob], 'k--')
 pl.xlabel('Annual wind speed maxima [$m/s$]')
 pl.ylabel('Cumulative probability')
-pl.savefig('intro/summary-exercices/cumulative-wind-speed-prediction.png')
