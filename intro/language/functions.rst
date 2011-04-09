@@ -330,10 +330,10 @@ Methods are functions attached to objects.  You've seen these in our
 examples on **lists**, **dictionaries**, **strings**, etc...
 
 
-Exercices
+Exercises
 ---------
 
-.. topic:: Exercice: Quicksort
+.. topic:: Exercise: Quicksort
 
     Implement the quicksort algorithm, as defined by wikipedia::
 
@@ -349,7 +349,7 @@ Exercices
 
 .. :ref:`quick_sort`
 
-.. topic:: Exercice: Fibonacci sequence
+.. topic:: Exercise: Fibonacci sequence
 
     Write a function that displays the ``n`` first terms of the Fibonacci
     sequence, defined by:

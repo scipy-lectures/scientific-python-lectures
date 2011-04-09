@@ -2,7 +2,7 @@
 
 Maximum wind speed prediction at the Sprogø station
 ---------------------------------------------------
-The exercice goal is to predict the maximum wind speed occurring every
+The exercise goal is to predict the maximum wind speed occurring every
 50 years even if no measure exists for such a period. The available
 data are only measured over 21 years at the Sprogø meteorological
 station located in Denmark. First, the statistical steps will be given
@@ -17,13 +17,13 @@ function. However such function is not going to be estimated because
 it gives a probability from a wind speed maxima. Finding the maximum wind
 speed occurring every 50 years requires the opposite approach, the result
 needs to be found from a defined probability. That is the quantile function
-role and the exercice goal will be to find it. In the current model,
+role and the exercise goal will be to find it. In the current model,
 it is supposed that the maximum wind speed occurring every 50 years is
 defined as the upper 2% quantile.
 
 By definition, the quantile function is the inverse of the cumulative
 distribution function. The latter describes the probability distribution
-of an annual maxima. In the exercice, the cumulative probability ``p_i``
+of an annual maxima. In the exercise, the cumulative probability ``p_i``
 for a given year ``i`` is defined as ``p_i = i/(N+1)`` with ``N = 21``,
 the number of measured years. Thus it will be possible to calculate
 the cumulative probability of every measured wind speed maxima.
@@ -101,12 +101,12 @@ The results are now gathered on a Matplotlib figure:
 
 .. plot:: pyplots/cumulative_wind_speed_prediction.py
 
-Exercice with the Gumbell distribution
+Exercise with the Gumbell distribution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The interested readers are now invited to make an exercice by using the wind
+The interested readers are now invited to make an exercise by using the wind
 speeds measured over 21 years. The measurement period is around 90 minutes (the
 original period was around 10 minutes but the file size has been reduced for
-making the exercice setup easier). The data are stored in numpy format inside
+making the exercise setup easier). The data are stored in numpy format inside
 the file sprog-windspeeds.npy_. Do not look at the source code for the plots
 until you have completed the exercise.
 

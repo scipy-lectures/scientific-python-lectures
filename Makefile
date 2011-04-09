@@ -32,7 +32,7 @@ clean:
 	-rm -rf build/*
 
 test:
-	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst intro/*[a-z].rst advanced/*[a-z].rst intro/summary-exercices/*.rst
+	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst intro/*[a-z].rst advanced/*[a-z].rst intro/summary-exercises/*.rst
 
 html:
 	mkdir -p build/html build/doctrees
