@@ -50,13 +50,11 @@ conversely, one should write:
 
     int a = 3;
 
-In addition, the type of a variable may change, in the sense that at one point in time it can be equal to a value of a certain type, and a second point in time, it can be equal to a value of a different type. `b` was first equal to an integer,
-but it became equal to a string when it was assigned the value `'hello'`. Operations
-on integers (``b=2*a``) are coded natively in the Python standard
-library, and so are some operations on strings such as additions and
-multiplications, which amount respectively to concatenation and
-repetition. 
-
-
-
-
+In addition, the type of a variable may change, in the sense that at
+one point in time it can be equal to a value of a certain type, and a
+second point in time, it can be equal to a value of a different
+type. `b` was first equal to an integer, but it became equal to a
+string when it was assigned the value `'hello'`. Operations on
+integers (``b=2*a``) are coded natively in Python, and so are some
+operations on strings such as additions and multiplications, which
+amount respectively to concatenation and repetition.
