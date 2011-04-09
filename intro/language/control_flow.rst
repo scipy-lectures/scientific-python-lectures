@@ -117,13 +117,13 @@ Conditional Expressions
 
 * `if object`
 
-  Evaluates to True:
-    * any non-zero value
-    * any sequence with a length > 0
-
   Evaluates to False:
-    * any zero value
-    * any empty sequence
+    * any number equal to zero (0, 0.0, 0+0j)
+    * an empty container (list, tuple, set, dictionary, ...)
+    * ``False``, ``None``
+
+  Evaluates to True:
+    * everything else [#nonzero_note]_
 
 * `a == b`
 
@@ -136,7 +136,7 @@ Conditional Expressions
 
 * `a is b`
 
-  Tests identity: both objects are the same
+  Tests identity: both sides are the same object
 
   .. sourcecode:: ipython
 
@@ -271,4 +271,7 @@ List Comprehensions
 .. :ref:`pi_wallis`
 
 
+.. rubric:: Footnotes
 
+.. [#nonzero_note] User-defined classes can customize those rules by overriding
+      the special ``__nonzero__`` method.
