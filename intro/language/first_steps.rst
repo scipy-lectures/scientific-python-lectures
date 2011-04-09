@@ -48,8 +48,7 @@ conversely, one should write:
 
 .. sourcecode:: c
 
-    int a;
-    a = 3;
+    int a = 3;
 
 In addition, the type of a variable may change, in the sense that at one point in time it can be equal to a value of a certain type, and a second point in time, it can be equal to a value of a different type. `b` was first equal to an integer,
 but it became equal to a string when it was assigned the value `'hello'`. Operations
