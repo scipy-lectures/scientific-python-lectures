@@ -1,8 +1,8 @@
 import sys
 
 def print_a():
-    " Prints a "
-    print('a')
+    "Prints a."
+    print 'a'
 
 print sys.argv
 

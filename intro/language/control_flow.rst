@@ -9,7 +9,7 @@ if/elif/else
 .. sourcecode:: ipython
   
     In [1]: if 2**2 == 4:
-       ...:     print('Obvious!')
+       ...:     print 'Obvious!'
        ...: 
     Obvious!
 

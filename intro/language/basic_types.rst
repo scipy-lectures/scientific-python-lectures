@@ -17,7 +17,7 @@ floats ::
 
 complex (a native type in Python!) ::
 
-    >>> a=1.5+0.5j
+    >>> a = 1.5 + 0.5j
     >>> a.real
     1.5
     >>> a.imag
@@ -43,25 +43,25 @@ natively implemented::
     21.0
     >>> 2**10
     1024
-    >>> 8%3
+    >>> 8 % 3
     2
 
 .. warning:: Integer division
     ::
 
-	>>> 3/2
+	>>> 3 / 2
 	1
 
     **Trick**: use floats:: 
 
-	>>> 3/2.
+	>>> 3 / 2.
 	1.5
 
 	>>> a = 3
 	>>> b = 2
-	>>> a/b
+	>>> a / b
 	1
-	>>> a/float(b)
+	>>> a / float(b)
 	1.5
 
 
