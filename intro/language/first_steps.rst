@@ -4,9 +4,9 @@ First steps
 
 Start the **Ipython** shell (an enhanced interactive Python shell):
 
-* by typing "Ipython" from a Linux/Mac terminal, or from the Windows cmd shell,
+* by typing "ipython" from a Linux/Mac terminal, or from the Windows cmd shell,
 * **or** by starting the program from a menu, e.g. in the Python(x,y) or
-  EPD menu if you have installed one these scientific-Python suites.
+  EPD menu if you have installed one of these scientific-Python suites.
 
 .. :ref:`pythonxy`
 
