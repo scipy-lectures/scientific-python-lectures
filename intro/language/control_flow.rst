@@ -170,7 +170,8 @@ Advanced iteration
 Iterate over any *sequence*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* You can iterate over any sequence (string, list, dictionary, file, ...)
+* You can iterate over any sequence (string, list, keys in a
+  dictionary, lines in a file, ...)
 
   .. sourcecode:: ipython
 
