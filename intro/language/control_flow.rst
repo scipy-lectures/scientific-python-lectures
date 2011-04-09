@@ -265,8 +265,8 @@ List Comprehensions
 
     Compute the decimals of Pi using the Wallis formula:
 
-    .. image:: pi_formula.png
-	:align: center
+    .. math::
+        \pi = 2 \prod_{i=1}^{\infty} \frac{4i^2}{4i^2 - 1}
 
 .. :ref:`pi_wallis`
 
