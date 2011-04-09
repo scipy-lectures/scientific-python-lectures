@@ -256,10 +256,10 @@ Different string syntaxes (simple, double or triple quotes)::
 
     s = 'Hello, how are you?'
     s = "Hi, what's up"
-    s = '''Hello, 
-           how are you'''
+    s = '''Hello,                 # tripling the quotes allows the
+           how are you'''         # the string to span more than one line
     s = """Hi,
-	   what's up?'''
+	   what's up?"""
 
 .. sourcecode:: ipython
 
@@ -274,7 +274,7 @@ Different string syntaxes (simple, double or triple quotes)::
 The newline character is ``\n``, and the tab character is
 ``\t``.
 
-Strings are collections as lists. Hence they can be indexed and sliced,
+Strings are collections like lists. Hence they can be indexed and sliced,
 using the same syntax and rules.
 
 Indexing::
@@ -288,7 +288,7 @@ Indexing::
     'o'
 
 
-(Remember that Negative indices correspond to counting from the right
+(Remember that negative indices correspond to counting from the right
 end.)
 
 Slicing::
@@ -307,7 +307,7 @@ http://docs.python.org/tutorial/introduction.html#unicode-strings).
 
 
 A string is an **immutable object** and it is not possible to modify its
-characters. One may however create new strings from an original one.
+contents. One may however create new strings from the original one.
 
 .. sourcecode:: ipython
 
@@ -369,8 +369,8 @@ is therefore an **unordered** container::
     >>> 'francis' in tel
     True
 
-This is a very convenient data container in order to store values
-associated to a name (a string for a date, a name, etc.). See
+It can be used to conveniently store and retrieve values
+associated with a name (a string for a date, a name, etc.). See
 http://docs.python.org/tutorial/datastructures.html#dictionaries
 for more information.
 
@@ -386,7 +386,7 @@ More container types
 * **Tuples**
 
 Tuples are basically immutable lists. The elements of a tuple are written
-between brackets, or just separated by commas::
+between parentheses, or just separated by commas::
 
 
     >>> t = 12345, 54321, 'hello!'
@@ -396,7 +396,7 @@ between brackets, or just separated by commas::
     (12345, 54321, 'hello!')
     >>> u = (0, 2)
 
-* **Sets:** non ordered, unique items::
+* **Sets:** unordered, unique items::
 
     >>> s = set(('a', 'b', 'c', 'a'))
     >>> s
@@ -431,10 +431,10 @@ between brackets, or just separated by commas::
 
 .. sourcecode:: ipython
 
-    In [1]: %logstart commandes.log
+    In [1]: %logstart commands.log
     Activating auto-logging. Current session state plus future input
     saved.
-    Filename       : commandes.log
+    Filename       : commands.log
     Mode           : backup
     Output logging : False
     Raw input log  : False
