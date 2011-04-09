@@ -45,7 +45,8 @@ etc. Some specific features of Python are as follows:
 
 * Some other features of the language are illustrated just below. For
   example, Python is an object-oriented language, with dynamic typing
-  (an object's type can change during the course of a program).
+  (the same variable can contain objects of different types during the
+  course of a program).
 
 
 See http://www.python.org/about/ for more information about

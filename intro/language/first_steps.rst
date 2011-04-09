@@ -42,8 +42,8 @@ To get yourself started, type the following stack of instructions ::
     >>> 2*b
     'hellohello'
 
-Two objects ``a`` and ``b`` have been defined above. Note that one does
-not declare the type of an object before assigning its value. In C,
+Two variables ``a`` and ``b`` have been defined above. Note that one does
+not declare the type of an variable before assigning its value. In C,
 conversely, one should write:
 
 .. sourcecode:: c
@@ -51,8 +51,8 @@ conversely, one should write:
     int a;
     a = 3;
 
-In addition, the type of an object may change. `b` was first an integer,
-but it became a string when it was assigned the value `hello`. Operations
+In addition, the type of a variable may change, in the sense that at one point in time it can be equal to a value of a certain type, and a second point in time, it can be equal to a value of a different type. `b` was first equal to an integer,
+but it became equal to a string when it was assigned the value `'hello'`. Operations
 on integers (``b=2*a``) are coded natively in the Python standard
 library, and so are some operations on strings such as additions and
 multiplications, which amount respectively to concatenation and
