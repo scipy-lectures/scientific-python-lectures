@@ -352,8 +352,8 @@ Remember the ``a.`` object-oriented notation and use tab completion or
 Dictionaries
 ~~~~~~~~~~~~~
 
-A dictionary is basically a hash table that **maps keys to values**. It
-is therefore an **unordered** container::
+A dictionary is basically an efficient table that **maps keys to
+values**. It is an **unordered** container::
 
 
     >>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
