@@ -16,11 +16,11 @@ Objectives
 
 At the end of this session you will be able to:
 
-  1. Evaluate expressions with arbitrary precission.
+  1. Evaluate expressions with arbitrary precision.
   2. Perform algebraic manipulations on symbolic expressions.
   3. Perform basic calculus tasks (limits, differentiation and
      integration) with symbolic expressions.
-  4. Solve polynomial and trascendental equations.
+  4. Solve polynomial and transcendental equations.
   5. Solve some differential equations.
 
 .. role:: input(strong)
@@ -29,7 +29,7 @@ What is SymPy?
 ==============
 
 SymPy is a Python library for symbolic mathematics. It aims become a
-full featured computer algebra system thatn can compete directly with
+full featured computer algebra system that can compete directly with
 commercial alternatives (Mathematica, Maple) while keeping the code as
 simple as possible in order to be comprehensible and easily
 extensible.  SymPy is written entirely in Python and does not require
@@ -43,7 +43,7 @@ First Steps with SymPy
 Using SymPy as a calculator
 ---------------------------
 
-Sympy defines three numerical types: Real, Rational and Integer.
+SymPy defines three numerical types: Real, Rational and Integer.
 
 The Rational class represents a rational number as a pair of two
 Integers: the numerator and the denominator, so Rational(1,2)
@@ -59,9 +59,9 @@ represents 1/2, Rational(5,2) 5/2 and so on::
     1
 
 SymPy uses mpmath in the background, which makes it possible to
-perform computations using arbitrary - precission arithmetic. That
+perform computations using arbitrary-precision arithmetic. That
 way, some special constants, like e, pi, oo (Infinity), are treated as
-symbols and can be evaluated with arbitrary precission::
+symbols and can be evaluated with arbitrary precision::
 
     >>> pi**2
     pi**2
@@ -165,7 +165,7 @@ Calculus
 Limits
 ------
 
-Limits are easy to use in sympy, they follow the syntax limit(function,
+Limits are easy to use in SymPy, they follow the syntax limit(function,
 variable, point), so to compute the limit of f(x) as x -> 0, you would issue
 limit(f, x, 0)::
 
@@ -340,14 +340,14 @@ the expression True, it will return False::
 Exercises
 ---------
 
-  1. Solve the system of equations x + y = 2, 2*x + y = 0
-  2. Are there boolean values x, y that make (~x | y) & (~y | x) true?
+  1. Solve the system of equations :math:`x + y = 2`, :math:`2\cdot x + y = 0`
+  2. Are there boolean values ``x``, ``y`` that make ``(~x | y) & (~y | x)`` true?
 
 
 .. Polynomial computations
 .. =======================
 
-.. Sympy has a rich module of efficient polynomial routines. Some of the
+.. SymPy has a rich module of efficient polynomial routines. Some of the
 .. most commonly used methods are factor, gcd
 
 
@@ -366,7 +366,7 @@ Matrices are created as instances from the Matrix class::
     [1, 0]
     [0, 1]
 
-unlike a numpy array, you can also put Symbols in it::
+unlike a NumPy array, you can also put Symbols in it::
 
     >>> x = Symbol('x')
     >>> y = Symbol('y')
