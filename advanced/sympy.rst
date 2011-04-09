@@ -86,8 +86,8 @@ There is also a class representing mathematical infinity, called
 Exercises
 ---------
 
-  1. Calculate :math:`\sqrt{2}` with 100 decimals.
-  2. Calculate :math:`1/2 + 1/3` in rational arithmetic.
+1. Calculate :math:`\sqrt{2}` with 100 decimals.
+2. Calculate :math:`1/2 + 1/3` in rational arithmetic.
 
 
 Symbols
@@ -149,14 +149,14 @@ simpler form::
 
 Simplification is a somewhat vague term, and more precises
 alternatives to simplify exists: powsimp (simplification of
-exponents), trigsimp (for trigonometrical expressions) , logcombine,
+exponents), trigsimp (for trigonometric expressions) , logcombine,
 radsimp, together.
 
 Exercises
 ---------
 
-  1. Calculate the expanded form of :math:`(x+y)^6`.
-  2. Symplify the trigonometrical expression sin(x) / cos(x)
+1. Calculate the expanded form of :math:`(x+y)^6`.
+2. Simplify the trigonometric expression sin(x) / cos(x)
 
   
 Calculus
@@ -232,9 +232,8 @@ a point. Use ``series(expr, var)``::
 Exercises
 ---------
 
-  1. Calculate :math:`\lim{x->0, sin(x)/x}`
-  2. Calulate the derivative of log(x) for x.
-
+1. Calculate :math:`\lim{x->0, sin(x)/x}`
+2. Calulate the derivative of log(x) for x.
 
 .. index:: integration
 
@@ -340,8 +339,8 @@ the expression True, it will return False::
 Exercises
 ---------
 
-  1. Solve the system of equations :math:`x + y = 2`, :math:`2\cdot x + y = 0`
-  2. Are there boolean values ``x``, ``y`` that make ``(~x | y) & (~y | x)`` true?
+1. Solve the system of equations :math:`x + y = 2`, :math:`2\cdot x + y = 0`
+2. Are there boolean values ``x``, ``y`` that make ``(~x | y) & (~y | x)`` true?
 
 
 .. Polynomial computations
@@ -410,7 +409,10 @@ to force dsolve to resolve it as a separable equation.
 Exercises
 ---------
 
-  1. Solve the Bernoulli differential equation x*f(x).diff(x) + f(x) -
-  f(x)**2
-  2. Solve the same equation using hint='Bernoulli'. What do you observe ?
+1. Solve the Bernoulli differential equation x*f(x).diff(x) + f(x) - f(x)**2
 
+.. warning::
+
+   TODO: correct this equation and convert to math directive!
+
+2. Solve the same equation using hint='Bernoulli'. What do you observe ?
