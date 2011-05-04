@@ -1,5 +1,5 @@
-Exceptions handling in Python
-=============================
+Exception handling in Python
+============================
 
 It is highly unlikely that you haven't yet raised Exceptions if you have
 typed all the previous commands of the tutorial. For example, you may
