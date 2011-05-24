@@ -1,9 +1,7 @@
 3D plotting with Mayavi
 ========================
 
-.. only:: latex
-
-    :author: Gaël Varoquaux
+:author: Gaël Varoquaux
 
 .. only:: html
 

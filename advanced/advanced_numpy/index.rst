@@ -1,4 +1,4 @@
-.. sectionauthor:: Pauli Virtanen
+:author: Pauli Virtanen
 
 Advanced Numpy
 ==============

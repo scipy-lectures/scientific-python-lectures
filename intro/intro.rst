@@ -1,9 +1,7 @@
 Scientific computing with tools and workflow
 =============================================
 
-.. only:: latex
-
-    :authors: Fernando Perez, Emmanuelle Gouillart
+:authors: Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux
 
 ..
     .. image:: phd053104s.png
@@ -235,9 +233,10 @@ Elaboration of the algorithm in an editor
 ..........................................
 
 Create a file `my_file.py` in a text editor. Under EPD, you can use
-`Scite`, available from the start menu. Under Ubuntu, if you don't
-already have your favorite editor, I would advise installing `Stani's
-Python editor`. In the file, add the following lines::
+`Scite`, available from the start menu. Under Python(x,y), you can use
+Spyder. Under Ubuntu, if you don't already have your favorite editor, I
+would advise installing `Stani's Python editor`. In the file, add the
+following lines::
 
     s = `Hello world`
     print(s) 

@@ -1,9 +1,7 @@
 NumPy: creating and manipulating numerical data 
 ================================================
 
-.. only:: latex
-
-    :authors: Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux
+:authors: Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux
 
 .. topic:: The array: the basic tool for scientific computing
 

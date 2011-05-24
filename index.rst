@@ -58,11 +58,13 @@ Python Scientific Lecture Notes
 
 
 
+.. raw:: html
+
+    <div style="float: right;"><a href="https://github.com/scipy-lectures">Source code of this document</a></div>
+
 .. only:: html
 
     Download printable version: :download:`PythonScientific.pdf`
-
-
 
 .. toctree::
    :maxdepth: 3

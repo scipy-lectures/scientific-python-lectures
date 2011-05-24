@@ -1,10 +1,7 @@
-A (very short) introduction to Python
+The Python language
 =====================================
 
-.. only:: latex
-
-  :authors: Chris Burns, Christophe Combelles, Emmanuelle Gouillart, Gaël
-   Varoquaux
+:authors: Chris Burns, Christophe Combelles, Emmanuelle Gouillart, Gaël Varoquaux
 
 .. topic:: Python for scientific computing
 

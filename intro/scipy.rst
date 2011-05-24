@@ -1,9 +1,7 @@
 Scipy : high-level scientific computing
 =========================================
 
-.. only:: latex
-
-  :authors: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël Varoquaux
+:authors: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël Varoquaux
 
 .. topic:: Scipy
 
