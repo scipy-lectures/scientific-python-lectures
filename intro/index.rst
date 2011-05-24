@@ -43,7 +43,6 @@ Getting started with Python for science
    :maxdepth: 3
 
    intro.rst
-   workflow.rst 
    language/python_language.rst
    numpy/numpy.rst 
    help/help.rst

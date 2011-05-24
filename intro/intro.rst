@@ -1,5 +1,5 @@
-Scientific computing: why Python?
-=================================
+Scientific computing with tools and workflow
+=============================================
 
 .. only:: latex
 
@@ -9,8 +9,11 @@ Scientific computing: why Python?
     .. image:: phd053104s.png
       :align: center
 
+Why Python?
+------------
+
 The scientist's needs
----------------------
+.......................
 
 * Get data (simulation, experiment control)
 
@@ -22,7 +25,7 @@ The scientist's needs
   write presentations.
 
 Specifications
---------------
+................
 
 * Rich collection of already existing **bricks** corresponding to classical
   numerical methods or basic actions: we don't want to re-program the
@@ -46,7 +49,7 @@ Specifications
   a new software for each new problem.
 
 Existing solutions
-------------------
+...................
 
 Which solutions do the scientists use to work?
 
@@ -125,4 +128,149 @@ Which solutions do the scientists use to work?
 
   * Not all the algorithms that can be found in more specialized
     software or toolboxes.
+
+Scientific Python building blocks
+-----------------------------------
+
+* **Python**, a generic and modern computing language
+
+    * Python language: data types (``string``, ``int``), flow control,
+      data collections (lists, dictionaries), patterns, etc.
+
+    * Modules of the standard library.
+
+    * A large number of specialized modules or applications written in
+      Python: web protocols, web framework, etc. ... and scientific
+      computing.
+
+    * Development tools (automatic tests, documentation generation)
+
+  .. image:: snapshot_ipython.png
+        :align: right
+        :scale: 60
+
+* **IPython**, an advanced **Python shell**
+
+  http://ipython.scipy.org/moin/
+ 
+* **Numpy** : provides powerful **numerical arrays** objects, and routines to
+  manipulate them.
+
+  http://www.scipy.org/
+
+.. 
+    >>> np.random.seed(4)
+
+* **Scipy** : high-level data processing routines.
+  Optimization, regression, interpolation, etc
+
+  http://www.scipy.org/
+
+* **Matplotlib** : 2-D visualization, "publication-ready" plots
+
+  .. image:: random_c.jpg
+        :scale: 40
+        :align: right
+
+  http://matplotlib.sourceforge.net/
+
+* **Mayavi** : 3-D visualization
+  
+  .. image:: example_surface_from_irregular_data.jpg
+        :scale: 60
+        :align: right
+
+  http://code.enthought.com/projects/mayavi/
+
+.. raw:: html
+
+   <div style="padding-top: 9em;"></div>
+
+The interactive workflow: IPython and a text editor 
+-----------------------------------------------------
+
+   **Interactive work to test and understand algorithm**
+
+Python is a general-purpose language. As such, there is not one blessed
+environement to work into, and not only one way of using it. Although
+this makes it harder for beginners to find their way, it makes it
+possible for Python to be used to write programs, in web servers, or
+embedded devices. Here, we describe an interactive workflow with IPython
+that is handy to explore and understand algorithms.
+
+.. note:: Reference document for this section:
+
+    **IPython user manual:** http://ipython.scipy.org/doc/manual/html/
+
+Command line interaction
+..........................
+
+Start `ipython`:
+
+.. sourcecode:: ipython
+
+    In [1]: print('Hello world')
+    Hello world
+
+Getting help:
+
+.. sourcecode:: ipython
+
+    In [2]: print?
+    Type:		builtin_function_or_method
+    Base Class:	        <type 'builtin_function_or_method'>
+    String Form:	<built-in function print>
+    Namespace:	        Python builtin
+    Docstring:
+	print(value, ..., sep=' ', end='\n', file=sys.stdout)
+	
+	Prints the values to a stream, or to sys.stdout by default.
+	Optional keyword arguments:
+	file: a file-like object (stream); defaults to the current sys.stdout.
+	sep:  string inserted between values, default a space.
+	end:  string appended after the last value, default a newline.
+
+
+Elaboration of the algorithm in an editor
+..........................................
+
+Create a file `my_file.py` in a text editor. Under EPD, you can use
+`Scite`, available from the start menu. Under Ubuntu, if you don't
+already have your favorite editor, I would advise installing `Stani's
+Python editor`. In the file, add the following lines::
+
+    s = `Hello world`
+    print(s) 
+
+Now, you can run it in ipython and explore the resulting variables:
+
+.. sourcecode:: ipython
+
+    In [3]: %run my_file.py
+    Hello word
+
+    In [4]: s
+    Out[4]: 'Hello word'
+
+    In [5]: %whos
+    Variable   Type    Data/Info
+    ----------------------------
+    s          str     Hello word
+
+____
+
+.. topic:: **From a script to functions**
+
+    * A script is not reusable, functions are.
+
+    * Thinking in terms of functions helps breaking the problem in small 
+      blocks.
+
+
+.. :vim:spell:
+
+
+
+
+
 
