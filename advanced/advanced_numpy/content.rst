@@ -1,13 +1,7 @@
 .. currentmodule:: numpy
 
-.. sectionauthor:: Pauli Virtanen
-
 Advanced Numpy
 ==============
-
-  |    *July 8, @ EuroScipy 2010*
-  |
-  |    *Pauli Virtanen*
 
 .. time limit: 1.5 hours; probably ~ 2 x 45 min
 

@@ -1,9 +1,7 @@
 Matplotlib
 ==========
 
-.. only:: latex
-
-    :author: Mike Müller
+:author: Mike Müller
 
 Introduction
 ------------
