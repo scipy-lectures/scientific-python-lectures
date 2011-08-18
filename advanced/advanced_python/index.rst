@@ -37,7 +37,8 @@ Iterators
 An iterator is an object adhering to the `iterator protocol`_
 --- basically this means that it has a ``__next__`` method, which,
 when called, returns the next item in the sequence, and when
-there's nothing to return, raises the `StopIteration` exception.
+there's nothing to return, raises the
+:py:exc:`exceptions.StopIteration` exception.
 
 .. _`iterator protocol`: http://docs.python.org/dev/library/stdtypes.html#iterator-types
 
@@ -501,7 +502,7 @@ consequence is that the apparent argument list is misleading.
 
 Compared to decorators defined as functions, complex decorators
 defined as classes are simpler.  When an object is created, the
-__init__ method is only allowed to return None, and the type of the
+``__init__`` method is only allowed to return ``None``, and the type of the
 created object cannot be changed. This means that when a decorator is
 defined as a class, it doesn't make much sense to use the
 argument-less form: the final decorated object would just be an
@@ -857,10 +858,11 @@ release, Python provides support in more places:
 
 * all file-like objects:
 
-  - ``file`` |==>| automatically closed
-  - ``fileinput``, ``tempfile`` (py >= 3.2)
-  - ``bz2.BZFile``, ``gzip.GZFile``, ``tar.TarFile``, ``zip.ZipFile``
-  - ``ftplib``, ``nntplib`` |==>| close connection (py >= 3.2, 3.3)
+  - :py:class:`file` |==>| automatically closed
+  - :py:mod:`fileinput`, :py:mod:`tempfile` (py >= 3.2)
+  - :py:class:`bz2.BZ2File`, :py:class:`gzip.GzipFile`,
+    :py:class:`tarfile.TarFile`, :py:class:`zipfile.ZipFile`
+  - :py:mod:`ftplib`, :py:mod:`nntplib` |==>| close connection (py >= 3.2, 3.3)
 * locks
 
   - :py:class:`multiprocessing.RLock` |==>| lock and unlock

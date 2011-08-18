@@ -22,14 +22,17 @@ sys.path.append(os.path.abspath('sphinxext'))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 
+extensions = [
+        'sphinx.ext.autodoc',
+        'sphinx.ext.doctest',
         #'matplotlib.sphinxext.plot_directive', 
         'plot_directive',
         'only_directives',
         'ipython_console_highlighting',
         #'matplotlib.sphinxext.only_directives',
-         'sphinx.ext.pngmath',
-        ]#'sphinx.ext.intersphinx']
+        'sphinx.ext.pngmath',
+        'sphinx.ext.intersphinx',
+]
 
 doctest_test_doctest_blocks = 'true'
 
@@ -216,7 +219,7 @@ latex_elements = {
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'http://docs.python.org/dev': None,
+    'http://docs.python.org/2.7': None,
     'http://docs.scipy.org/doc/numpy': None,
 }
 
