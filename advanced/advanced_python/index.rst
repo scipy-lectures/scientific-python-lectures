@@ -114,7 +114,7 @@ the process is short-circuited and we get a ``list`` object.
 >>> list(i for i in nums)
 [1, 2, 3]
 
-Generator expression are fairly simple, not much to say here. Only a
+Generator expression are fairly simple, not much to say here. Only one
 *gotcha* should be mentioned: in old Pythons the index variable
 (``i``) would leak, and in versions >= 3 this is fixed.
 
@@ -390,9 +390,9 @@ example above is equivalent to::
     function = decorator(function)   # ②
 
 Decorators can be stacked --- the order of application is
-bottom-to-top, or inside-out. The semantics are such that the original
+bottom-to-top, or inside-out. The semantics are such that the originally
 defined function is used as an argument for the first decorator,
-whatever is returned by the first decorator is used an an argument for
+whatever is returned by the first decorator is used as an argument for
 the second decorator, ..., and whatever is returned by the last
 decorator is attached under the name of the original function.
 
@@ -401,7 +401,7 @@ decorator is specified before the header of the function, it is
 obvious that its is not a part of the function body and its clear that
 it can only operate on the whole function. Because the expression is
 prefixed with ``@`` is stands out and is hard to miss ("in your face",
-according to the pep :) ). When more than one decorator is applied,
+according to the PEP :) ). When more than one decorator is applied,
 each one is placed on a separate line in an easy to read way.
 
 
@@ -409,7 +409,7 @@ Replacing or tweaking the original object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Decorators can either return the same function or class object or they
-can return a completely different object. In the first case, they
+can return a completely different object. In the first case, the
 decorator can exploit the fact that function and class objects are
 mutable and add attributes, e.g. add a docstring to a class. A
 decorator might do something useful even without modifying the object,
@@ -530,7 +530,7 @@ in decorator call, foo
 in function, () {}
 
 Contrary to normal rules (:PEP:`8`) decorators written as classes
-behave really like functions and their name often starts with a
+behave more like functions and therefore their name often starts with a
 lowercase letter.
 
 In reality, it doesn't make much sense to create a new class just to
@@ -674,7 +674,7 @@ first invocation of a function we don't like anymore. If we don't want
 to modify the function, we can use a decorator::
 
   class deprecated(object):
-      """Print a deprecation warning one on first use of the function.
+      """Print a deprecation warning once on first use of the function.
 
       >>> @deprecated()
       ... def f():
@@ -697,7 +697,7 @@ to modify the function, we can use a decorator::
 It can also be implemented as a function::
 
   def deprecated(func):
-      """Print a deprecation warning one on first use of the function.
+      """Print a deprecation warning once on first use of the function.
 
       >>> @deprecated
       ... def f():
