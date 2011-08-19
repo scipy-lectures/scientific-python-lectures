@@ -576,7 +576,7 @@ to the new function by setting ``__doc__`` (the docstring), ``__module__``
 and ``__name__`` (the full name of the function), and
 ``__annotations__`` (extra information about arguments and the return
 value of the function available in Python 3). This can be done
-automatically by using `functools.update_wrapper`.
+automatically by using :py:func:`functools.update_wrapper`.
 
 >>> import functools
 >>> def better_replacing_decorator_with_args(arg):
@@ -586,7 +586,7 @@ automatically by using `functools.update_wrapper`.
 ...       def _wrapper(*args, **kwargs):
 ...           print "inside wrapper,", args, kwargs
 ...           return function(*args, **kwargs)
-...       return update_wrapper(_wrapper, function)
+...       return functools.update_wrapper(_wrapper, function)
 ...   return _decorator
 >>> @better_replacing_decorator_with_args("abc")
 ... def function():
