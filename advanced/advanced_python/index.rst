@@ -929,7 +929,7 @@ support this use case.
       finally:
 	  <cleanup>
 
-The `contextlib.contextmanager` helper takes a generator and turns it
+The :py:func:`contextlib.contextmanager` helper takes a generator and turns it
 into a context manager. The generator has to obey some rules which are
 enforced by the wrapper function --- most importantly it must
 ``yield`` exactly once. The part before the ``yield`` is executed from
