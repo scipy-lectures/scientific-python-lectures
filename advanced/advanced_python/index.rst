@@ -379,7 +379,7 @@ is assigned under the original name.
 Before the decorator syntax was implemented (:pep:`318`), it was
 possible to achieve the same effect by assigning the function or class
 object to a temporary variable and then invoking the decorator
-explicitely and then assigning the return value to the name of the
+explicitly and then assigning the return value to the name of the
 function. This sound like more typing, and it is, and also the name of
 the decorated function dubbling as a temporary variable must be used
 at least three times, which is prone to errors. Nevertheless, the
@@ -390,7 +390,7 @@ example above is equivalent to::
     function = decorator(function)   # ②
 
 Decorators can be stacked --- the order of application is
-bottom-to-top, or inside-out. The sematincs are such that the original
+bottom-to-top, or inside-out. The semantics are such that the original
 defined function is used as an argument for the first decorator,
 whatever is returned by the first decorator is used an an argument for
 the second decorator, ..., and whatever is returned by the last
@@ -415,10 +415,10 @@ mutable and add attributes, e.g. add a docstring to a class. A
 decorator might do something useful even without modifying the object,
 for example register the decorated class in a global registry. In the
 second case, virtually anything is possible: when a something
-different is substituted for the orignal function or class, the new
+different is substituted for the original function or class, the new
 object can be completely different. Nevertheless, such behaviour is
 not the purpose of decorators: they are intended to tweak the
-decorated object, not do something unpredicatable. Therefore, when a
+decorated object, not do something unpredictable. Therefore, when a
 function is "decorated" by replacing it with a different function, the
 new function usually calls the original function, after doing some
 preparatory work. Likewise, when a class is "decorated" by replacing
