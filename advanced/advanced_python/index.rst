@@ -105,7 +105,7 @@ A second way in which iterator objects are created is through
 increase clarity, a generator expression must always be enclosed in
 parentheses or an expression. If round parentheses are used, then a
 generator iterator is created.  If rectangular parentheses are used,
-the process is short-circuited and we get a ``list`` object.
+the process is short-circuited and we get a ``list``.
 
 >>> (i for i in nums)
 <generator object <genexpr> at 0x...>
@@ -113,6 +113,17 @@ the process is short-circuited and we get a ``list`` object.
 [1, 2, 3]
 >>> list(i for i in nums)
 [1, 2, 3]
+
+In Python 2.7 and 3.x the list comprehension syntax was extended to
+**dictionary and set comprehensions**.
+A ``set`` is created when the generator expression is enclosed in curly
+braces. A ``dict`` is created when the generator expression contains
+"pairs" of the form ``key:value``::
+
+  >>> {i for i in range(3)}
+  set([0, 1, 2])
+  >>> {i:i**2 for i in range(3)}
+  {0: 0, 1: 1, 2: 4}
 
 Generator expression are fairly simple, not much to say here. Only one
 *gotcha* should be mentioned: in old Pythons the index variable
@@ -343,7 +354,7 @@ Decorators
 Since a function or a class are objects, they can be passed
 around. Since they are mutable objects, they can be modified.  The act
 of altering a function or class object after it has been constructed
-but before is is bound to its name, is called decorating.
+but before is is bound to its name is called decorating.
 
 There are two things hiding under the name "decoration" --- one is the
 invocation of the decorator on the decorated object, and the second
@@ -354,6 +365,8 @@ There are two thing hiding behind the name "decorator" --- one is the
 function which does the work of decorating, i.e. performs the real
 work, and the other one is the expression adhering to the decorator
 syntax, i.e. an at-symbol and the name of the decorating function.
+
+.. the two paragraphs above seem like quasi duplicates
 
 Function can be decorated by using the decorator syntax for
 functions::
@@ -620,7 +633,7 @@ Examples in the standard library
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 First, it should be mentioned that there's a number of useful
-decorators available in the standard library. There are two decorators
+decorators available in the standard library. There are three decorators
 which really form a part of the language:
 
 - :py:func:`classmethod` causes a method to become a "class method",
@@ -637,6 +650,7 @@ which really form a part of the language:
     class Array(object):
         def __init__(self, data):
 	    self.data = data
+
         @classmethod
         def fromfile(cls, file):
             data = numpy.load(file)
@@ -647,14 +661,111 @@ which really form a part of the language:
 - :py:func:`staticmethod` is applied to methods to make them "static",
   i.e. basically a normal function, but accessible through the class
   namespace. This can be useful when the function is only needed
-  inside this class (it would then be prefixed with ``_``), or when we
+  inside this class (its name would then be prefixed with ``_``), or when we
   want the user to think of the method as connected to the class,
-  despite the implementation which doesn't require this.
+  despite an implementation which doesn't require this.
+
+- :py:func:`property` is the pythonic answer to the problem of getters
+  and setters. A method decorated with ``property`` becomes a getter
+  which is automatically called on attribute access.
+
+  >>> class A(object):
+  ...   @property
+  ...   def a(self):
+  ...     "an important attribute"
+  ...     return "a value"
+  >>> A.a
+  <property object at 0x2c25c00>
+  >>> A().a
+  'a value'
+
+  In this example, ``A.a`` is an read-only attribute. It is also
+  documented: ``help(A)`` includes the docstring for attribute ``a``
+  taken from the getter method. Defining ``a`` as a property allows it
+  to be a calculated on the fly, and has the side effect of making it
+  read-only, because no setter is defined.
+
+  To have a setter and a getter, two methods are required,
+  obviously. Since Python 2.6 the following syntax is preferred::
+
+    class Rectangle(object):
+        def __init__(self, edge):
+            self.edge = edge
+
+        @property
+        def area(self):
+            """Computed area.
+
+            Setting this updates the edge length to the proper value.
+            """
+            return self.edge**2
+
+        @area.setter
+        def area(self, area):
+            self.edge = area ** 0.5
+
+  The way that this works, is that the ``property`` decorator replaces
+  the getter method with a property object. This object in turn has
+  three methods, ``getter``, ``setter``, and ``deleter``, which can be
+  used as decorators. Their job is to set the getter, setter and
+  deleter of the property object (stored as attributes ``fget``,
+  ``fset``, and ``fdel``). The getter can be set like in the example
+  above, when creating the object. When defining the setter, we
+  already have the property object under ``area``, and we add the
+  setter to it by using the ``setter`` method. All this happens when
+  we are creating the class.
+
+  Afterwards, when an instance of the class has been created, the
+  property object is special. When the interpreter executes attribute
+  access, assignment, or deletion, the job is delegated to the methods
+  of the property object.
+
+  To make everything crystal clear, let's define a "debug" example::
+
+    >>> class D(object):
+    ...    @property
+    ...    def a(self):
+    ...      print "getting", 1
+    ...      return 1
+    ...    @a.setter
+    ...    def a(self, value):
+    ...      print "setting", value
+    ...    @a.deleter
+    ...    def a(self):
+    ...      print "deleting"
+    >>> D.a
+    <property object at 0x...>
+    >>> D.a.fget
+    <function a at 0x...>     # ... varies, this is not the same `a` function
+    >>> D.a.fset
+    <function a at 0x...>
+    >>> D.a.fdel
+    <function a at 0x...>
+    >>> d = D()
+    >>> d.a
+    getting 1
+    1
+    >>> d.a = 2
+    setting 2
+    >>> del d.a
+    deleting
+    >>> d.a
+    getting 1
+    1
+
+  Properties are a bit of a stretch for the decorator syntax. One of the
+  premises of the decorator syntax --- that the name is not duplicated
+  --- is violated, but nothing better has been invented so far. It is
+  just good style to use the same name for the getter, setter, and
+  deleter methods.
+
+  .. property documentation mentions that this only works for
+     old-style classes, but this seems to be an error.
 
 Some newer examples include:
 
 - :py:func:`functools.lru_cache` memoizes an arbitrary function
-  maintaining a limited cache of arguments->answer pairs (Python 3.2)
+  maintaining a limited cache of arguments:answer pairs (Python 3.2)
 
 - :py:func:`functools.total_ordering` is a class decorator which fills
   in missing ordering methods (``__lt__``, ``__gt__``, ``__le__``, ...) based on a
@@ -755,24 +866,44 @@ Our function then becomes::
 A plugin registration system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This is a class decorator which doesn't modify the class, so it falls
-into the category of decorators returning the original object, but
-just puts it in a global registry::
+This is a class decorator which doesn't modify the class, but just
+puts it in a global registry. It falls into the category of decorators
+returning the original object::
 
   class WordProcessor(object):
       PLUGINS = []
       def process(self, text):
-	  for plug in self.PLUGINS:
-	      text = plug().cleanup(text)
-	  return text
+          for plugin in self.PLUGINS:
+              text = plugin().cleanup(text)
+          return text
 
-  @register(WordProcessor.PLUGINS)
+      @classmethod
+      def plugin(cls, plugin):
+          cls.PLUGINS.append(plugin)
+
+  @WordProcessor.plugin
   class CleanMdashesExtension(object):
       def cleanup(self, text):
-	  return text.replace('&mdash;', '\N{em dash}')
+          return text.replace('&mdash;', u'\N{em dash}')
 
-More examples and more reading
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Here we use a decorator to decentralise the registration of
+plugins. We call our decorator with a noun, instead of a verb, because
+we use it to declare that our class is a plugin for
+``WordProcessor``. Method ``plugin`` simply appends the class to the
+list of plugins.
+
+A word about the plugin itself: it replaces HTML entity for em-dash
+with a real Unicode em-dash character. It exploits the `unicode
+literal notation`_ to insert a character by using its name in the
+unicode database ("EM DASH"). If the Unicode character was inserted
+directly, it would be impossible to distinguish it from an en-dash in
+the source of a program.
+
+.. _`unicode literal notation`:
+   http://docs.python.org/2.7/reference/lexical_analysis.html#string-literals
+
+More examples and reading
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * PEP 318 (function and method decorator syntax)
 * PEP 3129 (class decorator syntax)
