@@ -53,9 +53,10 @@ object. This means that we can iterate over the same sequence more
 than once concurrently. Separating the iteration logic from the
 sequence allows us to have more than one way of iteration.
 
-Calling the ``__iter__`` method on a container to create an iterator
-object is the most straightforward way to get hold of an iterator. The
-``iter`` function does that for us, saving a few keystrokes.
+Calling the `__iter__ <object.__iter__>` method on a container to
+create an iterator object is the most straightforward way to get hold
+of an iterator. The `iter` function does that for us, saving a few
+keystrokes.
 
 >>> nums = [1,2,3]      # note that ... varies: these are different objects
 >>> iter(nums)                           # doctest: +ELLIPSIS
@@ -77,16 +78,17 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 StopIteration
 
-When used in a loop, ``StopIteration`` is swallowed and causes the
-loop to finish. But with explicit invocation, we can see that
-once the iterator is exhausted, accessing it raises an exception.
+When used in a loop, `StopIteration <exceptions.StopIteration>` is
+swallowed and causes the loop to finish. But with explicit invocation,
+we can see that once the iterator is exhausted, accessing it raises an
+exception.
 
-Using the ``for..in`` loop also uses the ``__iter__`` method. This
-allows us to transparently start the iteration over a sequence. But
-if we already have the iterator, we want to be able to use it in an
-``for`` loop in the same way. In order to achieve this, iterators
-in addition to ``next`` are also required to have a method called
-``__iter__`` which returns the iterator (``self``).
+Using the :compound:`for..in <for>` loop also uses the ``__iter__``
+method. This allows us to transparently start the iteration over a
+sequence. But if we already have the iterator, we want to be able to
+use it in an ``for`` loop in the same way. In order to achieve this,
+iterators in addition to ``next`` are also required to have a method
+called ``__iter__`` which returns the iterator (``self``).
 
 Support for iteration is pervasive in Python:
 all sequences and unordered containers in the standard library allow
@@ -137,7 +139,7 @@ Generators
 ^^^^^^^^^^
 
 A third way to create iterator objects is to call a generator function.
-A **generator** is a function containing the keyword ``yield``. It must be
+A **generator** is a function containing the keyword :simple:`yield`. It must be
 noted that the mere presence of this keyword completely changes the
 nature of the function: this ``yield`` statement doesn't have to be
 invoked, or even reachable, but causes the function to be marked as a
@@ -255,7 +257,7 @@ which is equivalent to::
 
 at the point of the ``yield`` statement.
 
-Unlike ``raise`` (which immediately raises an exception from the
+Unlike :simple:`raise` (which immediately raises an exception from the
 current execution point), ``throw()`` first resumes the generator, and
 only then raises the exception.  The word throw was picked because
 it is suggestive of putting the exception in another location, and is
@@ -348,11 +350,11 @@ without much difficulty using a loop such as
 However, if the subgenerator is to interact properly with the caller
 in the case of calls to ``send()``, ``throw()`` and ``close()``,
 things become considerably more difficult. The ``yield`` statement has
-to be guarded by a ``try..except..finally`` structure similar to the
-one defined in the previous section to "debug" the generator function.
-Such code is provided in :pep:`380#id13`, here it
-suffices to say that new syntax to properly yield
-from a subgenerator is being introduced in Python 3.3:
+to be guarded by a :compound:`try..except..finally <try>` structure
+similar to the one defined in the previous section to "debug" the
+generator function.  Such code is provided in :pep:`380#id13`, here it
+suffices to say that new syntax to properly yield from a subgenerator
+is being introduced in Python 3.3:
 
 .. code-block:: python
 
@@ -928,8 +930,8 @@ the source of a program.
 More examples and reading
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* PEP 318 (function and method decorator syntax)
-* PEP 3129 (class decorator syntax)
+* :pep:`318` (function and method decorator syntax)
+* :pep:`3129` (class decorator syntax)
 * http://wiki.python.org/moin/PythonDecoratorLibrary
 * http://docs.python.org/dev/library/functools.html
 * http://pypi.python.org/pypi/decorator
@@ -948,7 +950,7 @@ Context managers
 ================
 
 A context manager is an object with `__enter__ <object.__enter__>` and
-`__exit__ <object.__exit__>` methods which can be used in the ``with``
+`__exit__ <object.__exit__>` methods which can be used in the :compound:`with`
 statement::
 
   with manager as var:
@@ -965,7 +967,7 @@ equivalent to ::
 
 In other words, the context manager protocol defined in :pep:`343`
 permits the extraction of the boring part of a
-``try..except..finally`` structure into a separate class
+:compound:`try..except..finally <try>` structure into a separate class
 leaving only the interesting ``do_something`` block.
 
 1. The `__enter__ <object.__enter__>` method is called first.  It can
@@ -974,17 +976,17 @@ leaving only the interesting ``do_something`` block.
    returned by ``__enter__`` is simply ignored.
 2. The block of code underneath ``with`` is executed.  Just like with
    ``try`` clauses, it can either execute successfully to the end, or
-   it can ``break``, ``continue`` or ``return``, or it can throw an
-   exception. Either way, after the block is finished, the
-   `__exit__ <object.__exit__>` method is called.
+   it can :simple:`break`, :simple:`continue`` or :simple:`return`, or
+   it can throw an exception. Either way, after the block is finished,
+   the `__exit__ <object.__exit__>` method is called.
    If an exception was thrown, the information about the exception is
    passed to ``__exit__``, which is described below in the next
    subsection. In the normal case, exceptions can be ignored, just
    like in a ``finally`` clause, and will be rethrown after
    ``__exit__`` is finished.
 
-Let's say we want to make sure that a file
-is closed::
+Let's say we want to make sure that a file is closed immediately after
+we are done writing to it::
 
   >>> class closing(object):
   ...   def __init__(self, obj):

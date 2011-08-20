@@ -32,6 +32,7 @@ extensions = [
         #'matplotlib.sphinxext.only_directives',
         'sphinx.ext.pngmath',
         'sphinx.ext.intersphinx',
+        'sphinx.ext.extlinks',
 ]
 
 doctest_test_doctest_blocks = 'true'
@@ -223,10 +224,17 @@ latex_elements = {
     #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 } 
 
+_python_doc_base = 'http://docs.python.org/2.7'
+
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'http://docs.python.org/2.7': None,
+    _python_doc_base: None,
     'http://docs.scipy.org/doc/numpy': None,
+}
+
+extlinks = {
+    'simple': (_python_doc_base + '/reference/simple_stmts.html#%s', ''),
+    'compound': (_python_doc_base + '/reference/compound_stmts.html#%s', ''),
 }
 
 # Increase pngmath font size
