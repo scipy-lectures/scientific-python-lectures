@@ -304,6 +304,23 @@ send and throw.
 >>> it.close()
 --closing--
 
+.. note:: ``next`` or ``__next__``?
+
+  In Python 2.x, the iterator method to retrieve the next value is
+  called ``next``. It is invoked implicitely through the global
+  function :py:obj:`next`, which means that it should be called
+  ``__next__``.  Just like the global function :py:obj:`iter` calls
+  ``__iter__``.  This inconsistency is corrected in Python 3.x, where
+  ``it.next`` becomes ``it.__next__``.  For other generator methods
+  --- ``send`` and ``throw`` --- the situation is more complicated,
+  because they are not called implicitly by the
+  interpreter. Nevertheless, there's a proposed syntax extension to
+  allow ``continue`` to take an argument which will be passed to
+  ``send`` of the loop's iterator. If this extension is accepted, it's
+  likely that ``gen.send`` will become ``gen.__send__``. The last of
+  generator methods, ``close``, is pretty obviously named incorrectly,
+  because it is already invoked implicitly.
+
 Chaining generators
 ^^^^^^^^^^^^^^^^^^^
 
