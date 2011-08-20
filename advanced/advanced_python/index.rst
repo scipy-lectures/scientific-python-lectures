@@ -1050,15 +1050,15 @@ some code throws the right kind of exception::
   class assert_raises(object):
       # based on pytest and unittest.TestCase
       def __init__(self, type):
-	  self.type = type
+          self.type = type
       def __enter__(self):
-	  pass
+          pass
       def __exit__(self, type, value, traceback):
-	  if type is None:
-	      raise AssertionError('exception expected')
-	  if issubclass(type, self.type):
-	      return True # swallow the expected exception
-	  raise AssertionError('wrong exception type')
+          if type is None:
+              raise AssertionError('exception expected')
+          if issubclass(type, self.type):
+              return True # swallow the expected exception
+          raise AssertionError('wrong exception type')
 
   with assert_raises(KeyError):
       {}['foo']

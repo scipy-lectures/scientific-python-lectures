@@ -209,6 +209,12 @@ latex_preamble = """
 \definecolor{VerbatimColor}{rgb}{0.95,1,0.833}
 \definecolor{VerbatimBorderColor}{rgb}{0.6,0.6,0.6}
 \setcounter{tocdepth}{1}
+\usepackage{amssymb}
+\usepackage{pifont}
+\DeclareUnicodeCharacter{2460}{\ding{182}}
+\DeclareUnicodeCharacter{2461}{\ding{183}}
+\DeclareUnicodeCharacter{2462}{\ding{184}}
+\DeclareUnicodeCharacter{2794}{$\rightsquigarrow$}
 """
 
 latex_elements = {
