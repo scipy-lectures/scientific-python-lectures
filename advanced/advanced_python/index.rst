@@ -1,5 +1,7 @@
 .. |==>| unicode:: U+02794 .. thick rightwards arrow
 
+.. default-role:: py:obj
+
 ==========================
 Advanced Python Constructs
 ==========================
@@ -24,9 +26,11 @@ importance of envisioned use cases, the burden of carrying more
 language features, consistency with the rest of the syntax, and
 whether the proposed variant is the easiest to read, write, and
 understand. This process is formalised in Python Enhancement
-Proposals --- PEPs. As a result, features described in this chapter
+Proposals --- PEPs_. As a result, features described in this chapter
 were added after it was shown that they indeed solve real problems and
 that their use is as simple as possible.
+
+.. _PEPs: http://www.python.org/dev/peps/
 
 Iterators, generator expressions and generators
 ===============================================
@@ -35,10 +39,10 @@ Iterators
 ^^^^^^^^^
 
 An iterator is an object adhering to the `iterator protocol`_
---- basically this means that it has a ``next`` method, which,
-when called, returns the next item in the sequence, and when
+--- basically this means that it has a `next <iterator.next>` method,
+which, when called, returns the next item in the sequence, and when
 there's nothing to return, raises the
-:py:exc:`exceptions.StopIteration` exception.
+`StopIteration <exceptions.StopIteration>` exception.
 
 .. _`iterator protocol`: http://docs.python.org/dev/library/stdtypes.html#iterator-types
 
@@ -81,7 +85,7 @@ Using the ``for..in`` loop also uses the ``__iter__`` method. This
 allows us to transparently start the iteration over a sequence. But
 if we already have the iterator, we want to be able to use it in an
 ``for`` loop in the same way. In order to achieve this, iterators
-in addition to ``next`` also required to have a method called
+in addition to ``next`` are also required to have a method called
 ``__iter__`` which returns the iterator (``self``).
 
 Support for iteration is pervasive in Python:
@@ -238,13 +242,14 @@ the generator object to either pass a value **into** the generator,
 which then is returned by the ``yield`` statement, or a
 different method to inject an exception into the generator.
 
-The first of the new methods is ``send(value)``, which is similar to
-``next()``, but passes ``value`` into the generator to be used for
-the value of the ``yield`` expression. In fact, ``g.next()`` and
-``g.send(None)`` are equivalent.
+The first of the new methods is `send(value) <generator.send>`, which
+is similar to `next() <generator.next>`, but passes ``value`` into
+the generator to be used for the value of the ``yield`` expression. In
+fact, ``g.next()`` and ``g.send(None)`` are equivalent.
 
-The second of the new methods is ``throw(type, value=None,
-traceback=None)`` which is equivalent to::
+The second of the new methods is
+`throw(type, value=None, traceback=None) <generator.throw>`
+which is equivalent to::
 
   raise type, value, traceback
 
@@ -265,10 +270,10 @@ clause, or otherwise it causes the execution of the generator function
 to be aborted and propagates in the caller.
 
 For completeness' sake, it's worth mentioning that generator iterators
-also have a ``close`` method, which can be used to force an generator
-that would otherwise be able to provide more values to finish
-immediately. It allows the generator ``__del__`` method to destroy
-objects holding the state of generator.
+also have a `close() <generator.close>` method, which can be used to
+force a generator that would otherwise be able to provide more values
+to finish immediately. It allows the generator `__del__ <object.__del__>`
+method to destroy objects holding the state of generator.
 
 Let's define a generator which just prints what is passed in through
 send and throw.
@@ -307,19 +312,19 @@ send and throw.
 .. note:: ``next`` or ``__next__``?
 
   In Python 2.x, the iterator method to retrieve the next value is
-  called ``next``. It is invoked implicitely through the global
-  function :py:obj:`next`, which means that it should be called
-  ``__next__``.  Just like the global function :py:obj:`iter` calls
-  ``__iter__``.  This inconsistency is corrected in Python 3.x, where
-  ``it.next`` becomes ``it.__next__``.  For other generator methods
-  --- ``send`` and ``throw`` --- the situation is more complicated,
-  because they are not called implicitly by the
-  interpreter. Nevertheless, there's a proposed syntax extension to
-  allow ``continue`` to take an argument which will be passed to
-  ``send`` of the loop's iterator. If this extension is accepted, it's
-  likely that ``gen.send`` will become ``gen.__send__``. The last of
-  generator methods, ``close``, is pretty obviously named incorrectly,
-  because it is already invoked implicitly.
+  called `next <iterator.next>`. It is invoked implicitly through the
+  global function `next`, which means that it should be called ``__next__``.
+  Just like the global function `iter` calls `__iter__ <iterator.__iter__>`.
+  This inconsistency is corrected in Python 3.x, where ``it.next``
+  becomes ``it.__next__``.  For other generator methods --- ``send``
+  and ``throw`` --- the situation is more complicated, because they
+  are not called implicitly by the interpreter. Nevertheless, there's
+  a proposed syntax extension to allow ``continue`` to take an
+  argument which will be passed to `send <generator.send>` of the
+  loop's iterator. If this extension is accepted, it's likely that
+  ``gen.send`` will become ``gen.__send__``. The last of generator
+  methods, `close <generator.close>`, is pretty obviously named
+  incorrectly, because it is already invoked implicitly.
 
 Chaining generators
 ^^^^^^^^^^^^^^^^^^^
@@ -462,8 +467,8 @@ Decorators implemented as classes and as functions
 
 The only *requirement* on decorators is that they can be called with a
 single argument. This means that decorators can be implemented as
-normal functions, or as classes with a ``__call__`` method, or in
-theory, even as lambda functions.
+normal functions, or as classes with a `__call__ <object.__call__>`
+method, or in theory, even as lambda functions.
 
 Let's compare the function and class approaches. The decorator
 expression (the part after ``@``) can be either just a name, or a
@@ -531,11 +536,11 @@ consequence is that the apparent argument list is misleading.
 
 Compared to decorators defined as functions, complex decorators
 defined as classes are simpler.  When an object is created, the
-``__init__`` method is only allowed to return ``None``, and the type of the
-created object cannot be changed. This means that when a decorator is
-defined as a class, it doesn't make much sense to use the
-argument-less form: the final decorated object would just be an
-instance of the decorating class, returned by the constructor call,
+`__init__ <object.__init__>` method is only allowed to return `None`,
+and the type of the created object cannot be changed. This means that
+when a decorator is defined as a class, it doesn't make much sense to
+use the argument-less form: the final decorated object would just be
+an instance of the decorating class, returned by the constructor call,
 which is not very useful. Therefore it's enough to discuss class-based
 decorators where arguments are given in the decorator expression and
 the decorator ``__init__`` method is used for decorator construction.
@@ -605,7 +610,7 @@ to the new function by setting ``__doc__`` (the docstring), ``__module__``
 and ``__name__`` (the full name of the function), and
 ``__annotations__`` (extra information about arguments and the return
 value of the function available in Python 3). This can be done
-automatically by using :py:func:`functools.update_wrapper`.
+automatically by using `functools.update_wrapper`.
 
 >>> import functools
 >>> def better_replacing_decorator_with_args(arg):
@@ -652,7 +657,7 @@ First, it should be mentioned that there's a number of useful
 decorators available in the standard library. There are three decorators
 which really form a part of the language:
 
-- :py:func:`classmethod` causes a method to become a "class method",
+- `classmethod` causes a method to become a "class method",
   which means that it can be invoked without creating an instance of
   the class. When a normal method is invoked, the interpreter inserts
   the instance object as the first positional parameter,
@@ -674,14 +679,14 @@ which really form a part of the language:
 
   This is cleaner then using a multitude of flags to ``__init__``.
 
-- :py:func:`staticmethod` is applied to methods to make them "static",
+- `staticmethod` is applied to methods to make them "static",
   i.e. basically a normal function, but accessible through the class
   namespace. This can be useful when the function is only needed
   inside this class (its name would then be prefixed with ``_``), or when we
   want the user to think of the method as connected to the class,
   despite an implementation which doesn't require this.
 
-- :py:func:`property` is the pythonic answer to the problem of getters
+- `property` is the pythonic answer to the problem of getters
   and setters. A method decorated with ``property`` becomes a getter
   which is automatically called on attribute access.
 
@@ -780,16 +785,18 @@ which really form a part of the language:
 
 Some newer examples include:
 
-- :py:func:`functools.lru_cache` memoizes an arbitrary function
+- `functools.lru_cache` memoizes an arbitrary function
   maintaining a limited cache of arguments:answer pairs (Python 3.2)
 
-- :py:func:`functools.total_ordering` is a class decorator which fills
-  in missing ordering methods (``__lt__``, ``__gt__``, ``__le__``, ...) based on a
-  single available one (Python 2.7)
+- `functools.total_ordering` is a class decorator which fills in
+  missing ordering methods
+  (`__lt__ <object.__lt__>`, `__gt__ <object.__gt__>`,
+  `__le__ <object.__le__>`, ...)
+  based on a single available one (Python 2.7).
 
 
 ..
-  - :py:func:`packaging.pypi.simple.socket_timeout` (in Python 3.3) adds
+  - `packaging.pypi.simple.socket_timeout` (in Python 3.3) adds
   a socket timeout when retrieving data through a socket.
 
 
@@ -940,8 +947,9 @@ More examples and reading
 Context managers
 ================
 
-A context manager is an object with ``__enter__`` and ``__exit__``
-functions which can be used in the ``with`` statement::
+A context manager is an object with `__enter__ <object.__enter__>` and
+`__exit__ <object.__exit__>` methods which can be used in the ``with``
+statement::
 
   with manager as var:
       do_something(var)
@@ -960,18 +968,20 @@ permits the extraction of the boring part of a
 ``try..except..finally`` structure into a separate class
 leaving only the interesting ``do_something`` block.
 
-1. The ``__enter__`` method is called first. It can return a value which
-   will be assigned to ``var``. The ``as``-part is optional: if it isn't
-   present, the value returned by ``__enter__`` is simply ignored.
+1. The `__enter__ <object.__enter__>` method is called first.  It can
+   return a value which will be assigned to ``var``.
+   The ``as``-part is optional: if it isn't present, the value
+   returned by ``__enter__`` is simply ignored.
 2. The block of code underneath ``with`` is executed.  Just like with
    ``try`` clauses, it can either execute successfully to the end, or
    it can ``break``, ``continue`` or ``return``, or it can throw an
    exception. Either way, after the block is finished, the
-   ``__exit__`` method is called. If an exception was thrown, the
-   information about the exception is passed to ``__exit__``, which is
-   described below in the next subsection. In the normal case,
-   exceptions can be ignored, just like in a ``finally`` clause, and
-   will be rethrown after ``__exit__`` is finished.
+   `__exit__ <object.__exit__>` method is called.
+   If an exception was thrown, the information about the exception is
+   passed to ``__exit__``, which is described below in the next
+   subsection. In the normal case, exceptions can be ignored, just
+   like in a ``finally`` clause, and will be rethrown after
+   ``__exit__`` is finished.
 
 Let's say we want to make sure that a file
 is closed::
@@ -998,34 +1008,34 @@ used as a context manager itself::
 The common use for ``try..finally`` is releasing resources. Various
 different cases are implemented similarly: in the ``__enter__``
 phase the resource is acquired, in the ``__exit__`` phase it is
-released, and the exception, if throw, is propagated. As with files,
+released, and the exception, if thrown, is propagated. As with files,
 there's often a natural operation to perform after the object has been
 used and it is most convenient to have the support built in. With each
 release, Python provides support in more places:
 
 * all file-like objects:
 
-  - :py:class:`file` |==>| automatically closed
-  - :py:mod:`fileinput`, :py:mod:`tempfile` (py >= 3.2)
-  - :py:class:`bz2.BZ2File`, :py:class:`gzip.GzipFile`,
-    :py:class:`tarfile.TarFile`, :py:class:`zipfile.ZipFile`
-  - :py:mod:`ftplib`, :py:mod:`nntplib` |==>| close connection (py >= 3.2, 3.3)
+  - `file` |==>| automatically closed
+  - `fileinput`, `tempfile` (py >= 3.2)
+  - `bz2.BZ2File`, `gzip.GzipFile`,
+    `tarfile.TarFile`, `zipfile.ZipFile`
+  - `ftplib`, `nntplib` |==>| close connection (py >= 3.2 or 3.3)
 * locks
 
-  - :py:class:`multiprocessing.RLock` |==>| lock and unlock
-  - :py:class:`multiprocessing.Semaphore`
-  - :py:mod:`memoryview` |==>| automatically release (py >= 3.2)
-* :py:func:`decimal.localcontext` |==>| modify precision of computations temporarily
-* :py:class:`_winreg.HKEY` |==>| open and close hive key
-* :py:class:`warnings.catch_warnings` |==>| kill warnings temporarily
-* :py:func:`contextlib.closing` |==>| the same as the example above, call ``close``
+  - `multiprocessing.RLock` |==>| lock and unlock
+  - `multiprocessing.Semaphore`
+  - `memoryview` |==>| automatically release (py >= 3.2)
+* `decimal.localcontext` |==>| modify precision of computations temporarily
+* `_winreg.PyHKEY <_winreg.OpenKey>` |==>| open and close hive key
+* `warnings.catch_warnings` |==>| kill warnings temporarily
+* `contextlib.closing` |==>| the same as the example above, call ``close``
 
 Catching exceptions
 ^^^^^^^^^^^^^^^^^^^
 
 When an exception is thrown in the ``with``-block, it is passed as
 arguments to ``__exit__``. Three arguments are used, the same as
-returned by ``sys.exc_info()``: type, value, traceback. When no
+returned by :py:func:`sys.exc_info`: type, value, traceback. When no
 exception is thrown, ``None`` is used for all three arguments.  The
 context manager can "swallow" the exception by returning a true value
 from ``__exit__``. Exceptions can be easily ignored, because if
@@ -1076,7 +1086,7 @@ support this use case.
       finally:
 	  <cleanup>
 
-The :py:func:`contextlib.contextmanager` helper takes a generator and turns it
+The `contextlib.contextmanager` helper takes a generator and turns it
 into a context manager. The generator has to obey some rules which are
 enforced by the wrapper function --- most importantly it must
 ``yield`` exactly once. The part before the ``yield`` is executed from
