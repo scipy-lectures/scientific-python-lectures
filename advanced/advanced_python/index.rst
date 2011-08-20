@@ -35,14 +35,14 @@ Iterators
 ^^^^^^^^^
 
 An iterator is an object adhering to the `iterator protocol`_
---- basically this means that it has a ``__next__`` method, which,
+--- basically this means that it has a ``next`` method, which,
 when called, returns the next item in the sequence, and when
 there's nothing to return, raises the
 :py:exc:`exceptions.StopIteration` exception.
 
 .. _`iterator protocol`: http://docs.python.org/dev/library/stdtypes.html#iterator-types
 
-An iterator object allows to loop just once. It is
+An iterator object allows to loop just once. It
 holds the state (position) of a single iteration, or from the other
 side, each loop over a sequence requires a single iterator
 object. This means that we can iterate over the same sequence more
@@ -53,18 +53,18 @@ Calling the ``__iter__`` method on a container to create an iterator
 object is the most straightforward way to get hold of an iterator. The
 ``iter`` function does that for us, saving a few keystrokes.
 
->>> nums = [1,2,3]
->>> iter(nums)      # note that ... varies: these are different objects
-<list_iterator object at ...>
->>> nums.__iter__()
-<list_iterator object at ...>
->>> nums.__reversed__()
-<list_reverseiterator object at ...>
+>>> nums = [1,2,3]      # note that ... varies: these are different objects
+>>> iter(nums)                           # doctest: +ELLIPSIS
+<listiterator object at ...>
+>>> nums.__iter__()                      # doctest: +ELLIPSIS
+<listiterator object at ...>
+>>> nums.__reversed__()                  # doctest: +ELLIPSIS
+<listreverseiterator object at ...>
 
 >>> it = iter(nums)
->>> next(it)
+>>> next(it)            # next(obj) simply calls obj.next()
 1
->>> it.__next__()
+>>> it.next()
 2
 >>> next(it)
 3
@@ -81,7 +81,7 @@ Using the ``for..in`` loop also uses the ``__iter__`` method. This
 allows us to transparently start the iteration over a sequence. But
 if we already have the iterator, we want to be able to use it in an
 ``for`` loop in the same way. In order to achieve this, iterators
-in addition to ``__next__`` also required to have a method called
+in addition to ``next`` also required to have a method called
 ``__iter__`` which returns the iterator (``self``).
 
 Support for iteration is pervasive in Python:
@@ -107,7 +107,7 @@ parentheses or an expression. If round parentheses are used, then a
 generator iterator is created.  If rectangular parentheses are used,
 the process is short-circuited and we get a ``list``.
 
->>> (i for i in nums)
+>>> (i for i in nums)                    # doctest: +ELLIPSIS
 <generator object <genexpr> at 0x...>
 >>> [i for i in nums]
 [1, 2, 3]
@@ -144,22 +144,22 @@ An invocation of a generator function creates a generator object,
 adhering to the iterator protocol. As with normal function
 invocations, concurrent and recursive invocations are allowed.
 
-When ``__next__`` is called, the function is executed until the first ``yield``.
+When ``next`` is called, the function is executed until the first ``yield``.
 Each encountered ``yield`` statement gives a value becomes the return
-value of ``__next__``. After executing the ``yield`` statement, the
+value of ``next``. After executing the ``yield`` statement, the
 execution of this function is suspended.
 
 >>> def f():
 ...   yield 1
 ...   yield 2
->>> f()
+>>> f()                                   # doctest: +ELLIPSIS
 <generator object f at 0x...>
 >>> gen = f()
->>> gen.__next__()
+>>> gen.next()
 1
->>> gen.__next__()
+>>> gen.next()
 2
->>> gen.__next__()
+>>> gen.next()
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 StopIteration
@@ -180,16 +180,16 @@ function.
 >>> next(gen)
 -- middle --
 4
->>> next(gen)
+>>> next(gen)                            # doctest: +SKIP
 -- finished --
 Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
+  ...
 StopIteration
 
 Contrary to a normal function, where executing ``f()`` would
 immediately cause the first ``print`` to be executed, ``gen`` is
 assigned without executing any statements in the function body. Only
-when ``gen.__next__()`` is invoked by ``next``, the statements up to
+when ``gen.next()`` is invoked by ``next``, the statements up to
 the first ``yield`` are executed. The second ``next`` prints
 ``-- middle --`` and execution halts on the second ``yield``.  The third
 ``next`` prints ``-- finished --`` and falls of the end of the
@@ -205,14 +205,14 @@ keeps and restores the state in between the requests for the next value.
 Why are generators useful? As noted in the parts about iterators, a
 generator function is just a different way to create an iterator
 object. Everything that can be done with ``yield`` statements, could
-also be done with ``__next__`` methods. Nevertheless, using a
+also be done with ``next`` methods. Nevertheless, using a
 function and having the interpreter perform its magic to create an
 iterator has advantages. A function can be much shorter
-than the definition of a class with the required ``__next__`` and
+than the definition of a class with the required ``next`` and
 ``__iter__`` methods. What is more important, it is easier for author
 of the generator to understand the state which is kept in local
 variables, as opposed to instance attributes, which have to be
-used to pass data between consecutive invocations of ``__next__`` on
+used to pass data between consecutive invocations of ``next`` on
 an iterator object.
 
 A broader question is why are iterators useful? When an iterator is
@@ -239,8 +239,8 @@ which then is returned by the ``yield`` statement, or a
 different method to inject an exception into the generator.
 
 The first of the new methods is ``send(value)``, which is similar to
-``__next__()``, but passes ``value`` into the generator to be used for
-the value of the ``yield`` expression. In fact, ``g.__next__()`` and
+``next()``, but passes ``value`` into the generator to be used for
+the value of the ``yield`` expression. In fact, ``g.next()`` and
 ``g.send(None)`` are equivalent.
 
 The second of the new methods is ``throw(type, value=None,
@@ -273,21 +273,20 @@ objects holding the state of generator.
 Let's define a generator which just prints what is passed in through
 send and throw.
 
-.. code-block:: python
-
-  def g():
-      print '--start--'
-      for i in itertools.count():
-          print '--yielding {}--'.format(i)
-          try:
-              ans = yield i
-          except GeneratorExit:
-              print '--closing--'
-              raise
-          except Exception as e:
-              print '--yield raised {!r}--'.format(e)
-          else:
-              print '--yield returned {!r}--'.format(ans)
+>>> import itertools
+>>> def g():
+...     print '--start--'
+...     for i in itertools.count():
+...         print '--yielding {}--'.format(i)
+...         try:
+...             ans = yield i
+...         except GeneratorExit:
+...             print '--closing--'
+...             raise
+...         except Exception as e:
+...             print '--yield raised {!r}--'.format(e)
+...         else:
+...             print '--yield returned {!r}--'.format(ans)
 
 >>> it = g()
 >>> next(it)
@@ -467,7 +466,7 @@ doing decoration
 inside function
 
 >>> def decorator_with_arguments(arg):
-...   print "defining the decorator":
+...   print "defining the decorator"
 ...   def _decorator(function):
 ...       # in this inner function, arg is available too
 ...       print "doing decoration,", arg
@@ -497,14 +496,14 @@ In the worst case, three levels of nested functions.
 ...       return _wrapper
 ...   return _decorator
 >>> @replacing_decorator_with_args("abc")
-... def function():
-...     print "inside function"
+... def function(*args, **kwargs):
+...     print "inside function,", args, kwargs
 ...     return 14
 defining the decorator
-doing decoration
->>> function(11, 12, a=13)
-inside wrapper, (11, 12), {a=13}
-inside function
+doing decoration, abc
+>>> function(11, 12)
+inside wrapper, (11, 12) {}
+inside function, (11, 12) {}
 14
 
 The ``_wrapper`` function is defined to accept all positional and
@@ -535,7 +534,7 @@ the decorator ``__init__`` method is used for decorator construction.
 ...       return function
 >>> deco_instance = decorator_class('foo')
 in decorator init, foo
->>> @deco_instance:
+>>> @deco_instance
 ... def function(*args, **kwargs):
 ...   print "in function,", args, kwargs
 in decorator call, foo
@@ -564,15 +563,15 @@ decorator returns a new object.
 ...   def _wrapper(self, *args, **kwargs):
 ...       print "in the wrapper,", args, kwargs
 ...       return self.function(*args, **kwargs)
->>> deco_instance = decorator_class('foo')
+>>> deco_instance = replacing_decorator_class('foo')
 in decorator init, foo
->>> @deco_instance:
+>>> @deco_instance
 ... def function(*args, **kwargs):
 ...   print "in function,", args, kwargs
 in decorator call, foo
->>> function(11, 12, c=13)
-in the wrapper, (11, 12) {c=13}
-in function, (11, 12) {c=13}
+>>> function(11, 12)
+in the wrapper, (11, 12) {}
+in function, (11, 12) {}
 
 A decorator like this can do pretty much anything, since it can modify
 the original function object and mangle the arguments, call the
@@ -608,7 +607,7 @@ automatically by using :py:func:`functools.update_wrapper`.
 ...     return 14
 defining the decorator
 doing decoration, abc
->>> function
+>>> function                           # doctest: +ELLIPSIS
 <function function at 0x...>
 >>> print function.__doc__
 extensive documentation
@@ -674,8 +673,8 @@ which really form a part of the language:
   ...   def a(self):
   ...     "an important attribute"
   ...     return "a value"
-  >>> A.a
-  <property object at 0x2c25c00>
+  >>> A.a                                   # doctest: +ELLIPSIS
+  <property object at 0x...>
   >>> A().a
   'a value'
 
@@ -733,15 +732,15 @@ which really form a part of the language:
     ...    @a.deleter
     ...    def a(self):
     ...      print "deleting"
-    >>> D.a
+    >>> D.a                                    # doctest: +ELLIPSIS
     <property object at 0x...>
-    >>> D.a.fget
-    <function a at 0x...>     # ... varies, this is not the same `a` function
-    >>> D.a.fset
+    >>> D.a.fget                               # doctest: +ELLIPSIS
     <function a at 0x...>
-    >>> D.a.fdel
+    >>> D.a.fset                               # doctest: +ELLIPSIS
     <function a at 0x...>
-    >>> d = D()
+    >>> D.a.fdel                               # doctest: +ELLIPSIS
+    <function a at 0x...>
+    >>> d = D()               # ... varies, this is not the same `a` function
     >>> d.a
     getting 1
     1
@@ -787,10 +786,10 @@ to modify the function, we can use a decorator::
   class deprecated(object):
       """Print a deprecation warning once on first use of the function.
 
-      >>> @deprecated()
+      >>> @deprecated()                    # doctest: +SKIP
       ... def f():
       ...     pass
-      >>> f()
+      >>> f()                              # doctest: +SKIP
       f is deprecated
       """
       def __call__(self, func):
@@ -810,10 +809,10 @@ It can also be implemented as a function::
   def deprecated(func):
       """Print a deprecation warning once on first use of the function.
 
-      >>> @deprecated
+      >>> @deprecated                      # doctest: +SKIP
       ... def f():
       ...     pass
-      >>> f()
+      >>> f()                              # doctest: +SKIP
       f is deprecated
       """
       count = [0]
