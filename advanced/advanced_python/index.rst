@@ -404,17 +404,10 @@ around. Since they are mutable objects, they can be modified.  The act
 of altering a function or class object after it has been constructed
 but before is is bound to its name is called decorating.
 
-There are two things hiding under the name "decoration" --- one is the
-invocation of the decorator on the decorated object, and the second
-one is the visible presence of an expression adhering to the decorator
-syntax before the decorated object.
-
 There are two thing hiding behind the name "decorator" --- one is the
 function which does the work of decorating, i.e. performs the real
 work, and the other one is the expression adhering to the decorator
 syntax, i.e. an at-symbol and the name of the decorating function.
-
-.. the two paragraphs above seem like quasi duplicates
 
 Function can be decorated by using the decorator syntax for
 functions::
