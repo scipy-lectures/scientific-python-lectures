@@ -35,6 +35,17 @@ that their use is as simple as possible.
 Iterators, generator expressions and generators
 ===============================================
 
+.. sidebar:: Simplicity
+
+   Duplication of effort is wasteful, and replacing the various
+   home-grown approaches with a standard feature usually ends up
+   making things more readable, and interoperable as well.
+
+                 *Guido van Rossum* --- `Adding Optional Static Typing to Python`_
+
+.. _`Adding Optional Static Typing to Python`:
+   http://www.artima.com/weblogs/viewpost.jsp?thread=86641
+
 Iterators
 ^^^^^^^^^
 
@@ -374,6 +385,20 @@ Decorators
 
                    *Bruce Eckel* --- An Introduction to Python Decorators
 
+.. documentation error:
+.. The result must be a class object, which is then bound to the class name.
+.. file:///usr/share/doc/python2.7/html/reference/compound_stmts.html
+.. >>> def deco(cls):return None
+.. ...
+.. >>> @deco
+.. ... class A: pass
+.. ...
+.. >>> A
+.. >>> type(A)
+.. <class 'NoneType'>
+.. >>> print(A)
+.. None
+
 Since a function or a class are objects, they can be passed
 around. Since they are mutable objects, they can be modified.  The act
 of altering a function or class object after it has been constructed
@@ -613,6 +638,10 @@ and ``__name__`` (the full name of the function), and
 ``__annotations__`` (extra information about arguments and the return
 value of the function available in Python 3). This can be done
 automatically by using `functools.update_wrapper`.
+
+.. sidebar:: `functools.update_wrapper(wrapper, wrapped) <functools.update_wrapper>`
+
+   "Update a wrapper function to look like the wrapped function."
 
 >>> import functools
 >>> def better_replacing_decorator_with_args(arg):
@@ -1026,11 +1055,17 @@ release, Python provides support in more places:
 
   - `multiprocessing.RLock` |==>| lock and unlock
   - `multiprocessing.Semaphore`
-  - `memoryview` |==>| automatically release (py >= 3.2)
+  - `memoryview` |==>| automatically release (py >= 3.2 and 2.7)
 * `decimal.localcontext` |==>| modify precision of computations temporarily
 * `_winreg.PyHKEY <_winreg.OpenKey>` |==>| open and close hive key
 * `warnings.catch_warnings` |==>| kill warnings temporarily
 * `contextlib.closing` |==>| the same as the example above, call ``close``
+* parallel programming
+
+  - `concurrent.futures.ThreadPoolExecutor` |==>| invoke in parallel then kill thread pool (py >= 3.2)
+  - `concurrent.futures.ProcessPoolExecutor` |==>| invoke in parallel then kill process pool (py >= 3.2)
+  - `nogil` |==>| solve the GIL problem temporarily (cython only :( )
+
 
 Catching exceptions
 ^^^^^^^^^^^^^^^^^^^
@@ -1122,3 +1157,4 @@ Let's rewrite the ``assert_raises`` example as a generator::
       else:
 	  raise AssertionError('exception expected')
 
+Here we use a decorator to turn generator functions into context managers!
