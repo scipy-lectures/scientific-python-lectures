@@ -48,5 +48,6 @@ Advanced topics
    debugging_optimizing/index.rst
    sympy.rst
    3d_plotting/index.rst
+   image_processing/index.rst
 
 
