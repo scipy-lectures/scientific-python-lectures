@@ -1,6 +1,7 @@
 ==============
 Advanced Numpy
 ==============
+
 :author: Pauli Virtanen
 
 Numpy is at the base of Python's scientific stack of tools.
@@ -32,15 +33,17 @@ This tutorial aims to cover:
 
     * Numpy (>= 1.2; preferably newer...)
     * Cython (>= 0.12, for the Ufunc example)
-    * PIL (I'll use it in a couple of examples)
+    * PIL (used in a couple of examples)
     * Source codes:
 
-  - http://pav.iki.fi/tmp/advnumpy-ex.zip   (updated recently)
+        - http://pav.iki.fi/tmp/advnumpy-ex.zip  
 
->>> import numpy as np
+In this section, numpy will be imported as follows::
+
+    >>> import numpy as np
 
 .. contents::
-   :depth: 1
+   :depth: 2
 
 
 Life of ndarray
@@ -786,7 +789,8 @@ Memory layout can affect performance:
 
 .. seealso::
 
-   Much more about this in the next session (Francesc Alted) today!
+   `numexpr <http://code.google.com/p/numexpr/>`_ is designed to mitigate
+   cache effects in array computing.
 
 
 Example: inplace operations (caveat emptor)
@@ -1538,7 +1542,7 @@ Contributing to documentation
 
      - Register an account
 
-     - Subscribe to ``scipy-dev`` ML  (subscribers-only)
+     - Subscribe to ``scipy-dev`` mailing list  (subscribers-only)
 
      - Problem with mailing lists: you get mail
 
@@ -1569,13 +1573,13 @@ Contributing to documentation
 
 2. Edit sources and send patches (as for bugs)
 
-3. Complain on the ML
+3. Complain on the mailing list 
 
 
 Contributing features
 ---------------------
 
-0. Ask on ML, if unsure where it should go
+0. Ask on mailing list, if unsure where it should go
 
 1. Write a patch, add an enhancement ticket on the bug tracket
 
