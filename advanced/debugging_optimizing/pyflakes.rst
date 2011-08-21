@@ -5,7 +5,7 @@ pyflakes: fast static analysis
 They are several static analysis tools in Python; to name a few: 
 `pylint <http://www.logilab.org/857>`_, 
 `pychecker <http://pychecker.sourceforge.net/>`_, and 
-`pyflakes <http://divmod.org/trac/wiki/DivmodPyflakes>`_.
+`pyflakes <http://pypi.python.org/pypi/pyflakes>`_.
 Here we focus on pyflakes, which is the simplest tool.
 
     * **Fast, simple**

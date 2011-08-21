@@ -42,35 +42,41 @@ Specifically it allows you to:
   * Modify values of variables.
   * Set breakpoints.
 
+.. topic:: **print**
+
+    Yes, ``print`` statements do work as a debugging tool. However to
+    inspect runtime, it is often more efficient to use the debugger.
+
+Launching the debugger
+^^^^^^^^^^^^^^^^^^^^^^
 
 Ways to launch the debugger:
 
 #. Postmortem, launch debugger after module errors.
-#. Enable debugger in ipython and automatically drop into debug-mode
-   on error.
 #. Launch the module with the debugger.
+#. Call the debugger inside the module
+
 
 Postmortem
-^^^^^^^^^^
+...........
 
 **Situation**: You're working in ipython and you get a traceback.
 
-Type ``%debug`` and drop into the debugger.
+Here we debug the file :download:`index_error.py`. When running it, an
+`IndexError` is raised. Type ``%debug`` and drop into the debugger.
 
 .. sourcecode:: ipython
 
-    In [6]: run index_error.py
+    In [1]: %run index_error.py
     ---------------------------------------------------------------------------
     IndexError                                Traceback (most recent call last)
-
-    /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/index_error.py in <module>()
+    /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py in <module>()
           6 
           7 if __name__ == '__main__':
     ----> 8     index_error()
           9 
-         10 
 
-    /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/index_error.py in index_error()
+    /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py in index_error()
           3 def index_error():
           4     lst = list('foobar')
     ----> 5     print lst[len(lst)]
@@ -78,10 +84,9 @@ Type ``%debug`` and drop into the debugger.
           7 if __name__ == '__main__':
 
     IndexError: list index out of range
-    WARNING: Failure executing file: <index_error.py>
 
-    In [7]: %debug
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/index_error.py(5)index_error()
+    In [2]: %debug
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
           4     lst = list('foobar')
     ----> 5     print lst[len(lst)]
           6 
@@ -95,6 +100,7 @@ Type ``%debug`` and drop into the debugger.
           6 
           7 if __name__ == '__main__':
           8     index_error()
+          9 
 
     ipdb> len(lst)
     6
@@ -102,11 +108,41 @@ Type ``%debug`` and drop into the debugger.
     r
     ipdb> quit
 
-    In [8]: 
+    In [3]: 
+
+.. topic:: Post-mortem debugging without IPython
+
+   In some situations you cannot use IPython, for instance to debug a
+   script that wants to be called from the command line. In this case,
+   you can call the script with `python -m pdb script.py`::
+
+    $ python -m pdb index_error.py
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(1)<module>()
+    -> """Small snippet to raise an IndexError."""
+    (Pdb) continue
+    Traceback (most recent call last):
+    File "/usr/lib/python2.6/pdb.py", line 1296, in main
+        pdb._runscript(mainpyfile)
+    File "/usr/lib/python2.6/pdb.py", line 1215, in _runscript
+        self.run(statement)
+    File "/usr/lib/python2.6/bdb.py", line 372, in run
+        exec cmd in globals, locals
+    File "<string>", line 1, in <module>
+    File "index_error.py", line 8, in <module>
+        index_error()
+    File "index_error.py", line 5, in index_error
+        print lst[len(lst)]
+    IndexError: list index out of range
+    Uncaught exception. Entering post mortem debugging
+    Running 'cont' or 'step' will restart the program
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
+    -> print lst[len(lst)]
+    (Pdb) 
+ 
 
 
-Debugger launch
-^^^^^^^^^^^^^^^
+Step-by-step execution
+.......................
 
 **Situation**: You believe a bug exists in a module but are not sure where.
 
@@ -143,35 +179,6 @@ Set a breakpoint at the ``load_data`` function:
     Num Type         Disp Enb   Where
     1   breakpoint   keep yes   at /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py:3
     2   breakpoint   keep yes   at /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py:12
-
-List the code with ``l(ist)``:
-
-.. sourcecode:: ipython
-
-    ipdb> list
-          1 """Script to read in a column of numbers and calculate the min, max and sum.
-          2 
-    1     3 Data is stored in data.txt.
-    ----> 4 """
-          5 
-          6 def parse_data(data_string):
-          7     data = []
-          8     for x in data_string.split('.'):
-          9         data.append(x)
-         10     return data
-         11 
-
-    ipdb> list
-    2    12 def load_data(filename):
-         13     fp = open(filename)
-         14     data_string = fp.read()
-         15     fp.close()
-         16     return parse_data(data_string)
-         17 
-         18 if __name__ == '__main__':
-         19     data = load_data('exercises/data.txt')
-         20     print('min: %f' % min(data)) # 10.20
-         21     print('max: %f' % max(data)) # 61.30
 
 Continue execution to next breakpoint with ``c(ont(inue))``:
 
@@ -258,9 +265,56 @@ Continue stepping through code and print out values with the
     ipdb> p x
     '2\n43'
 
-You can also walk up and down the call stack with ``u(p)`` and ``d(own)``:
+Calling the debugger inside a module
+.....................................
 
-.. sourcecode:: ipython
+Insert the following line where you want to drop in the debugger::
+
+    import pdb; pdb.set_trace()
+
+.. warning::
+
+    When running `nosetests`, the output is captured, and thus it seems
+    that the debugger does not work. Simply run the nosetests with the `-s`
+    flag.
+
+
+Debugger commands and interaction 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* List the code with ``l(ist)``:
+
+  .. sourcecode:: ipython
+
+    ipdb> list
+          1 """Script to read in a column of numbers and calculate the min, max and sum.
+          2 
+    1     3 Data is stored in data.txt.
+    ----> 4 """
+          5 
+          6 def parse_data(data_string):
+          7     data = []
+          8     for x in data_string.split('.'):
+          9         data.append(x)
+         10     return data
+         11 
+
+    ipdb> list
+    2    12 def load_data(filename):
+         13     fp = open(filename)
+         14     data_string = fp.read()
+         15     fp.close()
+         16     return parse_data(data_string)
+         17 
+         18 if __name__ == '__main__':
+         19     data = load_data('exercises/data.txt')
+         20     print('min: %f' % min(data)) # 10.20
+         21     print('max: %f' % max(data)) # 61.30
+
+
+* You can also walk up and down the call stack with ``u(p)`` and ``d(own)``:
+
+  .. sourcecode:: ipython
 
     ipdb> list
           4 """
@@ -316,28 +370,30 @@ You can also walk up and down the call stack with ``u(p)`` and ``d(own)``:
     ipdb> 
 
 
-print
------
-
-Yes, ``print`` statements do work as a debugging tool.
-
-
 Debugging strategies
 --------------------
+
+There is no silver bullet. Yet, strategies help.
+
+   **For debugging a given problem, the favorable situation is when the
+   problem is isolated in a small number of lines of code, outside
+   framework or application code, with short modify-run-fail cycles**
 
 1. Make it fail reliably.  Find a test case that makes the code fail
    every time.
 2. Divide and Conquer.  Once you have a failing test case, isolate the
    failing code.
 
-  * Which module.
-  * Which function.
-  * Which line of code.
+   * Which module.
+   * Which function.
+   * Which line of code.
+
+   => isolate a small reproducible failure: a test case
 
 3. Change one thing at a time and re-run the failing test case.
-4. Take notes.  It may take a while.
-5. Be patient.  It may take a while.
-6. Purposely raise an exception where you believe the problem is, to
+4. Use the debugger to inderstand what is going wrong. For instance purposely 
+   raise an exception where you believe the problem is, to
    inspect the code via the debuger (eg '%debug' in IPython)
+5. Take notes and be patient.  It may take a while.
 
 
