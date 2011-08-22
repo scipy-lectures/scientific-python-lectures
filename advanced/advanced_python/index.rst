@@ -135,12 +135,20 @@ In Python 2.7 and 3.x the list comprehension syntax was extended to
 **dictionary and set comprehensions**.
 A ``set`` is created when the generator expression is enclosed in curly
 braces. A ``dict`` is created when the generator expression contains
-"pairs" of the form ``key:value``::
+"pairs" of the form ``key:value``:
 
-  >>> {i for i in range(3)}
-  set([0, 1, 2])
-  >>> {i:i**2 for i in range(3)}
-  {0: 0, 1: 1, 2: 4}
+>>> {i for i in range(3)}
+set([0, 1, 2])
+>>> {i:i**2 for i in range(3)}
+{0: 0, 1: 1, 2: 4}
+
+If you are stuck at some previous Python version, the syntax is only a
+bit worse:
+
+>>> set(i for i in 'abc')
+set(['a', 'c', 'b'])
+>>> dict((i, ord(i)) for i in 'abc')
+{'a': 97, 'c': 99, 'b': 98}
 
 Generator expression are fairly simple, not much to say here. Only one
 *gotcha* should be mentioned: in old Pythons the index variable
