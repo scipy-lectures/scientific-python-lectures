@@ -251,8 +251,8 @@ Bidirectional communication
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each ``yield`` statement causes a value to be passed to the
-caller. This is the reason for the introduction of generators by
-:pep:`255` (implemented in Python 2.2).  But communication in the
+caller. This is the reason for the introduction of generators
+by :pep:`255` (implemented in Python 2.2).  But communication in the
 reverse direction is also useful. One obvious way would be some
 external state, either a global variable or a shared mutable
 object. Direct communication is possible thanks to :pep:`342`

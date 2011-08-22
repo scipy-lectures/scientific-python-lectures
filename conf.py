@@ -217,7 +217,7 @@ latex_preamble = """
 \DeclareUnicodeCharacter{2460}{\ding{182}}
 \DeclareUnicodeCharacter{2461}{\ding{183}}
 \DeclareUnicodeCharacter{2462}{\ding{184}}
-\DeclareUnicodeCharacter{2794}{$\rightsquigarrow$}
+\DeclareUnicodeCharacter{2794}{\ding{229}}
 """
 
 latex_elements = {
