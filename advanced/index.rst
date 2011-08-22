@@ -49,3 +49,4 @@ Advanced topics
    debugging_optimizing/debugging.rst
    sympy.rst
    3d_plotting/index.rst
+   scikit-learn/index.rst
