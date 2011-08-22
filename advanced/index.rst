@@ -38,15 +38,14 @@ Advanced topics
     }
 
   </style>
-  
+
 
 .. toctree::
    :maxdepth: 3
-   
+
+   advanced_python/index.rst
    advanced_numpy/index.rst
    scipy_sparse/index.rst
-   debugging_optimizing/index.rst
+   debugging_optimizing/debugging.rst
    sympy.rst
    3d_plotting/index.rst
-
-

@@ -20,16 +20,22 @@ sys.path.append(os.path.abspath('sphinxext'))
 # General configuration
 # ---------------------
 
+needs_sphinx = '1.0'
+
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 
+extensions = [
+        'sphinx.ext.autodoc',
+        'sphinx.ext.doctest',
         #'matplotlib.sphinxext.plot_directive', 
         'plot_directive',
         'only_directives',
         'ipython_console_highlighting',
         #'matplotlib.sphinxext.only_directives',
-         'sphinx.ext.pngmath',
-        ]#'sphinx.ext.intersphinx']
+        'sphinx.ext.pngmath',
+        'sphinx.ext.intersphinx',
+        'sphinx.ext.extlinks',
+]
 
 doctest_test_doctest_blocks = 'true'
 
@@ -206,6 +212,12 @@ latex_preamble = """
 \definecolor{VerbatimColor}{rgb}{0.95,1,0.833}
 \definecolor{VerbatimBorderColor}{rgb}{0.6,0.6,0.6}
 \setcounter{tocdepth}{1}
+\usepackage{amssymb}
+\usepackage{pifont}
+\DeclareUnicodeCharacter{2460}{\ding{182}}
+\DeclareUnicodeCharacter{2461}{\ding{183}}
+\DeclareUnicodeCharacter{2462}{\ding{184}}
+\DeclareUnicodeCharacter{2794}{$\rightsquigarrow$}
 """
 
 latex_elements = {
@@ -214,10 +226,17 @@ latex_elements = {
     #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 } 
 
+_python_doc_base = 'http://docs.python.org/2.7'
+
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    'http://docs.python.org/dev': None,
+    _python_doc_base: None,
     'http://docs.scipy.org/doc/numpy': None,
+}
+
+extlinks = {
+    'simple': (_python_doc_base + '/reference/simple_stmts.html#%s', ''),
+    'compound': (_python_doc_base + '/reference/compound_stmts.html#%s', ''),
 }
 
 # Increase pngmath font size
