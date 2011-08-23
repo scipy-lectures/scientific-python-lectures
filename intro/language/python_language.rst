@@ -53,7 +53,6 @@ distinguishing features of Python.
     :maxdepth: 1
 
     first_steps.rst
-    pythonxy.rst
     basic_types.rst
     assignment.rst
     control_flow.rst
