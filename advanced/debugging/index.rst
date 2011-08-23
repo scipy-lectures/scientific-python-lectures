@@ -8,7 +8,7 @@ This tutorial explores tool to understand better your code base:
 debugging, to find and fix bugs.
 
 It is not specific to the scientific Python community, but the strategies
-that we will employ are taylored to its needs.
+that we will employ are tailored to its needs.
 
 .. topic:: Prerequisites
 
@@ -181,7 +181,7 @@ in. There is no silver bullet. Yet, strategies help:
    => isolate a small reproducible failure: a test case
 
 #. Change one thing at a time and re-run the failing test case.
-#. Use the debugger to inderstand what is going wrong.
+#. Use the debugger to understand what is going wrong.
 #. Take notes and be patient.  It may take a while.
 
 .. note::
@@ -386,7 +386,7 @@ Indeed the code runs, but the filtering does not work well.
     0
 
 Oh dear, nothing but integers, and 0 variation. Here is our bug, we are
-doing integer arythmetic.
+doing integer arithmetic.
 
 .. topic:: Raising exception on numerical errors
 
@@ -424,7 +424,7 @@ Other ways of starting a debugger
   exceptions, and `nosetests --pdb-failure` to inspect test failures
   using the debugger.
 
-* **Calling the debugger explicitely**
+* **Calling the debugger explicitly**
 
   Insert the following line where you want to drop in the debugger::
 
@@ -563,7 +563,7 @@ program memory.
 
 ____
 
-.. topic:: **Wrap up excercise**
+.. topic:: **Wrap up exercise**
     
     The following script is well documented and hopefully legible. It
     seeks to answer a problem of actual interest for numerical computing,
