@@ -1,5 +1,5 @@
 ================
-Debuggging code 
+Debugging code 
 ================
 
 :author: Gaël Varoquaux
@@ -159,9 +159,39 @@ A type-as-go spell-checker like integration
 
     (add-hook 'find-file-hook 'flymake-find-file-hook)
 
-
-Using the debugger
+Debugging workflow
 ===================
+
+I you do have a non trivial bug, this is when debugging strategies kick
+in. There is no silver bullet. Yet, strategies help:
+
+   **For debugging a given problem, the favorable situation is when the
+   problem is isolated in a small number of lines of code, outside
+   framework or application code, with short modify-run-fail cycles**
+
+#. Make it fail reliably.  Find a test case that makes the code fail
+   every time.
+#. Divide and Conquer.  Once you have a failing test case, isolate the
+   failing code.
+
+   * Which module.
+   * Which function.
+   * Which line of code.
+
+   => isolate a small reproducible failure: a test case
+
+#. Change one thing at a time and re-run the failing test case.
+#. Use the debugger to inderstand what is going wrong.
+#. Take notes and be patient.  It may take a while.
+
+.. note::
+
+   Once you have gone through this process: isolated a tight piece of
+   code reproducing the bug and fix the bug using this piece of code, add
+   the corresponding code to your test suite.
+
+Using the Python debugger
+=========================
 
 The python debugger, ``pdb``: http://docs.python.org/library/pdb.html,
 allows you to inspect your code interactively.
@@ -414,7 +444,7 @@ Other ways of starting a debugger
     `winpdb <http://winpdb.org/>`_.
 
 Debugger commands and interaction 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 ============ ======================================================================
 ``l(list)``   Lists the code at the current position
@@ -435,7 +465,7 @@ Debugger commands and interaction
     in the debugger**.
 
 Debugging segmentation faults using gdb 
-------------------------------------------
+==========================================
 
 If you have a segmentation fault, you cannot debug it with pdb, as it
 crashes the Python interpreter before it can drop in the debugger.
@@ -531,37 +561,6 @@ program memory.
     the source of this file.
 
 
-Debugging strategies
---------------------
-
-There is no silver bullet. Yet, strategies help.
-
-   **For debugging a given problem, the favorable situation is when the
-   problem is isolated in a small number of lines of code, outside
-   framework or application code, with short modify-run-fail cycles**
-
-1. Make it fail reliably.  Find a test case that makes the code fail
-   every time.
-2. Divide and Conquer.  Once you have a failing test case, isolate the
-   failing code.
-
-   * Which module.
-   * Which function.
-   * Which line of code.
-
-   => isolate a small reproducible failure: a test case
-
-3. Change one thing at a time and re-run the failing test case.
-4. Use the debugger to inderstand what is going wrong. For instance purposely 
-   raise an exception where you believe the problem is, to
-   inspect the code via the debuger (eg '%debug' in IPython)
-5. Take notes and be patient.  It may take a while.
-
-.. note::
-
-   Once you have gone through this process: isolated a tight piece of
-   code reproducing the bug and fix the bug using this piece of code, add
-   the corresponding code to your test suite.
 ____
 
 .. topic:: **Wrap up excercise**
