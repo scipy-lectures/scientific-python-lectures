@@ -559,6 +559,8 @@ array([6, 5, 4, 3, 2, 1])
 (1600, 240, 32)
 
 
+.. _stride-manipulation-label:
+
 Example: fake dimensions with strides
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
