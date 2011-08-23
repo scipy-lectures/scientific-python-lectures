@@ -69,12 +69,6 @@ yield productivity gains**.
 Running pyflakes on the current edited file
 ............................................
 
-.. image:: pyflakes_kate.jpg
-    :scale: 70
-    :align: right
-
-.. Suggestion: this images is way too large for 1024x768, don't align it.
-
 You can bind a key to run pyflakes in the current buffer.
 
 * **In kate**
@@ -445,7 +439,9 @@ Other ways of starting a debugger
     more convenient to use a graphical debugger such as 
     `winpdb <http://winpdb.org/>`_.
 
-.. Suggestion: http://pypi.python.org/pypi/pudb
+    Alternatively, `pudb <http://pypi.python.org/pypi/pudb>`_ is a good 
+    semi-graphical debugger with a text user interface in the console.
+
 
 Debugger commands and interaction 
 ----------------------------------
