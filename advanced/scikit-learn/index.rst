@@ -193,12 +193,12 @@ which are the observations closest to the separating plane.
       shrinking=True, gamma=0.0)
 
 There are several support vector machine implementations in
-scikit-learn. The most used ones are SVC, NuSVC and LinearSVC. 
+scikit-learn. The most used ones are `svm.SVC`, `svm.NuSVC` and `svm.LinearSVC`. 
 
 .. topic:: **Excercise**
    :class: green
 
-   Try classifying the digits dataset with `SVC` and `NuSVC`. Leave out
+   Try classifying the digits dataset with `svm.SVC` and `svm.NuSVC`. Leave out
    the last 10% and test prediction performance on these observations.
 
 
@@ -276,10 +276,10 @@ Clustering: grouping observations together
 
 .. topic:: The problem solved in clustering
 
-    Given the iris dataset, if we knew that there were 3 types of iris, but
-    did not have access to a taxonomist to label them: we could try a
-    **clustering task**: split the observations in well-separated group
-    called *clusters*.
+    Given the iris dataset, if we knew that there were 3 types of
+    iris, but did not have access to their labels: we could try a
+    **clustering task**: split the observations in well-separated
+    group called *clusters*.
 
 ..
    See the PRNG
