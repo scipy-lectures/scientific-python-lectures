@@ -157,6 +157,16 @@ Generator expression are fairly simple, not much to say here. Only one
 Generators
 ^^^^^^^^^^
 
+.. sidebar::
+
+  A generator is a function that produces a
+  sequence of results instead of a single value.
+
+          *David Beazley* --- `A Curious Course on Coroutines and Concurrency`_
+
+.. _`A Curious Course on Coroutines and Concurrency`:
+   http://www.dabeaz.com/coroutines/
+
 A third way to create iterator objects is to call a generator function.
 A **generator** is a function containing the keyword :simple:`yield`. It must be
 noted that the mere presence of this keyword completely changes the
@@ -234,7 +244,7 @@ also be done with ``next`` methods. Nevertheless, using a
 function and having the interpreter perform its magic to create an
 iterator has advantages. A function can be much shorter
 than the definition of a class with the required ``next`` and
-``__iter__`` methods. What is more important, it is easier for author
+``__iter__`` methods. What is more important, it is easier for the author
 of the generator to understand the state which is kept in local
 variables, as opposed to instance attributes, which have to be
 used to pass data between consecutive invocations of ``next`` on
@@ -412,7 +422,7 @@ around. Since they are mutable objects, they can be modified.  The act
 of altering a function or class object after it has been constructed
 but before is is bound to its name is called decorating.
 
-There are two thing hiding behind the name "decorator" --- one is the
+There are two things hiding behind the name "decorator" --- one is the
 function which does the work of decorating, i.e. performs the real
 work, and the other one is the expression adhering to the decorator
 syntax, i.e. an at-symbol and the name of the decorating function.
@@ -696,8 +706,8 @@ which really form a part of the language:
   ``self``. When a class method is invoked, the class itself is given
   as the first parameter, often called ``cls``.
 
-  Class methods are still accessible through the class namespace, so
-  they don't pollute the module namespace. Class methods can be used
+  Class methods are still accessible through the class' namespace, so
+  they don't pollute the module's namespace. Class methods can be used
   to provide alternative constructors::
 
     class Array(object):
