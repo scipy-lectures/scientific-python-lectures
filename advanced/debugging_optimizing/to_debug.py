@@ -61,5 +61,3 @@ def compare_optimizers(optimizers):
 
 if __name__ == '__main__':
     compare_optimizers(OPTIMIZERS)
-
-

@@ -47,7 +47,7 @@ Specifically it allows you to:
     Yes, ``print`` statements do work as a debugging tool. However to
     inspect runtime, it is often more efficient to use the debugger.
 
-Launching the debugger
+Invoking the debugger
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Ways to launch the debugger:
@@ -146,129 +146,126 @@ Step-by-step execution
 
 **Situation**: You believe a bug exists in a module but are not sure where.
 
-Launch the module with the debugger and step through the code in the
-debugger.
+For instance we are trying to debug :download:`wiener_filtering.py`.
+Indeed the code runs, but the filtering does not work well.
 
-.. sourcecode:: ipython
+* Run the script with the debugger:
 
-    In [38]: run -d debug_file.py
+  .. sourcecode:: ipython
+
+    In [1]: %run -d wiener_filtering.py
     *** Blank or comment
     *** Blank or comment
-    Breakpoint 1 at /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py:3
+    *** Blank or comment
+    Breakpoint 1 at /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py:4
     NOTE: Enter 'c' at the ipdb>  prompt to start your script.
     > <string>(1)<module>()
 
-Step into code with ``s(tep)``:
+* Enter the :download:`wiener_filtering.py` file and set a break point at line
+  34:
 
-.. sourcecode:: ipython
+  .. sourcecode:: ipython
 
-    ipdb> step
-    --Call--
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(4)<module>()
-    1     3 Data is stored in data.txt.
-    ----> 4 """
-          5 
+    ipdb> n
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(4)<module>()
+          3 
+    1---> 4 import numpy as np
+          5 import scipy as sp
 
-Set a breakpoint at the ``load_data`` function:
+    ipdb> b 34
+    Breakpoint 2 at /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py:34
 
-.. sourcecode:: ipython
+* Continue execution to next breakpoint with ``c(ont(inue))``:
 
-    ipdb> break load_data
-    Breakpoint 2 at /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py:12
-    ipdb> break
-    Num Type         Disp Enb   Where
-    1   breakpoint   keep yes   at /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py:3
-    2   breakpoint   keep yes   at /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py:12
+  .. sourcecode:: ipython
 
-Continue execution to next breakpoint with ``c(ont(inue))``:
+    ipdb> c
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(34)iterated_wiener()
+         33     """
+    2--> 34     noisy_img = noisy_img
+         35     denoised_img = local_mean(noisy_img, size=size)
 
-.. sourcecode:: ipython
+* Step into code with ``n(ext)`` and ``s(tep)``: ``next`` jumps to the next
+  statement in the current execution context, while ``step`` will go across
+  execution contexts, i.e. enable exploring inside function calls:
 
-    ipdb> continue
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(13)load_data()
-    2    12 def load_data(filename):
-    ---> 13     fp = open(filename)
-         14     data_string = fp.read()
-
-I don't want to debug python's ``open`` function, so use the
-``n(ext)`` command to continue execution on the next line:
-
-.. sourcecode:: ipython
-
-    ipdb> next
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(14)load_data()
-         13     fp = open(filename)
-    ---> 14     data_string = fp.read()
-         15     fp.close()
-
-    ipdb> next
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(15)load_data()
-         14     data_string = fp.read()
-    ---> 15     fp.close()
-         16     return parse_data(data_string)
-
-    ipdb> next
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(16)load_data()
-         15     fp.close()
-    ---> 16     return parse_data(data_string)
-         17 
-
-Step into ``parse_data`` function with ``s(tep)`` command:
-
-.. sourcecode:: ipython
-
-    ipdb> step
-    --Call--
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(6)parse_data()
-          5 
-    ----> 6 def parse_data(data_string):
-          7     data = []
-
-    ipdb> list
-          1 """Script to read in a column of numbers and calculate the min, max and sum.
-          2 
-    1     3 Data is stored in data.txt.
-          4 """
-          5 
-    ----> 6 def parse_data(data_string):
-          7     data = []
-          8     for x in data_string.split('.'):
-          9         data.append(x)
-         10     return data
-         11 
-
-Continue stepping through code and print out values with the
-``p(rint)`` command:
-
-.. sourcecode:: ipython
-
-    ipdb> step
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(9)parse_data()
-          8     for x in data_string.split('.'):
-    ----> 9         data.append(x)
-         10     return data
-
-    ipdb> p x
-    '10'
-    ipdb> s
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(8)parse_data()
-          7     data = []
-    ----> 8     for x in data_string.split('.'):
-          9         data.append(x)
+  .. sourcecode:: ipython
 
     ipdb> s
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(9)parse_data()
-          8     for x in data_string.split('.'):
-    ----> 9         data.append(x)
-         10     return data
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(35)iterated_wiener()
+    2    34     noisy_img = noisy_img
+    ---> 35     denoised_img = local_mean(noisy_img, size=size)
+         36     l_var = local_var(noisy_img, size=size)
 
-    ipdb> p x
-    '2\n43'
+    ipdb> n
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(36)iterated_wiener()
+         35     denoised_img = local_mean(noisy_img, size=size)
+    ---> 36     l_var = local_var(noisy_img, size=size)
+         37     for i in range(3):
 
-Calling the debugger inside a module
-.....................................
 
-Insert the following line where you want to drop in the debugger::
+* Step a few lines and explore the local variables:
+
+  .. sourcecode:: ipython
+
+    ipdb> n
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(37)iterated_wiener()
+         36     l_var = local_var(noisy_img, size=size)
+    ---> 37     for i in range(3):
+         38         res = noisy_img - denoised_img
+    ipdb> print l_var
+    [[5868 5379 5316 ..., 5071 4799 5149]
+     [5013  363  437 ...,  346  262 4355]
+     [5379  410  344 ...,  392  604 3377]
+     ..., 
+     [ 435  362  308 ...,  275  198 1632]
+     [ 548  392  290 ...,  248  263 1653]
+     [ 466  789  736 ..., 1835 1725 1940]]
+    ipdb> print l_var.min()
+    0
+
+Oh dear, nothing but integers, and 0 variation. Here is our bug, we are
+doing integer arythmetic.
+
+.. topic:: Raising exception on numerical errors
+
+    When we run the :download:`wiener_filtering.py` file, the following
+    warnings are raised:
+
+    .. sourcecode:: ipython
+
+        In [2]: %run wiener_filtering.py
+        Warning: divide by zero encountered in divide
+        Warning: divide by zero encountered in divide
+        Warning: divide by zero encountered in divide
+
+    We can turn these warnings in exception, which enables us to do
+    post-mortem debugging on them, and find our problem more quickly:
+
+    .. sourcecode:: ipython
+
+        In [3]: np.seterr(all='raise')
+        Out[3]: {'divide': 'print', 'invalid': 'print', 'over': 'print', 'under': 'ignore'}
+
+Other ways of starting a debugger
+....................................
+
+* **Raising an exception as a poor man break point**
+
+  If you find it tedious to note the line number to set a break point,
+  you can simply raise an exception at the point that you want to
+  inspect and use ipython's `%debug`. Note that in this case you cannot
+  step or continue the execution.
+
+* **Debugging test failures using nosetests**
+
+  You can run `nosetests --pdb` to drop in post-mortem debugging on
+  exceptions, and `nosetests --pdb-failure` to inspect test failures
+  using the debugger.
+
+* **Calling the debugger explicitely**
+
+  Insert the following line where you want to drop in the debugger::
 
     import pdb; pdb.set_trace()
 
@@ -279,96 +276,32 @@ Insert the following line where you want to drop in the debugger::
     flag.
 
 
+.. topic:: Graphical debuggers
+
+    For stepping through code and inspecting variables, you might find it
+    more convenient to use a graphical debugger such as 
+    `winpdb <http://winpdb.org/>`_.
+
 Debugger commands and interaction 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* List the code with ``l(ist)``:
+============ ======================================================================
+``l(list)``   Lists the code at the current position
+``u(p)``      Walk up the call stack
+``d(own)``    Walk down the call stack
+``n(ext)``    Execute the next line (does not go down in new functions)
+``s(tep)``    Execute the next statement (goes down in new functions)
+``bt``        Print the call stack
+``a``         Print the local variables
+``!command``  Exectute the given **Python** command (by opposition to pdb commands
+============ ======================================================================
 
-  .. sourcecode:: ipython
+.. warning:: **Debugger commands are not Python code**
 
-    ipdb> list
-          1 """Script to read in a column of numbers and calculate the min, max and sum.
-          2 
-    1     3 Data is stored in data.txt.
-    ----> 4 """
-          5 
-          6 def parse_data(data_string):
-          7     data = []
-          8     for x in data_string.split('.'):
-          9         data.append(x)
-         10     return data
-         11 
-
-    ipdb> list
-    2    12 def load_data(filename):
-         13     fp = open(filename)
-         14     data_string = fp.read()
-         15     fp.close()
-         16     return parse_data(data_string)
-         17 
-         18 if __name__ == '__main__':
-         19     data = load_data('exercises/data.txt')
-         20     print('min: %f' % min(data)) # 10.20
-         21     print('max: %f' % max(data)) # 61.30
-
-
-* You can also walk up and down the call stack with ``u(p)`` and ``d(own)``:
-
-  .. sourcecode:: ipython
-
-    ipdb> list
-          4 """
-          5 
-          6 def parse_data(data_string):
-          7     data = []
-          8     for x in data_string.split('.'):
-    ----> 9         data.append(x)
-         10     return data
-         11 
-    2    12 def load_data(filename):
-         13     fp = open(filename)
-         14     data_string = fp.read()
-
-    ipdb> up
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(16)load_data()
-         15     fp.close()
-    ---> 16     return parse_data(data_string)
-         17 
-
-    ipdb> list
-         11 
-    2    12 def load_data(filename):
-         13     fp = open(filename)
-         14     data_string = fp.read()
-         15     fp.close()
-    ---> 16     return parse_data(data_string)
-         17 
-         18 if __name__ == '__main__':
-         19     data = load_data('exercises/data.txt')
-         20     print('min: %f' % min(data)) # 10.20
-         21     print('max: %f' % max(data)) # 61.30
-
-    ipdb> down
-    > /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/debug_file.py(9)parse_data()
-          8     for x in data_string.split('.'):
-    ----> 9         data.append(x)
-         10     return data
-
-    ipdb> list
-          4 """
-          5 
-          6 def parse_data(data_string):
-          7     data = []
-          8     for x in data_string.split('.'):
-    ----> 9         data.append(x)
-         10     return data
-         11 
-    2    12 def load_data(filename):
-         13     fp = open(filename)
-         14     data_string = fp.read()
-
-    ipdb> 
-
+    You cannot name the variables the way you want. For instance, if in
+    you cannot override the variables in the current frame with the same
+    name: **use different names then your local variable when typing code
+    in the debugger**.
 
 Debugging strategies
 --------------------
@@ -396,4 +329,15 @@ There is no silver bullet. Yet, strategies help.
    inspect the code via the debuger (eg '%debug' in IPython)
 5. Take notes and be patient.  It may take a while.
 
+____
+
+.. topic:: **Wrap up excercise**
+    
+    The following script is well documented and hopefully legible. It
+    seeks to answer a problem of actual interest for numerical computing,
+    but it does not work... Can you debug it?
+
+    **Python source code:** :download:`to_debug.py <to_debug.py>`
+
+    .. literalinclude:: to_debug.py
 
