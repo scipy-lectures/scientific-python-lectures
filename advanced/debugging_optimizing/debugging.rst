@@ -394,6 +394,11 @@ Thus the segfault happens when printing `big_array[-10:]`. The reason is
 simply that `big_array` has been allocated with its end outside the
 program memory.
 
+.. note:: 
+   
+    For a list of Python-specific commands defined in the `gdbinit`, read
+    the source of this file.
+
 
 Debugging strategies
 --------------------
@@ -421,6 +426,11 @@ There is no silver bullet. Yet, strategies help.
    inspect the code via the debuger (eg '%debug' in IPython)
 5. Take notes and be patient.  It may take a while.
 
+.. note::
+
+   Once you have gone through this process: isolated a tight piece of
+   code reproducing the bug and fix the bug using this piece of code, add
+   the corresponding code to your test suite.
 ____
 
 .. topic:: **Wrap up excercise**
