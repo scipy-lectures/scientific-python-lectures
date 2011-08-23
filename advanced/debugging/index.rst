@@ -1,17 +1,39 @@
-===========
- Debugging
-===========
+================
+Debuggging code 
+================
 
-The python debugger ``pdb``: http://docs.python.org/library/pdb.html
+:author: Gaël Varoquaux
+
+This tutorial explores tool to understand better your code base:
+debugging, to find and fix bugs.
+
+It is not specific to the scientific Python community, but the strategies
+that we will employ are taylored to its needs.
+
+.. topic:: Prerequisites
+
+    * Numpy
+    * IPython
+    * nosetests (http://readthedocs.org/docs/nose/en/latest/)
+    * line_profiler (http://packages.python.org/line_profiler/)
+    * pyflakes (http://pypi.python.org/pypi/pyflakes)
+    * gdb for the C-debugging part.
+
+.. contents:: Chapters contents
+   :depth: 4
+
+
+Avoiding bugs
+=============
 
 Coding best practices to avoid getting in trouble
 --------------------------------------------------
 
 .. topic:: Brian Kernighan
 
-   “Everyone knows that debugging is twice as hard as writing a
+   *“Everyone knows that debugging is twice as hard as writing a
    program in the first place. So if you're as clever as you can be
-   when you write it, how will you ever debug it?”
+   when you write it, how will you ever debug it?”*
 
 * We all write buggy code.  Accept it.  Deal with it.
 * Write your code with testing and debugging in mind.
@@ -28,11 +50,121 @@ Coding best practices to avoid getting in trouble
 * Try to limit interdependencies of your code. (Loose Coupling)
 * Give your variables, functions and modules meaningful names.
 
+pyflakes: fast static analysis
+-------------------------------
+
+They are several static analysis tools in Python; to name a few: 
+`pylint <http://www.logilab.org/857>`_, 
+`pychecker <http://pychecker.sourceforge.net/>`_, and 
+`pyflakes <http://pypi.python.org/pypi/pyflakes>`_.
+Here we focus on pyflakes, which is the simplest tool.
+
+    * **Fast, simple**
+
+    * Detects syntax errors, missing imports, typos on names.
+
+Integrating pyflakes in your editor is highly recommended, it **does
+yield productivity gains**.
+
+Running pyflakes on the current edited file
+............................................
+
+.. image:: pyflakes_kate.jpg
+    :scale: 70
+    :align: right
+
+You can bind a key to run pyflakes in the current buffer.
+
+* **In kate**
+  Menu: 'settings -> configure kate 
+  
+    * In plugins enable 'external tools'
+
+    * In external Tools', add `pyflakes`::
+
+        kdialog --title "pyflakes %filename" --msgbox "$(pyflakes %filename)"
+
+* **In TextMate**
+
+  Menu: TextMate -> Preferences -> Advanced -> Shell variables, add a
+  shell variable::
+
+    TM_PYCHECKER=/Library/Frameworks/Python.framework/Versions/Current/bin/pyflakes
+
+  Then `Ctrl-Shift-V` is binded to a pyflakes report
+
+
+* **In vim**
+  In your `.vimrc` (binds F5 to `pyflakes`)::
+
+    autocmd FileType python let &mp = 'echo "*** running % ***" ; pyflakes %'
+    autocmd FileType tex,mp,rst,python imap <Esc>[15~ <C-O>:make!^M
+    autocmd FileType tex,mp,rst,python map  <Esc>[15~ :make!^M
+    autocmd FileType tex,mp,rst,python set autowrite
+
+* **In emacs**
+  In your `.emacs` (binds F5 to `pyflakes`)::
+
+    (defun pyflakes-thisfile () (interactive)
+           (compile (format "pyflakes %s" (buffer-file-name)))
+    )
+    
+    (define-minor-mode pyflakes-mode
+        "Toggle pyflakes mode.
+        With no argument, this command toggles the mode.
+        Non-null prefix argument turns on the mode.
+        Null prefix argument turns off the mode."
+        ;; The initial value.
+        nil
+        ;; The indicator for the mode line.
+        " Pyflakes"
+        ;; The minor mode bindings.
+        '( ([f5] . pyflakes-thisfile) )
+    )
+    
+    (add-hook 'python-mode-hook (lambda () (pyflakes-mode t)))
+
+A type-as-go spell-checker like integration
+............................................
+
+.. image:: vim_pyflakes.png
+   :align: right
+
+* **In vim**
+  Use the pyflakes.vim plugin: 
+  
+  1. download the zip file from
+     http://www.vim.org/scripts/script.php?script_id=2441
+  
+  2. extract the files in `~/.vim/ftplugin/python`
+
+  3. make sure your vimrc has "filetype plugin indent on"
+
+* **In emacs**
+  Use the flymake mode with pyflakes, documented on
+  http://www.plope.com/Members/chrism/flymake-mode : add the following to
+  your .emacs file::
+  
+    (when (load "flymake" t) 
+            (defun flymake-pyflakes-init () 
+            (let* ((temp-file (flymake-init-create-temp-buffer-copy 
+                                'flymake-create-temp-inplace)) 
+                (local-file (file-relative-name 
+                            temp-file 
+                            (file-name-directory buffer-file-name)))) 
+                (list "pyflakes" (list local-file)))) 
+
+            (add-to-list 'flymake-allowed-file-name-masks 
+                    '("\\.py\\'" flymake-pyflakes-init))) 
+
+    (add-hook 'find-file-hook 'flymake-find-file-hook)
+
 
 The debugger
-------------
+=============
 
-A debugger allows you to inspect your code interactively.
+The python debugger, ``pdb``: http://docs.python.org/library/pdb.html,
+allows you to inspect your code interactively.
 
 Specifically it allows you to:
 
@@ -48,7 +180,7 @@ Specifically it allows you to:
     inspect runtime, it is often more efficient to use the debugger.
 
 Invoking the debugger
-^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Ways to launch the debugger:
 
@@ -139,7 +271,6 @@ Here we debug the file :download:`index_error.py`. When running it, an
     -> print lst[len(lst)]
     (Pdb) 
  
-
 
 Step-by-step execution
 .......................
