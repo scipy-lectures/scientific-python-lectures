@@ -35,6 +35,17 @@ The pdf builder is a pointy and you might have some TeX errors. Tweaking
 the layout in the rst files is usually enough to work around these
 problems.
 
+Requirements
+------------
+
+*probably incomplete*
+
+* make
+* sphinx :) (>= 1.0)
+* matplotlib
+* pdflatex
+* pdfjam
+
 Editorial policy
 -----------------
 
