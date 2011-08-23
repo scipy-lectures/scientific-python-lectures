@@ -274,12 +274,10 @@ be for instance polynomial or exponential:
 Clustering: grouping observations together
 ==========================================
 
-.. topic:: The problem solved in clustering
-
-    Given the iris dataset, if we knew that there were 3 types of
-    iris, but did not have access to their labels: we could try a
-    **clustering task**: split the observations in well-separated
-    group called *clusters*.
+Given the iris dataset, if we knew that there were 3 types of iris,
+but did not have access to their labels: we could try a **clustering
+task**: split the observations in well-separated group called
+*clusters*.
 
 ..
    See the PRNG
@@ -290,8 +288,7 @@ Clustering: grouping observations together
 K-means clustering
 -------------------
 
-Note that their exists many different clustering criteria and associated
-algorithm. The simplest clustering algorithm is the k-means.
+The simplest clustering algorithm is the k-means.
 
 ::
 
@@ -351,8 +348,8 @@ algorithm. The simplest clustering algorithm is the k-means.
     way of choosing a small number of observations to compress the
     information, a problem sometimes known as vector quantization. For
     instance, this can be used to posterize (conversion of a
-    continuous gradation of tone to several regions of fewer tones,
-    with abrupt changes from one tone to another) an image::
+    continuous gradation of tone to several regions of fewer tones) an
+    image::
 
     >>> import scipy as sp
     >>> lena = sp.lena()
@@ -433,21 +430,6 @@ dimensions.
 
 
 
-Applications of clustering
-++++++++++++++++++++++++++
-
-Some applications of clustering algorithms:
-
-- Building customer profiles for market analysis
-
-- Grouping related web news (e.g. Google News) and web-search results
-
-- Grouping related stock quotes
-
-- Can be used as a preprocessing step for recommender systems
-
-
-
 Putting it all together : face recognition with support vector machines
 =======================================================================
 
@@ -458,6 +440,7 @@ Putting it all together : face recognition with support vector machines
 
 ::
 
+    >>> # load the faces dataset
     >>> import numpy as np
     >>> from scikits.learn import cross_val, datasets, decomposition, svm
     >>> lfw_people = datasets.fetch_lfw_people(min_faces_per_person=70, resize=0.4)
@@ -468,7 +451,7 @@ Putting it all together : face recognition with support vector machines
 
 
 
-
+Full code: :download:`faces.py`
 
 Coming soon ...
 ===============
