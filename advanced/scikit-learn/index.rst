@@ -39,9 +39,10 @@ First we will load some data to play with. The data we will use is a
 very simple flower database known in the machine learning literature
 as the Iris dataset.
 
-The observations we have are 4 measurements of the iris flower: sepal
-length, sepal width, petal length and petal width together with its
-subtype: Iris Setosa, Iris Versicolour, Iris Virginica.
+The observations we have are 150 observations of the iris flower
+specifying some of its characteristics: sepal length, sepal width,
+petal length and petal width together with its subtype: Iris Setosa,
+Iris Versicolour, Iris Virginica.
 
 .. for now, a dataset is just a matrix of floating-point numbers,
 .. (together with a class value).
@@ -55,7 +56,7 @@ To load the dataset into a Python object:
   >>> iris = datasets.load_iris()
 
 This data is stored in the `.data` member, which
-is a `n_samples, n_features` array.
+is a `(n_samples, n_features)` array.
 
     >>> iris.data.shape
     (150, 4)
@@ -69,7 +70,7 @@ features mentioned earlier.
         :scale: 50
 
     The digits dataset is made of 1797 images, where each one is a 8x8
-    pixel 8x8 image representing a hand-written digits ::
+    pixel image representing a hand-written digits ::
 
         >>> digits = datasets.load_digits()
         >>> digits.images.shape
