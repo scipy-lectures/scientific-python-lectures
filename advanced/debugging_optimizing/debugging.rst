@@ -303,6 +303,98 @@ Debugger commands and interaction
     name: **use different names then your local variable when typing code
     in the debugger**.
 
+Debugging segmentation faults using gdb 
+------------------------------------------
+
+If you have a segmentation fault, you cannot debug it with pdb, as it
+crashes the Python interpreter before it can drop in the debugger.
+Similarly, if you have a bug in C code embedded in Python, pdb is
+useless. For this we turn to the gnu debugger, 
+`gdb <http://www.gnu.org/s/gdb/>`_, available on Linux.
+
+Before we start with gdb, let us add a few Python-specific tools to it.
+For this we add a few macros to our `~/.gbdinit`. The optimal choice of
+macro depends on your Python version and your gdb version. I have added a
+simplified version in :download:`gdbinit`, but feel free to read
+`DebuggingWithGdb <http://wiki.python.org/moin/DebuggingWithGdb>`_.
+
+To debug with gdb the Python script :download:`segfault.py`, we can run the
+script in gdb as follows::
+
+    $ gdb python
+    ...
+    (gdb) run segfault.py
+    Starting program: /usr/bin/python segfault.py
+    [Thread debugging using libthread_db enabled]
+
+    Program received signal SIGSEGV, Segmentation fault.
+    _strided_byte_copy (dst=0x8537478 "\360\343G", outstrides=4, src=
+        0x86c0690 <Address 0x86c0690 out of bounds>, instrides=32, N=3,
+        elsize=4)
+            at numpy/core/src/multiarray/ctors.c:365
+    365            _FAST_MOVE(Int32);
+    (gdb)
+
+We get a segfault, and gdb captures it for post-mortem debugging in the C
+level stack (not the Python call stack). We can debug the C call stack
+using gdb's commands::
+
+    (gdb) up
+    #1  0x004af4f5 in _copy_from_same_shape (dest=<value optimized out>, 
+        src=<value optimized out>, myfunc=0x496780 <_strided_byte_copy>,
+        swap=0)
+    at numpy/core/src/multiarray/ctors.c:748
+    748         myfunc(dit->dataptr, dest->strides[maxaxis],
+
+As you can see, right now, we are in the C code of numpy. We would like
+to know what is the Python code that triggers this segfault, so we go up
+the stack until we hit the Python execution loop::
+
+    (gdb) up
+    #8  0x080ddd23 in call_function (f=
+        Frame 0x85371ec, for file /home/varoquau/usr/lib/python2.6/site-packages/numpy/core/arrayprint.py, line 156, in _leading_trailing (a=<numpy.ndarray at remote 0x85371b0>, _nc=<module at remote 0xb7f93a64>), throwflag=0)
+        at ../Python/ceval.c:3750
+    3750    ../Python/ceval.c: No such file or directory.
+            in ../Python/ceval.c
+
+    (gdb) up
+    #9  PyEval_EvalFrameEx (f=
+        Frame 0x85371ec, for file /home/varoquau/usr/lib/python2.6/site-packages/numpy/core/arrayprint.py, line 156, in _leading_trailing (a=<numpy.ndarray at remote 0x85371b0>, _nc=<module at remote 0xb7f93a64>), throwflag=0)
+        at ../Python/ceval.c:2412
+    2412    in ../Python/ceval.c
+    (gdb) 
+
+Once we are in the Python execution loop, we can use our special Python
+helper function. For instance we can find the corresponding Python code::
+
+    (gdb) pyframe
+    /home/varoquau/usr/lib/python2.6/site-packages/numpy/core/arrayprint.py (158): _leading_trailing
+    (gdb) 
+
+This is numpy code, we need to go up until we find code that we have
+written::
+
+    (gdb) up
+    ...
+    (gdb) up
+    #34 0x080dc97a in PyEval_EvalFrameEx (f=
+        Frame 0x82f064c, for file segfault.py, line 11, in print_big_array (small_array=<numpy.ndarray at remote 0x853ecf0>, big_array=<numpy.ndarray at remote 0x853ed20>), throwflag=0) at ../Python/ceval.c:1630
+    1630    ../Python/ceval.c: No such file or directory.
+            in ../Python/ceval.c
+    (gdb) pyframe
+    segfault.py (12): print_big_array
+
+The corresponding code is:
+
+.. literalinclude:: segfault.py
+    :linenos:
+    :lines: 8-14
+
+Thus the segfault happens when printing `big_array[-10:]`. The reason is
+simply that `big_array` has been allocated with its end outside the
+program memory.
+
+
 Debugging strategies
 --------------------
 
