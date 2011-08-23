@@ -160,8 +160,8 @@ A type-as-go spell-checker like integration
     (add-hook 'find-file-hook 'flymake-find-file-hook)
 
 
-The debugger
-=============
+Using the debugger
+===================
 
 The python debugger, ``pdb``: http://docs.python.org/library/pdb.html,
 allows you to inspect your code interactively.
