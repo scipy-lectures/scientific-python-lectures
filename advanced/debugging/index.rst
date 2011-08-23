@@ -73,6 +73,8 @@ Running pyflakes on the current edited file
     :scale: 70
     :align: right
 
+.. Suggestion: this images is way too large for 1024x768, don't align it.
+
 You can bind a key to run pyflakes in the current buffer.
 
 * **In kate**
@@ -442,6 +444,8 @@ Other ways of starting a debugger
     For stepping through code and inspecting variables, you might find it
     more convenient to use a graphical debugger such as 
     `winpdb <http://winpdb.org/>`_.
+
+.. Suggestion: http://pypi.python.org/pypi/pudb
 
 Debugger commands and interaction 
 ----------------------------------
