@@ -266,7 +266,7 @@ discuss only some commonly encountered tricks to make code faster.
 * **Be easy on the memory: use views, and not copies**
 
   Copying big arrays is as costly as making simple numerical operations
-  on them::
+  on them:
 
   .. sourcecode:: ipython
 
