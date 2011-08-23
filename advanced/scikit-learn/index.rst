@@ -68,6 +68,7 @@ features mentioned earlier.
 
     .. image:: digits_first_image.png
         :scale: 50
+        :align: right
 
     The digits dataset is made of 1797 images, where each one is a 8x8
     pixel image representing a hand-written digits ::
@@ -101,8 +102,8 @@ Learning and Predicting
 +++++++++++++++++++++++
 
 Now that we've got some data, we would like to learn from the data and
-predict on new data. In `scikit-learn`, we learn from existing
-data by calling the `fit(X, Y)` method.
+predict on new one. In `scikit-learn`, we learn from existing
+data by creating an `estimator` and calling its `fit(X, Y)` method.
 
     >>> from scikits.learn import svm
     >>> clf = svm.LinearSVC()
@@ -141,8 +142,8 @@ observation, give it the label of the closest learned observation.
 ::
 
     >>> # Create and fit a nearest-neighbor classifier
-    >>> from scikits.learn.neighbors import NeighborsClassifier
-    >>> knn = NeighborsClassifier()
+    >>> from scikits.learn import neighbors
+    >>> knn = neighbors.NeighborsClassifier()
     >>> knn.fit(iris.data, iris.target)
     NeighborsClassifier(n_neighbors=5, leaf_size=20, algorithm='auto')
     >>> knn.predict([[0.1, 0.2, 0.3, 0.4]])
