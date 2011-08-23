@@ -14,16 +14,16 @@ mask = im > im.mean()
 
 label_im, nb_labels = ndimage.label(mask)
 
-plt.figure(figsize=(12,4))
+plt.figure(figsize=(9,3))
 
 plt.subplot(131)
 plt.imshow(im)
 plt.axis('off')
 plt.subplot(132)
-plt.imshow(mask)
+plt.imshow(mask, cmap=plt.cm.gray)
 plt.axis('off')
 plt.subplot(133)
-plt.imshow(label_im)
+plt.imshow(label_im, cmap=plt.cm.spectral)
 plt.axis('off')
 
 plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=1)

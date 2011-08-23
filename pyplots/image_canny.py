@@ -17,7 +17,7 @@ edges = canny(im, 1, 0.4, 0.2)
 plt.figure(figsize=(12, 4))
 
 plt.subplot(131)
-plt.imshow(im)
+plt.imshow(im, cmap=plt.cm.gray)
 plt.axis('off')
 plt.subplot(132)
 plt.imshow(edges, cmap=plt.cm.gray)

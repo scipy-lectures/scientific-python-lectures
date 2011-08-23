@@ -2,8 +2,8 @@
 Image manipulation and processing using Numpy and Scipy
 =======================================================
 
-Introduction
-============
+:authors: Emmanuelle Gouillart, Gaël Varoquaux
+
 
 .. topic:: 
     Image = 2-D numerical array 
@@ -314,9 +314,9 @@ Other local non-lienear filters: Wiener (``scipy.signal.wiener``), etc.
 
 **Non-local filters**
 
-**Total-variation denoising**. Find a new image 
+**Total-variation (TV) denoising**. Find a new image 
 so that the total-variation of the image (integral of the norm L1 of
-gradients) is minimized, while being close to the measured image::
+the gradient) is minimized, while being close to the measured image::
 
     >>> # from scikits.image.filter import tv_denoise
     >>> from tv_denoise import tv_denoise
@@ -331,6 +331,145 @@ gradients) is minimized, while being close to the measured image::
 
 Mathematical morphology
 -----------------------
+
+See http://en.wikipedia.org/wiki/Mathematical_morphology
+
+Probe an image with a simple shape (a **structuring element**), and
+modify this image according to how the shape locally fits or misses the
+image. 
+
+**Structuring element**::
+
+    >>> el = ndimage.generate_binary_structure(2, 1)
+    >>> el
+    array([[False,  True, False],
+           [ True,  True,  True],
+           [False,  True, False]], dtype=bool)
+    >>> el.astype(np.int)
+    array([[0, 1, 0],
+           [1, 1, 1],
+           [0, 1, 0]])
+
+.. image:: diamond_kernel.png
+    :align: center
+
+**Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.::
+
+    >>> a = np.zeros((7,7), dtype=np.int)
+    >>> a[1:6, 2:5] = 1
+    >>> a
+    array([[0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 1, 1, 1, 0, 0],
+           [0, 0, 1, 1, 1, 0, 0],
+           [0, 0, 1, 1, 1, 0, 0],
+           [0, 0, 1, 1, 1, 0, 0],
+           [0, 0, 1, 1, 1, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0]])
+    >>> ndimage.binary_erosion(a).astype(a.dtype)
+    array([[0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 1, 0, 0, 0],
+           [0, 0, 0, 1, 0, 0, 0],
+           [0, 0, 0, 1, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0]])
+    >>> #Erosion removes objects smaller than the structure
+    >>> ndimage.binary_erosion(a, structure=np.ones((5,5))).astype(a.dtype)
+    array([[0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0],
+           [0, 0, 0, 0, 0, 0, 0]])
+
+
+.. image:: morpho_mat.png
+    :align: center
+
+
+**Dilation**: maximum filter::
+
+    >>> a = np.zeros((5, 5))
+    >>> a[2, 2] = 1
+    >>> a
+    array([[ 0.,  0.,  0.,  0.,  0.],
+           [ 0.,  0.,  0.,  0.,  0.],
+           [ 0.,  0.,  1.,  0.,  0.],
+           [ 0.,  0.,  0.,  0.,  0.],
+           [ 0.,  0.,  0.,  0.,  0.]])
+    >>> ndimage.binary_dilation(a).astype(a.dtype)
+    array([[ 0.,  0.,  0.,  0.,  0.],
+           [ 0.,  0.,  1.,  0.,  0.],
+           [ 0.,  1.,  1.,  1.,  0.],
+           [ 0.,  0.,  1.,  0.,  0.],
+           [ 0.,  0.,  0.,  0.,  0.]])
+
+
+Also works for grey-valued images::
+
+    >>> np.random.seed(2)
+    >>> x, y = (63*np.random.random((2, 8))).astype(np.int)
+    >>> im[x, y] = np.arange(8)
+    >>> 
+    >>> bigger_points = ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
+    >>> 
+    >>> square = np.zeros((16, 16))
+    >>> square[4:-4, 4:-4] = 1
+    >>> dist = ndimage.distance_transform_bf(square)
+    >>> dilate_dist = ndimage.grey_dilation(dist, size=(3, 3), \
+    ...         structure=np.ones((3, 3)))
+
+
+.. plot:: pyplots/image_greyscale_dilation.py
+    :scale: 80
+
+**Opening**: erosion + dilation::
+
+    >>> a = np.zeros((5,5), dtype=np.int)
+    >>> a[1:4, 1:4] = 1; a[4, 4] = 1
+    >>> a
+    array([[0, 0, 0, 0, 0],
+           [0, 1, 1, 1, 0],
+           [0, 1, 1, 1, 0],
+           [0, 1, 1, 1, 0],
+           [0, 0, 0, 0, 1]])
+    >>> # Opening removes small objects
+    >>> ndimage.binary_opening(a, structure=np.ones((3,3))).astype(np.int)
+    array([[0, 0, 0, 0, 0],
+           [0, 1, 1, 1, 0],
+           [0, 1, 1, 1, 0],
+           [0, 1, 1, 1, 0],
+           [0, 0, 0, 0, 0]])
+    >>> # Opening can also smooth corners
+    >>> ndimage.binary_opening(a).astype(np.int)
+    array([[0, 0, 0, 0, 0],
+           [0, 0, 1, 0, 0],
+           [0, 1, 1, 1, 0],
+           [0, 0, 1, 0, 0],
+           [0, 0, 0, 0, 0]])
+
+**Application**: remove noise::
+
+    >>> square = np.zeros((32, 32))
+    >>> square[10:-10, 10:-10] = 1
+    >>> np.random.seed(2)
+    >>> x, y = (32*np.random.random((2, 20))).astype(np.int)
+    >>> square[x, y] = 1
+    >>> 
+    >>> open_square = ndimage.binary_opening(square)
+    >>> 
+    >>> eroded_square = ndimage.binary_erosion(square)
+    >>> reconstruction = ndimage.binary_propagation(eroded_square, mask=square)
+
+
+.. plot:: pyplots/image_propagation.py
+    :scale: 80
+
+**Closing**: dilation + erosion
+
+Many other mathematical morphology operations: hit and miss transform, tophat,
+etc.
 
 Feature extraction
 ==================
@@ -423,7 +562,7 @@ Automatic thresholding: use Gaussian mixture model::
 
 .. image:: image_GMM.png
     :align: center
-    :scale: 65
+    :scale: 100
 
 Use mathematical morphology to clean up the result::
 
@@ -435,23 +574,32 @@ Use mathematical morphology to clean up the result::
 .. plot:: pyplots/image_clean_morpho.py
     :scale: 65
 
-Better than opening and closing: use reconstruction::
+.. topic:: **Exercise**
 
-    >>> eroded_img = ndimage.binary_erosion(binary_img)
-    >>> reconstruct_img = ndimage.binary_propagation(eroded_img,
-    >>> mask=binary_img)
-    >>> tmp = np.logical_not(reconstruct_img)
-    >>> eroded_tmp = ndimage.binary_erosion(tmp)
-    >>> reconstruct_final =
-    >>> np.logical_not(ndimage.binary_propagation(eroded_tmp, mask=tmp))
-    >>> np.abs(mask - close_img).mean()
-    0.014678955078125
-    >>> np.abs(mask - reconstruct_final).mean()
-    0.0042572021484375
+    Check that reconstruction operations (erosion + propagation) produce a
+    better result than opening/closing::
 
+	>>> eroded_img = ndimage.binary_erosion(binary_img)
+	>>> reconstruct_img = ndimage.binary_propagation(eroded_img,
+	>>> mask=binary_img)
+	>>> tmp = np.logical_not(reconstruct_img)
+	>>> eroded_tmp = ndimage.binary_erosion(tmp)
+	>>> reconstruct_final =
+	>>> np.logical_not(ndimage.binary_propagation(eroded_tmp, mask=tmp))
+	>>> np.abs(mask - close_img).mean()
+	0.014678955078125
+	>>> np.abs(mask - reconstruct_final).mean()
+	0.0042572021484375
 
+.. topic:: **Exercise**
 
-* **Graph-based** segmentation: use spatial information.::
+    Check how a first denoising step (median filter, total variation)
+    modifies the histogram, and check that the resulting histogram-based
+    segmentation is more accurate.
+
+* **Graph-based** segmentation: use spatial information.
+
+::
 
     >>> from scikits.learn.feature_extraction import image
     >>> from scikits.learn.cluster import spectral_clustering
@@ -510,6 +658,8 @@ Synthetic data::
     >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
     >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>> mask = im > im.mean()
+
+* **Analysis of connected components**
 
 Label connected components: ``ndimage.label``:: 
 
@@ -582,4 +732,45 @@ Non-regularly-spaced blocks: radial mean::
 .. plot:: pyplots/image_radial_mean.py
     :scale: 70
 
+* **Other measures** 
 
+Correlation function, Fourier/wavelet spectrum, etc.
+
+One example with mathematical morphology: **granulometry**
+(http://en.wikipedia.org/wiki/Granulometry_%28morphology%29)
+
+::
+
+    >>> def disk_structure(n):
+    ...     struct = np.zeros((2 * n + 1, 2 * n + 1))
+    ...     x, y = np.indices((2 * n + 1, 2 * n + 1))
+    ...     mask = (x - n)**2 + (y - n)**2 <= n**2
+    ...     struct[mask] = 1
+    ...     return struct.astype(np.bool)
+    ... 
+    >>> 
+    >>> def granulometry(data, sizes=None):
+    ...         s = max(data.shape)
+    ...     if sizes == None:
+    ...             sizes = range(1, s/2, 2)
+    ...     granulo = [ndimage.binary_opening(data, \
+    ...             structure=disk_structure(n)).sum() for n in sizes]
+    ...     return granulo
+    ... 
+    >>> 
+    >>> np.random.seed(1)
+    >>> n = 10
+    >>> l = 256
+    >>> im = np.zeros((l, l))
+    >>> points = l*np.random.random((2, n**2))
+    >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
+    >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
+    >>> 
+    >>> mask = im > im.mean()
+    >>> 
+    >>> granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
+
+
+
+.. plot:: pyplots/image_granulo.py
+    :scale: 100
