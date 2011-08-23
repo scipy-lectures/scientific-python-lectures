@@ -1,3 +1,5 @@
+.. _advanced_numpy:
+
 ==============
 Advanced Numpy
 ==============
@@ -619,6 +621,8 @@ array([1, 3], dtype=int16)
 
        </div>
 
+
+.. _broadcasting:
 
 Broadcasting
 ^^^^^^^^^^^^
