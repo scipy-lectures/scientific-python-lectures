@@ -226,8 +226,8 @@ be computed with arpack, available in `scipy.sparse.linalg.eigsh`.
     `scipy.linalg`, and use `%timeit` to try out different alternatives
     on your data.
 
-Writing faster Python and numpy code
-=====================================
+Writing faster numerical code
+===============================
 
 A complete discussion on advanced use of numpy is found in chapter
 :ref:`advanced_numpy`, or in the article `The NumPy array: a structure
@@ -265,8 +265,24 @@ discuss only some commonly encountered tricks to make code faster.
 
 * **Be easy on the memory: use views, and not copies**
 
-  
+  Copying big arrays is as costly as making simple numerical operations
+  on them::
+
+  .. sourcecode:: ipython
+
+    In [1]: a = np.zeros(1e7)
+
+    In [2]: %timeit a.copy()
+    10 loops, best of 3: 124 ms per loop
+
+    In [3]: %timeit a + 1
+    10 loops, best of 3: 112 ms per loop
 
 * **Beware of cache effects**
 
+  Memory acess is cheaper when it is grouped: accessing a big array in a
+  continous way is much faster than random access. This implies amongst
+  other things that smaller strides are faster (see
+  :ref:`cache_effects`). This is the reason why Fortran ordering or C
+  ordering may make a big difference on operations like `np.dot`.
 

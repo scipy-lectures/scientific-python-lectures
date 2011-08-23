@@ -755,6 +755,8 @@ More tricks: diagonals
        </div>
 
 
+.. _cache_effects:
+
 CPU cache effects
 ^^^^^^^^^^^^^^^^^
 
