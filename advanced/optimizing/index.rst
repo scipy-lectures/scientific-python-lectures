@@ -282,7 +282,26 @@ discuss only some commonly encountered tricks to make code faster.
 
   Memory acess is cheaper when it is grouped: accessing a big array in a
   continous way is much faster than random access. This implies amongst
-  other things that smaller strides are faster (see
-  :ref:`cache_effects`). This is the reason why Fortran ordering or C
-  ordering may make a big difference on operations like `np.dot`.
+  other things that **smaller strides are faster** (see
+  :ref:`cache_effects`):: 
 
+    In [1]: c = np.zeros((1e4, 1e4), order='C')
+
+    In [2]: %timeit c.sum(axis=0)
+    1 loops, best of 3: 3.89 s per loop
+
+    In [3]: %timeit c.sum(axis=1)
+    1 loops, best of 3: 188 ms per loop
+
+    In [4]: c.strides
+    Out[4]: (80000, 8)
+
+  This is the reason why Fortran ordering or C ordering may make a big
+  difference on operations. Using 
+  `numexpr <http://code.google.com/p/numexpr/>`_ can be useful to 
+  automatically optimize code for such effects.
+
+.. warning::
+
+   For all the above: profile and time your choices. Don't base your
+   optimization on theoretical considerations.
