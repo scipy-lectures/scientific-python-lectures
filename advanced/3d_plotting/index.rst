@@ -1,3 +1,5 @@
+.. _mayavi-label:
+
 3D plotting with Mayavi
 ========================
 
