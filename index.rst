@@ -102,18 +102,18 @@ Python Scientific Lecture Notes
      
        * `Source code of this document (github) <https://github.com/scipy-lectures>`_
 
-.. topic:: This document
+    .. topic:: This document
 
-    Teaching material on the scientific Python ecosystem, a quick
-    introduction to central tools and techniques. The different chapters
-    each correspond to a 1 to 2 hours course with increasing level of
-    expertise, from beginner to expert.
+        Teaching material on the scientific Python ecosystem, a quick
+        introduction to central tools and technics. The different chapters
+        each correspond to a 1 to 2 hours course with increasing level of
+        expertise, from beginner to expert.
 
-    .. toctree::
-       :maxdepth: 1
+        .. toctree::
+            :maxdepth: 1
 
-       AUTHORS.rst
-       LICENSE.rst
+            AUTHORS.rst
+            LICENSE.rst
 
 _____
 
