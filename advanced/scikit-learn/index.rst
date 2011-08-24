@@ -285,7 +285,7 @@ be for instance polynomial or exponential:
 Clustering: grouping observations together
 ==========================================
 
-Given the iris dataset, if we knew that there were 3 types of iris,
+Given the iris dataset, if we knew that there were 3 types of Iris,
 but did not have access to their labels: we could try a **clustering
 task**: split the observations into groups called *clusters*.
 
@@ -348,18 +348,17 @@ The simplest clustering algorithm is the k-means.
    :scale: 50
 
 
-.. topic:: **Application example: vector quantization**
+.. topic:: **Application to Image Compression**
 
     Clustering can be seen as a way of choosing a small number of
-    observations to compress the information, a problem sometimes
-    known as vector quantization. For instance, this can be used to
-    posterize an image (conversion of a continuous gradation of tone to several
-    regions of fewer tones)::
+    observations from the information. For instance, this can be used
+    to posterize an image (conversion of a continuous gradation of
+    tone to several regions of fewer tones)::
 
     >>> import scipy as sp
     >>> lena = sp.lena()
     >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
-    >>> k_means = cluster.KMeans(k=5, n_init=1)
+    >>> k_means = cluster.KMeans(k=5)
     >>> k_means.fit(X)
     >>> values = k_means.cluster_centers_.squeeze()
     >>> labels = k_means.labels_
@@ -382,11 +381,10 @@ The simplest clustering algorithm is the k-means.
 
 
 
-Dimension reduction with Principal Component Analysis
+Dimension Reduction with Principal Component Analysis
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Principal component analysis select the successive components that
-explain the maximum variance in the signal.
+
 
 .. |pca_3d_axis| image:: pca_3d_axis.jpg
    :scale: 70
@@ -398,10 +396,12 @@ explain the maximum variance in the signal.
 
    |pca_3d_axis| |pca_3d_aligned|
 
-The point cloud spanned by the observations above is very flat in one
-direction: one of the 3 univariate features can almost be exactly
-computed using the 2 other. PCA finds the directions in which the data is
-not *flat*
+
+The cloud of points spanned by the observations above is very flat in
+one direction, so that one feature can almost be exactly computed
+using the 2 other. PCA finds the directions in which the data is not
+*flat*
+
 
 When used to *transform* data, PCA can reduce the dimensionality of the
 data by projecting on a principal subspace.
@@ -446,16 +446,48 @@ classification.
    :align: center
    :scale: 50
 
-::
 
-    >>> # load the faces dataset
-    >>> import numpy as np
-    >>> from scikits.learn import cross_val, datasets, decomposition, svm
-    >>> lfw_people = datasets.fetch_lfw_people(min_faces_per_person=70, resize=0.4)
-    >>> faces = np.reshape(lfw_people.data, (lfw_people.target.shape[0], -1))
-    >>> train, test = iter(cross_val.StratifiedKFold(lfw_people.target, k=4)).next()
-    >>> X_train, X_test = faces[train], faces[test]
-    >>> y_train, y_test = lfw_people.target[train], lfw_people.target[test]
+.. sourcecode:: python
+
+    
+    """
+    Stripped-down version of the face recognition example by Olivier Grisel
+    
+    http://scikit-learn.sourceforge.net/dev/auto_examples/applications/face_recognition.html
+    
+    ## original shape of images: 50, 37
+    """
+    
+    import numpy as np
+    from scikits.learn import cross_val, datasets, decomposition, svm
+    
+    # ..
+    # .. load data ..
+    lfw_people = datasets.fetch_lfw_people(min_faces_per_person=70, resize=0.4)
+    faces = np.reshape(lfw_people.data, (lfw_people.target.shape[0], -1))
+    train, test = iter(cross_val.StratifiedKFold(lfw_people.target, k=4)).next()
+    X_train, X_test = faces[train], faces[test]
+    y_train, y_test = lfw_people.target[train], lfw_people.target[test]
+    
+    # ..
+    # .. dimension reduction ..
+    pca = decomposition.RandomizedPCA(n_components=150, whiten=True)
+    pca.fit(X_train)
+    X_train_pca = pca.transform(X_train)
+    X_test_pca = pca.transform(X_test)
+    
+    # ..
+    # .. classification ..
+    clf = svm.SVC(C=5., gamma=0.001)
+    clf.fit(X_train_pca, y_train)
+
+    # ..
+    # .. predict on new images ..
+    for i in range(1, 10):
+        print lfw_people.target_names[clf.predict(X_test_pca[i])[0]]
+        _ = pl.imshow(X_test[i].reshape(50, 37), cmap=pl.cm.gray)
+        _ = raw_input()
+    
 
 
 
