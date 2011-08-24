@@ -585,7 +585,7 @@ array([[  1900.,  30000.,   4000.,  51300.],
 
 .. plot::
 
-   >>> img = plt.imread('../../../data/elephant.png')
+   >>> img = plt.imread('../../data/elephant.png')
    >>> img.shape, img.dtype
    ((200, 300, 3), dtype('float32'))
    >>> plt.imshow(img)
@@ -603,7 +603,7 @@ array([[  1900.,  30000.,   4000.,  51300.],
 
    >>> from scipy.misc import imsave
    >>> imsave('tiny_elephant.png', img[::6,::6])
-   >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='none')
+   >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
    >>> plt.show()
 
 .. .. rubric:: Raw binary data
@@ -1012,7 +1012,7 @@ Same idea in higher dimensions:
 
      We can first plot the data:
 
-     >>> data = np.loadtxt('../../../data/populations.txt')
+     >>> data = np.loadtxt('../../data/populations.txt')
      >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
      >>> plt.axes([0.2, 0.1, 0.5, 0.8])
@@ -1073,8 +1073,9 @@ Same idea in higher dimensions:
      >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-')
      >>> plt.xlabel(r"$t$")
      >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
+     >>> plt.show()
 
-     The RMS distance grows as the square root of the time!
+The RMS distance grows as the square root of the time!
 
 
 .. arithmetic: sum/prod/mean/std
@@ -1762,7 +1763,7 @@ of hares and lynxes (and carrots) in northern Canada during 20 years:
 
 .. plot::
 
-   >>> data = np.loadtxt('../../../data/populations.txt')
+   >>> data = np.loadtxt('../../data/populations.txt')
    >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
    >>> plt.axes([0.2, 0.1, 0.5, 0.8])
@@ -2243,7 +2244,7 @@ masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],
 
    .. plot::
 
-      >>> data = np.loadtxt('../../../data/populations.txt')
+      >>> data = np.loadtxt('../../data/populations.txt')
       >>> populations = np.ma.masked_array(data[:,1:])
       >>> year = data[:,0]
 
