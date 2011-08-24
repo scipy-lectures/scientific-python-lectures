@@ -63,6 +63,18 @@ is a `(n_samples, n_features)` array.
 It is made of 150 observations of irises, each described by the 4
 features mentioned earlier.
 
+
+The information about the class of each observation is stored in the
+target attribute of the dataset. This is an integer 1D array of length
+`n_samples`:
+
+    >>> iris.target.shape
+    (150,)
+    >>> import numpy as np
+    >>> np.unique(iris.target)
+    [0, 1, 2]
+
+
 .. topic:: An example of reshaping data: the digits dataset
 
     .. image:: digits_first_image.png
@@ -84,16 +96,6 @@ features mentioned earlier.
 
         >>> data = digits.images.reshape((digits.images.shape[0], -1))
 
-
-The information about the class of each observation is stored in the
-target attribute of the dataset. This is an integer 1D array of length
-`n_samples`:
-
-    >>> iris.target.shape
-    (150,)
-    >>> import numpy as np
-    >>> np.unique(iris.target)
-    [0, 1, 2]
 
 
 
@@ -130,7 +132,7 @@ k-Nearest neighbors classifier
 -------------------------------
 
 The simplest possible classifier is the nearest neighbor: given a new
-observation, give it the label of the closest learned observation.
+observation, take the label of the closest learned observation.
 
 **KNN (k nearest neighbors) classification example**:
 
@@ -153,9 +155,7 @@ observation, give it the label of the closest learned observation.
 
    When experimenting with learning algorithm, it is important not to
    test the prediction of an estimator on the data used to fit the
-   estimator, as this would not be evaluating the performance of the
-   estimator on **new data**. This is why datasets are often split into
-   *train* and *test* data.
+   estimator.
 
 
 
@@ -197,8 +197,8 @@ scikit-learn. The most used ones are `svm.SVC`, `svm.NuSVC` and `svm.LinearSVC`.
 .. topic:: **Excercise**
    :class: green
 
-   Try classifying the digits dataset with `svm.SVC` and `svm.NuSVC`. Leave out
-   the last 10% and test prediction performance on these observations.
+   Try classifying the digits dataset with `svm.SVC`. Leave out the
+   last 10% and test prediction performance on these observations.
 
 
 
