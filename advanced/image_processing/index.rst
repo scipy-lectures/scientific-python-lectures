@@ -324,6 +324,11 @@ the gradient) is minimized, while being close to the measured image::
     >>> # More denoising (to the expense of fidelity to data)
     >>> tv_denoised = tv_denoise(noisy, weight=50)
 
+The total variation filter ``tv_denoise`` is available in the
+``scikits.image``, (doc:
+http://scikits-image.org/docs/dev/api/scikits.image.filter.html#tv-denoise),
+but for convenience we've shipped it as a :download:`standalone module
+<../../pyplots/tv_denoise.py>` with this tutorial.
 
 .. plot:: pyplots/image_lena_tv_denoise.py
     :scale: 60
@@ -496,6 +501,13 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
     :scale: 100
 
 **Canny filter**::
+
+The Canny filter is available in the
+``scikits.image``, (doc:
+http://scikits-image.org/docs/dev/api/scikits.image.filter.html#canny),
+but for convenience we've shipped it as a :download:`standalone module
+<../../pyplots/image_source_canny.py>` with this tutorial.
+
 
     >>> #from scikits.image.filter import canny
     >>> #or use module shipped with tutorial
