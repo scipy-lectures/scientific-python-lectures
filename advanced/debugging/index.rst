@@ -49,7 +49,8 @@ Coding best practices to avoid getting in trouble
   * Constants, algorithms, etc...
 
 * Try to limit interdependencies of your code. (Loose Coupling)
-* Give your variables, functions and modules meaningful names.
+* Give your variables, functions and modules meaningful names (not
+  mathematics names)
 
 pyflakes: fast static analysis
 -------------------------------
@@ -420,6 +421,11 @@ Other ways of starting a debugger
   You can run `nosetests --pdb` to drop in post-mortem debugging on
   exceptions, and `nosetests --pdb-failure` to inspect test failures
   using the debugger.
+
+  In addition, you can use the IPython interface for the debugger in nose
+  by installing the nose plugin 
+  `ipdbplugin <http://pypi.python.org/pypi/ipdbplugin>`_. You can than
+  pass `--ipdb` and `--ipdb-failure` options to nosetests.
 
 * **Calling the debugger explicitly**
 

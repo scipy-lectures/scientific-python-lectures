@@ -28,9 +28,13 @@ Optimization workflow
    that your algorithm is right and that if you break it, the tests will
    capture the breakage.
 
-#. Optimize the code by profiling simply use-cases to find the
-   bottlenecks and speeding up these bottleneck, finding a
-   better algorithm or implementation.
+#. Optimize the code by profiling simple use-cases to find the
+   bottlenecks and speeding up these bottleneck, finding a better
+   algorithm or implementation. Keep in mind that a trade off should be
+   found between profiling on a realistic example and the simplicity and
+   speed of execution of the code. For efficient work, it is best to work
+   with profiling runs lasting around 10s.
+
 
 Profiling Python code
 ==========================================
@@ -54,16 +58,21 @@ In IPython, use ``timeit`` (http://docs.python.org/library/timeit.html) to time 
 
     In [2]: a = np.arange(1000)
 
-    In [3]: %timeit a**2
+    In [3]: %timeit a ** 2
     100000 loops, best of 3: 5.73 us per loop
 
-    In [4]: %timeit a**2.1
+    In [4]: %timeit a ** 2.1
     1000 loops, best of 3: 154 us per loop
 
-    In [5]: %timeit a*a
+    In [5]: %timeit a * a
     100000 loops, best of 3: 5.56 us per loop
 
 Use this to guide your choice between strategies.
+
+.. note:: 
+
+   For long running calls, using ``%time`` instead of ``%timeit``; it is
+   less precise but faster
 
 Profiler
 -----------
@@ -179,10 +188,10 @@ Algorithmic optimization
 The first thing to look for is algorithmic optimization: are there ways
 to compute less, or better?
 
-For a high-level view of the problem, a good understanding of the
-maths behind the algorithm helps. However, it is not uncommon to find
-simple changes, like **moving a computation outside a for loop**, that
-bring in big gains.
+For a high-level view of the problem, a good understanding of the maths
+behind the algorithm helps. However, it is not uncommon to find simple
+changes, like **moving computation or memory allocation outside a for
+loop**, that bring in big gains.
 
 Example of the SVD
 ...................
@@ -313,7 +322,8 @@ discuss only some commonly encountered tricks to make code faster.
   the few lines or functions in which most of the time is spent, to
   compiled code. For compiled code, the preferred option is to use 
   `Cython <http://www.cython.org>`_: it is easy to transform exiting
-  Python code in compiled code, and with a good use of the numpy support
+  Python code in compiled code, and with a good use of the 
+  `numpy support <http://docs.cython.org/src/tutorial/numpy.html>`_
   yields efficient code on numpy arrays, for instance by unrolling loops.
 
 .. warning::
