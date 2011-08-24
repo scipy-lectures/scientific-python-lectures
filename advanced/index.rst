@@ -50,3 +50,7 @@ Advanced topics
    optimizing/index.rst
    sympy.rst
    3d_plotting/index.rst
+   image_processing/index.rst
+
+
+=======

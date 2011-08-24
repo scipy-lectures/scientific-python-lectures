@@ -85,6 +85,7 @@ Arbitrary regular mesh
 **Our data is often more than points and values: it needs some
 connectivity information**
 
+.. _mayavi-voldata-label: 
 
 Volumetric data
 ----------------
@@ -109,4 +110,16 @@ Volumetric data
 	:align: center
 	:scale: 70
 
+.. sourcecode:: ipython
 
+    In [25]: s = mlab.pipeline.scalar_field(values)
+
+    In [26]: ipw_x = mlab.pipeline.image_plane_widget(s, plane_orientation='x_axes')
+
+    In [27]: ipw_y = mlab.pipeline.image_plane_widget(s,
+    plane_orientation='y_axes')
+
+.. image:: ipw.png
+    :align: center
+
+Interactive image plane widgets: drag to change the visualized plane.
