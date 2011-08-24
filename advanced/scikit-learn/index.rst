@@ -4,7 +4,7 @@ scikit-learn: machine learning in Python
 
 
 Machine learning is a rapidly-growing field with several machine
-learning frameworks available for Python:
+learning frameworks available for Python.
 
 .. image:: mdp.png
    :scale: 70   
@@ -27,26 +27,11 @@ learning frameworks available for Python:
     * Numpy, Scipy
     * IPython
     * matplotlib
-    * scikit-lean (http://scikit-learn.sourceforge.net)
+    * scikit-learn (http://scikit-learn.sourceforge.net)
 
 
 .. contents:: Chapters contents
    :depth: 2
-
-.. Outline
-.. -------
-
-..    - **Loading an example dataset**
-
-..    - **Supervised learning**: nearest neighbors and support vector machines.
-
-..    - **Clustering**: KMeans
-
-..    - **Dimension reduction**: Principal Component Analysis
-
-..    - **Putting it all together**: face recognition
-
-..    - **Coming soon** ...
 
 
 Loading an example dataset
@@ -157,9 +142,8 @@ Supervised learning
 ===================
 
 
-
 k-Nearest neighbors classifier
--------------------------------
+++++++++++++++++++++++++++++++
 
 The simplest possible classifier is the nearest neighbor: given a new
 observation, take the label of the closest learned observation.
@@ -190,7 +174,7 @@ observation, take the label of the closest learned observation.
 
 
 Support vector machines (SVMs) for classification
--------------------------------------------------
++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Linear Support Vector Machines
 ------------------------------
@@ -305,14 +289,10 @@ Given the iris dataset, if we knew that there were 3 types of iris,
 but did not have access to their labels: we could try a **clustering
 task**: split the observations into groups called *clusters*.
 
-..
-   See the PRNG
-   >>> import numpy as np
-   >>> np.random.seed(1)
 
 
 K-means clustering
--------------------
+++++++++++++++++++
 
 The simplest clustering algorithm is the k-means.
 
@@ -403,7 +383,7 @@ The simplest clustering algorithm is the k-means.
 
 
 Dimension reduction with Principal Component Analysis
------------------------------------------------------
++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Principal component analysis select the successive components that
 explain the maximum variance in the signal.
@@ -455,9 +435,12 @@ dimensions.
 
 
 
-Putting it all together : face recognition with support vector machines
+Putting it all together : face recognition with Support Vector Machines
 =======================================================================
 
+An example showcasing face recognition using Principal Component
+Analysis for dimension reduction and Support Vector Machines for
+classification.
 
 .. image:: faces.png
    :align: center
@@ -478,22 +461,42 @@ Putting it all together : face recognition with support vector machines
 
 Full code: :download:`faces.py`
 
-Coming soon ...
-===============
+
+Available in the next release ...
+=================================
+
 
 Manifold learning
------------------
++++++++++++++++++
+
+Manifold learning is an approach to nonlinear dimensionality
+reduction. Algorithms for this task are based on the idea that the
+dimensionality of many data sets is only artificially high.
 
 .. image:: plot_compare_methods_1.png
    :scale: 50
    :align: center
 
 
-Non-negative matrix factorization
----------------------------------
 
-.. image:: plot_faces_decomposition_2.png
-   :scale: 70
-   :align: center
+Non-negative matrix factorization
++++++++++++++++++++++++++++++++++
+
+Image denoising using dictionary learning. An example comparing the
+effect of reconstructing noisy fragments of Lena using online
+dictionary learning and various transform methods.
+
+
+.. image:: distorted.png
+   :scale: 40
+
+.. image:: 1-omp.png
+   :scale: 40
+
+.. image:: 2-omp.png
+   :scale: 40
+
+.. image:: lars.png
+   :scale: 40
 
  
