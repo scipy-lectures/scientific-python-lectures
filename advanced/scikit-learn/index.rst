@@ -262,7 +262,7 @@ be for instance polynomial or exponential:
    :class: green
 
    Which of the kernels noted above has a better prediction
-   performance on the iris dataset ?
+   performance on the digits dataset ?
 
    .. toctree::
 
