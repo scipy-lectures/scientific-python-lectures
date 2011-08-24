@@ -1,3 +1,5 @@
+.. _advanced_numpy:
+
 ==============
 Advanced Numpy
 ==============
@@ -620,6 +622,8 @@ array([1, 3], dtype=int16)
        </div>
 
 
+.. _broadcasting:
+
 Broadcasting
 ^^^^^^^^^^^^
 
@@ -750,6 +754,8 @@ More tricks: diagonals
 
        </div>
 
+
+.. _cache_effects:
 
 CPU cache effects
 ^^^^^^^^^^^^^^^^^
