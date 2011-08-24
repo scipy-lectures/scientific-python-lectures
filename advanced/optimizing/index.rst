@@ -25,10 +25,10 @@ Optimization workflow
 #. Make it work: write the code in a simple **legible** ways.
 
 #. Make it work reliably: write automated test cases, make really sure
-   that your algorithm is right and that if you break it the tests will
+   that your algorithm is right and that if you break it, the tests will
    capture the breakage.
 
-#. Optimize the code by profiling simply usecases to find the
+#. Optimize the code by profiling simply use-cases to find the
    bottlenecks and speeding up these bottleneck, finding a
    better algorithm or implementation.
 
@@ -46,7 +46,7 @@ Profiling Python code
 Timeit
 ---------
 
-In IPython, to time elementary operations:
+In IPython, use ``timeit`` (http://docs.python.org/library/timeit.html) to time elementary operations:
 
 .. sourcecode:: ipython
     
@@ -63,7 +63,7 @@ In IPython, to time elementary operations:
     In [5]: %timeit a*a
     100000 loops, best of 3: 5.56 us per loop
 
-Use this to guide choice between strategies
+Use this to guide your choice between strategies.
 
 Profiler
 -----------
@@ -119,9 +119,9 @@ and profile it:
         1    0.000    0.000    0.008    0.008 ica.py:97(fastica)
         ...
 
-Clearly the svd (in `decomp.py`) is what takes most of our time. We have
-to find a way to make this step go faster, or to avoid this step
-(algorithmic optimization). Spending time on the rest of the code is
+Clearly the ``svd`` (in `decomp.py`) is what takes most of our time, a.k.a. the
+bottleneck. We have to find a way to make this step go faster, or to avoid this
+step (algorithmic optimization). Spending time on the rest of the code is
 useless.
 
 Line-profiler
@@ -133,7 +133,7 @@ but not where it is called.
 For this, we use the 
 `line_profiler <http://packages.python.org/line_profiler/>`_: in the
 source file, we decorate a few functions that we want to inspect with
-`@profile` (no need to import it)::
+``@profile`` (no need to import it)::
 
     @profile
     def test():
@@ -142,7 +142,8 @@ source file, we decorate a few functions that we want to inspect with
 	pca = np.dot(u[:10, :], data) 
 	results = fastica(pca.T, whiten=False)
 
-Then we run the script using the `kernprof.py` program, with switches `-`
+Then we run the script using the `kernprof.py
+<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches `-`
 and `-v`::
 
     ~ $ kernprof.py -l -v demo.py
@@ -164,7 +165,7 @@ and `-v`::
        10         1         7799   7799.0      0.1      results = fastica(pca.T, whiten=False)
 
 
-**The SVD is taking all the time.** We need to optimise this ligne.
+**The SVD is taking all the time.** We need to optimise this line.
 
 Making code go faster
 ======================
@@ -194,9 +195,9 @@ roughly :math:`n^3` in the size of the input matrix.
 
 However, in both of these example, we are not using all the output of
 the SVD, but only the first few rows of its first return argument. If
-we use the svd implementation of scipy, we can ask for an incomplete
+we use the ``svd`` implementation of scipy, we can ask for an incomplete
 version of the SVD. Note that implementations of linear algebra in
-scipy are richer then those in numpy and should be prefered.
+scipy are richer then those in numpy and should be preferred.
 
 .. sourcecode:: ipython
 
@@ -215,19 +216,19 @@ scipy are richer then those in numpy and should be prefered.
     1 loops, best of 3: 293 ms per loop
 
 Real incomplete SVDs, e.g. computing only the first 10 eigenvectors, can
-be computed with arpack, available in `scipy.sparse.linalg.eigsh`.
+be computed with arpack, available in ``scipy.sparse.linalg.eigsh``.
 
 .. topic:: Computational linear algebra
 
     For certain algorithms, many of the bottlenecks will be linear
     algebra computations. In this case, using the right function to solve
     the right problem is key. For instance, an eigenvalue problem with a
-    symetric matrix is easier to solve than with a general matrix. Also,
+    symmetric matrix is easier to solve than with a general matrix. Also,
     most often, you can avoid inverting a matrix and use a less costly
     (and more numerically stable) operation.
 
-    Know your computational linear algebra. Whe in doubt, explore
-    `scipy.linalg`, and use `%timeit` to try out different alternatives
+    Know your computational linear algebra. When in doubt, explore
+    ``scipy.linalg``, and use ``%timeit`` to try out different alternatives
     on your data.
 
 Writing faster numerical code
@@ -242,7 +243,7 @@ discuss only some commonly encountered tricks to make code faster.
 * **Vectorizing for loops**
 
   Find tricks to avoid for loops using numpy arrays. For this, masks and
-  indice arrays can be useful.
+  indices arrays can be useful.
 
 * **Broadcasting**
 
@@ -284,8 +285,8 @@ discuss only some commonly encountered tricks to make code faster.
 
 * **Beware of cache effects**
 
-  Memory acess is cheaper when it is grouped: accessing a big array in a
-  continous way is much faster than random access. This implies amongst
+  Memory access is cheaper when it is grouped: accessing a big array in a
+  continuous way is much faster than random access. This implies amongst
   other things that **smaller strides are faster** (see
   :ref:`cache_effects`):: 
 
@@ -310,7 +311,7 @@ discuss only some commonly encountered tricks to make code faster.
   The last resort, once you are sure that all the high-level
   optimizations have been explored, is to transfer the hot spots, i.e.
   the few lines or functions in which most of the time is spent, to
-  compiled code. For compiled code, the prefered option is to use 
+  compiled code. For compiled code, the preferred option is to use 
   `Cython <http://www.cython.org>`_: it is easy to transform exiting
   Python code in compiled code, and with a good use of the numpy support
   yields efficient code on numpy arrays, for instance by unrolling loops.
