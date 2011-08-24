@@ -285,7 +285,7 @@ be for instance polynomial or exponential:
 Clustering: grouping observations together
 ==========================================
 
-Given the iris dataset, if we knew that there were 3 types of iris,
+Given the iris dataset, if we knew that there were 3 types of Iris,
 but did not have access to their labels: we could try a **clustering
 task**: split the observations into groups called *clusters*.
 
@@ -348,18 +348,17 @@ The simplest clustering algorithm is the k-means.
    :scale: 50
 
 
-.. topic:: **Application example: vector quantization**
+.. topic:: **Application to Image Compression**
 
     Clustering can be seen as a way of choosing a small number of
-    observations to compress the information, a problem sometimes
-    known as vector quantization. For instance, this can be used to
-    posterize an image (conversion of a continuous gradation of tone to several
-    regions of fewer tones)::
+    observations from the information. For instance, this can be used
+    to posterize an image (conversion of a continuous gradation of
+    tone to several regions of fewer tones)::
 
     >>> import scipy as sp
     >>> lena = sp.lena()
     >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
-    >>> k_means = cluster.KMeans(k=5, n_init=1)
+    >>> k_means = cluster.KMeans(k=5)
     >>> k_means.fit(X)
     >>> values = k_means.cluster_centers_.squeeze()
     >>> labels = k_means.labels_
@@ -382,11 +381,10 @@ The simplest clustering algorithm is the k-means.
 
 
 
-Dimension reduction with Principal Component Analysis
+Dimension Reduction with Principal Component Analysis
 +++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Principal component analysis select the successive components that
-explain the maximum variance in the signal.
+
 
 .. |pca_3d_axis| image:: pca_3d_axis.jpg
    :scale: 70
@@ -398,10 +396,12 @@ explain the maximum variance in the signal.
 
    |pca_3d_axis| |pca_3d_aligned|
 
-The point cloud spanned by the observations above is very flat in one
-direction: one of the 3 univariate features can almost be exactly
-computed using the 2 other. PCA finds the directions in which the data is
-not *flat*
+
+The cloud of points spanned by the observations above is very flat in
+one direction, so that one feature can almost be exactly computed
+using the 2 other. PCA finds the directions in which the data is not
+*flat*
+
 
 When used to *transform* data, PCA can reduce the dimensionality of the
 data by projecting on a principal subspace.
@@ -480,9 +480,13 @@ classification.
     # .. classification ..
     clf = svm.SVC(C=5., gamma=0.001)
     clf.fit(X_train_pca, y_train)
-    
-    print 'Score on unseen data: '
-    print clf.score(X_test_pca, y_test)
+
+    # ..
+    # .. predict on new images ..
+    for i in range(1, 10):
+        print lfw_people.target_names[clf.predict(X_test_pca[i])[0]]
+        _ = pl.imshow(X_test[i].reshape(50, 37), cmap=pl.cm.gray)
+        _ = raw_input()
     
 
 
