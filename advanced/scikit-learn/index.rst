@@ -3,20 +3,50 @@ scikit-learn: machine learning in Python
 ========================================
 
 
-Outline
--------
+Machine learning is a rapidly-growing field with several machine
+learning frameworks available for Python:
 
-   - **Loading an example dataset**
+.. image:: mdp.png
+   :scale: 70   
 
-   - **Supervised learning**: nearest neighbors and support vector machines.
+.. image:: mlpy_logo.png
+   :scale: 70   
 
-   - **Clustering**: KMeans
+.. image:: pymvpa_logo.jpg
+   :scale: 50   
 
-   - **Dimension reduction**: Principal Component Analysis
+.. image:: orange-logo-w.png
+   :scale: 70
 
-   - **Putting it all together**: face recognition
+.. image:: scikit-learn-logo.png
+   :scale: 40
 
-   - **Coming soon** ...
+
+.. topic:: Prerequisites
+
+    * Numpy, Scipy
+    * IPython
+    * matplotlib
+    * scikit-lean (http://scikit-learn.sourceforge.net)
+
+
+.. contents:: Chapters contents
+   :depth: 2
+
+.. Outline
+.. -------
+
+..    - **Loading an example dataset**
+
+..    - **Supervised learning**: nearest neighbors and support vector machines.
+
+..    - **Clustering**: KMeans
+
+..    - **Dimension reduction**: Principal Component Analysis
+
+..    - **Putting it all together**: face recognition
+
+..    - **Coming soon** ...
 
 
 Loading an example dataset
@@ -54,8 +84,8 @@ To load the dataset into a Python object:
   >>> from scikits.learn import datasets
   >>> iris = datasets.load_iris()
 
-This data is stored in the `.data` member, which
-is a `(n_samples, n_features)` array.
+This data is stored in the ``.data`` member, which
+is a ``(n_samples, n_features)`` array.
 
     >>> iris.data.shape
     (150, 4)
@@ -66,7 +96,7 @@ features mentioned earlier.
 
 The information about the class of each observation is stored in the
 target attribute of the dataset. This is an integer 1D array of length
-`n_samples`:
+``n_samples``:
 
     >>> iris.target.shape
     (150,)
@@ -103,8 +133,8 @@ Learning and Predicting
 +++++++++++++++++++++++
 
 Now that we've got some data, we would like to learn from the data and
-predict on new one. In `scikit-learn`, we learn from existing
-data by creating an `estimator` and calling its `fit(X, Y)` method.
+predict on new one. In ``scikit-learn``, we learn from existing
+data by creating an ``estimator`` and calling its ``fit(X, Y)`` method.
 
     >>> from scikits.learn import svm
     >>> clf = svm.LinearSVC()
@@ -170,8 +200,6 @@ classes. It selects a subset of the input, called the support vectors,
 which are the observations closest to the separating plane.
 
 
-
-
 .. image:: svm_margin.png
    :align: center
    :scale: 80
@@ -192,12 +220,12 @@ which are the observations closest to the separating plane.
       shrinking=True, gamma=0.0)
 
 There are several support vector machine implementations in
-scikit-learn. The most used ones are `svm.SVC`, `svm.NuSVC` and `svm.LinearSVC`. 
+scikit-learn. The most used ones are ``svm.SVC``, ``svm.NuSVC`` and ``svm.LinearSVC``. 
 
 .. topic:: **Excercise**
    :class: green
 
-   Try classifying the digits dataset with `svm.SVC`. Leave out the
+   Try classifying the digits dataset with ``svm.SVC``. Leave out the
    last 10% and test prediction performance on these observations.
 
 
