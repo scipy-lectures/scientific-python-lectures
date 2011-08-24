@@ -1,0 +1,4 @@
+# The species in columns of populations.txt
+Hare
+Lynx
+Carrot

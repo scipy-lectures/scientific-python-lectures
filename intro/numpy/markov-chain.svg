@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:ns0="http://www.iki.fi/pav/software/textext/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="90"
+   inkscape:export-xdpi="90"
+   inkscape:export-filename="/home/pauli/prj/2011-numpy-tutorial/markov-chain.png"
+   version="1.1"
+   sodipodi:docname="markov-chain.svg"
+   inkscape:version="0.48.1 r9760"
+   sodipodi:version="0.32"
+   id="svg1901"
+   height="250.86823"
+   width="395.62753">
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="215.99533"
+     inkscape:cy="94.669907"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="815"
+     inkscape:window-height="544"
+     inkscape:window-x="293"
+     inkscape:window-y="133"
+     showgrid="false"
+     inkscape:window-maximized="0"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs1903">
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         id="path4423" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         inkscape:connector-curvature="0"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         id="path4429" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Mend-9"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Mend">
+      <path
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         id="path4429-8"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <metadata
+     id="metadata1906">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-42.995605,-41.103736)"
+     inkscape:label="Taso 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       d="m 118,91.362183 a 25,25 0 1 1 -50,0 25,25 0 1 1 50,0 z"
+       sodipodi:ry="25"
+       sodipodi:rx="25"
+       sodipodi:cy="91.362183"
+       sodipodi:cx="93"
+       id="path3615"
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc"
+       transform="translate(2,58)" />
+    <path
+       d="m 118,91.362183 a 25,25 0 1 1 -50,0 25,25 0 1 1 50,0 z"
+       sodipodi:ry="25"
+       sodipodi:rx="25"
+       sodipodi:cy="91.362183"
+       sodipodi:cx="93"
+       id="path3615-4"
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc"
+       transform="translate(147,59)" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3647"
+       d="m 107,130.36218 c 63,-31.999997 48,-22 104,7"
+       style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)" />
+    <path
+       d="m 118,91.362183 a 25,25 0 1 1 -50,0 25,25 0 1 1 50,0 z"
+       sodipodi:ry="25"
+       sodipodi:rx="25"
+       sodipodi:cy="91.362183"
+       sodipodi:cx="93"
+       id="path3615-9"
+       style="fill:none;stroke:#000000;stroke-width:5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       sodipodi:type="arc"
+       transform="translate(69.085786,173.10977)" />
+    <path
+       sodipodi:nodetypes="cc"
+       transform="translate(67.5,65.0595)"
+       inkscape:connector-curvature="0"
+       id="path5091"
+       d="m 26.870058,111.24594 c 5.656854,42.42641 4.242641,45.25483 42.426407,69.29646"
+       style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend-9)" />
+    <path
+       transform="translate(67.5,65.0595)"
+       inkscape:connector-curvature="0"
+       id="path5676"
+       d="m 13,60.91246 c -34,-85.5 -56,-34.5 -10.5,9"
+       style="fill:none;stroke:#000000;stroke-width:2.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend-9)"
+       sodipodi:nodetypes="cc" />
+    <g
+       id="g6117"
+       transform="matrix(4,0,0,4,44.846424,42.672736)"
+       ns0:text="$P_{ii}$"
+       ns0:preamble=""
+       ns0:page_width="10cm"
+       style="stroke-width:0.0000001">
+      <g
+         id="g6119">
+        <!-- $P_{ii}$ -->
+        <g
+           transform="translate(0,9.6)"
+           id="g6121">
+          <text
+             id="text6123">
+            <tspan
+               style="font-size:12px;font-style:italic;font-family:STIXGeneral"
+               x="0"
+               y="-2.15625"
+               id="tspan6125">P</tspan>
+            <tspan
+               style="font-size:8.39999962px;font-style:italic;font-family:STIXGeneral"
+               x="7.3319855 9.6671848"
+               y="-0.56718749"
+               id="tspan6127">ii</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+    <g
+       style="stroke-width:0.0000001"
+       ns0:page_width="10cm"
+       ns0:preamble=""
+       ns0:text="$P_{ij}$"
+       transform="matrix(4,0,0,4,146,70)"
+       id="figure_1">
+      <g
+         id="text_1">
+        <!-- $P_{ij}$ -->
+        <g
+           id="g6211"
+           transform="translate(0,11.28)">
+          <text
+             id="text6213">
+            <tspan
+               id="tspan6215"
+               y="-4.15625"
+               x="0"
+               style="font-size:12px;font-style:italic;font-family:STIXGeneral">P</tspan>
+            <tspan
+               id="tspan6217"
+               y="-2.5671875"
+               x="7.3319855 9.6671848"
+               style="font-size:8.39999962px;font-style:italic;font-family:STIXGeneral">ij</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g6299"
+       transform="matrix(4,0,0,4,115.9096,189.4284)"
+       ns0:text="$P_{ik}$"
+       ns0:preamble=""
+       ns0:page_width="10cm"
+       style="stroke-width:0.0000001">
+      <g
+         id="g6301">
+        <!-- $P_{ik}$ -->
+        <g
+           transform="translate(0,9.6)"
+           id="g6303">
+          <text
+             id="text6305">
+            <tspan
+               style="font-size:12px;font-style:italic;font-family:STIXGeneral"
+               x="0"
+               y="-2.15625"
+               id="tspan6307">P</tspan>
+            <tspan
+               style="font-size:8.39999962px;font-style:italic;font-family:STIXGeneral"
+               x="7.3319855 9.6671848"
+               y="-0.56718749"
+               id="tspan6309">ik</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g6537"
+       transform="matrix(4,0,0,4,277.47685,208.50603)"
+       ns0:text="$\\sum_j\\,P_{ij}=1$"
+       ns0:preamble=""
+       ns0:page_width="10cm"
+       style="stroke-width:0.0000001">
+      <g
+         id="g6539">
+        <!-- $\sum_j\,P_{ij}=1$ -->
+        <g
+           transform="translate(0,21.96)"
+           id="g6541">
+          <text
+             id="text6543">
+            <tspan
+               style="font-size:12px;font-family:STIXGeneral"
+               x="0 26.763275 35.558571"
+               y="-13.84375 -11.59375 -11.59375"
+               id="tspan6545">∑=1</tspan>
+            <tspan
+               style="font-size:12px;font-style:italic;font-family:STIXGeneral"
+               x="13.028094"
+               y="-11.59375"
+               id="tspan6547">P</tspan>
+            <tspan
+               style="font-size:8.39999962px;font-style:italic;font-family:STIXGeneral"
+               x="3 20.360081 22.695278"
+               y="-3.0046875 -10.004687 -10.004687"
+               id="tspan6549">jij</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+    <g
+       style="stroke-width:0.0000001"
+       ns0:page_width="10cm"
+       ns0:preamble=""
+       ns0:text="$p_{i}$"
+       transform="matrix(4,0,0,4,77.97404,137.49324)"
+       id="g3117">
+      <g
+         id="g3119">
+        <!-- $p_{i}$ -->
+        <g
+           id="g3121"
+           transform="translate(0,7.92)">
+          <text
+             id="text3123">
+            <tspan
+               id="tspan3125"
+               y="-3.703125"
+               x="0"
+               style="font-size:12px;font-style:italic;font-family:STIXGeneral">p</tspan>
+            <tspan
+               id="tspan3127"
+               y="-2.1140625"
+               x="6.0479889"
+               style="font-size:8.39999962px;font-style:italic;font-family:STIXGeneral">i</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+    <g
+       id="g3274"
+       transform="matrix(4,0,0,4,223.26443,137.76846)"
+       ns0:text="$p_{j}$"
+       ns0:preamble=""
+       ns0:page_width="10cm"
+       style="stroke-width:0.0000001">
+      <g
+         id="g3276">
+        <!-- $p_{j}$ -->
+        <g
+           transform="translate(0,8.76)"
+           id="g3278">
+          <text
+             id="text3280">
+            <tspan
+               style="font-size:12px;font-style:italic;font-family:STIXGeneral"
+               x="0"
+               y="-4.703125"
+               id="tspan3282">p</tspan>
+            <tspan
+               style="font-size:8.39999962px;font-style:italic;font-family:STIXGeneral"
+               x="6.0479889"
+               y="-3.1140625"
+               id="tspan3284">j</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+    <g
+       style="stroke-width:0.0000001"
+       ns0:page_width="10cm"
+       ns0:preamble=""
+       ns0:text="$p_{k}$"
+       transform="matrix(4,0,0,4,144.26443,252.76846)"
+       id="g3427">
+      <g
+         id="g3429">
+        <!-- $p_{k}$ -->
+        <g
+           id="g3431"
+           transform="translate(0,7.92)">
+          <text
+             id="text3433">
+            <tspan
+               id="tspan3435"
+               y="-3.703125"
+               x="0"
+               style="font-size:12px;font-style:italic;font-family:STIXGeneral">p</tspan>
+            <tspan
+               id="tspan3437"
+               y="-2.1140625"
+               x="6.0479889"
+               style="font-size:8.39999962px;font-style:italic;font-family:STIXGeneral">k</tspan>
+          </text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
