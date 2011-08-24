@@ -2,25 +2,35 @@
 scikit-learn: machine learning in Python
 ========================================
 
+:author: Fabian Pedregosa
 
 Machine learning is a rapidly-growing field with several machine
-learning frameworks available for Python.
+learning frameworks available for Python:
 
-.. image:: mdp.png
+.. |mdp| image:: mdp.png
    :scale: 70   
 
-.. image:: mlpy_logo.png
+.. |mlpy| image:: mlpy_logo.png
    :scale: 70   
 
-.. image:: pymvpa_logo.jpg
+.. |mymvpa| image:: pymvpa_logo.jpg
    :scale: 50   
 
-.. image:: orange-logo-w.png
+.. |orange| image:: orange-logo-w.png
    :scale: 70
 
-.. image:: scikit-learn-logo.png
+.. |skl| image:: scikit-learn-logo.png
    :scale: 40
 
+.. only:: html
+
+    .. centered:: |mdp|  |mlpy|  |orange| |skl|
+
+.. only:: latex 
+
+    |mdp|  |mlpy|
+    
+    |orange| |skl|
 
 .. topic:: Prerequisites
 
@@ -31,6 +41,7 @@ learning frameworks available for Python.
 
 
 .. contents:: Chapters contents
+   :local:
    :depth: 2
 
 
@@ -148,11 +159,11 @@ k-Nearest neighbors classifier
 The simplest possible classifier is the nearest neighbor: given a new
 observation, take the label of the closest learned observation.
 
-**KNN (k nearest neighbors) classification example**:
-
 .. image:: iris_knn.png
    :scale: 90
    :align: right
+
+**KNN (k nearest neighbors) classification example**:
 
 ::
 
@@ -185,7 +196,7 @@ which are the observations closest to the separating plane.
 
 
 .. image:: svm_margin.png
-   :align: center
+   :align: right 
    :scale: 80
 
 
@@ -494,41 +505,3 @@ classification.
 Full code: :download:`faces.py`
 
 
-Available in the next release ...
-=================================
-
-
-Manifold learning
-+++++++++++++++++
-
-Manifold learning is an approach to nonlinear dimensionality
-reduction. Algorithms for this task are based on the idea that the
-dimensionality of many data sets is only artificially high.
-
-.. image:: plot_compare_methods_1.png
-   :scale: 50
-   :align: center
-
-
-
-Non-negative matrix factorization
-+++++++++++++++++++++++++++++++++
-
-Image denoising using dictionary learning. An example comparing the
-effect of reconstructing noisy fragments of Lena using online
-dictionary learning and various transform methods.
-
-
-.. image:: distorted.png
-   :scale: 40
-
-.. image:: 1-omp.png
-   :scale: 40
-
-.. image:: 2-omp.png
-   :scale: 40
-
-.. image:: lars.png
-   :scale: 40
-
- 

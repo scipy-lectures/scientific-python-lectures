@@ -572,5 +572,7 @@ ____
 
     **Python source code:** :download:`to_debug.py <to_debug.py>`
 
-    .. literalinclude:: to_debug.py
+    .. only:: html
+
+        .. literalinclude:: to_debug.py
 
