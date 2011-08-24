@@ -10,9 +10,9 @@ Outline
 
    - **Supervised learning**: nearest neighbors and support vector machines.
 
-   - **Clustering**: grouping observations together
+   - **Clustering**: KMeans
 
-   - **Dimension reduction with PCA**
+   - **Dimension reduction**: Principal Component Analysis
 
    - **Putting it all together**: face recognition
 
@@ -36,13 +36,12 @@ Loading an example dataset
 
 
 First we will load some data to play with. The data we will use is a
-very simple flower database known in the machine learning literature
-as the Iris dataset.
+very simple flower database known as the Iris dataset.
 
-The observations we have are 150 observations of the iris flower
-specifying some of its characteristics: sepal length, sepal width,
-petal length and petal width together with its subtype: Iris Setosa,
-Iris Versicolour, Iris Virginica.
+We have 150 observations of the iris flower specifying some of its
+characteristics: sepal length, sepal width, petal length and petal
+width together with its subtype: Iris Setosa, Iris Versicolour, Iris
+Virginica.
 
 .. for now, a dataset is just a matrix of floating-point numbers,
 .. (together with a class value).
