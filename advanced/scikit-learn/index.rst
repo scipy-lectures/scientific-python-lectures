@@ -3,20 +3,35 @@ scikit-learn: machine learning in Python
 ========================================
 
 
-Outline
--------
+Machine learning is a rapidly-growing field with several machine
+learning frameworks available for Python.
 
-   - **Loading an example dataset**
+.. image:: mdp.png
+   :scale: 70   
 
-   - **Supervised learning**: nearest neighbors and support vector machines.
+.. image:: mlpy_logo.png
+   :scale: 70   
 
-   - **Clustering**: KMeans
+.. image:: pymvpa_logo.jpg
+   :scale: 50   
 
-   - **Dimension reduction**: Principal Component Analysis
+.. image:: orange-logo-w.png
+   :scale: 70
 
-   - **Putting it all together**: face recognition
+.. image:: scikit-learn-logo.png
+   :scale: 40
 
-   - **Coming soon** ...
+
+.. topic:: Prerequisites
+
+    * Numpy, Scipy
+    * IPython
+    * matplotlib
+    * scikit-learn (http://scikit-learn.sourceforge.net)
+
+
+.. contents:: Chapters contents
+   :depth: 2
 
 
 Loading an example dataset
@@ -54,8 +69,8 @@ To load the dataset into a Python object:
   >>> from scikits.learn import datasets
   >>> iris = datasets.load_iris()
 
-This data is stored in the `.data` member, which
-is a `(n_samples, n_features)` array.
+This data is stored in the ``.data`` member, which
+is a ``(n_samples, n_features)`` array.
 
     >>> iris.data.shape
     (150, 4)
@@ -66,7 +81,7 @@ features mentioned earlier.
 
 The information about the class of each observation is stored in the
 target attribute of the dataset. This is an integer 1D array of length
-`n_samples`:
+``n_samples``:
 
     >>> iris.target.shape
     (150,)
@@ -103,8 +118,8 @@ Learning and Predicting
 +++++++++++++++++++++++
 
 Now that we've got some data, we would like to learn from the data and
-predict on new one. In `scikit-learn`, we learn from existing
-data by creating an `estimator` and calling its `fit(X, Y)` method.
+predict on new one. In ``scikit-learn``, we learn from existing
+data by creating an ``estimator`` and calling its ``fit(X, Y)`` method.
 
     >>> from scikits.learn import svm
     >>> clf = svm.LinearSVC()
@@ -127,9 +142,8 @@ Supervised learning
 ===================
 
 
-
 k-Nearest neighbors classifier
--------------------------------
+++++++++++++++++++++++++++++++
 
 The simplest possible classifier is the nearest neighbor: given a new
 observation, take the label of the closest learned observation.
@@ -160,7 +174,7 @@ observation, take the label of the closest learned observation.
 
 
 Support vector machines (SVMs) for classification
--------------------------------------------------
++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Linear Support Vector Machines
 ------------------------------
@@ -168,8 +182,6 @@ Linear Support Vector Machines
 SVMs try to build a plane maximizing the margin between the two
 classes. It selects a subset of the input, called the support vectors,
 which are the observations closest to the separating plane.
-
-
 
 
 .. image:: svm_margin.png
@@ -192,12 +204,12 @@ which are the observations closest to the separating plane.
       shrinking=True, gamma=0.0)
 
 There are several support vector machine implementations in
-scikit-learn. The most used ones are `svm.SVC`, `svm.NuSVC` and `svm.LinearSVC`. 
+scikit-learn. The most used ones are ``svm.SVC``, ``svm.NuSVC`` and ``svm.LinearSVC``. 
 
 .. topic:: **Excercise**
    :class: green
 
-   Try classifying the digits dataset with `svm.SVC`. Leave out the
+   Try classifying the digits dataset with ``svm.SVC``. Leave out the
    last 10% and test prediction performance on these observations.
 
 
@@ -277,14 +289,10 @@ Given the iris dataset, if we knew that there were 3 types of iris,
 but did not have access to their labels: we could try a **clustering
 task**: split the observations into groups called *clusters*.
 
-..
-   See the PRNG
-   >>> import numpy as np
-   >>> np.random.seed(1)
 
 
 K-means clustering
--------------------
+++++++++++++++++++
 
 The simplest clustering algorithm is the k-means.
 
@@ -375,7 +383,7 @@ The simplest clustering algorithm is the k-means.
 
 
 Dimension reduction with Principal Component Analysis
------------------------------------------------------
++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 Principal component analysis select the successive components that
 explain the maximum variance in the signal.
@@ -427,9 +435,12 @@ dimensions.
 
 
 
-Putting it all together : face recognition with support vector machines
+Putting it all together : face recognition with Support Vector Machines
 =======================================================================
 
+An example showcasing face recognition using Principal Component
+Analysis for dimension reduction and Support Vector Machines for
+classification.
 
 .. image:: faces.png
    :align: center
@@ -450,22 +461,42 @@ Putting it all together : face recognition with support vector machines
 
 Full code: :download:`faces.py`
 
-Coming soon ...
-===============
+
+Available in the next release ...
+=================================
+
 
 Manifold learning
------------------
++++++++++++++++++
+
+Manifold learning is an approach to nonlinear dimensionality
+reduction. Algorithms for this task are based on the idea that the
+dimensionality of many data sets is only artificially high.
 
 .. image:: plot_compare_methods_1.png
    :scale: 50
    :align: center
 
 
-Non-negative matrix factorization
----------------------------------
 
-.. image:: plot_faces_decomposition_2.png
-   :scale: 70
-   :align: center
+Non-negative matrix factorization
++++++++++++++++++++++++++++++++++
+
+Image denoising using dictionary learning. An example comparing the
+effect of reconstructing noisy fragments of Lena using online
+dictionary learning and various transform methods.
+
+
+.. image:: distorted.png
+   :scale: 40
+
+.. image:: 1-omp.png
+   :scale: 40
+
+.. image:: 2-omp.png
+   :scale: 40
+
+.. image:: lars.png
+   :scale: 40
 
  
