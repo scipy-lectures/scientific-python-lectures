@@ -20,6 +20,7 @@ that we will employ are tailored to its needs.
     * gdb for the C-debugging part.
 
 .. contents:: Chapters contents
+   :local:
    :depth: 4
 
 

@@ -14,6 +14,10 @@ This chapter deals with strategies to make Python code go faster.
 
     * line_profiler (http://packages.python.org/line_profiler/)
 
+.. contents:: Chapters contents
+   :local:
+   :depth: 4
+
 
 Optimization workflow
 ======================
@@ -300,6 +304,16 @@ discuss only some commonly encountered tricks to make code faster.
   difference on operations. Using 
   `numexpr <http://code.google.com/p/numexpr/>`_ can be useful to 
   automatically optimize code for such effects.
+
+* **Use compiled code**
+
+  The last resort, once you are sure that all the high-level
+  optimizations have been explored, is to transfer the hot spots, i.e.
+  the few lines or functions in which most of the time is spent, to
+  compiled code. For compiled code, the prefered option is to use 
+  `Cython <http://www.cython.org>`_: it is easy to transform exiting
+  Python code in compiled code, and with a good use of the numpy support
+  yields efficient code on numpy arrays, for instance by unrolling loops.
 
 .. warning::
 
