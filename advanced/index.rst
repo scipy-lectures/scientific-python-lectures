@@ -51,6 +51,4 @@ Advanced topics
    sympy.rst
    3d_plotting/index.rst
    image_processing/index.rst
-
-
-=======
+   scikit-learn/index.rst
