@@ -275,8 +275,7 @@ Clustering: grouping observations together
 
 Given the iris dataset, if we knew that there were 3 types of iris,
 but did not have access to their labels: we could try a **clustering
-task**: split the observations in well-separated group called
-*clusters*.
+task**: split the observations into groups called *clusters*.
 
 ..
    See the PRNG
@@ -343,12 +342,11 @@ The simplest clustering algorithm is the k-means.
 
 .. topic:: **Application example: vector quantization**
 
-    Clustering in general and KMeans in particular, can be seen as a
-    way of choosing a small number of observations to compress the
-    information, a problem sometimes known as vector quantization. For
-    instance, this can be used to posterize (conversion of a
-    continuous gradation of tone to several regions of fewer tones) an
-    image::
+    Clustering can be seen as a way of choosing a small number of
+    observations to compress the information, a problem sometimes
+    known as vector quantization. For instance, this can be used to
+    posterize an image (conversion of a continuous gradation of tone to several
+    regions of fewer tones)::
 
     >>> import scipy as sp
     >>> lena = sp.lena()
