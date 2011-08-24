@@ -45,6 +45,7 @@ In this section, numpy will be imported as follows::
     >>> import numpy as np
 
 .. contents::
+   :local:
    :depth: 2
 
 

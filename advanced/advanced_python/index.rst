@@ -32,8 +32,17 @@ that their use is as simple as possible.
 
 .. _PEPs: http://www.python.org/dev/peps/
 
+.. contents:: Chapters contents
+   :local:
+   :depth: 4
+
+
+
 Iterators, generator expressions and generators
 ===============================================
+
+Iterators
+^^^^^^^^^
 
 .. sidebar:: Simplicity
 
@@ -46,8 +55,6 @@ Iterators, generator expressions and generators
 .. _`Adding Optional Static Typing to Python`:
    http://www.artima.com/weblogs/viewpost.jsp?thread=86641
 
-Iterators
-^^^^^^^^^
 
 An iterator is an object adhering to the `iterator protocol`_
 --- basically this means that it has a `next <iterator.next>` method,
@@ -157,7 +164,7 @@ Generator expression are fairly simple, not much to say here. Only one
 Generators
 ^^^^^^^^^^
 
-.. sidebar::
+.. sidebar:: Generators
 
   A generator is a function that produces a
   sequence of results instead of a single value.

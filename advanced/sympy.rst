@@ -9,29 +9,30 @@ Sympy : Symbolic Mathematics in Python
 
 :author: Fabian Pedregosa
 
-Objectives
-==========
+.. topic:: Objectives
 
-At the end of this session you will be able to:
-
-  1. Evaluate expressions with arbitrary precision.
-  2. Perform algebraic manipulations on symbolic expressions.
-  3. Perform basic calculus tasks (limits, differentiation and
-     integration) with symbolic expressions.
-  4. Solve polynomial and transcendental equations.
-  5. Solve some differential equations.
+    1. Evaluate expressions with arbitrary precision.
+    2. Perform algebraic manipulations on symbolic expressions.
+    3. Perform basic calculus tasks (limits, differentiation and
+        integration) with symbolic expressions.
+    4. Solve polynomial and transcendental equations.
+    5. Solve some differential equations.
 
 .. role:: input(strong)
 
-What is SymPy?
-==============
+**What is SymPy?** SymPy is a Python library for symbolic mathematics. It
+aims become a full featured computer algebra system that can compete
+directly with commercial alternatives (Mathematica, Maple) while keeping
+the code as simple as possible in order to be comprehensible and easily
+extensible.  SymPy is written entirely in Python and does not require any
+external libraries.
 
-SymPy is a Python library for symbolic mathematics. It aims become a
-full featured computer algebra system that can compete directly with
-commercial alternatives (Mathematica, Maple) while keeping the code as
-simple as possible in order to be comprehensible and easily
-extensible.  SymPy is written entirely in Python and does not require
-any external libraries.
+Sympy documentation and packages for installation can be found on
+http://sympy.org/
+
+.. contents:: Chapters contents
+   :local:
+   :depth: 4
 
 
 First Steps with SymPy

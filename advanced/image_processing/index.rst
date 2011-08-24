@@ -51,6 +51,12 @@ More powerful and complete modules:
 
 * many more...
 
+.. contents:: Chapters contents
+   :local:
+   :depth: 4
+
+
+
 Opening and writing to image files
 ==================================
 
