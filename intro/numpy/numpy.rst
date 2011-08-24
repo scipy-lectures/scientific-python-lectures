@@ -585,7 +585,7 @@ array([[  1900.,  30000.,   4000.,  51300.],
 
 .. plot::
 
-   >>> img = plt.imread('../../../data/elephant.png')
+   >>> img = plt.imread('../../data/elephant.png')
    >>> img.shape, img.dtype
    ((200, 300, 3), dtype('float32'))
    >>> plt.imshow(img)
@@ -603,7 +603,7 @@ array([[  1900.,  30000.,   4000.,  51300.],
 
    >>> from scipy.misc import imsave
    >>> imsave('tiny_elephant.png', img[::6,::6])
-   >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='none')
+   >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
    >>> plt.show()
 
 .. .. rubric:: Raw binary data
@@ -1012,7 +1012,7 @@ Same idea in higher dimensions:
 
      We can first plot the data:
 
-     >>> data = np.loadtxt('../../../data/populations.txt')
+     >>> data = np.loadtxt('../../data/populations.txt')
      >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
      >>> plt.axes([0.2, 0.1, 0.5, 0.8])
@@ -1762,7 +1762,7 @@ of hares and lynxes (and carrots) in northern Canada during 20 years:
 
 .. plot::
 
-   >>> data = np.loadtxt('../../../data/populations.txt')
+   >>> data = np.loadtxt('../../data/populations.txt')
    >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
    >>> plt.axes([0.2, 0.1, 0.5, 0.8])
@@ -2184,50 +2184,50 @@ array([  1,   9,   3, -99,   5])
 
 .. rubric:: The mask
 
-You can modify the mask by assigning:
+You can modify the mask by assigning::
 
->>> mx[1] = np.ma.masked
->>> mx
-masked_array(data = [1 -- 3 -- 5],
-             mask = [False  True False  True False],
-       fill_value = 999999)
+    >>> mx[1] = np.ma.masked
+    >>> mx
+    masked_array(data = [1 -- 3 -- 5],
+                mask = [False  True False  True False],
+        fill_value = 999999)
 
-The mask is cleared on assignment:
+The mask is cleared on assignment::
 
->>> mx[1] = 9
->>> mx
-masked_array(data = [1 9 3 -- 5],
-             mask = [False False False  True False],
-       fill_value = 999999)
+    >>> mx[1] = 9
+    >>> mx
+    masked_array(data = [1 9 3 -- 5],
+                mask = [False False False  True False],
+        fill_value = 999999)
 
-The mask is also available directly:
+The mask is also available directly::
 
->>> mx.mask
-array([False, False, False,  True, False], dtype=bool)
+    >>> mx.mask
+    array([False, False, False,  True, False], dtype=bool)
 
 The masked entries can be filled with a given value to get an usual
-array back:
+array back::
 
->>> x2 = mx.filled(-1)
->>> x2
-array([ 1,  9,  3, -1,  5])
+    >>> x2 = mx.filled(-1)
+    >>> x2
+    array([ 1,  9,  3, -1,  5])
 
-The mask can also be cleared:
+The mask can also be cleared::
 
->>> mx.mask = np.ma.nomask
->>> mx
-masked_array(data = [1 9 3 -99 5],
-             mask = [False False False False False],
-       fill_value = 999999)
+    >>> mx.mask = np.ma.nomask
+    >>> mx
+    masked_array(data = [1 9 3 -99 5],
+                mask = [False False False False False],
+        fill_value = 999999)
 
 .. rubric:: Domain-aware functions
 
-The masked array package also contains domain-aware functions:
+The masked array package also contains domain-aware functions::
 
->>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
-masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],
-             mask = [False False  True  True False  True],
-       fill_value = 1e+20)
+    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
+    masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],
+                mask = [False False  True  True False  True],
+        fill_value = 1e+20)
 
 .. note::
 
@@ -2243,7 +2243,7 @@ masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],
 
    .. plot::
 
-      >>> data = np.loadtxt('../../../data/populations.txt')
+      >>> data = np.loadtxt('../../data/populations.txt')
       >>> populations = np.ma.masked_array(data[:,1:])
       >>> year = data[:,0]
 
