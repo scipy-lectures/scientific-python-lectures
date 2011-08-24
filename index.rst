@@ -1,6 +1,21 @@
 Python Scientific Lecture Notes 
 ===================================================================
 
+.. raw html to center the title
+
+.. raw:: html
+
+  <style type="text/css">
+    div.documentwrapper h1 {
+        text-align: center;
+        font-size: 200% ;
+        font-weight: bold;
+    }
+  
+  </style>
+
+.. nice layout in the toc
+
 .. raw:: html
 
   <style type="text/css">
@@ -54,20 +69,53 @@ Python Scientific Lecture Notes
         font-weight: normal;
     }
 
+    div.topic li.toctree-l1 {
+        font-size: 100% ;
+        font-weight: bold;
+        background-color: transparent;
+        margin-bottom: 0;
+        margin-left: 3em;
+        display:inline;
+    }
+
+    div.topic p {
+        font-size: 90% ;
+        margin: 0.4ex;
+    }
+
+    div.topic p.topic-title {
+        display:inline;
+        font-size: 100% ;
+        margin-bottom: 0;
+    }
+
   </style>
 
 
-
-.. raw:: html
-
-    <div style="float: right;"><a href="https://github.com/scipy-lectures">Source code of this document</a></div>
-    
 .. only:: html
 
-    Download printable version: :download:`PythonScientific.pdf`
+    .. sidebar:: Download 
+       
+       * Printable version: :download:`PythonScientific.pdf`
    
-    Download `html version and additional files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
+       * `HTML version and additional files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
      
+       * `Source code of this document (github) <https://github.com/scipy-lectures>`_
+
+.. topic:: This document
+
+    Teaching material on the scientific Python ecosystem, a quick
+    introduction to central tools and technics. The different chapters
+    each correspond to a 1 to 2 hours course with increasing level of
+    expertise, from beginner to expert (`more info <README.html>`_)
+
+    .. toctree::
+       :maxdepth: 1
+
+       AUTHORS.rst
+       LICENSE.rst
+
+_____
 
 .. toctree::
    :maxdepth: 3
