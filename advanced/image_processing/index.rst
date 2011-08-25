@@ -506,20 +506,18 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
 .. plot:: pyplots/image_find_edges.py
     :scale: 100
 
-**Canny filter**::
+**Canny filter**
 
-The Canny filter is available in the
-``scikits.image``, (doc:
-http://scikits-image.org/docs/dev/api/scikits.image.filter.html#canny),
+The Canny filter is available in the ``scikits.image``
+(`doc <http://scikits-image.org/docs/dev/api/scikits.image.filter.html#canny>`_),
 but for convenience we've shipped it as a :download:`standalone module
 <../../pyplots/image_source_canny.py>` with this tutorial.
 
-
-    >>> #from scikits.image.filter import canny
-    >>> #or use module shipped with tutorial
-    >>> im += 0.1*np.random.random(im.shape)
-    >>> edges = canny(im, 1, 0.4, 0.2) # not enough smoothing
-    >>> edges = canny(im, 3, 0.3, 0.2) # better parameters
+  >>> #from scikits.image.filter import canny
+  >>> #or use module shipped with tutorial
+  >>> im += 0.1*np.random.random(im.shape)
+  >>> edges = canny(im, 1, 0.4, 0.2) # not enough smoothing
+  >>> edges = canny(im, 3, 0.3, 0.2) # better parameters
 
 .. plot:: pyplots/image_canny.py
     :scale: 65

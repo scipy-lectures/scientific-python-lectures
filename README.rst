@@ -42,9 +42,10 @@ Requirements
 
 * make
 * sphinx :) (>= 1.0)
-* matplotlib
 * pdflatex
 * pdfjam
+* matplotlib
+* scikits.learn (>= 0.8 ?)
 
 Editorial policy
 -----------------
