@@ -91,16 +91,17 @@ Python Scientific Lecture Notes
 
   </style>
 
-
 .. only:: html
 
     .. sidebar:: Download 
        
-       * Printable version: :download:`PythonScientific.pdf`
+       * `PDF, 2 pages per side <./_downloads/PythonScientific.pdf>`_
+
+       * `PDF, 1 page per side <./_downloads/PythonScientific-simple.pdf>`_
    
-       * `HTML version and additional files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
+       * `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
      
-       * `Source code of this document (github) <https://github.com/scipy-lectures>`_
+       * `Source code (github) <https://github.com/scipy-lectures>`_
 
     .. topic:: This document
 
@@ -123,5 +124,22 @@ _____
 
    intro/index.rst
    advanced/index.rst
+
+..  
+ FIXME: I need the down link to make sure the banner gets copied to the
+ target directory.
+
+.. raw:: html
+ 
+   <div style='visibility: hidden'>
+
+* :download:`PythonScientific.pdf`
+
+* :download:`PythonScientific-simple.pdf`
+
+.. raw:: html
+ 
+   </div>
+
 
 
