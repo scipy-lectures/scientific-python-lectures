@@ -80,6 +80,11 @@ controlled and uncontrolled paramters :
 
     :math:`storage_{t+1} = storage_t + inflows - release - spillage - irrigation`
 
+.. warning:: 
+
+    The data used in this tutorial are not real and might even not have sense
+    in the reality.
+
 What are Traits
 ===============
 
@@ -107,6 +112,14 @@ The common way of creating a traits class is by extending from the
         name = Str
         max_storage = Float
 
+
+.. warning:: For Traits 3.x users
+
+    If using Traits 3.x, you need to adapt the namespace of the traits
+    packages:
+
+        * traits.api should be enthought.traits.api 
+        * traitsui.api should be enthought.traits.ui.api 
 
 Using a traits class like that is as simple as any other Python class. Note
 that the trait value are passed using keyword arguments:
@@ -375,8 +388,14 @@ e.g. keep track of the total crop surface on linked to a given reservoir.
 .. include:: reservoir_with_irrigation_listener.py
     :literal:
 
-Still missing: Dict, Array, Instance, This, File
+The next example shows how the Array trait can be used to feed a specialised
+TraitsUI Item, the ChacoPlotItem:
 
+.. include:: reservoir_evolution.py
+    :literal:
+
+.. image:: reservoir_evolution.png
+    :align: center
 
 Q&A
 ===
