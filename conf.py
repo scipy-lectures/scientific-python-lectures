@@ -11,6 +11,7 @@
 # serve to show the default.
 
 import sys, os
+import subprocess
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -58,9 +59,16 @@ copyright = u'2011'
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
-#
+
 # The short X.Y version.
-version = ''
+# we get this from git
+# this WILL break if we are not in a git-repository
+p = subprocess.Popen(['git', 'describe'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE)
+p.wait()
+version = p.stdout.read().strip()
+
 # The full version, including alpha/beta/rc tags.
 release = '2011'
 
