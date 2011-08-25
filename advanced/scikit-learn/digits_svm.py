@@ -1,12 +1,7 @@
 from scikits.learn import datasets, svm
-import pylab as pl
 
 digits = datasets.load_digits()
-clf = svm.LinearSVC(fit_intercept=False)
-clf.fit(digits.data, digits.target)
-
-for i in range(4):
-    pl.subplot(2, 4, 1 + i)
-    pl.imshow(clf.coef_[i].reshape(8, 8), cmap=pl.cm.gray_r, interpolation='nearest')
-    pl.axis('off')
-pl.show()
+clf = svm.SVC(kernel='linear')
+n_train = int(.9 * digits.target.shape[0])
+clf.fit(digits.data[:n_train], digits.target[:n_train])
+print clf.score(digits.data[n_train:], digits.target[n_train:])
