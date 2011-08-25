@@ -290,7 +290,7 @@ be for instance polynomial or exponential:
 
    .. toctree::
 
-        digits_classification_excercise
+        digits_classification_exercise
 
 
 
