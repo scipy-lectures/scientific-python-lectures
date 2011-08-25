@@ -103,8 +103,11 @@ For large data, use ``np.memmap`` for memory mapping::
 
 Working on a list of image files ::
 
+    >>> for i in range(10):
+	... im = np.random.random_integers(0, 255, 10000).reshape((100, 100))
+	... misc.imsave('random_%02d.png' % i, im)
     >>> from glob import glob
-    >>> filelist = glob('pattern*.png')
+    >>> filelist = glob('random*.png')
     >>> filelist.sort()
 
 Displaying images
@@ -219,7 +222,7 @@ Geometrical transformations
 
     >>> lena = scipy.lena()
     >>> lx, ly = lena.shape
-    >>> # Copping
+    >>> # Cropping
     >>> crop_lena = lena[lx/4:-lx/4, ly/4:-ly/4]
     >>> # up <-> down flip
     >>> flip_ud_lena = np.flipud(lena)
@@ -316,7 +319,7 @@ Median filter: better result for straight boundaries (**low curvature**)::
 Other rank filter: ``ndimage.maximum_filter``,
 ``ndimage.percentile_filter``
 
-Other local non-lienear filters: Wiener (``scipy.signal.wiener``), etc.
+Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 
 **Non-local filters**
 
@@ -433,7 +436,7 @@ Also works for grey-valued images::
 
 
 .. plot:: pyplots/image_greyscale_dilation.py
-    :scale: 80
+    :scale: 40
 
 **Opening**: erosion + dilation::
 
@@ -475,7 +478,7 @@ Also works for grey-valued images::
 
 
 .. plot:: pyplots/image_propagation.py
-    :scale: 80
+    :scale: 40
 
 **Closing**: dilation + erosion
 
@@ -504,7 +507,7 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
 
 
 .. plot:: pyplots/image_find_edges.py
-    :scale: 100
+    :scale: 40
 
 **Canny filter**
 
@@ -520,7 +523,7 @@ but for convenience we've shipped it as a :download:`standalone module
   >>> edges = canny(im, 3, 0.3, 0.2) # better parameters
 
 .. plot:: pyplots/image_canny.py
-    :scale: 65
+    :scale: 40
 
 Several parameters need to be adjusted... risk of overfitting
 
