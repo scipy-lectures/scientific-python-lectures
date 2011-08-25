@@ -63,7 +63,7 @@ copyright = u'2011'
 # The short X.Y version.
 # we get this from git
 # this WILL break if we are not in a git-repository
-p = subprocess.Popen(['git', 'describe'],
+p = subprocess.Popen(['git', 'describe', '--tags'],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE)
 p.wait()
