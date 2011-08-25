@@ -63,21 +63,22 @@ reservoir and the dams do have a set of parameters :
     * Efficiency of the turbines
 
 The reservoir has a known behaviour. One part is related to the energy
-production based on the water released. A simple formula for approximating electric power production at a hydroelectric plant is: P = ρhrgk, where:
+production based on the water released. A simple formula for approximating electric power production at a hydroelectric plant is :math:`P = \rho hrgk`, where:
 
-    * P is Power in watts,
-    * ρ is the density of water (~1000 kg/m3),
-    * h is height in meters,
-    * r is flow rate in cubic meters per second,
-    * g is acceleration due to gravity of 9.8 m/s2,
-    * k is a coefficient of efficiency ranging from 0 to 1. Efficiency is often higher (that is, closer to 1) with larger and more modern turbines.
-
+    * :math:`P` is Power in watts,
+    * :math:`\rho` is the density of water (~1000 kg/m3),
+    * :math:`h` is height in meters,
+    * :math:`r` is flow rate in cubic meters per second,
+    * :math:`g` is acceleration due to gravity of 9.8 m/s2,
+    * :math:`k` is a coefficient of efficiency ranging from 0 to 1. 
+      
 Annual electric energy production depends on the available water supply. In some installations the water flow rate can vary by a factor of 10:1 over the course of a year.
+
 
 The second part of the behaviour is the state of the storage that depends on
 controlled and uncontrolled paramters :
 
-    storage(t+1) = storage(t) + inflows - release - spillage - irrigation
+    :math:`storage_{t+1} = storage_t + inflows - release - spillage - irrigation`
 
 What are Traits
 ===============
@@ -150,6 +151,17 @@ Custom default values can be defined in the code:
 
     reservoir = Reservoir(name='Lac de Vouglans')
 
+
+.. note:: Complex initialisation
+
+    When a complex initialisation is required for a trait, a _XXX_default magic
+    method can be implemented. It will be lazily called when trying to access
+    the XXX trait. For example::
+
+        def _name_default(self):
+            """ Complex initialisation of the reservoir name. """
+
+            return 'Undefined'
 
 Validation
 ----------
@@ -226,7 +238,7 @@ HasTraits class has a default editor that will manage the way the trait is
 rendered to the screen (e.g. the Range trait is displayed as a slider, etc.).
 
 In the very same vein as the Traits declarative way of creating classes,
-TraitsUI provides a declarative interface on top of UI code:
+TraitsUI provides a declarative interface to build user interfaces code:
 
 .. include:: reservoir_simple_view.py
     :literal:
@@ -274,6 +286,15 @@ Let's extend the TraitsUI introduction with the ReservoirState example:
 .. include:: reservoir_state_property_view.py
     :literal:
 
+.. image:: reservoir_state_view.png
+    :align: center
+
+Some use cases need the delegation mechanism to be broken by the user when
+setting the value of the trait. The **PrototypeFrom** trait implements this
+behaviour. 
+
+.. include:: reservoir_turbine_prototype_from.py
+    :literal:
 
 Notification
 ------------
@@ -335,12 +356,26 @@ Listeners can also be added to classes using the **on_trait_change** decorator:
 .. include:: reservoir_state_property_ontraitchange.py
     :literal:
 
+The patterns supported by the on_trait_change method and decorator are
+powerful. The reader should look at the docstring of HasTraits.on_trait_change
+for the details.
+
+
 Some more advanced traits
 -------------------------
 
-Enum, List, Dict, Array, Instance, This, File
+The following example demonstrate the usage of the Enum and List traits :
 
-TO BE COMPLETED
+.. include:: reservoir_with_irrigation.py
+    :literal:
+
+Trait listeners can be used to listen to changes in the content of the list to
+e.g. keep track of the total crop surface on linked to a given reservoir.
+
+.. include:: reservoir_with_irrigation_listener.py
+    :literal:
+
+Still missing: Dict, Array, Instance, This, File
 
 
 Q&A
@@ -349,7 +384,8 @@ Q&A
 References
 ==========
 
-    * Traits repo: 
+    * ETS repositories: http://github.com/enthought
     * Traits manual: http://github.enthought.com/traits/traits_user_manual/index.html
     * Traits UI manual: http://github.enthought.com/traitsui/traitsui_user_manual/index.html 
 
+    * Mailing list : enthought-dev@enthought.com
