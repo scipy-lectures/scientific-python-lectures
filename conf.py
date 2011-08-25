@@ -197,7 +197,9 @@ latex_show_pagerefs = True
 latex_documents = [
   ('index', 'PythonScientific.tex', ur'Python Scientific lecture notes',
    ur"""EuroScipy tutorial team \\\relax\normalfont Editors: Valentin Haenel, Emmanuelle Gouillart, Gaël Varoquaux"""
-   + r"\\\relax ~\\\relax http://scipy-lectures.github.com", 
+   + r"\\\relax ~\\\relax http://scipy-lectures.github.com " \
+   + r"\\\relax ~\\\relax\\\relax ~\\\relax\\\relax ~\\\relax\\\relax ~\\\relax"\
+   + r"\normalfont Version: \ttfamily " + version,
    'manual'),
 ]
 
