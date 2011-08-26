@@ -124,5 +124,6 @@ _____
    intro/index.rst
    advanced/index.rst
 
-Generated from: '|version|'
-(output of ``git describe`` for `project repository <https://github.com/scipy-lectures/scipy-lecture-notes>`_)
+Version: |version| (output of ``git describe`` for `project repository`_)
+
+.. _`project repository`: https://github.com/scipy-lectures/scipy-lecture-notes

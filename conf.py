@@ -81,6 +81,9 @@ language = 'en'
 #today = ''
 # Else, today_fmt is used as the format for a strftime call.
 #today_fmt = '%B %d, %Y'
+today_fmt = '%B %d, %Y'
+if release:
+    today_fmt += ' ({%s})' % version
 
 # List of documents that shouldn't be included in the build.
 #unused_docs = []
@@ -197,9 +200,7 @@ latex_show_pagerefs = True
 latex_documents = [
   ('index', 'PythonScientific.tex', ur'Python Scientific lecture notes',
    ur"""EuroScipy tutorial team \\\relax\normalfont Editors: Valentin Haenel, Emmanuelle Gouillart, Gaël Varoquaux"""
-   + r"\\\relax ~\\\relax http://scipy-lectures.github.com " \
-   + r"\\\relax ~\\\relax\\\relax ~\\\relax\\\relax ~\\\relax\\\relax ~\\\relax"\
-   + r"\normalfont Version: \ttfamily " + version,
+   + r"\\\relax ~\\\relax http://scipy-lectures.github.com",
    'manual'),
 ]
 
