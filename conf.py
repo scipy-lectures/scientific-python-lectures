@@ -82,7 +82,7 @@ language = 'en'
 # Else, today_fmt is used as the format for a strftime call.
 #today_fmt = '%B %d, %Y'
 today_fmt = '%B %d, %Y'
-if release:
+if version:
     today_fmt += ' ({%s})' % version
 
 # List of documents that shouldn't be included in the build.
@@ -287,4 +287,3 @@ plot_rcparams = {
     'figure.subplot.wspace': 0.4,
     'text.usetex': False,
 }
-
