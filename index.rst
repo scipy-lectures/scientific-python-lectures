@@ -125,24 +125,28 @@ _____
    intro/index.rst
    advanced/index.rst
 
+____
+
+.. raw:: html
+
+   <small>
+
+Version: |version| (output of ``git describe`` for `project repository`_)
+
+.. _`project repository`: https://github.com/scipy-lectures/scipy-lecture-notes
 ..  
  FIXME: I need the down link to make sure the banner gets copied to the
  target directory.
 
 .. raw:: html
  
-   <div style='visibility: hidden'>
+   <div style='visibility: hidden ; height=0'>
 
-* :download:`PythonScientific.pdf`
-
-* :download:`PythonScientific-simple.pdf`
+:download:`PythonScientific.pdf` :download:`PythonScientific-simple.pdf`
 
 .. raw:: html
  
    </div>
+   </small>
 
 
-
-Version: |version| (output of ``git describe`` for `project repository`_)
-
-.. _`project repository`: https://github.com/scipy-lectures/scipy-lecture-notes
