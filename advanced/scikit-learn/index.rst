@@ -585,7 +585,7 @@ Grid-search and cross-validated estimators
 ============================================
 
 Grid-search
--------------
++++++++++++
 
 The scikits.learn provides an object that, given data, computes the score
 during the fit of an estimator on a parameter grid and chooses the
@@ -612,7 +612,7 @@ a stratified 3-fold.
 
 
 Cross-validated estimators
-----------------------------
+++++++++++++++++++++++++++
 
 Cross-validation to set a parameter can be done more efficiently on an
 algorithm-by-algorithm basis. This is why, for certain estimators, the
