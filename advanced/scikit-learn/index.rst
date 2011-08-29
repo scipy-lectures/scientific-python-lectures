@@ -443,13 +443,6 @@ Now we can visualize the (transformed) iris dataset!
    :align: center
 
 
-You can also try to visualize the digits dataset ...
-
-And there are manifold learning algorithms that do a better job
-
-.. image:: plot_lle_digits_5.png
-   :scale: 50
-   :align: center
 
 PCA is not just useful for visualization of high dimensional
 datasets. It can also be used as a preprocessing step to help speed up
