@@ -101,7 +101,7 @@ Python Scientific Lecture Notes
    
        * `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
      
-       * `Source code (github) <https://github.com/scipy-lectures>`_
+       * `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
     .. topic:: This document
 
