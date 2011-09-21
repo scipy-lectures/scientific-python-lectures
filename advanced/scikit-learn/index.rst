@@ -146,7 +146,7 @@ And it can be used to predict the most likely outcome on unseen data:
 
 
 Classification
-===================
+==============
 
 
 k-Nearest neighbors classifier
