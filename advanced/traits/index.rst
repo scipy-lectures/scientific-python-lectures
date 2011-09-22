@@ -39,7 +39,7 @@ The main packages are:
       alpha blending and more.
     * Enable - object based 2D drawing canvas.
     * Chaco - plotting toolkit for building complex interactive 2D plots.
-    * Mayavi - 3D vizualisation of scientific data based on VTK.
+    * Mayavi - 3D visualization of scientific data based on VTK.
     * Envisage - application plugin framework for building scriptable and
       extensible applications
 
