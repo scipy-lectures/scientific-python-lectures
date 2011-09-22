@@ -1,8 +1,8 @@
-===============
-Traits tutorial
-===============
+======
+Traits
+======
 
-Presented by Didrik Pinte
+:author: Didrik Pinte
 
 The Traits project allows you to simply add validation, initialization, delegation, notification and a graphical user interface to Python object attributes. In this tutorial we will explore the Traits toolset and learn how to dramatically reduce the amount of boilerplate code you write, do rapid GUI application development, and understand the ideas which underly other parts of the Enthought Tool Suite.
 
