@@ -311,27 +311,27 @@ or are using ``ipython -pylab`` which does it automatically.
 
 **1D plotting**
 
-.. plot::
+>>> x = np.linspace(0, 3, 20)
+>>> y = np.linspace(0, 9, 20)
+>>> plt.plot(x, y)       # line plot
+>>> plt.plot(x, y, 'o')  # dot plot
+>>> plt.show()           # <-- shows the plot (not needed with Ipython)
 
-   >>> x = np.linspace(0, 3, 20)
-   >>> y = np.linspace(0, 9, 20)
-   >>> plt.plot(x, y)       # line plot
-   >>> plt.plot(x, y, 'o')  # dot plot
-   >>> plt.show()           # <-- shows the plot (not needed with Ipython)
+.. plot:: pyplots/numpy_intro_1.py
 
 **2D arrays** (such as images)
 
-.. plot::
+>>> image = np.random.rand(30, 30)
+>>> plt.imshow(image)
+>>> plt.gray()
+>>> plt.show()
 
-   >>> image = np.random.rand(30, 30)
-   >>> plt.imshow(image)
-   >>> plt.gray()
-   >>> plt.show()
+>>> plt.pcolor(image)
+>>> plt.hot()
+>>> plt.colorbar()
+>>> plt.show()
 
-   >>> plt.pcolor(image)
-   >>> plt.hot()
-   >>> plt.colorbar()
-   >>> plt.show()
+.. plot:: pyplots/numpy_intro_2.py
 
 .. seealso:: More on matplotlib  in the tutorial by Mike Müller tomorrow!
 
@@ -583,28 +583,28 @@ array([[  1900.,  30000.,   4000.,  51300.],
 
 .. rubric:: Images
 
-.. plot::
+>>> img = plt.imread('../../data/elephant.png')
+>>> img.shape, img.dtype
+((200, 300, 3), dtype('float32'))
+>>> plt.imshow(img)
+>>> plt.savefig('plot.png')
+>>> plt.show()
 
-   >>> img = plt.imread('../../data/elephant.png')
-   >>> img.shape, img.dtype
-   ((200, 300, 3), dtype('float32'))
-   >>> plt.imshow(img)
-   >>> plt.savefig('plot.png')
-   >>> plt.show()
+>>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
 
-   >>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
+This saved only one channel (of RGB)
 
-   This saved only one channel (of RGB)
+>>> plt.imshow(plt.imread('red_elephant.png'))
+>>> plt.show()
 
-   >>> plt.imshow(plt.imread('red_elephant.png'))
-   >>> plt.show()
+Other libraries:
 
-   Other libraries:
+>>> from scipy.misc import imsave
+>>> imsave('tiny_elephant.png', img[::6,::6])
+>>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
+>>> plt.show()
 
-   >>> from scipy.misc import imsave
-   >>> imsave('tiny_elephant.png', img[::6,::6])
-   >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
-   >>> plt.show()
+.. plot:: pyplots/numpy_intro_3.py
 
 .. .. rubric:: Raw binary data
 ..
@@ -1008,33 +1008,33 @@ Same idea in higher dimensions:
   Data in ``populations.txt`` describes the populations
   of hares and lynxes (and carrots) in northern Canada during 20 years.
 
-  .. plot::
+  We can first plot the data:
 
-     We can first plot the data:
+  >>> data = np.loadtxt('../../data/populations.txt')
+  >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
-     >>> data = np.loadtxt('../../data/populations.txt')
-     >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
+  >>> plt.axes([0.2, 0.1, 0.5, 0.8])
+  >>> plt.plot(year, hares, year, lynxes, year, carrots)
+  >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
+  >>> plt.show()
 
-     >>> plt.axes([0.2, 0.1, 0.5, 0.8])
-     >>> plt.plot(year, hares, year, lynxes, year, carrots)
-     >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
-     >>> plt.show()
+  .. plot:: pyplots/numpy_intro_4.py
 
-     The mean populations over time:
+  The mean populations over time:
 
-     >>> populations = data[:,1:]
-     >>> populations.mean(axis=0)
-     array([ 34080.95238095,  20166.66666667,  42400.        ])
+  >>> populations = data[:,1:]
+  >>> populations.mean(axis=0)
+  array([ 34080.95238095,  20166.66666667,  42400.        ])
 
-     The sample standard deviations:
+  The sample standard deviations:
 
-     >>> populations.std(axis=0, ddof=1)
-     array([ 21413.98185877,  16655.99991995,   3404.55577132])
+  >>> populations.std(axis=0, ddof=1)
+  array([ 21413.98185877,  16655.99991995,   3404.55577132])
 
-     Which species has the highest population each year?
+  Which species has the highest population each year?
 
-     >>> np.argmax(populations, axis=1)
-     array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
+  >>> np.argmax(populations, axis=1)
+  array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
 
 .. topic:: Example: diffusion simulation using a random walk algorithm
 
@@ -1047,34 +1047,34 @@ Same idea in higher dimensions:
   .. image:: random_walk_schema.png
      :align: center
 
-  .. plot::
+  >>> n_stories = 1000 # number of walkers
+  >>> t_max = 200      # time during which we follow the walker
 
-     >>> n_stories = 1000 # number of walkers
-     >>> t_max = 200      # time during which we follow the walker
+  We randomly choose all the steps 1 or -1 of the walk
 
-     We randomly choose all the steps 1 or -1 of the walk
+  >>> t = np.arange(t_max)
+  >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
+  >>> np.unique(steps) # Verification: all steps are 1 or -1
+  array([-1,  1])
 
-     >>> t = np.arange(t_max)
-     >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
-     >>> np.unique(steps) # Verification: all steps are 1 or -1
-     array([-1,  1])
+  We build the walks by summing steps along the time
 
-     We build the walks by summing steps along the time
+  >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
+  >>> sq_distance = positions**2
 
-     >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
-     >>> sq_distance = positions**2
+  We get the mean in the axis of the stories
 
-     We get the mean in the axis of the stories
+  >>> mean_sq_distance = np.mean(sq_distance, axis=0)
 
-     >>> mean_sq_distance = np.mean(sq_distance, axis=0)
+  Plot the results:
 
-     Plot the results:
+  >>> plt.figure(figsize=(4, 3))
+  >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-')
+  >>> plt.xlabel(r"$t$")
+  >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
+  >>> plt.show()
 
-     >>> plt.figure(figsize=(4, 3))
-     >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-')
-     >>> plt.xlabel(r"$t$")
-     >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
-     >>> plt.show()
+  .. plot:: pyplots/numpy_intro_5.py
 
 The RMS distance grows as the square root of the time!
 
@@ -1204,24 +1204,25 @@ A lot of grid-based or network-based problems can also use
 broadcasting. For instance, if we want to compute the distance from
 the origin of points on a 10x10 grid, we can do:
 
-.. plot::
-
-    >>> x, y = np.arange(5), np.arange(5)
-    >>> distance = np.sqrt(x**2 + y[:, np.newaxis]**2)
-    >>> distance
-    array([[ 0.        ,  1.        ,  2.        ,  3.        ,  4.        ],
-           [ 1.        ,  1.41421356,  2.23606798,  3.16227766,  4.12310563],
-           [ 2.        ,  2.23606798,  2.82842712,  3.60555128,  4.47213595],
-           [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
-           [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
+ >>> x, y = np.arange(5), np.arange(5)
+ >>> distance = np.sqrt(x**2 + y[:, np.newaxis]**2)
+ >>> distance
+ array([[ 0.        ,  1.        ,  2.        ,  3.        ,  4.        ],
+        [ 1.        ,  1.41421356,  2.23606798,  3.16227766,  4.12310563],
+        [ 2.        ,  2.23606798,  2.82842712,  3.60555128,  4.47213595],
+        [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
+        [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
 
 
-    Or in color:
+ Or in color:
 
-    >>> plt.pcolor(distance)
-    >>> plt.colorbar()
-    >>> plt.axis('equal')
-    >>> plt.show()            # <-- again, not needed in interactive Python
+ >>> plt.pcolor(distance)
+ >>> plt.colorbar()
+ >>> plt.axis('equal')
+ >>> plt.show()            # <-- again, not needed in interactive Python
+
+.. plot:: pyplots/numpy_intro_6.py
+
 
 **Remark** : the ``numpy.ogrid`` function allows to directly create vectors x
 and y of the previous example, with two "significant dimensions"::
@@ -1762,15 +1763,15 @@ use different colormaps, crop the image, change some parts of the image.
 The data in ``populations.txt`` describes the populations
 of hares and lynxes (and carrots) in northern Canada during 20 years:
 
-.. plot::
+>>> data = np.loadtxt('../../data/populations.txt')
+>>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
-   >>> data = np.loadtxt('../../data/populations.txt')
-   >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
+>>> plt.axes([0.2, 0.1, 0.5, 0.8])
+>>> plt.plot(year, hares, year, lynxes, year, carrots)
+>>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
+>>> plt.show()
 
-   >>> plt.axes([0.2, 0.1, 0.5, 0.8])
-   >>> plt.plot(year, hares, year, lynxes, year, carrots)
-   >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
-   >>> plt.show()
+.. plot:: pyplots/numpy_intro_7.py
 
 Computes and print, based on the data in ``populations.txt``...
 
@@ -2243,30 +2244,30 @@ The masked array package also contains domain-aware functions::
    farmers stayed alert, though.)  Compute the mean populations over
    time, ignoring the invalid numbers.
 
-   .. plot::
+   >>> data = np.loadtxt('../../data/populations.txt')
+   >>> populations = np.ma.masked_array(data[:,1:])
+   >>> year = data[:,0]
 
-      >>> data = np.loadtxt('../../data/populations.txt')
-      >>> populations = np.ma.masked_array(data[:,1:])
-      >>> year = data[:,0]
+   >>> bad_years = (((year >= 1903) & (year <= 1910))
+   ...            | ((year >= 1917) & (year <= 1918)))
+   >>> populations[bad_years,0] = np.ma.masked
+   >>> populations[bad_years,1] = np.ma.masked
 
-      >>> bad_years = (((year >= 1903) & (year <= 1910))
-      ...            | ((year >= 1917) & (year <= 1918)))
-      >>> populations[bad_years,0] = np.ma.masked
-      >>> populations[bad_years,1] = np.ma.masked
+   >>> populations.mean(axis=0)
+   masked_array(data = [40472.7272727 18627.2727273 42400.0],
+                mask = [False False False],
+         fill_value = 1e+20)
+   >>> populations.std(axis=0)
+   masked_array(data = [21087.656489 15625.7998142 3322.50622558],
+                mask = [False False False],
+          fill_value = 1e+20)
 
-      >>> populations.mean(axis=0)
-      masked_array(data = [40472.7272727 18627.2727273 42400.0],
-                   mask = [False False False],
-            fill_value = 1e+20)
-      >>> populations.std(axis=0)
-      masked_array(data = [21087.656489 15625.7998142 3322.50622558],
-                   mask = [False False False],
-             fill_value = 1e+20)
+   Note that Matplotlib knows about masked arrays:
 
-      Note that Matplotlib knows about masked arrays:
+   >>> plt.plot(year, populations, 'o-')
+   >>> plt.show()
 
-      >>> plt.plot(year, populations, 'o-')
-      >>> plt.show()
+   .. plot:: pyplots/numpy_intro_8.py
 
 Polynomials
 -----------
@@ -2283,15 +2284,15 @@ array([-1.        ,  0.33333333])
 >>> p.order
 2
 
-.. plot::
+>>> x = np.linspace(0, 1, 20)
+>>> y = np.cos(x) + 0.3*np.random.rand(20)
+>>> p = np.poly1d(np.polyfit(x, y, 3))
 
-   >>> x = np.linspace(0, 1, 20)
-   >>> y = np.cos(x) + 0.3*np.random.rand(20)
-   >>> p = np.poly1d(np.polyfit(x, y, 3))
+>>> t = np.linspace(0, 1, 200)
+>>> plt.plot(x, y, 'o', t, p(t), '-')
+>>> plt.show()
 
-   >>> t = np.linspace(0, 1, 200)
-   >>> plt.plot(x, y, 'o', t, p(t), '-')
-   >>> plt.show()
+.. plot:: pyplots/numpy_intro_9.py
 
 See http://docs.scipy.org/doc/numpy/reference/routines.polynomials.poly1d.html
 for more.
@@ -2314,16 +2315,16 @@ array([-1.        ,  0.33333333])
 Example using polynomials in Chebyshev basis, for polynomials in
 range ``[-1, 1]``:
 
-.. plot::
+>>> x = np.linspace(-1, 1, 2000)
+>>> y = np.cos(x) + 0.3*np.random.rand(2000)
+>>> p = np.polynomial.Chebyshev.fit(x, y, 90)
 
-   >>> x = np.linspace(-1, 1, 2000)
-   >>> y = np.cos(x) + 0.3*np.random.rand(2000)
-   >>> p = np.polynomial.Chebyshev.fit(x, y, 90)
+>>> t = np.linspace(-1, 1, 200)
+>>> plt.plot(x, y, 'r.')
+>>> plt.plot(t, p(t), 'k-', lw=3)
+>>> plt.show()
 
-   >>> t = np.linspace(-1, 1, 200)
-   >>> plt.plot(x, y, 'r.')
-   >>> plt.plot(t, p(t), 'k-', lw=3)
-   >>> plt.show()
+.. plot:: pyplots/numpy_intro_10.py
 
 The Chebyshev polynomials have some advantages in interpolation.
 
