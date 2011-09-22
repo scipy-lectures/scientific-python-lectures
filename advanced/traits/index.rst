@@ -76,7 +76,7 @@ Annual electric energy production depends on the available water supply. In some
 
 
 The second part of the behaviour is the state of the storage that depends on
-controlled and uncontrolled paramters :
+controlled and uncontrolled parameters :
 
     :math:`storage_{t+1} = storage_t + inflows - release - spillage - irrigation`
 
@@ -357,7 +357,7 @@ The dynamic trait notification signatures are not the same as the static ones :
     * def wake_up_watchman(object, name, old, new):
         pass
 
-Removing a dynamic listner can be done by:
+Removing a dynamic listener can be done by:
     * calling the remove_trait_listener method on the trait with the listener
       method as argument,
     * calling the on_trait_change method with listener method and the keyword
