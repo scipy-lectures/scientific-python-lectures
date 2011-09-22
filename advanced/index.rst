@@ -47,6 +47,7 @@ Advanced topics
    advanced_numpy/index.rst
    debugging/index.rst
    optimizing/index.rst
+   traits/index.rst
    scipy_sparse/index.rst
    image_processing/index.rst
    3d_plotting/index.rst
