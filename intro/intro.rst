@@ -198,7 +198,7 @@ that is handy to explore and understand algorithms.
 
 .. note:: Reference document for this section:
 
-    **IPython user manual:** http://ipython.scipy.org/doc/manual/html/
+    **IPython user manual:** http://ipython.org/ipython-doc/dev/index.html
 
 Command line interaction
 ..........................
