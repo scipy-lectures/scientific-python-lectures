@@ -1,3 +1,5 @@
+.. _matplotlib:
+
 Matplotlib
 ==========
 

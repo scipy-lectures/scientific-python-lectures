@@ -4,6 +4,11 @@ NumPy: creating and manipulating numerical data
 
 :authors: Emmanuelle Gouillart, Didrik Pinte, Gaël Varoquaux, and Pauli Virtanen
 
+.. contents:: Chapters contents
+   :local:
+   :depth: 4
+
+
 .. currentmodule:: numpy
 
 Intro
@@ -38,6 +43,14 @@ What is Numpy
 
     * ...
 
+    ::    
+
+     >>> import numpy as np
+     >>> a = np.array([0, 1, 2, 3])
+     >>> a
+     array([0, 1, 2, 3])
+
+
 .. extension package to Python to support multidimensional arrays
 
 .. diagram, import conventions
@@ -50,16 +63,8 @@ What is Numpy
 .. each element of same size and type
 .. efficiency vs. Python lists
 
-1. Basics I
-===========
-
-Getting started
----------------
-
->>> import numpy as np
->>> a = np.array([0, 1, 2, 3])
->>> a
-array([0, 1, 2, 3])
+Basics: an introduction to the numpy array
+===========================================
 
 Reference documentation
 -----------------------
@@ -333,7 +338,7 @@ or are using ``ipython -pylab`` which does it automatically.
    >>> plt.colorbar()
    >>> plt.show()
 
-.. seealso:: More on matplotlib  in the tutorial by Mike Müller tomorrow!
+.. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
 
 
 **3D plotting**
@@ -341,6 +346,10 @@ or are using ``ipython -pylab`` which does it automatically.
 For 3D visualization, we can use another package: **Mayavi**. A quick example:
 start with **relaunching iPython** with these options:
 **ipython -pylab -wthread**  (or **ipython --pylab=wx** in IPython >= 0.10).
+
+.. image:: surf.png
+   :align: right
+   :scale: 60
 
 .. sourcecode:: ipython
 
@@ -354,19 +363,13 @@ start with **relaunching iPython** with these options:
     In [62]: mlab.axes()
     Out[62]: <enthought.mayavi.modules.axes.Axes object at 0xd07892c>
 
-.. image:: surf.png
-   :align: center
-   :scale: 60
-
 The mayavi/mlab window that opens is interactive : by clicking on the left mouse button
 you can rotate the image, zoom with the mouse wheel, etc.
 
-.. .. image:: potential.jpg
-..   :align: center
-..   :scale: 60
-
 For more information on Mayavi :
-http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/index.html
+http://github.enthought.com/mayavi/mayavi
+
+.. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
 
 
 Indexing and slicing
@@ -757,8 +760,8 @@ to construct the array::
      [2 1 2 1 2 1]]
 
 
-2. Basics II
-============
+Introducing numerical operations
+=================================
 
 Elementwise operations
 ----------------------
@@ -1918,8 +1921,10 @@ Conclusions
   broadcasting. Know more Numpy functions to handle various array
   operations.
 
-3. Moving on
+Moving on
 ============
+
+.. XXX: maybe some of this should go to the advanced chapter
 
 More data types
 ---------------
@@ -2344,7 +2349,7 @@ Summary & Exercises
 - Polynomials are available in various bases
 
 
-4. Under the hood
+Under the hood
 =================
 
 It's...
