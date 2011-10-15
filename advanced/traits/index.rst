@@ -400,9 +400,6 @@ TraitsUI Item, the ChacoPlotItem:
 .. image:: reservoir_evolution.png
     :align: center
 
-Q&A
-===
-
 References
 ==========
 
