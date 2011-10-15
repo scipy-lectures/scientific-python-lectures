@@ -10,17 +10,15 @@ Traits and the Enthought Tool Suite are open source projects licensed under a BS
 
 .. topic:: Intended Audience
 
-    Intermediate to advanced Python programmers (mostly because we have to go
-    fast)
+    Intermediate to advanced Python programmers
 
 .. topic:: Requirements
 
-    * Laptop recommended (any major OS is fine), with the following software installed:
-        * Python 2.6 or 2.7 (www.python.org)
-        * Either wxPython (http://www.wxpython.org/) or PyQt (http://www.riverbankcomputing.co.uk/software/pyqt/intro)
-        * Numpy and Scipy (http://www.scipy.org)
-        * Enthought Tool Suite 3.x or higher (http://code.enthought.com/projects)
-        * All required software can be obtained by installing the EPD Free (http://www.enthought.com/products/epd.php)
+    * Python 2.6 or 2.7 (www.python.org)
+    * Either wxPython (http://www.wxpython.org/) or PyQt (http://www.riverbankcomputing.co.uk/software/pyqt/intro)
+    * Numpy and Scipy (http://www.scipy.org)
+    * Enthought Tool Suite 3.x or higher (http://code.enthought.com/projects)
+    * All required software can be obtained by installing the EPD Free (http://www.enthought.com/products/epd.php)
 
 
 .. contents:: Tutorial content
