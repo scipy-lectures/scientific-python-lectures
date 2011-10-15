@@ -468,6 +468,7 @@ classification.
 
 
 .. sourcecode:: python
+
     """
     Stripped-down version of the face recognition example by Olivier Grisel
     
