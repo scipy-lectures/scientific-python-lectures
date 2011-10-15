@@ -47,6 +47,8 @@ The main packages are:
 .. image:: ETS.jpg
     :align: center
 
+In this tutorial, we will focus on Traits.
+
 Example 
 =======
 
