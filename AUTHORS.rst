@@ -41,5 +41,13 @@ Listed by alphabetical order.
 Additional Contributions
 =========================
 
-- Akihiro Uchida: many fixes
+Fixes:
+
+- egens
+
+- Corey Farwell
+
+- Olivier Verdier
+
+- Akihiro Uchida
 
