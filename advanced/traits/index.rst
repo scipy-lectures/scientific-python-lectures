@@ -24,6 +24,7 @@ Traits and the Enthought Tool Suite are open source projects licensed under a BS
 
 
 .. contents:: Tutorial content
+   :local:
    :depth: 2
 
 
