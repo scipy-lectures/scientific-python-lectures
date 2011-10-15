@@ -45,6 +45,10 @@ learning frameworks available for Python:
    :local:
    :depth: 2
 
+.. warning::
+
+   As of version 0.9 (released in Septembre 2011), the import path for
+   scikit-learn has changed from `scikits.learn` to `sklearn`
 
 Loading an example dataset
 ==========================
