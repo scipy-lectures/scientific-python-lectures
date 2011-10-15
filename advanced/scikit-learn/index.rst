@@ -450,7 +450,7 @@ Now we can visualize the (transformed) iris dataset!
 
 PCA is not just useful for visualization of high dimensional
 datasets. It can also be used as a preprocessing step to help speed up
-supervised methods that are not computationally efficient with high
+supervised methods that are not efficient with high
 dimensions.
 
 
@@ -468,8 +468,6 @@ classification.
 
 
 .. sourcecode:: python
-
-    
     """
     Stripped-down version of the face recognition example by Olivier Grisel
     
