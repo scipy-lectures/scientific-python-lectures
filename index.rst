@@ -74,7 +74,7 @@ Python Scientific Lecture Notes
         font-weight: bold;
         background-color: transparent;
         margin-bottom: 0;
-        margin-left: 5em;
+        margin-left: 3em;
         display:inline;
     }
 
@@ -115,6 +115,7 @@ Python Scientific Lecture Notes
 
             AUTHORS.rst
             LICENSE.rst
+            CHANGES.rst
 
 _____
 
