@@ -1,4 +1,3 @@
-
 from traits.api import HasTraits, Instance, DelegatesTo, Float, Range, Event
 
 from reservoir import Reservoir
@@ -8,14 +7,10 @@ class ReservoirState(HasTraits):
 
     For the simplicity of the example, the release is considered in
     hm3/timestep and not in m3/s.
-
     """
-
     reservoir = Instance(Reservoir, ())
-
     min_storage = Float
     max_storage = DelegatesTo('reservoir')
-
     min_release = Float
     max_release = DelegatesTo('reservoir')
 
@@ -30,12 +25,9 @@ class ReservoirState(HasTraits):
     update_storage = Event(desc='Updates the storage to the next time step')
 
     def _update_storage_fired(self):
-
         # update storage state
         new_storage = self.storage - self.release  + self.inflows
-        
         self.storage = min(new_storage, self.max_storage)
-
         overflow = new_storage - self.max_storage
         self.spillage = max(overflow, 0)
 
@@ -47,9 +39,7 @@ class ReservoirState(HasTraits):
         print '-' * 79
 
 
-
 if __name__ == '__main__':
-
     projectA = Reservoir(
         name = 'Project A',
         max_storage = 30,
@@ -69,5 +59,3 @@ if __name__ == '__main__':
     state.print_state()
     state.update_storage = True
     state.print_state()
-
-  

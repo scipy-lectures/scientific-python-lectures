@@ -1,4 +1,3 @@
-
 from traits.api import HasTraits, Instance, DelegatesTo, Float, Range
 from traits.api import Property
 
@@ -9,13 +8,9 @@ class ReservoirState(HasTraits):
 
     For the simplicity of the example, the release is considered in
     hm3/timestep and not in m3/s.
-
     """
-
     reservoir = Instance(Reservoir, ())
-
     max_storage = DelegatesTo('reservoir')
-
     min_release = Float
     max_release = DelegatesTo('reservoir')
 
@@ -26,19 +21,15 @@ class ReservoirState(HasTraits):
     inflows =  Float(desc='Inflows [hm3]')
     release = Range(low='min_release', high='max_release')
     spillage = Property(
-        desc='Spillage [hm3]', depends_on=['storage', 'inflows', 'release']
-    )
-
+            desc='Spillage [hm3]', depends_on=['storage', 'inflows', 'release']
+        )
 
     ### Private traits. ######################################################
-
     _storage = Float
 
     ### Traits property implementation. ######################################
-
     def _get_storage(self):
         new_storage = self._storage - self.release + self.inflows
-        
         return min(new_storage, self.max_storage)
 
     def _set_storage(self, storage_value):
@@ -57,18 +48,16 @@ class ReservoirState(HasTraits):
         print '-' * 79
 
 if __name__ == '__main__':
-
     projectA = Reservoir(
-        name = 'Project A',
-        max_storage = 30,
-        max_release = 5,
-        hydraulic_head = 60,
-        efficiency = 0.8
-    )
+                    name = 'Project A',
+                    max_storage = 30,
+                    max_release = 5,
+                    hydraulic_head = 60,
+                    efficiency = 0.8
+                )
 
     state = ReservoirState(reservoir=projectA, storage=25)
     state.release = 4
     state.inflows = 0
 
     state.print_state()
-

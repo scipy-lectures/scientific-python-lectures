@@ -1,18 +1,13 @@
-
 from traits.api import HasTraits, Instance, DelegatesTo, Float, Range
 
 from reservoir import Reservoir
 
 class ReservoirState(HasTraits):
     """Keeps track of the reservoir state given the initial storage.
-
     """
-
     reservoir = Instance(Reservoir, ())
-
     min_storage = Float
     max_storage = DelegatesTo('reservoir')
-
     min_release = Float
     max_release = DelegatesTo('reservoir')
 
@@ -32,16 +27,14 @@ class ReservoirState(HasTraits):
         print '-' * 79
 
 
-
 if __name__ == '__main__':
-
     projectA = Reservoir(
-        name = 'Project A',
-        max_storage = 30,
-        max_release = 100.0,
-        hydraulic_head = 60,
-        efficiency = 0.8
-    )
+            name = 'Project A',
+            max_storage = 30,
+            max_release = 100.0,
+            hydraulic_head = 60,
+            efficiency = 0.8
+        )
 
     state = ReservoirState(reservoir=projectA, storage=10)
     state.release = 90

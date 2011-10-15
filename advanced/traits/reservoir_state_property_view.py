@@ -1,6 +1,4 @@
-
-from traits.api import HasTraits, Instance, DelegatesTo, Float, Range
-from traits.api import Property
+from traits.api import HasTraits, Instance, DelegatesTo, Float, Range, Property
 from traitsui.api import View, Item, Group, VGroup
 
 from reservoir import Reservoir
@@ -10,15 +8,11 @@ class ReservoirState(HasTraits):
 
     For the simplicity of the example, the release is considered in
     hm3/timestep and not in m3/s.
-
     """
-
     reservoir = Instance(Reservoir, ())
-
     name = DelegatesTo('reservoir')
     max_storage = DelegatesTo('reservoir')
     max_release = DelegatesTo('reservoir')
-
     min_release = Float
 
     # state attributes
@@ -28,39 +22,25 @@ class ReservoirState(HasTraits):
     inflows =  Float(desc='Inflows [hm3]')
     release = Range(low='min_release', high='max_release')
     spillage = Property(
-        desc='Spillage [hm3]', depends_on=['storage', 'inflows', 'release']
-    )
-
+            desc='Spillage [hm3]', depends_on=['storage', 'inflows', 'release']
+        )
 
     ### Traits view ##########################################################
-
     traits_view = View(
         Group(
-            VGroup(
-                Item('name'),
-                Item('storage'),
-                Item('spillage'),
-                label = 'State',
-                style = 'readonly'
+            VGroup(Item('name'), Item('storage'), Item('spillage'),
+                label = 'State', style = 'readonly'
             ),
-            VGroup(
-                Item('inflows'),
-                Item('release'),
-                label='Control'
-            )
+            VGroup(Item('inflows'), Item('release'), label='Control'),
         )
     )
 
-
     ### Private traits. ######################################################
-
     _storage = Float
 
     ### Traits property implementation. ######################################
-
     def _get_storage(self):
         new_storage = self._storage - self.release + self.inflows
-        
         return min(new_storage, self.max_storage)
 
     def _set_storage(self, storage_value):
@@ -79,7 +59,6 @@ class ReservoirState(HasTraits):
         print '-' * 79
 
 if __name__ == '__main__':
-
     projectA = Reservoir(
         name = 'Project A',
         max_storage = 30,
@@ -94,4 +73,3 @@ if __name__ == '__main__':
 
     state.print_state()
     state.configure_traits()
-

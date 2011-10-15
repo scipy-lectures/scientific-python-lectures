@@ -2,7 +2,6 @@ from traits.api import HasTraits, Str, Float, Range
 from traitsui.api import View
 
 class Reservoir(HasTraits):
-
     name = Str
     max_storage = Float(1e6, desc='Maximal storage [hm3]')
     max_release = Float(10, desc='Maximal release [m3/s]')
@@ -22,16 +21,13 @@ class Reservoir(HasTraits):
         return power * 3600
 
 
-
 if __name__ == '__main__':
-
     reservoir = Reservoir(
-        name = 'Project A',
-        max_storage = 30,
-        max_release = 100.0,
-        head = 60,
-        efficiency = 0.8
-    )
+                        name = 'Project A',
+                        max_storage = 30,
+                        max_release = 100.0,
+                        head = 60,
+                        efficiency = 0.8
+                    )
 
     reservoir.configure_traits()
-
