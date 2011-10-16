@@ -1,4 +1,3 @@
-
 """Generate the exercise results on the Gumbell distribution
 """
 import numpy as np
@@ -10,7 +9,7 @@ def gumbell_dist(arr):
     return -np.log(-np.log(arr))
 
 years_nb = 21
-wspeeds = np.load('../data/sprog-windspeeds.npy')
+wspeeds = np.load('sprog-windspeeds.npy')
 max_speeds = np.array([arr.max() for arr in np.array_split(wspeeds, years_nb)])
 sorted_max_speeds = np.sort(max_speeds)
 
@@ -31,3 +30,4 @@ pl.plot([fifty_wind, fifty_wind], [pl.axis()[2], fifty_prob], 'k--')
 pl.text(35, -1, r'$V_{50} = %.2f \, m/s$' % fifty_wind)
 pl.xlabel('Annual wind speed maxima [$m/s$]')
 pl.ylabel('Gumbell cumulative probability')
+pl.show()
