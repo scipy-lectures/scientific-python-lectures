@@ -513,7 +513,9 @@ classification.
 
 
 
-Full code: :download:`faces.py`
+.. only:: html
+   
+    Full code: :download:`faces.py`
 
 
 

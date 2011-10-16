@@ -16,7 +16,9 @@ distance between the lidar system and the target.
 
 Topographical lidar systems are such systems embedded in airborne
 platforms. They measure distances between the platform and the Earth, so as to
-deliver information on the Earth's topography (see [Mallet09]_ for more details).
+deliver information on the Earth's topography (see [#mallet]_ for more details).
+
+.. [#mallet] Mallet, C. and Bretar, F. Full-Waveform Topographic Lidar: State-of-the-Art. *ISPRS Journal of Photogrammetry and Remote Sensing* 64(1), pp.1-16, January 2009 http://dx.doi.org/10.1016/j.isprsjprs.2008.09.007
 
 In this tutorial, the goal is to analyze the waveform recorded by the lidar
 system [#data]_. Such a signal contains peaks whose center and amplitude permit to
@@ -167,4 +169,4 @@ Going further
 
 .. [#data] The data used for this tutorial are part of the demonstration data available for the `FullAnalyze software <http://fullanalyze.sourceforge.net>`_ and were kindly provided by the `GIS DRAIX <http://www.ore.fr/rubrique.php3?id_rubrique=24>`_.
 
-.. [Mallet09] Mallet, C. and Bretar, F. Full-Waveform Topographic Lidar: State-of-the-Art. *ISPRS Journal of Photogrammetry and Remote Sensing* 64(1), pp.1-16, January 2009 http://dx.doi.org/10.1016/j.isprsjprs.2008.09.007
+

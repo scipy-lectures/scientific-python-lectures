@@ -224,7 +224,8 @@ latex_use_parts = True
 #latex_appendices = []
 
 # If false, no module index is generated.
-#latex_use_modindex = True
+latex_use_modindex = False
+
 
 # Additional stuff for the LaTeX preamble.
 latex_preamble = """
