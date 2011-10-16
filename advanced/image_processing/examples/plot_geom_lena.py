@@ -33,3 +33,5 @@ plt.imshow(rotate_lena_noreshape, cmap=plt.cm.gray)
 plt.axis('off')
 
 plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
+
+plt.show()

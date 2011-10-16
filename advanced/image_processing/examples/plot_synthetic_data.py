@@ -27,3 +27,4 @@ plt.imshow(label_im, cmap=plt.cm.spectral)
 plt.axis('off')
 
 plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=1)
+plt.show()

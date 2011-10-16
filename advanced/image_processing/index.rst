@@ -135,9 +135,11 @@ Draw contour lines::
     <matplotlib.contour.ContourSet instance at 0x33f8c20>
 
 
-.. plot:: pyplots/image_display_lena.py
+.. figure:: auto_examples/images/plot_display_lena_1.png
     :scale: 100
+    :target: auto_examples/plot_display_lena.html
 
+[:ref:`Python source code <example_plot_display_lena.py>`]
 
 For fine inspection of intensity variations, use
 ``interpolation='nearest'``::
@@ -145,8 +147,11 @@ For fine inspection of intensity variations, use
     >>> plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray)
     >>> plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')
 
-.. plot:: pyplots/image_interpolation_lena.py
+.. figure:: auto_examples/images/plot_interpolation_lena_1.png
     :scale: 80
+    :target: auto_examples/plot_interpolation_lena.html
+
+[:ref:`Python source code <example_plot_interpolation_lena.py>`]
 
 Other packages sometimes use graphical toolkits for visualization (GTK,
 Qt)::
@@ -199,8 +204,11 @@ Images are arrays: use the whole ``numpy`` machinery.
     >>> # Fancy indexing
     >>> lena[range(400), range(400)] = 255
 
-.. plot:: pyplots/image_numpy_array.py
+.. figure:: auto_examples/images/plot_numpy_array_1.png
     :scale: 100
+    :target: auto_examples/plot_numpy_array.html
+
+[:ref:`Python source code <example_plot_numpy_array.py>`]
 
 Statistical information
 -----------------------
@@ -230,9 +238,11 @@ Geometrical transformations
     >>> rotate_lena = ndimage.rotate(lena, 45)
     >>> rotate_lena_noreshape = ndimage.rotate(lena, 45, reshape=False)
 
-.. plot:: pyplots/image_geom_lena.py
+.. figure:: auto_examples/images/plot_geom_lena_1.png
     :scale: 80
+    :target: auto_examples/plot_geom_lena.html
 
+[:ref:`Python source code <example_plot_geom_lena.py>`]
 
 Image filtering
 ===============
@@ -259,8 +269,11 @@ Blurring/smoothing
 
     >>> local_mean = ndimage.uniform_filter(lena, size=11)
 
-.. plot:: pyplots/image_blur.py
+.. figure:: auto_examples/images/plot_blur_1.png
     :scale: 80
+    :target: auto_examples/plot_blur.html
+
+[:ref:`Python source code <example_plot_blur.py>`]
 
 Sharpening
 ----------
@@ -277,8 +290,11 @@ Laplacian::
     >>> alpha = 30
     >>> sharpened = blurred_l + alpha * (blurred_l - filter_blurred_l)
 
-.. plot:: pyplots/image_sharpen.py
+.. figure:: auto_examples/images/plot_sharpen_1.png
     :scale: 100
+    :target: auto_examples/plot_sharpen.html
+
+[:ref:`Python source code <example_plot_sharpen.py>`]
 
 
 Denoising
@@ -300,8 +316,11 @@ A **median filter** preserves better the edges::
 
     >>> med_denoised = ndimage.median_filter(noisy, 3)
 
-.. plot:: pyplots/image_lena_denoise.py
+.. figure:: auto_examples/images/plot_lena_denoise_1.png
     :scale: 60
+    :target: auto_examples/plot_lena_denoise.html
+
+[:ref:`Python source code <example_plot_lena_denoise.py>`]
 
 
 Median filter: better result for straight boundaries (**low curvature**)::
@@ -312,9 +331,12 @@ Median filter: better result for straight boundaries (**low curvature**)::
     >>> im_noise = im + 0.2*np.random.randn(*im.shape)
     >>> im_med = ndimage.median_filter(im_noise, 3)
 
-
-.. plot:: pyplots/image_denoising.py
+.. figure:: auto_examples/images/plot_denoising_1.png
     :scale: 60
+    :target: auto_examples/plot_denoising.html
+
+[:ref:`Python source code <example_plot_denoising.py>`]
+
 
 Other rank filter: ``ndimage.maximum_filter``,
 ``ndimage.percentile_filter``
@@ -339,8 +361,11 @@ http://scikits-image.org/docs/dev/api/scikits.image.filter.html#tv-denoise),
 but for convenience we've shipped it as a :download:`standalone module
 <../../pyplots/tv_denoise.py>` with this tutorial.
 
-.. plot:: pyplots/image_lena_tv_denoise.py
+.. figure:: auto_examples/images/plot_lena_tv_denoise_1.png
     :scale: 60
+    :target: auto_examples/plot_lena_tv_denoise.html
+
+[:ref:`Python source code <example_plot_lena_tv_denoise.py>`]
 
 
 Mathematical morphology
@@ -435,8 +460,11 @@ Also works for grey-valued images::
     ...         structure=np.ones((3, 3)))
 
 
-.. plot:: pyplots/image_greyscale_dilation.py
+.. figure:: auto_examples/images/plot_greyscale_dilation_1.png
     :scale: 40
+    :target: auto_examples/plot_greyscale_dilation.html
+
+[:ref:`Python source code <example_plot_greyscale_dilation.py>`]
 
 **Opening**: erosion + dilation::
 
@@ -476,9 +504,11 @@ Also works for grey-valued images::
     >>> eroded_square = ndimage.binary_erosion(square)
     >>> reconstruction = ndimage.binary_propagation(eroded_square, mask=square)
 
-
-.. plot:: pyplots/image_propagation.py
+.. figure:: auto_examples/images/plot_propagation_1.png
     :scale: 40
+    :target: auto_examples/plot_propagation.html
+
+[:ref:`Python source code <example_plot_propagation.py>`]
 
 **Closing**: dilation + erosion
 
@@ -505,9 +535,11 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
     >>> sy = ndimage.sobel(im, axis=1, mode='constant')
     >>> sob = np.hypot(sx, sy)
 
-
-.. plot:: pyplots/image_find_edges.py
+.. figure:: auto_examples/images/plot_find_edges_1.png
     :scale: 40
+    :target: auto_examples/plot_find_edges.html
+
+[:ref:`Python source code <example_plot_find_edges.py>`]
 
 **Canny filter**
 
@@ -522,8 +554,11 @@ but for convenience we've shipped it as a :download:`standalone module
   >>> edges = canny(im, 1, 0.4, 0.2) # not enough smoothing
   >>> edges = canny(im, 3, 0.3, 0.2) # better parameters
 
-.. plot:: pyplots/image_canny.py
+.. figure:: auto_examples/images/plot_canny_1.png
     :scale: 40
+    :target: auto_examples/plot_canny.html
+
+[:ref:`Python source code <example_plot_canny.py>`]
 
 Several parameters need to be adjusted... risk of overfitting
 
@@ -553,8 +588,11 @@ Segmentation
     >>> #
     >>> binary_img = img > 0.5
 
-.. plot:: pyplots/image_histo_segmentation.py
+.. figure:: auto_examples/images/plot_histo_segmentation_1.png
     :scale: 65
+    :target: auto_examples/plot_histo_segmentation.html
+
+[:ref:`Python source code <example_plot_histo_segmentation.py>`]
 
 Automatic thresholding: use Gaussian mixture model::
 
@@ -590,8 +628,11 @@ Use mathematical morphology to clean up the result::
     >>> # Remove small black hole
     >>> close_img = ndimage.binary_closing(open_img)
 
-.. plot:: pyplots/image_clean_morpho.py
+.. figure:: auto_examples/images/plot_clean_morpho_1.png
     :scale: 65
+    :target: auto_examples/plot_clean_morpho.html
+
+[:ref:`Python source code <example_plot_clean_morpho.py>`]
 
 .. topic:: **Exercise**
 
@@ -688,8 +729,11 @@ Label connected components: ``ndimage.label``::
     >>> plt.imshow(label_im)
     <matplotlib.image.AxesImage object at 0x6624d50>
 
-.. plot:: pyplots/image_synthetic_data.py
+.. figure:: auto_examples/images/plot_synthetic_data_1.png
     :scale: 90
+    :target: auto_examples/plot_synthetic_data.html
+
+[:ref:`Python source code <example_plot_synthetic_data.py>`]
 
 Compute size, mean_value, etc. of each region::
 
@@ -710,8 +754,11 @@ Now reassign labels with ``np.searchsorted``::
     >>> labels = np.unique(label_im)
     >>> label_im = np.searchsorted(labels, label_im)
 
-.. plot:: pyplots/image_measure_data.py
+.. figure:: auto_examples/images/plot_measure_data_1.png
     :scale: 90
+    :target: auto_examples/plot_measure_data.html
+
+[:ref:`Python source code <example_plot_measure_data.py>`]
 
 Find region of interest enclosing object::
 
@@ -719,8 +766,11 @@ Find region of interest enclosing object::
     >>> roi = im[slice_x, slice_y]
     >>> plt.imshow(roi)
 
-.. plot:: pyplots/image_find_object.py
+.. figure:: auto_examples/images/plot_find_object_1.png
     :scale: 130
+    :target: auto_examples/plot_find_object.html
+
+[:ref:`Python source code <example_plot_find_object.py>`]
 
 Other spatial measures: ``ndimage.center_of_mass``,
 ``ndimage.maximum_position``, etc.
@@ -737,8 +787,11 @@ Example: block mean::
     >>> regions.max() +1))
     >>> block_mean.shape = (sx/4, sy/6)
 
-.. plot:: pyplots/image_block_mean.py
+.. figure:: auto_examples/images/plot_block_mean_1.png
     :scale: 70
+    :target: auto_examples/plot_block_mean.html
+
+[:ref:`Python source code <example_plot_block_mean.py>`]
 
 When regions are regular blocks, it is more efficient to use stride
 tricks (:ref:`stride-manipulation-label`).
@@ -748,8 +801,11 @@ Non-regularly-spaced blocks: radial mean::
 >>> rbin = (20* r/r.max()).astype(np.int)
 >>> radial_mean = ndimage.mean(l, labels=rbin, index=np.arange(1, rbin.max() +1))
 
-.. plot:: pyplots/image_radial_mean.py
+.. figure:: auto_examples/images/plot_radial_mean_1.png
     :scale: 70
+    :target: auto_examples/plot_radial_mean.html
+
+[:ref:`Python source code <example_plot_radial_mean.py>`]
 
 * **Other measures** 
 
@@ -789,7 +845,9 @@ One example with mathematical morphology: **granulometry**
     >>> 
     >>> granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
 
-
-
-.. plot:: pyplots/image_granulo.py
+.. figure:: auto_examples/images/plot_granulo_1.png
     :scale: 100
+    :target: auto_examples/plot_granulo.html
+
+[:ref:`Python source code <example_plot_granulo.py>`]
+

@@ -16,3 +16,5 @@ plt.figure(figsize=(3,3))
 plt.axes([0, 0, 1, 1])
 plt.imshow(lena, cmap=plt.cm.gray)
 plt.axis('off')
+
+plt.show()

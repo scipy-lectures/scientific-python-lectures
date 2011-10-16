@@ -8,6 +8,7 @@ Files that generate images should start with 'plot'
 
 """
 import os
+import sys
 import shutil
 import traceback
 import glob
@@ -228,8 +229,12 @@ def generate_file_rst(fname, target_dir, src_dir, plot_gallery):
             try:
                 # First CD in the original example dir, so that any file created
                 # by the example get created in this directory
-                os.chdir(os.path.dirname(src_file))
+                src_file_dir = os.path.dirname(src_file)
+                os.chdir(src_file_dir)
+                # Add source directory to sys.path for local import
+                sys.path.append(src_file_dir)
                 execfile(os.path.basename(src_file), {'pl' : plt})
+                sys.path.pop()
                 os.chdir(cwd)
 
                 # In order to save every figure we have two solutions :

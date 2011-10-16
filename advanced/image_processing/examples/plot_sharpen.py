@@ -22,3 +22,5 @@ plt.axis('off')
 plt.subplot(133)
 plt.imshow(sharpened, cmap=plt.cm.gray)
 plt.axis('off')
+
+plt.show()

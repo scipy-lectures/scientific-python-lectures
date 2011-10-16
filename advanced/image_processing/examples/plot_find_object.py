@@ -19,17 +19,14 @@ mask_size = sizes < 1000
 remove_pixel = mask_size[label_im]
 label_im[remove_pixel] = 0
 labels = np.unique(label_im)
-label_clean = np.searchsorted(labels, label_im)
+label_im = np.searchsorted(labels, label_im)
 
+slice_x, slice_y = ndimage.find_objects(label_im==4)[0]
+roi = im[slice_x, slice_y]
 
-plt.figure(figsize=(6 ,3))
-
-plt.subplot(121)
-plt.imshow(label_im, cmap=plt.cm.spectral)
-plt.axis('off')
-plt.subplot(122)
-plt.imshow(label_clean, vmax=nb_labels, cmap=plt.cm.spectral)
+plt.figure(figsize=(4, 2))
+plt.axes([0, 0, 1, 1])
+plt.imshow(roi)
 plt.axis('off')
 
-plt.subplots_adjust(wspace=0.01, hspace=0.01, top=1, bottom=0, left=0, right=1)
-
+plt.show()

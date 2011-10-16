@@ -45,3 +45,4 @@ plt.plot(np.arange(2, 19, 4), granulo, 'ok', ms=8)
 
 
 plt.subplots_adjust(wspace=0.02, hspace=0.15, top=0.95, bottom=0.15, left=0, right=0.95)
+plt.show()

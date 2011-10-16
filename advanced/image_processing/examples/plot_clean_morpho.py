@@ -43,26 +43,5 @@ plt.axis('off')
 
 plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
 
-# Better than opening and closing: use reconstruction
-eroded_img = ndimage.binary_erosion(binary_img)
-reconstruct_img = ndimage.binary_propagation(eroded_img, mask=binary_img)
-tmp = np.logical_not(reconstruct_img)
-eroded_tmp = ndimage.binary_erosion(tmp)
-reconstruct_final = np.logical_not(ndimage.binary_propagation(eroded_tmp, mask=tmp))
-
-"""
-plt.subplot(141)
-plt.imshow(binary_img[:l, :l], cmap=plt.cm.gray)
-plt.axis('off')
-plt.subplot(142)
-plt.imshow(eroded_img[:l, :l], cmap=plt.cm.gray)
-plt.axis('off')
-plt.subplot(143)
-plt.imshow(reconstruct_img[:l, :l], cmap=plt.cm.gray)
-plt.axis('off')
-plt.subplot(144)
-plt.imshow(mask[:l, :l], cmap=plt.cm.gray)
-plt.contour(reconstruct_final[:l, :l], [0.5], lw=4)
-plt.axis('off')
-"""
+plt.show()
 

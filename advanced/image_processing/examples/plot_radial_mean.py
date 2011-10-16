@@ -17,3 +17,5 @@ plt.figure(figsize=(5,5))
 plt.axes([0, 0, 1, 1])
 plt.imshow(rbin, cmap=plt.cm.spectral)
 plt.axis('off')
+
+plt.show()

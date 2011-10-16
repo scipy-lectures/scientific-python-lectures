@@ -28,3 +28,4 @@ plt.axis('off')
 plt.title('Median filter', fontsize=20)
 
 plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9, bottom=0, left=0, right=1)
+plt.show()

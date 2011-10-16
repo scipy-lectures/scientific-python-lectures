@@ -15,5 +15,5 @@ plt.figure(figsize=(5,5))
 plt.imshow(block_mean, cmap=plt.cm.gray)
 plt.axis('off')
 
-
+plt.show()
 

@@ -51,4 +51,4 @@ plt.imshow(label_im, cmap=plt.cm.spectral, interpolation='nearest')
 plt.axis('off')
 
 plt.subplots_adjust(wspace=0, hspace=0., top=0.99, bottom=0.01, left=0.01, right=0.99)
-
+plt.show()
