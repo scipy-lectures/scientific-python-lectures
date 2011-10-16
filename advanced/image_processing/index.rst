@@ -137,7 +137,9 @@ Draw contour lines::
     :scale: 100
     :target: auto_examples/plot_display_lena.html
 
-[:ref:`Python source code <example_plot_display_lena.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_display_lena.py>`]
 
 For fine inspection of intensity variations, use
 ``interpolation='nearest'``::
@@ -149,7 +151,9 @@ For fine inspection of intensity variations, use
     :scale: 80
     :target: auto_examples/plot_interpolation_lena.html
 
-[:ref:`Python source code <example_plot_interpolation_lena.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_interpolation_lena.py>`]
 
 Other packages sometimes use graphical toolkits for visualization (GTK,
 Qt)::
@@ -206,7 +210,9 @@ Images are arrays: use the whole ``numpy`` machinery.
     :scale: 100
     :target: auto_examples/plot_numpy_array.html
 
-[:ref:`Python source code <example_plot_numpy_array.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_numpy_array.py>`]
 
 Statistical information
 -----------------------
@@ -240,7 +246,9 @@ Geometrical transformations
     :scale: 80
     :target: auto_examples/plot_geom_lena.html
 
-[:ref:`Python source code <example_plot_geom_lena.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_geom_lena.py>`]
 
 Image filtering
 ===============
@@ -271,7 +279,9 @@ Blurring/smoothing
     :scale: 80
     :target: auto_examples/plot_blur.html
 
-[:ref:`Python source code <example_plot_blur.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_blur.py>`]
 
 Sharpening
 ----------
@@ -292,7 +302,9 @@ Laplacian::
     :scale: 100
     :target: auto_examples/plot_sharpen.html
 
-[:ref:`Python source code <example_plot_sharpen.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_sharpen.py>`]
 
 
 Denoising
@@ -318,7 +330,9 @@ A **median filter** preserves better the edges::
     :scale: 60
     :target: auto_examples/plot_lena_denoise.html
 
-[:ref:`Python source code <example_plot_lena_denoise.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_lena_denoise.py>`]
 
 
 Median filter: better result for straight boundaries (**low curvature**)::
@@ -333,7 +347,9 @@ Median filter: better result for straight boundaries (**low curvature**)::
     :scale: 60
     :target: auto_examples/plot_denoising.html
 
-[:ref:`Python source code <example_plot_denoising.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_denoising.py>`]
 
 
 Other rank filter: ``ndimage.maximum_filter``,
@@ -363,7 +379,9 @@ but for convenience we've shipped it as a :download:`standalone module
     :scale: 60
     :target: auto_examples/plot_lena_tv_denoise.html
 
-[:ref:`Python source code <example_plot_lena_tv_denoise.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_lena_tv_denoise.py>`]
 
 
 Mathematical morphology
@@ -462,7 +480,9 @@ Also works for grey-valued images::
     :scale: 40
     :target: auto_examples/plot_greyscale_dilation.html
 
-[:ref:`Python source code <example_plot_greyscale_dilation.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_greyscale_dilation.py>`]
 
 **Opening**: erosion + dilation::
 
@@ -506,7 +526,9 @@ Also works for grey-valued images::
     :scale: 40
     :target: auto_examples/plot_propagation.html
 
-[:ref:`Python source code <example_plot_propagation.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_propagation.py>`]
 
 **Closing**: dilation + erosion
 
@@ -537,7 +559,9 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
     :scale: 40
     :target: auto_examples/plot_find_edges.html
 
-[:ref:`Python source code <example_plot_find_edges.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_find_edges.py>`]
 
 **Canny filter**
 
@@ -556,7 +580,9 @@ but for convenience we've shipped it as a :download:`standalone module
     :scale: 40
     :target: auto_examples/plot_canny.html
 
-[:ref:`Python source code <example_plot_canny.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_canny.py>`]
 
 Several parameters need to be adjusted... risk of overfitting
 
@@ -590,7 +616,9 @@ Segmentation
     :scale: 65
     :target: auto_examples/plot_histo_segmentation.html
 
-[:ref:`Python source code <example_plot_histo_segmentation.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_histo_segmentation.py>`]
 
 Automatic thresholding: use Gaussian mixture model::
 
@@ -630,7 +658,9 @@ Use mathematical morphology to clean up the result::
     :scale: 65
     :target: auto_examples/plot_clean_morpho.html
 
-[:ref:`Python source code <example_plot_clean_morpho.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_clean_morpho.py>`]
 
 .. topic:: **Exercise**
 
@@ -731,7 +761,9 @@ Label connected components: ``ndimage.label``::
     :scale: 90
     :target: auto_examples/plot_synthetic_data.html
 
-[:ref:`Python source code <example_plot_synthetic_data.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_synthetic_data.py>`]
 
 Compute size, mean_value, etc. of each region::
 
@@ -756,7 +788,9 @@ Now reassign labels with ``np.searchsorted``::
     :scale: 90
     :target: auto_examples/plot_measure_data.html
 
-[:ref:`Python source code <example_plot_measure_data.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_measure_data.py>`]
 
 Find region of interest enclosing object::
 
@@ -768,7 +802,9 @@ Find region of interest enclosing object::
     :scale: 130
     :target: auto_examples/plot_find_object.html
 
-[:ref:`Python source code <example_plot_find_object.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_find_object.py>`]
 
 Other spatial measures: ``ndimage.center_of_mass``,
 ``ndimage.maximum_position``, etc.
@@ -789,7 +825,9 @@ Example: block mean::
     :scale: 70
     :target: auto_examples/plot_block_mean.html
 
-[:ref:`Python source code <example_plot_block_mean.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_block_mean.py>`]
 
 When regions are regular blocks, it is more efficient to use stride
 tricks (:ref:`stride-manipulation-label`).
@@ -803,7 +841,9 @@ Non-regularly-spaced blocks: radial mean::
     :scale: 70
     :target: auto_examples/plot_radial_mean.html
 
-[:ref:`Python source code <example_plot_radial_mean.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_radial_mean.py>`]
 
 * **Other measures** 
 
@@ -847,5 +887,7 @@ One example with mathematical morphology: **granulometry**
     :scale: 100
     :target: auto_examples/plot_granulo.html
 
-[:ref:`Python source code <example_plot_granulo.py>`]
+.. only:: html
+
+    [:ref:`Python source code <example_plot_granulo.py>`]
 
