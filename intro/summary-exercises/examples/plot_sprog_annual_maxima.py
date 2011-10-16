@@ -10,7 +10,7 @@ def gumbell_dist(arr):
     return -np.log(-np.log(arr))
 
 years_nb = 21
-wspeeds = np.load('../data/sprog-windspeeds.npy')
+wspeeds = np.load('sprog-windspeeds.npy')
 max_speeds = np.array([arr.max() for arr in np.array_split(wspeeds, years_nb)])
 sorted_max_speeds = np.sort(max_speeds)
 
