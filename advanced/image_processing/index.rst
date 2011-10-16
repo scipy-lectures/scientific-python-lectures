@@ -231,7 +231,7 @@ Geometrical transformations
     >>> rotate_lena_noreshape = ndimage.rotate(lena, 45, reshape=False)
 
 .. plot:: pyplots/image_geom_lena.py
-    :scale: 100
+    :scale: 80
 
 
 Image filtering
