@@ -154,7 +154,7 @@ Scientific Python building blocks
 * **Numpy** : provides powerful **numerical arrays** objects, and routines to
   manipulate them.
 
-  http://www.scipy.org/
+  http://www.numpy.org/
 
 .. 
     >>> np.random.seed(4)
@@ -198,7 +198,7 @@ that is handy to explore and understand algorithms.
 
 .. note:: Reference document for this section:
 
-    **IPython user manual:** http://ipython.scipy.org/doc/manual/html/
+    **IPython user manual:** http://ipython.org/ipython-doc/dev/index.html
 
 Command line interaction
 ..........................

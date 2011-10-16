@@ -86,6 +86,7 @@ linkcheck:
 
 pdf: latex
 	cd build/latex ; make all-pdf ; pdfnup PythonScientific.pdf
+	cp build/latex/PythonScientific.pdf PythonScientific-simple.pdf
 	cp build/latex/PythonScientific-nup.pdf PythonScientific.pdf
 	#cd build/latex ; make all-pdf ; pdfnup python4science.pdf
 

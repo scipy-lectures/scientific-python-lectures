@@ -74,7 +74,7 @@ Python Scientific Lecture Notes
         font-weight: bold;
         background-color: transparent;
         margin-bottom: 0;
-        margin-left: 5em;
+        margin-left: 3em;
         display:inline;
     }
 
@@ -91,29 +91,31 @@ Python Scientific Lecture Notes
 
   </style>
 
-
 .. only:: html
 
     .. sidebar:: Download 
        
-       * Printable version: :download:`PythonScientific.pdf`
+       * `PDF, 2 pages per side <./_downloads/PythonScientific.pdf>`_
+
+       * `PDF, 1 page per side <./_downloads/PythonScientific-simple.pdf>`_
    
-       * `HTML version and additional files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
+       * `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
      
-       * `Source code of this document (github) <https://github.com/scipy-lectures>`_
+       * `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
-.. topic:: This document
+    .. topic:: This document
 
-    Teaching material on the scientific Python ecosystem, a quick
-    introduction to central tools and techniques. The different chapters
-    each correspond to a 1 to 2 hours course with increasing level of
-    expertise, from beginner to expert.
+        Teaching material on the scientific Python ecosystem, a quick
+        introduction to central tools and techniques. The different chapters
+        each correspond to a 1 to 2 hours course with increasing level of
+        expertise, from beginner to expert.
 
-    .. toctree::
-       :maxdepth: 1
+        .. toctree::
+            :maxdepth: 1
 
-       AUTHORS.rst
-       LICENSE.rst
+            AUTHORS.rst
+            LICENSE.rst
+            CHANGES.rst
 
 _____
 
@@ -123,5 +125,29 @@ _____
 
    intro/index.rst
    advanced/index.rst
+
+____
+
+.. raw:: html
+
+   <small>
+
+Version: |version| (output of ``git describe`` for `project repository`_)
+
+.. _`project repository`: https://github.com/scipy-lectures/scipy-lecture-notes
+..  
+ FIXME: I need the down link to make sure the banner gets copied to the
+ target directory.
+
+.. raw:: html
+ 
+   <div style='visibility: hidden ; height=0'>
+
+:download:`PythonScientific.pdf` :download:`PythonScientific-simple.pdf`
+
+.. raw:: html
+ 
+   </div>
+   </small>
 
 

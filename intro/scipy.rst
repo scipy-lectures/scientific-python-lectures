@@ -24,6 +24,11 @@ Scipy : high-level scientific computing
     and tested, and should therefore be used when possible.
 
 
+.. contents:: Chapters contents
+    :local:
+    :depth: 4
+
+
 .. warning::
 
     This tutorial is far from an introduction to numerical computing.
