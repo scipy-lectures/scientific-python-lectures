@@ -60,19 +60,17 @@ More powerful and complete modules:
 Opening and writing to image files
 ==================================
 
-Writing an array to a file ::
+Writing an array to a file:
 
-    >>> import scipy
-    >>> l = scipy.lena()
-    >>> from scipy import misc
-    >>> misc.imsave('lena.png', l) # uses the Image module (PIL)
+.. literalinclude:: examples/plot_lena.py
+   :lines: 2-
 
-.. image:: lena.png
+.. image:: examples/lena.png
     :align: center
-    :scale: 65
+    :scale: 50
 
 
-Creating a numpy array from an image file ::
+Creating a numpy array from an image file::
 
     >>> lena = misc.imread('lena.png')
     >>> type(lena)
