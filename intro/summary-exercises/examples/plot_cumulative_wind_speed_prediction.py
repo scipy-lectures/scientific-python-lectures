@@ -8,7 +8,7 @@ import pylab as pl
 
 # since its called from intro/summary-exercises
 # we need to ../
-max_speeds = np.load('../data/max-speeds.npy')
+max_speeds = np.load('max-speeds.npy')
 years_nb = max_speeds.shape[0]
 
 cprob = (np.arange(years_nb, dtype=np.float32) + 1)/(years_nb + 1)
