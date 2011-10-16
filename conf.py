@@ -18,6 +18,13 @@ import subprocess
 # absolute, like shown here.
 sys.path.append(os.path.abspath('sphinxext'))
 
+# Try to override the matplotlib configuration as early as possible
+try:
+    import gen_rst
+except:
+    pass
+
+
 # General configuration
 # ---------------------
 
@@ -26,9 +33,10 @@ needs_sphinx = '1.0'
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
+        'gen_rst',
         'sphinx.ext.autodoc',
         'sphinx.ext.doctest',
-        #'matplotlib.sphinxext.plot_directive', 
+        #'matplotlib.sphinxext.plot_directive',
         'plot_directive',
         'only_directives',
         'ipython_console_highlighting',
@@ -163,7 +171,7 @@ html_title = "Scipy lecture notes"
 #html_use_modindex = True
 
 # If false, no index is generated.
-html_use_index = False 
+html_use_index = False
 
 # If true, the index is split into individual pages for each letter.
 #html_split_index = False
@@ -194,7 +202,7 @@ htmlhelp_basename = 'PythonScientic'
 
 # Latex references with page numbers (only Sphinx 1.0)
 latex_show_pagerefs = True
- 
+
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [

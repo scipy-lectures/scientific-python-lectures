@@ -12,10 +12,6 @@ PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
-# Data to ship with the HTML version
-HTML_DATA = \
-	data/max-speeds.npy \
-	data/sprog-windspeeds.npy \
 
 .PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip
 
@@ -38,8 +34,6 @@ test:
 html:
 	mkdir -p build/html build/doctrees
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
-	mkdir -p build/html/data
-	cp ${HTML_DATA} build/html/data
 	@echo
 	@echo "Build finished. The HTML pages are in build/html."
 
