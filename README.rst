@@ -26,7 +26,7 @@ To generate the html output for on-screen display, Type::
 
     make html
 
-the generated html files can be found in `build/html`
+the generated html files can be found in ``build/html``
 
 To generate the pdf file for printing::
 
@@ -77,10 +77,10 @@ Modifying
 The easiest way to make your own version of this teaching material
 is to fork it under Github, and use the git version control system to 
 maintain your own fork. For this, all you have to do is create an account 
-on github (this site) and click on the `fork` button, on the top right of this
-page. You can use git to pull from your `fork`, and push back to it the 
+on github (this site) and click on the ``fork`` button, on the top right of this
+page. You can use git to pull from your ``fork``, and push back to it the 
 changes. If you want to contribute the changes back, just fill a 
-`pull request`, using the button on the top of your fork's page.
+``pull request``, using the button on the top of your fork's page.
 
 Please refrain from modifying the Makefile unless it is absolutely
 necessary. 
@@ -89,13 +89,13 @@ Figures and code examples
 --------------------------
 
 The figure should be generated from Python source files. The policy is
-to create an `examples` directory, in which you put the corresponding
-Python files. Any files with a name starting with `plot_` will be run
+to create an ``examples`` directory, in which you put the corresponding
+Python files. Any files with a name starting with ``plot_`` will be run
 during the build process, and figures created by matplotlib will be saved
-as images in an `auto_examples` directory. You can use these to include
+as images in an ``auto_examples`` directory. You can use these to include
 in the document as figures. To display the code snippet, you can use the
-`literal-include` directive. Any additional data needed by the plotting script
+``literal-include`` directive. Any additional data needed by the plotting script
 should be included in the same directory. NB: the code to provide this style of
 plot inclusion was adopted from the scikits.learn project and can be found in
-`sphinxext/gen_rst.py`.
+``sphinxext/gen_rst.py``.
 
