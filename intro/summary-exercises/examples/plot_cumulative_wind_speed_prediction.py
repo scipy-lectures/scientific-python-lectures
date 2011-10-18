@@ -6,8 +6,6 @@ import numpy as np
 from scipy.interpolate import UnivariateSpline
 import pylab as pl
 
-# since its called from intro/summary-exercises
-# we need to ../
 max_speeds = np.load('max-speeds.npy')
 years_nb = max_speeds.shape[0]
 
