@@ -77,10 +77,10 @@ Modifying
 The easiest way to make your own version of this teaching material
 is to fork it under Github, and use the git version control system to
 maintain your own fork. For this, all you have to do is create an account
-on github (this site) and click on the ``fork`` button, on the top right of this
-page. You can use git to pull from your ``fork``, and push back to it the
+on github (this site) and click on the *fork* button, on the top right of this
+page. You can use git to pull from your *fork*, and push back to it the
 changes. If you want to contribute the changes back, just fill a
-``pull request``, using the button on the top of your fork's page.
+*pull request*, using the button on the top of your fork's page.
 
 Please refrain from modifying the Makefile unless it is absolutely
 necessary.
