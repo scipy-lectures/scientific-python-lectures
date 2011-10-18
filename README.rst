@@ -94,5 +94,8 @@ Python files. Any files with a name starting with `plot_` will be run
 during the build process, and figures created by matplotlib will be saved
 as images in an `auto_examples` directory. You can use these to include
 in the document as figures. To display the code snippet, you can use the
-`literal-include` directive.
+`literal-include` directive. Any additional data needed by the plotting script
+should be included in the same directory. NB: the code to provide this style of
+plot inclusion was adopted from the scikits.learn project and can be found in
+`sphinxext/gen_rst.py`.
 
