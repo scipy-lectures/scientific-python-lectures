@@ -1,7 +1,7 @@
 """
 Stripped-down version of the face recognition example by Olivier Grisel
 
-http://scikit-learn.sourceforge.net/dev/auto_examples/applications/face_recognition.html
+http://scikit-learn.org/dev/auto_examples/applications/face_recognition.html
 
 ## original shape of images: 50, 37
 """

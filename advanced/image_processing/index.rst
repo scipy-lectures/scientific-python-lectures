@@ -23,7 +23,7 @@ Image manipulation and processing using Numpy and Scipy
 
     * `Scikit Image <http://scikits-image.org/>`_
     
-    * `scikit-learn <http://scikit-learn.sourceforge.net/stable/>`_ 
+    * `scikit-learn <http://scikit-learn.org/>`_ 
 
 **Common tasks in image processing**:
 
