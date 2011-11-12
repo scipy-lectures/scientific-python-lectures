@@ -47,7 +47,7 @@ learning frameworks available for Python:
 
 .. warning::
 
-   As of version 0.9 (released in Septembre 2011), the import path for
+   As of version 0.9 (released in September 2011), the import path for
    scikit-learn has changed from `scikits.learn` to `sklearn`
 
 Loading an example dataset
@@ -71,11 +71,11 @@ very simple flower database known as the Iris dataset.
 
 We have 150 observations of the iris flower specifying some
 measurements: sepal length, sepal width, petal length and petal width
-together with its subtype: Iris Setosa, Iris Versicolour, Iris
-Virginica.
+together with its subtype: *Iris setosa*, *Iris versicolor*, *Iris
+virginica*.
 
-.. for now, a dataset is just a matrix of floating-point numbers,
-.. (together with a class value).
+.. For now, a dataset is just a matrix of floating-point numbers,
+.. together with a class value.
 
 To load the dataset into a Python object:
 
@@ -107,7 +107,7 @@ dataset. This is an integer 1D array of length ``n_samples``:
         :scale: 50
         :align: right
 
-    The digits dataset is made of 1797 images, where each one is a 8x8
+    The digits dataset consists of 1797 images, where each one is an 8x8
     pixel image representing a hand-written digit ::
 
         >>> digits = datasets.load_digits()
@@ -134,7 +134,7 @@ data by creating an ``estimator`` and calling its ``fit(X, Y)`` method.
 
     >>> from scikits.learn import svm
     >>> clf = svm.LinearSVC()
-    >>> clf.fit(iris.data, iris.target) # learn form the data
+    >>> clf.fit(iris.data, iris.target) # learn from the data
 
 Once we have learned from the data, we can access the parameters of
 the model:
@@ -157,15 +157,18 @@ k-Nearest neighbors classifier
 ++++++++++++++++++++++++++++++
 
 The simplest possible classifier is the nearest neighbor: given a new
-observation, take the label of the closest learned observation.
+observation, take the label of the training samples closest to it
+in *n*-dimensional space, where *n* is the number of *features*
+in each sample.
 
 .. image:: iris_knn.png
    :scale: 90
    :align: right
 
-Internally uses the BallTree algorithm.
+The k-nearest neighbors classifier internally uses an algorithm
+based on ball trees to represent the samples it is trained on.
 
-**KNN (k nearest neighbors) classification example**:
+**KNN (k-nearest neighbors) classification example**:
 
 ::
 
@@ -180,7 +183,7 @@ Internally uses the BallTree algorithm.
 
 .. topic:: Training set and testing set
 
-   When experimenting with learning algorithm, it is important not to
+   When experimenting with learning algorithms, it is important not to
    test the prediction of an estimator on the data used to fit the
    estimator.
 
@@ -200,9 +203,9 @@ Support vector machines (SVMs) for classification
 Linear Support Vector Machines
 ------------------------------
 
-SVMs try to build a plane maximizing the margin between the two
+SVMs try to construct a hyperplane maximizing the margin between the two
 classes. It selects a subset of the input, called the support vectors,
-which are the observations closest to the separating plane.
+which are the observations closest to the separating hyperplane.
 
 
 .. image:: svm_margin.png
@@ -224,8 +227,10 @@ which are the observations closest to the separating plane.
     SVC(kernel='linear', C=1.0, probability=False, degree=3, coef0=0.0, tol=0.001,
       shrinking=True, gamma=0.0)
 
-There are several support vector machine implementations in
-scikit-learn. The most used ones are ``svm.SVC``, ``svm.NuSVC`` and ``svm.LinearSVC``. 
+There are several support vector machine implementations in ``scikit-learn``.
+The most commonly used ones are ``svm.SVC``, ``svm.NuSVC`` and ``svm.LinearSVC``;
+"SVC" stands for Support Vector Classifier (there also exist SVMs for regression,
+which are called "SVR" in ``scikit-learn``).
 
 .. topic:: **Excercise**
    :class: green
@@ -238,7 +243,7 @@ scikit-learn. The most used ones are ``svm.SVC``, ``svm.NuSVC`` and ``svm.Linear
 Using kernels
 --------------
 
-Classes are not always separable by a hyper-plane, thus it would be
+Classes are not always separable by a hyperplane, so it would be
 desirable to have a decision function that is not linear but that may
 be for instance polynomial or exponential:
 
@@ -295,7 +300,7 @@ be for instance polynomial or exponential:
    :class: green
 
    Which of the kernels noted above has a better prediction
-   performance on the digits dataset ?
+   performance on the digits dataset?
 
    .. toctree::
 
@@ -306,16 +311,25 @@ be for instance polynomial or exponential:
 Clustering: grouping observations together
 ==========================================
 
-Given the iris dataset, if we knew that there were 3 types of Iris,
-but did not have access to their labels: we could try a **clustering
-task**: split the observations into groups called *clusters*.
+Given the iris dataset, if we knew that there were 3 types of iris,
+but did not have access to their labels, we could try **unsupervised
+learning**: we could **cluster** the observations into several groups
+by some criterion.
 
 
 
 K-means clustering
 ++++++++++++++++++
 
-The simplest clustering algorithm is the k-means.
+The simplest clustering algorithm is k-means. This divides a set into
+*k* clusters, assigning each observation to a cluster so as to minimize
+the distance of that observation (in *n*-dimensional space) to the cluster's
+mean; the means are then recomputed. This operation is run iteratively until
+the clusters converge, for a maximum for ``max_iter`` rounds.
+
+(An alternative implementation of k-means is available in SciPy's ``cluster``
+package. The ``scikit-learn`` implementation differs from that by offering an
+object API and several additional features, including smart initialization.)
 
 ::
 
