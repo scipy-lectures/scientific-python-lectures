@@ -1129,7 +1129,7 @@ An useful trick:
     >>> a = np.arange(0, 40, 10)
     >>> a.shape
     (4,)
-    >>> a = a[:,np.newaxis]         # adds a new axis -> 2D array
+    >>> a = a[:, np.newaxis]  # adds a new axis -> 2D array
     >>> a.shape
     (4, 1)
     >>> a
@@ -1145,8 +1145,8 @@ An useful trick:
 
 We have already used broadcasting without knowing it!::
 
-    >>> a = np.ones((4,5))
-    >>> a[0] = 2 # we assign an array of dimension 0 to an array of dimension 1
+    >>> a = np.ones((4, 5))
+    >>> a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
     array([[ 2.,  2.,  2.,  2.,  2.],
            [ 1.,  1.,  1.,  1.,  1.],
            [ 1.,  1.,  1.,  1.,  1.],
@@ -1166,7 +1166,7 @@ dimensions than input data.
 
       >>> mileposts = np.array([0, 198, 303, 736, 871, 1175, 1475, 1544,
       ...        1913, 2448])
-      >>> distance_array = np.abs(mileposts - mileposts[:,np.newaxis])
+      >>> distance_array = np.abs(mileposts - mileposts[:, np.newaxis])
       >>> distance_array
       array([[   0,  198,  303,  736,  871, 1175, 1475, 1544, 1913, 2448],
              [ 198,    0,  105,  538,  673,  977, 1277, 1346, 1715, 2250],
@@ -1205,7 +1205,7 @@ broadcasting. For instance, if we want to compute the distance from
 the origin of points on a 10x10 grid, we can do:
 
  >>> x, y = np.arange(5), np.arange(5)
- >>> distance = np.sqrt(x**2 + y[:, np.newaxis]**2)
+ >>> distance = np.sqrt(x ** 2 + y[:, np.newaxis] ** 2)
  >>> distance
  array([[ 0.        ,  1.        ,  2.        ,  3.        ,  4.        ],
         [ 1.        ,  1.41421356,  2.23606798,  3.16227766,  4.12310563],
@@ -1219,7 +1219,7 @@ the origin of points on a 10x10 grid, we can do:
  >>> plt.pcolor(distance)
  >>> plt.colorbar()
  >>> plt.axis('equal')
- >>> plt.show()            # <-- again, not needed in interactive Python
+ >>> plt.show()  # <-- again, not needed in interactive Python
 
 .. plot:: pyplots/numpy_intro_6.py
 
@@ -1236,7 +1236,7 @@ and y of the previous example, with two "significant dimensions"::
            [4]]), array([[0, 1, 2, 3, 4]]))
     >>> x.shape, y.shape
     ((5, 1), (1, 5))
-    >>> distance = np.sqrt(x**2 + y**2)
+    >>> distance = np.sqrt(x ** 2 + y ** 2)
 
 So, ``np.ogrid`` is very useful as soon as we have to handle computations on a
 grid. On the other hand, ``np.mgrid`` directly provides matrices full of
