@@ -2,7 +2,7 @@
 scikit-learn: machine learning in Python
 ========================================
 
-:author: Fabian Pedregosa
+:author: Fabian Pedregosa, Gael Varoquaux
 
 Machine learning is a rapidly-growing field with several machine
 learning frameworks available for Python:
@@ -49,6 +49,14 @@ learning frameworks available for Python:
 
    As of version 0.9 (released in September 2011), the import path for
    scikit-learn has changed from `scikits.learn` to `sklearn`
+
+..
+  For doctesting, to avoid having figures poping up
+  
+  >>> import matplotlib
+  >>> matplotlib.use('svg')
+  >>> import numpy as np
+  >>> np.random.seed(0)
 
 Loading an example dataset
 ==========================
@@ -98,7 +106,7 @@ dataset. This is an integer 1D array of length ``n_samples``:
     (150,)
     >>> import numpy as np
     >>> np.unique(iris.target)
-    [0, 1, 2]
+    array([0, 1, 2])
 
 
 .. topic:: An example of reshaping data: the digits dataset
@@ -134,19 +142,23 @@ data by creating an ``estimator`` and calling its ``fit(X, Y)`` method.
 
     >>> from scikits.learn import svm
     >>> clf = svm.LinearSVC()
-    >>> clf.fit(iris.data, iris.target) # learn from the data
+    >>> clf.fit(iris.data, iris.target) # learn form the data
+    LinearSVC(C=1.0, dual=True, fit_intercept=True, intercept_scaling=1,
+         loss='l2', multi_class=False, penalty='l2', tol=0.0001)
 
-Once we have learned from the data, we can access the parameters of
-the model:
-
-    >>> clf.coef_
-    ...
-
-And it can be used to predict the most likely outcome on unseen data:
+Once we have learned from the data, we can use our model to predict the
+most likely outcome on unseen data:
 
     >>> clf.predict([[ 5.0,  3.6,  1.3,  0.25]])
-    array([0], dtype=int32)
+    array([0])
 
+.. note:: 
+   
+    We can access the parameters of the model via its attributes ending
+    with an underscore:
+
+        >>> clf.coef_   #doctest: +ELLIPSIS
+        array([[ 0...]])
 
 
 Classification
@@ -176,7 +188,8 @@ based on ball trees to represent the samples it is trained on.
     >>> from scikits.learn import neighbors
     >>> knn = neighbors.NeighborsClassifier()
     >>> knn.fit(iris.data, iris.target)
-    NeighborsClassifier(n_neighbors=5, leaf_size=20, algorithm='auto')
+    NeighborsClassifier(algorithm='auto', classification_type='knn_vote',
+              leaf_size=30, n_neighbors=5, radius=1.0)
     >>> knn.predict([[0.1, 0.2, 0.3, 0.4]])
     array([0])
 
@@ -185,16 +198,19 @@ based on ball trees to represent the samples it is trained on.
 
    When experimenting with learning algorithms, it is important not to
    test the prediction of an estimator on the data used to fit the
-   estimator.
-
-   ::
+   estimator. Indeed, with the kNN estimator, we would always get perfect
+   prediction on the training set. ::
 
        >>> perm = np.random.permutation(iris.target.size)
        >>> iris.data = iris.data[perm]
        >>> iris.target = iris.target[perm]
-       >>> knn.fit(iris.data[:100], iris.target[:100]
-       >>> knn.score(iris.data[100:], iris.target[100:])
+       >>> knn.fit(iris.data[:100], iris.target[:100])
+       NeighborsClassifier(algorithm='auto', classification_type='knn_vote',
+                 leaf_size=30, n_neighbors=5, radius=1.0)
+       >>> knn.score(iris.data[100:], iris.target[100:]) # doctest: +ELLIPSIS
+       0.95999...
 
+   Bonus question: why did we use a random permutation?
 
 
 Support vector machines (SVMs) for classification
@@ -224,8 +240,8 @@ which are the observations closest to the separating hyperplane.
     >>> from scikits.learn import svm
     >>> svc = svm.SVC(kernel='linear')
     >>> svc.fit(iris.data, iris.target)
-    SVC(kernel='linear', C=1.0, probability=False, degree=3, coef0=0.0, tol=0.001,
-      shrinking=True, gamma=0.0)
+    SVC(C=1.0, cache_size=200, coef0=0.0, degree=3, gamma=0.0, kernel='linear',
+      probability=False, shrinking=True, tol=0.001)
 
 There are several support vector machine implementations in ``scikit-learn``.
 The most commonly used ones are ``svm.SVC``, ``svm.NuSVC`` and ``svm.LinearSVC``;
@@ -337,7 +353,7 @@ object API and several additional features, including smart initialization.)
     >>> iris = datasets.load_iris()
     >>> k_means = cluster.KMeans(k=3)
     >>> k_means.fit(iris.data) # doctest: +ELLIPSIS
-    KMeans(verbose=0, k=3, max_iter=300, init='k-means++',...
+    KMeans(copy_x=True, init='k-means++', k=3, ...
     >>> print k_means.labels_[::10]
     [1 1 1 1 1 0 0 0 0 0 2 2 2 2 2]
     >>> print iris.target[::10]
@@ -394,7 +410,10 @@ object API and several additional features, including smart initialization.)
     >>> lena = sp.lena().astype(np.float32)
     >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
     >>> k_means = cluster.KMeans(k=5)
-    >>> k_means.fit(X)
+    >>> k_means.fit(X) # doctest: +ELLIPSIS
+    KMeans(copy_x=True, init='k-means++', k=5, max_iter=300, n_init=10,
+        random_state=<mtrand.RandomState object at ...>, tol=0.0001,
+        verbose=0)
     >>> values = k_means.cluster_centers_.squeeze()
     >>> labels = k_means.labels_
     >>> lena_compressed = np.choose(labels, values)
@@ -444,22 +463,23 @@ on a subspace.
     Depending on your version of scikit-learn PCA will be in module
     ``decomposition`` or ``pca``.
 
->>> from scikits.learn import decomposition
->>> pca = decomposition.PCA(n_components=2)
->>> pca.fit(iris.data)
-PCA(copy=True, n_components=2, whiten=False)
->>> X = pca.transform(iris.data)
+::
 
-Now we can visualize the (transformed) iris dataset!
+    >>> from scikits.learn import decomposition
+    >>> pca = decomposition.PCA(n_components=2)
+    >>> pca.fit(iris.data)
+    PCA(copy=True, n_components=2, whiten=False)
+    >>> X = pca.transform(iris.data)
 
->>> import pylab as pl
->>> pl.scatter(X[:, 0], X[:, 1], c=iris.target)
->>> pl.show()
+Now we can visualize the (transformed) iris dataset::
+
+    >>> import pylab as pl
+    >>> pl.scatter(X[:, 0], X[:, 1], c=iris.target) # doctest: +ELLIPSIS
+    ...
 
 .. image:: pca_iris.png
    :scale: 50
    :align: center
-
 
 
 PCA is not just useful for visualization of high dimensional
@@ -569,20 +589,22 @@ complex ones.
     >>> from scikits.learn import linear_model
     >>> regr = linear_model.Lasso(alpha=.3)
     >>> regr.fit(diabetes_X_train, diabetes_y_train)
+    Lasso(alpha=0.3, copy_X=True, fit_intercept=True, max_iter=1000,
+       normalize=False, precompute='auto', tol=0.0001)
     >>> regr.coef_ # very sparse coefficients
     array([   0.        ,   -0.        ,  497.34075682,  199.17441034,
              -0.        ,   -0.        , -118.89291545,    0.        ,
             430.9379595 ,    0.        ])
-    >>> regr.score(diabetes_X_test, diabetes_y_test)
-    0.55108354530029802
+    >>> regr.score(diabetes_X_test, diabetes_y_test) # doctest: +ELLIPSIS
+    0.5510835453...
 
 being the score very similar to linear regression (Least Squares)::
 
     >>> lin = linear_model.LinearRegression()
     >>> lin.fit(diabetes_X_train, diabetes_y_train)
     LinearRegression(fit_intercept=True, normalize=False, overwrite_X=False)
-    >>> lin.score(diabetes_X_test, diabetes_y_test)
-    0.58507530226905724
+    >>> lin.score(diabetes_X_test, diabetes_y_test) # doctest: +ELLIPSIS
+    0.5850753022...
 
 .. topic:: **Different algorithms for a same problem**
 
@@ -616,7 +638,8 @@ estimator during the construction and exposes an estimator API::
     >>> clf = grid_search.GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas), 
     ...                    n_jobs=-1)
     >>> clf.fit(digits.data[:1000], digits.target[:1000]) # doctest: +ELLIPSIS
-    GridSearchCV(n_jobs=-1, ...)
+    GridSearchCV(cv=None,
+           estimator=SVC(C=1.0, ...
     >>> clf.best_score
     0.98899798001594419
     >>> clf.best_estimator.gamma
@@ -643,6 +666,10 @@ automatically by cross-validation::
     >>> X_diabetes = diabetes.data
     >>> y_diabetes = diabetes.target
     >>> lasso.fit(X_diabetes, y_diabetes)
+    LassoCV(alphas=array([ 2.14804,  2.00327, ...,  0.0023 ,  0.00215]),
+        copy_X=True, cv=None, eps=0.001, fit_intercept=True, max_iter=1000,
+        n_alphas=100, normalize=False, precompute='auto', tol=0.0001,
+        verbose=False)
     >>> # The estimator chose automatically its lambda:
     >>> lasso.alpha
     0.0075421928471338063
