@@ -297,7 +297,9 @@ discuss only some commonly encountered tricks to make code faster.
   Memory access is cheaper when it is grouped: accessing a big array in a
   continuous way is much faster than random access. This implies amongst
   other things that **smaller strides are faster** (see
-  :ref:`cache_effects`):: 
+  :ref:`cache_effects`):
+
+  .. sourcecode:: ipython
 
     In [1]: c = np.zeros((1e4, 1e4), order='C')
 
@@ -311,8 +313,30 @@ discuss only some commonly encountered tricks to make code faster.
     Out[4]: (80000, 8)
 
   This is the reason why Fortran ordering or C ordering may make a big
-  difference on operations. Using 
-  `numexpr <http://code.google.com/p/numexpr/>`_ can be useful to 
+  difference on operations:
+  
+  .. sourcecode:: ipython
+
+    In [5]: a = np.random.rand(20, 2**18)
+
+    In [6]: b = np.random.rand(20, 2**18)
+
+    In [7]: %timeit np.dot(b, a.T)
+    1 loops, best of 3: 194 ms per loop
+
+    In [8]: c = np.ascontiguousarray(a.T)
+
+    In [9]: %timeit np.dot(b, c)
+    10 loops, best of 3: 84.2 ms per loop
+ 
+  Note that copying the data to work around this effect may not be worth it:
+
+  .. sourcecode:: ipython
+
+    In [10]: %timeit c = np.ascontiguousarray(a.T)
+    10 loops, best of 3: 106 ms per loop
+
+  Using `numexpr <http://code.google.com/p/numexpr/>`_ can be useful to
   automatically optimize code for such effects.
 
 * **Use compiled code**
