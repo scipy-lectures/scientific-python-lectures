@@ -15,18 +15,21 @@ We are going to explore matplotlib in interactive mode covering
 most common cases. We also look at the class library which is provided
 with an object-oriented interface.
 
-IPython
--------
+IPython and the pylab mode
+---------------------------
 
-IPython is an enhanced interactive Python shell that has lots of
-interesting features including named inputs and outputs,
-access to shell commands, improved debugging and many more.
-When we start it with the command line argument ``-pylab``, it allows
-interactive ``matplotlib`` sessions that has Matlab/Mathematica-like
-functionality.
+IPython
+........
+
+`IPython <http://ipython.org/>`_ is an enhanced interactive Python shell
+that has lots of interesting features including named inputs and outputs,
+access to shell commands, improved debugging and many more. When we start
+it with the command line argument ``-pylab`` (``--pylab`` since IPython
+version 0.12), it allows interactive ``matplotlib`` sessions that has
+Matlab/Mathematica-like functionality.
 
 pylab
------
+.......
 
 ``pylab`` provides a procedural interface to the ``matplotlib``
 object-oriented plotting library. It is modeled closely
@@ -35,7 +38,7 @@ commands in ``pylab`` has Matlab(TM) analogs with similar arguments.
 Important commands are explained with interactive examples.
 
 Simple Plots
-------------
+-------------
 
 Let's start an interactive session::
 

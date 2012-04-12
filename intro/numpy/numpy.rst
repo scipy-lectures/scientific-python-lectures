@@ -11,11 +11,11 @@ NumPy: creating and manipulating numerical data
 
 .. currentmodule:: numpy
 
-Intro
-=====
+The numpy array object
+=======================
 
-What is Numpy
--------------
+What are Numpy and numpy arrays
+--------------------------------
 
 **Python** has:
 
@@ -63,9 +63,6 @@ What is Numpy
 .. each element of same size and type
 .. efficiency vs. Python lists
 
-Basics: an introduction to the numpy array
-===========================================
-
 Reference documentation
 -----------------------
 
@@ -112,7 +109,7 @@ Reference documentation
 Creating arrays
 ---------------
 
-1-D
+1-D::
 
     >>> a = np.array([0, 1, 2, 3])
     >>> a
@@ -760,7 +757,7 @@ to construct the array::
      [2 1 2 1 2 1]]
 
 
-Introducing numerical operations
+Numerical operations on arrays
 =================================
 
 Elementwise operations
