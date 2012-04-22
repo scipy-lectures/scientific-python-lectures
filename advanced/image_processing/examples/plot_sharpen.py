@@ -1,9 +1,8 @@
-import numpy as np
 import scipy
 from scipy import ndimage
 import matplotlib.pyplot as plt
 
-l = scipy.lena()
+l = scipy.misc.lena()
 blurred_l = ndimage.gaussian_filter(l, 3)
 
 filter_blurred_l = ndimage.gaussian_filter(blurred_l, 1)

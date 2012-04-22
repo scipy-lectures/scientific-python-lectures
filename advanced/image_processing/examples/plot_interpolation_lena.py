@@ -1,8 +1,7 @@
-import numpy as np
 import scipy
 import matplotlib.pyplot as plt
 
-l = scipy.lena()
+l = scipy.misc.lena()
 
 plt.figure(figsize=(8, 4))
 

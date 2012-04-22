@@ -3,7 +3,7 @@ import scipy
 from scipy import ndimage
 import matplotlib.pyplot as plt
 
-lena = scipy.lena()
+lena = scipy.misc.lena()
 lx, ly = lena.shape
 # Copping
 crop_lena = lena[lx/4:-lx/4, ly/4:-ly/4]
@@ -32,6 +32,7 @@ plt.subplot(155)
 plt.imshow(rotate_lena_noreshape, cmap=plt.cm.gray)
 plt.axis('off')
 
-plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
+plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0,
+                    right=1)
 
 plt.show()

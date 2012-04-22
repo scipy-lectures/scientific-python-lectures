@@ -10,8 +10,8 @@ def _tv_denoise_3d(im, weight=100, eps=2.e-4, keep_type=False, n_iter_max=200):
         3-D input data to be denoised
 
     weight: float, optional
-        denoising weight. The greater ``weight``, the more denoising (at 
-        the expense of fidelity to ``input``) 
+        denoising weight. The greater ``weight``, the more denoising (at
+        the expense of fidelity to ``input``)
 
     eps: float, optional
         relative difference of the value of the cost function that determines
@@ -20,7 +20,7 @@ def _tv_denoise_3d(im, weight=100, eps=2.e-4, keep_type=False, n_iter_max=200):
             (E_(n-1) - E_n) < eps * E_0
 
     keep_type: bool, optional (False)
-        whether the output has the same dtype as the input array. 
+        whether the output has the same dtype as the input array.
         keep_type is False by default, and the dtype of the output
         is np.float
 
@@ -34,7 +34,7 @@ def _tv_denoise_3d(im, weight=100, eps=2.e-4, keep_type=False, n_iter_max=200):
 
     Notes
     -----
-    Rudin, Osher and Fatemi algorithm 
+    Rudin, Osher and Fatemi algorithm
 
     Examples
     ---------
@@ -92,7 +92,7 @@ def _tv_denoise_3d(im, weight=100, eps=2.e-4, keep_type=False, n_iter_max=200):
         return out.astype(im_type)
     else:
         return out
- 
+
 def _tv_denoise_2d(im, weight=50, eps=2.e-4, keep_type=False, n_iter_max=200):
     """
     Perform total-variation denoising
@@ -130,22 +130,20 @@ def _tv_denoise_2d(im, weight=50, eps=2.e-4, keep_type=False, n_iter_max=200):
     The principle of total variation denoising is explained in
     http://en.wikipedia.org/wiki/Total_variation_denoising
 
-    This code is an implementation of the algorithm of Rudin, Fatemi and Osher 
+    This code is an implementation of the algorithm of Rudin, Fatemi and Osher
     that was proposed by Chambolle in [1]_.
 
     References
     ----------
 
-    .. [1] A. Chambolle, An algorithm for total variation minimization and 
-           applications, Journal of Mathematical Imaging and Vision, 
+    .. [1] A. Chambolle, An algorithm for total variation minimization and
+           applications, Journal of Mathematical Imaging and Vision,
            Springer, 2004, 20, 89-97.
 
     Examples
     ---------
     >>> import scipy
-    >>> lena = scipy.lena()
-    >>> import scipy
-    >>> lena = scipy.lena().astype(np.float)
+    >>> lena = scipy.misc.lena().astype(np.float)
     >>> lena += 0.5 * lena.std()*np.random.randn(*lena.shape)
     >>> denoised_lena = tv_denoise(lena, weight=60.0)
     """
@@ -160,13 +158,13 @@ def _tv_denoise_2d(im, weight=50, eps=2.e-4, keep_type=False, n_iter_max=200):
     i = 0
     while i < n_iter_max:
         d = -px -py
-        d[1:] += px[:-1] 
-        d[:, 1:] += py[:, :-1] 
-        
+        d[1:] += px[:-1]
+        d[:, 1:] += py[:, :-1]
+
         out = im + d
         E = (d**2).sum()
-        gx[:-1] = np.diff(out, axis=0) 
-        gy[:, :-1] = np.diff(out, axis=1) 
+        gx[:-1] = np.diff(out, axis=0)
+        gy[:, :-1] = np.diff(out, axis=1)
         norm = np.sqrt(gx**2 + gy**2)
         E += weight * norm.sum()
         norm *= 0.5 / weight
@@ -198,12 +196,12 @@ def tv_denoise(im, weight=50, eps=2.e-4, keep_type=False, n_iter_max=200):
     ----------
     im: ndarray (2d or 3d) of ints, uints or floats
         input data to be denoised. `im` can be of any numeric type,
-        but it is cast into an ndarray of floats for the computation 
+        but it is cast into an ndarray of floats for the computation
         of the denoised image.
 
     weight: float, optional
-        denoising weight. The greater ``weight``, the more denoising (at 
-        the expense of fidelity to ``input``) 
+        denoising weight. The greater ``weight``, the more denoising (at
+        the expense of fidelity to ``input``)
 
     eps: float, optional
         relative difference of the value of the cost function that 
@@ -212,7 +210,7 @@ def tv_denoise(im, weight=50, eps=2.e-4, keep_type=False, n_iter_max=200):
             (E_(n-1) - E_n) < eps * E_0
 
     keep_type: bool, optional (False)
-        whether the output has the same dtype as the input array. 
+        whether the output has the same dtype as the input array.
         keep_type is False by default, and the dtype of the output
         is np.float
 
@@ -250,9 +248,7 @@ def tv_denoise(im, weight=50, eps=2.e-4, keep_type=False, n_iter_max=200):
     ---------
     >>> import scipy
     >>> # 2D example using lena
-    >>> lena = scipy.lena()
-    >>> import scipy
-    >>> lena = scipy.lena().astype(np.float)
+    >>> lena = scipy.misc.lena().astype(np.float)
     >>> lena += 0.5 * lena.std()*np.random.randn(*lena.shape)
     >>> denoised_lena = tv_denoise(lena, weight=60)
     >>> # 3D example on synthetic data
