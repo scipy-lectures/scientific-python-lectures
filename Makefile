@@ -24,6 +24,8 @@ help:
 	@echo "  pdf       to make PDF from LaTeX, you can set PAPER=a4 or PAPER=letter"
 	@echo "  changes   to make an overview over all changed/added/deprecated items"
 	@echo "  linkcheck to check all external links for integrity"
+	@echo "  install   to upload to github the web pages"
+	@echo "  zip       to create the zip file with examples and doc"
 
 clean:
 	-rm -rf build/*
