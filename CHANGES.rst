@@ -1,6 +1,13 @@
 What's new
 ===========
 
+Release 2012.0 (22 Apr 2012)
+----------------------------
+
+This is a minor release with a few clean ups. In particular, clean up the
+scikit-learn chapter (Lars Buitinck), more informative section titles
+(Gael Varoquaux), and misc fixes (Valentin Haenel, Virgile Fritsch).
+
 Release 2011.1 (16 Oct 2011)
 ----------------------------
 
