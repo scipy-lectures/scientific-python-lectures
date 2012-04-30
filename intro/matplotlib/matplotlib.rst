@@ -187,7 +187,7 @@ So far we have used properties for the lines.
 There are three possibilities to set them:
 
 1) as keyword arguments at creation time:
-``plot(x, linear, 'g:+', x, square, 'r--o')``.
+   ``plot(x, linear, 'g:+', x, square, 'r--o')``.
 
 2) with the function ``setp``: ``setp(line, color='g')``.
 
