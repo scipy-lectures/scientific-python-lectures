@@ -219,6 +219,25 @@ In practice, we rarely enter items one by one...
         >>> np.random.seed(1234)        # Setting the random seed
 
 
+.. topic:: **Exercise: Array creation**
+    :class: green
+
+    Create the following arrays (with correct data types)::
+
+        [[ 1  1  1  1]
+        [ 1  1  1  1]
+        [ 1  1  1  2]
+        [ 1  6  1  1]]
+
+        [[0. 0. 0. 0. 0.]
+        [2. 0. 0. 0. 0.]
+        [0. 3. 0. 0. 0.]
+        [0. 0. 4. 0. 0.]
+        [0. 0. 0. 5. 0.]
+        [0. 0. 0. 0. 6.]]
+
+    Par on course: 3 statements for each
+
 .. array() constructor
 
 .. empty, zeros, arange, linspace
@@ -462,6 +481,21 @@ copied in memory.
 This behavior can be surprising at first sight... but it allows to save both
 memory and time.
 
+.. warning:: **The transpose is a view**
+
+   As a result, a matrix cannot be made symmetric in-place::
+
+    >>> a = np.ones((100, 100))
+    >>> a += a.T
+    >>> a
+    array([[ 2.,  2.,  2., ...,  2.,  2.,  2.],
+        [ 2.,  2.,  2., ...,  2.,  2.,  2.],
+        [ 2.,  2.,  2., ...,  2.,  2.,  2.],
+        ..., 
+        [ 3.,  3.,  3., ...,  2.,  2.,  2.],
+        [ 3.,  3.,  3., ...,  2.,  2.,  2.],
+        [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
+
 .. EXE: [1, 2, 3, 4, 5] -> [1, 2, 3]
 .. EXE: [1, 2, 3, 4, 5] -> [4, 5]
 .. EXE: [1, 2, 3, 4, 5] -> [1, 3, 5]
@@ -545,26 +579,6 @@ Compute prime numbers in 0--99, with a sieve
        In [10]: %run my_script_1_2.py
 
        >>> execfile('2_2_data_statistics.py')
-
---------------------------------------------------------
-
-.. rubric:: Exercise 1.1: Certain arrays
-
-Create the following arrays (with correct data types)::
-
-    [[ 1  1  1  1]
-     [ 1  1  1  1]
-     [ 1  1  1  2]
-     [ 1  6  1  1]]
-
-    [[0. 0. 0. 0. 0.]
-     [2. 0. 0. 0. 0.]
-     [0. 3. 0. 0. 0.]
-     [0. 0. 4. 0. 0.]
-     [0. 0. 0. 5. 0.]
-     [0. 0. 0. 0. 6.]]
-
-Par on course: 3 statements for each (53 & 54 characters)
 
 --------------------------------------------------------
 
