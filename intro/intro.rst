@@ -130,6 +130,11 @@ Which solutions do the scientists use to work?
 Scientific Python building blocks
 -----------------------------------
 
+
+Unlike Matlab, scilab or R, Python does not come with a pre-bundled set
+of modules for scientific computing. Below are the basic building blocks
+that can be combined to optain a scientific-computing environment:
+
 * **Python**, a generic and modern computing language
 
     * Python language: data types (``string``, ``int``), flow control,
@@ -145,56 +150,54 @@ Scientific Python building blocks
 
   .. image:: snapshot_ipython.png
         :align: right
-        :scale: 60
+        :scale: 40
 
-* **IPython**, an advanced **Python shell**
-
-  http://ipython.scipy.org/moin/
+* **IPython**, an advanced **Python shell** http://ipython.scipy.org/moin/
  
 * **Numpy** : provides powerful **numerical arrays** objects, and routines to
-  manipulate them.
-
-  http://www.numpy.org/
+  manipulate them. http://www.numpy.org/
 
 .. 
     >>> np.random.seed(4)
 
 * **Scipy** : high-level data processing routines.
-  Optimization, regression, interpolation, etc
-
-  http://www.scipy.org/
-
-* **Matplotlib** : 2-D visualization, "publication-ready" plots
+  Optimization, regression, interpolation, etc http://www.scipy.org/
 
   .. image:: random_c.jpg
         :scale: 40
         :align: right
 
+* **Matplotlib** : 2-D visualization, "publication-ready" plots
   http://matplotlib.sourceforge.net/
 
-* **Mayavi** : 3-D visualization
-  
+  .. raw:: html
+
+   <div style="clear: both"></div>
+
   .. image:: example_surface_from_irregular_data.jpg
         :scale: 60
         :align: right
 
+* **Mayavi** : 3-D visualization
   http://code.enthought.com/projects/mayavi/
+  
 
 .. raw:: html
 
-   <div style="padding-top: 9em;"></div>
+   <div style="clear: both"></div>
 
 The interactive workflow: IPython and a text editor 
 -----------------------------------------------------
 
-   **Interactive work to test and understand algorithm**
+**Interactive work to test and understand algorithm:** In this section, we
+describe an interactive workflow with `IPython <http://ipython.org>`__ that is
+handy to explore and understand algorithms.
 
 Python is a general-purpose language. As such, there is not one blessed
 environement to work into, and not only one way of using it. Although
 this makes it harder for beginners to find their way, it makes it
 possible for Python to be used to write programs, in web servers, or
-embedded devices. Here, we describe an interactive workflow with IPython
-that is handy to explore and understand algorithms.
+embedded devices. 
 
 .. note:: Reference document for this section:
 
@@ -234,11 +237,11 @@ Elaboration of the algorithm in an editor
 
 Create a file `my_file.py` in a text editor. Under EPD, you can use
 `Scite`, available from the start menu. Under Python(x,y), you can use
-Spyder. Under Ubuntu, if you don't already have your favorite editor, I
+Spyder. Under Ubuntu, if you don't already have your favorite editor, We
 would advise installing `Stani's Python editor`. In the file, add the
 following lines::
 
-    s = `Hello world`
+    s = 'Hello world'
     print(s) 
 
 Now, you can run it in ipython and explore the resulting variables:
@@ -256,9 +259,12 @@ Now, you can run it in ipython and explore the resulting variables:
     ----------------------------
     s          str     Hello word
 
-____
 
 .. topic:: **From a script to functions**
+
+    While it is tempting to work only with scripts, that is a file full 
+    of instructions following each other, do plan to progressively evolve
+    the script to a set of functions:
 
     * A script is not reusable, functions are.
 
