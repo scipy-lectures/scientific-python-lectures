@@ -17,11 +17,12 @@ The numpy array object
 What are Numpy and numpy arrays
 --------------------------------
 
-**Python** has:
+**Python** has built-in:
 
-    - built-in: lists, integers, floating point
+    - containers: lists (costless insertion and append), dictionnaries
+      (fast lookup)
 
-    - for numerics --- more is needed (efficiency, convenience)
+    - high-level number objects: integers, floating point
 
 **Numpy** is:
 
@@ -31,9 +32,16 @@ What are Numpy and numpy arrays
 
     - designed for scientific computation (convenience)
 
+::    
+
+    >>> import numpy as np
+    >>> a = np.array([0, 1, 2, 3])
+    >>> a
+    array([0, 1, 2, 3])
+
 .. topic:: For example:
 
-    An array containing ---
+    An array containing:
 
     * discretized time of an experiment/simulation
 
@@ -43,12 +51,20 @@ What are Numpy and numpy arrays
 
     * ...
 
-    ::    
+**Why it is useful:** Memory-efficient and fast container for numerical
+operations.
 
-     >>> import numpy as np
-     >>> a = np.array([0, 1, 2, 3])
-     >>> a
-     array([0, 1, 2, 3])
+.. sourcecode:: ipython
+
+    In [1]: l = range(1000)
+
+    In [2]: %timeit [i**2 for i in l]
+    1000 loops, best of 3: 403 us per loop
+
+    In [3]: a = np.arange(1000)
+
+    In [4]: %timeit a**2
+    100000 loops, best of 3: 12.7 us per loop
 
 
 .. extension package to Python to support multidimensional arrays
@@ -109,7 +125,7 @@ Reference documentation
 Creating arrays
 ---------------
 
-1-D::
+**1-D**::
 
     >>> a = np.array([0, 1, 2, 3])
     >>> a
@@ -121,7 +137,7 @@ Creating arrays
     >>> len(a)
     4
 
-2-D, 3-D, ...
+**2-D, 3-D, ...**:
 
 .. code-block:: python
 
@@ -183,41 +199,24 @@ In practice, we rarely enter items one by one...
         array([[ 1.,  0.,  0.],
                [ 0.,  1.,  0.],
                [ 0.,  0.,  1.]])
-	>>> d = np.diag(np.array([1, 2, 3, 4, 5]))
+	>>> d = np.diag(np.array([1, 2, 3, 4]))
         >>> d
-        array([[1, 0, 0, 0, 0],
-               [0, 2, 0, 0, 0],
-               [0, 0, 3, 0, 0],
-               [0, 0, 0, 4, 0],
-               [0, 0, 0, 0, 5]])
+        array([[1, 0, 0, 0],
+               [0, 2, 0, 0],
+               [0, 0, 3, 0],
+               [0, 0, 0, 4])
 
-    * Random numbers (Mersenne Twister PRNG)::
+    * `np.random`: random numbers (Mersenne Twister PRNG)::
 
-        >>> a = np.random.rand(4)              # uniform in [0, 1]
+        >>> a = np.random.rand(4)       # uniform in [0, 1]
         >>> a
 	array([ 0.58597729,  0.86110455,  0.9401114 ,  0.54264348])
 
-        >>> b = np.random.randn(4)             # gaussian
+        >>> b = np.random.randn(4)      # Gaussian
         >>> b
 	array([-2.56844807,  0.06798064, -0.36823781,  0.86966886])
 
-	>>> c = np.random.rand(3, 3)
-        >>> c
-        array([[ 0.31976645,  0.64807526,  0.74770801],
-               [ 0.8280203 ,  0.8669403 ,  0.07663683],
-               [ 0.11527489,  0.11494884,  0.13503285]])
-
-        >>> d = np.random.zipf(1.5, size=(2, 8))  # Zipf distribution (s=1.5)
-        >>> d
-        array([[5290,    1,    6,    9,    1,    1,    1,    2],
-               [   1,    5,    1,   13,    1,    1,    2,    1]])
-
-        >>> np.random.seed(1234)                  # Setting the random seed
-        >>> np.random.rand(3)
-	array([ 0.19151945,  0.62210877,  0.43772774])
-        >>> np.random.seed(1234)
-        >>> np.random.rand(5)
-	array([ 0.19151945,  0.62210877,  0.43772774,  0.78535858,  0.77997581])
+        >>> np.random.seed(1234)        # Setting the random seed
 
 
 .. array() constructor
@@ -234,63 +233,69 @@ Basic data types
 ----------------
 
 You probably noted the ``1`` and ``1.`` above. These are different
-data types:
+data types::
 
->>> a = np.array([1, 2, 3])
->>> a.dtype
-dtype('int64')
+    >>> a = np.array([1, 2, 3])
+    >>> a.dtype
+    dtype('int64')
 
->>> b = np.array([1., 2., 3.])
->>> b.dtype
-dtype('float64')
+    >>> b = np.array([1., 2., 3.])
+    >>> b.dtype
+    dtype('float64')
 
 Much of the time you don't necessarily need to care, but remember they
 are there.
 
 -----------------------------
 
-You can also choose which one you want:
+You can also choose which one you want::
 
->>> c = np.array([1, 2, 3], dtype=float)
->>> c.dtype
-dtype('float64')
+    >>> c = np.array([1, 2, 3], dtype=float)
+    >>> c.dtype
+    dtype('float64')
 
-The **default** data type is floating point:
+The **default** data type is floating point::
 
->>> a = np.ones((3, 3))
->>> a.dtype
-dtype('float64')
->>> b = np.linspace(0, 1, 6)
->>> b.dtype
-dtype('float64')
-
+    >>> a = np.ones((3, 3))
+    >>> a.dtype
+    dtype('float64')
 There are also other types:
 
->>> d = np.array([1+2j, 3+4j, 5+6*1j])
->>> d.dtype
-dtype('complex128')
+.. list-table::
+   
+   * 
+    - Complex
 
->>> e = np.array([True, False, False, True])
->>> e.dtype
-dtype('bool')
+    - ::
 
->>> f = np.array(['Bonjour', 'Hello', 'Hallo', 'Terve', 'Hej'])
->>> f.dtype
-dtype('S7')         # <--- strings containing max. 7 letters
+        >>> d = np.array([1+2j, 3+4j, 5+6*1j])
+        >>> d.dtype
+        dtype('complex128')
 
-.. integer types, floating point types, complex numbers
-.. mention: int32, int64 vs. int
-.. mention: float32, float64 vs. float
-.. mention: astype
+   *
+    - Bool
 
-.. EXE: study zeros(shape).dtype
-.. EXE: study array([1, 2, 3]).dtype
-.. EXE: study array([1, 2, 3.]).dtype
-.. EXE: study array([1+2j, 2, 3]).dtype
-.. EXE: study array([1, 2, 3]).dtype
-.. EXE: truncate a float array to an integer one
-.. EXE: round a float array to an integer one
+    - ::
 
+        >>> e = np.array([True, False, False, True])
+        >>> e.dtype
+        dtype('bool')
+
+   *
+    - Strings
+
+    - ::
+
+        >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
+        >>> f.dtype
+        dtype('S7')         # <--- strings containing max. 7 letters
+
+   *
+    - Much more: int32/int64...
+
+    -
+
+.. XXX: mention: astype
 
 Basic visualization
 -------------------
@@ -300,16 +305,10 @@ Now that we have our first data arrays, we are going to visualize them.
 **Matplotlib** is a 2D plotting package. We can import its functions as below::
 
     >>> import matplotlib.pyplot as plt  # the tidy way
-    >>> # ... or ...
-    >>> from matplotlib.pyplot import *  # imports everything in the namespace
 
-If you launched Ipython with python(x,y), or with ``ipython -pylab``
-(under Linux), both of the above commands have been run.  In the
-remainder of this tutorial, we assume you have run
+The recommended way of working is use `IPython`, started in `pylab` mode::
 
-    >>> import matplotlib.pyplot as plt
-
-or are using ``ipython -pylab`` which does it automatically.
+    $ ipython -pylab
 
 **1D plotting**
 
@@ -324,12 +323,7 @@ or are using ``ipython -pylab`` which does it automatically.
 **2D arrays** (such as images)
 
 >>> image = np.random.rand(30, 30)
->>> plt.imshow(image)
->>> plt.gray()
->>> plt.show()
-
->>> plt.pcolor(image)
->>> plt.hot()
+>>> plt.imshow(image, cmap=plt.cm.gray)
 >>> plt.colorbar()
 >>> plt.show()
 
@@ -352,8 +346,6 @@ start with **relaunching iPython** with these options:
 
     In [59]: from enthought.mayavi import mlab
     In [60]: mlab.figure()
-    get fences failed: -1
-    param: 6, val: 0
     Out[60]: <enthought.mayavi.core.scene.Scene object at 0xcb2677c>
     In [61]: mlab.surf(image)
     Out[61]: <enthought.mayavi.modules.surface.Surface object at 0xd0862fc>
@@ -372,10 +364,8 @@ http://github.enthought.com/mayavi/mayavi
 Indexing and slicing
 --------------------
 
-.. XXX: rewrite
-
 The items of an array can be accessed and assigned to the same way as
-other Python sequences (``list``, ``tuple``) ::
+other Python sequences (e.g. lists) ::
 
     >>> a = np.arange(10)
     >>> a
@@ -390,32 +380,29 @@ other Python sequences (``list``, ``tuple``) ::
 
 For multidimensional arrays, indexes are tuples of integers::
 
-    >>> a = np.diag(np.arange(5))
+    >>> a = np.diag(np.arange(3))
     >>> a
-    array([[0, 0, 0, 0, 0],
-           [0, 1, 0, 0, 0],
-           [0, 0, 2, 0, 0],
-           [0, 0, 0, 3, 0],
-           [0, 0, 0, 0, 4]])
-    >>> a[1,1]
+    array([[0, 0, 0],
+           [0, 1, 0],
+           [0, 0, 2]])
+    >>> a[1, 1]
     1
-    >>> a[2,1] = 10 # third line, second column
+    >>> a[2, 1] = 10 # third line, second column
     >>> a
-    array([[ 0,  0,  0,  0,  0],
-           [ 0,  1,  0,  0,  0],
-           [ 0, 10,  2,  0,  0],
-           [ 0,  0,  0,  3,  0],
-           [ 0,  0,  0,  0,  4]])
+    array([[ 0,  0,  0],
+           [ 0,  1,  0],
+           [ 0, 10,  2]])
     >>> a[1]
-    array([0, 1, 0, 0, 0])
+    array([0, 1, 0])
 
 Note that:
 
 * In 2D, the first dimension corresponds to rows, the second to columns.
-* for multidimensional ``a``,`a[0]` is interpreted by
+* for multidimensional ``a``, `a[0]` is interpreted by
   taking all elements in the unspecified dimensions.
 
-.. rubric:: Slicing
+Slicing
+........
 
 Arrays, like other Python sequences can also be sliced::
 
@@ -430,19 +417,8 @@ Note that the last index is not included!::
     >>> a[:4]
     array([0, 1, 2, 3])
 
-``start:end:step`` is a ``slice`` object which represents the set of indexes
-``range(start, end, step)``. A ``slice`` can be explicitly created::
-
-    >>> sl = slice(1, 9, 2)
-    >>> a = np.arange(10)
-    >>> b = np.arange(1, 20, 2)
-    >>> a, b
-    (array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]), array([ 1,  3,  5,  7,  9, 11, 13, 15, 17, 19]))
-    >>> a[sl], b[sl]
-    (array([1, 3, 5, 7]), array([ 3,  7, 11, 15]))
-
-All three slice components are not required: by default, `start` is 0, `end` is the
-last and `step` is 1::
+All three slice components are not required: by default, `start` is 0,
+`end` is the last and `step` is 1::
 
     >>> a[1:3]
     array([1, 2])
@@ -451,34 +427,11 @@ last and `step` is 1::
     >>> a[3:]
     array([3, 4, 5, 6, 7, 8, 9])
 
-Of course, it works with multidimensional arrays::
-
-    >>> a = np.eye(5)
-    >>> a
-    array([[ 1.,  0.,  0.,  0.,  0.],
-           [ 0.,  1.,  0.,  0.,  0.],
-           [ 0.,  0.,  1.,  0.,  0.],
-           [ 0.,  0.,  0.,  1.,  0.],
-           [ 0.,  0.,  0.,  0.,  1.]])
-    >>> a[2:4,:3] # 3rd and 4th rows, 3 first columns
-    array([[ 0.,  0.,  1.],
-           [ 0.,  0.,  0.]])
-
-All elements specified by a slice can be easily modified::
-
-    >>> a[:3,:3] = 4
-    >>> a
-    array([[ 4.,  4.,  4.,  0.,  0.],
-           [ 4.,  4.,  4.,  0.,  0.],
-           [ 4.,  4.,  4.,  0.,  0.],
-           [ 0.,  0.,  0.,  1.,  0.],
-           [ 0.,  0.,  0.,  0.,  1.]])
-
 A small illustrated summary of Numpy indexing and slicing...
 
 .. image:: numpy_indexing.png
    :align: center
-
+   :width: 100%
 
 Copies and views
 ----------------
@@ -509,12 +462,6 @@ copied in memory.
 This behavior can be surprising at first sight... but it allows to save both
 memory and time.
 
-.. indices begin at 0  (as in Python)
-.. indexing elements
-.. slices: a[i:j:k] syntax, and a[slice(i, j, k)]
-.. indexing multidimensional arrays
-.. assignment with slices
-
 .. EXE: [1, 2, 3, 4, 5] -> [1, 2, 3]
 .. EXE: [1, 2, 3, 4, 5] -> [4, 5]
 .. EXE: [1, 2, 3, 4, 5] -> [1, 3, 5]
@@ -525,123 +472,6 @@ memory and time.
 .. EXE: create an array [1, 0, 1, 0, 1, 0, 1]
 .. EXE: create an array [1, 0, 2, 0, 3, 0, 4]
 .. CHA: archimedean sieve
-
-Data files
-----------
-
-.. rubric:: Text files
-
-Example: ``populations.txt``::
-
-    1900	30e3	4e3	51300
-    1901	47.2e3	6.1e3	48200
-    1902	70.2e3	9.8e3	41500
-    ...
-
->>> data = np.loadtxt('populations.txt')    # if in current directory
->>> data
-array([[  1900.,  30000.,   4000.,  51300.],
-       [  1901.,  47200.,   6100.,  48200.],
-       [  1902.,  70200.,   9800.,  41500.],
-...
-
->>> np.savetxt('pop2.txt', data)
->>> data2 = np.loadtxt('pop2.txt')
-
-.. note:: If you have a complicated text file, what you can try are:
-
-   - ``np.genfromtxt``
-
-   - Using Python's I/O functions and e.g. regexps for parsing
-     (Python is quite well suited for this)
-
-.. topic:: Navigating the filesystem in Python shells
-
-   *Ipython*
-
-   .. sourcecode:: ipython
-
-       In [1]: pwd      # show current directory
-       '/home/user/stuff/2011-numpy-tutorial'
-       In [2]: cd ex
-       '/home/user/stuff/2011-numpy-tutorial/ex'
-       In [3]: ls
-       populations.txt	species.txt
-
-   *Python* (here's yet one reason to use Ipython for interactive use :)
-
-   >>> import os
-   >>> os.getcwd()
-   '/home/user/stuff/2011-numpy-tutorial'
-   >>> os.chdir('ex')
-   >>> os.getcwd()
-   '/home/user/stuff/2011-numpy-tutorial/ex'
-   >>> os.listdir('.')
-   ['populations.txt',
-    'species.txt',
-    ...
-
-.. rubric:: Images
-
->>> img = plt.imread('../../data/elephant.png')
->>> img.shape, img.dtype
-((200, 300, 3), dtype('float32'))
->>> plt.imshow(img)
->>> plt.savefig('plot.png')
->>> plt.show()
-
->>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
-
-This saved only one channel (of RGB)
-
->>> plt.imshow(plt.imread('red_elephant.png'))
->>> plt.show()
-
-Other libraries:
-
->>> from scipy.misc import imsave
->>> imsave('tiny_elephant.png', img[::6,::6])
->>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
->>> plt.show()
-
-.. plot:: pyplots/numpy_intro_3.py
-
-.. .. rubric:: Raw binary data
-..
-.. Avoid this -- often not portable, does not save data type or array
-.. shape, etc.:
-..
-.. >>> data.tofile('pop.dat')
-.. >>> np.fromfile('foo.dat', dtype=float)
-.. array([  1900.,  30000.,   4000.,  51300.,   1901.,  47200.,   6100.,
-.. ...
-
-.. rubric:: Numpy's own format
-
->>> np.save('pop.npy', data)
->>> data3 = np.load('pop.npy')
-
-.. rubric:: Well-known (& more obscure) file formats
-
-* HDF5: `h5py <http://code.google.com/p/h5py/>`__, `PyTables <http://pytables.org>`__
-* NetCDF: ``scipy.io.netcdf_file``, `netcdf4-python <http://code.google.com/p/netcdf4-python/>`__, ...
-* Matlab: ``scipy.io.loadmat``, ``scipy.io.savemat``
-* MatrixMarket: ``scipy.io.mmread``, ``scipy.io.mmread``
-
-... if somebody uses it, there's probably also a Python library for it.
-
-
-.. loadtxt, savez, load, fromfile, tofile
-
-.. real life: point to HDF5, NetCDF, etc.
-
-.. EXE: use loadtxt to load a data file
-.. EXE: use savez and load to save data in binary format
-.. EXE: use tofile and fromfile to put and get binary data bytes in/from a file
-   follow-up: .view()
-.. EXE: parsing text files -- Python can do this reasonably well natively!
-   throw in the mix some random text file to be parsed (eg. PPM)
-.. EXE: advanced: read the data in a PPM file
 
 Summary & Exercises
 -------------------
@@ -1312,7 +1142,7 @@ Or,
 
 >>> b = a.reshape((6, -1))    # unspecified (-1) value is inferred
 
-.. rubric:: Copies or views
+.. rubric:: Views and copies
 
 ``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)),
 not a copy:
@@ -2346,14 +2176,114 @@ Summary & Exercises
 
 - Polynomials are available in various bases
 
+Loading data files
+===================
 
-Under the hood
-=================
+Text files
+-----------
 
-It's...
--------
+Example: :download:`populations.txt <../../data/populations.txt>`::
 
-**ndarray** =
+    1900	30e3	4e3	51300
+    1901	47.2e3	6.1e3	48200
+    1902	70.2e3	9.8e3	41500
+    ...
+
+::
+
+    >>> data = np.loadtxt('populations.txt')    # if in current directory
+    >>> data
+    array([[  1900.,  30000.,   4000.,  51300.],
+        [  1901.,  47200.,   6100.,  48200.],
+        [  1902.,  70200.,   9800.,  41500.],
+    ...
+
+    >>> np.savetxt('pop2.txt', data)
+    >>> data2 = np.loadtxt('pop2.txt')
+
+.. note:: If you have a complicated text file, what you can try are:
+
+   - ``np.genfromtxt``
+
+   - Using Python's I/O functions and e.g. regexps for parsing
+     (Python is quite well suited for this)
+
+.. topic:: Navigating the filesystem with *Ipython*
+
+   .. sourcecode:: ipython
+
+       In [1]: pwd      # show current directory
+       '/home/user/stuff/2011-numpy-tutorial'
+       In [2]: cd ex
+       '/home/user/stuff/2011-numpy-tutorial/ex'
+       In [3]: ls
+       populations.txt	species.txt
+
+Images
+--------
+
+Using Matplotlib::
+
+    >>> img = plt.imread('../../data/elephant.png')
+    >>> img.shape, img.dtype
+    ((200, 300, 3), dtype('float32'))
+    >>> plt.imshow(img)
+    >>> plt.savefig('plot.png')
+    >>> plt.show()
+
+    >>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
+
+This saved only one channel (of RGB)::
+
+    >>> plt.imshow(plt.imread('red_elephant.png'))
+    >>> plt.show()
+
+Other libraries::
+
+    >>> from scipy.misc import imsave
+    >>> imsave('tiny_elephant.png', img[::6,::6])
+    >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
+    >>> plt.show()
+
+.. plot:: pyplots/numpy_intro_3.py
+
+
+Numpy's own format
+--------------------
+
+Numpy has its own binary format, not portable but with efficient I/O::
+
+    >>> np.save('pop.npy', data)
+    >>> data3 = np.load('pop.npy')
+
+Well-known (& more obscure) file formats
+------------------------------------------
+
+* HDF5: `h5py <http://code.google.com/p/h5py/>`__, `PyTables <http://pytables.org>`__
+* NetCDF: ``scipy.io.netcdf_file``, `netcdf4-python <http://code.google.com/p/netcdf4-python/>`__, ...
+* Matlab: ``scipy.io.loadmat``, ``scipy.io.savemat``
+* MatrixMarket: ``scipy.io.mmread``, ``scipy.io.mmread``
+
+... if somebody uses it, there's probably also a Python library for it.
+
+
+.. loadtxt, savez, load, fromfile, tofile
+
+.. real life: point to HDF5, NetCDF, etc.
+
+.. EXE: use loadtxt to load a data file
+.. EXE: use savez and load to save data in binary format
+.. EXE: use tofile and fromfile to put and get binary data bytes in/from a file
+   follow-up: .view()
+.. EXE: parsing text files -- Python can do this reasonably well natively!
+   throw in the mix some random text file to be parsed (eg. PPM)
+.. EXE: advanced: read the data in a PPM file
+
+
+Under the hood: the memory layout of a numpy array
+====================================================
+
+A numpy array is:
 
     block of memory + indexing scheme + data type descriptor
 
