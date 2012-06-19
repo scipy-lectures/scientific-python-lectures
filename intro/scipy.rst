@@ -252,8 +252,11 @@ The resulting output is composed of:
       The closer it is to zero, the more likely it is that the processes
       have different mean.
 
+.. _scipy_linalg:
+
 Linear algebra operations: ``scipy.linalg``
 -----------------------------------------------
+
 First, the linalg module provides standard linear algebra operations.
 The ``det`` function computes the determinant of a square matrix::
 
