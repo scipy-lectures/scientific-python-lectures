@@ -3,6 +3,11 @@
 Numerical operations on arrays
 =================================
 
+.. contents:: Section contents
+    :local:
+    :depth: 1
+
+
 Elementwise operations
 ----------------------
 
@@ -478,7 +483,8 @@ However, in practice, this is rarely needed!
 Array shape manipulation
 ------------------------
 
-.. rubric:: Flattening
+Flattening
+...........
 
 >>> a = np.array([[1, 2, 3], [4, 5, 6]])
 >>> a.ravel()
@@ -492,47 +498,49 @@ array([1, 4, 2, 5, 3, 6])
 
 Higher dimensions: last dimensions ravel out "first".
 
-.. rubric:: Reshaping
+Reshaping
+.........
 
-The inverse operation to flattening:
+The inverse operation to flattening::
 
->>> a.shape
-(2, 3)
->>> b = a.ravel()
->>> b.reshape((2, 3))
-array([[1, 2, 3],
-       [4, 5, 6]])
+    >>> a.shape
+    (2, 3)
+    >>> b = a.ravel()
+    >>> b.reshape((2, 3))
+    array([[1, 2, 3],
+        [4, 5, 6]])
 
-Creating an array with a different shape, from another array:
+Creating an array with a different shape, from another array::
 
->>> a = np.arange(36)
->>> b = a.reshape((6, 6))
->>> b
-array([[ 0,  1,  2,  3,  4,  5],
-       [ 6,  7,  8,  9, 10, 11],
-       [12, 13, 14, 15, 16, 17],
-       [18, 19, 20, 21, 22, 23],
-       [24, 25, 26, 27, 28, 29],
-       [30, 31, 32, 33, 34, 35]])
+    >>> a = np.arange(36)
+    >>> b = a.reshape((6, 6))
+    >>> b
+    array([[ 0,  1,  2,  3,  4,  5],
+        [ 6,  7,  8,  9, 10, 11],
+        [12, 13, 14, 15, 16, 17],
+        [18, 19, 20, 21, 22, 23],
+        [24, 25, 26, 27, 28, 29],
+        [30, 31, 32, 33, 34, 35]])
 
-Or,
+Or, ::
 
->>> b = a.reshape((6, -1))    # unspecified (-1) value is inferred
+    >>> b = a.reshape((6, -1))    # unspecified (-1) value is inferred
 
-.. rubric:: Views and copies
+Views and copies
+................
 
 ``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)),
 not a copy:
 
->>> b[0,0] = 99
+>>> b[0, 0] = 99
 >>> a
 array([99,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
        17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
        34, 35])
 
-Beware!
+Beware: reshape may also return a copy!
 
->>> a = np.zeros((3,2))
+>>> a = np.zeros((3, 2))
 >>> b = a.T.reshape(3*2)
 >>> b[0] = 9
 >>> a
@@ -540,45 +548,48 @@ array([[ 0.,  0.],
        [ 0.,  0.],
        [ 0.,  0.]])
 
-To understand, see "Under the hood" below.
+To understand, see the section on :ref:`the memory layout of an array <memory_layout>` below.
 
-.. rubric:: Dimension shuffling
+Dimension shuffling
+....................
 
 >>> a = np.arange(4*3*2).reshape(4, 3, 2)
 >>> a.shape
 (4, 3, 2)
->>> a[0,2,1]
+>>> a[0, 2, 1]
 5
 >>> b = a.transpose(1, 2, 0)
 >>> b.shape
 (3, 2, 4)
->>> b[2,1,0]
+>>> b[2, 1, 0]
 5
 
-Also creates a view:
+Also creates a view::
 
->>> b[2,1,0] = -1
->>> a[0,2,1]
--1
+    >>> b[2, 1, 0] = -1
+    >>> a[0, 2, 1]
+    -1
 
-.. rubric:: Resizing
+Resizing
+.........
 
-Size of an array can be changed with ``ndarray.resize``:
+Size of an array can be changed with ``ndarray.resize``::
 
->>> a = np.arange(4)
->>> a.resize((8,))
->>> a
-array([0, 1, 2, 3, 0, 0, 0, 0])
+    >>> a = np.arange(4)
+    >>> a.resize((8,))
+    >>> a
+    array([0, 1, 2, 3, 0, 0, 0, 0])
 
-However, it must not be referred to somewhere else:
+However, it must not be referred to somewhere else::
 
->>> b = a
->>> a.resize((4,))
-...
-ValueError: cannot resize an array references or is referenced
-by another array in this way.  Use the resize function
+    >>> b = a
+    >>> a.resize((4,))
+    ...
+    ValueError: cannot resize an array references or is referenced
+    by another array in this way.  Use the resize function
 
-.. rubric:: Some examples of real-world use cases
+Some examples of real-world use cases
+......................................
 
 .. topic:: Case 2.a: Calling (legacy) Fortran code
 
@@ -595,6 +606,7 @@ by another array in this way.  Use the resize function
         b = a + 1
       end subroutine some_function
 
+   We can use f2py to wrap this fortran code in Python: 
    ``f2py -c -m fortran_module 2_a_fortran_module.f90``
 
    .. sourcecode:: python
@@ -784,7 +796,7 @@ Some exercices
     * Lena is then displayed in false colors. A colormap must be
       specified for her to be displayed in grey.
 
-    .. sourcecode:: ipython
+      .. sourcecode:: ipython
 
         In [6]: plt.imshow(lena, cmap=plt.cm.gray)
 

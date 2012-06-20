@@ -1,8 +1,11 @@
 .. currentmodule:: numpy
 
-
 Advanced operations
 ===================
+
+.. contents:: Section contents
+    :local:
+    :depth: 1
 
 Fourier transforms
 ------------------

@@ -1,5 +1,5 @@
 import numpy as np
-import scipy
+from scipy import misc
 import matplotlib.pyplot as plt
 
-l = scipy.misc.lena()
+l = misc.lena()

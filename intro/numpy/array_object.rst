@@ -3,6 +3,10 @@
 The numpy array object
 =======================
 
+.. contents:: Section contents
+    :local:
+    :depth: 1
+
 What are Numpy and numpy arrays
 --------------------------------
 

@@ -3,6 +3,11 @@
 More elaborate arrays
 ======================
 
+.. contents:: Section contents
+    :local:
+    :depth: 1
+
+
 .. XXX: maybe some of this should go to the advanced chapter
 
 More data types
@@ -302,6 +307,8 @@ The masked array package also contains domain-aware functions::
 
    .. plot:: pyplots/numpy_intro_8.py
 
+.. _memory_layout:
+
 Under the hood: the memory layout of a numpy array
 ---------------------------------------------------
 
@@ -498,3 +505,26 @@ Summary
 
 - Various tricks can you do by playing with the strides (stuff for an
   advanced tutorial it is)
+
+_____
+
+While it is off topic in a chapter on numpy, let's take a moment to
+recall good coding practice, which really do pay off in the long run:
+
+.. topic:: Good practices
+
+    * Explicit variable names (no need of a comment to explain what is in
+      the variable)
+
+    * Style: spaces after commas, around ``=``, etc.
+
+      A certain number of rules for writing "beautiful" code (and, more
+      importantly, using the same conventions as everybody else!) are
+      given in the `Style Guide for Python Code
+      <http://www.python.org/dev/peps/pep-0008>`_ and the `Docstring
+      Conventions <http://www.python.org/dev/peps/pep-0257>`_ page (to
+      manage help strings).
+
+    * Except some rare cases, variable names and comments in English.
+
+
