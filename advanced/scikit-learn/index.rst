@@ -469,7 +469,7 @@ Now we can visualize the (transformed) iris dataset::
 
     >>> import pylab as pl
     >>> pl.scatter(X[:, 0], X[:, 1], c=iris.target) # doctest: +ELLIPSIS
-    <matplotlib.collections.CircleCollection object at ...>
+    <matplotlib.collections...Collection object at ...>
 
 .. image:: pca_iris.png
    :scale: 50

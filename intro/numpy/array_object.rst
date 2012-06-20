@@ -1,3 +1,7 @@
+..  
+    >>> import numpy as np
+    >>> np.random.seed(0)
+
 .. currentmodule:: numpy
 
 The numpy array object
@@ -81,25 +85,16 @@ Reference documentation
 
   .. code-block:: python
 
-     >>> help(np.array)
-     array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0)
-
-     Create an array.
-
-     Parameters
-     ----------
-     object : array_like
-     ...
-
-     Examples
-     --------
-     >>> np.array([1, 2, 3])
-     array([1, 2, 3])
+     >>> help(np.array)    # doctest: +ELLIPSIS
+     Help on built-in function array in module numpy.core.multiarray:
+     <BLANKLINE>
+     array(...)
+         array(object, dtype=None, copy=True, order=None, subok=False, ...
      ...
 
 - Looking for something:
 
-  >>> np.lookfor('create array')
+  >>> np.lookfor('create array')    # doctest: +ELLIPSIS
   Search results for 'create array'
   ---------------------------------
   numpy.array
@@ -132,8 +127,8 @@ Creating arrays
 
     >>> b = np.array([[0, 1, 2], [3, 4, 5]])    # 2 x 3 array
     >>> b
-    array([[ 0,  1,  2],
-           [ 3,  4,  5]])
+    array([[0, 1, 2],
+           [3, 4, 5]])
     >>> b.ndim
     2
     >>> b.shape
@@ -145,7 +140,7 @@ Creating arrays
     >>> c
     array([[[1],
             [2]],
-
+    <BLANKLINE>
            [[3],
             [4]]])
     >>> c.shape
@@ -193,17 +188,17 @@ In practice, we rarely enter items one by one...
     array([[1, 0, 0, 0],
            [0, 2, 0, 0],
            [0, 0, 3, 0],
-           [0, 0, 0, 4])
+           [0, 0, 0, 4]])
 
 * `np.random`: random numbers (Mersenne Twister PRNG)::
 
     >>> a = np.random.rand(4)       # uniform in [0, 1]
     >>> a
-    array([ 0.58597729,  0.86110455,  0.9401114 ,  0.54264348])
+    array([ 0.95799151,  0.14222247,  0.08777354,  0.51887998])
 
     >>> b = np.random.randn(4)      # Gaussian
     >>> b
-    array([-2.56844807,  0.06798064, -0.36823781,  0.86966886])
+    array([ 0.37544699, -0.11425369, -0.47616538,  1.79664113])
 
     >>> np.random.seed(1234)        # Setting the random seed
 
@@ -214,16 +209,16 @@ In practice, we rarely enter items one by one...
     Create the following arrays (with correct data types)::
 
         [[ 1  1  1  1]
-        [ 1  1  1  1]
-        [ 1  1  1  2]
-        [ 1  6  1  1]]
+         [ 1  1  1  1]
+         [ 1  1  1  2]
+         [ 1  6  1  1]]
 
         [[0. 0. 0. 0. 0.]
-        [2. 0. 0. 0. 0.]
-        [0. 3. 0. 0. 0.]
-        [0. 0. 4. 0. 0.]
-        [0. 0. 0. 5. 0.]
-        [0. 0. 0. 0. 6.]]
+         [2. 0. 0. 0. 0.]
+         [0. 3. 0. 0. 0.]
+         [0. 0. 4. 0. 0.]
+         [0. 0. 0. 5. 0.]
+         [0. 0. 0. 0. 6.]]
 
     Par on course: 3 statements for each
 
@@ -234,9 +229,9 @@ In practice, we rarely enter items one by one...
     to construct the array::
 
         [[4 3 4 3 4 3]
-        [2 1 2 1 2 1]
-        [4 3 4 3 4 3]
-        [2 1 2 1 2 1]]
+         [2 1 2 1 2 1]
+         [4 3 4 3 4 3]
+         [2 1 2 1 2 1]]
 
 .. array() constructor
 
@@ -278,6 +273,7 @@ The **default** data type is floating point::
     >>> a = np.ones((3, 3))
     >>> a.dtype
     dtype('float64')
+
 There are also other types:
 
 .. list-table::
@@ -333,18 +329,22 @@ The recommended way of working is use `IPython`, started in `pylab` mode::
 
 >>> x = np.linspace(0, 3, 20)
 >>> y = np.linspace(0, 9, 20)
->>> plt.plot(x, y)       # line plot
->>> plt.plot(x, y, 'o')  # dot plot
->>> plt.show()           # <-- shows the plot (not needed with Ipython)
+>>> plt.plot(x, y)       # line plot    # doctest: +ELLIPSIS
+[<matplotlib.lines.Line2D object at ...>]
+>>> plt.plot(x, y, 'o')  # dot plot    # doctest: +ELLIPSIS
+[<matplotlib.lines.Line2D object at ...>]
+>>> plt.show()           # <-- shows the plot (not needed with Ipython) # doctest: +SKIP
 
 .. plot:: pyplots/numpy_intro_1.py
 
 **2D arrays** (such as images)
 
 >>> image = np.random.rand(30, 30)
->>> plt.imshow(image, cmap=plt.cm.gray)
->>> plt.colorbar()
->>> plt.show()
+>>> plt.imshow(image, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+<matplotlib.image.AxesImage object at ...>
+>>> plt.colorbar()    # doctest: +ELLIPSIS
+<matplotlib.colorbar.Colorbar instance at ...>
+>>> plt.show() # doctest: +SKIP
 
 .. plot:: pyplots/numpy_intro_2.py
 
