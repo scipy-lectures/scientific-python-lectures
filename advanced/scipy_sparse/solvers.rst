@@ -10,7 +10,7 @@ Linear System Solvers
 * all solvers are accessible from::
 
     >>> import scipy.sparse.linalg as spla
-    >>> spla.__all__
+    >>> spla.__all__    # doctest: +SKIP
     ['LinearOperator', 'Tester', 'arpack', 'aslinearoperator', 'bicg',
     'bicgstab', 'cg', 'cgs', 'csc_matrix', 'csr_matrix', 'dsolve',
     'eigen', 'eigen_symmetric', 'factorized', 'gmres', 'interface',
@@ -36,8 +36,8 @@ Examples
 ^^^^^^^^
 * import the whole module, and see its docstring::
 
-    >>> import scipy.sparse.linalg.dsolve as dsl
-    >>> help(dsl)
+    >>> from scipy.sparse.linalg import dsolve
+    >>> help(dsolve) # doctest: +SKIP
 
 * both superlu and umfpack can be used (if the latter is installed) as
   follows:
@@ -45,8 +45,8 @@ Examples
     * prepare a linear system::
   
         >>> import numpy as np
-        >>> import scipy.sparse as sps
-        >>> mtx = sps.spdiags([[1, 2, 3, 4, 5], [6, 5, 8, 9, 10]], [0, 1], 5, 5)
+        >>> from scipy import sparse
+        >>> mtx = sparse.spdiags([[1, 2, 3, 4, 5], [6, 5, 8, 9, 10]], [0, 1], 5, 5)
         >>> mtx.todense()
         matrix([[ 1,  5,  0,  0,  0],
                 [ 0,  2,  8,  0,  0],
@@ -58,30 +58,38 @@ Examples
     * solve as single precision real::
 
         >>> mtx1 = mtx.astype(np.float32)
-        >>> x = dsl.spsolve(mtx1, rhs, use_umfpack=False)
+        >>> x = dsolve.spsolve(mtx1, rhs, use_umfpack=False)
         >>> print x
-        >>> print "Error: ", mtx1 * x - b
+        [ 106.   -21.     5.5   -1.5    1. ]
+        >>> print "Error: ", mtx1 * x - rhs
+        Error:  [ 0.  0.  0.  0.  0.]
 
     * solve as double precision real::
 
         >>> mtx2 = mtx.astype(np.float64)
-        >>> x = dsl.spsolve(mtx2, rhs, use_umfpack=True)
+        >>> x = dsolve.spsolve(mtx2, rhs, use_umfpack=True)
         >>> print x
-        >>> print "Error: ", mtx2 * x - b
+        [ 106.   -21.     5.5   -1.5    1. ]
+        >>> print "Error: ", mtx2 * x - rhs
+        Error:  [ 0.  0.  0.  0.  0.]
 
     * solve as single precision complex::
 
         >>> mtx1 = mtx.astype(np.complex64)
-        >>> x = dsl.spsolve(mtx1, rhs, use_umfpack=False)
+        >>> x = dsolve.spsolve(mtx1, rhs, use_umfpack=False)
         >>> print x
-        >>> print "Error: ", mtx1 * x - b
+        [ 106.0+0.j  -21.0+0.j    5.5+0.j   -1.5+0.j    1.0+0.j]
+        >>> print "Error: ", mtx1 * x - rhs
+        Error:  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]
 
     * solve as double precision complex::
 
         >>> mtx2 = mtx.astype(np.complex128)
-        >>> x = dsl.spsolve(mtx2, rhs, use_umfpack=True)
+        >>> x = dsolve.spsolve(mtx2, rhs, use_umfpack=True)
         >>> print x
-        >>> print "Error: ", mtx2 * x - b
+        [ 106.0+0.j  -21.0+0.j    5.5+0.j   -1.5+0.j    1.0+0.j]
+        >>> print "Error: ", mtx2 * x - rhs
+        Error:  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]
 
 .. literalinclude:: examples/direct_solve.py
 
