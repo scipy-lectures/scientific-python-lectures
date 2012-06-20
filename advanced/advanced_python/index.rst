@@ -129,33 +129,33 @@ A second way in which iterator objects are created is through
 increase clarity, a generator expression must always be enclosed in
 parentheses or an expression. If round parentheses are used, then a
 generator iterator is created.  If rectangular parentheses are used,
-the process is short-circuited and we get a ``list``.
+the process is short-circuited and we get a ``list``. ::
 
->>> (i for i in nums)                    # doctest: +ELLIPSIS
-<generator object <genexpr> at 0x...>
->>> [i for i in nums]
-[1, 2, 3]
->>> list(i for i in nums)
-[1, 2, 3]
+    >>> (i for i in nums)                    # doctest: +ELLIPSIS
+    <generator object <genexpr> at 0x...>
+    >>> [i for i in nums]
+    [1, 2, 3]
+    >>> list(i for i in nums)
+    [1, 2, 3]
 
 In Python 2.7 and 3.x the list comprehension syntax was extended to
 **dictionary and set comprehensions**.
 A ``set`` is created when the generator expression is enclosed in curly
 braces. A ``dict`` is created when the generator expression contains
-"pairs" of the form ``key:value``:
+"pairs" of the form ``key:value``::
 
->>> {i for i in range(3)}
-set([0, 1, 2])
->>> {i:i**2 for i in range(3)}
-{0: 0, 1: 1, 2: 4}
+    >>> {i for i in range(3)}   # doctest: +SKIP
+    set([0, 1, 2])
+    >>> {i:i**2 for i in range(3)}   # doctest: +SKIP
+    {0: 0, 1: 1, 2: 4}
 
 If you are stuck at some previous Python version, the syntax is only a
-bit worse:
+bit worse: ::
 
->>> set(i for i in 'abc')
-set(['a', 'c', 'b'])
->>> dict((i, ord(i)) for i in 'abc')
-{'a': 97, 'c': 99, 'b': 98}
+    >>> set(i for i in 'abc')
+    set(['a', 'c', 'b'])
+    >>> dict((i, ord(i)) for i in 'abc')
+    {'a': 97, 'c': 99, 'b': 98}
 
 Generator expression are fairly simple, not much to say here. Only one
 *gotcha* should be mentioned: in old Pythons the index variable
@@ -189,44 +189,44 @@ invocations, concurrent and recursive invocations are allowed.
 When ``next`` is called, the function is executed until the first ``yield``.
 Each encountered ``yield`` statement gives a value becomes the return
 value of ``next``. After executing the ``yield`` statement, the
-execution of this function is suspended.
+execution of this function is suspended. ::
 
->>> def f():
-...   yield 1
-...   yield 2
->>> f()                                   # doctest: +ELLIPSIS
-<generator object f at 0x...>
->>> gen = f()
->>> gen.next()
-1
->>> gen.next()
-2
->>> gen.next()
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-StopIteration
+    >>> def f():
+    ...   yield 1
+    ...   yield 2
+    >>> f()                                   # doctest: +ELLIPSIS
+    <generator object f at 0x...>
+    >>> gen = f()
+    >>> gen.next()
+    1
+    >>> gen.next()
+    2
+    >>> gen.next()
+    Traceback (most recent call last):
+     File "<stdin>", line 1, in <module>
+    StopIteration
 
 Let's go over the life of the single invocation of the generator
-function.
+function. ::
 
->>> def f():
-...   print("-- start --")
-...   yield 3
-...   print("-- middle --")
-...   yield 4
-...   print("-- finished --")
->>> gen = f()
->>> next(gen)
--- start --
-3
->>> next(gen)
--- middle --
-4
->>> next(gen)                            # doctest: +SKIP
--- finished --
-Traceback (most recent call last):
-  ...
-StopIteration
+    >>> def f():
+    ...   print("-- start --")
+    ...   yield 3
+    ...   print("-- middle --")
+    ...   yield 4
+    ...   print("-- finished --")
+    >>> gen = f()
+    >>> next(gen)
+    -- start --
+    3
+    >>> next(gen)
+    -- middle --
+    4
+    >>> next(gen)                            # doctest: +SKIP
+    -- finished --
+    Traceback (most recent call last):
+     ...
+    StopIteration
 
 Contrary to a normal function, where executing ``f()`` would
 immediately cause the first ``print`` to be executed, ``gen`` is
@@ -314,38 +314,38 @@ to finish immediately. It allows the generator `__del__ <object.__del__>`
 method to destroy objects holding the state of generator.
 
 Let's define a generator which just prints what is passed in through
-send and throw.
+send and throw. ::
 
->>> import itertools
->>> def g():
-...     print '--start--'
-...     for i in itertools.count():
-...         print '--yielding {}--'.format(i)
-...         try:
-...             ans = yield i
-...         except GeneratorExit:
-...             print '--closing--'
-...             raise
-...         except Exception as e:
-...             print '--yield raised {!r}--'.format(e)
-...         else:
-...             print '--yield returned {!r}--'.format(ans)
+    >>> import itertools
+    >>> def g():
+    ...     print '--start--'
+    ...     for i in itertools.count():
+    ...         print '--yielding %i--' % i
+    ...         try:
+    ...             ans = yield i
+    ...         except GeneratorExit:
+    ...             print '--closing--'
+    ...             raise
+    ...         except Exception as e:
+    ...             print '--yield raised %r--' % e
+    ...         else:
+    ...             print '--yield returned %s--' % ans
 
->>> it = g()
->>> next(it)
---start--
---yielding 0--
-0
->>> it.send(11)
---yield returned 11--
---yielding 1--
-1
->>> it.throw(IndexError)
---yield raised IndexError()--
---yielding 2--
-2
->>> it.close()
---closing--
+    >>> it = g()
+    >>> next(it)
+    --start--
+    --yielding 0--
+    0
+    >>> it.send(11)
+    --yield returned 11--
+    --yielding 1--
+    1
+    >>> it.throw(IndexError)
+    --yield raised IndexError()--
+    --yielding 2--
+    2
+    >>> it.close()
+    --closing--
 
 .. note:: ``next`` or ``__next__``?
 
