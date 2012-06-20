@@ -1,3 +1,8 @@
+.. for doctests
+    >>> import numpy as np
+    >>> from scipy import sparse
+
+
 Diagonal Format (DIA)
 =====================
 
@@ -35,7 +40,7 @@ Examples
            [1, 2, 3, 4],
            [1, 2, 3, 4]])
     >>> offsets = np.array([0, -1, 2])
-    >>> mtx = sps.dia_matrix((data, offsets), shape=(4, 4))
+    >>> mtx = sparse.dia_matrix((data, offsets), shape=(4, 4))
     >>> mtx
     <4x4 sparse matrix of type '<type 'numpy.int32'>'
             with 9 stored elements (3 diagonals) in DIAgonal format>
@@ -50,7 +55,7 @@ Examples
     array([[ 1,  2,  3,  4],
            [ 5,  6,  7,  8],
            [ 9, 10, 11, 12]])
-    >>> mtx = sps.dia_matrix((data, offsets), shape=(4, 4))
+    >>> mtx = sparse.dia_matrix((data, offsets), shape=(4, 4))
     >>> mtx.data
     array([[ 1,  2,  3,  4],
            [ 5,  6,  7,  8],
