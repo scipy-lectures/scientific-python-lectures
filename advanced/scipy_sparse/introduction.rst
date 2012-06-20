@@ -21,9 +21,12 @@ Why Sparse Matrices?
     >>> import numpy as np
     >>> import matplotlib.pyplot as plt
     >>> x = np.linspace(0, 1e6, 10)
-    >>> plt.plot(x, 8.0 * (x**2) / 1e6, lw=5)
-    >>> plt.xlabel('size n')
-    >>> plt.ylabel('memory [MB]')
+    >>> plt.plot(x, 8.0 * (x**2) / 1e6, lw=5)    # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.xlabel('size n')    # doctest: +ELLIPSIS
+    <matplotlib.text.Text object at ...>
+    >>> plt.ylabel('memory [MB]')    # doctest: +ELLIPSIS
+    <matplotlib.text.Text object at ...>
 
 Sparse Matrices vs. Sparse Matrix Storage Schemes
 -------------------------------------------------

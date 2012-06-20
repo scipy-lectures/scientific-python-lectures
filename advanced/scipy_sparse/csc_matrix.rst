@@ -1,3 +1,9 @@
+.. For doctests
+   >>> import numpy as np
+   >>> np.random.seed(0)
+   >>> from scipy import sparse
+
+
 Compressed Sparse Column Format (CSC)
 =====================================
 
@@ -32,7 +38,7 @@ Examples
 
 * create empty CSC matrix::
 
-    >>> mtx = sps.csc_matrix((3, 4), dtype=np.int8)
+    >>> mtx = sparse.csc_matrix((3, 4), dtype=np.int8)
     >>> mtx.todense()
     matrix([[0, 0, 0, 0],
             [0, 0, 0, 0],
@@ -43,9 +49,9 @@ Examples
     >>> row = np.array([0, 0, 1, 2, 2, 2])
     >>> col = np.array([0, 2, 2, 0, 1, 2])
     >>> data = np.array([1, 2, 3, 4, 5, 6])
-    >>> mtx = sps.csc_matrix((data, (row, col)), shape=(3, 3))
-    >>> mtx
-    <3x3 sparse matrix of type '<type 'numpy.int32'>'
+    >>> mtx = sparse.csc_matrix((data, (row, col)), shape=(3, 3))
+    >>> mtx         # doctest: +NORMALIZE_WHITESPACE
+    <3x3 sparse matrix of type '<type 'numpy.int64'>'
             with 6 stored elements in Compressed Sparse Column format>
     >>> mtx.todense()
     matrix([[1, 0, 2],
@@ -54,16 +60,16 @@ Examples
     >>> mtx.data
     array([1, 4, 5, 2, 3, 6])
     >>> mtx.indices
-    array([0, 2, 2, 0, 1, 2])
+    array([0, 2, 2, 0, 1, 2], dtype=int32)
     >>> mtx.indptr
-    array([0, 2, 3, 6])
+    array([0, 2, 3, 6], dtype=int32)
 
 * create using `(data, indices, indptr)` tuple::
 
     >>> data = np.array([1, 4, 5, 2, 3, 6])
     >>> indices = np.array([0, 2, 2, 0, 1, 2])
     >>> indptr = np.array([0, 2, 3, 6])
-    >>> mtx = sps.csc_matrix((data, indices, indptr), shape=(3, 3))
+    >>> mtx = sparse.csc_matrix((data, indices, indptr), shape=(3, 3))
     >>> mtx.todense()
     matrix([[1, 0, 2],
             [0, 0, 3],
