@@ -11,8 +11,8 @@ Geometrical transformations on images
 
 Changing orientation, resolution, .. ::
 
-    >>> import scipy
-    >>> lena = scipy.lena()
+    >>> from scipy import misc
+    >>> lena = misc.lena()
     >>> shifted_lena = ndimage.shift(lena, (50, 50))
     >>> shifted_lena2 = ndimage.shift(lena, (50, 50), mode='nearest')
     >>> rotated_lena = ndimage.rotate(lena, 30)
@@ -30,7 +30,7 @@ Changing orientation, resolution, .. ::
     In [35]: subplot(151)
     Out[35]: <matplotlib.axes.AxesSubplot object at 0x925f46c>
 
-    In [36]: imshow(shifted_lena, cmap=cm.gray)
+    In [36]: pl.imshow(shifted_lena, cmap=cm.gray)
     Out[36]: <matplotlib.image.AxesImage object at 0x9593f6c>
 
     In [37]: axis('off')
@@ -44,14 +44,15 @@ Image filtering
 
 ::
 
-    >>> lena = scipy.lena()
+    >>> from scipy import misc
+    >>> lena = misc.lena()
     >>> import numpy as np
     >>> noisy_lena = np.copy(lena)
     >>> noisy_lena += lena.std()*0.5*np.random.standard_normal(lena.shape)
     >>> blurred_lena = ndimage.gaussian_filter(noisy_lena, sigma=3)
     >>> median_lena = ndimage.median_filter(blurred_lena, size=5)
-    >>> import scipy.signal
-    >>> wiener_lena = scipy.signal.wiener(blurred_lena, (5,5))
+    >>> from scipy import signal
+    >>> wiener_lena = signal.wiener(blurred_lena, (5,5))
 
 .. image:: image_processing/filtered_lena.png
    :align: center
@@ -232,16 +233,17 @@ Now we look for various information about the objects in the image::
     8
     >>> areas = ndimage.sum(mask, labels, xrange(1, labels.max()+1))
     >>> areas
-    [190.0, 45.0, 424.0, 278.0, 459.0, 190.0, 549.0, 424.0]
+    array([ 190.,   45.,  424.,  278.,  459.,  190.,  549.,  424.])
     >>> maxima = ndimage.maximum(sig, labels, xrange(1, labels.max()+1))
     >>> maxima
-    [1.8023823799830032, 1.1352760475048373, 5.5195407887291426,
-    2.4961181804217221, 6.7167361922608864, 1.8023823799830032,
-    16.765472169131161, 5.5195407887291426]
+    array([  1.80238238,   1.13527605,   5.51954079,   2.49611818,
+             6.71673619,   1.80238238,  16.76547217,   5.51954079])
     >>> ndimage.find_objects(labels==4)
-    [(slice(30, 48, None), slice(30, 48, None))]
+    [(slice(30L, 48L, None), slice(30L, 48L, None))]
     >>> sl = ndimage.find_objects(labels==4)
-    >>> imshow(sig[sl[0]])
+    >>> import pylab as pl
+    >>> pl.imshow(sig[sl[0]])   # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at ...>
 
 
 .. image:: image_processing/measures.png

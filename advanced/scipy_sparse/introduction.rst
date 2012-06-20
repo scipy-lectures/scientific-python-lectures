@@ -24,7 +24,6 @@ Why Sparse Matrices?
     >>> plt.plot(x, 8.0 * (x**2) / 1e6, lw=5)
     >>> plt.xlabel('size n')
     >>> plt.ylabel('memory [MB]')
-    >>> plt.show()
 
 Sparse Matrices vs. Sparse Matrix Storage Schemes
 -------------------------------------------------

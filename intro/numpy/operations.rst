@@ -1,3 +1,9 @@
+
+..  For doctests
+     
+    >>> import numpy as np
+    >>> np.random.seed(0)
+
 .. currentmodule:: numpy
 
 Numerical operations on arrays
@@ -36,8 +42,8 @@ array([ 2,  3,  6, 13, 28])
     >>> c = np.ones((3, 3))
     >>> c * c                   # NOT matrix multiplication!
     array([[ 1.,  1.,  1.],
-        [ 1.,  1.,  1.],
-        [ 1.,  1.,  1.]])
+           [ 1.,  1.,  1.],
+           [ 1.,  1.,  1.]])
 
 .. note:: **Matrix multiplication:**
 
@@ -69,14 +75,15 @@ Logical operations::
    For arrays: "``np.logical_and``" and "``np.logical_or``" for logical
    operations, not "``and``" and "``or``".
 
-Shape mismatches:
+Shape mismatches::
 
->>> a
-array([1, 2, 3, 4])
->>> a + np.array([1, 2])
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-ValueError: shape mismatch: objects cannot be broadcast to a single shape
+    >>> a = np.arange(4)
+    >>> a
+    array([0, 1, 2, 3])
+    >>> a + np.array([1, 2])    # doctest: +SKIP
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    ValueError: shape mismatch: objects cannot be broadcast to a single shape
 
 **'Broadcast'?** We'll return to that later.
 
@@ -85,8 +92,8 @@ ValueError: shape mismatch: objects cannot be broadcast to a single shape
     >>> a = np.triu(np.ones((3, 3)), 1)   # see help(np.triu)
     >>> a
     array([[ 0.,  1.,  1.],
-        [ 0.,  0.,  1.],
-        [ 0.,  0.,  0.]])
+           [ 0.,  0.,  1.],
+           [ 0.,  0.,  0.]])
     >>> a.T
     array([[ 0.,  0.,  0.],
            [ 1.,  0.,  0.],
@@ -126,7 +133,7 @@ Sum by rows and by columns::
     >>> x = np.array([[1, 1], [2, 2]])
     >>> x
     array([[1, 1],
-        [2, 2]])
+           [2, 2]])
     >>> x.sum(axis=0)   # columns (first dimension)
     array([3, 3])
     >>> x[:, 0].sum(), x[:, 1].sum()
@@ -139,10 +146,10 @@ Sum by rows and by columns::
 Same idea in higher dimensions::
 
     >>> x = np.random.rand(2, 2, 2)
-    >>> x.sum(axis=2)[0, 1]
-    1.1600112273698793
-    >>> x[0, 1, :].sum()
-    1.1600112273698793
+    >>> x.sum(axis=2)[0, 1]     # doctest: +ELLIPSIS
+    1.14764...
+    >>> x[0, 1, :].sum()     # doctest: +ELLIPSIS
+    1.14764...
 
 **Other reductions** --- works the same way (and take ``axis=``)
 
@@ -206,13 +213,16 @@ Same idea in higher dimensions::
 
   We can first plot the data::
 
-    >>> data = np.loadtxt('../../data/populations.txt')
+    >>> data = np.loadtxt('data/populations.txt')
     >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
-    >>> plt.axes([0.2, 0.1, 0.5, 0.8])
-    >>> plt.plot(year, hares, year, lynxes, year, carrots)
-    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
-    >>> plt.show()
+    >>> from matplotlib import pyplot as plt
+    >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
+    <matplotlib.axes.Axes object at ...>
+    >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>, ...]
+    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
+    <matplotlib.legend.Legend object at ...>
 
   .. plot:: pyplots/numpy_intro_4.py
 
@@ -254,29 +264,33 @@ Same idea in higher dimensions::
   >>> n_stories = 1000 # number of walkers
   >>> t_max = 200      # time during which we follow the walker
 
-  We randomly choose all the steps 1 or -1 of the walk
+  We randomly choose all the steps 1 or -1 of the walk::
 
-  >>> t = np.arange(t_max)
-  >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
-  >>> np.unique(steps) # Verification: all steps are 1 or -1
-  array([-1,  1])
+   >>> t = np.arange(t_max)
+   >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
+   >>> np.unique(steps) # Verification: all steps are 1 or -1
+   array([-1,  1])
 
-  We build the walks by summing steps along the time
+  We build the walks by summing steps along the time::
 
-  >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
-  >>> sq_distance = positions**2
+   >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
+   >>> sq_distance = positions**2
 
-  We get the mean in the axis of the stories
+  We get the mean in the axis of the stories::
 
-  >>> mean_sq_distance = np.mean(sq_distance, axis=0)
+   >>> mean_sq_distance = np.mean(sq_distance, axis=0)
 
-  Plot the results:
+  Plot the results::
 
-  >>> plt.figure(figsize=(4, 3))
-  >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-')
-  >>> plt.xlabel(r"$t$")
-  >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
-  >>> plt.show()
+   >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
+   <matplotlib.figure.Figure object at ...>
+   >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
+   [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
+   >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
+   <matplotlib.text.Text object at ...>
+   >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
+   <matplotlib.text.Text object at ...>
+  
 
   .. plot:: pyplots/numpy_intro_5.py
 
@@ -359,6 +373,7 @@ We have already used broadcasting without knowing it!::
 
     >>> a = np.ones((4, 5))
     >>> a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
+    >>> a
     array([[ 2.,  2.,  2.,  2.,  2.],
            [ 1.,  1.,  1.,  1.,  1.],
            [ 1.,  1.,  1.,  1.,  1.],
@@ -396,42 +411,27 @@ dimensions than input data.
      :align: center
      :scale: 60
 
-.. topic:: Good practices
-
-    * Explicit variable names (no need of a comment to explain what is in
-      the variable)
-
-    * Style: spaces after commas, around ``=``, etc.
-
-      A certain number of rules for writing "beautiful" code (and, more
-      importantly, using the same conventions as everybody else!) are
-      given in the `Style Guide for Python Code
-      <http://www.python.org/dev/peps/pep-0008>`_ and the `Docstring
-      Conventions <http://www.python.org/dev/peps/pep-0257>`_ page (to
-      manage help strings).
-
-    * Except some rare cases, variable names and comments in English.
-
 A lot of grid-based or network-based problems can also use
 broadcasting. For instance, if we want to compute the distance from
-the origin of points on a 10x10 grid, we can do:
+the origin of points on a 10x10 grid, we can do::
 
- >>> x, y = np.arange(5), np.arange(5)
- >>> distance = np.sqrt(x ** 2 + y[:, np.newaxis] ** 2)
- >>> distance
- array([[ 0.        ,  1.        ,  2.        ,  3.        ,  4.        ],
-        [ 1.        ,  1.41421356,  2.23606798,  3.16227766,  4.12310563],
-        [ 2.        ,  2.23606798,  2.82842712,  3.60555128,  4.47213595],
-        [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
-        [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
+    >>> x, y = np.arange(5), np.arange(5)
+    >>> distance = np.sqrt(x ** 2 + y[:, np.newaxis] ** 2)
+    >>> distance
+    array([[ 0.        ,  1.        ,  2.        ,  3.        ,  4.        ],
+           [ 1.        ,  1.41421356,  2.23606798,  3.16227766,  4.12310563],
+           [ 2.        ,  2.23606798,  2.82842712,  3.60555128,  4.47213595],
+           [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
+           [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
 
+ Or in color::
 
- Or in color:
-
- >>> plt.pcolor(distance)
- >>> plt.colorbar()
- >>> plt.axis('equal')
- >>> plt.show()  # <-- again, not needed in interactive Python
+    >>> plt.pcolor(distance)    # doctest: +ELLIPSIS
+    <matplotlib.collections.PolyCollection object at ...>
+    >>> plt.colorbar()    # doctest: +ELLIPSIS
+    <matplotlib.colorbar.Colorbar instance at ...>
+    >>> plt.axis('equal')
+    (0.0, 200.0, 0.0, 16.0)
 
 .. plot:: pyplots/numpy_intro_6.py
 
@@ -508,7 +508,7 @@ The inverse operation to flattening::
     >>> b = a.ravel()
     >>> b.reshape((2, 3))
     array([[1, 2, 3],
-        [4, 5, 6]])
+           [4, 5, 6]])
 
 Creating an array with a different shape, from another array::
 
@@ -516,11 +516,11 @@ Creating an array with a different shape, from another array::
     >>> b = a.reshape((6, 6))
     >>> b
     array([[ 0,  1,  2,  3,  4,  5],
-        [ 6,  7,  8,  9, 10, 11],
-        [12, 13, 14, 15, 16, 17],
-        [18, 19, 20, 21, 22, 23],
-        [24, 25, 26, 27, 28, 29],
-        [30, 31, 32, 33, 34, 35]])
+           [ 6,  7,  8,  9, 10, 11],
+           [12, 13, 14, 15, 16, 17],
+           [18, 19, 20, 21, 22, 23],
+           [24, 25, 26, 27, 28, 29],
+           [30, 31, 32, 33, 34, 35]])
 
 Or, ::
 
@@ -583,7 +583,7 @@ Size of an array can be changed with ``ndarray.resize``::
 However, it must not be referred to somewhere else::
 
     >>> b = a
-    >>> a.resize((4,))
+    >>> a.resize((4,))   # doctest: +SKIP
     ...
     ValueError: cannot resize an array references or is referenced
     by another array in this way.  Use the resize function
@@ -657,10 +657,11 @@ Some examples of real-world use cases
    In short: for **block matrices and vectors**, it can be useful
    to preserve the **block structure**.
 
-   In Numpy:
+   In Numpy::
 
-   >>> psi = np.zeros((2, 2))   # dimensions: level, spin
-   >>> psi[0,1] # <-- psi_{1,downarrow}
+    >>> psi = np.zeros((2, 2))   # dimensions: level, spin
+    >>> psi[0, 1] # <-- psi_{1,downarrow}
+    0.0
 
    Linear operators on such block vectors have similar block structure:
 
@@ -722,38 +723,39 @@ Some examples of real-world use cases
 Sorting data
 ------------
 
-Sorting along an axis:
+Sorting along an axis::
 
->>> a = np.array([[4, 3, 5], [1, 2, 1]])
->>> b = np.sort(a, axis=1)
->>> b
-array([[3, 4, 5],
-       [1, 1, 2]])
+    >>> a = np.array([[4, 3, 5], [1, 2, 1]])
+    >>> b = np.sort(a, axis=1)
+    >>> b
+    array([[3, 4, 5],
+           [1, 1, 2]])
 
 .. note:: Sorts each row separately!
 
-In-place sort:
+In-place sort::
 
->>> a.sort(axis=1)
->>> a
-array([[3, 4, 5],
-       [1, 1, 2]])
+    >>> a.sort(axis=1)
+    >>> a
+    array([[3, 4, 5],
+           [1, 1, 2]])
 
-Sorting with fancy indexing:
+Sorting with fancy indexing::
 
->>> a = np.array([4, 3, 1, 2])
->>> j = np.argsort(a)
-array([2, 3, 1, 0])
->>> a[j]
-array([1, 2, 3, 4])
+    >>> a = np.array([4, 3, 1, 2])
+    >>> j = np.argsort(a)
+    >>> j
+    array([2, 3, 1, 0])
+    >>> a[j]
+    array([1, 2, 3, 4])
 
-Finding minima and maxima:
+Finding minima and maxima::
 
->>> a = np.array([4, 3, 1, 2])
->>> j_max = np.argmax(a)
->>> j_min = np.argmin(a)
->>> j_max, j_min
-(0, 2)
+    >>> a = np.array([4, 3, 1, 2])
+    >>> j_max = np.argmax(a)
+    >>> j_min = np.argmin(a)
+    >>> j_max, j_min
+    (0, 2)
 
 
 .. XXX: need a frame for summaries
@@ -873,13 +875,15 @@ Some exercices
    describes the populations of hares and lynxes (and carrots) in
    northern Canada during 20 years::
 
-    >>> data = np.loadtxt('../../data/populations.txt')
+    >>> data = np.loadtxt('data/populations.txt')
     >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
-    >>> plt.axes([0.2, 0.1, 0.5, 0.8])
-    >>> plt.plot(year, hares, year, lynxes, year, carrots)
-    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
-    >>> plt.show()
+    >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
+    <matplotlib.axes.Axes object at ...>
+    >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>, ...]
+    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
+    <matplotlib.legend.Legend object at ...>
 
    .. plot:: pyplots/numpy_intro_7.py
 
@@ -951,6 +955,9 @@ Some exercices
 
     Do this computation by:
 
+    .. For doctests
+       >>> mask = np.ones((3, 3))
+
     1. Construct a grid of c = x + 1j*y values in range [-2, 1] x [-1.5, 1.5]
 
     2. Do the iteration
@@ -960,7 +967,8 @@ Some exercices
     4. Save the result to an image with::
 
         >>> import matplotlib.pyplot as plt
-        >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5])
+        >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5]) # doctest: +ELLIPSIS
+        <matplotlib.image.AxesImage object at ...>
         >>> plt.gray()
         >>> plt.savefig('mandelbrot.png')
 
