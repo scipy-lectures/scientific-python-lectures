@@ -8,6 +8,13 @@ NumPy: creating and manipulating numerical data
    :local:
    :depth: 4
 
+This chapter gives an overview of Numpy, the core tool for performant
+numerical computing with Python.
+
+____
+
+.. include:: ../../includes/big_toc_css.rst
+
 .. toctree::
 
    array_object.rst
