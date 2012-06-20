@@ -90,7 +90,7 @@ To load the dataset into a Python object:
 
 ::
 
-  >>> from scikits.learn import datasets
+  >>> from sklearn import datasets
   >>> iris = datasets.load_iris()
 
 This data is stored in the ``.data`` member, which
@@ -140,17 +140,16 @@ Now that we've got some data, we would like to learn from it and
 predict on new one. In ``scikit-learn``, we learn from existing
 data by creating an ``estimator`` and calling its ``fit(X, Y)`` method.
 
-    >>> from scikits.learn import svm
+    >>> from sklearn import svm
     >>> clf = svm.LinearSVC()
-    >>> clf.fit(iris.data, iris.target) # learn form the data
-    LinearSVC(C=1.0, dual=True, fit_intercept=True, intercept_scaling=1,
-         loss='l2', multi_class=False, penalty='l2', tol=0.0001)
+    >>> clf.fit(iris.data, iris.target) # learn from the data # doctest: +ELLIPSIS
+    LinearSVC(...)
 
 Once we have learned from the data, we can use our model to predict the
 most likely outcome on unseen data:
 
     >>> clf.predict([[ 5.0,  3.6,  1.3,  0.25]])
-    array([0])
+    array([0], dtype=int32)
 
 .. note:: 
    
@@ -185,11 +184,10 @@ based on ball trees to represent the samples it is trained on.
 ::
 
     >>> # Create and fit a nearest-neighbor classifier
-    >>> from scikits.learn import neighbors
-    >>> knn = neighbors.NeighborsClassifier()
-    >>> knn.fit(iris.data, iris.target)
-    NeighborsClassifier(algorithm='auto', classification_type='knn_vote',
-              leaf_size=30, n_neighbors=5, radius=1.0)
+    >>> from sklearn import neighbors
+    >>> knn = neighbors.KNeighborsClassifier()
+    >>> knn.fit(iris.data, iris.target) # doctest: +ELLIPSIS
+    KNeighborsClassifier(...)
     >>> knn.predict([[0.1, 0.2, 0.3, 0.4]])
     array([0])
 
@@ -204,9 +202,8 @@ based on ball trees to represent the samples it is trained on.
        >>> perm = np.random.permutation(iris.target.size)
        >>> iris.data = iris.data[perm]
        >>> iris.target = iris.target[perm]
-       >>> knn.fit(iris.data[:100], iris.target[:100])
-       NeighborsClassifier(algorithm='auto', classification_type='knn_vote',
-                 leaf_size=30, n_neighbors=5, radius=1.0)
+       >>> knn.fit(iris.data[:100], iris.target[:100]) # doctest: +ELLIPSIS
+       KNeighborsClassifier(...)
        >>> knn.score(iris.data[100:], iris.target[100:]) # doctest: +ELLIPSIS
        0.95999...
 
@@ -237,11 +234,10 @@ which are the observations closest to the separating hyperplane.
 
 ::
 
-    >>> from scikits.learn import svm
+    >>> from sklearn import svm
     >>> svc = svm.SVC(kernel='linear')
-    >>> svc.fit(iris.data, iris.target)
-    SVC(C=1.0, cache_size=200, coef0=0.0, degree=3, gamma=0.0, kernel='linear',
-      probability=False, shrinking=True, tol=0.001)
+    >>> svc.fit(iris.data, iris.target) # doctest: +ELLIPSIS
+    SVC(...)
 
 There are several support vector machine implementations in ``scikit-learn``.
 The most commonly used ones are ``svm.SVC``, ``svm.NuSVC`` and ``svm.LinearSVC``;
@@ -349,7 +345,7 @@ object API and several additional features, including smart initialization.)
 
 ::
 
-    >>> from scikits.learn import cluster, datasets
+    >>> from sklearn import cluster, datasets
     >>> iris = datasets.load_iris()
     >>> k_means = cluster.KMeans(k=3)
     >>> k_means.fit(iris.data) # doctest: +ELLIPSIS
@@ -406,14 +402,12 @@ object API and several additional features, including smart initialization.)
     to posterize an image (conversion of a continuous gradation of
     tone to several regions of fewer tones)::
 
-    >>> import scipy as sp
-    >>> lena = sp.lena().astype(np.float32)
+    >>> from scipy import misc
+    >>> lena = misc.lena().astype(np.float32)
     >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
-    >>> k_means = cluster.KMeans(k=5)
+    >>> k_means = cluster.KMeans(n_clusters=5)
     >>> k_means.fit(X) # doctest: +ELLIPSIS
-    KMeans(copy_x=True, init='k-means++', k=5, max_iter=300, n_init=10,
-        random_state=<mtrand.RandomState object at ...>, tol=0.0001,
-        verbose=0)
+    KMeans(...)
     >>> values = k_means.cluster_centers_.squeeze()
     >>> labels = k_means.labels_
     >>> lena_compressed = np.choose(labels, values)
@@ -465,7 +459,7 @@ on a subspace.
 
 ::
 
-    >>> from scikits.learn import decomposition
+    >>> from sklearn import decomposition
     >>> pca = decomposition.PCA(n_components=2)
     >>> pca.fit(iris.data)
     PCA(copy=True, n_components=2, whiten=False)
@@ -475,7 +469,7 @@ Now we can visualize the (transformed) iris dataset::
 
     >>> import pylab as pl
     >>> pl.scatter(X[:, 0], X[:, 1], c=iris.target) # doctest: +ELLIPSIS
-    ...
+    <matplotlib.collections.CircleCollection object at ...>
 
 .. image:: pca_iris.png
    :scale: 50
@@ -512,7 +506,7 @@ classification.
     """
     import numpy as np
     import pylab as pl
-    from scikits.learn import cross_val, datasets, decomposition, svm
+    from sklearn import cross_val, datasets, decomposition, svm
     
     # ..
     # .. load data ..
@@ -586,11 +580,10 @@ complex ones.
 
 :: 
 
-    >>> from scikits.learn import linear_model
+    >>> from sklearn import linear_model
     >>> regr = linear_model.Lasso(alpha=.3)
-    >>> regr.fit(diabetes_X_train, diabetes_y_train)
-    Lasso(alpha=0.3, copy_X=True, fit_intercept=True, max_iter=1000,
-       normalize=False, precompute='auto', tol=0.0001)
+    >>> regr.fit(diabetes_X_train, diabetes_y_train) # doctest: +ELLIPSIS
+    Lasso(...)
     >>> regr.coef_ # very sparse coefficients
     array([   0.        ,   -0.        ,  497.34075682,  199.17441034,
              -0.        ,   -0.        , -118.89291545,    0.        ,
@@ -601,17 +594,17 @@ complex ones.
 being the score very similar to linear regression (Least Squares)::
 
     >>> lin = linear_model.LinearRegression()
-    >>> lin.fit(diabetes_X_train, diabetes_y_train)
-    LinearRegression(fit_intercept=True, normalize=False, overwrite_X=False)
+    >>> lin.fit(diabetes_X_train, diabetes_y_train) # doctest: +ELLIPSIS
+    LinearRegression(...)
     >>> lin.score(diabetes_X_test, diabetes_y_test) # doctest: +ELLIPSIS
     0.5850753022...
 
 .. topic:: **Different algorithms for a same problem**
 
     Different algorithms can be used to solve the same mathematical
-    problem. For instance the `Lasso` object in the `scikits.learn`
+    problem. For instance the `Lasso` object in the `sklearn`
     solves the lasso regression using a *coordinate descent* method, that
-    is efficient on large datasets. However, the `scikits.learn` also
+    is efficient on large datasets. However, the `sklearn` also
     provides the `LassoLARS` object, using the *LARS* which is very
     efficient for problems in which the weight vector estimated is very
     sparse, that is problems with very few observations.
@@ -627,12 +620,12 @@ Grid-search and cross-validated estimators
 Grid-search
 -----------
 
-The scikits.learn provides an object that, given data, computes the score
+The scikit-learn provides an object that, given data, computes the score
 during the fit of an estimator on a parameter grid and chooses the
 parameters to maximize the cross-validation score. This object takes an
 estimator during the construction and exposes an estimator API::
 
-    >>> from scikits.learn import svm, grid_search
+    >>> from sklearn import svm, grid_search
     >>> gammas = np.logspace(-6, -1, 10)
     >>> svc = svm.SVC()
     >>> clf = grid_search.GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas), 
@@ -657,10 +650,10 @@ Cross-validated estimators
 
 Cross-validation to set a parameter can be done more efficiently on an
 algorithm-by-algorithm basis. This is why, for certain estimators, the
-scikits.learn exposes "CV" estimators, that set their parameter
+scikit-learn exposes "CV" estimators, that set their parameter
 automatically by cross-validation::
 
-    >>> from scikits.learn import linear_model, datasets
+    >>> from sklearn import linear_model, datasets
     >>> lasso = linear_model.LassoCV()
     >>> diabetes = datasets.load_diabetes()
     >>> X_diabetes = diabetes.data
@@ -671,8 +664,8 @@ automatically by cross-validation::
         n_alphas=100, normalize=False, precompute='auto', tol=0.0001,
         verbose=False)
     >>> # The estimator chose automatically its lambda:
-    >>> lasso.alpha
-    0.0075421928471338063
+    >>> lasso.alpha # doctest: +ELLIPSIS
+    0.013...
 
 These estimators are called similarly to their counterparts, with 'CV'
 appended to their name.

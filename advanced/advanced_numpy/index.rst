@@ -1,3 +1,8 @@
+.. For doctests
+   >>> import numpy as np
+   >>> np.random.seed(0)
+
+
 .. _advanced_numpy:
 
 ==============
@@ -1267,43 +1272,43 @@ The new buffer protocol: PEP 3118
     >>> np.__version__
     '2.0.0.dev8469+15dcfb'
 
-* Memoryview object exposes some of the stuff Python-side
+* Memoryview object exposes some of the stuff Python-side::
 
-  >>> x = np.array([[1, 2], [3, 4]])
-  >>> y = memoryview(x)
-  >>> y.format
-  'l'
-  >>> y.itemsize
-  4
-  >>> y.ndim
-  2
-  >>> y.readonly
-  False
-  >>> y.shape
-  (2, 2)
-  >>> y.strides
-  (8, 4)
+    >>> x = np.array([[1, 2], [3, 4]])
+    >>> y = memoryview(x)
+    >>> y.format
+    'l'
+    >>> y.itemsize
+    4
+    >>> y.ndim
+    2
+    >>> y.readonly
+    False
+    >>> y.shape
+    (2, 2)
+    >>> y.strides
+    (8, 4)
 
-* Roundtrips work
+* Roundtrips work::
 
-  >>> z = np.asarray(y)
-  >>> z
-  array([[1, 2],
-         [3, 4]])
-  >>> x[0,0] = 9
-  >>> z
-  array([[9, 2],
-         [3, 4]])
+    >>> z = np.asarray(y)
+    >>> z
+    array([[1, 2],
+           [3, 4]])
+    >>> x[0, 0] = 9
+    >>> z
+    array([[9, 2],
+           [3, 4]])
 
-* Interoperability with the built-in Python ``array`` module
+* Interoperability with the built-in Python ``array`` module::
 
-  >>> import array
-  >>> x = array.array('h', b'1212')    # 2 of int16, but no Numpy!
-  >>> y = np.asarray(x)
-  >>> y
-  array([12849, 12849], dtype=int16)
-  >>> y.base
-  <memory at 0xa225acc>
+    >>> import array
+    >>> x = array.array('h', b'1212')    # 2 of int16, but no Numpy!
+    >>> y = np.asarray(x)
+    >>> y
+    array([12849, 12849])
+    >>> y.base      # doctest: +ELLIPSIS
+    <memory at ...>
 
 
 PEP 3118 -- details
@@ -1375,9 +1380,8 @@ PEP 3118 -- details
 Siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
 ===================================================================
 
-.. explain: what and why
-
-.. rubric:: *chararray* --- vectorized string operations
+*chararray* --- vectorized string operations
+.............................................
 
 >>> x = np.array(['a', '  bbb', '  ccc']).view(np.chararray)
 >>> x.lstrip(' ')
@@ -1385,42 +1389,47 @@ chararray(['a', 'bbb', 'ccc'],
       dtype='|S5')
 >>> x.upper()
 chararray(['A', '  BBB', '  CCC'], 
-          dtype='|S5')
+      dtype='|S5')
 
 .. note::
 
    ``.view()`` has a second meaning: it can make an ndarray an instance
    of a specialized ndarray subclass
 
-.. rubric:: *MaskedArray* --- dealing with (propagation of) missing data
+*MaskedArray* --- dealing with (propagation of) missing data
+..............................................................
 
-* For floats one could use NaN's, but masks work for all types
+* For floats one could use NaN's, but masks work for all types::
 
->>> x = np.ma.array([1, 2, 3, 4], mask=[0, 1, 0, 1])
->>> x
-masked_array(data = [1 -- 3 --],
-             mask = [False  True False  True],
-       fill_value = 999999)
+    >>> x = np.ma.array([1, 2, 3, 4], mask=[0, 1, 0, 1])
+    >>> x
+    masked_array(data = [1 -- 3 --],
+                 mask = [False  True False  True],
+           fill_value = 999999)
+    <BLANKLINE>
 
->>> y = np.ma.array([1, 2, 3, 4], mask=[0, 1, 1, 1])
->>> x + y
-masked_array(data = [2 -- -- --],
-             mask = [False  True  True  True],
-       fill_value = 999999)
+    >>> y = np.ma.array([1, 2, 3, 4], mask=[0, 1, 1, 1])
+    >>> x + y
+    masked_array(data = [2 -- -- --],
+                 mask = [False  True  True  True],
+           fill_value = 999999)
+    <BLANKLINE>
 
-* Masking versions of common functions
+* Masking versions of common functions::
 
->>> np.ma.sqrt([1, -1, 2, -2])
-masked_array(data = [1.0 -- 1.41421356237 --],
-             mask = [False  True False  True],
-       fill_value = 1e+20)
+    >>> np.ma.sqrt([1, -1, 2, -2])
+    masked_array(data = [1.0 -- 1.41421356237 --],
+                 mask = [False  True False  True],
+           fill_value = 1e+20)
+    <BLANKLINE>
 
 
 .. note::
 
    There's more to them!
 
-.. rubric:: *recarray* --- purely convenience
+*recarray* --- purely convenience
+..................................
 
 >>> arr = np.array([('a', 1), ('b', 2)], dtype=[('x', 'S1'), ('y', int)])
 >>> arr2 = arr.view(np.recarray)
@@ -1430,7 +1439,8 @@ chararray(['a', 'b'],
 >>> arr2.y
 array([1, 2])
 
-.. rubric:: *matrix* --- convenience?
+*matrix* --- convenience?
+..........................
 
 - always 2-D
 - ``*`` is the matrix product, not the elementwise one
@@ -1488,7 +1498,8 @@ Reporting bugs
   - No replies in a week or so? Just file a bug ticket.
 
 
-.. rubric:: Good bug report
+Good bug report
+................
 
 ::
 
@@ -1497,16 +1508,16 @@ Reporting bugs
     I'm trying to generate random permutations, using numpy.random.permutations
 
     When calling numpy.random.permutation with non-integer arguments 
-    it fails with a cryptic error message:
+    it fails with a cryptic error message::
 
-    >>> np.random.permutation(12)
-    array([10,  9,  4,  7,  3,  8,  0,  6,  5,  1, 11,  2])
-    >>> np.random.permutation(long(12))
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-      File "mtrand.pyx", line 3311, in mtrand.RandomState.permutation
-      File "mtrand.pyx", line 3254, in mtrand.RandomState.shuffle
-    TypeError: len() of unsized object
+        >>> np.random.permutation(12)
+        array([ 6, 11,  4, 10,  2,  8,  1,  7,  9,  3,  0,  5])
+        >>> np.random.permutation(12.)
+        Traceback (most recent call last):
+          File "<stdin>", line 1, in <module>
+          File "mtrand.pyx", line 3311, in mtrand.RandomState.permutation
+          File "mtrand.pyx", line 3254, in mtrand.RandomState.shuffle
+        TypeError: len() of unsized object
 
     This also happens with long arguments, and so
     np.random.permutation(X.shape[0]) where X is an array fails on 64
@@ -1530,11 +1541,13 @@ Reporting bugs
 
 3. Version of Numpy/Scipy
 
-   >>> print numpy.__version__
+   >>> print np.__version__ # doctest: +ELLIPSIS
+   2...
 
    **Check that the following is what you expect**
 
-   >>> print numpy.__file__
+   >>> print np.__file__ # doctest: +ELLIPSIS
+   /...
 
    In case you have old/broken Numpy installations lying around.
 
