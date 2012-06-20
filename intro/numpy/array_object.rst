@@ -108,12 +108,8 @@ Reference documentation
       Create a memory-map to an array stored in a *binary* file on disk.
   ...
 
-  >>> help(np.lookfor)
-  ...
 
 .. the import convention, reminder on python imports
-.. where to find the documentation
-.. using help(np.argsort), using lookfor('sort array')
 
 Creating arrays
 ---------------
@@ -585,26 +581,20 @@ Indexing with an array of integers
 ....................................
 
 >>> a = np.arange(10)
->>> a[::2] += 3 # to avoid having always the same np.arange(10)...
 >>> a
-array([ 3,  1,  5,  3,  7,  5,  9,  7, 11,  9])
->>> a[[2, 5, 1, 8]] # or, a[np.array([2, 5, 1, 8])]
-array([ 5,  5,  1, 11])
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 Indexing can be done with an array of integers, where the same index is repeated
 several time::
 
     >>> a[[2, 3, 2, 4, 2]]  # note: [2, 3, 2, 4, 2] is a Python list
-    array([5, 3, 5, 7, 5])
+    array([2, 3, 2, 4, 2])
 
 New values can be assigned with this kind of indexing::
 
     >>> a[[9, 7]] = -10
     >>> a
-    array([  3,   1,   5,   3,   7,   5,   9, -10,  11, -10])
-    >>> a[[2, 3, 2, 4, 2]] += 1
-    >>> a
-    array([  3,   1,   6,   4,   8,   5,   9, -10,  11, -10])
+    array([  0,   1,   2,   3,   4,   5,   6, -10,   8, -10])
 
 When a new array is created by indexing with an array of integers, the new array
 has the same shape than the array of integers::
@@ -616,27 +606,10 @@ has the same shape than the array of integers::
            [9, 7]])
     >>> b = np.arange(10)
 
-    >>> a = np.arange(12).reshape(3, 4)
-    >>> a
-    array([[ 0,  1,  2,  3],
-           [ 4,  5,  6,  7],
-           [ 8,  9, 10, 11]])
-    >>> i = np.array([0, 1, 1, 2])
-    >>> j = np.array([2, 1, 3, 3])
-    >>> a[i, j]
-    array([ 2,  5,  7, 11])
 
-    >>> i = np.array([[0, 1], [1, 2]])
-    >>> j = np.array([[2, 1], [3, 3]])
-    >>> i
-    array([[0, 1],
-           [1, 2]])
-    >>> j
-    array([[2, 1],
-           [3, 3]])
-    >>> a[i, j]
-    array([[ 2,  5],
-           [ 7, 11]])
+____
+
+The image below illustrates various fancy indexing applications
 
 .. only:: latex
 
