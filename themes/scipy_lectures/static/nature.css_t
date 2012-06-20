@@ -12,7 +12,21 @@
 @import url("default.css");
 /* -- page layout ----------------------------------------------------------- */
  
+/* special colors for exercises */
 div.green {
     background-color: #e4ffe4;
     border: 1px solid #6f6;
+}
+
+/* bold section titles */
+div.body h1, div.body h2 {
+    font-weight: bold;
+}
+
+/* alternating colors in table rows */
+table.docutils tr:nth-child(even) {
+    background-color: #F3F3FF;
+}
+table.docutils tr:nth-child(odd) {
+    background-color: #FFFFEE;
 }

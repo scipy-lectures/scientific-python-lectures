@@ -157,59 +157,59 @@ Creating arrays
 
 In practice, we rarely enter items one by one...
 
-    * Evenly spaced::
+* Evenly spaced::
 
-        >>> import numpy as np
-        >>> a = np.arange(10) # 0 .. n-1  (!)
-        >>> a
-        array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-        >>> b = np.arange(1, 9, 2) # start, end (exlusive), step
-        >>> b
-        array([1, 3, 5, 7])
+    >>> import numpy as np
+    >>> a = np.arange(10) # 0 .. n-1  (!)
+    >>> a
+    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    >>> b = np.arange(1, 9, 2) # start, end (exlusive), step
+    >>> b
+    array([1, 3, 5, 7])
 
-      or by number of points::
+  or by number of points::
 
-        >>> c = np.linspace(0, 1, 6)   # start, end, num-points
-        >>> c
-        array([ 0. ,  0.2,  0.4,  0.6,  0.8,  1. ])
-        >>> d = np.linspace(0, 1, 5, endpoint=False)
-        >>> d
-        array([ 0. ,  0.2,  0.4,  0.6,  0.8])
+    >>> c = np.linspace(0, 1, 6)   # start, end, num-points
+    >>> c
+    array([ 0. ,  0.2,  0.4,  0.6,  0.8,  1. ])
+    >>> d = np.linspace(0, 1, 5, endpoint=False)
+    >>> d
+    array([ 0. ,  0.2,  0.4,  0.6,  0.8])
 
-    * Common arrays::
+* Common arrays::
 
-        >>> a = np.ones((3, 3))  # reminder: (3, 3) is a tuple
-        >>> a
-        array([[ 1.,  1.,  1.],
-               [ 1.,  1.,  1.],
-               [ 1.,  1.,  1.]])
-        >>> b = np.zeros((2, 2))
-        >>> b
-        array([[ 0.,  0.],
-               [ 0.,  0.]])
-        >>> c = np.eye(3)
-        >>> c
-        array([[ 1.,  0.,  0.],
-               [ 0.,  1.,  0.],
-               [ 0.,  0.,  1.]])
-	>>> d = np.diag(np.array([1, 2, 3, 4]))
-        >>> d
-        array([[1, 0, 0, 0],
-               [0, 2, 0, 0],
-               [0, 0, 3, 0],
-               [0, 0, 0, 4])
+    >>> a = np.ones((3, 3))  # reminder: (3, 3) is a tuple
+    >>> a
+    array([[ 1.,  1.,  1.],
+           [ 1.,  1.,  1.],
+           [ 1.,  1.,  1.]])
+    >>> b = np.zeros((2, 2))
+    >>> b
+    array([[ 0.,  0.],
+           [ 0.,  0.]])
+    >>> c = np.eye(3)
+    >>> c
+    array([[ 1.,  0.,  0.],
+           [ 0.,  1.,  0.],
+           [ 0.,  0.,  1.]])
+    >>> d = np.diag(np.array([1, 2, 3, 4]))
+    >>> d
+    array([[1, 0, 0, 0],
+           [0, 2, 0, 0],
+           [0, 0, 3, 0],
+           [0, 0, 0, 4])
 
-    * `np.random`: random numbers (Mersenne Twister PRNG)::
+* `np.random`: random numbers (Mersenne Twister PRNG)::
 
-        >>> a = np.random.rand(4)       # uniform in [0, 1]
-        >>> a
-	array([ 0.58597729,  0.86110455,  0.9401114 ,  0.54264348])
+    >>> a = np.random.rand(4)       # uniform in [0, 1]
+    >>> a
+    array([ 0.58597729,  0.86110455,  0.9401114 ,  0.54264348])
 
-        >>> b = np.random.randn(4)      # Gaussian
-        >>> b
-	array([-2.56844807,  0.06798064, -0.36823781,  0.86966886])
+    >>> b = np.random.randn(4)      # Gaussian
+    >>> b
+    array([-2.56844807,  0.06798064, -0.36823781,  0.86966886])
 
-        >>> np.random.seed(1234)        # Setting the random seed
+    >>> np.random.seed(1234)        # Setting the random seed
 
 
 .. topic:: **Exercise: Array creation**
