@@ -81,14 +81,16 @@ array([-1.        ,  0.33333333])
 >>> p = np.poly1d(np.polyfit(x, y, 3))
 
 >>> t = np.linspace(0, 1, 200)
->>> plt.plot(x, y, 'o', t, p(t), '-')
+>>> plt.plot(x, y, 'o', t, p(t), '-')   # doctest: +ELLIPSIS
+[<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
 
 .. plot:: pyplots/numpy_intro_9.py
 
 See http://docs.scipy.org/doc/numpy/reference/routines.polynomials.poly1d.html
 for more.
 
-.. rubric:: More polynomials (with more bases)
+More polynomials (with more bases)
+...................................
 
 Numpy also has a more sophisticated polynomial interface, which supports
 e.g. the Chebyshev basis.
@@ -100,19 +102,21 @@ e.g. the Chebyshev basis.
 -1.0
 >>> p.roots()
 array([-1.        ,  0.33333333])
->>> p.order
+>>> p.degree()  # In general polynomials do not always expose 'order'
 2
 
 Example using polynomials in Chebyshev basis, for polynomials in
-range ``[-1, 1]``:
+range ``[-1, 1]``::
 
->>> x = np.linspace(-1, 1, 2000)
->>> y = np.cos(x) + 0.3*np.random.rand(2000)
->>> p = np.polynomial.Chebyshev.fit(x, y, 90)
+    >>> x = np.linspace(-1, 1, 2000)
+    >>> y = np.cos(x) + 0.3*np.random.rand(2000)
+    >>> p = np.polynomial.Chebyshev.fit(x, y, 90)
 
->>> t = np.linspace(-1, 1, 200)
->>> plt.plot(x, y, 'r.')
->>> plt.plot(t, p(t), 'k-', lw=3)
+    >>> t = np.linspace(-1, 1, 200)
+    >>> plt.plot(x, y, 'r.')   # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(t, p(t), 'k-', lw=3)   # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
 .. plot:: pyplots/numpy_intro_10.py
 
@@ -126,18 +130,18 @@ Text files
 
 Example: :download:`populations.txt <../../data/populations.txt>`::
 
-    1900	30e3	4e3	51300
+    1900	30e3	4e3	48300
     1901	47.2e3	6.1e3	48200
     1902	70.2e3	9.8e3	41500
     ...
 
 ::
 
-    >>> data = np.loadtxt('populations.txt')    # if in current directory
-    >>> data
-    array([[  1900.,  30000.,   4000.,  51300.],
-        [  1901.,  47200.,   6100.,  48200.],
-        [  1902.,  70200.,   9800.,  41500.],
+    >>> data = np.loadtxt('data/populations.txt')
+    >>> data    # doctest: +ELLIPSIS
+    array([[  1900.,  30000.,   4000.,  48300.],
+           [  1901.,  47200.,   6100.,  48200.],
+           [  1902.,  70200.,   9800.,  41500.],
     ...
 
     >>> np.savetxt('pop2.txt', data)
@@ -166,23 +170,26 @@ Images
 
 Using Matplotlib::
 
-    >>> img = plt.imread('../../data/elephant.png')
+    >>> img = plt.imread('data/elephant.png')
     >>> img.shape, img.dtype
     ((200, 300, 3), dtype('float32'))
-    >>> plt.imshow(img)
+    >>> plt.imshow(img)     # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at ...>
     >>> plt.savefig('plot.png')
 
     >>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
 
 This saved only one channel (of RGB)::
 
-    >>> plt.imshow(plt.imread('red_elephant.png'))
+    >>> plt.imshow(plt.imread('red_elephant.png'))  # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at ...>
 
 Other libraries::
 
     >>> from scipy.misc import imsave
     >>> imsave('tiny_elephant.png', img[::6,::6])
-    >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
+    >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')  # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at ...>
 
 .. plot:: pyplots/numpy_intro_3.py
 
@@ -192,6 +199,7 @@ Numpy's own format
 
 Numpy has its own binary format, not portable but with efficient I/O::
 
+    >>> data = np.ones((3, 3))
     >>> np.save('pop.npy', data)
     >>> data3 = np.load('pop.npy')
 

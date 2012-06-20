@@ -316,13 +316,13 @@ will raise ``LinAlgError``::
 More advanced operations are available like singular-value decomposition
 (SVD)::
 
-    >>> arr = np.arange(12).reshape((3, 4)) + 1
+    >>> arr = np.arange(9).reshape((3, 3)) + np.diag([1, 0, 1])
     >>> uarr, spec, vharr = linalg.svd(arr)
 
 The resulting array spectrum is::
 
     >>> spec    # doctest: +ELLIPSIS
-    array([  2.54368356e+01,   1.72261225e+00,   ...e-16])
+    array([ 14.88982544,   0.45294236,   0.29654967])
 
 For the recomposition, an alias for manipulating matrix will first
 be defined::
@@ -331,8 +331,7 @@ be defined::
 
 then the steps are::
 
-    >>> sarr = np.zeros((3, 4))
-    >>> sarr.put((0, 5, 10), spec)
+    >>> sarr = np.diag(spec)
     >>> svd_mat = asmat(uarr) * asmat(sarr) * asmat(vharr)
     >>> np.allclose(svd_mat, arr)
     True
