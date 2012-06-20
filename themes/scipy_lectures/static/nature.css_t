@@ -30,3 +30,9 @@ table.docutils tr:nth-child(even) {
 table.docutils tr:nth-child(odd) {
     background-color: #FFFFEE;
 }
+
+table.docutils tr {
+    border-style: solid none solid none;
+    border-width: 1px 0 1px 0;
+    border-color: #AAAAAA;
+}

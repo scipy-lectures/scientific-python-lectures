@@ -3,6 +3,10 @@ Scipy : high-level scientific computing
 
 :authors: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël Varoquaux
 
+..  
+    >>> import numpy as np
+    >>> np.random.seed(0)
+
 .. topic:: Scipy
 
     The ``scipy`` package contains various toolboxes dedicated to common
@@ -87,8 +91,14 @@ File input/output: ``scipy.io``
 * Loading and saving matlab files::
 
     >>> from scipy import io
-    >>> struct = io.loadmat('file.mat', struct_as_record=True)
-    >>> io.savemat('file.mat', struct)
+    >>> a = np.ones((3, 3))
+    >>> io.savemat('file.mat', {'a': a}) # savemat expects a dictionary
+    >>> data = io.loadmat('file.mat', struct_as_record=True)
+    >>> data['a']
+    array([[ 1.,  1.,  1.],
+           [ 1.,  1.,  1.],
+           [ 1.,  1.,  1.]])
+
 
 See also:
 
@@ -200,30 +210,30 @@ of the observations to estimate the parameters of the underlying
 distribution. Here we fit a normal process to the observed data::
 
     >>> loc, std = stats.norm.fit(a)
-    >>> loc
-    0.003738964114102075
-    >>> std
-    0.97450996668871193
+    >>> loc     # doctest: +ELLIPSIS
+    -0.045256707490...
+    >>> std     # doctest: +ELLIPSIS
+    0.9870331586690...
 
 Percentiles
 .............
 
 The median is the value with half of the observations below, and half
-above:
+above::
 
-    >>> np.median(a)
-    0.0071645570292782519
+    >>> np.median(a)     # doctest: +ELLIPSIS
+    -0.058028034...
 
 It is also called the percentile 50, because 50% of the observation are
-below it:
+below it::
 
-    >>> stats.scoreatpercentile(a, 50)
-    0.0071645570292782519
+    >>> stats.scoreatpercentile(a, 50)     # doctest: +ELLIPSIS
+    -0.0580280347...
 
-Similarly, we can calculate the percentile 90:
+Similarly, we can calculate the percentile 90::
 
-    >>> stats.scoreatpercentile(a, 90)
-    1.2729556087871292
+    >>> stats.scoreatpercentile(a, 90)     # doctest: +ELLIPSIS
+    1.231593551...
 
 The percentile is an estimator of the CDF: cumulative distribution
 function.
@@ -233,13 +243,14 @@ Statistical tests
 
 A statistical test is a decision indicator. For instance, if we have 2
 sets of observations, that we assume are generated from Gaussian
-processes, we can use a T-test to decide whether the two sets of
-observations are significantly different::
+processes, we can use a 
+`T-test <http://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide 
+whether the two sets of observations are significantly different::
 
     >>> a = np.random.normal(0, 1, size=100)
     >>> b = np.random.normal(1, 1, size=10)
-    >>> stats.ttest_ind(a, b)
-    (-2.389876434401887, 0.018586471712806949)
+    >>> stats.ttest_ind(a, b)   # doctest: +ELLIPSIS
+    (-3.75832707..., 0.00027786...)
 
 The resulting output is composed of:
 
@@ -310,8 +321,8 @@ More advanced operations are available like singular-value decomposition
 
 The resulting array spectrum is::
 
-    >>> spec
-    array([  2.54368356e+01,   1.72261225e+00,   5.14037515e-16])
+    >>> spec    # doctest: +ELLIPSIS
+    array([  2.54368356e+01,   1.72261225e+00,   ...e-16])
 
 For the recomposition, an alias for manipulating matrix will first
 be defined::
@@ -544,7 +555,9 @@ minimization or equality.
 
 The ``scipy.optimize`` module provides useful algorithms for function
 minimization (scalar or multi-dimensional), curve fitting and root
-finding.
+finding. ::
+
+    >>> from scipy import optimize
 
 **Example: Minimizing a scalar function using different algorithms**
 
@@ -575,10 +588,10 @@ algorithm is a good way of doing this::
 
     >>> optimize.fmin_bfgs(f, 0)
     Optimization terminated successfully.
-	    Current function value: -7.945823
-	    Iterations: 5
-	    Function evaluations: 24
-	    Gradient evaluations: 8
+	     Current function value: -7.945823
+	     Iterations: 5
+	     Function evaluations: 24
+	     Gradient evaluations: 8
     array([-1.30644003])
 
 This resolution takes 4.11ms on our computer.
@@ -612,16 +625,14 @@ To find the local minimum, let's add some constraints on the variable using
 ``optimize.fminbound``: ::
 
     >>> # search the minimum only between 0 and 10
-    >>> optimize.fminbound(f, 0, 10)
-    array([ 3.83746712])
+    >>> optimize.fminbound(f, 0, 10)    # doctest: +ELLIPSIS
+    3.8374671...
 
 You can find algorithms with the same functionalities for multi-dimensional
 problems in ``scipy.optimize``.
 
 See the summary exercise on :ref:`summary_exercise_optimize` for a
 more advanced example.
-
-
 
 
 

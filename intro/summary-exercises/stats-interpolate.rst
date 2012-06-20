@@ -39,7 +39,7 @@ the numpy format in the file :download:`examples/max-speeds.npy`, thus they will
 by using numpy::
 
     >>> import numpy as np
-    >>> max_speeds = np.load('examples/max-speeds.npy')
+    >>> max_speeds = np.load('intro/summary-exercises/examples/max-speeds.npy')
     >>> years_nb = max_speeds.shape[0]
 
 Following the cumulative probability definition ``p_i`` from the previous
@@ -92,8 +92,8 @@ value will be::
 So the storm wind speed occurring every 50 years can be guessed by::
 
     >>> fifty_wind = quantile_func(fifty_prob)
-    >>> fifty_wind
-    array([ 32.97989825])
+    >>> fifty_wind      # doctest: +ELLIPSIS
+    32.97989825...
 
 The results are now gathered on a Matplotlib figure:
 

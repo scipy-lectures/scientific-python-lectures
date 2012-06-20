@@ -306,8 +306,8 @@ There are also other types:
     - ::
 
         >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
-        >>> f.dtype
-        dtype('S7')         # <--- strings containing max. 7 letters
+        >>> f.dtype     # <--- strings containing max. 7 letters
+        dtype('S7')
 
    *
     - Much more: int32/int64...
@@ -428,7 +428,7 @@ Note that:
     >>> a[2:9:3] # [start:end:step]
     array([2, 5, 8])
 
-Note that the last index is not included!::
+Note that the last index is not included! ::
 
     >>> a[:4]
     array([0, 1, 2, 3])
@@ -493,12 +493,12 @@ memory and time.
     >>> a += a.T
     >>> a
     array([[ 2.,  2.,  2., ...,  2.,  2.,  2.],
-        [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-        [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-        ..., 
-        [ 3.,  3.,  3., ...,  2.,  2.,  2.],
-        [ 3.,  3.,  3., ...,  2.,  2.,  2.],
-        [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
+           [ 2.,  2.,  2., ...,  2.,  2.,  2.],
+           [ 2.,  2.,  2., ...,  2.,  2.,  2.],
+           ..., 
+           [ 3.,  3.,  3., ...,  2.,  2.,  2.],
+           [ 3.,  3.,  3., ...,  2.,  2.,  2.],
+           [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
 
 .. EXE: [1, 2, 3, 4, 5] -> [1, 2, 3]
 .. EXE: [1, 2, 3, 4, 5] -> [4, 5]

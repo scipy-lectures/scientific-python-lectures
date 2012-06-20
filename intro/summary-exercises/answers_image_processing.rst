@@ -1,6 +1,11 @@
 
 .. only:: html
 
+
+>>> import numpy as np
+>>> import pylab as pl
+>>> from scipy import ndimage
+
 .. _image-answers:
 
 Example of solution for the image processing exercise: unmolten grains in glass
@@ -16,7 +21,7 @@ Example of solution for the image processing exercise: unmolten grains in glass
    with the "right" orientation (origin in the bottom left corner, and not
    the upper left corner as for standard arrays). ::
 
-    >>> dat = imread('MV_HFV_012.jpg')
+    >>> dat = pl.imread('data/MV_HFV_012.jpg')
 
 2. Crop the image to remove the lower panel with measure information. ::
 
@@ -38,14 +43,13 @@ Example of solution for the image processing exercise: unmolten grains in glass
    the thresholds from the minima of the histogram. ::
 
     >>> void = filtdat <= 50
-    >>> sand = np.logical_and(filtdat>50, filtdat<=114)
+    >>> sand = np.logical_and(filtdat > 50, filtdat <= 114)
     >>> glass = filtdat > 114
 
 5. Display an image in which the three phases are colored with three
    different colors. ::
 
-    >>> phases = void.astype(np.int) + 2*glass.astype(np.int) +\
-            3*sand.astype(np.int)
+    >>> phases = void.astype(np.int) + 2*glass.astype(np.int) + 3*sand.astype(np.int)
 
 .. image:: ../image_processing/three_phases.png
    :align: center
@@ -59,9 +63,8 @@ Example of solution for the image processing exercise: unmolten grains in glass
    ``ndimage.sum`` or ``np.bincount`` to compute the grain sizes. ::
 
     >>> sand_labels, sand_nb = ndimage.label(sand_op)
-    >>> sand_areas = np.array(ndimage.sum(sand_op, sand_labels,\
-    ...     np.arange(sand_labels.max()+1)))
-    >>> mask = sand_areas>100
+    >>> sand_areas = np.array(ndimage.sum(sand_op, sand_labels, np.arange(sand_labels.max()+1)))
+    >>> mask = sand_areas > 100
     >>> remove_small_sand = mask[sand_labels.ravel()].reshape(sand_labels.shape)
 
 .. image:: ../image_processing/sands.png

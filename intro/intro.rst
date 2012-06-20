@@ -157,7 +157,8 @@ that can be combined to optain a scientific-computing environment:
 * **Numpy** : provides powerful **numerical arrays** objects, and routines to
   manipulate them. http://www.numpy.org/
 
-.. 
+..  
+    >>> import numpy as np
     >>> np.random.seed(4)
 
 * **Scipy** : high-level data processing routines.
