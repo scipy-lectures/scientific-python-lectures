@@ -17,6 +17,7 @@ plot_formats configuration variable.
 """
 
 import sys, os, glob, shutil, hashlib, imp, warnings, cStringIO
+import traceback
 import re
 try:
     from hashlib import md5
@@ -209,7 +210,8 @@ def makefig(fullpath, code, outdir):
         try:
             runfile(fullpath)
         except:
-            s = cbook.exception_to_str("Exception running plot %s" % fullpath)
+            traceback.print_exc()
+            s = ("Exception running plot %s" % fullpath)
             warnings.warn(s)
             return 0
 

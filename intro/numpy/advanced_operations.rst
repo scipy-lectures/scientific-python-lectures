@@ -12,55 +12,6 @@ Advanced operations
     :local:
     :depth: 1
 
-Fourier transforms
-------------------
-
-Numpy contains 1-D, 2-D, and N-D fast discrete Fourier transform routines,
-which compute:
-
-.. math::
-   A_k =  \sum_{m=0}^{n-1} a_m \exp\left\{-2\pi i{mk \over n}\right\}
-   \qquad k = 0,\ldots,n-1.
-
-Full details of what for you can use such standard routines is beyond
-this tutorial. Neverheless, there they are, if you need them::
-
-    >>> a = np.exp(2j*np.pi*np.arange(10))
-    >>> fa = np.fft.fft(a)
-    >>> np.set_printoptions(suppress=True) # print small number as 0
-    >>> fa
-    array([ 10.-0.j,   0.+0.j,   0.+0.j,   0.+0.j,   0.+0.j,   0.+0.j,
-            -0.+0.j,  -0.+0.j,  -0.+0.j,  -0.+0.j])
-
-    >>> a = np.exp(2j*np.pi*np.arange(3))
-    >>> b = a[:,np.newaxis] + a[np.newaxis,:]
-    >>> np.fft.fftn(b)
-    array([[ 18.-0.j,   0.+0.j,  -0.+0.j],
-           [  0.+0.j,   0.+0.j,   0.+0.j],
-           [ -0.+0.j,   0.+0.j,   0.+0.j]])
-
-See ``help(np.fft)`` and ``help(np.fft.fft)`` for more.  These
-functions in general take the ``axes`` argument, and you can
-additionally specify padding etc.
-
-.. topic:: Worked example: Crude periodicity finding
-
-    .. plot:: intro/numpy/solutions/4_a_periodicity.py
-
-.. topic:: Worked example: Gaussian image blur
-
-    Convolution:
-
-    .. math::
-
-        f_1(t) = \int dt'\, K(t-t') f_0(t')
-
-    .. math::
-
-        \tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
-
-    .. plot:: intro/numpy/solutions/4_b_image_blur.py
-
 Polynomials
 -----------
 

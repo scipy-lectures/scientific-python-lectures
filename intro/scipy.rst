@@ -268,8 +268,10 @@ The resulting output is composed of:
 Linear algebra operations: ``scipy.linalg``
 -----------------------------------------------
 
-First, the linalg module provides standard linear algebra operations.
-The ``det`` function computes the determinant of a square matrix::
+The linalg module provides standard linear algebra operations, relying on
+an underlying efficient implementation (BLAS).
+
+* The ``det`` function computes the determinant of a square matrix::
 
     >>> from scipy import linalg
     >>> arr = np.array([[1, 2],
@@ -285,7 +287,7 @@ The ``det`` function computes the determinant of a square matrix::
     ...
     ValueError: expected square matrix
 
-The ``inv`` function computes the inverse of a square matrix::
+* The ``inv`` function computes the inverse of a square matrix::
 
     >>> arr = np.array([[1, 2],
     ...                 [3, 4]])
@@ -296,15 +298,15 @@ The ``inv`` function computes the inverse of a square matrix::
     >>> np.allclose(np.dot(arr, iarr), np.eye(2))
     True
 
-Note that in case you use the matrix type, the inverse is computed when
-requesting the ``I`` attribute::
+  Note that in case you use the matrix type, the inverse is computed when
+  requesting the ``I`` attribute::
 
     >>> ma = np.matrix(arr, copy=False)
     >>> np.allclose(ma.I, iarr)
     True
 
-Finally computing the inverse of a singular matrix (its determinant is zero)
-will raise ``LinAlgError``::
+  Finally computing the inverse of a singular matrix (its determinant is zero)
+  will raise ``LinAlgError``::
 
     >>> arr = np.array([[3, 2],
     ...                 [6, 4]])
@@ -313,32 +315,32 @@ will raise ``LinAlgError``::
     ...
     LinAlgError: singular matrix
 
-More advanced operations are available like singular-value decomposition
-(SVD)::
+* More advanced operations are available like singular-value decomposition
+  (SVD)::
 
     >>> arr = np.arange(9).reshape((3, 3)) + np.diag([1, 0, 1])
     >>> uarr, spec, vharr = linalg.svd(arr)
 
-The resulting array spectrum is::
+  The resulting array spectrum is::
 
     >>> spec    # doctest: +ELLIPSIS
     array([ 14.88982544,   0.45294236,   0.29654967])
 
-For the recomposition, an alias for manipulating matrix will first
-be defined::
+  For the recomposition, an alias for manipulating matrix will first
+  be defined::
 
     >>> asmat = np.asmatrix
 
-then the steps are::
+  then the steps are::
 
     >>> sarr = np.diag(spec)
     >>> svd_mat = asmat(uarr) * asmat(sarr) * asmat(vharr)
     >>> np.allclose(svd_mat, arr)
     True
 
-SVD is commonly used in statistics or signal processing.  Many other
-standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
-for linear systems, are available in ``scipy.linalg``.
+  SVD is commonly used in statistics or signal processing.  Many other
+  standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
+  for linear systems, are available in ``scipy.linalg``.
 
 Numerical integration: ``scipy.integrate``
 ------------------------------------------------
@@ -502,6 +504,31 @@ The result is shown on the Matplotlib figure:
 .. plot:: pyplots/fftpack_signals.py
     :scale: 70
 
+.. note:: **numpy.fft**
+
+   Numpy also has an implementation of FFT. However, in general the scipy
+   one should be prefered, as it uses more efficient underlying
+   implementations.
+
+.. topic:: Worked example: Crude periodicity finding
+
+    .. plot:: intro/solutions/periodicity_finder.py
+
+.. topic:: Worked example: Gaussian image blur
+
+    Convolution:
+
+    .. math::
+
+        f_1(t) = \int dt'\, K(t-t') f_0(t')
+
+    .. math::
+
+        \tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
+
+    .. plot:: intro/solutions/image_blur.py
+
+
 Interpolation: ``scipy.interpolate``
 ------------------------------------
 The ``scipy.interpolate`` is useful for fitting a function from experimental
@@ -557,6 +584,7 @@ minimization (scalar or multi-dimensional), curve fitting and root
 finding. ::
 
     >>> from scipy import optimize
+
 
 **Example: Minimizing a scalar function using different algorithms**
 
