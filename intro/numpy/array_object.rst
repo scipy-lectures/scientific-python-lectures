@@ -276,39 +276,29 @@ The **default** data type is floating point::
 
 There are also other types:
 
-.. list-table::
-   
-   * 
-    - Complex
-
-    - ::
+:Complex:
 
         >>> d = np.array([1+2j, 3+4j, 5+6*1j])
         >>> d.dtype
         dtype('complex128')
 
-   *
-    - Bool
-
-    - ::
+:Bool:
 
         >>> e = np.array([True, False, False, True])
         >>> e.dtype
         dtype('bool')
 
-   *
-    - Strings
-
-    - ::
+:Strings:
 
         >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
         >>> f.dtype     # <--- strings containing max. 7 letters
         dtype('S7')
 
-   *
-    - Much more: int32/int64...
+:Much more:
 
-    -
+        int32/int64...   
+
+
 
 .. XXX: mention: astype
 
