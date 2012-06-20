@@ -97,42 +97,40 @@ Block of memory
 ---------------
 
 >>> x = np.array([1, 2, 3, 4], dtype=np.int32)
->>> x.data
-<read-write buffer for 0xa37bfd8, size 16, offset 0 at 0xa4eabe0>
+>>> x.data      # doctest: +SKIP
+<read-write buffer for ..., size 16, offset 0 at ...>
 >>> str(x.data)
 '\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\x04\x00\x00\x00'
 
 Memory address of the data:
 
->>> x.__array_interface__['data'][0]
-159755776
+>>> x.__array_interface__['data'][0] # doctest: +SKIP
+64803824
 
-Reminder: two :class:`ndarrays <ndarray>` may share the same memory:
+Reminder: two :class:`ndarrays <ndarray>` may share the same memory::
 
->>> x = np.array([1,2,3,4])
->>> y = x[:-1]
->>> x[0] = 9
->>> y
-array([9, 2, 3])
+    >>> x = np.array([1, 2, 3, 4])
+    >>> y = x[:-1]
+    >>> x[0] = 9
+    >>> y
+    array([9, 2, 3])
 
-Memory does not need to be owned by an :class:`ndarray`:
+Memory does not need to be owned by an :class:`ndarray`::
 
->>> x = '1234'
->>> y = np.frombuffer(x, dtype=np.int8)
->>> y.data
-<read-only buffer for 0xa588ba8, size 4, offset 0 at 0xa55cd60>
->>> y.base is x
-True
+    >>> x = '1234'
+    >>> y = np.frombuffer(x, dtype=np.int8)
+    >>> y.data      # doctest: +ELLIPSIS
+    <read-only buffer for ..., size 4, offset 0 at ...>
+    >>> y.base is x
+    True
 
-
-
->>> y.flags
-  C_CONTIGUOUS : True
-  F_CONTIGUOUS : True
-  OWNDATA : False
-  WRITEABLE : False
-  ALIGNED : True
-  UPDATEIFCOPY : False
+    >>> y.flags
+      C_CONTIGUOUS : True
+      F_CONTIGUOUS : True
+      OWNDATA : False
+      WRITEABLE : False
+      ALIGNED : True
+      UPDATEIFCOPY : False
 
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
@@ -160,9 +158,9 @@ shape       shape of the array, if it's a **sub-array**
 =========   ===================================================
 
 >>> np.dtype(int).type
-<type 'numpy.int32'>
+<type 'numpy.int64'>
 >>> np.dtype(int).itemsize
-4
+8
 >>> np.dtype(int).byteorder
 '='
 
@@ -194,30 +192,30 @@ data_size          4-byte unsigned little-endian integer
 The ``.wav`` file header as a Numpy *structured* data type:
 
 >>> wav_header_dtype = np.dtype([
-     ("chunk_id", (str, 4)),   # flexible-sized scalar type, item size 4
-     ("chunk_size", "<u4"),    # little-endian unsigned 32-bit integer
-     ("format", "S4"),         # 4-byte string
-     ("fmt_id", "S4"),
-     ("fmt_size", "<u4"),
-     ("audio_fmt", "<u2"),     #
-     ("num_channels", "<u2"),  # .. more of the same ...
-     ("sample_rate", "<u4"),   #
-     ("byte_rate", "<u4"),
-     ("block_align", "<u2"),
-     ("bits_per_sample", "<u2"),
-     ("data_id", ("S1", (2, 2))), # sub-array, just for fun!
-     ("data_size", "u4"),
-     #
-     # the sound data itself cannot be represented here:
-     # it does not have a fixed size
-])
+...     ("chunk_id", (str, 4)),   # flexible-sized scalar type, item size 4
+...     ("chunk_size", "<u4"),    # little-endian unsigned 32-bit integer
+...     ("format", "S4"),         # 4-byte string
+...     ("fmt_id", "S4"),
+...     ("fmt_size", "<u4"),
+...     ("audio_fmt", "<u2"),     #
+...     ("num_channels", "<u2"),  # .. more of the same ...
+...     ("sample_rate", "<u4"),   #
+...     ("byte_rate", "<u4"),
+...     ("block_align", "<u2"),
+...     ("bits_per_sample", "<u2"),
+...     ("data_id", ("S1", (2, 2))), # sub-array, just for fun!
+...     ("data_size", "u4"),
+...     #
+...     # the sound data itself cannot be represented here:
+...     # it does not have a fixed size
+...    ])
 
 .. seealso:: wavreader.py
 
 >>> wav_header_dtype['format']
 dtype('|S4')
->>> wav_header_dtype.fields
-<dictproxy object at 0x85e9704>
+>>> wav_header_dtype.fields     # doctest: +ELLIPSIS
+<dictproxy object at ...>
 >>> wav_header_dtype.fields['format']
 (dtype('|S4'), 8)
 
@@ -226,25 +224,24 @@ dtype('|S4')
 
 - The second one is its offset (in bytes) from the beginning of the item
 
-.. note::
+.. topic:: Exercice
 
    Mini-exercise, make a "sparse" dtype by using offsets, and only some
-   of the fields:
+   of the fields::
 
-   >>> wav_header_dtype = np.dtype(dict(
-       names=['format', 'sample_rate', 'data_id'],
-       offsets=[offset_1, offset_2, offset_3], # counted from start of structure in bytes
-       formats=list of dtypes for each of the fields,
-   ))
+    >>> wav_header_dtype = np.dtype(dict(
+    ...   names=['format', 'sample_rate', 'data_id'],
+    ...   offsets=[offset_1, offset_2, offset_3], # counted from start of structure in bytes
+    ...   formats=list of dtypes for each of the fields,
+    ... ))  # doctest: +SKIP
 
    and use that to read the sample rate, and ``data_id`` (as sub-array).
 
->>> f = open('test.wav', 'r')
+>>> f = open('data/test.wav', 'r')
 >>> wav_header = np.fromfile(f, dtype=wav_header_dtype, count=1)
 >>> f.close()
 >>> print(wav_header)
-[ ('RIFF', 17402L, 'WAVE', 'fmt ', 16L, 1, 1, 16000L, 32000L, 2, 16, 
-  [['d', 'a'], ['t', 'a']], 17366L)]
+[ ('RIFF', 17402L, 'WAVE', 'fmt ', 16L, 1, 1, 16000L, 32000L, 2, 16, [['d', 'a'], ['t', 'a']], 17366L)]
 >>> wav_header['sample_rate']
 array([16000], dtype=uint32)
 
@@ -283,7 +280,8 @@ Casting and re-interpretation/views
     - manually: ``.view(dtype)``
 
 
-.. rubric:: Casting
+Casting
+........
 
 - Casting in arithmetic, in nutshell:
 
@@ -293,28 +291,28 @@ Casting and re-interpretation/views
 
   - scalars can "lose" to arrays in some situations
 
-- Casting in general copies data
+- Casting in general copies data::
 
->>> x = np.array([1, 2, 3, 4], dtype=np.float)
->>> x
-array([ 1.,  2.,  3.,  4.])
->>> y = x.astype(np.int8)
->>> y
-array([1, 2, 3, 4], dtype=int8)
->>> y + 1
-array([2, 3, 4, 5], dtype=int8)
->>> y + 256
-array([1, 2, 3, 4], dtype=int8)
->>> y + 256.0
-array([ 257.,  258.,  259.,  260.])
->>> y + np.array([256], dtype=np.int32)
-array([258, 259, 260, 261])
+    >>> x = np.array([1, 2, 3, 4], dtype=np.float)
+    >>> x
+    array([ 1.,  2.,  3.,  4.])
+    >>> y = x.astype(np.int8)
+    >>> y
+    array([1, 2, 3, 4], dtype=int8)
+    >>> y + 1
+    array([2, 3, 4, 5], dtype=int8)
+    >>> y + 256
+    array([1, 2, 3, 4], dtype=int8)
+    >>> y + 256.0
+    array([ 257.,  258.,  259.,  260.])
+    >>> y + np.array([256], dtype=np.int32)
+    array([257, 258, 259, 260], dtype=int32)
 
-- Casting on setitem: dtype of the array is not changed on item assignment
+- Casting on setitem: dtype of the array is not changed on item assignment::
 
->>> y[:] = y + 1.5
->>> y
-array([2, 3, 4, 5], dtype=int8)
+    >>> y[:] = y + 1.5
+    >>> y
+    array([2, 3, 4, 5], dtype=int8)
 
 .. note::
 
@@ -322,7 +320,8 @@ array([2, 3, 4, 5], dtype=int8)
    http://docs.scipy.org/doc/numpy/reference/ufuncs.html#casting-rules
 
 
-.. rubric:: Re-interpretation / viewing
+Re-interpretation / viewing
+............................
 
 - Data block in memory (4 bytes)
 
@@ -360,7 +359,7 @@ array([2, 3, 4, 5], dtype=int8)
 
    >>> y = x.view("<i4")
    >>> y
-   array([67305985])
+   array([67305985], dtype=int32)
    >>> 0x04030201
    67305985
 
@@ -372,37 +371,37 @@ array([2, 3, 4, 5], dtype=int8)
 .. note::
 
    - ``.view()`` makes *views*, does not copy (or alter) the memory block
-   - only changes the dtype (and adjusts array shape)
+   - only changes the dtype (and adjusts array shape)::
 
-   >>> x[1] = 5
-   >>> y
-   array([328193])
-   >>> y.base is x
-   True
+    >>> x[1] = 5
+    >>> y
+    array([328193], dtype=int32)
+    >>> y.base is x
+    True
 
 .. rubric:: Mini-exercise: data re-interpretation
 
 .. seealso:: view-colors.py
 
-You have RGBA data in an array
+You have RGBA data in an array::
 
->>> x = np.zeros((10, 10, 4), dtype=np.int8)
->>> x[:,:,0] = 1
->>> x[:,:,1] = 2
->>> x[:,:,2] = 3
->>> x[:,:,3] = 4
+    >>> x = np.zeros((10, 10, 4), dtype=np.int8)
+    >>> x[:, :, 0] = 1
+    >>> x[:, :, 1] = 2
+    >>> x[:, :, 2] = 3
+    >>> x[:, :, 3] = 4
 
 where the last three dimensions are the R, B, and G, and alpha channels.
 
 How to make a (10, 10) structured array with field names 'r', 'g', 'b', 'a'
-without copying data?
+without copying data? ::
 
->>> y = ...
+    >>> y = ...                     # doctest: +SKIP
 
->>> assert (y['r'] == 1).all()
->>> assert (y['g'] == 2).all()
->>> assert (y['b'] == 3).all()
->>> assert (y['a'] == 4).all()
+    >>> assert (y['r'] == 1).all()  # doctest: +SKIP
+    >>> assert (y['g'] == 2).all()  # doctest: +SKIP
+    >>> assert (y['b'] == 3).all()  # doctest: +SKIP
+    >>> assert (y['a'] == 4).all()  # doctest: +SKIP
 
 *Solution*
 
@@ -412,10 +411,10 @@ without copying data?
        <div id="hidden-item-0" style="display: none;">
 
     >>> y = x.view([('r', 'i1'), 
-                    ('g', 'i1'), 
-                    ('b', 'i1'), 
-                    ('a', 'i1')]
-                  )[:,:,0]
+    ...             ('g', 'i1'), 
+    ...             ('b', 'i1'), 
+    ...             ('a', 'i1')]
+    ...              )[:, :, 0]
 
     .. raw:: html
 
@@ -457,8 +456,8 @@ Main point
 **The question**
 
   >>> x = np.array([[1, 2, 3], 
-		    [4, 5, 6], 
-		    [7, 8, 9]], dtype=np.int8)
+  ...	           [4, 5, 6], 
+  ...	           [7, 8, 9]], dtype=np.int8)
   >>> str(x.data)
   '\x01\x02\x03\x04\x05\x06\x07\x08\t'
 
@@ -474,17 +473,18 @@ Main point
   >>> byte_offset = 3*1 + 1*2   # to find x[1,2]
   >>> x.data[byte_offset] 
   '\x06'
-  >>> x[1,2]
+  >>> x[1, 2]
   6
 
   - simple, **flexible**
 
 
-.. rubric:: C and Fortran order
+C and Fortran order
+.....................
 
 >>> x = np.array([[1, 2, 3], 
-                  [4, 5, 6], 
-		  [7, 8, 9]], dtype=np.int16, order='C')
+...               [4, 5, 6], 
+...               [7, 8, 9]], dtype=np.int16, order='C')
 >>> x.strides
 (6, 2)
 >>> str(x.data)
@@ -543,7 +543,8 @@ Main point
    - ``.copy()`` creates new arrays in the C order (by default)
 
 
-.. rubric:: Slicing with integers
+Slicing with integers
+.......................
 
 - *Everything* can be represented by changing only ``shape``, ``strides``, 
   and possibly adjusting the ``data`` pointer!
@@ -552,7 +553,7 @@ Main point
 >>> x = np.array([1, 2, 3, 4, 5, 6], dtype=np.int32)
 >>> y = x[::-1]
 >>> y
-array([6, 5, 4, 3, 2, 1])
+array([6, 5, 4, 3, 2, 1], dtype=int32)
 >>> y.strides
 (-4,)
 
@@ -575,7 +576,7 @@ Example: fake dimensions with strides
 .. rubric:: Stride manipulation
 
 >>> from numpy.lib.stride_tricks import as_strided
->>> help(as_strided)
+>>> help(as_strided)    # doctest: +SKIP
 as_strided(x, shape=None, strides=None)
    Make an ndarray from the given array with the given shape and strides
 
@@ -585,7 +586,7 @@ as_strided(x, shape=None, strides=None)
    block bounds... 
 
 >>> x = np.array([1, 2, 3, 4], dtype=np.int16)
->>> as_strided(x, strides=(2*2,), shape=(2,))
+>>> as_strided(x, strides=(2*2, ), shape=(2, ))
 array([1, 3], dtype=int16)
 >>> x[::2]
 array([1, 3], dtype=int16)
@@ -676,17 +677,17 @@ More tricks: diagonals
 
 **Challenge**
 
-    Pick diagonal entries of the matrix: (assume C memory order)
+    * Pick diagonal entries of the matrix: (assume C memory order)::
 
-    >>> x = np.array([[1, 2, 3],
-                      [4, 5, 6],
-                      [7, 8, 9]], dtype=np.int32)
+        >>> x = np.array([[1, 2, 3],
+        ...               [4, 5, 6],
+        ...               [7, 8, 9]], dtype=np.int32)
 
-    >>> x_diag = as_strided(x, shape=(3,), strides=(???,))
+        >>> x_diag = as_strided(x, shape=(3,), strides=(???,)) # doctest: +SKIP
 
-    Pick the first super-diagonal entries ``[2, 6]``.
+    * Pick the first super-diagonal entries ``[2, 6]``.
 
-    And the sub-diagonals?
+    * And the sub-diagonals?
 
     (Hint to the last two: slicing first moves the point where striding
      starts from.)
@@ -698,32 +699,32 @@ More tricks: diagonals
        <a onclick="$('#hidden-item-2').toggle(100)">...</a>
        <div id="hidden-item-2" style="display: none;">
 
-    Pick diagonals:
+    Pick diagonals::
 
-    >>> x_diag = as_strided(x, shape=(3,), strides=((3+1)*x.itemsize,))
-    >>> x_diag
-    array([1, 5, 9])
+      >>> x_diag = as_strided(x, shape=(3, ), strides=((3+1)*x.itemsize, ))
+      >>> x_diag
+      array([1, 5, 9], dtype=int32)
 
-    Slice first, to adjust the data pointer:
+    Slice first, to adjust the data pointer::
 
-    >>> as_strided(x[0,1:], shape=(2,), strides=((3+1)*x.itemsize,))
-    array([2, 6])
-
-    >>> as_strided(x[1:,0], shape=(2,), strides=((3+1)*x.itemsize,))
-    array([4, 8])
+      >>> as_strided(x[0, 1:], shape=(2, ), strides=((3+1)*x.itemsize, ))
+      array([2, 6], dtype=int32)
+        
+      >>> as_strided(x[1:, 0], shape=(2, ), strides=((3+1)*x.itemsize, ))
+      array([4, 8], dtype=int32)
 
     .. note::
 
        >>> y = np.diag(x, k=1)
        >>> y
-       array([2, 6])
+       array([2, 6], dtype=int32)
 
        However,
 
        >>> y.flags.owndata
        True
 
-       It makes a copy?! Room for improvement... (bug #xxx)
+       It makes a copy?!
 
     .. raw:: html
 
@@ -733,19 +734,19 @@ More tricks: diagonals
 
 **Challenge**
 
-    Compute the tensor trace
+   Compute the tensor trace::
 
     >>> x = np.arange(5*5*5*5).reshape(5,5,5,5)
     >>> s = 0
     >>> for i in xrange(5):
-    >>>    for j in xrange(5):
-    >>>       s += x[j,i,j,i]
+    ...    for j in xrange(5):
+    ...       s += x[j,i,j,i]
 
-    by striding, and using ``sum()`` on the result.
+   by striding, and using ``sum()`` on the result. ::
 
-    >>> y = as_strided(x, shape=(5, 5), strides=(TODO, TODO))
-    >>> s2 = ...
-    >>> assert s == s2
+    >>> y = as_strided(x, shape=(5, 5), strides=(TODO, TODO))   # doctest: +SKIP
+    >>> s2 = ...   # doctest: +SKIP
+    >>> assert s == s2   # doctest: +SKIP
 
 *Solution*
 
@@ -754,8 +755,8 @@ More tricks: diagonals
        <a onclick="$('#hidden-item-2-2').toggle(100)">...</a>
        <div id="hidden-item-2-2" style="display: none;">
 
-    >>> y = as_strided(x, shape=(5, 5), strides=((5*5*5+5)*x.itemsize,
-                                                 (5*5+1)*x.itemsize))
+    >>> y = as_strided(x, shape=(5, 5), strides=((5*5*5 + 5)*x.itemsize,
+    ...                                          (5*5 + 1)*x.itemsize))
     >>> s2 = y.sum()
 
     .. raw:: html
@@ -812,11 +813,11 @@ Example: inplace operations (caveat emptor)
 
 - Sometimes,
 
-  >>> a -= b
+  >>> a -= b    # doctest: +SKIP
 
   is not the same as
 
-  >>> a -= b.copy()
+  >>> a -= b.copy()    # doctest: +SKIP
 
 >>> x = np.array([[1, 2], [3, 4]])
 >>> x -= x.transpose()
@@ -1184,19 +1185,16 @@ Mini-exercise using PIL (Python Imaging Library):
 .. seealso:: pilbuffer.py
 
 >>> import Image
->>> x = np.zeros((200, 200, 4), dtype=np.int8)
-
-* TODO: RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA].
-
-  * Fill ``x`` with opaque red [255,0,0,255]
-  * Mangle it to (200,200) 32-bit integer array so that PIL accepts it
-
+>>> data = np.zeros((200, 200, 4), dtype=np.int8)
+>>> data[:, :] = [255, 0, 0, 255] # Red
+>>> # In PIL, RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA]
+>>> data = data.view(np.int32).squeeze()
 >>> img = Image.frombuffer("RGBA", (200, 200), data)
 >>> img.save('test.png')
 
 **Q:**
 
-    Check what happens if ``x`` is now modified, and ``img`` saved again.
+    Check what happens if ``data`` is now modified, and ``img`` saved again.
 
 The old buffer protocol
 -----------------------
@@ -1223,7 +1221,7 @@ Array interface protocol
    http://docs.scipy.org/doc/numpy/reference/arrays.interface.html
 
 >>> x = np.array([[1, 2], [3, 4]])
->>> x.__array_interface__
+>>> x.__array_interface__   # doctest: +SKIP
 {'data': (171694552, False),      # memory address of data, is readonly?
  'descr': [('', '<i4')],          # data type descriptor
  'typestr': '<i4',                # same, in another form
@@ -1233,9 +1231,9 @@ Array interface protocol
 }
 
 >>> import Image
->>> img = Image.open('test.png')
->>> img.__array_interface__
-{'data': a very long string,
+>>> img = Image.open('data/test.png')
+>>> img.__array_interface__     # doctest: +SKIP
+{'data': ...,
  'shape': (200, 200, 4),
  'typestr': '|u1'}
 >>> x = np.asarray(img)
@@ -1248,133 +1246,6 @@ dtype('uint8')
 .. note::
 
    A more C-friendly variant of the array interface is also defined.
-
-
-The new buffer protocol: PEP 3118
----------------------------------
-
-- Multidimensional buffers
-- Data type information present
-- C-level interface; extensions to ``tp_as_buffer``
-- Integrated into Python (>= 2.6)
-- Replaces the "old" buffer interface in Python 3
-- Next releases of Numpy (>= 1.5) will also implement it fully
-
-.. need to construct a custom example for this...
-   perhaps the opengl one is filled with too much irrelevancies?
-
-* Demo in Python 3 / Numpy dev version::
-
-    Python 3.1.2 (r312:79147, Apr 15 2010, 12:35:07) 
-    [GCC 4.4.3] on linux2
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> import numpy as np
-    >>> np.__version__
-    '2.0.0.dev8469+15dcfb'
-
-* Memoryview object exposes some of the stuff Python-side::
-
-    >>> x = np.array([[1, 2], [3, 4]])
-    >>> y = memoryview(x)
-    >>> y.format
-    'l'
-    >>> y.itemsize
-    4
-    >>> y.ndim
-    2
-    >>> y.readonly
-    False
-    >>> y.shape
-    (2, 2)
-    >>> y.strides
-    (8, 4)
-
-* Roundtrips work::
-
-    >>> z = np.asarray(y)
-    >>> z
-    array([[1, 2],
-           [3, 4]])
-    >>> x[0, 0] = 9
-    >>> z
-    array([[9, 2],
-           [3, 4]])
-
-* Interoperability with the built-in Python ``array`` module::
-
-    >>> import array
-    >>> x = array.array('h', b'1212')    # 2 of int16, but no Numpy!
-    >>> y = np.asarray(x)
-    >>> y
-    array([12849, 12849])
-    >>> y.base      # doctest: +ELLIPSIS
-    <memory at ...>
-
-
-PEP 3118 -- details
--------------------
-
-* Suppose: you have a new Python extension type ``MyObject`` (defined in C)
-
-* ... and want it to interoperable with a (2, 2) array of int32
-
-.. seealso:: myobject.c, myobject_test.py, setup_myobject.py
-
-.. sourcecode:: c
-
-   static PyBufferProcs myobject_as_buffer = {
-       (getbufferproc)myobject_getbuffer,
-       (releasebufferproc)myobject_releasebuffer,
-   };
-
-   /* .. and stick this to the type object */
-
-   static int
-   myobject_getbuffer(PyObject *obj, Py_buffer *view, int flags)
-   {
-       PyMyObjectObject *self = (PyMyObjectObject*)obj;
-
-       /* Called when something requests that a MyObject-type object 
-	  provides a buffer interface */
-
-       view->buf = self->buffer;
-       view->readonly = 0;
-       view->format = "i";
-       view->shape = malloc(sizeof(Py_ssize_t) * 2);
-       view->strides = malloc(sizeof(Py_ssize_t) * 2);;
-       view->suboffsets = NULL;
-
-       TODO: Just fill in view->len, view->itemsize, view->strides[0] and 1,
-       view->shape[0] and 1, and view->ndim.
-
-       /* Note: if correct interpretation *requires* strides or shape,
-	  you need to check flags for what was requested, and raise 
-	  appropriate errors. 
-
-	  The same if the buffer is not readable. 
-       */ 
-
-       view->obj = (PyObject*)self;
-       Py_INCREF(self);
-
-       return 0;
-   }
-
-   static void
-   myobject_releasebuffer(PyMemoryViewObject *self, Py_buffer *view)
-   {
-       if (view->shape) {
-	   free(view->shape); 
-	   view->shape = NULL;
-       }
-       if (view->strides) {
-	   free(view->strides); 
-	   view->strides = NULL;
-       }
-   }
-
-
-.. literalinclude:: examples/myobject-answer.c
 
 
 Siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
