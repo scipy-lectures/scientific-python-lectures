@@ -85,7 +85,7 @@ Shape mismatches::
     File "<stdin>", line 1, in <module>
     ValueError: shape mismatch: objects cannot be broadcast to a single shape
 
-**'Broadcast'?** We'll return to that later.
+**'Broadcast'?** We'll return to that :ref:`later <broadcasting>`.
 
 **Transposition**::
 
@@ -310,6 +310,8 @@ The RMS distance grows as the square root of the time!
 .. EXE: load data with loadtxt from a file, and compute its basic statistics
 
 .. CHA: implement mean and std using only sum()
+
+.. _broadcasting:
 
 Broadcasting
 ------------

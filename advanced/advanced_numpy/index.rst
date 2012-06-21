@@ -41,9 +41,6 @@ This tutorial aims to cover:
     * Numpy (>= 1.2; preferably newer...)
     * Cython (>= 0.12, for the Ufunc example)
     * PIL (used in a couple of examples)
-    * Source codes:
-
-        - http://pav.iki.fi/tmp/advnumpy-ex.zip  
 
 In this section, numpy will be imported as follows::
 
@@ -373,11 +370,11 @@ Re-interpretation / viewing
    - ``.view()`` makes *views*, does not copy (or alter) the memory block
    - only changes the dtype (and adjusts array shape)::
 
-    >>> x[1] = 5
-    >>> y
-    array([328193], dtype=int32)
-    >>> y.base is x
-    True
+      >>> x[1] = 5
+      >>> y
+      array([328193], dtype=int32)
+      >>> y.base is x
+      True
 
 .. rubric:: Mini-exercise: data re-interpretation
 
@@ -873,7 +870,8 @@ What they are?
 - The elementwise operation needs to be implemented in C (or, e.g., Cython)
 
 
-.. rubric:: Parts of an Ufunc
+Parts of an Ufunc
+^^^^^^^^^^^^^^^^^^
 
 1. Provided by user
 
@@ -925,7 +923,8 @@ What they are?
    - A ufunc can also support multiple different input-output type 
      combinations.
 
-.. rubric:: ... can be made slightly easier
+Making it easier
+^^^^^^^^^^^^^^^^
 
 3. ``ufunc_loop`` is of very generic form, and Numpy provides
    pre-made ones
@@ -1247,12 +1246,13 @@ dtype('uint8')
 
    A more C-friendly variant of the array interface is also defined.
 
+.. _array_siblings:
 
-Siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
-===================================================================
+Array siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
+==========================================================================
 
-*chararray* --- vectorized string operations
-.............................................
+:class:`chararray`: vectorized string operations
+--------------------------------------------------
 
 >>> x = np.array(['a', '  bbb', '  ccc']).view(np.chararray)
 >>> x.lstrip(' ')
@@ -1267,40 +1267,135 @@ chararray(['A', '  BBB', '  CCC'],
    ``.view()`` has a second meaning: it can make an ndarray an instance
    of a specialized ndarray subclass
 
-*MaskedArray* --- dealing with (propagation of) missing data
-..............................................................
+:class:`masked_array` missing data
+------------------------------------
 
-* For floats one could use NaN's, but masks work for all types::
+Masked arrays are arrays that may have missing or invalid entries.
 
-    >>> x = np.ma.array([1, 2, 3, 4], mask=[0, 1, 0, 1])
+For example, suppose we have an array where the fourth entry is invalid::
+
+    >>> x = np.array([1, 2, 3, -99, 5])
+
+One way to describe this is to create a masked array::
+
+    >>> mx = np.ma.masked_array(x, mask=[0, 0, 0, 1, 0])
+    >>> mx
+    masked_array(data = [1 2 3 -- 5],
+                 mask = [False False False  True False],
+           fill_value = 999999)
+    <BLANKLINE>
+
+Masked mean ignores masked data::
+
+    >>> mx.mean()
+    2.75
+    >>> np.mean(mx)
+    2.75
+
+.. warning:: Not all Numpy functions respect masks, for instance
+   ``np.dot``, so check the return types.
+
+The ``masked_array`` returns a **view** to the original array::
+
+    >>> mx[1] = 9
     >>> x
-    masked_array(data = [1 -- 3 --],
-                 mask = [False  True False  True],
+    array([  1,   9,   3, -99,   5])
+
+The mask
+^^^^^^^^
+
+You can modify the mask by assigning::
+
+    >>> mx[1] = np.ma.masked
+    >>> mx
+    masked_array(data = [1 -- 3 -- 5],
+                 mask = [False  True False  True False],
            fill_value = 999999)
     <BLANKLINE>
 
-    >>> y = np.ma.array([1, 2, 3, 4], mask=[0, 1, 1, 1])
-    >>> x + y
-    masked_array(data = [2 -- -- --],
-                 mask = [False  True  True  True],
+The mask is cleared on assignment::
+
+    >>> mx[1] = 9
+    >>> mx
+    masked_array(data = [1 9 3 -- 5],
+                 mask = [False False False  True False],
            fill_value = 999999)
     <BLANKLINE>
 
-* Masking versions of common functions::
+The mask is also available directly::
 
-    >>> np.ma.sqrt([1, -1, 2, -2])
-    masked_array(data = [1.0 -- 1.41421356237 --],
-                 mask = [False  True False  True],
+    >>> mx.mask
+    array([False, False, False,  True, False], dtype=bool)
+
+The masked entries can be filled with a given value to get an usual
+array back::
+
+    >>> x2 = mx.filled(-1)
+    >>> x2
+    array([ 1,  9,  3, -1,  5])
+
+The mask can also be cleared::
+
+    >>> mx.mask = np.ma.nomask
+    >>> mx
+    masked_array(data = [1 9 3 -99 5],
+                 mask = [False False False False False],
+           fill_value = 999999)
+    <BLANKLINE>
+
+Domain-aware functions
+^^^^^^^^^^^^^^^^^^^^^^
+
+The masked array package also contains domain-aware functions::
+
+    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
+    masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],
+                 mask = [False False  True  True False  True],
            fill_value = 1e+20)
     <BLANKLINE>
 
-
 .. note::
 
-   There's more to them!
+   Streamlined and more seamless support for dealing with missing data
+   in arrays is making its way into Numpy 1.7.  Stay tuned!
 
-*recarray* --- purely convenience
-..................................
+.. topic:: Example: Masked statistics
+
+   Canadian rangers were distracted when counting hares and lynxes in
+   1903-1910 and 1917-1918, and got the numbers are wrong. (Carrot
+   farmers stayed alert, though.)  Compute the mean populations over
+   time, ignoring the invalid numbers. ::
+
+    >>> data = np.loadtxt('data/populations.txt')
+    >>> populations = np.ma.masked_array(data[:,1:])
+    >>> year = data[:, 0]
+
+    >>> bad_years = (((year >= 1903) & (year <= 1910))
+    ...            | ((year >= 1917) & (year <= 1918)))
+    >>> # '&' means 'and' and '|' means 'or'
+    >>> populations[bad_years, 0] = np.ma.masked
+    >>> populations[bad_years, 1] = np.ma.masked
+
+    >>> populations.mean(axis=0)
+    masked_array(data = [40472.7272727 18627.2727273 42400.0],
+                 mask = [False False False],
+           fill_value = 1e+20)
+    <BLANKLINE>
+    >>> populations.std(axis=0)
+    masked_array(data = [21087.656489 15625.7998142 3322.50622558],
+                 mask = [False False False],
+           fill_value = 1e+20)
+    <BLANKLINE>
+
+   Note that Matplotlib knows about masked arrays::
+
+    >>> plt.plot(year, populations, 'o-')   # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>, ...]
+
+   .. plot:: pyplots/numpy_intro_8.py
+
+:class:`recarray`: purely convenience
+---------------------------------------
 
 >>> arr = np.array([('a', 1), ('b', 2)], dtype=[('x', 'S1'), ('y', int)])
 >>> arr2 = arr.view(np.recarray)
@@ -1310,8 +1405,8 @@ chararray(['a', 'b'],
 >>> arr2.y
 array([1, 2])
 
-*matrix* --- convenience?
-..........................
+:class:`matrix`: convenience?
+------------------------------
 
 - always 2-D
 - ``*`` is the matrix product, not the elementwise one
@@ -1370,7 +1465,7 @@ Reporting bugs
 
 
 Good bug report
-................
+^^^^^^^^^^^^^^^^
 
 ::
 

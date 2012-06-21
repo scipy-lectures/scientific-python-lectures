@@ -196,132 +196,39 @@ Fancy indexing works, as usual::
    arrays, see `here <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`__
    and `here <http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
 
-Masked arrays
--------------
 
-Masked arrays are arrays that may have missing or invalid entries.
+:class:`maskedarray`: dealing with (propagation of) missing data
+------------------------------------------------------------------
 
-For example, suppose we have an array where the fourth entry is invalid::
+* For floats one could use NaN's, but masks work for all types::
 
-    >>> x = np.array([1, 2, 3, -99, 5])
-
-One way to describe this is to create a masked array::
-
-    >>> mx = np.ma.masked_array(x, mask=[0, 0, 0, 1, 0])
-    >>> mx
-    masked_array(data = [1 2 3 -- 5],
-                 mask = [False False False  True False],
-           fill_value = 999999)
-    <BLANKLINE>
-
-Masked mean ignores masked data::
-
-    >>> mx.mean()
-    2.75
-    >>> np.mean(mx)
-    2.75
-
-.. warning:: Not all Numpy functions respect masks, for instance
-   ``np.dot``, so check the return types.
-
-The ``masked_array`` returns a **view** to the original array::
-
-    >>> mx[1] = 9
+    >>> x = np.ma.array([1, 2, 3, 4], mask=[0, 1, 0, 1])
     >>> x
-    array([  1,   9,   3, -99,   5])
-
-The mask
-.........
-
-You can modify the mask by assigning::
-
-    >>> mx[1] = np.ma.masked
-    >>> mx
-    masked_array(data = [1 -- 3 -- 5],
-                 mask = [False  True False  True False],
+    masked_array(data = [1 -- 3 --],
+                 mask = [False  True False  True],
            fill_value = 999999)
     <BLANKLINE>
 
-The mask is cleared on assignment::
-
-    >>> mx[1] = 9
-    >>> mx
-    masked_array(data = [1 9 3 -- 5],
-                 mask = [False False False  True False],
+    >>> y = np.ma.array([1, 2, 3, 4], mask=[0, 1, 1, 1])
+    >>> x + y
+    masked_array(data = [2 -- -- --],
+                 mask = [False  True  True  True],
            fill_value = 999999)
     <BLANKLINE>
 
-The mask is also available directly::
+* Masking versions of common functions::
 
-    >>> mx.mask
-    array([False, False, False,  True, False], dtype=bool)
-
-The masked entries can be filled with a given value to get an usual
-array back::
-
-    >>> x2 = mx.filled(-1)
-    >>> x2
-    array([ 1,  9,  3, -1,  5])
-
-The mask can also be cleared::
-
-    >>> mx.mask = np.ma.nomask
-    >>> mx
-    masked_array(data = [1 9 3 -99 5],
-                 mask = [False False False False False],
-           fill_value = 999999)
-    <BLANKLINE>
-
-Domain-aware functions
-........................
-
-The masked array package also contains domain-aware functions::
-
-    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
-    masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],
-                 mask = [False False  True  True False  True],
+    >>> np.ma.sqrt([1, -1, 2, -2])
+    masked_array(data = [1.0 -- 1.41421356237 --],
+                 mask = [False  True False  True],
            fill_value = 1e+20)
     <BLANKLINE>
+
 
 .. note::
 
-   Streamlined and more seamless support for dealing with missing data
-   in arrays is making its way into Numpy 1.7.  Stay tuned!
+   There are other useful :ref:`arry siblings <array_siblings>`
 
-.. topic:: Example: Masked statistics
-
-   Canadian rangers were distracted when counting hares and lynxes in
-   1903-1910 and 1917-1918, and got the numbers are wrong. (Carrot
-   farmers stayed alert, though.)  Compute the mean populations over
-   time, ignoring the invalid numbers. ::
-
-    >>> data = np.loadtxt('data/populations.txt')
-    >>> populations = np.ma.masked_array(data[:,1:])
-    >>> year = data[:, 0]
-
-    >>> bad_years = (((year >= 1903) & (year <= 1910))
-    ...            | ((year >= 1917) & (year <= 1918)))
-    >>> # '&' means 'and' and '|' means 'or'
-    >>> populations[bad_years, 0] = np.ma.masked
-    >>> populations[bad_years, 1] = np.ma.masked
-
-    >>> populations.mean(axis=0)
-    masked_array(data = [40472.7272727 18627.2727273 42400.0],
-                 mask = [False False False],
-           fill_value = 1e+20)
-    <BLANKLINE>
-    >>> populations.std(axis=0)
-    masked_array(data = [21087.656489 15625.7998142 3322.50622558],
-                 mask = [False False False],
-           fill_value = 1e+20)
-    <BLANKLINE>
-
-   Note that Matplotlib knows about masked arrays::
-
-    >>> plt.plot(year, populations, 'o-')   # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>, ...]
-
-   .. plot:: pyplots/numpy_intro_8.py
 
 .. _memory_layout:
 
