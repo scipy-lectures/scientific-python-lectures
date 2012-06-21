@@ -227,7 +227,7 @@ Fancy indexing works, as usual::
 
 .. note::
 
-   There are other useful :ref:`arry siblings <array_siblings>`
+   There are other useful :ref:`array siblings <array_siblings>`
 
 
 .. _memory_layout:

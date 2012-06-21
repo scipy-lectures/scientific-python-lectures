@@ -1,7 +1,3 @@
-.. for doctests
-   >>> import numpy as np
-   >>> np.random.seed(0)
-   >>> import pylab as pl
 
 .. _matplotlib:
 
@@ -87,6 +83,11 @@ The numbers form 0 through 9 are plotted:
    In the following, we use the Python prompt ">>>" rather than
    the IPython one, as it facilitates copy-pasting in IPython (using the
    `%doctest_mode`).
+
+.. for doctests 
+  >>> import numpy as np
+  >>> import pylab as pl
+
 
 Now we can interactively add features to or plot::
 
@@ -350,8 +351,8 @@ in detail::
     <matplotlib.text.Annotation instance at ...>
 
     >>> ax.annotate('Here is something special', xy = (2, 1), xytext=(1,5),
-    ...             arrowprops={'facecolor': 'r'})
-    
+    ...             arrowprops={'facecolor': 'r'}) # doctest: +ELLIPSIS
+    <matplotlib.text.Annotation instance at ...>
 
 .. topic:: Exercise
    :class: green
@@ -455,14 +456,14 @@ After we redraw the figure our x axis should look like this:
 .. topic:: Exercises
    :class: green
 
-    1) Plot a graph with dates for one year with daily
-       values at the x axis using the built-in module ``datetime``.
+   1) Plot a graph with dates for one year with daily
+      values at the x axis using the built-in module ``datetime``.
 
-    2) Format the dates in such a way that only the first day
-       of the month is shown.
+   2) Format the dates in such a way that only the first day
+      of the month is shown.
 
-    3) Display the dates with and without the year. Show the month
-       as number and as first three letters of the month name.
+   3) Display the dates with and without the year. Show the month
+      as number and as first three letters of the month name.
 
 
 Figures, Subplots, and Axes

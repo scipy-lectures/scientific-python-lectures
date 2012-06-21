@@ -42,25 +42,19 @@ execute the script with ``run condition.py`` in Ipython.
 for/range
 ----------
 
-Iterating with an index:
+Iterating with an index::
 
-.. sourcecode:: ipython
-
-    In [4]: for i in range(4):
-       ...:     print(i)
-       ...: 
+    >>> for i in range(4):
+    ...     print(i)
     0
     1
     2
     3
 
-But most often, it is more readable to iterate over values:
+But most often, it is more readable to iterate over values::
 
-.. sourcecode:: ipython
-
-    In [5]: for word in ('cool', 'powerful', 'readable'):
-       ...:     print('Python is %s' % word)
-       ...: 
+    >>> for word in ('cool', 'powerful', 'readable'):
+    ...     print('Python is %s' % word)
     Python is cool
     Python is powerful
     Python is readable
@@ -69,34 +63,25 @@ But most often, it is more readable to iterate over values:
 while/break/continue
 ---------------------
 
-Typical C-style while loop (Mandelbrot problem):
+Typical C-style while loop (Mandelbrot problem)::
 
-.. sourcecode:: ipython
-
-    In [6]: z = 1 + 1j
-
-    In [7]: while abs(z) < 100:
-       ...:     z = z**2 + 1
-       ...:     
-
-    In [8]: z
-    Out[8]: (-134+352j)
+    >>> z = 1 + 1j
+    >>> while abs(z) < 100:
+    ...     z = z**2 + 1
+    >>> z
+    (-134+352j)
 
 **More advanced features**
 
-``break`` out of enclosing for/while loop:
+``break`` out of enclosing for/while loop::
 
-.. sourcecode:: ipython
+    >>> z = 1 + 1j
 
-    In [9]: z = 1 + 1j
-
-    In [10]: while abs(z) < 100:
-       ....:     if z.imag == 0:
-       ....:         break
-       ....:     z = z**2 + 1
-       ....:     
-       ....:     
-
+    >>> while abs(z) < 100:
+    ...     if z.imag == 0:
+    ...         break
+    ...     z = z**2 + 1
+         
 
 ``continue`` the next iteration of a loop.::
 
@@ -105,7 +90,6 @@ Typical C-style while loop (Mandelbrot problem):
     ...     if element == 0:
     ...         continue
     ...     print 1. / element
-    ...     
     1.0
     0.5
     0.25
@@ -115,7 +99,7 @@ Typical C-style while loop (Mandelbrot problem):
 Conditional Expressions
 -----------------------
 
-* `if object`
+:`if object`:
 
   Evaluates to False:
     * any number equal to zero (0, 0.0, 0+0j)
@@ -125,32 +109,26 @@ Conditional Expressions
   Evaluates to True:
     * everything else [#nonzero_note]_
 
-* `a == b`
+:`a == b`:
 
-  Tests equality, with logics:
+  Tests equality, with logics::
 
-  .. sourcecode:: ipython
+    >>> 1 == 1.
+    True
 
-    In [19]: 1 == 1.
-    Out[19]: True
+:`a is b`:
 
-* `a is b`
+  Tests identity: both sides are the same object::
 
-  Tests identity: both sides are the same object
+    >>> 1 is 1.
+    False
 
-  .. sourcecode:: ipython
+    >>> a = 1
+    >>> b = 1
+    >>> a is b
+    True
 
-    In [20]: 1 is 1.
-    Out[20]: False
-
-    In [21]: a = 1
-
-    In [22]: b = 1
-
-    In [23]: a is b
-    Out[23]: True
-
-* `a in b`
+:`a in b`:
 
   For any collection `b`: `b` contains `a` ::
 
@@ -163,6 +141,10 @@ Conditional Expressions
 
   If `b` is a dictionary, this tests that `a` is a key of `b`.
 
+.. rubric:: Footnotes
+
+.. [#nonzero_note] User-defined classes can customize those rules by overriding
+      the special ``__nonzero__`` method.
 
 Advanced iteration
 -------------------------
@@ -171,17 +153,13 @@ Iterate over any *sequence*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * You can iterate over any sequence (string, list, keys in a
-  dictionary, lines in a file, ...)
+  dictionary, lines in a file, ...)::
 
-  .. sourcecode:: ipython
+    >>> vowels = 'aeiouy'
 
-    In [11]: vowels = 'aeiouy'
-
-    In [12]: for i in 'powerful':
-       ....:     if i in vowels:
-       ....:         print(i),
-       ....:         
-       ....:         
+    >>> for i in 'powerful':
+    ...     if i in vowels:
+    ...         print(i),
     o e u
 
 ::
@@ -211,14 +189,10 @@ Keeping track of enumeration number
 Common task is to iterate over a sequence while keeping track of the
 item number.
 
-* Could use while loop with a counter as above. Or a for loop:
+* Could use while loop with a counter as above. Or a for loop::
 
-  .. sourcecode:: ipython
-
-    In [13]: for i in range(0, len(words)):
-       ....:     print(i, words[i])
-       ....:     
-       ....:     
+    >>> for i in range(0, len(words)):
+    ...     print(i, words[i])
     0 cool
     1 powerful
     2 readable
@@ -228,7 +202,6 @@ item number.
     >>> words = ('cool', 'powerful', 'readable')
     >>> for index, item in enumerate(words):
     ...     print index, item
-    ...     
     0 cool
     1 powerful
     2 readable
@@ -238,16 +211,12 @@ item number.
 Looping over a dictionary
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use **iteritems**:
+Use **iteritems**::
 
-.. sourcecode:: ipython
+    >>> d = {'a': 1, 'b':1.2, 'c':1j}
 
-    In [15]: d = {'a': 1, 'b':1.2, 'c':1j}
-
-    In [15]: for key, val in d.iteritems():
-       ....:     print('Key: %s has value: %s' % (key, val))
-       ....:     
-       ....:     
+    >>> for key, val in d.iteritems():
+    ...     print('Key: %s has value: %s' % (key, val))
     Key: a has value: 1
     Key: c has value: 1j
     Key: b has value: 1.2
@@ -255,14 +224,16 @@ Use **iteritems**:
 List Comprehensions
 -------------------
 
-.. sourcecode:: ipython
+::
 
-	In [16]: [i**2 for i in range(4)]
-	Out[16]: [0, 1, 4, 9]
+    >>> [i**2 for i in range(4)]
+    [0, 1, 4, 9]
 
+_____
 
 
 .. topic:: Exercise
+    :class: green
 
     Compute the decimals of Pi using the Wallis formula:
 
@@ -272,7 +243,4 @@ List Comprehensions
 .. :ref:`pi_wallis`
 
 
-.. rubric:: Footnotes
 
-.. [#nonzero_note] User-defined classes can customize those rules by overriding
-      the special ``__nonzero__`` method.

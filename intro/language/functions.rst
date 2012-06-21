@@ -334,6 +334,7 @@ Exercises
 ---------
 
 .. topic:: Exercise: Quicksort
+    :class: green
 
     Implement the quicksort algorithm, as defined by wikipedia::
 
@@ -350,6 +351,7 @@ Exercises
 .. :ref:`quick_sort`
 
 .. topic:: Exercise: Fibonacci sequence
+    :class: green
 
     Write a function that displays the ``n`` first terms of the Fibonacci
     sequence, defined by:

@@ -22,7 +22,9 @@ Image manipulation and processing using Numpy and Scipy
 * ``numpy``: basic array manipulation
 
 * ``scipy``: ``scipy.ndimage`` submodule dedicated to image processing 
-  (n-dimensional images). See http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html
+  (n-dimensional images). See http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html ::
+
+    >>> from scipy import ndimage
 
 * a few examples use specialized toolkits working with ``np.array``:
 
@@ -272,7 +274,8 @@ Blurring/smoothing
 
 **Gaussian filter** from ``scipy.ndimage``::
 
-    >>> lena = scipy.lena()
+    >>> from scipy import misc
+    >>> lena = misc.lena()
     >>> blurred_lena = ndimage.gaussian_filter(lena, sigma=3)
     >>> very_blurred = ndimage.gaussian_filter(lena, sigma=5)
 
@@ -293,7 +296,8 @@ Sharpening
 
 Sharpen a blurred image::
 
-    >>> lena = scipy.lena()
+    >>> from scipy import misc
+    >>> lena = misc.lena()
     >>> blurred_l = ndimage.gaussian_filter(lena, 3)
 
 increase the weight of edges by adding an approximation of the
@@ -317,7 +321,8 @@ Denoising
 
 Noisy lena::
 
-    >>> l = scipy.lena()
+    >>> from scipy import misc
+    >>> l = misc.lena()
     >>> l = l[230:310, 210:350]
     >>> noisy = l + 0.4*l.std()*np.random.random(l.shape)
 
@@ -471,9 +476,9 @@ Also works for grey-valued images::
     >>> np.random.seed(2)
     >>> x, y = (63*np.random.random((2, 8))).astype(np.int)
     >>> im[x, y] = np.arange(8)
-    >>> 
+
     >>> bigger_points = ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
-    >>> 
+
     >>> square = np.zeros((16, 16))
     >>> square[4:-4, 4:-4] = 1
     >>> dist = ndimage.distance_transform_bf(square)
@@ -521,9 +526,9 @@ Also works for grey-valued images::
     >>> np.random.seed(2)
     >>> x, y = (32*np.random.random((2, 20))).astype(np.int)
     >>> square[x, y] = 1
-    >>> 
+
     >>> open_square = ndimage.binary_opening(square)
-    >>> 
+
     >>> eroded_square = ndimage.binary_erosion(square)
     >>> reconstruction = ndimage.binary_propagation(eroded_square, mask=square)
 
@@ -573,7 +578,7 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
 The Canny filter is available in the ``scikits.image``
 (`doc <http://scikits-image.org/docs/dev/api/scikits.image.filter.html#canny>`_),
 but for convenience we've shipped it as a :download:`standalone module
-<../../pyplots/image_source_canny.py>` with this tutorial.
+<../../pyplots/image_source_canny.py>` with this tutorial. ::
 
   >>> #from scikits.image.filter import canny
   >>> #or use module shipped with tutorial
@@ -605,16 +610,14 @@ Segmentation
     >>> points = l*np.random.random((2, n**2))
     >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
     >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
-    >>> #
+
     >>> mask = (im > im.mean()).astype(np.float)
-    >>> #
     >>> mask += 0.1 * im
-    >>> #
     >>> img = mask + 0.2*np.random.randn(*mask.shape)
-    >>> #
+
     >>> hist, bin_edges = np.histogram(img, bins=60)
     >>> bin_centers = 0.5*(bin_edges[:-1] + bin_edges[1:])
-    >>> #
+
     >>> binary_img = img > 0.5
 
 .. figure:: auto_examples/images/plot_histo_segmentation_1.png
@@ -628,24 +631,22 @@ Segmentation
 Automatic thresholding: use Gaussian mixture model::
 
     >>> mask = (im > im.mean()).astype(np.float)
-    >>> 
     >>> mask += 0.1 * im
-    >>> 
     >>> img = mask + 0.3*np.random.randn(*mask.shape)
-    >>> 
-    >>> from scikits.learn.mixture import GMM
-    >>> classif = GMM(n_components=2, cvtype='full')
-    >>> classif.fit(img.reshape((img.size, 1)))
-    GMM(cvtype='full', n_components=2)
-    >>> 
-    >>> classif.means
+
+    >>> from sklearn.mixture import GMM
+    >>> classif = GMM(n_components=2)
+    >>> classif.fit(img.reshape((img.size, 1))) # doctest: +ELLIPSIS
+    GMM(...)
+
+    >>> classif.means_
     array([[ 0.9353155 ],
-    [-0.02966039]])
-    >>> np.sqrt(classif.covars).ravel()
+           [-0.02966039]])
+    >>> np.sqrt(classif.covars_).ravel()
     array([ 0.35074631,  0.28225327])
-    >>> classif.weights
+    >>> classif.weights_
     array([ 0.40989799,  0.59010201])
-    >>> threshold = np.mean(classif.means)
+    >>> threshold = np.mean(classif.means_)
     >>> binary_img = img > threshold
 
 .. image:: image_GMM.png
@@ -668,23 +669,23 @@ Use mathematical morphology to clean up the result::
     [:ref:`Python source code <example_plot_clean_morpho.py>`]
 
 .. topic:: **Exercise**
+    :class: green
 
     Check that reconstruction operations (erosion + propagation) produce a
     better result than opening/closing::
 
 	>>> eroded_img = ndimage.binary_erosion(binary_img)
-	>>> reconstruct_img = ndimage.binary_propagation(eroded_img,
-	>>> mask=binary_img)
+	>>> reconstruct_img = ndimage.binary_propagation(eroded_img, mask=binary_img)
 	>>> tmp = np.logical_not(reconstruct_img)
 	>>> eroded_tmp = ndimage.binary_erosion(tmp)
-	>>> reconstruct_final =
-	>>> np.logical_not(ndimage.binary_propagation(eroded_tmp, mask=tmp))
+	>>> reconstruct_final = np.logical_not(ndimage.binary_propagation(eroded_tmp, mask=tmp))
 	>>> np.abs(mask - close_img).mean()
 	0.014678955078125
 	>>> np.abs(mask - reconstruct_final).mean()
 	0.0042572021484375
 
 .. topic:: **Exercise**
+    :class: green
 
     Check how a first denoising step (median filter, total variation)
     modifies the histogram, and check that the resulting histogram-based
@@ -694,39 +695,37 @@ Use mathematical morphology to clean up the result::
 
 ::
 
-    >>> from scikits.learn.feature_extraction import image
-    >>> from scikits.learn.cluster import spectral_clustering
-    >>> 
+    >>> from sklearn.feature_extraction import image
+    >>> from sklearn.cluster import spectral_clustering
+
     >>> l = 100
     >>> x, y = np.indices((l, l))
-    >>> 
+
     >>> center1 = (28, 24)
     >>> center2 = (40, 50)
     >>> center3 = (67, 58)
     >>> center4 = (24, 70)
-    >>> 
     >>> radius1, radius2, radius3, radius4 = 16, 14, 15, 14
-    >>> 
+
     >>> circle1 = (x - center1[0])**2 + (y - center1[1])**2 < radius1**2
     >>> circle2 = (x - center2[0])**2 + (y - center2[1])**2 < radius2**2
     >>> circle3 = (x - center3[0])**2 + (y - center3[1])**2 < radius3**2
     >>> circle4 = (x - center4[0])**2 + (y - center4[1])**2 < radius4**2
-    >>> 
+
     >>> # 4 circles
     >>> img = circle1 + circle2 + circle3 + circle4
     >>> mask = img.astype(bool)
     >>> img = img.astype(float)
-    >>> 
+
     >>> img += 1 + 0.2*np.random.randn(*img.shape)
     >>> # Convert the image into a graph with the value of the gradient on
-    >>> the
-    >>> # edges.
+    >>> # the edges.
     >>> graph = image.img_to_graph(img, mask=mask)
-    >>> 
+
     >>> # Take a decreasing function of the gradient: we take it weakly
     >>> # dependant from the gradient the segmentation is close to a voronoi
     >>> graph.data = np.exp(-graph.data/graph.data.std())
-    >>> 
+
     >>> labels = spectral_clustering(graph, k=4, mode='arpack')
     >>> label_im = -np.ones(mask.shape)
     >>> label_im[mask] = labels
@@ -737,10 +736,8 @@ Use mathematical morphology to clean up the result::
 
 
 
-Measuring objects properties
-============================
-
-``ndimage.measurements``
+Measuring objects properties: ``ndimage.measurements``
+========================================================
 
 Synthetic data::
 
@@ -759,8 +756,8 @@ Label connected components: ``ndimage.label``::
     >>> label_im, nb_labels = ndimage.label(mask)
     >>> nb_labels # how many regions?
     23
-    >>> plt.imshow(label_im)
-    <matplotlib.image.AxesImage object at 0x6624d50>
+    >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at ...>
 
 .. figure:: auto_examples/images/plot_synthetic_data_1.png
     :scale: 90
@@ -782,7 +779,8 @@ Clean up small connect components::
     >>> remove_pixel.shape
     (256, 256)
     >>> label_im[remove_pixel] = 0
-    >>> plt.imshow(label_im)
+    >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at ...>
 
 Now reassign labels with ``np.searchsorted``::
 
@@ -801,7 +799,8 @@ Find region of interest enclosing object::
 
     >>> slice_x, slice_y = ndimage.find_objects(label_im==4)[0]
     >>> roi = im[slice_x, slice_y]
-    >>> plt.imshow(roi)
+    >>> plt.imshow(roi)     # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at ...>
 
 .. figure:: auto_examples/images/plot_find_object_1.png
     :scale: 130
@@ -824,7 +823,7 @@ Example: block mean::
     >>> X, Y = np.ogrid[0:sx, 0:sy]
     >>> regions = sy/6 * (X/4) + Y/6  # note that we use broadcasting
     >>> block_mean = ndimage.mean(l, labels=regions, index=np.arange(1,
-    >>> regions.max() +1))
+    ...     regions.max() +1))
     >>> block_mean.shape = (sx/4, sy/6)
 
 .. figure:: auto_examples/images/plot_block_mean_1.png
@@ -840,8 +839,11 @@ tricks (:ref:`stride-manipulation-label`).
 
 Non-regularly-spaced blocks: radial mean::
 
->>> rbin = (20* r/r.max()).astype(np.int)
->>> radial_mean = ndimage.mean(l, labels=rbin, index=np.arange(1, rbin.max() +1))
+    >>> sx, sy = l.shape
+    >>> X, Y = np.ogrid[0:sx, 0:sy]
+    >>> r = np.hypot(X - sx/2, Y - sy/2)
+    >>> rbin = (20* r/r.max()).astype(np.int)
+    >>> radial_mean = ndimage.mean(l, labels=rbin, index=np.arange(1, rbin.max() +1))
 
 .. figure:: auto_examples/images/plot_radial_mean_1.png
     :scale: 70
@@ -869,11 +871,11 @@ One example with mathematical morphology: **granulometry**
     ... 
     >>> 
     >>> def granulometry(data, sizes=None):
-    ...         s = max(data.shape)
+    ...     s = max(data.shape)
     ...     if sizes == None:
-    ...             sizes = range(1, s/2, 2)
+    ...         sizes = range(1, s/2, 2)
     ...     granulo = [ndimage.binary_opening(data, \
-    ...             structure=disk_structure(n)).sum() for n in sizes]
+    ...         structure=disk_structure(n)).sum() for n in sizes]
     ...     return granulo
     ... 
     >>> 

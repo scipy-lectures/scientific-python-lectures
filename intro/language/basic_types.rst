@@ -4,18 +4,17 @@ Basic types
 Numerical types
 ----------------
 
-Integer variables::
+:Integer:
 
     >>> 1 + 1
     2
     >>> a = 4
 
-
-floats ::
+:Floats:
 
     >>> c = 2.1
 
-complex (a native type in Python!) ::
+:Complex:
 
     >>> a = 1.5 + 0.5j
     >>> a.real
@@ -23,7 +22,7 @@ complex (a native type in Python!) ::
     >>> a.imag
     0.5
 
-and booleans::
+:Booleans:
 
     >>> 3 > 4
     False
