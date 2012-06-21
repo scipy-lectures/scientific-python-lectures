@@ -1,3 +1,8 @@
+.. for doctests
+   >>> import numpy as np
+   >>> np.random.seed(0)
+
+
 =======================================================
 Image manipulation and processing using Numpy and Scipy
 =======================================================
@@ -813,7 +818,8 @@ Can be used outside the limited scope of segmentation applications.
 
 Example: block mean::
 
-    >>> l = scipy.lena()
+    >>> from scipy import misc
+    >>> l = misc.lena()
     >>> sx, sy = l.shape
     >>> X, Y = np.ogrid[0:sx, 0:sy]
     >>> regions = sy/6 * (X/4) + Y/6  # note that we use broadcasting
