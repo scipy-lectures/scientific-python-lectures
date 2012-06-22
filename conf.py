@@ -139,8 +139,10 @@ html_theme_path = ['themes']
 #html_style = 'default.css'
 
 html_theme_options = {
-                'nosidebar':'true',
-                                }
+                'nosidebar': 'true',
+                'footerbgcolor': '#000000',
+                'relbarbgcolor': '#000000',
+                }
 
 
 # The name for this set of Sphinx documents.  If None, it defaults to
