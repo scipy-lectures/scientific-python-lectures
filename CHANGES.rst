@@ -1,6 +1,19 @@
 What's new
 ===========
 
+Release 2012.2 (22 Jun 2012)
+----------------------------
+
+Minor release with a few clean ups (Gael Varoquaux).
+
+Release 2012.1 (20 Jun 2012)
+----------------------------
+
+This is a minor release with many clean ups. In particular, clean up of
+the layout (Gael Varoquaux), shortening of the numpy chapters and
+deduplications across the intro and advanced chapters (Gael Varoquaux)
+and doctesting of all the code (Gael Varoquaux).
+
 Release 2012.0 (22 Apr 2012)
 ----------------------------
 
