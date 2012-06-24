@@ -45,13 +45,13 @@ Forced casts::
 
 Rounding::
 
-    >>> a = np.array([1.7, 1.2, 1.6])
+    >>> a = np.array([1.2, 1.5, 1.6, 2.5, 3.5, 4.5])
     >>> b = np.around(a)
     >>> b                    # still floating-point
-    array([ 2.,  1.,  2.])
+    array([ 1., 2., 2., 2., 4., 4.])
     >>> c = np.around(a).astype(int)
     >>> c
-    array([2, 1, 2])
+    array([ 1, 2, 2, 2, 4, 4])
 
 Different data type sizes
 ..........................
