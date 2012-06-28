@@ -543,7 +543,7 @@ Fancy indexing
 
 Numpy arrays can be indexed with slices, but also with boolean or
 integer arrays (**masks**). This method is called *fancy indexing*. It
-creates **copies not view**.
+creates **copies not views**.
 
 Using boolean masks
 ...................

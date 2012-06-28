@@ -103,7 +103,7 @@ Shape mismatches::
 
     The sub-module `np.linalg` implements basic linear algebra, such as
     eigenvalue decomposition, solving linear systems... However, it is
-    not garantied to be compiled using efficient routines, and thus we
+    not guaranteed to be compiled using efficient routines, and thus we
     recommend to use `scipy.linalg`, as detailed in section
     :ref:`scipy_linalg`
 
