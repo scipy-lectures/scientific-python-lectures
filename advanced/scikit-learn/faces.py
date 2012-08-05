@@ -7,7 +7,7 @@ http://scikit-learn.org/dev/auto_examples/applications/face_recognition.html
 """
 
 import numpy as np
-from scikits.learn import cross_val, datasets, decomposition, svm
+from sklearn import cross_val, datasets, decomposition, svm
 
 # ..
 # .. load data ..

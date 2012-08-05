@@ -1,7 +1,7 @@
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt
-from scikits.learn.mixture import GMM
+from sklearn.mixture import GMM
 
 np.random.seed(1)
 n = 10
@@ -19,10 +19,10 @@ img = mask + 0.3*np.random.randn(*mask.shape)
 hist, bin_edges = np.histogram(img, bins=60)
 bin_centers = 0.5*(bin_edges[:-1] + bin_edges[1:])
 
-classif = GMM(n_components=2, cvtype='full')
+classif = GMM(n_components=2)
 classif.fit(img.reshape((img.size, 1)))
 
-threshold = np.mean(classif.means)
+threshold = np.mean(classif.means_)
 binary_img = img > threshold
 
 

@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from scikits.learn.feature_extraction import image
-from scikits.learn.cluster import spectral_clustering
+from sklearn.feature_extraction import image
+from sklearn.cluster import spectral_clustering
 
 ################################################################################
 l = 100
@@ -38,7 +38,7 @@ graph.data = np.exp(-graph.data/graph.data.std())
 
 # Force the solver to be arpack, since amg is numerically
 # unstable on this example
-labels = spectral_clustering(graph, k=4, mode='arpack')
+labels = spectral_clustering(graph, n_clusters=4, mode='arpack')
 label_im = -np.ones(mask.shape)
 label_im[mask] = labels
 

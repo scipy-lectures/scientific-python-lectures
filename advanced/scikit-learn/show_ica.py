@@ -1,4 +1,4 @@
-from scikits.learn import datasets, decomposition
+from sklearn import datasets, decomposition
 import pylab as pl
 import numpy as np
 
