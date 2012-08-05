@@ -50,7 +50,7 @@ Advanced topics
    linear_algebra/index.rst
    scipy_sparse/index.rst
    image_processing/index.rst
-   numerical_optimization/index.rst
+   mathematical_optimization/index.rst
    traits/index.rst
    3d_plotting/index.rst
    sympy.rst
