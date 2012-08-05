@@ -19,7 +19,7 @@ The scientist's needs
 
 * Visualize results... to understand what we are doing!
 
-* Communicate on results: produce figures for reports or publications,
+* Communicate results: produce figures for reports or publications,
   write presentations.
 
 Specifications
@@ -30,18 +30,19 @@ Specifications
   plotting of a curve, a Fourier transform or a fitting algorithm. Don't 
   reinvent the wheel!
 
-* Easy to learn: computer science neither is our job nor our education. We 
+* Easy to learn: computer science is neither our job nor our education. We 
   want to be able to draw a curve, smooth a signal, do a Fourier transform 
   in a few minutes.
 
 * Easy communication with collaborators, students, customers, to make the code
-  live within a labo or a company: the code should be as readable as a book.
+  live within a lab or a company: the code should be as readable as a book.
   Thus, the language should contain as few syntax symbols or unneeded routines
-  that would divert the reader from the mathematical or scientific understanding
-  of the code.
+  as possible that would divert the reader from the mathematical or scientific
+  understanding of the code.
 
-* Efficient code that executes quickly... But needless to say that a very fast
-  code becomes useless if we spend too much time writing it. So, we need both a   quick development time and a quick execution time.
+* Efficient code that executes quickly... but needless to say that a very fast
+  code becomes useless if we spend too much time writing it. So, we need both a
+  quick development time and a quick execution time.
 
 * A single environment/language for everything, if possible, to avoid learning
   a new software for each new problem.
@@ -49,7 +50,7 @@ Specifications
 Existing solutions
 ...................
 
-Which solutions do the scientists use to work?
+Which solutions do scientists use to work?
 
 **Compiled languages: C, C++, Fortran, etc.**
 
@@ -59,7 +60,7 @@ Which solutions do the scientists use to work?
     to outperform these languages.
 
   * Some very optimized scientific libraries have been written for these
-    languages. Ex: blas (vector/matrix operations)
+    languages. Example: BLAS (vector/matrix operations)
 
 * Drawbacks:
 
@@ -87,7 +88,7 @@ Which solutions do the scientists use to work?
 
   * Not free.
 
-**Other script languages: Scilab, Octave, Igor, R, IDL, etc.**
+**Other scripting languages: Scilab, Octave, Igor, R, IDL, etc.**
 
 * Advantages:
 
@@ -97,7 +98,7 @@ Which solutions do the scientists use to work?
 
 * Drawbacks:
 
-  * fewer available algorithms than in Matlab, and the language
+  * Fewer available algorithms than in Matlab, and the language
     is not more advanced.
 
   * Some software are dedicated to one domain. Ex: Gnuplot or xmgrace
@@ -111,8 +112,8 @@ Which solutions do the scientists use to work?
   * Very rich scientific computing libraries (a bit less than Matlab,
     though)
     
-  * Well-thought language, allowing to write very readable and well structured
-    code: we "code what we think".
+  * Well thought out language, allowing to write very readable and well
+    structured code: we "code what we think".
 
   * Many libraries for other tasks than scientific computing (web server
     management, serial port access, etc.)
@@ -130,10 +131,9 @@ Which solutions do the scientists use to work?
 Scientific Python building blocks
 -----------------------------------
 
-
-Unlike Matlab, scilab or R, Python does not come with a pre-bundled set
+Unlike Matlab, Scilab or R, Python does not come with a pre-bundled set
 of modules for scientific computing. Below are the basic building blocks
-that can be combined to optain a scientific-computing environment:
+that can be combined to obtain a scientific computing environment:
 
 * **Python**, a generic and modern computing language
 
@@ -146,7 +146,7 @@ that can be combined to optain a scientific-computing environment:
       Python: web protocols, web framework, etc. ... and scientific
       computing.
 
-    * Development tools (automatic tests, documentation generation)
+    * Development tools (automatic testing, documentation generation)
 
   .. image:: snapshot_ipython.png
         :align: right
@@ -190,12 +190,12 @@ that can be combined to optain a scientific-computing environment:
 The interactive workflow: IPython and a text editor 
 -----------------------------------------------------
 
-**Interactive work to test and understand algorithm:** In this section, we
+**Interactive work to test and understand algorithms:** In this section, we
 describe an interactive workflow with `IPython <http://ipython.org>`__ that is
 handy to explore and understand algorithms.
 
 Python is a general-purpose language. As such, there is not one blessed
-environement to work into, and not only one way of using it. Although
+environment to work in, and not only one way of using it. Although
 this makes it harder for beginners to find their way, it makes it
 possible for Python to be used to write programs, in web servers, or
 embedded devices. 
@@ -236,16 +236,16 @@ Getting help:
 Elaboration of the algorithm in an editor
 ..........................................
 
-Create a file `my_file.py` in a text editor. Under EPD, you can use
-`Scite`, available from the start menu. Under Python(x,y), you can use
-Spyder. Under Ubuntu, if you don't already have your favorite editor, We
-would advise installing `Stani's Python editor`. In the file, add the
-following lines::
+Create a file `my_file.py` in a text editor. Under EPD (Enthought Python
+Distribution), you can use `Scite`, available from the start menu. Under
+Python(x,y), you can use Spyder. Under Ubuntu, if you don't already have your
+favorite editor, we would advise installing `Stani's Python editor`. In the
+file, add the following lines::
 
     s = 'Hello world'
     print(s) 
 
-Now, you can run it in ipython and explore the resulting variables:
+Now, you can run it in IPython and explore the resulting variables:
 
 .. sourcecode:: ipython
 
@@ -274,9 +274,4 @@ Now, you can run it in ipython and explore the resulting variables:
 
 
 .. :vim:spell:
-
-
-
-
-
 
