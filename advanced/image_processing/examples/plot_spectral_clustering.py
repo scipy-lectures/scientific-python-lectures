@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from scikits.learn.feature_extraction import image
-from scikits.learn.cluster import spectral_clustering
+from sklearn.feature_extraction import image
+from sklearn.cluster import spectral_clustering
 
 ################################################################################
 l = 100

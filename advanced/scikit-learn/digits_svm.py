@@ -1,4 +1,4 @@
-from scikits.learn import datasets, svm
+from sklearn import datasets, svm
 
 digits = datasets.load_digits()
 clf = svm.SVC(kernel='linear')

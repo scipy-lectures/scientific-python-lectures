@@ -1,4 +1,4 @@
-from scikits.learn import datasets
+from sklearn import datasets
 import pylab as pl
 
 digits = datasets.load_digits()
