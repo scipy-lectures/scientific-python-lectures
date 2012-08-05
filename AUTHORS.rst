@@ -18,11 +18,11 @@ Listed by alphabetical order.
 
 - Christopher Burns
 
-- Christophe Combelles
-
 - Adrian Chauve
 
 - Robert Cimrman
+
+- Christophe Combelles
 
 - André Espaze
 
@@ -31,6 +31,8 @@ Listed by alphabetical order.
 - Mike Müller
 
 - Fabian Pedregosa
+
+- Didrik Pinte
 
 - Gaël Varoquaux
 
