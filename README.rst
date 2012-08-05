@@ -71,14 +71,14 @@ the policy is to use the::
 
 sphinx directive.
 
-Each chapter should be kept reasonnably short: 1 to 2 hours of tutorial.
+Each chapter should be kept reasonably short: 1 to 2 hours of tutorial.
 The reason is two-fold. First these chapters are atoms that can be
 combined to build a course on scientific computing with Python. Second,
 people's attention span does not go much beyond an hour or two, whether
 they are reading a tutorial or following it in a class room.
 
 Modifying
--------------
+---------
 
 The easiest way to make your own version of this teaching material
 is to fork it under Github, and use the git version control system to
@@ -92,7 +92,7 @@ Please refrain from modifying the Makefile unless it is absolutely
 necessary.
 
 Figures and code examples
---------------------------
+-------------------------
 
 The figure should be generated from Python source files. The policy is
 to create an ``examples`` directory, in which you put the corresponding
