@@ -46,6 +46,7 @@ natively implemented::
     2
 
 .. warning:: Integer division
+
     ::
 
 	>>> 3 / 2

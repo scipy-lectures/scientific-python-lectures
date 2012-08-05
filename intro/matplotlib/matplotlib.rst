@@ -278,7 +278,7 @@ verticalalignment    top, bottom or center
 weight               font weight, e.g. normal, bold, heavy, light
 ==================== ==========================================================
 
-.. topci:: Exercise
+.. topic:: Exercise
     :class: green
 
     Apply different line styles to a plot. Change line color and
