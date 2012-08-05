@@ -51,11 +51,48 @@ Convex versus non-convex optimization
 **Optimizing convex functions is easy. Optimizing non-convex functions can
 be very hard.**
 
+.. note:: A convex function provably has only one minimum, no local
+   minimums
+
 Smooth and non-smooth problems
 -------------------------------
 
+.. |smooth_1d_1| image:: auto_examples/images/plot_smooth_1.png
+
+.. |smooth_1d_2| image:: auto_examples/images/plot_smooth_2.png
+
+.. list-table::
+
+ * - |smooth_1d_1|
+ 
+   - |smooth_1d_2|
+
+ * - **A smooth function**: 
+
+     The gradient is defined everywhere, and is a continuous function
+ 
+   - **A non-smooth function**
+
+**Optimizing smooth functions is easier.**
+
+
 Noisy versus exact cost functions
 ----------------------------------
+
+.. |noisy| image:: auto_examples/images/plot_noisy_1.png
+
+.. list-table::
+
+ * - Noisy (blue) and non-noisy (green) functions
+ 
+   - |noisy|
+
+.. topic:: **Noisy gradients**
+
+   Many optimization methods rely on gradients of the objective function.
+   If the gradient function is not given, they are computed numerically,
+   which induces errors. In such situation, even if the objective
+   function is not noisy, 
 
 Constraints
 ------------
