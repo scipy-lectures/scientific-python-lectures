@@ -71,6 +71,12 @@ the policy is to use the::
 
 sphinx directive.
 
+Each chapter should be kept reasonnably short: 1 to 2 hours of tutorial.
+The reason is two-fold. First these chapters are atoms that can be
+combined to build a course on scientific computing with Python. Second,
+people's attention span does not go much beyond an hour or two, whether
+they are reading a tutorial or following it in a class room.
+
 Modifying
 -------------
 
