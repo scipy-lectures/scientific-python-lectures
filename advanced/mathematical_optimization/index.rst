@@ -103,6 +103,19 @@ Noisy versus exact cost functions
 Constraints
 ------------
 
+.. |constraints| image:: auto_examples/images/plot_constraints_1.png
+
+.. list-table::
+
+ * - Optimizations under constraints
+
+     Here: 
+     
+     :math:`-1 < x_1 < 1`
+     
+     :math:`-1 < x_2 < 1`
+ 
+   - |constraints|
 
 
 Special case: least-squares
