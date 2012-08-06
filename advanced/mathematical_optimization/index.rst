@@ -27,6 +27,12 @@ Knowning your problem
 Not all optimization problems are equal. Knowing your problem enables you
 to choose the right tool.
 
+.. topic:: **Dimensionality of the problem**
+
+    The scale of an optimization problem is pretty much set by the
+    *dimensionality of the problem*, i.e. the number of scalar variables
+    on which the search is performed.
+
 Convex versus non-convex optimization
 ---------------------------------------
 
@@ -96,6 +102,8 @@ Noisy versus exact cost functions
 
 Constraints
 ------------
+
+
 
 Special case: least-squares
 ============================
