@@ -126,6 +126,10 @@ Constraints
 Special case: least-squares
 ============================
 
+linalg.leastsq
+
+optimize.curve_fit
+
 Gradient and conjugate gradient methods
 ========================================
 
