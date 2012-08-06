@@ -10,6 +10,11 @@ problem of finding numerically minimums (or maximums or zeros) of
 a function. In this context, the function is called *cost function*, or
 *objective function*, or *energy*.
 
+Here, we are interested in using :mod:`scipy.optimize` for black-box
+optimization: we do not rely on the mathematical expression of the
+function that we are optimizing. Note that this expression can often be
+used for more efficient, non black-box, optimization.
+
 .. topic:: Prerequisites
 
     * Numpy, Scipy
