@@ -25,6 +25,13 @@ used for more efficient, non black-box, optimization.
    :local:
    :depth: 4
 
+.. XXX: should I discuss root finding?
+
+..
+  For doctesting
+  >>> import numpy as np
+
+.. currentmodule:: scipy.optimize
 
 Knowning your problem
 ======================
@@ -123,18 +130,70 @@ Constraints
    - |constraints|
 
 
-Special case: least-squares
-============================
+Getting started: 1D optimization
+================================
 
-linalg.leastsq
+The :func:`brent` can be used for efficient minimization of 1D functions.
+It combines a bracketing strategy with a parabolic approximation.
 
-optimize.curve_fit
+.. |1d_optim_1| image:: auto_examples/images/plot_1d_optim_1.png
+
+.. |1d_optim_2| image:: auto_examples/images/plot_1d_optim_2.png
+
+.. |1d_optim_3| image:: auto_examples/images/plot_1d_optim_3.png
+
+.. |1d_optim_4| image:: auto_examples/images/plot_1d_optim_4.png
+
+.. list-table::
+
+ * - **Brent's method on a quadratic function**: it converges in 3 iterations,
+     as the quadratic approximation is then exact.
+
+   - |1d_optim_1|
+ 
+   - |1d_optim_2|
+
+ * - **Brent's method on a non-convex function**: note that the fact that the
+     optimizer avoided the local minimum is a matter of luck.
+
+   - |1d_optim_3|
+
+   - |1d_optim_4|
+
+::
+
+    >>> from scipy import optimize
+    >>> def f(x):
+    ...     return -np.exp(-(x - .7)**2)
+    >>> x_min = optimize.brent(f)  # It actually converges in 9 iterations!
+    >>> x_min #doctest: +ELLIPSIS
+    0.6999999997839...
+    >>> x_min - .7 #doctest: +ELLIPSIS
+    -2.1605...e-10
+
+.. note:: 
+   
+   Brent's method can be used for optimization constraint to an
+   intervale using :func:`fminbound`
+
+.. note::
+   
+   In scipy 0.11, :func:`minimize_scalar` gives a generic
+   interface to 1D scalar minimization
+
 
 Gradient and conjugate gradient methods
 ========================================
 
 Newton and quasy-newton methods
 ================================
+
+Special case: least-squares
+============================
+
+linalg.leastsq
+
+optimize.curve_fit
 
 Simplex methods
 ================
