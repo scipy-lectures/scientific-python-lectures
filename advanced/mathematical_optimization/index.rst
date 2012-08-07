@@ -139,10 +139,12 @@ It combines a bracketing strategy with a parabolic approximation.
 .. |1d_optim_1| image:: auto_examples/images/plot_1d_optim_1.png
 
 .. |1d_optim_2| image:: auto_examples/images/plot_1d_optim_2.png
+   :scale: 83%
 
 .. |1d_optim_3| image:: auto_examples/images/plot_1d_optim_3.png
 
 .. |1d_optim_4| image:: auto_examples/images/plot_1d_optim_4.png
+   :scale: 83%
 
 .. list-table::
 
@@ -184,6 +186,80 @@ It combines a bracketing strategy with a parabolic approximation.
 
 Gradient and conjugate gradient methods
 ========================================
+
+.. |gradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_0.png
+
+.. |gradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_10.png
+   :scale: 83%
+
+.. |gradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_1.png
+
+.. |gradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_11.png
+   :scale: 83%
+
+
+.. list-table:: **Fixed step gradient descent**
+
+ * - A well-conditionned quadratic function.
+
+   - |gradient_quad_cond|
+ 
+   - |gradient_quad_cond_conv|
+
+ * - An ill-conditionned quadratic function.
+
+   - |gradient_quad_icond|
+ 
+   - |gradient_quad_icond_conv|
+
+
+.. |agradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_100.png
+
+.. |agradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_110.png
+   :scale: 83%
+
+.. |agradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_101.png
+
+.. |agradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_111.png
+   :scale: 83%
+
+.. |agradient_gauss_icond| image:: auto_examples/images/plot_gradient_descent_103.png
+
+.. |agradient_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_113.png
+   :scale: 83%
+
+.. |agradient_rosen_icond| image:: auto_examples/images/plot_gradient_descent_104.png
+
+.. |agradient_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_114.png
+   :scale: 83%
+
+
+.. list-table:: **Adaptive step gradient descent**
+
+ * - A well-conditionned quadratic function.
+
+   - |agradient_quad_cond|
+ 
+   - |agradient_quad_cond_conv|
+
+ * - An ill-conditionned quadratic function.
+
+   - |agradient_quad_icond|
+ 
+   - |agradient_quad_icond_conv|
+
+ * - An ill-conditionned non-quadratic function.
+
+   - |agradient_gauss_icond|
+ 
+   - |agradient_gauss_icond_conv|
+
+ * - An ill-conditionned very non-quadratic function.
+
+   - |agradient_rosen_icond|
+ 
+   - |agradient_rosen_icond_conv|
+
 
 Newton and quasy-newton methods
 ================================

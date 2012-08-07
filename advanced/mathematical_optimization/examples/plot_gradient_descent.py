@@ -133,6 +133,8 @@ for index, (f, f_prime) in enumerate((
         pl.plot(all_x_i, all_y_i, 'k+')
 
         pl.plot([0], [0], 'rx', markersize=12)
+        pl.xticks(())
+        pl.yticks(())
         pl.draw()
 
         pl.figure(10 + index + 100*adaptative, figsize=(4, 3))
