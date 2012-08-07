@@ -187,6 +187,15 @@ It combines a bracketing strategy with a parabolic approximation.
 Gradient and conjugate gradient methods
 ========================================
 
+Some intuitions about gradient descent
+---------------------------------------
+
+Here we focus on **intuitions**, not code. Code will follow.
+
+`Gradient descent <http://en.wikipedia.org/wiki/Gradient_descent>`_
+basically consists consists in taking small steps in the direction of the
+gradient.
+
 .. |gradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_0.png
 
 .. |gradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_10.png
@@ -196,7 +205,6 @@ Gradient and conjugate gradient methods
 
 .. |gradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_11.png
    :scale: 83%
-
 
 .. list-table:: **Fixed step gradient descent**
 
@@ -212,6 +220,16 @@ Gradient and conjugate gradient methods
  
    - |gradient_quad_icond_conv|
 
+We can see that very anisotropic functions are harder to optimize.
+
+.. topic:: **Take home message**
+
+   If you know natural scaling for your variables, prescale them so that
+   they behave similarly.
+
+Also, it clearly can clearly be advantageous to take bigger steps. This
+is done in gradient descent code using a
+`line search <http://en.wikipedia.org/wiki/Line_search>`_.
 
 .. |agradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_100.png
 
@@ -223,14 +241,14 @@ Gradient and conjugate gradient methods
 .. |agradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_111.png
    :scale: 83%
 
-.. |agradient_gauss_icond| image:: auto_examples/images/plot_gradient_descent_103.png
+.. |agradient_gauss_icond| image:: auto_examples/images/plot_gradient_descent_102.png
 
-.. |agradient_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_113.png
+.. |agradient_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_112.png
    :scale: 83%
 
-.. |agradient_rosen_icond| image:: auto_examples/images/plot_gradient_descent_104.png
+.. |agradient_rosen_icond| image:: auto_examples/images/plot_gradient_descent_103.png
 
-.. |agradient_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_114.png
+.. |agradient_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_113.png
    :scale: 83%
 
 
@@ -259,6 +277,15 @@ Gradient and conjugate gradient methods
    - |agradient_rosen_icond|
  
    - |agradient_rosen_icond_conv|
+
+The more a function looks like a quadratic function (elliptic
+iso-curves), the easier it is to optimize.
+
+Conjugate gradient descent
+---------------------------
+
+The gradient descent algorithms above are toys not to be used on real
+problems.
 
 
 Newton and quasy-newton methods

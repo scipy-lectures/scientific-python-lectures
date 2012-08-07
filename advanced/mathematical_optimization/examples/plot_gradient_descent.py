@@ -45,7 +45,7 @@ def rosenbrock_prime(x):
 
 
 ###############################################################################
-# Quadratic term with varying conditionning
+# Gaussian and quadratic functions with varying conditionning
 
 def gaussian(x):
     return np.exp(-x**2)
@@ -77,11 +77,45 @@ def mk_quad(epsilon):
 
     return f, f_prime
 
+###############################################################################
+# A gradient descent algorithm
+# do not use: its a toy, use scipy's optimize.fmin_cg
+
+def gradient_descent(x0, f, f_prime, adaptative=False):
+    x_i, y_i = x0
+    all_x_i = list()
+    all_y_i = list()
+    all_f_i = list()
+
+    for i in range(1, 100):
+        all_x_i.append(x_i)
+        all_y_i.append(y_i)
+        all_f_i.append(f([x_i, y_i]))
+        dx_i, dy_i = f_prime([x_i, y_i])
+        if adaptative:
+            step = optimize.line_search(f, f_prime,
+                                np.r_[x_i, y_i], -np.r_[dx_i, dy_i],
+                                np.r_[dx_i, dy_i], c2=.1)
+            step = step[0]
+        else:
+            step = 1
+        x_i += - step*dx_i
+        y_i += - step*dy_i
+        if np.abs(all_f_i[-1]) < 1e-16:
+            break
+    return all_x_i, all_y_i, all_f_i
+
+
+def conjugate_gradient(x0, f, f_prime):
+    pass
+
+
+###############################################################################
+# Run different optimizers on these problems
 
 for index, (f, f_prime) in enumerate((
                 mk_quad(.7), mk_quad(.02),
-                mk_gauss(.7), mk_gauss(.02),
-                (rosenbrock, rosenbrock_prime))):
+                mk_gauss(.02), (rosenbrock, rosenbrock_prime))):
     for adaptative in (False, True):
         if not adaptative and f == rosenbrock:
             continue
@@ -108,26 +142,8 @@ for index, (f, f_prime) in enumerate((
 
         # Compute a gradient-descent
         x_i, y_i = 1.5, .9
-        all_x_i = list()
-        all_y_i = list()
-        all_f_i = list()
-
-        for i in range(1, 100):
-            all_x_i.append(x_i)
-            all_y_i.append(y_i)
-            all_f_i.append(f([x_i, y_i]))
-            dx_i, dy_i = f_prime([x_i, y_i])
-            if adaptative:
-                step = optimize.line_search(f, f_prime,
-                                    np.r_[x_i, y_i], -np.r_[dx_i, dy_i],
-                                    np.r_[dx_i, dy_i], c2=.1)
-                step = step[0]
-            else:
-                step = 1
-            x_i += - step*dx_i
-            y_i += - step*dy_i
-            if np.abs(all_f_i[-1]) < 1e-16:
-                break
+        all_x_i, all_y_i, all_f_i = gradient_descent([x_i, y_i],
+                        f, f_prime, adaptative=adaptative)
 
         pl.plot(all_x_i, all_y_i, 'b-', linewidth=2)
         pl.plot(all_x_i, all_y_i, 'k+')
