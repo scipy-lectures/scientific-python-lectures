@@ -31,8 +31,6 @@ used for more efficient, non black-box, optimization.
   For doctesting
   >>> import numpy as np
 
-.. currentmodule:: scipy.optimize
-
 Knowning your problem
 ======================
 
@@ -133,18 +131,20 @@ Constraints
 Getting started: 1D optimization
 ================================
 
-The :func:`brent` can be used for efficient minimization of 1D functions.
+The :func:`scipy.optimize.brent` can be used for efficient minimization of 1D functions.
 It combines a bracketing strategy with a parabolic approximation.
 
 .. |1d_optim_1| image:: auto_examples/images/plot_1d_optim_1.png
+   :scale: 90%
 
 .. |1d_optim_2| image:: auto_examples/images/plot_1d_optim_2.png
-   :scale: 83%
+   :scale: 75%
 
 .. |1d_optim_3| image:: auto_examples/images/plot_1d_optim_3.png
+   :scale: 90%
 
 .. |1d_optim_4| image:: auto_examples/images/plot_1d_optim_4.png
-   :scale: 83%
+   :scale: 75%
 
 .. list-table::
 
@@ -169,18 +169,18 @@ It combines a bracketing strategy with a parabolic approximation.
     ...     return -np.exp(-(x - .7)**2)
     >>> x_min = optimize.brent(f)  # It actually converges in 9 iterations!
     >>> x_min #doctest: +ELLIPSIS
-    0.6999999997839...
+    0.6999999997759...
     >>> x_min - .7 #doctest: +ELLIPSIS
     -2.1605...e-10
 
 .. note:: 
    
    Brent's method can be used for optimization constraint to an
-   intervale using :func:`fminbound`
+   intervale using :func:`scipy.optimize.fminbound`
 
 .. note::
    
-   In scipy 0.11, :func:`minimize_scalar` gives a generic
+   In scipy 0.11, :func:`scipy.optimize.minimize_scalar` gives a generic
    interface to 1D scalar minimization
 
 
@@ -197,14 +197,16 @@ basically consists consists in taking small steps in the direction of the
 gradient.
 
 .. |gradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_0.png
+   :scale: 90%
 
 .. |gradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_100.png
-   :scale: 83%
+   :scale: 75%
 
 .. |gradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_2.png
+   :scale: 90%
 
 .. |gradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_102.png
-   :scale: 83%
+   :scale: 75%
 
 .. list-table:: **Fixed step gradient descent**
 
@@ -232,24 +234,28 @@ is done in gradient descent code using a
 `line search <http://en.wikipedia.org/wiki/Line_search>`_.
 
 .. |agradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_1.png
+   :scale: 90%
 
 .. |agradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_101.png
-   :scale: 83%
+   :scale: 75%
 
 .. |agradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_3.png
+   :scale: 90%
 
 .. |agradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_103.png
-   :scale: 83%
+   :scale: 75%
 
 .. |agradient_gauss_icond| image:: auto_examples/images/plot_gradient_descent_4.png
+   :scale: 90%
 
 .. |agradient_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_104.png
-   :scale: 83%
+   :scale: 75%
 
 .. |agradient_rosen_icond| image:: auto_examples/images/plot_gradient_descent_5.png
+   :scale: 90%
 
 .. |agradient_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_105.png
-   :scale: 83%
+   :scale: 75%
 
 
 .. list-table:: **Adaptive step gradient descent**
@@ -295,14 +301,16 @@ a *friction* term: each step depends on the two last values of the
 gradient and sharp turns are reduced.
 
 .. |cg_gauss_icond| image:: auto_examples/images/plot_gradient_descent_6.png
+   :scale: 90%
 
 .. |cg_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_106.png
-   :scale: 83%
+   :scale: 75%
 
 .. |cg_rosen_icond| image:: auto_examples/images/plot_gradient_descent_7.png
+   :scale: 90%
 
 .. |cg_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_107.png
-   :scale: 83%
+   :scale: 75%
 
 
 .. list-table:: **Conjugate gradient descent**
@@ -321,7 +329,7 @@ gradient and sharp turns are reduced.
 
 Methods based on conjugate gradient are named with *'cg'* in scipy. The
 simple conjugate gradient method to minimize a function is
-:func:`fmin_cg`::
+:func:`scipy.optimize.fmin_cg`::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
@@ -344,23 +352,102 @@ will perform better if you can pass them the gradient:
             Iterations: 13
             Function evaluations: 30
             Gradient evaluations: 30
-    array([ 0.99999199,  0.99998336])
+    array([ 0.99999199,  0.99997536])
 
 Note that the function has only been evaluated 30 times, compared to 120
 without the gradient.
 
+Computing gradients
+--------------------
+
+XXX: TODO
+
 .. warning::
    
    A common source of optimization not converging is human error in the
-   computation of the gradient. You can use :func:`check_grad` to check
-   that your gradient is correct. It returns the norm of the different between
-   the gradient given, and a gradient computed numerically:
+   computation of the gradient. You can use
+   :func:`scipy.optimize.check_grad` to check that your gradient is
+   correct. It returns the norm of the different between the gradient
+   given, and a gradient computed numerically:
 
     >>> optimize.check_grad(f, fprime, [2, 2])
     2.384185791015625e-07
 
+
 Newton and quasi-newton methods
 ================================
+
+Newton methods: using the Hessian (2nd differential)
+------------------------------------------------------
+
+`Newton methods 
+<http://en.wikipedia.org/wiki/Newton%27s_method_in_optimization>`_
+use a local quadratic approximation to compute the jump direction.
+For this purpose, they rely on the 2 first derivative of the function:
+the *gradient* and the *hessian*.
+
+.. |ncg_quad_icond| image:: auto_examples/images/plot_gradient_descent_8.png
+   :scale: 90%
+
+.. |ncg_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_108.png
+   :scale: 75%
+
+.. |ncg_gauss_icond| image:: auto_examples/images/plot_gradient_descent_9.png
+   :scale: 90%
+
+.. |ncg_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_109.png
+   :scale: 75%
+
+.. |ncg_rosen_icond| image:: auto_examples/images/plot_gradient_descent_10.png
+   :scale: 90%
+
+.. |ncg_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_110.png
+   :scale: 75%
+
+
+.. list-table:: **Newton methods**
+
+ * - **An ill-conditionned quadratic function:**
+
+     Note that, as the quadratic approximation is exact, the Newton
+     method is blazing fast
+
+   - |ncg_quad_icond|
+ 
+   - |ncg_quad_icond_conv|
+
+ * - **An ill-conditionned non-quadratic function:**
+
+     Here we are optimizing a Gaussian, which is always below its
+     quadratic approximation. As a result, the Newton method overshoots
+     and leads to oscillations.
+
+   - |ncg_gauss_icond|
+ 
+   - |ncg_gauss_icond_conv|
+
+ * - **An ill-conditionned very non-quadratic function:**
+
+   - |ncg_rosen_icond|
+ 
+   - |ncg_rosen_icond_conv|
+
+In scipy, the Newton method for optimization is implemented in
+:func:`scipy.optimize.fmin_ncg` (cg here refers to that fact that an
+inner operation, the inversion of the Hessian, is performed by conjugate
+gradient). :func:`scipy.optimize.fmin_tnc` can be use for constraint
+problems, although it is less versatile.
+
+XXX: remark on the fact that at high-dimension, the inversion of the
+Hessian is costly and unstable.
+
+.. note:: 
+   
+    Newton optimizers should not to be confused with Newton's root finding
+    method, based on the same principles, :func:`scipy.optimize.newton`.
+
+Quasi-Newton methods: not computing the Hessian
+------------------------------------------------
 
 Special case: least-squares
 ============================
