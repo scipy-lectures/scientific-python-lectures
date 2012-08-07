@@ -198,12 +198,12 @@ gradient.
 
 .. |gradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_0.png
 
-.. |gradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_10.png
+.. |gradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_100.png
    :scale: 83%
 
-.. |gradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_1.png
+.. |gradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_2.png
 
-.. |gradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_11.png
+.. |gradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_102.png
    :scale: 83%
 
 .. list-table:: **Fixed step gradient descent**
@@ -231,24 +231,24 @@ Also, it clearly can clearly be advantageous to take bigger steps. This
 is done in gradient descent code using a
 `line search <http://en.wikipedia.org/wiki/Line_search>`_.
 
-.. |agradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_100.png
+.. |agradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_1.png
 
-.. |agradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_110.png
+.. |agradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_101.png
    :scale: 83%
 
-.. |agradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_101.png
+.. |agradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_3.png
 
-.. |agradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_111.png
+.. |agradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_103.png
    :scale: 83%
 
-.. |agradient_gauss_icond| image:: auto_examples/images/plot_gradient_descent_102.png
+.. |agradient_gauss_icond| image:: auto_examples/images/plot_gradient_descent_4.png
 
-.. |agradient_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_112.png
+.. |agradient_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_104.png
    :scale: 83%
 
-.. |agradient_rosen_icond| image:: auto_examples/images/plot_gradient_descent_103.png
+.. |agradient_rosen_icond| image:: auto_examples/images/plot_gradient_descent_5.png
 
-.. |agradient_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_113.png
+.. |agradient_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_105.png
    :scale: 83%
 
 
@@ -287,8 +287,79 @@ Conjugate gradient descent
 The gradient descent algorithms above are toys not to be used on real
 problems.
 
+As can be seen from the above experiments, one of the problems of the
+simple gradient descent algorithms, is that it tends to oscillate across
+a valley, each time following the direction of the gradient, that makes
+it cross the valley. The conjugate gradient solves this problem by adding
+a *friction* term: each step depends on the two last values of the
+gradient and sharp turns are reduced.
 
-Newton and quasy-newton methods
+.. |cg_gauss_icond| image:: auto_examples/images/plot_gradient_descent_6.png
+
+.. |cg_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_106.png
+   :scale: 83%
+
+.. |cg_rosen_icond| image:: auto_examples/images/plot_gradient_descent_7.png
+
+.. |cg_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_107.png
+   :scale: 83%
+
+
+.. list-table:: **Conjugate gradient descent**
+
+ * - An ill-conditionned non-quadratic function.
+
+   - |cg_gauss_icond|
+ 
+   - |cg_gauss_icond_conv|
+
+ * - An ill-conditionned very non-quadratic function.
+
+   - |cg_rosen_icond|
+ 
+   - |cg_rosen_icond_conv|
+
+Methods based on conjugate gradient are named with *'cg'* in scipy. The
+simple conjugate gradient method to minimize a function is
+:func:`fmin_cg`::
+
+    >>> def f(x):   # The rosenbrock function
+    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+    >>> optimize.fmin_cg(f, [2, 2])
+    Optimization terminated successfully.
+            Current function value: 0.000000
+            Iterations: 13
+            Function evaluations: 120
+            Gradient evaluations: 30
+    array([ 0.99998968,  0.99997855])
+
+These methods need the gradient of the function. They can compute it, but
+will perform better if you can pass them the gradient:
+
+    >>> def fprime(x):
+    ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+    >>> optimize.fmin_cg(f, [2, 2], fprime=fprime)
+    Optimization terminated successfully.
+            Current function value: 0.000000
+            Iterations: 13
+            Function evaluations: 30
+            Gradient evaluations: 30
+    array([ 0.99999199,  0.99998336])
+
+Note that the function has only been evaluated 30 times, compared to 120
+without the gradient.
+
+.. warning::
+   
+   A common source of optimization not converging is human error in the
+   computation of the gradient. You can use :func:`check_grad` to check
+   that your gradient is correct. It returns the norm of the different between
+   the gradient given, and a gradient computed numerically:
+
+    >>> optimize.check_grad(f, fprime, [2, 2])
+    2.384185791015625e-07
+
+Newton and quasi-newton methods
 ================================
 
 Special case: least-squares

@@ -41,7 +41,7 @@ def rosenbrock_prime(x):
     x, y = x
     x = 4*x + 1
     y = 4*y + 3
-    return (-2*.5*(1 - x) - 4*x*(y - x**2), 2*(y - x**2))
+    return np.array((-2*.5*(1 - x) - 4*x*(y - x**2), 2*(y - x**2)))
 
 
 ###############################################################################
@@ -93,9 +93,11 @@ def gradient_descent(x0, f, f_prime, adaptative=False):
         all_f_i.append(f([x_i, y_i]))
         dx_i, dy_i = f_prime([x_i, y_i])
         if adaptative:
+            # Compute a step size using a line_search to satisfy the Wolf
+            # conditions
             step = optimize.line_search(f, f_prime,
                                 np.r_[x_i, y_i], -np.r_[dx_i, dy_i],
-                                np.r_[dx_i, dy_i], c2=.1)
+                                np.r_[dx_i, dy_i], c2=.05)
             step = step[0]
         else:
             step = 1
@@ -106,58 +108,75 @@ def gradient_descent(x0, f, f_prime, adaptative=False):
     return all_x_i, all_y_i, all_f_i
 
 
+def gradient_descent_adaptative(x0, f, f_prime):
+    return gradient_descent(x0, f, f_prime, adaptative=True)
+
+
 def conjugate_gradient(x0, f, f_prime):
-    pass
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+    optimize.fmin_cg(f, x0, f_prime, callback=store, gtol=1e-12)
+    return all_x_i, all_y_i, all_f_i
 
 
 ###############################################################################
 # Run different optimizers on these problems
 
-for index, (f, f_prime) in enumerate((
-                mk_quad(.7), mk_quad(.02),
-                mk_gauss(.02), (rosenbrock, rosenbrock_prime))):
-    for adaptative in (False, True):
-        if not adaptative and f == rosenbrock:
-            continue
-        x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
-        x = x.T
-        y = y.T
+for index, ((f, f_prime), optimizer) in enumerate((
+                (mk_quad(.7), gradient_descent),
+                (mk_quad(.7), gradient_descent_adaptative),
+                (mk_quad(.02), gradient_descent),
+                (mk_quad(.02), gradient_descent_adaptative),
+                (mk_gauss(.02), gradient_descent_adaptative),
+                ((rosenbrock, rosenbrock_prime), gradient_descent_adaptative),
+                (mk_gauss(.02), conjugate_gradient),
+                ((rosenbrock, rosenbrock_prime), conjugate_gradient),
+            )):
+    x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
+    x = x.T
+    y = y.T
 
-        pl.figure(index + 100*adaptative, figsize=(3, 2.5))
-        pl.clf()
-        pl.axes([0, 0, 1, 1])
+    pl.figure(index, figsize=(3, 2.5))
+    pl.clf()
+    pl.axes([0, 0, 1, 1])
 
-        X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
-        z = f([x, y])
-        log_z = np.log(z + .01)
-        pl.imshow(log_z,
-                extent=[x_min, x_max, y_min, y_max],
-                cmap=pl.cm.gray_r, origin='lower',
-                vmax=log_z.min() + 1.5*log_z.ptp())
-        contours = pl.contour(log_z,
-                            extent=[x_min, x_max, y_min, y_max],
-                            cmap=pl.cm.gnuplot, origin='lower')
-        pl.clabel(contours, inline=1,
-                  fmt=super_fmt, fontsize=14)
+    X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
+    z = f([x, y])
+    log_z = np.log(z + .01)
+    pl.imshow(log_z,
+            extent=[x_min, x_max, y_min, y_max],
+            cmap=pl.cm.gray_r, origin='lower',
+            vmax=log_z.min() + 1.5*log_z.ptp())
+    contours = pl.contour(log_z,
+                        extent=[x_min, x_max, y_min, y_max],
+                        cmap=pl.cm.gnuplot, origin='lower')
+    pl.clabel(contours, inline=1,
+                fmt=super_fmt, fontsize=14)
 
-        # Compute a gradient-descent
-        x_i, y_i = 1.5, .9
-        all_x_i, all_y_i, all_f_i = gradient_descent([x_i, y_i],
-                        f, f_prime, adaptative=adaptative)
+    # Compute a gradient-descent
+    x_i, y_i = 1.5, .9
+    all_x_i, all_y_i, all_f_i = optimizer(np.array([x_i, y_i]),
+                    f, f_prime)
 
-        pl.plot(all_x_i, all_y_i, 'b-', linewidth=2)
-        pl.plot(all_x_i, all_y_i, 'k+')
+    pl.plot(all_x_i, all_y_i, 'b-', linewidth=2)
+    pl.plot(all_x_i, all_y_i, 'k+')
 
-        pl.plot([0], [0], 'rx', markersize=12)
-        pl.xticks(())
-        pl.yticks(())
-        pl.draw()
+    pl.plot([0], [0], 'rx', markersize=12)
+    pl.xticks(())
+    pl.yticks(())
+    pl.draw()
 
-        pl.figure(10 + index + 100*adaptative, figsize=(4, 3))
-        pl.clf()
-        pl.semilogy(np.abs(all_f_i), linewidth=2)
-        pl.ylabel('Error on f(x)')
-        pl.xlabel('Iteration')
-        pl.tight_layout()
-        pl.draw()
+    pl.figure(index + 100, figsize=(4, 3))
+    pl.clf()
+    pl.semilogy(np.abs(all_f_i), linewidth=2)
+    pl.ylabel('Error on f(x)')
+    pl.xlabel('Iteration')
+    pl.tight_layout()
+    pl.draw()
 
