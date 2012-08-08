@@ -224,10 +224,11 @@ gradient.
 
 We can see that very anisotropic functions are harder to optimize.
 
-.. topic:: **Take home message**
+.. topic:: **Take home message: preconditionning**
 
    If you know natural scaling for your variables, prescale them so that
-   they behave similarly.
+   they behave similarly. This is related to `preconditionning
+   <http://en.wikipedia.org/wiki/Preconditioner>`_.
 
 Also, it clearly can clearly be advantageous to take bigger steps. This
 is done in gradient descent code using a
@@ -380,11 +381,12 @@ Newton and quasi-newton methods
 Newton methods: using the Hessian (2nd differential)
 ------------------------------------------------------
 
-`Newton methods 
-<http://en.wikipedia.org/wiki/Newton%27s_method_in_optimization>`_
-use a local quadratic approximation to compute the jump direction.
-For this purpose, they rely on the 2 first derivative of the function:
-the *gradient* and the *hessian*.
+`Newton methods
+<http://en.wikipedia.org/wiki/Newton%27s_method_in_optimization>`_ use a
+local quadratic approximation to compute the jump direction. For this
+purpose, they rely on the 2 first derivative of the function: the
+*gradient* and the `Hessian
+<http://en.wikipedia.org/wiki/Hessian_matrix>`_.
 
 .. |ncg_quad_icond| image:: auto_examples/images/plot_gradient_descent_8.png
    :scale: 90%
@@ -405,7 +407,7 @@ the *gradient* and the *hessian*.
    :scale: 75%
 
 
-.. list-table:: **Newton methods**
+.. list-table::
 
  * - **An ill-conditionned quadratic function:**
 
@@ -439,15 +441,89 @@ gradient). :func:`scipy.optimize.fmin_tnc` can be use for constraint
 problems, although it is less versatile.
 
 XXX: remark on the fact that at high-dimension, the inversion of the
-Hessian is costly and unstable.
+Hessian is costly and unstable (large scale = 250).
 
 .. note:: 
    
     Newton optimizers should not to be confused with Newton's root finding
     method, based on the same principles, :func:`scipy.optimize.newton`.
 
-Quasi-Newton methods: not computing the Hessian
-------------------------------------------------
+Quasi-Newton methods: approximating the Hessian on the fly 
+------------------------------------------------------------
+
+BFGS
+.....
+
+BFGS (Broyden-Fletcher-Goldfarb-Shanno algorithm) refines at each step an
+approximation of the Hessian.
+
+.. |bfgs_quad_icond| image:: auto_examples/images/plot_gradient_descent_11.png
+   :scale: 90%
+
+.. |bfgs_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_111.png
+   :scale: 75%
+
+.. |bfgs_gauss_icond| image:: auto_examples/images/plot_gradient_descent_12.png
+   :scale: 90%
+
+.. |bfgs_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_112.png
+   :scale: 75%
+
+.. |bfgs_rosen_icond| image:: auto_examples/images/plot_gradient_descent_13.png
+   :scale: 90%
+
+.. |bfgs_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_113.png
+   :scale: 75%
+
+
+.. list-table::
+
+ * - **An ill-conditionned quadratic function:**
+
+     On a exactly quadratic function, BFGS is not as fast as Newton's
+     method, but still very fast.
+
+   - |bfgs_quad_icond|
+ 
+   - |bfgs_quad_icond_conv|
+
+ * - **An ill-conditionned non-quadratic function:**
+
+     Here BFGS does better than Newton, as its empirical estimate of the
+     curvature is better than that given by the Hessian.
+
+   - |bfgs_gauss_icond|
+ 
+   - |bfgs_gauss_icond_conv|
+
+ * - **An ill-conditionned very non-quadratic function:**
+
+   - |bfgs_rosen_icond|
+ 
+   - |bfgs_rosen_icond_conv|
+
+L-BFGS
+.......
+
+Limited-memory BFGS Sits between BFGS and conjugate gradient.
+
+Comparison of gradient-based methods
+=====================================
+
+* Newton requires the Hessian of the problem.
+
+* On very ill-conditioned problems BFGS, is equivalent to gradient
+  descent. Use `preconditionning
+  <http://en.wikipedia.org/wiki/Preconditioner>`_ when possible.
+  Conjugate gradient is independent of the conditioning (though it
+  converges slower on ill-conditioned problems).
+
+* Computational overhead of BFGS is larger than that of conjugate
+  gradient. On the other side, one iteration of BFGS usually needs less
+  function evaluations than CG (up to 2 times less). Thus conjugate
+  gradient method is better than BFGS at optimizing computationally cheap
+  functions.
+
 
 Special case: least-squares
 ============================
@@ -459,6 +535,8 @@ optimize.curve_fit
 Simplex methods
 ================
 
+Nelder-Mead: robust, but slower on smooth, non-noisy functions
+
 Alternate optimization: block coordinate methods
 =================================================
 
@@ -468,3 +546,7 @@ Global optimizers
 Optimization with constraints
 ==============================
 
+SLSQP
+Cobyla
+fmin_bound
+L-BFGS-B

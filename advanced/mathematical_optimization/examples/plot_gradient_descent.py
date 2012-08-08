@@ -164,6 +164,19 @@ def newton_cg(x0, f, f_prime, hessian):
                 avextol=1e-12)
     return all_x_i, all_y_i, all_f_i
 
+def bfgs(x0, f, f_prime, hessian=None):
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+    optimize.fmin_bfgs(f, x0, f_prime, callback=store, gtol=1e-12)
+    return all_x_i, all_y_i, all_f_i
+
+
 
 ###############################################################################
 # Run different optimizers on these problems
@@ -183,6 +196,10 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate((
                 (mk_gauss(.02), newton_cg),
                 ((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
                                     newton_cg),
+                (mk_quad(.02), bfgs),
+                (mk_gauss(.02), bfgs),
+                ((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+                            bfgs),
             )):
     x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
     x = x.T
