@@ -40,12 +40,7 @@ Scipy : high-level scientific computing
     be very boring, we concentrate instead on a few examples to give a
     general idea of how to use ``scipy`` for scientific computing.
 
-To begin with ::
-
-    >>> import numpy as np
-    >>> import scipy
-
-`scipy` is mainly composed of task-specific sub-modules:
+`scipy` is composed of task-specific sub-modules:
 
 ============= ===============================================
 cluster         Vector quantization / Kmeans
@@ -65,25 +60,16 @@ special         Any special mathematical functions
 stats           Statistics
 ============= ===============================================
 
+They all depend on `numpy`, but are mostly independent of each other. The
+standard way of importing Numpy and these Scipy modules is::
 
-Scipy builds upon Numpy
--------------------------
+    >>> import numpy as np
+    >>> from scipy import stats  # same for other sub-modules
 
-Numpy is required for running Scipy but also for using it. The most
-important type introduced to Python by Numpy is the N dimensional array,
-and it can be seen that Scipy uses the same::
+The main ``scipy`` namespace mostly contains functions that are really
+numpy functions (try ``scipy.cos is np.cos``). Those are exposed for historical
+reasons only; there's usually no reason to use ``import scipy`` in your code.
 
-    >>> scipy.ndarray is np.ndarray
-    True
-
-Moreover, most of the Scipy usual functions are provided by Numpy::
-
-    >>> scipy.cos is np.cos
-    True
-
-If you would like to know the objects used from Numpy, have a look at
-the  ``scipy.__file__[:-1]`` file. On version '0.6.0', the whole Numpy
-namespace is imported by the line ``from numpy import *``.
 
 File input/output: ``scipy.io``
 ----------------------------------
