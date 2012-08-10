@@ -49,12 +49,12 @@ To begin with ::
 
 ============= ===============================================
 cluster         Vector quantization / Kmeans
+constants       Physical and mathematical constants
 fftpack         Fourier transform
 integrate       Integration routines
 interpolate     Interpolation
 io              Data input and output
 linalg          Linear algebra routines
-maxentropy      Routines for fitting maximum entropy models
 ndimage         n-dimensional image package
 odr             Orthogonal distance regression
 optimize        Optimization
@@ -70,13 +70,13 @@ Scipy builds upon Numpy
 -------------------------
 
 Numpy is required for running Scipy but also for using it. The most
-important type introduced to Python is the N dimensional array,
+important type introduced to Python by Numpy is the N dimensional array,
 and it can be seen that Scipy uses the same::
 
     >>> scipy.ndarray is np.ndarray
     True
 
-Moreover most of the Scipy usual functions are provided by Numpy::
+Moreover, most of the Scipy usual functions are provided by Numpy::
 
     >>> scipy.cos is np.cos
     True
@@ -90,10 +90,10 @@ File input/output: ``scipy.io``
 
 * Loading and saving matlab files::
 
-    >>> from scipy import io
+    >>> from scipy import io as spio
     >>> a = np.ones((3, 3))
-    >>> io.savemat('file.mat', {'a': a}) # savemat expects a dictionary
-    >>> data = io.loadmat('file.mat', struct_as_record=True)
+    >>> spio.savemat('file.mat', {'a': a}) # savemat expects a dictionary
+    >>> data = spio.loadmat('file.mat', struct_as_record=True)
     >>> data['a']
     array([[ 1.,  1.,  1.],
            [ 1.,  1.,  1.],
@@ -110,10 +110,9 @@ See also:
 
         np.genfromtxt/np.recfromcsv
 
-    * Fast an efficient, but numpy-specific, binary format::
+    * Fast and efficient, but numpy-specific, binary format::
 
         np.save/np.load
-
 
 
 Signal processing: ``scipy.signal``
@@ -155,11 +154,13 @@ Signal processing: ``scipy.signal``
 * Signal has filtering (Gaussian, median filter, Wiener), but we will
   discuss this in the image paragraph.
 
+
 Special functions: ``scipy.special``
 ---------------------------------------
 
-Special functions are transcendal functions. The docstring of the module
-is well-written and we will not list them. Frequently used ones are:
+Special functions are transcendental functions. The docstring of the
+``special`` module is well-written, so we won't list all functions here.
+Frequently used ones are:
 
  * Bessel function, such as `special.jn` (nth integer order Bessel
    function)
@@ -172,11 +173,12 @@ is well-written and we will not list them. Frequently used ones are:
 
  * Erf, the area under a Gaussian curve: `special.erf`
 
+
 Statistics and random numbers: ``scipy.stats``
 -----------------------------------------------
 
 The module `scipy.stats` contains statistical tools and probabilistic
-description of random processes. Random number generators for various
+descriptions of random processes. Random number generators for various
 random process can be found in `numpy.random`.
 
 Histogram and probability density function
@@ -241,7 +243,7 @@ function.
 Statistical tests
 ...................
 
-A statistical test is a decision indicator. For instance, if we have 2
+A statistical test is a decision indicator. For instance, if we have two
 sets of observations, that we assume are generated from Gaussian
 processes, we can use a 
 `T-test <http://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide 
@@ -258,18 +260,19 @@ The resulting output is composed of:
       proportional to the difference between the two random processes and
       the magnitude is related to the significance of this difference.
 
-    * the *p value*: the probability of both process being identical. If
-      it is close to 1, the two process are almost certainly identical.
+    * the *p value*: the probability of both processes being identical. If it
+      is close to 1, the two process are almost certainly identical.
       The closer it is to zero, the more likely it is that the processes
-      have different mean.
+      have different means.
+
 
 .. _scipy_linalg:
 
 Linear algebra operations: ``scipy.linalg``
 -----------------------------------------------
 
-The linalg module provides standard linear algebra operations, relying on
-an underlying efficient implementation (BLAS).
+The ``linalg`` module provides standard linear algebra operations, relying on
+an underlying efficient implementation (BLAS, LAPACK).
 
 * The ``det`` function computes the determinant of a square matrix::
 
@@ -315,8 +318,8 @@ an underlying efficient implementation (BLAS).
     ...
     LinAlgError: singular matrix
 
-* More advanced operations are available like singular-value decomposition
-  (SVD)::
+* More advanced operations are available, for example singular-value
+  decomposition (SVD)::
 
     >>> arr = np.arange(9).reshape((3, 3)) + np.diag([1, 0, 1])
     >>> uarr, spec, vharr = linalg.svd(arr)
@@ -342,6 +345,7 @@ an underlying efficient implementation (BLAS).
   standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
   for linear systems, are available in ``scipy.linalg``.
 
+
 Numerical integration: ``scipy.integrate``
 ------------------------------------------------
 The most generic integration routine is ``scipy.integrate.quad``::
@@ -356,10 +360,10 @@ The most generic integration routine is ``scipy.integrate.quad``::
 Others integration schemes are available with ``fixed_quad``,
 ``quadrature``, ``romberg``.
 
-``scipy.integrate`` also features routines for Ordinary differential
-equations (ODE) integration. In particular, ``scipy.integrate.odeint``
-is a general-purpose integrator using LSODA (Livermore solver for
-ordinary differential equations with automatic method switching
+``scipy.integrate`` also features routines for integrating Ordinary
+Differential Equations (ODE). In particular, ``scipy.integrate.odeint``
+is a general-purpose integrator using LSODA (Livermore Solver for
+Ordinary Differential equations with Automatic method switching
 for stiff and non-stiff problems), see the `ODEPACK Fortran library`_
 for more details.
 
@@ -375,14 +379,14 @@ computing the derivative of the position needs to be defined::
 
     >>> def calc_derivative(ypos, time, counter_arr):
     ...     counter_arr += 1
-    ...     return -2*ypos
+    ...     return -2 * ypos
     ...
 
 An extra argument ``counter_arr`` has been added to illustrate that the
 function may be called several times for a single time step, until solver
 convergence. The counter array is defined as::
 
-    >>> counter = np.zeros((1,), np.uint16)
+    >>> counter = np.zeros((1,), dtype=np.uint16)
 
 The trajectory will now be computed::
 
@@ -391,19 +395,20 @@ The trajectory will now be computed::
     >>> yvec, info = odeint(calc_derivative, 1, time_vec,
     ...                     args=(counter,), full_output=True)
 
-Thus the derivative function has been called more than 40 times::
+Thus the derivative function has been called more than 40 times
+(which was the number of time steps)::
 
     >>> counter
     array([129], dtype=uint16)
 
-and the cumulative iterations number for the 10 first convergences
+and the cumulative number of iterations for each of the 10 first time steps
 can be obtained by::
 
     >>> info['nfe'][:10]
     array([31, 35, 43, 49, 53, 57, 59, 63, 65, 69], dtype=int32)
 
-The solver requires more iterations at start. The final trajectory is
-seen on the Matplotlib figure:
+Note that the solver requires more iterations for the first time step.
+The solution ``yvec`` for the trajectory can now be plotted:
 
   .. plot:: pyplots/odeint_introduction.py
     :scale: 70
@@ -411,15 +416,15 @@ seen on the Matplotlib figure:
 Another example with ``odeint`` will be a damped spring-mass oscillator
 (2nd order oscillator). The position of a mass attached to a spring obeys
 the 2nd order ODE ``y'' + 2 eps wo  y' + wo^2 y = 0`` with ``wo^2 = k/m``
-being ``k`` the spring constant, ``m`` the mass and ``eps=c/(2 m wo)``
+with ``k`` the spring constant, ``m`` the mass and ``eps=c/(2 m wo)``
 with ``c`` the damping coefficient.
-For a computing example, the parameters will be::
+For this example, we choose the parameters as::
 
-    >>> mass = 0.5 # kg
-    >>> kspring = 4 # N/m
-    >>> cviscous = 0.4 # N s/m
+    >>> mass = 0.5  # kg
+    >>> kspring = 4  # N/m
+    >>> cviscous = 0.4  # N s/m
 
-so the system will be underdamped because::
+so the system will be underdamped, because::
 
     >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
     >>> eps < 1
@@ -427,10 +432,10 @@ so the system will be underdamped because::
 
 For the ``odeint`` solver the 2nd order equation needs to be transformed in a
 system of two first-order equations for the vector ``Y=(y, y')``.  It will
-be convenient to define ``nu = 2 eps wo = c / m`` and ``om = wo^2 = k/m``::
+be convenient to define ``nu = 2 eps * wo = c / m`` and ``om = wo^2 = k/m``::
 
-    >>> nu_coef = cviscous/mass
-    >>> om_coef = kspring/mass
+    >>> nu_coef = cviscous / mass
+    >>> om_coef = kspring / mass
 
 Thus the function will calculate the velocity and acceleration by::
 
@@ -445,12 +450,12 @@ The final position and velocity are shown on the following Matplotlib figure:
 .. plot:: pyplots/odeint_damped_spring_mass.py
     :scale: 70
 
-There is no Partial Differential Equations (PDE) solver
-in scipy. Some PDE packages are written in Python, such
-as fipy_ or SfePy_.
+There is no Partial Differential Equations (PDE) solver in Scipy.
+Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
 
 .. _fipy: http://www.ctcms.nist.gov/fipy/
 .. _SfePy: http://code.google.com/p/sfepy/
+
 
 Fast Fourier transforms: ``scipy.fftpack``
 ----------------------------------------------
@@ -484,7 +489,7 @@ because the resulting power is symmetric::
 .. plot:: pyplots/fftpack_frequency.py
     :scale: 70
 
-Thus the signal frequency can be found by::
+The signal frequency can be found by::
 
     >>> freq = freqs[power.argmax()]
     >>> np.allclose(freq, 1./period)
@@ -597,7 +602,7 @@ and plot it:
 
 .. doctest::
 
-    >>> x = np.arange(-10,10,0.1)
+    >>> x = np.arange(-10, 10, 0.1)
     >>> plt.plot(x, f(x)) # doctest:+SKIP
     >>> plt.show() # doctest:+SKIP
 
@@ -621,12 +626,12 @@ algorithm is a good way of doing this::
 	     Gradient evaluations: 8
     array([-1.30644003])
 
-This resolution takes 4.11ms on our computer.
+This computation takes 4.11ms on our computer.
 
 The problem with this approach is that, if the function has local minima (is 
 not convex), the algorithm may find these local minima instead of the
 global minimum depending on the initial point. If we don't know the
-neighborhood of the global minima to choose the initial point, we need to
+neighborhood of the global minimum to choose the initial point, we need to
 resort to costlier global optimization.
 
 Global optimization
@@ -640,7 +645,7 @@ in which the function is evaluated on each point of a given grid: ::
     >>> optimize.brute(f, (grid,))
     array([-1.30641113])
 
-This approach take 20 ms on our computer.
+This approach takes 20 ms on our computer.
 
 This simple algorithm becomes very slow as the size of the grid grows, so you
 should use ``optimize.brent`` instead for scalar functions: ::
@@ -648,10 +653,9 @@ should use ``optimize.brent`` instead for scalar functions: ::
     >>> optimize.brent(f)
     -1.3064400120612139
 
-To find the local minimum, let's add some constraints on the variable using
-``optimize.fminbound``: ::
+To find the local minimum, let's constraint the variable to the interval
+``(0, 10)`` using ``optimize.fminbound``: ::
 
-    >>> # search the minimum only between 0 and 10
     >>> optimize.fminbound(f, 0, 10)    # doctest: +ELLIPSIS
     3.8374671...
 
@@ -662,22 +666,19 @@ See the summary exercise on :ref:`summary_exercise_optimize` for a
 more advanced example.
 
 
-
 Image processing: ``scipy.ndimage``
 -----------------------------------
 
 .. include:: image_processing/image_processing.rst
 
 
-
-
-
 Summary exercises on scientific computing
 -----------------------------------------
 
-The summary exercises use mainly Numpy, Scipy and Matplotlib. They first aim at
-providing real life examples on scientific computing with Python. Once the
-groundwork is introduced, the interested user is invited to try some exercises.
+The summary exercises use mainly Numpy, Scipy and Matplotlib. They provide some
+real-life examples of scientific computing with Python. Now that the basics of
+working with Numpy and Scipy have been introduced, the interested user is
+invited to try these exercises.
 
 .. only:: latex
 

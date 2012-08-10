@@ -58,9 +58,8 @@ Image filtering
    :align: center
 
 
-
-And many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``
-can be applied to images
+Many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``
+can be applied to images.
 
 .. topic:: Exercise
 
@@ -172,7 +171,7 @@ Let us first generate a structuring element ::
     Check that opening amounts to eroding, then dilating.
 
 An opening operation removes small structures, while a closing operation
-fills small holes. Such operation can therefore be used to "clean" an
+fills small holes. Such operations can therefore be used to "clean" an
 image. ::
 
     >>> a = np.zeros((50, 50))
@@ -190,7 +189,6 @@ image. ::
     Check that the area of the reconstructed square is smaller
     than the area of the initial square. (The opposite would occur if the
     closing step was performed *before* the opening).
-
 
 For **gray-valued** images, eroding (resp. dilating) amounts to replacing
 a pixel by the minimal (resp. maximal) value among pixels covered by the
