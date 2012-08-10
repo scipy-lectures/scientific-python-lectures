@@ -301,13 +301,6 @@ an underlying efficient implementation (BLAS, LAPACK).
     >>> np.allclose(np.dot(arr, iarr), np.eye(2))
     True
 
-  Note that in case you use the matrix type, the inverse is computed when
-  requesting the ``I`` attribute::
-
-    >>> ma = np.matrix(arr, copy=False)
-    >>> np.allclose(ma.I, iarr)
-    True
-
   Finally computing the inverse of a singular matrix (its determinant is zero)
   will raise ``LinAlgError``::
 
@@ -329,19 +322,15 @@ an underlying efficient implementation (BLAS, LAPACK).
     >>> spec    # doctest: +ELLIPSIS
     array([ 14.88982544,   0.45294236,   0.29654967])
 
-  For the recomposition, an alias for manipulating matrix will first
-  be defined::
-
-    >>> asmat = np.asmatrix
-
-  then the steps are::
+  The original matrix can be re-composed by matrix multiplication of the outputs of
+  ``svd`` with ``np.dot``::
 
     >>> sarr = np.diag(spec)
-    >>> svd_mat = asmat(uarr) * asmat(sarr) * asmat(vharr)
+    >>> svd_mat = uarr.dot(sarr).dot(vharr)
     >>> np.allclose(svd_mat, arr)
     True
 
-  SVD is commonly used in statistics or signal processing.  Many other
+  SVD is commonly used in statistics and signal processing.  Many other
   standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
   for linear systems, are available in ``scipy.linalg``.
 
