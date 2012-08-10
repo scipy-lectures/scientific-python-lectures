@@ -183,8 +183,7 @@ It combines a bracketing strategy with a parabolic approximation.
    In scipy 0.11, :func:`scipy.optimize.minimize_scalar` gives a generic
    interface to 1D scalar minimization
 
-
-Gradient and conjugate gradient methods
+Gradient based methods
 ========================================
 
 Some intuitions about gradient descent
@@ -210,19 +209,25 @@ gradient.
 
 .. list-table:: **Fixed step gradient descent**
 
- * - A well-conditionned quadratic function.
+ * - **A well-conditionned quadratic function.**
 
    - |gradient_quad_cond|
  
    - |gradient_quad_cond_conv|
 
- * - An ill-conditionned quadratic function.
+ * - **An ill-conditionned quadratic function.**
+
+     The core problem of gradient-methods on ill-conditionned problems is
+     that the gradient tends not to point in the direction of the
+     minimum.
 
    - |gradient_quad_icond|
  
    - |gradient_quad_icond_conv|
 
-We can see that very anisotropic functions are harder to optimize.
+We can see that very anisotropic (`ill-conditionned
+<http://en.wikipedia.org/wiki/Condition_number>`_) functions are harder
+to optimize.
 
 .. topic:: **Take home message: preconditionning**
 
@@ -343,7 +348,7 @@ simple conjugate gradient method to minimize a function is
     array([ 0.99998968,  0.99997855])
 
 These methods need the gradient of the function. They can compute it, but
-will perform better if you can pass them the gradient:
+will perform better if you can pass them the gradient::
 
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
@@ -438,7 +443,38 @@ In scipy, the Newton method for optimization is implemented in
 :func:`scipy.optimize.fmin_ncg` (cg here refers to that fact that an
 inner operation, the inversion of the Hessian, is performed by conjugate
 gradient). :func:`scipy.optimize.fmin_tnc` can be use for constraint
-problems, although it is less versatile.
+problems, although it is less versatile::
+
+    >>> def f(x):   # The rosenbrock function
+    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+    >>> def fprime(x):
+    ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime)
+    Optimization terminated successfully.
+            Current function value: 0.000000
+            Iterations: 10
+            Function evaluations: 12
+            Gradient evaluations: 44
+            Hessian evaluations: 0
+    array([ 1.,  1.])
+
+Note that compared to a conjugate gradient (above), Newton's method has
+required less function evaluations, but more gradient evaluations, as it
+uses it to approximate the Hessian. Let's compute the Hessian and pass it
+to the algorithm::
+
+    >>> def hessian(x): # Computed with sympy
+    ...     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
+    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime, fhess=hessian)
+    Optimization terminated successfully.
+            Current function value: 0.000000
+            Iterations: 10
+            Function evaluations: 12
+            Gradient evaluations: 10
+            Hessian evaluations: 10
+    array([ 1.,  1.])
+
+
 
 XXX: remark on the fact that at high-dimension, the inversion of the
 Hessian is costly and unstable (large scale = 250).
@@ -451,11 +487,8 @@ Hessian is costly and unstable (large scale = 250).
 Quasi-Newton methods: approximating the Hessian on the fly 
 ------------------------------------------------------------
 
-BFGS
-.....
-
-BFGS (Broyden-Fletcher-Goldfarb-Shanno algorithm) refines at each step an
-approximation of the Hessian.
+**BFGS**: BFGS (Broyden-Fletcher-Goldfarb-Shanno algorithm) refines at
+each step an approximation of the Hessian.
 
 .. |bfgs_quad_icond| image:: auto_examples/images/plot_gradient_descent_11.png
    :scale: 90%
@@ -502,13 +535,124 @@ approximation of the Hessian.
  
    - |bfgs_rosen_icond_conv|
 
-L-BFGS
-.......
+::
 
-Limited-memory BFGS Sits between BFGS and conjugate gradient.
+    >>> def f(x):   # The rosenbrock function
+    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+    >>> def fprime(x):
+    ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+    >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)
+    Optimization terminated successfully.
+            Current function value: 0.000000
+            Iterations: 16
+            Function evaluations: 24
+            Gradient evaluations: 24
+    array([ 1.00000017,  1.00000026])
 
-Comparison of gradient-based methods
-=====================================
+
+**L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:
+in very high dimensions (> 250) the Hessian matrix is too costly to
+compute and invert. L-BFGS keeps a low-rank version. In addition, the
+scipy version, :func:`scipy.optimize.fmin_l_bfgs_b`, includes box bounds::
+
+    >>> def f(x):   # The rosenbrock function
+    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+    >>> def fprime(x):
+    ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+    >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)
+    (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([  1.02331202e-07,  -2.59299369e-08]), 'funcalls': 17})
+
+Gradient-less methods
+======================
+
+A shooting method: the Powell algorithm
+----------------------------------------
+
+Almost a gradient approach
+
+.. |powell_quad_icond| image:: auto_examples/images/plot_gradient_descent_14.png
+   :scale: 90%
+
+.. |powell_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_114.png
+   :scale: 75%
+
+.. |powell_gauss_icond| image:: auto_examples/images/plot_gradient_descent_15.png
+   :scale: 90%
+
+.. |powell_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_115.png
+   :scale: 75%
+
+
+.. |powell_rosen_icond| image:: auto_examples/images/plot_gradient_descent_16.png
+   :scale: 90%
+
+.. |powell_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_116.png
+   :scale: 75%
+
+
+.. list-table::
+
+ * - **An ill-conditionned quadratic function:**
+
+     Powell's method isn't too sensitive to local ill-conditionning in
+     low dimensions
+
+   - |powell_quad_icond|
+ 
+   - |powell_quad_icond_conv|
+
+ * - **An ill-conditionned non-quadratic function:**
+
+   - |powell_gauss_icond|
+ 
+   - |powell_gauss_icond_conv|
+
+ * - **An ill-conditionned very non-quadratic function:**
+
+   - |powell_rosen_icond|
+ 
+   - |powell_rosen_icond_conv|
+
+
+Simplex method: the Nelder-Mead
+--------------------------------
+
+Nelder-Mead: robust, but slower on smooth, non-noisy functions
+
+.. |nm_gauss_icond| image:: auto_examples/images/plot_gradient_descent_17.png
+   :scale: 90%
+
+.. |nm_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_117.png
+   :scale: 75%
+
+
+.. |nm_rosen_icond| image:: auto_examples/images/plot_gradient_descent_18.png
+   :scale: 90%
+
+.. |nm_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_118.png
+   :scale: 75%
+
+
+.. list-table::
+
+ * - **An ill-conditionned non-quadratic function:**
+
+   - |nm_gauss_icond|
+ 
+   - |nm_gauss_icond_conv|
+
+ * - **An ill-conditionned very non-quadratic function:**
+
+   - |nm_rosen_icond|
+ 
+   - |nm_rosen_icond_conv|
+
+
+Global optimizers
+==================
+
+Comparion of generic methods
+=============================
 
 * Newton requires the Hessian of the problem.
 
@@ -524,7 +668,6 @@ Comparison of gradient-based methods
   gradient method is better than BFGS at optimizing computationally cheap
   functions.
 
-
 Special case: least-squares
 ============================
 
@@ -532,16 +675,6 @@ linalg.leastsq
 
 optimize.curve_fit
 
-Simplex methods
-================
-
-Nelder-Mead: robust, but slower on smooth, non-noisy functions
-
-Alternate optimization: block coordinate methods
-=================================================
-
-Global optimizers
-==================
 
 Optimization with constraints
 ==============================
@@ -550,3 +683,8 @@ SLSQP
 Cobyla
 fmin_bound
 L-BFGS-B
+
+Alternate optimization: block coordinate methods
+=================================================
+
+

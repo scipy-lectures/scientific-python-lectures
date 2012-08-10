@@ -103,9 +103,45 @@ def mk_quad(epsilon):
 
     return f, f_prime, hessian
 
+
 ###############################################################################
 # A gradient descent algorithm
 # do not use: its a toy, use scipy's optimize.fmin_cg
+
+class LoggingFunction(object):
+
+    def __init__(self, function, counter=None):
+        self.function = function
+        if counter is None:
+            counter = list()
+        self.counter = counter
+        self.all_x_i = list()
+        self.all_y_i = list()
+        self.all_f_i = list()
+        self.counts = list()
+
+    def __call__(self, x0):
+        x_i, y_i = x0
+        self.all_x_i.append(x_i)
+        self.all_y_i.append(y_i)
+        f_i = self.function(x0)
+        self.all_f_i.append(f_i)
+        self.counter.append('f')
+        self.counts.append(len(self.counter))
+        return f_i
+
+class CountingFunction(object):
+
+    def __init__(self, function, counter=None):
+        self.function = function
+        if counter is None:
+            counter = list()
+        self.counter = counter
+
+    def __call__(self, x0):
+        self.counter.append('f_prime')
+        return self.function(x0)
+
 
 def gradient_descent(x0, f, f_prime, hessian=None, adaptative=False):
     x_i, y_i = x0
@@ -164,6 +200,7 @@ def newton_cg(x0, f, f_prime, hessian):
                 avextol=1e-12)
     return all_x_i, all_y_i, all_f_i
 
+
 def bfgs(x0, f, f_prime, hessian=None):
     all_x_i = [x0[0]]
     all_y_i = [x0[1]]
@@ -177,9 +214,36 @@ def bfgs(x0, f, f_prime, hessian=None):
     return all_x_i, all_y_i, all_f_i
 
 
+def powell(x0, f, f_prime, hessian=None):
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+    optimize.fmin_powell(f, x0, callback=store, ftol=1e-12)
+    return all_x_i, all_y_i, all_f_i
+
+
+def nelder_mead(x0, f, f_prime, hessian=None):
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+    optimize.fmin(f, x0, callback=store, ftol=1e-12)
+    return all_x_i, all_y_i, all_f_i
+
+
 
 ###############################################################################
 # Run different optimizers on these problems
+levels = dict()
 
 for index, ((f, f_prime, hessian), optimizer) in enumerate((
                 (mk_quad(.7), gradient_descent),
@@ -200,7 +264,30 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate((
                 (mk_gauss(.02), bfgs),
                 ((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
                             bfgs),
+                (mk_quad(.02), powell),
+                (mk_gauss(.02), powell),
+                ((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+                            powell),
+                (mk_gauss(.02), nelder_mead),
+                ((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+                            nelder_mead),
             )):
+
+    # Compute a gradient-descent
+    x_i, y_i = 1.6, 1.1
+    counting_f_prime = CountingFunction(f_prime)
+    counting_hessian = CountingFunction(hessian)
+    logging_f = LoggingFunction(f, counter=counting_f_prime.counter)
+    all_x_i, all_y_i, all_f_i = optimizer(np.array([x_i, y_i]),
+                                          logging_f, counting_f_prime,
+                                          hessian=counting_hessian)
+
+    # Plot the contour plot
+    if not max(all_y_i) < y_max:
+        x_min *= 1.2
+        x_max *= 1.2
+        y_min *= 1.2
+        y_max *= 1.2
     x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
     x = x.T
     y = y.T
@@ -217,29 +304,33 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate((
             cmap=pl.cm.gray_r, origin='lower',
             vmax=log_z.min() + 1.5*log_z.ptp())
     contours = pl.contour(log_z,
+                        levels=levels.get(f, None),
                         extent=[x_min, x_max, y_min, y_max],
                         cmap=pl.cm.gnuplot, origin='lower')
+    levels[f] = contours.levels
     pl.clabel(contours, inline=1,
                 fmt=super_fmt, fontsize=14)
-
-    # Compute a gradient-descent
-    x_i, y_i = 1.6, 1.1
-    all_x_i, all_y_i, all_f_i = optimizer(np.array([x_i, y_i]),
-                                    f, f_prime, hessian=hessian)
 
     pl.plot(all_x_i, all_y_i, 'b-', linewidth=2)
     pl.plot(all_x_i, all_y_i, 'k+')
 
     pl.plot([0], [0], 'rx', markersize=12)
+
+
     pl.xticks(())
     pl.yticks(())
     pl.draw()
 
     pl.figure(index + 100, figsize=(4, 3))
     pl.clf()
-    pl.semilogy(np.abs(all_f_i), linewidth=2)
+    pl.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2,
+                label='# iterations')
     pl.ylabel('Error on f(x)')
-    pl.xlabel('Iteration')
+    pl.semilogy(logging_f.counts,
+                np.maximum(np.abs(logging_f.all_f_i), 1e-30),
+                linewidth=2, color='g', label='# function calls')
+    pl.legend(loc='upper right', frameon=True, prop=dict(size=11),
+              borderaxespad=0, handlelength=1.5, handletextpad=.5)
     pl.tight_layout()
     pl.draw()
 
