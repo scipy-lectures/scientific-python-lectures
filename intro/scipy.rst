@@ -683,8 +683,30 @@ we put all those resuls together in a single plot:
 You can find algorithms with the same functionalities for multi-dimensional
 problems in ``scipy.optimize``.
 
-See the summary exercise on :ref:`summary_exercise_optimize` for a
-more advanced example.
+.. topic:: Exercise: 2-D minimization
+   :class: green
+
+    .. plot:: pyplots/scipy_optimize_sixhump.py
+
+    The six-hump camelback function
+    
+    .. math:: f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
+
+    has multiple global and local minima. Find the global minima of this
+    function. 
+
+    Hints:
+
+        - Variables can be restricted to ``-2 < x < 2`` and ``-1 < y < 1``.
+        - Use `np.meshgrid` and `plt.imshow` to find visually the regions.
+        - Use ``fmin_bfgs`` or another multi-dimensional minimizer.
+
+
+    How many global minima are there, and what is the function value at those
+    points?  What happens for an initial guess of ``(x, y) = (0, 0)``?
+
+See the summary exercise on :ref:`summary_exercise_optimize` for another, more
+advanced example.
 
 
 Image processing: ``scipy.ndimage``
