@@ -486,9 +486,8 @@ The result is shown on the Matplotlib figure:
 
 .. note:: **numpy.fft**
 
-   Numpy also has an implementation of FFT. However, in general the scipy
-   one should be prefered, as it uses more efficient underlying
-   implementations.
+   Numpy also has an implementation of FFT. However, in general the scipy one
+   should be preferred, as it uses more efficient underlying implementations.
 
 .. topic:: Worked example: Crude periodicity finding
 
@@ -507,6 +506,28 @@ The result is shown on the Matplotlib figure:
         \tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
 
     .. plot:: intro/solutions/image_blur.py
+
+.. topic:: Exercise: Denoise moon landing image
+   :class: green
+
+   .. image:: ../data/moonlanding.png
+     :scale: 70
+
+   1. Examine the provided image moonlanding.png, which is heavily
+      contaminated with periodic noise. In this exercise, we aim to clean up
+      the noise using the Fast Fourier Transform.
+
+   2. Load the image using `plt.imread`.
+
+   3. Find and use the 2-D FFT function in `scipy.fftpack`, and plot the
+      spectrum (Fourier transform of) the image. Do you have any trouble
+      visualising the spectrum? If so, why?
+
+   4. The spectrum consists of high and low frequency components. The noise is
+      contained in the high-frequency part of the spectrum, so set some of
+      those components to zero (use array slicing).
+
+   5. Apply the inverse Fourier transform to see the resulting image.
 
 
 Interpolation: ``scipy.interpolate``
