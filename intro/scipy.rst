@@ -566,7 +566,7 @@ finding. ::
     >>> from scipy import optimize
 
 
-**Example: Minimizing a scalar function using different algorithms**
+**Finding the minimum of a scalar function**
 
 Let's define the following function: ::
 
@@ -586,9 +586,6 @@ and plot it:
 
 This function has a global minimum around -1.3 and a local minimum around 3.8.
 
-Local (convex) optimization
-..............................
-
 The general and efficient way to find a minimum for this function is to 
 conduct a gradient descent starting from a given initial point. The BFGS
 algorithm is a good way of doing this::
@@ -601,38 +598,98 @@ algorithm is a good way of doing this::
 	     Gradient evaluations: 8
     array([-1.30644003])
 
-This computation takes 4.11ms on our computer.
+A possible issue with this approach is that, if the function has local minima
+(is not convex), the algorithm may find these local minima instead of the
+global minimum depending on the initial point: ::
 
-The problem with this approach is that, if the function has local minima (is 
-not convex), the algorithm may find these local minima instead of the
-global minimum depending on the initial point. If we don't know the
-neighborhood of the global minimum to choose the initial point, we need to
-resort to costlier global optimization.
+    >>> optimize.fmin_bfgs(f, 3, disp=0)
+    array([ 3.83746663])
 
-Global optimization
-.....................
+If we don't know the neighborhood of the global minimum to choose the initial
+point, we need to resort to costlier global optimization.  To find the global
+minimum, the simplest algorithm is the brute force algorithm, in which the
+function is evaluated on each point of a given grid: ::
 
-To find the global minimum, the simplest algorithm is the brute force algorithm,
-in which the function is evaluated on each point of a given grid: ::
-
-    >>> from scipy import optimize
     >>> grid = (-10, 10, 0.1)
-    >>> optimize.brute(f, (grid,))
+    >>> xmin_global = optimize.brute(f, (grid,))
+    >>> xmin_global
     array([-1.30641113])
 
-This approach takes 20 ms on our computer.
+For larger grid sizes, ``brute`` becomes quite slow. ``optimize.anneal``
+provides an alternative, using simulated annealing. More efficient algorithms
+for different classes of global optimization problems exist, but this is out of
+the scope of ``scipy``.  Some useful packages for global optimization are
+OpenOpt_, IPOPT_, PyGMO_ and PyEvolve_.
 
-This simple algorithm becomes very slow as the size of the grid grows, so you
-should use ``optimize.brent`` instead for scalar functions: ::
-
-    >>> optimize.brent(f)
-    -1.3064400120612139
+.. _OpenOpt: http://openopt.org/Welcome
+.. _IPOPT: https://github.com/xuy/pyipopt
+.. _PyGMO: http://pagmo.sourceforge.net/pygmo/index.html
+.. _PyEvolve: http://pyevolve.sourceforge.net/
 
 To find the local minimum, let's constraint the variable to the interval
 ``(0, 10)`` using ``optimize.fminbound``: ::
 
-    >>> optimize.fminbound(f, 0, 10)    # doctest: +ELLIPSIS
+    >>> xmin_local = optimize.fminbound(f, 0, 10)    # doctest: +ELLIPSIS
+    >>> xmin_local
     3.8374671...
+
+**Finding the roots of a scalar function**
+
+To find a root, i.e. a point where ``f(x) = 0``, of the function ``f`` above
+we can use for example ``fsolve``: ::
+
+    >>> root = optimize.fsolve(f, 1)  # our initial guess is 1
+    >>> root
+    array([ 0.])
+
+Note that only one root is found.  Inspecting the plot of ``f`` reveals that
+there is a second root around -2.5. We find the exact value of it by adjusting
+our initial guess: ::
+
+    >>> root2 = optimize.fsolve(f, -2.5)
+    >>> root2
+    array([-2.47948183])
+
+**Curve fitting**
+
+Suppose we have data sampled from ``f`` with some noise: ::
+
+    >>> xdata = np.linspace(-10, 10, num=20)
+    >>> ydata = f(xdata) + np.random.randn(xdata.size)
+    
+Now if we know the functional form of the function from which the samples were
+drawn (``x^2 + sin(x)`` in this case) but not the amplitudes of the terms, we
+can find those by least squares curve fitting. First we have to define the
+function to fit::
+
+    >>> def f2(x, a, b):
+    ...     return a*x**2 + b*np.sin(x)
+
+Then we can find ``curve_fit`` to find ``a`` and ``b``: ::
+
+    >>> guess = [2, 2]
+    >>> params, params_covariance = optimize.curve_fit(f2, xdata, ydata, guess)
+    >>> params
+    array([ 0.99925147,  9.76065551])
+
+Now we have found the minima and roots of ``f`` and used curve fitting on it,
+we put all those resuls together in a single plot: ::
+
+    >>> plt.plot(x, f(x), 'b-', label="f(x)")   # doctest:+SKIP
+    >>> plt.plot(x, f2(x, *params), 'r--', label="Curve fit result")   # doctest:+SKIP 
+    >>> xmins = np.array([xmin_global[0], xmin_local])
+    >>> plt.plot(xmins, f(xmins), 'go', label="Minima")   # doctest:+SKIP
+    >>> roots = np.array([root, root2])
+    >>> plt.plot(roots, f(roots), 'kv', label="Roots")   # doctest:+SKIP
+    >>> plt.legend()   # doctest:+SKIP
+
+.. plot:: pyplots/scipy_optimize_example2.py
+    :scale: 70
+
+.. note:: In Scipy >= 0.11 unified interfaces to all minimization and root
+   finding algorithms are available: ``minimize``, ``minimize_scalar`` and
+   ``root``.  They allow comparing various algorithms easily through the
+   ``method`` keyword.
 
 You can find algorithms with the same functionalities for multi-dimensional
 problems in ``scipy.optimize``.
