@@ -544,7 +544,6 @@ keyword argument::
 The results are now gathered on the following Matplotlib figure:
 
 .. plot:: pyplots/scipy_interpolation.py
-    :scale: 70
 
 ``scipy.interpolate.interp2d`` is similar to ``interp1d``, but for 2-D
 arrays. Note that for the ``interp`` family, the computed time must stay
@@ -581,8 +580,7 @@ and plot it:
     >>> plt.plot(x, f(x)) # doctest:+SKIP
     >>> plt.show() # doctest:+SKIP
 
-.. image:: minima-function.png
-   :scale: 70
+.. plot:: pyplots/scipy_optimize_example1.py
 
 This function has a global minimum around -1.3 and a local minimum around 3.8.
 
@@ -673,18 +671,9 @@ Then we can find ``curve_fit`` to find ``a`` and ``b``: ::
     array([ 0.99925147,  9.76065551])
 
 Now we have found the minima and roots of ``f`` and used curve fitting on it,
-we put all those resuls together in a single plot: ::
-
-    >>> plt.plot(x, f(x), 'b-', label="f(x)")   # doctest:+SKIP
-    >>> plt.plot(x, f2(x, *params), 'r--', label="Curve fit result")   # doctest:+SKIP 
-    >>> xmins = np.array([xmin_global[0], xmin_local])
-    >>> plt.plot(xmins, f(xmins), 'go', label="Minima")   # doctest:+SKIP
-    >>> roots = np.array([root, root2])
-    >>> plt.plot(roots, f(roots), 'kv', label="Roots")   # doctest:+SKIP
-    >>> plt.legend()   # doctest:+SKIP
+we put all those resuls together in a single plot:
 
 .. plot:: pyplots/scipy_optimize_example2.py
-    :scale: 70
 
 .. note:: In Scipy >= 0.11 unified interfaces to all minimization and root
    finding algorithms are available: ``minimize``, ``minimize_scalar`` and
