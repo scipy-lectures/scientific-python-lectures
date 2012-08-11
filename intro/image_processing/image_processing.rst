@@ -62,6 +62,7 @@ Many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``
 can be applied to images.
 
 .. topic:: Exercise
+   :class: green
 
     Compare histograms for the different filtered images.
 
@@ -167,6 +168,7 @@ Let us first generate a structuring element ::
 * **Closing:** ``ndimage.binary_closing``
 
 .. topic:: Exercise
+   :class: green
 
     Check that opening amounts to eroding, then dilating.
 
@@ -185,6 +187,7 @@ image. ::
    :align: center
 
 .. topic:: Exercise
+   :class: green
 
     Check that the area of the reconstructed square is smaller
     than the area of the initial square. (The opposite would occur if the
