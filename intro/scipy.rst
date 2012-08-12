@@ -435,16 +435,16 @@ Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
 Fast Fourier transforms: ``scipy.fftpack``
 ----------------------------------------------
 The ``fftpack`` module allows to compute fast Fourier transforms.
-As an illustration, an input signal may look like::
+As an illustration, a (noisy) input signal may look like::
 
-    >>> time_step = 0.1
+    >>> time_step = 0.02
     >>> period = 5.
     >>> time_vec = np.arange(0, 20, time_step)
     >>> sig = np.sin(2 * np.pi / period * time_vec) + \
-    ...       np.cos(10 * np.pi * time_vec)
+    ...       0.5 * np.random.randn(time_vec.size)
 
-However the observer does not know the signal frequency, only
-the sampling time step of the signal ``sig``. But the signal
+The observer doesn't know the signal frequency, only
+the sampling time step of the signal ``sig``. The signal
 is supposed to come from a real function so the Fourier transform
 will be symmetric.
 The ``fftfreq`` function will generate the sampling frequencies and
@@ -454,8 +454,8 @@ The ``fftfreq`` function will generate the sampling frequencies and
     >>> sample_freq = fftpack.fftfreq(sig.size, d=time_step)
     >>> sig_fft = fftpack.fft(sig)
 
-Nevertheless only the positive part will be used for finding the frequency
-because the resulting power is symmetric::
+Because the resulting power is symmetric, only the positive part of the
+spectrum needs to be used for finding the frequency::
 
     >>> pidxs = np.where(sample_freq > 0)
     >>> freqs = sample_freq[pidxs]
@@ -467,19 +467,25 @@ because the resulting power is symmetric::
 The signal frequency can be found by::
 
     >>> freq = freqs[power.argmax()]
-    >>> np.allclose(freq, 1./period)
+    >>> np.allclose(freq, 1./period)  # check that correct freq is found
     True
 
-Now only the main signal component will be extracted from the
-Fourier transform::
+Now the high-frequency noise will be removed from the Fourier transformed
+signal::
 
     >>> sig_fft[np.abs(sample_freq) > freq] = 0
 
-The resulting signal can be computed by the ``ifft`` function::
+The resulting filtered signal can be computed by the ``ifft`` function::
 
     >>> main_sig = fftpack.ifft(sig_fft)
 
-The result is shown on the Matplotlib figure:
+The result can be viewed with::
+
+    >>> plt.figure()
+    >>> plt.plot(time_vec, sig)
+    >>> plt.plot(time_vec, main_sig, linewidth=3)
+    >>> plt.xlabel('Time [s]')
+    >>> plt.ylabel('Amplitude')
 
 .. plot:: pyplots/fftpack_signals.py
     :scale: 70
