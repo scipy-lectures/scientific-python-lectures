@@ -314,11 +314,15 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate((
     pl.plot(all_x_i, all_y_i, 'b-', linewidth=2)
     pl.plot(all_x_i, all_y_i, 'k+')
 
+    pl.plot(logging_f.all_x_i, logging_f.all_y_i, 'k.', markersize=2)
+
     pl.plot([0], [0], 'rx', markersize=12)
 
 
     pl.xticks(())
     pl.yticks(())
+    pl.xlim(x_min, x_max)
+    pl.ylim(y_min, y_max)
     pl.draw()
 
     pl.figure(index + 100, figsize=(4, 3))
