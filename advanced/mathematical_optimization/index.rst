@@ -543,10 +543,10 @@ each step an approximation of the Hessian.
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)
     Optimization terminated successfully.
-            Current function value: 0.000000
-            Iterations: 16
-            Function evaluations: 24
-            Gradient evaluations: 24
+             Current function value: 0.000000
+             Iterations: 16
+             Function evaluations: 24
+             Gradient evaluations: 24
     array([ 1.00000017,  1.00000026])
 
 
@@ -617,7 +617,16 @@ Almost a gradient approach
 Simplex method: the Nelder-Mead
 --------------------------------
 
-Nelder-Mead: robust, but slower on smooth, non-noisy functions
+The Nelder-Mead algorithms is a generalization of dichotomy approaches to
+high-dimensional spaces. The algorithm works by refining a `simplex
+<http://en.wikipedia.org/wiki/Simplex>`_, the generalization of intervals
+and triangles to high-dimensional spaces, to bracket the minimum. 
+
+**Strong points**: it is robust to noise, as it does not rely on
+computing gradients. Thus it can work on functions that are not locally
+smooth such as experimental data points, as long as they display a
+large-scale bell-shape behavior. However it is slower than gradient-based
+methods on smooth, non-noisy functions.
 
 .. |nm_gauss_icond| image:: auto_examples/images/plot_gradient_descent_17.png
    :scale: 90%
@@ -647,11 +656,66 @@ Nelder-Mead: robust, but slower on smooth, non-noisy functions
  
    - |nm_rosen_icond_conv|
 
+In scipy, :func:`scipy.optimize.fmin` implements the Nelder-Mead
+approach::
+
+    >>> def f(x):   # The rosenbrock function
+    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+    >>> optimize.fmin(f, [2, 2])
+    Optimization terminated successfully.
+             Current function value: 0.000000
+             Iterations: 46
+             Function evaluations: 91
+    array([ 0.99998568,  0.99996682])
+
 
 Global optimizers
 ==================
 
-Comparion of generic methods
+If your problem does not admit a unique local minimum (which can be hard
+to test unless the function is convex), and you do not have prior
+information to initialize the optimization close to the solution, you
+need a global optimizer.
+
+Brute force: a grid search
+----------------------------
+
+:func:`scipy.optimize.brute` evaluates the function on a given grid of
+parameters and returns the parameters corresponding to the minimum
+value. The parameters are specified with ranges given to
+:obj:`numpy.mgrid`. By default, 20 steps are taken in each direction::
+
+    >>> def f(x):   # The rosenbrock function
+    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+    >>> optimize.brute(f, ((-1, 2), (-1, 2)))
+    array([ 1.00001462,  1.00001547])
+
+
+Simulated annealing
+---------------------
+
+.. np.random.seed(0)
+
+`Simulated annealing <http://en.wikipedia.org/wiki/Simulated_annealing>`_
+does random jumps around the starting point to explore its vicinity,
+progressively narrowing the jumps around the minimum points it finds. Its
+output depends on the random number generator. In scipy, it is
+implemented in :func:`scipy.optimize.anneal`::
+
+    >>> def f(x):   # The rosenbrock function
+    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+    >>> optimize.anneal(f, [2, 2])
+    Warning: Cooled to 5057.768838 at [  30.27877642  984.84212523] but this
+    is not the smallest point found.
+    (array([ -7.70412755,  56.10583526]), 5)
+     
+It is a very popular algorithm, but it is not very reliable. For function
+of continuous parameters as studied here, a strategy based on grid search
+for rough exploration and running optimizers like the Nelder-Mead or
+gradient-based methods many times with different starting points should
+be preferred.
+
+Comparison of generic methods
 =============================
 
 * Newton requires the Hessian of the problem.
@@ -667,6 +731,8 @@ Comparion of generic methods
   function evaluations than CG (up to 2 times less). Thus conjugate
   gradient method is better than BFGS at optimizing computationally cheap
   functions.
+
+XXX mention intialization
 
 Special case: least-squares
 ============================

@@ -5,6 +5,10 @@ import numpy as np
 import pylab as pl
 from scipy import optimize
 
+from cost_functions import mk_quad, mk_gauss, rosenbrock,\
+    rosenbrock_prime, rosenbrock_hessian, LoggingFunction,\
+    CountingFunction
+
 x_min, x_max = -1, 2
 y_min, y_max = 2.25/3*x_min - .2, 2.25/3*x_max - .2
 
@@ -27,121 +31,8 @@ def super_fmt(value):
     return out
 
 ###############################################################################
-# Super ill-conditionned problem
-def rosenbrock(x):
-    x, y = x
-    x = 4*x + 1
-    y = 4*y + 3
-    return .5*(1 - x)**2 + (y - x**2)**2
-
-
-def rosenbrock_prime(x):
-    x, y = x
-    x = 4*x + 1
-    y = 4*y + 3
-    return 4*np.array((-2*.5*(1 - x) - 4*x*(y - x**2), 2*(y - x**2)))
-
-
-def rosenbrock_hessian(x):
-    x, y = x
-    x = 4*x + 1
-    y = 4*y + 3
-    return 4*4*np.array((
-                    (1 - 4*y + 12*x**2, -4*x),
-                    (             -4*x,    2),
-                   ))
-
-
-###############################################################################
-# Gaussian and quadratic functions with varying conditionning
-
-def gaussian(x):
-    return np.exp(-x**2)
-
-
-def gaussian_prime(x):
-    return -2*x*np.exp(-x**2)
-
-
-def gaussian_prime_prime(x):
-    return -2*np.exp(-x**2) + 4*x**2*np.exp(-x**2)
-
-
-def mk_gauss(epsilon):
-    def f(x):
-        return -gaussian(.5*np.sqrt(x[0]**2 + epsilon*x[1]**2)) + 1
-
-    def f_prime(x):
-        return -.5*np.array((
-                    gaussian_prime(.5*x[0])*gaussian(.5*epsilon*x[1]),
-                    gaussian(.5*x[0])*gaussian_prime(.5*epsilon*x[1]),
-                    ))
-
-    def hessian(x):
-        return -.25*np.array((
-                (gaussian_prime_prime(.5*x[0])*gaussian(.5*epsilon*x[1]),
-                    gaussian_prime(.5*x[0])*gaussian_prime(.5*epsilon*x[1])),
-                (gaussian_prime(.5*x[0])*gaussian_prime(.5*epsilon*x[1]),
-                    gaussian(.5*x[0])*gaussian_prime_prime(.5*epsilon*x[1])),
-                ))
-
-    return f, f_prime, hessian
-
-
-def mk_quad(epsilon):
-    def f(x):
-       return .33*(x[0]**2 + epsilon*x[1]**2)
-
-    def f_prime(x):
-       return .33*np.array((2*x[0], 2*epsilon*x[1]))
-
-    def hessian(x):
-       return .33*np.array([
-                            [2, 0],
-                            [0, 2*epsilon],
-                           ])
-
-    return f, f_prime, hessian
-
-
-###############################################################################
 # A gradient descent algorithm
 # do not use: its a toy, use scipy's optimize.fmin_cg
-
-class LoggingFunction(object):
-
-    def __init__(self, function, counter=None):
-        self.function = function
-        if counter is None:
-            counter = list()
-        self.counter = counter
-        self.all_x_i = list()
-        self.all_y_i = list()
-        self.all_f_i = list()
-        self.counts = list()
-
-    def __call__(self, x0):
-        x_i, y_i = x0
-        self.all_x_i.append(x_i)
-        self.all_y_i.append(y_i)
-        f_i = self.function(x0)
-        self.all_f_i.append(f_i)
-        self.counter.append('f')
-        self.counts.append(len(self.counter))
-        return f_i
-
-class CountingFunction(object):
-
-    def __init__(self, function, counter=None):
-        self.function = function
-        if counter is None:
-            counter = list()
-        self.counter = counter
-
-    def __call__(self, x0):
-        self.counter.append('f_prime')
-        return self.function(x0)
-
 
 def gradient_descent(x0, f, f_prime, hessian=None, adaptative=False):
     x_i, y_i = x0
@@ -238,6 +129,7 @@ def nelder_mead(x0, f, f_prime, hessian=None):
         all_f_i.append(f(X))
     optimize.fmin(f, x0, callback=store, ftol=1e-12)
     return all_x_i, all_y_i, all_f_i
+
 
 
 
