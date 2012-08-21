@@ -21,14 +21,14 @@ methods = {
                                         ftol=1e-12, maxiter=1e4,
                                         xtol=1e-7, maxfun=1e6),
     'Powell':               my_partial(optimize.fmin_powell,
-                                        ftol=1e-10, maxiter=1e4,
+                                        ftol=1e-9, maxiter=1e4,
                                         maxfun=1e7),
     'BFGS':                 my_partial(optimize.fmin_bfgs,
                                         gtol=1e-9, maxiter=1e4),
     'Newton':               my_partial(optimize.fmin_ncg,
-                                        avextol=1e-10, maxiter=1e4),
+                                        avextol=1e-9, maxiter=1e4),
     'Conjugate gradient':   my_partial(optimize.fmin_cg,
-                                        gtol=1e-9, maxiter=1e4),
+                                        gtol=1e-7, maxiter=1e4),
     'L-BFGS':               my_partial(optimize.fmin_l_bfgs_b,
                                         approx_grad=1, factr=10.0,
                                         pgtol=1e-8, maxfun=1e7),
@@ -55,6 +55,8 @@ def mk_costs(ndim=2):
 
     rng = np.random.RandomState(0)
     starting_points = 4*rng.rand(20, ndim) - 2
+    if ndim > 100:
+        starting_points = starting_points[:10]
     return costs, starting_points
 
 ###############################################################################
@@ -63,7 +65,7 @@ mem = Memory('.', verbose=3)
 
 gradient_less_benchs = dict()
 
-for ndim in (2, 8, 32):
+for ndim in (2, 8, 32, 128):
     this_dim_benchs = dict()
     costs, starting_points = mk_costs(ndim)
     for cost_name, cost_function in costs.iteritems():
