@@ -26,19 +26,30 @@ def mk_gauss(epsilon, ndim=2):
 
     def f_prime(x):
         y = x.copy()
-        y *= np.power(epsilon, np.arange(ndim))
-        return -.5*gaussian_prime(.5*y)
+        scaling = np.power(epsilon, np.arange(ndim))
+        y *= scaling
+        return -.5*scaling*gaussian_prime(.5*y)
+
+    #def hessian(x):
+    #    return -.25*np.array((
+    #            (gaussian_prime_prime(.5*x[0])*gaussian(.5*epsilon*x[1]),
+    #                gaussian_prime(.5*x[0])*gaussian_prime(.5*epsilon*x[1])),
+    #            (gaussian_prime(.5*x[0])*gaussian_prime(.5*epsilon*x[1]),
+    #                gaussian(.5*x[0])*gaussian_prime_prime(.5*epsilon*x[1])),
+    #            ))
 
     def hessian(x):
-        return -.25*np.array((
-                (gaussian_prime_prime(.5*x[0])*gaussian(.5*epsilon*x[1]),
-                    gaussian_prime(.5*x[0])*gaussian_prime(.5*epsilon*x[1])),
-                (gaussian_prime(.5*x[0])*gaussian_prime(.5*epsilon*x[1]),
-                    gaussian(.5*x[0])*gaussian_prime_prime(.5*epsilon*x[1])),
-                ))
+        epsilon = .07
+        y = x.copy()
+        scaling = np.power(epsilon, np.arange(ndim))
+        y *= .5*scaling
+        H = -.25*np.ones((ndim, ndim))*gaussian(y)
+        d = 4*y*y[:, np.newaxis]
+        d.flat[::ndim+1] += -2
+        H *= d
+        return H
 
     return f, f_prime, hessian
-
 
 ###############################################################################
 # Quadratic functions with varying conditionning
@@ -51,14 +62,13 @@ def mk_quad(epsilon, ndim=2):
 
     def f_prime(x):
        y = x.copy()
-       y *= np.power(epsilon, np.arange(ndim))
-       return .33*2*y
+       scaling = np.power(epsilon, np.arange(ndim))
+       y *= scaling
+       return .33*2*scaling*y
 
     def hessian(x):
-       return .33*np.array([
-                            [2, 0],
-                            [0, 2*epsilon],
-                           ])
+       scaling = np.power(epsilon, np.arange(ndim))
+       return .33*2*np.diag(scaling)
 
     return f, f_prime, hessian
 
@@ -69,25 +79,25 @@ def mk_quad(epsilon, ndim=2):
 def rosenbrock(x):
     y = 4*x
     y[0] += 1
-    y[:1] += 3
-    return np.sum(.5*(1 - x[:-1])**2 + (x[1:] - x[:-1]**2)**2)
+    y[1:] += 3
+    return np.sum(.5*(1 - y[:-1])**2 + (y[1:] - y[:-1]**2)**2)
 
 
 def rosenbrock_prime(x):
     y = 4*x
     y[0] += 1
-    y[:1] += 3
-    xm = x[1:-1]
-    xm_m1 = x[:-2]
-    xm_p1 = x[2:]
+    y[1:] += 3
+    xm = y[1:-1]
+    xm_m1 = y[:-2]
+    xm_p1 = y[2:]
     der = np.zeros_like(y)
     der[1:-1] = 2*(xm - xm_m1**2) - 4*(xm_p1 - xm**2)*xm - .5*2*(1 - xm)
-    der[0] = -4*x[0]*(x[1] - x[0]**2) - .5*2*(1 - x[0])
-    der[-1] = 2*(x[-1] - x[-2]**2)
-    return der
+    der[0] = -4*y[0]*(y[1] - y[0]**2) - .5*2*(1 - y[0])
+    der[-1] = 2*(y[-1] - y[-2]**2)
+    return 4*der
 
 
-def rosenbrock_hessian(x):
+def rosenbrock_hessian_(x):
     x, y = x
     x = 4*x + 1
     y = 4*y + 3
@@ -95,6 +105,20 @@ def rosenbrock_hessian(x):
                     (1 - 4*y + 12*x**2, -4*x),
                     (             -4*x,    2),
                    ))
+
+
+def rosenbrock_hessian(x):
+    y = 4*x
+    y[0] += 1
+    y[1:] += 3
+
+    H = np.diag(-4*y[:-1], 1) - np.diag(4*y[:-1], -1)
+    diagonal = np.zeros_like(y)
+    diagonal[0] = 12*y[0]**2 - 4*y[1] + 2*.5
+    diagonal[-1] = 2
+    diagonal[1:-1] = 3 + 12*y[1:-1]**2 - 4*y[2:]*.5
+    H = H + np.diag(diagonal)
+    return 4*4*H
 
 
 ###############################################################################

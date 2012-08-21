@@ -718,6 +718,23 @@ be preferred.
 Comparison of generic methods
 =============================
 
+Without knowledge of the gradient
+----------------------------------
+
+.. image:: auto_examples/images/plot_compare_optimizers_1.png
+   :align: center
+   :width: 95%
+
+* In general, prefer BFGS or L-BFGS, even if you have to approximate
+  numerically gradients
+
+* On well-conditioned problems, Powell and Nelder-Mead (both 
+  gradient-free methods) work well in high dimension, but they collapse
+  for ill-conditioned problems.
+
+With knowledge of the gradient
+----------------------------------
+
 * Newton requires the Hessian of the problem.
 
 * On very ill-conditioned problems BFGS, is equivalent to gradient
