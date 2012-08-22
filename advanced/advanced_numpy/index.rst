@@ -222,7 +222,7 @@ dtype('|S4')
 
 - The second one is its offset (in bytes) from the beginning of the item
 
-.. topic:: Exercice
+.. topic:: Exercise
 
    Mini-exercise, make a "sparse" dtype by using offsets, and only some
    of the fields::
