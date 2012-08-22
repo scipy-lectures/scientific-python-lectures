@@ -775,6 +775,27 @@ handy.
 
    See also :func:`scipy.optimize.approx_fprime` to find your errors.
 
+Synthetic exercices
+-------------------
+
+.. |flat_min_0| image:: auto_examples/images/plot_exercise_flat_minimum_0.png
+    :scale: 48%
+    :target: auto_examples/plot_exercise_flat_minimum.html
+
+.. |flat_min_1| image:: auto_examples/images/plot_exercise_flat_minimum_1.png
+    :scale: 48%
+    :target: auto_examples/plot_exercise_flat_minimum.html
+
+.. topic:: **Exercice: A locally flat minimum**
+    :class: green
+
+    Consider the function `exp(-1/(.1*x**2 + y**2)`. This function admits
+    a minimum in (0, 0). Starting from an initialization at (1, 1), try
+    to get within 1e-8 of this minimum point.
+
+    .. centered:: |flat_min_0| |flat_min_1|
+
+
 Special case: non-linear least-squares
 ========================================
 
@@ -833,7 +854,7 @@ Curve fitting
 .. np.random.seed(0)
 
 .. image:: auto_examples/images/plot_curve_fit_1.png
-    :scale: 50%
+    :scale: 48%
     :target: auto_examples/plot_curve_fit.html
     :align: right
 
@@ -865,8 +886,5 @@ SLSQP
 Cobyla
 fmin_bound
 L-BFGS-B
-
-Alternate optimization: block coordinate methods
-=================================================
 
 
