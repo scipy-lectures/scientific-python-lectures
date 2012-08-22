@@ -805,7 +805,7 @@ Minimizing the norm of a vector function
 Least square problems, minimizing the norm of a vector function, have a
 specific structure that can be used in the `Levenberg–Marquardt algorithm
 <http://en.wikipedia.org/wiki/Levenberg-Marquardt_algorithm>`_
-implemented in :func:`scipy.linalg.leastsq`.
+implemented in :func:`scipy.optimize.leastsq`.
 
 Lets try to minimize the norm of the following vectorial function::
 
