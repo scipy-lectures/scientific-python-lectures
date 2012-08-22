@@ -548,6 +548,11 @@ scipy version, :func:`scipy.optimize.fmin_l_bfgs_b`, includes box bounds::
     >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)
     (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([  1.02331202e-07,  -2.59299369e-08]), 'funcalls': 17})
 
+.. note:: 
+   
+   If you do not specify the gradient to the L-BFGS solver, you
+   need to add `approx_grad=1`
+
 Gradient-less methods
 ----------------------
 
@@ -785,6 +790,25 @@ Synthetic exercices
 .. |flat_min_1| image:: auto_examples/images/plot_exercise_flat_minimum_1.png
     :scale: 48%
     :target: auto_examples/plot_exercise_flat_minimum.html
+
+.. image:: auto_examples/images/plot_exercise_ill_conditioned_1.png
+    :scale: 42%
+    :target: auto_examples/plot_exercise_ill_conditioned.html
+    :align: right
+
+.. topic:: **Exercice: A simple (?) quadratic function**
+    :class: green
+
+    Optimize the following function, using K[0] as a starting point::
+
+        np.random.seed(0)
+        K = np.random.normal(size=(100, 100))
+
+        def f(x):
+            return np.sum((np.dot(K, x - 1))**2) + np.sum(x**2)**2
+
+    Time your approach. Find the fastest approach. Why is BFGS not
+    working well?
 
 .. topic:: **Exercice: A locally flat minimum**
     :class: green
