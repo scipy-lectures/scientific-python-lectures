@@ -711,6 +711,24 @@ we put all those resuls together in a single plot:
 You can find algorithms with the same functionalities for multi-dimensional
 problems in ``scipy.optimize``.
 
+.. topic:: Exercise: Curve fitting of temperature data
+   :class: green
+
+    The temperature extremes in Alaska for each month, starting in January, are
+    given by (in degrees Celcius)::
+
+        max:  17,  19,  21,  28,  33,  38, 37,  37,  31,  23,  19,  18
+        min: -62, -59, -56, -46, -32, -18, -9, -13, -25, -46, -52, -58
+
+    1. Plot these temperature extremes.
+    2. Define a function that can describe min and max temperatures.
+       Hint: this function has to have a period of 1 year.
+       Hint: include a time offset.
+    3. Fit this function to the data with ``curve_fit``.
+    4. Plot the result.  Is the fit reasonable?  If not, why?
+    5. Is the time offset for min and max temperatures the same within the fit
+       accuracy?
+
 .. topic:: Exercise: 2-D minimization
    :class: green
 
