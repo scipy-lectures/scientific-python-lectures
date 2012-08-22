@@ -8,7 +8,7 @@ results = pickle.load(file('compare_optimizers.pkl'))
 n_methods = len(results.values()[0]['Rosenbrock  '])
 n_dims = len(results)
 
-symbols = 'o>Ds*'
+symbols = 'o>*Ds'
 
 pl.figure(1, figsize=(10, 4))
 pl.clf()

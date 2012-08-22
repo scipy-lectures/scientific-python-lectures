@@ -30,14 +30,6 @@ def mk_gauss(epsilon, ndim=2):
         y *= scaling
         return -.5*scaling*gaussian_prime(.5*y)
 
-    #def hessian(x):
-    #    return -.25*np.array((
-    #            (gaussian_prime_prime(.5*x[0])*gaussian(.5*epsilon*x[1]),
-    #                gaussian_prime(.5*x[0])*gaussian_prime(.5*epsilon*x[1])),
-    #            (gaussian_prime(.5*x[0])*gaussian_prime(.5*epsilon*x[1]),
-    #                gaussian(.5*x[0])*gaussian_prime_prime(.5*epsilon*x[1])),
-    #            ))
-
     def hessian(x):
         epsilon = .07
         y = x.copy()

@@ -3,6 +3,8 @@
 
 .. TODO: plotting <- broken in OSX
 
+.. _sympy:
+
 ======================================
 Sympy : Symbolic Mathematics in Python
 ======================================

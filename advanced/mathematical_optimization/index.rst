@@ -31,7 +31,7 @@ used for more efficient, non black-box, optimization.
   For doctesting
   >>> import numpy as np
 
-Knowning your problem
+Knowing your problem
 ======================
 
 Not all optimization problems are equal. Knowing your problem enables you
@@ -128,10 +128,13 @@ Constraints
    - |constraints|
 
 
-Getting started: 1D optimization
-================================
+A review of the different optimizers
+======================================
 
-The :func:`scipy.optimize.brent` can be used for efficient minimization of 1D functions.
+Getting started: 1D optimization
+---------------------------------
+
+Use :func:`scipy.optimize.brent` to minimize 1D functions.
 It combines a bracketing strategy with a parabolic approximation.
 
 .. |1d_optim_1| image:: auto_examples/images/plot_1d_optim_1.png
@@ -184,10 +187,10 @@ It combines a bracketing strategy with a parabolic approximation.
    interface to 1D scalar minimization
 
 Gradient based methods
-========================================
+-----------------------
 
 Some intuitions about gradient descent
----------------------------------------
+.......................................
 
 Here we focus on **intuitions**, not code. Code will follow.
 
@@ -217,7 +220,7 @@ gradient.
 
  * - **An ill-conditionned quadratic function.**
 
-     The core problem of gradient-methods on ill-conditionned problems is
+     The core problem of gradient-methods on ill-conditioned problems is
      that the gradient tends not to point in the direction of the
      minimum.
 
@@ -229,13 +232,13 @@ We can see that very anisotropic (`ill-conditionned
 <http://en.wikipedia.org/wiki/Condition_number>`_) functions are harder
 to optimize.
 
-.. topic:: **Take home message: preconditionning**
+.. topic:: **Take home message: conditioning number and preconditioning**
 
    If you know natural scaling for your variables, prescale them so that
-   they behave similarly. This is related to `preconditionning
+   they behave similarly. This is related to `preconditioning
    <http://en.wikipedia.org/wiki/Preconditioner>`_.
 
-Also, it clearly can clearly be advantageous to take bigger steps. This
+Also, it clearly can be advantageous to take bigger steps. This
 is done in gradient descent code using a
 `line search <http://en.wikipedia.org/wiki/Line_search>`_.
 
@@ -294,7 +297,7 @@ The more a function looks like a quadratic function (elliptic
 iso-curves), the easier it is to optimize.
 
 Conjugate gradient descent
----------------------------
+...........................
 
 The gradient descent algorithms above are toys not to be used on real
 problems.
@@ -363,28 +366,11 @@ will perform better if you can pass them the gradient::
 Note that the function has only been evaluated 30 times, compared to 120
 without the gradient.
 
-Computing gradients
---------------------
-
-XXX: TODO
-
-.. warning::
-   
-   A common source of optimization not converging is human error in the
-   computation of the gradient. You can use
-   :func:`scipy.optimize.check_grad` to check that your gradient is
-   correct. It returns the norm of the different between the gradient
-   given, and a gradient computed numerically:
-
-    >>> optimize.check_grad(f, fprime, [2, 2])
-    2.384185791015625e-07
-
-
 Newton and quasi-newton methods
-================================
+--------------------------------
 
 Newton methods: using the Hessian (2nd differential)
-------------------------------------------------------
+.....................................................
 
 `Newton methods
 <http://en.wikipedia.org/wiki/Newton%27s_method_in_optimization>`_ use a
@@ -474,10 +460,10 @@ to the algorithm::
             Hessian evaluations: 10
     array([ 1.,  1.])
 
-
-
-XXX: remark on the fact that at high-dimension, the inversion of the
-Hessian is costly and unstable (large scale = 250).
+.. note:: 
+   
+    At very high-dimension, the inversion of the Hessian can be costly
+    and unstable (large scale > 250).
 
 .. note:: 
    
@@ -485,7 +471,7 @@ Hessian is costly and unstable (large scale = 250).
     method, based on the same principles, :func:`scipy.optimize.newton`.
 
 Quasi-Newton methods: approximating the Hessian on the fly 
-------------------------------------------------------------
+...........................................................
 
 **BFGS**: BFGS (Broyden-Fletcher-Goldfarb-Shanno algorithm) refines at
 each step an approximation of the Hessian.
@@ -563,10 +549,10 @@ scipy version, :func:`scipy.optimize.fmin_l_bfgs_b`, includes box bounds::
     (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([  1.02331202e-07,  -2.59299369e-08]), 'funcalls': 17})
 
 Gradient-less methods
-======================
+----------------------
 
 A shooting method: the Powell algorithm
-----------------------------------------
+........................................
 
 Almost a gradient approach
 
@@ -601,12 +587,6 @@ Almost a gradient approach
  
    - |powell_quad_icond_conv|
 
- * - **An ill-conditionned non-quadratic function:**
-
-   - |powell_gauss_icond|
- 
-   - |powell_gauss_icond_conv|
-
  * - **An ill-conditionned very non-quadratic function:**
 
    - |powell_rosen_icond|
@@ -615,7 +595,7 @@ Almost a gradient approach
 
 
 Simplex method: the Nelder-Mead
---------------------------------
+................................
 
 The Nelder-Mead algorithms is a generalization of dichotomy approaches to
 high-dimensional spaces. The algorithm works by refining a `simplex
@@ -670,15 +650,15 @@ approach::
 
 
 Global optimizers
-==================
+------------------
 
 If your problem does not admit a unique local minimum (which can be hard
 to test unless the function is convex), and you do not have prior
 information to initialize the optimization close to the solution, you
-need a global optimizer.
+may need a global optimizer.
 
 Brute force: a grid search
-----------------------------
+..........................
 
 :func:`scipy.optimize.brute` evaluates the function on a given grid of
 parameters and returns the parameters corresponding to the minimum
@@ -692,7 +672,7 @@ value. The parameters are specified with ranges given to
 
 
 Simulated annealing
----------------------
+....................
 
 .. np.random.seed(0)
 
@@ -709,55 +689,174 @@ implemented in :func:`scipy.optimize.anneal`::
     is not the smallest point found.
     (array([ -7.70412755,  56.10583526]), 5)
      
-It is a very popular algorithm, but it is not very reliable. For function
-of continuous parameters as studied here, a strategy based on grid search
-for rough exploration and running optimizers like the Nelder-Mead or
-gradient-based methods many times with different starting points should
-be preferred.
+It is a very popular algorithm, but it is not very reliable. 
 
-Comparison of generic methods
-=============================
+.. note::
+   
+   For function of continuous parameters as studied here, a strategy
+   based on grid search for rough exploration and running optimizers like
+   the Nelder-Mead or gradient-based methods many times with different
+   starting points should often be preferred to heuristic methods such as
+   simulated annealing.
 
-Without knowledge of the gradient
-----------------------------------
+Practical guide to optimization with scipy
+===========================================
+
+Choosing a method
+------------------
 
 .. image:: auto_examples/images/plot_compare_optimizers_1.png
    :align: center
    :width: 95%
 
-* In general, prefer BFGS or L-BFGS, even if you have to approximate
-  numerically gradients
+:Without knowledge of the gradient:
 
-* On well-conditioned problems, Powell and Nelder-Mead (both 
-  gradient-free methods) work well in high dimension, but they collapse
-  for ill-conditioned problems.
+ * In general, prefer BFGS (:func:`scipy.optimize.fmin_bfgs`) or L-BFGS
+   (:func:`scipy.optimize.fmin_l_bfgs_b`), even if you have to approximate
+   numerically gradients
+ 
+ * On well-conditioned problems, Powell
+   (:func:`scipy.optimize.fmin_powell`) and Nelder-Mead
+   (:func:`scipy.optimize.fmin`), both gradient-free methods, work well in
+   high dimension, but they collapse for ill-conditioned problems.
 
-With knowledge of the gradient
-----------------------------------
+:With knowledge of the gradient:
 
-* Newton requires the Hessian of the problem.
+ * BFGS (:func:`scipy.optimize.fmin_bfgs`) or L-BFGS
+   (:func:`scipy.optimize.fmin_l_bfgs_b`).
+ 
+ * Computational overhead of BFGS is larger than that L-BFGS, itself
+   larger than that of conjugate gradient. On the other side, BFGS usually
+   needs less function evaluations than CG. Thus conjugate gradient method
+   is better than BFGS at optimizing computationally cheap functions.
+ 
+:With the Hessian:
 
-* On very ill-conditioned problems BFGS, is equivalent to gradient
-  descent. Use `preconditionning
-  <http://en.wikipedia.org/wiki/Preconditioner>`_ when possible.
-  Conjugate gradient is independent of the conditioning (though it
-  converges slower on ill-conditioned problems).
+ * If you can compute the Hessian, prefer the Newton method
+   (:func:`scipy.optimize.fmin_ncg`).
 
-* Computational overhead of BFGS is larger than that of conjugate
-  gradient. On the other side, one iteration of BFGS usually needs less
-  function evaluations than CG (up to 2 times less). Thus conjugate
-  gradient method is better than BFGS at optimizing computationally cheap
-  functions.
+:If you have noisy measurements:
 
-XXX mention intialization
+ * Use Nelder-Mead (:func:`scipy.optimize.fmin`) or Powell
+   (:func:`scipy.optimize.fmin_powell`).
 
-Special case: least-squares
-============================
+Making your optimizer faster
+-----------------------------
 
-linalg.leastsq
+* Choose the right method (see above), do compute analytically the
+  gradient and Hessian, if you can.
 
-optimize.curve_fit
+* Use `preconditionning <http://en.wikipedia.org/wiki/Preconditioner>`_
+  when possible.
 
+* Choose your initialization points wisely. For instance, if you are
+  running many similar optimizations, warm-restart one with the results of
+  another.
+
+* Relax the tolerance if you don't need precision
+
+Computing gradients
+-------------------
+
+Computing gradients, and even more Hessians, is very tedious but worth
+the effort. Symbolic computation with :ref:`Sympy <sympy>` may come in
+handy.
+
+.. warning::
+   
+   A *very* common source of optimization not converging well is human
+   error in the computation of the gradient. You can use
+   :func:`scipy.optimize.check_grad` to check that your gradient is
+   correct. It returns the norm of the different between the gradient
+   given, and a gradient computed numerically:
+
+    >>> optimize.check_grad(f, fprime, [2, 2])
+    2.384185791015625e-07
+
+   See also :func:`scipy.optimize.approx_fprime` to find your errors.
+
+Special case: non-linear least-squares
+========================================
+
+Minimizing the norm of a vector function
+-------------------------------------------
+
+Least square problems, minimizing the norm of a vector function, have a
+specific structure that can be used in the `Levenberg–Marquardt algorithm
+<http://en.wikipedia.org/wiki/Levenberg-Marquardt_algorithm>`_
+implemented in :func:`scipy.linalg.leastsq`.
+
+Lets try to minimize the norm of the following vectorial function::
+
+    >>> def f(x):
+    ...     return np.arctan(x) - np.arctan(np.linspace(0, 1, len(x)))
+
+    >>> x0 = np.zeros(10)
+    >>> optimize.leastsq(f, x0)
+    (array([ 0.        ,  0.11111111,  0.22222222,  0.33333333,  0.44444444,
+            0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ]),
+     2)
+
+This took 67 function evaluations (check it with 'full_output=1'). What
+if we compute the norm ourselves and use a good generic optimizer
+(BFGS)::
+
+    >>> def g(x):
+    ...     return np.sum(f(x)**2)
+    >>> optimize.fmin_bfgs(g, x0)
+    Optimization terminated successfully.
+             Current function value: 0.000000
+             Iterations: 11
+             Function evaluations: 144
+             Gradient evaluations: 12
+    array([ -7.38998277e-09,   1.11112265e-01,   2.22219893e-01,
+             3.33331914e-01,   4.44449794e-01,   5.55560493e-01,
+             6.66672149e-01,   7.77779758e-01,   8.88882036e-01,
+             1.00001026e+00])
+
+BFGS needs more function calls, and gives a less precise result.
+
+.. note:: 
+   
+    `leastsq` is interesting compared to BFGS only if the
+    dimensionality of the output vector is large, and larger than the number
+    of parameters to optimize.
+
+.. warning::
+
+   If the function is linear, this is a linear-algebra problem, and
+   should be solved with :func:`scipy.linalg.lstsq`.
+
+Curve fitting
+--------------
+
+.. np.random.seed(0)
+
+.. image:: auto_examples/images/plot_curve_fit_1.png
+    :scale: 50%
+    :target: auto_examples/plot_curve_fit.html
+    :align: right
+
+Least square problems occur often when fitting a non-linear to data.
+While it is possible to construct our optimization problem ourselves,
+scipy provides a helper function for this purpose:
+:func:`scipy.optimize.curve_fit`::
+
+    >>> def f(t, omega, phi):
+    ...     return np.cos(omega * t + phi)
+    
+    >>> x = np.linspace(0, 3, 50)
+    >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
+
+    >>> optimize.curve_fit(f, x, y)
+    (array([ 1.51854577,  0.92665541]),
+     array([[ 0.00037994, -0.00056796],
+           [-0.00056796,  0.00123978]]))
+
+.. topic:: **Exercise**
+   :class: green
+
+   Do the same with omega = 3. What is the difficulty?
 
 Optimization with constraints
 ==============================
