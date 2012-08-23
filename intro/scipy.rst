@@ -499,7 +499,7 @@ the random process's PDF (probability density function): ::
     >>> bins
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
     >>> from scipy import stats
-    >>> b = stats.norm.pdf(bins)
+    >>> b = stats.norm.pdf(bins)  # norm is a distribution
 
 .. sourcecode:: ipython
 
@@ -519,6 +519,17 @@ distribution. Here we fit a normal process to the observed data::
     -0.045256707490...
     >>> std     # doctest: +ELLIPSIS
     0.9870331586690...
+
+.. topic:: Exercise: Probability distributions
+
+   Generate 1000 random variates from a gamma distribution with a shape
+   parameter of 1, then plot a histogram from those samples.  Can you plot the
+   pdf on top (it should match)?
+
+   Extra: the distributions have a number of useful methods. Explore them by
+   reading the docstring or use IPython tab completion.  Can you find the shape
+   parameter of 1 back by using the ``fit`` method on your random variates?
+
 
 Percentiles
 .............
