@@ -521,14 +521,16 @@ distribution. Here we fit a normal process to the observed data::
     0.9870331586690...
 
 .. topic:: Exercise: Probability distributions
+   :class: green
 
    Generate 1000 random variates from a gamma distribution with a shape
    parameter of 1, then plot a histogram from those samples.  Can you plot the
    pdf on top (it should match)?
 
    Extra: the distributions have a number of useful methods. Explore them by
-   reading the docstring or use IPython tab completion.  Can you find the shape
-   parameter of 1 back by using the ``fit`` method on your random variates?
+   reading the docstring or by using IPython tab completion.  Can you find the
+   shape parameter of 1 back by using the ``fit`` method on your random
+   variates?
 
 
 Percentiles
