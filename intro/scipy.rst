@@ -589,18 +589,18 @@ on the `FITPACK Fortran subroutines`_ from the netlib_ project.
 .. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
 .. _netlib : http://www.netlib.org
 
-By imagining experimental data close to a sinus function::
+By imagining experimental data close to a sine function::
 
     >>> measured_time = np.linspace(0, 1, 10)
     >>> noise = (np.random.random(10)*2 - 1) * 1e-1
     >>> measures = np.sin(2 * np.pi * measured_time) + noise
 
-The ``interp1d`` class can built a linear interpolation function::
+The ``interp1d`` class can build a linear interpolation function::
 
     >>> from scipy.interpolate import interp1d
     >>> linear_interp = interp1d(measured_time, measures)
 
-Then the ``linear_interp`` instance needs to be evaluated on time of
+Then the ``linear_interp`` instance needs to be evaluated at the time of
 interest::
 
     >>> computed_time = np.linspace(0, 1, 50)
