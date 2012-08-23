@@ -107,7 +107,7 @@ Shape mismatches::
     recommend to use `scipy.linalg`, as detailed in section
     :ref:`scipy_linalg`
 
-.. topic:: Exercice
+.. topic:: Exercise
     :class: green
 
     Generate arrays `[2**0, 2**1, 2**2, 2**3, 2**4]` and 
@@ -770,10 +770,11 @@ Finding minima and maxima::
     * Fancy indexing: ``a[a > 3]``, ``a[[2, 3]]``
     * Sorting data: ``.sort()``, ``np.sort``, ``np.argsort``, ``np.argmax``
 
-Some exercices
+Some exercises
 ----------------
 
 .. topic:: Worked example: Framing Lena
+    :class: green
 
     Let's do some manipulations on numpy arrays by starting with the
     famous image of Lena (http://www.cs.cmu.edu/~chuck/lennapg/).
