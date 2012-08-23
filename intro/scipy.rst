@@ -302,292 +302,6 @@ The result can be viewed with::
    5. Apply the inverse Fourier transform to see the resulting image.
 
 
-Signal processing: ``scipy.signal``
-------------------------------------
-
-::
-
-    >>> from scipy import signal
-
-* Detrend: remove linear trend from signal::
-
-    t = np.linspace(0, 5, 100)
-    x = t + np.random.normal(size=100)
-
-    pl.plot(t, x, linewidth=3)
-    pl.plot(t, signal.detrend(x), linewidth=3)
-
-  .. plot:: pyplots/demo_detrend.py
-    :scale: 70
-
-* Resample: resample a signal to `n` points using FFT. ::
-
-    t = np.linspace(0, 5, 100)
-    x = np.sin(t)
-    
-    pl.plot(t, x, linewidth=3)
-    pl.plot(t[::2], signal.resample(x, 50), 'ko')
-
-  .. plot:: pyplots/demo_resample.py
-    :scale: 70
-
-  .. only:: latex
-
-     Notice how on the side of the window the resampling is less accurate
-     and has a rippling effect.
-
-* Signal has many window function: `hamming`, `bartlett`, `blackman`...
-
-* Signal has filtering (Gaussian, median filter, Wiener), but we will
-  discuss this in the image paragraph.
-
-
-Statistics and random numbers: ``scipy.stats``
------------------------------------------------
-
-The module `scipy.stats` contains statistical tools and probabilistic
-descriptions of random processes. Random number generators for various
-random process can be found in `numpy.random`.
-
-Histogram and probability density function
-...............................................
-
-Given observations of a random process, their histogram is an estimator of 
-the random process's PDF (probability density function): ::
-
-    >>> a = np.random.normal(size=1000)
-    >>> bins = np.arange(-4, 5)
-    >>> bins
-    array([-4, -3, -2, -1,  0,  1,  2,  3,  4])
-    >>> histogram = np.histogram(a, bins=bins, normed=True)[0]
-    >>> bins = 0.5*(bins[1:] + bins[:-1])
-    >>> bins
-    array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
-    >>> from scipy import stats
-    >>> b = stats.norm.pdf(bins)
-
-.. sourcecode:: ipython
-
-    In [1]: pl.plot(bins, histogram)
-    In [2]: pl.plot(bins, b)
-
-.. plot:: pyplots/normal_distribution.py
-    :scale: 70
-
-If we know that the random process belongs to a given family of random
-processes, such as normal processes, we can do a maximum-likelihood fit
-of the observations to estimate the parameters of the underlying 
-distribution. Here we fit a normal process to the observed data::
-
-    >>> loc, std = stats.norm.fit(a)
-    >>> loc     # doctest: +ELLIPSIS
-    -0.045256707490...
-    >>> std     # doctest: +ELLIPSIS
-    0.9870331586690...
-
-Percentiles
-.............
-
-The median is the value with half of the observations below, and half
-above::
-
-    >>> np.median(a)     # doctest: +ELLIPSIS
-    -0.058028034...
-
-It is also called the percentile 50, because 50% of the observation are
-below it::
-
-    >>> stats.scoreatpercentile(a, 50)     # doctest: +ELLIPSIS
-    -0.0580280347...
-
-Similarly, we can calculate the percentile 90::
-
-    >>> stats.scoreatpercentile(a, 90)     # doctest: +ELLIPSIS
-    1.231593551...
-
-The percentile is an estimator of the CDF: cumulative distribution
-function.
-
-Statistical tests
-...................
-
-A statistical test is a decision indicator. For instance, if we have two
-sets of observations, that we assume are generated from Gaussian
-processes, we can use a 
-`T-test <http://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide 
-whether the two sets of observations are significantly different::
-
-    >>> a = np.random.normal(0, 1, size=100)
-    >>> b = np.random.normal(1, 1, size=10)
-    >>> stats.ttest_ind(a, b)   # doctest: +ELLIPSIS
-    (-3.75832707..., 0.00027786...)
-
-The resulting output is composed of:
-
-    * The T statistic value: it is a number the sign of which is
-      proportional to the difference between the two random processes and
-      the magnitude is related to the significance of this difference.
-
-    * the *p value*: the probability of both processes being identical. If it
-      is close to 1, the two process are almost certainly identical.
-      The closer it is to zero, the more likely it is that the processes
-      have different means.
-
-
-Numerical integration: ``scipy.integrate``
-------------------------------------------------
-The most generic integration routine is ``scipy.integrate.quad``::
-
-    >>> from scipy.integrate import quad
-    >>> res, err = quad(np.sin, 0, np.pi/2)
-    >>> np.allclose(res, 1)
-    True
-    >>> np.allclose(err, 1 - res)
-    True
-
-Others integration schemes are available with ``fixed_quad``,
-``quadrature``, ``romberg``.
-
-``scipy.integrate`` also features routines for integrating Ordinary
-Differential Equations (ODE). In particular, ``scipy.integrate.odeint``
-is a general-purpose integrator using LSODA (Livermore Solver for
-Ordinary Differential equations with Automatic method switching
-for stiff and non-stiff problems), see the `ODEPACK Fortran library`_
-for more details.
-
-.. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
-
-``odeint`` solves first-order ODE systems of the form::
-
-``dy/dt = rhs(y1, y2, .., t0,...)``
-
-As an introduction, let us solve the ODE ``dy/dt = -2y`` between ``t =
-0..4``, with the  initial condition ``y(t=0) = 1``. First the function
-computing the derivative of the position needs to be defined::
-
-    >>> def calc_derivative(ypos, time, counter_arr):
-    ...     counter_arr += 1
-    ...     return -2 * ypos
-    ...
-
-An extra argument ``counter_arr`` has been added to illustrate that the
-function may be called several times for a single time step, until solver
-convergence. The counter array is defined as::
-
-    >>> counter = np.zeros((1,), dtype=np.uint16)
-
-The trajectory will now be computed::
-
-    >>> from scipy.integrate import odeint
-    >>> time_vec = np.linspace(0, 4, 40)
-    >>> yvec, info = odeint(calc_derivative, 1, time_vec,
-    ...                     args=(counter,), full_output=True)
-
-Thus the derivative function has been called more than 40 times
-(which was the number of time steps)::
-
-    >>> counter
-    array([129], dtype=uint16)
-
-and the cumulative number of iterations for each of the 10 first time steps
-can be obtained by::
-
-    >>> info['nfe'][:10]
-    array([31, 35, 43, 49, 53, 57, 59, 63, 65, 69], dtype=int32)
-
-Note that the solver requires more iterations for the first time step.
-The solution ``yvec`` for the trajectory can now be plotted:
-
-  .. plot:: pyplots/odeint_introduction.py
-    :scale: 70
-
-Another example with ``odeint`` will be a damped spring-mass oscillator
-(2nd order oscillator). The position of a mass attached to a spring obeys
-the 2nd order ODE ``y'' + 2 eps wo  y' + wo^2 y = 0`` with ``wo^2 = k/m``
-with ``k`` the spring constant, ``m`` the mass and ``eps=c/(2 m wo)``
-with ``c`` the damping coefficient.
-For this example, we choose the parameters as::
-
-    >>> mass = 0.5  # kg
-    >>> kspring = 4  # N/m
-    >>> cviscous = 0.4  # N s/m
-
-so the system will be underdamped, because::
-
-    >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
-    >>> eps < 1
-    True
-
-For the ``odeint`` solver the 2nd order equation needs to be transformed in a
-system of two first-order equations for the vector ``Y=(y, y')``.  It will
-be convenient to define ``nu = 2 eps * wo = c / m`` and ``om = wo^2 = k/m``::
-
-    >>> nu_coef = cviscous / mass
-    >>> om_coef = kspring / mass
-
-Thus the function will calculate the velocity and acceleration by::
-
-    >>> def calc_deri(yvec, time, nuc, omc):
-    ...     return (yvec[1], -nuc * yvec[1] - omc * yvec[0])
-    ...
-    >>> time_vec = np.linspace(0, 10, 100)
-    >>> yarr = odeint(calc_deri, (1, 0), time_vec, args=(nu_coef, om_coef))
-
-The final position and velocity are shown on the following Matplotlib figure:
-
-.. plot:: pyplots/odeint_damped_spring_mass.py
-    :scale: 70
-
-There is no Partial Differential Equations (PDE) solver in Scipy.
-Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
-
-.. _fipy: http://www.ctcms.nist.gov/fipy/
-.. _SfePy: http://code.google.com/p/sfepy/
-
-
-Interpolation: ``scipy.interpolate``
-------------------------------------
-The ``scipy.interpolate`` is useful for fitting a function from experimental
-data and thus evaluating points where no measure exists. The module is based
-on the `FITPACK Fortran subroutines`_ from the netlib_ project.
-
-.. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
-.. _netlib : http://www.netlib.org
-
-By imagining experimental data close to a sinus function::
-
-    >>> measured_time = np.linspace(0, 1, 10)
-    >>> noise = (np.random.random(10)*2 - 1) * 1e-1
-    >>> measures = np.sin(2 * np.pi * measured_time) + noise
-
-The ``interp1d`` class can built a linear interpolation function::
-
-    >>> from scipy.interpolate import interp1d
-    >>> linear_interp = interp1d(measured_time, measures)
-
-Then the ``linear_interp`` instance needs to be evaluated on time of
-interest::
-
-    >>> computed_time = np.linspace(0, 1, 50)
-    >>> linear_results = linear_interp(computed_time)
-
-A cubic interpolation can also be selected by providing the ``kind`` optional
-keyword argument::
-
-    >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
-    >>> cubic_results = cubic_interp(computed_time)
-
-The results are now gathered on the following Matplotlib figure:
-
-.. plot:: pyplots/scipy_interpolation.py
-
-``scipy.interpolate.interp2d`` is similar to ``interp1d``, but for 2-D
-arrays. Note that for the ``interp`` family, the computed time must stay
-within the measured time range. See the summary exercise on
-:ref:`summary_exercise_stat_interp` for a more advance spline interpolation
-example.
-
-
 Optimization and fit: ``scipy.optimize``
 ----------------------------------------
 
@@ -761,6 +475,292 @@ problems in ``scipy.optimize``.
 
 See the summary exercise on :ref:`summary_exercise_optimize` for another, more
 advanced example.
+
+
+Statistics and random numbers: ``scipy.stats``
+-----------------------------------------------
+
+The module `scipy.stats` contains statistical tools and probabilistic
+descriptions of random processes. Random number generators for various
+random process can be found in `numpy.random`.
+
+Histogram and probability density function
+...............................................
+
+Given observations of a random process, their histogram is an estimator of 
+the random process's PDF (probability density function): ::
+
+    >>> a = np.random.normal(size=1000)
+    >>> bins = np.arange(-4, 5)
+    >>> bins
+    array([-4, -3, -2, -1,  0,  1,  2,  3,  4])
+    >>> histogram = np.histogram(a, bins=bins, normed=True)[0]
+    >>> bins = 0.5*(bins[1:] + bins[:-1])
+    >>> bins
+    array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
+    >>> from scipy import stats
+    >>> b = stats.norm.pdf(bins)
+
+.. sourcecode:: ipython
+
+    In [1]: pl.plot(bins, histogram)
+    In [2]: pl.plot(bins, b)
+
+.. plot:: pyplots/normal_distribution.py
+    :scale: 70
+
+If we know that the random process belongs to a given family of random
+processes, such as normal processes, we can do a maximum-likelihood fit
+of the observations to estimate the parameters of the underlying 
+distribution. Here we fit a normal process to the observed data::
+
+    >>> loc, std = stats.norm.fit(a)
+    >>> loc     # doctest: +ELLIPSIS
+    -0.045256707490...
+    >>> std     # doctest: +ELLIPSIS
+    0.9870331586690...
+
+Percentiles
+.............
+
+The median is the value with half of the observations below, and half
+above::
+
+    >>> np.median(a)     # doctest: +ELLIPSIS
+    -0.058028034...
+
+It is also called the percentile 50, because 50% of the observation are
+below it::
+
+    >>> stats.scoreatpercentile(a, 50)     # doctest: +ELLIPSIS
+    -0.0580280347...
+
+Similarly, we can calculate the percentile 90::
+
+    >>> stats.scoreatpercentile(a, 90)     # doctest: +ELLIPSIS
+    1.231593551...
+
+The percentile is an estimator of the CDF: cumulative distribution
+function.
+
+Statistical tests
+...................
+
+A statistical test is a decision indicator. For instance, if we have two
+sets of observations, that we assume are generated from Gaussian
+processes, we can use a 
+`T-test <http://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide 
+whether the two sets of observations are significantly different::
+
+    >>> a = np.random.normal(0, 1, size=100)
+    >>> b = np.random.normal(1, 1, size=10)
+    >>> stats.ttest_ind(a, b)   # doctest: +ELLIPSIS
+    (-3.75832707..., 0.00027786...)
+
+The resulting output is composed of:
+
+    * The T statistic value: it is a number the sign of which is
+      proportional to the difference between the two random processes and
+      the magnitude is related to the significance of this difference.
+
+    * the *p value*: the probability of both processes being identical. If it
+      is close to 1, the two process are almost certainly identical.
+      The closer it is to zero, the more likely it is that the processes
+      have different means.
+
+
+Interpolation: ``scipy.interpolate``
+------------------------------------
+The ``scipy.interpolate`` is useful for fitting a function from experimental
+data and thus evaluating points where no measure exists. The module is based
+on the `FITPACK Fortran subroutines`_ from the netlib_ project.
+
+.. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
+.. _netlib : http://www.netlib.org
+
+By imagining experimental data close to a sinus function::
+
+    >>> measured_time = np.linspace(0, 1, 10)
+    >>> noise = (np.random.random(10)*2 - 1) * 1e-1
+    >>> measures = np.sin(2 * np.pi * measured_time) + noise
+
+The ``interp1d`` class can built a linear interpolation function::
+
+    >>> from scipy.interpolate import interp1d
+    >>> linear_interp = interp1d(measured_time, measures)
+
+Then the ``linear_interp`` instance needs to be evaluated on time of
+interest::
+
+    >>> computed_time = np.linspace(0, 1, 50)
+    >>> linear_results = linear_interp(computed_time)
+
+A cubic interpolation can also be selected by providing the ``kind`` optional
+keyword argument::
+
+    >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
+    >>> cubic_results = cubic_interp(computed_time)
+
+The results are now gathered on the following Matplotlib figure:
+
+.. plot:: pyplots/scipy_interpolation.py
+
+``scipy.interpolate.interp2d`` is similar to ``interp1d``, but for 2-D
+arrays. Note that for the ``interp`` family, the computed time must stay
+within the measured time range. See the summary exercise on
+:ref:`summary_exercise_stat_interp` for a more advance spline interpolation
+example.
+
+
+Numerical integration: ``scipy.integrate``
+------------------------------------------------
+The most generic integration routine is ``scipy.integrate.quad``::
+
+    >>> from scipy.integrate import quad
+    >>> res, err = quad(np.sin, 0, np.pi/2)
+    >>> np.allclose(res, 1)
+    True
+    >>> np.allclose(err, 1 - res)
+    True
+
+Others integration schemes are available with ``fixed_quad``,
+``quadrature``, ``romberg``.
+
+``scipy.integrate`` also features routines for integrating Ordinary
+Differential Equations (ODE). In particular, ``scipy.integrate.odeint``
+is a general-purpose integrator using LSODA (Livermore Solver for
+Ordinary Differential equations with Automatic method switching
+for stiff and non-stiff problems), see the `ODEPACK Fortran library`_
+for more details.
+
+.. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
+
+``odeint`` solves first-order ODE systems of the form::
+
+``dy/dt = rhs(y1, y2, .., t0,...)``
+
+As an introduction, let us solve the ODE ``dy/dt = -2y`` between ``t =
+0..4``, with the  initial condition ``y(t=0) = 1``. First the function
+computing the derivative of the position needs to be defined::
+
+    >>> def calc_derivative(ypos, time, counter_arr):
+    ...     counter_arr += 1
+    ...     return -2 * ypos
+    ...
+
+An extra argument ``counter_arr`` has been added to illustrate that the
+function may be called several times for a single time step, until solver
+convergence. The counter array is defined as::
+
+    >>> counter = np.zeros((1,), dtype=np.uint16)
+
+The trajectory will now be computed::
+
+    >>> from scipy.integrate import odeint
+    >>> time_vec = np.linspace(0, 4, 40)
+    >>> yvec, info = odeint(calc_derivative, 1, time_vec,
+    ...                     args=(counter,), full_output=True)
+
+Thus the derivative function has been called more than 40 times
+(which was the number of time steps)::
+
+    >>> counter
+    array([129], dtype=uint16)
+
+and the cumulative number of iterations for each of the 10 first time steps
+can be obtained by::
+
+    >>> info['nfe'][:10]
+    array([31, 35, 43, 49, 53, 57, 59, 63, 65, 69], dtype=int32)
+
+Note that the solver requires more iterations for the first time step.
+The solution ``yvec`` for the trajectory can now be plotted:
+
+  .. plot:: pyplots/odeint_introduction.py
+    :scale: 70
+
+Another example with ``odeint`` will be a damped spring-mass oscillator
+(2nd order oscillator). The position of a mass attached to a spring obeys
+the 2nd order ODE ``y'' + 2 eps wo  y' + wo^2 y = 0`` with ``wo^2 = k/m``
+with ``k`` the spring constant, ``m`` the mass and ``eps=c/(2 m wo)``
+with ``c`` the damping coefficient.
+For this example, we choose the parameters as::
+
+    >>> mass = 0.5  # kg
+    >>> kspring = 4  # N/m
+    >>> cviscous = 0.4  # N s/m
+
+so the system will be underdamped, because::
+
+    >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
+    >>> eps < 1
+    True
+
+For the ``odeint`` solver the 2nd order equation needs to be transformed in a
+system of two first-order equations for the vector ``Y=(y, y')``.  It will
+be convenient to define ``nu = 2 eps * wo = c / m`` and ``om = wo^2 = k/m``::
+
+    >>> nu_coef = cviscous / mass
+    >>> om_coef = kspring / mass
+
+Thus the function will calculate the velocity and acceleration by::
+
+    >>> def calc_deri(yvec, time, nuc, omc):
+    ...     return (yvec[1], -nuc * yvec[1] - omc * yvec[0])
+    ...
+    >>> time_vec = np.linspace(0, 10, 100)
+    >>> yarr = odeint(calc_deri, (1, 0), time_vec, args=(nu_coef, om_coef))
+
+The final position and velocity are shown on the following Matplotlib figure:
+
+.. plot:: pyplots/odeint_damped_spring_mass.py
+    :scale: 70
+
+There is no Partial Differential Equations (PDE) solver in Scipy.
+Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
+
+.. _fipy: http://www.ctcms.nist.gov/fipy/
+.. _SfePy: http://code.google.com/p/sfepy/
+
+
+Signal processing: ``scipy.signal``
+------------------------------------
+
+::
+
+    >>> from scipy import signal
+
+* Detrend: remove linear trend from signal::
+
+    t = np.linspace(0, 5, 100)
+    x = t + np.random.normal(size=100)
+
+    pl.plot(t, x, linewidth=3)
+    pl.plot(t, signal.detrend(x), linewidth=3)
+
+  .. plot:: pyplots/demo_detrend.py
+    :scale: 70
+
+* Resample: resample a signal to `n` points using FFT. ::
+
+    t = np.linspace(0, 5, 100)
+    x = np.sin(t)
+    
+    pl.plot(t, x, linewidth=3)
+    pl.plot(t[::2], signal.resample(x, 50), 'ko')
+
+  .. plot:: pyplots/demo_resample.py
+    :scale: 70
+
+  .. only:: latex
+
+     Notice how on the side of the window the resampling is less accurate
+     and has a rippling effect.
+
+* Signal has many window function: `hamming`, `bartlett`, `blackman`...
+
+* Signal has filtering (Gaussian, median filter, Wiener), but we will
+  discuss this in the image paragraph.
 
 
 Image processing: ``scipy.ndimage``
