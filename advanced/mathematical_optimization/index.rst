@@ -21,6 +21,21 @@ used for more efficient, non black-box, optimization.
     * IPython
     * matplotlib
 
+.. topic:: References
+
+   Mathematical optimization is very ... mathematical. If you want
+   performance, it really pays to read the books:
+
+   * `Convex Optimization <http://www.stanford.edu/~boyd/cvxbook/>`_ 
+     by Boyd and Vandenberghe (pdf available free online).
+
+   * `Numerical Optimization
+     <http://users.eecs.northwestern.edu/~nocedal/book/num-opt.html>`_, 
+     by Nocedal and Wright. Detailed reference on gradient descent methods.
+
+   * `Practical Methods of Optimization
+     <http://www.amazon.com/gp/product/0471494631/ref=ox_sc_act_title_1?ie=UTF8&smid=ATVPDKIKX0DER>`_ by Fletcher: good at hand-waving explainations.
+
 .. contents:: Chapters contents
    :local:
    :depth: 4
