@@ -86,6 +86,13 @@ File input/output: ``scipy.io``
            [ 1.,  1.,  1.],
            [ 1.,  1.,  1.]])
 
+* Reading images::
+
+    >>> from scipy import misc
+    >>> misc.imread('fname.png')
+    >>> # Matplotlib also has a similar function
+    >>> import matplotlib.pyplot as plt
+    >>> plt.imread('fname.png')
 
 See also:
 
@@ -100,6 +107,199 @@ See also:
     * Fast and efficient, but numpy-specific, binary format::
 
         np.save/np.load
+
+
+
+Special functions: ``scipy.special``
+---------------------------------------
+
+Special functions are transcendental functions. The docstring of the
+``special`` module is well-written, so we won't list all functions here.
+Frequently used ones are:
+
+ * Bessel function, such as `special.jn` (nth integer order Bessel
+   function)
+
+ * Elliptic function (`special.ellipj` for the Jacobian elliptic
+   function, ...)
+
+ * Gamma function: `special.gamma`, also note `special.gammaln` which
+   will give the log of Gamma to a higher numerical precision.
+
+ * Erf, the area under a Gaussian curve: `special.erf`
+
+
+.. _scipy_linalg:
+
+Linear algebra operations: ``scipy.linalg``
+-----------------------------------------------
+
+The ``linalg`` module provides standard linear algebra operations, relying on
+an underlying efficient implementation (BLAS, LAPACK).
+
+* The ``det`` function computes the determinant of a square matrix::
+
+    >>> from scipy import linalg
+    >>> arr = np.array([[1, 2],
+    ...                 [3, 4]])
+    >>> linalg.det(arr)
+    -2.0
+    >>> arr = np.array([[3, 2],
+    ...                 [6, 4]])
+    >>> linalg.det(arr)
+    0.0
+    >>> linalg.det(np.ones((3, 4)))
+    Traceback (most recent call last):
+    ...
+    ValueError: expected square matrix
+
+* The ``inv`` function computes the inverse of a square matrix::
+
+    >>> arr = np.array([[1, 2],
+    ...                 [3, 4]])
+    >>> iarr = linalg.inv(arr)
+    >>> iarr
+    array([[-2. ,  1. ],
+           [ 1.5, -0.5]])
+    >>> np.allclose(np.dot(arr, iarr), np.eye(2))
+    True
+
+  Finally computing the inverse of a singular matrix (its determinant is zero)
+  will raise ``LinAlgError``::
+
+    >>> arr = np.array([[3, 2],
+    ...                 [6, 4]])
+    >>> linalg.inv(arr)
+    Traceback (most recent call last):
+    ...
+    LinAlgError: singular matrix
+
+* More advanced operations are available, for example singular-value
+  decomposition (SVD)::
+
+    >>> arr = np.arange(9).reshape((3, 3)) + np.diag([1, 0, 1])
+    >>> uarr, spec, vharr = linalg.svd(arr)
+
+  The resulting array spectrum is::
+
+    >>> spec    # doctest: +ELLIPSIS
+    array([ 14.88982544,   0.45294236,   0.29654967])
+
+  The original matrix can be re-composed by matrix multiplication of the outputs of
+  ``svd`` with ``np.dot``::
+
+    >>> sarr = np.diag(spec)
+    >>> svd_mat = uarr.dot(sarr).dot(vharr)
+    >>> np.allclose(svd_mat, arr)
+    True
+
+  SVD is commonly used in statistics and signal processing.  Many other
+  standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
+  for linear systems, are available in ``scipy.linalg``.
+
+
+Fast Fourier transforms: ``scipy.fftpack``
+----------------------------------------------
+The ``fftpack`` module allows to compute fast Fourier transforms.
+As an illustration, a (noisy) input signal may look like::
+
+    >>> time_step = 0.02
+    >>> period = 5.
+    >>> time_vec = np.arange(0, 20, time_step)
+    >>> sig = np.sin(2 * np.pi / period * time_vec) + \
+    ...       0.5 * np.random.randn(time_vec.size)
+
+The observer doesn't know the signal frequency, only
+the sampling time step of the signal ``sig``. The signal
+is supposed to come from a real function so the Fourier transform
+will be symmetric.
+The ``fftfreq`` function will generate the sampling frequencies and
+``fft`` will compute the fast Fourier transform::
+
+    >>> from scipy import fftpack
+    >>> sample_freq = fftpack.fftfreq(sig.size, d=time_step)
+    >>> sig_fft = fftpack.fft(sig)
+
+Because the resulting power is symmetric, only the positive part of the
+spectrum needs to be used for finding the frequency::
+
+    >>> pidxs = np.where(sample_freq > 0)
+    >>> freqs = sample_freq[pidxs]
+    >>> power = np.abs(sig_fft)[pidxs]
+
+.. plot:: pyplots/fftpack_frequency.py
+    :scale: 70
+
+The signal frequency can be found by::
+
+    >>> freq = freqs[power.argmax()]
+    >>> np.allclose(freq, 1./period)  # check that correct freq is found
+    True
+
+Now the high-frequency noise will be removed from the Fourier transformed
+signal::
+
+    >>> sig_fft[np.abs(sample_freq) > freq] = 0
+
+The resulting filtered signal can be computed by the ``ifft`` function::
+
+    >>> main_sig = fftpack.ifft(sig_fft)
+
+The result can be viewed with::
+
+    >>> plt.figure()
+    >>> plt.plot(time_vec, sig)
+    >>> plt.plot(time_vec, main_sig, linewidth=3)
+    >>> plt.xlabel('Time [s]')
+    >>> plt.ylabel('Amplitude')
+
+.. plot:: pyplots/fftpack_signals.py
+    :scale: 70
+
+.. note:: **numpy.fft**
+
+   Numpy also has an implementation of FFT. However, in general the scipy one
+   should be preferred, as it uses more efficient underlying implementations.
+
+.. topic:: Worked example: Crude periodicity finding
+
+    .. plot:: intro/solutions/periodicity_finder.py
+
+.. topic:: Worked example: Gaussian image blur
+
+    Convolution:
+
+    .. math::
+
+        f_1(t) = \int dt'\, K(t-t') f_0(t')
+
+    .. math::
+
+        \tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
+
+    .. plot:: intro/solutions/image_blur.py
+
+.. topic:: Exercise: Denoise moon landing image
+   :class: green
+
+   .. image:: ../data/moonlanding.png
+     :scale: 70
+
+   1. Examine the provided image moonlanding.png, which is heavily
+      contaminated with periodic noise. In this exercise, we aim to clean up
+      the noise using the Fast Fourier Transform.
+
+   2. Load the image using `plt.imread`.
+
+   3. Find and use the 2-D FFT function in `scipy.fftpack`, and plot the
+      spectrum (Fourier transform of) the image. Do you have any trouble
+      visualising the spectrum? If so, why?
+
+   4. The spectrum consists of high and low frequency components. The noise is
+      contained in the high-frequency part of the spectrum, so set some of
+      those components to zero (use array slicing).
+
+   5. Apply the inverse Fourier transform to see the resulting image.
 
 
 Signal processing: ``scipy.signal``
@@ -140,25 +340,6 @@ Signal processing: ``scipy.signal``
 
 * Signal has filtering (Gaussian, median filter, Wiener), but we will
   discuss this in the image paragraph.
-
-
-Special functions: ``scipy.special``
----------------------------------------
-
-Special functions are transcendental functions. The docstring of the
-``special`` module is well-written, so we won't list all functions here.
-Frequently used ones are:
-
- * Bessel function, such as `special.jn` (nth integer order Bessel
-   function)
-
- * Elliptic function (`special.ellipj` for the Jacobian elliptic
-   function, ...)
-
- * Gamma function: `special.gamma`, also note `special.gammaln` which
-   will give the log of Gamma to a higher numerical precision.
-
- * Erf, the area under a Gaussian curve: `special.erf`
 
 
 Statistics and random numbers: ``scipy.stats``
@@ -251,75 +432,6 @@ The resulting output is composed of:
       is close to 1, the two process are almost certainly identical.
       The closer it is to zero, the more likely it is that the processes
       have different means.
-
-
-.. _scipy_linalg:
-
-Linear algebra operations: ``scipy.linalg``
------------------------------------------------
-
-The ``linalg`` module provides standard linear algebra operations, relying on
-an underlying efficient implementation (BLAS, LAPACK).
-
-* The ``det`` function computes the determinant of a square matrix::
-
-    >>> from scipy import linalg
-    >>> arr = np.array([[1, 2],
-    ...                 [3, 4]])
-    >>> linalg.det(arr)
-    -2.0
-    >>> arr = np.array([[3, 2],
-    ...                 [6, 4]])
-    >>> linalg.det(arr)
-    0.0
-    >>> linalg.det(np.ones((3, 4)))
-    Traceback (most recent call last):
-    ...
-    ValueError: expected square matrix
-
-* The ``inv`` function computes the inverse of a square matrix::
-
-    >>> arr = np.array([[1, 2],
-    ...                 [3, 4]])
-    >>> iarr = linalg.inv(arr)
-    >>> iarr
-    array([[-2. ,  1. ],
-           [ 1.5, -0.5]])
-    >>> np.allclose(np.dot(arr, iarr), np.eye(2))
-    True
-
-  Finally computing the inverse of a singular matrix (its determinant is zero)
-  will raise ``LinAlgError``::
-
-    >>> arr = np.array([[3, 2],
-    ...                 [6, 4]])
-    >>> linalg.inv(arr)
-    Traceback (most recent call last):
-    ...
-    LinAlgError: singular matrix
-
-* More advanced operations are available, for example singular-value
-  decomposition (SVD)::
-
-    >>> arr = np.arange(9).reshape((3, 3)) + np.diag([1, 0, 1])
-    >>> uarr, spec, vharr = linalg.svd(arr)
-
-  The resulting array spectrum is::
-
-    >>> spec    # doctest: +ELLIPSIS
-    array([ 14.88982544,   0.45294236,   0.29654967])
-
-  The original matrix can be re-composed by matrix multiplication of the outputs of
-  ``svd`` with ``np.dot``::
-
-    >>> sarr = np.diag(spec)
-    >>> svd_mat = uarr.dot(sarr).dot(vharr)
-    >>> np.allclose(svd_mat, arr)
-    True
-
-  SVD is commonly used in statistics and signal processing.  Many other
-  standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
-  for linear systems, are available in ``scipy.linalg``.
 
 
 Numerical integration: ``scipy.integrate``
@@ -431,110 +543,6 @@ Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
 
 .. _fipy: http://www.ctcms.nist.gov/fipy/
 .. _SfePy: http://code.google.com/p/sfepy/
-
-
-Fast Fourier transforms: ``scipy.fftpack``
-----------------------------------------------
-The ``fftpack`` module allows to compute fast Fourier transforms.
-As an illustration, a (noisy) input signal may look like::
-
-    >>> time_step = 0.02
-    >>> period = 5.
-    >>> time_vec = np.arange(0, 20, time_step)
-    >>> sig = np.sin(2 * np.pi / period * time_vec) + \
-    ...       0.5 * np.random.randn(time_vec.size)
-
-The observer doesn't know the signal frequency, only
-the sampling time step of the signal ``sig``. The signal
-is supposed to come from a real function so the Fourier transform
-will be symmetric.
-The ``fftfreq`` function will generate the sampling frequencies and
-``fft`` will compute the fast Fourier transform::
-
-    >>> from scipy import fftpack
-    >>> sample_freq = fftpack.fftfreq(sig.size, d=time_step)
-    >>> sig_fft = fftpack.fft(sig)
-
-Because the resulting power is symmetric, only the positive part of the
-spectrum needs to be used for finding the frequency::
-
-    >>> pidxs = np.where(sample_freq > 0)
-    >>> freqs = sample_freq[pidxs]
-    >>> power = np.abs(sig_fft)[pidxs]
-
-.. plot:: pyplots/fftpack_frequency.py
-    :scale: 70
-
-The signal frequency can be found by::
-
-    >>> freq = freqs[power.argmax()]
-    >>> np.allclose(freq, 1./period)  # check that correct freq is found
-    True
-
-Now the high-frequency noise will be removed from the Fourier transformed
-signal::
-
-    >>> sig_fft[np.abs(sample_freq) > freq] = 0
-
-The resulting filtered signal can be computed by the ``ifft`` function::
-
-    >>> main_sig = fftpack.ifft(sig_fft)
-
-The result can be viewed with::
-
-    >>> plt.figure()
-    >>> plt.plot(time_vec, sig)
-    >>> plt.plot(time_vec, main_sig, linewidth=3)
-    >>> plt.xlabel('Time [s]')
-    >>> plt.ylabel('Amplitude')
-
-.. plot:: pyplots/fftpack_signals.py
-    :scale: 70
-
-.. note:: **numpy.fft**
-
-   Numpy also has an implementation of FFT. However, in general the scipy one
-   should be preferred, as it uses more efficient underlying implementations.
-
-.. topic:: Worked example: Crude periodicity finding
-
-    .. plot:: intro/solutions/periodicity_finder.py
-
-.. topic:: Worked example: Gaussian image blur
-
-    Convolution:
-
-    .. math::
-
-        f_1(t) = \int dt'\, K(t-t') f_0(t')
-
-    .. math::
-
-        \tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
-
-    .. plot:: intro/solutions/image_blur.py
-
-.. topic:: Exercise: Denoise moon landing image
-   :class: green
-
-   .. image:: ../data/moonlanding.png
-     :scale: 70
-
-   1. Examine the provided image moonlanding.png, which is heavily
-      contaminated with periodic noise. In this exercise, we aim to clean up
-      the noise using the Fast Fourier Transform.
-
-   2. Load the image using `plt.imread`.
-
-   3. Find and use the 2-D FFT function in `scipy.fftpack`, and plot the
-      spectrum (Fourier transform of) the image. Do you have any trouble
-      visualising the spectrum? If so, why?
-
-   4. The spectrum consists of high and low frequency components. The noise is
-      contained in the high-frequency part of the spectrum, so set some of
-      those components to zero (use array slicing).
-
-   5. Apply the inverse Fourier transform to see the resulting image.
 
 
 Interpolation: ``scipy.interpolate``
