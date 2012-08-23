@@ -114,6 +114,7 @@ Constraints
 ------------
 
 .. |constraints| image:: auto_examples/images/plot_constraints_1.png
+    :target: auto_examples/plot_constraints.html
 
 .. list-table::
 
@@ -469,6 +470,8 @@ to the algorithm::
    
     Newton optimizers should not to be confused with Newton's root finding
     method, based on the same principles, :func:`scipy.optimize.newton`.
+
+.. _quasi_newton:
 
 Quasi-Newton methods: approximating the Hessian on the fly 
 ...........................................................
@@ -906,9 +909,85 @@ scipy provides a helper function for this purpose:
 Optimization with constraints
 ==============================
 
-SLSQP
-Cobyla
-fmin_bound
-L-BFGS-B
+Box bounds
+----------
+
+Box bounds correspond to limiting each of the individual parameters of
+the optimization. Note that some problems that are not originally written
+as box bounds can be rewritten as such be a change of variables.
+
+.. image:: auto_examples/images/plot_constraints_2.png
+    :target: auto_examples/plot_constraints.html
+    :align: right
+    :scale: 75%
+
+* :func:`scipy.optimize.fminbound` for 1D-optimization
+* :func:`scipy.optimize.fmin_l_bfgs_b` a 
+  :ref:`quasi-Newton <quasi_newton>` method with bound constraints::
+
+    >>> def f(x):
+    ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+    >>> optimize.fmin_l_bfgs_b(f, np.array([0, 0]), approx_grad=1,
+                           bounds=((-1.5, 1.5), (-1.5, 1.5)))
+    (array([ 1.5,  1.5]), 1.5811388300841898, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([-0.94868331, -0.31622778]), 'funcalls': 3})
 
 
+
+
+General constraints
+--------------------
+
+Equality and inequality constraints specified as functions: `f(x) = 0`
+and `g(x)< 0`.
+
+* :func:`scipy.optimize.fmin_slsqp` Sequential least square programming:
+  equality and inequality constraints:
+
+  .. image:: auto_examples/images/plot_non_bounds_constraints_1.png
+    :target: auto_examples/plot_non_bounds_constraints.html
+    :align: right
+    :scale: 75%
+
+  ::
+
+    >>> def f(x):
+    ...     return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+
+    >>> def constraint(x):
+    ...     return np.atleast_1d(1.5 - np.sum(np.abs(x)))
+
+    >>> optimize.fmin_slsqp(f, np.array([0, 0]), ieqcons=[constraint, ])
+    Optimization terminated successfully.    (Exit mode 0)
+                Current function value: 2.47487373504
+                Iterations: 5
+                Function evaluations: 20
+                Gradient evaluations: 5
+    array([ 1.25004696,  0.24995304])
+
+
+
+* :func:`scipy.optimize.fmin_cobyla` Constraints optimization by linear 
+  approximation: inequality constraints only::
+
+    >>> optimize.fmin_cobyla(f, np.array([0, 0]), cons=constraint)
+       Normal return from subroutine COBYLA
+    
+       NFVALS =   36   F = 2.474874E+00    MAXCV = 0.000000E+00
+       X = 1.250096E+00   2.499038E-01
+    array([ 1.25009622,  0.24990378])
+
+.. warning:: 
+   
+   The above problem is known as the `Lasso
+   <http://en.wikipedia.org/wiki/Lasso_(statistics)#LASSO_method>`_
+   problem in statistics, and there exists very efficient solvers for it
+   (for instance in `scikit-learn <http://scikit-learn.org>`_). In
+   general do not use generic solvers when specific ones exist.
+
+.. topic:: **Lagrange multipliers**
+
+   If you are ready to do a bit of math, many constrained optimization
+   problems can be converted to non-constrained optimization problems
+   using a mathematical trick known as `Lagrange multipliers
+   <http://en.wikipedia.org/wiki/Lagrange_multiplier>`_.
+   
