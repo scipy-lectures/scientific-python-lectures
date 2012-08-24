@@ -943,7 +943,6 @@ Some exercises
    :class: green
 
     .. plot:: intro/numpy/solutions/2_4_mandelbrot.py
-        :include-source: 0
 
     Write a script that computes the Mandelbrot fractal. The Mandelbrot
     iteration::
