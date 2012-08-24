@@ -243,7 +243,7 @@ signal::
     >>> sig_fft[np.abs(sample_freq) > freq] = 0
 
 The resulting filtered signal can be computed by the 
-:func:`scipy.fftpack.ifft`` function::
+:func:`scipy.fftpack.ifft` function::
 
     >>> main_sig = fftpack.ifft(sig_fft)
 
@@ -258,9 +258,10 @@ The result can be viewed with::
 .. plot:: pyplots/fftpack_signals.py
     :scale: 70
 
-.. topic:: :mod:`numpy.fft`
+.. topic:: `numpy.fft`
 
-   Numpy also has an implementation of FFT. However, in general the scipy one
+   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However, 
+   in general the scipy one
    should be preferred, as it uses more efficient underlying implementations.
 
 .. topic:: Worked example: Crude periodicity finding
@@ -383,6 +384,11 @@ To find the local minimum, let's constraint the variable to the interval
     >>> xmin_local = optimize.fminbound(f, 0, 10)    # doctest: +ELLIPSIS
     >>> xmin_local
     3.8374671...
+
+.. note:: 
+   
+   Finding minima of function is discussed in more details in the
+   advanced chapter: :ref:`mathematical_optimization`.
 
 **Finding the roots of a scalar function**
 
