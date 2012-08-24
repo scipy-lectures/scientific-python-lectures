@@ -565,18 +565,18 @@ memory and time.
 Adding Axes
 -----------
 
-Indexing with the ``None`` object allows us to add an axis to an array:
+Indexing with the ``np.newaxis`` object allows us to add an axis to an array:
 
 >>> z = np.array([1, 2, 3])
 >>> z
 array([1, 2, 3])
 
->>> z[:, None]
+>>> z[:, np.newaxis]
 array([[1],
        [2],
        [3]])
 
->>> z[None, :]
+>>> z[np.newaxis, :]
 array([[1, 2, 3]])
 
 
