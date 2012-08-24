@@ -36,3 +36,32 @@ table.docutils tr {
     border-width: 1px 0 1px 0;
     border-color: #AAAAAA;
 }
+
+div.contents {
+      background-color: #FFFFF6;
+}
+
+div.contents li {
+      list-style-type: none;
+      font-size: 110% ;
+      font-weight: bold;
+}
+
+div.contents p {
+    margin-bottom : 0px;
+    margin-top : 0px;
+}
+
+div.contents ul {
+    margin-bottom : 4px;
+    margin-top : 0px;
+}
+
+div.contents li li {
+      list-style-type: none;
+      list-style-type: square;
+      font-size: 90% ;
+      font-weight: normal;
+}
+
+

@@ -38,6 +38,9 @@ used for more efficient, non black-box, optimization.
    * `Practical Methods of Optimization
      <http://www.amazon.com/gp/product/0471494631/ref=ox_sc_act_title_1?ie=UTF8&smid=ATVPDKIKX0DER>`_ by Fletcher: good at hand-waving explainations.
 
+.. include:: ../../includes/big_toc_css.rst
+
+
 .. contents:: Chapters contents
    :local:
    :depth: 4
