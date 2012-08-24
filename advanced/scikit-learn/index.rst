@@ -4,34 +4,9 @@ scikit-learn: machine learning in Python
 
 :author: Fabian Pedregosa, Gael Varoquaux
 
-Machine learning is a rapidly-growing field with several machine
-learning frameworks available for Python:
-
-.. |mdp| image:: mdp.png
-   :scale: 70   
-
-.. |mlpy| image:: mlpy_logo.png
-   :scale: 70   
-
-.. |pymvpa| image:: pymvpa_logo.jpg
-   :scale: 50   
-
-.. |orange| image:: orange-logo-w.png
-   :scale: 70
-
-.. |skl| image:: scikit-learn-logo.png
+.. image:: scikit-learn-logo.png
    :scale: 40
-
-.. only:: html
-
-    .. centered:: |mdp|  |mlpy| |pymvpa|  |orange| |skl| 
-
-.. only:: latex 
-
-    |mdp|  |mlpy|
-    
-    |orange| |skl|
-
+   :align: right
 
 .. topic:: Prerequisites
 
