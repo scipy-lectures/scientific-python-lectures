@@ -16,14 +16,14 @@ What are Numpy and numpy arrays
 
 **Python** has built-in:
 
-    - containers: lists (costless insertion and append), dictionnaries
+    - containers: lists (costless insertion and append), dictionaries
       (fast lookup)
 
     - high-level number objects: integers, floating point
 
 **Numpy** is:
 
-    - extension package to Python for multidimensional arrays
+    - extension package to Python for multi-dimensional arrays
 
     - closer to hardware (efficiency)
 
@@ -40,15 +40,17 @@ What are Numpy and numpy arrays
 
     An array containing:
 
-    * discretized time of an experiment/simulation
+    * values of an experiment/simulation at discrete time steps
 
-    * signal recorded by a measurement device
+    * signal recorded by a measurement device, e.g. sound wave
 
-    * pixels of an image
+    * pixels of an image, grey-level or colour
+
+    * 3-D data measured at different X-Y-Z positions, e.g. MRI scan
 
     * ...
 
-**Why it is useful:** Memory-efficient and fast container for numerical
+**Why it is useful:** Memory-efficient container that provides fast numerical
 operations.
 
 .. sourcecode:: ipython
@@ -92,17 +94,34 @@ Reference documentation
          array(object, dtype=None, copy=True, order=None, subok=False, ...
      ...
 
+  .. sourcecode:: ipython
+
+     In [5]: np.array?
+     String Form:<built-in function array>
+     Docstring:
+     array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
+     ...
+
 - Looking for something:
 
-  >>> np.lookfor('create array')    # doctest: +ELLIPSIS
-  Search results for 'create array'
-  ---------------------------------
-  numpy.array
-      Create an array.
-  numpy.memmap
-      Create a memory-map to an array stored in a *binary* file on disk.
-  ...
+  .. code-block:: python
 
+     >>> np.lookfor('create array')    # doctest: +ELLIPSIS
+     Search results for 'create array'
+     ---------------------------------
+     numpy.array
+         Create an array.
+     numpy.memmap
+         Create a memory-map to an array stored in a *binary* file on disk.
+     ...
+
+  .. sourcecode:: ipython
+
+     In [6]: np.con*?
+     np.concatenate
+     np.conj
+     np.conjugate
+     np.convolve
 
 .. the import convention, reminder on python imports
 
@@ -222,6 +241,11 @@ In practice, we rarely enter items one by one...
 
     Par on course: 3 statements for each
 
+    *Hint*: Individual array elements can be accessed similarly to a list,
+    e.g. ``a[1]`` or ``a[1, 2]``.
+
+    *Hint*: Examine the docstring for ``diag``.
+
 .. topic:: Exercise: Tiling for array creation
     :class: green
 
@@ -246,8 +270,9 @@ In practice, we rarely enter items one by one...
 Basic data types
 ----------------
 
-You probably noted the ``1`` and ``1.`` above. These are different
-data types::
+You may have noticed that, in some instances, array elements are displayed with
+a trailing dot (e.g. ``2.`` vs ``2``). This is due to a difference in the
+data-type used::
 
     >>> a = np.array([1, 2, 3])
     >>> a.dtype
@@ -257,12 +282,13 @@ data types::
     >>> b.dtype
     dtype('float64')
 
-Much of the time you don't necessarily need to care, but remember they
-are there.
+Different data-types allow us to store data more compactly in memory, but most
+of the time we simply work with floating point numbers.  Note that, in the
+example above, NumPy auto-detects the data-type from the input.
 
 -----------------------------
 
-You can also choose which one you want::
+You can explicitly specify which data-type you want::
 
     >>> c = np.array([1, 2, 3], dtype=float)
     >>> c.dtype
@@ -307,13 +333,13 @@ Basic visualization
 
 Now that we have our first data arrays, we are going to visualize them.
 
+Start by launching `IPython` in `pylab` mode::
+
+    $ ipython --pylab
+
 **Matplotlib** is a 2D plotting package. We can import its functions as below::
 
     >>> import matplotlib.pyplot as plt  # the tidy way
-
-The recommended way of working is use `IPython`, started in `pylab` mode::
-
-    $ ipython -pylab
 
 **1D plotting**
 
@@ -344,8 +370,8 @@ The recommended way of working is use `IPython`, started in `pylab` mode::
 **3D plotting**
 
 For 3D visualization, we can use another package: **Mayavi**. A quick example:
-start with **relaunching iPython** with these options:
-**ipython -pylab -wthread**  (or **ipython --pylab=wx** in IPython >= 0.10).
+start by **relaunching iPython** with these options: **ipython --pylab=wx**
+(or **ipython -pylab -wthread** in IPython < 0.10).
 
 .. image:: surf.png
    :align: right
@@ -353,16 +379,14 @@ start with **relaunching iPython** with these options:
 
 .. sourcecode:: ipython
 
-    In [59]: from enthought.mayavi import mlab
-    In [60]: mlab.figure()
-    Out[60]: <enthought.mayavi.core.scene.Scene object at 0xcb2677c>
+    In [58]: from mayavi import mlab
     In [61]: mlab.surf(image)
-    Out[61]: <enthought.mayavi.modules.surface.Surface object at 0xd0862fc>
+    Out[61]: <enthought.mayavi.modules.surface.Surface object at ...>
     In [62]: mlab.axes()
-    Out[62]: <enthought.mayavi.modules.axes.Axes object at 0xd07892c>
+    Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
 
-The mayavi/mlab window that opens is interactive : by clicking on the left mouse button
-you can rotate the image, zoom with the mouse wheel, etc.
+The mayavi/mlab window that opens is interactive: by clicking on the left mouse
+button you can rotate the image, zoom with the mouse wheel, etc.
 
 For more information on Mayavi :
 http://github.enthought.com/mayavi/mayavi
@@ -537,6 +561,24 @@ memory and time.
       1. Skip `j` which are already known to not be primes
 
       2. The first number to cross out is :math:`j^2`
+
+Adding Axes
+-----------
+
+Indexing with the ``np.newaxis`` object allows us to add an axis to an array:
+
+>>> z = np.array([1, 2, 3])
+>>> z
+array([1, 2, 3])
+
+>>> z[:, np.newaxis]
+array([[1],
+       [2],
+       [3]])
+
+>>> z[np.newaxis, :]
+array([[1, 2, 3]])
+
 
 Fancy indexing
 --------------

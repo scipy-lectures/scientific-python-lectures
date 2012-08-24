@@ -70,11 +70,6 @@ Logical operations::
     >>> np.logical_and(a, b)
     array([ True, False, False, False], dtype=bool)
 
-.. note::
-
-   For arrays: "``np.logical_and``" and "``np.logical_or``" for logical
-   operations, not "``and``" and "``or``".
-
 Shape mismatches::
 
     >>> a = np.arange(4)
@@ -101,10 +96,10 @@ Shape mismatches::
 
 .. note:: **Linear algebra**
 
-    The sub-module `np.linalg` implements basic linear algebra, such as
-    eigenvalue decomposition, solving linear systems... However, it is
+    The sub-module :mod:`np.linalg` implements basic linear algebra, such as
+    solving linear systems, singular value decomposition, etc. However, it is
     not guaranteed to be compiled using efficient routines, and thus we
-    recommend to use `scipy.linalg`, as detailed in section
+    recommend the use of :mod:`scipy.linalg`, as detailed in section
     :ref:`scipy_linalg`
 
 .. topic:: Exercise
