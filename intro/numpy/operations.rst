@@ -65,15 +65,10 @@ Logical operations::
 
     >>> a = np.array([1, 1, 0, 0], dtype=bool)
     >>> b = np.array([1, 0, 1, 0], dtype=bool)
-    >>> np.logical_or(a, b)
+    >>> a | b
     array([ True,  True,  True, False], dtype=bool)
-    >>> np.logical_and(a, b)
+    >>> a & b
     array([ True, False, False, False], dtype=bool)
-
-.. note::
-
-   For arrays: "``np.logical_and``" and "``np.logical_or``" for logical
-   operations, not "``and``" and "``or``".
 
 Shape mismatches::
 
@@ -101,11 +96,10 @@ Shape mismatches::
 
 .. note:: **Linear algebra**
 
-    The sub-module `np.linalg` implements basic linear algebra, such as
-    eigenvalue decomposition, solving linear systems... However, it is
-    not guaranteed to be compiled using efficient routines, and thus we
-    recommend to use `scipy.linalg`, as detailed in section
-    :ref:`scipy_linalg`
+    The sub-module `np.linalg` implements basic linear algebra, such as solving
+    linear systems, singular value decomposition, etc. However, it is not
+    guaranteed to be compiled using efficient routines, and thus we recommend
+    the use of `scipy.linalg`, as detailed in section :ref:`scipy_linalg`
 
 .. topic:: Exercise
     :class: green
