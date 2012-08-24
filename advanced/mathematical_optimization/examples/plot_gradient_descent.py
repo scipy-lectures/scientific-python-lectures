@@ -44,7 +44,7 @@ def gradient_descent(x0, f, f_prime, hessian=None, adaptative=False):
         all_x_i.append(x_i)
         all_y_i.append(y_i)
         all_f_i.append(f([x_i, y_i]))
-        dx_i, dy_i = f_prime([x_i, y_i])
+        dx_i, dy_i = f_prime(np.asarray([x_i, y_i]))
         if adaptative:
             # Compute a step size using a line_search to satisfy the Wolf
             # conditions
@@ -189,7 +189,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate((
     pl.axes([0, 0, 1, 1])
 
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
-    z = f([x, y])
+    z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + .01)
     pl.imshow(log_z,
             extent=[x_min, x_max, y_min, y_max],

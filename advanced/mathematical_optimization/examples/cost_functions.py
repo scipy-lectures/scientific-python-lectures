@@ -20,11 +20,13 @@ def gaussian_prime_prime(x):
 
 def mk_gauss(epsilon, ndim=2):
     def f(x):
+        x = np.asarray(x)
         y = x.copy()
         y *= np.power(epsilon, np.arange(ndim))
         return -gaussian(.5*y) + 1
 
     def f_prime(x):
+        x = np.asarray(x)
         y = x.copy()
         scaling = np.power(epsilon, np.arange(ndim))
         y *= scaling
@@ -32,6 +34,7 @@ def mk_gauss(epsilon, ndim=2):
 
     def hessian(x):
         epsilon = .07
+        x = np.asarray(x)
         y = x.copy()
         scaling = np.power(epsilon, np.arange(ndim))
         y *= .5*scaling
@@ -48,11 +51,13 @@ def mk_gauss(epsilon, ndim=2):
 
 def mk_quad(epsilon, ndim=2):
     def f(x):
+       x = np.asarray(x)
        y = x.copy()
        y *= np.power(epsilon, np.arange(ndim))
        return .33*np.sum(y**2)
 
     def f_prime(x):
+       x = np.asarray(x)
        y = x.copy()
        scaling = np.power(epsilon, np.arange(ndim))
        y *= scaling
@@ -132,7 +137,7 @@ class LoggingFunction(object):
         x_i, y_i = x0[:2]
         self.all_x_i.append(x_i)
         self.all_y_i.append(y_i)
-        f_i = self.function(x0)
+        f_i = self.function(np.asarray(x0))
         self.all_f_i.append(f_i)
         self.counter.append('f')
         self.counts.append(len(self.counter))
