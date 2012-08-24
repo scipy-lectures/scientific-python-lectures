@@ -47,7 +47,7 @@ In this section, numpy will be imported as follows::
 
     >>> import numpy as np
 
-.. contents::
+.. contents:: Chapter contents
    :local:
    :depth: 2
 
@@ -223,6 +223,7 @@ dtype('|S4')
 - The second one is its offset (in bytes) from the beginning of the item
 
 .. topic:: Exercise
+   :class: green
 
    Mini-exercise, make a "sparse" dtype by using offsets, and only some
    of the fields::
