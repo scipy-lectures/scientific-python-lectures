@@ -1,8 +1,8 @@
 .. _mathematical_optimization:
 
-==========================
-Mathematical optimization
-==========================
+=======================================================
+Mathematical optimization: finding minima of functions
+=======================================================
 
 :authors: Gaël Varoquaux
 
@@ -812,8 +812,9 @@ Synthetic exercices
     :target: auto_examples/plot_exercise_flat_minimum.html
 
 .. image:: auto_examples/images/plot_exercise_ill_conditioned_1.png
-    :scale: 42%
+    :scale: 35%
     :target: auto_examples/plot_exercise_ill_conditioned.html
+    :align: right
 
 .. topic:: **Exercice: A simple (?) quadratic function**
     :class: green
