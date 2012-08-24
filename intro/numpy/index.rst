@@ -16,7 +16,6 @@ ____
 .. include:: ../../includes/big_toc_css.rst
 
 .. toctree::
-
    array_object.rst
    operations.rst
    elaborate_arrays.rst

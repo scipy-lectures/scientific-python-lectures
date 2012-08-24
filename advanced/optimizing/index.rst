@@ -2,11 +2,11 @@
 Optimizing code
 =================
 
-:author: Gaël Varoquaux
-
-.. topic:: Donald Knuth 
+.. sidebar:: Donald Knuth 
 
    *“Premature optimization is the root of all evil”*
+
+:author: Gaël Varoquaux
 
 This chapter deals with strategies to make Python code go faster.
 

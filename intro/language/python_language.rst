@@ -49,8 +49,10 @@ etc. Some specific features of Python are as follows:
 See http://www.python.org/about/ for more information about
 distinguishing features of Python.
 
+_____
+
 .. toctree::
-    :maxdepth: 1
+    :maxdepth: 2
 
     first_steps.rst
     basic_types.rst

@@ -30,7 +30,7 @@ Avoiding bugs
 Coding best practices to avoid getting in trouble
 --------------------------------------------------
 
-.. topic:: Brian Kernighan
+.. sidebar:: Brian Kernighan
 
    *“Everyone knows that debugging is twice as hard as writing a
    program in the first place. So if you're as clever as you can be
@@ -571,6 +571,7 @@ program memory.
 ____
 
 .. topic:: **Wrap up exercise**
+    :class: green
     
     The following script is well documented and hopefully legible. It
     seeks to answer a problem of actual interest for numerical computing,
