@@ -43,25 +43,25 @@ Scipy : high-level scientific computing
 
 `scipy` is composed of task-specific sub-modules:
 
-============= ===============================================
-cluster         Vector quantization / Kmeans
-constants       Physical and mathematical constants
-fftpack         Fourier transform
-integrate       Integration routines
-interpolate     Interpolation
-io              Data input and output
-linalg          Linear algebra routines
-ndimage         n-dimensional image package
-odr             Orthogonal distance regression
-optimize        Optimization
-signal          Signal processing
-sparse          Sparse matrices
-spatial         Spatial data structures and algorithms
-special         Any special mathematical functions
-stats           Statistics
-============= ===============================================
+=========================== ===============================================
+:mod:`scipy.cluster`         Vector quantization / Kmeans
+:mod:`scipy.constants`       Physical and mathematical constants
+:mod:`scipy.fftpack`         Fourier transform
+:mod:`scipy.integrate`       Integration routines
+:mod:`scipy.interpolate`     Interpolation
+:mod:`scipy.io`              Data input and output
+:mod:`scipy.linalg`          Linear algebra routines
+:mod:`scipy.ndimage`         n-dimensional image package
+:mod:`scipy.odr`             Orthogonal distance regression
+:mod:`scipy.optimize`        Optimization
+:mod:`scipy.signal`          Signal processing
+:mod:`scipy.sparse`          Sparse matrices
+:mod:`scipy.spatial`         Spatial data structures and algorithms
+:mod:`scipy.special`         Any special mathematical functions
+:mod:`scipy.stats`           Statistics
+=========================== ===============================================
 
-They all depend on `numpy`, but are mostly independent of each other. The
+They all depend on :mod:`numpy`, but are mostly independent of each other. The
 standard way of importing Numpy and these Scipy modules is::
 
     >>> import numpy as np
@@ -72,7 +72,7 @@ numpy functions (try ``scipy.cos is np.cos``). Those are exposed for historical
 reasons only; there's usually no reason to use ``import scipy`` in your code.
 
 
-File input/output: ``scipy.io``
+File input/output: :mod:`scipy.io`
 ----------------------------------
 
 * Loading and saving matlab files::
@@ -96,48 +96,47 @@ File input/output: ``scipy.io``
 
 See also:
 
-    * Load text files::
+    * Load text files: :func:`numpy.loadtxt`/:func:`numpy.savetxt`
 
-        np.loadtxt/np.savetxt
+    * Clever loading of text/csv files: 
+      :func:`numpy.genfromtxt`/:func:`numpy.recfromcsv`
 
-    * Clever loading of text/csv files::
-
-        np.genfromtxt/np.recfromcsv
-
-    * Fast and efficient, but numpy-specific, binary format::
-
-        np.save/np.load
+    * Fast and efficient, but numpy-specific, binary format:
+      :func:`numpy.save`/:func:`numpy.load`
 
 
 
-Special functions: ``scipy.special``
+Special functions: :mod:`scipy.special`
 ---------------------------------------
 
 Special functions are transcendental functions. The docstring of the
-``special`` module is well-written, so we won't list all functions here.
-Frequently used ones are:
+:mod:`scipy.special` module is well-written, so we won't list all
+functions here. Frequently used ones are:
 
- * Bessel function, such as `special.jn` (nth integer order Bessel
+ * Bessel function, such as :func:`scipy.special.jn` (nth integer order Bessel
    function)
 
- * Elliptic function (`special.ellipj` for the Jacobian elliptic
+ * Elliptic function (:func:`scipy.special.ellipj` for the Jacobian elliptic
    function, ...)
 
- * Gamma function: `special.gamma`, also note `special.gammaln` which
+ * Gamma function: :func:`scipy.special.gamma`, also note 
+   :func:`scipy.special.gammaln` which
    will give the log of Gamma to a higher numerical precision.
 
- * Erf, the area under a Gaussian curve: `special.erf`
+ * Erf, the area under a Gaussian curve: :func:`scipy.special.erf`
 
 
 .. _scipy_linalg:
 
-Linear algebra operations: ``scipy.linalg``
+Linear algebra operations: :mod:`scipy.linalg`
 -----------------------------------------------
 
-The ``linalg`` module provides standard linear algebra operations, relying on
-an underlying efficient implementation (BLAS, LAPACK).
+The :mod:`scipy.linalg` module provides standard linear algebra
+operations, relying on an underlying efficient implementation (BLAS,
+LAPACK).
 
-* The ``det`` function computes the determinant of a square matrix::
+* The :func:`scipy.linalg.det` function computes the determinant of a 
+  square matrix::
 
     >>> from scipy import linalg
     >>> arr = np.array([[1, 2],
@@ -153,7 +152,8 @@ an underlying efficient implementation (BLAS, LAPACK).
     ...
     ValueError: expected square matrix
 
-* The ``inv`` function computes the inverse of a square matrix::
+* The :func:`scipy.linalg.inv`` function computes the inverse of a square 
+  matrix::
 
     >>> arr = np.array([[1, 2],
     ...                 [3, 4]])
@@ -195,12 +195,13 @@ an underlying efficient implementation (BLAS, LAPACK).
 
   SVD is commonly used in statistics and signal processing.  Many other
   standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
-  for linear systems, are available in ``scipy.linalg``.
+  for linear systems, are available in :mod:`scipy.linalg`.
 
 
-Fast Fourier transforms: ``scipy.fftpack``
+Fast Fourier transforms: :mod:`scipy.fftpack`
 ----------------------------------------------
-The ``fftpack`` module allows to compute fast Fourier transforms.
+
+The :mod:`scipy.fftpack` module allows to compute fast Fourier transforms.
 As an illustration, a (noisy) input signal may look like::
 
     >>> time_step = 0.02
@@ -213,8 +214,8 @@ The observer doesn't know the signal frequency, only
 the sampling time step of the signal ``sig``. The signal
 is supposed to come from a real function so the Fourier transform
 will be symmetric.
-The ``fftfreq`` function will generate the sampling frequencies and
-``fft`` will compute the fast Fourier transform::
+The :func:`scipy.fftpack.fftfreq` function will generate the sampling frequencies and
+:func:`scipy.fftpack.fft` will compute the fast Fourier transform::
 
     >>> from scipy import fftpack
     >>> sample_freq = fftpack.fftfreq(sig.size, d=time_step)
@@ -241,7 +242,8 @@ signal::
 
     >>> sig_fft[np.abs(sample_freq) > freq] = 0
 
-The resulting filtered signal can be computed by the ``ifft`` function::
+The resulting filtered signal can be computed by the 
+:func:`scipy.fftpack.ifft`` function::
 
     >>> main_sig = fftpack.ifft(sig_fft)
 
@@ -256,7 +258,7 @@ The result can be viewed with::
 .. plot:: pyplots/fftpack_signals.py
     :scale: 70
 
-.. note:: **numpy.fft**
+.. topic:: :mod:`numpy.fft`
 
    Numpy also has an implementation of FFT. However, in general the scipy one
    should be preferred, as it uses more efficient underlying implementations.
@@ -291,7 +293,7 @@ The result can be viewed with::
 
    2. Load the image using `plt.imread`.
 
-   3. Find and use the 2-D FFT function in `scipy.fftpack`, and plot the
+   3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
       spectrum (Fourier transform of) the image. Do you have any trouble
       visualising the spectrum? If so, why?
 
@@ -302,13 +304,13 @@ The result can be viewed with::
    5. Apply the inverse Fourier transform to see the resulting image.
 
 
-Optimization and fit: ``scipy.optimize``
-----------------------------------------
+Optimization and fit: :mod:`scipy.optimize`
+-------------------------------------------
 
 Optimization is the problem of finding a numerical solution to a
 minimization or equality.
 
-The ``scipy.optimize`` module provides useful algorithms for function
+The :mod:`scipy.optimize` module provides useful algorithms for function
 minimization (scalar or multi-dimensional), curve fitting and root
 finding. ::
 
@@ -347,7 +349,7 @@ algorithm is a good way of doing this::
     array([-1.30644003])
 
 A possible issue with this approach is that, if the function has local minima
-(is not convex), the algorithm may find these local minima instead of the
+the algorithm may find these local minima instead of the
 global minimum depending on the initial point: ::
 
     >>> optimize.fmin_bfgs(f, 3, disp=0)
@@ -363,7 +365,8 @@ function is evaluated on each point of a given grid: ::
     >>> xmin_global
     array([-1.30641113])
 
-For larger grid sizes, ``brute`` becomes quite slow. ``optimize.anneal``
+For larger grid sizes, :func:`scipy.optimize.brute` becomes quite slow. 
+:func:`scipy.optimize.anneal`
 provides an alternative, using simulated annealing. More efficient algorithms
 for different classes of global optimization problems exist, but this is out of
 the scope of ``scipy``.  Some useful packages for global optimization are
@@ -375,7 +378,7 @@ OpenOpt_, IPOPT_, PyGMO_ and PyEvolve_.
 .. _PyEvolve: http://pyevolve.sourceforge.net/
 
 To find the local minimum, let's constraint the variable to the interval
-``(0, 10)`` using ``optimize.fminbound``: ::
+``(0, 10)`` using :func:`scipy.optimize.fminbound`: ::
 
     >>> xmin_local = optimize.fminbound(f, 0, 10)    # doctest: +ELLIPSIS
     >>> xmin_local
@@ -384,7 +387,7 @@ To find the local minimum, let's constraint the variable to the interval
 **Finding the roots of a scalar function**
 
 To find a root, i.e. a point where ``f(x) = 0``, of the function ``f`` above
-we can use for example ``fsolve``: ::
+we can use for example :func:`scipy.optimize.fsolve`: ::
 
     >>> root = optimize.fsolve(f, 1)  # our initial guess is 1
     >>> root
@@ -413,7 +416,7 @@ function to fit::
     >>> def f2(x, a, b):
     ...     return a*x**2 + b*np.sin(x)
 
-Then we can find ``curve_fit`` to find ``a`` and ``b``: ::
+Then we can use :func:`scipy.optimize.curve_fit` to find ``a`` and ``b``: ::
 
     >>> guess = [2, 2]
     >>> params, params_covariance = optimize.curve_fit(f2, xdata, ydata, guess)
@@ -425,13 +428,16 @@ we put all those resuls together in a single plot:
 
 .. plot:: pyplots/scipy_optimize_example2.py
 
-.. note:: In Scipy >= 0.11 unified interfaces to all minimization and root
-   finding algorithms are available: ``minimize``, ``minimize_scalar`` and
-   ``root``.  They allow comparing various algorithms easily through the
-   ``method`` keyword.
+.. note:: 
+   
+   In Scipy >= 0.11 unified interfaces to all minimization and root
+   finding algorithms are available: :func:`scipy.optimize.minimize`, 
+   :func:`scipy.optimize.minimize_scalar` and
+   :func:`scipy.optimize.root`.  They allow comparing various algorithms 
+   easily through the ``method`` keyword.
 
 You can find algorithms with the same functionalities for multi-dimensional
-problems in ``scipy.optimize``.
+problems in :mod:`scipy.optimize`.
 
 .. topic:: Exercise: Curve fitting of temperature data
    :class: green
@@ -446,7 +452,7 @@ problems in ``scipy.optimize``.
     2. Define a function that can describe min and max temperatures.
        Hint: this function has to have a period of 1 year.
        Hint: include a time offset.
-    3. Fit this function to the data with ``curve_fit``.
+    3. Fit this function to the data with :func:`scipy.optimize.curve_fit`.
     4. Plot the result.  Is the fit reasonable?  If not, why?
     5. Is the time offset for min and max temperatures the same within the fit
        accuracy?
@@ -466,9 +472,10 @@ problems in ``scipy.optimize``.
     Hints:
 
         - Variables can be restricted to ``-2 < x < 2`` and ``-1 < y < 1``.
-        - Use `np.meshgrid` and `plt.imshow` to find visually the regions.
-        - Use ``fmin_bfgs`` or another multi-dimensional minimizer.
-
+        - Use :func:`numpy.meshgrid` and `plt.imshow` to find visually the 
+          regions.
+        - Use :func:`scipy.optimize.fmin_bfgs` or another multi-dimensional
+          minimizer.
 
     How many global minima are there, and what is the function value at those
     points?  What happens for an initial guess of ``(x, y) = (0, 0)``?
@@ -477,12 +484,12 @@ See the summary exercise on :ref:`summary_exercise_optimize` for another, more
 advanced example.
 
 
-Statistics and random numbers: ``scipy.stats``
------------------------------------------------
+Statistics and random numbers: :mod:`scipy.stats`
+-------------------------------------------------
 
-The module `scipy.stats` contains statistical tools and probabilistic
+The module :mod:`scipy.stats` contains statistical tools and probabilistic
 descriptions of random processes. Random number generators for various
-random process can be found in `numpy.random`.
+random process can be found in :mod:`numpy.random`.
 
 Histogram and probability density function
 ...............................................
@@ -582,9 +589,10 @@ The resulting output is composed of:
       have different means.
 
 
-Interpolation: ``scipy.interpolate``
-------------------------------------
-The ``scipy.interpolate`` is useful for fitting a function from experimental
+Interpolation: :mod:`scipy.interpolate`
+----------------------------------------
+
+The :mod:`scipy.interpolate` is useful for fitting a function from experimental
 data and thus evaluating points where no measure exists. The module is based
 on the `FITPACK Fortran subroutines`_ from the netlib_ project.
 
@@ -597,13 +605,14 @@ By imagining experimental data close to a sine function::
     >>> noise = (np.random.random(10)*2 - 1) * 1e-1
     >>> measures = np.sin(2 * np.pi * measured_time) + noise
 
-The ``interp1d`` class can build a linear interpolation function::
+The :class:`scipy.interpolate.interp1d` class can build a linear
+interpolation function::
 
     >>> from scipy.interpolate import interp1d
     >>> linear_interp = interp1d(measured_time, measures)
 
-Then the ``linear_interp`` instance needs to be evaluated at the time of
-interest::
+Then the :obj:`scipy.interpolate.linear_interp` instance needs to be 
+evaluated at the time of interest::
 
     >>> computed_time = np.linspace(0, 1, 50)
     >>> linear_results = linear_interp(computed_time)
@@ -618,16 +627,18 @@ The results are now gathered on the following Matplotlib figure:
 
 .. plot:: pyplots/scipy_interpolation.py
 
-``scipy.interpolate.interp2d`` is similar to ``interp1d``, but for 2-D
-arrays. Note that for the ``interp`` family, the computed time must stay
-within the measured time range. See the summary exercise on
-:ref:`summary_exercise_stat_interp` for a more advance spline interpolation
-example.
+:class:`scipy.interpolate.interp2d` is similar to
+:class:`scipy.interpolate.interp1d`, but for 2-D arrays. Note that for
+the `interp` family, the computed time must stay within the measured
+time range. See the summary exercise on
+:ref:`summary_exercise_stat_interp` for a more advance spline
+interpolation example.
 
 
-Numerical integration: ``scipy.integrate``
+Numerical integration: :mod:`scipy.integrate`
 ------------------------------------------------
-The most generic integration routine is ``scipy.integrate.quad``::
+
+The most generic integration routine is :func:`scipy.integrate.quad`::
 
     >>> from scipy.integrate import quad
     >>> res, err = quad(np.sin, 0, np.pi/2)
@@ -639,8 +650,8 @@ The most generic integration routine is ``scipy.integrate.quad``::
 Others integration schemes are available with ``fixed_quad``,
 ``quadrature``, ``romberg``.
 
-``scipy.integrate`` also features routines for integrating Ordinary
-Differential Equations (ODE). In particular, ``scipy.integrate.odeint``
+:mod:`scipy.integrate` also features routines for integrating Ordinary
+Differential Equations (ODE). In particular, :func:`scipy.integrate.odeint`
 is a general-purpose integrator using LSODA (Livermore Solver for
 Ordinary Differential equations with Automatic method switching
 for stiff and non-stiff problems), see the `ODEPACK Fortran library`_
@@ -692,7 +703,8 @@ The solution ``yvec`` for the trajectory can now be plotted:
   .. plot:: pyplots/odeint_introduction.py
     :scale: 70
 
-Another example with ``odeint`` will be a damped spring-mass oscillator
+Another example with :func:`scipy.integrate.odeint` will be a damped
+spring-mass oscillator
 (2nd order oscillator). The position of a mass attached to a spring obeys
 the 2nd order ODE ``y'' + 2 eps wo  y' + wo^2 y = 0`` with ``wo^2 = k/m``
 with ``k`` the spring constant, ``m`` the mass and ``eps=c/(2 m wo)``
@@ -709,7 +721,7 @@ so the system will be underdamped, because::
     >>> eps < 1
     True
 
-For the ``odeint`` solver the 2nd order equation needs to be transformed in a
+For the :func:`scipy.integrate.odeint` solver the 2nd order equation needs to be transformed in a
 system of two first-order equations for the vector ``Y=(y, y')``.  It will
 be convenient to define ``nu = 2 eps * wo = c / m`` and ``om = wo^2 = k/m``::
 
@@ -736,14 +748,14 @@ Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
 .. _SfePy: http://code.google.com/p/sfepy/
 
 
-Signal processing: ``scipy.signal``
-------------------------------------
+Signal processing: :mod:`scipy.signal`
+---------------------------------------
 
 ::
 
     >>> from scipy import signal
 
-* Detrend: remove linear trend from signal::
+* :func:`scipy.signal.detrend`: remove linear trend from signal::
 
     t = np.linspace(0, 5, 100)
     x = t + np.random.normal(size=100)
@@ -754,7 +766,7 @@ Signal processing: ``scipy.signal``
   .. plot:: pyplots/demo_detrend.py
     :scale: 70
 
-* Resample: resample a signal to `n` points using FFT. ::
+* :func:`scipy.signal.resample`: resample a signal to `n` points using FFT. ::
 
     t = np.linspace(0, 5, 100)
     x = np.sin(t)
@@ -770,14 +782,16 @@ Signal processing: ``scipy.signal``
      Notice how on the side of the window the resampling is less accurate
      and has a rippling effect.
 
-* Signal has many window function: `hamming`, `bartlett`, `blackman`...
+* Signal has many window function: :func:`scipy.signal.hamming`, 
+  :func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...
 
-* Signal has filtering (Gaussian, median filter, Wiener), but we will
+* Signal has filtering (median filter :func:`scipy.signal.medfilt`, 
+  Wiener :func:`scipy.signal.wiener`), but we will
   discuss this in the image paragraph.
 
 
-Image processing: ``scipy.ndimage``
------------------------------------
+Image processing: :mod:`scipy.ndimage`
+------------------------------------------
 
 .. include:: image_processing/image_processing.rst
 

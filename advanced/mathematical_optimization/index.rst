@@ -812,7 +812,6 @@ Synthetic exercices
 .. image:: auto_examples/images/plot_exercise_ill_conditioned_1.png
     :scale: 42%
     :target: auto_examples/plot_exercise_ill_conditioned.html
-    :align: right
 
 .. topic:: **Exercice: A simple (?) quadratic function**
     :class: green
