@@ -1,1 +1,0 @@
-rst2pdf -b0 matplotlib.rst  -o matplotlib_handout.pdf
