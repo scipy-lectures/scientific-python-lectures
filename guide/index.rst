@@ -62,22 +62,13 @@ difficult to read:
 
 
 
-Figures
-=======
+Figures and code examples
+==========================
 
+**We do not check figures in the repository**.
 Any figure must be generated from a python script that needs to be named
 ``plot_xxx.py`` (xxx can be anything of course) and put into the ``examples``
 directory. The generated image will be named from the script name.
-
-.. code-block:: python
-
-   import numpy as np
-   import matplotlib.pyplot as plt
-
-   X = np.linspace(-np.pi,np.pi,100)
-   Y = np.sin(X)
-   plt.plot(X, Y, linewidth=2)
-   plt.show()
 
 .. image::  auto_examples/images/plot_simple.png
    :target: auto_examples/plot_simple.html
@@ -89,6 +80,11 @@ This is the way to include your image and link it to the code:
 
    .. image::  auto_examples/images/plot_simple.png
       :target: auto_examples/plot_simple.html
+
+You can display the corresponding code using the ``literal-include``
+directive.
+
+.. literal-include:: examples/plot_simple.py
 
 
 Admonitions

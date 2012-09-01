@@ -74,7 +74,7 @@ Python Scientific Lecture Notes
         font-weight: bold;
         background-color: transparent;
         margin-bottom: 0;
-        margin-left: 3em;
+        margin-left: 1.5em;
         display:inline;
     }
 
@@ -87,6 +87,10 @@ Python Scientific Lecture Notes
         display:inline;
         font-size: 100% ;
         margin-bottom: 0;
+    }
+
+    div.sidebar {
+        width: 25ex ;
     }
 
   </style>
@@ -114,8 +118,9 @@ Python Scientific Lecture Notes
             :maxdepth: 1
 
             AUTHORS.rst
-            LICENSE.rst
             CHANGES.rst
+            README.rst
+            LICENSE.rst
 
 _____
 

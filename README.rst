@@ -1,16 +1,15 @@
-Contents
-=========
-
-This repository gathers some lecture notes on the scientific Python ecosystem.
-They have been initially used in the intro (and some advanced) tutorials at
-Euroscipy 2010, but have now grown to a full course of scientific
-computing with Python.
+This repository gathers some lecture notes on the scientific Python
+ecosystem that can be used for a full course of scientific computing with
+Python.
 
 These documents are written with the rest markup language (.rst
 extension) and built using Sphinx: http://sphinx.pocoo.org/.
 
+Modifying
+==========
+
 Reusing and distributing
-=========================
+-------------------------
 
 As stated in the LICENSE.txt file, this material comes with no strings
 attached. Feel free to reuse and modify for your own teaching purposes.
@@ -20,7 +19,7 @@ thus we encourage people to contribute back changes. These will be
 reviewed and edited by the original authors.
 
 Building instructions
-======================
+----------------------
 
 To generate the html output for on-screen display, Type::
 
@@ -28,16 +27,19 @@ To generate the html output for on-screen display, Type::
 
 the generated html files can be found in ``build/html``
 
+The first build takes a long time, but information is cached and
+subsequent builds will be faster.
+
 To generate the pdf file for printing::
 
     make pdf
 
-The pdf builder is a pointy and you might have some TeX errors. Tweaking
+The pdf builder is a bit pointy and you might have some TeX errors. Tweaking
 the layout in the rst files is usually enough to work around these
 problems.
 
 Requirements
-------------
+............
 
 *probably incomplete*
 
@@ -49,10 +51,10 @@ Requirements
 * scikit-learn (>= 0.8)
 
 Contributing
-=============
+-------------
 
 Editorial policy
------------------
+..................
 
 The goal of this material is to provide a concise text useful to
 learning the main features of the scipy ecosystem. If you want
@@ -78,7 +80,7 @@ people's attention span does not go much beyond an hour or two, whether
 they are reading a tutorial or following it in a class room.
 
 Modifying
----------
+.........
 
 The easiest way to make your own version of this teaching material
 is to fork it under Github, and use the git version control system to
@@ -92,7 +94,7 @@ Please refrain from modifying the Makefile unless it is absolutely
 necessary.
 
 Figures and code examples
--------------------------
+..........................
 
 The figure should be generated from Python source files. The policy is
 to create an ``examples`` directory, in which you put the corresponding
@@ -105,3 +107,11 @@ should be included in the same directory. NB: the code to provide this style of
 plot inclusion was adopted from the scikits.learn project and can be found in
 ``sphinxext/gen_rst.py``.
 
+.. topic:: Contributing guide and chapter example
+
+   The directory `guide` contains an example chapter with specific
+   instructions on how to contribute:
+
+   .. toctree::
+
+      guide/index.rst
