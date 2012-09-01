@@ -35,6 +35,41 @@ and you want them to be quite interactive or your audience might just fall
 asleep long before you've finished talking...
 
 
+
+Figures and code examples
+==========================
+
+**We do not check figures in the repository**.
+Any figure must be generated from a python script that needs to be named
+``plot_xxx.py`` (xxx can be anything of course) and put into the ``examples``
+directory. The generated image will be named from the script name.
+
+.. image::  auto_examples/images/plot_simple.png
+   :target: auto_examples/plot_simple.html
+
+
+This is the way to include your image and link it to the code:
+
+.. code-block:: rst
+
+   .. image::  auto_examples/images/plot_simple.png
+      :target: auto_examples/plot_simple.html
+
+You can display the corresponding code using the ``literal-include``
+directive.
+
+.. literal-include:: examples/plot_simple.py
+
+
+Linking to package documentations
+==================================
+
+The goal of the scipy lecture notes is not to duplicate or replace the
+documentation of the various packages. You should link as much as
+possible to the original documentation. For this purpose, you can use the
+`:ref:section` sphinx directive, as well as `:func:function_name`, e.g.
+:func:`numpy.var`. Sphinx will find the links on the web for you.
+
 Chapter, section, subsection, paragraph
 =======================================
 
@@ -60,31 +95,6 @@ difficult to read:
 
    And some text.
 
-
-
-Figures and code examples
-==========================
-
-**We do not check figures in the repository**.
-Any figure must be generated from a python script that needs to be named
-``plot_xxx.py`` (xxx can be anything of course) and put into the ``examples``
-directory. The generated image will be named from the script name.
-
-.. image::  auto_examples/images/plot_simple.png
-   :target: auto_examples/plot_simple.html
-
-
-This is the way to include your image and link it to the code:
-
-.. code-block:: rst
-
-   .. image::  auto_examples/images/plot_simple.png
-      :target: auto_examples/plot_simple.html
-
-You can display the corresponding code using the ``literal-include``
-directive.
-
-.. literal-include:: examples/plot_simple.py
 
 
 Admonitions
