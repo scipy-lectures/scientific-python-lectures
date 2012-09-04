@@ -459,8 +459,8 @@ Before the decorator syntax was implemented (:pep:`318`), it was
 possible to achieve the same effect by assigning the function or class
 object to a temporary variable and then invoking the decorator
 explicitly and then assigning the return value to the name of the
-function. This sound like more typing, and it is, and also the name of
-the decorated function dubbling as a temporary variable must be used
+function. This sounds like more typing, and it is, and also the name of
+the decorated function doubling as a temporary variable must be used
 at least three times, which is prone to errors. Nevertheless, the
 example above is equivalent to::
 
@@ -493,7 +493,7 @@ decorator can exploit the fact that function and class objects are
 mutable and add attributes, e.g. add a docstring to a class. A
 decorator might do something useful even without modifying the object,
 for example register the decorated class in a global registry. In the
-second case, virtually anything is possible: when a something
+second case, virtually anything is possible: when something
 different is substituted for the original function or class, the new
 object can be completely different. Nevertheless, such behaviour is
 not the purpose of decorators: they are intended to tweak the
@@ -692,7 +692,7 @@ itself cannot be set as an attribute. This means that
 confusing for the user of the function. An effective but ugly way
 around this problem is to create the wrapper dynamically, using
 ``eval``. This can be automated by using the external ``decorator``
-module. It provides support the ``decorator`` decorator, which takes a
+module. It provides support for the ``decorator`` decorator, which takes a
 wrapper and turns it into a decorator which preserves the function
 signature.
 
