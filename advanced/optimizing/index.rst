@@ -152,7 +152,7 @@ source file, we decorate a few functions that we want to inspect with
 	results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
-<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches `-`
+<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches `-l`
 and `-v`::
 
     ~ $ kernprof.py -l -v demo.py
