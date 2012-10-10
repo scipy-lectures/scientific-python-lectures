@@ -117,6 +117,14 @@ exclude_trees = ['intro/image_processing']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# Our substitutions
+rst_epilog = """
+
+.. |clear-floats| raw:: html
+
+    <div style="clear: both"></div>
+
+"""
 
 # Options for HTML output
 # -----------------------

@@ -171,9 +171,7 @@ that can be combined to obtain a scientific computing environment:
 * **Matplotlib** : 2-D visualization, "publication-ready" plots
   http://matplotlib.sourceforge.net/
 
-  .. raw:: html
-
-   <div style="clear: both"></div>
+  |clear-floats|
 
   .. image:: example_surface_from_irregular_data.jpg
         :scale: 60
@@ -182,10 +180,8 @@ that can be combined to obtain a scientific computing environment:
 * **Mayavi** : 3-D visualization
   http://code.enthought.com/projects/mayavi/
   
+  |clear-floats|
 
-.. raw:: html
-
-   <div style="clear: both"></div>
 
 The interactive workflow: IPython and a text editor 
 -----------------------------------------------------

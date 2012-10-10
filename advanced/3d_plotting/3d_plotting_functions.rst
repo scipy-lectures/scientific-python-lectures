@@ -15,6 +15,8 @@ Points
     :start-after: ### begin points3d example
     :end-before: ### end points3d example
 
+|clear-floats|
+
 .. image:: examples/plot3d.png
     :align: right
     :scale: 60
@@ -26,6 +28,8 @@ Lines
     :start-after: ### begin plot3d example
     :end-before: ### end plot3d example
 
+|clear-floats|
+
 .. image:: examples/surf.png
     :align: right
     :scale: 60
@@ -36,6 +40,8 @@ Elevation surface
 .. literalinclude:: examples/generate_figures.py
     :start-after: ### begin surf example
     :end-before: ### end surf example
+
+|clear-floats|
 
 .. image:: examples/mesh.png
     :align: right
