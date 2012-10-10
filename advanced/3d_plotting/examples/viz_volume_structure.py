@@ -16,9 +16,9 @@ src = mlab.pipeline.scalar_field(x, y, z, data)
 
 mlab.pipeline.surface(src, opacity=0.4)
 
-src2 = mlab.pipeline.scalar_field(x[::9, ::9, ::9], 
+src2 = mlab.pipeline.scalar_field(x[::9, ::9, ::9],
                                   y[::9, ::9, ::9],
-                                  z[::9, ::9, ::9], 
+                                  z[::9, ::9, ::9],
                                   data[::9, ::9, ::9])
 mlab.pipeline.surface(mlab.pipeline.extract_edges(src2), color=(0, 0, 0))
 mlab.pipeline.glyph(src2, mode='cube', scale_factor=0.4, scale_mode='none')
