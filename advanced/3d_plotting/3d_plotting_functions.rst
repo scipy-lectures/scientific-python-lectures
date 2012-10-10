@@ -2,11 +2,12 @@
 =======================
 
 The :mod:`mayavi.mlab` module provides simple plotting functions to apply
- to numpy arrays.
- 
+to numpy arrays. Try them using in IPython, by starting IPython with the
+switch ``--gui=wx``.
+
 .. image:: examples/points3d.png
     :align: right
-    :scale: 60
+    :scale: 50
 
 Points
 -------
@@ -19,7 +20,7 @@ Points
 
 .. image:: examples/plot3d.png
     :align: right
-    :scale: 60
+    :scale: 50
 
 Lines
 ------
@@ -32,7 +33,7 @@ Lines
 
 .. image:: examples/surf.png
     :align: right
-    :scale: 60
+    :scale: 50
 
 Elevation surface
 -------------------
@@ -45,7 +46,7 @@ Elevation surface
 
 .. image:: examples/mesh.png
     :align: right
-    :scale: 60
+    :scale: 50
 
 Arbitrary regular mesh
 -----------------------
@@ -57,7 +58,7 @@ Arbitrary regular mesh
 .. note:: 
 
     A surface is defined by points **connected** to form triangles or
-    polygones. In `mlab.func` and `mlab.mesh`, the connectivity is
+    polygones. In `mlab.surf` and `mlab.mesh`, the connectivity is
     implicity given by the layout of the arrays. See also
     `mlab.triangular_mesh`.
 
@@ -68,7 +69,7 @@ connectivity information**
 
 .. image:: examples/contour3d.png
     :align: right
-    :scale: 60
+    :scale: 50
 
 Volumetric data
 ----------------
@@ -77,10 +78,11 @@ Volumetric data
     :start-after: ### begin contour3d example
     :end-before: ### end contour3d example
 
-**This function works with a regular orthogonal grid:**
+.. image:: examples/viz_volume_structure.png
+    :align: right
+    :scale: 50
 
-    .. image:: examples/viz_volume_structure.png
-	:align: center
-	:scale: 70
+**This function works with a regular orthogonal grid:** the `value` array
+is a 3D array that gives the shape of the grid.
 
 

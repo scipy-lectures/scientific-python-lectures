@@ -124,6 +124,10 @@ rst_epilog = """
 
     <div style="clear: both"></div>
 
+.. always clear floats at the bottom to avoid having stick out in the footer
+
+|clear-floats|
+
 """
 
 # Options for HTML output
