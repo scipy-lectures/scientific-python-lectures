@@ -20,9 +20,7 @@ __________
 .. toctree::
     :maxdepth: 2
 
-    simple_example.rst
-    3d_plotting_functions.rst
-    figures_and_decorations.rst
+    mlab_scripting_interface.rst
     interaction.rst
 
 
