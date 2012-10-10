@@ -8,8 +8,7 @@
 .. only:: html
 
     .. image:: mayavi-logo.png
-
-__________
+        :align: right
 
 
 .. raw:: html
