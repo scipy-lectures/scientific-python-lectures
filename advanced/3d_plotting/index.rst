@@ -10,9 +10,10 @@
     .. image:: mayavi-logo.png
         :align: right
 
-
 .. raw:: html
     
+    </br>
+    </br>
     <b>Layout of this section</b>
 
 
