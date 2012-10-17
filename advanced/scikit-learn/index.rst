@@ -381,7 +381,7 @@ object API and several additional features, including smart initialization.)
     >>> lena = misc.lena().astype(np.float32)
     >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
     >>> k_means = cluster.KMeans(n_clusters=5)
-    >>> k_means.fit(X) # doctest: +ELLIPSIS
+    >>> k_means.fit(X)
     KMeans(...)
     >>> values = k_means.cluster_centers_.squeeze()
     >>> labels = k_means.labels_
