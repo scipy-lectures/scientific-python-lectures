@@ -377,16 +377,16 @@ object API and several additional features, including smart initialization.)
     to posterize an image (conversion of a continuous gradation of
     tone to several regions of fewer tones)::
 
-    >>> from scipy import misc
-    >>> lena = misc.lena().astype(np.float32)
-    >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
-    >>> k_means = cluster.KMeans(n_clusters=5)
-    >>> k_means.fit(X) # doctest: +ELLIPSIS
-    KMeans(...)
-    >>> values = k_means.cluster_centers_.squeeze()
-    >>> labels = k_means.labels_
-    >>> lena_compressed = np.choose(labels, values)
-    >>> lena_compressed.shape = lena.shape
+     >>> from scipy import misc
+     >>> lena = misc.lena().astype(np.float32)
+     >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
+     >>> k_means = cluster.KMeans(n_clusters=5)
+     >>> k_means.fit(X) # doctest: +ELLIPSIS
+     KMeans(...)
+     >>> values = k_means.cluster_centers_.squeeze()
+     >>> labels = k_means.labels_
+     >>> lena_compressed = np.choose(labels, values)
+     >>> lena_compressed.shape = lena.shape
 
     .. list-table::
       :class: centered
