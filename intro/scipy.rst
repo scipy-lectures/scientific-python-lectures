@@ -21,7 +21,7 @@ Scipy : high-level scientific computing
     routines in Python; it is meant to operate efficiently on ``numpy``
     arrays, so that numpy and scipy work hand in hand.
 
-    Before implementing a routine, if is worth checking if the desired
+    Before implementing a routine, it is worth checking if the desired
     data processing is not already implemented in Scipy. As
     non-professional programmers, scientists often tend to **re-invent the
     wheel**, which leads to buggy, non-optimal, difficult-to-share and
@@ -152,7 +152,7 @@ LAPACK).
     ...
     ValueError: expected square matrix
 
-* The :func:`scipy.linalg.inv`` function computes the inverse of a square 
+* The :func:`scipy.linalg.inv` function computes the inverse of a square 
   matrix::
 
     >>> arr = np.array([[1, 2],
