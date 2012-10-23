@@ -82,6 +82,7 @@ Useful when you have a large program to profile, for example the
 
 .. literalinclude:: demo.py
 
+To run it, you also need to download the :download:`ica module <ica.py>`.
 In IPython we can time the script:
 
 .. sourcecode:: ipython
