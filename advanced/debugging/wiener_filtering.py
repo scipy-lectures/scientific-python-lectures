@@ -48,7 +48,7 @@ cut = (slice(128, -128), slice(128, -128))
 
 np.random.seed(7)
 
-lena = sp.lena()
+lena = sp.misc.lena()
 noisy_lena = lena + 20*np.random.randint(3, size=lena.shape) - 30
 
 pl.matshow(lena[cut], cmap=pl.cm.gray)
