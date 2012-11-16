@@ -1,4 +1,3 @@
-
 .. _matplotlib:
 
 Matplotlib
@@ -537,7 +536,7 @@ A plot with two rows and one column is created with
     :width: 25%
 
 If you want two plots side by side, you create one row and two columns
-with ``subplot(121)`` and ``subplot(112)``. The result looks like this:
+with ``subplot(121)`` and ``subplot(122)``. The result looks like this:
 
 .. raw:: pdf
 
