@@ -102,3 +102,28 @@ table.hlist td {
     width: 50%;
     vertical-align: top;
 }
+
+/* Admonition */
+
+div.admonition {
+    line-height: 1.5em;
+    margin: 0;
+    padding:          3px 5px;
+    width:            260px;
+    border:     1px solid #cccccc;
+    background-color: #FFD;	
+}
+div.admonition p {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+div.admonition ul {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+div.admonition .first {
+    font-weight: bold;
+}
+
+
