@@ -4,7 +4,10 @@ Matplotlib: plotting
 
 :authors: Nicolas Rougier, Mike Müller, Gaël Varoquaux
 
-Many thanks to **Bill Wing** and **Christoph Deil** for review and corrections.
+.. sidebar:: **Thanks**
+
+    Many thanks to **Bill Wing** and **Christoph Deil** for review and
+    corrections.
 
 .. contents:: Chapters contents
    :local:
