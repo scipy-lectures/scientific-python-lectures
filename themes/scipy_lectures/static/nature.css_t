@@ -126,4 +126,12 @@ div.admonition .first {
     font-weight: bold;
 }
 
+div.sidebar ul {
+    padding-top: 0px;
+    margin-top: 0px;
+    margin-bottom: 7px;
+}
+div.sidebar .first {
+    margin-bottom: 5px;
+}
 
