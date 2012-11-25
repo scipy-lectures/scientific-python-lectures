@@ -8,7 +8,7 @@ Many thanks to **Bill Wing** and **Christoph Deil** for review and corrections.
 
 .. contents:: Chapters contents
    :local:
-   :depth: 4
+   :depth: 2
 
 Introduction
 ============
@@ -47,10 +47,10 @@ First step is to get the data for the sine and cosine functions:
 
 ::
 
-   from pylab import *
+   import numpy as np
 
-   X = np.linspace(-np.pi, np.pi, 256,endpoint=True)
-   C,S = np.cos(X), np.sin(X)
+   X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+   C, S = np.cos(X), np.sin(X)
 
 
 X is now a numpy array with 256 values ranging from -π to +π (included). C is
@@ -131,7 +131,7 @@ to explore their affect (see `Line properties`_ and `Line styles`_ below). ::
    import pylab as pl
    import numpy as np
 
-   # Create a new figure of size 8x6 points, using 80 dots per inch
+   # Create a figure of size 8x6 points, 80 dots per inch
    pl.figure(figsize=(8, 6), dpi=80)
 
    # Create a new subplot from a grid of 1x1
@@ -140,14 +140,14 @@ to explore their affect (see `Line properties`_ and `Line styles`_ below). ::
    X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
    C, S = np.cos(X), np.sin(X)
 
-   # Plot cosine using blue color with a continuous line of width 1 (pixels)
+   # Plot cosine with a blue continuous line of width 1 (pixels)
    pl.plot(X, C, color="blue", linewidth=1.0, linestyle="-")
 
-   # Plot sine using green color with a continuous line of width 1 (pixels)
+   # Plot sine with a green continuous line of width 1 (pixels)
    pl.plot(X, S, color="green", linewidth=1.0, linestyle="-")
 
    # Set x limits
-   pl.xlim(-4.0,4.0)
+   pl.xlim(-4.0, 4.0)
 
    # Set x ticks
    pl.xticks(np.linspace(-4, 4, 9, endpoint=True))
@@ -595,16 +595,12 @@ Regular Plots
 Starting from the code below, try to reproduce the graphic on the right taking
 care of filled areas::
 
-   import pylab as pl
-   import numpy as np
-
    n = 256
    X = np.linspace(-np.pi, np.pi, n, endpoint=True)
    Y = np.sin(2 * X)
 
    pl.plot(X, Y + 1, color='blue', alpha=1.00)
    pl.plot(X, Y - 1, color='blue', alpha=1.00)
-   pl.show()
 
 Click on the figure for solution.
 
@@ -627,14 +623,11 @@ care of marker size, color and transparency.
 
 ::
 
-   from pylab import *
-
    n = 1024
    X = np.random.normal(0,1,n)
    Y = np.random.normal(0,1,n)
 
-   scatter(X,Y)
-   show()
+   pl.scatter(X,Y)
 
 Click on figure for solution.
 
@@ -657,9 +650,6 @@ adding labels for red bars.
 
 ::
 
-   import pylab as pl
-   import numpy as np
-
    n = 12
    X = np.arange(n)
    Y1 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
@@ -672,7 +662,6 @@ adding labels for red bars.
        pl.text(x + 0.4, y + 0.05, '%.2f' % y, ha='center', va='bottom')
 
    pl.ylim(-1.25, +1.25)
-   pl.show()
 
 Click on figure for solution.
 
@@ -697,9 +686,6 @@ care of the colormap (see `Colormaps`_ below).
 
 ::
 
-   import pylab as pl
-   import numpy as np
-
    def f(x,y):
         return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 -y ** 2)
 
@@ -710,7 +696,6 @@ care of the colormap (see `Colormaps`_ below).
 
    pl.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap='jet')
    C = pl.contour(X, Y, f(X, Y), 8, colors='black', linewidth=.5)
-   pl.show()
 
 Click on figure for solution.
 
@@ -737,9 +722,6 @@ care of colormap, image interpolation and origin.
 
 ::
 
-   import pylab as pl
-   import numpy as np
-
    def f(x, y):
        return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 - y ** 2)
 
@@ -748,7 +730,6 @@ care of colormap, image interpolation and origin.
    y = np.linspace(-3, 3, 3 * n)
    X, Y = np.meshgrid(x, y)
    pl.imshow(f(X, Y))
-   pl.show()
 
 Click on the figure for the solution.
 
@@ -771,12 +752,8 @@ care of colors and slices size.
 
 ::
 
-   import pylab as pl
-   import numpy as np
-
    Z = np.random.uniform(0, 1, 20)
    pl.pie(Z)
-   pl.show()
 
 Click on the figure for the solution.
 
@@ -800,12 +777,9 @@ care of colors and orientations.
 
 ::
 
-   import pylab as pl
-
    n = 8
    X, Y = np.mgrid[0:n, 0:n]
    pl.quiver(X, Y)
-   pl.show()
 
 Click on figure for solution.
 
@@ -824,15 +798,12 @@ care of line styles.
 
 ::
 
-   import pylab as pl
-
    axes = pl.gca()
    axes.set_xlim(0, 4)
    axes.set_ylim(0, 3)
    axes.set_xticklabels([])
    axes.set_yticklabels([])
 
-   pl.show()
 
 Click on figure for solution.
 
@@ -854,13 +825,9 @@ Starting from the code below, try to reproduce the graphic on the right.
 
 ::
 
-   import pylab as pl
-
    pl.subplot(2, 2, 1)
    pl.subplot(2, 2, 3)
    pl.subplot(2, 2, 4)
-
-   pl.show()
 
 Click on figure for solution.
 
@@ -883,10 +850,7 @@ Starting from the code below, try to reproduce the graphic on the right.
 
 ::
 
-   import pylab as pl
-   import numpy as np
-
-   axes([0, 0, 1, 1])
+   pl.axes([0, 0, 1, 1])
 
    N = 20
    theta = np.arange(0., 2 * np.pi, 2 * np.pi / N)
@@ -895,10 +859,8 @@ Starting from the code below, try to reproduce the graphic on the right.
    bars = pl.bar(theta, radii, width=width, bottom=0.0)
 
    for r, bar in zip(radii, bars):
-       bar.set_facecolor( cm.jet(r/10.))
+       bar.set_facecolor(cm.jet(r / 10.))
        bar.set_alpha(0.5)
-
-   pl.show()
 
 Click on figure for solution.
 
@@ -922,8 +884,6 @@ Starting from the code below, try to reproduce the graphic on the right.
 
 ::
 
-   import pylab as pl
-   import numpy as np
    from mpl_toolkits.mplot3d import Axes3D
 
    fig = pl.figure()
@@ -935,8 +895,6 @@ Starting from the code below, try to reproduce the graphic on the right.
    Z = np.sin(R)
 
    ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap='hot')
-
-   pl.show()
 
 Click on figure for solution.
 
