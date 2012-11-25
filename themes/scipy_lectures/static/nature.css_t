@@ -135,3 +135,8 @@ div.sidebar .first {
     margin-bottom: 5px;
 }
 
+div.seealso {
+    background-color: #FFX;
+    border: 1px solid #FF6;
+    width:  100%;
+}
