@@ -23,6 +23,11 @@ div.body h1, div.body h2 {
     font-weight: bold;
 }
 
+/* clear both after section titles */
+div.body h1, div.body h2, div.body h3, div.body h4 {
+    clear: both;
+}
+
 /* alternating colors in table rows */
 table.docutils tr:nth-child(even) {
     background-color: #F3F3FF;
@@ -93,3 +98,7 @@ li.toctree-l3 {
     font-weight: normal;
     }
  
+table.hlist td {
+    width: 50%;
+    vertical-align: top;
+}
