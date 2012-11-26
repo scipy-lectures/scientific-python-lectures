@@ -1,6 +1,19 @@
 What's new
 ===========
 
+Release 2012.23 (26 Nov 2012)
+-----------------------------
+
+This release integrates the changes written for the Euroscipy conference:
+
+* Matplotlib chapter completely redone (Nicolas Rougier, Gaël Varoquaux)
+
+* New advanced chapter on mathematical optimization (Gaël Varoquaux)
+
+* Mayavi chapter redone (Gaël Varoquaux)
+
+* Front page layout slightly improved: folding TOC (Gaël Varoquaux)
+
 Release 2012.2 (22 Jun 2012)
 ----------------------------
 

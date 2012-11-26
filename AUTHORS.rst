@@ -34,6 +34,8 @@ Listed by alphabetical order.
 
 - Didrik Pinte
 
+- Nicolas Rougier
+
 - Gaël Varoquaux
 
 - Pauli Virtanen
@@ -45,11 +47,14 @@ Additional Contributions
 
 Fixes:
 
-- egens
+- Akihiro Uchida
 
 - Corey Farwell
 
+- egens
+
+- Lars Buitinck
+
 - Olivier Verdier
 
-- Akihiro Uchida
-
+- Virgile Fritsch
