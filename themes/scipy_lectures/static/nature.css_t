@@ -105,7 +105,7 @@ table.hlist td {
 
 /* Admonition */
 
-div.admonition {
+div.hint {
     line-height: 1.5em;
     margin: 0;
     padding:          3px 5px;
@@ -135,8 +135,4 @@ div.sidebar .first {
     margin-bottom: 5px;
 }
 
-div.seealso {
-    background-color: #FFX;
-    border: 1px solid #FF6;
-    width:  100%;
-}
+

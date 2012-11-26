@@ -92,7 +92,7 @@ Using defaults
    :scale: 35
    :target: auto_examples/plot_exercice_1.html
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `plot tutorial <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html>`_
    * `plot() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot>`_
@@ -124,7 +124,7 @@ Instantiating defaults
    :scale: 35
    :target: auto_examples/plot_exercice_2.html
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    *  `Customizing matplotlib <http://matplotlib.sourceforge.net/users/customizing.html>`_
 
@@ -178,7 +178,7 @@ Changing colors and line widths
    :scale: 35
    :target: auto_examples/plot_exercice_3.html
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `Controlling line properties <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html#controlling-line-properties>`_
    * `Line API <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.lines.Line2D>`_
@@ -202,7 +202,7 @@ Setting limits
    :scale: 35
    :target: auto_examples/plot_exercice_4.html
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `xlim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
    * `ylim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
@@ -228,7 +228,7 @@ Setting ticks
    :scale: 35
    :target: auto_examples/plot_exercice_5.html
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `xticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
    * `yticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
@@ -258,7 +258,7 @@ Setting tick labels
    :target: auto_examples/plot_exercice_6.html
 
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `Working with text <http://matplotlib.sourceforge.net/users/index_text.html>`_
    * `xticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
@@ -294,7 +294,7 @@ Moving spines
    :target: auto_examples/plot_exercice_7.html
 
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `Spines <http://matplotlib.sourceforge.net/api/spines_api.html#matplotlib.spines>`_
    * `Axis container <http://matplotlib.sourceforge.net/users/artists.html#axis-container>`_
@@ -330,7 +330,7 @@ Adding a legend
    :target: auto_examples/plot_exercice_8.html
 
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `Legend guide <http://matplotlib.sourceforge.net/users/legend_guide.html>`_
    * `legend() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.legend>`_
@@ -361,7 +361,7 @@ Annotate some points
    :target: auto_examples/plot_exercice_9.html
 
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `Annotating axis <http://matplotlib.sourceforge.net/users/annotations_guide.html>`_
    * `annotate() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
@@ -404,7 +404,7 @@ Devil is in the details
    :scale: 35
    :target: auto_examples/plot_exercice_10_1.html
 
-.. admonition:: Documentation
+.. hint:: Documentation
 
    * `Artists <http://matplotlib.sourceforge.net/api/artist_api.html>`_
    * `BBox <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
@@ -591,7 +591,7 @@ Regular Plots
    :scale: 35
    :target: auto_examples/plot_plot_ex.html
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You need to use the `fill_between
    <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_
@@ -618,7 +618,7 @@ Scatter Plots
    :scale: 35
    :target: auto_examples/plot_scatter_ex.html
 
-.. admonition:: Hints
+.. hint:: Hints
 
    Color is given by angle of (X,Y).
 
@@ -645,7 +645,7 @@ Bar Plots
    :scale: 35
    :target: auto_examples/plot_bar_ex.html
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You need to take care of text alignment.
 
@@ -680,7 +680,7 @@ Contour Plots
    :target: auto_examples/plot_contour_ex.html
 
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You need to use the `clabel
    <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clabel>`_
@@ -715,7 +715,7 @@ Imshow
    :target: auto_examples/plot_imshow_ex.html
 
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You need to take care of the ``origin`` of the image in the imshow command and
    use a `colorbar
@@ -748,7 +748,7 @@ Pie Charts
    :target: auto_examples/plot_pie_ex.html
 
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You need to modify Z.
 
@@ -773,7 +773,7 @@ Quiver Plots
    :target: auto_examples/plot_quiver_ex.html
 
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You need to draw arrows twice.
 
@@ -821,7 +821,7 @@ Multi Plots
    :scale: 35
    :target: auto_examples/plot_multiplot_ex.html
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You can use several subplots with different partition.
 
@@ -846,7 +846,7 @@ Polar Axis
    :target: auto_examples/plot_polar_ex.html
 
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You only need to modify the ``axes`` line
 
@@ -879,7 +879,7 @@ Click on figure for solution.
    :target: auto_examples/plot_plot3d_ex.html
 
 
-.. admonition:: Hints
+.. hint:: Hints
 
    You need to use `contourf
    <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
@@ -903,7 +903,7 @@ Starting from the code below, try to reproduce the graphic on the right.
 
 Click on figure for solution.
 
-
+.. seealso:: :ref:`mayavi-label`
 
 Text
 ----
@@ -915,7 +915,7 @@ Text
    :target: auto_examples/plot_text_ex.html
 
 
-.. admonition:: Hints
+.. hint:: Hints
 
    Have a look at the `matplotlib logo
    <http://matplotlib.sourceforge.net/examples/api/logo2.html>`_.
