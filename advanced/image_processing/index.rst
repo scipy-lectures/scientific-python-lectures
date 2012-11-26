@@ -121,7 +121,7 @@ Displaying images
 Use ``matplotlib`` and ``imshow`` to display an image inside a
 ``matplotlib figure``::
 
-    >>> l = scipy.lena()
+    >>> l = scipy.misc.lena()
     >>> import matplotlib.pyplot as plt
     >>> plt.imshow(l, cmap=plt.cm.gray)
     <matplotlib.image.AxesImage object at 0x3c7f710>
