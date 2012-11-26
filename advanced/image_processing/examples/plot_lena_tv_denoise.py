@@ -1,8 +1,7 @@
 import numpy as np
 import scipy
 import matplotlib.pyplot as plt
-# from scikits.image.filter import tv_denoise
-from tv_denoise import tv_denoise
+from skimage.filter import tv_denoise
 
 l = scipy.misc.lena()
 l = l[230:290, 220:320]
