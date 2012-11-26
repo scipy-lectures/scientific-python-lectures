@@ -1,7 +1,7 @@
 What's new
 ===========
 
-Release 2012.23 (26 Nov 2012)
+Release 2012.3 (26 Nov 2012)
 -----------------------------
 
 This release integrates the changes written for the Euroscipy conference:
