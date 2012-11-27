@@ -100,9 +100,7 @@ Using defaults
 Matplotlib comes with a set of default settings that allow customizing all
 kinds of properties. You can control the defaults of almost every property in
 matplotlib: figure size and dpi, line width, color and style, axes, axis and
-grid properties, text and font properties and so on. While matplotlib defaults
-are rather good in most cases, you may want to modify some properties for
-specific cases. ::
+grid properties, text and font properties and so on. ::
 
    import pylab as pl
    import numpy as np
@@ -546,40 +544,40 @@ Other Types of Plots: examples and exercises
 =============================================
 
 .. image:: auto_examples/images/plot_plot_1.png
-   :scale: 38
+   :scale: 39
    :target: `Regular Plots`_
 .. image:: auto_examples/images/plot_scatter_1.png
-   :scale: 38
+   :scale: 39
    :target: `Scatter Plots`_
 .. image:: auto_examples/images/plot_bar_1.png
-   :scale: 38
+   :scale: 39
    :target: `Bar Plots`_
 .. image:: auto_examples/images/plot_contour_1.png
-   :scale: 38
+   :scale: 39
    :target: `Contour Plots`_
 .. image:: auto_examples/images/plot_imshow_1.png
-   :scale: 38
+   :scale: 39
    :target: `Imshow`_
 .. image:: auto_examples/images/plot_quiver_1.png
-   :scale: 38
+   :scale: 39
    :target: `Quiver Plots`_
 .. image:: auto_examples/images/plot_pie_1.png
-   :scale: 38
+   :scale: 39
    :target: `Pie Charts`_
 .. image:: auto_examples/images/plot_grid_1.png
-   :scale: 38
+   :scale: 39
    :target: `Grids`_
 .. image:: auto_examples/images/plot_multiplot_1.png
-   :scale: 38
+   :scale: 39
    :target: `Multi Plots`_
 .. image:: auto_examples/images/plot_polar_1.png
-   :scale: 38
+   :scale: 39
    :target: `Polar Axis`_
 .. image:: auto_examples/images/plot_plot3d_1.png
-   :scale: 38
+   :scale: 39
    :target: `3D Plots`_
 .. image:: auto_examples/images/plot_text_1.png
-   :scale: 38
+   :scale: 39
    :target: `Text`_
 
 
