@@ -117,6 +117,18 @@ exclude_trees = ['intro/image_processing']
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
+# Monkey-patch sphinx to set the lineseparator option of pygment, to
+# have indented line wrapping
+from pygments import formatters
+
+class MyHtmlFormatter(formatters.HtmlFormatter):
+    def __init__(self, **options):
+        options['lineseparator'] = '\n<div class="newline"></div>'
+        formatters.HtmlFormatter.__init__(self, **options)
+
+from sphinx import highlighting
+highlighting.PygmentsBridge.html_formatter = MyHtmlFormatter
+
 # Our substitutions
 rst_epilog = """
 

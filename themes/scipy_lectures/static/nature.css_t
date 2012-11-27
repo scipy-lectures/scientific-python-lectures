@@ -28,6 +28,34 @@ div.body h1, div.body h2, div.body h3, div.body h4 {
     clear: both;
 }
 
+/* pre */
+div.body pre {
+    font-weight: 600;
+    font-family: "Droid Sans Mono", "Liberation Mono", Courier, monospace;
+    color: black;
+    margin-top: 3px;
+    /* The following lines ensure that no horizontal scrolling is
+     * necessary to see code lines */
+    overflow: visible;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+    /* Hack to have indented line wraps */
+    padding-left: 3.6em;
+    text-indent: -3.5em;
+}
+/* Hack to have indented line wraps */
+pre div.newline {
+    margin-right: -3.5em;
+    display: inline;
+}
+
+
+div.body p {
+    margin-bottom : .3em;
+    margin-top : 1.3em;
+}
+
+
 /* alternating colors in table rows */
 table.docutils tr:nth-child(even) {
     background-color: #F3F3FF;
@@ -42,6 +70,7 @@ table.docutils tr {
     border-color: #AAAAAA;
 }
 
+/* Content div */
 div.contents {
       background-color: #FFFFF6;
 }
@@ -70,6 +99,7 @@ div.contents li li {
 }
 
 
+/* toctree */
 div.toctree-wrapper ul {
     padding-left: 4px;
 }
@@ -103,7 +133,7 @@ table.hlist td {
     vertical-align: top;
 }
 
-/* Admonition */
+/* Admonitions */
 
 div.hint {
     line-height: 1.5em;

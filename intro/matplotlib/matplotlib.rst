@@ -591,7 +591,7 @@ Regular Plots
    :scale: 35
    :target: auto_examples/plot_plot_ex.html
 
-.. hint:: Hints
+.. hint::
 
    You need to use the `fill_between
    <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_
@@ -618,7 +618,7 @@ Scatter Plots
    :scale: 35
    :target: auto_examples/plot_scatter_ex.html
 
-.. hint:: Hints
+.. hint::
 
    Color is given by angle of (X,Y).
 
@@ -645,7 +645,7 @@ Bar Plots
    :scale: 35
    :target: auto_examples/plot_bar_ex.html
 
-.. hint:: Hints
+.. hint::
 
    You need to take care of text alignment.
 
@@ -680,7 +680,7 @@ Contour Plots
    :target: auto_examples/plot_contour_ex.html
 
 
-.. hint:: Hints
+.. hint::
 
    You need to use the `clabel
    <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clabel>`_
@@ -691,8 +691,8 @@ care of the colormap (see `Colormaps`_ below).
 
 ::
 
-   def f(x,y):
-        return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 -y ** 2)
+   def f(x, y):
+       return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 -y ** 2)
 
    n = 256
    x = np.linspace(-3, 3, n)
@@ -715,7 +715,7 @@ Imshow
    :target: auto_examples/plot_imshow_ex.html
 
 
-.. hint:: Hints
+.. hint::
 
    You need to take care of the ``origin`` of the image in the imshow command and
    use a `colorbar
@@ -748,7 +748,7 @@ Pie Charts
    :target: auto_examples/plot_pie_ex.html
 
 
-.. hint:: Hints
+.. hint::
 
    You need to modify Z.
 
@@ -773,7 +773,7 @@ Quiver Plots
    :target: auto_examples/plot_quiver_ex.html
 
 
-.. hint:: Hints
+.. hint::
 
    You need to draw arrows twice.
 
@@ -821,7 +821,7 @@ Multi Plots
    :scale: 35
    :target: auto_examples/plot_multiplot_ex.html
 
-.. hint:: Hints
+.. hint::
 
    You can use several subplots with different partition.
 
@@ -846,7 +846,7 @@ Polar Axis
    :target: auto_examples/plot_polar_ex.html
 
 
-.. hint:: Hints
+.. hint::
 
    You only need to modify the ``axes`` line
 
@@ -879,7 +879,7 @@ Click on figure for solution.
    :target: auto_examples/plot_plot3d_ex.html
 
 
-.. hint:: Hints
+.. hint::
 
    You need to use `contourf
    <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
@@ -915,7 +915,7 @@ Text
    :target: auto_examples/plot_text_ex.html
 
 
-.. hint:: Hints
+.. hint::
 
    Have a look at the `matplotlib logo
    <http://matplotlib.sourceforge.net/examples/api/logo2.html>`_.
