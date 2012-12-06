@@ -381,7 +381,7 @@ the gradient) is minimized, while being close to the measured image::
 
 The total variation filter ``tv_denoise`` is available in the
 ``scikits.image``, (doc:
-http://scikits-image.org/docs/dev/api/scikits.image.filter.html#tv-denoise),
+http://scikits-image.org/docs/dev/api/skimage.filter.html#tv-denoise),
 but for convenience we've shipped it as a :download:`standalone module
 <../../pyplots/tv_denoise.py>` with this tutorial.
 
@@ -576,7 +576,7 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
 **Canny filter**
 
 The Canny filter is available in the ``scikits.image``
-(`doc <http://scikits-image.org/docs/dev/api/scikits.image.filter.html#canny>`_),
+(`doc <http://scikits-image.org/docs/dev/api/skimage.filter.html#canny>`_),
 but for convenience we've shipped it as a :download:`standalone module
 <../../pyplots/image_source_canny.py>` with this tutorial. ::
 
