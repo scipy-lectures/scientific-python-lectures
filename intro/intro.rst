@@ -246,15 +246,15 @@ Now, you can run it in IPython and explore the resulting variables:
 .. sourcecode:: ipython
 
     In [3]: %run my_file.py
-    Hello word
+    Hello world
 
     In [4]: s
-    Out[4]: 'Hello word'
+    Out[4]: 'Hello world'
 
     In [5]: %whos
     Variable   Type    Data/Info
     ----------------------------
-    s          str     Hello word
+    s          str     Hello world
 
 
 .. topic:: **From a script to functions**
