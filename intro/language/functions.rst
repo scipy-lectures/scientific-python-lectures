@@ -40,10 +40,10 @@ Functions can *optionally* return values.
 
     * is followed by the function's **name**, then
 
-    * the arguments of the function are given between brackets followed
+    * the arguments of the function are given between parentheses followed
       by a colon.
 
-    * the function body ;
+    * the function body;
 
     * and ``return object`` for optionally returning values.
 
@@ -64,10 +64,8 @@ Mandatory parameters (positional arguments)
 
     In [83]: double_it()
     ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call last)
-
-    /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/<ipython console> in <module>()
-
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
     TypeError: double_it() takes exactly 1 argument (0 given)
 
 Optional parameters (keyword or named arguments)
@@ -144,8 +142,8 @@ definition.
 with a variable number of arguments, especially when default values are
 to be used in most calls to the function.
 
-Passed by value
----------------
+Passing by value
+----------------
 
 Can you modify the value of a variable inside a function? Most languages
 (C, Java, ...) distinguish "passing by value" and "passing by reference".
@@ -186,9 +184,9 @@ caller's variable in-place::
 
 
 
-Functions have a local variable table. Called a *local namespace*.
+Functions have a local variable table called a *local namespace*.
 
-The variable ``x`` only exists within the function *foo*.
+The variable ``x`` only exists within the function *try_to_modify*.
 
 
 Global variables
@@ -266,7 +264,7 @@ Special forms of parameters:
 Docstrings
 ----------
 
-Documentation about what the function does and it's parameters.  General
+Documentation about what the function does and its parameters.  General
 convention:
 
 .. sourcecode:: ipython
@@ -282,11 +280,11 @@ convention:
 
     In [68]: funcname?
     Type:		function
-    Base Class:	<type 'function'>
+    Base Class:		<type 'function'>
     String Form:	<function funcname at 0xeaa0f0>
-    Namespace:	Interactive
-    File:		/Users/cburns/src/scipy2009/.../<ipython console>
-    Definition:	funcname(params)
+    Namespace:		Interactive
+    File:		<ipython console>
+    Definition:		funcname(params)
     Docstring:
         Concise one-line sentence describing the function.
 
@@ -300,7 +298,7 @@ convention:
     documents the semantics and conventions associated with Python
     docstrings.
 
-    Also, the Numpy and Scipy modules have defined a precised standard
+    Also, the Numpy and Scipy modules have defined a precise standard
     for documenting scientific functions, that you may want to follow for
     your own functions, with a ``Parameters`` section, an ``Examples``
     section, etc. See
