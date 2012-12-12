@@ -168,7 +168,7 @@ Lists are *mutable* objects and can be modified::
     the ``numpy`` module. A NumPy array is a chunk of memory
     containing fixed-sized items.  With NumPy arrays, operations on
     elements can be faster because elements are regularly spaced in
-    memory and more operations are perfomed through specialized C
+    memory and more operations are performed through specialized C
     functions instead of Python loops.
 
 
@@ -314,13 +314,10 @@ contents. One may however create new strings from the original one.
     In [53]: a = "hello, world!"
     In [54]: a[2] = 'z'
     ---------------------------------------------------------------------------
-    TypeError                                 Traceback (most recent call
-    last)
-
-    /home/gouillar/travail/sgr/2009/talks/dakar_python/cours/gael/essai/source/<ipython
-    console> in <module>()
-
+    Traceback (most recent call last):
+       File "<stdin>", line 1, in <module>
     TypeError: 'str' object does not support item assignment
+
     In [55]: a.replace('l', 'z', 1)
     Out[55]: 'hezlo, world!'
     In [56]: a.replace('l', 'z')
@@ -344,7 +341,7 @@ Remember the ``a.`` object-oriented notation and use tab completion or
     'An integer: 1; a float: 0.100000; another string: string'
 
     >>> i = 102
-    >>> filename = 'processing_of_dataset_%03d.txt'%i
+    >>> filename = 'processing_of_dataset_%d.txt' % i
     >>> filename
     'processing_of_dataset_102.txt'
 
@@ -406,9 +403,7 @@ between parentheses, or just separated by commas::
 
 .. topic:: A bag of Ipython tricks
 
-    * Several Linux shell commands work in Ipython, such as ``ls``,
-    * ``pwd``,
-      ``cd``, etc.
+    * Several Linux shell commands work in Ipython, such as ``ls``, ``pwd``, ``cd``, etc.
 
     * To get help about objects, functions, etc., type ``help object``.
       Just type help() to get started.
