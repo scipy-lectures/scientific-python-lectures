@@ -58,3 +58,5 @@ Fixes:
 - Olivier Verdier
 
 - Virgile Fritsch
+
+- Ozan Çağlayan
