@@ -98,21 +98,21 @@ Lists
 A list is an ordered collection of objects, that may have different
 types. For example ::
 
-    >>> l = [1, 2, 3, 4, 5]
+    >>> l = ['red', 'blue', 'green', 'black', 'white']
     >>> type(l)
     <type 'list'>
 
 * Indexing: accessing individual objects contained in the list::
 
     >>> l[2]
-    3
+    'green'
 
   Counting from the end with negative indices::
 
     >>> l[-1]
-    5
+    'white'
     >>> l[-2]
-    4
+    'black'
 
 .. warning::
 
@@ -123,9 +123,9 @@ types. For example ::
 ::
 
     >>> l
-    [1, 2, 3, 4, 5]
+    ['red', 'blue', 'green', 'black', 'white']
     >>> l[2:4]
-    [3, 4]
+    ['green', 'black']
 
 .. Warning::
 
@@ -137,31 +137,33 @@ types. For example ::
 
 All slicing parameters are optional::
 
+    >>> l
+    ['red', 'blue', 'green', 'black', 'white']
     >>> l[3:]
-    [4, 5]
+    ['black', 'white']
     >>> l[:3]
-    [1, 2, 3]
+    ['red', 'blue', 'green']
     >>> l[::2]
-    [1, 3, 5]
+    ['red', 'green', 'white']
 
 Lists are *mutable* objects and can be modified::
 
-    >>> l[0] = 28
+    >>> l[0] = 'yellow'
     >>> l
-    [28, 2, 3, 4, 5]
-    >>> l[2:4] = [3, 8] 
+    ['yellow', 'blue', 'green', 'black', 'white']
+    >>> l[2:4] = ['gray', 'purple']
     >>> l
-    [28, 2, 3, 8, 5]
+    ['yellow', 'blue', 'gray', 'purple', 'white']
 
 .. Note::
 
     The elements of a list may have different types::
 
-	>>> l = [3, 2, 'hello']
+	>>> l = [3, -200, 'hello']
 	>>> l
-	[3, 2, 'hello']
+	[3, -200, 'hello']
 	>>> l[1], l[2]
-	(2, 'hello')
+	(-200, 'hello')
 
     For collections of numerical data that all have the same type, it
     is often **more efficient** to use the ``array`` type provided by
@@ -182,7 +184,7 @@ Add and remove elements::
     >>> l.append(6)
     >>> l
     [1, 2, 3, 4, 5, 6]
-    >>> l.pop()
+    >>> l.pop() # removes and returns the last item
     6
     >>> l
     [1, 2, 3, 4, 5]
@@ -196,7 +198,7 @@ Add and remove elements::
 
 Reverse `l`::
 
-    >>> r = l[::-1]
+    >>> r = l[::-1] # or use l.reverse()
     >>> r
     [5, 4, 3, 2, 1]
 
