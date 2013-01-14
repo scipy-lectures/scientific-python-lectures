@@ -27,11 +27,11 @@ Specifications
 
 * Rich collection of already existing **bricks** corresponding to classical
   numerical methods or basic actions: we don't want to re-program the
-  plotting of a curve, a Fourier transform or a fitting algorithm. Don't 
+  plotting of a curve, a Fourier transform or a fitting algorithm. Don't
   reinvent the wheel!
 
-* Easy to learn: computer science is neither our job nor our education. We 
-  want to be able to draw a curve, smooth a signal, do a Fourier transform 
+* Easy to learn: computer science is neither our job nor our education. We
+  want to be able to draw a curve, smooth a signal, do a Fourier transform
   in a few minutes.
 
 * Easy communication with collaborators, students, customers, to make the code
@@ -71,7 +71,7 @@ Which solutions do scientists use to work?
 
 **Scripting languages: Matlab**
 
-* Advantages: 
+* Advantages:
 
   * Very rich collection of libraries with numerous algorithms, for many
     different domains. Fast execution because these libraries are often written
@@ -82,7 +82,7 @@ Which solutions do scientists use to work?
 
   * Commercial support is available.
 
-* Drawbacks: 
+* Drawbacks:
 
   * Base language is quite poor and can become restrictive for advanced users.
 
@@ -103,15 +103,15 @@ Which solutions do scientists use to work?
 
   * Some software are dedicated to one domain. Ex: Gnuplot or xmgrace
     to draw curves. These programs are very powerful, but they are
-    restricted to a single type of usage, such as plotting. 
+    restricted to a single type of usage, such as plotting.
 
 **What about Python?**
 
 * Advantages:
-  
+
   * Very rich scientific computing libraries (a bit less than Matlab,
     though)
-    
+
   * Well thought out language, allowing to write very readable and well
     structured code: we "code what we think".
 
@@ -120,7 +120,7 @@ Which solutions do scientists use to work?
 
   * Free and open-source software, widely spread, with a vibrant community.
 
-* Drawbacks:  
+* Drawbacks:
 
   * less pleasant development environment than, for example, Matlab. (More
     geek-oriented).
@@ -153,11 +153,11 @@ that can be combined to obtain a scientific computing environment:
         :scale: 40
 
 * **IPython**, an advanced **Python shell** http://ipython.scipy.org/moin/
- 
+
 * **Numpy** : provides powerful **numerical arrays** objects, and routines to
   manipulate them. http://www.numpy.org/
 
-..  
+..
     >>> import numpy as np
     >>> np.random.seed(4)
 
@@ -179,11 +179,11 @@ that can be combined to obtain a scientific computing environment:
 
 * **Mayavi** : 3-D visualization
   http://code.enthought.com/projects/mayavi/
-  
+
   |clear-floats|
 
 
-The interactive workflow: IPython and a text editor 
+The interactive workflow: IPython and a text editor
 -----------------------------------------------------
 
 **Interactive work to test and understand algorithms:** In this section, we
@@ -194,7 +194,7 @@ Python is a general-purpose language. As such, there is not one blessed
 environment to work in, and not only one way of using it. Although
 this makes it harder for beginners to find their way, it makes it
 possible for Python to be used to write programs, in web servers, or
-embedded devices. 
+embedded devices.
 
 .. note:: Reference document for this section:
 
@@ -221,7 +221,7 @@ Getting help:
     Namespace:	        Python builtin
     Docstring:
 	print(value, ..., sep=' ', end='\n', file=sys.stdout)
-	
+
 	Prints the values to a stream, or to sys.stdout by default.
 	Optional keyword arguments:
 	file: a file-like object (stream); defaults to the current sys.stdout.
@@ -239,7 +239,7 @@ favorite editor, we would advise installing `Stani's Python editor`. In the
 file, add the following lines::
 
     s = 'Hello world'
-    print(s) 
+    print(s)
 
 Now, you can run it in IPython and explore the resulting variables:
 
@@ -259,13 +259,13 @@ Now, you can run it in IPython and explore the resulting variables:
 
 .. topic:: **From a script to functions**
 
-    While it is tempting to work only with scripts, that is a file full 
+    While it is tempting to work only with scripts, that is a file full
     of instructions following each other, do plan to progressively evolve
     the script to a set of functions:
 
     * A script is not reusable, functions are.
 
-    * Thinking in terms of functions helps breaking the problem in small 
+    * Thinking in terms of functions helps breaking the problem in small
       blocks.
 
 
