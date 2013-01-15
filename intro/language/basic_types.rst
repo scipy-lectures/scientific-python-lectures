@@ -384,11 +384,10 @@ A dictionary can have keys (resp. values) with different types::
 More container types
 ~~~~~~~~~~~~~~~~~~~~
 
-* **Tuples**
+**Tuples**
 
 Tuples are basically immutable lists. The elements of a tuple are written
 between parentheses, or just separated by commas::
-
 
     >>> t = 12345, 54321, 'hello!'
     >>> t[0]
@@ -397,7 +396,7 @@ between parentheses, or just separated by commas::
     (12345, 54321, 'hello!')
     >>> u = (0, 2)
 
-* **Sets:** unordered, unique items::
+**Sets:** unordered, unique items::
 
     >>> s = set(('a', 'b', 'c', 'a'))
     >>> s
