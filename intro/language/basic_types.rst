@@ -65,7 +65,7 @@ natively implemented::
 	1.5
 
 
-* Scalar types: int, float, complex, bool::
+* Scalar types: ``int``, ``float``, ``complex``, ``bool``::
 
     >>> type(1)
     <type 'int'>
@@ -133,7 +133,7 @@ types. For example ::
     such as  ``start<= i < stop`` (``i`` ranging from ``start`` to
     ``stop-1``). Therefore, ``l[start:stop]`` has ``(stop-start)`` elements.
 
-**Slicing syntax**: `l[start:stop:stride]`
+**Slicing syntax**: ``l[start:stop:stride]``
 
 All slicing parameters are optional::
 
@@ -196,7 +196,7 @@ Add and remove elements::
     [1, 2, 3, 4, 5]
 
 
-Reverse `l`::
+Reverse::
 
     >>> r = l[::-1] # or use l.reverse()
     >>> r
