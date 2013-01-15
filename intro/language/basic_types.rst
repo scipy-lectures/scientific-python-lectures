@@ -96,7 +96,6 @@ objects can be stored.
 Lists
 ~~~~~
 
-
 A list is an ordered collection of objects, that may have different
 types. For example ::
 
@@ -104,12 +103,12 @@ types. For example ::
     >>> type(l)
     <type 'list'>
 
-* Indexing: accessing individual objects contained in the list::
+Indexing: accessing individual objects contained in the list::
 
     >>> l[2]
     'green'
 
-  Counting from the end with negative indices::
+Counting from the end with negative indices::
 
     >>> l[-1]
     'white'
@@ -120,9 +119,7 @@ types. For example ::
 
     **Indexing starts at 0** (as in C), not at 1 (as in Fortran or Matlab)!
 
-* Slicing: obtaining sublists of regularly-spaced elements
-
-::
+Slicing: obtaining sublists of regularly-spaced elements::
 
     >>> l
     ['red', 'blue', 'green', 'black', 'white']
@@ -197,7 +194,6 @@ Add and remove elements::
     >>> l
     [1, 2, 3, 4, 5]
 
-
 Reverse::
 
     >>> r = l[::-1] # or use l.reverse()
@@ -211,10 +207,12 @@ Concatenate and repeat lists::
     >>> 2 * r
     [5, 4, 3, 2, 1, 5, 4, 3, 2, 1]
 
-Sort r (in-place)::
+Sort::
 
-    >>> r.sort()
+    >>> r.sort()  # in-place
     >>> r
+    [1, 2, 3, 4, 5]
+    >>> sorted(r) # new object
     [1, 2, 3, 4, 5]
 
 
@@ -229,11 +227,11 @@ Sort r (in-place)::
 
 .. note:: **Discovering methods:**
 
-    In IPython: tab-completion (press tab)
+    Reminder: n Ipython: tab-completion (press tab)
 
     .. sourcecode:: ipython
 
-        In [28]: r.
+        In [28]: r.<TAB>
         r.__add__           r.__iadd__          r.__setattr__
         r.__class__         r.__imul__          r.__setitem__
         r.__contains__      r.__init__          r.__setslice__
@@ -249,9 +247,6 @@ Sort r (in-place)::
         r.__getslice__      r.__repr__          r.remove
         r.__gt__            r.__reversed__      r.reverse
         r.__hash__          r.__rmul__          r.sort
-
-
-
 
 Strings
 ~~~~~~~
