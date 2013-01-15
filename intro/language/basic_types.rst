@@ -4,15 +4,21 @@ Basic types
 Numerical types
 ----------------
 
+Python supports the following numerical, scalar types:
+
 :Integer:
 
     >>> 1 + 1
     2
     >>> a = 4
+    >>> type(a)
+    <type 'int'>
 
 :Floats:
 
     >>> c = 2.1
+    >>> type(c)
+    <type 'float'>
 
 :Complex:
 
@@ -21,6 +27,8 @@ Numerical types
     1.5
     >>> a.imag
     0.5
+    >>> type(1. + 0j )
+    <type 'complex'>
 
 :Booleans:
 
@@ -31,8 +39,6 @@ Numerical types
     False
     >>> type(test)
     <type 'bool'>
-
-
 
 A Python shell can therefore replace your pocket calculator, with the
 basic arithmetic operations ``+``, ``-``, ``*``, ``/``, ``%`` (modulo)
@@ -45,45 +51,41 @@ natively implemented::
     >>> 8 % 3
     2
 
+Type conversion (casting)::
+
+    >>> float(1)
+    1.0
+
 .. warning:: Integer division
 
     ::
 
-	>>> 3 / 2
-	1
+    >>> 3 / 2
+    1
 
     **Trick**: use floats::
 
-	>>> 3 / 2.
-	1.5
-
-	>>> a = 3
-	>>> b = 2
-	>>> a / b
-	1
-	>>> a / float(b)
-	1.5
-
-
-* Scalar types: ``int``, ``float``, ``complex``, ``bool``::
-
-    >>> type(1)
-    <type 'int'>
-    >>> type(1.)
-    <type 'float'>
-    >>> type(1. + 0j )
-    <type 'complex'>
+    >>> 3 / 2.
+    1.5
 
     >>> a = 3
-    >>> type(a)
-    <type 'int'>
+    >>> b = 2
+    >>> a / b
+    1
+    >>> a / float(b)
+    1.5
 
+    If you explicitly want integer division use ``//``
 
-
-* Type conversion::
-
-    >>> float(1)
+    >>> 3.0//2
     1.0
+
+    .. note::
+
+        The behaviour of the division operator has changed in Python 3. Please
+        look at the `python3porting
+        <http://python3porting.com/preparing.html#use-instead-of-when-dividing-integers>`_
+        website for details.
 
 Containers
 ------------
