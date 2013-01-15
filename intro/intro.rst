@@ -274,7 +274,18 @@ Ipython Tips and Tricks
 
 The Ipython user manual contains a wealth of information about using Ipython,
 but to get you started we want to give you a quick introduction to three useful
-features: *magic functions*, *aliases* and *tab completion*.
+features: *history*, *magic functions*, *aliases* and *tab completion*.
+
+Like a UNIX shell, Ipython supports command history. Type *up* and *down* to
+navigate previously typed commands:
+
+.. sourcecode:: ipython
+
+    In [1]: x = 10
+
+    In [2]: <UP>
+
+    In [2]: x = 10
 
 Ipython supports so called *magic* functions by prefixing a command with the
 ``%`` character. For example, the ``run`` and ``whos`` functions from the
