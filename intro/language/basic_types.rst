@@ -265,14 +265,14 @@ Different string syntaxes (simple, double or triple quotes)::
     s = '''Hello,                 # tripling the quotes allows the
            how are you'''         # the string to span more than one line
     s = """Hi,
-	   what's up?"""
+    what's up?"""
 
 .. sourcecode:: ipython
 
     In [1]: 'Hi, what's up?'
     ------------------------------------------------------------
        File "<ipython console>", line 1
-	 'Hi, what's up?'
+        'Hi, what's up?'
                ^
     SyntaxError: invalid syntax
 
@@ -336,12 +336,11 @@ Remember the ``a.`` object-oriented notation and use tab completion or
 .. Note::
 
     Python offers advanced possibilities for manipulating strings,
-    looking for patterns or formatting. Due to lack of time this topic is
-    not addressed here, but the interested reader is referred to
+    looking for patterns or formatting. The interested reader is referred to
     http://docs.python.org/library/stdtypes.html#string-methods and
     http://docs.python.org/library/string.html#new-string-formatting
 
-* String substitution::
+String substitution::
 
     >>> 'An integer: %i; a float: %f; another string: %s' % (1, 0.1, 'string')
     'An integer: 1; a float: 0.100000; another string: string'
@@ -350,7 +349,6 @@ Remember the ``a.`` object-oriented notation and use tab completion or
     >>> filename = 'processing_of_dataset_%d.txt' % i
     >>> filename
     'processing_of_dataset_102.txt'
-
 
 Dictionaries
 ~~~~~~~~~~~~~
