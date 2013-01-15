@@ -403,38 +403,3 @@ between parentheses, or just separated by commas::
     >>> s.difference(('a', 'b'))
     set(['c'])
 
-.. topic:: A bag of Ipython tricks
-
-    * Several Linux shell commands work in Ipython, such as ``ls``, ``pwd``, ``cd``, etc.
-
-    * To get help about objects, functions, etc., type ``help object``.
-      Just type help() to get started.
-
-    * Use **tab-completion** as much as possible: while typing the
-      beginning of an object's name (variable, function, module), press 
-      the **Tab** key and Ipython will complete the expression to match 
-      available names. If many names are possible, a list of names is 
-      displayed.
-
-    * **History**: press the `up` (resp. `down`) arrow to go through all
-      previous (resp. next) instructions starting with the expression on
-      the left of the cursor (put the cursor at the beginning of the line
-      to go through all previous commands) 
-
-    * You may log your session by using the Ipython "magic command"
-      %logstart. Your instructions will be saved in a file, that you can
-      execute as a script in a different session.
-
-
-.. sourcecode:: ipython
-
-    In [1]: %logstart commands.log
-    Activating auto-logging. Current session state plus future input
-    saved.
-    Filename       : commands.log
-    Mode           : backup
-    Output logging : False
-    Raw input log  : False
-    Timestamping   : False
-    State          : active
-
