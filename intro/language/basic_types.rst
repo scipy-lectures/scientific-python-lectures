@@ -158,11 +158,11 @@ Lists are *mutable* objects and can be modified::
 
     The elements of a list may have different types::
 
-	>>> l = [3, -200, 'hello']
-	>>> l
-	[3, -200, 'hello']
-	>>> l[1], l[2]
-	(-200, 'hello')
+        >>> l = [3, -200, 'hello']
+        >>> l
+        [3, -200, 'hello']
+        >>> l[1], l[2]
+        (-200, 'hello')
 
     For collections of numerical data that all have the same type, it
     is often **more efficient** to use the ``array`` type provided by
@@ -179,42 +179,49 @@ http://docs.python.org/tutorial/datastructures.html#more-on-lists
 
 Add and remove elements::
 
-    >>> l = [1, 2, 3, 4, 5]
-    >>> l.append(6)
+    >>> l = ['red', 'blue', 'green', 'black', 'white']
+    >>> l.append('pink')
     >>> l
-    [1, 2, 3, 4, 5, 6]
+    ['red', 'blue', 'green', 'black', 'white', 'pink']
     >>> l.pop() # removes and returns the last item
-    6
+    'pink'
     >>> l
-    [1, 2, 3, 4, 5]
-    >>> l.extend([6, 7]) # extend l, in-place
+    ['red', 'blue', 'green', 'black', 'white']
+    >>> l.extend(['pink', 'purple']) # extend l, in-place
     >>> l
-    [1, 2, 3, 4, 5, 6, 7]
+    ['red', 'blue', 'green', 'black', 'white', 'pink', 'purple']
     >>> l = l[:-2]
     >>> l
-    [1, 2, 3, 4, 5]
+    ['red', 'blue', 'green', 'black', 'white']
 
 Reverse::
 
-    >>> r = l[::-1] # or use l.reverse()
+    >>> r = l[::-1]
     >>> r
-    [5, 4, 3, 2, 1]
+    ['white', 'black', 'green', 'blue', 'red']
+    >>> r2 = l
+    >>> r2
+    >>> ['red', 'blue', 'green', 'black', 'white']
+    >>> r2.reverse() # in-place
+    >>> r2
+    >>> ['white', 'black', 'green', 'blue', 'red']
 
 Concatenate and repeat lists::
 
     >>> r + l
-    [5, 4, 3, 2, 1, 1, 2, 3, 4, 5]
-    >>> 2 * r
-    [5, 4, 3, 2, 1, 5, 4, 3, 2, 1]
+    ['white', 'black', 'green', 'blue', 'red', 'red', 'blue', 'green', 'black', 'white']
+    >>> r * 2
+    ['white', 'black', 'green', 'blue', 'red', 'white', 'black', 'green', 'blue', 'red']
 
 Sort::
 
+    >>> sorted(r) # new object
+     ['black', 'blue', 'green', 'red', 'white']
+    >>> r
+    ['white', 'black', 'green', 'blue', 'red']
     >>> r.sort()  # in-place
     >>> r
-    [1, 2, 3, 4, 5]
-    >>> sorted(r) # new object
-    [1, 2, 3, 4, 5]
-
+    ['black', 'blue', 'green', 'red', 'white']
 
 .. Note:: **Methods and Object-Oriented Programming**
 
@@ -227,7 +234,7 @@ Sort::
 
 .. note:: **Discovering methods:**
 
-    Reminder: n Ipython: tab-completion (press tab)
+    Reminder: in Ipython: tab-completion (press tab)
 
     .. sourcecode:: ipython
 
