@@ -52,7 +52,7 @@ natively implemented::
 	>>> 3 / 2
 	1
 
-    **Trick**: use floats:: 
+    **Trick**: use floats::
 
 	>>> 3 / 2.
 	1.5
@@ -202,7 +202,7 @@ Reverse::
     >>> r
     [5, 4, 3, 2, 1]
 
-Concatenate and repeat lists:: 
+Concatenate and repeat lists::
 
     >>> r + l
     [5, 4, 3, 2, 1, 1, 2, 3, 4, 5]
@@ -222,7 +222,7 @@ Sort r (in-place)::
     first example of object-oriented programming (OOP). Being a ``list``, the
     object `r` owns the *method* `function` that is called using the notation
     **.**. No further knowledge of OOP than understanding the notation **.** is
-    necessary for going through this tutorial.  
+    necessary for going through this tutorial.
 
 
 .. note:: **Discovering methods:**
@@ -252,7 +252,7 @@ Sort r (in-place)::
 
 
 Strings
-~~~~~~~ 
+~~~~~~~
 
 Different string syntaxes (simple, double or triple quotes)::
 
@@ -301,7 +301,7 @@ Slicing::
     'lo,'
     >>> a[2:10:2] # Syntax: a[start:stop:step]
     'lo o'
-    >>> a[::3] # every three characters, from beginning to end 
+    >>> a[::3] # every three characters, from beginning to end
     'hl r!'
 
 Accents and special characters can also be handled in Unicode strings (see
@@ -329,7 +329,7 @@ Strings have many useful methods, such as ``a.replace`` as seen above.
 Remember the ``a.`` object-oriented notation and use tab completion or
 ``help(str)`` to search for new methods.
 
-.. Note:: 
+.. Note::
 
     Python offers advanced possibilities for manipulating strings,
     looking for patterns or formatting. Due to lack of time this topic is
@@ -356,7 +356,7 @@ values**. It is an **unordered** container::
 
 
     >>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
-    >>> tel['francis'] = 5915 
+    >>> tel['francis'] = 5915
     >>> tel
     {'sebastian': 5578, 'francis': 5915, 'emmanuelle': 5752}
     >>> tel['sebastian']
