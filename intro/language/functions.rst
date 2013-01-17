@@ -248,8 +248,8 @@ This works:
 Variable number of parameters
 -----------------------------
 Special forms of parameters:
-  * \*args: any number of positional arguments packed into a tuple
-  * \**kwargs: any number of keyword arguments packed into a dictionary
+  * ``*args``: any number of positional arguments packed into a tuple
+  * ``**kwargs``: any number of keyword arguments packed into a dictionary
 
 .. sourcecode:: ipython
 
@@ -281,12 +281,12 @@ convention:
        ....:
 
     In [68]: funcname?
-    Type:		function
-    Base Class:		<type 'function'>
-    String Form:	<function funcname at 0xeaa0f0>
-    Namespace:		Interactive
-    File:		<ipython console>
-    Definition:		funcname(params)
+    Type:           function
+    Base Class:     type 'function'>
+    String Form:    <function funcname at 0xeaa0f0>
+    Namespace:      Interactive
+    File:           <ipython console>
+    Definition:     funcname(params)
     Docstring:
         Concise one-line sentence describing the function.
 
