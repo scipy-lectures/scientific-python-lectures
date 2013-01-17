@@ -40,7 +40,7 @@ Exceptions are raised by errors in Python:
     ---------------------------------------------------------------------------
     AttributeError: 'list' object has no attribute 'foobar'
 
-**Different types of exceptions for different errors.**
+As you can see, there are **different types** of exceptions for different errors.
 
 Catching exceptions
 --------------------
