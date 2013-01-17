@@ -131,9 +131,32 @@ Running an external command
 
 .. sourcecode:: ipython
 
-  In [8]: os.system('ls *')
-  conf.py   debug_file.py  demo2.py~  demo.py   demo.pyc	  my_file.py~
-  conf.py~  demo2.py	 demo2.pyc  demo.py~  my_file.py  pi_wallis_image.py
+  In [8]: os.system('ls')
+  basic_types.rst   demo.py          functions.rst  python_language.rst  standard_library.rst
+  control_flow.rst  exceptions.rst   io.rst         python-logo.png
+  demo2.py          first_steps.rst  oop.rst        reusing_code.rst
+
+.. note:: Alternative to ``os.system``
+
+    A noteworthy alternative to ``os.system`` is the `sh module
+    <http://amoffat.github.com/sh/>`_. Which provides much more convenient ways to
+    obtain the output, error stream and exit code of the external command.
+
+    .. sourcecode:: ipython
+
+        In [20]: import sh
+        In [20]: com = sh.ls()
+
+        In [21]: print com
+        basic_types.rst   exceptions.rst   oop.rst              standard_library.rst
+        control_flow.rst  first_steps.rst  python_language.rst
+        demo2.py          functions.rst    python-logo.png
+        demo.py           io.rst           reusing_code.rst
+
+        In [22]: print com.exit_code
+        0
+        In [23]: type(com)
+        Out[23]: sh.RunningCommand
 
 
 Walking a directory
