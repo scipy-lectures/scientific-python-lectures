@@ -79,6 +79,23 @@ combined to build a course on scientific computing with Python. Second,
 people's attention span does not go much beyond an hour or two, whether
 they are reading a tutorial or following it in a class room.
 
+Using Markup
+............
+
+There are three main kinds of markup that should be used: *italics*, **bold**
+and ``fixed-font``. *Italics* should be used when introducing a new technical
+term, **bold** should be used for emphasis and ``fixed-font`` for source code
+
+.. topic:: Example:
+
+    When using *object-oriented programming* in python you **must** use the
+    ``class`` keyword to define your *classes*.
+
+In restructured-text markup this is::
+
+    when using *object-oriented programming* in python you **must** use the
+    ``class`` keyword to define your *classes*.
+
 Modifying
 .........
 
