@@ -236,7 +236,3 @@ _____
         \pi = 2 \prod_{i=1}^{\infty} \frac{4i^2}{4i^2 - 1}
 
 .. :ref:`pi_wallis`
-
-.. solution::
-
-    2 * reduce(lambda x,y: x*y, [float((4*(i**2)))/((4*(i**2))-1) for i in range(1,100000)])
