@@ -7,10 +7,10 @@ if/elif/else
 ------------
 
 .. sourcecode:: ipython
-  
+
     In [1]: if 2**2 == 4:
        ...:     print 'Obvious!'
-       ...: 
+       ...:
     Obvious!
 
 
@@ -25,14 +25,14 @@ Backspace key. Press the Enter key twice to leave the logical block.
 .. sourcecode:: ipython
 
     In [2]: a = 10
-    
+
     In [3]: if a == 1:
        ...:     print(1)
        ...: elif a == 2:
        ...:     print(2)
        ...: else:
        ...:     print('A lot')
-       ...: 
+       ...:
     A lot
 
 Indentation is compulsory in scripts as well. As an exercise, re-type the
@@ -81,7 +81,7 @@ Typical C-style while loop (Mandelbrot problem)::
     ...     if z.imag == 0:
     ...         break
     ...     z = z**2 + 1
-         
+
 
 ``continue`` the next iteration of a loop.::
 
@@ -169,7 +169,7 @@ Iterate over any *sequence*
     ['Hello', 'how', 'are', 'you?']
     >>> for word in message.split():
     ...     print word
-    ...     
+    ...
     Hello
     how
     are
@@ -179,7 +179,7 @@ Few languages (in particular, languages for scientific computing) allow to
 loop over anything but integers/indices. With Python it is possible to
 loop exactly over the objects of interest without bothering with indices
 you often don't care about.
- 
+
 
 .. warning:: Not safe to modify the sequence you are iterating over.
 
