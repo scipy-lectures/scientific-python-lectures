@@ -162,7 +162,7 @@ Raising exceptions
     Out[20]: 0.9990234375
 
 
-**Use exceptions to notify certain conditions are met (e.g.
-StopIteration) or not (e.g. custom error raising)**
+Use exceptions to notify certain conditions are met (e.g.
+StopIteration) or not (e.g. custom error raising)
 
 
