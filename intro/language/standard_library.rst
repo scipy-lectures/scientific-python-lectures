@@ -238,6 +238,7 @@ Find all files ending in ``.txt``:
     Out[19]: ['holy_grail.txt', 'junk.txt', 'newfile.txt']
 
 
+
 ``sys`` module: system-specific information
 --------------------------------------------
 
@@ -300,6 +301,6 @@ Useful to store arbitrary objects to a file. Not safe or fast!
 
 .. topic:: Exercise
 
-    Write a program to search your PYTHONPATH for the module ``site.py``.
+    Write a program to search your ``PYTHONPATH`` for the module ``site.py``.
 
 :ref:`path_site`
