@@ -3,7 +3,7 @@ Standard Library
 
 .. note:: Reference document for this section:
 
- * The Python Standard Library documentation: 
+ * The Python Standard Library documentation:
    http://docs.python.org/library/index.html
 
  * Python Essential Reference, David Beazley, Addison-Wesley Professional
@@ -28,7 +28,7 @@ List a directory:
 .. sourcecode:: ipython
 
     In [31]: os.listdir(os.curdir)
-    Out[31]: 
+    Out[31]:
     ['.index.rst.swo',
      '.python_language.rst.swp',
      '.view_array.py.swp',
@@ -99,7 +99,7 @@ Delete a file:
     Out[73]: '/Users/cburns/src/scipy2009/scipy_2009_tutorial/source/junk.txt'
 
     In [74]: os.path.split(a)
-    Out[74]: ('/Users/cburns/src/scipy2009/scipy_2009_tutorial/source', 
+    Out[74]: ('/Users/cburns/src/scipy2009/scipy_2009_tutorial/source',
               'junk.txt')
 
     In [78]: os.path.dirname(a)
@@ -146,8 +146,8 @@ Walking a directory
     In [10]: for dirpath, dirnames, filenames in os.walk(os.curdir):
        ....:     for fp in filenames:
        ....:         print os.path.abspath(fp)
-       ....:         
-       ....:         
+       ....:
+       ....:
     /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/.index.rst.swo
     /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/.view_array.py.swp
     /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/basic_types.rst
@@ -163,7 +163,7 @@ Environment variables:
     In [9]: import os
 
     In [11]: os.environ.keys()
-    Out[11]: 
+    Out[11]:
     ['_',
      'FSLDIR',
      'TERM_PROGRAM_VERSION',
@@ -248,7 +248,7 @@ modules.  Initialized from PYTHONPATH:
 .. sourcecode:: ipython
 
     In [121]: sys.path
-    Out[121]: 
+    Out[121]:
     ['',
      '/Users/cburns/local/bin',
      '/Users/cburns/local/lib/python2.5/site-packages/grin-1.1-py2.5.egg',
