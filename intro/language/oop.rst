@@ -19,7 +19,7 @@ we will be able to use::
     ...         self.age = age
     ...     def set_major(self, major):
     ...         self.major = major
-    ...         
+    ...
     >>> anna = Student('anna')
     >>> anna.set_age(21)
     >>> anna.set_major('physics')
@@ -38,7 +38,7 @@ methods and attributes as the previous one, but with an additional
 
     >>> class MasterStudent(Student):
     ...     internship = 'mandatory, from March to June'
-    ...     
+    ...
     >>> james = MasterStudent('james')
     >>> james.internship
     'mandatory, from March to June'
