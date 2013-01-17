@@ -8,8 +8,8 @@ Python supports object-oriented programming (OOP). The goals of OOP are:
     * to re-use code in similar contexts.
 
 
-Here is a small example: we create a Student **class**, which is an object
-gathering several custom functions (**methods**) and variables (**attributes**),
+Here is a small example: we create a Student *class*, which is an object
+gathering several custom functions (*methods*) and variables (*attributes*),
 we will be able to use::
 
     >>> class Student(object):
