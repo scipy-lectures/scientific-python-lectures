@@ -3,21 +3,21 @@ Reusing code: scripts and modules
 
 For now, we have typed all instructions in the interpreter. For longer
 sets of instructions we need to change tack and write the code in text
-files (using a text editor), that we will call either **scripts** or
-**modules**. Use your favorite text editor (provided it offers syntax
+files (using a text editor), that we will call either *scripts* or
+*modules*. Use your favorite text editor (provided it offers syntax
 highlighting for Python), or the editor that comes with the Scientific
 Python Suite you may be using (e.g., Scite with Python(x,y)).
 
 Scripts
 -------
 
-Let us first write a **script**, that is a file with a sequence of
+Let us first write a *script*, that is a file with a sequence of
 instructions that are executed each time the script is called.
 
 Instructions may be e.g. copied-and-pasted from the interpreter
 (but take care to respect indentation rules!). The extension for Python
-files is **.py**. Write or copy-and-paste the following lines in a file
-called **test.py** ::
+files is ``.py``. Write or copy-and-paste the following lines in a file
+called ``test.py`` ::
 
     message = "Hello how are you?"
     for word in message.split():
@@ -27,8 +27,10 @@ Let us now execute the script interactively, that is inside the Ipython
 interpreter. This is maybe the most common use of scripts in scientific
 computing.
 
-    * in Ipython, the syntax to execute a script is ``%run
-      script.py``. For example,
+.. note::
+
+    in Ipython, the syntax to execute a script is ``%run script.py``. For
+    example,
 
 .. sourcecode:: ipython
 
@@ -49,14 +51,14 @@ namespace.
 Other interpreters also offer the possibility to execute scripts (e.g.,
 ``execfile`` in the plain Python interpreter, etc.).
 
-It is also possible In order to execute this script as a **standalone
-program**, by executing the script inside a shell terminal (Linux/Mac
+It is also possible In order to execute this script as a *standalone
+program*, by executing the script inside a shell terminal (Linux/Mac
 console or cmd Windows console). For example, if we are in the same
 directory as the test.py file, we can execute this in a console:
 
 .. sourcecode:: bash
 
-    epsilon:~/sandbox$ python test.py
+    $ python test.py
     Hello
     how
     are
@@ -69,7 +71,7 @@ In ``file.py``::
     import sys
     print sys.argv
 
-::
+.. sourcecode:: bash
 
     $ python file.py test arguments
     ['file.py', 'test', 'arguments']
@@ -77,13 +79,13 @@ In ``file.py``::
 .. note::
 
     Don't implement option parsing yourself. Use modules such as
-    `optparse`.
+    ``optparse`` or ``argparse`` .
 
 
 Importing objects from modules
 ------------------------------
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [1]: import os
 
@@ -105,13 +107,13 @@ Importing objects from modules
 
 And also:
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [4]: from os import listdir
 
 Importing shorthands:
 
-  .. sourcecode:: ipython
+.. sourcecode:: ipython
 
     In [5]: import numpy as np
 
@@ -119,9 +121,9 @@ Importing shorthands:
 
     ::
 
-      from os import *
+        from os import *
 
-    **Do not do it.**
+    This is called the *star import* and please, **Use it with caution**
 
     * Makes the code harder to read and understand: where do symbols come
       from?
@@ -147,7 +149,7 @@ all the scientific computing tools we are going to use are modules::
     >>> import scipy # scientific computing
 
 
-In Python(x,y) software, Ipython(x,y) execute the following imports at startup::
+In Python(x,y), Ipython(x,y) executes the following imports at startup::
 
     >>> import numpy
     >>> import numpy as np
@@ -163,16 +165,16 @@ Creating modules
 If we want to write larger and better organized programs (compared to
 simple scripts), where some objects are defined, (variables, functions,
 classes) and that we want to reuse several times, we have to create our
-own **modules**.
+own *modules*.
 
-Let us create a module `demo` contained in the file `demo.py`:
+Let us create a module ``demo`` contained in the file ``demo.py``:
 
   .. literalinclude:: demo.py
 
-In this file, we defined two functions `print_a` and `print_b`. Suppose
-we want to call the `print_a` function from the interpreter. We could
+In this file, we defined two functions ``print_a`` and ``print_b``. Suppose
+we want to call the ``print_a`` function from the interpreter. We could
 execute the file as a script, but since we just want to have access to
-the function `print_a`, we are rather going to **import it as a module**.
+the function ``print_a``, we are rather going to **import it as a module**.
 The syntax is as follows.
 
 
@@ -259,7 +261,7 @@ Importing objects from modules into the main namespace
 
     **Module caching**
 
-     Modules are cached: if you modify `demo.py` and re-import it in the
+     Modules are cached: if you modify ``demo.py`` and re-import it in the
      old session, you will get the old one.
 
     Solution:
@@ -272,7 +274,7 @@ Importing objects from modules into the main namespace
 '__main__' and module loading
 ------------------------------
 
-File `demo2.py`:
+File ``demo2.py``:
 
   .. literalinclude:: demo2.py
 
@@ -307,18 +309,18 @@ Scripts or modules? How to organize your code
       module is imported in the different scripts (do not copy-and-paste
       your functions in the different scripts!).
 
-.. Note:: **How to import a module from a remote directory?**
+.. Note:: How to import a module from a remote directory?
 
     ..
 
     Many solutions exist, depending mainly on your operating system. When
-    the ``import mymodule`` statement is executed, the module `mymodule`
+    the ``import mymodule`` statement is executed, the module ``mymodule``
     is searched in a given list of directories. This list includes a list
-    of installation-dependent default path (e.g., `/usr/lib/python`) as
+    of installation-dependent default path (e.g., ``/usr/lib/python``) as
     well as the list of directories specified by the environment variable
-    **PYTHONPATH**.
+    ``PYTHONPATH``.
 
-    The list of directories searched by Python is given by the `sys.path`
+    The list of directories searched by Python is given by the ``sys.path``
     variable
 
     .. sourcecode:: ipython
@@ -347,22 +349,22 @@ Scripts or modules? How to organize your code
     Modules must be located in the search path, therefore you can:
 
     * write your own modules within directories already defined in the
-      search path (e.g. '/usr/local/lib/python2.6/dist-packages'). You
+      search path (e.g. ``/usr/local/lib/python2.6/dist-packages``). You
       may use symbolic links (on Linux) to keep the code somewhere else.
 
-    * modify the environment variable **PYTHONPATH** to include the
+    * modify the environment variable ``PYTHONPATH`` to include the
       directories containing the user-defined modules. On Linux/Unix, add
       the following line to a file read by the shell at startup (e.g.
       /etc/profile, .profile)
 
     ::
 
-	export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
+        export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
 
     On Windows, http://support.microsoft.com/kb/310519 explains how to
     handle environment variables.
 
-    * or modify the `sys.path` variable itself within a Python script.
+    * or modify the ``sys.path`` variable itself within a Python script.
 
     ::
 
@@ -382,16 +384,15 @@ about modules.
 Packages
 --------
 
-A directory that contains many modules is called a **package**. A package
+A directory that contains many modules is called a *package*. A package
 is a module with submodules (which can have submodules themselves, etc.).
-A special file called `__init__.py` (which may be empty) tells Python
+A special file called ``__init__.py`` (which may be empty) tells Python
 that the directory is a Python package, from which modules can be
 imported.
 
-::
+.. sourcecode:: bash
 
-    sd-2116 /usr/lib/python2.6/dist-packages/scipy $ ls
-    [17:07]
+    $ ls
     cluster/        io/          README.txt@     stsci/
     __config__.py@  LATEST.txt@  setup.py@       __svn_version__.py@
     __config__.pyc  lib/         setup.pyc       __svn_version__.pyc
@@ -402,11 +403,8 @@ imported.
     INSTALL.txt@    ndimage/     spatial/        weave/
     integrate/      odr/         special/
     interpolate/    optimize/    stats/
-    sd-2116 /usr/lib/python2.6/dist-packages/scipy $ cd ndimage
-    [17:07]
-
-    sd-2116 /usr/lib/python2.6/dist-packages/scipy/ndimage $ ls
-    [17:07]
+    $ cd ndimage
+    $ ls
     doccer.py@   fourier.pyc   interpolation.py@  morphology.pyc   setup.pyc
     doccer.pyc   info.py@      interpolation.pyc  _nd_image.so
     setupscons.py@
@@ -435,12 +433,12 @@ From Ipython:
     In [6]: from scipy.ndimage import morphology
 
     In [17]: morphology.binary_dilation?
-    Type:	    function
-    Base Class: <type 'function'>
-    String Form:	<function binary_dilation at 0x9bedd84>
-    Namespace:  Interactive
-    File:	    /usr/lib/python2.6/dist-packages/scipy/ndimage/morphology.py
-    Definition: morphology.binary_dilation(input, structure=None,
+    Type:           function
+    Base Class:     <type 'function'>
+    String Form:    <function binary_dilation at 0x9bedd84>
+    Namespace:      Interactive
+    File:           /usr/lib/python2.6/dist-packages/scipy/ndimage/morphology.py
+    Definition:     morphology.binary_dilation(input, structure=None,
     iterations=1, mask=None, output=None, border_value=0, origin=0,
     brute_force=False)
     Docstring:
@@ -465,7 +463,7 @@ Good practices
 
     * **Indentation: no choice!**
 
-    Indenting is compulsory in Python. Every commands block following a
+    Indenting is compulsory in Python! Every command block following a
     colon bears an additional indentation level with respect to the
     previous line with a colon. One must therefore indent after
     ``def f():`` or ``while:``. At the end of such logical blocks, one
