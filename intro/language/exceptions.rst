@@ -56,8 +56,8 @@ try/except
      ....:         break
      ....:     except ValueError:
      ....:         print('That was no valid number.  Try again...')
-     ....:         
-     ....:         
+     ....:
+     ....:
     Please enter a number: a
     That was no valid number.  Try again...
     Please enter a number: 1
@@ -74,8 +74,8 @@ try/finally
      ....:    x = int(raw_input('Please enter a number: '))
      ....: finally:
      ....:    print('Thank you for your input')
-     ....:    
-     ....:    
+     ....:
+     ....:
     Please enter a number: a
     Thank you for your input
     ---------------------------------------------------------------------------
@@ -95,8 +95,8 @@ Easier to ask for forgiveness than for permission
        ....:     except AttributeError:
        ....:         pass
        ....:     print(collection)
-       ....:     
-       ....:     
+       ....:
+       ....:
 
     In [12]: print_sorted([1, 3, 2])
     [1, 2, 3]
@@ -116,15 +116,15 @@ Raising exceptions
   .. sourcecode:: ipython
 
     In [15]: def filter_name(name):
-       ....:	try:                      
+       ....:	try:
        ....:	    name = name.encode('ascii')
        ....:	except UnicodeError, e:
        ....:	    if name == 'Gaël':
        ....:		print('OK, Gaël')
-       ....:	    else:                
+       ....:	    else:
        ....:		raise e
        ....:	return name
-       ....: 
+       ....:
 
     In [16]: filter_name('Gaël')
     OK, Gaël
@@ -144,7 +144,7 @@ Raising exceptions
        ....:        raise StopIteration
        ....:    x = 1 - (1-x)/2.
        ....:    return x
-       ....: 
+       ....:
 
     In [18]: x = 0
 
@@ -153,8 +153,8 @@ Raising exceptions
        ....:         x = achilles_arrow(x)
        ....:     except StopIteration:
        ....:         break
-       ....:         
-       ....:         
+       ....:
+       ....:
 
     In [20]: x
     Out[20]: 0.9990234375
