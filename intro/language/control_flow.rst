@@ -99,7 +99,7 @@ Typical C-style while loop (Mandelbrot problem)::
 Conditional Expressions
 -----------------------
 
-:`if object`:
+:``if <OBJECT>``:
 
   Evaluates to False:
     * any number equal to zero (0, 0.0, 0+0j)
@@ -109,14 +109,14 @@ Conditional Expressions
   Evaluates to True:
     * everything else
 
-:`a == b`:
+:``a == b``:
 
   Tests equality, with logics::
 
     >>> 1 == 1.
     True
 
-:`a is b`:
+:``a is b``:
 
   Tests identity: both sides are the same object::
 
@@ -128,9 +128,9 @@ Conditional Expressions
     >>> a is b
     True
 
-:`a in b`:
+:``a in b``:
 
-  For any collection `b`: `b` contains `a` ::
+  For any collection ``b``: ``b`` contains ``a`` ::
 
     >>> b = [1, 2, 3]
     >>> 2 in b
@@ -139,7 +139,7 @@ Conditional Expressions
     False
 
 
-  If `b` is a dictionary, this tests that `a` is a key of `b`.
+  If ``b`` is a dictionary, this tests that ``a`` is a key of ``b``.
 
 Advanced iteration
 -------------------------
@@ -147,8 +147,8 @@ Advanced iteration
 Iterate over any *sequence*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* You can iterate over any sequence (string, list, keys in a
-  dictionary, lines in a file, ...)::
+You can iterate over any sequence (string, list, keys in a dictionary, lines in
+a file, ...)::
 
     >>> vowels = 'aeiouy'
 
@@ -192,7 +192,7 @@ item number.
     1 powerful
     2 readable
 
-* But Python provides **enumerate** for this::
+* But, Python provides ``enumerate`` keyword for this::
 
     >>> words = ('cool', 'powerful', 'readable')
     >>> for index, item in enumerate(words):
