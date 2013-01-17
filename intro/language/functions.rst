@@ -8,13 +8,13 @@ Function definition
 
     In [56]: def test():
        ....:     print('in test function')
-       ....:     
-       ....:     
+       ....:
+       ....:
 
     In [57]: test()
     in test function
 
-.. Warning:: 
+.. Warning::
 
     Function blocks must be indented as other control-flow blocks.
 
@@ -27,7 +27,7 @@ Functions can *optionally* return values.
 
     In [6]: def disk_area(radius):
        ...:     return 3.14 * radius * radius
-       ...: 
+       ...:
 
     In [8]: disk_area(1.5)
     Out[8]: 7.0649999999999995
@@ -57,7 +57,7 @@ Mandatory parameters (positional arguments)
 
     In [81]: def double_it(x):
        ....:     return x * 2
-       ....: 
+       ....:
 
     In [82]: double_it(3)
     Out[82]: 6
@@ -74,7 +74,7 @@ Optional parameters (keyword or named arguments)
 
     In [84]: def double_it(x=2):
        ....:     return x * 2
-       ....: 
+       ....:
 
     In [85]: double_it()
     Out[85]: 4
@@ -84,7 +84,7 @@ Optional parameters (keyword or named arguments)
 
 Keyword arguments allow you to specify *default values*.
 
-.. warning:: 
+.. warning::
 
    Default values are evaluated when the function is defined, not when
    it is called.
@@ -95,7 +95,7 @@ Keyword arguments allow you to specify *default values*.
 
     In [125]: def double_it(x=bigx):
        .....:     return x * 2
-       .....: 
+       .....:
 
     In [126]: bigx = 1e9  # Now really big
 
@@ -109,7 +109,7 @@ More involved example implementing python's slicing:
     In [98]: def slicer(seq, start=None, stop=None, step=None):
        ....:     """Implement basic python slicing."""
        ....:     return seq[start:stop:step]
-       ....: 
+       ....:
 
     In [101]: rhyme = 'one fish, two fish, red fish, blue fish'.split()
 
@@ -167,7 +167,7 @@ caller's variable in-place::
     ...     print(x)
     ...     print(y)
     ...     print(z)
-    ...     
+    ...
     >>> a = 77    # immutable variable
     >>> b = [99]  # mutable variable
     >>> c = [28]
@@ -201,7 +201,7 @@ function:
 
     In [115]: def addx(y):
        .....:     return x + y
-       .....: 
+       .....:
 
     In [116]: addx(10)
     Out[116]: 15
@@ -216,8 +216,8 @@ This doesn't work:
     In [117]: def setx(y):
        .....:     x = y
        .....:     print('x is %d' % x)
-       .....:     
-       .....:     
+       .....:
+       .....:
 
     In [118]: setx(10)
     x is 10
@@ -233,8 +233,8 @@ This works:
        .....:     global x
        .....:     x = y
        .....:     print('x is %d' % x)
-       .....:     
-       .....:     
+       .....:
+       .....:
 
     In [122]: setx(10)
     x is 10
@@ -254,7 +254,7 @@ Special forms of parameters:
     In [35]: def variable_args(*args, **kwargs):
        ....:     print 'args is', args
        ....:     print 'kwargs is', kwargs
-       ....: 
+       ....:
 
     In [36]: variable_args('one', 'two', x=1, y=2, z=3)
     args is ('one', 'two')
@@ -271,12 +271,12 @@ convention:
 
     In [67]: def funcname(params):
        ....:     """Concise one-line sentence describing the function.
-       ....: 
+       ....:
        ....:     Extended summary which can contain multiple paragraphs.
        ....:     """
        ....:     # function body
        ....:     pass
-       ....: 
+       ....:
 
     In [68]: funcname?
     Type:		function
@@ -302,7 +302,7 @@ convention:
     for documenting scientific functions, that you may want to follow for
     your own functions, with a ``Parameters`` section, an ``Examples``
     section, etc. See
-    http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard 
+    http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard
     and http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37
 
 Functions are objects
@@ -338,8 +338,8 @@ Exercises
 
 	function quicksort(array)
 	    var list less, greater
-	    if length(array) < 2  
-		return array  
+	    if length(array) < 2
+		return array
 	    select and remove a pivot value pivot from array
 	    for each x in array
 		if x < pivot + 1 then append x to less
