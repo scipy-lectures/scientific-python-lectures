@@ -107,7 +107,7 @@ Conditional Expressions
     * ``False``, ``None``
 
   Evaluates to True:
-    * everything else [#nonzero_note]_
+    * everything else
 
 :`a == b`:
 
@@ -140,11 +140,6 @@ Conditional Expressions
 
 
   If `b` is a dictionary, this tests that `a` is a key of `b`.
-
-.. rubric:: Footnotes
-
-.. [#nonzero_note] User-defined classes can customize those rules by overriding
-      the special ``__nonzero__`` method.
 
 Advanced iteration
 -------------------------
