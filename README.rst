@@ -84,16 +84,16 @@ Using Markup
 
 There are three main kinds of markup that should be used: *italics*, **bold**
 and ``fixed-font``. *Italics* should be used when introducing a new technical
-term, **bold** should be used for emphasis and ``fixed-font`` for source code
+term, **bold** should be used for emphasis and ``fixed-font`` for source code.
 
 .. topic:: Example:
 
-    When using *object-oriented programming* in python you **must** use the
+    When using *object-oriented programming* in Python you **must** use the
     ``class`` keyword to define your *classes*.
 
 In restructured-text markup this is::
 
-    when using *object-oriented programming* in python you **must** use the
+    when using *object-oriented programming* in Python you **must** use the
     ``class`` keyword to define your *classes*.
 
 Modifying
