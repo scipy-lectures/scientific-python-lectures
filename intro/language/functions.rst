@@ -87,7 +87,9 @@ Keyword arguments allow you to specify *default values*.
 .. warning::
 
    Default values are evaluated when the function is defined, not when
-   it is called.
+   it is called. This can be problematic when using mutable types (e.g.
+   dictionary or list) and modifying them in the function body, since the
+   modifications will be persistent across invocations of the function.
 
 .. sourcecode:: ipython
 
