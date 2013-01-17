@@ -24,9 +24,9 @@ Backspace key. Press the Enter key twice to leave the logical block.
 
 .. sourcecode:: ipython
 
-    In [2]: a = 10
+    In [1]: a = 10
 
-    In [3]: if a == 1:
+    In [2]: if a == 1:
        ...:     print(1)
        ...: elif a == 2:
        ...:     print(2)
