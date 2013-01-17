@@ -7,7 +7,9 @@ have raised an exception if you entered a command with a typo.
 
 Exceptions are raised by different kinds of errors arising when executing
 Python code. In your own code, you may also catch errors, or define custom
-error types.
+error types. You may want to look at the descriptions of the `the built-in
+Exceptions <http://docs.python.org/2/library/exceptions.html>`_ when looking
+for the right exception type.
 
 Exceptions
 -----------
