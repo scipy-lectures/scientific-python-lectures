@@ -6,7 +6,7 @@ sets of instructions we need to change tack and write the code in text
 files (using a text editor), that we will call either **scripts** or
 **modules**. Use your favorite text editor (provided it offers syntax
 highlighting for Python), or the editor that comes with the Scientific
-Python Suite you may be using (e.g., Scite with Python(x,y)). 
+Python Suite you may be using (e.g., Scite with Python(x,y)).
 
 Scripts
 -------
@@ -25,10 +25,10 @@ called **test.py** ::
 
 Let us now execute the script interactively, that is inside the Ipython
 interpreter. This is maybe the most common use of scripts in scientific
-computing. 
+computing.
 
     * in Ipython, the syntax to execute a script is ``%run
-      script.py``. For example, 
+      script.py``. For example,
 
 .. sourcecode:: ipython
 
@@ -54,7 +54,7 @@ program**, by executing the script inside a shell terminal (Linux/Mac
 console or cmd Windows console). For example, if we are in the same
 directory as the test.py file, we can execute this in a console:
 
-.. sourcecode:: bash 
+.. sourcecode:: bash
 
     epsilon:~/sandbox$ python test.py
     Hello
@@ -74,7 +74,7 @@ In ``file.py``::
     $ python file.py test arguments
     ['file.py', 'test', 'arguments']
 
-.. note:: 
+.. note::
 
     Don't implement option parsing yourself. Use modules such as
     `optparse`.
@@ -115,22 +115,22 @@ Importing shorthands:
 
     In [5]: import numpy as np
 
-.. warning:: 
+.. warning::
 
     ::
-    
-      from os import * 
+
+      from os import *
 
     **Do not do it.**
 
-    * Makes the code harder to read and understand: where do symbols come 
+    * Makes the code harder to read and understand: where do symbols come
       from?
 
     * Makes it impossible to guess the functionality by the context and
       the name (hint: `os.name` is the name of the OS), and to profit
       usefully from tab completion.
 
-    * Restricts the variable names you can use: `os.name` might override 
+    * Restricts the variable names you can use: `os.name` might override
       `name`, or vise-versa.
 
     * Creates possible name clashes between modules.
@@ -149,7 +149,7 @@ all the scientific computing tools we are going to use are modules::
 
 In Python(x,y) software, Ipython(x,y) execute the following imports at startup::
 
-    >>> import numpy	
+    >>> import numpy
     >>> import numpy as np
     >>> from pylab import *
     >>> import scipy
@@ -163,7 +163,7 @@ Creating modules
 If we want to write larger and better organized programs (compared to
 simple scripts), where some objects are defined, (variables, functions,
 classes) and that we want to reuse several times, we have to create our
-own **modules**. 
+own **modules**.
 
 Let us create a module `demo` contained in the file `demo.py`:
 
@@ -215,7 +215,7 @@ Introspection
     demo       module    <module 'demo' from 'demo.py'>
 
     In [7]: dir(demo)
-    Out[7]: 
+    Out[7]:
     ['__builtins__',
     '__doc__',
     '__file__',
@@ -225,7 +225,7 @@ Introspection
     'd',
     'print_a',
     'print_b']
- 
+
 
     In [8]: demo.
     demo.__builtins__      demo.__init__          demo.__str__
@@ -236,7 +236,7 @@ Introspection
     demo.__file__          demo.__reduce_ex__     demo.print_b
     demo.__format__        demo.__repr__          demo.py
     demo.__getattribute__  demo.__setattr__       demo.pyc
-    demo.__hash__          demo.__sizeof__        
+    demo.__hash__          demo.__sizeof__
 
 
 Importing objects from modules into the main namespace
@@ -255,7 +255,7 @@ Importing objects from modules into the main namespace
     In [11]: print_a()
     a
 
-.. warning:: 
+.. warning::
 
     **Module caching**
 
@@ -316,17 +316,17 @@ Scripts or modules? How to organize your code
     is searched in a given list of directories. This list includes a list
     of installation-dependent default path (e.g., `/usr/lib/python`) as
     well as the list of directories specified by the environment variable
-    **PYTHONPATH**. 
+    **PYTHONPATH**.
 
     The list of directories searched by Python is given by the `sys.path`
-    variable 
+    variable
 
-    .. sourcecode:: ipython	
+    .. sourcecode:: ipython
 
         In [1]: import sys
-        
+
         In [2]: sys.path
-        Out[2]: 
+        Out[2]:
         ['',
          '/usr/bin',
          '/usr/local/include/enthought.traits-1.1.0',
@@ -343,7 +343,7 @@ Scripts or modules? How to organize your code
          '/usr/lib/python2.6/dist-packages',
          '/usr/lib/pymodules/python2.6/IPython/Extensions',
          u'/home/gouillar/.ipython']
-     
+
     Modules must be located in the search path, therefore you can:
 
     * write your own modules within directories already defined in the
@@ -404,7 +404,7 @@ imported.
     interpolate/    optimize/    stats/
     sd-2116 /usr/lib/python2.6/dist-packages/scipy $ cd ndimage
     [17:07]
-    
+
     sd-2116 /usr/lib/python2.6/dist-packages/scipy/ndimage $ ls
     [17:07]
     doccer.py@   fourier.pyc   interpolation.py@  morphology.pyc   setup.pyc
@@ -429,7 +429,7 @@ From Ipython:
 
     In [4]: scipy.version.version
     Out[4]: '0.7.0'
-    
+
     In [5]: import scipy.ndimage.morphology
 
     In [6]: from scipy.ndimage import morphology
@@ -445,7 +445,7 @@ From Ipython:
     brute_force=False)
     Docstring:
         Multi-dimensional binary dilation with the given structure.
-        
+
         An output array can optionally be provided. The origin parameter
         controls the placement of the filter. If no structuring element is
         provided an element is generated with a squared connectivity equal
@@ -467,7 +467,7 @@ Good practices
 
     Indenting is compulsory in Python. Every commands block following a
     colon bears an additional indentation level with respect to the
-    previous line with a colon. One must therefore indent after 
+    previous line with a colon. One must therefore indent after
     ``def f():`` or ``while:``. At the end of such logical blocks, one
     decreases the indentation depth (and re-increases it if a new block
     is entered, etc.)
@@ -486,28 +486,28 @@ Good practices
     extra characters, the resulting code is very nice to read compared to
     other languages.
 
-    * **Indentation depth**: 
+    * **Indentation depth**:
 
     Inside your text editor, you may choose to
     indent with any positive number of spaces (1, 2, 3, 4, ...). However,
     it is considered good practice to **indent with 4 spaces**. You may
     configure your editor to map the ``Tab`` key to a 4-space
     indentation. In Python(x,y), the editor ``Scite`` is already
-    configured this way.        
- 
+    configured this way.
+
     * **Style guidelines**
 
     **Long lines**: you should not write very long lines that span over more
     than (e.g.) 80 characters. Long lines can be broken with the ``\``
     character ::
-   
+
         >>> long_line = "Here is a very very long line \
         ... that we break in two parts."
 
     **Spaces**
 
     Write well-spaced code: put whitespaces after commas, around arithmetic
-    operators, etc.:: 
+    operators, etc.::
 
         >>> a = 1 # yes
         >>> a=1 # too cramped
