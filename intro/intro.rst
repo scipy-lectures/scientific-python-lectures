@@ -1,7 +1,7 @@
 Scientific computing with tools and workflow
 =============================================
 
-:authors: Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux
+:authors: Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux, Valentin Haenel
 
 ..
     .. image:: phd053104s.png
@@ -210,7 +210,7 @@ Start `ipython`:
     In [1]: print('Hello world')
     Hello world
 
-Getting help:
+Getting help by using the **?** operator after an object:
 
 .. sourcecode:: ipython
 
@@ -245,13 +245,13 @@ Now, you can run it in IPython and explore the resulting variables:
 
 .. sourcecode:: ipython
 
-    In [3]: %run my_file.py
+    In [1]: %run my_file.py
     Hello world
 
-    In [4]: s
-    Out[4]: 'Hello world'
+    In [2]: s
+    Out[2]: 'Hello world'
 
-    In [5]: %whos
+    In [3]: %whos
     Variable   Type    Data/Info
     ----------------------------
     s          str     Hello world
@@ -268,6 +268,149 @@ Now, you can run it in IPython and explore the resulting variables:
     * Thinking in terms of functions helps breaking the problem in small
       blocks.
 
+
+Ipython Tips and Tricks
+.......................
+
+The Ipython user manual contains a wealth of information about using Ipython,
+but to get you started we want to give you a quick introduction to three useful
+features: *history*, *magic functions*, *aliases* and *tab completion*.
+
+Like a UNIX shell, Ipython supports command history. Type *up* and *down* to
+navigate previously typed commands:
+
+.. sourcecode:: ipython
+
+    In [1]: x = 10
+
+    In [2]: <UP>
+
+    In [2]: x = 10
+
+Ipython supports so called *magic* functions by prefixing a command with the
+``%`` character. For example, the ``run`` and ``whos`` functions from the
+previous section are magic functions. Note that, the setting ``automagic``,
+which is enabled by default, allows you to omit the preceding ``%`` sign. Thus,
+you can just type the magic function and it will work.
+
+Other useful magic functions are:
+
+* ``%cd`` to change the current directory.
+
+  .. sourcecode:: ipython
+
+    In [2]: cd /tmp
+    /tmp
+
+* ``%timeit`` allows you to time the execution of short snippets using the
+  ``timeit`` module from the standard library:
+
+  .. sourcecode:: ipython
+
+      In [3]: timeit x = 10
+      10000000 loops, best of 3: 39 ns per loop
+
+* ``%cpaste`` allows you to paste code, especially code from websites which has
+  been prefixed with the standard python prompt (e.g. ``>>>``) or with an ipython
+  prompt, (e.g. ``in [3]``):
+
+  .. sourcecode:: ipython
+
+    In [5]: cpaste
+    Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
+    :In [3]: timeit x = 10
+    :--
+    10000000 loops, best of 3: 85.9 ns per loop
+    In [6]: cpaste
+    Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
+    :>>> timeit x = 10
+    :--
+    10000000 loops, best of 3: 86 ns per loop
+
+
+* ``%debug`` allows you to enter post-mortem debugging. That is to say, if the
+  code you try to execute, raises an exception, using ``%debug`` will enter the
+  debugger at the point where the exception was thrown.
+
+  .. sourcecode:: ipython
+
+    In [7]: x === 10
+      File "<ipython-input-6-12fd421b5f28>", line 1
+        x === 10
+            ^
+    SyntaxError: invalid syntax
+
+
+    In [8]: debug
+    > /home/esc/anaconda/lib/python2.7/site-packages/IPython/core/compilerop.py(87)ast_parse()
+         86         and are passed to the built-in compile function."""
+    ---> 87         return compile(source, filename, symbol, self.flags | PyCF_ONLY_AST, 1)
+         88
+
+    ipdb>locals()
+    {'source': u'x === 10\n', 'symbol': 'exec', 'self':
+    <IPython.core.compilerop.CachingCompiler instance at 0x2ad8ef0>,
+    'filename': '<ipython-input-6-12fd421b5f28>'}
+
+.. note::
+
+
+.. note::
+
+    The built-in Ipython cheat-sheet is accessible via the ``%quickref`` magic
+    function.
+
+.. note::
+
+    A list of all available magic functions is shown when typing ``%magic``.
+
+Furthermore Ipython ships with various *aliases* which emulate common UNIX
+command line tools such as ``ls`` to list files, ``cp`` to copy files and ``rm`` to
+remove files. A list of aliases is shown when typing ``alias``:
+
+.. sourcecode:: ipython
+
+    In [1]: alias
+    Total number of aliases: 16
+    Out[1]:
+    [('cat', 'cat'),
+    ('clear', 'clear'),
+    ('cp', 'cp -i'),
+    ('ldir', 'ls -F -o --color %l | grep /$'),
+    ('less', 'less'),
+    ('lf', 'ls -F -o --color %l | grep ^-'),
+    ('lk', 'ls -F -o --color %l | grep ^l'),
+    ('ll', 'ls -F -o --color'),
+    ('ls', 'ls -F --color'),
+    ('lx', 'ls -F -o --color %l | grep ^-..x'),
+    ('man', 'man'),
+    ('mkdir', 'mkdir'),
+    ('more', 'more'),
+    ('mv', 'mv -i'),
+    ('rm', 'rm -i'),
+    ('rmdir', 'rmdir')]
+
+Lastly, we would like to mention the *tab completion* feature, whose
+description we cite directly from the Ipython manual:
+
+*Tab completion, especially for attributes, is a convenient way to explore the
+structure of any object you’re dealing with. Simply type object_name.<TAB> to
+view the object’s attributes. Besides Python objects and keywords, tab
+completion also works on file and directory names.*
+
+.. sourcecode:: ipython
+
+    In [1]: x = 10
+
+    In [2]: x.<TAB>
+    x.bit_length   x.conjugate    x.denominator  x.imag         x.numerator
+    x.real
+
+    In [3]: x.real.
+    x.real.bit_length   x.real.denominator  x.real.numerator
+    x.real.conjugate    x.real.imag         x.real.real
+
+    In [4]: x.real.
 
 .. :vim:spell:
 
