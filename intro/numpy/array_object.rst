@@ -140,9 +140,7 @@ Creating arrays
     >>> len(a)
     4
 
-**2-D, 3-D, ...**:
-
-.. code-block:: python
+**2-D, 3-D, ...**::
 
     >>> b = np.array([[0, 1, 2], [3, 4, 5]])    # 2 x 3 array
     >>> b
