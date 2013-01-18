@@ -565,19 +565,19 @@ memory and time.
 Adding Axes
 -----------
 
-Indexing with the ``np.newaxis`` object allows us to add an axis to an array:
+Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
 
->>> z = np.array([1, 2, 3])
->>> z
-array([1, 2, 3])
+    >>> z = np.array([1, 2, 3])
+    >>> z
+    array([1, 2, 3])
 
->>> z[:, np.newaxis]
-array([[1],
-       [2],
-       [3]])
+    >>> z[:, np.newaxis]
+    array([[1],
+        [2],
+        [3]])
 
->>> z[np.newaxis, :]
-array([[1, 2, 3]])
+    >>> z[np.newaxis, :]
+    array([[1, 2, 3]])
 
 
 Fancy indexing
@@ -590,17 +590,19 @@ creates **copies not views**.
 Using boolean masks
 ...................
 
->>> np.random.seed(3)
->>> a = np.random.random_integers(0, 20, 15)
->>> a
-array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
->>> (a % 3 == 0)
-array([False,  True, False,  True, False, False, False,  True, False,
-        True,  True, False,  True, False, False], dtype=bool)
->>> mask = (a % 3 == 0)
->>> extract_from_a = a[mask] # or,  a[a%3==0]
->>> extract_from_a           # extract a sub-array with the mask
-array([ 3,  0,  9,  6,  0, 12])
+::
+
+    >>> np.random.seed(3)
+    >>> a = np.random.random_integers(0, 20, 15)
+    >>> a
+    array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
+    >>> (a % 3 == 0)
+    array([False,  True, False,  True, False, False, False,  True, False,
+            True,  True, False,  True, False, False], dtype=bool)
+    >>> mask = (a % 3 == 0)
+    >>> extract_from_a = a[mask] # or,  a[a%3==0]
+    >>> extract_from_a           # extract a sub-array with the mask
+    array([ 3,  0,  9,  6,  0, 12])
 
 Indexing with a mask can be very useful to assign a new value to a sub-array::
 
@@ -612,9 +614,11 @@ Indexing with a mask can be very useful to assign a new value to a sub-array::
 Indexing with an array of integers
 ....................................
 
->>> a = np.arange(10)
->>> a
-array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+::
+
+    >>> a = np.arange(10)
+    >>> a
+    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 Indexing can be done with an array of integers, where the same index is repeated
 several time::
