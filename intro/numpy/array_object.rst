@@ -468,7 +468,7 @@ A small illustrated summary of Numpy indexing and slicing...
 
     .. image:: numpy_indexing.png
         :align: center
-        :width: 100%
+        :width: 65%
 
 Copies and views
 ----------------
