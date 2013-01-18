@@ -269,14 +269,14 @@ Now, you can run it in IPython and explore the resulting variables:
       blocks.
 
 
-Ipython Tips and Tricks
+IPython Tips and Tricks
 .......................
 
-The Ipython user manual contains a wealth of information about using Ipython,
+The IPython user manual contains a wealth of information about using IPython,
 but to get you started we want to give you a quick introduction to three useful
 features: *history*, *magic functions*, *aliases* and *tab completion*.
 
-Like a UNIX shell, Ipython supports command history. Type *up* and *down* to
+Like a UNIX shell, IPython supports command history. Type *up* and *down* to
 navigate previously typed commands:
 
 .. sourcecode:: ipython
@@ -287,7 +287,7 @@ navigate previously typed commands:
 
     In [2]: x = 10
 
-Ipython supports so called *magic* functions by prefixing a command with the
+IPython supports so called *magic* functions by prefixing a command with the
 ``%`` character. For example, the ``run`` and ``whos`` functions from the
 previous section are magic functions. Note that, the setting ``automagic``,
 which is enabled by default, allows you to omit the preceding ``%`` sign. Thus,
@@ -357,14 +357,14 @@ Other useful magic functions are:
 
 .. note::
 
-    The built-in Ipython cheat-sheet is accessible via the ``%quickref`` magic
+    The built-in IPython cheat-sheet is accessible via the ``%quickref`` magic
     function.
 
 .. note::
 
     A list of all available magic functions is shown when typing ``%magic``.
 
-Furthermore Ipython ships with various *aliases* which emulate common UNIX
+Furthermore IPython ships with various *aliases* which emulate common UNIX
 command line tools such as ``ls`` to list files, ``cp`` to copy files and ``rm`` to
 remove files. A list of aliases is shown when typing ``alias``:
 
@@ -391,7 +391,7 @@ remove files. A list of aliases is shown when typing ``alias``:
     ('rmdir', 'rmdir')]
 
 Lastly, we would like to mention the *tab completion* feature, whose
-description we cite directly from the Ipython manual:
+description we cite directly from the IPython manual:
 
 *Tab completion, especially for attributes, is a convenient way to explore the
 structure of any object you’re dealing with. Simply type object_name.<TAB> to
