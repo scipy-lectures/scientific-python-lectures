@@ -656,7 +656,7 @@ The image below illustrates various fancy indexing applications
 
     .. image:: numpy_fancy_indexing.png
         :align: center
-        :width: 100%
+        :width: 80%
 
 We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
 the same time::
