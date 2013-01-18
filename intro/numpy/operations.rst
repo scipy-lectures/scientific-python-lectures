@@ -1,6 +1,6 @@
 
 ..  For doctests
-     
+
     >>> import numpy as np
     >>> np.random.seed(0)
 
@@ -105,7 +105,7 @@ Shape mismatches::
 .. topic:: Exercise
     :class: green
 
-    Generate arrays `[2**0, 2**1, 2**2, 2**3, 2**4]` and 
+    Generate arrays `[2**0, 2**1, 2**2, 2**3, 2**4]` and
     `a_j = 2^(3*j) - j`
 
 
@@ -285,7 +285,7 @@ Same idea in higher dimensions::
    <matplotlib.text.Text object at ...>
    >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
    <matplotlib.text.Text object at ...>
-  
+
 
   .. plot:: pyplots/numpy_intro_5.py
 
@@ -603,7 +603,7 @@ Some examples of real-world use cases
         b = a + 1
       end subroutine some_function
 
-   We can use f2py to wrap this fortran code in Python: 
+   We can use f2py to wrap this fortran code in Python:
    ``f2py -c -m fortran_module 2_a_fortran_module.f90``
 
    .. sourcecode:: python
@@ -756,7 +756,7 @@ Finding minima and maxima::
 
 
 .. XXX: need a frame for summaries
-   
+
     * Arithmetic etc. are elementwise operations
     * Basic linear algebra, ``.dot()``
     * Reductions: ``sum(axis=1)``, ``std()``, ``all()``, ``any()``
