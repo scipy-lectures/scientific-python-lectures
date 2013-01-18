@@ -186,15 +186,15 @@ item number.
 
 * Could use while loop with a counter as above. Or a for loop::
 
+    >>> words = ('cool', 'powerful', 'readable')
     >>> for i in range(0, len(words)):
-    ...     print(i, words[i])
+    ...     print i, words[i]
     0 cool
     1 powerful
     2 readable
 
 * But, Python provides ``enumerate`` keyword for this::
 
-    >>> words = ('cool', 'powerful', 'readable')
     >>> for index, item in enumerate(words):
     ...     print index, item
     0 cool
