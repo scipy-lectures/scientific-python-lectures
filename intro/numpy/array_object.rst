@@ -1,4 +1,4 @@
-..  
+..
     >>> import numpy as np
     >>> np.random.seed(0)
 
@@ -29,7 +29,7 @@ What are Numpy and numpy arrays
 
     - designed for scientific computation (convenience)
 
-::    
+::
 
     >>> import numpy as np
     >>> a = np.array([0, 1, 2, 3])
@@ -322,7 +322,7 @@ There are also other types:
 
 :Much more:
 
-        int32/int64...   
+        int32/int64...
 
 
 
@@ -509,7 +509,7 @@ memory and time.
     array([[ 2.,  2.,  2., ...,  2.,  2.,  2.],
            [ 2.,  2.,  2., ...,  2.,  2.,  2.],
            [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           ..., 
+           ...,
            [ 3.,  3.,  3., ...,  2.,  2.,  2.],
            [ 3.,  3.,  3., ...,  2.,  2.,  2.],
            [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
@@ -552,9 +552,9 @@ memory and time.
    * Follow-up:
 
      - Move the above code into a script file named ``prime_sieve.py``
-    
+
      - Run it to check it works
-    
+
      - Convert the simple sieve to `the sieve of Eratosthenes
        <http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`__:
 
