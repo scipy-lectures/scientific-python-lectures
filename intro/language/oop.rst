@@ -8,8 +8,8 @@ Python supports object-oriented programming (OOP). The goals of OOP are:
     * to re-use code in similar contexts.
 
 
-Here is a small example: we create a Student **class**, which is an object
-gathering several custom functions (**methods**) and variables (**attributes**),
+Here is a small example: we create a Student *class*, which is an object
+gathering several custom functions (*methods*) and variables (*attributes*),
 we will be able to use::
 
     >>> class Student(object):
@@ -19,7 +19,7 @@ we will be able to use::
     ...         self.age = age
     ...     def set_major(self, major):
     ...         self.major = major
-    ...         
+    ...
     >>> anna = Student('anna')
     >>> anna.set_age(21)
     >>> anna.set_major('physics')
@@ -38,7 +38,7 @@ methods and attributes as the previous one, but with an additional
 
     >>> class MasterStudent(Student):
     ...     internship = 'mandatory, from March to June'
-    ...     
+    ...
     >>> james = MasterStudent('james')
     >>> james.internship
     'mandatory, from March to June'
