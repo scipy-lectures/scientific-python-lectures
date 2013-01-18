@@ -225,17 +225,17 @@ In practice, we rarely enter items one by one...
 
     Create the following arrays (with correct data types)::
 
-        [[ 1  1  1  1]
-         [ 1  1  1  1]
-         [ 1  1  1  2]
-         [ 1  6  1  1]]
+        [[1, 1, 1, 1],
+         [1, 1, 1, 1],
+         [1, 1, 1, 2],
+         [1, 6, 1, 1]]
 
-        [[0. 0. 0. 0. 0.]
-         [2. 0. 0. 0. 0.]
-         [0. 3. 0. 0. 0.]
-         [0. 0. 4. 0. 0.]
-         [0. 0. 0. 5. 0.]
-         [0. 0. 0. 0. 6.]]
+        [[0., 0., 0., 0., 0.],
+         [2., 0., 0., 0., 0.],
+         [0., 3., 0., 0., 0.],
+         [0., 0., 4., 0., 0.],
+         [0., 0., 0., 5., 0.],
+         [0., 0., 0., 0., 6.]]
 
     Par on course: 3 statements for each
 
@@ -250,10 +250,10 @@ In practice, we rarely enter items one by one...
     Skim through the documentation for ``np.tile``, and use this function
     to construct the array::
 
-        [[4 3 4 3 4 3]
-         [2 1 2 1 2 1]
-         [4 3 4 3 4 3]
-         [2 1 2 1 2 1]]
+        [[4, 3, 4, 3, 4, 3],
+         [2, 1, 2, 1, 2, 1],
+         [4, 3, 4, 3, 4, 3],
+         [2, 1, 2, 1, 2, 1]]
 
 .. array() constructor
 
