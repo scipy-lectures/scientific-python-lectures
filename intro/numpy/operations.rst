@@ -793,7 +793,7 @@ Some exercises
         >>> lena = misc.lena()
 
     **Note:** In older versions of scipy, you will find lena under
-    `scipy.lena()`
+    ``scipy.lena()``
 
     Here are a few images we will be able to obtain with our manipulations:
     use different colormaps, crop the image, change some parts of the image.
