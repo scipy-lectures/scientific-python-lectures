@@ -7,10 +7,10 @@ if/elif/else
 ------------
 
 .. sourcecode:: ipython
-  
-    In [1]: if 2**2 == 4:
-       ...:     print 'Obvious!'
-       ...: 
+
+    >>> if 2**2 == 4:
+    ...     print 'Obvious!'
+    ...
     Obvious!
 
 
@@ -24,15 +24,15 @@ Backspace key. Press the Enter key twice to leave the logical block.
 
 .. sourcecode:: ipython
 
-    In [2]: a = 10
-    
-    In [3]: if a == 1:
+    In [1]: a = 10
+
+    In [2]: if a == 1:
        ...:     print(1)
        ...: elif a == 2:
        ...:     print(2)
        ...: else:
        ...:     print('A lot')
-       ...: 
+       ...:
     A lot
 
 Indentation is compulsory in scripts as well. As an exercise, re-type the
@@ -81,7 +81,7 @@ Typical C-style while loop (Mandelbrot problem)::
     ...     if z.imag == 0:
     ...         break
     ...     z = z**2 + 1
-         
+
 
 ``continue`` the next iteration of a loop.::
 
@@ -99,7 +99,7 @@ Typical C-style while loop (Mandelbrot problem)::
 Conditional Expressions
 -----------------------
 
-:`if object`:
+:``if <OBJECT>``:
 
   Evaluates to False:
     * any number equal to zero (0, 0.0, 0+0j)
@@ -107,16 +107,16 @@ Conditional Expressions
     * ``False``, ``None``
 
   Evaluates to True:
-    * everything else [#nonzero_note]_
+    * everything else
 
-:`a == b`:
+:``a == b``:
 
   Tests equality, with logics::
 
     >>> 1 == 1.
     True
 
-:`a is b`:
+:``a is b``:
 
   Tests identity: both sides are the same object::
 
@@ -128,9 +128,9 @@ Conditional Expressions
     >>> a is b
     True
 
-:`a in b`:
+:``a in b``:
 
-  For any collection `b`: `b` contains `a` ::
+  For any collection ``b``: ``b`` contains ``a`` ::
 
     >>> b = [1, 2, 3]
     >>> 2 in b
@@ -139,12 +139,7 @@ Conditional Expressions
     False
 
 
-  If `b` is a dictionary, this tests that `a` is a key of `b`.
-
-.. rubric:: Footnotes
-
-.. [#nonzero_note] User-defined classes can customize those rules by overriding
-      the special ``__nonzero__`` method.
+  If ``b`` is a dictionary, this tests that ``a`` is a key of ``b``.
 
 Advanced iteration
 -------------------------
@@ -152,8 +147,8 @@ Advanced iteration
 Iterate over any *sequence*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* You can iterate over any sequence (string, list, keys in a
-  dictionary, lines in a file, ...)::
+You can iterate over any sequence (string, list, keys in a dictionary, lines in
+a file, ...)::
 
     >>> vowels = 'aeiouy'
 
@@ -169,7 +164,7 @@ Iterate over any *sequence*
     ['Hello', 'how', 'are', 'you?']
     >>> for word in message.split():
     ...     print word
-    ...     
+    ...
     Hello
     how
     are
@@ -179,7 +174,7 @@ Few languages (in particular, languages for scientific computing) allow to
 loop over anything but integers/indices. With Python it is possible to
 loop exactly over the objects of interest without bothering with indices
 you often don't care about.
- 
+
 
 .. warning:: Not safe to modify the sequence you are iterating over.
 
@@ -191,15 +186,15 @@ item number.
 
 * Could use while loop with a counter as above. Or a for loop::
 
+    >>> words = ('cool', 'powerful', 'readable')
     >>> for i in range(0, len(words)):
-    ...     print(i, words[i])
+    ...     print i, words[i]
     0 cool
     1 powerful
     2 readable
 
-* But Python provides **enumerate** for this::
+* But, Python provides ``enumerate`` keyword for this::
 
-    >>> words = ('cool', 'powerful', 'readable')
     >>> for index, item in enumerate(words):
     ...     print index, item
     0 cool
@@ -241,6 +236,3 @@ _____
         \pi = 2 \prod_{i=1}^{\infty} \frac{4i^2}{4i^2 - 1}
 
 .. :ref:`pi_wallis`
-
-
-

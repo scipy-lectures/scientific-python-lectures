@@ -7,7 +7,9 @@ have raised an exception if you entered a command with a typo.
 
 Exceptions are raised by different kinds of errors arising when executing
 Python code. In your own code, you may also catch errors, or define custom
-error types.
+error types. You may want to look at the descriptions of the `the built-in
+Exceptions <http://docs.python.org/2/library/exceptions.html>`_ when looking
+for the right exception type.
 
 Exceptions
 -----------
@@ -40,7 +42,7 @@ Exceptions are raised by errors in Python:
     ---------------------------------------------------------------------------
     AttributeError: 'list' object has no attribute 'foobar'
 
-**Different types of exceptions for different errors.**
+As you can see, there are **different types** of exceptions for different errors.
 
 Catching exceptions
 --------------------
@@ -56,8 +58,8 @@ try/except
      ....:         break
      ....:     except ValueError:
      ....:         print('That was no valid number.  Try again...')
-     ....:         
-     ....:         
+     ....:
+     ....:
     Please enter a number: a
     That was no valid number.  Try again...
     Please enter a number: 1
@@ -74,8 +76,8 @@ try/finally
      ....:    x = int(raw_input('Please enter a number: '))
      ....: finally:
      ....:    print('Thank you for your input')
-     ....:    
-     ....:    
+     ....:
+     ....:
     Please enter a number: a
     Thank you for your input
     ---------------------------------------------------------------------------
@@ -95,8 +97,8 @@ Easier to ask for forgiveness than for permission
        ....:     except AttributeError:
        ....:         pass
        ....:     print(collection)
-       ....:     
-       ....:     
+       ....:
+       ....:
 
     In [12]: print_sorted([1, 3, 2])
     [1, 2, 3]
@@ -116,15 +118,15 @@ Raising exceptions
   .. sourcecode:: ipython
 
     In [15]: def filter_name(name):
-       ....:	try:                      
+       ....:	try:
        ....:	    name = name.encode('ascii')
        ....:	except UnicodeError, e:
        ....:	    if name == 'Gaël':
        ....:		print('OK, Gaël')
-       ....:	    else:                
+       ....:	    else:
        ....:		raise e
        ....:	return name
-       ....: 
+       ....:
 
     In [16]: filter_name('Gaël')
     OK, Gaël
@@ -144,7 +146,7 @@ Raising exceptions
        ....:        raise StopIteration
        ....:    x = 1 - (1-x)/2.
        ....:    return x
-       ....: 
+       ....:
 
     In [18]: x = 0
 
@@ -153,14 +155,14 @@ Raising exceptions
        ....:         x = achilles_arrow(x)
        ....:     except StopIteration:
        ....:         break
-       ....:         
-       ....:         
+       ....:
+       ....:
 
     In [20]: x
     Out[20]: 0.9990234375
 
 
-**Use exceptions to notify certain conditions are met (e.g.
-StopIteration) or not (e.g. custom error raising)**
+Use exceptions to notify certain conditions are met (e.g.
+StopIteration) or not (e.g. custom error raising)
 
 

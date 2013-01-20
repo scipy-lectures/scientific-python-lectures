@@ -4,15 +4,21 @@ Basic types
 Numerical types
 ----------------
 
+Python supports the following numerical, scalar types:
+
 :Integer:
 
     >>> 1 + 1
     2
     >>> a = 4
+    >>> type(a)
+    <type 'int'>
 
 :Floats:
 
     >>> c = 2.1
+    >>> type(c)
+    <type 'float'>
 
 :Complex:
 
@@ -21,6 +27,8 @@ Numerical types
     1.5
     >>> a.imag
     0.5
+    >>> type(1. + 0j )
+    <type 'complex'>
 
 :Booleans:
 
@@ -31,8 +39,6 @@ Numerical types
     False
     >>> type(test)
     <type 'bool'>
-
-
 
 A Python shell can therefore replace your pocket calculator, with the
 basic arithmetic operations ``+``, ``-``, ``*``, ``/``, ``%`` (modulo)
@@ -45,45 +51,41 @@ natively implemented::
     >>> 8 % 3
     2
 
+Type conversion (casting)::
+
+    >>> float(1)
+    1.0
+
 .. warning:: Integer division
 
     ::
 
-	>>> 3 / 2
-	1
+    >>> 3 / 2
+    1
 
-    **Trick**: use floats:: 
+    **Trick**: use floats::
 
-	>>> 3 / 2.
-	1.5
-
-	>>> a = 3
-	>>> b = 2
-	>>> a / b
-	1
-	>>> a / float(b)
-	1.5
-
-
-* Scalar types: int, float, complex, bool::
-
-    >>> type(1)
-    <type 'int'>
-    >>> type(1.)
-    <type 'float'>
-    >>> type(1. + 0j )
-    <type 'complex'>
+    >>> 3 / 2.
+    1.5
 
     >>> a = 3
-    >>> type(a)
-    <type 'int'>
+    >>> b = 2
+    >>> a / b
+    1
+    >>> a / float(b)
+    1.5
 
+    If you explicitly want integer division use ``//``
 
-
-* Type conversion::
-
-    >>> float(1)
+    >>> 3.0//2
     1.0
+
+    .. note::
+
+        The behaviour of the division operator has changed in Python 3. Please
+        look at the `python3porting
+        <http://python3porting.com/preparing.html#use-instead-of-when-dividing-integers>`_
+        website for details.
 
 Containers
 ------------
@@ -94,7 +96,6 @@ objects can be stored.
 Lists
 ~~~~~
 
-
 A list is an ordered collection of objects, that may have different
 types. For example ::
 
@@ -102,12 +103,12 @@ types. For example ::
     >>> type(l)
     <type 'list'>
 
-* Indexing: accessing individual objects contained in the list::
+Indexing: accessing individual objects contained in the list::
 
     >>> l[2]
     'green'
 
-  Counting from the end with negative indices::
+Counting from the end with negative indices::
 
     >>> l[-1]
     'white'
@@ -118,9 +119,7 @@ types. For example ::
 
     **Indexing starts at 0** (as in C), not at 1 (as in Fortran or Matlab)!
 
-* Slicing: obtaining sublists of regularly-spaced elements
-
-::
+Slicing: obtaining sublists of regularly-spaced elements::
 
     >>> l
     ['red', 'blue', 'green', 'black', 'white']
@@ -133,7 +132,7 @@ types. For example ::
     such as  ``start<= i < stop`` (``i`` ranging from ``start`` to
     ``stop-1``). Therefore, ``l[start:stop]`` has ``(stop-start)`` elements.
 
-**Slicing syntax**: `l[start:stop:stride]`
+**Slicing syntax**: ``l[start:stop:stride]``
 
 All slicing parameters are optional::
 
@@ -159,11 +158,11 @@ Lists are *mutable* objects and can be modified::
 
     The elements of a list may have different types::
 
-	>>> l = [3, -200, 'hello']
-	>>> l
-	[3, -200, 'hello']
-	>>> l[1], l[2]
-	(-200, 'hello')
+        >>> l = [3, -200, 'hello']
+        >>> l
+        [3, -200, 'hello']
+        >>> l[1], l[2]
+        (-200, 'hello')
 
     For collections of numerical data that all have the same type, it
     is often **more efficient** to use the ``array`` type provided by
@@ -180,41 +179,49 @@ http://docs.python.org/tutorial/datastructures.html#more-on-lists
 
 Add and remove elements::
 
-    >>> l = [1, 2, 3, 4, 5]
-    >>> l.append(6)
+    >>> l = ['red', 'blue', 'green', 'black', 'white']
+    >>> l.append('pink')
     >>> l
-    [1, 2, 3, 4, 5, 6]
+    ['red', 'blue', 'green', 'black', 'white', 'pink']
     >>> l.pop() # removes and returns the last item
-    6
+    'pink'
     >>> l
-    [1, 2, 3, 4, 5]
-    >>> l.extend([6, 7]) # extend l, in-place
+    ['red', 'blue', 'green', 'black', 'white']
+    >>> l.extend(['pink', 'purple']) # extend l, in-place
     >>> l
-    [1, 2, 3, 4, 5, 6, 7]
+    ['red', 'blue', 'green', 'black', 'white', 'pink', 'purple']
     >>> l = l[:-2]
     >>> l
-    [1, 2, 3, 4, 5]
+    ['red', 'blue', 'green', 'black', 'white']
 
+Reverse::
 
-Reverse `l`::
-
-    >>> r = l[::-1] # or use l.reverse()
+    >>> r = l[::-1]
     >>> r
-    [5, 4, 3, 2, 1]
+    ['white', 'black', 'green', 'blue', 'red']
+    >>> r2 = l
+    >>> r2
+    >>> ['red', 'blue', 'green', 'black', 'white']
+    >>> r2.reverse() # in-place
+    >>> r2
+    >>> ['white', 'black', 'green', 'blue', 'red']
 
-Concatenate and repeat lists:: 
+Concatenate and repeat lists::
 
     >>> r + l
-    [5, 4, 3, 2, 1, 1, 2, 3, 4, 5]
-    >>> 2 * r
-    [5, 4, 3, 2, 1, 5, 4, 3, 2, 1]
+    ['white', 'black', 'green', 'blue', 'red', 'red', 'blue', 'green', 'black', 'white']
+    >>> r * 2
+    ['white', 'black', 'green', 'blue', 'red', 'white', 'black', 'green', 'blue', 'red']
 
-Sort r (in-place)::
+Sort::
 
-    >>> r.sort()
+    >>> sorted(r) # new object
+     ['black', 'blue', 'green', 'red', 'white']
     >>> r
-    [1, 2, 3, 4, 5]
-
+    ['white', 'black', 'green', 'blue', 'red']
+    >>> r.sort()  # in-place
+    >>> r
+    ['black', 'blue', 'green', 'red', 'white']
 
 .. Note:: **Methods and Object-Oriented Programming**
 
@@ -222,16 +229,16 @@ Sort r (in-place)::
     first example of object-oriented programming (OOP). Being a ``list``, the
     object `r` owns the *method* `function` that is called using the notation
     **.**. No further knowledge of OOP than understanding the notation **.** is
-    necessary for going through this tutorial.  
+    necessary for going through this tutorial.
 
 
 .. note:: **Discovering methods:**
 
-    In IPython: tab-completion (press tab)
+    Reminder: in Ipython: tab-completion (press tab)
 
     .. sourcecode:: ipython
 
-        In [28]: r.
+        In [28]: r.<TAB>
         r.__add__           r.__iadd__          r.__setattr__
         r.__class__         r.__imul__          r.__setitem__
         r.__contains__      r.__init__          r.__setslice__
@@ -248,11 +255,8 @@ Sort r (in-place)::
         r.__gt__            r.__reversed__      r.reverse
         r.__hash__          r.__rmul__          r.sort
 
-
-
-
 Strings
-~~~~~~~ 
+~~~~~~~
 
 Different string syntaxes (simple, double or triple quotes)::
 
@@ -261,14 +265,14 @@ Different string syntaxes (simple, double or triple quotes)::
     s = '''Hello,                 # tripling the quotes allows the
            how are you'''         # the string to span more than one line
     s = """Hi,
-	   what's up?"""
+    what's up?"""
 
 .. sourcecode:: ipython
 
     In [1]: 'Hi, what's up?'
     ------------------------------------------------------------
        File "<ipython console>", line 1
-	 'Hi, what's up?'
+        'Hi, what's up?'
                ^
     SyntaxError: invalid syntax
 
@@ -301,7 +305,7 @@ Slicing::
     'lo,'
     >>> a[2:10:2] # Syntax: a[start:stop:step]
     'lo o'
-    >>> a[::3] # every three characters, from beginning to end 
+    >>> a[::3] # every three characters, from beginning to end
     'hl r!'
 
 Accents and special characters can also be handled in Unicode strings (see
@@ -329,15 +333,14 @@ Strings have many useful methods, such as ``a.replace`` as seen above.
 Remember the ``a.`` object-oriented notation and use tab completion or
 ``help(str)`` to search for new methods.
 
-.. Note:: 
+.. Note::
 
     Python offers advanced possibilities for manipulating strings,
-    looking for patterns or formatting. Due to lack of time this topic is
-    not addressed here, but the interested reader is referred to
+    looking for patterns or formatting. The interested reader is referred to
     http://docs.python.org/library/stdtypes.html#string-methods and
     http://docs.python.org/library/string.html#new-string-formatting
 
-* String substitution::
+String substitution::
 
     >>> 'An integer: %i; a float: %f; another string: %s' % (1, 0.1, 'string')
     'An integer: 1; a float: 0.100000; another string: string'
@@ -347,7 +350,6 @@ Remember the ``a.`` object-oriented notation and use tab completion or
     >>> filename
     'processing_of_dataset_102.txt'
 
-
 Dictionaries
 ~~~~~~~~~~~~~
 
@@ -356,7 +358,7 @@ values**. It is an **unordered** container::
 
 
     >>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
-    >>> tel['francis'] = 5915 
+    >>> tel['francis'] = 5915
     >>> tel
     {'sebastian': 5578, 'francis': 5915, 'emmanuelle': 5752}
     >>> tel['sebastian']
@@ -382,11 +384,10 @@ A dictionary can have keys (resp. values) with different types::
 More container types
 ~~~~~~~~~~~~~~~~~~~~
 
-* **Tuples**
+**Tuples**
 
 Tuples are basically immutable lists. The elements of a tuple are written
 between parentheses, or just separated by commas::
-
 
     >>> t = 12345, 54321, 'hello!'
     >>> t[0]
@@ -395,7 +396,7 @@ between parentheses, or just separated by commas::
     (12345, 54321, 'hello!')
     >>> u = (0, 2)
 
-* **Sets:** unordered, unique items::
+**Sets:** unordered, unique items::
 
     >>> s = set(('a', 'b', 'c', 'a'))
     >>> s
@@ -403,38 +404,64 @@ between parentheses, or just separated by commas::
     >>> s.difference(('a', 'b'))
     set(['c'])
 
-.. topic:: A bag of Ipython tricks
+Assignment operator
+-------------------
 
-    * Several Linux shell commands work in Ipython, such as ``ls``, ``pwd``, ``cd``, etc.
+`Python library reference
+<http://docs.python.org/reference/simple_stmts.html#assignment-statements>`_
+says:
 
-    * To get help about objects, functions, etc., type ``help object``.
-      Just type help() to get started.
+  Assignment statements are used to (re)bind names to values and to
+  modify attributes or items of mutable objects.
 
-    * Use **tab-completion** as much as possible: while typing the
-      beginning of an object's name (variable, function, module), press 
-      the **Tab** key and Ipython will complete the expression to match 
-      available names. If many names are possible, a list of names is 
-      displayed.
+In short, it works as follows (simple assignment):
 
-    * **History**: press the `up` (resp. `down`) arrow to go through all
-      previous (resp. next) instructions starting with the expression on
-      the left of the cursor (put the cursor at the beginning of the line
-      to go through all previous commands) 
+#. an expression on the right hand side is evaluated, the corresponding
+   object is created/obtained
+#. a **name** on the left hand side is assigned, or bound, to the
+   r.h.s. object
 
-    * You may log your session by using the Ipython "magic command"
-      %logstart. Your instructions will be saved in a file, that you can
-      execute as a script in a different session.
+Things to note:
 
+* a single object can have several names bound to it:
 
-.. sourcecode:: ipython
+    .. sourcecode:: ipython
 
-    In [1]: %logstart commands.log
-    Activating auto-logging. Current session state plus future input
-    saved.
-    Filename       : commands.log
-    Mode           : backup
-    Output logging : False
-    Raw input log  : False
-    Timestamping   : False
-    State          : active
+        In [1]: a = [1, 2, 3]
+        In [2]: b = a
+        In [3]: a
+        Out[3]: [1, 2, 3]
+        In [4]: b
+        Out[4]: [1, 2, 3]
+        In [5]: a is b
+        Out[5]: True
+	In [6]: b[1] = 'hi!'
+	In [7]: a
+	Out[7]: [1, 'hi!', 3]
 
+* to change a list *in place*, use indexing/slices:
+
+    .. sourcecode:: ipython
+
+        In [1]: a = [1, 2, 3]
+        In [3]: a
+        Out[3]: [1, 2, 3]
+        In [4]: a = ['a', 'b', 'c'] # Creates another object.
+        In [5]: a
+        Out[5]: ['a', 'b', 'c']
+        In [6]: id(a)
+        Out[6]: 138641676
+        In [7]: a[:] = [1, 2, 3] # Modifies object in place.
+        In [8]: a
+        Out[8]: [1, 2, 3]
+        In [9]: id(a)
+        Out[9]: 138641676 # Same as in Out[6], yours will differ...
+
+* the key concept here is **mutable vs. immutable**
+
+    * mutable objects can be changed in place
+    * immutable objects cannot be modified once created
+
+A very good and detailed explanation of the above issues can be found
+in David M. Beazley's article `Types and Objects in Python
+<http://www.informit.com/articles/article.aspx?p=453682>`_.
