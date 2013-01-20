@@ -65,12 +65,14 @@ Integers (signed):
 :class:`int64`       64 bits (same as :class:`int` on 64-bit platform)
 =================== ==============================================================
 
->>> np.array([1], dtype=int).dtype
-dtype('int64')
->>> np.iinfo(np.int32).max, 2**31 - 1
-(2147483647, 2147483647)
->>> np.iinfo(np.int64).max, 2**63 - 1
-(9223372036854775807, 9223372036854775807L)
+::
+
+    >>> np.array([1], dtype=int).dtype
+    dtype('int64')
+    >>> np.iinfo(np.int32).max, 2**31 - 1
+    (2147483647, 2147483647)
+    >>> np.iinfo(np.int64).max, 2**63 - 1
+    (9223372036854775807, 9223372036854775807L)
 
 Unsigned integers:
 
@@ -81,10 +83,12 @@ Unsigned integers:
 :class:`uint64`      64 bits
 =================== ==============================================================
 
->>> np.iinfo(np.uint32).max, 2**32 - 1
-(4294967295, 4294967295)
->>> np.iinfo(np.uint64).max, 2**64 - 1
-(18446744073709551615L, 18446744073709551615L)
+::
+
+    >>> np.iinfo(np.uint32).max, 2**32 - 1
+    (4294967295, 4294967295)
+    >>> np.iinfo(np.uint64).max, 2**64 - 1
+    (18446744073709551615L, 18446744073709551615L)
 
 Floating-point numbers:
 
@@ -96,15 +100,17 @@ Floating-point numbers:
 :class:`float128`    128 bits, platform-dependent (same as :class:`np.longdouble`)
 =================== ==============================================================
 
->>> np.finfo(np.float32).eps
-1.1920929e-07
->>> np.finfo(np.float64).eps
-2.2204460492503131e-16
+::
 
->>> np.float32(1e-8) + np.float32(1) == 1
-True
->>> np.float64(1e-8) + np.float64(1) == 1
-False
+    >>> np.finfo(np.float32).eps
+    1.1920929e-07
+    >>> np.finfo(np.float64).eps
+    2.2204460492503131e-16
+
+    >>> np.float32(1e-8) + np.float32(1) == 1
+    True
+    >>> np.float64(1e-8) + np.float64(1) == 1
+    False
 
 Complex floating-point numbers:
 
@@ -143,27 +149,29 @@ Complex floating-point numbers:
 Structured data types
 ---------------------
 
-====================================  ==
-``sensor_code`` (4-character string)
-``position`` (float)
-``value`` (float)
-====================================  ==
+=============== ====================
+``sensor_code``  (4-character string)
+``position``     (float)
+``value``        (float)
+=============== ====================
 
->>> samples = np.zeros((6,), dtype=[('sensor_code', 'S4'),
-...                                 ('position', float), ('value', float)])
->>> samples.ndim
-1
->>> samples.shape
-(6,)
->>> samples.dtype.names
-('sensor_code', 'position', 'value')
+::
 
->>> samples[:] = [('ALFA',   1, 0.37), ('BETA', 1, 0.11), ('TAU', 1,   0.13),
-...               ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
->>> samples
-array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13),
-       ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)],
-      dtype=[('sensor_code', '|S4'), ('position', '<f8'), ('value', '<f8')])
+    >>> samples = np.zeros((6,), dtype=[('sensor_code', 'S4'),
+    ...                                 ('position', float), ('value', float)])
+    >>> samples.ndim
+    1
+    >>> samples.shape
+    (6,)
+    >>> samples.dtype.names
+    ('sensor_code', 'position', 'value')
+
+    >>> samples[:] = [('ALFA',   1, 0.37), ('BETA', 1, 0.11), ('TAU', 1,   0.13),
+    ...               ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
+    >>> samples
+    array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13),
+        ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)],
+        dtype=[('sensor_code', '|S4'), ('position', '<f8'), ('value', '<f8')])
 
 Field access works by indexing with field names::
 
