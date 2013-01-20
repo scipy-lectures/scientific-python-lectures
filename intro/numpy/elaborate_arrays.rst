@@ -1,5 +1,5 @@
 .. For doctests
-   
+
    >>> import numpy as np
    >>> np.random.seed(0)
    >>> from matplotlib import pyplot as plt
@@ -162,13 +162,13 @@ Structured data types
 ...               ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
 >>> samples
 array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13),
-       ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)], 
+       ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)],
       dtype=[('sensor_code', '|S4'), ('position', '<f8'), ('value', '<f8')])
 
 Field access works by indexing with field names::
 
     >>> samples['sensor_code']
-    array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'], 
+    array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'],
           dtype='|S4')
     >>> samples['value']
     array([ 0.37,  0.11,  0.13,  0.37,  0.11,  0.13])
@@ -183,13 +183,13 @@ Multiple fields at once::
 
     >>> samples[['position', 'value']]
     array([(1.0, 0.37), (1.0, 0.11), (1.0, 0.13), (1.5, 0.37), (3.0, 0.11),
-           (1.2, 0.13)], 
+           (1.2, 0.13)],
           dtype=[('position', '<f8'), ('value', '<f8')])
 
 Fancy indexing works, as usual::
 
     >>> samples[samples['sensor_code'] == 'ALFA']
-    array([('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11)], 
+    array([('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11)],
           dtype=[('sensor_code', '|S4'), ('position', '<f8'), ('value', '<f8')])
 
 .. note:: There are a bunch of other syntaxes for constructing structured
