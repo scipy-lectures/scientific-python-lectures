@@ -199,12 +199,12 @@ Reverse::
     >>> r = l[::-1]
     >>> r
     ['white', 'black', 'green', 'blue', 'red']
-    >>> r2 = l
+    >>> r2 = list(l)
     >>> r2
-    >>> ['red', 'blue', 'green', 'black', 'white']
+    ['red', 'blue', 'green', 'black', 'white']
     >>> r2.reverse() # in-place
     >>> r2
-    >>> ['white', 'black', 'green', 'blue', 'red']
+    ['white', 'black', 'green', 'blue', 'red']
 
 Concatenate and repeat lists::
 
@@ -216,7 +216,7 @@ Concatenate and repeat lists::
 Sort::
 
     >>> sorted(r) # new object
-     ['black', 'blue', 'green', 'red', 'white']
+    ['black', 'blue', 'green', 'red', 'white']
     >>> r
     ['white', 'black', 'green', 'blue', 'red']
     >>> r.sort()  # in-place
