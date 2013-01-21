@@ -60,3 +60,5 @@ Fixes:
 - Virgile Fritsch
 
 - Ozan Çağlayan
+
+- kikocorreo
