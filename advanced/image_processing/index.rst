@@ -28,7 +28,7 @@ Image manipulation and processing using Numpy and Scipy
 
 * a few examples use specialized toolkits working with ``np.array``:
 
-    * `Scikit Image <http://scikits-image.org/>`_
+    * `scikit-image <http://scikit-image.org/>`_
     
     * `scikit-learn <http://scikit-learn.org/>`_ 
 
@@ -43,6 +43,10 @@ Image manipulation and processing using Numpy and Scipy
 * Image segmentation: labeling pixels corresponding to different objects
 
 * Classification
+
+* Feature extraction 
+
+* Registration
 
 * ...
 
@@ -79,6 +83,7 @@ Writing an array to a file:
 
 Creating a numpy array from an image file::
 
+    >>> from scipy import misc
     >>> lena = misc.imread('lena.png')
     >>> type(lena)
     <type 'numpy.ndarray'>
@@ -121,7 +126,7 @@ Displaying images
 Use ``matplotlib`` and ``imshow`` to display an image inside a
 ``matplotlib figure``::
 
-    >>> l = scipy.lena()
+    >>> l = misc.lena()
     >>> import matplotlib.pyplot as plt
     >>> plt.imshow(l, cmap=plt.cm.gray)
     <matplotlib.image.AxesImage object at 0x3c7f710>
@@ -165,8 +170,8 @@ For fine inspection of intensity variations, use
 Other packages sometimes use graphical toolkits for visualization (GTK,
 Qt)::
 
-    >>> import scikits.image.io as im_io
-    >>> im_io.use_plugin('gtk', 'imshow')
+    >>> import skimage.io
+    >>> skimage.io.use_plugin('gtk', 'imshow')
     >>> im_io.imshow(l)
 
 .. topic:: 3-D visualization: Mayavi
@@ -195,7 +200,7 @@ Images are arrays: use the whole ``numpy`` machinery.
 
 ::
 
-    >>> lena = scipy.lena()
+    >>> lena = scipy.misc.lena()
     >>> lena[0, 40]
     166
     >>> # Slicing
@@ -207,7 +212,7 @@ Images are arrays: use the whole ``numpy`` machinery.
     >>> 
     >>> lx, ly = lena.shape
     >>> X, Y = np.ogrid[0:lx, 0:ly]
-    >>> mask = (X - lx/2)**2 + (Y - ly/2)**2 > lx*ly/4
+    >>> mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
     >>> # Masks
     >>> lena[mask] = 0
     >>> # Fancy indexing
@@ -226,7 +231,7 @@ Statistical information
 
 ::
 
-    >>> lena = scipy.lena()
+    >>> lena = misc.lena()
     >>> lena.mean()
     124.04678344726562
     >>> lena.max(), lena.min()
@@ -235,14 +240,40 @@ Statistical information
 
 ``np.histogram``
 
+.. topic::
+    **Exercise 1**
+
+    * Open as an array the ``scikit-image`` logo
+      (http://scikit-image.org/_static/scikits_image_logo.png), or an 
+      image that you have on your computer.
+
+    * Crop a meaningful part of the image, for example the python circle 
+      in the logo.
+
+    * Display the image array using ``matlplotlib``. Change the
+      interpolation method and zoom to see the difference.
+
+    * Transform your image to greyscale
+
+    * Increase the contrast of the image by changing its minimum and
+      maximum values. **Optional**: use ``scipy.stats.scoreatpercentile``  
+      (read the docstring!) to saturate 5% of the darkest pixels and 5%
+      of the lightest pixels.
+
+    * Save the array to two different file formats (png, jpg, tiff)
+
+    .. image:: scikits_image_logo.png
+        :align: center
+
+
 Geometrical transformations
 ---------------------------
 ::
 
-    >>> lena = scipy.lena()
+    >>> lena = misc.lena()
     >>> lx, ly = lena.shape
     >>> # Cropping
-    >>> crop_lena = lena[lx/4:-lx/4, ly/4:-ly/4]
+    >>> crop_lena = lena[lx / 4: - lx / 4, ly / 4: - ly / 4]
     >>> # up <-> down flip
     >>> flip_ud_lena = np.flipud(lena)
     >>> # rotation
@@ -324,7 +355,7 @@ Noisy lena::
     >>> from scipy import misc
     >>> l = misc.lena()
     >>> l = l[230:310, 210:350]
-    >>> noisy = l + 0.4*l.std()*np.random.random(l.shape)
+    >>> noisy = l + 0.4 * l.std() * np.random.random(l.shape)
 
 A **Gaussian filter** smoothes the noise out... and the edges as well::
 
@@ -350,7 +381,7 @@ Median filter: better result for straight boundaries (**low curvature**)::
     >>> im = np.zeros((20, 20))
     >>> im[5:-5, 5:-5] = 1
     >>> im = ndimage.distance_transform_bf(im)
-    >>> im_noise = im + 0.2*np.random.randn(*im.shape)
+    >>> im_noise = im + 0.2 * np.random.randn(*im.shape)
     >>> im_med = ndimage.median_filter(im_noise, 3)
 
 .. figure:: auto_examples/images/plot_denoising_1.png
@@ -373,17 +404,11 @@ Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 so that the total-variation of the image (integral of the norm L1 of
 the gradient) is minimized, while being close to the measured image::
 
-    >>> # from scikits.image.filter import tv_denoise
-    >>> from tv_denoise import tv_denoise
+    >>> from skimage.filter import tv_denoise
     >>> tv_denoised = tv_denoise(noisy, weight=10)
     >>> # More denoising (to the expense of fidelity to data)
     >>> tv_denoised = tv_denoise(noisy, weight=50)
 
-The total variation filter ``tv_denoise`` is available in the
-``scikits.image``, (doc:
-http://scikits-image.org/docs/dev/api/scikits.image.filter.html#tv-denoise),
-but for convenience we've shipped it as a :download:`standalone module
-<../../pyplots/tv_denoise.py>` with this tutorial.
 
 .. figure:: auto_examples/images/plot_lena_tv_denoise_1.png
     :scale: 60
@@ -393,6 +418,23 @@ but for convenience we've shipped it as a :download:`standalone module
 
     [:ref:`Python source code <example_plot_lena_tv_denoise.py>`]
 
+
+.. topic::
+    Exercise 2: denoising
+
+    * Create a binary image (of 0s and 1s) with several objects (circles,
+      ellipses, squares, or random shapes).
+
+    * Add some noise (e.g., 20% of noise)
+
+    * Try three different denoising methods for denoising the image:
+      gaussian filtering, median filtering, and total variation
+      denoising.
+
+    * Compare the histograms of the three different denoised images.
+      Which one is the closest to the histogram of the original (noise-free) 
+      image?
+    
 
 Mathematical morphology
 -----------------------
@@ -542,6 +584,9 @@ Also works for grey-valued images::
 
 **Closing**: dilation + erosion
 
+**Skeletonization**: reduce objects to one-pixel thin lines, keeping the
+same topology
+
 Many other mathematical morphology operations: hit and miss transform, tophat,
 etc.
 
@@ -575,13 +620,9 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
 
 **Canny filter**
 
-The Canny filter is available in the ``scikits.image``
-(`doc <http://scikits-image.org/docs/dev/api/scikits.image.filter.html#canny>`_),
-but for convenience we've shipped it as a :download:`standalone module
-<../../pyplots/image_source_canny.py>` with this tutorial. ::
+::
 
-  >>> #from scikits.image.filter import canny
-  >>> #or use module shipped with tutorial
+  >>> from skimage.filter import canny
   >>> im += 0.1*np.random.random(im.shape)
   >>> edges = canny(im, 1, 0.4, 0.2) # not enough smoothing
   >>> edges = canny(im, 3, 0.3, 0.2) # better parameters
@@ -639,14 +680,14 @@ Automatic thresholding: use Gaussian mixture model::
     >>> classif.fit(img.reshape((img.size, 1))) # doctest: +ELLIPSIS
     GMM(...)
 
-    >>> classif.means_
+    >>> classif.means
     array([[ 0.9353155 ],
            [-0.02966039]])
-    >>> np.sqrt(classif.covars_).ravel()
+    >>> np.sqrt(classif.covarsi).ravel()
     array([ 0.35074631,  0.28225327])
-    >>> classif.weights_
+    >>> classif.weights
     array([ 0.40989799,  0.59010201])
-    >>> threshold = np.mean(classif.means_)
+    >>> threshold = np.mean(classif.means)
     >>> binary_img = img > threshold
 
 .. image:: image_GMM.png
@@ -692,6 +733,37 @@ Use mathematical morphology to clean up the result::
     segmentation is more accurate.
 
 * **Graph-based** segmentation: use spatial information.
+
+**Watershed** segmentation
+
+::
+
+    >>> from skimage.morphology import watershed, is_local_maximum
+    >>> 
+    >>> # Generate an initial image with two overlapping circles
+    >>> x, y = np.indices((80, 80))
+    >>> x1, y1, x2, y2 = 28, 28, 44, 52
+    >>> r1, r2 = 16, 20
+    >>> mask_circle1 = (x - x1)**2 + (y - y1)**2 < r1**2
+    >>> mask_circle2 = (x - x2)**2 + (y - y2)**2 < r2**2
+    >>> image = np.logical_or(mask_circle1, mask_circle2)
+    >>> # Now we want to separate the two objects in image
+    >>> # Generate the markers as local maxima of the distance
+    >>> # to the background
+    >>> from scipy import ndimage
+    >>> distance = ndimage.distance_transform_edt(image)
+    >>> local_maxi = is_local_maximum(distance, image, np.ones((3, 3)))
+    >>> markers = ndimage.label(local_maxi)[0]
+    >>> labels = watershed(-distance, markers, mask=image)
+
+.. figure:: auto_examples/images/plot_watershed_segmentation_1.png
+    :scale: 70
+    :target: auto_examples/plot_watershed_segmentation.html
+
+
+
+**Spectral clustering** (normalized cuts) segmentation
+
 
 ::
 
@@ -852,6 +924,25 @@ Non-regularly-spaced blocks: radial mean::
 .. only:: html
 
     [:ref:`Python source code <example_plot_radial_mean.py>`]
+
+.. topic::
+    Exercice: segmentation
+
+    * Load as an array the coins image from skimage (skimage.data.coins)
+      or from https://github.com/scikits-image/scikits-image/raw/master/skimage/data/coins.png
+
+    * Display the histogram and try to perform histogram segmentation.
+
+    * Try two segmentation methods: an edge-based method using 
+      ``skimage.filter.canny`` and ``scipy.ndimage.binary_fill_holes``
+      and a region-based method using ``skimage.morphology.watershed``
+      and ``skimage.filter.sobel`` to compute an elevation map.
+
+    * Compute the sizes of the coins.   
+
+.. image:: coins.png
+    :align: center
+
 
 * **Other measures** 
 
