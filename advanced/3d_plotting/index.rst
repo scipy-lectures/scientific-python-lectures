@@ -283,7 +283,7 @@ Interactive work
 
 .. only:: latex
 
-    The quicket way to create beautiful visualization with Mayavi is
+    The quickest way to create beautiful visualization with Mayavi is
     probably to interactivly tweak the various settings.
 
 The "pipeline dialog"
