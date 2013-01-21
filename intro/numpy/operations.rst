@@ -100,10 +100,10 @@ Transposition::
 
 .. note:: **Linear algebra**
 
-    The sub-module ``np.linalg`` implements basic linear algebra, such as
+    The sub-module :mod:`numpy.linalg` implements basic linear algebra, such as
     solving linear systems, singular value decomposition, etc. However, it is
     not guaranteed to be compiled using efficient routines, and thus we
-    recommend the use of ``scipy.linalg``, as detailed in section
+    recommend the use of :mod:`scipy.linalg`, as detailed in section
     :ref:`scipy_linalg`
 
 .. topic:: Exercise
