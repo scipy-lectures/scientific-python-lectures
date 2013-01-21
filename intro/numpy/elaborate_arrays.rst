@@ -45,10 +45,10 @@ Rounding::
     >>> a = np.array([1.2, 1.5, 1.6, 2.5, 3.5, 4.5])
     >>> b = np.around(a)
     >>> b                    # still floating-point
-    array([ 1., 2., 2., 2., 4., 4.])
+    array([ 1.,  2.,  2.,  2.,  4.,  4.])
     >>> c = np.around(a).astype(int)
     >>> c
-    array([ 1, 2, 2, 2, 4, 4])
+    array([1, 2, 2, 2, 4, 4])
 
 Different data type sizes
 ..........................
@@ -167,13 +167,13 @@ Structured data types
     ...               ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
     >>> samples
     array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13),
-        ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)],
-        dtype=[('sensor_code', '|S4'), ('position', '<f8'), ('value', '<f8')])
+           ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)], 
+          dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 Field access works by indexing with field names::
 
     >>> samples['sensor_code']
-    array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'],
+    array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'], 
           dtype='|S4')
     >>> samples['value']
     array([ 0.37,  0.11,  0.13,  0.37,  0.11,  0.13])
@@ -188,14 +188,14 @@ Multiple fields at once::
 
     >>> samples[['position', 'value']]
     array([(1.0, 0.37), (1.0, 0.11), (1.0, 0.13), (1.5, 0.37), (3.0, 0.11),
-           (1.2, 0.13)],
+           (1.2, 0.13)], 
           dtype=[('position', '<f8'), ('value', '<f8')])
 
 Fancy indexing works, as usual::
 
     >>> samples[samples['sensor_code'] == 'ALFA']
-    array([('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11)],
-          dtype=[('sensor_code', '|S4'), ('position', '<f8'), ('value', '<f8')])
+    array([('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11)], 
+          dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 .. note:: There are a bunch of other syntaxes for constructing structured
    arrays, see `here <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`__
