@@ -72,7 +72,7 @@ This brings us to the IPython prompt: ::
     %magic  -> Information about IPython's 'magic' % functions.
     help    -> Python's own help system.
     object? -> Details about 'object'. ?object also works, ?? prints more.
-    
+
     Welcome to pylab, a matplotlib-based Python environment.
     For more information, type 'help(pylab)'.
 
@@ -685,7 +685,7 @@ Contour Plots
    command.
 
 Starting from the code below, try to reproduce the graphic on the right taking
-care of the colormap (see `Colormaps`_ below). 
+care of the colormap (see `Colormaps`_ below).
 
 ::
 
@@ -1017,12 +1017,12 @@ from within a python session:
       argument, allowing for multiple *x*, *y* pairs with an
       optional format string.  For example, each of the following is
       legal::
-    
+
           plot(x, y)         # plot x and y using default line style and color
           plot(x, y, 'bo')   # plot x and y using blue circle markers
           plot(y)            # plot y using x as index array 0..N-1
           plot(y, 'r+')      # ditto, but with red plusses
-    
+
       If *x* and/or *y* is 2-dimensional, then the corresponding columns
       will be plotted.
       ...
