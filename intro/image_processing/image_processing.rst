@@ -23,6 +23,7 @@ Changing orientation, resolution, .. ::
 
 .. image:: image_processing/lena_transforms.png
    :align: center
+   :scale: 70
 
 
 .. sourcecode:: ipython
@@ -56,6 +57,7 @@ Image filtering
 
 .. image:: image_processing/filtered_lena.png
    :align: center
+   :scale: 80
 
 
 Many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``
@@ -185,6 +187,7 @@ image. ::
 
 .. image:: image_processing/morpho.png
    :align: center
+   :scale: 80
 
 .. topic:: Exercise
    :class: green
