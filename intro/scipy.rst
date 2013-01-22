@@ -41,7 +41,7 @@ Scipy : high-level scientific computing
     be very boring, we concentrate instead on a few examples to give a
     general idea of how to use ``scipy`` for scientific computing.
 
-`scipy` is composed of task-specific sub-modules:
+:mod:`scipy` is composed of task-specific sub-modules:
 
 =========================== ===============================================
 :mod:`scipy.cluster`         Vector quantization / Kmeans
@@ -249,6 +249,7 @@ The resulting filtered signal can be computed by the
 
 The result can be viewed with::
 
+    >>> import pylab as plt
     >>> plt.figure()
     >>> plt.plot(time_vec, sig)
     >>> plt.plot(time_vec, main_sig, linewidth=3)
@@ -292,7 +293,7 @@ The result can be viewed with::
       contaminated with periodic noise. In this exercise, we aim to clean up
       the noise using the Fast Fourier Transform.
 
-   2. Load the image using `plt.imread`.
+   2. Load the image using ``pylab.imread``.
 
    3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
       spectrum (Fourier transform of) the image. Do you have any trouble
@@ -478,7 +479,7 @@ problems in :mod:`scipy.optimize`.
     Hints:
 
         - Variables can be restricted to ``-2 < x < 2`` and ``-1 < y < 1``.
-        - Use :func:`numpy.meshgrid` and `plt.imshow` to find visually the
+        - Use :func:`numpy.meshgrid` and ``pylab.imshow`` to find visually the
           regions.
         - Use :func:`scipy.optimize.fmin_bfgs` or another multi-dimensional
           minimizer.
@@ -667,7 +668,7 @@ for more details.
 
 ``odeint`` solves first-order ODE systems of the form::
 
-``dy/dt = rhs(y1, y2, .., t0,...)``
+    dy/dt = rhs(y1, y2, .., t0,...)
 
 As an introduction, let us solve the ODE ``dy/dt = -2y`` between ``t =
 0..4``, with the  initial condition ``y(t=0) = 1``. First the function
@@ -788,12 +789,12 @@ Signal processing: :mod:`scipy.signal`
      Notice how on the side of the window the resampling is less accurate
      and has a rippling effect.
 
-* Signal has many window function: :func:`scipy.signal.hamming`,
+* ``scipy.signal`` has many window functions: :func:`scipy.signal.hamming`,
   :func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...
 
-* Signal has filtering (median filter :func:`scipy.signal.medfilt`,
+* ``scipy.signal`` has filtering (median filter :func:`scipy.signal.medfilt`,
   Wiener :func:`scipy.signal.wiener`), but we will
-  discuss this in the image paragraph.
+  discuss this in the image section.
 
 
 Image processing: :mod:`scipy.ndimage`

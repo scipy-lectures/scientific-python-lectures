@@ -1,4 +1,4 @@
-The submodule dedicated to image processing in scipy is `scipy.ndimage`. ::
+The submodule dedicated to image processing in scipy is :mod:`scipy.ndimage`. ::
 
     >>> from scipy import ndimage
 
@@ -60,7 +60,7 @@ Image filtering
    :scale: 80
 
 
-Many other filters in ``scipy.ndimage.filters`` and ``scipy.signal``
+Many other filters in :mod:`scipy.ndimage.filters` and :mod:`scipy.signal`
 can be applied to images.
 
 .. topic:: Exercise
@@ -87,12 +87,12 @@ Let us first generate a structuring element ::
 
     >>> el = ndimage.generate_binary_structure(2, 1)
     >>> el
-    array([[False,  True, False],
-	   [ True,  True,  True],
-	   [False,  True, False]], dtype=bool)
+    array([[False, True, False],
+           [True, True, True],
+           [False, True, False]], dtype=bool)
     >>> el.astype(np.int)
     array([[0, 1, 0],
-	   [1, 1, 1],
+           [1, 1, 1],
            [0, 1, 0]])
 
 * **Erosion** ::
@@ -196,7 +196,7 @@ image. ::
     than the area of the initial square. (The opposite would occur if the
     closing step was performed *before* the opening).
 
-For **gray-valued** images, eroding (resp. dilating) amounts to replacing
+For *gray-valued* images, eroding (resp. dilating) amounts to replacing
 a pixel by the minimal (resp. maximal) value among pixels covered by the
 structuring element centered on the pixel of interest. ::
 
