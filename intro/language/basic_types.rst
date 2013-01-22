@@ -435,9 +435,9 @@ Things to note:
         Out[4]: [1, 2, 3]
         In [5]: a is b
         Out[5]: True
-	In [6]: b[1] = 'hi!'
-	In [7]: a
-	Out[7]: [1, 'hi!', 3]
+        In [6]: b[1] = 'hi!'
+        In [7]: a
+        Out[7]: [1, 'hi!', 3]
 
 * to change a list *in place*, use indexing/slices:
 
