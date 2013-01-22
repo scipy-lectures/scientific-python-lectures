@@ -10,8 +10,8 @@ Image manipulation and processing using Numpy and Scipy
 :authors: Emmanuelle Gouillart, Gaël Varoquaux
 
 
-.. topic:: 
-    Image = 2-D numerical array 
+.. topic::
+    Image = 2-D numerical array
 
     (or 3-D: CT, MRI, 2D + time; 4-D, ...)
 
@@ -21,7 +21,7 @@ Image manipulation and processing using Numpy and Scipy
 
 * ``numpy``: basic array manipulation
 
-* ``scipy``: ``scipy.ndimage`` submodule dedicated to image processing 
+* ``scipy``: ``scipy.ndimage`` submodule dedicated to image processing
   (n-dimensional images). See http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html ::
 
     >>> from scipy import ndimage
@@ -29,8 +29,8 @@ Image manipulation and processing using Numpy and Scipy
 * a few examples use specialized toolkits working with ``np.array``:
 
     * `scikit-image <http://scikit-image.org/>`_
-    
-    * `scikit-learn <http://scikit-learn.org/>`_ 
+
+    * `scikit-learn <http://scikit-learn.org/>`_
 
 **Common tasks in image processing**:
 
@@ -44,7 +44,7 @@ Image manipulation and processing using Numpy and Scipy
 
 * Classification
 
-* Feature extraction 
+* Feature extraction
 
 * Registration
 
@@ -53,7 +53,7 @@ Image manipulation and processing using Numpy and Scipy
 
 More powerful and complete modules:
 
-* `OpenCV <http://opencv.willowgarage.com/documentation/python/cookbook.html>`_ 
+* `OpenCV <http://opencv.willowgarage.com/documentation/python/cookbook.html>`_
   (Python bindings)
 
 * `CellProfiler <http://www.cellprofiler.org>`_
@@ -177,7 +177,7 @@ Qt)::
 .. topic:: 3-D visualization: Mayavi
 
     See :ref:`mayavi-label` and :ref:`mayavi-voldata-label`.
-    
+
 	* Image plane widgets
 
 	* Isosurfaces
@@ -209,7 +209,7 @@ Images are arrays: use the whole ``numpy`` machinery.
     [157, 155, 155],
     [157, 157, 158]])
     >>> lena[100:120] = 255
-    >>> 
+    >>>
     >>> lx, ly = lena.shape
     >>> X, Y = np.ogrid[0:lx, 0:ly]
     >>> mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
@@ -244,10 +244,10 @@ Statistical information
     **Exercise 1**
 
     * Open as an array the ``scikit-image`` logo
-      (http://scikit-image.org/_static/scikits_image_logo.png), or an 
+      (http://scikit-image.org/_static/scikits_image_logo.png), or an
       image that you have on your computer.
 
-    * Crop a meaningful part of the image, for example the python circle 
+    * Crop a meaningful part of the image, for example the python circle
       in the logo.
 
     * Display the image array using ``matlplotlib``. Change the
@@ -256,7 +256,7 @@ Statistical information
     * Transform your image to greyscale
 
     * Increase the contrast of the image by changing its minimum and
-      maximum values. **Optional**: use ``scipy.stats.scoreatpercentile``  
+      maximum values. **Optional**: use ``scipy.stats.scoreatpercentile``
       (read the docstring!) to saturate 5% of the darkest pixels and 5%
       of the lightest pixels.
 
@@ -292,7 +292,7 @@ Image filtering
 ===============
 
 **Local filters**: replace the value of pixels by a function of the values of
-neighboring pixels. 
+neighboring pixels.
 
 Neighbourhood: square (choose size), disk, or more complicated *structuring
 element*.
@@ -400,7 +400,7 @@ Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 
 **Non-local filters**
 
-**Total-variation (TV) denoising**. Find a new image 
+**Total-variation (TV) denoising**. Find a new image
 so that the total-variation of the image (integral of the norm L1 of
 the gradient) is minimized, while being close to the measured image::
 
@@ -432,9 +432,9 @@ the gradient) is minimized, while being close to the measured image::
       denoising.
 
     * Compare the histograms of the three different denoised images.
-      Which one is the closest to the histogram of the original (noise-free) 
+      Which one is the closest to the histogram of the original (noise-free)
       image?
-    
+
 
 Mathematical morphology
 -----------------------
@@ -443,7 +443,7 @@ See http://en.wikipedia.org/wiki/Mathematical_morphology
 
 Probe an image with a simple shape (a **structuring element**), and
 modify this image according to how the shape locally fits or misses the
-image. 
+image.
 
 **Structuring element**::
 
@@ -600,7 +600,7 @@ Synthetic data::
 
     >>> im = np.zeros((256, 256))
     >>> im[64:-64, 64:-64] = 1
-    >>> 
+    >>>
     >>> im = ndimage.rotate(im, 15, mode='constant')
     >>> im = ndimage.gaussian_filter(im, 8)
 
@@ -739,7 +739,7 @@ Use mathematical morphology to clean up the result::
 ::
 
     >>> from skimage.morphology import watershed, is_local_maximum
-    >>> 
+    >>>
     >>> # Generate an initial image with two overlapping circles
     >>> x, y = np.indices((80, 80))
     >>> x1, y1, x2, y2 = 28, 28, 44, 52
@@ -823,7 +823,7 @@ Synthetic data::
 
 * **Analysis of connected components**
 
-Label connected components: ``ndimage.label``:: 
+Label connected components: ``ndimage.label``::
 
     >>> label_im, nb_labels = ndimage.label(mask)
     >>> nb_labels # how many regions?
@@ -885,7 +885,7 @@ Find region of interest enclosing object::
 Other spatial measures: ``ndimage.center_of_mass``,
 ``ndimage.maximum_position``, etc.
 
-Can be used outside the limited scope of segmentation applications. 
+Can be used outside the limited scope of segmentation applications.
 
 Example: block mean::
 
@@ -933,18 +933,18 @@ Non-regularly-spaced blocks: radial mean::
 
     * Display the histogram and try to perform histogram segmentation.
 
-    * Try two segmentation methods: an edge-based method using 
+    * Try two segmentation methods: an edge-based method using
       ``skimage.filter.canny`` and ``scipy.ndimage.binary_fill_holes``
       and a region-based method using ``skimage.morphology.watershed``
       and ``skimage.filter.sobel`` to compute an elevation map.
 
-    * Compute the sizes of the coins.   
+    * Compute the sizes of the coins.
 
 .. image:: coins.png
     :align: center
 
 
-* **Other measures** 
+* **Other measures**
 
 Correlation function, Fourier/wavelet spectrum, etc.
 
@@ -959,8 +959,8 @@ One example with mathematical morphology: **granulometry**
     ...     mask = (x - n)**2 + (y - n)**2 <= n**2
     ...     struct[mask] = 1
     ...     return struct.astype(np.bool)
-    ... 
-    >>> 
+    ...
+    >>>
     >>> def granulometry(data, sizes=None):
     ...     s = max(data.shape)
     ...     if sizes == None:
@@ -968,8 +968,8 @@ One example with mathematical morphology: **granulometry**
     ...     granulo = [ndimage.binary_opening(data, \
     ...         structure=disk_structure(n)).sum() for n in sizes]
     ...     return granulo
-    ... 
-    >>> 
+    ...
+    >>>
     >>> np.random.seed(1)
     >>> n = 10
     >>> l = 256
@@ -977,9 +977,9 @@ One example with mathematical morphology: **granulometry**
     >>> points = l*np.random.random((2, n**2))
     >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
     >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
-    >>> 
+    >>>
     >>> mask = im > im.mean()
-    >>> 
+    >>>
     >>> granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
 
 .. figure:: auto_examples/images/plot_granulo_1.png
