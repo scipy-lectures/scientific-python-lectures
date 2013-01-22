@@ -77,7 +77,7 @@ Type conversion (casting)::
 
     If you explicitly want integer division use ``//``
 
-    >>> 3.0//2
+    >>> 3.0 // 2
     1.0
 
     .. note::
