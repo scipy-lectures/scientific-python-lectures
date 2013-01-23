@@ -2,6 +2,8 @@
 Interfacing with C
 ==================
 
+:author: Valentin Haenel
+
 .. topic:: Foreword
 
 This chapter contains an *introduction* to the many different routes for making
