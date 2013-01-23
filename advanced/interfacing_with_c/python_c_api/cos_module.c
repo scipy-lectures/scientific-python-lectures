@@ -10,8 +10,11 @@ static PyObject* cos_func(PyObject* self, PyObject* args)
     /*  parse the input, from python float to c double */
     if (!PyArg_ParseTuple(args, "d", &value))
         return NULL;
+    /* if the above function returns -1, an appropriate Python exception will
+     * have been set, and the function simply returns NULL
+     */
 
-    /* call cos from libm */ 
+    /* call cos from libm */
     answer = cos(value);
 
     /*  construct the output from cos, from c double to python float */

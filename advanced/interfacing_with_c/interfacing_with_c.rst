@@ -147,6 +147,18 @@ The file ``cos_module.so`` contains the compiled extension, which we can now loa
     In [6]: cos_module.cos_func(3.14159265359)
     Out[7]: -1.0
 
+Now let's see how robust this is:
+
+.. sourcecode:: ipython
+
+    In [10]: cos_module.cos_func('foo')
+    ---------------------------------------------------------------------------
+    TypeError                                 Traceback (most recent call last)
+    <ipython-input-10-11bee483665d> in <module>()
+    ----> 1 cos_module.cos_func('foo')
+
+    TypeError: a float is required
+
 
 Ctypes
 ======
