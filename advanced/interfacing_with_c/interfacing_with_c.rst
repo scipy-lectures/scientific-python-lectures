@@ -23,7 +23,7 @@ Introduction
 
 This chapter covers the following techniques:
 
-* Python-C-Api
+* `Python-C-Api <http://docs.python.org/2/c-api/>`_
 * Ctypes
 * SWIG (Simplified Wrapper and Interface Generator)
 * Cython
@@ -60,10 +60,11 @@ A function from math.h, say cos, applied to some doubles.
 Python-C-Api
 ============
 
-The Python-C-API is the backbone of the standard Python interpreter (a.k.a
-*CPython*). Using this API it is possible to write Python extension module in C
-and C++. Obviously, these extension modules can, by virtue of language
-compatibility, call any function written in C or C++.
+The `Python-C-API <http://docs.python.org/2/c-api/>`_ is the backbone of the
+standard Python interpreter (a.k.a *CPython*). Using this API it is possible to
+write Python extension module in C and C++. Obviously, these extension modules
+can, by virtue of language compatibility, call any function written in C or
+C++.
 
 When using the Python-C-API, one usually writes much boilerplate code, first to
 parse the arguments that were given to a function, and later to construct the
