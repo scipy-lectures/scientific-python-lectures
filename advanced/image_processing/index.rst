@@ -926,7 +926,7 @@ Non-regularly-spaced blocks: radial mean::
     [:ref:`Python source code <example_plot_radial_mean.py>`]
 
 .. topic::
-    Exercice: segmentation
+    Exercise: segmentation
 
     * Load as an array the coins image from skimage (skimage.data.coins)
       or from https://github.com/scikits-image/scikits-image/raw/master/skimage/data/coins.png
