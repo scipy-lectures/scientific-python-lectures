@@ -54,3 +54,4 @@ Advanced topics
    3d_plotting/index.rst
    sympy.rst
    scikit-learn/index.rst
+   interfacing_with_c/interfacing_with_c.rst
