@@ -41,6 +41,7 @@ Warnings
 
 * All of these techniques may crash the python interpreter. You have been
   warned.
+* All the examples have been done on Linux
 
 Objective -- what is your use-case
 
