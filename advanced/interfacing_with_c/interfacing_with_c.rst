@@ -228,7 +228,7 @@ We may now use this, as before:
     In [6]: cos_module.cos_func(3.14159265359)
     Out[6]: -1.0
 
-As with the previous example, this code is somewhat roboust, although the error
+As with the previous example, this code is somewhat robust, although the error
 message is not quite as helpful, since it does not tell us what the type should be.
 
 .. sourcecode:: ipython
