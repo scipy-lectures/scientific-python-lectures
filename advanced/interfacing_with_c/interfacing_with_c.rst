@@ -179,7 +179,7 @@ Disadvantages
 -------------
 
 * Requires code to be wrapped to be available as a shared library
-  (roughly speaking ``*.ddl`` in Windows ``*.so`` in Linux and ``*.dylib`` in Mac OSX.)
+  (roughly speaking ``*.dll`` in Windows ``*.so`` in Linux and ``*.dylib`` in Mac OSX.)
 
 Example
 -------
