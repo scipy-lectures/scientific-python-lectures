@@ -24,7 +24,7 @@ Introduction
 This chapter covers the following techniques:
 
 * `Python-C-Api <http://docs.python.org/2/c-api/>`_
-* Ctypes
+* `Ctypes <http://docs.python.org/2/library/ctypes.html>`_
 * SWIG (Simplified Wrapper and Interface Generator)
 * Cython
 
@@ -163,10 +163,17 @@ Now let's see how robust this is:
 Ctypes
 ======
 
+`Ctypes <http://docs.python.org/2/library/ctypes.html>`_ is a *foreign
+function library* for Python. It provides C compatible data types, and allows
+calling functions in DLLs or shared libraries. It can be used to wrap these
+libraries in pure Python.
+
 Advantages
 ----------
 
-* Does not need to be compiled, wrapping code entirely in Python
+* Part of the python standard library
+* Does not need to be compiled
+* Wrapping code entirely in Python
 
 Disadvantages
 -------------
@@ -174,8 +181,70 @@ Disadvantages
 * Requires code to be wrapped to be available as a shared library
   (roughly speaking ``*.ddl`` in Windows ``*.so`` in Linux and ``*.dylib`` in Mac OSX.)
 
-Advantages
-----------
+Example
+-------
+
+As advertised, the wrapper code is in pure python.
+
+.. literalinclude:: ctypes/cos_module.py
+   :language: python
+
+* Finding and loading the library may vary depending on your operating system,
+  check the documentation for details.
+* This may be somewhat deceptive, since the math library exists in compiled
+  form on the system already. If you were to wrap a in-house library, you would
+  have to compile it first, which may or may not require some additional effort.
+
+We may now use this, as before:
+
+.. sourcecode:: ipython
+
+    In [1]: import cos_module
+
+    In [2]: cos_module?
+    Type:       module
+    String Form:<module 'cos_module' from 'cos_module.py'>
+    File:       /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/ctypes/cos_module.py
+    Docstring:  <no docstring>
+
+    In [3]: dir(cos_module)
+    Out[3]:
+    ['__builtins__',
+     '__doc__',
+     '__file__',
+     '__name__',
+     '__package__',
+     'cos_func',
+     'ctypes',
+     'find_library',
+     'libm']
+
+    In [4]: cos_module.cos_func(1.0)
+    Out[4]: 0.5403023058681398
+
+    In [5]: cos_module.cos_func(0.0)
+    Out[5]: 1.0
+
+    In [6]: cos_module.cos_func(3.14159265359)
+    Out[6]: -1.0
+
+As with the previous example, this code is somewhat roboust, although the error
+message is not quite as helpful, since it does not tell us what the type should be.
+
+.. sourcecode:: ipython
+
+    In [7]: cos_module.cos_func('foo')
+    ---------------------------------------------------------------------------
+    ArgumentError                             Traceback (most recent call last)
+    <ipython-input-7-11bee483665d> in <module>()
+    ----> 1 cos_module.cos_func('foo')
+
+    /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/ctypes/cos_module.py in cos_func(arg)
+         12 def cos_func(arg):
+         13     ''' Wrapper for cos from math.h '''
+    ---> 14     return libm.cos(arg)
+
+    ArgumentError: argument 1: <type 'exceptions.TypeError'>: wrong type
 
 SWIG
 ====
