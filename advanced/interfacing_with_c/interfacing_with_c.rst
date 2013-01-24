@@ -7,7 +7,7 @@ Interfacing with C
 .. topic:: Foreword
 
 This chapter contains an *introduction* to the many different routes for making
-your native code (primarliy ``C/C++``) available from python, a process
+your native code (primarliy ``C/C++``) available from Python, a process
 commonly referred to *wrapping*. The goal of this chapter is to give you a
 flavour of what technologies exist and what their respective merits and
 shortcomings are, so that you can select the appropriate one for your specific
@@ -34,6 +34,7 @@ technique of your choice to see if it fits your needs.
 
 Evaluation items
 
+* Additional libraries required
 * Does it need to be compiled
 * Does it play nicely with numpy
 
@@ -53,9 +54,8 @@ The layered approach
 ...
 
 Example
--------
 
-A function from math.h, say cos, applied to some doubles.
+Each technology is demonstrated by wrapping the ``cos`` function from ``math.h``.
 
 Python-C-Api
 ============
@@ -70,16 +70,14 @@ When using the Python-C-API, one usually writes much boilerplate code, first to
 parse the arguments that were given to a function, and later to construct the
 return type.
 
-Advantages
-----------
+**Advantages**
 
 * Requires no additional libraries
 * Lot's of low-level control
 
-Disadvantages
--------------
+**Disadvantages**
 
-* Requires a substantial amount of effort
+* May requires a substantial amount of effort
 * Much overhead in the code
 * Must be compiled
 
@@ -171,15 +169,13 @@ function library* for Python. It provides C compatible data types, and allows
 calling functions in DLLs or shared libraries. It can be used to wrap these
 libraries in pure Python.
 
-Advantages
-----------
+**Advantages**
 
 * Part of the python standard library
 * Does not need to be compiled
 * Wrapping code entirely in Python
 
-Disadvantages
--------------
+**Disadvantages**
 
 * Requires code to be wrapped to be available as a shared library
   (roughly speaking ``*.dll`` in Windows ``*.so`` in Linux and ``*.dylib`` in Mac OSX.)
@@ -261,14 +257,12 @@ burden. The generated file tend to be quite large and may not be too human
 readable and the multiple levels of indirection which are a result of
 the wrapping process, may be a bit tricky to understand.
 
-Advantages
-----------
+**Advantages**
 
 * Can automatically wrap entire libraries given the headers
 * Works nicely with C++
 
-Disadvantages
--------------
+**Disadvantages**
 
 * Autogenerates enormous files
 * Hard to debug if something goes wrong
@@ -371,7 +365,8 @@ We can now load and execute the ``cos_module`` as we have done in the previous e
     In [6]: cos_module.cos_func(3.14159265359)
     Out[6]: -1.0
 
-Again we test for robustness:
+Again we test for robustness, and we see that we get a better error message
+(although, strictly speaking in Python there is no ``double`` type):
 
 .. sourcecode:: ipython
 
@@ -386,8 +381,6 @@ Again we test for robustness:
 Cython
 ======
 
-Advantages
-----------
+**Advantages**
 
-Disadvantages
--------------
+**Disadvantages**
