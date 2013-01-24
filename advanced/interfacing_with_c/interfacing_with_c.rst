@@ -108,8 +108,10 @@ This can be compiled:
 .. sourcecode:: console
 
     $ cd advanced/interfacing_with_c/python_c_api
+
     $ ls
     cos_module.c  setup.py
+
     $ python setup.py build_ext --inplace
     running build_ext
     building 'cos_module' extension
@@ -117,6 +119,7 @@ This can be compiled:
     creating build/temp.linux-x86_64-2.7
     gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/include/python2.7 -c cos_module.c -o build/temp.linux-x86_64-2.7/cos_module.o
     gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_module.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/python_c_api/cos_module.so
+
     $ ls
     build/  cos_module.c  cos_module.so  setup.py
 
