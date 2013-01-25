@@ -1,4 +1,5 @@
-cimport cos_module
+cdef extern from "math.h":
+    double cos(double arg)
 
 def cos_func(arg):
-    return cos_module.cos(arg)
+    return cos(arg)
