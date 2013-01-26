@@ -96,6 +96,11 @@ In restructured-text markup this is::
     when using *object-oriented programming* in Python you **must** use the
     ``class`` keyword to define your *classes*.
 
+For cross-referencing API documentation we prefer to use the `intersphinx
+extension <http://sphinx-doc.org/latest/ext/intersphinx.html>`_. This provides
+the directives `:mod:`, `:class:` and `:func:` to cross-link to modules,
+classes and functions respectively.
+
 Modifying
 .........
 
