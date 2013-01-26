@@ -57,7 +57,7 @@ Contributing
 .. topic:: Contributing guide and chapter example
 
    The directory ``guide`` contains an example chapter with specific
-   instructions on how to contribute:
+   instructions on how to contribute.
 
    .. toctree::
 
