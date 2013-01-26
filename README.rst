@@ -53,32 +53,6 @@ Requirements
 Contributing
 -------------
 
-Editorial policy
-..................
-
-The goal of this material is to provide a concise text useful to
-learning the main features of the scipy ecosystem. If you want
-to contribute to reference material, we suggest that you contribute
-to the documentation of the specific packages that you are
-interested in.
-
-The HTML output can be used for displaying on screen while
-teaching. The goal is to have the same material displayed as
-in the notes. This is why the HTML version should be kept concise, with
-bullet-lists rather than full-blown paragraphs and sentences.
-In the long run, we would like to build more elaborate discussions. For this,
-the policy is to use the::
-
-   .. only:: pdf
-
-sphinx directive.
-
-Each chapter should be kept reasonably short: 1 to 2 hours of tutorial.
-The reason is two-fold. First these chapters are atoms that can be
-combined to build a course on scientific computing with Python. Second,
-people's attention span does not go much beyond an hour or two, whether
-they are reading a tutorial or following it in a class room.
-
 Using Markup
 ............
 

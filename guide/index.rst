@@ -31,10 +31,29 @@ the corresponding part such that your new tutorial appear in the table of
 contents.
 
 Also keep in mind that these tutorials are to being taught at different places
-and you want them to be quite interactive or your audience might just fall
-asleep long before you've finished talking...
+and different parts may be combined into a course on Python for scientific
+computing. Thus you want them to be quite interactive and reasonably short
+(one to two hours) or your audience might just fall asleep long before you've
+finished talking...
 
+Last but not least, the goal of this material is to provide a concise text
+useful to learning the main features of the scipy ecosystem. If you want to
+contribute to reference material, we suggest that you contribute to the
+documentation of the specific packages that you are interested in.
 
+Keeping it concise
+==================
+
+The HTML output can be used for displaying on screen while
+teaching. The goal is to have the same material displayed as
+in the notes. This is why the HTML version should be kept concise, with
+bullet-lists rather than full-blown paragraphs and sentences.
+In the long run, we would like to build more elaborate discussions. For this,
+the policy is to use the::
+
+   .. only:: pdf
+
+sphinx directive.
 
 Figures and code examples
 ==========================
