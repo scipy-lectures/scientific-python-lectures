@@ -538,7 +538,7 @@ There are several locators for different kind of requirements:
     :target: auto_examples/plot_ticks.html
 
 
-All of these locators derive from the base class ``matplotlib.ticker.Locator``.
+All of these locators derive from the base class :class:`matplotlib.ticker.Locator`.
 You can make your own locator deriving from it. Handling dates as ticks can be
 especially tricky. Therefore, matplotlib provides special locators in
 matplotlib.dates.
