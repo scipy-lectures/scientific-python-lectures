@@ -53,21 +53,6 @@ Requirements
 Contributing
 -------------
 
-
-Figures and code examples
-..........................
-
-The figure should be generated from Python source files. The policy is
-to create an ``examples`` directory, in which you put the corresponding
-Python files. Any files with a name starting with ``plot_`` will be run
-during the build process, and figures created by matplotlib will be saved
-as images in an ``auto_examples`` directory. You can use these to include
-in the document as figures. To display the code snippet, you can use the
-``literal-include`` directive. Any additional data needed by the plotting script
-should be included in the same directory. NB: the code to provide this style of
-plot inclusion was adopted from the scikits.learn project and can be found in
-``sphinxext/gen_rst.py``.
-
 .. topic:: Contributing guide and chapter example
 
    The directory `guide` contains an example chapter with specific

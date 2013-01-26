@@ -79,6 +79,11 @@ directive.
 
 .. literal-include:: examples/plot_simple.py
 
+.. note::
+
+    The code to provide this style of plot inclusion was adopted from the
+    scikits.learn project and can be found in ``sphinxext/gen_rst.py``.
+
 Using Markup
 ============
 
