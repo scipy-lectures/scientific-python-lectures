@@ -18,10 +18,10 @@ Matplotlib: plotting
 Introduction
 ============
 
-matplotlib is probably the single most used Python package for 2D-graphics. It
-provides both a very quick way to visualize data from Python and
-publication-quality figures in many formats.  We are going to explore
-matplotlib in interactive mode covering most common cases.
+`Matplotlib <http://matplotlib.org/>`_ is probably the single most used Python
+package for 2D-graphics. It provides both a very quick way to visualize data
+from Python and publication-quality figures in many formats.  We are going to
+explore matplotlib in interactive mode covering most common cases.
 
 IPython and the pylab mode
 --------------------------
@@ -29,15 +29,15 @@ IPython and the pylab mode
 `IPython <http://ipython.org/>`_ is an enhanced interactive Python shell that
 has lots of interesting features including named inputs and outputs, access to
 shell commands, improved debugging and many more. When we start it with the
-command line argument -pylab (--pylab since IPython version 0.12), it allows
+command line argument ``-pylab`` (``--pylab`` since IPython version 0.12), it allows
 interactive matplotlib sessions that have Matlab/Mathematica-like functionality.
 
 pylab
 -----
 
-pylab provides a procedural interface to the matplotlib object-oriented
-plotting library. It is modeled closely after Matlab(TM). Therefore, the
-majority of plotting commands in pylab have Matlab(TM) analogs with similar
+*pylab* provides a procedural interface to the matplotlib object-oriented
+plotting library. It is modeled closely after Matlab™. Therefore, the
+majority of plotting commands in pylab have Matlab™ analogs with similar
 arguments.  Important commands are explained with interactive examples.
 
 
@@ -58,10 +58,12 @@ First step is to get the data for the sine and cosine functions:
    C, S = np.cos(X), np.sin(X)
 
 
-X is now a numpy array with 256 values ranging from -π to +π (included). C is
-the cosine (256 values) and S is the sine (256 values).
+``X`` is now a numpy array with 256 values ranging from -π to +π (included). ``C`` is
+the cosine (256 values) and ``S`` is the sine (256 values).
 
-To run the example, you can type them in an IPython interactive session::
+To run the example, you can type them in an IPython interactive session:
+
+.. code:: sh
 
     $ ipython --pylab
 
@@ -72,12 +74,14 @@ This brings us to the IPython prompt: ::
     %magic  -> Information about IPython's 'magic' % functions.
     help    -> Python's own help system.
     object? -> Details about 'object'. ?object also works, ?? prints more.
-    
+
     Welcome to pylab, a matplotlib-based Python environment.
     For more information, type 'help(pylab)'.
 
 
-or you can download each of the examples and run it using regular python::
+or you can download each of the examples and run it using regular python:
+
+.. code:: sh
 
     $ python exercice_1.py
 
@@ -434,9 +438,9 @@ interface. Within this figure there can be subplots. While subplot positions
 the plots in a regular grid, axes allows free placement within the figure. Both
 can be useful depending on your intention. We've already worked with figures
 and subplots without explicitly calling them. When we call plot, matplotlib
-calls gca() to get the current axes and gca in turn calls gcf() to get the
-current figure. If there is none it calls figure() to make one, strictly
-speaking, to make a subplot(111). Let's look at the details.
+calls ``gca()`` to get the current axes and gca in turn calls ``gcf()`` to get the
+current figure. If there is none it calls ``figure()`` to make one, strictly
+speaking, to make a ``subplot(111)``. Let's look at the details.
 
 Figures
 -------
@@ -449,12 +453,12 @@ determine what the figure looks like:
 ==============  ======================= ============================================
 Argument        Default                 Description
 ==============  ======================= ============================================
-num             1                       number of figure
-figsize         figure.figsize          figure size in in inches (width, height)
-dpi             figure.dpi              resolution in dots per inch
-facecolor       figure.facecolor        color of the drawing background
-edgecolor       figure.edgecolor        color of edge around the drawing background
-frameon         True                    draw figure frame or not
+``num``         ``1``                   number of figure
+``figsize``     ``figure.figsize``      figure size in in inches (width, height)
+``dpi``         ``figure.dpi``          resolution in dots per inch
+``facecolor``   ``figure.facecolor``    color of the drawing background
+``edgecolor``   ``figure.edgecolor``    color of edge around the drawing background
+``frameon``     ``True``                draw figure frame or not
 ==============  ======================= ============================================
 
 The defaults can be specified in the resource file and will be used most of the
@@ -515,7 +519,7 @@ figures. Matplotlib provides a totally configurable system for ticks. There are
 tick locators to specify where ticks should appear and tick formatters to give
 ticks the appearance you want. Major and minor ticks can be located and
 formatted independently from each other. Per default minor ticks are not shown,
-i.e. there is only an empty list for them because it is as NullLocator (see
+i.e. there is only an empty list for them because it is as ``NullLocator`` (see
 below).
 
 Tick Locators
@@ -534,7 +538,7 @@ There are several locators for different kind of requirements:
     :target: auto_examples/plot_ticks.html
 
 
-All of these locators derive from the base class matplotlib.ticker.Locator.
+All of these locators derive from the base class :class:`matplotlib.ticker.Locator`.
 You can make your own locator deriving from it. Handling dates as ticks can be
 especially tricky. Therefore, matplotlib provides special locators in
 matplotlib.dates.
@@ -685,7 +689,7 @@ Contour Plots
    command.
 
 Starting from the code below, try to reproduce the graphic on the right taking
-care of the colormap (see `Colormaps`_ below). 
+care of the colormap (see `Colormaps`_ below).
 
 ::
 
@@ -1017,12 +1021,12 @@ from within a python session:
       argument, allowing for multiple *x*, *y* pairs with an
       optional format string.  For example, each of the following is
       legal::
-    
+
           plot(x, y)         # plot x and y using default line style and color
           plot(x, y, 'bo')   # plot x and y using blue circle markers
           plot(y)            # plot y using x as index array 0..N-1
           plot(y, 'r+')      # ditto, but with red plusses
-    
+
       If *x* and/or *y* is 2-dimensional, then the corresponding columns
       will be plotted.
       ...
