@@ -79,15 +79,36 @@ directive.
 
 .. literal-include:: examples/plot_simple.py
 
+Using Markup
+============
+
+There are three main kinds of markup that should be used: *italics*, **bold**
+and ``fixed-font``. *Italics* should be used when introducing a new technical
+term, **bold** should be used for emphasis and ``fixed-font`` for source code.
+
+.. topic:: Example:
+
+    When using *object-oriented programming* in Python you **must** use the
+    ``class`` keyword to define your *classes*.
+
+In restructured-text markup this is::
+
+    when using *object-oriented programming* in Python you **must** use the
+    ``class`` keyword to define your *classes*.
+
 
 Linking to package documentations
 ==================================
 
 The goal of the scipy lecture notes is not to duplicate or replace the
 documentation of the various packages. You should link as much as
-possible to the original documentation. For this purpose, you can use the
-`:ref:section` sphinx directive, as well as `:func:function_name`, e.g.
-:func:`numpy.var`. Sphinx will find the links on the web for you.
+possible to the original documentation.
+
+For cross-referencing API documentation we prefer to use the `intersphinx
+extension <http://sphinx-doc.org/latest/ext/intersphinx.html>`_. This provides
+the directives `:mod:`, `:class:` and `:func:` to cross-link to modules,
+classes and functions respectively. For example the ``:func:`numpy.var``` will
+create a link like :func:`numpy.var`.
 
 Chapter, section, subsection, paragraph
 =======================================
