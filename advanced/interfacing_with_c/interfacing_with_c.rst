@@ -263,6 +263,21 @@ message is not quite as helpful, since it does not tell us what the type should 
 
     ArgumentError: argument 1: <type 'exceptions.TypeError'>: wrong type
 
+Numpy Support
+-------------
+
+Numpy contains some support for interfacing with ctypes. In particular there is
+support for exporting certain attributes of a numpy array as ctypes datatypes
+and there are functions to convert from C arrays to Numpy arrays and back.
+
+.. XXX Should use :mod: and :class:
+
+For more information, consult the corresponding section in the `Numpy Cookbook
+<http://www.scipy.org/Cookbook/Ctypes>`_ and the API documentation for
+`numpy.ndarray.ctypes <http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.ctypes.html>`_
+and `numpy.ctypeslib <http://docs.scipy.org/doc/numpy/reference/routines.ctypeslib.html>`_.
+
+
 SWIG
 ====
 
