@@ -84,6 +84,7 @@ return type.
 
 * Requires no additional libraries
 * Lot's of low-level control
+* Entirely usable from C++
 
 **Disadvantages**
 
@@ -197,6 +198,7 @@ libraries in pure Python.
 
 * Requires code to be wrapped to be available as a shared library
   (roughly speaking ``*.dll`` in Windows ``*.so`` in Linux and ``*.dylib`` in Mac OSX.)
+* No good support for C++
 
 Example
 -------
