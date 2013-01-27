@@ -544,3 +544,16 @@ declarations for the C math library, which simplifies the code above to become:
     :language: cython
 
 In this case the ``cimport`` statement is used to import the ``cos`` function.
+
+Numpy Support
+-------------
+
+Cython has support for Numpy via the ``numpy.pyx`` file which allows you to add
+the numpy array type to your Cython code. I.e. like specifying that variable
+``i`` is of type ``int``, you can specify that variable ``a`` is of type
+``numpy.ndarray`` with a given ``dtype``. Also certain optimizations such as
+bounds checking are supported. Look at the corresponding section in the `Cython
+documentation <http://docs.cython.org/src/tutorial/numpy.html>`_. In case you
+want to pass Numpy arrays as C arrays to your Cython wrapped C functions, there
+is a section about this in the `Cython wiki
+<http://wiki.cython.org/tutorials/NumpyPointerToC>`_.
