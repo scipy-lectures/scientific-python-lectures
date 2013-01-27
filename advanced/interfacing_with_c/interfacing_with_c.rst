@@ -455,7 +455,7 @@ helps debug Python, Cython and C code.
 **Disadvantages**
 
 * Must be compiled
-* Requires ad additional library
+* Requires an additional library
 
 Example
 -------
