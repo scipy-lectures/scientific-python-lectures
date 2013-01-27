@@ -426,9 +426,9 @@ Cython
 ======
 
 `Cython <http://cython.org/>`_ is an both a Python-like language for writing
-c-extensions and an advanced compiler for this language. The Cython *language*
+C-extensions and an advanced compiler for this language. The Cython *language*
 is a superset of Python, which comes with additional constructs that allow you
-call c functions and annotate variables and class attributes with c types. In
+call C functions and annotate variables and class attributes with c types. In
 this sense one could also call it a *Python with types*.
 
 In addition to the basic use case of wrapping native code, Cython supports an
