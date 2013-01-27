@@ -12,7 +12,6 @@ Interfacing with C
    * Timing?
    * Additional documentation
    * What about overflow?
-   * What about numpy support
 
 .. topic:: Foreword
 
