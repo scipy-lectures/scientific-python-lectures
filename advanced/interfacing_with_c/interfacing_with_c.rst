@@ -414,6 +414,14 @@ Again we test for robustness, and we see that we get a better error message
 
     TypeError: in method 'cos_func', argument 1 of type 'double'
 
+Numpy Support
+-------------
+
+Numpy provides `support for SWIG
+<http://docs.scipy.org/doc/numpy/reference/swig.html>`_ with the ``numpy.i``
+file. This interface file defines various so-called *typemaps* which support
+conversion between Numpy arrays and C-Arrays.
+
 Cython
 ======
 
