@@ -170,6 +170,14 @@ Now let's see how robust this is:
 
     TypeError: a float is required
 
+Numpy Support
+-------------
+
+Analog to the Python-C-API, Numpy, which is itself implemented as a
+C-extension, comes with the `Numpy-C-API
+<http://docs.scipy.org/doc/numpy/reference/c-api.html>`_. This API can be used
+to create and manipulate Numpy arrays from C, when writing a custom
+C-extension.
 
 Ctypes
 ======
