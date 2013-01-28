@@ -31,7 +31,7 @@ Scipy : high-level scientific computing
 
 .. contents:: Chapters contents
     :local:
-    :depth: 4
+    :depth: 1
 
 
 .. warning::
@@ -293,7 +293,7 @@ The result can be viewed with::
       contaminated with periodic noise. In this exercise, we aim to clean up
       the noise using the Fast Fourier Transform.
 
-   2. Load the image using ``pylab.imread``.
+   2. Load the image using :func:`pylab.imread`.
 
    3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
       spectrum (Fourier transform of) the image. Do you have any trouble
@@ -479,7 +479,7 @@ problems in :mod:`scipy.optimize`.
     Hints:
 
         - Variables can be restricted to ``-2 < x < 2`` and ``-1 < y < 1``.
-        - Use :func:`numpy.meshgrid` and ``pylab.imshow`` to find visually the
+        - Use :func:`numpy.meshgrid` and :func:`pylab.imshow` to find visually the
           regions.
         - Use :func:`scipy.optimize.fmin_bfgs` or another multi-dimensional
           minimizer.
@@ -789,10 +789,10 @@ Signal processing: :mod:`scipy.signal`
      Notice how on the side of the window the resampling is less accurate
      and has a rippling effect.
 
-* ``scipy.signal`` has many window functions: :func:`scipy.signal.hamming`,
+* :mod:`scipy.signal` has many window functions: :func:`scipy.signal.hamming`,
   :func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...
 
-* ``scipy.signal`` has filtering (median filter :func:`scipy.signal.medfilt`,
+* :mod:`scipy.signal` has filtering (median filter :func:`scipy.signal.medfilt`,
   Wiener :func:`scipy.signal.wiener`), but we will
   discuss this in the image section.
 
