@@ -62,3 +62,5 @@ Fixes:
 - Ozan Çağlayan
 
 - kikocorreo
+
+- Sergio Oller
