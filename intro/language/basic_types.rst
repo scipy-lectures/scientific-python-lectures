@@ -99,20 +99,20 @@ Lists
 A list is an ordered collection of objects, that may have different
 types. For example ::
 
-    >>> l = ['red', 'blue', 'green', 'black', 'white']
-    >>> type(l)
+    >>> L = ['red', 'blue', 'green', 'black', 'white']
+    >>> type(L)
     <type 'list'>
 
 Indexing: accessing individual objects contained in the list::
 
-    >>> l[2]
+    >>> L[2]
     'green'
 
 Counting from the end with negative indices::
 
-    >>> l[-1]
+    >>> L[-1]
     'white'
-    >>> l[-2]
+    >>> L[-2]
     'black'
 
 .. warning::
@@ -121,47 +121,47 @@ Counting from the end with negative indices::
 
 Slicing: obtaining sublists of regularly-spaced elements::
 
-    >>> l
+    >>> L
     ['red', 'blue', 'green', 'black', 'white']
-    >>> l[2:4]
+    >>> L[2:4]
     ['green', 'black']
 
 .. Warning::
 
-    Note that ``l[start:stop]`` contains the elements with indices ``i``
+    Note that ``L[start:stop]`` contains the elements with indices ``i``
     such as  ``start<= i < stop`` (``i`` ranging from ``start`` to
-    ``stop-1``). Therefore, ``l[start:stop]`` has ``(stop-start)`` elements.
+    ``stop-1``). Therefore, ``L[start:stop]`` has ``(stop-start)`` elements.
 
-**Slicing syntax**: ``l[start:stop:stride]``
+**Slicing syntax**: ``L[start:stop:stride]``
 
 All slicing parameters are optional::
 
-    >>> l
+    >>> L
     ['red', 'blue', 'green', 'black', 'white']
-    >>> l[3:]
+    >>> L[3:]
     ['black', 'white']
-    >>> l[:3]
+    >>> L[:3]
     ['red', 'blue', 'green']
-    >>> l[::2]
+    >>> L[::2]
     ['red', 'green', 'white']
 
 Lists are *mutable* objects and can be modified::
 
-    >>> l[0] = 'yellow'
-    >>> l
+    >>> L[0] = 'yellow'
+    >>> L
     ['yellow', 'blue', 'green', 'black', 'white']
-    >>> l[2:4] = ['gray', 'purple']
-    >>> l
+    >>> L[2:4] = ['gray', 'purple']
+    >>> L
     ['yellow', 'blue', 'gray', 'purple', 'white']
 
 .. Note::
 
     The elements of a list may have different types::
 
-        >>> l = [3, -200, 'hello']
-        >>> l
+        >>> L = [3, -200, 'hello']
+        >>> L
         [3, -200, 'hello']
-        >>> l[1], l[2]
+        >>> L[1], L[2]
         (-200, 'hello')
 
     For collections of numerical data that all have the same type, it
@@ -179,27 +179,27 @@ http://docs.python.org/tutorial/datastructures.html#more-on-lists
 
 Add and remove elements::
 
-    >>> l = ['red', 'blue', 'green', 'black', 'white']
-    >>> l.append('pink')
-    >>> l
+    >>> L = ['red', 'blue', 'green', 'black', 'white']
+    >>> L.append('pink')
+    >>> L
     ['red', 'blue', 'green', 'black', 'white', 'pink']
-    >>> l.pop() # removes and returns the last item
+    >>> L.pop() # removes and returns the last item
     'pink'
-    >>> l
+    >>> L
     ['red', 'blue', 'green', 'black', 'white']
-    >>> l.extend(['pink', 'purple']) # extend l, in-place
-    >>> l
+    >>> L.extend(['pink', 'purple']) # extend L, in-place
+    >>> L
     ['red', 'blue', 'green', 'black', 'white', 'pink', 'purple']
-    >>> l = l[:-2]
-    >>> l
+    >>> L = L[:-2]
+    >>> L
     ['red', 'blue', 'green', 'black', 'white']
 
 Reverse::
 
-    >>> r = l[::-1]
+    >>> r = L[::-1]
     >>> r
     ['white', 'black', 'green', 'blue', 'red']
-    >>> r2 = list(l)
+    >>> r2 = list(L)
     >>> r2
     ['red', 'blue', 'green', 'black', 'white']
     >>> r2.reverse() # in-place
@@ -208,7 +208,7 @@ Reverse::
 
 Concatenate and repeat lists::
 
-    >>> r + l
+    >>> r + L
     ['white', 'black', 'green', 'blue', 'red', 'red', 'blue', 'green', 'black', 'white']
     >>> r * 2
     ['white', 'black', 'green', 'blue', 'red', 'white', 'black', 'green', 'blue', 'red']
@@ -225,7 +225,7 @@ Sort::
 
 .. Note:: **Methods and Object-Oriented Programming**
 
-    The notation ``r.method()`` (``r.sort(), r.append(3), l.pop()``) is our
+    The notation ``r.method()`` (``r.sort(), r.append(3), L.pop()``) is our
     first example of object-oriented programming (OOP). Being a ``list``, the
     object `r` owns the *method* `function` that is called using the notation
     **.**. No further knowledge of OOP than understanding the notation **.** is
