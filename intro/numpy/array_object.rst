@@ -207,7 +207,7 @@ In practice, we rarely enter items one by one...
            [0, 0, 3, 0],
            [0, 0, 0, 4]])
 
-* ``np.random``: random numbers (Mersenne Twister PRNG)::
+* :mod:`np.random`: random numbers (Mersenne Twister PRNG)::
 
     >>> a = np.random.rand(4)       # uniform in [0, 1]
     >>> a

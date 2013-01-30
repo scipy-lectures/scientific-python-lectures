@@ -189,5 +189,8 @@ Well-known (& more obscure) file formats
 .. EXE: advanced: read the data in a PPM file
 
 
+.. topic:: Numpy internals
 
+    If you are interested in the Numpy internals, there is a good discussion in
+    :ref:`advanced_numpy`.
 
