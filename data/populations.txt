@@ -1,4 +1,4 @@
-# year  hare    lynx    carrot
+# year	hare	lynx	carrot
 1900	30e3	4e3	48300
 1901	47.2e3	6.1e3	48200
 1902	70.2e3	9.8e3	41500
