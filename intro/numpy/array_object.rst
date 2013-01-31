@@ -55,9 +55,9 @@ operations.
 
 .. sourcecode:: ipython
 
-    In [1]: l = range(1000)
+    In [1]: L = range(1000)
 
-    In [2]: %timeit [i**2 for i in l]
+    In [2]: %timeit [i**2 for i in L]
     1000 loops, best of 3: 403 us per loop
 
     In [3]: a = np.arange(1000)
