@@ -302,6 +302,59 @@ For more information, consult the corresponding section in the `Numpy Cookbook
 `numpy.ndarray.ctypes <http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.ctypes.html>`_
 and `numpy.ctypeslib <http://docs.scipy.org/doc/numpy/reference/routines.ctypeslib.html>`_.
 
+For the following example, let's consider a C function in a library that takes
+and input and an output array, computes the cosine of the input array and
+stores the result in the output_array.
+
+The library consists of the following header file (although this is not
+strictly needed for this example, we list it for completeness):
+
+.. literalinclude:: ctypes_numpy/cos_doubles.h
+   :language: c
+
+The function implementation resides in the following C source file:
+
+.. literalinclude:: ctypes_numpy/cos_doubles.c
+   :language: c
+
+And since the library is pure C, we can't use ``distutils`` to compile it, but
+must use a combination of ``make`` and ``gcc``:
+
+.. literalinclude:: ctypes_numpy/makefile
+   :language: make
+
+We can then compile this (on Linux) into the shared library
+``libcos_doubles.so``:
+
+.. sourcecode:: console
+
+   $ ls
+   cos_doubles.c  cos_doubles.h  cos_doubles.py  makefile  test_cos_doubles.py
+   $ make
+   gcc -c -fPIC cos_doubles.c -o cos_doubles.o
+   gcc -shared -Wl,-soname,libcos_doubles.so -o libcos_doubles.so cos_doubles.o
+   $ ls
+   cos_doubles.c  cos_doubles.o   libcos_doubles.so*  test_cos_doubles.py
+   cos_doubles.h  cos_doubles.py  makefile
+
+Now we can proceed to wrap this library via ctypes with direct support for
+(certain kinds of) Numpy arrays:
+
+.. literalinclude:: ctypes_numpy/cos_doubles.py
+   :language: numpy
+
+* Note the inherent limitation of contiguous single dimensional Numpy arrays,
+  since the C functions requires this kind of buffer.
+* Also note that the output array must be preallocated, for example with
+  :func:`numpy.zeros` and the function will write into it's buffer.
+
+And, as before, we convince ourselves that it worked:
+
+.. literalinclude:: ctypes_numpy/test_cos_doubles.py
+   :language: python
+
+.. image:: ctypes_numpy/test_cos_doubles.png
+   :scale: 50
 
 SWIG
 ====
