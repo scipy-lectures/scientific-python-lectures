@@ -178,6 +178,31 @@ C-extension, comes with the `Numpy-C-API
 to create and manipulate Numpy arrays from C, when writing a custom
 C-extension. See also: :ref:`advanced_numpy`_.
 
+The following example shows how to pass numpy arrays as arguments to functions
+and how to iterate over numpy arrays using the (old) Numpy-C-Api. It simply
+takes an array as argument applies the cosine function from the ``math.h`` and
+returns a resulting new array.
+
+.. literalinclude:: numpy_c_api/cos_module_np.c
+   :language: c
+
+To compile this we can use distutils again. However we need to be sure to
+include the Numpy headers by using :func:`numpy.get_include`.
+
+.. literalinclude:: numpy_c_api/setup.py
+   :language: python
+
+To convince ourselves if this does actually works, we run the following test
+script:
+
+.. literalinclude:: numpy_c_api/test_cos_module_np.py
+   :language: numpy
+
+And this should result in the following figure:
+
+.. image:: numpy_c_api/test_cos_module_np.png
+   :scale: 50
+
 Ctypes
 ======
 
