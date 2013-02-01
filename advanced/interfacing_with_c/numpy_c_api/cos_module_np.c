@@ -41,6 +41,7 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
         PyArray_ITER_NEXT(out_iter);
     }
 
+    /*  clean up and return the result */
     Py_DECREF(in_iter);
     Py_DECREF(out_iter);
     Py_INCREF(out_array);
