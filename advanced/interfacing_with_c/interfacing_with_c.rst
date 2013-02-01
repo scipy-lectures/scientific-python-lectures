@@ -176,7 +176,7 @@ Analog to the Python-C-API, Numpy, which is itself implemented as a
 C-extension, comes with the `Numpy-C-API
 <http://docs.scipy.org/doc/numpy/reference/c-api.html>`_. This API can be used
 to create and manipulate Numpy arrays from C, when writing a custom
-C-extension.
+C-extension. See also: :ref:`advanced_numpy`_.
 
 Ctypes
 ======
@@ -584,4 +584,20 @@ Cython       ``False``       ``True``  ``True``      ``True``
 Of all three presented techniques, Cython is the most modern and advanced. In
 particular, the ability to optimize code incrementally by adding types to your
 Python code is unique.
+
+Further Reading and References
+==============================
+
+* `Gaël Varoquaux's blog post about avoiding data copies
+  <http://gael-varoquaux.info/blog/?p=157>`_ provides some insight on how to
+  handle memory management cleverly. If you ever run into issues with large
+  datasets, this is a reference to come back to for some inspiration.
+
+Exercises
+=========
+
+#. Download the source code for each example and compile and run them on your
+   machine.
+#. Make trivial changes to each example and convince yourself that this works. (
+   E.g. change ``cos`` for ``sin``.)
 
