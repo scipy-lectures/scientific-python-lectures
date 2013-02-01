@@ -105,6 +105,16 @@ Memory address of the data:
 >>> x.__array_interface__['data'][0] # doctest: +SKIP
 64803824
 
+The whole ``__array_interface__``:
+
+>>> x.__array_interface__ 
+{'data': (35828928, False),
+ 'descr': [('', '<i4')],
+ 'shape': (4,),
+ 'strides': None,
+ 'typestr': '<i4',
+ 'version': 3}
+
 Reminder: two :class:`ndarrays <ndarray>` may share the same memory::
 
     >>> x = np.array([1, 2, 3, 4])
@@ -133,6 +143,8 @@ Memory does not need to be owned by an :class:`ndarray`::
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
 
+See also : `array interface
+<http://docs.scipy.org/doc/numpy/reference/arrays.interface.html>`_
 
 Data types
 ----------
