@@ -21,6 +21,8 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
         return NULL;
 
     /*  create the iterators */
+    /* TODO: this iterator API is deprecated since 1.6
+     *       replace in favour of the new NpyIter API */
     in_iter  = (PyArrayIterObject *)PyArray_IterNew((PyObject*)in_array);
     out_iter = (PyArrayIterObject *)PyArray_IterNew(out_array);
     if (in_iter == NULL || out_iter == NULL)
