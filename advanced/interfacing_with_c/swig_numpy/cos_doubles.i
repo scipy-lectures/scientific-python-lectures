@@ -17,9 +17,6 @@
 %apply (double* IN_ARRAY1, int DIM1) {(double * in, int size_in)}
 %apply (double* INPLACE_ARRAY1, int DIM1) {(double * out, int size_out)}
 
-/*  Parse the header file to generate wrappers */
-%include "cos_doubles.h"
-
 /*  Wrapper for cos_doubles that massages the types */
 %inline %{
     /*  takes as input two numpy arrays */
