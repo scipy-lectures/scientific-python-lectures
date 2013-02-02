@@ -550,7 +550,7 @@ The main Cython code for our ``cos_module`` is contained in the file
     :language: cython
 
 Note the additional keywords such as ``cdef`` and ``extern``. Also the
-``cos_func`` is then pur Python.
+``cos_func`` is then pure Python.
 
 Again we can use the standard ``distutils`` module, but this time we need some
 additional pieces from the ``Cython.Distutils``:
