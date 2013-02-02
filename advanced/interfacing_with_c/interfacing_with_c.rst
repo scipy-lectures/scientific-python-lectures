@@ -764,9 +764,11 @@ interesting. If you have good ideas for exercises, please let us know!
    #. Input and output arrays that have different lengths.
    #. Multidimensional array.
    #. Empty array
+   #. Arrays with non-``double`` types
 
 #. Use the ``%timeit`` IPython magic to measure the execution time of the
    various solutions
+
 
 Python-C-API
 ------------
@@ -778,6 +780,10 @@ Python-C-API
 #. Try to fix the example to use the new `Numpy iterator protocol
    <http://docs.scipy.org/doc/numpy/reference/c-api.iterator.html>`_. If you
    manage to obtain a working solution, please submit a pull-request on github.
+#. You may have noticed, that the Numpy-C-API example is the only Numpy example
+   that does not wrap ``cos_doubles`` but instead applies the ``cos`` function
+   directly to the elements of the numpy array. Does this have any advantages
+   over the other techniques.
 
 Ctypes
 ------
