@@ -824,8 +824,8 @@ interesting. If you have good ideas for exercises, please let us know!
 Python-C-API
 ------------
 
-#. Modify the example such that the function takes two input arguments, where
-   the second is the preallocated output array
+#. Modify the numpy example such that the function takes two input arguments, where
+   the second is the preallocated output array, making it similar to the other numpy examples.
 #. Modify the example such that the function only takes a single input array
    and modifies this in place.
 #. Try to fix the example to use the new `Numpy iterator protocol
@@ -842,7 +842,9 @@ Python-C-API
 Ctypes
 ------
 
-#. Modify the numpy example, such that the ``cos_doubles`` function modifies
+#. Modify the numpy example such that ``cos_doubles_func`` handles the preallocation for
+   you, thus making it more like the Numpy-C-API example.
+#. Modify the numpy example, such that the ``cos_doubles_func`` function modifies
    the input array in place.
 
 SWIG
