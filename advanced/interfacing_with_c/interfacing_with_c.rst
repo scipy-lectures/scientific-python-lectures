@@ -844,15 +844,13 @@ Ctypes
 
 #. Modify the Numpy example such that ``cos_doubles_func`` handles the preallocation for
    you, thus making it more like the Numpy-C-API example.
-#. Modify the Numpy example, such that the ``cos_doubles_func`` function modifies
-   the input array in place.
 
 SWIG
 ----
 
 #. Look at the code that SWIG autogenerates, how much of it do you
-   understand.
-#. Modify the ``cos_doubles`` function so that it returns an allocated array.
+   understand?
+#. Modify the ``cos_doubles``  C function so that it returns an allocated array.
    Can you wrap this using SWIG typemaps? If not, why not? Is there a
    workaround for this specific situation? (Hint: you know the size of the
    output array, so it may be possible to construct a Numpy array from the
@@ -860,3 +858,9 @@ SWIG
 
 Cython
 ------
+
+#. Look at the code that Cython autogenartes. Take a closer look at some of the
+   comments that Cython inserts. What do you see?
+#. Look at the section `Working with Numpy
+   <http://docs.cython.org/src/tutorial/numpy.html>`_ from the Cython
+   documentation  to learn how to incrementally optimize a pure python script that uses Numpy.
