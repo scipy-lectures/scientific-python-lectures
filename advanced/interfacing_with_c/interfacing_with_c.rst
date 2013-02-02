@@ -564,8 +564,6 @@ As previously, we need to use ``include_dirs`` to specify the location.
     build/         cos_doubles.h  cos_doubles.py    cos_doubles_wrap.c  setup.py
     cos_doubles.c  cos_doubles.i  _cos_doubles.so*  numpy.i             test_cos_doubles.py
 
-And we then use the familiar technique to convince ourselves that this works:
-
 And, as before, we convince ourselves that it worked:
 
 .. literalinclude:: swig_numpy/test_cos_doubles.py
@@ -837,6 +835,9 @@ Python-C-API
    that does not wrap ``cos_doubles`` but instead applies the ``cos`` function
    directly to the elements of the numpy array. Does this have any advantages
    over the other techniques.
+#. Can you wrap ``cos_doubles`` using only the Numpy-C-API. You may need to
+   ensure that the arrays have the correct type, are one dimensional and
+   contiguous in memory.
 
 Ctypes
 ------
