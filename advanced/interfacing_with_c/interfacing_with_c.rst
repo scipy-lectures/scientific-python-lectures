@@ -716,6 +716,59 @@ want to pass Numpy arrays as C arrays to your Cython wrapped C functions, there
 is a section about this in the `Cython wiki
 <http://wiki.cython.org/tutorials/NumpyPointerToC>`_.
 
+In the following example, we will show how to wrap the familiar ``cos_doubles``
+function using Cython.
+
+.. literalinclude:: cython_numpy/cos_doubles.h
+   :language: c
+
+.. literalinclude:: cython_numpy/cos_doubles.c
+   :language: c
+
+This is wrapped as ``cos_doubles_func`` using the following Cython code:
+
+.. literalinclude:: cython_numpy/_cos_doubles.pyx
+   :language: cython
+
+And can be compiled using ``distutils``:
+
+.. literalinclude:: cython_numpy/setup.py
+   :language: python
+
+* As with the previous compiled Numpy examples, we need the ``include_dirs`` option.
+
+.. sourcecode:: console
+
+    $ ls
+    cos_doubles.c  cos_doubles.h  _cos_doubles.pyx  setup.py  test_cos_doubles.py
+    $ python setup.py build_ext -i
+    running build_ext
+    cythoning _cos_doubles.pyx to _cos_doubles.c
+    building 'cos_doubles' extension
+    creating build
+    creating build/temp.linux-x86_64-2.7
+    gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include -I/home/esc/anaconda/include/python2.7 -c _cos_doubles.c -o build/temp.linux-x86_64-2.7/_cos_doubles.o
+    In file included from /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/ndarraytypes.h:1722,
+                     from /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/ndarrayobject.h:17,
+                     from /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/arrayobject.h:15,
+                     from _cos_doubles.c:253:
+    /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/npy_deprecated_api.h:11:2: warning: #warning "Using deprecated NumPy API, disable it by #defining NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION"
+    /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/__ufunc_api.h:236: warning: ‘_import_umath’ defined but not used
+    gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include -I/home/esc/anaconda/include/python2.7 -c cos_doubles.c -o build/temp.linux-x86_64-2.7/cos_doubles.o
+    gcc -pthread -shared build/temp.linux-x86_64-2.7/_cos_doubles.o build/temp.linux-x86_64-2.7/cos_doubles.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/cython_numpy/cos_doubles.so
+    $ ls
+    build/  _cos_doubles.c  cos_doubles.c  cos_doubles.h  _cos_doubles.pyx  cos_doubles.so*  setup.py  test_cos_doubles.py
+
+And, as before, we convince ourselves that it worked:
+
+.. literalinclude:: cython_numpy/test_cos_doubles.py
+   :language: numpy
+
+.. image:: cython_numpy/test_cos_doubles.png
+   :scale: 50
+
+
+
 Summary
 =======
 
