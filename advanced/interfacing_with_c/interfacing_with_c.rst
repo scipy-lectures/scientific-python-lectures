@@ -6,7 +6,6 @@ Interfacing with C
 
 .. TODO::
 
-   * Exercises
    * Download links
    * Timing?
    * Additional documentation
