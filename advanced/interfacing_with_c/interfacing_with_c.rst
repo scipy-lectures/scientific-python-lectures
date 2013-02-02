@@ -48,7 +48,7 @@ The following criteria may be useful when evaluating a technology:
 * Does it support C++?
 
 Before you set out, you should consider your use case. When interfacing with
-native code, there are usually two usecases that come up:
+native code, there are usually two use-cases that come up:
 
 * Existing code in C/C++ that needs to be leveraged, either because it already
   exists, or because it is faster.
@@ -293,7 +293,7 @@ Numpy Support
 -------------
 
 Numpy contains some support for interfacing with ctypes. In particular there is
-support for exporting certain attributes of a Numpy array as ctypes datatypes
+support for exporting certain attributes of a Numpy array as ctypes data-types
 and there are functions to convert from C arrays to Numpy arrays and back.
 
 .. XXX Should use :mod: and :class:
@@ -529,7 +529,7 @@ file:
   including sizes as input.
 * As opposed to the simple SWIG example, we don't include the ``cos_doubles.h``
   header, There is nothing there that we wish to expose to Python since we
-  expose the functaionality through ``cos_doubles_func``.
+  expose the functionality through ``cos_doubles_func``.
 
 And, as before we can use distutils to wrap this:
 
@@ -678,7 +678,7 @@ And running it:
     In [6]: cos_module.cos_func(3.14159265359)
     Out[6]: -1.0
 
-And, testing a little for roboustness, we can see that we get good error messages:
+And, testing a little for robustness, we can see that we get good error messages:
 
 .. sourcecode:: ipython
 
