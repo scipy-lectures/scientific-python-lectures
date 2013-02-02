@@ -855,3 +855,6 @@ SWIG
    workaround for this specific situation? (Hint: you know the size of the
    output array, so it may be possible to construct a numpy array from the
    returned ``double *``.)
+
+Cython
+------
