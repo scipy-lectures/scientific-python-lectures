@@ -56,7 +56,9 @@ native code, there are usually two usecases that come up:
 
 Each technology is demonstrated by wrapping the ``cos`` function from
 ``math.h``. While this is a mostly a trivial example, it should serve us well
-to demonstrate the basics of the wrapping solution.
+to demonstrate the basics of the wrapping solution. Since each technique also
+includes some form of Numpy support, this is also demonstrated using an
+example where the cosine is computed on some kind of array.
 
 Last but not least, two small warnings:
 
