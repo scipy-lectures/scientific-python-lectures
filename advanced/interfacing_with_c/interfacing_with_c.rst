@@ -689,12 +689,13 @@ interesting. If you have good ideas for exercises, please let us know!
    #. Numerical overflow.
    #. Input and output arrays that have different lengths.
    #. Multidimensional array.
+   #. Empty array
 
 #. Use the ``%timeit`` IPython magic to measure the execution time of the
    various solutions
 
 Python-C-API
-~~~~~~~~~~~~
+------------
 
 #. Modify the example such that the function takes two input arguments, where
    the second is the preallocated output array
@@ -705,13 +706,13 @@ Python-C-API
    manage to obtain a working solution, please submit a pull-request on github.
 
 Ctypes
-~~~~~~
+------
 
 #. Modify the numpy example, such that the ``cos_doubles`` function modifies
    the input array in place.
 
 SWIG
-~~~~
+----
 
 #. Look at the code that SWIG autogenerates, how much of it do you
    understand.
