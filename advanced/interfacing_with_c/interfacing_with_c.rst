@@ -350,7 +350,7 @@ Now we can proceed to wrap this library via ctypes with direct support for
 And, as before, we convince ourselves that it worked:
 
 .. literalinclude:: ctypes_numpy/test_cos_doubles.py
-   :language: python
+   :language: numpy
 
 .. image:: ctypes_numpy/test_cos_doubles.png
    :scale: 50
