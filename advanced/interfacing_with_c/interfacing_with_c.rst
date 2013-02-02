@@ -850,6 +850,8 @@ SWIG
 
 #. Look at the code that SWIG autogenerates, how much of it do you
    understand?
+#. Modify the Numpy example such that ``cos_doubles_func`` handles the preallocation for
+   you, thus making it more like the Numpy-C-API example.
 #. Modify the ``cos_doubles``  C function so that it returns an allocated array.
    Can you wrap this using SWIG typemaps? If not, why not? Is there a
    workaround for this specific situation? (Hint: you know the size of the
@@ -864,3 +866,5 @@ Cython
 #. Look at the section `Working with Numpy
    <http://docs.cython.org/src/tutorial/numpy.html>`_ from the Cython
    documentation  to learn how to incrementally optimize a pure python script that uses Numpy.
+#. Modify the Numpy example such that ``cos_doubles_func`` handles the preallocation for
+   you, thus making it more like the Numpy-C-API example.
