@@ -8,7 +8,7 @@ np.import_array()
 
 # cdefine the signature of our c function
 cdef extern from "cos_doubles.h":
-    void cos_doubles (double * in_, double * out, int size)
+    void cos_doubles (double * in_array, double * out_array, int size)
 
 # create the wrapper code, with numpy type annotations
 def cos_doubles_func(np.ndarray[double, ndim=1, mode="c"] in_array not None,
