@@ -499,7 +499,76 @@ Numpy Support
 Numpy provides `support for SWIG
 <http://docs.scipy.org/doc/numpy/reference/swig.html>`_ with the ``numpy.i``
 file. This interface file defines various so-called *typemaps* which support
-conversion between Numpy arrays and C-Arrays.
+conversion between Numpy arrays and C-Arrays. In the following example we will
+take a quick look at how such typemaps work in practice.
+
+We have the same ``cos_doubles`` function as in the ctypes example:
+
+.. literalinclude:: swig_numpy/cos_doubles.h
+   :language: c
+
+.. literalinclude:: swig_numpy/cos_doubles.c
+   :language: c
+
+This is wrapped as ``cos_doubles_func`` using the following SWIG interface
+file:
+
+.. literalinclude:: swig_numpy/cos_doubles.i
+   :language: c
+
+* To use the Numpy typemaps, we need include the ``numpy.i`` file.
+* Observe the call to ``import_array()`` which we encountered already in the
+  Numpy-C-API example.
+* Since the type maps only support the signature ``ARRAY, SIZE`` we need to
+  wrap the ``cos_doubles`` as ``cos_doubles_func`` which takes two arrays
+  including sizes as input.
+* As opposed to the simple SWIG example, we don't include the ``cos_doubles.h``
+  header, There is nothing there that we wish to expose to Python since we
+  expose the functaionality through ``cos_doubles_func``.
+
+And, as before we can use distutils to wrap this:
+
+.. literalinclude:: swig_numpy/setup.py
+   :language: python
+
+As previously, we need to use ``include_dirs`` to specify the location.
+
+.. sourcecode:: console
+
+    $ ls
+    cos_doubles.c  cos_doubles.h  cos_doubles.i  numpy.i  setup.py  test_cos_doubles.py
+    $ python setup.py build_ext -i
+    running build_ext
+    building '_cos_doubles' extension
+    swigging cos_doubles.i to cos_doubles_wrap.c
+    swig -python -o cos_doubles_wrap.c cos_doubles.i
+    cos_doubles.i:24: Warning(490): Fragment 'NumPy_Backward_Compatibility' not found.
+    cos_doubles.i:24: Warning(490): Fragment 'NumPy_Backward_Compatibility' not found.
+    cos_doubles.i:24: Warning(490): Fragment 'NumPy_Backward_Compatibility' not found.
+    creating build
+    creating build/temp.linux-x86_64-2.7
+    gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include -I/home/esc/anaconda/include/python2.7 -c cos_doubles.c -o build/temp.linux-x86_64-2.7/cos_doubles.o
+    gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include -I/home/esc/anaconda/include/python2.7 -c cos_doubles_wrap.c -o build/temp.linux-x86_64-2.7/cos_doubles_wrap.o
+    In file included from /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/ndarraytypes.h:1722,
+                     from /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/ndarrayobject.h:17,
+                     from /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/arrayobject.h:15,
+                     from cos_doubles_wrap.c:2706:
+    /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/npy_deprecated_api.h:11:2: warning: #warning "Using deprecated NumPy API, disable it by #defining NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION"
+    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_doubles.o build/temp.linux-x86_64-2.7/cos_doubles_wrap.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/swig_numpy/_cos_doubles.so
+    $ ls
+    build/         cos_doubles.h  cos_doubles.py    cos_doubles_wrap.c  setup.py
+    cos_doubles.c  cos_doubles.i  _cos_doubles.so*  numpy.i             test_cos_doubles.py
+
+And we then use the familiar technique to convince ourselves that this works:
+
+And, as before, we convince ourselves that it worked:
+
+.. literalinclude:: swig_numpy/test_cos_doubles.py
+   :language: numpy
+
+.. image:: swig_numpy/test_cos_doubles.png
+   :scale: 50
+
 
 Cython
 ======
