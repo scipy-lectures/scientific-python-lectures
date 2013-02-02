@@ -13,5 +13,6 @@ libcd = npct.load_library("libcos_doubles", ".")
 libcd.cos_doubles.restype = None
 libcd.cos_doubles.argtypes = [array_1d_double, array_1d_double, c_int]
 
-# expose the function from the library to the top level in this module
-cos_doubles_func = libcd.cos_doubles
+
+def cos_doubles_func(in_array, out_array):
+    return libcd.cos_doubles(in_array, out_array, len(in_array))

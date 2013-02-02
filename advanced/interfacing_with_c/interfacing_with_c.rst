@@ -346,6 +346,9 @@ Now we can proceed to wrap this library via ctypes with direct support for
   since the C functions requires this kind of buffer.
 * Also note that the output array must be preallocated, for example with
   :func:`numpy.zeros` and the function will write into it's buffer.
+* Although the original signature of the ``cos_doubles`` function is ``ARRAY,
+  ARRAY, int`` the final ``cos_doubles_func`` takes only two Numpy arrays as
+  arguments.
 
 And, as before, we convince ourselves that it worked:
 
