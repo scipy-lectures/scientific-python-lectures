@@ -674,8 +674,50 @@ Further Reading and References
 Exercises
 =========
 
+Since this is a brand new section, the exercises are considered more as
+pointers as to what to look at next, so pick the ones that you find more
+interesting. If you have good ideas for exercises, please let us know!
+
 #. Download the source code for each example and compile and run them on your
    machine.
 #. Make trivial changes to each example and convince yourself that this works. (
    E.g. change ``cos`` for ``sin``.)
+#. Most of the examples, especially the ones involving Numpy may still be
+   fragile and respond badly to input errors. Look for ways to crash the
+   examples, figure what the problem is and devise a potential solution.
+   Here are some ideas:
 
+   #. Numerical overflow.
+   #. Input and output arrays that have different lengths.
+   #. Multidimensional array.
+
+#. Use the ``%timeit`` IPython magic to measure the execution time of the
+   various solutions
+
+Python-C-API
+~~~~~~~~~~~~
+
+#. Modify the example such that the function takes two input arguments, where
+   the second is the preallocated output array
+#. Modify the example such that the function only takes a single input array
+   and modifies this in place.
+#. Try to fix the example to use the new `Numpy iterator protocol
+   <http://docs.scipy.org/doc/numpy/reference/c-api.iterator.html>`_. If you
+   manage to obtain a working solution, please submit a pull-request on github.
+
+Ctypes
+~~~~~~
+
+#. Modify the numpy example, such that the ``cos_doubles`` function modifies
+   the input array in place.
+
+SWIG
+~~~~
+
+#. Look at the code that SWIG autogenerates, how much of it do you
+   understand.
+#. Modify the ``cos_doubles`` function so that it returns an allocated array.
+   Can you wrap this using SWIG typemaps? If not, why not? Is there a
+   workaround for this specific situation? (Hint: you know the size of the
+   output array, so it may be possible to construct a numpy array from the
+   returned ``double *``.)
