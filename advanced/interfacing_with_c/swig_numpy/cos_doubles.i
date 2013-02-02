@@ -14,14 +14,14 @@
 %}
 
 /*  typemaps for the two arrays, the second will be modified in-place */
-%apply (double* IN_ARRAY1, int DIM1) {(double * in, int size_in)}
-%apply (double* INPLACE_ARRAY1, int DIM1) {(double * out, int size_out)}
+%apply (double* IN_ARRAY1, int DIM1) {(double * in_array, int size_in)}
+%apply (double* INPLACE_ARRAY1, int DIM1) {(double * out_array, int size_out)}
 
 /*  Wrapper for cos_doubles that massages the types */
 %inline %{
     /*  takes as input two numpy arrays */
-    void cos_doubles_func(double * in, int size_in, double * out, int size_out) {
+    void cos_doubles_func(double * in_array, int size_in, double * out_array, int size_out) {
         /*  calls the original funcion, providing only the size of the first */
-        cos_doubles(in, out, size_in);
+        cos_doubles(in_array, out_array, size_in);
     }
 %}
