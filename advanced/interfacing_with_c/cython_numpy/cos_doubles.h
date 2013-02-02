@@ -1,1 +1,1 @@
-void cos_doubles(double * in, double * out, int size);
+../numpy_shared/cos_doubles.h
