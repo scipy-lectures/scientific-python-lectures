@@ -56,17 +56,26 @@ pyflakes: fast static analysis
 -------------------------------
 
 They are several static analysis tools in Python; to name a few:
-`pylint <http://www.logilab.org/857>`_,
-`pychecker <http://pychecker.sourceforge.net/>`_, and
-`pyflakes <http://pypi.python.org/pypi/pyflakes>`_.
-Here we focus on pyflakes, which is the simplest tool.
+
+* `pylint <http://www.logilab.org/857>`_
+* `pychecker <http://pychecker.sourceforge.net/>`_
+* `pyflakes <http://pypi.python.org/pypi/pyflakes>`_
+* `pep8 <http://pypi.python.org/pypi/pep8>`_
+* `flake8 <http://pypi.python.org/pypi/flake8>`_
+
+Here we focus on `pyflakes`, which is the simplest tool.
 
     * **Fast, simple**
 
     * Detects syntax errors, missing imports, typos on names.
 
-Integrating pyflakes in your editor is highly recommended, it **does
-yield productivity gains**.
+Another good recommendation is the `flake8` tool which is a combination of
+`pyflakes` and `pep`. Thus, in addition to the types of errors that `pyflakes`
+catches, `flake8` detects violations of the recommendation in `PEP8
+<http://www.python.org/dev/peps/pep-0008/>`_ style guide.
+
+Integrating `pyflakes` (or `flake8`) in your editor or IDE is highly
+recommended, it **does yield productivity gains**.
 
 Running pyflakes on the current edited file
 ............................................
