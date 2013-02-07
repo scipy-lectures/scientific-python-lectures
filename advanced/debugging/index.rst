@@ -138,14 +138,18 @@ A type-as-go spell-checker like integration
    :align: right
 
 * **In vim**
-  Use the pyflakes.vim plugin:
+  * Use the pyflakes.vim plugin:
 
-  1. download the zip file from
-     http://www.vim.org/scripts/script.php?script_id=2441
+    #. download the zip file from
+       http://www.vim.org/scripts/script.php?script_id=2441
 
-  2. extract the files in `~/.vim/ftplugin/python`
+    #. extract the files in `~/.vim/ftplugin/python`
 
-  3. make sure your vimrc has "filetype plugin indent on"
+    #. make sure your vimrc has "filetype plugin indent on"
+
+  * Alternatively: use the `sytastic https://github.com/scrooloose/syntastic`
+    plugin. This can be configured to use `flake8` too and also handles
+    on-the-fly checking for many other languages.
 
 * **In emacs**
   Use the flymake mode with pyflakes, documented on
