@@ -2,7 +2,7 @@
 Optimizing code
 =================
 
-.. sidebar:: Donald Knuth 
+.. sidebar:: Donald Knuth
 
    *“Premature optimization is the root of all evil”*
 
@@ -53,7 +53,7 @@ Timeit
 In IPython, use ``timeit`` (http://docs.python.org/library/timeit.html) to time elementary operations:
 
 .. sourcecode:: ipython
-    
+
     In [1]: import numpy as np
 
     In [2]: a = np.arange(1000)
@@ -69,7 +69,7 @@ In IPython, use ``timeit`` (http://docs.python.org/library/timeit.html) to time 
 
 Use this to guide your choice between strategies.
 
-.. note:: 
+.. note::
 
    For long running calls, using ``%time`` instead of ``%timeit``; it is
    less precise but faster
@@ -140,7 +140,7 @@ Line-profiler
 The profiler is great: it tells us which function takes most of the time,
 but not where it is called.
 
-For this, we use the 
+For this, we use the
 `line_profiler <http://packages.python.org/line_profiler/>`_: in the
 source file, we decorate a few functions that we want to inspect with
 ``@profile`` (no need to import it)::
@@ -149,7 +149,7 @@ source file, we decorate a few functions that we want to inspect with
     def test():
 	data = np.random.random((5000, 100))
 	u, s, v = linalg.svd(data)
-	pca = np.dot(u[:10, :], data) 
+	pca = np.dot(u[:10, :], data)
 	results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
@@ -171,7 +171,7 @@ and `-v`::
 	6                                           def test():
 	7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))
 	8         1     14242163 14242163.0   99.7      u, s, v = linalg.svd(data)
-	9         1        10282  10282.0      0.1      pca = np.dot(u[:10, :], data) 
+	9         1        10282  10282.0      0.1      pca = np.dot(u[:10, :], data)
        10         1         7799   7799.0      0.1      results = fastica(pca.T, whiten=False)
 
 
@@ -197,10 +197,10 @@ loop**, that bring in big gains.
 Example of the SVD
 ...................
 
-In both examples above, the SVD - 
-`Singular Value Decomposition <http://en.wikipedia.org/wiki/Singular_value_decomposition>`_ 
+In both examples above, the SVD -
+`Singular Value Decomposition <http://en.wikipedia.org/wiki/Singular_value_decomposition>`_
 - is what
-takes most of the time. Indeed, the computational cost of this algorithm is 
+takes most of the time. Indeed, the computational cost of this algorithm is
 roughly :math:`n^3` in the size of the input matrix.
 
 However, in both of these example, we are not using all the output of
@@ -315,7 +315,7 @@ discuss only some commonly encountered tricks to make code faster.
 
   This is the reason why Fortran ordering or C ordering may make a big
   difference on operations:
-  
+
   .. sourcecode:: ipython
 
     In [5]: a = np.random.rand(20, 2**18)
@@ -329,7 +329,7 @@ discuss only some commonly encountered tricks to make code faster.
 
     In [9]: %timeit np.dot(b, c)
     10 loops, best of 3: 84.2 ms per loop
- 
+
   Note that copying the data to work around this effect may not be worth it:
 
   .. sourcecode:: ipython
@@ -345,9 +345,9 @@ discuss only some commonly encountered tricks to make code faster.
   The last resort, once you are sure that all the high-level
   optimizations have been explored, is to transfer the hot spots, i.e.
   the few lines or functions in which most of the time is spent, to
-  compiled code. For compiled code, the preferred option is to use 
+  compiled code. For compiled code, the preferred option is to use
   `Cython <http://www.cython.org>`_: it is easy to transform exiting
-  Python code in compiled code, and with a good use of the 
+  Python code in compiled code, and with a good use of the
   `numpy support <http://docs.cython.org/src/tutorial/numpy.html>`_
   yields efficient code on numpy arrays, for instance by unrolling loops.
 
