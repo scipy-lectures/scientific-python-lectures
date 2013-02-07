@@ -406,3 +406,6 @@ Additional Links
 * If you would like to track performace of your code across time, i.e. as you
   make new commits to your repository, you could try:
   `vbench <https://github.com/pydata/vbench>`_
+
+* If you need some interactive visualization why not try `RunSnakeRun
+  <http://www.vrplumber.com/programming/runsnakerun/>`_
