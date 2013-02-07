@@ -167,11 +167,11 @@ and ``-v``::
 
     Line #      Hits         Time  Per Hit   % Time  Line Contents
     ==============================================================
-	5                                           @profile
-	6                                           def test():
-	7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))
-	8         1     14242163 14242163.0   99.7      u, s, v = linalg.svd(data)
-	9         1        10282  10282.0      0.1      pca = np.dot(u[:10, :], data)
+        5                                           @profile
+        6                                           def test():
+        7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))
+        8         1     14242163 14242163.0   99.7      u, s, v = linalg.svd(data)
+        9         1        10282  10282.0      0.1      pca = np.dot(u[:10, :], data)
        10         1         7799   7799.0      0.1      results = fastica(pca.T, whiten=False)
 
 
