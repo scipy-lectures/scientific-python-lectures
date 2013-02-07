@@ -12,4 +12,5 @@ def test():
     pca = np.dot(u[:10, :], data)
     results = fastica(pca.T, whiten=False)
 
-test()
+if __name__ == '__main__':
+    test()
