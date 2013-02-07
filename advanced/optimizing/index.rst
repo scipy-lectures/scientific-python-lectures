@@ -402,3 +402,7 @@ Additional Links
 * If you need to profile down into C extensions, you could try using
   `gperftools <http://code.google.com/p/gperftools/?redir=1>`_ from Python with
   `yep <http://pypi.python.org/pypi/yep>`_.
+
+* If you would like to track performace of your code across time, i.e. as you
+  make new commits to your repository, you could try:
+  `vbench <https://github.com/pydata/vbench>`_
