@@ -37,7 +37,7 @@ Optimization workflow
 
 
 Profiling Python code
-==========================================
+=====================
 
 .. topic:: **No optimization without measuring!**
 
