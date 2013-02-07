@@ -1,6 +1,6 @@
-================
-Debugging code 
-================
+==============
+Debugging code
+==============
 
 :author: Gaël Varoquaux
 
@@ -55,9 +55,9 @@ Coding best practices to avoid getting in trouble
 pyflakes: fast static analysis
 -------------------------------
 
-They are several static analysis tools in Python; to name a few: 
-`pylint <http://www.logilab.org/857>`_, 
-`pychecker <http://pychecker.sourceforge.net/>`_, and 
+They are several static analysis tools in Python; to name a few:
+`pylint <http://www.logilab.org/857>`_,
+`pychecker <http://pychecker.sourceforge.net/>`_, and
 `pyflakes <http://pypi.python.org/pypi/pyflakes>`_.
 Here we focus on pyflakes, which is the simplest tool.
 
@@ -74,8 +74,8 @@ Running pyflakes on the current edited file
 You can bind a key to run pyflakes in the current buffer.
 
 * **In kate**
-  Menu: 'settings -> configure kate 
-  
+  Menu: 'settings -> configure kate
+
     * In plugins enable 'external tools'
 
     * In external Tools', add `pyflakes`::
@@ -106,7 +106,7 @@ You can bind a key to run pyflakes in the current buffer.
     (defun pyflakes-thisfile () (interactive)
            (compile (format "pyflakes %s" (buffer-file-name)))
     )
-    
+
     (define-minor-mode pyflakes-mode
         "Toggle pyflakes mode.
         With no argument, this command toggles the mode.
@@ -119,7 +119,7 @@ You can bind a key to run pyflakes in the current buffer.
         ;; The minor mode bindings.
         '( ([f5] . pyflakes-thisfile) )
     )
-    
+
     (add-hook 'python-mode-hook (lambda () (pyflakes-mode t)))
 
 A type-as-go spell-checker like integration
@@ -129,11 +129,11 @@ A type-as-go spell-checker like integration
    :align: right
 
 * **In vim**
-  Use the pyflakes.vim plugin: 
-  
+  Use the pyflakes.vim plugin:
+
   1. download the zip file from
      http://www.vim.org/scripts/script.php?script_id=2441
-  
+
   2. extract the files in `~/.vim/ftplugin/python`
 
   3. make sure your vimrc has "filetype plugin indent on"
@@ -142,18 +142,18 @@ A type-as-go spell-checker like integration
   Use the flymake mode with pyflakes, documented on
   http://www.plope.com/Members/chrism/flymake-mode : add the following to
   your .emacs file::
-  
-    (when (load "flymake" t) 
-            (defun flymake-pyflakes-init () 
-            (let* ((temp-file (flymake-init-create-temp-buffer-copy 
-                                'flymake-create-temp-inplace)) 
-                (local-file (file-relative-name 
-                            temp-file 
-                            (file-name-directory buffer-file-name)))) 
-                (list "pyflakes" (list local-file)))) 
 
-            (add-to-list 'flymake-allowed-file-name-masks 
-                    '("\\.py\\'" flymake-pyflakes-init))) 
+    (when (load "flymake" t)
+            (defun flymake-pyflakes-init ()
+            (let* ((temp-file (flymake-init-create-temp-buffer-copy
+                                'flymake-create-temp-inplace))
+                (local-file (file-relative-name
+                            temp-file
+                            (file-name-directory buffer-file-name))))
+                (list "pyflakes" (list local-file))))
+
+            (add-to-list 'flymake-allowed-file-name-masks
+                    '("\\.py\\'" flymake-pyflakes-init)))
 
     (add-hook 'find-file-hook 'flymake-find-file-hook)
 
@@ -231,16 +231,16 @@ Here we debug the file :download:`index_error.py`. When running it, an
     ---------------------------------------------------------------------------
     IndexError                                Traceback (most recent call last)
     /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py in <module>()
-          6 
+          6
           7 if __name__ == '__main__':
     ----> 8     index_error()
-          9 
+          9
 
     /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py in index_error()
           3 def index_error():
           4     lst = list('foobar')
     ----> 5     print lst[len(lst)]
-          6 
+          6
           7 if __name__ == '__main__':
 
     IndexError: list index out of range
@@ -249,18 +249,18 @@ Here we debug the file :download:`index_error.py`. When running it, an
     > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
           4     lst = list('foobar')
     ----> 5     print lst[len(lst)]
-          6 
+          6
 
     ipdb> list
           1 """Small snippet to raise an IndexError."""
-          2 
+          2
           3 def index_error():
           4     lst = list('foobar')
     ----> 5     print lst[len(lst)]
-          6 
+          6
           7 if __name__ == '__main__':
           8     index_error()
-          9 
+          9
 
     ipdb> len(lst)
     6
@@ -268,7 +268,7 @@ Here we debug the file :download:`index_error.py`. When running it, an
     r
     ipdb> quit
 
-    In [3]: 
+    In [3]:
 
 .. topic:: Post-mortem debugging without IPython
 
@@ -297,8 +297,8 @@ Here we debug the file :download:`index_error.py`. When running it, an
     Running 'cont' or 'step' will restart the program
     > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
     -> print lst[len(lst)]
-    (Pdb) 
- 
+    (Pdb)
+
 
 Step-by-step execution
 .......................
@@ -327,7 +327,7 @@ Indeed the code runs, but the filtering does not work well.
 
     ipdb> n
     > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(4)<module>()
-          3 
+          3
     1---> 4 import numpy as np
           5 import scipy as sp
 
@@ -376,7 +376,7 @@ Indeed the code runs, but the filtering does not work well.
     [[5868 5379 5316 ..., 5071 4799 5149]
      [5013  363  437 ...,  346  262 4355]
      [5379  410  344 ...,  392  604 3377]
-     ..., 
+     ...,
      [ 435  362  308 ...,  275  198 1632]
      [ 548  392  290 ...,  248  263 1653]
      [ 466  789  736 ..., 1835 1725 1940]]
@@ -423,7 +423,7 @@ Other ways of starting a debugger
   using the debugger.
 
   In addition, you can use the IPython interface for the debugger in nose
-  by installing the nose plugin 
+  by installing the nose plugin
   `ipdbplugin <http://pypi.python.org/pypi/ipdbplugin>`_. You can than
   pass `--ipdb` and `--ipdb-failure` options to nosetests.
 
@@ -443,14 +443,14 @@ Other ways of starting a debugger
 .. topic:: Graphical debuggers
 
     For stepping through code and inspecting variables, you might find it
-    more convenient to use a graphical debugger such as 
+    more convenient to use a graphical debugger such as
     `winpdb <http://winpdb.org/>`_.
 
-    Alternatively, `pudb <http://pypi.python.org/pypi/pudb>`_ is a good 
+    Alternatively, `pudb <http://pypi.python.org/pypi/pudb>`_ is a good
     semi-graphical debugger with a text user interface in the console.
 
 
-Debugger commands and interaction 
+Debugger commands and interaction
 ----------------------------------
 
 ============ ======================================================================
@@ -471,13 +471,13 @@ Debugger commands and interaction
     name: **use different names then your local variable when typing code
     in the debugger**.
 
-Debugging segmentation faults using gdb 
+Debugging segmentation faults using gdb
 ==========================================
 
 If you have a segmentation fault, you cannot debug it with pdb, as it
 crashes the Python interpreter before it can drop in the debugger.
 Similarly, if you have a bug in C code embedded in Python, pdb is
-useless. For this we turn to the gnu debugger, 
+useless. For this we turn to the gnu debugger,
 `gdb <http://www.gnu.org/s/gdb/>`_, available on Linux.
 
 Before we start with gdb, let us add a few Python-specific tools to it.
@@ -508,7 +508,7 @@ level stack (not the Python call stack). We can debug the C call stack
 using gdb's commands::
 
     (gdb) up
-    #1  0x004af4f5 in _copy_from_same_shape (dest=<value optimized out>, 
+    #1  0x004af4f5 in _copy_from_same_shape (dest=<value optimized out>,
         src=<value optimized out>, myfunc=0x496780 <_strided_byte_copy>,
         swap=0)
     at numpy/core/src/multiarray/ctors.c:748
@@ -530,14 +530,14 @@ the stack until we hit the Python execution loop::
         Frame 0x85371ec, for file /home/varoquau/usr/lib/python2.6/site-packages/numpy/core/arrayprint.py, line 156, in _leading_trailing (a=<numpy.ndarray at remote 0x85371b0>, _nc=<module at remote 0xb7f93a64>), throwflag=0)
         at ../Python/ceval.c:2412
     2412    in ../Python/ceval.c
-    (gdb) 
+    (gdb)
 
 Once we are in the Python execution loop, we can use our special Python
 helper function. For instance we can find the corresponding Python code::
 
     (gdb) pyframe
     /home/varoquau/usr/lib/python2.6/site-packages/numpy/core/arrayprint.py (158): _leading_trailing
-    (gdb) 
+    (gdb)
 
 This is numpy code, we need to go up until we find code that we have
 written::
@@ -562,8 +562,8 @@ Thus the segfault happens when printing `big_array[-10:]`. The reason is
 simply that `big_array` has been allocated with its end outside the
 program memory.
 
-.. note:: 
-   
+.. note::
+
     For a list of Python-specific commands defined in the `gdbinit`, read
     the source of this file.
 
@@ -572,7 +572,7 @@ ____
 
 .. topic:: **Wrap up exercise**
     :class: green
-    
+
     The following script is well documented and hopefully legible. It
     seeks to answer a problem of actual interest for numerical computing,
     but it does not work... Can you debug it?
