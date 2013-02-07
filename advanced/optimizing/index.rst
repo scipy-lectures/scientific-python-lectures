@@ -143,20 +143,23 @@ but not where it is called.
 For this, we use the
 `line_profiler <http://packages.python.org/line_profiler/>`_: in the
 source file, we decorate a few functions that we want to inspect with
-``@profile`` (no need to import it)::
+``@profile`` (no need to import it)
+
+.. sourcecode:: python
 
     @profile
     def test():
-    data = np.random.random((5000, 100))
-    u, s, v = linalg.svd(data)
-    pca = np.dot(u[:10, :], data)
-    results = fastica(pca.T, whiten=False)
+        data = np.random.random((5000, 100))
+        u, s, v = linalg.svd(data)
+        pca = np.dot(u[:10, :], data)
+        results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
-<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches ``-l``
-and ``-v``::
+<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches ``-l, --line-by-line`` and ``-v, --view`` to use the line-by-line profiler and view the results in addition to saving them:
 
-    ~ $ kernprof.py -l -v demo.py
+.. sourcecode:: console
+
+    $ kernprof.py -l -v demo.py
 
     Wrote profile results to demo.py.lprof
     Timer unit: 1e-06 s
@@ -173,7 +176,6 @@ and ``-v``::
         8         1     14242163 14242163.0   99.7      u, s, v = linalg.svd(data)
         9         1        10282  10282.0      0.1      pca = np.dot(u[:10, :], data)
        10         1         7799   7799.0      0.1      results = fastica(pca.T, whiten=False)
-
 
 **The SVD is taking all the time.** We need to optimise this line.
 
