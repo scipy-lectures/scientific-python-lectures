@@ -232,6 +232,32 @@ Ways to launch the debugger:
 #. Call the debugger inside the module
 
 
+Getting help when in the debugger
+.................................
+
+Type ``h`` or ``help`` to access the interactive help:
+
+.. sourcecode:: pycon
+
+    ipdb> help
+
+    Documented commands (type help <topic>):
+    ========================================
+    EOF    bt         cont      enable  jump  pdef   r        tbreak   w
+    a      c          continue  exit    l     pdoc   restart  u        whatis
+    alias  cl         d         h       list  pinfo  return   unalias  where
+    args   clear      debug     help    n     pp     run      unt
+    b      commands   disable   ignore  next  q      s        until
+    break  condition  down      j       p     quit   step     up
+
+    Miscellaneous help topics:
+    ==========================
+    exec  pdb
+
+    Undocumented commands:
+    ======================
+    retval  rv
+
 Postmortem
 ...........
 
