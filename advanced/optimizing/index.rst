@@ -84,6 +84,8 @@ Useful when you have a large program to profile, for example the
 
 .. literalinclude:: demo.py
 
+This is a combination of `PCA <http://en.wikipedia.org/wiki/Principal_component_analysis>`_ for dimensionality reduction and `ICA <http://en.wikipedia.org/wiki/Independent_component_analysis>`_ for source separation.
+
 To run it, you also need to download the :download:`ica module <ica.py>`.
 In IPython we can time the script:
 
