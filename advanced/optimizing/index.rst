@@ -12,7 +12,9 @@ This chapter deals with strategies to make Python code go faster.
 
 .. topic:: Prerequisites
 
-    * `line_profiler` (http://packages.python.org/line_profiler/)
+    * `line_profiler <http://packages.python.org/line_profiler/>`_
+    * `gprof2dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_
+    * `dot utility from Graphviz <http://www.graphviz.org/>`_
 
 .. contents:: Chapters contents
    :local:
@@ -178,6 +180,37 @@ Then we run the script using the `kernprof.py
        10         1         7799   7799.0      0.1      results = fastica(pca.T, whiten=False)
 
 **The SVD is taking all the time.** We need to optimise this line.
+
+Running ``cProfile``
+--------------------
+
+In the IPython example above, IPython simply calls the built-in `Python
+profilers<http://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
+``profile``. This can be useful if you wish to process the profiler output with a
+visualization tool.
+
+.. sourcecode:: console
+
+   $  python -m cProfile -o demo.prof demo.py
+
+Using the ``-o`` switch will output the profiler results to the file
+``demo.prof``.
+
+Using ``gprof2dot``
+-------------------
+
+In case you want a more visual representation of the profiler output, you can
+use the `gprof2dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_ tool:
+
+.. sourcecode:: console
+
+    $ gprof2dot -f pstats demo.prof | dot -Tpng -o demo.prof.png
+
+Which will produce the following picture:
+
+.. image:: demo.prof.png
+
+Which again paints a similar picture as the previous approaches.
 
 Making code go faster
 ======================
