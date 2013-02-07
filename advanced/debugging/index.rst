@@ -477,19 +477,19 @@ Other ways of starting a debugger
 
   If you find it tedious to note the line number to set a break point,
   you can simply raise an exception at the point that you want to
-  inspect and use IPython's `%debug`. Note that in this case you cannot
+  inspect and use IPython's ``%debug``. Note that in this case you cannot
   step or continue the execution.
 
 * **Debugging test failures using nosetests**
 
-  You can run `nosetests --pdb` to drop in post-mortem debugging on
-  exceptions, and `nosetests --pdb-failure` to inspect test failures
+  You can run ``nosetests --pdb`` to drop in post-mortem debugging on
+  exceptions, and ``nosetests --pdb-failure`` to inspect test failures
   using the debugger.
 
   In addition, you can use the IPython interface for the debugger in nose
   by installing the nose plugin
   `ipdbplugin <http://pypi.python.org/pypi/ipdbplugin>`_. You can than
-  pass `--ipdb` and `--ipdb-failure` options to nosetests.
+  pass ``--ipdb`` and ``--ipdb-failure`` options to nosetests.
 
 * **Calling the debugger explicitly**
 
@@ -499,8 +499,8 @@ Other ways of starting a debugger
 
 .. warning::
 
-    When running `nosetests`, the output is captured, and thus it seems
-    that the debugger does not work. Simply run the nosetests with the `-s`
+    When running ``nosetests``, the output is captured, and thus it seems
+    that the debugger does not work. Simply run the nosetests with the ``-s``
     flag.
 
 
@@ -512,6 +512,9 @@ Other ways of starting a debugger
 
     Alternatively, `pudb <http://pypi.python.org/pypi/pudb>`_ is a good
     semi-graphical debugger with a text user interface in the console.
+
+    Also, the `pydbgr <http://code.google.com/p/pydbgr/>`_ project is probably
+    worth looking at.
 
 
 Debugger commands and interaction
