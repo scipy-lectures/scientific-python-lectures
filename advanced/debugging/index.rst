@@ -504,17 +504,17 @@ Other ways of starting a debugger
     flag.
 
 
-.. topic:: Graphical debuggers
+.. topic:: Graphical debuggers and alternatives
 
-    For stepping through code and inspecting variables, you might find it
-    more convenient to use a graphical debugger such as
-    `winpdb <http://winpdb.org/>`_.
+    * For stepping through code and inspecting variables, you might find it
+      more convenient to use a graphical debugger such as
+      `winpdb <http://winpdb.org/>`_.
 
-    Alternatively, `pudb <http://pypi.python.org/pypi/pudb>`_ is a good
-    semi-graphical debugger with a text user interface in the console.
+    * Alternatively, `pudb <http://pypi.python.org/pypi/pudb>`_ is a good
+      semi-graphical debugger with a text user interface in the console.
 
-    Also, the `pydbgr <http://code.google.com/p/pydbgr/>`_ project is probably
-    worth looking at.
+    * Also, the `pydbgr <http://code.google.com/p/pydbgr/>`_ project is probably
+      worth looking at.
 
 
 Debugger commands and interaction
