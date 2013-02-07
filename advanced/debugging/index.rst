@@ -15,7 +15,6 @@ that we will employ are tailored to its needs.
     * Numpy
     * IPython
     * nosetests (http://readthedocs.org/docs/nose/en/latest/)
-    * line_profiler (http://packages.python.org/line_profiler/)
     * pyflakes (http://pypi.python.org/pypi/pyflakes)
     * gdb for the C-debugging part.
 
