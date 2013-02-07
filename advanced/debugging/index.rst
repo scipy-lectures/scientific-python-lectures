@@ -264,7 +264,7 @@ Postmortem
 **Situation**: You're working in IPython and you get a traceback.
 
 Here we debug the file :download:`index_error.py`. When running it, an
-`IndexError` is raised. Type ``%debug`` and drop into the debugger.
+:class:`IndexError` is raised. Type ``%debug`` and drop into the debugger.
 
 .. sourcecode:: ipython
 
@@ -315,7 +315,7 @@ Here we debug the file :download:`index_error.py`. When running it, an
 
    In some situations you cannot use IPython, for instance to debug a
    script that wants to be called from the command line. In this case,
-   you can call the script with `python -m pdb script.py`::
+   you can call the script with ``python -m pdb script.py``::
 
     $ python -m pdb index_error.py
     > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(1)<module>()
@@ -340,7 +340,6 @@ Here we debug the file :download:`index_error.py`. When running it, an
     -> print lst[len(lst)]
     (Pdb)
 
-
 Step-by-step execution
 .......................
 
@@ -349,7 +348,8 @@ Step-by-step execution
 For instance we are trying to debug :download:`wiener_filtering.py`.
 Indeed the code runs, but the filtering does not work well.
 
-* Run the script with the debugger:
+* Run the script in IPython with the debugger using ``%run -d
+  wiener_filtering.p`` :
 
   .. sourcecode:: ipython
 
