@@ -361,8 +361,7 @@ Indeed the code runs, but the filtering does not work well.
     NOTE: Enter 'c' at the ipdb>  prompt to start your script.
     > <string>(1)<module>()
 
-* Enter the :download:`wiener_filtering.py` file and set a break point at line
-  34:
+* Set a break point at line 34 using ``b 34``:
 
   .. sourcecode:: ipython
 
@@ -435,9 +434,9 @@ doing integer arithmetic.
     .. sourcecode:: ipython
 
         In [2]: %run wiener_filtering.py
-        Warning: divide by zero encountered in divide
-        Warning: divide by zero encountered in divide
-        Warning: divide by zero encountered in divide
+        wiener_filtering.py:40: RuntimeWarning: divide by zero encountered in divide
+            noise_level = (1 - noise/l_var )
+
 
     We can turn these warnings in exception, which enables us to do
     post-mortem debugging on them, and find our problem more quickly:
@@ -446,6 +445,30 @@ doing integer arithmetic.
 
         In [3]: np.seterr(all='raise')
         Out[3]: {'divide': 'print', 'invalid': 'print', 'over': 'print', 'under': 'ignore'}
+        In [4]: %run wiener_filtering.py
+        ---------------------------------------------------------------------------
+        FloatingPointError                        Traceback (most recent call last)
+        /home/esc/anaconda/lib/python2.7/site-packages/IPython/utils/py3compat.pyc in execfile(fname, *where)
+            176             else:
+            177                 filename = fname
+        --> 178             __builtin__.execfile(filename, *where)
+
+        /home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in <module>()
+             55 pl.matshow(noisy_lena[cut], cmap=pl.cm.gray)
+             56 
+        ---> 57 denoised_lena = iterated_wiener(noisy_lena)
+             58 pl.matshow(denoised_lena[cut], cmap=pl.cm.gray)
+             59 
+
+        /home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in iterated_wiener(noisy_img, size)
+             38         res = noisy_img - denoised_img
+             39         noise = (res**2).sum()/res.size
+        ---> 40         noise_level = (1 - noise/l_var )
+             41         noise_level[noise_level<0] = 0
+             42         denoised_img += noise_level*res
+
+        FloatingPointError: divide by zero encountered in divide
+
 
 Other ways of starting a debugger
 ....................................
