@@ -392,3 +392,13 @@ discuss only some commonly encountered tricks to make code faster.
 
    For all the above: profile and time your choices. Don't base your
    optimization on theoretical considerations.
+
+Additional Links
+----------------
+
+* If you need to profile memory usage, you could try the `memory_profiler
+  <http://pypi.python.org/pypi/memory_profiler>`_
+
+* If you need to profile down into C extensions, you could try using
+  `gperftools <http://code.google.com/p/gperftools/?redir=1>`_ from Python with
+  `yep <http://pypi.python.org/pypi/yep>`_.
