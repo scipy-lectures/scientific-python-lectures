@@ -235,7 +235,7 @@ Ways to launch the debugger:
 Postmortem
 ...........
 
-**Situation**: You're working in ipython and you get a traceback.
+**Situation**: You're working in IPython and you get a traceback.
 
 Here we debug the file :download:`index_error.py`. When running it, an
 `IndexError` is raised. Type ``%debug`` and drop into the debugger.
@@ -428,7 +428,7 @@ Other ways of starting a debugger
 
   If you find it tedious to note the line number to set a break point,
   you can simply raise an exception at the point that you want to
-  inspect and use ipython's `%debug`. Note that in this case you cannot
+  inspect and use IPython's `%debug`. Note that in this case you cannot
   step or continue the execution.
 
 * **Debugging test failures using nosetests**
@@ -476,7 +476,7 @@ Debugger commands and interaction
 ``s(tep)``    Execute the next statement (goes down in new functions)
 ``bt``        Print the call stack
 ``a``         Print the local variables
-``!command``  Exectute the given **Python** command (by opposition to pdb commands
+``!command``  Execute the given **Python** command (by opposition to pdb commands
 ============ ======================================================================
 
 .. warning:: **Debugger commands are not Python code**
