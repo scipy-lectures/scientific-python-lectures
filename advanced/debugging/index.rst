@@ -133,9 +133,6 @@ You can bind a key to run pyflakes in the current buffer.
 A type-as-go spell-checker like integration
 ............................................
 
-.. image:: vim_pyflakes.png
-   :align: right
-
 * **In vim**
 
   * Use the pyflakes.vim plugin:
@@ -147,10 +144,14 @@ A type-as-go spell-checker like integration
 
     #. make sure your vimrc has ``filetype plugin indent on``
 
+    .. image:: vim_pyflakes.png
+
   * Alternatively: use the `syntastic
     <https://github.com/scrooloose/syntastic>`_
     plugin. This can be configured to use ``flake8`` too and also handles
     on-the-fly checking for many other languages.
+
+    .. image:: vim_syntastic.png
 
 * **In emacs**
   Use the flymake mode with pyflakes, documented on
