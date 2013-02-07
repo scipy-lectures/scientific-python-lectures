@@ -70,11 +70,11 @@ Here we focus on `pyflakes`, which is the simplest tool.
     * Detects syntax errors, missing imports, typos on names.
 
 Another good recommendation is the `flake8` tool which is a combination of
-`pyflakes` and `pep`. Thus, in addition to the types of errors that `pyflakes`
-catches, `flake8` detects violations of the recommendation in `PEP8
+pyflakes and pep8. Thus, in addition to the types of errors that pyflakes
+catches, flake8 detects violations of the recommendation in `PEP8
 <http://www.python.org/dev/peps/pep-0008/>`_ style guide.
 
-Integrating `pyflakes` (or `flake8`) in your editor or IDE is highly
+Integrating pyflakes (or flake8) in your editor or IDE is highly
 recommended, it **does yield productivity gains**.
 
 Running pyflakes on the current edited file
@@ -138,17 +138,19 @@ A type-as-go spell-checker like integration
    :align: right
 
 * **In vim**
+
   * Use the pyflakes.vim plugin:
 
     #. download the zip file from
        http://www.vim.org/scripts/script.php?script_id=2441
 
-    #. extract the files in `~/.vim/ftplugin/python`
+    #. extract the files in ``~/.vim/ftplugin/python``
 
-    #. make sure your vimrc has "filetype plugin indent on"
+    #. make sure your vimrc has ``filetype plugin indent on``
 
-  * Alternatively: use the `sytastic https://github.com/scrooloose/syntastic`
-    plugin. This can be configured to use `flake8` too and also handles
+  * Alternatively: use the `syntastic
+    <https://github.com/scrooloose/syntastic>`_
+    plugin. This can be configured to use ``flake8`` too and also handles
     on-the-fly checking for many other languages.
 
 * **In emacs**
