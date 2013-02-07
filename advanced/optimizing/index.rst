@@ -12,7 +12,7 @@ This chapter deals with strategies to make Python code go faster.
 
 .. topic:: Prerequisites
 
-    * line_profiler (http://packages.python.org/line_profiler/)
+    * `line_profiler` (http://packages.python.org/line_profiler/)
 
 .. contents:: Chapters contents
    :local:
@@ -153,8 +153,8 @@ source file, we decorate a few functions that we want to inspect with
     results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
-<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches `-l`
-and `-v`::
+<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches ``-l``
+and ``-v``::
 
     ~ $ kernprof.py -l -v demo.py
 
