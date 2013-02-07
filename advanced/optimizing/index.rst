@@ -147,10 +147,10 @@ source file, we decorate a few functions that we want to inspect with
 
     @profile
     def test():
-	data = np.random.random((5000, 100))
-	u, s, v = linalg.svd(data)
-	pca = np.dot(u[:10, :], data)
-	results = fastica(pca.T, whiten=False)
+    data = np.random.random((5000, 100))
+    u, s, v = linalg.svd(data)
+    pca = np.dot(u[:10, :], data)
+    results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
 <http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches `-l`
