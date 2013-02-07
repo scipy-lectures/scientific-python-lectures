@@ -547,13 +547,15 @@ useless. For this we turn to the gnu debugger,
 `gdb <http://www.gnu.org/s/gdb/>`_, available on Linux.
 
 Before we start with gdb, let us add a few Python-specific tools to it.
-For this we add a few macros to our `~/.gbdinit`. The optimal choice of
+For this we add a few macros to our ``~/.gbdinit``. The optimal choice of
 macro depends on your Python version and your gdb version. I have added a
 simplified version in :download:`gdbinit`, but feel free to read
 `DebuggingWithGdb <http://wiki.python.org/moin/DebuggingWithGdb>`_.
 
 To debug with gdb the Python script :download:`segfault.py`, we can run the
-script in gdb as follows::
+script in gdb as follows
+
+.. sourcecode:: console
 
     $ gdb python
     ...
@@ -571,7 +573,9 @@ script in gdb as follows::
 
 We get a segfault, and gdb captures it for post-mortem debugging in the C
 level stack (not the Python call stack). We can debug the C call stack
-using gdb's commands::
+using gdb's commands:
+
+.. sourcecode:: console
 
     (gdb) up
     #1  0x004af4f5 in _copy_from_same_shape (dest=<value optimized out>,
@@ -582,7 +586,9 @@ using gdb's commands::
 
 As you can see, right now, we are in the C code of numpy. We would like
 to know what is the Python code that triggers this segfault, so we go up
-the stack until we hit the Python execution loop::
+the stack until we hit the Python execution loop:
+
+.. sourcecode:: console
 
     (gdb) up
     #8  0x080ddd23 in call_function (f=
@@ -599,14 +605,18 @@ the stack until we hit the Python execution loop::
     (gdb)
 
 Once we are in the Python execution loop, we can use our special Python
-helper function. For instance we can find the corresponding Python code::
+helper function. For instance we can find the corresponding Python code:
+
+.. sourcecode:: console
 
     (gdb) pyframe
     /home/varoquau/usr/lib/python2.6/site-packages/numpy/core/arrayprint.py (158): _leading_trailing
     (gdb)
 
 This is numpy code, we need to go up until we find code that we have
-written::
+written:
+
+.. sourcecode:: console
 
     (gdb) up
     ...
@@ -621,11 +631,11 @@ written::
 The corresponding code is:
 
 .. literalinclude:: segfault.py
-    :linenos:
-    :lines: 8-14
+   :language: py
+   :lines: 8-14
 
-Thus the segfault happens when printing `big_array[-10:]`. The reason is
-simply that `big_array` has been allocated with its end outside the
+Thus the segfault happens when printing ``big_array[-10:]``. The reason is
+simply that ``big_array`` has been allocated with its end outside the
 program memory.
 
 .. note::
