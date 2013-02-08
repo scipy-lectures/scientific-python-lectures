@@ -1,6 +1,8 @@
 import ctypes
 from ctypes.util import find_library
 
+""" Example of wrapping cos function from math.h using ctypes """
+
 # find and load the library
 libm = ctypes.cdll.LoadLibrary(find_library('m'))
 # set the argument type
