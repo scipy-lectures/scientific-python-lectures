@@ -95,7 +95,8 @@ Useful when you have a large program to profile, for example the
     the observed variance in your data using less dimensions. ICA is a source
     seperation technique, for example to unmix multiple signals that have been
     recorded through multiple sensors. Doing a PCA first and then an ICA can be
-    useful if you have more sensors than signals.
+    useful if you have more sensors than signals. For more information see:
+    `the FastICA example from scikits-learn <http://scikit-learn.org/stable/auto_examples/decomposition/plot_ica_blind_source_separation.html>`_.
 
 To run it, you also need to download the :download:`ica module <ica.py>`.
 In IPython we can time the script:
