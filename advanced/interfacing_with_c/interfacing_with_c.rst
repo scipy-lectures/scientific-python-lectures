@@ -625,7 +625,8 @@ helps debug Python, Cython and C code.
 **Disadvantages**
 
 * Must be compiled
-* Requires an additional library
+* Requires an additional library ( but only at build time, at this problem can be
+  overcome by shipping the generated C files)
 
 Example
 -------
