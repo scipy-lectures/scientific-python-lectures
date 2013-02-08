@@ -62,9 +62,11 @@ example where the cosine is computed on some kind of array.
 
 Last but not least, two small warnings:
 
-* All of these techniques may crash (segmentation fault) the Python interpreter.
+* All of these techniques may crash (segmentation fault) the Python
+  interpreter, which is (usually) due to bugs in the C code.
 * All the examples have been done on Linux, they *should* be possible on other
   operating systems.
+* You will need a C compiler for most of the examples.
 
 Python-C-Api
 ============
