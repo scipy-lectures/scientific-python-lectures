@@ -1,13 +1,20 @@
 What's new
 ===========
 
-
 Release 2013.1 (XX Xxx XXXX)
 -----------------------------
 
 * Improvements to the advanced image manipulation chapterA (Emmanuelle Gouillart)
 
 * Upgrade of the introductory langauge chapter (Valentin Haenel)
+
+* Upgrade of the introductory numpy chapter (Valentin Haenel)
+
+* New advanced chapter on interfacing with C (Valentin Haenel)
+
+* Minor fixes and improvements in varous places (Robert Gieseke, Ozan Çağlayan,
+  Sergio Oller, kikocorreo, Valentin Haenel)
+
 
 Release 2012.3 (26 Nov 2012)
 -----------------------------
