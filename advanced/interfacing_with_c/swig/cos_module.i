@@ -1,3 +1,5 @@
+/*  Example of wrapping cos function from math.h using SWIG. */
+
 %module cos_module
 %{
     /* the resulting C file should be built as a python extension */

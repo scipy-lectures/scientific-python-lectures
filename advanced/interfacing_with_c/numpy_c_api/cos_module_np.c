@@ -1,3 +1,5 @@
+/*  Example of wrapping the cos function from math.h using the Numpy-C-API. */
+
 #include <Python.h>
 #include <numpy/arrayobject.h>
 #include <math.h>

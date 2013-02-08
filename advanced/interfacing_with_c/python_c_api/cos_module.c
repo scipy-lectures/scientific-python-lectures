@@ -1,3 +1,5 @@
+/*  Example of wrapping cos function from math.h with the Python-C-API. */
+
 #include <Python.h>
 #include <math.h>
 

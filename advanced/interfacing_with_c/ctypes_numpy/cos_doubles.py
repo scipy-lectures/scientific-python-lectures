@@ -1,3 +1,6 @@
+""" Example of wrapping a C library function that accepts a C double array as
+    input using the numpy.ctypeslib. """
+
 import numpy as np
 import numpy.ctypeslib as npct
 from ctypes import c_int

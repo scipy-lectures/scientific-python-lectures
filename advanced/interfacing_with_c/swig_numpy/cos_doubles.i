@@ -1,3 +1,6 @@
+/*  Example of wrapping a C function that takes a C double array as input using
+ *  numpy typemaps for SWIG. */
+
 %module cos_doubles
 %{
     /* the resulting C file should be built as a python extension */

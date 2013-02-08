@@ -1,3 +1,6 @@
+""" Example of wrapping a C function that takes C double arrays as input using
+    the Numpy declarations from Cython """
+
 # import both numpy and the Cython declarations for numpy
 import numpy as np
 cimport numpy as np

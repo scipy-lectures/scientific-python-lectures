@@ -1,4 +1,4 @@
-.PHONY : clean
+m.PHONY : clean
 
 libcos_doubles.so : cos_doubles.o
 	gcc -shared -Wl,-soname,libcos_doubles.so -o libcos_doubles.so cos_doubles.o
