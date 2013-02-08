@@ -399,6 +399,7 @@ the wrapping process, may be a bit tricky to understand.
 
 * Autogenerates enormous files
 * Hard to debug if something goes wrong
+* Steep learning curve
 
 Example
 -------
