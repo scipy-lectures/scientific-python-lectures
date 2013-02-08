@@ -35,9 +35,12 @@ This chapter covers the following techniques:
 * `SWIG (Simplified Wrapper and Interface Generator) <http://www.swig.org/>`_
 * `Cython <http://cython.org/>`_
 
-Having said that, there are other alternatives out there, but having understood
-the basics of the ones above, you will be in a position to evaluate the
-technique of your choice to see if it fits your needs.
+These four techniques are perhaps the most well known ones, of which Cython is
+probably the most advanced one and the one you should consider using first. The
+others are also important, if you want to understand the wrapping problem from
+different angles. Having said that, there are other alternatives out there,
+but having understood the basics of the ones above, you will be in a position
+to evaluate the technique of your choice to see if it fits your needs.
 
 The following criteria may be useful when evaluating a technology:
 
