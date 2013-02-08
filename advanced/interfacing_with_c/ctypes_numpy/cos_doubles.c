@@ -1,0 +1,1 @@
+../numpy_shared/cos_doubles.c
