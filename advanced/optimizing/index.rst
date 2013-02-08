@@ -187,7 +187,7 @@ Running ``cProfile``
 --------------------
 
 In the IPython example above, IPython simply calls the built-in `Python
-profilers<http://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
+profilers <http://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
 ``profile``. This can be useful if you wish to process the profiler output with a
 visualization tool.
 
