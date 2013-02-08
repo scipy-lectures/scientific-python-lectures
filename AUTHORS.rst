@@ -64,3 +64,5 @@ Fixes:
 - kikocorreo
 
 - Sergio Oller
+
+- Robert Gieseke
