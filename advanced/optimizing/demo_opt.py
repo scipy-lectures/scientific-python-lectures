@@ -8,7 +8,7 @@ from ica import fastica
 
 def test():
     data = np.random.random((5000, 100))
-    u, s, v = linalg.svd(data)
+    u, s, v = linalg.svd(data, full_matrices=False)
     pca = np.dot(u[:, :10].T, data)
     results = fastica(pca.T, whiten=False)
 
