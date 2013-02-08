@@ -84,7 +84,11 @@ Useful when you have a large program to profile, for example the
 
 .. literalinclude:: demo.py
 
-This is a combination of `PCA <http://en.wikipedia.org/wiki/Principal_component_analysis>`_ for dimensionality reduction and `ICA <http://en.wikipedia.org/wiki/Independent_component_analysis>`_ for source separation.
+This is a combination of two unsupervised learning techniques, principal
+component analysis (`PCA
+<http://en.wikipedia.org/wiki/Principal_component_analysis>`_) and independent
+component analysis
+(`ICA<http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_).
 
 To run it, you also need to download the :download:`ica module <ica.py>`.
 In IPython we can time the script:
@@ -261,6 +265,30 @@ scipy are richer then those in numpy and should be preferred.
 
     In [7]: %timeit np.linalg.svd(data, full_matrices=False)
     1 loops, best of 3: 293 ms per loop
+
+We can then use this insight to :download:`optimize the previous code <demo_opt.py>`:
+
+.. literalinclude:: demo_opt.py
+   :start-line: 9
+   :end-line: 13
+
+.. sourcecode:: ipython
+
+    In [1]: import demo
+
+    In [2]: %timeit demo.
+    demo.fastica   demo.np        demo.prof.pdf  demo.py        demo.pyc
+    demo.linalg    demo.prof      demo.prof.png  demo.py.lprof  demo.test
+
+    In [2]: %timeit demo.test()
+    ica.py:65: RuntimeWarning: invalid value encountered in sqrt
+      W = (u * np.diag(1.0/np.sqrt(s)) * u.T) * W  # W = (W * W.T) ^{-1/2} * W
+    1 loops, best of 3: 17.5 s per loop
+
+    In [3]: import demo_opt
+
+    In [4]: %timeit demo_opt.test()
+    1 loops, best of 3: 208 ms per loop
 
 Real incomplete SVDs, e.g. computing only the first 10 eigenvectors, can
 be computed with arpack, available in ``scipy.sparse.linalg.eigsh``.
