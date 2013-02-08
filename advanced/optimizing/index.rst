@@ -84,11 +84,18 @@ Useful when you have a large program to profile, for example the
 
 .. literalinclude:: demo.py
 
-This is a combination of two unsupervised learning techniques, principal
-component analysis (`PCA
-<http://en.wikipedia.org/wiki/Principal_component_analysis>`_) and independent
-component analysis
-(`ICA<http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_).
+
+.. note::
+    This is a combination of two unsupervised learning techniques, principal
+    component analysis (`PCA
+    <http://en.wikipedia.org/wiki/Principal_component_analysis>`_) and
+    independent component analysis
+    (`ICA<http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_). PCA
+    is a technique for dimensionality reduction, i.e. an algorithm to explain
+    the observed variance in your data using less dimensions. ICA is a source
+    seperation technique, for example to unmix multiple signals that have been
+    recorded through multiple sensors. Doing a PCA first and then an ICA can be
+    useful if you have more sensors than signals.
 
 To run it, you also need to download the :download:`ica module <ica.py>`.
 In IPython we can time the script:
