@@ -245,7 +245,9 @@ As advertised, the wrapper code is in pure Python.
    :language: python
 
 * Finding and loading the library may vary depending on your operating system,
-  check the documentation for details.
+  check `the documentation
+  <http://docs.python.org/2/library/ctypes.html#loading-dynamic-link-libraries>`_
+  for details
 * This may be somewhat deceptive, since the math library exists in compiled
   form on the system already. If you were to wrap a in-house library, you would
   have to compile it first, which may or may not require some additional effort.
