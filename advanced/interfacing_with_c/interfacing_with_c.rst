@@ -68,6 +68,7 @@ Last but not least, two small warnings:
   operating systems.
 * You will need a C compiler for most of the examples.
 
+
 Python-C-Api
 ============
 
@@ -92,6 +93,15 @@ return type.
 * May requires a substantial amount of effort
 * Much overhead in the code
 * Must be compiled
+* High maintenance cost
+* No forward compatibility across Python versions as C-Api changes
+
+.. note::
+
+   The Python-C-Api example here serves mainly for didactic reasons. Many of
+   the other techniques actually depend on this, so it is good to have a
+   high-level understanding of how it works. In 99% of the use-cases you will
+   be better off, using an alternative technique.
 
 Example
 -------
