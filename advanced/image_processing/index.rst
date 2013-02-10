@@ -184,9 +184,10 @@ Qt)::
 
 	* ...
 
-    .. image:: ../3d_plotting/ipw.png
-	:align: center
-	:scale: 65
+..  FIXME: image does not exits??
+..    .. image:: ../3d_plotting/ipw.png
+..	:align: center
+..	:scale: 65
 
 
 Basic manipulations
