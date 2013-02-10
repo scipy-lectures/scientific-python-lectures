@@ -218,11 +218,11 @@ use the `gprof2dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_ tool:
 
 .. sourcecode:: console
 
-    $ gprof2dot -f pstats demo.prof | dot -Tpng -o demo.prof.png
+    $ gprof2dot -f pstats demo.prof | dot -Tpng -o demo-prof.png
 
 Which will produce the following picture:
 
-.. image:: demo.prof.png
+.. image:: demo-prof.png
 
 Which again paints a similar picture as the previous approaches.
 
