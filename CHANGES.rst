@@ -1,7 +1,7 @@
 What's new
 ==========
 
-Release 2013.1 (XX Xxx XXXX)
+Release 2013.1 (10 Feb 2013)
 ----------------------------
 
 * Improvements to the advanced image manipulation chapter (Emmanuelle Gouillart)
