@@ -67,7 +67,6 @@ static PyMethodDef CosMethods[] =
 
 /* module initialization */
 PyMODINIT_FUNC
-
 initcos_module_np(void)
 {
      (void) Py_InitModule("cos_module_np", CosMethods);
