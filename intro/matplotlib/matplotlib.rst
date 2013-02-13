@@ -404,7 +404,7 @@ Devil is in the details
 .. image:: auto_examples/images/plot_exercice_10_1.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_exercice_10_1.html
+   :target: auto_examples/plot_exercice_10.html
 
 .. hint:: Documentation
 
