@@ -1,8 +1,23 @@
 What's new
-===========
+==========
+
+Release 2013.1 (10 Feb 2013)
+----------------------------
+
+* Improvements to the advanced image manipulation chapter (Emmanuelle Gouillart)
+
+* Upgrade of the introductory language chapter (Valentin Haenel)
+
+* Upgrade of the introductory numpy chapter (Valentin Haenel)
+
+* New advanced chapter on interfacing with C (Valentin Haenel)
+
+* Minor fixes and improvements in various places (Robert Gieseke, Ozan Çağlayan,
+  Sergio Oller, kikocorreo, Valentin Haenel)
+
 
 Release 2012.3 (26 Nov 2012)
------------------------------
+----------------------------
 
 This release integrates the changes written for the Euroscipy conference:
 

@@ -22,7 +22,7 @@ bin_centers = 0.5*(bin_edges[:-1] + bin_edges[1:])
 classif = GMM(n_components=2)
 classif.fit(img.reshape((img.size, 1)))
 
-threshold = np.mean(classif.means_)
+threshold = np.mean(classif.means)
 binary_img = img > threshold
 
 

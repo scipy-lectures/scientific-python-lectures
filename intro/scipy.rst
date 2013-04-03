@@ -1,10 +1,10 @@
 Scipy : high-level scientific computing
 =========================================
 
-:authors: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, 
+:authors: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart,
           Gaël Varoquaux, Ralf Gommers
 
-..  
+..
     >>> import numpy as np
     >>> np.random.seed(0)
 
@@ -31,7 +31,7 @@ Scipy : high-level scientific computing
 
 .. contents:: Chapters contents
     :local:
-    :depth: 4
+    :depth: 1
 
 
 .. warning::
@@ -41,7 +41,7 @@ Scipy : high-level scientific computing
     be very boring, we concentrate instead on a few examples to give a
     general idea of how to use ``scipy`` for scientific computing.
 
-`scipy` is composed of task-specific sub-modules:
+:mod:`scipy` is composed of task-specific sub-modules:
 
 =========================== ===============================================
 :mod:`scipy.cluster`         Vector quantization / Kmeans
@@ -98,7 +98,7 @@ See also:
 
     * Load text files: :func:`numpy.loadtxt`/:func:`numpy.savetxt`
 
-    * Clever loading of text/csv files: 
+    * Clever loading of text/csv files:
       :func:`numpy.genfromtxt`/:func:`numpy.recfromcsv`
 
     * Fast and efficient, but numpy-specific, binary format:
@@ -119,7 +119,7 @@ functions here. Frequently used ones are:
  * Elliptic function (:func:`scipy.special.ellipj` for the Jacobian elliptic
    function, ...)
 
- * Gamma function: :func:`scipy.special.gamma`, also note 
+ * Gamma function: :func:`scipy.special.gamma`, also note
    :func:`scipy.special.gammaln` which
    will give the log of Gamma to a higher numerical precision.
 
@@ -135,7 +135,7 @@ The :mod:`scipy.linalg` module provides standard linear algebra
 operations, relying on an underlying efficient implementation (BLAS,
 LAPACK).
 
-* The :func:`scipy.linalg.det` function computes the determinant of a 
+* The :func:`scipy.linalg.det` function computes the determinant of a
   square matrix::
 
     >>> from scipy import linalg
@@ -152,7 +152,7 @@ LAPACK).
     ...
     ValueError: expected square matrix
 
-* The :func:`scipy.linalg.inv` function computes the inverse of a square 
+* The :func:`scipy.linalg.inv` function computes the inverse of a square
   matrix::
 
     >>> arr = np.array([[1, 2],
@@ -242,13 +242,14 @@ signal::
 
     >>> sig_fft[np.abs(sample_freq) > freq] = 0
 
-The resulting filtered signal can be computed by the 
+The resulting filtered signal can be computed by the
 :func:`scipy.fftpack.ifft` function::
 
     >>> main_sig = fftpack.ifft(sig_fft)
 
 The result can be viewed with::
 
+    >>> import pylab as plt
     >>> plt.figure()
     >>> plt.plot(time_vec, sig)
     >>> plt.plot(time_vec, main_sig, linewidth=3)
@@ -260,7 +261,7 @@ The result can be viewed with::
 
 .. topic:: `numpy.fft`
 
-   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However, 
+   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
    in general the scipy one
    should be preferred, as it uses more efficient underlying implementations.
 
@@ -292,7 +293,7 @@ The result can be viewed with::
       contaminated with periodic noise. In this exercise, we aim to clean up
       the noise using the Fast Fourier Transform.
 
-   2. Load the image using `plt.imread`.
+   2. Load the image using :func:`pylab.imread`.
 
    3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
       spectrum (Fourier transform of) the image. Do you have any trouble
@@ -322,7 +323,7 @@ finding. ::
 
 Let's define the following function: ::
 
-    >>> def f(x): 
+    >>> def f(x):
     ...     return x**2 + 10*np.sin(x)
 
 and plot it:
@@ -337,7 +338,7 @@ and plot it:
 
 This function has a global minimum around -1.3 and a local minimum around 3.8.
 
-The general and efficient way to find a minimum for this function is to 
+The general and efficient way to find a minimum for this function is to
 conduct a gradient descent starting from a given initial point. The BFGS
 algorithm is a good way of doing this::
 
@@ -366,7 +367,7 @@ function is evaluated on each point of a given grid: ::
     >>> xmin_global
     array([-1.30641113])
 
-For larger grid sizes, :func:`scipy.optimize.brute` becomes quite slow. 
+For larger grid sizes, :func:`scipy.optimize.brute` becomes quite slow.
 :func:`scipy.optimize.anneal`
 provides an alternative, using simulated annealing. More efficient algorithms
 for different classes of global optimization problems exist, but this is out of
@@ -385,8 +386,8 @@ To find the local minimum, let's constraint the variable to the interval
     >>> xmin_local
     3.8374671...
 
-.. note:: 
-   
+.. note::
+
    Finding minima of function is discussed in more details in the
    advanced chapter: :ref:`mathematical_optimization`.
 
@@ -413,7 +414,7 @@ Suppose we have data sampled from ``f`` with some noise: ::
 
     >>> xdata = np.linspace(-10, 10, num=20)
     >>> ydata = f(xdata) + np.random.randn(xdata.size)
-    
+
 Now if we know the functional form of the function from which the samples were
 drawn (``x^2 + sin(x)`` in this case) but not the amplitudes of the terms, we
 can find those by least squares curve fitting. First we have to define the
@@ -434,12 +435,12 @@ we put all those resuls together in a single plot:
 
 .. plot:: pyplots/scipy_optimize_example2.py
 
-.. note:: 
-   
+.. note::
+
    In Scipy >= 0.11 unified interfaces to all minimization and root
-   finding algorithms are available: :func:`scipy.optimize.minimize`, 
+   finding algorithms are available: :func:`scipy.optimize.minimize`,
    :func:`scipy.optimize.minimize_scalar` and
-   :func:`scipy.optimize.root`.  They allow comparing various algorithms 
+   :func:`scipy.optimize.root`.  They allow comparing various algorithms
    easily through the ``method`` keyword.
 
 You can find algorithms with the same functionalities for multi-dimensional
@@ -469,16 +470,16 @@ problems in :mod:`scipy.optimize`.
     .. plot:: pyplots/scipy_optimize_sixhump.py
 
     The six-hump camelback function
-    
+
     .. math:: f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
 
     has multiple global and local minima. Find the global minima of this
-    function. 
+    function.
 
     Hints:
 
         - Variables can be restricted to ``-2 < x < 2`` and ``-1 < y < 1``.
-        - Use :func:`numpy.meshgrid` and `plt.imshow` to find visually the 
+        - Use :func:`numpy.meshgrid` and :func:`pylab.imshow` to find visually the
           regions.
         - Use :func:`scipy.optimize.fmin_bfgs` or another multi-dimensional
           minimizer.
@@ -500,7 +501,7 @@ random process can be found in :mod:`numpy.random`.
 Histogram and probability density function
 ...............................................
 
-Given observations of a random process, their histogram is an estimator of 
+Given observations of a random process, their histogram is an estimator of
 the random process's PDF (probability density function): ::
 
     >>> a = np.random.normal(size=1000)
@@ -524,7 +525,7 @@ the random process's PDF (probability density function): ::
 
 If we know that the random process belongs to a given family of random
 processes, such as normal processes, we can do a maximum-likelihood fit
-of the observations to estimate the parameters of the underlying 
+of the observations to estimate the parameters of the underlying
 distribution. Here we fit a normal process to the observed data::
 
     >>> loc, std = stats.norm.fit(a)
@@ -574,8 +575,8 @@ Statistical tests
 
 A statistical test is a decision indicator. For instance, if we have two
 sets of observations, that we assume are generated from Gaussian
-processes, we can use a 
-`T-test <http://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide 
+processes, we can use a
+`T-test <http://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide
 whether the two sets of observations are significantly different::
 
     >>> a = np.random.normal(0, 1, size=100)
@@ -617,7 +618,7 @@ interpolation function::
     >>> from scipy.interpolate import interp1d
     >>> linear_interp = interp1d(measured_time, measures)
 
-Then the :obj:`scipy.interpolate.linear_interp` instance needs to be 
+Then the :obj:`scipy.interpolate.linear_interp` instance needs to be
 evaluated at the time of interest::
 
     >>> computed_time = np.linspace(0, 1, 50)
@@ -667,7 +668,7 @@ for more details.
 
 ``odeint`` solves first-order ODE systems of the form::
 
-``dy/dt = rhs(y1, y2, .., t0,...)``
+    dy/dt = rhs(y1, y2, .., t0,...)
 
 As an introduction, let us solve the ODE ``dy/dt = -2y`` between ``t =
 0..4``, with the  initial condition ``y(t=0) = 1``. First the function
@@ -776,7 +777,7 @@ Signal processing: :mod:`scipy.signal`
 
     t = np.linspace(0, 5, 100)
     x = np.sin(t)
-    
+
     pl.plot(t, x, linewidth=3)
     pl.plot(t[::2], signal.resample(x, 50), 'ko')
 
@@ -788,12 +789,12 @@ Signal processing: :mod:`scipy.signal`
      Notice how on the side of the window the resampling is less accurate
      and has a rippling effect.
 
-* Signal has many window function: :func:`scipy.signal.hamming`, 
+* :mod:`scipy.signal` has many window functions: :func:`scipy.signal.hamming`,
   :func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...
 
-* Signal has filtering (median filter :func:`scipy.signal.medfilt`, 
+* :mod:`scipy.signal` has filtering (median filter :func:`scipy.signal.medfilt`,
   Wiener :func:`scipy.signal.wiener`), but we will
-  discuss this in the image paragraph.
+  discuss this in the image section.
 
 
 Image processing: :mod:`scipy.ndimage`

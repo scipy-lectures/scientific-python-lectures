@@ -105,6 +105,16 @@ Memory address of the data:
 >>> x.__array_interface__['data'][0] # doctest: +SKIP
 64803824
 
+The whole ``__array_interface__``:
+
+>>> x.__array_interface__ 
+{'data': (35828928, False),
+ 'descr': [('', '<i4')],
+ 'shape': (4,),
+ 'strides': None,
+ 'typestr': '<i4',
+ 'version': 3}
+
 Reminder: two :class:`ndarrays <ndarray>` may share the same memory::
 
     >>> x = np.array([1, 2, 3, 4])
@@ -133,6 +143,8 @@ Memory does not need to be owned by an :class:`ndarray`::
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
 
+See also : `array interface
+<http://docs.scipy.org/doc/numpy/reference/arrays.interface.html>`_
 
 Data types
 ----------
@@ -566,6 +578,36 @@ array([6, 5, 4, 3, 2, 1], dtype=int32)
 >>> x[::2,::3,::4].strides
 (1600, 240, 32)
 
+- Similarly, transposes never make copies (it just swaps strides)
+
+>>> x = np.zeros((10, 10, 10), dtype=np.float)
+>>> x.strides
+(800, 80, 8)
+>>> x.T.strides
+(8, 80, 800)
+
+But: not all reshaping operations can be represented by playing with
+strides.
+
+>>> a = np.arange(6, dtype=np.int8).reshape(3, 2)
+>>> b = a.T
+>>> b.strides
+(1, 2)
+
+So far, so good. However:
+
+>>> str(a.data)
+'\x00\x01\x02\x03\x04\x05'
+>>> b
+array([[0, 2, 4],
+       [1, 3, 5]], dtype=int8)
+>>> c = b.reshape(3*2)
+>>> c
+array([0, 2, 4, 1, 3, 5], dtype=int8)
+
+Here, there is no way to represent the array ``c`` given one stride
+and the block of memory for ``a``. Therefore, the ``reshape``
+operation needs to make a copy here.
 
 .. _stride-manipulation-label:
 

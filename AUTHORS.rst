@@ -58,3 +58,11 @@ Fixes:
 - Olivier Verdier
 
 - Virgile Fritsch
+
+- Ozan Çağlayan
+
+- kikocorreo
+
+- Sergio Oller
+
+- Robert Gieseke

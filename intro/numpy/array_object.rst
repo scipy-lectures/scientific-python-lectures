@@ -1,4 +1,4 @@
-..  
+..
     >>> import numpy as np
     >>> np.random.seed(0)
 
@@ -29,7 +29,7 @@ What are Numpy and numpy arrays
 
     - designed for scientific computation (convenience)
 
-::    
+::
 
     >>> import numpy as np
     >>> a = np.array([0, 1, 2, 3])
@@ -55,9 +55,9 @@ operations.
 
 .. sourcecode:: ipython
 
-    In [1]: l = range(1000)
+    In [1]: L = range(1000)
 
-    In [2]: %timeit [i**2 for i in l]
+    In [2]: %timeit [i**2 for i in L]
     1000 loops, best of 3: 403 us per loop
 
     In [3]: a = np.arange(1000)
@@ -128,7 +128,7 @@ Reference documentation
 Creating arrays
 ---------------
 
-**1-D**::
+* **1-D**::
 
     >>> a = np.array([0, 1, 2, 3])
     >>> a
@@ -140,9 +140,7 @@ Creating arrays
     >>> len(a)
     4
 
-**2-D, 3-D, ...**:
-
-.. code-block:: python
+* **2-D, 3-D, ...**::
 
     >>> b = np.array([[0, 1, 2], [3, 4, 5]])    # 2 x 3 array
     >>> b
@@ -177,7 +175,7 @@ In practice, we rarely enter items one by one...
     >>> b
     array([1, 3, 5, 7])
 
-  or by number of points::
+* or by number of points::
 
     >>> c = np.linspace(0, 1, 6)   # start, end, num-points
     >>> c
@@ -209,7 +207,7 @@ In practice, we rarely enter items one by one...
            [0, 0, 3, 0],
            [0, 0, 0, 4]])
 
-* `np.random`: random numbers (Mersenne Twister PRNG)::
+* :mod:`np.random`: random numbers (Mersenne Twister PRNG)::
 
     >>> a = np.random.rand(4)       # uniform in [0, 1]
     >>> a
@@ -227,17 +225,17 @@ In practice, we rarely enter items one by one...
 
     Create the following arrays (with correct data types)::
 
-        [[ 1  1  1  1]
-         [ 1  1  1  1]
-         [ 1  1  1  2]
-         [ 1  6  1  1]]
+        [[1, 1, 1, 1],
+         [1, 1, 1, 1],
+         [1, 1, 1, 2],
+         [1, 6, 1, 1]]
 
-        [[0. 0. 0. 0. 0.]
-         [2. 0. 0. 0. 0.]
-         [0. 3. 0. 0. 0.]
-         [0. 0. 4. 0. 0.]
-         [0. 0. 0. 5. 0.]
-         [0. 0. 0. 0. 6.]]
+        [[0., 0., 0., 0., 0.],
+         [2., 0., 0., 0., 0.],
+         [0., 3., 0., 0., 0.],
+         [0., 0., 4., 0., 0.],
+         [0., 0., 0., 5., 0.],
+         [0., 0., 0., 0., 6.]]
 
     Par on course: 3 statements for each
 
@@ -252,10 +250,10 @@ In practice, we rarely enter items one by one...
     Skim through the documentation for ``np.tile``, and use this function
     to construct the array::
 
-        [[4 3 4 3 4 3]
-         [2 1 2 1 2 1]
-         [4 3 4 3 4 3]
-         [2 1 2 1 2 1]]
+        [[4, 3, 4, 3, 4, 3],
+         [2, 1, 2, 1, 2, 1],
+         [4, 3, 4, 3, 4, 3],
+         [2, 1, 2, 1, 2, 1]]
 
 .. array() constructor
 
@@ -322,7 +320,7 @@ There are also other types:
 
 :Much more:
 
-        int32/int64...   
+        ``int32/int64...``
 
 
 
@@ -333,65 +331,67 @@ Basic visualization
 
 Now that we have our first data arrays, we are going to visualize them.
 
-Start by launching `IPython` in `pylab` mode::
+Start by launching IPython in *pylab* mode
+
+.. sourcecode:: bash
 
     $ ipython --pylab
 
-**Matplotlib** is a 2D plotting package. We can import its functions as below::
+*Matplotlib* is a 2D plotting package. We can import its functions as below::
 
     >>> import matplotlib.pyplot as plt  # the tidy way
 
-**1D plotting**
+* **1D plotting**::
 
->>> x = np.linspace(0, 3, 20)
->>> y = np.linspace(0, 9, 20)
->>> plt.plot(x, y)       # line plot    # doctest: +ELLIPSIS
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.plot(x, y, 'o')  # dot plot    # doctest: +ELLIPSIS
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.show()           # <-- shows the plot (not needed with Ipython) # doctest: +SKIP
+    >>> x = np.linspace(0, 3, 20)
+    >>> y = np.linspace(0, 9, 20)
+    >>> plt.plot(x, y)       # line plot    # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.show()           # <-- shows the plot (not needed with Ipython) # doctest: +SKIP
 
-.. plot:: pyplots/numpy_intro_1.py
+  .. plot:: pyplots/numpy_intro_1.py
 
-**2D arrays** (such as images)
+* **2D arrays** (such as images)::
 
->>> image = np.random.rand(30, 30)
->>> plt.imshow(image, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
-<matplotlib.image.AxesImage object at ...>
->>> plt.colorbar()    # doctest: +ELLIPSIS
-<matplotlib.colorbar.Colorbar instance at ...>
->>> plt.show() # doctest: +SKIP
+    >>> image = np.random.rand(30, 30)
+    >>> plt.imshow(image, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at ...>
+    >>> plt.colorbar()    # doctest: +ELLIPSIS
+    <matplotlib.colorbar.Colorbar instance at ...>
+    >>> plt.show() # doctest: +SKIP
 
-.. plot:: pyplots/numpy_intro_2.py
+  .. plot:: pyplots/numpy_intro_2.py
 
-.. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
+  .. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
 
 
-**3D plotting**
+* **3D plotting**
 
-For 3D visualization, we can use another package: **Mayavi**. A quick example:
-start by **relaunching iPython** with these options: **ipython --pylab=wx**
-(or **ipython -pylab -wthread** in IPython < 0.10).
+  For 3D visualization, we can use another package: **Mayavi**. A quick example:
+  start by **relaunching iPython** with these options: **ipython --pylab=wx**
+  (or **ipython -pylab -wthread** in IPython < 0.10).
 
-.. image:: surf.png
-   :align: right
-   :scale: 60
+  .. image:: surf.png
+     :align: right
+     :scale: 60
 
-.. sourcecode:: ipython
+  .. sourcecode:: ipython
 
-    In [58]: from mayavi import mlab
-    In [61]: mlab.surf(image)
-    Out[61]: <enthought.mayavi.modules.surface.Surface object at ...>
-    In [62]: mlab.axes()
-    Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
+      In [58]: from mayavi import mlab
+      In [61]: mlab.surf(image)
+      Out[61]: <enthought.mayavi.modules.surface.Surface object at ...>
+      In [62]: mlab.axes()
+      Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
 
-The mayavi/mlab window that opens is interactive: by clicking on the left mouse
-button you can rotate the image, zoom with the mouse wheel, etc.
+  The mayavi/mlab window that opens is interactive: by clicking on the left mouse
+  button you can rotate the image, zoom with the mouse wheel, etc.
 
-For more information on Mayavi :
-http://github.enthought.com/mayavi/mayavi
+  For more information on Mayavi :
+  http://github.enthought.com/mayavi/mayavi
 
-.. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
+  .. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
 
 
 Indexing and slicing
@@ -431,7 +431,7 @@ For multidimensional arrays, indexes are tuples of integers::
 Note that:
 
 * In 2D, the first dimension corresponds to rows, the second to columns.
-* for multidimensional ``a``, `a[0]` is interpreted by
+* for multidimensional ``a``, ``a[0]`` is interpreted by
   taking all elements in the unspecified dimensions.
 
 **Slicing** Arrays, like other Python sequences can also be sliced::
@@ -468,7 +468,7 @@ A small illustrated summary of Numpy indexing and slicing...
 
     .. image:: numpy_indexing.png
         :align: center
-        :width: 100%
+        :width: 65%
 
 Copies and views
 ----------------
@@ -509,7 +509,7 @@ memory and time.
     array([[ 2.,  2.,  2., ...,  2.,  2.,  2.],
            [ 2.,  2.,  2., ...,  2.,  2.,  2.],
            [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           ..., 
+           ...,
            [ 3.,  3.,  3., ...,  2.,  2.,  2.],
            [ 3.,  3.,  3., ...,  2.,  2.,  2.],
            [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
@@ -552,9 +552,9 @@ memory and time.
    * Follow-up:
 
      - Move the above code into a script file named ``prime_sieve.py``
-    
+
      - Run it to check it works
-    
+
      - Convert the simple sieve to `the sieve of Eratosthenes
        <http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`__:
 
@@ -565,19 +565,19 @@ memory and time.
 Adding Axes
 -----------
 
-Indexing with the ``np.newaxis`` object allows us to add an axis to an array:
+Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
 
->>> z = np.array([1, 2, 3])
->>> z
-array([1, 2, 3])
+    >>> z = np.array([1, 2, 3])
+    >>> z
+    array([1, 2, 3])
 
->>> z[:, np.newaxis]
-array([[1],
-       [2],
-       [3]])
+    >>> z[:, np.newaxis]
+    array([[1],
+        [2],
+        [3]])
 
->>> z[np.newaxis, :]
-array([[1, 2, 3]])
+    >>> z[np.newaxis, :]
+    array([[1, 2, 3]])
 
 
 Fancy indexing
@@ -590,17 +590,19 @@ creates **copies not views**.
 Using boolean masks
 ...................
 
->>> np.random.seed(3)
->>> a = np.random.random_integers(0, 20, 15)
->>> a
-array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
->>> (a % 3 == 0)
-array([False,  True, False,  True, False, False, False,  True, False,
-        True,  True, False,  True, False, False], dtype=bool)
->>> mask = (a % 3 == 0)
->>> extract_from_a = a[mask] # or,  a[a%3==0]
->>> extract_from_a           # extract a sub-array with the mask
-array([ 3,  0,  9,  6,  0, 12])
+::
+
+    >>> np.random.seed(3)
+    >>> a = np.random.random_integers(0, 20, 15)
+    >>> a
+    array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
+    >>> (a % 3 == 0)
+    array([False,  True, False,  True, False, False, False,  True, False,
+            True,  True, False,  True, False, False], dtype=bool)
+    >>> mask = (a % 3 == 0)
+    >>> extract_from_a = a[mask] # or,  a[a%3==0]
+    >>> extract_from_a           # extract a sub-array with the mask
+    array([ 3,  0,  9,  6,  0, 12])
 
 Indexing with a mask can be very useful to assign a new value to a sub-array::
 
@@ -612,9 +614,11 @@ Indexing with a mask can be very useful to assign a new value to a sub-array::
 Indexing with an array of integers
 ....................................
 
->>> a = np.arange(10)
->>> a
-array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+::
+
+    >>> a = np.arange(10)
+    >>> a
+    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 Indexing can be done with an array of integers, where the same index is repeated
 several time::
@@ -652,7 +656,7 @@ The image below illustrates various fancy indexing applications
 
     .. image:: numpy_fancy_indexing.png
         :align: center
-        :width: 100%
+        :width: 80%
 
 We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
 the same time::

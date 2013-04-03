@@ -3,7 +3,7 @@ Standard Library
 
 .. note:: Reference document for this section:
 
- * The Python Standard Library documentation: 
+ * The Python Standard Library documentation:
    http://docs.python.org/library/index.html
 
  * Python Essential Reference, David Beazley, Addison-Wesley Professional
@@ -28,7 +28,7 @@ List a directory:
 .. sourcecode:: ipython
 
     In [31]: os.listdir(os.curdir)
-    Out[31]: 
+    Out[31]:
     ['.index.rst.swo',
      '.python_language.rst.swp',
      '.view_array.py.swp',
@@ -99,7 +99,7 @@ Delete a file:
     Out[73]: '/Users/cburns/src/scipy2009/scipy_2009_tutorial/source/junk.txt'
 
     In [74]: os.path.split(a)
-    Out[74]: ('/Users/cburns/src/scipy2009/scipy_2009_tutorial/source', 
+    Out[74]: ('/Users/cburns/src/scipy2009/scipy_2009_tutorial/source',
               'junk.txt')
 
     In [78]: os.path.dirname(a)
@@ -131,9 +131,32 @@ Running an external command
 
 .. sourcecode:: ipython
 
-  In [8]: os.system('ls *')
-  conf.py   debug_file.py  demo2.py~  demo.py   demo.pyc	  my_file.py~
-  conf.py~  demo2.py	 demo2.pyc  demo.py~  my_file.py  pi_wallis_image.py
+  In [8]: os.system('ls')
+  basic_types.rst   demo.py          functions.rst  python_language.rst  standard_library.rst
+  control_flow.rst  exceptions.rst   io.rst         python-logo.png
+  demo2.py          first_steps.rst  oop.rst        reusing_code.rst
+
+.. note:: Alternative to ``os.system``
+
+    A noteworthy alternative to ``os.system`` is the `sh module
+    <http://amoffat.github.com/sh/>`_. Which provides much more convenient ways to
+    obtain the output, error stream and exit code of the external command.
+
+    .. sourcecode:: ipython
+
+        In [20]: import sh
+        In [20]: com = sh.ls()
+
+        In [21]: print com
+        basic_types.rst   exceptions.rst   oop.rst              standard_library.rst
+        control_flow.rst  first_steps.rst  python_language.rst
+        demo2.py          functions.rst    python-logo.png
+        demo.py           io.rst           reusing_code.rst
+
+        In [22]: print com.exit_code
+        0
+        In [23]: type(com)
+        Out[23]: sh.RunningCommand
 
 
 Walking a directory
@@ -146,8 +169,8 @@ Walking a directory
     In [10]: for dirpath, dirnames, filenames in os.walk(os.curdir):
        ....:     for fp in filenames:
        ....:         print os.path.abspath(fp)
-       ....:         
-       ....:         
+       ....:
+       ....:
     /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/.index.rst.swo
     /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/.view_array.py.swp
     /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/basic_types.rst
@@ -163,7 +186,7 @@ Environment variables:
     In [9]: import os
 
     In [11]: os.environ.keys()
-    Out[11]: 
+    Out[11]:
     ['_',
      'FSLDIR',
      'TERM_PROGRAM_VERSION',
@@ -215,6 +238,7 @@ Find all files ending in ``.txt``:
     Out[19]: ['holy_grail.txt', 'junk.txt', 'newfile.txt']
 
 
+
 ``sys`` module: system-specific information
 --------------------------------------------
 
@@ -248,7 +272,7 @@ modules.  Initialized from PYTHONPATH:
 .. sourcecode:: ipython
 
     In [121]: sys.path
-    Out[121]: 
+    Out[121]:
     ['',
      '/Users/cburns/local/bin',
      '/Users/cburns/local/lib/python2.5/site-packages/grin-1.1-py2.5.egg',
@@ -277,6 +301,6 @@ Useful to store arbitrary objects to a file. Not safe or fast!
 
 .. topic:: Exercise
 
-    Write a program to search your PYTHONPATH for the module ``site.py``.
+    Write a program to search your ``PYTHONPATH`` for the module ``site.py``.
 
 :ref:`path_site`

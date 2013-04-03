@@ -17,23 +17,25 @@ Polynomials
 
 Numpy also contains polynomials in different bases:
 
-For example, :math:`3x^2 + 2x - 1`
+For example, :math:`3x^2 + 2x - 1`::
 
->>> p = np.poly1d([3, 2, -1])
->>> p(0)
--1
->>> p.roots
-array([-1.        ,  0.33333333])
->>> p.order
-2
+    >>> p = np.poly1d([3, 2, -1])
+    >>> p(0)
+    -1
+    >>> p.roots
+    array([-1.        ,  0.33333333])
+    >>> p.order
+    2
 
->>> x = np.linspace(0, 1, 20)
->>> y = np.cos(x) + 0.3*np.random.rand(20)
->>> p = np.poly1d(np.polyfit(x, y, 3))
+::
 
->>> t = np.linspace(0, 1, 200)
->>> plt.plot(x, y, 'o', t, p(t), '-')   # doctest: +ELLIPSIS
-[<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
+    >>> x = np.linspace(0, 1, 20)
+    >>> y = np.cos(x) + 0.3*np.random.rand(20)
+    >>> p = np.poly1d(np.polyfit(x, y, 3))
+
+    >>> t = np.linspace(0, 1, 200)
+    >>> plt.plot(x, y, 'o', t, p(t), '-')   # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
 
 .. plot:: pyplots/numpy_intro_9.py
 
@@ -46,15 +48,15 @@ More polynomials (with more bases)
 Numpy also has a more sophisticated polynomial interface, which supports
 e.g. the Chebyshev basis.
 
-:math:`3x^2 + 2x - 1`
+:math:`3x^2 + 2x - 1`::
 
->>> p = np.polynomial.Polynomial([-1, 2, 3]) # coefs in different order!
->>> p(0)
--1.0
->>> p.roots()
-array([-1.        ,  0.33333333])
->>> p.degree()  # In general polynomials do not always expose 'order'
-2
+    >>> p = np.polynomial.Polynomial([-1, 2, 3]) # coefs in different order!
+    >>> p(0)
+    -1.0
+    >>> p.roots()
+    array([-1.        ,  0.33333333])
+    >>> p.degree()  # In general polynomials do not always expose 'order'
+    2
 
 Example using polynomials in Chebyshev basis, for polynomials in
 range ``[-1, 1]``::
@@ -79,12 +81,11 @@ Loading data files
 Text files
 ...........
 
-Example: :download:`populations.txt <../../data/populations.txt>`::
+Example: :download:`populations.txt <../../data/populations.txt>`:
 
-    1900	30e3	4e3	48300
-    1901	47.2e3	6.1e3	48200
-    1902	70.2e3	9.8e3	41500
-    ...
+.. include:: ../../data/populations.txt
+    :end-line: 5
+    :literal:
 
 ::
 
@@ -94,6 +95,8 @@ Example: :download:`populations.txt <../../data/populations.txt>`::
            [  1901.,  47200.,   6100.,  48200.],
            [  1902.,  70200.,   9800.,  41500.],
     ...
+
+::
 
     >>> np.savetxt('pop2.txt', data)
     >>> data2 = np.loadtxt('pop2.txt')
@@ -105,7 +108,7 @@ Example: :download:`populations.txt <../../data/populations.txt>`::
    - Using Python's I/O functions and e.g. regexps for parsing
      (Python is quite well suited for this)
 
-.. topic:: Navigating the filesystem with *Ipython*
+.. topic:: Reminder: Navigating the filesystem with IPython
 
    .. sourcecode:: ipython
 
@@ -186,5 +189,8 @@ Well-known (& more obscure) file formats
 .. EXE: advanced: read the data in a PPM file
 
 
+.. topic:: Numpy internals
 
+    If you are interested in the Numpy internals, there is a good discussion in
+    :ref:`advanced_numpy`.
 

@@ -2,7 +2,7 @@
 Optimizing code
 =================
 
-.. sidebar:: Donald Knuth 
+.. sidebar:: Donald Knuth
 
    *“Premature optimization is the root of all evil”*
 
@@ -12,7 +12,9 @@ This chapter deals with strategies to make Python code go faster.
 
 .. topic:: Prerequisites
 
-    * line_profiler (http://packages.python.org/line_profiler/)
+    * `line_profiler <http://packages.python.org/line_profiler/>`_
+    * `gprof2dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_
+    * `dot utility from Graphviz <http://www.graphviz.org/>`_
 
 .. contents:: Chapters contents
    :local:
@@ -37,7 +39,7 @@ Optimization workflow
 
 
 Profiling Python code
-==========================================
+=====================
 
 .. topic:: **No optimization without measuring!**
 
@@ -53,7 +55,7 @@ Timeit
 In IPython, use ``timeit`` (http://docs.python.org/library/timeit.html) to time elementary operations:
 
 .. sourcecode:: ipython
-    
+
     In [1]: import numpy as np
 
     In [2]: a = np.arange(1000)
@@ -69,7 +71,7 @@ In IPython, use ``timeit`` (http://docs.python.org/library/timeit.html) to time 
 
 Use this to guide your choice between strategies.
 
-.. note:: 
+.. note::
 
    For long running calls, using ``%time`` instead of ``%timeit``; it is
    less precise but faster
@@ -81,6 +83,20 @@ Useful when you have a large program to profile, for example the
 :download:`following file <demo.py>`:
 
 .. literalinclude:: demo.py
+
+
+.. note::
+    This is a combination of two unsupervised learning techniques, principal
+    component analysis (`PCA
+    <http://en.wikipedia.org/wiki/Principal_component_analysis>`_) and
+    independent component analysis
+    (`ICA<http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_). PCA
+    is a technique for dimensionality reduction, i.e. an algorithm to explain
+    the observed variance in your data using less dimensions. ICA is a source
+    seperation technique, for example to unmix multiple signals that have been
+    recorded through multiple sensors. Doing a PCA first and then an ICA can be
+    useful if you have more sensors than signals. For more information see:
+    `the FastICA example from scikits-learn <http://scikit-learn.org/stable/auto_examples/decomposition/plot_ica_blind_source_separation.html>`_.
 
 To run it, you also need to download the :download:`ica module <ica.py>`.
 In IPython we can time the script:
@@ -140,23 +156,26 @@ Line-profiler
 The profiler is great: it tells us which function takes most of the time,
 but not where it is called.
 
-For this, we use the 
+For this, we use the
 `line_profiler <http://packages.python.org/line_profiler/>`_: in the
 source file, we decorate a few functions that we want to inspect with
-``@profile`` (no need to import it)::
+``@profile`` (no need to import it)
+
+.. sourcecode:: python
 
     @profile
     def test():
-	data = np.random.random((5000, 100))
-	u, s, v = linalg.svd(data)
-	pca = np.dot(u[:10, :], data) 
-	results = fastica(pca.T, whiten=False)
+        data = np.random.random((5000, 100))
+        u, s, v = linalg.svd(data)
+        pca = np.dot(u[: , :10], data)
+        results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
-<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches `-l`
-and `-v`::
+<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches ``-l, --line-by-line`` and ``-v, --view`` to use the line-by-line profiler and view the results in addition to saving them:
 
-    ~ $ kernprof.py -l -v demo.py
+.. sourcecode:: console
+
+    $ kernprof.py -l -v demo.py
 
     Wrote profile results to demo.py.lprof
     Timer unit: 1e-06 s
@@ -167,15 +186,45 @@ and `-v`::
 
     Line #      Hits         Time  Per Hit   % Time  Line Contents
     ==============================================================
-	5                                           @profile
-	6                                           def test():
-	7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))
-	8         1     14242163 14242163.0   99.7      u, s, v = linalg.svd(data)
-	9         1        10282  10282.0      0.1      pca = np.dot(u[:10, :], data) 
+        5                                           @profile
+        6                                           def test():
+        7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))
+        8         1     14242163 14242163.0   99.7      u, s, v = linalg.svd(data)
+        9         1        10282  10282.0      0.1      pca = np.dot(u[:10, :], data)
        10         1         7799   7799.0      0.1      results = fastica(pca.T, whiten=False)
 
-
 **The SVD is taking all the time.** We need to optimise this line.
+
+Running ``cProfile``
+--------------------
+
+In the IPython example above, IPython simply calls the built-in `Python
+profilers <http://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
+``profile``. This can be useful if you wish to process the profiler output with a
+visualization tool.
+
+.. sourcecode:: console
+
+   $  python -m cProfile -o demo.prof demo.py
+
+Using the ``-o`` switch will output the profiler results to the file
+``demo.prof``.
+
+Using ``gprof2dot``
+-------------------
+
+In case you want a more visual representation of the profiler output, you can
+use the `gprof2dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_ tool:
+
+.. sourcecode:: console
+
+    $ gprof2dot -f pstats demo.prof | dot -Tpng -o demo-prof.png
+
+Which will produce the following picture:
+
+.. image:: demo-prof.png
+
+Which again paints a similar picture as the previous approaches.
 
 Making code go faster
 ======================
@@ -197,10 +246,10 @@ loop**, that bring in big gains.
 Example of the SVD
 ...................
 
-In both examples above, the SVD - 
-`Singular Value Decomposition <http://en.wikipedia.org/wiki/Singular_value_decomposition>`_ 
+In both examples above, the SVD -
+`Singular Value Decomposition <http://en.wikipedia.org/wiki/Singular_value_decomposition>`_
 - is what
-takes most of the time. Indeed, the computational cost of this algorithm is 
+takes most of the time. Indeed, the computational cost of this algorithm is
 roughly :math:`n^3` in the size of the input matrix.
 
 However, in both of these example, we are not using all the output of
@@ -224,6 +273,30 @@ scipy are richer then those in numpy and should be preferred.
 
     In [7]: %timeit np.linalg.svd(data, full_matrices=False)
     1 loops, best of 3: 293 ms per loop
+
+We can then use this insight to :download:`optimize the previous code <demo_opt.py>`:
+
+.. literalinclude:: demo_opt.py
+   :start-line: 9
+   :end-line: 13
+
+.. sourcecode:: ipython
+
+    In [1]: import demo
+
+    In [2]: %timeit demo.
+    demo.fastica   demo.np        demo.prof.pdf  demo.py        demo.pyc
+    demo.linalg    demo.prof      demo.prof.png  demo.py.lprof  demo.test
+
+    In [2]: %timeit demo.test()
+    ica.py:65: RuntimeWarning: invalid value encountered in sqrt
+      W = (u * np.diag(1.0/np.sqrt(s)) * u.T) * W  # W = (W * W.T) ^{-1/2} * W
+    1 loops, best of 3: 17.5 s per loop
+
+    In [3]: import demo_opt
+
+    In [4]: %timeit demo_opt.test()
+    1 loops, best of 3: 208 ms per loop
 
 Real incomplete SVDs, e.g. computing only the first 10 eigenvectors, can
 be computed with arpack, available in ``scipy.sparse.linalg.eigsh``.
@@ -315,7 +388,7 @@ discuss only some commonly encountered tricks to make code faster.
 
   This is the reason why Fortran ordering or C ordering may make a big
   difference on operations:
-  
+
   .. sourcecode:: ipython
 
     In [5]: a = np.random.rand(20, 2**18)
@@ -329,7 +402,7 @@ discuss only some commonly encountered tricks to make code faster.
 
     In [9]: %timeit np.dot(b, c)
     10 loops, best of 3: 84.2 ms per loop
- 
+
   Note that copying the data to work around this effect may not be worth it:
 
   .. sourcecode:: ipython
@@ -345,9 +418,9 @@ discuss only some commonly encountered tricks to make code faster.
   The last resort, once you are sure that all the high-level
   optimizations have been explored, is to transfer the hot spots, i.e.
   the few lines or functions in which most of the time is spent, to
-  compiled code. For compiled code, the preferred option is to use 
+  compiled code. For compiled code, the preferred option is to use
   `Cython <http://www.cython.org>`_: it is easy to transform exiting
-  Python code in compiled code, and with a good use of the 
+  Python code in compiled code, and with a good use of the
   `numpy support <http://docs.cython.org/src/tutorial/numpy.html>`_
   yields efficient code on numpy arrays, for instance by unrolling loops.
 
@@ -355,3 +428,20 @@ discuss only some commonly encountered tricks to make code faster.
 
    For all the above: profile and time your choices. Don't base your
    optimization on theoretical considerations.
+
+Additional Links
+----------------
+
+* If you need to profile memory usage, you could try the `memory_profiler
+  <http://pypi.python.org/pypi/memory_profiler>`_
+
+* If you need to profile down into C extensions, you could try using
+  `gperftools <http://code.google.com/p/gperftools/?redir=1>`_ from Python with
+  `yep <http://pypi.python.org/pypi/yep>`_.
+
+* If you would like to track performace of your code across time, i.e. as you
+  make new commits to your repository, you could try:
+  `vbench <https://github.com/pydata/vbench>`_
+
+* If you need some interactive visualization why not try `RunSnakeRun
+  <http://www.vrplumber.com/programming/runsnakerun/>`_

@@ -31,10 +31,29 @@ the corresponding part such that your new tutorial appear in the table of
 contents.
 
 Also keep in mind that these tutorials are to being taught at different places
-and you want them to be quite interactive or your audience might just fall
-asleep long before you've finished talking...
+and different parts may be combined into a course on Python for scientific
+computing. Thus you want them to be quite interactive and reasonably short
+(one to two hours) or your audience might just fall asleep long before you've
+finished talking...
 
+Last but not least, the goal of this material is to provide a concise text
+useful to learning the main features of the scipy ecosystem. If you want to
+contribute to reference material, we suggest that you contribute to the
+documentation of the specific packages that you are interested in.
 
+Keeping it concise
+==================
+
+The HTML output can be used for displaying on screen while
+teaching. The goal is to have the same material displayed as
+in the notes. This is why the HTML version should be kept concise, with
+bullet-lists rather than full-blown paragraphs and sentences.
+In the long run, we would like to build more elaborate discussions. For this,
+the policy is to use the::
+
+   .. only:: pdf
+
+sphinx directive.
 
 Figures and code examples
 ==========================
@@ -60,15 +79,41 @@ directive.
 
 .. literal-include:: examples/plot_simple.py
 
+.. note::
+
+    The code to provide this style of plot inclusion was adopted from the
+    scikits.learn project and can be found in ``sphinxext/gen_rst.py``.
+
+Using Markup
+============
+
+There are three main kinds of markup that should be used: *italics*, **bold**
+and ``fixed-font``. *Italics* should be used when introducing a new technical
+term, **bold** should be used for emphasis and ``fixed-font`` for source code.
+
+.. topic:: Example:
+
+    When using *object-oriented programming* in Python you **must** use the
+    ``class`` keyword to define your *classes*.
+
+In restructured-text markup this is::
+
+    when using *object-oriented programming* in Python you **must** use the
+    ``class`` keyword to define your *classes*.
+
 
 Linking to package documentations
 ==================================
 
 The goal of the scipy lecture notes is not to duplicate or replace the
 documentation of the various packages. You should link as much as
-possible to the original documentation. For this purpose, you can use the
-`:ref:section` sphinx directive, as well as `:func:function_name`, e.g.
-:func:`numpy.var`. Sphinx will find the links on the web for you.
+possible to the original documentation.
+
+For cross-referencing API documentation we prefer to use the `intersphinx
+extension <http://sphinx-doc.org/latest/ext/intersphinx.html>`_. This provides
+the directives `:mod:`, `:class:` and `:func:` to cross-link to modules,
+classes and functions respectively. For example the ``:func:`numpy.var``` will
+create a link like :func:`numpy.var`.
 
 Chapter, section, subsection, paragraph
 =======================================
@@ -96,6 +141,19 @@ difficult to read:
    And some text.
 
 
+Using Github
+============
+
+The easiest way to make your own version of this teaching material
+is to fork it under Github, and use the git version control system to
+maintain your own fork. For this, all you have to do is create an account
+on github (this site) and click on the *fork* button, on the top right of this
+page. You can use git to pull from your *fork*, and push back to it the
+changes. If you want to contribute the changes back, just fill a
+*pull request*, using the button on the top of your fork's page.
+
+Please refrain from modifying the Makefile unless it is absolutely
+necessary.
 
 Admonitions
 ============
