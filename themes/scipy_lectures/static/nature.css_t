@@ -10,6 +10,14 @@
  */
 @import url("basic.css");
 @import url("default.css");
+
+/************************ Header *****************************/
+
+div.related li.left {
+    float: left;
+    margin-right: .5ex;
+}
+
 /* -- page layout ----------------------------------------------------------- */
  
 /* special colors for exercises */
@@ -137,16 +145,8 @@ table.hlist td {
     vertical-align: top;
 }
 
-/* Admonitions */
+/************************ Admonitions ************************/
 
-div.hint {
-    line-height: 1.5em;
-    margin: 0;
-    padding:          3px 5px;
-    width:            260px;
-    border:     1px solid #cccccc;
-    background-color: #FFD;	
-}
 div.admonition p {
     text-align: left;
     margin: 0;
@@ -160,6 +160,87 @@ div.admonition .first {
     font-weight: bold;
 }
 
+/* hint */
+div.hint {
+    line-height: 1.5em;
+    margin: 0;
+    padding:          3px 5px;
+    width:            260px;
+    border:     1px solid #cccccc;
+    background-color: #FFD;	
+}
+
+/* tip */
+div.tip .first {
+    visibility: hidden;
+    display: inline-block;
+    /*overflow: hidden;*/
+    margin-right: -2ex;
+    margin-left: -2ex;
+    height: auto;
+}
+
+
+div.tip {
+    font-size: 95% ;
+    margin: 0px;
+    padding: 0px;
+    margin-left: -2ex;
+    padding-left: 2ex;
+    display: inline;
+    background-image: none;
+}
+
+div.tip:hover {
+    background-image: url("minus.png");
+    background-repeat: no-repeat;
+    background-position: .1ex, 1ex;
+}
+
+div.collapsed {
+    color: #CCC;
+    background-position: .1ex, 1ex;*/
+    font-size: 90% ;
+}
+
+div.collapsed:hover {
+    background-image: none;
+}
+
+div.collapsed p.summary img {
+    margin-left: -1.9ex;
+    margin-right: .6ex;
+    opacity: .5;
+}
+
+div.collapsed p + p:not(.summary), div.collapsed img, div.collapsed div, 
+div.collapsed p.last {
+    display: none;
+}
+
+div.collapsed:hover p.summary img {
+    opacity: 1;
+}
+
+div.collapsed:hover {
+    background-position: .1ex, 1ex;
+    color: #999;
+}
+
+.transparent img {
+    opacity: .5;
+}
+
+.collapsed a {
+    color: #CCC;
+}
+
+div.tip p.summary {
+    display: inline;
+}
+
+
+/* sidebar */
 div.sidebar ul {
     padding-top: 0px;
     margin-top: 0px;

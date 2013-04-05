@@ -18,37 +18,51 @@ Matplotlib: plotting
 Introduction
 ============
 
-`Matplotlib <http://matplotlib.org/>`_ is probably the single most used Python
-package for 2D-graphics. It provides both a very quick way to visualize data
-from Python and publication-quality figures in many formats.  We are going to
-explore matplotlib in interactive mode covering most common cases.
+.. tip::
+
+    `Matplotlib <http://matplotlib.org/>`_ is probably the single most
+    used Python package for 2D-graphics. It provides both a very quick
+    way to visualize data from Python and publication-quality figures in
+    many formats.  We are going to explore matplotlib in interactive mode
+    covering most common cases.
 
 IPython and the pylab mode
 --------------------------
 
-`IPython <http://ipython.org/>`_ is an enhanced interactive Python shell that
-has lots of interesting features including named inputs and outputs, access to
-shell commands, improved debugging and many more. When we start it with the
-command line argument ``-pylab`` (``--pylab`` since IPython version 0.12), it allows
-interactive matplotlib sessions that have Matlab/Mathematica-like functionality.
+.. tip::
+
+    `IPython <http://ipython.org/>`_ is an enhanced interactive Python
+    shell that has lots of interesting features including named inputs
+    and outputs, access to shell commands, improved debugging and many
+    more. It is central to the scientific-computing workflow in Python
+    for its use in combination with Matplotlib:
+
+We start IPython with the command line argument ``-pylab`` (``--pylab``
+since IPython version 0.12), for interactive matplotlib sessions with
+Matlab/Mathematica-like functionality.
 
 pylab
 -----
 
-*pylab* provides a procedural interface to the matplotlib object-oriented
-plotting library. It is modeled closely after Matlab™. Therefore, the
-majority of plotting commands in pylab have Matlab™ analogs with similar
-arguments.  Important commands are explained with interactive examples.
+.. tip::
+
+    *pylab* provides a procedural interface to the matplotlib
+    object-oriented plotting library. It is modeled closely after
+    Matlab™. Therefore, the majority of plotting commands in pylab have
+    Matlab™ analogs with similar arguments.  Important commands are
+    explained with interactive examples.
 
 
 Simple plot
 ===========
 
-In this section, we want to draw the cosine and sine functions on the same
-plot. Starting from the default settings, we'll enrich the figure step by step
-to make it nicer.
+.. tip::
 
-First step is to get the data for the sine and cosine functions:
+    In this section, we want to draw the cosine and sine functions on the
+    same plot. Starting from the default settings, we'll enrich the
+    figure step by step to make it nicer.
+
+    First step is to get the data for the sine and cosine functions:
 
 ::
 
@@ -58,12 +72,11 @@ First step is to get the data for the sine and cosine functions:
    C, S = np.cos(X), np.sin(X)
 
 
-``X`` is now a numpy array with 256 values ranging from -π to +π (included). ``C`` is
-the cosine (256 values) and ``S`` is the sine (256 values).
+``X`` is now a numpy array with 256 values ranging from -π to +π
+(included). ``C`` is the cosine (256 values) and ``S`` is the sine (256
+values).
 
-To run the example, you can type them in an IPython interactive session:
-
-.. code:: sh
+To run the example, you can type them in an IPython interactive session::
 
     $ ipython --pylab
 
@@ -78,18 +91,18 @@ This brings us to the IPython prompt: ::
     Welcome to pylab, a matplotlib-based Python environment.
     For more information, type 'help(pylab)'.
 
+.. tip::
 
-or you can download each of the examples and run it using regular python:
+    You can also download each of the examples and run it using regular
+    python, but you will loose interactive data manipulation::
 
-.. code:: sh
+        $ python exercice_1.py
 
-    $ python exercice_1.py
-
-You can get source for each step by clicking on the corresponding figure.
+    You can get source for each step by clicking on the corresponding figure.
 
 
-Using defaults
---------------
+Plotting with default settings
+-------------------------------
 
 .. image:: auto_examples/images/plot_exercice_1_1.png
    :align: right
@@ -101,10 +114,17 @@ Using defaults
    * `plot tutorial <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html>`_
    * `plot() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot>`_
 
-Matplotlib comes with a set of default settings that allow customizing all
-kinds of properties. You can control the defaults of almost every property in
-matplotlib: figure size and dpi, line width, color and style, axes, axis and
-grid properties, text and font properties and so on. ::
+.. tip::
+
+    Matplotlib comes with a set of default settings that allow
+    customizing all kinds of properties. You can control the defaults of
+    almost every property in matplotlib: figure size and dpi, line width,
+    color and style, axes, axis and grid properties, text and font
+    properties and so on.
+
+    Baz bar foobar
+
+::
 
    import pylab as pl
    import numpy as np
