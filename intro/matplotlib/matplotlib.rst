@@ -1193,6 +1193,7 @@ Markers
 -------
 
 .. image:: auto_examples/images/plot_markers_1.png
+   :scale: 90
 
 Colormaps
 ---------
@@ -1204,4 +1205,5 @@ If you want to know more about colormaps, checks `Documenting the matplotlib
 colormaps <https://gist.github.com/2719900>`_.
 
 .. image:: auto_examples/images/plot_colormaps_1.png
+   :scale: 80
 
