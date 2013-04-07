@@ -222,6 +222,10 @@ div.collapsed:hover p.summary img {
     opacity: 1;
 }
 
+div.collapsed p.summary img {
+    display: inline;
+}
+
 div.collapsed:hover {
     background-position: .1ex, 1ex;
     color: #999;
