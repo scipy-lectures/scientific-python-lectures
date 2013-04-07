@@ -245,9 +245,13 @@ div.collapsed p.summary img {
     opacity: .5;
 }
 
-div.collapsed p + p:not(.summary), div.collapsed img, div.collapsed div, 
-div.collapsed p.last {
+div.collapsed p.admonition-title + p, div.collapsed p.admonition-title, 
+div.collapsed p, div.collapsed img, div.collapsed div {
     display: none;
+}
+
+div.collapsed p.summary {
+    display: inline;
 }
 
 div.collapsed:hover p.summary img {

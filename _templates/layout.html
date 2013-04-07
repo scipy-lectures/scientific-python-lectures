@@ -5,8 +5,7 @@
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
 	<!-- On click toggle the 'tip' on or off-->
-	<a onclick="console.log('Main button');
-		    $('.tip').each(function (index, obj) {
+	<a onclick="$('.tip').each(function (index, obj) {
 			    collapse_tip_div(obj);
 		    });
 		    $('.tip').addClass('collapsed');
@@ -33,13 +32,21 @@
 	    var html = $(obj).html();
 
 	    if(content.length > 40) {
-		// We start at '5' to avoid 'tip '
-		content = content.substr(5, 50);
+		if ($.browser.msie) {
+		    // We start at '3' to avoid 'tip', as IE
+		    // does not count whitespace
+		    var content = content.substr(3, 50);
+		} else {
+		    // We start at '5' to avoid 'tip '
+		    var content = content.substr(5, 50);
+		}
 	    }
 	    $(obj).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
 	}
     }
+    </script>
 
+    <script type="text/javascript">
     $(function () {
 	$(".tip")
 	    .click(function(event){
@@ -52,8 +59,14 @@
 		    var html = $(this).html();
     
 		    if(content.length > 40) {
-			// We start at '5' to avoid 'tip '
-			var content = content.substr(5, 50);
+			if ($.browser.msie) {
+			    // We start at '3' to avoid 'tip', as IE
+			    // does not count whitespace
+			    var content = content.substr(3, 50);
+			} else {
+			    // We start at '5' to avoid 'tip '
+			    var content = content.substr(5, 50);
+			}
 		    }
 		    $(this).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
 		}
