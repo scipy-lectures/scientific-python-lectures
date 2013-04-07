@@ -122,8 +122,6 @@ Plotting with default settings
     color and style, axes, axis and grid properties, text and font
     properties and so on.
 
-    Baz bar foobar
-
 ::
 
    import pylab as pl
