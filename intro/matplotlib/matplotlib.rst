@@ -151,9 +151,15 @@ Instantiating defaults
    *  `Customizing matplotlib <http://matplotlib.sourceforge.net/users/customizing.html>`_
 
 In the script below, we've instantiated (and commented) all the figure settings
-that influence the appearance of the plot. The settings have been explicitly
-set to their default values, but now you can interactively play with the values
-to explore their affect (see `Line properties`_ and `Line styles`_ below). ::
+that influence the appearance of the plot.
+
+.. tip::
+
+    The settings have been explicitly set to their default values, but
+    now you can interactively play with the values to explore their
+    affect (see `Line properties`_ and `Line styles`_ below).
+
+::
 
    import pylab as pl
    import numpy as np
@@ -205,9 +211,13 @@ Changing colors and line widths
    * `Controlling line properties <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html#controlling-line-properties>`_
    * `Line API <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.lines.Line2D>`_
 
-First step, we want to have the cosine in blue and the sine in red and a
-slighty thicker line for both of them. We'll also slightly alter the figure
-size to make it more horizontal. ::
+.. tip::
+
+    First step, we want to have the cosine in blue and the sine in red
+    and a slighty thicker line for both of them. We'll also slightly
+    alter the figure size to make it more horizontal.
+    
+::
 
    ...
    pl.figure(figsize=(10, 6), dpi=80)
@@ -229,9 +239,10 @@ Setting limits
    * `xlim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
    * `ylim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
 
+.. tip::
 
-Current limits of the figure are a bit too tight and we want to make some space
-in order to clearly see all data points.
+    Current limits of the figure are a bit too tight and we want to make
+    some space in order to clearly see all data points.
 
 ::
 
@@ -257,10 +268,11 @@ Setting ticks
    * `Tick container <http://matplotlib.sourceforge.net/users/artists.html#axis-container>`_
    * `Tick locating and formatting <http://matplotlib.sourceforge.net/api/ticker_api.html>`_
 
+.. tip::
 
-Current ticks are not ideal because they do not show the interesting values
-(+/-π,+/-π/2) for sine and cosine. We'll change them such that they show only
-these values.
+    Current ticks are not ideal because they do not show the interesting
+    values (+/-π,+/-π/2) for sine and cosine. We'll change them such that
+    they show only these values.
 
 ::
 
@@ -289,11 +301,13 @@ Setting tick labels
    * `set_yticklabels() <http://matplotlib.sourceforge.net/api/axes_api.html?#matplotlib.axes.Axes.set_yticklabels>`_
 
 
-Ticks are now properly placed but their label is not very explicit. We could
-guess that 3.142 is π but it would be better to make it explicit. When we set
-tick values, we can also provide a corresponding label in the second argument
-list. Note that we'll use latex to allow for nice rendering of the label.
+.. tip::
 
+    Ticks are now properly placed but their label is not very explicit.
+    We could guess that 3.142 is π but it would be better to make it
+    explicit. When we set tick values, we can also provide a
+    corresponding label in the second argument list. Note that we'll use
+    latex to allow for nice rendering of the label.
 
 ::
 
@@ -322,12 +336,15 @@ Moving spines
    * `Axis container <http://matplotlib.sourceforge.net/users/artists.html#axis-container>`_
    * `Transformations tutorial <http://matplotlib.sourceforge.net/users/transforms_tutorial.html>`_
 
-Spines are the lines connecting the axis tick marks and noting the boundaries
-of the data area. They can be placed at arbitrary positions and until now, they
-were on the border of the axis. We'll change that since we want to have them in
-the middle. Since there are four of them (top/bottom/left/right), we'll discard
-the top and right by setting their color to none and we'll move the bottom and
-left ones to coordinate 0 in data space coordinates.
+.. tip::
+
+    Spines are the lines connecting the axis tick marks and noting the
+    boundaries of the data area. They can be placed at arbitrary
+    positions and until now, they were on the border of the axis. We'll
+    change that since we want to have them in the middle. Since there are
+    four of them (top/bottom/left/right), we'll discard the top and right
+    by setting their color to none and we'll move the bottom and left
+    ones to coordinate 0 in data space coordinates.
 
 ::
 
@@ -358,10 +375,11 @@ Adding a legend
    * `legend() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.legend>`_
    * `Legend API <http://matplotlib.sourceforge.net/api/legend_api.html#matplotlib.legend.Legend>`_
 
-Let's add a legend in the upper left corner. This only requires adding the
-keyword argument label (that will be used in the legend box) to the plot
-commands.
+.. tip::
 
+    Let's add a legend in the upper left corner. This only requires
+    adding the keyword argument label (that will be used in the legend
+    box) to the plot commands.
 
 ::
 
@@ -388,11 +406,13 @@ Annotate some points
    * `Annotating axis <http://matplotlib.sourceforge.net/users/annotations_guide.html>`_
    * `annotate() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
 
-Let's annotate some interesting points using the annotate command. We chose the
-2π/3 value and we want to annotate both the sine and the cosine. We'll first
-draw a marker on the curve as well as a straight dotted line. Then, we'll use
-the annotate command to display some text with an arrow.
+.. tip::
 
+    Let's annotate some interesting points using the annotate command. We
+    chose the 2π/3 value and we want to annotate both the sine and the
+    cosine. We'll first draw a marker on the curve as well as a straight
+    dotted line. Then, we'll use the annotate command to display some
+    text with an arrow.
 
 ::
 
@@ -431,11 +451,12 @@ Devil is in the details
    * `Artists <http://matplotlib.sourceforge.net/api/artist_api.html>`_
    * `BBox <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
 
-The tick labels are now hardly visible because of the blue and red lines. We can
-make them bigger and we can also adjust their properties such that they'll be
-rendered on a semi-transparent white background. This will allow us to see both
-the data and the labels.
+.. tip::
 
+    The tick labels are now hardly visible because of the blue and red
+    lines. We can make them bigger and we can also adjust their
+    properties such that they'll be rendered on a semi-transparent white
+    background. This will allow us to see both the data and the labels.
 
 ::
 
@@ -451,24 +472,31 @@ the data and the labels.
 Figures, Subplots, Axes and Ticks
 =================================
 
-So far we have used implicit figure and axes creation. This is handy for fast
-plots. We can have more control over the display using figure, subplot, and
-axes explicitly. A figure in matplotlib means the whole window in the user
-interface. Within this figure there can be subplots. While subplot positions
-the plots in a regular grid, axes allows free placement within the figure. Both
-can be useful depending on your intention. We've already worked with figures
-and subplots without explicitly calling them. When we call plot, matplotlib
-calls ``gca()`` to get the current axes and gca in turn calls ``gcf()`` to get the
-current figure. If there is none it calls ``figure()`` to make one, strictly
-speaking, to make a ``subplot(111)``. Let's look at the details.
+A **"figure"** in matplotlib means the whole window in the user interface.
+Within this figure there can be **"subplots"**.
+
+.. tip::
+
+    So far we have used implicit figure and axes creation. This is handy
+    for fast plots. We can have more control over the display using
+    figure, subplot, and axes explicitly.  While subplot positions the
+    plots in a regular grid, axes allows free placement within the
+    figure. Both can be useful depending on your intention. We've already
+    worked with figures and subplots without explicitly calling them.
+    When we call plot, matplotlib calls ``gca()`` to get the current axes
+    and gca in turn calls ``gcf()`` to get the current figure. If there
+    is none it calls ``figure()`` to make one, strictly speaking, to make
+    a ``subplot(111)``. Let's look at the details.
 
 Figures
 -------
 
-A figure is the windows in the GUI that has "Figure #" as title. Figures
-are numbered starting from 1 as opposed to the normal Python way starting
-from 0. This is clearly MATLAB-style.  There are several parameters that
-determine what the figure looks like:
+.. tip::
+
+    A figure is the windows in the GUI that has "Figure #" as title.
+    Figures are numbered starting from 1 as opposed to the normal Python
+    way starting from 0. This is clearly MATLAB-style.  There are several
+    parameters that determine what the figure looks like:
 
 ==============  ======================= ============================================
 Argument        Default                 Description
@@ -481,26 +509,37 @@ Argument        Default                 Description
 ``frameon``     ``True``                draw figure frame or not
 ==============  ======================= ============================================
 
-The defaults can be specified in the resource file and will be used most of the
-time. Only the number of the figure is frequently changed.
+.. tip::
 
-When you work with the GUI you can close a figure by clicking on the x in the
-upper right corner. But you can close a figure programmatically by calling
-close. Depending on the argument it closes (1) the current figure (no
-argument), (2) a specific figure (figure number or figure instance as
-argument), or (3) all figures (all as argument).
+    The defaults can be specified in the resource file and will be used
+    most of the time. Only the number of the figure is frequently
+    changed.
 
-As with other objects, you can set figure properties also setp or with the
-set_something methods.
+    As with other objects, you can set figure properties also setp or
+    with the set_something methods.
+
+    When you work with the GUI you can close a figure by clicking on the
+    x in the upper right corner. But you can close a figure
+    programmatically by calling close. Depending on the argument it
+    closes (1) the current figure (no argument), (2) a specific figure
+    (figure number or figure instance as argument), or (3) all figures
+    (``"all"`` as argument).
+
+::
+
+    pl.close(1)     # Closes figure 1
 
 
 Subplots
 --------
 
-With subplot you can arrange plots in a regular grid. You need to specify the
-number of rows and columns and the number of the plot. Note that the `gridspec
-<http://matplotlib.sourceforge.net/users/gridspec.html>`_ command is a more
-powerful alternative.
+.. tip::
+
+    With subplot you can arrange plots in a regular grid. You need to
+    specify the number of rows and columns and the number of the plot.
+    Note that the `gridspec
+    <http://matplotlib.sourceforge.net/users/gridspec.html>`_ command is
+    a more powerful alternative.
 
 .. image:: auto_examples/images/plot_subplot-horizontal_1.png
    :scale: 28
