@@ -14,8 +14,40 @@
 /************************ Header *****************************/
 
 div.related li.left {
-    float: left;
     margin-right: .5ex;
+    position: absolute;
+    left: -.8ex;
+    top: .2ex;
+}
+
+div.related ul {
+    margin-left: .8ex;
+}
+
+div.related li.left img {
+    padding: 0ex;
+}
+
+span.hiddenlink {
+    display: none;
+    z-index: 100;
+    background-color: rgb(355, 253, 242);
+    position: absolute;
+    left: 4px;
+    top: 20px;
+    width: 20ex;
+    padding: 3px;
+    border: 1px solid #888;
+    color: black;
+    line-height: 100%;
+}
+
+li.left:hover span.hiddenlink {
+    display: block;
+}
+
+li.transparent:hover span.hiddenlink {
+    display: none;
 }
 
 /* -- page layout ----------------------------------------------------------- */

@@ -1,0 +1,67 @@
+{% extends '!layout.html' %}
+
+{% block relbaritems %}
+    {{ super() }}
+    <!-- Insert a menu in the navigation bar -->
+    <li class="left">
+	<!-- On click toggle the 'tip' on or off-->
+	<a onclick="console.log('Main button');
+		    $('.tip').each(function (index, obj) {
+			    collapse_tip_div(obj);
+		    });
+		    $('.tip').addClass('collapsed');
+		    $('.left').addClass('transparent');">
+	<img src="{{ pathto('_static/minus.png', 1) }}"
+         alt="Collapse to compact view" style="padding: 1ex;"/>
+	<span class="hiddenlink">Collapse document to compact view</span>
+    </a></li>
+{% endblock %}
+
+{% block header %}
+   <!-- Use the header to add javascript -->
+    {{ super() }}
+    <script type="text/javascript">
+    // Function to collapse the tip divs
+    function collapse_tip_div(obj){
+	// Update the representation on the tip div based on whether it
+	// has the 'collapsed' css class or not: we only want to
+	// collapse divs that are not already collapsed
+	if($(obj).hasClass("collapsed")) {
+	} else {
+	    var content = $(obj).text();
+	    var html = $(obj).html();
+
+	    if(content.length > 40) {
+		// We start at '5' to avoid 'tip '
+		content = content.substr(5, 50);
+	    }
+	    $(obj).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
+	}
+    }
+
+    $(function () {
+	$(".tip")
+	    .click(function(event){
+		$(this).toggleClass("collapsed");
+		// Change state of the global button
+		$('div.related li.transparent').removeClass('transparent')
+		if($(this).hasClass("collapsed")) {
+		    var content = $(this).text();
+		    var html = $(this).html();
+    
+		    if(content.length > 40) {
+			// We start at '5' to avoid 'tip '
+			var content = content.substr(5, 50);
+		    }
+		    $(this).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
+		} else {
+		    $(this).find("p.summary").remove();
+		}
+		if (event.target.tagName.toLowerCase() != "a") {
+                   return true; //Makes links clickable
+		}
+	});
+    });
+    </script>
+
+{% endblock %}
