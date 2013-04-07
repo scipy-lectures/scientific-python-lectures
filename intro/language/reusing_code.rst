@@ -11,21 +11,25 @@ Python Suite you may be using (e.g., Scite with Python(x,y)).
 Scripts
 -------
 
-Let us first write a *script*, that is a file with a sequence of
-instructions that are executed each time the script is called.
+.. tip::
 
-Instructions may be e.g. copied-and-pasted from the interpreter
-(but take care to respect indentation rules!). The extension for Python
-files is ``.py``. Write or copy-and-paste the following lines in a file
-called ``test.py`` ::
+    Let us first write a *script*, that is a file with a sequence of
+    instructions that are executed each time the script is called.
+    Instructions may be e.g. copied-and-pasted from the interpreter (but
+    take care to respect indentation rules!).
+
+The extension for Python files is ``.py``. Write or copy-and-paste the
+following lines in a file called ``test.py`` ::
 
     message = "Hello how are you?"
     for word in message.split():
         print word
 
-Let us now execute the script interactively, that is inside the Ipython
-interpreter. This is maybe the most common use of scripts in scientific
-computing.
+.. tip::
+
+    Let us now execute the script interactively, that is inside the
+    Ipython interpreter. This is maybe the most common use of scripts in
+    scientific computing.
 
 .. note::
 
@@ -48,8 +52,10 @@ The script has been executed. Moreover the variables defined in the
 script (such as ``message``) are now available inside the interpeter's
 namespace.
 
-Other interpreters also offer the possibility to execute scripts (e.g.,
-``execfile`` in the plain Python interpreter, etc.).
+.. tip::
+
+    Other interpreters also offer the possibility to execute scripts
+    (e.g., ``execfile`` in the plain Python interpreter, etc.).
 
 It is also possible In order to execute this script as a *standalone
 program*, by executing the script inside a shell terminal (Linux/Mac
@@ -64,22 +70,24 @@ directory as the test.py file, we can execute this in a console:
     are
     you?
 
-Standalone scripts may also take command-line arguments
+.. tip::
 
-In ``file.py``::
+    Standalone scripts may also take command-line arguments
 
-    import sys
-    print sys.argv
+    In ``file.py``::
 
-.. sourcecode:: bash
+        import sys
+        print sys.argv
 
-    $ python file.py test arguments
-    ['file.py', 'test', 'arguments']
+    .. sourcecode:: bash
 
-.. note::
+        $ python file.py test arguments
+        ['file.py', 'test', 'arguments']
 
-    Don't implement option parsing yourself. Use modules such as
-    ``optparse`` or ``argparse`` .
+    .. warning::
+
+        Don't implement option parsing yourself. Use modules such as
+        ``optparse`` or ``argparse`` .
 
 
 Importing objects from modules
@@ -140,8 +148,10 @@ Importing shorthands:
     * Makes the code impossible to statically check for undefined
       symbols.
 
-Modules are thus a good way to organize code in a hierarchical way. Actually,
-all the scientific computing tools we are going to use are modules::
+.. tip::
+
+  Modules are thus a good way to organize code in a hierarchical way. Actually,
+  all the scientific computing tools we are going to use are modules::
 
     >>> import numpy as np # data arrays
     >>> np.linspace(0, 10, 6)
@@ -162,20 +172,24 @@ and it is not necessary to re-import these modules.
 Creating modules
 -----------------
 
-If we want to write larger and better organized programs (compared to
-simple scripts), where some objects are defined, (variables, functions,
-classes) and that we want to reuse several times, we have to create our
-own *modules*.
+.. tip::
+
+    If we want to write larger and better organized programs (compared to
+    simple scripts), where some objects are defined, (variables,
+    functions, classes) and that we want to reuse several times, we have
+    to create our own *modules*.
 
 Let us create a module ``demo`` contained in the file ``demo.py``:
 
   .. literalinclude:: demo.py
 
-In this file, we defined two functions ``print_a`` and ``print_b``. Suppose
-we want to call the ``print_a`` function from the interpreter. We could
-execute the file as a script, but since we just want to have access to
-the function ``print_a``, we are rather going to **import it as a module**.
-The syntax is as follows.
+.. tip::
+
+    In this file, we defined two functions ``print_a`` and ``print_b``. Suppose
+    we want to call the ``print_a`` function from the interpreter. We could
+    execute the file as a script, but since we just want to have access to
+    the function ``print_a``, we are rather going to **import it as a module**.
+    The syntax is as follows.
 
 
 .. sourcecode:: ipython
@@ -309,74 +323,69 @@ Scripts or modules? How to organize your code
       module is imported in the different scripts (do not copy-and-paste
       your functions in the different scripts!).
 
-.. Note:: How to import a module from a remote directory?
+How module are found and imported
+...................................
 
-    ..
 
-    Many solutions exist, depending mainly on your operating system. When
-    the ``import mymodule`` statement is executed, the module ``mymodule``
-    is searched in a given list of directories. This list includes a list
-    of installation-dependent default path (e.g., ``/usr/lib/python``) as
-    well as the list of directories specified by the environment variable
-    ``PYTHONPATH``.
+When the ``import mymodule`` statement is executed, the module ``mymodule``
+is searched in a given list of directories. This list includes a list
+of installation-dependent default path (e.g., ``/usr/lib/python``) as
+well as the list of directories specified by the environment variable
+``PYTHONPATH``.
 
-    The list of directories searched by Python is given by the ``sys.path``
-    variable
+The list of directories searched by Python is given by the ``sys.path``
+variable
 
-    .. sourcecode:: ipython
+.. sourcecode:: ipython
 
-        In [1]: import sys
+    In [1]: import sys
 
-        In [2]: sys.path
-        Out[2]:
-        ['',
-         '/usr/bin',
-         '/usr/local/include/enthought.traits-1.1.0',
-         '/usr/lib/python2.6',
-         '/usr/lib/python2.6/plat-linux2',
-         '/usr/lib/python2.6/lib-tk',
-         '/usr/lib/python2.6/lib-old',
-         '/usr/lib/python2.6/lib-dynload',
-         '/usr/lib/python2.6/dist-packages',
-         '/usr/lib/pymodules/python2.6',
-         '/usr/lib/pymodules/python2.6/gtk-2.0',
-         '/usr/lib/python2.6/dist-packages/wx-2.8-gtk2-unicode',
-         '/usr/local/lib/python2.6/dist-packages',
-         '/usr/lib/python2.6/dist-packages',
-         '/usr/lib/pymodules/python2.6/IPython/Extensions',
-         u'/home/gouillar/.ipython']
+    In [2]: sys.path
+    Out[2]: 
+    ['',
+     '/home/varoquau/.local/bin',
+     '/usr/lib/python2.7',
+     '/home/varoquau/.local/lib/python2.7/site-packages',
+     '/usr/lib/python2.7/dist-packages',
+     '/usr/local/lib/python2.7/dist-packages',
+     ...]
 
-    Modules must be located in the search path, therefore you can:
+Modules must be located in the search path, therefore you can:
 
-    * write your own modules within directories already defined in the
-      search path (e.g. ``/usr/local/lib/python2.6/dist-packages``). You
-      may use symbolic links (on Linux) to keep the code somewhere else.
+* write your own modules within directories already defined in the
+  search path (e.g. ``$HOME/.local/lib/python2.7/dist-packages``). You
+  may use symbolic links (on Linux) to keep the code somewhere else.
 
-    * modify the environment variable ``PYTHONPATH`` to include the
-      directories containing the user-defined modules. On Linux/Unix, add
-      the following line to a file read by the shell at startup (e.g.
-      /etc/profile, .profile)
+* modify the environment variable ``PYTHONPATH`` to include the
+  directories containing the user-defined modules.
+
+  .. tip::
+  
+    On Linux/Unix, add the following line to a file read by the shell at
+    startup (e.g. /etc/profile, .profile)
 
     ::
 
-        export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
+      export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
 
     On Windows, http://support.microsoft.com/kb/310519 explains how to
     handle environment variables.
 
-    * or modify the ``sys.path`` variable itself within a Python script.
+* or modify the ``sys.path`` variable itself within a Python script.
+
+  .. tip::
 
     ::
 
-	import sys
-	new_path = '/home/emma/user_defined_modules'
-	if new_path not in sys.path:
-	    sys.path.append(new_path)
+        import sys
+        new_path = '/home/emma/user_defined_modules'
+        if new_path not in sys.path:
+            sys.path.append(new_path)
 
     This method is not very robust, however, because it makes the code
     less portable (user-dependent path) and because you have to add the
-    directory to your sys.path each time you want to import from a module in
-    this directory.
+    directory to your sys.path each time you want to import from a module
+    in this directory.
 
 See http://docs.python.org/tutorial/modules.html for more information
 about modules.

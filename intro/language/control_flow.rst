@@ -6,7 +6,7 @@ Controls the order in which the code is executed.
 if/elif/else
 ------------
 
-.. sourcecode:: ipython
+.. sourcecode:: python
 
     >>> if 2**2 == 4:
     ...     print 'Obvious!'
@@ -16,11 +16,13 @@ if/elif/else
 
 **Blocks are delimited by indentation**
 
-Type the following lines in your Python interpreter, and be careful to
-**respect the indentation depth**. The Ipython shell automatically
-increases the indentation depth after a column ``:`` sign; to
-decrease the indentation depth, go four spaces to the left with the
-Backspace key. Press the Enter key twice to leave the logical block.
+.. tip::
+   
+    Type the following lines in your Python interpreter, and be careful
+    to **respect the indentation depth**. The Ipython shell automatically
+    increases the indentation depth after a column ``:`` sign; to
+    decrease the indentation depth, go four spaces to the left with the
+    Backspace key. Press the Enter key twice to leave the logical block.
 
 .. sourcecode:: ipython
 
@@ -170,10 +172,13 @@ a file, ...)::
     are
     you?
 
-Few languages (in particular, languages for scientific computing) allow to
-loop over anything but integers/indices. With Python it is possible to
-loop exactly over the objects of interest without bothering with indices
-you often don't care about.
+.. tip::
+
+    Few languages (in particular, languages for scientific computing) allow to
+    loop over anything but integers/indices. With Python it is possible to
+    loop exactly over the objects of interest without bothering with indices
+    you often don't care about. This feature can often be used to make
+    code more readable.
 
 
 .. warning:: Not safe to modify the sequence you are iterating over.

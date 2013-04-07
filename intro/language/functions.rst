@@ -104,9 +104,11 @@ Keyword arguments allow you to specify *default values*.
     In [128]: double_it()
     Out[128]: 20
 
-More involved example implementing python's slicing:
+.. tip::
 
-.. sourcecode:: ipython
+  More involved example implementing python's slicing:
+
+  .. sourcecode:: ipython
 
     In [98]: def slicer(seq, start=None, stop=None, step=None):
        ....:     """Implement basic python slicing."""
@@ -130,15 +132,15 @@ More involved example implementing python's slicing:
     In [106]: slicer(rhyme, start=1, stop=4, step=2)
     Out[106]: ['fish,', 'fish,']
 
-The order of the keyword arguments does not matter:
+  The order of the keyword arguments does not matter:
 
-.. sourcecode:: ipython
+  .. sourcecode:: ipython
 
     In [107]: slicer(rhyme, step=2, start=1, stop=4)
     Out[107]: ['fish,', 'fish,']
 
-but it is good practice to use the same ordering as the function's
-definition.
+  but it is good practice to use the same ordering as the function's
+  definition.
 
 *Keyword arguments* are a very convenient feature for defining functions
 with a variable number of arguments, especially when default values are
@@ -147,20 +149,22 @@ to be used in most calls to the function.
 Passing by value
 ----------------
 
-Can you modify the value of a variable inside a function? Most languages
-(C, Java, ...) distinguish "passing by value" and "passing by reference".
-In Python, such a distinction is somewhat artificial, and it is a bit
-subtle whether your variables are going to be modified or not.
-Fortunately, there exist clear rules.
+.. tip::
 
-Parameters to functions are references to objects, which are passed by
-value. When you pass a variable to a function, python passes the
-reference to the object to which the variable refers (the **value**).
-Not the variable itself.
+    Can you modify the value of a variable inside a function? Most languages
+    (C, Java, ...) distinguish "passing by value" and "passing by reference".
+    In Python, such a distinction is somewhat artificial, and it is a bit
+    subtle whether your variables are going to be modified or not.
+    Fortunately, there exist clear rules.
 
-If the **value** is immutable, the function does not modify the caller's
-variable.  If the **value** is mutable, the function may modify the
-caller's variable in-place::
+    Parameters to functions are references to objects, which are passed by
+    value. When you pass a variable to a function, python passes the
+    reference to the object to which the variable refers (the **value**).
+    Not the variable itself.
+
+If the **value** passed in a function is immutable, the function does not
+modify the caller's variable.  If the **value** is mutable, the function
+may modify the caller's variable in-place::
 
     >>> def try_to_modify(x, y, z):
     ...     x = 23
