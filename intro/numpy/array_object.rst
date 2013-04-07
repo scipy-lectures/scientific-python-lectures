@@ -14,14 +14,14 @@ The numpy array object
 What are Numpy and numpy arrays
 --------------------------------
 
-**Python** has built-in:
+:**Python** objects:
+
+    - high-level number objects: integers, floating point
 
     - containers: lists (costless insertion and append), dictionaries
       (fast lookup)
 
-    - high-level number objects: integers, floating point
-
-**Numpy** is:
+:**Numpy** provides:
 
     - extension package to Python for multi-dimensional arrays
 
@@ -36,7 +36,9 @@ What are Numpy and numpy arrays
     >>> a
     array([0, 1, 2, 3])
 
-.. topic:: For example:
+.. tip:: 
+   
+   **For example:**
 
     An array containing:
 
@@ -85,7 +87,17 @@ Reference documentation
 
 - Interactive help:
 
-  .. code-block:: python
+  .. sourcecode:: ipython
+
+     In [5]: np.array?
+     String Form:<built-in function array>
+     Docstring:
+     array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
+     ...
+
+  .. tip::
+  
+   .. code-block:: python
 
      >>> help(np.array)    # doctest: +ELLIPSIS
      Help on built-in function array in module numpy.core.multiarray:
@@ -94,13 +106,6 @@ Reference documentation
          array(object, dtype=None, copy=True, order=None, subok=False, ...
      ...
 
-  .. sourcecode:: ipython
-
-     In [5]: np.array?
-     String Form:<built-in function array>
-     Docstring:
-     array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
-     ...
 
 - Looking for something:
 
@@ -280,9 +285,12 @@ data-type used::
     >>> b.dtype
     dtype('float64')
 
-Different data-types allow us to store data more compactly in memory, but most
-of the time we simply work with floating point numbers.  Note that, in the
-example above, NumPy auto-detects the data-type from the input.
+.. tip::
+
+    Different data-types allow us to store data more compactly in memory,
+    but most of the time we simply work with floating point numbers.
+    Note that, in the example above, NumPy auto-detects the data-type
+    from the input.
 
 -----------------------------
 
@@ -292,7 +300,12 @@ You can explicitly specify which data-type you want::
     >>> c.dtype
     dtype('float64')
 
-The **default** data type is floating point::
+
+The **default** data type is floating point
+
+.. tip::
+   
+   ::
 
     >>> a = np.ones((3, 3))
     >>> a.dtype
@@ -329,7 +342,9 @@ There are also other types:
 Basic visualization
 -------------------
 
-Now that we have our first data arrays, we are going to visualize them.
+.. tip::
+
+  Now that we have our first data arrays, we are going to visualize them.
 
 Start by launching IPython in *pylab* mode
 
@@ -385,11 +400,14 @@ Start by launching IPython in *pylab* mode
       In [62]: mlab.axes()
       Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
 
-  The mayavi/mlab window that opens is interactive: by clicking on the left mouse
-  button you can rotate the image, zoom with the mouse wheel, etc.
+  .. tip::
 
-  For more information on Mayavi :
-  http://github.enthought.com/mayavi/mayavi
+   The mayavi/mlab window that opens is interactive: by clicking on the
+   left mouse button you can rotate the image, zoom with the mouse wheel,
+   etc.
+
+   For more information on Mayavi :
+   http://github.enthought.com/mayavi/mayavi
 
   .. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
 
@@ -562,30 +580,14 @@ memory and time.
 
       2. The first number to cross out is :math:`j^2`
 
-Adding Axes
------------
-
-Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
-
-    >>> z = np.array([1, 2, 3])
-    >>> z
-    array([1, 2, 3])
-
-    >>> z[:, np.newaxis]
-    array([[1],
-        [2],
-        [3]])
-
-    >>> z[np.newaxis, :]
-    array([[1, 2, 3]])
-
-
 Fancy indexing
 --------------
 
-Numpy arrays can be indexed with slices, but also with boolean or
-integer arrays (**masks**). This method is called *fancy indexing*. It
-creates **copies not views**.
+.. tip::
+
+    Numpy arrays can be indexed with slices, but also with boolean or
+    integer arrays (**masks**). This method is called *fancy indexing*.
+    It creates **copies not views**.
 
 Using boolean masks
 ...................
@@ -632,8 +634,10 @@ New values can be assigned with this kind of indexing::
     >>> a
     array([  0,   1,   2,   3,   4,   5,   6, -10,   8, -10])
 
-When a new array is created by indexing with an array of integers, the new array
-has the same shape than the array of integers::
+.. tip::
+
+  When a new array is created by indexing with an array of integers, the
+  new array has the same shape than the array of integers::
 
     >>> a = np.arange(10)
     >>> idx = np.array([[3, 4], [9, 7]])

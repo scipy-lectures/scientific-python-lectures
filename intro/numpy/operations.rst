@@ -142,7 +142,9 @@ Sum by rows and by columns::
     >>> x[0, :].sum(), x[1, :].sum()
     (2, 4)
 
-Same idea in higher dimensions::
+.. tip::
+
+  Same idea in higher dimensions::
 
     >>> x = np.random.rand(2, 2, 2)
     >>> x.sum(axis=2)[0, 1]     # doctest: +ELLIPSIS
@@ -380,9 +382,11 @@ We have already used broadcasting without knowing it!::
            [ 1.,  1.,  1.,  1.,  1.],
            [ 1.,  1.,  1.,  1.,  1.]])
 
-Broadcasting seems a bit magical, but it is actually quite natural to use it
-when we want to solve a problem whose output data is an array with more
-dimensions than input data.
+.. tip::
+
+    Broadcasting seems a bit magical, but it is actually quite natural to
+    use it when we want to solve a problem whose output data is an array
+    with more dimensions than input data.
 
 .. topic:: Example
 
@@ -453,9 +457,12 @@ and y of the previous example, with two "significant dimensions"::
     ((5, 1), (1, 5))
     >>> distance = np.sqrt(x ** 2 + y ** 2)
 
-So, ``np.ogrid`` is very useful as soon as we have to handle computations on a
-grid. On the other hand, ``np.mgrid`` directly provides matrices full of
-indices for cases where we can't (or don't want to) benefit from broadcasting::
+.. tip::
+
+  So, ``np.ogrid`` is very useful as soon as we have to handle
+  computations on a grid. On the other hand, ``np.mgrid`` directly
+  provides matrices full of indices for cases where we can't (or don't
+  want to) benefit from broadcasting::
 
     >>> x, y = np.mgrid[0:4, 0:4]
     >>> x
@@ -469,7 +476,7 @@ indices for cases where we can't (or don't want to) benefit from broadcasting::
            [0, 1, 2, 3],
            [0, 1, 2, 3]])
 
-However, in practice, this is rarely needed!
+  However, in practice, this is rarely needed!
 
 .. rules
 
@@ -545,6 +552,25 @@ Or, ::
         [ 0.,  0.]])
 
   To understand, see the section on :ref:`the memory layout of an array <memory_layout>` below.
+
+Adding a dimension
+...................
+
+Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
+
+    >>> z = np.array([1, 2, 3])
+    >>> z
+    array([1, 2, 3])
+
+    >>> z[:, np.newaxis]
+    array([[1],
+        [2],
+        [3]])
+
+    >>> z[np.newaxis, :]
+    array([[1, 2, 3]])
+
+
 
 Dimension shuffling
 ....................
