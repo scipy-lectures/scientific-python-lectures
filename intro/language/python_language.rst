@@ -14,40 +14,42 @@ The Python language
 .. image:: python-logo.png
    :align: right
 
-Python is a **programming language**, as are C, Fortran, BASIC, PHP,
-etc. Some specific features of Python are as follows:
+.. tip::
 
-* an *interpreted* (as opposed to *compiled*) language. Contrary to e.g.
-  C or Fortran, one does not compile Python code before executing it. In
-  addition, Python can be used **interactively**: many Python
-  interpreters are available, from which commands and scripts can be
-  executed.
+  Python is a **programming language**, as are C, Fortran, BASIC, PHP,
+  etc. Some specific features of Python are as follows:
 
-* a free software released under an **open-source** license: Python can
-  be used and distributed free of charge, even for building commercial
-  software.
+  * an *interpreted* (as opposed to *compiled*) language. Contrary to e.g.
+    C or Fortran, one does not compile Python code before executing it. In
+    addition, Python can be used **interactively**: many Python
+    interpreters are available, from which commands and scripts can be
+    executed.
 
-* **multi-platform**: Python is available for all major operating
-  systems, Windows, Linux/Unix, MacOS X, most likely your mobile phone
-  OS, etc.
+  * a free software released under an **open-source** license: Python can
+    be used and distributed free of charge, even for building commercial
+    software.
 
-* a very readable language with clear non-verbose syntax
+  * **multi-platform**: Python is available for all major operating
+    systems, Windows, Linux/Unix, MacOS X, most likely your mobile phone
+    OS, etc.
 
-* a language for which a large variety of high-quality packages are
-  available for various applications, from web frameworks to scientific
-  computing.
+  * a very readable language with clear non-verbose syntax
 
-* a language very easy to interface with other languages, in particular C
-  and C++.
+  * a language for which a large variety of high-quality packages are
+    available for various applications, from web frameworks to scientific
+    computing.
 
-* Some other features of the language are illustrated just below. For
-  example, Python is an object-oriented language, with dynamic typing
-  (the same variable can contain objects of different types during the
-  course of a program).
+  * a language very easy to interface with other languages, in particular C
+    and C++.
+
+  * Some other features of the language are illustrated just below. For
+    example, Python is an object-oriented language, with dynamic typing
+    (the same variable can contain objects of different types during the
+    course of a program).
 
 
-See http://www.python.org/about/ for more information about
-distinguishing features of Python.
+  See http://www.python.org/about/ for more information about
+  distinguishing features of Python.
 
 _____
 

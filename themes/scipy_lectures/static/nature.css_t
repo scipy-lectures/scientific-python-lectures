@@ -96,9 +96,12 @@ div.highlight pre div.newline {
 
 div.body p {
     margin-bottom : .3em;
-    margin-top : 1.3em;
+    margin-top : .7em;
 }
 
+div.body ul {
+    margin-top : .3em;
+}
 
 /* alternating colors in table rows */
 table.docutils tr:nth-child(even) {
@@ -246,7 +249,7 @@ div.collapsed p.summary img {
 }
 
 div.collapsed p.admonition-title + p, div.collapsed p.admonition-title, 
-div.collapsed p, div.collapsed img, div.collapsed div {
+div.collapsed p, div.collapsed img, div.collapsed div, div.collapsed ul {
     display: none;
 }
 
