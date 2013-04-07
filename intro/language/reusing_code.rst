@@ -468,9 +468,11 @@ From Ipython:
 Good practices
 --------------
 
-.. Note:: **Good practices**
+* Use **meaningful** object **names**
 
-    * **Indentation: no choice!**
+* **Indentation: no choice!**
+
+  .. tip::
 
     Indenting is compulsory in Python! Every command block following a
     colon bears an additional indentation level with respect to the
@@ -493,37 +495,33 @@ Good practices
     extra characters, the resulting code is very nice to read compared to
     other languages.
 
-    * **Indentation depth**:
+* **Indentation depth**: Inside your text editor, you may choose to
+  indent with any positive number of spaces (1, 2, 3, 4, ...). However,
+  it is considered good practice to **indent with 4 spaces**. You may
+  configure your editor to map the ``Tab`` key to a 4-space
+  indentation. In Python(x,y), the editor is already
+  configured this way.
 
-    Inside your text editor, you may choose to
-    indent with any positive number of spaces (1, 2, 3, 4, ...). However,
-    it is considered good practice to **indent with 4 spaces**. You may
-    configure your editor to map the ``Tab`` key to a 4-space
-    indentation. In Python(x,y), the editor ``Scite`` is already
-    configured this way.
+* **Style guidelines**
 
-    * **Style guidelines**
+  **Long lines**: you should not write very long lines that span over more
+  than (e.g.) 80 characters. Long lines can be broken with the ``\``
+  character ::
 
-    **Long lines**: you should not write very long lines that span over more
-    than (e.g.) 80 characters. Long lines can be broken with the ``\``
-    character ::
+      >>> long_line = "Here is a very very long line \
+      ... that we break in two parts."
 
-        >>> long_line = "Here is a very very long line \
-        ... that we break in two parts."
+  **Spaces**
 
-    **Spaces**
+  Write well-spaced code: put whitespaces after commas, around arithmetic
+  operators, etc.::
 
-    Write well-spaced code: put whitespaces after commas, around arithmetic
-    operators, etc.::
+      >>> a = 1 # yes
+      >>> a=1 # too cramped
 
-        >>> a = 1 # yes
-        >>> a=1 # too cramped
-
-    A certain number of rules
-    for writing "beautiful" code (and more importantly using the same
-    conventions as anybody else!) are given in the `Style Guide for Python
-    Code <http://www.python.org/dev/peps/pep-0008>`_.
-
-    * Use **meaningful** object **names**
+  A certain number of rules
+  for writing "beautiful" code (and more importantly using the same
+  conventions as anybody else!) are given in the `Style Guide for Python
+  Code <http://www.python.org/dev/peps/pep-0008>`_.
 
 
