@@ -4,7 +4,9 @@ Basic types
 Numerical types
 ----------------
 
-Python supports the following numerical, scalar types:
+.. tip::
+
+    Python supports the following numerical, scalar types:
 
 :Integer:
 
@@ -40,9 +42,13 @@ Python supports the following numerical, scalar types:
     >>> type(test)
     <type 'bool'>
 
-A Python shell can therefore replace your pocket calculator, with the
-basic arithmetic operations ``+``, ``-``, ``*``, ``/``, ``%`` (modulo)
-natively implemented::
+.. tip::
+
+    A Python shell can therefore replace your pocket calculator, with the
+    basic arithmetic operations ``+``, ``-``, ``*``, ``/``, ``%`` (modulo)
+    natively implemented
+
+::
 
     >>> 7 * 3.
     21.0
@@ -60,27 +66,29 @@ Type conversion (casting)::
 
     ::
 
-    >>> 3 / 2
-    1
+        >>> 3 / 2
+        1
 
     **Trick**: use floats::
 
-    >>> 3 / 2.
-    1.5
+        >>> 3 / 2.
+        1.5
 
-    >>> a = 3
-    >>> b = 2
-    >>> a / b
-    1
-    >>> a / float(b)
-    1.5
+        >>> a = 3
+        >>> b = 2
+        >>> a / b
+        1
+        >>> a / float(b)
+        1.5
 
-    If you explicitly want integer division use ``//``
+    .. tip::
 
-    >>> 3.0 // 2
-    1.0
+      If you explicitly want integer division use ``//``::
 
-    .. note::
+        >>> 3.0 // 2
+        1.0
+
+      .. note::
 
         The behaviour of the division operator has changed in Python 3. Please
         look at the `python3porting
@@ -90,14 +98,20 @@ Type conversion (casting)::
 Containers
 ------------
 
-Python provides many efficient types of containers, in which collections of
-objects can be stored.
+.. tip::
+
+    Python provides many efficient types of containers, in which
+    collections of objects can be stored.
 
 Lists
 ~~~~~
 
-A list is an ordered collection of objects, that may have different
-types. For example ::
+.. tip::
+
+    A list is an ordered collection of objects, that may have different
+    types. For example:
+
+::
 
     >>> L = ['red', 'blue', 'green', 'black', 'white']
     >>> type(L)
@@ -134,7 +148,9 @@ Slicing: obtaining sublists of regularly-spaced elements::
 
 **Slicing syntax**: ``L[start:stop:stride]``
 
-All slicing parameters are optional::
+.. tip::
+
+  All slicing parameters are optional::
 
     >>> L
     ['red', 'blue', 'green', 'black', 'white']
@@ -156,13 +172,15 @@ Lists are *mutable* objects and can be modified::
 
 .. Note::
 
-    The elements of a list may have different types::
+   The elements of a list may have different types::
 
         >>> L = [3, -200, 'hello']
         >>> L
         [3, -200, 'hello']
         >>> L[1], L[2]
         (-200, 'hello')
+
+   .. tip::
 
     For collections of numerical data that all have the same type, it
     is often **more efficient** to use the ``array`` type provided by
@@ -173,9 +191,11 @@ Lists are *mutable* objects and can be modified::
     functions instead of Python loops.
 
 
-Python offers a large panel of functions to modify lists,
-or query them. Here are a few examples; for more details, see
-http://docs.python.org/tutorial/datastructures.html#more-on-lists
+.. tip::
+
+    Python offers a large panel of functions to modify lists, or query
+    them. Here are a few examples; for more details, see
+    http://docs.python.org/tutorial/datastructures.html#more-on-lists
 
 Add and remove elements::
 
@@ -213,7 +233,10 @@ Concatenate and repeat lists::
     >>> r * 2
     ['white', 'black', 'green', 'blue', 'red', 'white', 'black', 'green', 'blue', 'red']
 
-Sort::
+
+.. tip::
+   
+  Sort::
 
     >>> sorted(r) # new object
     ['black', 'blue', 'green', 'red', 'white']
@@ -223,9 +246,9 @@ Sort::
     >>> r
     ['black', 'blue', 'green', 'red', 'white']
 
-.. Note:: **Methods and Object-Oriented Programming**
+.. note:: **Methods and Object-Oriented Programming**
 
-    The notation ``r.method()`` (``r.sort(), r.append(3), L.pop()``) is our
+    The notation ``r.method()`` (r.append(3), L.pop()``) is our
     first example of object-oriented programming (OOP). Being a ``list``, the
     object `r` owns the *method* `function` that is called using the notation
     **.**. No further knowledge of OOP than understanding the notation **.** is
@@ -280,8 +303,10 @@ Different string syntaxes (simple, double or triple quotes)::
 The newline character is ``\n``, and the tab character is
 ``\t``.
 
-Strings are collections like lists. Hence they can be indexed and sliced,
-using the same syntax and rules.
+.. tip::
+
+    Strings are collections like lists. Hence they can be indexed and
+    sliced, using the same syntax and rules.
 
 Indexing::
 
@@ -293,9 +318,10 @@ Indexing::
     >>> a[-1]
     'o'
 
+.. tip::
 
-(Remember that negative indices correspond to counting from the right
-end.)
+    (Remember that negative indices correspond to counting from the right
+    end.)
 
 Slicing::
 
@@ -308,8 +334,11 @@ Slicing::
     >>> a[::3] # every three characters, from beginning to end
     'hl r!'
 
-Accents and special characters can also be handled in Unicode strings (see
-http://docs.python.org/tutorial/introduction.html#unicode-strings).
+.. tip::
+   
+    Accents and special characters can also be handled in Unicode strings
+    (see
+    http://docs.python.org/tutorial/introduction.html#unicode-strings).
 
 
 A string is an **immutable object** and it is not possible to modify its
@@ -329,11 +358,13 @@ contents. One may however create new strings from the original one.
     In [56]: a.replace('l', 'z')
     Out[56]: 'hezzo, worzd!'
 
-Strings have many useful methods, such as ``a.replace`` as seen above.
-Remember the ``a.`` object-oriented notation and use tab completion or
-``help(str)`` to search for new methods.
+.. tip::
 
-.. Note::
+    Strings have many useful methods, such as ``a.replace`` as seen
+    above. Remember the ``a.`` object-oriented notation and use tab
+    completion or ``help(str)`` to search for new methods.
+
+.. seealso::
 
     Python offers advanced possibilities for manipulating strings,
     looking for patterns or formatting. The interested reader is referred to
@@ -353,9 +384,12 @@ String substitution::
 Dictionaries
 ~~~~~~~~~~~~~
 
-A dictionary is basically an efficient table that **maps keys to
-values**. It is an **unordered** container::
+.. tip::
 
+    A dictionary is basically an efficient table that **maps keys to
+    values**. It is an **unordered** container
+
+::
 
     >>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
     >>> tel['francis'] = 5915
@@ -370,12 +404,14 @@ values**. It is an **unordered** container::
     >>> 'francis' in tel
     True
 
-It can be used to conveniently store and retrieve values
-associated with a name (a string for a date, a name, etc.). See
-http://docs.python.org/tutorial/datastructures.html#dictionaries
-for more information.
+.. tip::
 
-A dictionary can have keys (resp. values) with different types::
+  It can be used to conveniently store and retrieve values
+  associated with a name (a string for a date, a name, etc.). See
+  http://docs.python.org/tutorial/datastructures.html#dictionaries
+  for more information.
+
+  A dictionary can have keys (resp. values) with different types::
 
     >>> d = {'a':1, 'b':2, 3:'hello'}
     >>> d
@@ -407,19 +443,21 @@ between parentheses, or just separated by commas::
 Assignment operator
 -------------------
 
-`Python library reference
-<http://docs.python.org/reference/simple_stmts.html#assignment-statements>`_
-says:
+.. tip::
+
+ `Python library reference
+ <http://docs.python.org/reference/simple_stmts.html#assignment-statements>`_
+ says:
 
   Assignment statements are used to (re)bind names to values and to
   modify attributes or items of mutable objects.
 
-In short, it works as follows (simple assignment):
+ In short, it works as follows (simple assignment):
 
-#. an expression on the right hand side is evaluated, the corresponding
-   object is created/obtained
-#. a **name** on the left hand side is assigned, or bound, to the
-   r.h.s. object
+ #. an expression on the right hand side is evaluated, the corresponding
+    object is created/obtained
+ #. a **name** on the left hand side is assigned, or bound, to the
+    r.h.s. object
 
 Things to note:
 

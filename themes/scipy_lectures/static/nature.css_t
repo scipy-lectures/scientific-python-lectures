@@ -99,7 +99,7 @@ div.body p {
     margin-top : .7em;
 }
 
-div.body ul {
+div.body ul, div.body ol, div.body blockquote {
     margin-top : .3em;
 }
 
@@ -249,7 +249,8 @@ div.collapsed p.summary img {
 }
 
 div.collapsed p.admonition-title + p, div.collapsed p.admonition-title, 
-div.collapsed p, div.collapsed img, div.collapsed div, div.collapsed ul {
+div.collapsed p, div.collapsed img, div.collapsed div, div.collapsed ul, 
+div.collapsed ol {
     display: none;
 }
 
