@@ -51,6 +51,13 @@ li.transparent:hover span.hiddenlink {
 }
 
 /* -- page layout ----------------------------------------------------------- */
+
+/* Restrict the width of the body, to avoid very long lines */
+div.body {
+    max-width: 90ex;
+    margin-left: auto;
+    margin-right: auto;
+}
  
 /* special colors for exercises */
 div.green {
