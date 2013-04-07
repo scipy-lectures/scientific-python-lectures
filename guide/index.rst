@@ -41,19 +41,32 @@ useful to learning the main features of the scipy ecosystem. If you want to
 contribute to reference material, we suggest that you contribute to the
 documentation of the specific packages that you are interested in.
 
-Keeping it concise
-==================
+Keeping it concise: collapsing paragraphs
+===========================================
 
-The HTML output can be used for displaying on screen while
-teaching. The goal is to have the same material displayed as
-in the notes. This is why the HTML version should be kept concise, with
-bullet-lists rather than full-blown paragraphs and sentences.
-In the long run, we would like to build more elaborate discussions. For this,
-the policy is to use the::
+The HTML output is used for displaying on screen while teaching. The goal
+is to have the same material displayed as in the notes. Thus there needs
+to be a very concise display, with bullet-lists rather than full-blown
+paragraphs and sentences. However, in the long run, it is useful to have
+more elaborate discussions that people can read and refer to. For this,
+the ``tip`` sphinx directive will create collapsible paragraphs, that can
+be hidden during an oral presentation::
 
-   .. only:: pdf
+    .. tip::
 
-sphinx directive.
+        Here insert a full-blown discussion, that will be collapsable in
+        the HTML version.
+
+        It can span on multiple paragraphs
+
+This renders as following:
+
+    .. tip::
+
+        Here insert a full-blown discussion, that will be collapsable in
+        the HTML version.
+
+        It can span on multiple paragraphs
 
 Figures and code examples
 ==========================
