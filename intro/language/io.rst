@@ -1,9 +1,9 @@
 Input and Output
 ================
 
-To be exhaustive, here are some information about input and output in Python.
-Since we will use the Numpy methods to read and write files, you may skip this
-chapter at first reading.
+To be exhaustive, here are some information about input and output in
+Python. Since we will use the Numpy methods to read and write files,
+**you may skip this chapter at first reading**.
 
 We write or read **strings** to/from files (other types must be converted to
 strings). To write in a file::
