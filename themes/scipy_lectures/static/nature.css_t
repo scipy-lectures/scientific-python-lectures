@@ -187,6 +187,12 @@ table.hlist td {
     vertical-align: top;
 }
 
+
+table.hlist ul {
+    margin-top: 0em;
+}
+
+
 /************************ Admonitions ************************/
 
 div.admonition p {
