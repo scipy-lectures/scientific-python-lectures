@@ -45,8 +45,6 @@ Listed by alphabetical order.
 Additional Contributions
 =========================
 
-Fixes:
-
 - Akihiro Uchida
 
 - Corey Farwell
@@ -66,3 +64,5 @@ Fixes:
 - Sergio Oller
 
 - Robert Gieseke
+
+- Jonathan J. Helmus
