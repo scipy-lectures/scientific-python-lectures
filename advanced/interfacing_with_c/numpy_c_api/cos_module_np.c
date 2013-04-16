@@ -10,8 +10,10 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
 
     PyArrayObject *in_array;
     PyObject      *out_array;
-    PyArrayIterObject *in_iter;
-    PyArrayIterObject *out_iter;
+    NpyIter *in_iter;
+    NpyIter *out_iter;
+    NpyIter_IterNextFunc *in_iternext;
+    NpyIter_IterNextFunc *out_iternext;
 
     /*  parse single numpy array argument */
     if (!PyArg_ParseTuple(args, "O!", &PyArray_Type, &in_array))
@@ -23,37 +25,42 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
         return NULL;
 
     /*  create the iterators */
-    /* TODO: this iterator API is deprecated since 1.6
-     *       replace in favour of the new NpyIter API */
-    in_iter  = (PyArrayIterObject *)PyArray_IterNew((PyObject*)in_array);
-    out_iter = (PyArrayIterObject *)PyArray_IterNew(out_array);
-    if (in_iter == NULL || out_iter == NULL)
+    in_iter = NpyIter_New(in_array, NPY_ITER_READONLY, NPY_KEEPORDER,
+                             NPY_NO_CASTING, NULL);
+    if (in_iter == NULL)
         goto fail;
 
-    /*  iterate over the arrays */
-    while (in_iter->index < in_iter->size
-            && out_iter->index < out_iter->size) {
-        /* get the datapointers */
-        double * in_dataptr = (double *)in_iter->dataptr;
-        double * out_dataptr = (double *)out_iter->dataptr;
-        /* cosine of input into output */
-        *out_dataptr = cos(*in_dataptr);
-        /* update the iterator */
-        PyArray_ITER_NEXT(in_iter);
-        PyArray_ITER_NEXT(out_iter);
+    out_iter = NpyIter_New((PyArrayObject *)out_array, NPY_ITER_READWRITE,
+                          NPY_KEEPORDER, NPY_NO_CASTING, NULL);
+    if (out_iter == NULL) {
+        NpyIter_Deallocate(in_iter);
+        goto fail;
     }
 
+    in_iternext = NpyIter_GetIterNext(in_iter, NULL);
+    out_iternext = NpyIter_GetIterNext(out_iter, NULL);
+    if (in_iternext == NULL || out_iternext == NULL) {
+        NpyIter_Deallocate(in_iter);
+        NpyIter_Deallocate(out_iter);
+        goto fail;
+    }
+    double ** in_dataptr = (double **) NpyIter_GetDataPtrArray(in_iter);
+    double ** out_dataptr = (double **) NpyIter_GetDataPtrArray(out_iter);
+
+    /*  iterate over the arrays */
+    do {
+        **out_dataptr = cos(**in_dataptr);
+    } while(in_iternext(in_iter) && out_iternext(out_iter));
+
     /*  clean up and return the result */
-    Py_DECREF(in_iter);
-    Py_DECREF(out_iter);
+    NpyIter_Deallocate(in_iter);
+    NpyIter_Deallocate(out_iter);
     Py_INCREF(out_array);
     return out_array;
 
     /*  in case bad things happen */
     fail:
         Py_XDECREF(out_array);
-        Py_XDECREF(in_iter);
-        Py_XDECREF(out_iter);
         return NULL;
 }
 
