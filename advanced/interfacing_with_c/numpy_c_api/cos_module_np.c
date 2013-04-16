@@ -27,11 +27,15 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
     /*  create the iterators */
     in_iter = NpyIter_New(in_array, NPY_ITER_READONLY, NPY_KEEPORDER,
                              NPY_NO_CASTING, NULL);
+    if (in_iter == NULL)
+        goto fail;
 
     out_iter = NpyIter_New((PyArrayObject *)out_array, NPY_ITER_READWRITE,
                           NPY_KEEPORDER, NPY_NO_CASTING, NULL);
-    if (in_iter == NULL || out_iter == NULL) 
+    if (out_iter == NULL) {
+        NpyIter_Deallocate(in_iter);
         goto fail;
+    }
 
     in_iternext = NpyIter_GetIterNext(in_iter, NULL);
     out_iternext = NpyIter_GetIterNext(out_iter, NULL);
@@ -42,12 +46,12 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
     }
     double ** in_dataptr = (double **) NpyIter_GetDataPtrArray(in_iter);
     double ** out_dataptr = (double **) NpyIter_GetDataPtrArray(out_iter);
-    
+
     /*  iterate over the arrays */
     do {
         **out_dataptr = cos(**in_dataptr);
     } while(in_iternext(in_iter) && out_iternext(out_iter));
-    
+
     /*  clean up and return the result */
     NpyIter_Deallocate(in_iter);
     NpyIter_Deallocate(out_iter);
