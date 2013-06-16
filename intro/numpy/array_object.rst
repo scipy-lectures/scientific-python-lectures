@@ -346,11 +346,10 @@ There are also other types:
 
 :Much more:
 
-  .. sourcecode:: pycon
-
-        ``int32/int64...``
-
-
+    * ``int32``
+    * ``int64``
+    * ``unit32``
+    * ``unit64``
 
 .. XXX: mention: astype
 
