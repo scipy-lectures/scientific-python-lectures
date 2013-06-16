@@ -29,7 +29,7 @@ What are Numpy and numpy arrays
 
     - designed for scientific computation (convenience)
 
-::
+.. sourcecode:: pycon
 
     >>> import numpy as np
     >>> a = np.array([0, 1, 2, 3])
@@ -133,7 +133,9 @@ Reference documentation
 Creating arrays
 ---------------
 
-* **1-D**::
+* **1-D**:
+
+  .. sourcecode:: pycon
 
     >>> a = np.array([0, 1, 2, 3])
     >>> a
@@ -145,7 +147,9 @@ Creating arrays
     >>> len(a)
     4
 
-* **2-D, 3-D, ...**::
+* **2-D, 3-D, ...**:
+
+  .. sourcecode:: pycon
 
     >>> b = np.array([[0, 1, 2], [3, 4, 5]])    # 2 x 3 array
     >>> b
@@ -170,7 +174,9 @@ Creating arrays
 
 In practice, we rarely enter items one by one...
 
-* Evenly spaced::
+* Evenly spaced:
+
+  .. sourcecode:: pycon
 
     >>> import numpy as np
     >>> a = np.arange(10) # 0 .. n-1  (!)
@@ -180,7 +186,9 @@ In practice, we rarely enter items one by one...
     >>> b
     array([1, 3, 5, 7])
 
-* or by number of points::
+* or by number of points:
+
+  .. sourcecode:: pycon
 
     >>> c = np.linspace(0, 1, 6)   # start, end, num-points
     >>> c
@@ -189,7 +197,9 @@ In practice, we rarely enter items one by one...
     >>> d
     array([ 0. ,  0.2,  0.4,  0.6,  0.8])
 
-* Common arrays::
+* Common arrays:
+
+  .. sourcecode:: pycon
 
     >>> a = np.ones((3, 3))  # reminder: (3, 3) is a tuple
     >>> a
@@ -212,7 +222,9 @@ In practice, we rarely enter items one by one...
            [0, 0, 3, 0],
            [0, 0, 0, 4]])
 
-* :mod:`np.random`: random numbers (Mersenne Twister PRNG)::
+* :mod:`np.random`: random numbers (Mersenne Twister PRNG):
+
+  .. sourcecode:: pycon
 
     >>> a = np.random.rand(4)       # uniform in [0, 1]
     >>> a
@@ -275,7 +287,9 @@ Basic data types
 
 You may have noticed that, in some instances, array elements are displayed with
 a trailing dot (e.g. ``2.`` vs ``2``). This is due to a difference in the
-data-type used::
+data-type used:
+
+  .. sourcecode:: pycon
 
     >>> a = np.array([1, 2, 3])
     >>> a.dtype
@@ -294,18 +308,20 @@ data-type used::
 
 -----------------------------
 
-You can explicitly specify which data-type you want::
+You can explicitly specify which data-type you want:
+
+  .. sourcecode:: pycon
 
     >>> c = np.array([1, 2, 3], dtype=float)
     >>> c.dtype
     dtype('float64')
 
 
-The **default** data type is floating point
+The **default** data type is floating point:
 
 .. tip::
 
-   ::
+  .. sourcecode:: pycon
 
     >>> a = np.ones((3, 3))
     >>> a.dtype
@@ -315,11 +331,15 @@ There are also other types:
 
 :Complex:
 
+  .. sourcecode:: pycon
+
         >>> d = np.array([1+2j, 3+4j, 5+6*1j])
         >>> d.dtype
         dtype('complex128')
 
 :Bool:
+
+  .. sourcecode:: pycon
 
         >>> e = np.array([True, False, False, True])
         >>> e.dtype
@@ -327,11 +347,15 @@ There are also other types:
 
 :Strings:
 
+  .. sourcecode:: pycon
+
         >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
         >>> f.dtype     # <--- strings containing max. 7 letters
         dtype('S7')
 
 :Much more:
+
+  .. sourcecode:: pycon
 
         ``int32/int64...``
 
@@ -352,11 +376,20 @@ Start by launching IPython in *pylab* mode
 
     $ ipython --pylab
 
+Or the notebook:
+
+.. sourcecode:: bash
+
+   $ ipython notebook --pylab=inline
+
+
 *Matplotlib* is a 2D plotting package. We can import its functions as below::
 
     >>> import matplotlib.pyplot as plt  # the tidy way
 
-* **1D plotting**::
+* **1D plotting**:
+
+  .. sourcecode:: pycon
 
     >>> x = np.linspace(0, 3, 20)
     >>> y = np.linspace(0, 9, 20)
@@ -368,7 +401,9 @@ Start by launching IPython in *pylab* mode
 
   .. plot:: pyplots/numpy_intro_1.py
 
-* **2D arrays** (such as images)::
+* **2D arrays** (such as images):
+
+  .. sourcecode:: pycon
 
     >>> image = np.random.rand(30, 30)
     >>> plt.imshow(image, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
@@ -382,7 +417,7 @@ Start by launching IPython in *pylab* mode
   .. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
 
 
-* **3D plotting**
+* **3D plotting**:
 
   For 3D visualization, we can use another package: **Mayavi**. A quick example:
   start by **relaunching iPython** with these options: **ipython --pylab=wx**
@@ -416,7 +451,9 @@ Indexing and slicing
 --------------------
 
 The items of an array can be accessed and assigned to the same way as
-other Python sequences (e.g. lists) ::
+other Python sequences (e.g. lists):
+
+  .. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
@@ -429,7 +466,9 @@ other Python sequences (e.g. lists) ::
    Indices begin at 0, like other Python sequences (and C/C++).
    In contrast, in Fortran or Matlab, indices begin at 1.
 
-For multidimensional arrays, indexes are tuples of integers::
+For multidimensional arrays, indexes are tuples of integers:
+
+  .. sourcecode:: pycon
 
     >>> a = np.diag(np.arange(3))
     >>> a
@@ -452,7 +491,9 @@ Note that:
 * for multidimensional ``a``, ``a[0]`` is interpreted by
   taking all elements in the unspecified dimensions.
 
-**Slicing** Arrays, like other Python sequences can also be sliced::
+**Slicing** Arrays, like other Python sequences can also be sliced:
+
+  .. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
@@ -460,13 +501,18 @@ Note that:
     >>> a[2:9:3] # [start:end:step]
     array([2, 5, 8])
 
-Note that the last index is not included! ::
+Note that the last index is not included! :
+
+  .. sourcecode:: pycon
+
 
     >>> a[:4]
     array([0, 1, 2, 3])
 
 All three slice components are not required: by default, `start` is 0,
-`end` is the last and `step` is 1::
+`end` is the last and `step` is 1:
+
+  .. sourcecode:: pycon
 
     >>> a[1:3]
     array([1, 2])
@@ -495,7 +541,9 @@ A slicing operation creates a **view** on the original array, which is
 just a way of accessing array data. Thus the original array is not
 copied in memory.
 
-**When modifying the view, the original array is modified as well**::
+**When modifying the view, the original array is modified as well**:
+
+  .. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
@@ -519,7 +567,9 @@ memory and time.
 
 .. warning:: **The transpose is a view**
 
-   As a result, a matrix cannot be made symmetric in-place::
+   As a result, a matrix cannot be made symmetric in-place:
+
+  .. sourcecode:: pycon
 
     >>> a = np.ones((100, 100))
     >>> a += a.T
@@ -551,15 +601,21 @@ memory and time.
    Compute prime numbers in 0--99, with a sieve
 
    * Construct a shape (100,) boolean array ``is_prime``,
-     filled with True in the beginning::
+     filled with True in the beginning:
+
+  .. sourcecode:: pycon
 
        >>> is_prime = np.ones((100,), dtype=bool)
 
-   * Cross out 0 and 1 which are not primes::
+   * Cross out 0 and 1 which are not primes:
+
+  .. sourcecode:: pycon
 
        >>> is_prime[:2] = 0
 
-   * For each integer ``j`` starting from 2, cross out its higher multiples::
+   * For each integer ``j`` starting from 2, cross out its higher multiples:
+
+  .. sourcecode:: pycon
 
        >>> N_max = int(np.sqrt(len(is_prime)))
        >>> for j in range(2, N_max):
@@ -592,7 +648,7 @@ Fancy indexing
 Using boolean masks
 ...................
 
-::
+  .. sourcecode:: pycon
 
     >>> np.random.seed(3)
     >>> a = np.random.random_integers(0, 20, 15)
@@ -606,7 +662,9 @@ Using boolean masks
     >>> extract_from_a           # extract a sub-array with the mask
     array([ 3,  0,  9,  6,  0, 12])
 
-Indexing with a mask can be very useful to assign a new value to a sub-array::
+Indexing with a mask can be very useful to assign a new value to a sub-array:
+
+  .. sourcecode:: pycon
 
     >>> a[a % 3 == 0] = -1
     >>> a
@@ -616,19 +674,24 @@ Indexing with a mask can be very useful to assign a new value to a sub-array::
 Indexing with an array of integers
 ....................................
 
-::
+
+  .. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
 Indexing can be done with an array of integers, where the same index is repeated
-several time::
+several time:
+
+  .. sourcecode:: pycon
 
     >>> a[[2, 3, 2, 4, 2]]  # note: [2, 3, 2, 4, 2] is a Python list
     array([2, 3, 2, 4, 2])
 
-New values can be assigned with this kind of indexing::
+New values can be assigned with this kind of indexing:
+
+  .. sourcecode:: pycon
 
     >>> a[[9, 7]] = -10
     >>> a
@@ -637,7 +700,9 @@ New values can be assigned with this kind of indexing::
 .. tip::
 
   When a new array is created by indexing with an array of integers, the
-  new array has the same shape than the array of integers::
+  new array has the same shape than the array of integers:
+
+  .. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> idx = np.array([[3, 4], [9, 7]])
@@ -663,7 +728,9 @@ The image below illustrates various fancy indexing applications
         :width: 80%
 
 We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
-the same time::
+the same time:
+
+  .. sourcecode:: pycon
 
     >>> a = np.arange(12).reshape(3,4)
     >>> a
