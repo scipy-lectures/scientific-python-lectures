@@ -603,19 +603,19 @@ memory and time.
    * Construct a shape (100,) boolean array ``is_prime``,
      filled with True in the beginning:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
-       >>> is_prime = np.ones((100,), dtype=bool)
+        >>> is_prime = np.ones((100,), dtype=bool)
 
    * Cross out 0 and 1 which are not primes:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
        >>> is_prime[:2] = 0
 
    * For each integer ``j`` starting from 2, cross out its higher multiples:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
        >>> N_max = int(np.sqrt(len(is_prime)))
        >>> for j in range(2, N_max):
