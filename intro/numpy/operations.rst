@@ -313,10 +313,10 @@ Sum by rows and by columns:
 
   .. sourcecode:: pycon
 
-  >>> n_stories = 1000 # number of walkers
-  >>> t_max = 200      # time during which we follow the walker
+   >>> n_stories = 1000 # number of walkers
+   >>> t_max = 200      # time during which we follow the walker
 
-  We randomly choose all the steps 1 or -1 of the walk::
+  We randomly choose all the steps 1 or -1 of the walk:
 
   .. sourcecode:: pycon
 
@@ -324,8 +324,6 @@ Sum by rows and by columns:
    >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
    >>> np.unique(steps) # Verification: all steps are 1 or -1
    array([-1,  1])
-
-  .. sourcecode:: pycon
 
   We build the walks by summing steps along the time:
 
@@ -339,8 +337,6 @@ Sum by rows and by columns:
   .. sourcecode:: pycon
 
    >>> mean_sq_distance = np.mean(sq_distance, axis=0)
-
-  .. sourcecode:: pycon
 
   Plot the results:
 
