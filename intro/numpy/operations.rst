@@ -249,7 +249,7 @@ Sum by rows and by columns:
 
 .. topic:: Example: data statistics
 
-  Data in :download:`populations.txt <../../data/populations.txt>`
+  Data in :download:`populations.txt <../../data/populations.txt>`_
   describes the populations of hares and lynxes (and carrots) in northern
   Canada during 20 years.
 
