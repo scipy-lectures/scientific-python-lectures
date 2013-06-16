@@ -36,21 +36,17 @@ What are Numpy and numpy arrays
     >>> a
     array([0, 1, 2, 3])
 
-.. tip::
+For example, An array containing:
 
-   **For example:**
+* values of an experiment/simulation at discrete time steps
 
-    An array containing:
+* signal recorded by a measurement device, e.g. sound wave
 
-    * values of an experiment/simulation at discrete time steps
+* pixels of an image, grey-level or colour
 
-    * signal recorded by a measurement device, e.g. sound wave
+* 3-D data measured at different X-Y-Z positions, e.g. MRI scan
 
-    * pixels of an image, grey-level or colour
-
-    * 3-D data measured at different X-Y-Z positions, e.g. MRI scan
-
-    * ...
+* ...
 
 **Why it is useful:** Memory-efficient container that provides fast numerical
 operations.
