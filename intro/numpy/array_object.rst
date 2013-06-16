@@ -95,9 +95,9 @@ Reference documentation
      array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
      ...
 
-  .. tip::
+  .. tip:
 
-   .. code-block:: python
+   .. sourcecode:: pycon
 
      >>> help(np.array)    # doctest: +ELLIPSIS
      Help on built-in function array in module numpy.core.multiarray:
@@ -109,7 +109,7 @@ Reference documentation
 
 - Looking for something:
 
-  .. code-block:: python
+  .. sourcecode:: pycon
 
      >>> np.lookfor('create array')    # doctest: +ELLIPSIS
      Search results for 'create array'
