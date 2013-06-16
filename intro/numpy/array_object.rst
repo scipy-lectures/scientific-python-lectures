@@ -36,8 +36,8 @@ What are Numpy and numpy arrays
     >>> a
     array([0, 1, 2, 3])
 
-.. tip:: 
-   
+.. tip::
+
    **For example:**
 
     An array containing:
@@ -96,7 +96,7 @@ Reference documentation
      ...
 
   .. tip::
-  
+
    .. code-block:: python
 
      >>> help(np.array)    # doctest: +ELLIPSIS
@@ -304,7 +304,7 @@ You can explicitly specify which data-type you want::
 The **default** data type is floating point
 
 .. tip::
-   
+
    ::
 
     >>> a = np.ones((3, 3))
