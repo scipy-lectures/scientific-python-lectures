@@ -93,7 +93,6 @@ Reference documentation
      String Form:<built-in function array>
      Docstring:
      array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
-     ...
 
   .. tip:
 
@@ -104,7 +103,6 @@ Reference documentation
      <BLANKLINE>
      array(...)
          array(object, dtype=None, copy=True, order=None, subok=False, ...
-     ...
 
 
 - Looking for something:
@@ -118,7 +116,6 @@ Reference documentation
          Create an array.
      numpy.memmap
          Create a memory-map to an array stored in a *binary* file on disk.
-     ...
 
   .. sourcecode:: ipython
 
