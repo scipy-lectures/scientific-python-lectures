@@ -316,8 +316,6 @@ You can explicitly specify which data-type you want:
 
 The **default** data type is floating point:
 
-.. tip::
-
 .. sourcecode:: pycon
 
     >>> a = np.ones((3, 3))
