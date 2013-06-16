@@ -405,11 +405,10 @@ Or, if you are using *pylab* (the plot will display immediately):
 
     >>> x = np.linspace(0, 3, 20)
     >>> y = np.linspace(0, 9, 20)
-    >>> plt.plot(x, y)       # line plot    # doctest: +ELLIPSIS
+    >>> plot(x, y)       # line plot    # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +ELLIPSIS
+    >>> plot(x, y, 'o')  # dot plot    # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.show()           # <-- shows the plot (not needed with Ipython) # doctest: +SKIP
 
   .. plot:: pyplots/numpy_intro_1.py
 
@@ -418,11 +417,10 @@ Or, if you are using *pylab* (the plot will display immediately):
   .. sourcecode:: pycon
 
     >>> image = np.random.rand(30, 30)
-    >>> plt.imshow(image, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+    >>> imshow(image, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at ...>
-    >>> plt.colorbar()    # doctest: +ELLIPSIS
+    >>> colorbar()    # doctest: +ELLIPSIS
     <matplotlib.colorbar.Colorbar instance at ...>
-    >>> plt.show() # doctest: +SKIP
 
   .. plot:: pyplots/numpy_intro_2.py
 
