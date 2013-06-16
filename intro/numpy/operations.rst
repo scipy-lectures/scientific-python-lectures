@@ -774,6 +774,33 @@ Finding minima and maxima:
     * Fancy indexing: ``a[a > 3]``, ``a[[2, 3]]``
     * Sorting data: ``.sort()``, ``np.sort``, ``np.argsort``, ``np.argmax``
 
+Summary
+--------
+
+**What do you need to know to get started?**
+
+* Know how to create arrays : ``array``, ``arange``, ``ones``,
+  ``zeros``.
+
+* Know the shape of the array with ``array.shape``, then use slicing
+  to obtain different views of the array: ``array[::2]``,
+  etc. Adjust the shape of the array using ``reshape`` or flatten it
+  with ``ravel``.
+
+* Obtain a subset of the elements of an array and/or modify their values
+  with masks::
+
+  >>> a[a < 0] = 0
+
+* Know miscellaneous operations on arrays, such as finding the mean or max
+  (``array.max()``, ``array.mean()``). No need to retain everything, but
+  have the reflex to search in the documentation (online docs,
+  ``help()``, ``lookfor()``)!!
+
+* For advanced use: master the indexing with arrays of integers, as well as
+  broadcasting. Know more Numpy functions to handle various array
+  operations.
+
 Some exercises
 ----------------
 
@@ -1022,32 +1049,5 @@ Some exercises
     reductions, ``abs()``, ``argmin``, comparisons, ``all``,
     ``np.linalg.norm``, etc.
 
-
-Summary
---------
-
-**What do you need to know to get started?**
-
-* Know how to create arrays : ``array``, ``arange``, ``ones``,
-  ``zeros``.
-
-* Know the shape of the array with ``array.shape``, then use slicing
-  to obtain different views of the array: ``array[::2]``,
-  etc. Adjust the shape of the array using ``reshape`` or flatten it
-  with ``ravel``.
-
-* Obtain a subset of the elements of an array and/or modify their values
-  with masks::
-
-  >>> a[a < 0] = 0
-
-* Know miscellaneous operations on arrays, such as finding the mean or max
-  (``array.max()``, ``array.mean()``). No need to retain everything, but
-  have the reflex to search in the documentation (online docs,
-  ``help()``, ``lookfor()``)!!
-
-* For advanced use: master the indexing with arrays of integers, as well as
-  broadcasting. Know more Numpy functions to handle various array
-  operations.
 
 
