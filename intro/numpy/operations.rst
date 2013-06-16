@@ -17,7 +17,9 @@ Numerical operations on arrays
 Elementwise operations
 ----------------------
 
-With scalars::
+With scalars:
+
+.. sourcecode:: pycon
 
     >>> a = np.array([1, 2, 3, 4])
     >>> a + 1
@@ -25,7 +27,9 @@ With scalars::
     >>> 2**a
     array([ 2,  4,  8, 16])
 
-All arithmetic operates elementwise::
+All arithmetic operates elementwise:
+
+.. sourcecode:: pycon
 
     >>> b = np.ones(4) + 1
     >>> a - b
@@ -39,7 +43,7 @@ All arithmetic operates elementwise::
 
 .. warning:: **Array multiplication is not matrix multiplication:**
 
-    ::
+    .. sourcecode:: pycon
 
         >>> c = np.ones((3, 3))
         >>> c * c                   # NOT matrix multiplication!
@@ -49,14 +53,16 @@ All arithmetic operates elementwise::
 
 .. note:: **Matrix multiplication:**
 
-    ::
+    .. sourcecode:: pycon
 
         >>> c.dot(c)
         array([[ 3.,  3.,  3.],
                 [ 3.,  3.,  3.],
                 [ 3.,  3.,  3.]])
 
-Comparisons::
+Comparisons:
+
+.. sourcecode:: pycon
 
     >>> a = np.array([1, 2, 3, 4])
     >>> b = np.array([4, 2, 2, 4])
@@ -65,7 +71,10 @@ Comparisons::
     >>> a > b
     array([False, False,  True, False], dtype=bool)
 
-Logical operations::
+
+Logical operations:
+
+.. sourcecode:: pycon
 
     >>> a = np.array([1, 1, 0, 0], dtype=bool)
     >>> b = np.array([1, 0, 1, 0], dtype=bool)
@@ -86,7 +95,9 @@ Shape mismatches
 
 **Broadcasting?** We'll return to that :ref:`later <broadcasting>`.
 
-Transposition::
+Transposition:
+
+.. sourcecode:: pycon
 
     >>> a = np.triu(np.ones((3, 3)), 1)   # see help(np.triu)
     >>> a
@@ -97,6 +108,20 @@ Transposition::
     array([[ 0.,  0.,  0.],
            [ 1.,  0.,  0.],
            [ 1.,  1.,  0.]])
+
+.. tip::
+
+   Array-wise comparisons:
+
+   .. sourcecode:: pycon
+
+    >>> a = np.array([1, 2, 3, 4])
+    >>> b = np.array([4, 2, 2, 4])
+    >>> c = np.array([1, 2, 3, 4])
+    >>> np.array_equal(a, b)
+    False
+    >>> np.array_equal(a, c)
+    True
 
 .. note:: **Linear algebra**
 
@@ -116,7 +141,9 @@ Transposition::
 Basic reductions
 ----------------
 
-Computing sums::
+Computing sums:
+
+.. sourcecode:: pycon
 
     >>> x = np.array([1, 2, 3, 4])
     >>> np.sum(x)
@@ -127,7 +154,9 @@ Computing sums::
 .. image:: reductions.png
     :align: right
 
-Sum by rows and by columns::
+Sum by rows and by columns:
+
+.. sourcecode:: pycon
 
     >>> x = np.array([[1, 1], [2, 2]])
     >>> x
@@ -144,7 +173,9 @@ Sum by rows and by columns::
 
 .. tip::
 
-  Same idea in higher dimensions::
+  Same idea in higher dimensions:
+
+  .. sourcecode:: pycon
 
     >>> x = np.random.rand(2, 2, 2)
     >>> x.sum(axis=2)[0, 1]     # doctest: +ELLIPSIS
@@ -154,7 +185,9 @@ Sum by rows and by columns::
 
 **Other reductions** --- works the same way (and take ``axis=``)
 
-- Statistics::
+- Statistics:
+
+  .. sourcecode:: pycon
 
     >>> x = np.array([1, 2, 3, 1])
     >>> y = np.array([[1, 2, 3], [5, 6, 1]])
@@ -168,7 +201,9 @@ Sum by rows and by columns::
     >>> x.std()          # full population standard dev.
     0.82915619758884995
 
-- Extrema::
+- Extrema:
+
+  .. sourcecode:: pycon
 
     >>> x = np.array([1, 3, 2])
     >>> x.min()
@@ -181,7 +216,9 @@ Sum by rows and by columns::
     >>> x.argmax()  # index of maximum
     1
 
-- Logical operations::
+- Logical operations:
+
+  .. sourcecode:: pycon
 
     >>> np.all([True, True, False])
     False
@@ -190,7 +227,9 @@ Sum by rows and by columns::
 
   .. note::
 
-     Can be used for array comparisons::
+     Can be used for array comparisons:
+
+     .. sourcecode:: pycon
 
         >>> a = np.zeros((100, 100))
         >>> np.any(a != 0)
@@ -212,7 +251,9 @@ Sum by rows and by columns::
   describes the populations of hares and lynxes (and carrots) in northern
   Canada during 20 years.
 
-  We can first plot the data::
+  We can first plot the data:
+
+  .. sourcecode:: pycon
 
     >>> data = np.loadtxt('data/populations.txt')
     >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
@@ -227,18 +268,24 @@ Sum by rows and by columns::
 
   .. plot:: pyplots/numpy_intro_4.py
 
-  The mean populations over time::
+  The mean populations over time:
+
+  .. sourcecode:: pycon
 
     >>> populations = data[:, 1:]
     >>> populations.mean(axis=0)
     array([ 34080.95238095,  20166.66666667,  42400.        ])
 
-  The sample standard deviations::
+  The sample standard deviations:
+
+  .. sourcecode:: pycon
 
     >>> populations.std(axis=0)
     array([ 20897.90645809,  16254.59153691,   3322.50622558])
 
-  Which species has the highest population each year?::
+  Which species has the highest population each year?:
+
+  .. sourcecode:: pycon
 
     >>> np.argmax(populations, axis=1)
     array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
@@ -262,26 +309,40 @@ Sum by rows and by columns::
         :align: center
         :width: 100%
 
+  .. sourcecode:: pycon
+
   >>> n_stories = 1000 # number of walkers
   >>> t_max = 200      # time during which we follow the walker
 
   We randomly choose all the steps 1 or -1 of the walk::
+
+  .. sourcecode:: pycon
 
    >>> t = np.arange(t_max)
    >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
    >>> np.unique(steps) # Verification: all steps are 1 or -1
    array([-1,  1])
 
-  We build the walks by summing steps along the time::
+  .. sourcecode:: pycon
+
+  We build the walks by summing steps along the time:
+
+  .. sourcecode:: pycon
 
    >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
    >>> sq_distance = positions**2
 
-  We get the mean in the axis of the stories::
+  We get the mean in the axis of the stories:
+
+  .. sourcecode:: pycon
 
    >>> mean_sq_distance = np.mean(sq_distance, axis=0)
 
-  Plot the results::
+  .. sourcecode:: pycon
+
+  Plot the results:
+
+  .. sourcecode:: pycon
 
    >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
    <matplotlib.figure.Figure object at ...>
@@ -291,7 +352,6 @@ Sum by rows and by columns::
    <matplotlib.text.Text object at ...>
    >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
    <matplotlib.text.Text object at ...>
-
 
   .. plot:: pyplots/numpy_intro_5.py
 
@@ -338,7 +398,9 @@ The image below gives an example of broadcasting:
         :align: center
         :width: 100%
 
-Let's verify::
+Let's verify:
+
+.. sourcecode:: pycon
 
     >>> a = np.tile(np.arange(0, 40, 10), (3, 1)).T
     >>> a
@@ -353,7 +415,9 @@ Let's verify::
            [20, 21, 22],
            [30, 31, 32]])
 
-An useful trick::
+An useful trick:
+
+.. sourcecode:: pycon
 
     >>> a = np.arange(0, 40, 10)
     >>> a.shape
@@ -372,7 +436,9 @@ An useful trick::
            [20, 21, 22],
            [30, 31, 32]])
 
-We have already used broadcasting without knowing it!::
+We have already used broadcasting without knowing it!:
+
+.. sourcecode:: pycon
 
     >>> a = np.ones((4, 5))
     >>> a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
@@ -394,7 +460,7 @@ We have already used broadcasting without knowing it!::
   Route 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City,
   Amarillo, Santa Fe, Albuquerque, Flagstaff and Los Angeles.
 
-  ::
+  .. sourcecode:: pycon
 
       >>> mileposts = np.array([0, 198, 303, 736, 871, 1175, 1475, 1544,
       ...        1913, 2448])
@@ -431,7 +497,9 @@ the origin of points on a 10x10 grid, we can do
            [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
            [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
 
-Or in color::
+Or in color:
+
+.. sourcecode:: pycon
 
     >>> plt.pcolor(distance)    # doctest: +ELLIPSIS
     <matplotlib.collections.PolyCollection object at ...>
@@ -444,7 +512,9 @@ Or in color::
 
 
 **Remark** : the ``numpy.ogrid`` function allows to directly create vectors x
-and y of the previous example, with two "significant dimensions"::
+and y of the previous example, with two "significant dimensions":
+
+.. sourcecode:: pycon
 
     >>> x, y = np.ogrid[0:5, 0:5]
     >>> x, y
@@ -462,7 +532,9 @@ and y of the previous example, with two "significant dimensions"::
   So, ``np.ogrid`` is very useful as soon as we have to handle
   computations on a grid. On the other hand, ``np.mgrid`` directly
   provides matrices full of indices for cases where we can't (or don't
-  want to) benefit from broadcasting::
+  want to) benefit from broadcasting:
+
+  .. sourcecode:: pycon
 
     >>> x, y = np.mgrid[0:4, 0:4]
     >>> x
@@ -496,7 +568,7 @@ Array shape manipulation
 Flattening
 ...........
 
-::
+.. sourcecode:: pycon
 
     >>> a = np.array([[1, 2, 3], [4, 5, 6]])
     >>> a.ravel()
@@ -513,7 +585,9 @@ Higher dimensions: last dimensions ravel out "first".
 Reshaping
 .........
 
-The inverse operation to flattening::
+The inverse operation to flattening:
+
+.. sourcecode:: pycon
 
     >>> a.shape
     (2, 3)
@@ -522,7 +596,9 @@ The inverse operation to flattening::
     array([[1, 2, 3],
            [4, 5, 6]])
 
-Or, ::
+Or,
+
+.. sourcecode:: pycon
 
     >>> a.reshape((2, -1))    # unspecified (-1) value is inferred
 
@@ -533,7 +609,7 @@ Or, ::
 
 .. tip::
 
-  ::
+   .. sourcecode:: pycon
 
     >>> b[0, 0] = 99
     >>> a
@@ -541,7 +617,9 @@ Or, ::
         17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
         34, 35])
 
-  Beware: reshape may also return a copy!::
+   Beware: reshape may also return a copy!:
+
+  .. sourcecode:: pycon
 
     >>> a = np.zeros((3, 2))
     >>> b = a.T.reshape(3*2)
@@ -556,7 +634,9 @@ Or, ::
 Adding a dimension
 ...................
 
-Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
+Indexing with the ``np.newaxis`` object allows us to add an axis to an array:
+
+.. sourcecode:: pycon
 
     >>> z = np.array([1, 2, 3])
     >>> z
@@ -575,7 +655,7 @@ Indexing with the ``np.newaxis`` object allows us to add an axis to an array::
 Dimension shuffling
 ....................
 
-::
+.. sourcecode:: pycon
 
     >>> a = np.arange(4*3*2).reshape(4, 3, 2)
     >>> a.shape
@@ -588,7 +668,9 @@ Dimension shuffling
     >>> b[2, 1, 0]
     5
 
-Also creates a view::
+Also creates a view:
+
+.. sourcecode:: pycon
 
     >>> b[2, 1, 0] = -1
     >>> a[0, 2, 1]
@@ -597,7 +679,9 @@ Also creates a view::
 Resizing
 .........
 
-Size of an array can be changed with ``ndarray.resize``::
+Size of an array can be changed with ``ndarray.resize``:
+
+.. sourcecode:: pycon
 
     >>> a = np.arange(4)
     >>> a.resize((8,))
@@ -684,7 +768,9 @@ Some examples of real-world use cases
    In short: for **block matrices and vectors**, it can be useful
    to preserve the **block structure**.
 
-   In Numpy::
+   In Numpy:
+
+.. sourcecode:: pycon
 
     >>> psi = np.zeros((2, 2))   # dimensions: level, spin
     >>> psi[0, 1] # <-- psi_{1,downarrow}
@@ -711,6 +797,8 @@ Some examples of real-world use cases
       \,,
       \qquad
       \ldots
+
+.. sourcecode:: pycon
 
    >>> H = np.zeros((2, 2, 2, 2)) # dimensions: level1, level2, spin1, spin2
    >>> h_11 = H[0,0,:,:]
@@ -750,7 +838,9 @@ Some examples of real-world use cases
 Sorting data
 ------------
 
-Sorting along an axis::
+Sorting along an axis:
+
+.. sourcecode:: pycon
 
     >>> a = np.array([[4, 3, 5], [1, 2, 1]])
     >>> b = np.sort(a, axis=1)
@@ -760,14 +850,18 @@ Sorting along an axis::
 
 .. note:: Sorts each row separately!
 
-In-place sort::
+In-place sort:
+
+.. sourcecode:: pycon
 
     >>> a.sort(axis=1)
     >>> a
     array([[3, 4, 5],
            [1, 1, 2]])
 
-Sorting with fancy indexing::
+Sorting with fancy indexing:
+
+.. sourcecode:: pycon
 
     >>> a = np.array([4, 3, 1, 2])
     >>> j = np.argsort(a)
@@ -776,7 +870,9 @@ Sorting with fancy indexing::
     >>> a[j]
     array([1, 2, 3, 4])
 
-Finding minima and maxima::
+Finding minima and maxima:
+
+.. sourcecode:: pycon
 
     >>> a = np.array([4, 3, 1, 2])
     >>> j_max = np.argmax(a)
@@ -805,6 +901,7 @@ Some exercises
     famous image of Lena (http://www.cs.cmu.edu/~chuck/lennapg/).
     ``scipy`` provides a 2D array of this image with the ``scipy.lena``
     function::
+
 
         >>> from scipy import misc
         >>> lena = misc.lena()
@@ -882,7 +979,9 @@ Some exercises
 
        and generate a new array containing its 2nd and 4th rows.
 
-    2. Divide each column of the array::
+    2. Divide each column of the array:
+
+       .. sourcecode:: pycon
 
         >>> a = np.arange(25).reshape(5, 5)
 
@@ -904,7 +1003,9 @@ Some exercises
 
    The data in :download:`populations.txt <../../data/populations.txt>`::
    describes the populations of hares and lynxes (and carrots) in
-   northern Canada during 20 years::
+   northern Canada during 20 years:
+
+   .. sourcecode:: pycon
 
     >>> data = np.loadtxt('data/populations.txt')
     >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
@@ -995,6 +1096,8 @@ Some exercises
     3. Form the 2-d boolean mask indicating which points are in the set
 
     4. Save the result to an image with::
+
+   .. sourcecode:: pycon
 
         >>> import matplotlib.pyplot as plt
         >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5]) # doctest: +ELLIPSIS
