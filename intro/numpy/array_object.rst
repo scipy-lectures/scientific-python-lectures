@@ -289,7 +289,7 @@ You may have noticed that, in some instances, array elements are displayed with
 a trailing dot (e.g. ``2.`` vs ``2``). This is due to a difference in the
 data-type used:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a = np.array([1, 2, 3])
     >>> a.dtype
@@ -310,7 +310,7 @@ data-type used:
 
 You can explicitly specify which data-type you want:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> c = np.array([1, 2, 3], dtype=float)
     >>> c.dtype
@@ -321,7 +321,7 @@ The **default** data type is floating point:
 
 .. tip::
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a = np.ones((3, 3))
     >>> a.dtype
@@ -383,9 +383,24 @@ Or the notebook:
    $ ipython notebook --pylab=inline
 
 
-*Matplotlib* is a 2D plotting package. We can import its functions as below::
+*Matplotlib* is a 2D plotting package. We can import its functions as below:
+
+.. sourcecode:: pycon
 
     >>> import matplotlib.pyplot as plt  # the tidy way
+
+And then use (note that you have to use ``show`` explicitly):
+
+.. sourcecode:: pycon
+
+    >>> plt.plot(x, y)       # line plot    # doctest: +ELLIPSIS
+    >>> plt.show()               # <-- shows the plot (not needed with pylab) # doctest: +SKIP
+
+Or, if you are using *pylab* (the plot will display immediately):
+
+.. sourcecode:: pycon
+
+    >>> plot(x, y)       # line plot    # doctest: +ELLIPSIS
 
 * **1D plotting**:
 
@@ -453,7 +468,7 @@ Indexing and slicing
 The items of an array can be accessed and assigned to the same way as
 other Python sequences (e.g. lists):
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
@@ -468,7 +483,7 @@ other Python sequences (e.g. lists):
 
 For multidimensional arrays, indexes are tuples of integers:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a = np.diag(np.arange(3))
     >>> a
@@ -493,7 +508,7 @@ Note that:
 
 **Slicing** Arrays, like other Python sequences can also be sliced:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
@@ -503,7 +518,7 @@ Note that:
 
 Note that the last index is not included! :
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
 
     >>> a[:4]
@@ -512,7 +527,7 @@ Note that the last index is not included! :
 All three slice components are not required: by default, `start` is 0,
 `end` is the last and `step` is 1:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a[1:3]
     array([1, 2])
@@ -543,7 +558,7 @@ copied in memory.
 
 **When modifying the view, the original array is modified as well**:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
@@ -648,7 +663,7 @@ Fancy indexing
 Using boolean masks
 ...................
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> np.random.seed(3)
     >>> a = np.random.random_integers(0, 20, 15)
@@ -664,7 +679,7 @@ Using boolean masks
 
 Indexing with a mask can be very useful to assign a new value to a sub-array:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a[a % 3 == 0] = -1
     >>> a
@@ -675,7 +690,7 @@ Indexing with an array of integers
 ....................................
 
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
@@ -684,14 +699,14 @@ Indexing with an array of integers
 Indexing can be done with an array of integers, where the same index is repeated
 several time:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a[[2, 3, 2, 4, 2]]  # note: [2, 3, 2, 4, 2] is a Python list
     array([2, 3, 2, 4, 2])
 
 New values can be assigned with this kind of indexing:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a[[9, 7]] = -10
     >>> a
@@ -730,7 +745,7 @@ The image below illustrates various fancy indexing applications
 We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
 the same time:
 
-  .. sourcecode:: pycon
+.. sourcecode:: pycon
 
     >>> a = np.arange(12).reshape(3,4)
     >>> a
