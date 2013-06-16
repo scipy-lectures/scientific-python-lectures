@@ -134,8 +134,10 @@ Transposition:
 .. topic:: Exercise
     :class: green
 
-    Generate arrays ``[2**0, 2**1, 2**2, 2**3, 2**4]`` and
-    ``a_j = 2^(3*j) - j``
+    Generate arrays:
+
+    * ``[2**0, 2**1, 2**2, 2**3, 2**4]``
+    * ``a_j = 2^(3*j) - j``
 
 
 Basic reductions
