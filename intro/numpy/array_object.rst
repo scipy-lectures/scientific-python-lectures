@@ -811,19 +811,19 @@ The image below illustrates various fancy indexing applications
         :align: center
         :width: 80%
 
-We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
-the same time:
-
-.. sourcecode:: pycon
-
-    >>> a = np.arange(12).reshape(3,4)
-    >>> a
-    array([[ 0,  1,  2,  3],
-           [ 4,  5,  6,  7],
-           [ 8,  9, 10, 11]])
-    >>> i = np.array([[0, 1], [1, 2]])
-    >>> a[i, 2] # same as a[i, 2*np.ones((2, 2), dtype=int)]
-    array([[ 2,  6],
-           [ 6, 10]])
+.. We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
+.. the same time:
+.. 
+.. .. sourcecode:: pycon
+.. 
+..     >>> a = np.arange(12).reshape(3,4)
+..     >>> a
+..     array([[ 0,  1,  2,  3],
+..            [ 4,  5,  6,  7],
+..            [ 8,  9, 10, 11]])
+..     >>> i = np.array([[0, 1], [1, 2]])
+..     >>> a[i, 2] # same as a[i, 2*np.ones((2, 2), dtype=int)]
+..     array([[ 2,  6],
+..            [ 6, 10]])
 
 
