@@ -246,9 +246,6 @@ In practice, we rarely enter items one by one...
 
 
 
-.. array() constructor
-
-.. empty, zeros, arange, linspace
 
 .. EXE: construct 1 2 3 4 5
 .. EXE: construct -5, -4, -3, -2, -1
