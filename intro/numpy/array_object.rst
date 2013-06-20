@@ -612,7 +612,9 @@ Copies and views
 
 A slicing operation creates a **view** on the original array, which is
 just a way of accessing array data. Thus the original array is not
-copied in memory.
+copied in memory. You can use ``np.may_share_memory()`` to check if two arrays
+share the same memory block. Note however, that this uses heuristics and may
+give you false positives.
 
 **When modifying the view, the original array is modified as well**:
 
@@ -621,8 +623,11 @@ copied in memory.
     >>> a = np.arange(10)
     >>> a
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> b = a[::2]; b
+    >>> b = a[::2]
+    >>> b
     array([0, 2, 4, 6, 8])
+    >>> np.may_share_memory(a, b)
+    True
     >>> b[0] = 12
     >>> b
     array([12,  2,  4,  6,  8])
@@ -630,10 +635,15 @@ copied in memory.
     array([12,  1,  2,  3,  4,  5,  6,  7,  8,  9])
 
     >>> a = np.arange(10)
-    >>> b = a[::2].copy()  # force a copy
-    >>> b[0] = 12
+    >>> c = a[::2].copy()  # force a copy
+    >>> c[0] = 12
     >>> a
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+    >>> np.may_share_memory(a, c)
+    False
+
+
 
 This behavior can be surprising at first sight... but it allows to save both
 memory and time.
