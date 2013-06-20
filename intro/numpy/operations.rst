@@ -656,7 +656,8 @@ The inverse operation to flattening:
     >>> a.shape
     (2, 3)
     >>> b = a.ravel()
-    >>> b.reshape((2, 3))
+    >>> b = b.reshape((2, 3))
+    >>> b
     array([[1, 2, 3],
            [4, 5, 6]])
 
@@ -675,25 +676,25 @@ Or,
 
    .. sourcecode:: pycon
 
-    >>> b[0, 0] = 99
-    >>> a
-    array([99,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
-        17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
-        34, 35])
+     >>> b[0, 0] = 99
+     >>> a
+     array([99,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
+         17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+         34, 35])
 
    Beware: reshape may also return a copy!:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
-    >>> a = np.zeros((3, 2))
-    >>> b = a.T.reshape(3*2)
-    >>> b[0] = 9
-    >>> a
-    array([[ 0.,  0.],
-        [ 0.,  0.],
-        [ 0.,  0.]])
+     >>> a = np.zeros((3, 2))
+     >>> b = a.T.reshape(3*2)
+     >>> b[0] = 9
+     >>> a
+     array([[ 0.,  0.],
+         [ 0.,  0.],
+         [ 0.,  0.]])
 
-  To understand, see the section on :ref:`the memory layout of an array <memory_layout>` below.
+   To understand, see the section on :ref:`the memory layout of an array <memory_layout>` below.
 
 Adding a dimension
 ...................
