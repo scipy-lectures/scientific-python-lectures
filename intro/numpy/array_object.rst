@@ -180,6 +180,9 @@ Creating arrays
     * Create simple one and two dimensional arrays
     * Use ``len``, ``shape`` and ``ndim``
 
+Functions for Creating Arrays
+-----------------------------
+
 In practice, we rarely enter items one by one...
 
 * Evenly spaced:
