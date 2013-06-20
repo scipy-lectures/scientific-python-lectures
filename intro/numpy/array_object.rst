@@ -712,10 +712,10 @@ memory and time.
 
      - Run it to check it works
 
-     - Convert the simple sieve to `the sieve of Eratosthenes
-       <http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`__:
+     - Use the optimization suggested in `the sieve of Eratosthenes
+       <http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`_:
 
-      1. Skip `j` which are already known to not be primes
+      1. Skip ``j`` which are already known to not be primes
 
       2. The first number to cross out is :math:`j^2`
 
