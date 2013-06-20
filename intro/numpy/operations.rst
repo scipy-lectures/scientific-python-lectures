@@ -557,8 +557,8 @@ the origin of points on a 10x10 grid, we can do
 
 .. sourcecode:: pycon
 
-    >>> x, y = np.arange(5), np.arange(5)
-    >>> distance = np.sqrt(x ** 2 + y[:, np.newaxis] ** 2)
+    >>> x, y = np.arange(5), np.arange(5)[:, np.newaxis]
+    >>> distance = np.sqrt(x ** 2 + y ** 2)
     >>> distance
     array([[ 0.        ,  1.        ,  2.        ,  3.        ,  4.        ],
            [ 1.        ,  1.41421356,  2.23606798,  3.16227766,  4.12310563],
@@ -571,11 +571,7 @@ Or in color:
 .. sourcecode:: pycon
 
     >>> plt.pcolor(distance)    # doctest: +ELLIPSIS
-    <matplotlib.collections.PolyCollection object at ...>
     >>> plt.colorbar()    # doctest: +ELLIPSIS
-    <matplotlib.colorbar.Colorbar instance at ...>
-    >>> plt.axis('equal')
-    (0.0, 200.0, 0.0, 16.0)
 
 .. plot:: pyplots/numpy_intro_6.py
 
@@ -629,6 +625,7 @@ and y of the previous example, with two "significant dimensions":
 .. EXE: add 1-d array to a 2-d array
 .. EXE: multiply matrix from the right with a diagonal array
 .. CHA: constructing grids -- meshgrid using only newaxis
+
 
 
 Array shape manipulation
