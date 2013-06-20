@@ -613,8 +613,6 @@ and y of the previous example, with two "significant dimensions":
            [0, 1, 2, 3],
            [0, 1, 2, 3]])
 
-  However, in practice, this is rarely needed!
-
 .. rules
 
 .. some usage examples: scalars, 1-d matrix products
