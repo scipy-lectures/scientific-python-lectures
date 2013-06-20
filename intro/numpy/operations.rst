@@ -165,10 +165,10 @@ Transposition:
 .. topic:: Exercise
     :class: green
 
-    Generate arrays:
-
-    * ``[2**0, 2**1, 2**2, 2**3, 2**4]``
-    * ``a_j = 2^(3*j) - j``
+    * Look at the help for ``np.allclose``. When might this be useful?
+    * Look at the help for ``np.triu`` and ``np.tril``
+    * Is the transpose a view or a copy? What implications does this have for
+      making a matrix symetric.
 
 
 Basic reductions
