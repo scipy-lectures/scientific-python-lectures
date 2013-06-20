@@ -760,9 +760,9 @@ Indexing with an array of integers
 
 .. sourcecode:: pycon
 
-    >>> a = np.arange(10)
+    >>> a = np.arange(0, 100, 10)
     >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    array([ 0, 10, 20, 30, 40, 50, 60, 70, 80, 90])
 
 Indexing can be done with an array of integers, where the same index is repeated
 several time:
@@ -770,15 +770,15 @@ several time:
 .. sourcecode:: pycon
 
     >>> a[[2, 3, 2, 4, 2]]  # note: [2, 3, 2, 4, 2] is a Python list
-    array([2, 3, 2, 4, 2])
+    array([20, 30, 20, 40, 20])
 
 New values can be assigned with this kind of indexing:
 
 .. sourcecode:: pycon
 
-    >>> a[[9, 7]] = -10
+    >>> a[[9, 7]] = -100
     >>> a
-    array([  0,   1,   2,   3,   4,   5,   6, -10,   8, -10])
+    array([   0,   10,   20,   30,   40,   50,   60, -100,   80, -100])
 
 .. tip::
 
@@ -789,10 +789,11 @@ New values can be assigned with this kind of indexing:
 
     >>> a = np.arange(10)
     >>> idx = np.array([[3, 4], [9, 7]])
+    >>> idx.shape
+    (2,2)
     >>> a[idx]
     array([[3, 4],
            [9, 7]])
-    >>> b = np.arange(10)
 
 
 ____
