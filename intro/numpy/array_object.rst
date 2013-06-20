@@ -813,6 +813,13 @@ The image below illustrates various fancy indexing applications
         :align: center
         :width: 80%
 
+.. topic:: **Exercise: Simple Arrays**
+    :class: green
+
+    * Again verify the fany indexing showen in the diagram above.
+    * Use fancy indexing on the left and array creation on the right to assign
+      values from a smaller array to a larger array.
+
 .. We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
 .. the same time:
 .. 
