@@ -237,67 +237,76 @@ Sum by rows and by columns:
     >>> x[0, 1, :].sum()     # doctest: +ELLIPSIS
     1.14764...
 
-**Other reductions** --- works the same way (and take ``axis=``)
+Other reductions
+................
 
-- Statistics:
+--- works the same way (and take ``axis=``)
 
-  .. sourcecode:: pycon
+Statistics:
 
-    >>> x = np.array([1, 2, 3, 1])
-    >>> y = np.array([[1, 2, 3], [5, 6, 1]])
-    >>> x.mean()
-    1.75
-    >>> np.median(x)
-    1.5
-    >>> np.median(y, axis=-1) # last axis
-    array([ 2.,  5.])
+.. sourcecode:: pycon
 
-    >>> x.std()          # full population standard dev.
-    0.82915619758884995
+  >>> x = np.array([1, 2, 3, 1])
+  >>> y = np.array([[1, 2, 3], [5, 6, 1]])
+  >>> x.mean()
+  1.75
+  >>> np.median(x)
+  1.5
+  >>> np.median(y, axis=-1) # last axis
+  array([ 2.,  5.])
 
-- Extrema:
+  >>> x.std()          # full population standard dev.
+  0.82915619758884995
 
-  .. sourcecode:: pycon
+Extrema:
 
-    >>> x = np.array([1, 3, 2])
-    >>> x.min()
-    1
-    >>> x.max()
-    3
+.. sourcecode:: pycon
 
-    >>> x.argmin()  # index of minimum
-    0
-    >>> x.argmax()  # index of maximum
-    1
+  >>> x = np.array([1, 3, 2])
+  >>> x.min()
+  1
+  >>> x.max()
+  3
 
-- Logical operations:
+  >>> x.argmin()  # index of minimum
+  0
+  >>> x.argmax()  # index of maximum
+  1
 
-  .. sourcecode:: pycon
+Logical operations:
 
-    >>> np.all([True, True, False])
-    False
-    >>> np.any([True, True, False])
-    True
+.. sourcecode:: pycon
 
-  .. note::
+  >>> np.all([True, True, False])
+  False
+  >>> np.any([True, True, False])
+  True
 
-     Can be used for array comparisons:
+.. note::
 
-     .. sourcecode:: pycon
+   Can be used for array comparisons:
 
-        >>> a = np.zeros((100, 100))
-        >>> np.any(a != 0)
-        False
-        >>> np.all(a == a)
-        True
+   .. sourcecode:: pycon
 
-        >>> a = np.array([1, 2, 3, 2])
-        >>> b = np.array([2, 2, 3, 2])
-        >>> c = np.array([6, 4, 4, 5])
-        >>> ((a <= b) & (b <= c)).all()
-        True
+      >>> a = np.zeros((100, 100))
+      >>> np.any(a != 0)
+      False
+      >>> np.all(a == a)
+      True
 
-- ... and many more (best to learn as you go).
+      >>> a = np.array([1, 2, 3, 2])
+      >>> b = np.array([2, 2, 3, 2])
+      >>> c = np.array([6, 4, 4, 5])
+      >>> ((a <= b) & (b <= c)).all()
+      True
+
+... and many more (best to learn as you go).
+
+.. topic:: **Exercise: Reductions**
+    :class: green
+
+    * Given there is a ``sum``, what other function might you expect to see?
+    * What is the difference between ``sum`` and ``cumsum``?
 
 .. topic:: Example: data statistics
 
