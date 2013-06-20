@@ -813,7 +813,7 @@ The image below illustrates various fancy indexing applications
         :align: center
         :width: 80%
 
-.. topic:: **Exercise: Simple Arrays**
+.. topic:: **Exercise: Fancy Indexing**
     :class: green
 
     * Again verify the fany indexing showen in the diagram above.
