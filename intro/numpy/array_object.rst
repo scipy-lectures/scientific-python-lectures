@@ -174,6 +174,12 @@ Creating arrays
     >>> c.shape
     (2, 2, 1)
 
+.. topic:: **Exercise: Simple Arrays**
+    :class: green
+
+    * Create simple one and two dimensional arrays
+    * Use `len`, `shape` and `ndim`
+
 In practice, we rarely enter items one by one...
 
 * Evenly spaced:
