@@ -188,7 +188,8 @@ Transposition:
     * Look at the help for ``np.allclose``. When might this be useful?
     * Look at the help for ``np.triu`` and ``np.tril``
     * Is the transpose a view or a copy? What implications does this have for
-      making a matrix symetric.
+      making a matrix symetric?
+
 
 
 Basic reductions
