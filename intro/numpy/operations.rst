@@ -666,8 +666,8 @@ Or,
 
     >>> a.reshape((2, -1))    # unspecified (-1) value is inferred
 
-.. warning:: 
-   
+.. warning::
+
    ``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)), 
    or copy
 
