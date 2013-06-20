@@ -244,8 +244,14 @@ In practice, we rarely enter items one by one...
 
     >>> np.random.seed(1234)        # Setting the random seed
 
+.. topic:: **Exercise: Creating Array using functions**
+   :class: green
 
-
+   * Experiment with ``arange``, ``linspace``, ``ones``, ``zeros``, ``eye`` and
+     ``diag``.
+   * Try setting the seed before creating an array with random values
+   * Look at the function ``np.empty``. What does it do? When might this be
+     useful?
 
 .. EXE: construct 1 2 3 4 5
 .. EXE: construct -5, -4, -3, -2, -1
