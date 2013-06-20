@@ -29,6 +29,8 @@ What are Numpy and numpy arrays
 
     - designed for scientific computation (convenience)
 
+    - Also known as *array oriented computing*
+
 .. sourcecode:: pycon
 
     >>> import numpy as np
