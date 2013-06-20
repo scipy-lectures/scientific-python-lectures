@@ -533,6 +533,7 @@ You can also use arrays for this:
 Note that:
 
 * In 2D, the first dimension corresponds to rows, the second to columns.
+* Let us repeat together: the first dimension corresponds to **rows**, the second to **columns**.
 * for multidimensional ``a``, ``a[0]`` is interpreted by
   taking all elements in the unspecified dimensions.
 
