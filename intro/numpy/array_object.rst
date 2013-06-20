@@ -178,7 +178,7 @@ Creating arrays
     :class: green
 
     * Create simple one and two dimensional arrays
-    * Use `len`, `shape` and `ndim`
+    * Use ``len``, ``shape`` and ``ndim``
 
 In practice, we rarely enter items one by one...
 
