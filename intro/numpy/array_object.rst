@@ -590,7 +590,20 @@ You can also combine assignement and slicing
 
    * Try the different flavours of slicing, using ``start``, ``end`` and
      ``step``.
-   * Use a different step, e.g. ``-2`` in the reversal idiom above. What effect
+   * Verify that the slices in the diagram above are indeed correct. You may
+     use the following expression to create the array:
+
+     .. sourcecode:: pycon
+
+        >>> np.arange(6) + np.arange(0, 51, 10)[:, np.newaxis]
+        array([[ 0,  1,  2,  3,  4,  5],
+               [10, 11, 12, 13, 14, 15],
+               [20, 21, 22, 23, 24, 25],
+               [30, 31, 32, 33, 34, 35],
+               [40, 41, 42, 43, 44, 45],
+               [50, 51, 52, 53, 54, 55]])
+
+   * Use a different step, e.g. ``-2``, in the reversal idiom above. What effect
      does this have?
 
 Copies and views
