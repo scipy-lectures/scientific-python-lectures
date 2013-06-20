@@ -482,6 +482,18 @@ Let's verify:
            [20, 21, 22],
            [30, 31, 32]])
 
+We have already used broadcasting without knowing it!:
+
+.. sourcecode:: pycon
+
+    >>> a = np.ones((4, 5))
+    >>> a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
+    >>> a
+    array([[ 2.,  2.,  2.,  2.,  2.],
+           [ 1.,  1.,  1.,  1.,  1.],
+           [ 1.,  1.,  1.,  1.,  1.],
+           [ 1.,  1.,  1.,  1.,  1.]])
+
 An useful trick:
 
 .. sourcecode:: pycon
@@ -503,17 +515,6 @@ An useful trick:
            [20, 21, 22],
            [30, 31, 32]])
 
-We have already used broadcasting without knowing it!:
-
-.. sourcecode:: pycon
-
-    >>> a = np.ones((4, 5))
-    >>> a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
-    >>> a
-    array([[ 2.,  2.,  2.,  2.,  2.],
-           [ 1.,  1.,  1.,  1.,  1.],
-           [ 1.,  1.,  1.,  1.,  1.],
-           [ 1.,  1.,  1.,  1.,  1.]])
 
 .. tip::
 
