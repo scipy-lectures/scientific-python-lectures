@@ -308,26 +308,34 @@ Logical operations:
     * Given there is a ``sum``, what other function might you expect to see?
     * What is the difference between ``sum`` and ``cumsum``?
 
-.. topic:: Example: data statistics
+.. topic:: Worked Example: data statistics
+    :class: green
 
   Data in :download:`populations.txt <../../data/populations.txt>`_
   describes the populations of hares and lynxes (and carrots) in northern
   Canada during 20 years.
 
-  We can first plot the data:
+  You can view the data in an editor, or alterntively in IPython (both shell and notebook):
+
+  .. sourcecode:: ipython
+
+    In [1]: !cat data/populations.txt
+
+  First, load the data into a Numpy array:
 
   .. sourcecode:: pycon
 
     >>> data = np.loadtxt('data/populations.txt')
     >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
+  Then plot it:
+
+  .. sourcecode:: pycon
+
     >>> from matplotlib import pyplot as plt
     >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
-    <matplotlib.axes.Axes object at ...>
     >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>, ...]
     >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
-    <matplotlib.legend.Legend object at ...>
 
   .. plot:: pyplots/numpy_intro_4.py
 
