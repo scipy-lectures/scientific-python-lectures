@@ -17,6 +17,9 @@ Numerical operations on arrays
 Elementwise operations
 ----------------------
 
+Basic operations
+................
+
 With scalars:
 
 .. sourcecode:: pycon
@@ -40,6 +43,18 @@ All arithmetic operates elementwise:
     >>> j = np.arange(5)
     >>> 2**(j + 1) - j
     array([ 2,  3,  6, 13, 28])
+
+These operations are of course much faster than if you did them in pure python:
+
+.. sourcecode:: pycon
+
+   >>> a = np.arange(10000)
+   >>> %timeit a + 1
+   10000 loops, best of 3: 24.3 us per loop
+   >>> l = range(10000)
+   >>> %timeit [i+1 for i in l]
+   1000 loops, best of 3: 861 us per loop
+
 
 .. warning:: **Array multiplication is not matrix multiplication:**
 
