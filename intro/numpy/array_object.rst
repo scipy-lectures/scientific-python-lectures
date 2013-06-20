@@ -121,7 +121,16 @@ Reference documentation
      np.conjugate
      np.convolve
 
-.. the import convention, reminder on python imports
+Import Conventions
+------------------
+
+The general convention to import numpy is:
+
+.. sourcecode:: pycon
+
+   >>> import numpy as np
+
+Using this style of import is recommended.
 
 Creating arrays
 ---------------
