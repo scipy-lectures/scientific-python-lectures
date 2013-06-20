@@ -75,6 +75,21 @@ These operations are of course much faster than if you did them in pure python:
                 [ 3.,  3.,  3.],
                 [ 3.,  3.,  3.]])
 
+.. topic:: **Exercise: Elementwise Operations**
+    :class: green
+
+    * Try simple arithmetic elementwise operations
+    * Time them against their pure python counterparts using %timeit
+    * Try using ``dot``
+    * Generate:
+
+      * ``[2**0, 2**1, 2**2, 2**3, 2**4]``
+      * ``a_j = 2^(3*j) - j``
+
+
+Other operations
+................
+
 Comparisons:
 
 .. sourcecode:: pycon
@@ -123,6 +138,7 @@ Transposition:
     array([[ 0.,  0.,  0.],
            [ 1.,  0.,  0.],
            [ 1.,  1.,  0.]])
+
 
 .. tip::
 
