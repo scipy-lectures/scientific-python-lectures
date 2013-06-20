@@ -498,7 +498,8 @@ other Python sequences (e.g. lists):
 
 The usual python idiom for reversing a sequence is supported:
 
-.. sourcecode::
+.. sourcecode:: pycon
+
    >>> a[::-1]
    array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
@@ -542,7 +543,6 @@ Note that:
 Note that the last index is not included! :
 
 .. sourcecode:: pycon
-
 
     >>> a[:4]
     array([0, 1, 2, 3])
