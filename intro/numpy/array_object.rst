@@ -521,14 +521,6 @@ For multidimensional arrays, indexes are tuples of integers:
     >>> a[1]
     array([0, 1, 0])
 
-You can also use arrays for this:
-
-.. sourcecode:: pycon
-
-   >>> a = np.arange(10)
-   >>> b = np.arange(5)
-   >>> a[5:] = b[::-1]
-   array([0, 1, 2, 3, 4, 4, 3, 2, 1, 0])
 
 Note that:
 
@@ -579,6 +571,20 @@ A small illustrated summary of Numpy indexing and slicing...
     .. image:: numpy_indexing.png
         :align: center
         :width: 65%
+
+You can also combine assignement and slicing
+
+.. sourcecode:: pycon
+
+   >>> a = np.arange(10)
+   >>> a[5:] = 10
+   >>> a
+   array([ 0,  1,  2,  3,  4, 10, 10, 10, 10, 10])
+   >>> b = np.arange(5)
+   >>> a[5:] = b[::-1]
+   >>> a
+   array([0, 1, 2, 3, 4, 4, 3, 2, 1, 0])
+
 
 Copies and views
 ----------------
