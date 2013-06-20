@@ -113,6 +113,26 @@ Logical operations:
     >>> np.logical_and(a, b)
     array([ True, False, False, False], dtype=bool)
 
+Transcendental functions:
+
+.. sourcecode:: pycon
+
+    >>> a = arange(10)
+    >>> np.sin(a)
+    array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025 ,
+           -0.95892427, -0.2794155 ,  0.6569866 ,  0.98935825,  0.41211849])
+    >>> np.log(a)
+    /home/esc/anaconda/bin/ipython:1: RuntimeWarning: divide by zero encountered in log
+      #!/home/esc/anaconda/bin/python
+    array([       -inf,  0.        ,  0.69314718,  1.09861229,  1.38629436,
+            1.60943791,  1.79175947,  1.94591015,  2.07944154,  2.19722458])
+    >>> np.exp(a)
+    array([  1.00000000e+00,   2.71828183e+00,   7.38905610e+00,
+             2.00855369e+01,   5.45981500e+01,   1.48413159e+02,
+             4.03428793e+02,   1.09663316e+03,   2.98095799e+03,
+             8.10308393e+03])
+
+
 Shape mismatches
 
 .. sourcecode:: pycon
