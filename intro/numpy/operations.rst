@@ -361,83 +361,83 @@ Logical operations:
     >>> np.argmax(populations, axis=1)
     array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
 
-.. topic:: Example: diffusion simulation using a random walk algorithm
-
-  .. image:: random_walk.png
-     :align: center
-
-  What is the typical distance from the origin of a random walker after
-  ``t`` left or right jumps?
-
-  .. only:: latex
-
-    .. image:: random_walk_schema.png
-        :align: center
-
-  .. only:: html
-
-    .. image:: random_walk_schema.png
-        :align: center
-        :width: 100%
-
-  .. sourcecode:: pycon
-
-   >>> n_stories = 1000 # number of walkers
-   >>> t_max = 200      # time during which we follow the walker
-
-  We randomly choose all the steps 1 or -1 of the walk:
-
-  .. sourcecode:: pycon
-
-   >>> t = np.arange(t_max)
-   >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
-   >>> np.unique(steps) # Verification: all steps are 1 or -1
-   array([-1,  1])
-
-  We build the walks by summing steps along the time:
-
-  .. sourcecode:: pycon
-
-   >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
-   >>> sq_distance = positions**2
-
-  We get the mean in the axis of the stories:
-
-  .. sourcecode:: pycon
-
-   >>> mean_sq_distance = np.mean(sq_distance, axis=0)
-
-  Plot the results:
-
-  .. sourcecode:: pycon
-
-   >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
-   <matplotlib.figure.Figure object at ...>
-   >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
-   [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
-   >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
-   <matplotlib.text.Text object at ...>
-   >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
-   <matplotlib.text.Text object at ...>
-
-  .. plot:: pyplots/numpy_intro_5.py
-
-The RMS distance grows as the square root of the time!
-
-
-.. arithmetic: sum/prod/mean/std
-
-.. extrema: min/max
-
-.. logical: all/any
-
-.. the axis argument
-
-.. EXE: verify if all elements in an array are equal to 1
-.. EXE: verify if any elements in an array are equal to 1
-.. EXE: load data with loadtxt from a file, and compute its basic statistics
-
-.. CHA: implement mean and std using only sum()
+.. .. topic:: Example: diffusion simulation using a random walk algorithm
+.. 
+..   .. image:: random_walk.png
+..      :align: center
+.. 
+..   What is the typical distance from the origin of a random walker after
+..   ``t`` left or right jumps?
+.. 
+..   .. only:: latex
+.. 
+..     .. image:: random_walk_schema.png
+..         :align: center
+.. 
+..   .. only:: html
+.. 
+..     .. image:: random_walk_schema.png
+..         :align: center
+..         :width: 100%
+.. 
+..   .. sourcecode:: pycon
+.. 
+..    >>> n_stories = 1000 # number of walkers
+..    >>> t_max = 200      # time during which we follow the walker
+.. 
+..   We randomly choose all the steps 1 or -1 of the walk:
+.. 
+..   .. sourcecode:: pycon
+.. 
+..    >>> t = np.arange(t_max)
+..    >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
+..    >>> np.unique(steps) # Verification: all steps are 1 or -1
+..    array([-1,  1])
+.. 
+..   We build the walks by summing steps along the time:
+.. 
+..   .. sourcecode:: pycon
+.. 
+..    >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
+..    >>> sq_distance = positions**2
+.. 
+..   We get the mean in the axis of the stories:
+.. 
+..   .. sourcecode:: pycon
+.. 
+..    >>> mean_sq_distance = np.mean(sq_distance, axis=0)
+.. 
+..   Plot the results:
+.. 
+..   .. sourcecode:: pycon
+.. 
+..    >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
+..    <matplotlib.figure.Figure object at ...>
+..    >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
+..    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
+..    >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
+..    <matplotlib.text.Text object at ...>
+..    >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
+..    <matplotlib.text.Text object at ...>
+.. 
+..   .. plot:: pyplots/numpy_intro_5.py
+.. 
+.. The RMS distance grows as the square root of the time!
+.. 
+.. 
+.. .. arithmetic: sum/prod/mean/std
+.. 
+.. .. extrema: min/max
+.. 
+.. .. logical: all/any
+.. 
+.. .. the axis argument
+.. 
+.. .. EXE: verify if all elements in an array are equal to 1
+.. .. EXE: verify if any elements in an array are equal to 1
+.. .. EXE: load data with loadtxt from a file, and compute its basic statistics
+.. 
+.. .. CHA: implement mean and std using only sum()
 
 .. _broadcasting:
 
