@@ -585,6 +585,13 @@ You can also combine assignement and slicing
    >>> a
    array([0, 1, 2, 3, 4, 4, 3, 2, 1, 0])
 
+.. topic:: **Exercise: Indexing and Slicing**
+   :class: green
+
+   * Try the different flavours of slicing, using ``start``, ``end`` and
+     ``step``.
+   * Use a different step, e.g. ``-2`` in the reversal idiom above. What effect
+     does this have?
 
 Copies and views
 ----------------
