@@ -76,7 +76,7 @@ These operations are of course much faster than if you did them in pure python:
                 [ 3.,  3.,  3.]])
 
 .. topic:: **Exercise: Elementwise Operations**
-    :class: green
+   :class: green
 
     * Try simple arithmetic elementwise operations
     * Time them against their pure python counterparts using %timeit
@@ -183,7 +183,7 @@ Transposition:
     :ref:`scipy_linalg`
 
 .. topic:: Exercise
-    :class: green
+   :class: green
 
     * Look at the help for ``np.allclose``. When might this be useful?
     * Look at the help for ``np.triu`` and ``np.tril``
@@ -303,13 +303,13 @@ Logical operations:
 ... and many more (best to learn as you go).
 
 .. topic:: **Exercise: Reductions**
-    :class: green
+   :class: green
 
     * Given there is a ``sum``, what other function might you expect to see?
     * What is the difference between ``sum`` and ``cumsum``?
 
 .. topic:: Worked Example: data statistics
-    :class: green
+   :class: green
 
   Data in :download:`populations.txt <../../data/populations.txt>`_
   describes the populations of hares and lynxes (and carrots) in northern
@@ -522,7 +522,8 @@ An useful trick:
     use it when we want to solve a problem whose output data is an array
     with more dimensions than input data.
 
-.. topic:: Example
+.. topic:: Worked Example: Broadcasting
+   :class: green
 
   Let's construct an array of distances (in miles) between cities of
   Route 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City,
