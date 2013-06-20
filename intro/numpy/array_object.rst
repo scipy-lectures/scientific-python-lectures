@@ -432,8 +432,7 @@ Or, if you are using *pylab* (the plot will display immediately):
   .. sourcecode:: pycon
 
     >>> image = np.random.rand(30, 30)
-    >>> imshow(image, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
-    <matplotlib.image.AxesImage object at ...>
+    >>> imshow(image, cmap=plt.cm.hot)    # doctest: +ELLIPSIS
     >>> colorbar()    # doctest: +ELLIPSIS
     <matplotlib.colorbar.Colorbar instance at ...>
 
