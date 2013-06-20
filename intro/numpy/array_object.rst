@@ -496,6 +496,12 @@ other Python sequences (e.g. lists):
    Indices begin at 0, like other Python sequences (and C/C++).
    In contrast, in Fortran or Matlab, indices begin at 1.
 
+The usual python idiom for reversing a sequence is supported:
+
+.. sourcecode::
+   >>> a[::-1]
+   array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
+
 For multidimensional arrays, indexes are tuples of integers:
 
 .. sourcecode:: pycon
@@ -514,6 +520,15 @@ For multidimensional arrays, indexes are tuples of integers:
            [ 0, 10,  2]])
     >>> a[1]
     array([0, 1, 0])
+
+You can also use arrays for this:
+
+.. sourcecode:: pycon
+
+   >>> a = np.arange(10)
+   >>> b = np.arange(5)
+   >>> a[5:] = b[::-1]
+   array([0, 1, 2, 3, 4, 4, 3, 2, 1, 0])
 
 Note that:
 
