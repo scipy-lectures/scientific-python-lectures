@@ -440,6 +440,12 @@ Or, if you are using *pylab* (the plot will display immediately):
 
   .. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
 
+.. topic:: **Exercise: Simple Visualizations**
+   :class: green
+
+   * Plot some simple arrays
+   * Try to use both the IPython shell and the notebook, if possible
+   * Try using the ``gray`` colormap
 
 .. * **3D plotting**:
 .. 
