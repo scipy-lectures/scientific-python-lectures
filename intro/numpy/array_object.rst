@@ -650,22 +650,6 @@ give you false positives.
 This behavior can be surprising at first sight... but it allows to save both
 memory and time.
 
-.. warning:: **The transpose is a view**
-
-   As a result, a matrix cannot be made symmetric in-place:
-
-  .. sourcecode:: pycon
-
-    >>> a = np.ones((100, 100))
-    >>> a += a.T
-    >>> a
-    array([[ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           ...,
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.],
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.],
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
 
 .. EXE: [1, 2, 3, 4, 5] -> [1, 2, 3]
 .. EXE: [1, 2, 3, 4, 5] -> [4, 5]
