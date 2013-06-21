@@ -782,6 +782,15 @@ However, it must not be referred to somewhere else:
 .. EXE: shuffling dimensions when writing a general vectorized function
 .. CHA: the mathematical 'vec' operation
 
+.. topic:: **Exercise: Shape manipulations**
+   :class: green
+
+   * Look at the docstring for ``reshape``, especially the notes section which
+     has some more information about copies and views.
+   * Use ``flatten`` as an alternative to ``ravel``. What is the difference?
+     (Hint: check which one returns a view and which a copy)
+   * Experiment with transpose for dimension shuffling
+
 Sorting data
 ------------
 
@@ -837,6 +846,16 @@ Finding minima and maxima:
     * Shape manipulation: ``a.ravel()``, ``a.reshape(2, 2)``
     * Fancy indexing: ``a[a > 3]``, ``a[[2, 3]]``
     * Sorting data: ``.sort()``, ``np.sort``, ``np.argsort``, ``np.argmax``
+
+.. topic:: **Exercise: Sorting**
+   :class: green
+
+    * Try both in-place and out-of-place sorting.
+    * Try creating arrays with different dtypes and sorting them.
+    * Look at ``np.random.shuffle`` for a way to create sortable input quicker.
+    * Combine ``flatten``, ``sort`` and ``reshape``.
+    * Look at the ``axis`` keyword for ``sort`` and rewrite the previous
+      exercise.
 
 Summary
 --------
