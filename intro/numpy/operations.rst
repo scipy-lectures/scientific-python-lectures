@@ -852,8 +852,9 @@ Finding minima and maxima:
 
     * Try both in-place and out-of-place sorting.
     * Try creating arrays with different dtypes and sorting them.
+    * Use ``all`` or ``array_equal`` to check the results.
     * Look at ``np.random.shuffle`` for a way to create sortable input quicker.
-    * Combine ``flatten``, ``sort`` and ``reshape``.
+    * Combine ``ravel``, ``sort`` and ``reshape``.
     * Look at the ``axis`` keyword for ``sort`` and rewrite the previous
       exercise.
 
