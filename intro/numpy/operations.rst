@@ -871,9 +871,11 @@ Summary
   with ``ravel``.
 
 * Obtain a subset of the elements of an array and/or modify their values
-  with masks::
+  with masks
 
-  >>> a[a < 0] = 0
+  .. sourcecode:: pycon
+
+     >>> a[a < 0] = 0
 
 * Know miscellaneous operations on arrays, such as finding the mean or max
   (``array.max()``, ``array.mean()``). No need to retain everything, but
