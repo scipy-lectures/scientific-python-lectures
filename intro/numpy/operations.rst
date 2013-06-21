@@ -309,55 +309,55 @@ Logical operations:
 .. topic:: Worked Example: data statistics
    :class: green
 
-  Data in :download:`populations.txt <../../data/populations.txt>`_
-  describes the populations of hares and lynxes (and carrots) in northern
-  Canada during 20 years.
+   Data in :download:`populations.txt <../../data/populations.txt>`_
+   describes the populations of hares and lynxes (and carrots) in northern
+   Canada during 20 years.
 
-  You can view the data in an editor, or alternatively in IPython (both shell and notebook):
+   You can view the data in an editor, or alternatively in IPython (both shell and notebook):
 
-  .. sourcecode:: ipython
+   .. sourcecode:: ipython
 
-    In [1]: !cat data/populations.txt
+     In [1]: !cat data/populations.txt
 
-  First, load the data into a Numpy array:
+   First, load the data into a Numpy array:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
-    >>> data = np.loadtxt('data/populations.txt')
-    >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
+     >>> data = np.loadtxt('data/populations.txt')
+     >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
-  Then plot it:
+   Then plot it:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
-    >>> from matplotlib import pyplot as plt
-    >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +SKIP
-    >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +SKIP
-    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +SKIP
+     >>> from matplotlib import pyplot as plt
+     >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +SKIP
+     >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +SKIP
+     >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +SKIP
 
-  .. plot:: pyplots/numpy_intro_4.py
+   .. plot:: pyplots/numpy_intro_4.py
 
-  The mean populations over time:
+   The mean populations over time:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
-    >>> populations = data[:, 1:]
-    >>> populations.mean(axis=0)
-    array([ 34080.95238095,  20166.66666667,  42400.        ])
+     >>> populations = data[:, 1:]
+     >>> populations.mean(axis=0)
+     array([ 34080.95238095,  20166.66666667,  42400.        ])
 
-  The sample standard deviations:
+   The sample standard deviations:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
-    >>> populations.std(axis=0)
-    array([ 20897.90645809,  16254.59153691,   3322.50622558])
+     >>> populations.std(axis=0)
+     array([ 20897.90645809,  16254.59153691,   3322.50622558])
 
-  Which species has the highest population each year?:
+   Which species has the highest population each year?:
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
-    >>> np.argmax(populations, axis=1)
-    array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
+     >>> np.argmax(populations, axis=1)
+     array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
 
 .. .. topic:: Example: diffusion simulation using a random walk algorithm
 .. 
@@ -523,31 +523,31 @@ An useful trick:
 .. topic:: Worked Example: Broadcasting
    :class: green
 
-  Let's construct an array of distances (in miles) between cities of
-  Route 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City,
-  Amarillo, Santa Fe, Albuquerque, Flagstaff and Los Angeles.
+   Let's construct an array of distances (in miles) between cities of
+   Route 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City,
+   Amarillo, Santa Fe, Albuquerque, Flagstaff and Los Angeles.
 
-  .. sourcecode:: pycon
+   .. sourcecode:: pycon
 
-      >>> mileposts = np.array([0, 198, 303, 736, 871, 1175, 1475, 1544,
-      ...        1913, 2448])
-      >>> distance_array = np.abs(mileposts - mileposts[:, np.newaxis])
-      >>> distance_array
-      array([[   0,  198,  303,  736,  871, 1175, 1475, 1544, 1913, 2448],
-             [ 198,    0,  105,  538,  673,  977, 1277, 1346, 1715, 2250],
-             [ 303,  105,    0,  433,  568,  872, 1172, 1241, 1610, 2145],
-             [ 736,  538,  433,    0,  135,  439,  739,  808, 1177, 1712],
-             [ 871,  673,  568,  135,    0,  304,  604,  673, 1042, 1577],
-             [1175,  977,  872,  439,  304,    0,  300,  369,  738, 1273],
-             [1475, 1277, 1172,  739,  604,  300,    0,   69,  438,  973],
-             [1544, 1346, 1241,  808,  673,  369,   69,    0,  369,  904],
-             [1913, 1715, 1610, 1177, 1042,  738,  438,  369,    0,  535],
-             [2448, 2250, 2145, 1712, 1577, 1273,  973,  904,  535,    0]])
+       >>> mileposts = np.array([0, 198, 303, 736, 871, 1175, 1475, 1544,
+       ...        1913, 2448])
+       >>> distance_array = np.abs(mileposts - mileposts[:, np.newaxis])
+       >>> distance_array
+       array([[   0,  198,  303,  736,  871, 1175, 1475, 1544, 1913, 2448],
+              [ 198,    0,  105,  538,  673,  977, 1277, 1346, 1715, 2250],
+              [ 303,  105,    0,  433,  568,  872, 1172, 1241, 1610, 2145],
+              [ 736,  538,  433,    0,  135,  439,  739,  808, 1177, 1712],
+              [ 871,  673,  568,  135,    0,  304,  604,  673, 1042, 1577],
+              [1175,  977,  872,  439,  304,    0,  300,  369,  738, 1273],
+              [1475, 1277, 1172,  739,  604,  300,    0,   69,  438,  973],
+              [1544, 1346, 1241,  808,  673,  369,   69,    0,  369,  904],
+              [1913, 1715, 1610, 1177, 1042,  738,  438,  369,    0,  535],
+              [2448, 2250, 2145, 1712, 1577, 1273,  973,  904,  535,    0]])
 
 
-  .. image:: images/route66.png
-     :align: center
-     :scale: 60
+   .. image:: images/route66.png
+      :align: center
+      :scale: 60
 
 A lot of grid-based or network-based problems can also use
 broadcasting. For instance, if we want to compute the distance from
