@@ -765,7 +765,7 @@ However, it must not be referred to somewhere else:
     ValueError: cannot resize an array that has been referenced or is
     referencing another array in this way.  Use the resize function
 
-   .. seealso: ``help(np.tensordot)``
+.. seealso: ``help(np.tensordot)``
 
 .. resizing: how to do it, and *when* is it possible (not always!)
 
