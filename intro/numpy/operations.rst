@@ -699,7 +699,8 @@ Or,
 Adding a dimension
 ...................
 
-Indexing with the ``np.newaxis`` object allows us to add an axis to an array:
+Indexing with the ``np.newaxis`` object allows us to add an axis to an array
+(you have seen this already above in the broadcasting section):
 
 .. sourcecode:: pycon
 
