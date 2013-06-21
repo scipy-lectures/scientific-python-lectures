@@ -451,32 +451,32 @@ Or, if you are using *pylab* (the plot will display immediately):
    * Try using the ``gray`` colormap.
 
 .. * **3D plotting**:
-.. 
+..
 ..   For 3D visualization, we can use another package: **Mayavi**. A quick example:
 ..   start by **relaunching iPython** with these options: **ipython --pylab=wx**
 ..   (or **ipython -pylab -wthread** in IPython < 0.10).
-.. 
+..
 ..   .. image:: surf.png
 ..      :align: right
 ..      :scale: 60
-.. 
+..
 ..   .. sourcecode:: ipython
-.. 
+..
 ..       In [58]: from mayavi import mlab
 ..       In [61]: mlab.surf(image)
 ..       Out[61]: <enthought.mayavi.modules.surface.Surface object at ...>
 ..       In [62]: mlab.axes()
 ..       Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
-.. 
+..
 ..   .. tip::
-.. 
+..
 ..    The mayavi/mlab window that opens is interactive: by clicking on the
 ..    left mouse button you can rotate the image, zoom with the mouse wheel,
 ..    etc.
-.. 
+..
 ..    For more information on Mayavi :
 ..    http://github.enthought.com/mayavi/mayavi
-.. 
+..
 ..   .. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
 
 
@@ -807,9 +807,9 @@ The image below illustrates various fancy indexing applications
 
 .. We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
 .. the same time:
-.. 
+..
 .. .. sourcecode:: pycon
-.. 
+..
 ..     >>> a = np.arange(12).reshape(3,4)
 ..     >>> a
 ..     array([[ 0,  1,  2,  3],
