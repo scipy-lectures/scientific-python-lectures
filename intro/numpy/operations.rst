@@ -49,10 +49,10 @@ These operations are of course much faster than if you did them in pure python:
 .. sourcecode:: pycon
 
    >>> a = np.arange(10000)
-   >>> %timeit a + 1
+   >>> %timeit a + 1  # doctest: +SKIP
    10000 loops, best of 3: 24.3 us per loop
    >>> l = range(10000)
-   >>> %timeit [i+1 for i in l]
+   >>> %timeit [i+1 for i in l] # doctest: +SKIP
    1000 loops, best of 3: 861 us per loop
 
 
@@ -63,8 +63,8 @@ These operations are of course much faster than if you did them in pure python:
         >>> c = np.ones((3, 3))
         >>> c * c                   # NOT matrix multiplication!
         array([[ 1.,  1.,  1.],
-            [ 1.,  1.,  1.],
-            [ 1.,  1.,  1.]])
+               [ 1.,  1.,  1.],
+               [ 1.,  1.,  1.]])
 
 .. note:: **Matrix multiplication:**
 
@@ -72,8 +72,8 @@ These operations are of course much faster than if you did them in pure python:
 
         >>> c.dot(c)
         array([[ 3.,  3.,  3.],
-                [ 3.,  3.,  3.],
-                [ 3.,  3.,  3.]])
+               [ 3.,  3.,  3.],
+               [ 3.,  3.,  3.]])
 
 .. topic:: **Exercise: Elementwise Operations**
    :class: green
@@ -117,13 +117,11 @@ Transcendental functions:
 
 .. sourcecode:: pycon
 
-    >>> a = arange(10)
+    >>> a = np.arange(10)
     >>> np.sin(a)
     array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025 ,
            -0.95892427, -0.2794155 ,  0.6569866 ,  0.98935825,  0.41211849])
     >>> np.log(a)
-    /home/esc/anaconda/bin/ipython:1: RuntimeWarning: divide by zero encountered in log
-      #!/home/esc/anaconda/bin/python
     array([       -inf,  0.        ,  0.69314718,  1.09861229,  1.38629436,
             1.60943791,  1.79175947,  1.94591015,  2.07944154,  2.19722458])
     >>> np.exp(a)
@@ -138,7 +136,7 @@ Shape mismatches
 .. sourcecode:: pycon
 
     >>> a = np.arange(4)
-    >>> a + np.array([1, 2])
+    >>> a + np.array([1, 2])  # doctest: +SKIP
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
     ValueError: operands could not be broadcast together with shapes (4) (2)
@@ -333,9 +331,9 @@ Logical operations:
   .. sourcecode:: pycon
 
     >>> from matplotlib import pyplot as plt
-    >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
-    >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
-    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
+    >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +SKIP
+    >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +SKIP
+    >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +SKIP
 
   .. plot:: pyplots/numpy_intro_4.py
 
@@ -570,8 +568,8 @@ Or in color:
 
 .. sourcecode:: pycon
 
-    >>> plt.pcolor(distance)    # doctest: +ELLIPSIS
-    >>> plt.colorbar()    # doctest: +ELLIPSIS
+    >>> plt.pcolor(distance)    # doctest: +SKIP
+    >>> plt.colorbar()    # doctest: +SKIP
 
 .. plot:: pyplots/numpy_intro_6.py
 
@@ -639,8 +637,8 @@ Flattening
     array([1, 2, 3, 4, 5, 6])
     >>> a.T
     array([[1, 4],
-        [2, 5],
-        [3, 6]])
+           [2, 5],
+           [3, 6]])
     >>> a.T.ravel()
     array([1, 4, 2, 5, 3, 6])
 
@@ -666,6 +664,8 @@ Or,
 .. sourcecode:: pycon
 
     >>> a.reshape((2, -1))    # unspecified (-1) value is inferred
+    array([[1, 2, 3],
+           [4, 5, 6]])
 
 .. warning::
 
@@ -678,9 +678,8 @@ Or,
 
      >>> b[0, 0] = 99
      >>> a
-     array([99,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12, 13, 14, 15, 16,
-         17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
-         34, 35])
+     array([[99,  2,  3],
+            [ 4,  5,  6]])
 
    Beware: reshape may also return a copy!:
 
@@ -691,8 +690,8 @@ Or,
      >>> b[0] = 9
      >>> a
      array([[ 0.,  0.],
-         [ 0.,  0.],
-         [ 0.,  0.]])
+            [ 0.,  0.],
+            [ 0.,  0.]])
 
    To understand this you need to learn more about the memory layout of a numpy array.
 
@@ -710,8 +709,8 @@ Indexing with the ``np.newaxis`` object allows us to add an axis to an array
 
     >>> z[:, np.newaxis]
     array([[1],
-        [2],
-        [3]])
+           [2],
+           [3]])
 
     >>> z[np.newaxis, :]
     array([[1, 2, 3]])
