@@ -96,7 +96,7 @@ Reference documentation
 
    .. sourcecode:: pycon
 
-     >>> help(np.array)    # doctest: +ELLIPSIS
+     >>> help(np.array) # doctest: +ELLIPSIS
      Help on built-in function array in module numpy.core.multiarray:
      <BLANKLINE>
      array(...)
@@ -107,7 +107,7 @@ Reference documentation
 
   .. sourcecode:: pycon
 
-     >>> np.lookfor('create array')    # doctest: +ELLIPSIS
+     >>> np.lookfor('create array') # doctest: +SKIP
      Search results for 'create array'
      ---------------------------------
      numpy.array
@@ -240,11 +240,11 @@ In practice, we rarely enter items one by one...
   .. sourcecode:: pycon
 
     >>> a = np.random.rand(4)       # uniform in [0, 1]
-    >>> a
+    >>> a  # doctest: +SKIP
     array([ 0.95799151,  0.14222247,  0.08777354,  0.51887998])
 
     >>> b = np.random.randn(4)      # Gaussian
-    >>> b
+    >>> b  # doctest: +SKIP
     array([ 0.37544699, -0.11425369, -0.47616538,  1.79664113])
 
     >>> np.random.seed(1234)        # Setting the random seed
@@ -408,14 +408,14 @@ And then use (note that you have to use ``show`` explicitly):
 
 .. sourcecode:: pycon
 
-    >>> plt.plot(x, y)       # line plot    # doctest: +ELLIPSIS
+    >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
     >>> plt.show()               # <-- shows the plot (not needed with pylab) # doctest: +SKIP
 
 Or, if you are using *pylab* (the plot will display immediately):
 
 .. sourcecode:: pycon
 
-    >>> plot(x, y)       # line plot    # doctest: +ELLIPSIS
+    >>> plot(x, y)       # line plot    # doctest: +SKIP
 
 * **1D plotting**:
 
@@ -423,9 +423,9 @@ Or, if you are using *pylab* (the plot will display immediately):
 
     >>> x = np.linspace(0, 3, 20)
     >>> y = np.linspace(0, 9, 20)
-    >>> plot(x, y)       # line plot    # doctest: +ELLIPSIS
+    >>> plot(x, y)       # line plot    # doctest: +SKIP
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plot(x, y, 'o')  # dot plot    # doctest: +ELLIPSIS
+    >>> plot(x, y, 'o')  # dot plot    # doctest: +SKIP
     [<matplotlib.lines.Line2D object at ...>]
 
   .. plot:: pyplots/numpy_intro_1.py
@@ -435,8 +435,8 @@ Or, if you are using *pylab* (the plot will display immediately):
   .. sourcecode:: pycon
 
     >>> image = np.random.rand(30, 30)
-    >>> imshow(image, cmap=plt.cm.hot)    # doctest: +ELLIPSIS
-    >>> colorbar()    # doctest: +ELLIPSIS
+    >>> imshow(image, cmap=plt.cm.hot)    # doctest: +SKIP
+    >>> colorbar()    # doctest: +SKIP
     <matplotlib.colorbar.Colorbar instance at ...>
 
   .. plot:: pyplots/numpy_intro_2.py
