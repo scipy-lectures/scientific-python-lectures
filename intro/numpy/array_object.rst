@@ -777,7 +777,7 @@ New values can be assigned with this kind of indexing:
     >>> a = np.arange(10)
     >>> idx = np.array([[3, 4], [9, 7]])
     >>> idx.shape
-    (2,2)
+    (2, 2)
     >>> a[idx]
     array([[3, 4],
            [9, 7]])
