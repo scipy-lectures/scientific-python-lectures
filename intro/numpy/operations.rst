@@ -188,7 +188,7 @@ Transposition:
     * Look at the help for ``np.allclose``. When might this be useful?
     * Look at the help for ``np.triu`` and ``np.tril``.
     * Is the transpose a view or a copy? What implications does this have for
-      making a matrix symetric?
+      making a matrix symmetric?
 
 
 
@@ -315,7 +315,7 @@ Logical operations:
   describes the populations of hares and lynxes (and carrots) in northern
   Canada during 20 years.
 
-  You can view the data in an editor, or alterntively in IPython (both shell and notebook):
+  You can view the data in an editor, or alternatively in IPython (both shell and notebook):
 
   .. sourcecode:: ipython
 
