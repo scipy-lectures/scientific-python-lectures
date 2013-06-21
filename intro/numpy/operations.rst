@@ -180,7 +180,7 @@ Transposition:
     recommend the use of :mod:`scipy.linalg`, as detailed in section
     :ref:`scipy_linalg`
 
-.. topic:: Exercise
+.. topic:: Exercise other operations
    :class: green
 
     * Look at the help for ``np.allclose``. When might this be useful?
