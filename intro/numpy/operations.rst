@@ -7,7 +7,7 @@
 .. currentmodule:: numpy
 
 Numerical operations on arrays
-=================================
+==============================
 
 .. contents:: Section contents
     :local:
@@ -630,7 +630,7 @@ Array shape manipulation
 ------------------------
 
 Flattening
-...........
+..........
 
 .. sourcecode:: pycon
 
@@ -697,7 +697,7 @@ Or,
    To understand this you need to learn more about the memory layout of a numpy array.
 
 Adding a dimension
-...................
+..................
 
 Indexing with the ``np.newaxis`` object allows us to add an axis to an array
 (you have seen this already above in the broadcasting section):
@@ -719,7 +719,7 @@ Indexing with the ``np.newaxis`` object allows us to add an axis to an array
 
 
 Dimension shuffling
-....................
+...................
 
 .. sourcecode:: pycon
 
@@ -859,7 +859,7 @@ Finding minima and maxima:
       exercise.
 
 Summary
---------
+-------
 
 **What do you need to know to get started?**
 

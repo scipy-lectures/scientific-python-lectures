@@ -4,14 +4,14 @@
 
 .. currentmodule:: numpy
 
-The numpy array object
-=======================
+The Numpy array object
+======================
 
 .. contents:: Section contents
     :local:
     :depth: 1
 
-What are Numpy and numpy arrays
+What are Numpy and Numpy arrays?
 --------------------------------
 
 :**Python** objects:
@@ -123,7 +123,7 @@ Reference documentation
      np.conjugate
      np.convolve
 
-Import Conventions
+Import conventions
 ------------------
 
 The general convention to import numpy is:
@@ -182,7 +182,7 @@ Creating arrays
     * Create simple one and two dimensional arrays
     * Use ``len``, ``shape`` and ``ndim``
 
-Functions for Creating Arrays
+Functions for creating arrays
 -----------------------------
 
 In practice, we rarely enter items one by one...
@@ -741,8 +741,7 @@ Indexing with a mask can be very useful to assign a new value to a sub-array:
 
 
 Indexing with an array of integers
-....................................
-
+..................................
 
 .. sourcecode:: pycon
 
