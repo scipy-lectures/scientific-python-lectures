@@ -179,8 +179,8 @@ Creating arrays
 .. topic:: **Exercise: Simple Arrays**
     :class: green
 
-    * Create simple one and two dimensional arrays
-    * Use ``len``, ``shape`` and ``ndim``
+    * Create simple one and two dimensional arrays.
+    * Use ``len``, ``shape`` and ``ndim``.
 
 Functions for creating arrays
 -----------------------------
@@ -446,9 +446,9 @@ Or, if you are using *pylab* (the plot will display immediately):
 .. topic:: **Exercise: Simple Visualizations**
    :class: green
 
-   * Plot some simple arrays
-   * Try to use both the IPython shell and the notebook, if possible
-   * Try using the ``gray`` colormap
+   * Plot some simple arrays.
+   * Try to use both the IPython shell and the notebook, if possible.
+   * Try using the ``gray`` colormap.
 
 .. * **3D plotting**:
 .. 

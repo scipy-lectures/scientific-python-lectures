@@ -78,9 +78,9 @@ These operations are of course much faster than if you did them in pure python:
 .. topic:: **Exercise: Elementwise Operations**
    :class: green
 
-    * Try simple arithmetic elementwise operations
-    * Time them against their pure python counterparts using %timeit
-    * Try using ``dot``
+    * Try simple arithmetic elementwise operations.
+    * Time them against their pure python counterparts using ``%timeit``.
+    * Try using ``dot``.
     * Generate:
 
       * ``[2**0, 2**1, 2**2, 2**3, 2**4]``
@@ -186,7 +186,7 @@ Transposition:
    :class: green
 
     * Look at the help for ``np.allclose``. When might this be useful?
-    * Look at the help for ``np.triu`` and ``np.tril``
+    * Look at the help for ``np.triu`` and ``np.tril``.
     * Is the transpose a view or a copy? What implications does this have for
       making a matrix symetric?
 
@@ -789,7 +789,7 @@ However, it must not be referred to somewhere else:
      has some more information about copies and views.
    * Use ``flatten`` as an alternative to ``ravel``. What is the difference?
      (Hint: check which one returns a view and which a copy)
-   * Experiment with transpose for dimension shuffling
+   * Experiment with ``transpose`` for dimension shuffling.
 
 Sorting data
 ------------
