@@ -743,7 +743,7 @@ Also creates a view:
     -1
 
 Resizing
-.........
+........
 
 Size of an array can be changed with ``ndarray.resize``:
 
