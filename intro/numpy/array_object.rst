@@ -254,7 +254,8 @@ In practice, we rarely enter items one by one...
 
    * Experiment with ``arange``, ``linspace``, ``ones``, ``zeros``, ``eye`` and
      ``diag``.
-   * Try setting the seed before creating an array with random values
+   * Create different kinds of arrays with random numbers.
+   * Try setting the seed before creating an array with random values.
    * Look at the function ``np.empty``. What does it do? When might this be
      useful?
 
