@@ -565,12 +565,12 @@ A small illustrated summary of Numpy indexing and slicing...
 
 .. only:: latex
 
-    .. image:: numpy_indexing.png
+    .. image:: images/numpy_indexing.png
         :align: center
 
 .. only:: html
 
-    .. image:: numpy_indexing.png
+    .. image:: images/numpy_indexing.png
         :align: center
         :width: 65%
 
@@ -665,7 +665,7 @@ memory and time.
 .. topic:: Worked example: Prime number sieve
    :class: green
 
-   .. image:: prime-sieve.png
+   .. image:: images/prime-sieve.png
 
    Compute prime numbers in 0--99, with a sieve
 
@@ -787,12 +787,12 @@ The image below illustrates various fancy indexing applications
 
 .. only:: latex
 
-    .. image:: numpy_fancy_indexing.png
+    .. image:: images/numpy_fancy_indexing.png
         :align: center
 
 .. only:: html
 
-    .. image:: numpy_fancy_indexing.png
+    .. image:: images/numpy_fancy_indexing.png
         :align: center
         :width: 80%
 

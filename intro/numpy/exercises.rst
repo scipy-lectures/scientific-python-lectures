@@ -19,7 +19,7 @@ Some exercises
     Here are a few images we will be able to obtain with our manipulations:
     use different colormaps, crop the image, change some parts of the image.
 
-    .. image:: lenas.png
+    .. image:: images/lenas.png
         :align: center
 
     * Let's use the imshow function of pylab to display the image.
@@ -216,7 +216,7 @@ Some exercises
 .. topic:: Exercise: Markov chain
    :class: green
 
-    .. image:: markov-chain.png
+    .. image:: image/markov-chain.png
 
     Markov chain transition matrix ``P``, and probability distribution on
     the states ``p``::

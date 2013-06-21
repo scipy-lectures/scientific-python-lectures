@@ -205,7 +205,7 @@ Computing sums:
     >>> x.sum()
     10
 
-.. image:: reductions.png
+.. image:: images/reductions.png
     :align: right
 
 Sum by rows and by columns:
@@ -456,12 +456,12 @@ The image below gives an example of broadcasting:
 
 .. only:: latex
 
-    .. image:: numpy_broadcasting.png
+    .. image:: images/numpy_broadcasting.png
         :align: center
 
 .. only:: html
 
-    .. image:: numpy_broadcasting.png
+    .. image:: images/numpy_broadcasting.png
         :align: center
         :width: 100%
 
@@ -547,7 +547,7 @@ An useful trick:
              [2448, 2250, 2145, 1712, 1577, 1273,  973,  904,  535,    0]])
 
 
-  .. image:: route66.png
+  .. image:: images/route66.png
      :align: center
      :scale: 60
 
