@@ -108,7 +108,7 @@ Some exercises
 .. topic:: Exercise: Data statistics
    :class: green
 
-   The data in :download:`populations.txt <../../data/populations.txt>`::
+   The data in :download:`populations.txt <../../data/populations.txt>`
    describes the populations of hares and lynxes (and carrots) in
    northern Canada during 20 years:
 
@@ -149,6 +149,8 @@ Some exercises
 
    ... all without for-loops.
 
+   Solution: :download:`Python source file <solutions/2_2_data_statistics.py>`
+
 .. topic:: Exercise: Crude integral approximations
    :class: green
 
@@ -172,79 +174,83 @@ Some exercises
        def f(a, b, c):
            return some_result
 
+   Solution: :download:`Python source file <solutions/2_3_crude_integration.py>`
+
 .. topic:: Exercise: Mandelbrot set
    :class: green
 
-    .. plot:: intro/numpy/solutions/2_4_mandelbrot.py
+   .. plot:: intro/numpy/solutions/2_4_mandelbrot.py
 
-    Write a script that computes the Mandelbrot fractal. The Mandelbrot
-    iteration::
+   Write a script that computes the Mandelbrot fractal. The Mandelbrot
+   iteration::
 
-        N_max = 50
-        some_threshold = 50
+       N_max = 50
+       some_threshold = 50
 
-        c = x + 1j*y
+       c = x + 1j*y
 
-        for j in xrange(N_max):
-            z = z**2 + c
+       for j in xrange(N_max):
+           z = z**2 + c
 
-    Point (x, y) belongs to the Mandelbrot set if :math:`|c|` <
-    ``some_threshold``.
+   Point (x, y) belongs to the Mandelbrot set if :math:`|c|` <
+   ``some_threshold``.
 
-    Do this computation by:
+   Do this computation by:
 
-    .. For doctests
-       >>> mask = np.ones((3, 3))
+   .. For doctests
+      >>> mask = np.ones((3, 3))
 
-    1. Construct a grid of c = x + 1j*y values in range [-2, 1] x [-1.5, 1.5]
+   1. Construct a grid of c = x + 1j*y values in range [-2, 1] x [-1.5, 1.5]
 
-    2. Do the iteration
+   2. Do the iteration
 
-    3. Form the 2-d boolean mask indicating which points are in the set
+   3. Form the 2-d boolean mask indicating which points are in the set
 
-    4. Save the result to an image with::
+   4. Save the result to an image with::
 
    .. sourcecode:: pycon
 
-        >>> import matplotlib.pyplot as plt
-        >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5]) # doctest: +ELLIPSIS
-        <matplotlib.image.AxesImage object at ...>
-        >>> plt.gray()
-        >>> plt.savefig('mandelbrot.png')
+       >>> import matplotlib.pyplot as plt
+       >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5]) # doctest: +ELLIPSIS
+       <matplotlib.image.AxesImage object at ...>
+       >>> plt.gray()
+       >>> plt.savefig('mandelbrot.png')
 
+   Solution: :download:`Python source file <solutions/2_4_mandelbrot.py>`
 
 .. topic:: Exercise: Markov chain
    :class: green
 
-    .. image:: image/markov-chain.png
+   .. image:: images/markov-chain.png
 
-    Markov chain transition matrix ``P``, and probability distribution on
-    the states ``p``::
+   Markov chain transition matrix ``P``, and probability distribution on
+   the states ``p``::
 
-    1. ``0 <= P[i,j] <= 1``: probability to go from state ``i`` to state ``j``
+   1. ``0 <= P[i,j] <= 1``: probability to go from state ``i`` to state ``j``
 
-    2. Transition rule: :math:`p_{new} = P^T p_{old}`
+   2. Transition rule: :math:`p_{new} = P^T p_{old}`
 
-    3. ``all(sum(P, axis=1) == 1)``, ``p.sum() == 1``: normalization
+   3. ``all(sum(P, axis=1) == 1)``, ``p.sum() == 1``: normalization
 
-    Write a script that works with 5 states, and:
+   Write a script that works with 5 states, and:
 
-    - Constructs a random matrix, and normalizes each row so that it
-      is a transition matrix.
+   - Constructs a random matrix, and normalizes each row so that it
+     is a transition matrix.
 
-    - Starts from a random (normalized) probability distribution
-      ``p`` and takes 50 steps => ``p_50``
+   - Starts from a random (normalized) probability distribution
+     ``p`` and takes 50 steps => ``p_50``
 
-    - Computes the stationary distribution: the eigenvector of ``P.T``
-      with eigenvalue 1 (numerically: closest to 1) => ``p_stationary``
+   - Computes the stationary distribution: the eigenvector of ``P.T``
+     with eigenvalue 1 (numerically: closest to 1) => ``p_stationary``
 
-    Remember to normalize the eigenvector --- I didn't...
+   Remember to normalize the eigenvector --- I didn't...
 
-    - Checks if ``p_50`` and ``p_stationary`` are equal to tolerance 1e-5
+   - Checks if ``p_50`` and ``p_stationary`` are equal to tolerance 1e-5
 
-    Toolbox: ``np.random.rand``, ``.dot()``, ``np.linalg.eig``,
-    reductions, ``abs()``, ``argmin``, comparisons, ``all``,
-    ``np.linalg.norm``, etc.
+   Toolbox: ``np.random.rand``, ``.dot()``, ``np.linalg.eig``,
+   reductions, ``abs()``, ``argmin``, comparisons, ``all``,
+   ``np.linalg.norm``, etc.
 
+   Solution: :download:`Python source file <solutions/2_5_markov_chain.py>`
 
 
