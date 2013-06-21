@@ -605,6 +605,7 @@ You can also combine assignment and slicing:
                [30, 31, 32, 33, 34, 35],
                [40, 41, 42, 43, 44, 45],
                [50, 51, 52, 53, 54, 55]])
+
    * Try assigning a smaller 2D array to a larger 2D array, like in the 1D
      example above.
    * Use a different step, e.g. ``-2``, in the reversal idiom above. What effect
