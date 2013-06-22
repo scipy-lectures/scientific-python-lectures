@@ -348,11 +348,9 @@ There are also other types:
 Basic visualization
 -------------------
 
-.. tip::
+Now that we have our first data arrays, we are going to visualize them.
 
-  Now that we have our first data arrays, we are going to visualize them.
-
-Start by launching IPython in *pylab* mode
+Start by launching IPython in *pylab* mode.
 
 .. sourcecode:: bash
 
@@ -364,6 +362,20 @@ Or the notebook:
 
    $ ipython notebook --pylab=inline
 
+Alternatively, if IPython has already been started:
+
+.. sourcecode:: pycon
+
+    >>> %pylab  # doctest: +SKIP
+
+Or, from the notebook:
+
+.. sourcecode:: pycon
+
+    >>> %pylab inline
+
+The ``inline`` is important for the notebook, so that plots are displayed in
+the notebook and not in a new window.
 
 *Matplotlib* is a 2D plotting package. We can import its functions as below:
 
@@ -376,13 +388,16 @@ And then use (note that you have to use ``show`` explicitly):
 .. sourcecode:: pycon
 
     >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
-    >>> plt.show()               # <-- shows the plot (not needed with pylab) # doctest: +SKIP
+    >>> plt.show()           # <-- shows the plot (not needed with pylab) # doctest: +SKIP
 
-Or, if you are using *pylab* (the plot will display immediately):
+Or, if you are using *pylab*:
 
 .. sourcecode:: pycon
 
     >>> plot(x, y)       # line plot    # doctest: +SKIP
+
+Using ``import matplotlib.pyplot as plt`` is recommended for use in scripts.
+Whereas ``pylab`` is recommended for interactive exploratory work.
 
 * **1D plotting**:
 
@@ -390,9 +405,9 @@ Or, if you are using *pylab* (the plot will display immediately):
 
     >>> x = np.linspace(0, 3, 20)
     >>> y = np.linspace(0, 9, 20)
-    >>> plot(x, y)       # line plot    # doctest: +SKIP
+    >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plot(x, y, 'o')  # dot plot    # doctest: +SKIP
+    >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +SKIP
     [<matplotlib.lines.Line2D object at ...>]
 
   .. plot:: pyplots/numpy_intro_1.py
@@ -402,8 +417,8 @@ Or, if you are using *pylab* (the plot will display immediately):
   .. sourcecode:: pycon
 
     >>> image = np.random.rand(30, 30)
-    >>> imshow(image, cmap=plt.cm.hot)    # doctest: +SKIP
-    >>> colorbar()    # doctest: +SKIP
+    >>> plt.imshow(image, cmap=plt.cm.hot)    # doctest: +SKIP
+    >>> plt.colorbar()    # doctest: +SKIP
     <matplotlib.colorbar.Colorbar instance at ...>
 
   .. plot:: pyplots/numpy_intro_2.py
