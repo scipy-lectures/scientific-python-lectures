@@ -179,8 +179,10 @@ Creating arrays
 .. topic:: **Exercise: Simple Arrays**
     :class: green
 
-    * Create simple one and two dimensional arrays.
-    * Use ``len``, ``shape`` and ``ndim``.
+    * Create simple one and two dimensional arrays. First, redo the examples
+      from above. And then create your own.
+    * Use the functions ``len``, ``shape`` and ``ndim`` on some of those
+      arrays and observe their output.
 
 Functions for creating arrays
 -----------------------------
