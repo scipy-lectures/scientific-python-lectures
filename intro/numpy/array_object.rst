@@ -345,40 +345,6 @@ There are also other types:
 
 .. XXX: mention: astype
 
-.. topic:: **Exercise: Array creation**
-    :class: green
-
-    Create the following arrays (with correct data types)::
-
-        [[1, 1, 1, 1],
-         [1, 1, 1, 1],
-         [1, 1, 1, 2],
-         [1, 6, 1, 1]]
-
-        [[0., 0., 0., 0., 0.],
-         [2., 0., 0., 0., 0.],
-         [0., 3., 0., 0., 0.],
-         [0., 0., 4., 0., 0.],
-         [0., 0., 0., 5., 0.],
-         [0., 0., 0., 0., 6.]]
-
-    Par on course: 3 statements for each
-
-    *Hint*: Individual array elements can be accessed similarly to a list,
-    e.g. ``a[1]`` or ``a[1, 2]``.
-
-    *Hint*: Examine the docstring for ``diag``.
-
-.. topic:: Exercise: Tiling for array creation
-    :class: green
-
-    Skim through the documentation for ``np.tile``, and use this function
-    to construct the array::
-
-        [[4, 3, 4, 3, 4, 3],
-         [2, 1, 2, 1, 2, 1],
-         [4, 3, 4, 3, 4, 3],
-         [2, 1, 2, 1, 2, 1]]
 
 Basic visualization
 -------------------
@@ -612,6 +578,41 @@ You can also combine assignment and slicing:
      example above.
    * Use a different step, e.g. ``-2``, in the reversal idiom above. What effect
      does this have?
+
+.. topic:: **Exercise: Array creation**
+    :class: green
+
+    Create the following arrays (with correct data types)::
+
+        [[1, 1, 1, 1],
+         [1, 1, 1, 1],
+         [1, 1, 1, 2],
+         [1, 6, 1, 1]]
+
+        [[0., 0., 0., 0., 0.],
+         [2., 0., 0., 0., 0.],
+         [0., 3., 0., 0., 0.],
+         [0., 0., 4., 0., 0.],
+         [0., 0., 0., 5., 0.],
+         [0., 0., 0., 0., 6.]]
+
+    Par on course: 3 statements for each
+
+    *Hint*: Individual array elements can be accessed similarly to a list,
+    e.g. ``a[1]`` or ``a[1, 2]``.
+
+    *Hint*: Examine the docstring for ``diag``.
+
+.. topic:: Exercise: Tiling for array creation
+    :class: green
+
+    Skim through the documentation for ``np.tile``, and use this function
+    to construct the array::
+
+        [[4, 3, 4, 3, 4, 3],
+         [2, 1, 2, 1, 2, 1],
+         [4, 3, 4, 3, 4, 3],
+         [2, 1, 2, 1, 2, 1]]
 
 Copies and views
 ----------------
