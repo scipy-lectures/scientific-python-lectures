@@ -75,7 +75,7 @@ These operations are of course much faster than if you did them in pure python:
                [ 3.,  3.,  3.],
                [ 3.,  3.,  3.]])
 
-.. topic:: **Exercise: Elementwise Operations**
+.. topic:: **Exercise: Elementwise operations**
    :class: green
 
     * Try simple arithmetic elementwise operations.

@@ -176,7 +176,7 @@ Creating arrays
     >>> c.shape
     (2, 2, 1)
 
-.. topic:: **Exercise: Simple Arrays**
+.. topic:: **Exercise: Simple arrays**
     :class: green
 
     * Create simple one and two dimensional arrays. First, redo the examples
@@ -250,7 +250,7 @@ In practice, we rarely enter items one by one...
 
     >>> np.random.seed(1234)        # Setting the random seed
 
-.. topic:: **Exercise: Creating Array using functions**
+.. topic:: **Exercise: Creating arrays using functions**
    :class: green
 
    * Experiment with ``arange``, ``linspace``, ``ones``, ``zeros``, ``eye`` and
@@ -425,7 +425,7 @@ Whereas ``pylab`` is recommended for interactive exploratory work.
 
   .. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
 
-.. topic:: **Exercise: Simple Visualizations**
+.. topic:: **Exercise: Simple visualizations**
    :class: green
 
    * Plot some simple arrays.
@@ -570,7 +570,7 @@ You can also combine assignment and slicing:
    >>> a
    array([0, 1, 2, 3, 4, 4, 3, 2, 1, 0])
 
-.. topic:: **Exercise: Indexing and Slicing**
+.. topic:: **Exercise: Indexing and slicing**
    :class: green
 
    * Try the different flavours of slicing, using ``start``, ``end`` and
@@ -815,7 +815,7 @@ The image below illustrates various fancy indexing applications
         :align: center
         :width: 80%
 
-.. topic:: **Exercise: Fancy Indexing**
+.. topic:: **Exercise: Fancy indexing**
     :class: green
 
     * Again, verify the fancy indexing shown in the diagram above.
