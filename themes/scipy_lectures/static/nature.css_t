@@ -13,6 +13,17 @@
 
 /************************ Header *****************************/
 
+div.related li {
+    display: inline-block;
+}
+
+div.related a {
+    border-radius: 6px;
+    color: white;
+    display: inline-block;
+    border: none;
+}
+
 div.related li.left {
     margin-right: .5ex;
     position: absolute;
@@ -20,12 +31,47 @@ div.related li.left {
     top: .2ex;
 }
 
+/* Give a button-like feeling to the next/previous links */
+div.related li.right a {
+    font-weight: bold;
+    border-width: 1px;
+    /*border: solid;
+    border-width: 1px;*/
+    border-color: #777;
+    padding: 0px 5px;
+    background-color: #333;
+    background-image: linear-gradient(#444, #111);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);ul
+}
+
+div.related a:hover {
+    background-image: linear-gradient(#777, #444);
+    text-decoration: none;
+}
+
+div.related li.right a:hover {
+    background-image: linear-gradient(#666, #333);
+}
+
+
 div.related ul {
     margin-left: .8ex;
 }
 
 div.related li.left img {
     padding: 0ex;
+}
+
+div.related {
+    background-color: #555;
+    background-image: linear-gradient(#555, #333);
+    color: #777;
+    padding: 2px 0;
+}
+
+/* Hide the footer */
+div.footer {
+    display: none;
 }
 
 span.hiddenlink {
@@ -65,6 +111,9 @@ div.body {
 div.document {
     /*background-color: #edf7fb;*/
     background-color: white;
+    border: solid;
+    border-color: #777;
+    border-width: 2px 0;
 }
  
 /* special colors for exercises */
