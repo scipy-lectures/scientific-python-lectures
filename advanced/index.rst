@@ -1,6 +1,16 @@
 Advanced topics
 ===================================================================
 
+This part of the *Scipy lecture notes* is dedicated to advanced usage. It
+strives to educate the proficient Python coder to be an expert and
+tackles various specific topics.
+
+|clear-floats|
+
+_____
+
+|clear-floats|
+
 .. include:: ../includes/big_toc_css.rst
 
 .. include:: ../tune_toc.rst
