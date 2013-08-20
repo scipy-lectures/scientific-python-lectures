@@ -241,8 +241,9 @@ Statistical information
 
 ``np.histogram``
 
-.. topic::
-    **Exercise 1**
+.. topic:: **Exercise 1**
+    :class: green
+    
 
     * Open as an array the ``scikit-image`` logo
       (http://scikit-image.org/_static/scikits_image_logo.png), or an
@@ -420,9 +421,9 @@ the gradient) is minimized, while being close to the measured image::
     [:ref:`Python source code <example_plot_lena_tv_denoise.py>`]
 
 
-.. topic::
-    Exercise 2: denoising
-
+.. topic:: **Exercise 2: denoising**
+    :class: green
+    
     * Create a binary image (of 0s and 1s) with several objects (circles,
       ellipses, squares, or random shapes).
 
@@ -926,8 +927,8 @@ Non-regularly-spaced blocks: radial mean::
 
     [:ref:`Python source code <example_plot_radial_mean.py>`]
 
-.. topic::
-    Exercise: segmentation
+.. topic::  **Exercise: segmentation**
+    :class: green
 
     * Load as an array the coins image from skimage (skimage.data.coins)
       or from https://github.com/scikits-image/scikits-image/raw/master/skimage/data/coins.png
