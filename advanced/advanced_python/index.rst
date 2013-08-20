@@ -347,7 +347,7 @@ send and throw. ::
     >>> it.close()
     --closing--
 
-.. note:: ``next`` or ``__next__``?
+.. topic:: ``next`` or ``__next__``?
 
   In Python 2.x, the iterator method to retrieve the next value is
   called `next <iterator.next>`. It is invoked implicitly through the
