@@ -20,6 +20,5 @@ ____
    operations.rst
    elaborate_arrays.rst
    advanced_operations.rst
-   exercises.rst
 
 
