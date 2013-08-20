@@ -57,6 +57,14 @@ div.body {
     max-width: 90ex;
     margin-left: auto;
     margin-right: auto;
+    /*border: solid;
+    border-width: 0px 1px 0px 1px;
+    border-color: rgb(204, 204, 204);*/
+}
+
+div.document {
+    /*background-color: #edf7fb;*/
+    background-color: white;
 }
  
 /* special colors for exercises */
@@ -69,6 +77,22 @@ div.green {
 div.body h1, div.body h2 {
     font-weight: bold;
 }
+
+/* more spacing for visual air */
+div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body
+h6 {
+    margin: 20px 0px 20px -20px;
+    padding: 3px 0px 3px 5px;
+}
+
+div.body h2 {
+    margin-top: 35px;
+}
+
+div.body h3, div.body hr {
+    margin-top: 25px;
+}
+
 
 /* clear both after section titles */
 div.body h1, div.body h2, div.body h3, div.body h4, hr {
@@ -122,6 +146,11 @@ table.docutils tr {
     border-style: solid none solid none;
     border-width: 1px 0 1px 0;
     border-color: #AAAAAA;
+}
+
+/* Boxes */
+div.topic, div.admonition {
+    border-radius: 4px 4px 4px 4px;
 }
 
 /* Content div */
