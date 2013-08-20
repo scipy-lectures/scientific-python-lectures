@@ -539,6 +539,11 @@ Subplots
     <http://matplotlib.sourceforge.net/users/gridspec.html>`_ command is
     a more powerful alternative.
 
+.. avoid an ugly interplay between 'tip' and the images below: we want a
+   line-return
+
+|clear-floats|
+
 .. image:: auto_examples/images/plot_subplot-horizontal_1.png
    :scale: 28
    :target: auto_examples/plot_subplot-horizontal.html
