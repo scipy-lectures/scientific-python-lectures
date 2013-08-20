@@ -4,14 +4,14 @@
 
 .. currentmodule:: numpy
 
-The numpy array object
-=======================
+The Numpy array object
+======================
 
 .. contents:: Section contents
     :local:
     :depth: 1
 
-What are Numpy and numpy arrays
+What are Numpy and Numpy arrays?
 --------------------------------
 
 :**Python** objects:
@@ -29,28 +29,26 @@ What are Numpy and numpy arrays
 
     - designed for scientific computation (convenience)
 
-::
+    - Also known as *array oriented computing*
+
+.. sourcecode:: pycon
 
     >>> import numpy as np
     >>> a = np.array([0, 1, 2, 3])
     >>> a
     array([0, 1, 2, 3])
 
-.. tip:: 
-   
-   **For example:**
+For example, An array containing:
 
-    An array containing:
+* values of an experiment/simulation at discrete time steps
 
-    * values of an experiment/simulation at discrete time steps
+* signal recorded by a measurement device, e.g. sound wave
 
-    * signal recorded by a measurement device, e.g. sound wave
+* pixels of an image, grey-level or colour
 
-    * pixels of an image, grey-level or colour
+* 3-D data measured at different X-Y-Z positions, e.g. MRI scan
 
-    * 3-D data measured at different X-Y-Z positions, e.g. MRI scan
-
-    * ...
+* ...
 
 **Why it is useful:** Memory-efficient container that provides fast numerical
 operations.
@@ -93,32 +91,29 @@ Reference documentation
      String Form:<built-in function array>
      Docstring:
      array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
-     ...
 
-  .. tip::
-  
-   .. code-block:: python
+  .. tip:
 
-     >>> help(np.array)    # doctest: +ELLIPSIS
+   .. sourcecode:: pycon
+
+     >>> help(np.array) # doctest: +ELLIPSIS
      Help on built-in function array in module numpy.core.multiarray:
      <BLANKLINE>
      array(...)
          array(object, dtype=None, copy=True, order=None, subok=False, ...
-     ...
 
 
 - Looking for something:
 
-  .. code-block:: python
+  .. sourcecode:: pycon
 
-     >>> np.lookfor('create array')    # doctest: +ELLIPSIS
+     >>> np.lookfor('create array') # doctest: +SKIP
      Search results for 'create array'
      ---------------------------------
      numpy.array
          Create an array.
      numpy.memmap
          Create a memory-map to an array stored in a *binary* file on disk.
-     ...
 
   .. sourcecode:: ipython
 
@@ -128,12 +123,23 @@ Reference documentation
      np.conjugate
      np.convolve
 
-.. the import convention, reminder on python imports
+Import conventions
+------------------
+
+The general convention to import numpy is:
+
+.. sourcecode:: pycon
+
+   >>> import numpy as np
+
+Using this style of import is recommended.
 
 Creating arrays
 ---------------
 
-* **1-D**::
+* **1-D**:
+
+  .. sourcecode:: pycon
 
     >>> a = np.array([0, 1, 2, 3])
     >>> a
@@ -145,7 +151,9 @@ Creating arrays
     >>> len(a)
     4
 
-* **2-D, 3-D, ...**::
+* **2-D, 3-D, ...**:
+
+  .. sourcecode:: pycon
 
     >>> b = np.array([[0, 1, 2], [3, 4, 5]])    # 2 x 3 array
     >>> b
@@ -168,19 +176,33 @@ Creating arrays
     >>> c.shape
     (2, 2, 1)
 
+.. topic:: **Exercise: Simple arrays**
+    :class: green
+
+    * Create simple one and two dimensional arrays. First, redo the examples
+      from above. And then create your own.
+    * Use the functions ``len``, ``shape`` and ``ndim`` on some of those
+      arrays and observe their output.
+
+Functions for creating arrays
+-----------------------------
+
 In practice, we rarely enter items one by one...
 
-* Evenly spaced::
+* Evenly spaced:
 
-    >>> import numpy as np
+  .. sourcecode:: pycon
+
     >>> a = np.arange(10) # 0 .. n-1  (!)
     >>> a
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> b = np.arange(1, 9, 2) # start, end (exlusive), step
+    >>> b = np.arange(1, 9, 2) # start, end (exclusive), step
     >>> b
     array([1, 3, 5, 7])
 
-* or by number of points::
+* or by number of points:
+
+  .. sourcecode:: pycon
 
     >>> c = np.linspace(0, 1, 6)   # start, end, num-points
     >>> c
@@ -189,7 +211,9 @@ In practice, we rarely enter items one by one...
     >>> d
     array([ 0. ,  0.2,  0.4,  0.6,  0.8])
 
-* Common arrays::
+* Common arrays:
+
+  .. sourcecode:: pycon
 
     >>> a = np.ones((3, 3))  # reminder: (3, 3) is a tuple
     >>> a
@@ -212,18 +236,362 @@ In practice, we rarely enter items one by one...
            [0, 0, 3, 0],
            [0, 0, 0, 4]])
 
-* :mod:`np.random`: random numbers (Mersenne Twister PRNG)::
+* :mod:`np.random`: random numbers (Mersenne Twister PRNG):
+
+  .. sourcecode:: pycon
 
     >>> a = np.random.rand(4)       # uniform in [0, 1]
-    >>> a
+    >>> a  # doctest: +SKIP
     array([ 0.95799151,  0.14222247,  0.08777354,  0.51887998])
 
     >>> b = np.random.randn(4)      # Gaussian
-    >>> b
+    >>> b  # doctest: +SKIP
     array([ 0.37544699, -0.11425369, -0.47616538,  1.79664113])
 
     >>> np.random.seed(1234)        # Setting the random seed
 
+.. topic:: **Exercise: Creating arrays using functions**
+   :class: green
+
+   * Experiment with ``arange``, ``linspace``, ``ones``, ``zeros``, ``eye`` and
+     ``diag``.
+   * Create different kinds of arrays with random numbers.
+   * Try setting the seed before creating an array with random values.
+   * Look at the function ``np.empty``. What does it do? When might this be
+     useful?
+
+.. EXE: construct 1 2 3 4 5
+.. EXE: construct -5, -4, -3, -2, -1
+.. EXE: construct 2 4 6 8
+.. EXE: look what is in an empty() array
+.. EXE: construct 15 equispaced numbers in range [0, 10]
+
+Basic data types
+----------------
+
+You may have noticed that, in some instances, array elements are displayed with
+a trailing dot (e.g. ``2.`` vs ``2``). This is due to a difference in the
+data-type used:
+
+.. sourcecode:: pycon
+
+    >>> a = np.array([1, 2, 3])
+    >>> a.dtype
+    dtype('int64')
+
+    >>> b = np.array([1., 2., 3.])
+    >>> b.dtype
+    dtype('float64')
+
+.. tip::
+
+    Different data-types allow us to store data more compactly in memory,
+    but most of the time we simply work with floating point numbers.
+    Note that, in the example above, NumPy auto-detects the data-type
+    from the input.
+
+-----------------------------
+
+You can explicitly specify which data-type you want:
+
+.. sourcecode:: pycon
+
+    >>> c = np.array([1, 2, 3], dtype=float)
+    >>> c.dtype
+    dtype('float64')
+
+
+The **default** data type is floating point:
+
+.. sourcecode:: pycon
+
+    >>> a = np.ones((3, 3))
+    >>> a.dtype
+    dtype('float64')
+
+There are also other types:
+
+:Complex:
+
+  .. sourcecode:: pycon
+
+        >>> d = np.array([1+2j, 3+4j, 5+6*1j])
+        >>> d.dtype
+        dtype('complex128')
+
+:Bool:
+
+  .. sourcecode:: pycon
+
+        >>> e = np.array([True, False, False, True])
+        >>> e.dtype
+        dtype('bool')
+
+:Strings:
+
+  .. sourcecode:: pycon
+
+        >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
+        >>> f.dtype     # <--- strings containing max. 7 letters
+        dtype('S7')
+
+:Much more:
+
+    * ``int32``
+    * ``int64``
+    * ``unit32``
+    * ``unit64``
+
+.. XXX: mention: astype
+
+
+Basic visualization
+-------------------
+
+Now that we have our first data arrays, we are going to visualize them.
+
+Start by launching IPython in *pylab* mode.
+
+.. sourcecode:: bash
+
+    $ ipython --pylab
+
+Or the notebook:
+
+.. sourcecode:: bash
+
+   $ ipython notebook --pylab=inline
+
+Alternatively, if IPython has already been started:
+
+.. sourcecode:: pycon
+
+    >>> %pylab  # doctest: +SKIP
+
+Or, from the notebook:
+
+.. sourcecode:: pycon
+
+    >>> %pylab inline
+
+The ``inline`` is important for the notebook, so that plots are displayed in
+the notebook and not in a new window.
+
+*Matplotlib* is a 2D plotting package. We can import its functions as below:
+
+.. sourcecode:: pycon
+
+    >>> import matplotlib.pyplot as plt  # the tidy way
+
+And then use (note that you have to use ``show`` explicitly):
+
+.. sourcecode:: pycon
+
+    >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
+    >>> plt.show()           # <-- shows the plot (not needed with pylab) # doctest: +SKIP
+
+Or, if you are using *pylab*:
+
+.. sourcecode:: pycon
+
+    >>> plot(x, y)       # line plot    # doctest: +SKIP
+
+Using ``import matplotlib.pyplot as plt`` is recommended for use in scripts.
+Whereas ``pylab`` is recommended for interactive exploratory work.
+
+* **1D plotting**:
+
+  .. sourcecode:: pycon
+
+    >>> x = np.linspace(0, 3, 20)
+    >>> y = np.linspace(0, 9, 20)
+    >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +SKIP
+    [<matplotlib.lines.Line2D object at ...>]
+
+  .. plot:: pyplots/numpy_intro_1.py
+
+* **2D arrays** (such as images):
+
+  .. sourcecode:: pycon
+
+    >>> image = np.random.rand(30, 30)
+    >>> plt.imshow(image, cmap=plt.cm.hot)    # doctest: +SKIP
+    >>> plt.colorbar()    # doctest: +SKIP
+    <matplotlib.colorbar.Colorbar instance at ...>
+
+  .. plot:: pyplots/numpy_intro_2.py
+
+  .. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
+
+.. topic:: **Exercise: Simple visualizations**
+   :class: green
+
+   * Plot some simple arrays.
+   * Try to use both the IPython shell and the notebook, if possible.
+   * Try using the ``gray`` colormap.
+
+.. * **3D plotting**:
+..
+..   For 3D visualization, we can use another package: **Mayavi**. A quick example:
+..   start by **relaunching iPython** with these options: **ipython --pylab=wx**
+..   (or **ipython -pylab -wthread** in IPython < 0.10).
+..
+..   .. image:: surf.png
+..      :align: right
+..      :scale: 60
+..
+..   .. sourcecode:: ipython
+..
+..       In [58]: from mayavi import mlab
+..       In [61]: mlab.surf(image)
+..       Out[61]: <enthought.mayavi.modules.surface.Surface object at ...>
+..       In [62]: mlab.axes()
+..       Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
+..
+..   .. tip::
+..
+..    The mayavi/mlab window that opens is interactive: by clicking on the
+..    left mouse button you can rotate the image, zoom with the mouse wheel,
+..    etc.
+..
+..    For more information on Mayavi :
+..    http://github.enthought.com/mayavi/mayavi
+..
+..   .. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
+
+
+Indexing and slicing
+--------------------
+
+The items of an array can be accessed and assigned to the same way as
+other Python sequences (e.g. lists):
+
+.. sourcecode:: pycon
+
+    >>> a = np.arange(10)
+    >>> a
+    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    >>> a[0], a[2], a[-1]
+    (0, 2, 9)
+
+.. warning::
+
+   Indices begin at 0, like other Python sequences (and C/C++).
+   In contrast, in Fortran or Matlab, indices begin at 1.
+
+The usual python idiom for reversing a sequence is supported:
+
+.. sourcecode:: pycon
+
+   >>> a[::-1]
+   array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
+
+For multidimensional arrays, indexes are tuples of integers:
+
+.. sourcecode:: pycon
+
+    >>> a = np.diag(np.arange(3))
+    >>> a
+    array([[0, 0, 0],
+           [0, 1, 0],
+           [0, 0, 2]])
+    >>> a[1, 1]
+    1
+    >>> a[2, 1] = 10 # third line, second column
+    >>> a
+    array([[ 0,  0,  0],
+           [ 0,  1,  0],
+           [ 0, 10,  2]])
+    >>> a[1]
+    array([0, 1, 0])
+
+
+Note that:
+
+* In 2D, the first dimension corresponds to rows, the second to columns.
+* Let us repeat together: the first dimension corresponds to **rows**, the second to **columns**.
+* for multidimensional ``a``, ``a[0]`` is interpreted by
+  taking all elements in the unspecified dimensions.
+
+**Slicing** Arrays, like other Python sequences can also be sliced:
+
+.. sourcecode:: pycon
+
+    >>> a = np.arange(10)
+    >>> a
+    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    >>> a[2:9:3] # [start:end:step]
+    array([2, 5, 8])
+
+Note that the last index is not included! :
+
+.. sourcecode:: pycon
+
+    >>> a[:4]
+    array([0, 1, 2, 3])
+
+All three slice components are not required: by default, `start` is 0,
+`end` is the last and `step` is 1:
+
+.. sourcecode:: pycon
+
+    >>> a[1:3]
+    array([1, 2])
+    >>> a[::2]
+    array([0, 2, 4, 6, 8])
+    >>> a[3:]
+    array([3, 4, 5, 6, 7, 8, 9])
+
+A small illustrated summary of Numpy indexing and slicing...
+
+.. only:: latex
+
+    .. image:: images/numpy_indexing.png
+        :align: center
+
+.. only:: html
+
+    .. image:: images/numpy_indexing.png
+        :align: center
+        :width: 65%
+
+You can also combine assignment and slicing:
+
+.. sourcecode:: pycon
+
+   >>> a = np.arange(10)
+   >>> a[5:] = 10
+   >>> a
+   array([ 0,  1,  2,  3,  4, 10, 10, 10, 10, 10])
+   >>> b = np.arange(5)
+   >>> a[5:] = b[::-1]
+   >>> a
+   array([0, 1, 2, 3, 4, 4, 3, 2, 1, 0])
+
+.. topic:: **Exercise: Indexing and slicing**
+   :class: green
+
+   * Try the different flavours of slicing, using ``start``, ``end`` and
+     ``step``.
+   * Verify that the slices in the diagram above are indeed correct. You may
+     use the following expression to create the array:
+
+     .. sourcecode:: pycon
+
+        >>> np.arange(6) + np.arange(0, 51, 10)[:, np.newaxis]
+        array([[ 0,  1,  2,  3,  4,  5],
+               [10, 11, 12, 13, 14, 15],
+               [20, 21, 22, 23, 24, 25],
+               [30, 31, 32, 33, 34, 35],
+               [40, 41, 42, 43, 44, 45],
+               [50, 51, 52, 53, 54, 55]])
+
+   * Try assigning a smaller 2D array to a larger 2D array, like in the 1D
+     example above.
+   * Use a different step, e.g. ``-2``, in the reversal idiom above. What effect
+     does this have?
 
 .. topic:: **Exercise: Array creation**
     :class: green
@@ -260,248 +628,27 @@ In practice, we rarely enter items one by one...
          [4, 3, 4, 3, 4, 3],
          [2, 1, 2, 1, 2, 1]]
 
-.. array() constructor
-
-.. empty, zeros, arange, linspace
-
-.. EXE: construct 1 2 3 4 5
-.. EXE: construct -5, -4, -3, -2, -1
-.. EXE: construct 2 4 6 8
-.. EXE: look what is in an empty() array
-.. EXE: construct 15 equispaced numbers in range [0, 10]
-
-Basic data types
-----------------
-
-You may have noticed that, in some instances, array elements are displayed with
-a trailing dot (e.g. ``2.`` vs ``2``). This is due to a difference in the
-data-type used::
-
-    >>> a = np.array([1, 2, 3])
-    >>> a.dtype
-    dtype('int64')
-
-    >>> b = np.array([1., 2., 3.])
-    >>> b.dtype
-    dtype('float64')
-
-.. tip::
-
-    Different data-types allow us to store data more compactly in memory,
-    but most of the time we simply work with floating point numbers.
-    Note that, in the example above, NumPy auto-detects the data-type
-    from the input.
-
------------------------------
-
-You can explicitly specify which data-type you want::
-
-    >>> c = np.array([1, 2, 3], dtype=float)
-    >>> c.dtype
-    dtype('float64')
-
-
-The **default** data type is floating point
-
-.. tip::
-   
-   ::
-
-    >>> a = np.ones((3, 3))
-    >>> a.dtype
-    dtype('float64')
-
-There are also other types:
-
-:Complex:
-
-        >>> d = np.array([1+2j, 3+4j, 5+6*1j])
-        >>> d.dtype
-        dtype('complex128')
-
-:Bool:
-
-        >>> e = np.array([True, False, False, True])
-        >>> e.dtype
-        dtype('bool')
-
-:Strings:
-
-        >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
-        >>> f.dtype     # <--- strings containing max. 7 letters
-        dtype('S7')
-
-:Much more:
-
-        ``int32/int64...``
-
-
-
-.. XXX: mention: astype
-
-Basic visualization
--------------------
-
-.. tip::
-
-  Now that we have our first data arrays, we are going to visualize them.
-
-Start by launching IPython in *pylab* mode
-
-.. sourcecode:: bash
-
-    $ ipython --pylab
-
-*Matplotlib* is a 2D plotting package. We can import its functions as below::
-
-    >>> import matplotlib.pyplot as plt  # the tidy way
-
-* **1D plotting**::
-
-    >>> x = np.linspace(0, 3, 20)
-    >>> y = np.linspace(0, 9, 20)
-    >>> plt.plot(x, y)       # line plot    # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.show()           # <-- shows the plot (not needed with Ipython) # doctest: +SKIP
-
-  .. plot:: pyplots/numpy_intro_1.py
-
-* **2D arrays** (such as images)::
-
-    >>> image = np.random.rand(30, 30)
-    >>> plt.imshow(image, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
-    <matplotlib.image.AxesImage object at ...>
-    >>> plt.colorbar()    # doctest: +ELLIPSIS
-    <matplotlib.colorbar.Colorbar instance at ...>
-    >>> plt.show() # doctest: +SKIP
-
-  .. plot:: pyplots/numpy_intro_2.py
-
-  .. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
-
-
-* **3D plotting**
-
-  For 3D visualization, we can use another package: **Mayavi**. A quick example:
-  start by **relaunching iPython** with these options: **ipython --pylab=wx**
-  (or **ipython -pylab -wthread** in IPython < 0.10).
-
-  .. image:: surf.png
-     :align: right
-     :scale: 60
-
-  .. sourcecode:: ipython
-
-      In [58]: from mayavi import mlab
-      In [61]: mlab.surf(image)
-      Out[61]: <enthought.mayavi.modules.surface.Surface object at ...>
-      In [62]: mlab.axes()
-      Out[62]: <enthought.mayavi.modules.axes.Axes object at ...>
-
-  .. tip::
-
-   The mayavi/mlab window that opens is interactive: by clicking on the
-   left mouse button you can rotate the image, zoom with the mouse wheel,
-   etc.
-
-   For more information on Mayavi :
-   http://github.enthought.com/mayavi/mayavi
-
-  .. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
-
-
-Indexing and slicing
---------------------
-
-The items of an array can be accessed and assigned to the same way as
-other Python sequences (e.g. lists) ::
-
-    >>> a = np.arange(10)
-    >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> a[0], a[2], a[-1]
-    (0, 2, 9)
-
-.. warning::
-
-   Indices begin at 0, like other Python sequences (and C/C++).
-   In contrast, in Fortran or Matlab, indices begin at 1.
-
-For multidimensional arrays, indexes are tuples of integers::
-
-    >>> a = np.diag(np.arange(3))
-    >>> a
-    array([[0, 0, 0],
-           [0, 1, 0],
-           [0, 0, 2]])
-    >>> a[1, 1]
-    1
-    >>> a[2, 1] = 10 # third line, second column
-    >>> a
-    array([[ 0,  0,  0],
-           [ 0,  1,  0],
-           [ 0, 10,  2]])
-    >>> a[1]
-    array([0, 1, 0])
-
-Note that:
-
-* In 2D, the first dimension corresponds to rows, the second to columns.
-* for multidimensional ``a``, ``a[0]`` is interpreted by
-  taking all elements in the unspecified dimensions.
-
-**Slicing** Arrays, like other Python sequences can also be sliced::
-
-    >>> a = np.arange(10)
-    >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> a[2:9:3] # [start:end:step]
-    array([2, 5, 8])
-
-Note that the last index is not included! ::
-
-    >>> a[:4]
-    array([0, 1, 2, 3])
-
-All three slice components are not required: by default, `start` is 0,
-`end` is the last and `step` is 1::
-
-    >>> a[1:3]
-    array([1, 2])
-    >>> a[::2]
-    array([0, 2, 4, 6, 8])
-    >>> a[3:]
-    array([3, 4, 5, 6, 7, 8, 9])
-
-A small illustrated summary of Numpy indexing and slicing...
-
-.. only:: latex
-
-    .. image:: numpy_indexing.png
-        :align: center
-
-.. only:: html
-
-    .. image:: numpy_indexing.png
-        :align: center
-        :width: 65%
-
 Copies and views
 ----------------
 
 A slicing operation creates a **view** on the original array, which is
 just a way of accessing array data. Thus the original array is not
-copied in memory.
+copied in memory. You can use ``np.may_share_memory()`` to check if two arrays
+share the same memory block. Note however, that this uses heuristics and may
+give you false positives.
 
-**When modifying the view, the original array is modified as well**::
+**When modifying the view, the original array is modified as well**:
+
+.. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> a
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-    >>> b = a[::2]; b
+    >>> b = a[::2]
+    >>> b
     array([0, 2, 4, 6, 8])
+    >>> np.may_share_memory(a, b)
+    True
     >>> b[0] = 12
     >>> b
     array([12,  2,  4,  6,  8])
@@ -509,28 +656,19 @@ copied in memory.
     array([12,  1,  2,  3,  4,  5,  6,  7,  8,  9])
 
     >>> a = np.arange(10)
-    >>> b = a[::2].copy()  # force a copy
-    >>> b[0] = 12
+    >>> c = a[::2].copy()  # force a copy
+    >>> c[0] = 12
     >>> a
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+    >>> np.may_share_memory(a, c)
+    False
+
+
 
 This behavior can be surprising at first sight... but it allows to save both
 memory and time.
 
-.. warning:: **The transpose is a view**
-
-   As a result, a matrix cannot be made symmetric in-place::
-
-    >>> a = np.ones((100, 100))
-    >>> a += a.T
-    >>> a
-    array([[ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           [ 2.,  2.,  2., ...,  2.,  2.,  2.],
-           ...,
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.],
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.],
-           [ 3.,  3.,  3., ...,  2.,  2.,  2.]])
 
 .. EXE: [1, 2, 3, 4, 5] -> [1, 2, 3]
 .. EXE: [1, 2, 3, 4, 5] -> [4, 5]
@@ -546,20 +684,26 @@ memory and time.
 .. topic:: Worked example: Prime number sieve
    :class: green
 
-   .. image:: prime-sieve.png
+   .. image:: images/prime-sieve.png
 
    Compute prime numbers in 0--99, with a sieve
 
    * Construct a shape (100,) boolean array ``is_prime``,
-     filled with True in the beginning::
+     filled with True in the beginning:
 
-       >>> is_prime = np.ones((100,), dtype=bool)
+   .. sourcecode:: pycon
 
-   * Cross out 0 and 1 which are not primes::
+        >>> is_prime = np.ones((100,), dtype=bool)
+
+   * Cross out 0 and 1 which are not primes:
+
+   .. sourcecode:: pycon
 
        >>> is_prime[:2] = 0
 
-   * For each integer ``j`` starting from 2, cross out its higher multiples::
+   * For each integer ``j`` starting from 2, cross out its higher multiples:
+
+   .. sourcecode:: pycon
 
        >>> N_max = int(np.sqrt(len(is_prime)))
        >>> for j in range(2, N_max):
@@ -573,10 +717,10 @@ memory and time.
 
      - Run it to check it works
 
-     - Convert the simple sieve to `the sieve of Eratosthenes
-       <http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`__:
+     - Use the optimization suggested in `the sieve of Eratosthenes
+       <http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`_:
 
-      1. Skip `j` which are already known to not be primes
+      1. Skip ``j`` which are already known to not be primes
 
       2. The first number to cross out is :math:`j^2`
 
@@ -592,7 +736,7 @@ Fancy indexing
 Using boolean masks
 ...................
 
-::
+.. sourcecode:: pycon
 
     >>> np.random.seed(3)
     >>> a = np.random.random_integers(0, 20, 15)
@@ -606,7 +750,9 @@ Using boolean masks
     >>> extract_from_a           # extract a sub-array with the mask
     array([ 3,  0,  9,  6,  0, 12])
 
-Indexing with a mask can be very useful to assign a new value to a sub-array::
+Indexing with a mask can be very useful to assign a new value to a sub-array:
+
+.. sourcecode:: pycon
 
     >>> a[a % 3 == 0] = -1
     >>> a
@@ -614,37 +760,44 @@ Indexing with a mask can be very useful to assign a new value to a sub-array::
 
 
 Indexing with an array of integers
-....................................
+..................................
 
-::
+.. sourcecode:: pycon
 
-    >>> a = np.arange(10)
+    >>> a = np.arange(0, 100, 10)
     >>> a
-    array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+    array([ 0, 10, 20, 30, 40, 50, 60, 70, 80, 90])
 
 Indexing can be done with an array of integers, where the same index is repeated
-several time::
+several time:
+
+.. sourcecode:: pycon
 
     >>> a[[2, 3, 2, 4, 2]]  # note: [2, 3, 2, 4, 2] is a Python list
-    array([2, 3, 2, 4, 2])
+    array([20, 30, 20, 40, 20])
 
-New values can be assigned with this kind of indexing::
+New values can be assigned with this kind of indexing:
 
-    >>> a[[9, 7]] = -10
+.. sourcecode:: pycon
+
+    >>> a[[9, 7]] = -100
     >>> a
-    array([  0,   1,   2,   3,   4,   5,   6, -10,   8, -10])
+    array([   0,   10,   20,   30,   40,   50,   60, -100,   80, -100])
 
 .. tip::
 
   When a new array is created by indexing with an array of integers, the
-  new array has the same shape than the array of integers::
+  new array has the same shape than the array of integers:
+
+  .. sourcecode:: pycon
 
     >>> a = np.arange(10)
     >>> idx = np.array([[3, 4], [9, 7]])
+    >>> idx.shape
+    (2, 2)
     >>> a[idx]
     array([[3, 4],
            [9, 7]])
-    >>> b = np.arange(10)
 
 
 ____
@@ -653,26 +806,35 @@ The image below illustrates various fancy indexing applications
 
 .. only:: latex
 
-    .. image:: numpy_fancy_indexing.png
+    .. image:: images/numpy_fancy_indexing.png
         :align: center
 
 .. only:: html
 
-    .. image:: numpy_fancy_indexing.png
+    .. image:: images/numpy_fancy_indexing.png
         :align: center
         :width: 80%
 
-We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
-the same time::
+.. topic:: **Exercise: Fancy indexing**
+    :class: green
 
-    >>> a = np.arange(12).reshape(3,4)
-    >>> a
-    array([[ 0,  1,  2,  3],
-           [ 4,  5,  6,  7],
-           [ 8,  9, 10, 11]])
-    >>> i = np.array([[0, 1], [1, 2]])
-    >>> a[i, 2] # same as a[i, 2*np.ones((2, 2), dtype=int)]
-    array([[ 2,  6],
-           [ 6, 10]])
+    * Again, verify the fancy indexing shown in the diagram above.
+    * Use fancy indexing on the left and array creation on the right to assign
+      values from a smaller array to a larger array.
+
+.. We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
+.. the same time:
+..
+.. .. sourcecode:: pycon
+..
+..     >>> a = np.arange(12).reshape(3,4)
+..     >>> a
+..     array([[ 0,  1,  2,  3],
+..            [ 4,  5,  6,  7],
+..            [ 8,  9, 10, 11]])
+..     >>> i = np.array([[0, 1], [1, 2]])
+..     >>> a[i, 2] # same as a[i, 2*np.ones((2, 2), dtype=int)]
+..     array([[ 2,  6],
+..            [ 6, 10]])
 
 
