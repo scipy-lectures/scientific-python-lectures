@@ -1,6 +1,39 @@
 Some exercises
 ==============
 
+Array manipulations
+--------------------
+
+1. Form the 2-D array (without typing it in explicitly)::
+
+        [[1,  6, 11],
+         [2,  7, 12],
+         [3,  8, 13],
+         [4,  9, 14],
+         [5, 10, 15]]
+
+   and generate a new array containing its 2nd and 4th rows.
+
+2. Divide each column of the array:
+
+   .. sourcecode:: pycon
+
+        >>> a = np.arange(25).reshape(5, 5)
+
+   elementwise with the array ``b = np.array([1., 5, 10, 15, 20])``.
+   (Hint: ``np.newaxis``).
+
+3. Harder one: Generate a 10 x 3 array of random numbers (in range [0,1]).
+   For each row, pick the number closest to 0.5.
+
+   - Use ``abs`` and ``argsort`` to find the column ``j`` closest for
+     each row.
+
+   - Use fancy indexing to extract the numbers.  (Hint: ``a[i,j]`` --
+     the array ``i`` must contain the row numbers corresponding to stuff in
+     ``j``.)
+
+
 Picture manipulation: Framing Lena
 -----------------------------------
 
@@ -72,38 +105,6 @@ use different colormaps, crop the image, change some parts of the image.
     lena_locket.py``.
 
     Change the circle to an ellipsoid.
-
-Array manipulations
---------------------
-
-1. Form the 2-D array (without typing it in explicitly)::
-
-        [[1,  6, 11],
-         [2,  7, 12],
-         [3,  8, 13],
-         [4,  9, 14],
-         [5, 10, 15]]
-
-   and generate a new array containing its 2nd and 4th rows.
-
-2. Divide each column of the array:
-
-   .. sourcecode:: pycon
-
-        >>> a = np.arange(25).reshape(5, 5)
-
-   elementwise with the array ``b = np.array([1., 5, 10, 15, 20])``.
-   (Hint: ``np.newaxis``).
-
-3. Harder one: Generate a 10 x 3 array of random numbers (in range [0,1]).
-   For each row, pick the number closest to 0.5.
-
-   - Use ``abs`` and ``argsort`` to find the column ``j`` closest for
-     each row.
-
-   - Use fancy indexing to extract the numbers.  (Hint: ``a[i,j]`` --
-     the array ``i`` must contain the row numbers corresponding to stuff in
-     ``j``.)
 
 Data statistics
 ----------------
