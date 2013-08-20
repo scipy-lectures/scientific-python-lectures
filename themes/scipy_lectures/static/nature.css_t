@@ -155,7 +155,8 @@ div.topic, div.admonition {
 
 /* Content div */
 div.contents {
-      background-color: #FFFFF6;
+    background-color: #FFFFF6;
+    border-color: #c0ac5c;
 }
 
 div.contents li {
@@ -167,6 +168,11 @@ div.contents li {
 div.contents p {
     margin-bottom : 0px;
     margin-top : 0px;
+}
+
+div.body p.topic-title {
+    margin-top: -5px;
+    margin-bottom: 5px;
 }
 
 div.contents ul {
