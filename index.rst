@@ -78,11 +78,7 @@ ____
 
  :download:`PythonScientific.pdf` :download:`PythonScientific-simple.pdf`
  
- .. image:: themes/minBox.png
  .. image:: themes/plusBox.png
- .. image:: themes/noneBox.png
- .. image:: themes/minBoxHighlight.png
- .. image:: themes/plusBoxHighlight.png
 
  .. raw:: html
  

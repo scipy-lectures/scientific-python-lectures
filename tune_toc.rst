@@ -1,45 +1,32 @@
 .. raw:: html
 
    <SCRIPT>
-   function preload_images() {
-       var img = new Image();
-       img.src="_images/plusBox.png";
-       img.src="_images/minBox.png";
-       img.src="_images/plusBoxHighlight.png";
-       img.src="_images/minBoxHighlight.png";
-       img.src="_images/noneBox.png";
-   }
-   preload_images();
-
    //Function to make the index toctree collapsible
    $(function () {
-       $('.toctree-l3')
+       $('.toctree-l2')
            .click(function(event){
                if (event.target.tagName.toLowerCase() != "a") {
                    if ($(this).children('ul').length > 0) {
-                       $(this).css('list-style-image',
-                       (!$(this).children('ul').is(':hidden')) ? 'url(_images/plusBoxHighlight.png)' : 'url(_images/minBoxHighlight.png)');
+                        $(this).attr('data-content',
+                            (!$(this).children('ul').is(':hidden')) ? '\u25ba' : '\u25bc');
                        $(this).children('ul').toggle();
                    }
                    return true; //Makes links clickable
                }
            })
            .mousedown(function(event){ return false; }) //Firefox highlighting fix
-           .css({cursor:'pointer', 'list-style-image':'url(_images/plusBox.png)'})
            .children('ul').hide();
-       $('ul li ul li:not(:has(ul))').css({cursor:'default', 'list-style-image':'url(_images/noneBox.png)'});
-       $('.toctree-l4').css({cursor:'default', 'list-style-image':'url(_images/noneBox.png)'});
-       var sidebarbutton = $('#sidebarbutton');
-       sidebarbutton.css({
-           'display': 'none'
-       });
+       // Initialize the values
+       $('li.toctree-l2:not(:has(ul))').attr('data-content', '-');
+       $('li.toctree-l2:has(ul)').attr('data-content', '\u25ba');
+       $('li.toctree-l2:has(ul)').css('cursor', 'pointer');
 
-       $('.toctree-l3').hover(
+       $('.toctree-l2').hover(
            function () {
                if ($(this).children('ul').length > 0) {
                    $(this).css('background-color', '#D0D0D0').children('ul').css('background-color', '#F0F0F0');
-                   $(this).css('list-style-image',
-                       (!$(this).children('ul').is(':hidden')) ? 'url(_images/minBoxHighlight.png)' : 'url(_images/plusBoxHighlight.png)');
+                   $(this).attr('data-content',
+                       (!$(this).children('ul').is(':hidden')) ? '\u25bc' : '\u25ba');
                }
                else {
                    $(this).css('background-color', '#F9F9F9');
@@ -48,8 +35,8 @@
            function () {
                $(this).css('background-color', 'white').children('ul').css('background-color', 'white');
                if ($(this).children('ul').length > 0) {
-                   $(this).css('list-style-image',
-                       (!$(this).children('ul').is(':hidden')) ? 'url(_images/minBox.png)' : 'url(_images/plusBox.png)');
+                   $(this).attr('data-content',
+                       (!$(this).children('ul').is(':hidden')) ? '\u25bc' : '\u25ba');
                }
            }
        );
@@ -67,8 +54,12 @@
         padding-left: 0px ;
     }
 
+    li, ul {
+        transition-duration: 0.2s;
+    }
+
     li.toctree-l1 {
-        padding: 0 ;
+        padding: 5px 0 0;
         list-style-type: none;
         font-size: 150% ;
         font-family: Arial, sans-serif;
@@ -76,28 +67,38 @@
         font-weight: normal;
         color: #20435c;
         margin-left: 0;
-        margin-bottom: 1em;
+        margin-bottom: 1.2em;
         font-weight: bold;
         }
 
     li.toctree-l1 a {
         padding: 0 0 0 10px ;
+        color: #314F64 ;
     }
 
     li.toctree-l2 {
         padding: 0.25em 0 0.25em 0 ;
         list-style-type: none;
         background-color: #FFFFFF;
-        font-size: 90% ;
-        font-weight: bold;
+        font-size: 85% ;
+        font-weight: normal;
     }
 
     li.toctree-l2 ul {
         padding-left: 40px ;
     }
 
+
+    li.toctree-l2:before {
+        content: attr(data-content) ;
+        font-size: 85% ;
+        color: #777 ;
+        display: inline-block;
+        width: 10px;
+    }
+
     li.toctree-l3 {
-        font-size: 70% ;
+        font-size: 75% ;
         list-style-type: square;
         font-weight: normal;
     }
