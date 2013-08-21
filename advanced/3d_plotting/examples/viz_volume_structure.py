@@ -2,7 +2,7 @@
 Use Mayavi to visualize the structure of a VolumeImg
 """
 
-from enthought.mayavi import mlab
+from mayavi import mlab
 import numpy as np
 
 x, y, z = np.mgrid[-5:5:64j, -5:5:64j, -5:5:64j]

@@ -361,3 +361,135 @@ points.
    :scale: 80
 
 
+.. topic:: **Suggestions**
+
+   * If you compute the norm of the vector field, you can apply an
+     isosurface to it.
+
+   * using :func:`mayavi.mlab.quiver3d` you can plot vectors. You can
+     also use the 'masking' options (in the GUI) to make the plot a bit
+     less dense.
+
+Different views on data: sources and modules
+---------------------------------------------
+
+.. tip::
+   
+    As we see above, it may be desirable to look at the same data in
+    different ways.
+
+Mayavi visualization are created by loading the data in a ``data
+source`` and then displayed on the screen using ``modules``.
+
+This can be seen by looking at the "pipeline" view. By right-clicking on
+the nodes of the pipeline, you can add new modules.
+
+.. topic:: Quiz
+    :class: green
+
+    Why it is not possible to add a `VectorCutPlane` to the vectors
+    created by :func:`mayavi.mlab.quiver3d`?
+
+Different sources: scatters and fields
+.......................................
+
+.. tip::
+
+   Data comes in different descriptions.
+   
+   * A 3D block of regularly-spaced value is structured: it is easy to know
+     how one measurement is related to another neighboring and how to
+     continuously interpolate between these. We can call such data a
+     **field**, borrow from terminology used in physics, as it is
+     continuously defined in space.
+
+   * A set of data points measured at random positions in a random order
+     gives rise to much more difficult and ill-posed interpolation
+     problems: the data structure itself does not tell us what are the
+     neighbors of a data point. We call such data a **scatter**.
+
+.. |unstructured| image:: examples/viz_volume_unstructure.png
+    :scale: 90
+
+.. |structured| image:: examples/viz_volume_structure.png
+    :scale: 90
+
+================================================= ==========================================
+|structured|                                      |unstructured|                
+================================================= ==========================================
+Unstructured and unconnected data: a **scatter**  Structured and connected data: a **field**
+
+mlab.points3d, mlab.quiver3d                      mlab.contour3d
+================================================= ==========================================
+
+Data sources corresponding to **scatters** can be created with
+:func:`mayavi.mlab.pipeline.scalar_scatter` or
+:func:`mayavi.mlab.pipeline.vector_scatter`; **field** data sources can be
+created with :func:`mlab.pipeline.scalar_field` or
+:func:`mlab.pipeline.vector_field`.
+
+.. topic:: Excercice:
+    :class: green
+
+    1. Create a contour (for instance of the magnetic field norm) by
+       using one of those functions and adding the right *module* by
+       clicking on the GUI dialog.
+
+    2. Create the right source to apply a 'vector_cut_plane' and
+       reproduce the picture of the magnetic field shown previously.
+
+    Note that one of the difficulties is providing the data in the right
+    form (number of arrays, shape) to the functions. This is often the
+    case with real-life data.
+
+.. seealso::
+
+   Sources are described in details in the `Mayavi manual
+   <http://docs.enthought.com/mayavi/mayavi/data.html>`_.
+
+Transforming data: filters
+...........................
+
+If you create a *vector field*, you may want to visualize the
+iso-contours of its magnitude. But the isosurface module can only be
+applied to scalar data, and not vector data. We can use a *filter*,
+``ExtractVectorNorm`` to add this scalar value to the vector field.
+
+    Filters apply a transformation to data, and can be added between
+    sources and modules
+
+.. topic:: Excercice
+   :class: green
+
+   Using the GUI, add the ExtractVectorNorm filter to display
+   iso-contours of the field magnitude.
+
+``mlab.pipeline``: the scripting layer
+.......................................
+
+The ``mlab`` scripting layer builds pipelines for you. You can reproduce
+these pipelines programmatically with the ``mlab.pipeline`` interface:
+each step has a corresponding ``mlab.pipeline`` function (simply convert
+the name of the step to lower-case underscore-separated:
+ExtractVectorNorm gives extract_vector_norm). This function takes as an
+argument the node that it applies to, as well as optional parameters, and
+returns the new node.
+
+For example, iso-contours of the magnitude are coded as::
+
+    mlab.pipeline.iso_surface(mlab.pipeline.extract_vector_norm(field),
+                              contours=[0.1*Bmax, 0.4*Bmax],
+                              opacity=0.5)
+
+.. image:: examples/visualize_field.png
+   :align: left
+   :scale: 60
+   :target: auto_examples/visualize_field.html
+
+
+.. topic:: Excercice
+   :class: green
+
+   Using the mlab.pipeline interface, generate a complete visualization,
+   with iso-contours of the field magnitude, and a vector cut plane.
+
