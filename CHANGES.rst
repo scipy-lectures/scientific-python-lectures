@@ -1,6 +1,13 @@
 What's new
 ==========
 
+Release 2013.2 beta (21 August 2013)
+-------------------------------------
+
+* Numpy chapter simplified (Valentin Haenel)
+
+* New layout for the HTML rendering (Gaël Varoquaux)
+
 Release 2013.1 (10 Feb 2013)
 ----------------------------
 
