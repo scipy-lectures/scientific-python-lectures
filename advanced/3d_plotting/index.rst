@@ -340,4 +340,24 @@ corresponding lines of code.
 Slicing and dicing data: sources, modules and filters
 =======================================================
 
-An example: 
+An example: inspecting magnetic fields
+--------------------------------------
+
+Suppose we are simulating the magnetic field generate by Helmotz coils.
+The :download:`examples/compute_field.py` script does this computation
+and gives you a `B` array, that is (3 x n), where the first axis is the
+direction of the field (Bx, By, Bz), and the second axis the index number
+of the point. Arrays `X`, `Y` and `Z` give the positions of these data
+points.
+
+.. topic:: **Excercise**
+    :class: green
+
+    Visualize this field. Your goal is to make sure that the simulation
+    code is correct.
+
+.. image:: examples/visualize_field.png
+   :align: center
+   :scale: 80
+
+
