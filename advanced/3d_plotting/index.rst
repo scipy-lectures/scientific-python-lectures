@@ -337,3 +337,7 @@ To find out what code can be used to program these changes, click on the
 red button as you modify those properties, and it will generate the
 corresponding lines of code.
 
+Slicing and dicing data: sources, modules and filters
+=======================================================
+
+An example: 
