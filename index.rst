@@ -59,7 +59,7 @@ _____
 
    intro/index.rst
    advanced/index.rst
-
+   packages/index.rst
 ____
 
 
