@@ -38,7 +38,7 @@ div.related li.right a {
     /*border: solid;
     border-width: 1px;*/
     border-color: #777;
-    padding: 0px 5px;
+    padding: 0px 8px;
     background-color: #333;
     background-image: linear-gradient(#444, #111);
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);ul
