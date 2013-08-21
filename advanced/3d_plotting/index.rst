@@ -1,3 +1,5 @@
+.. currentmodule:: mayavi
+
 .. _mayavi-label:
 
 ========================
@@ -11,6 +13,13 @@
 
 :author: Gaël Varoquaux
 
+.. tip::
+   
+    `Mayavi <http://docs.enthought.com/mayavi/mayavi>`_ is an interactive 3D
+    plotting package. :ref:`matplotlib <matplotlib>` can also do simple
+    3D plotting, but Mayavi relies on a more powerful engine is more
+    suited to displaying large or complex data.
+
 .. contents:: Chapters contents
     :local:
     :depth: 3
@@ -20,19 +29,25 @@ Mlab: the scripting interface
 ==============================
 
 The :mod:`mayavi.mlab` module provides simple plotting functions to apply
-to numpy arrays. Try them using in IPython, by starting IPython with the
-switch ``--gui=wx``.
+to numpy arrays, similar to matplotlib or matlab's plotting interface.
+Try them using in IPython, by starting IPython with the switch
+``--gui=wx``.
 
 3D plotting functions
 ----------------------
 
 Points
 ......
- 
+
 .. image:: examples/points3d.png
     :align: right
     :scale: 50
 
+.. hint::
+
+   Points in 3D, represented with markers (or "glyphs") and optionaly
+   different sizes.
+ 
 .. literalinclude:: examples/generate_figures.py
     :start-after: ### begin points3d example
     :end-before: ### end points3d example
@@ -43,6 +58,11 @@ Lines
 .. image:: examples/plot3d.png
     :align: right
     :scale: 50
+
+.. hint::
+
+   A line connecting points in 3D, with optional thickness and varying
+   color.
 
 .. literalinclude:: examples/generate_figures.py
     :start-after: ### begin plot3d example
@@ -55,6 +75,10 @@ Elevation surface
     :align: right
     :scale: 50
 
+.. hint::
+
+   A surface given by its elevation, coded as a 2D array
+
 .. literalinclude:: examples/generate_figures.py
     :start-after: ### begin surf example
     :end-before: ### end surf example
@@ -66,28 +90,38 @@ Arbitrary regular mesh
     :align: right
     :scale: 50
 
+.. hint::
+
+   A surface mesh given by x, y, z positions of its node points
+
 .. literalinclude:: examples/generate_figures.py
     :start-after: ### begin mesh example
     :end-before: ### end mesh example
 
+
 .. note:: 
 
     A surface is defined by points **connected** to form triangles or
-    polygones. In `mlab.surf` and `mlab.mesh`, the connectivity is
-    implicity given by the layout of the arrays. See also
-    `mlab.triangular_mesh`.
+    polygones. In :func:`mayavi.mlab.surf` and :func:`mayavi.mlab.mesh`,
+    the connectivity is implicity given by the layout of the arrays. See also
+    :func:`mayavi.mlab.triangular_mesh`.
 
 **Our data is often more than points and values: it needs some
 connectivity information**
 
+.. _mayavi-voldata-label: 
+
 Volumetric data
 ................
-
-.. _mayavi-voldata-label: 
 
 .. image:: examples/contour3d.png
     :align: right
     :scale: 50
+
+.. hint::
+
+   If your data is *dense* in 3D, it is more difficult to display. One
+   option is to take iso-contours of the data.
 
 .. literalinclude:: examples/generate_figures.py
     :start-after: ### begin contour3d example
@@ -106,7 +140,7 @@ Figures and decorations
 Figure management
 ..................
 
-.. only:: latex
+.. tip::
 
     Here is a list of functions useful to control the current figure
 
@@ -126,7 +160,7 @@ Change the view:		  mlab.view(azimuth=45, elevation=54, distance=1.)
 Changing plot properties
 .........................
 
-.. only:: latex
+.. tip:: 
 
     In general, many properties of the various objects on the figure can
     be changed. If these visualization are created via `mlab` functions, 
@@ -215,7 +249,11 @@ Changing plot properties
                If None, the min of the data will be used
     
 
-Example:
+.. image:: polar_mesh.png
+    :align: right
+    :scale: 90
+
+**Example:**
 
 .. sourcecode:: ipython
 
@@ -223,29 +261,25 @@ Example:
 
     In [2]: r, theta = np.mgrid[0:10, -np.pi:np.pi:10j]
 
-    In [3]: x = r*np.cos(theta)
+    In [3]: x = r * np.cos(theta)
 
-    In [4]: y = r*np.sin(theta)
+    In [4]: y = r * np.sin(theta)
 
     In [5]: z = np.sin(r)/r
 
-    In [6]: from enthought.mayavi import mlab
+    In [6]: from mayavi import mlab
 
     In [7]: mlab.mesh(x, y, z, colormap='gist_earth', extent=[0, 1, 0, 1, 0, 1])
-    Out[7]: <enthought.mayavi.modules.surface.Surface object at 0xde6f08c>
+    Out[7]: <mayavi.modules.surface.Surface object at 0xde6f08c>
 
     In [8]: mlab.mesh(x, y, z, extent=[0, 1, 0, 1, 0, 1], 
        ...: representation='wireframe', line_width=1, color=(0.5, 0.5, 0.5))
-    Out[8]: <enthought.mayavi.modules.surface.Surface object at 0xdd6a71c>
-
-.. image:: polar_mesh.png
-    :align: center
-    :scale: 70
+    Out[8]: <mayavi.modules.surface.Surface object at 0xdd6a71c>
 
 Decorations
 ............
 
-.. only:: latex
+.. tip::
 
     Different items can be added to the figure to carry extra
     information, such as a colorbar or a title.
@@ -274,14 +308,10 @@ Decorations
     `mlab.outline' and `mlab.axes` don't get them by default.
 
 
-    mlab_scripting_interface.rst
-    interaction.rst
-
-
 Interactive work
 =================
 
-.. only:: latex
+.. tip:: 
 
     The quickest way to create beautiful visualization with Mayavi is
     probably to interactivly tweak the various settings.
@@ -294,7 +324,7 @@ of objects with dialogs.
 
 .. image:: pipeline.png
     :align: center
-    :scale: 80
+    :scale: 70
 
 * Set the background of the figure in the `Mayavi Scene` node
 * Set the colormap in the `Colors and legends` node
