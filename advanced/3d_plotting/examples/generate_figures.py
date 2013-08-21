@@ -50,8 +50,7 @@ x = np.sin(phi) * np.cos(theta)
 y = np.sin(phi) * np.sin(theta)
 z = np.cos(phi)
 mlab.mesh(x, y, z)
-mlab.mesh(x, y, z, representation='wireframe',
-          color=(0, 0, 0))
+mlab.mesh(x, y, z, representation='wireframe', color=(0, 0, 0))
 ### end mesh example
 
 mlab.view(distance='auto')
