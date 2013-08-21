@@ -1,12 +1,20 @@
-======
-Traits
-======
+======================================
+Traits: building interactive dialogs
+======================================
 
 :author: Didrik Pinte
 
-The Traits project allows you to simply add validation, initialization, delegation, notification and a graphical user interface to Python object attributes. In this tutorial we will explore the Traits toolset and learn how to dramatically reduce the amount of boilerplate code you write, do rapid GUI application development, and understand the ideas which underly other parts of the Enthought Tool Suite.
+The Traits project allows you to simply add validation, initialization, delegation, notification and a graphical user interface to Python object attributes.
 
-Traits and the Enthought Tool Suite are open source projects licensed under a BSD-style license.
+.. tip::
+
+    In this tutorial we will explore the Traits toolset and learn how to
+    dramatically reduce the amount of boilerplate code you write, do
+    rapid GUI application development, and understand the ideas which
+    underly other parts of the Enthought Tool Suite.
+
+    Traits and the Enthought Tool Suite are open source projects licensed
+    under a BSD-style license.
 
 .. topic:: Intended Audience
 
@@ -29,9 +37,17 @@ Traits and the Enthought Tool Suite are open source projects licensed under a BS
 Introduction 
 ============
 
-The Enthought Tool Suite enable the construction of sophisticated application frameworks for data analysis, 2D plotting and 3D visualization. These powerful, reusable components are released under liberal BSD-style licenses.
+.. tip::
 
-The main packages are:
+    The Enthought Tool Suite enable the construction of sophisticated
+    application frameworks for data analysis, 2D plotting and 3D
+    visualization. These powerful, reusable components are released under
+    liberal BSD-style licenses.
+
+    .. image:: ETS.jpg
+        :align: right
+
+The main packages of the Enthought Tool Suite are:
 
     * Traits - component based approach to build our applications.
     * Kiva - 2D primitives supporting path based rendering, affine transforms,
@@ -41,9 +57,6 @@ The main packages are:
     * Mayavi - 3D visualization of scientific data based on VTK.
     * Envisage - application plugin framework for building scriptable and
       extensible applications
-
-.. image:: ETS.jpg
-    :align: center
 
 In this tutorial, we will focus on Traits.
 
@@ -64,7 +77,9 @@ reservoir and the dams do have a set of parameters :
     * Efficiency of the turbines
 
 The reservoir has a known behaviour. One part is related to the energy
-production based on the water released. A simple formula for approximating electric power production at a hydroelectric plant is :math:`P = \rho hrgk`, where:
+production based on the water released. A simple formula for
+approximating electric power production at a hydroelectric plant is
+:math:`P = \rho hrgk`, where:
 
     * :math:`P` is Power in watts,
     * :math:`\rho` is the density of water (~1000 kg/m3),
@@ -73,11 +88,14 @@ production based on the water released. A simple formula for approximating elect
     * :math:`g` is acceleration due to gravity of 9.8 m/s2,
     * :math:`k` is a coefficient of efficiency ranging from 0 to 1. 
       
-Annual electric energy production depends on the available water supply. In some installations the water flow rate can vary by a factor of 10:1 over the course of a year.
+.. tip::
 
+    Annual electric energy production depends on the available water supply.
+    In some installations the water flow rate can vary by a factor of 10:1
+    over the course of a year.
 
-The second part of the behaviour is the state of the storage that depends on
-controlled and uncontrolled parameters :
+The second part of the behaviour is the state of the storage that depends
+on controlled and uncontrolled parameters :
 
     :math:`storage_{t+1} = storage_t + inflows - release - spillage - irrigation`
 
@@ -89,7 +107,8 @@ controlled and uncontrolled parameters :
 What are Traits
 ===============
 
-A trait is a type definition that can be used for normal Python object attributes, giving the attributes some additional characteristics:
+A trait is a type definition that can be used for normal Python object
+attributes, giving the attributes some additional characteristics:
 
     * Standardization:
         * Initialization
@@ -99,7 +118,10 @@ A trait is a type definition that can be used for normal Python object attribute
     * Visualization
     * Documentation
 
-A class can freely mix trait-based attributes with normal Python attributes, or can opt to allow the use of only a fixed or open set of trait attributes within the class. Trait attributes defined by a class are automatically inherited by any subclass derived from the class.
+A class can freely mix trait-based attributes with normal Python
+attributes, or can opt to allow the use of only a fixed or open set of
+trait attributes within the class. Trait attributes defined by a class
+are automatically inherited by any subclass derived from the class.
 
 The common way of creating a traits class is by extending from the
 **HasTraits** base class and defining class traits :
@@ -166,7 +188,7 @@ Custom default values can be defined in the code:
     reservoir = Reservoir(name='Lac de Vouglans')
 
 
-.. note:: Complex initialisation
+.. topic:: **Complex initialisation**
 
     When a complex initialisation is required for a trait, a _XXX_default magic
     method can be implemented. It will be lazily called when trying to access
@@ -235,8 +257,8 @@ Let's now define the complete reservoir class:
 .. include:: reservoir.py
     :literal:
 
-Visualisation
--------------
+Visualization: opening a dialog
+--------------------------------
 
 The Traits library is also aware of user interfaces and can pop up a default
 view for the Reservoir class::
@@ -333,7 +355,7 @@ The static trait notification signatures can be:
     * def _release_changed(self, name, old, new
         pass
 
-.. note:: Listening to all the changes
+.. topic:: **Listening to all the changes**
 
     To listen to all the changes on a HasTraits class, the magic
     **_any_trait_changed** method can be implemented.
