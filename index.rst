@@ -10,6 +10,13 @@ Python Scientific Lecture Notes
         text-align: center;
         font-size: 200% ;
         font-weight: bold;
+        margin-bottom: 30px;
+    }
+
+    div.sidebar {
+        margin-right: -20px;
+        margin-top: -10px;
+        border-radius: 6px;
     }
   
   </style>
