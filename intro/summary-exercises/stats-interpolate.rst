@@ -79,8 +79,7 @@ of probabilities::
 
     >>> nprob = np.linspace(0, 1, 1e2)
     >>> fitted_max_speeds = quantile_func(nprob)
-
-2%
+    2%
 
 In the current model, the maximum wind speed occurring every 50 years is
 defined as the upper 2% quantile. As a result, the cumulative probability
