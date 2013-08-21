@@ -823,7 +823,7 @@ invited to try these exercises.
 
 .. only:: html
 
-   Exercises:
+   **Exercises:**
 
    .. toctree::
        :maxdepth: 1
@@ -832,7 +832,7 @@ invited to try these exercises.
        summary-exercises/optimize-fit.rst
        summary-exercises/image-processing.rst
 
-   Proposed solutions:
+   **Proposed solutions:**
 
    .. toctree::
       :maxdepth: 1

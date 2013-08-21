@@ -196,7 +196,7 @@ this makes it harder for beginners to find their way, it makes it
 possible for Python to be used to write programs, in web servers, or
 embedded devices.
 
-.. note:: Reference document for this section:
+.. topic:: Reference document for this section:
 
     **IPython user manual:** http://ipython.org/ipython-doc/dev/index.html
 
@@ -352,17 +352,13 @@ Other useful magic functions are:
     <IPython.core.compilerop.CachingCompiler instance at 0x2ad8ef0>,
     'filename': '<ipython-input-6-12fd421b5f28>'}
 
-.. note::
 
+.. topic:: **IPython help**
 
-.. note::
+    * The built-in IPython cheat-sheet is accessible via the ``%quickref`` magic
+      function.
 
-    The built-in IPython cheat-sheet is accessible via the ``%quickref`` magic
-    function.
-
-.. note::
-
-    A list of all available magic functions is shown when typing ``%magic``.
+    * A list of all available magic functions is shown when typing ``%magic``.
 
 Furthermore IPython ships with various *aliases* which emulate common UNIX
 command line tools such as ``ls`` to list files, ``cp`` to copy files and ``rm`` to

@@ -246,7 +246,7 @@ Concatenate and repeat lists::
     >>> r
     ['black', 'blue', 'green', 'red', 'white']
 
-.. note:: **Methods and Object-Oriented Programming**
+.. topic:: **Methods and Object-Oriented Programming**
 
     The notation ``r.method()`` (r.append(3), L.pop()``) is our
     first example of object-oriented programming (OOP). Being a ``list``, the
@@ -255,7 +255,7 @@ Concatenate and repeat lists::
     necessary for going through this tutorial.
 
 
-.. note:: **Discovering methods:**
+.. topic:: **Discovering methods:**
 
     Reminder: in Ipython: tab-completion (press tab)
 

@@ -299,8 +299,9 @@ neighboring pixels.
 Neighbourhood: square (choose size), disk, or more complicated *structuring
 element*.
 
-.. image:: kernels.png
+.. figure:: kernels.png
     :align: center
+    :scale: 90
 
 Blurring/smoothing
 ------------------
@@ -459,7 +460,7 @@ image.
            [1, 1, 1],
            [0, 1, 0]])
 
-.. image:: diamond_kernel.png
+.. figure:: diamond_kernel.png
     :align: center
 
 **Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.::

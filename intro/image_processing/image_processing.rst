@@ -21,7 +21,7 @@ Changing orientation, resolution, .. ::
     >>> zoomed_lena.shape
     (1024, 1024)
 
-.. image:: image_processing/lena_transforms.png
+.. figure:: image_processing/lena_transforms.png
    :align: center
    :scale: 70
 
@@ -55,7 +55,7 @@ Image filtering
     >>> from scipy import signal
     >>> wiener_lena = signal.wiener(blurred_lena, (5,5))
 
-.. image:: image_processing/filtered_lena.png
+.. figure:: image_processing/filtered_lena.png
    :align: center
    :scale: 80
 
@@ -185,9 +185,9 @@ image. ::
     >>> opened_mask = ndimage.binary_opening(mask)
     >>> closed_mask = ndimage.binary_closing(opened_mask)
 
-.. image:: image_processing/morpho.png
+.. figure:: image_processing/morpho.png
    :align: center
-   :scale: 80
+   :scale: 75
 
 .. topic:: Exercise
    :class: green
@@ -250,8 +250,9 @@ Now we look for various information about the objects in the image::
     <matplotlib.image.AxesImage object at ...>
 
 
-.. image:: image_processing/measures.png
+.. figure:: image_processing/measures.png
    :align: center
+   :scale: 80
 
 
 See the summary exercise on :ref:`summary_exercise_image_processing` for a more
