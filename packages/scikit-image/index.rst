@@ -57,9 +57,10 @@ Image = ``np.ndarray``
     >>> plt.imshow(check, cmap='gray', interpolation='nearest')
 
 
-.. figure:: auto_examples/images/plot_check_1.png
-    :scale: 50
+.. image:: auto_examples/images/plot_check_1.png
+    :scale: 60
     :target: auto_examples/plot_check.html
+    :align: center
 
 ``scikit-image`` and the ``SciPy`` ecosystem
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -160,9 +161,10 @@ Reading from files: :func:`skimage.io.imread` ::
     >>> filename = os.path.join(skimage.data_dir, 'camera.png')
     >>> camera = io.imread(filename)
 
-.. figure:: auto_examples/images/plot_camera_1.png
-    :width: 35%
+.. image:: auto_examples/images/plot_camera_1.png
+    :width: 50%
     :target: auto_examples/plot_camera.html
+    :align: center
 
 Works with all data formats supported by the Python Imaging Library 
 (or any other I/O plugin provided to ``imread`` with the ``plugin`` 
@@ -189,8 +191,7 @@ Data types
 ~~~~~~~~~~
 
 
-
-.. figure:: auto_examples/images/plot_camera_uint_1.png
+.. image:: auto_examples/images/plot_camera_uint_1.png
     :align: right
     :width: 50%
     :target: auto_examples/plot_camera_uint.html
@@ -300,13 +301,14 @@ Example : horizontal Sobel filter ::
 
 Uses the following linear kernel for computing horizontal gradients::
 
-     1   2   1
-     0   0   0
+    1   2   1
+    0   0   0
     -1  -2  -1
 
-.. figure:: auto_examples/images/plot_sobel_1.png
+.. image:: auto_examples/images/plot_sobel_1.png
     :width: 70%
     :target: auto_examples/plot_sobel.html
+    :align: center
 
 
 Non-local filters
@@ -321,9 +323,10 @@ transform the value of one pixel::
 
 Enhances contrast in large almost uniform regions.
 
-.. figure:: auto_examples/images/plot_equalize_hist_1.png
+.. image:: auto_examples/images/plot_equalize_hist_1.png
     :width: 70%
     :target: auto_examples/plot_equalize_hist.html
+    :align: center
 
 Mathematical morphology
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -412,7 +415,7 @@ Default structuring element: 4-connectivity of a pixel ::
 
 Opening removes small objects and smoothes corners.
 
-.. note:: Grayscale mathematical morphology
+.. topic:: Grayscale mathematical morphology
 
         Mathematical morphology operations are also available for 
         (non-binary) grayscale images (int or float type). Erosion and dilation
@@ -435,8 +438,7 @@ Higher-level mathematical morphology are available: tophat, skeletonization, etc
         >>> from scipy import ndimage
         >>> gaussian_coins = ndimage.gaussian_filter(coins, sigma=2)
 
-
-    .. figure:: auto_examples/images/plot_filter_coins_1.png
+    .. image:: auto_examples/images/plot_filter_coins_1.png
         :width: 99%
         :target: auto_examples/plot_filter_coins.html
 
@@ -457,9 +459,10 @@ Binary segmentation: foreground + background
     val = filter.threshold_otsu(camera)
     mask = camera < val
 
-.. figure:: auto_examples/images/plot_threshold_1.png
+.. image:: auto_examples/images/plot_threshold_1.png
     :width: 70%
     :target: auto_examples/plot_threshold.html
+    :align: center
 
 * Labeling connected components of a discrete image
 
@@ -482,9 +485,10 @@ Label only foreground connected components::
     >>> blobs_labels = morphology.label(blobs, background=0)
 
 
-.. figure:: auto_examples/images/plot_labels_1.png
+.. image:: auto_examples/images/plot_labels_1.png
     :width: 90%
     :target: auto_examples/plot_labels.html
+    :align: center
 
 
 * Markers-based methods: ``morphology.watershed`` and 
@@ -519,10 +523,10 @@ Label only foreground connected components::
     >>> markers[~image] = -1
     >>> labels_rw = segmentation.random_walker(image, markers)
 
-.. figure:: auto_examples/images/plot_segmentations_1.png
+.. image:: auto_examples/images/plot_segmentations_1.png
     :width: 90%
     :target: auto_examples/plot_segmentations.html
-
+    :align: center
 
 
 .. topic:: Postprocessing label images
@@ -537,14 +541,14 @@ Label only foreground connected components::
 .. topic:: Exercise
    :class: green
 
-    * Load the ``coins`` image from the ``data`` submodule.
+   * Load the ``coins`` image from the ``data`` submodule.
 
-    * Separate the coins from the background by testing several
-      segmentation methods: Otsu thresholding, adaptive thresholding, and
-      watershed or random walker segmentation.
+   * Separate the coins from the background by testing several
+     segmentation methods: Otsu thresholding, adaptive thresholding, and
+     watershed or random walker segmentation.
 
-    * If necessary, use a postprocessing function to improve the coins /
-      background segmentation.
+   * If necessary, use a postprocessing function to improve the coins /
+     background segmentation.
 
 
 Measuring regions' properties
@@ -606,9 +610,10 @@ Use ``skimage`` dedicated utility function::
     >>> # segmentation.visualize_boundaries(color.gray2rgb(coins), clean_border)
     >>> plt.imshow(coins_edges)
 
-.. figure:: auto_examples/images/plot_boundaries_1.png
+.. image:: auto_examples/images/plot_boundaries_1.png
     :width: 90%
     :target: auto_examples/plot_boundaries.html
+    :align: center
 
 **The (experimental) scikit-image viewer**
 
@@ -660,9 +665,10 @@ Example: detecting corners using Harris detector ::
     coords = corner_peaks(corner_harris(image), min_distance=5)
     coords_subpix = corner_subpix(image, coords, window_size=13)
 
-.. figure:: auto_examples/images/plot_features_1.png
+.. image:: auto_examples/images/plot_features_1.png
     :width: 90%
     :target: auto_examples/plot_features.html
+    :align: center
 
 (this example is taken from
 http://scikit-image.org/docs/dev/auto_examples/plot_corner.html)
