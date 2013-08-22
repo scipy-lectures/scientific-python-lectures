@@ -13,13 +13,19 @@ This chapter describes how to use ``scikit-image`` on various image
 processing tasks, and insists on the link with other scientific Python
 modules such as NumPy and SciPy.
 
-.. seealso:: For basic image manipulation, such as image cropping or simple
+.. seealso::
+   
+   For basic image manipulation, such as image cropping or simple
    filtering, a large number of simple operations can be realized with
    NumPy and SciPy only. See :ref:`basic_image`.
+   
+   Note that you should be familiar with the content of the previous
+   chapter before reading the current one, as basic operations such as
+   masking and labeling are a prerequisite.
 
 .. contents:: Chapters contents
    :local:
-   :depth: 1
+   :depth: 2
 
 
 Introduction and concepts
@@ -87,8 +93,8 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
 Other Python packages are available for image processing and work with
 NumPy arrays:
 
- * :mod:``scipy.ndimage``: for nd-arrays (no image magics). Basic filtering,
-   mathematical morphology, regions properties
+ * :mod:`scipy.ndimage` : for nd-arrays (no image magics). Basic
+   filtering, mathematical morphology, regions properties
 
  * `Mahotas <http://luispedro.org/software/mahotas>`_
 
@@ -251,18 +257,17 @@ encodes transparency) ::
 
 
 Routines converting between different colorspaces (RGB, HSV, LAB etc.)
-are available in :mod:`skimage.color`: ``color.rgb2hsv``, ``color.lab2rgb``,
+are available in :mod:`skimage.color` : ``color.rgb2hsv``, ``color.lab2rgb``,
 etc. Check the docstring for the expected dtype (and data range) of input
 images.
 
-.. note:: 3-D images
+.. topic:: 3D images
 
-    Some functions of ``skimage`` can take 3-D images as input arguments.
-    Check the docstring to know if a function can be used on 3-D images
+    Some functions of ``skimage`` can take 3D images as input arguments.
+    Check the docstring to know if a function can be used on 3D images
     (for example MRI or CT images). 
 
 
----------------------------------
 
 .. topic:: Exercise
    :class: green
@@ -421,8 +426,14 @@ Opening removes small objects and smoothes corners.
         (non-binary) grayscale images (int or float type). Erosion and dilation
         correspond to minimum (resp. maximum) filters.
 
-Higher-level mathematical morphology are available: tophat, skeletonization, etc.
+Higher-level mathematical morphology are available: tophat,
+skeletonization, etc.
 
+.. seealso::
+
+   Basic mathematical morphology is also implemented in
+   :mod:`scipy.ndimage.morphology`. The ``scipy.ndimage`` implementation
+   works on arbitrary-dimensional arrays.
 
 ---------------------
 
@@ -449,9 +460,18 @@ Segmentation = filter that maps an image onto an image of labels
 corresponding to different regions.
 
 Binary segmentation: foreground + background
+.............................................
 
-* Histogram-based method: **Otsu thresholding** ::
+Histogram-based method: **Otsu thresholding**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. tip::
+   
+   The `Otsu method <http://en.wikipedia.org/wiki/Otsu's_method>`_ is a
+   simple heuristic to find a threshold to separate the foreground from
+   the background.
+
+::
 
     from skimage import data
     from skimage import filter
@@ -464,7 +484,14 @@ Binary segmentation: foreground + background
     :target: auto_examples/plot_threshold.html
     :align: center
 
-* Labeling connected components of a discrete image
+Labeling connected components of a discrete image
+..................................................
+
+.. tip::
+
+   Once you have separated foreground objects, it is use to separate them
+   from each other. For this, we can assign a different integer labels to
+   each one.
 
 Synthetic data::
 
@@ -490,13 +517,22 @@ Label only foreground connected components::
     :target: auto_examples/plot_labels.html
     :align: center
 
+.. seealso::
 
-* Markers-based methods: ``morphology.watershed`` and 
-  ``segmentation.random_walker``
+   :func:`scipy.ndimage.find_objects` is useful to return slices on
+   object in an image.
 
-**Watershed** segmentation
+Marker based methods
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-::
+If you have markers inside a set of regions, you can use these to segment
+the regions.
+
+*Watershed* segmentation
+..........................
+
+The Watershed (:func:`skimage.morphology.watershed`) is a region-growing
+approach that fills "bassins" in the image ::
 
     >>> from skimage.morphology import watershed, is_local_maximum
     >>>
@@ -516,7 +552,12 @@ Label only foreground connected components::
     >>> markers = morphology.label(local_maxi)
     >>> labels_ws = watershed(-distance, markers, mask=image)
 
-**Random walker** segmentation ::
+*Random walker* segmentation
+..............................
+
+The random walker algorithm (:func:`skimage.segmentation.random_walker`)
+is similar to the Watershed, but with a more "probabilistic" appraoch. It
+is based on the idea of the diffusion of labels in the image::
 
     >>> # Transform markers image so that 0-valued pixels are to
     >>> # be labelled, and -1-valued pixels represent background
@@ -531,11 +572,12 @@ Label only foreground connected components::
 
 .. topic:: Postprocessing label images
 
-    ``skimage`` provides several utility functions that can be used on 
-    label images (ie images where different discrete values identify 
+    ``skimage`` provides several utility functions that can be used on
+    label images (ie images where different discrete values identify
     different regions). Functions names are often self-explaining:
-    ``segmentation.clear_border``, ``segmentation.relabel_from_one``,
-    ``morphology.remove_small_objects``, etc. 
+    :func:`skimage.segmentation.clear_border`,
+    :func:`skimage.segmentation.relabel_from_one`,
+    :func:`skimage.morphology.remove_small_objects`, etc. 
 
 
 .. topic:: Exercise
@@ -565,8 +607,11 @@ Example: compute the size and perimeter of the two segmented regions::
     [{'Perimeter': 117.25483399593905, 'Area': 770.0, 'Label': 1},
     {'Perimeter': 149.1543289325507, 'Area': 1168.0, 'Label': 2}]
 
-.. seealso:: for some properties, functions are available as well in
-    ``scipy.ndimage.measurements`` with a different API (a list is returned).
+.. seealso::
+   
+   for some properties, functions are available as well in
+   :mod:`scipy.ndimage.measurements` with a different API (a list is
+   returned).
 
 
 .. topic:: Exercise (cont'd)
