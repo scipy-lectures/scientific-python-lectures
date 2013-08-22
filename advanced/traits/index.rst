@@ -334,6 +334,8 @@ behaviour.
 .. include:: reservoir_turbine_prototype_from.py
     :literal:
 
+.. _traits_notification:
+
 Notification
 ------------
 
