@@ -14,7 +14,7 @@ import numpy as np
 from scipy import linalg, special
 from traits.api import HasTraits, Array, CFloat, Str, List, \
    Instance, on_trait_change
-from traits.ui.api import Item, View, HGroup, ListEditor, \
+from traitsui.api import Item, View, HGroup, ListEditor, \
         HSplit, VSplit, spring
 from mayavi.core.ui.api import EngineView, MlabSceneModel, \
         SceneEditor

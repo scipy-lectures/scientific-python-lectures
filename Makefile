@@ -103,3 +103,9 @@ install: pdf html
 	git commit -a -m 'Make install' && \
 	git push
  
+epub:
+	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) build/epub
+	@echo
+	@echo "Build finished. The epub file is in _build/epub."
+
+
