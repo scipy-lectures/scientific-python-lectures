@@ -1,4 +1,7 @@
-import numpy as np
+"""
+An illustration of overflow problem arising when working with integers
+"""
+
 import matplotlib.pyplot as plt
 from skimage import data
 

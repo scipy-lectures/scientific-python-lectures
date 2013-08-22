@@ -1,3 +1,8 @@
+"""
+This example shows how to label connected components of a binary image, using
+the dedicated skimage.morphology.label function.
+"""
+
 from skimage import morphology
 import matplotlib.pyplot as plt
 from scipy import ndimage

@@ -1,3 +1,12 @@
+"""
+This example compares two segmentation methods in order to separate two
+connected disks: the watershed algorithm, and the random walker algorithm.
+
+Both segmentation methods require seeds, that are pixels belonging
+unambigusouly to a reagion. Here, local maxima of the distance map to the
+background are used as seeds.
+"""
+
 import numpy as np
 from skimage.morphology import watershed, is_local_maximum
 from skimage import morphology

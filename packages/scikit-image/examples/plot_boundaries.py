@@ -1,3 +1,7 @@
+"""
+Visiualize segmentation contours on original grayscale image.
+"""
+
 from skimage import data, segmentation, filter, color
 import matplotlib.pyplot as plt
 

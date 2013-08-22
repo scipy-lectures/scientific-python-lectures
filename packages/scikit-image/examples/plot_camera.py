@@ -1,8 +1,9 @@
-import numpy as np
+"""
+Load and display an image
+"""
+
 import matplotlib.pyplot as plt
 from skimage import data
-from skimage import filter
-from skimage import exposure
 
 camera = data.camera()
 
