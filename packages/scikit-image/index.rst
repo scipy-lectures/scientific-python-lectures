@@ -1,6 +1,18 @@
 Scikit-image: image processing
 ==============================
 
+:author: Emmanuelle Gouillart
+
+`scikit-image <http://scikit-image.org/>`_ is a Python package dedicated
+to image processing, and using natively NumPy arrays as image objects.
+This chapter describes how to use ``scikit-image`` on various image
+processing tasks, and insists on the link with other scientific Python
+modules such as NumPy and SciPy.
+
+.. contents:: Chapters contents
+   :local:
+   :depth: 1
+
 
 Introduction and concepts
 -------------------------
@@ -38,7 +50,7 @@ Image = ``np.ndarray``
 
 
 .. figure:: auto_examples/images/plot_check_1.png
-    :scale: 70
+    :scale: 50
     :target: auto_examples/plot_check.html
 
 ``scikit-image`` and the ``SciPy`` ecosystem
@@ -73,11 +85,11 @@ NumPy arrays:
 
 Also, powerful image processing libraries have Python bindings:
 
- * `OpenCV <http://opencv.willowgarage.com/wiki/>`_
+ * `OpenCV <http://opencv.willowgarage.com/wiki/>`_ (computer vision)
 
- * `ITK <http://www.itk.org/itkindex.html>`_
+ * `ITK <http://www.itk.org/itkindex.html>`_ (3D images and registration)
 
- * `Pink <https://pinkhq.com/homepage/>`_
+ * and many others
 
 (but they are less Pythonic and NumPy friendly). 
 
@@ -91,12 +103,12 @@ Also, powerful image processing libraries have Python bindings:
         >>> camera = data.camera()
         >>> camera
         Image([[156, 157, 160, ..., 152, 152, 152],
-            [156, 157, 159, ..., 152, 152, 152],
-            [158, 157, 156, ..., 152, 152, 152],
-            ..., 
-            [121, 123, 126, ..., 121, 113, 111],
-            [121, 123, 126, ..., 121, 113, 111],
-            [121, 123, 126, ..., 121, 113, 111]], dtype=uint8)
+               [156, 157, 159, ..., 152, 152, 152],
+               [158, 157, 156, ..., 152, 152, 152],
+               ..., 
+               [121, 123, 126, ..., 121, 113, 111],
+               [121, 123, 126, ..., 121, 113, 111],
+               [121, 123, 126, ..., 121, 113, 111]], dtype=uint8)
         >>> isinstance(camera, np.ndarray)
         True
 
@@ -141,7 +153,7 @@ Reading from files ::
     >>> camera = io.imread(filename)
 
 .. figure:: auto_examples/images/plot_camera_1.png
-    :width: 50%
+    :width: 35%
     :target: auto_examples/plot_camera.html
 
 Works with all data formats supported by the Python Imaging Library 
@@ -168,20 +180,24 @@ or OpenCV are present
 Data types
 ~~~~~~~~~~
 
+
+
+.. figure:: auto_examples/images/plot_camera_uint_1.png
+    :align: right
+    :width: 50%
+    :target: auto_examples/plot_camera_uint.html
+
 Image ndarrays can be represented either by integers (signed or unsigned) or
 floats. 
 
-Careful with overflows with integer data types::
+Careful with overflows with integer data types
+
+::
 
     >>> camera = data.camera()
     >>> camera.dtype
     dtype('uint8')
     >>> camera_multiply = 3 * camera
-
-
-.. figure:: auto_examples/images/plot_camera_uint_1.png
-    :width: 70%
-    :target: auto_examples/plot_camera_uint.html
 
 Different integer sizes are possible: 8-, 16- or 32-bytes, signed or
 unsigned.
@@ -240,6 +256,7 @@ images.
 ---------------------------------
 
 .. topic:: Exercise
+   :class: green
 
     Open a color image on your disk as a NumPy array.
 
@@ -247,14 +264,18 @@ images.
     plot the histogram of each color channel
 
     Convert the image to grayscale and plot its histogram.
+
 Image preprocessing / enhancement
 ---------------------------------
 
 Goals: denoising, feature (edges) extraction, ...
 
 
- * **Local filters**: replace the value of pixels by a function of the
-   values of neighboring pixels. The function can be linear or non-linear.
+Local filters
+~~~~~~~~~~~~~
+
+Local filters replace the value of pixels by a function of the
+values of neighboring pixels. The function can be linear or non-linear.
 
 Neighbourhood: square (choose size), disk, or more complicated
 *structuring element*.
@@ -280,8 +301,11 @@ Uses the following linear kernel for computing horizontal gradients::
     :target: auto_examples/plot_sobel.html
 
 
-* **Non-local filters**: use a large region of the image (or all the image) to 
-  transform the value of one pixel::
+Non-local filters
+~~~~~~~~~~~~~~~~~
+
+Non-local filters use a large region of the image (or all the image) to
+transform the value of one pixel::
 
     >>> camera = data.camera()
     >>> camera_equalized = exposure.equalize_hist(camera) 
@@ -293,7 +317,8 @@ Enhances contrast in large almost uniform regions.
     :width: 70%
     :target: auto_examples/plot_equalize_hist.html
 
-* **Mathematical morphology**
+Mathematical morphology
+~~~~~~~~~~~~~~~~~~~~~~~
 
 See http://en.wikipedia.org/wiki/Mathematical_morphology
 
@@ -492,7 +517,7 @@ Label only foreground connected components::
 
 
 
-.. note:: Postprocessing label images
+.. topic:: Postprocessing label images
 
     ``skimage`` provides several utility functions that can be used on 
     label images (ie images where different discrete values identify 
@@ -502,6 +527,7 @@ Label only foreground connected components::
 
 
 .. topic:: Exercise
+   :class: green
 
     * Load the ``coins`` image from the ``data`` submodule.
 
@@ -527,11 +553,12 @@ Example: compute the size and perimeter of the two segmented regions::
     [{'Perimeter': 117.25483399593905, 'Area': 770.0, 'Label': 1},
     {'Perimeter': 149.1543289325507, 'Area': 1168.0, 'Label': 2}]
 
-Rk: for some properties, functions are available as well in
-``scipy.ndimage.measurements`` with a different API (a list is returned).
+.. seealso:: for some properties, functions are available as well in
+    ``scipy.ndimage.measurements`` with a different API (a list is returned).
 
 
 .. topic:: Exercise (cont'd)
+   :class: green
 
     * Use the binary image of the coins and background from the previous
       exercise.
@@ -624,6 +651,7 @@ Example: detecting corners using Harris detector ::
 
     coords = corner_peaks(corner_harris(image), min_distance=5)
     coords_subpix = corner_subpix(image, coords, window_size=13)
+
 .. figure:: auto_examples/images/plot_features_1.png
     :width: 90%
     :target: auto_examples/plot_features.html
