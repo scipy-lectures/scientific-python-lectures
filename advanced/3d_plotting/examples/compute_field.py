@@ -13,7 +13,7 @@ def base_vectors(n):
     """ Returns 3 orthognal base vectors, the first one colinear to n.
     """
     # normalize n
-    n = n / np.square(n).sum(axis=-1)
+    n = n / np.sqrt(np.square(n).sum(axis=-1))
 
     # choose two vectors perpendicular to n
     # choice is arbitrary since the coil is symetric about n
@@ -22,7 +22,7 @@ def base_vectors(n):
     else:
         l = np.r_[0, n[2], -n[1]]
 
-    l = l / np.square(l).sum(axis=-1)
+    l = l / np.sqrt(np.square(l).sum(axis=-1))
     m = np.cross(n, l)
     return n, l, m
 
@@ -32,7 +32,8 @@ def B_field(r, n, r0, R):
     returns the magnetic field from an arbitrary current loop calculated from
     eqns (1) and (2) in Phys Rev A Vol. 35, N 4, pp. 1535-1546; 1987.
 
-    arguments:
+    Parameters
+    ----------
         n is normal vector to the plane of the loop at the center, current
             is oriented by the right-hand-rule.
         r is a position vector where the Bfield is evaluated:
@@ -41,7 +42,8 @@ def B_field(r, n, r0, R):
         r0 is the location of the center of the loop in units of d: [x y z]
         R is the radius of the loop
 
-    return:
+    Returns
+    -------
         B is a vector for the B field at point r in inverse units of
     (mu I) / (2 pi d)
     for I in amps and d in meters and mu = 4 pi * 10^-7 we get Tesla
@@ -50,12 +52,12 @@ def B_field(r, n, r0, R):
     n, l, m = base_vectors(n)
 
     # transformation matrix coil frame to lab frame
-    Trans = np.vstack((l, m, n))
+    trans = np.vstack((l, m, n))
     # transformation matrix to lab frame to coil frame
-    InvTrans = linalg.inv(Trans)
+    inv_trans = linalg.inv(trans)
 
     r = r - r0	  #point location from center of coil
-    r = np.dot(r, InvTrans) 	    #transform vector to coil frame
+    r = np.dot(r, inv_trans) 	    #transform vector to coil frame
 
     #### calculate field
 
@@ -88,7 +90,7 @@ def B_field(r, n, r0, R):
     B = np.c_[np.cos(theta)*Brho, np.sin(theta)*Brho, Bz ]
 
     # Rotate the field back in the lab's frame
-    B = np.dot(B, Trans)
+    B = np.dot(B, trans)
     return B
 
 
@@ -96,7 +98,7 @@ def B_field(r, n, r0, R):
 # The grid of points on which we want to evaluate the field
 X, Y, Z = np.mgrid[-0.15:0.15:31j, -0.15:0.15:31j, -0.15:0.15:31j]
 # Avoid rounding issues :
-f = 1e4  # this gives the precision we are interested by :
+f = 1e4  # this gives the precision we are interested in:
 X = np.round(X * f) / f
 Y = np.round(Y * f) / f
 Z = np.round(Z * f) / f

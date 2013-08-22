@@ -48,7 +48,7 @@ vectors = mlab.pipeline.vectors(field,
                                 colormap='hot')
 mlab.axes()
 
-# Mask 7 vectors out of 8
+# Mask 7 data points out of 8
 vectors.glyph.mask_input_points = True
 vectors.glyph.mask_points.on_ratio = 8
 
