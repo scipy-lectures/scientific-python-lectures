@@ -544,7 +544,7 @@ Data visualization and interaction
 ----------------------------------
 
 Meaningful visualizations are useful when testing a given processing
-pipeling.
+pipeline.
 
 Some image processing operations::
 
