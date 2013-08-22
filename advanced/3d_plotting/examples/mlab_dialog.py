@@ -22,7 +22,7 @@ class Visualization(HasTraits):
     def __init__(self):
         HasTraits.__init__(self)
         x, y, z = curve(n_turns=2)
-        # Population our plot
+        # Populating our plot
         self.plot = self.scene.mlab.plot3d(x, y, z)
 
     # Describe the dialog
