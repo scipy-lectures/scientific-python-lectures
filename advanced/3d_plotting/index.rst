@@ -493,3 +493,41 @@ For example, iso-contours of the magnitude are coded as::
    Using the mlab.pipeline interface, generate a complete visualization,
    with iso-contours of the field magnitude, and a vector cut plane.
 
+   (click on the figure for a solution)
+
+|clear-floats|
+
+Animating the data
+===================
+
+.. tip::
+
+   To make movies, or interactive application, you may want to change the
+   data represented on a given visualization.
+
+If you have built a visualization, using the ``mlab`` plotting functions,
+or the ``mlab.pipeline`` function, we can update the data by assigning
+new values to the ``mlab_source`` attributes
+
+.. literalinclude:: examples/animate_data.py
+    :start-after: # Create some simple data
+    :end-before: # Start the event loop, if needed
+
+.. seealso::
+
+   More details in the `Mayavi documentation
+   <http://docs.enthought.com/mayavi/mayavi/mlab.html#animating-the-data>`_
+
+.. topic:: **Event loops**
+
+   For the interaction with the user (for instance changing the view with
+   the mouse), Mayavi needs some time to process these events. The for
+   loop above prevents this. The Mayavi documentation details `a workaround
+   <http://docs.enthought.com/mayavi/mayavi/tips.html#animating-a-visualization>`_
+
+Making interactive dialogs
+===========================
+
+It is very simple to make interactive dialogs with Mayavi using the
+Traits library (see the dedicated chapter :ref:`traits`).
+
