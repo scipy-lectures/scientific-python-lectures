@@ -1,5 +1,7 @@
 .. _scikit_image:
 
+.. currentmodule:: skimage
+
 Scikit-image: image processing
 ==============================
 
@@ -84,7 +86,7 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
 Other Python packages are available for image processing and work with
 NumPy arrays:
 
- * ``scipy.ndimage``: for nd-arrays (no image magics). Basic filtering,
+ * :mod:``scipy.ndimage``: for nd-arrays (no image magics). Basic filtering,
    mathematical morphology, regions properties
 
  * `Mahotas <http://luispedro.org/software/mahotas>`_
@@ -148,12 +150,12 @@ high-level recent algorithms.
 Input/output, data types and colorspaces
 ----------------------------------------
 
-I/O ::
+I/O: :mod:`skimage.io` ::
 
     >>> from skimage import io
 
 
-Reading from files ::
+Reading from files: :func:`skimage.io.imread` ::
 
     >>> filename = os.path.join(skimage.data_dir, 'camera.png')
     >>> camera = io.imread(filename)
@@ -228,9 +230,9 @@ input array ::
     0.8365106670670005
 
 
-Utility functions are provided to convert both the dtype and the data
-range, following skimage's conventions: ``util.img_as_float``,
-``util.img_as_ubyte``, etc.
+Utility functions are provided in :mod:`skimage.util` to convert both the
+dtype and the data range, following skimage's conventions:
+``util.img_as_float``, ``util.img_as_ubyte``, etc.
 
 See the `user guide
 <http://scikit-image.org/docs/0.8.0/user_guide/data_types.html>`_ for
@@ -248,7 +250,7 @@ encodes transparency) ::
 
 
 Routines converting between different colorspaces (RGB, HSV, LAB etc.)
-are available in ``skimage.color``: ``color.rgb2hsv``, ``color.lab2rgb``,
+are available in :mod:`skimage.color`: ``color.rgb2hsv``, ``color.lab2rgb``,
 etc. Check the docstring for the expected dtype (and data range) of input
 images.
 
