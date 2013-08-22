@@ -531,3 +531,5 @@ Making interactive dialogs
 It is very simple to make interactive dialogs with Mayavi using the
 Traits library (see the dedicated chapter :ref:`traits`).
 
+.. literalinclude:: examples/mlab_dialog.py
+    :start-after: import numpy as np
