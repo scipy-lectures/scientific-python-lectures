@@ -588,6 +588,7 @@ of the curve. For this, we need:
 
    Full code of the example: :download:`examples/mlab_dialog.py`. 
 
+
 Putting it together
 ===================
 
@@ -601,5 +602,6 @@ Putting it together
 
     direction = Array(float, value=(0, 0, 1), cols=3, shape=(3,))
 
-
+You can look at the :ref:`example_coil_application.py` to see a
+full-blown application for coil design in 270 lines of code.
 
