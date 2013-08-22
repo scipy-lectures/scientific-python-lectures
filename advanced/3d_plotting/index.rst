@@ -588,5 +588,18 @@ of the curve. For this, we need:
 
    Full code of the example: :download:`examples/mlab_dialog.py`. 
 
+Putting it together
+===================
+
+.. topic:: Exercise
+   :class: green
+
+   Using the code from the magnetic field simulation, create a dialog
+   that enable to move the 2 coils: change their parameters.
+
+   Hint: to define a dialog entry for a vector of dimension 3 ::
+
+    direction = Array(float, value=(0, 0, 1), cols=3, shape=(3,))
+
 
 
