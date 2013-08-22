@@ -1,3 +1,5 @@
+.. _scikit_image:
+
 Scikit-image: image processing
 ==============================
 
@@ -8,6 +10,10 @@ to image processing, and using natively NumPy arrays as image objects.
 This chapter describes how to use ``scikit-image`` on various image
 processing tasks, and insists on the link with other scientific Python
 modules such as NumPy and SciPy.
+
+.. seealso:: For basic image manipulation, such as image cropping or simple
+   filtering, a large number of simple operations can be realized with
+   NumPy and SciPy only. See :ref:`basic_image`.
 
 .. contents:: Chapters contents
    :local:

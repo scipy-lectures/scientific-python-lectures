@@ -3,12 +3,26 @@
    >>> np.random.seed(0)
 
 
+.. _basic_image:
+
 =======================================================
 Image manipulation and processing using Numpy and Scipy
 =======================================================
 
 :authors: Emmanuelle Gouillart, Gaël Varoquaux
 
+
+This chapter addresses basic image manipulation and processing using the
+core scientific modules NumPy and SciPy. Some of the operations covered
+by this tutorial may be useful for other kinds of multidimensional array
+processing than image processing. In particular, the submodule
+:mod:`scipy.ndimage` provides functions operating on n-dimensional NumPy
+arrays.
+
+.. seealso::
+
+    For more advanced image processing and image-specific routines, see the
+    tutorial :ref:`scikit_image`, dedicated to the :mod:`skimage` module.
 
 .. topic::
     Image = 2-D numerical array
@@ -26,11 +40,6 @@ Image manipulation and processing using Numpy and Scipy
 
     >>> from scipy import ndimage
 
-* a few examples use specialized toolkits working with ``np.array``:
-
-    * `scikit-image <http://scikit-image.org/>`_
-
-    * `scikit-learn <http://scikit-learn.org/>`_
 
 **Common tasks in image processing**:
 
@@ -167,16 +176,10 @@ For fine inspection of intensity variations, use
 
     [:ref:`Python source code <example_plot_interpolation_lena.py>`]
 
-Other packages sometimes use graphical toolkits for visualization (GTK,
-Qt)::
-
-    >>> import skimage.io
-    >>> skimage.io.use_plugin('gtk', 'imshow')
-    >>> im_io.imshow(l)
 
 .. topic:: 3-D visualization: Mayavi
 
-    See :ref:`mayavi-label` and :ref:`mayavi-voldata-label`.
+    See :ref:`mayavi-label`.
 
 	* Image plane widgets
 
@@ -227,6 +230,7 @@ Images are arrays: use the whole ``numpy`` machinery.
 
     [:ref:`Python source code <example_plot_numpy_array.py>`]
 
+
 Statistical information
 -----------------------
 
@@ -241,7 +245,7 @@ Statistical information
 
 ``np.histogram``
 
-.. topic:: **Exercise 1**
+.. topic:: **Exercise**
     :class: green
     
 
@@ -403,26 +407,7 @@ Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 
 **Non-local filters**
 
-**Total-variation (TV) denoising**. Find a new image
-so that the total-variation of the image (integral of the norm L1 of
-the gradient) is minimized, while being close to the measured image::
-
-    >>> from skimage.filter import tv_denoise
-    >>> tv_denoised = tv_denoise(noisy, weight=10)
-    >>> # More denoising (to the expense of fidelity to data)
-    >>> tv_denoised = tv_denoise(noisy, weight=50)
-
-
-.. figure:: auto_examples/images/plot_lena_tv_denoise_1.png
-    :scale: 60
-    :target: auto_examples/plot_lena_tv_denoise.html
-
-.. only:: html
-
-    [:ref:`Python source code <example_plot_lena_tv_denoise.py>`]
-
-
-.. topic:: **Exercise 2: denoising**
+.. topic:: **Exercise: denoising**
     :class: green
     
     * Create a binary image (of 0s and 1s) with several objects (circles,
@@ -430,11 +415,10 @@ the gradient) is minimized, while being close to the measured image::
 
     * Add some noise (e.g., 20% of noise)
 
-    * Try three different denoising methods for denoising the image:
-      gaussian filtering, median filtering, and total variation
-      denoising.
+    * Try two different denoising methods for denoising the image:
+      gaussian filtering and median filtering.
 
-    * Compare the histograms of the three different denoised images.
+    * Compare the histograms of the two different denoised images.
       Which one is the closest to the histogram of the original (noise-free)
       image?
 
@@ -587,9 +571,6 @@ Also works for grey-valued images::
 
 **Closing**: dilation + erosion
 
-**Skeletonization**: reduce objects to one-pixel thin lines, keeping the
-same topology
-
 Many other mathematical morphology operations: hit and miss transform, tophat,
 etc.
 
@@ -621,24 +602,6 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
 
     [:ref:`Python source code <example_plot_find_edges.py>`]
 
-**Canny filter**
-
-::
-
-  >>> from skimage.filter import canny
-  >>> im += 0.1*np.random.random(im.shape)
-  >>> edges = canny(im, 1, 0.4, 0.2) # not enough smoothing
-  >>> edges = canny(im, 3, 0.3, 0.2) # better parameters
-
-.. figure:: auto_examples/images/plot_canny_1.png
-    :scale: 40
-    :target: auto_examples/plot_canny.html
-
-.. only:: html
-
-    [:ref:`Python source code <example_plot_canny.py>`]
-
-Several parameters need to be adjusted... risk of overfitting
 
 Segmentation
 ------------
@@ -671,31 +634,6 @@ Segmentation
 .. only:: html
 
     [:ref:`Python source code <example_plot_histo_segmentation.py>`]
-
-Automatic thresholding: use Gaussian mixture model::
-
-    >>> mask = (im > im.mean()).astype(np.float)
-    >>> mask += 0.1 * im
-    >>> img = mask + 0.3*np.random.randn(*mask.shape)
-
-    >>> from sklearn.mixture import GMM
-    >>> classif = GMM(n_components=2)
-    >>> classif.fit(img.reshape((img.size, 1))) # doctest: +ELLIPSIS
-    GMM(...)
-
-    >>> classif.means
-    array([[ 0.9353155 ],
-           [-0.02966039]])
-    >>> np.sqrt(classif.covarsi).ravel()
-    array([ 0.35074631,  0.28225327])
-    >>> classif.weights
-    array([ 0.40989799,  0.59010201])
-    >>> threshold = np.mean(classif.means)
-    >>> binary_img = img > threshold
-
-.. image:: image_GMM.png
-    :align: center
-    :scale: 100
 
 Use mathematical morphology to clean up the result::
 
@@ -731,83 +669,63 @@ Use mathematical morphology to clean up the result::
 .. topic:: **Exercise**
     :class: green
 
-    Check how a first denoising step (median filter, total variation)
+    Check how a first denoising step (e.g. with a median filter)
     modifies the histogram, and check that the resulting histogram-based
     segmentation is more accurate.
 
-* **Graph-based** segmentation: use spatial information.
 
-**Watershed** segmentation
+.. seealso::
 
-::
+    More advanced segmentation algorithms are found in the
+    ``scikit-image``: see :ref:`scikit_image`.
 
-    >>> from skimage.morphology import watershed, is_local_maximum
-    >>>
-    >>> # Generate an initial image with two overlapping circles
-    >>> x, y = np.indices((80, 80))
-    >>> x1, y1, x2, y2 = 28, 28, 44, 52
-    >>> r1, r2 = 16, 20
-    >>> mask_circle1 = (x - x1)**2 + (y - y1)**2 < r1**2
-    >>> mask_circle2 = (x - x2)**2 + (y - y2)**2 < r2**2
-    >>> image = np.logical_or(mask_circle1, mask_circle2)
-    >>> # Now we want to separate the two objects in image
-    >>> # Generate the markers as local maxima of the distance
-    >>> # to the background
-    >>> from scipy import ndimage
-    >>> distance = ndimage.distance_transform_edt(image)
-    >>> local_maxi = is_local_maximum(distance, image, np.ones((3, 3)))
-    >>> markers = ndimage.label(local_maxi)[0]
-    >>> labels = watershed(-distance, markers, mask=image)
+.. seealso::
 
-.. figure:: auto_examples/images/plot_watershed_segmentation_1.png
-    :scale: 70
-    :target: auto_examples/plot_watershed_segmentation.html
+    Other Scientific Packages provide algorithms that can be useful for
+    image processing. In this example, we use the spectral clustering 
+    function of the ``scikit-learn`` in order to segment glued objects.
 
 
+    ::
 
-**Spectral clustering** (normalized cuts) segmentation
+        >>> from sklearn.feature_extraction import image
+        >>> from sklearn.cluster import spectral_clustering
 
+        >>> l = 100
+        >>> x, y = np.indices((l, l))
 
-::
+        >>> center1 = (28, 24)
+        >>> center2 = (40, 50)
+        >>> center3 = (67, 58)
+        >>> center4 = (24, 70)
+        >>> radius1, radius2, radius3, radius4 = 16, 14, 15, 14
 
-    >>> from sklearn.feature_extraction import image
-    >>> from sklearn.cluster import spectral_clustering
+        >>> circle1 = (x - center1[0])**2 + (y - center1[1])**2 < radius1**2
+        >>> circle2 = (x - center2[0])**2 + (y - center2[1])**2 < radius2**2
+        >>> circle3 = (x - center3[0])**2 + (y - center3[1])**2 < radius3**2
+        >>> circle4 = (x - center4[0])**2 + (y - center4[1])**2 < radius4**2
 
-    >>> l = 100
-    >>> x, y = np.indices((l, l))
+        >>> # 4 circles
+        >>> img = circle1 + circle2 + circle3 + circle4
+        >>> mask = img.astype(bool)
+        >>> img = img.astype(float)
 
-    >>> center1 = (28, 24)
-    >>> center2 = (40, 50)
-    >>> center3 = (67, 58)
-    >>> center4 = (24, 70)
-    >>> radius1, radius2, radius3, radius4 = 16, 14, 15, 14
+        >>> img += 1 + 0.2*np.random.randn(*img.shape)
+        >>> # Convert the image into a graph with the value of the gradient on
+        >>> # the edges.
+        >>> graph = image.img_to_graph(img, mask=mask)
 
-    >>> circle1 = (x - center1[0])**2 + (y - center1[1])**2 < radius1**2
-    >>> circle2 = (x - center2[0])**2 + (y - center2[1])**2 < radius2**2
-    >>> circle3 = (x - center3[0])**2 + (y - center3[1])**2 < radius3**2
-    >>> circle4 = (x - center4[0])**2 + (y - center4[1])**2 < radius4**2
+        >>> # Take a decreasing function of the gradient: we take it weakly
+        >>> # dependant from the gradient the segmentation is close to a voronoi
+        >>> graph.data = np.exp(-graph.data/graph.data.std())
 
-    >>> # 4 circles
-    >>> img = circle1 + circle2 + circle3 + circle4
-    >>> mask = img.astype(bool)
-    >>> img = img.astype(float)
-
-    >>> img += 1 + 0.2*np.random.randn(*img.shape)
-    >>> # Convert the image into a graph with the value of the gradient on
-    >>> # the edges.
-    >>> graph = image.img_to_graph(img, mask=mask)
-
-    >>> # Take a decreasing function of the gradient: we take it weakly
-    >>> # dependant from the gradient the segmentation is close to a voronoi
-    >>> graph.data = np.exp(-graph.data/graph.data.std())
-
-    >>> labels = spectral_clustering(graph, k=4, mode='arpack')
-    >>> label_im = -np.ones(mask.shape)
-    >>> label_im[mask] = labels
+        >>> labels = spectral_clustering(graph, k=4, mode='arpack')
+        >>> label_im = -np.ones(mask.shape)
+        >>> label_im[mask] = labels
 
 
-.. image:: image_spectral_clustering.png
-    :align: center
+    .. image:: image_spectral_clustering.png
+        :align: center
 
 
 
@@ -927,24 +845,6 @@ Non-regularly-spaced blocks: radial mean::
 .. only:: html
 
     [:ref:`Python source code <example_plot_radial_mean.py>`]
-
-.. topic::  **Exercise: segmentation**
-    :class: green
-
-    * Load as an array the coins image from skimage (skimage.data.coins)
-      or from https://github.com/scikits-image/scikits-image/raw/master/skimage/data/coins.png
-
-    * Display the histogram and try to perform histogram segmentation.
-
-    * Try two segmentation methods: an edge-based method using
-      ``skimage.filter.canny`` and ``scipy.ndimage.binary_fill_holes``
-      and a region-based method using ``skimage.morphology.watershed``
-      and ``skimage.filter.sobel`` to compute an elevation map.
-
-    * Compute the sizes of the coins.
-
-.. image:: coins.png
-    :align: center
 
 
 * **Other measures**
