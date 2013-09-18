@@ -235,7 +235,7 @@ Concatenate and repeat lists::
 
 
 .. tip::
-   
+
   Sort::
 
     >>> sorted(r) # new object
