@@ -217,7 +217,7 @@ may modify the caller's variable in-place::
 
 Functions have a local variable table called a *local namespace*.
 
-The variable ``x`` only exists within the function *try_to_modify*.
+The variable ``x`` only exists within the function ``try_to_modify``.
 
 
 Global variables
