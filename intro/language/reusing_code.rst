@@ -49,7 +49,7 @@ following lines in a file called ``test.py`` ::
 
 
 The script has been executed. Moreover the variables defined in the
-script (such as ``message``) are now available inside the interpeter's
+script (such as ``message``) are now available inside the interpreter's
 namespace.
 
 .. tip::
