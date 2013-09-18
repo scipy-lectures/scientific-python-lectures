@@ -360,7 +360,7 @@ Modules must be located in the search path, therefore you can:
   directories containing the user-defined modules.
 
   .. tip::
-  
+
     On Linux/Unix, add the following line to a file read by the shell at
     startup (e.g. /etc/profile, .profile)
 
