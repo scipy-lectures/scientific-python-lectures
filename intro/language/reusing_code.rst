@@ -2,7 +2,7 @@ Reusing code: scripts and modules
 =================================
 
 For now, we have typed all instructions in the interpreter. For longer
-sets of instructions we need to change tack and write the code in text
+sets of instructions we need to change track and write the code in text
 files (using a text editor), that we will call either *scripts* or
 *modules*. Use your favorite text editor (provided it offers syntax
 highlighting for Python), or the editor that comes with the Scientific
