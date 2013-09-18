@@ -248,7 +248,7 @@ Concatenate and repeat lists::
 
 .. topic:: **Methods and Object-Oriented Programming**
 
-    The notation ``r.method()`` (r.append(3), L.pop()``) is our
+    The notation ``r.method()`` (e.g. ``r.append(3)`` and ``L.pop()``) is our
     first example of object-oriented programming (OOP). Being a ``list``, the
     object `r` owns the *method* `function` that is called using the notation
     **.**. No further knowledge of OOP than understanding the notation **.** is
