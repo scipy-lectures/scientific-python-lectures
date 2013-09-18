@@ -323,8 +323,8 @@ Scripts or modules? How to organize your code
       module is imported in the different scripts (do not copy-and-paste
       your functions in the different scripts!).
 
-How module are found and imported
-...................................
+How modules are found and imported
+..................................
 
 
 When the ``import mymodule`` statement is executed, the module ``mymodule``
