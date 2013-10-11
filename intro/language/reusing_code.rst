@@ -2,7 +2,7 @@ Reusing code: scripts and modules
 =================================
 
 For now, we have typed all instructions in the interpreter. For longer
-sets of instructions we need to change tack and write the code in text
+sets of instructions we need to change track and write the code in text
 files (using a text editor), that we will call either *scripts* or
 *modules*. Use your favorite text editor (provided it offers syntax
 highlighting for Python), or the editor that comes with the Scientific
@@ -49,7 +49,7 @@ following lines in a file called ``test.py`` ::
 
 
 The script has been executed. Moreover the variables defined in the
-script (such as ``message``) are now available inside the interpeter's
+script (such as ``message``) are now available inside the interpreter's
 namespace.
 
 .. tip::
@@ -87,7 +87,7 @@ directory as the test.py file, we can execute this in a console:
     .. warning::
 
         Don't implement option parsing yourself. Use modules such as
-        ``optparse`` or ``argparse`` .
+        ``optparse``, ``argparse`` or ``docopt``.
 
 
 Importing objects from modules
@@ -323,8 +323,8 @@ Scripts or modules? How to organize your code
       module is imported in the different scripts (do not copy-and-paste
       your functions in the different scripts!).
 
-How module are found and imported
-...................................
+How modules are found and imported
+..................................
 
 
 When the ``import mymodule`` statement is executed, the module ``mymodule``
@@ -360,7 +360,7 @@ Modules must be located in the search path, therefore you can:
   directories containing the user-defined modules.
 
   .. tip::
-  
+
     On Linux/Unix, add the following line to a file read by the shell at
     startup (e.g. /etc/profile, .profile)
 

@@ -235,7 +235,7 @@ Concatenate and repeat lists::
 
 
 .. tip::
-   
+
   Sort::
 
     >>> sorted(r) # new object
@@ -248,7 +248,7 @@ Concatenate and repeat lists::
 
 .. topic:: **Methods and Object-Oriented Programming**
 
-    The notation ``r.method()`` (r.append(3), L.pop()``) is our
+    The notation ``r.method()`` (e.g. ``r.append(3)`` and ``L.pop()``) is our
     first example of object-oriented programming (OOP). Being a ``list``, the
     object `r` owns the *method* `function` that is called using the notation
     **.**. No further knowledge of OOP than understanding the notation **.** is
@@ -371,7 +371,7 @@ contents. One may however create new strings from the original one.
     http://docs.python.org/library/stdtypes.html#string-methods and
     http://docs.python.org/library/string.html#new-string-formatting
 
-String substitution::
+String formatting::
 
     >>> 'An integer: %i; a float: %f; another string: %s' % (1, 0.1, 'string')
     'An integer: 1; a float: 0.100000; another string: string'

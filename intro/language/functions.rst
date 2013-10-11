@@ -91,18 +91,43 @@ Keyword arguments allow you to specify *default values*.
    dictionary or list) and modifying them in the function body, since the
    modifications will be persistent across invocations of the function.
 
-.. sourcecode:: ipython
+   Using an immutable type in a keyword argument:
 
-    In [124]: bigx = 10
+   .. sourcecode:: ipython
 
-    In [125]: def double_it(x=bigx):
-       .....:     return x * 2
-       .....:
+       In [124]: bigx = 10
 
-    In [126]: bigx = 1e9  # Now really big
+       In [125]: def double_it(x=bigx):
+          .....:     return x * 2
+          .....:
 
-    In [128]: double_it()
-    Out[128]: 20
+       In [126]: bigx = 1e9  # Now really big
+
+       In [128]: double_it()
+       Out[128]: 20
+
+   Using an mutable type in a keyword argument (and modifying it inside the
+   function body):
+
+   .. sourcecode:: ipython
+
+       In [2]: def add_to_dict(args={'a': 1, 'b': 2}):
+          ...:     for i in args.keys():
+          ...:         args[i] += 1
+          ...:     print args
+          ...:
+
+       In [3]: add_to_dict
+       Out[3]: <function __main__.add_to_dict>
+
+       In [4]: add_to_dict()
+       {'a': 2, 'b': 3}
+
+       In [5]: add_to_dict()
+       {'a': 3, 'b': 4}
+
+       In [6]: add_to_dict()
+       {'a': 4, 'b': 5}
 
 .. tip::
 
@@ -192,7 +217,7 @@ may modify the caller's variable in-place::
 
 Functions have a local variable table called a *local namespace*.
 
-The variable ``x`` only exists within the function *try_to_modify*.
+The variable ``x`` only exists within the function ``try_to_modify``.
 
 
 Global variables
