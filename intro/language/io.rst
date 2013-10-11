@@ -40,9 +40,8 @@ Iterating over a file
     In [6]: f = open('workfile', 'r')
 
     In [7]: for line in f:
-    ...:     print line
-    ...:     
-    ...:     
+       ...:     print line
+       ...:
     This is a test 
 
     and another test
