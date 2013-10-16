@@ -25,3 +25,4 @@ _____
    image_processing/index.rst
    mathematical_optimization/index.rst
    interfacing_with_c/interfacing_with_c.rst
+   interfacing_with_f/interfacing_with_f.rst
