@@ -175,7 +175,7 @@ A type-as-go spell-checker like integration
 Debugging workflow
 ===================
 
-I you do have a non trivial bug, this is when debugging strategies kick
+If you do have a non trivial bug, this is when debugging strategies kick
 in. There is no silver bullet. Yet, strategies help:
 
    **For debugging a given problem, the favorable situation is when the
