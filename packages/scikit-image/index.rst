@@ -445,7 +445,7 @@ skeletonization, etc.
         >>> coins = data.coins()
         >>> coins_zoom = coins[10:80, 300:370]
         >>> median_coins = filter.median_filter(coins_zoom)
-        >>> tv_coins = filter.tv_denoise(coins_zoom, weight=0.1)
+        >>> tv_coins = filter.denoise_tv_chambolle(coins_zoom, weight=0.1)
         >>> from scipy import ndimage
         >>> gaussian_coins = ndimage.gaussian_filter(coins, sigma=2)
 
