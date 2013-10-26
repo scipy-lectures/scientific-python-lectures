@@ -52,6 +52,7 @@ Requirements
 * pdfjam
 * matplotlib
 * scikit-learn (>= 0.8)
+* scikit-image
 
 Contributing
 -------------
