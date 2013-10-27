@@ -162,7 +162,7 @@ that influence the appearance of the plot.
    import pylab as pl
    import numpy as np
 
-   # Create a figure of size 8x6 points, 80 dots per inch
+   # Create a figure of size 8x6 inches, 80 dots per inch
    pl.figure(figsize=(8, 6), dpi=80)
 
    # Create a new subplot from a grid of 1x1
