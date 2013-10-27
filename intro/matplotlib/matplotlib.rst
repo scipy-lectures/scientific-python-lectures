@@ -214,7 +214,7 @@ Changing colors and line widths
     First step, we want to have the cosine in blue and the sine in red
     and a slighty thicker line for both of them. We'll also slightly
     alter the figure size to make it more horizontal.
-    
+
 ::
 
    ...
