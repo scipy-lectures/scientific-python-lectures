@@ -993,7 +993,7 @@ Beyond this tutorial
 ====================
 
 Matplotlib benefits from extensive documentation as well as a large
-community of users and developpers. Here are some links of interest:
+community of users and developers. Here are some links of interest:
 
 Tutorials
 ---------
