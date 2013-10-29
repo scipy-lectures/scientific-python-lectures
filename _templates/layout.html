@@ -14,6 +14,7 @@
          alt="Collapse to compact view" style="padding: 1ex;"/>
 	<span class="hiddenlink">Collapse document to compact view</span>
     </a></li>
+    <li class="right"><a href="https://github.com/scipy-lectures/scipy-lecture-notes/edit/master/{{ pagename }}.rst">Edit this file on GitHub</a></li>
 {% endblock %}
 
 {% block header %}
@@ -57,7 +58,7 @@
 		if($(this).hasClass("collapsed")) {
 		    var content = $(this).text();
 		    var html = $(this).html();
-    
+
 		    if(content.length > 40) {
 			if ($.browser.msie) {
 			    // We start at '3' to avoid 'tip', as IE
