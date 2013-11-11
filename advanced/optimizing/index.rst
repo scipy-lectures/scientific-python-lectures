@@ -514,3 +514,7 @@ Additional Links
 
 * If you need some interactive visualization why not try `RunSnakeRun
   <http://www.vrplumber.com/programming/runsnakerun/>`_
+
+* `Article by Wes McKinney on how he made Pandas so fast <http://wesmckinney.com/blog/?p=489>`_
+
+* `Big-Oh complexity of various python operations <https://wiki.python.org/moin/TimeComplexity>`_
