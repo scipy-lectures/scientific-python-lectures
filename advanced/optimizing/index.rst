@@ -243,6 +243,75 @@ behind the algorithm helps. However, it is not uncommon to find simple
 changes, like **moving computation or memory allocation outside a for
 loop**, that bring in big gains.
 
+Complexity Theory
+.................
+
+In order to asses the runtime complexity of algorithms a brief interlude is
+needed. In computer science so called **Big-Oh** notation (`Wikipedia
+<http://en.wikipedia.org/wiki/Big_O_notation>`_) is used to classify the
+asymptotic complexity of algorithms in terms of the size of their input. While
+a formal mathematical treatment is well beyond the scope of this tutorial, some
+simple intuitive ideas about complexity can be enough to provide some insights.
+
+For example the implementation of max:
+
+.. literalinclude:: max.py
+
+As you can see, this algorithms needs to check each value once. Hence we say
+that it is of linear complexity, or it is **Big-Oh of n**:
+
+.. math::
+
+   f(n) = \mathcal{O}(n)
+
+Now, let's look at the following example of the insertion sort algorithm:
+
+.. literalinclude:: insertion_sort.py
+
+As you can see here we have two for loops. While the first loop iterates over
+n, the second one iterates of the sequence :math:`(n-1)` the first time,
+:math:`(n-2)` the second time, :math:`(n-3)` the third time and so on. This is
+an arithmetic progression and the solution is:
+
+.. math::
+
+   \frac{n(n-1)}{2}
+
+Since we are dealing with asymptotic complexity, we need only look at the
+dominating term, i.e. the term that grows fastest in the expression, and thus
+insertion sort has complexity:
+
+.. math::
+
+   f(n) = \mathcal{O}(n^2)
+
+Note that the complexity analysis has been fairly easy in this case because the
+number of comparisons does not depend on the order of the data. I.e. even if
+the array is already sorted. Other sorting algorithms are not so easy in terms
+of analysis and may have best-case, average-case and worst-case complexities.
+
+Lastly, let's look at the binary search algorithm, that finds the index of an
+element in a sorted array:
+
+.. literalinclude:: insertion_sort.py
+
+We can see that we keep partitioning the set into roughly half for every
+iteration of the while loop. So we make at most  :math:`⌊log2(N)+1⌋`
+comparisons, leading to a complexity of:
+
+.. math::
+
+   f(n) = \mathcal{O}(log_{2}n)
+
+Incidentally the best-case runtime is:
+
+.. math::
+
+   f(n) = \mathcal{O}(1)
+
+And this happens when we find the desired element after the first comparison.
+
+
 Example of the SVD
 ...................
 
