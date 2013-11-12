@@ -256,6 +256,7 @@ simple intuitive ideas about complexity can be enough to provide some insights.
 For example the implementation of max:
 
 .. literalinclude:: max.py
+   :lines: 6-11
 
 As you can see, this algorithms needs to check each value once. Hence we say
 that it is of linear complexity, or it is **Big-Oh of n**:
