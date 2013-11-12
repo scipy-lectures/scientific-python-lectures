@@ -150,6 +150,30 @@ bottleneck. We have to find a way to make this step go faster, or to avoid this
 step (algorithmic optimization). Spending time on the rest of the code is
 useless.
 
+Alternatively you can also use the ``%prun`` magic to profile a function call.
+This is useful if you do not have an executable script but are profiling part
+of a library. This magic has a useful switch ``-l`` which can be used to limit
+the number of lines of output. (Shown below is a run from a different machine,
+hence the difference in timing.)
+
+.. sourcecode:: ipython
+
+    In [44]: import demo
+
+    In [45]: %prun -l 5 demo.test()
+
+             286 function calls in 5.053 seconds
+
+       Ordered by: internal time
+       List reduced from 64 to 5 due to restriction <5>
+
+       ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+            1    5.034    5.034    5.037    5.037 decomp_svd.py:15(svd)
+            1    0.008    0.008    5.053    5.053 <string>:1(<module>)
+            1    0.006    0.006    0.006    0.006 {method 'random_sample' of 'mtrand.RandomState' objects}
+           14    0.002    0.000    0.002    0.000 {numpy.core._dotblas.dot}
+            1    0.002    0.002    0.002    0.002 function_base.py:527(asarray_chkfinite)
+
 Line-profiler
 --------------
 
