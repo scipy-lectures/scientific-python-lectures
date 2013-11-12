@@ -268,6 +268,7 @@ that it is of linear complexity, or it is **Big-Oh of n**:
 Now, let's look at the following example of the insertion sort algorithm:
 
 .. literalinclude:: insertion_sort.py
+   :lines: 7-15
 
 As you can see here we have two for loops. While the first loop iterates over
 n, the second one iterates of the sequence :math:`(n-1)` the first time,
