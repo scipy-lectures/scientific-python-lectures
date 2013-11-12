@@ -295,10 +295,11 @@ of analysis and may have best-case, average-case and worst-case complexities.
 Lastly, let's look at the binary search algorithm, that finds the index of an
 element in a sorted array:
 
-.. literalinclude:: insertion_sort.py
+.. literalinclude:: binary_search.py
+   :lines: 7-18
 
 We can see that we keep partitioning the set into roughly half for every
-iteration of the while loop. So we make at most  :math:`⌊log2(N)+1⌋`
+iteration of the while loop. So we make at most  :math:`⌊log_{2}(n)+1⌋`
 comparisons, leading to a complexity of:
 
 .. math::
