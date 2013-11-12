@@ -501,6 +501,55 @@ discuss only some commonly encountered tricks to make code faster.
    For all the above: profile and time your choices. Don't base your
    optimization on theoretical considerations.
 
+Hardware... Software...
+-----------------------
+
+Lastly, let's look at an interesting optimization in Numpy. The optimization is
+that the power operator ``**`` checks if the exponent is two (square) and then
+does a multiplication avoiding the expensive ``power`` implementation which
+presumably takes care of all sorts of edge cases such as floating point
+exponents etc.. We say that multiplication is *implemented in hardware* whereas
+power is *implemented in software*.
+
+.. sourcecode:: ipython
+
+    In [4]: %timeit np.power(a, 2)
+    100 loops, best of 3: 17.8 ms per loop
+
+    In [5]: %timeit a ** 2
+    1000 loops, best of 3: 1.55 ms per loop
+
+    In [6]: %timeit a * a
+    1000 loops, best of 3: 1.53 ms per loop
+
+As a comparison, here are the timings for the cube:
+
+.. sourcecode:: ipython
+
+    In [7]: %timeit np.power(a, 3)
+    10 loops, best of 3: 78.7 ms per loop
+
+    In [8]: %timeit a ** 3
+    10 loops, best of 3: 78.7 ms per loop
+
+    In [9]: %timeit a * a * a
+    100 loops, best of 3: 6.02 ms per loop
+
+As you can see, implementing this with multiplication is much faster, but the
+Numpy code base is not optimized for this case.
+
+Lastly, to instill some curiosity let's look at the timings we get when using
+the `numexpr <http://code.google.com/p/numexpr/>_` tool:
+
+.. sourcecode:: ipython
+
+    In [21]: %timeit numexpr.evaluate('a ** 3')
+    1000 loops, best of 3: 1.7 ms per loop
+
+As you can see even the cube is much faster with numexpr than with any of the
+three previous approaches. Can you figure out why? How does it look for square?
+
+
 Additional Links
 ----------------
 
@@ -511,7 +560,7 @@ Additional Links
   `gperftools <http://code.google.com/p/gperftools/?redir=1>`_ from Python with
   `yep <http://pypi.python.org/pypi/yep>`_.
 
-* If you would like to track performace of your code across time, i.e. as you
+* If you would like to track performance of your code across time, i.e. as you
   make new commits to your repository, you could try:
   `vbench <https://github.com/pydata/vbench>`_
 
