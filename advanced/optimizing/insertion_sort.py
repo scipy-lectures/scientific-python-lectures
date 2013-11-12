@@ -24,3 +24,4 @@ def test():
     for case, expected in cases:
         vsort(case)
         nt.assert_equal(case, expected)
+
