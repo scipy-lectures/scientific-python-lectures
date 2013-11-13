@@ -229,7 +229,7 @@ Specifically it allows you to:
     inspect runtime, it is often more efficient to use the debugger.
 
 The IPython Debugger
-====================
+--------------------
 
 The ``ipdb`` is a debugger that ships with ipython and can be used from within
 ipython and from nosetests using a special plug-in. It is in many ways superior
@@ -237,7 +237,7 @@ to the standard ``pdb`` since it comes in color, which makes stack-traces much
 easier to read and has some other nice goodies such as tab completion.
 
 Invoking the debugger
------------------------
+---------------------
 
 Ways to launch the debugger:
 
