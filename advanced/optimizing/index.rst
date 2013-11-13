@@ -277,6 +277,16 @@ asymptotic complexity of algorithms in terms of the size of their input. While
 a formal mathematical treatment is well beyond the scope of this tutorial, some
 simple intuitive ideas about complexity can be enough to provide some insights.
 
+A definition of Big-Oh is:
+
+.. math::
+
+   f(n) = \mathcal{O}(g(n))
+
+means there are positive constants :math:`c` and :math:`k`, such that :math:`0
+≤ f(n) ≤ cg(n)` for all :math:`n ≥ k`. The values of :math:`c` and :math:`k`
+must be fixed for the function :math:`f` and must not depend on :math:`n`.
+
 For example the implementation of max:
 
 .. literalinclude:: max.py
