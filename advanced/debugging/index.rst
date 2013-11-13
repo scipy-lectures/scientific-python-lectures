@@ -51,6 +51,12 @@ Coding best practices to avoid getting in trouble
 * Give your variables, functions and modules meaningful names (not
   mathematics names)
 
+.. note:: Debugging with print statements
+
+   Many people frown upon debugging with print statements. This is a good
+   approach and please do use it if you so prefer. However, bear in mind, that
+   there may sometimes be quicker ways.
+
 pyflakes: fast static analysis
 -------------------------------
 
