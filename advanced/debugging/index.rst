@@ -303,7 +303,9 @@ Here we debug the file :download:`index_error.py`. When running it, an
 
    In some situations you cannot use IPython, for instance to debug a
    script that wants to be called from the command line. In this case,
-   you can call the script with ``python -m pdb script.py``::
+   you can call the script with ``python -m pdb script.py``:
+
+   .. sourcecode:: console
 
     $ python -m pdb index_error.py
     > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(1)<module>()
@@ -327,6 +329,42 @@ Here we debug the file :download:`index_error.py`. When running it, an
     > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
     -> print lst[len(lst)]
     (Pdb)
+
+   Although, having said that you may get away with using the ``--pdb`` flag
+   for IPython:
+
+   .. sourcecode:: console
+
+    $ ipython --pdb index_error.py
+
+     Numpy is available as np
+     ---------------------------------------------------------------------------
+     IndexError                                Traceback (most recent call last)
+     /home/esc/anaconda/lib/python2.7/site-packages/IPython/utils/py3compat.pyc in execfile(fname, *where)
+         202             else:
+         203                 filename = fname
+     --> 204             __builtin__.execfile(filename, *where)
+
+     /home/esc/gw/scipy-lecture-notes/advanced/debugging/index_error.py in <module>()
+           6
+           7 if __name__ == '__main__':
+     ----> 8     index_error()
+           9
+
+     /home/esc/gw/scipy-lecture-notes/advanced/debugging/index_error.py in index_error()
+           3 def index_error():
+           4     lst = list('foobar')
+     ----> 5     print lst[len(lst)]
+           6
+           7 if __name__ == '__main__':
+
+     IndexError: list index out of range
+     > /home/esc/gw/scipy-lecture-notes/advanced/debugging/index_error.py(5)index_error()
+           4     lst = list('foobar')
+     ----> 5     print lst[len(lst)]
+           6
+
+     ipdb>
 
 Step-by-step execution
 .......................
