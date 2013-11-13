@@ -573,7 +573,7 @@ As you can see, implementing this with multiplication is much faster, but the
 Numpy code base is not optimized for this case.
 
 Lastly, to instill some curiosity let's look at the timings we get when using
-the `numexpr <http://code.google.com/p/numexpr/>_` tool:
+the `numexpr <http://code.google.com/p/numexpr/>`_ tool:
 
 .. sourcecode:: ipython
 
