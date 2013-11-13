@@ -90,7 +90,7 @@ Useful when you have a large program to profile, for example the
     component analysis (`PCA
     <http://en.wikipedia.org/wiki/Principal_component_analysis>`_) and
     independent component analysis
-    (`ICA<http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_). PCA
+    (`ICA <http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_). PCA
     is a technique for dimensionality reduction, i.e. an algorithm to explain
     the observed variance in your data using less dimensions. ICA is a source
     seperation technique, for example to unmix multiple signals that have been
