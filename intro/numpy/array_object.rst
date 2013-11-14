@@ -14,6 +14,9 @@ The Numpy array object
 What are Numpy and Numpy arrays?
 --------------------------------
 
+Numpy arrays
+............
+
 :**Python** objects:
 
     - high-level number objects: integers, floating point
@@ -38,17 +41,19 @@ What are Numpy and Numpy arrays?
     >>> a
     array([0, 1, 2, 3])
 
-For example, An array containing:
+.. tip::
 
-* values of an experiment/simulation at discrete time steps
+    For example, An array containing:
 
-* signal recorded by a measurement device, e.g. sound wave
+    * values of an experiment/simulation at discrete time steps
 
-* pixels of an image, grey-level or colour
+    * signal recorded by a measurement device, e.g. sound wave
 
-* 3-D data measured at different X-Y-Z positions, e.g. MRI scan
+    * pixels of an image, grey-level or colour
 
-* ...
+    * 3-D data measured at different X-Y-Z positions, e.g. MRI scan
+
+    * ...
 
 **Why it is useful:** Memory-efficient container that provides fast numerical
 operations.
@@ -78,8 +83,8 @@ operations.
 .. each element of same size and type
 .. efficiency vs. Python lists
 
-Reference documentation
------------------------
+Numpy Reference documentation
+..............................
 
 - On the web: http://docs.scipy.org/
 
@@ -124,18 +129,20 @@ Reference documentation
      np.convolve
 
 Import conventions
-------------------
+..................
 
-The general convention to import numpy is:
+The recommended convention to import numpy is:
 
 .. sourcecode:: pycon
 
    >>> import numpy as np
 
-Using this style of import is recommended.
 
 Creating arrays
 ---------------
+
+Manual construction of arrays
+..............................
 
 * **1-D**:
 
@@ -179,15 +186,19 @@ Creating arrays
 .. topic:: **Exercise: Simple arrays**
     :class: green
 
-    * Create simple one and two dimensional arrays. First, redo the examples
-      from above. And then create your own.
-    * Use the functions ``len``, ``shape`` and ``ndim`` on some of those
-      arrays and observe their output.
+    * Create a simple two dimensional array. First, redo the examples
+      from above. And then create your own: how about odd numbers
+      counting backwards on the first row, and even numbers on the second?
+    * Use the functions :func:`len`, :func:`numpy.shape` on these arrays.
+      How do they relate to each other? And to the ``ndim`` attribute of
+      the arrays?
 
 Functions for creating arrays
------------------------------
+..............................
 
-In practice, we rarely enter items one by one...
+.. tip::
+
+    In practice, we rarely enter items one by one...
 
 * Evenly spaced:
 
@@ -423,14 +434,14 @@ Whereas ``pylab`` is recommended for interactive exploratory work.
 
   .. plot:: pyplots/numpy_intro_2.py
 
-  .. seealso:: More in the :ref:`matplotlib chapter <matplotlib>`
+.. seealso:: More in the: :ref:`matplotlib chapter <matplotlib>`
 
 .. topic:: **Exercise: Simple visualizations**
    :class: green
 
-   * Plot some simple arrays.
-   * Try to use both the IPython shell and the notebook, if possible.
-   * Try using the ``gray`` colormap.
+   * Plot some simple arrays: a cosine as a function of time and a 2D
+     matrix.
+   * Try using the ``gray`` colormap on the 2D matrix.
 
 .. * **3D plotting**:
 ..
@@ -508,14 +519,14 @@ For multidimensional arrays, indexes are tuples of integers:
     array([0, 1, 0])
 
 
-Note that:
+.. note::
 
-* In 2D, the first dimension corresponds to rows, the second to columns.
-* Let us repeat together: the first dimension corresponds to **rows**, the second to **columns**.
-* for multidimensional ``a``, ``a[0]`` is interpreted by
-  taking all elements in the unspecified dimensions.
+  * In 2D, the first dimension corresponds to **rows**, the second 
+    to **columns**.
+  * for multidimensional ``a``, ``a[0]`` is interpreted by
+    taking all elements in the unspecified dimensions.
 
-**Slicing** Arrays, like other Python sequences can also be sliced:
+**Slicing**: Arrays, like other Python sequences can also be sliced:
 
 .. sourcecode:: pycon
 
@@ -555,7 +566,7 @@ A small illustrated summary of Numpy indexing and slicing...
 
     .. image:: images/numpy_indexing.png
         :align: center
-        :width: 65%
+        :width: 70%
 
 You can also combine assignment and slicing:
 
@@ -574,8 +585,9 @@ You can also combine assignment and slicing:
    :class: green
 
    * Try the different flavours of slicing, using ``start``, ``end`` and
-     ``step``.
-   * Verify that the slices in the diagram above are indeed correct. You may
+     ``step``: starting from a linspace, try to obtain odd numbers
+     counting backwards, and even numbers counting forwards.
+   * Reproduce the slices in the diagram above. You may
      use the following expression to create the array:
 
      .. sourcecode:: pycon
@@ -587,11 +599,6 @@ You can also combine assignment and slicing:
                [30, 31, 32, 33, 34, 35],
                [40, 41, 42, 43, 44, 45],
                [50, 51, 52, 53, 54, 55]])
-
-   * Try assigning a smaller 2D array to a larger 2D array, like in the 1D
-     example above.
-   * Use a different step, e.g. ``-2``, in the reversal idiom above. What effect
-     does this have?
 
 .. topic:: **Exercise: Array creation**
     :class: green
@@ -818,9 +825,10 @@ The image below illustrates various fancy indexing applications
 .. topic:: **Exercise: Fancy indexing**
     :class: green
 
-    * Again, verify the fancy indexing shown in the diagram above.
+    * Again, reproduce the fancy indexing shown in the diagram above.
     * Use fancy indexing on the left and array creation on the right to assign
-      values from a smaller array to a larger array.
+      values into an array, for instance by setting parts of the array in
+      the diagram above to zero.
 
 .. We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
 .. the same time:

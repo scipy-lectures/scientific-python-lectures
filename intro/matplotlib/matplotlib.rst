@@ -1,3 +1,4 @@
+
 .. _matplotlib:
 
 ====================
@@ -20,7 +21,7 @@ Introduction
 
 .. tip::
 
-    `Matplotlib <http://matplotlib.org/>`_ is probably the single most
+    `Matplotlib <http://matplotlib.org/>`__ is probably the single most
     used Python package for 2D-graphics. It provides both a very quick
     way to visualize data from Python and publication-quality figures in
     many formats.  We are going to explore matplotlib in interactive mode
