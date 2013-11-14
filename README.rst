@@ -9,7 +9,7 @@ Python.
 These documents are written with the rest markup language (``.rst``
 extension) and built using Sphinx: http://sphinx.pocoo.org/.
 
-You can view the online version at: http://scipy-lectures.github.com
+You can view the online version at: http://scipy-lectures.github.io
 
 Reusing and distributing
 -------------------------
@@ -52,6 +52,7 @@ Requirements
 * pdfjam
 * matplotlib
 * scikit-learn (>= 0.8)
+* scikit-image
 
 Contributing
 -------------

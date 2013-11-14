@@ -162,7 +162,7 @@ that influence the appearance of the plot.
    import pylab as pl
    import numpy as np
 
-   # Create a figure of size 8x6 points, 80 dots per inch
+   # Create a figure of size 8x6 inches, 80 dots per inch
    pl.figure(figsize=(8, 6), dpi=80)
 
    # Create a new subplot from a grid of 1x1
@@ -214,7 +214,7 @@ Changing colors and line widths
     First step, we want to have the cosine in blue and the sine in red
     and a slighty thicker line for both of them. We'll also slightly
     alter the figure size to make it more horizontal.
-    
+
 ::
 
    ...
@@ -993,7 +993,7 @@ Beyond this tutorial
 ====================
 
 Matplotlib benefits from extensive documentation as well as a large
-community of users and developpers. Here are some links of interest:
+community of users and developers. Here are some links of interest:
 
 Tutorials
 ---------

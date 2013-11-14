@@ -14,11 +14,11 @@ processing tasks, and insists on the link with other scientific Python
 modules such as NumPy and SciPy.
 
 .. seealso::
-   
+
    For basic image manipulation, such as image cropping or simple
    filtering, a large number of simple operations can be realized with
    NumPy and SciPy only. See :ref:`basic_image`.
-   
+
    Note that you should be familiar with the content of the previous
    chapter before reading the current one, as basic operations such as
    masking and labeling are a prerequisite.
@@ -106,21 +106,21 @@ Also, powerful image processing libraries have Python bindings:
 
  * and many others
 
-(but they are less Pythonic and NumPy friendly). 
+(but they are less Pythonic and NumPy friendly).
 
 .. warning:: The ``Image`` wrapper class around ``np.ndarray``
 
     ``skimage`` is meant to work "natively" with NumPy arrays, and most
     skimage functions return NumPy arrays. Some functions of the ``data``
     submodule return instead an instance of the ``Image`` class, which is
-    just a wrapper class around NumPy ``ndarray``. 
+    just a wrapper class around NumPy ``ndarray``.
 
         >>> camera = data.camera()
         >>> camera
         Image([[156, 157, 160, ..., 152, 152, 152],
                [156, 157, 159, ..., 152, 152, 152],
                [158, 157, 156, ..., 152, 152, 152],
-               ..., 
+               ...,
                [121, 123, 126, ..., 121, 113, 111],
                [121, 123, 126, ..., 121, 113, 111],
                [121, 123, 126, ..., 121, 113, 111]], dtype=uint8)
@@ -135,8 +135,8 @@ What's to be found in scikit-image
 
 * Website: http://scikit-image.org/
 
-* Gallery of examples (as in 
-  `matplotlib <http://matplotlib.org/gallery.html>`_ or 
+* Gallery of examples (as in
+  `matplotlib <http://matplotlib.org/gallery.html>`_ or
   `scikit-learn <http://scikit-learn.org>`_):
   http://scikit-image.org/docs/dev/auto_examples/
 
@@ -145,14 +145,14 @@ high-level recent algorithms.
 
  * Filters: functions transforming images into other images.
 
-    * NumPy machinery 
-    
+    * NumPy machinery
+
     * Common filtering algorithms
 
  * Data reduction functions: computation of image histogram, position of
    local maxima, of corners, etc.
 
- * Other actions: I/O, visualization, etc. 
+ * Other actions: I/O, visualization, etc.
 
 Input/output, data types and colorspaces
 ----------------------------------------
@@ -172,8 +172,8 @@ Reading from files: :func:`skimage.io.imread` ::
     :target: auto_examples/plot_camera.html
     :align: center
 
-Works with all data formats supported by the Python Imaging Library 
-(or any other I/O plugin provided to ``imread`` with the ``plugin`` 
+Works with all data formats supported by the Python Imaging Library
+(or any other I/O plugin provided to ``imread`` with the ``plugin``
 keyword argument).
 
 Also works with URL image paths::
@@ -203,7 +203,7 @@ Data types
     :target: auto_examples/plot_camera_uint.html
 
 Image ndarrays can be represented either by integers (signed or unsigned) or
-floats. 
+floats.
 
 Careful with overflows with integer data types
 
@@ -265,7 +265,7 @@ images.
 
     Some functions of ``skimage`` can take 3D images as input arguments.
     Check the docstring to know if a function can be used on 3D images
-    (for example MRI or CT images). 
+    (for example MRI or CT images).
 
 
 
@@ -323,7 +323,7 @@ Non-local filters use a large region of the image (or all the image) to
 transform the value of one pixel::
 
     >>> camera = data.camera()
-    >>> camera_equalized = exposure.equalize_hist(camera) 
+    >>> camera_equalized = exposure.equalize_hist(camera)
     >>> # Rk: use instead exposure.equalize in skimage 0.7
 
 Enhances contrast in large almost uniform regions.
@@ -422,7 +422,7 @@ Opening removes small objects and smoothes corners.
 
 .. topic:: Grayscale mathematical morphology
 
-        Mathematical morphology operations are also available for 
+        Mathematical morphology operations are also available for
         (non-binary) grayscale images (int or float type). Erosion and dilation
         correspond to minimum (resp. maximum) filters.
 
@@ -445,7 +445,7 @@ skeletonization, etc.
         >>> coins = data.coins()
         >>> coins_zoom = coins[10:80, 300:370]
         >>> median_coins = filter.median_filter(coins_zoom)
-        >>> tv_coins = filter.tv_denoise(coins_zoom, weight=0.1)
+        >>> tv_coins = filter.denoise_tv_chambolle(coins_zoom, weight=0.1)
         >>> from scipy import ndimage
         >>> gaussian_coins = ndimage.gaussian_filter(coins, sigma=2)
 
@@ -466,7 +466,7 @@ Histogram-based method: **Otsu thresholding**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. tip::
-   
+
    The `Otsu method <http://en.wikipedia.org/wiki/Otsu's_method>`_ is a
    simple heuristic to find a threshold to separate the foreground from
    the background.
@@ -534,7 +534,8 @@ the regions.
 The Watershed (:func:`skimage.morphology.watershed`) is a region-growing
 approach that fills "bassins" in the image ::
 
-    >>> from skimage.morphology import watershed, is_local_maximum
+    >>> from skimage.morphology import watershed
+    >>> from skimage.feature import peak_local_max
     >>>
     >>> # Generate an initial image with two overlapping circles
     >>> x, y = np.indices((80, 80))
@@ -548,7 +549,7 @@ approach that fills "bassins" in the image ::
     >>> # to the background
     >>> from scipy import ndimage
     >>> distance = ndimage.distance_transform_edt(image)
-    >>> local_maxi = is_local_maximum(distance, image, np.ones((3, 3)))
+    >>> local_maxi = peak_local_max(distance, indices=False, footprint=np.ones((3, 3)),labels=image)
     >>> markers = morphology.label(local_maxi)
     >>> labels_ws = watershed(-distance, markers, mask=image)
 
@@ -577,7 +578,7 @@ is based on the idea of the diffusion of labels in the image::
     different regions). Functions names are often self-explaining:
     :func:`skimage.segmentation.clear_border`,
     :func:`skimage.segmentation.relabel_from_one`,
-    :func:`skimage.morphology.remove_small_objects`, etc. 
+    :func:`skimage.morphology.remove_small_objects`, etc.
 
 
 .. topic:: Exercise
@@ -600,7 +601,7 @@ Measuring regions' properties
 
     >>> from skimage import measure
     >>> measure.regionprops?
-     
+
 Example: compute the size and perimeter of the two segmented regions::
 
     >>> measure.regionprops(labels_rw, properties=['Area', 'Perimeter'])
@@ -608,7 +609,7 @@ Example: compute the size and perimeter of the two segmented regions::
     {'Perimeter': 149.1543289325507, 'Area': 1168.0, 'Label': 2}]
 
 .. seealso::
-   
+
    for some properties, functions are available as well in
    :mod:`scipy.ndimage.measurements` with a different API (a list is
    returned).
@@ -690,7 +691,7 @@ Geometric or textural descriptor can be extracted from images in order to
 
 * match parts of different images (e.g. for object detection)
 
-* and many other applications of 
+* and many other applications of
   `Computer Vision <http://en.wikipedia.org/wiki/Computer_vision>`_
 
 ::
