@@ -78,9 +78,9 @@ These operations are of course much faster than if you did them in pure python:
 .. topic:: **Exercise: Elementwise operations**
    :class: green
 
-    * Try simple arithmetic elementwise operations.
+    * Try simple arithmetic elementwise operations: add even elements
+      with odd elements
     * Time them against their pure python counterparts using ``%timeit``.
-    * Try using ``dot``.
     * Generate:
 
       * ``[2**0, 2**1, 2**2, 2**3, 2**4]``
@@ -90,7 +90,7 @@ These operations are of course much faster than if you did them in pure python:
 Other operations
 ................
 
-Comparisons:
+**Comparisons:**
 
 .. sourcecode:: pycon
 
@@ -100,63 +100,6 @@ Comparisons:
     array([False,  True, False,  True], dtype=bool)
     >>> a > b
     array([False, False,  True, False], dtype=bool)
-
-
-Logical operations:
-
-.. sourcecode:: pycon
-
-    >>> a = np.array([1, 1, 0, 0], dtype=bool)
-    >>> b = np.array([1, 0, 1, 0], dtype=bool)
-    >>> np.logical_or(a, b)
-    array([ True,  True,  True, False], dtype=bool)
-    >>> np.logical_and(a, b)
-    array([ True, False, False, False], dtype=bool)
-
-Transcendental functions:
-
-.. sourcecode:: pycon
-
-    >>> a = np.arange(10)
-    >>> np.sin(a)
-    array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025 ,
-           -0.95892427, -0.2794155 ,  0.6569866 ,  0.98935825,  0.41211849])
-    >>> np.log(a)
-    array([       -inf,  0.        ,  0.69314718,  1.09861229,  1.38629436,
-            1.60943791,  1.79175947,  1.94591015,  2.07944154,  2.19722458])
-    >>> np.exp(a)
-    array([  1.00000000e+00,   2.71828183e+00,   7.38905610e+00,
-             2.00855369e+01,   5.45981500e+01,   1.48413159e+02,
-             4.03428793e+02,   1.09663316e+03,   2.98095799e+03,
-             8.10308393e+03])
-
-
-Shape mismatches
-
-.. sourcecode:: pycon
-
-    >>> a = np.arange(4)
-    >>> a + np.array([1, 2])  # doctest: +SKIP
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    ValueError: operands could not be broadcast together with shapes (4) (2)
-
-**Broadcasting?** We'll return to that :ref:`later <broadcasting>`.
-
-Transposition:
-
-.. sourcecode:: pycon
-
-    >>> a = np.triu(np.ones((3, 3)), 1)   # see help(np.triu)
-    >>> a
-    array([[ 0.,  1.,  1.],
-           [ 0.,  0.,  1.],
-           [ 0.,  0.,  0.]])
-    >>> a.T
-    array([[ 0.,  0.,  0.],
-           [ 1.,  0.,  0.],
-           [ 1.,  1.,  0.]])
-
 
 .. tip::
 
@@ -172,6 +115,66 @@ Transposition:
     >>> np.array_equal(a, c)
     True
 
+
+**Logical operations:**
+
+.. sourcecode:: pycon
+
+    >>> a = np.array([1, 1, 0, 0], dtype=bool)
+    >>> b = np.array([1, 0, 1, 0], dtype=bool)
+    >>> np.logical_or(a, b)
+    array([ True,  True,  True, False], dtype=bool)
+    >>> np.logical_and(a, b)
+    array([ True, False, False, False], dtype=bool)
+
+**Transcendental functions:**
+
+.. sourcecode:: pycon
+
+    >>> a = np.arange(5)
+    >>> np.sin(a)
+    array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025])
+    >>> np.log(a)
+    array([       -inf,  0.        ,  0.69314718,  1.09861229,  1.38629436])
+    >>> np.exp(a)
+    array([  1.00000000e+00,   2.71828183e+00,   7.38905610e+00,
+             2.00855369e+01,   5.45981500e+01])
+
+
+**Shape mismatches**
+
+.. sourcecode:: pycon
+
+    >>> a = np.arange(4)
+    >>> a + np.array([1, 2])  # doctest: +SKIP
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    ValueError: operands could not be broadcast together with shapes (4) (2)
+
+*Broadcasting?* We'll return to that :ref:`later <broadcasting>`.
+
+**Transposition:**
+
+.. sourcecode:: pycon
+
+    >>> a = np.triu(np.ones((3, 3)), 1)   # see help(np.triu)
+    >>> a
+    array([[ 0.,  1.,  1.],
+           [ 0.,  0.,  1.],
+           [ 0.,  0.,  0.]])
+    >>> a.T
+    array([[ 0.,  0.,  0.],
+           [ 1.,  0.,  0.],
+           [ 1.,  1.,  0.]])
+
+
+.. warning:: **The transposition is a view**
+
+    As a results, the following code **is wrong** and will **not make a
+    matrix symmetric**::
+
+        >>> a += a.T
+
 .. note:: **Linear algebra**
 
     The sub-module :mod:`numpy.linalg` implements basic linear algebra, such as
@@ -185,15 +188,13 @@ Transposition:
 
     * Look at the help for ``np.allclose``. When might this be useful?
     * Look at the help for ``np.triu`` and ``np.tril``.
-    * Is the transpose a view or a copy? What implications does this have for
-      making a matrix symmetric?
-
 
 
 Basic reductions
 ----------------
 
-Computing sums:
+Computing sums
+..............
 
 .. sourcecode:: pycon
 
@@ -240,23 +241,7 @@ Other reductions
 
 --- works the same way (and take ``axis=``)
 
-Statistics:
-
-.. sourcecode:: pycon
-
-  >>> x = np.array([1, 2, 3, 1])
-  >>> y = np.array([[1, 2, 3], [5, 6, 1]])
-  >>> x.mean()
-  1.75
-  >>> np.median(x)
-  1.5
-  >>> np.median(y, axis=-1) # last axis
-  array([ 2.,  5.])
-
-  >>> x.std()          # full population standard dev.
-  0.82915619758884995
-
-Extrema:
+**Extrema:**
 
 .. sourcecode:: pycon
 
@@ -271,7 +256,7 @@ Extrema:
   >>> x.argmax()  # index of maximum
   1
 
-Logical operations:
+**Logical operations:**
 
 .. sourcecode:: pycon
 
@@ -298,6 +283,23 @@ Logical operations:
       >>> ((a <= b) & (b <= c)).all()
       True
 
+**Statistics:**
+
+.. sourcecode:: pycon
+
+  >>> x = np.array([1, 2, 3, 1])
+  >>> y = np.array([[1, 2, 3], [5, 6, 1]])
+  >>> x.mean()
+  1.75
+  >>> np.median(x)
+  1.5
+  >>> np.median(y, axis=-1) # last axis
+  array([ 2.,  5.])
+
+  >>> x.std()          # full population standard dev.
+  0.82915619758884995
+
+
 ... and many more (best to learn as you go).
 
 .. topic:: **Exercise: Reductions**
@@ -309,7 +311,7 @@ Logical operations:
 .. topic:: Worked Example: data statistics
    :class: green
 
-   Data in :download:`populations.txt <../../data/populations.txt>`_
+   Data in :download:`populations.txt <../../data/populations.txt>`
    describes the populations of hares and lynxes (and carrots) in northern
    Canada during 20 years.
 
@@ -359,83 +361,83 @@ Logical operations:
      >>> np.argmax(populations, axis=1)
      array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
 
-.. .. topic:: Example: diffusion simulation using a random walk algorithm
-.. 
-..   .. image:: random_walk.png
-..      :align: center
-.. 
-..   What is the typical distance from the origin of a random walker after
-..   ``t`` left or right jumps?
-.. 
-..   .. only:: latex
-.. 
-..     .. image:: random_walk_schema.png
-..         :align: center
-.. 
-..   .. only:: html
-.. 
-..     .. image:: random_walk_schema.png
-..         :align: center
-..         :width: 100%
-.. 
-..   .. sourcecode:: pycon
-.. 
-..    >>> n_stories = 1000 # number of walkers
-..    >>> t_max = 200      # time during which we follow the walker
-.. 
-..   We randomly choose all the steps 1 or -1 of the walk:
-.. 
-..   .. sourcecode:: pycon
-.. 
-..    >>> t = np.arange(t_max)
-..    >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
-..    >>> np.unique(steps) # Verification: all steps are 1 or -1
-..    array([-1,  1])
-.. 
-..   We build the walks by summing steps along the time:
-.. 
-..   .. sourcecode:: pycon
-.. 
-..    >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
-..    >>> sq_distance = positions**2
-.. 
-..   We get the mean in the axis of the stories:
-.. 
-..   .. sourcecode:: pycon
-.. 
-..    >>> mean_sq_distance = np.mean(sq_distance, axis=0)
-.. 
-..   Plot the results:
-.. 
-..   .. sourcecode:: pycon
-.. 
-..    >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
-..    <matplotlib.figure.Figure object at ...>
-..    >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
-..    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
-..    >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
-..    <matplotlib.text.Text object at ...>
-..    >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
-..    <matplotlib.text.Text object at ...>
-.. 
-..   .. plot:: pyplots/numpy_intro_5.py
-.. 
-.. The RMS distance grows as the square root of the time!
-.. 
-.. 
-.. .. arithmetic: sum/prod/mean/std
-.. 
-.. .. extrema: min/max
-.. 
-.. .. logical: all/any
-.. 
-.. .. the axis argument
-.. 
-.. .. EXE: verify if all elements in an array are equal to 1
-.. .. EXE: verify if any elements in an array are equal to 1
-.. .. EXE: load data with loadtxt from a file, and compute its basic statistics
-.. 
-.. .. CHA: implement mean and std using only sum()
+.. topic:: Worked Example: diffusion using a random walk algorithm
+
+  .. image:: random_walk.png
+     :align: center
+
+  What is the typical distance from the origin of a random walker after
+  ``t`` left or right jumps?
+
+  .. only:: latex
+
+    .. image:: random_walk_schema.png
+        :align: center
+
+  .. only:: html
+
+    .. image:: random_walk_schema.png
+        :align: center
+        :width: 100%
+
+  .. sourcecode:: pycon
+
+   >>> n_stories = 1000 # number of walkers
+   >>> t_max = 200      # time during which we follow the walker
+
+  We randomly choose all the steps 1 or -1 of the walk:
+
+  .. sourcecode:: pycon
+
+   >>> t = np.arange(t_max)
+   >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
+   >>> np.unique(steps) # Verification: all steps are 1 or -1
+   array([-1,  1])
+
+  We build the walks by summing steps along the time:
+
+  .. sourcecode:: pycon
+
+   >>> positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
+   >>> sq_distance = positions**2
+
+  We get the mean in the axis of the stories:
+
+  .. sourcecode:: pycon
+
+   >>> mean_sq_distance = np.mean(sq_distance, axis=0)
+
+  Plot the results:
+
+  .. sourcecode:: pycon
+
+   >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
+   <matplotlib.figure.Figure object at ...>
+   >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
+   [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
+   >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
+   <matplotlib.text.Text object at ...>
+   >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
+   <matplotlib.text.Text object at ...>
+
+  .. plot:: pyplots/numpy_intro_5.py
+
+The RMS distance grows as the square root of the time!
+
+
+.. arithmetic: sum/prod/mean/std
+
+.. extrema: min/max
+
+.. logical: all/any
+
+.. the axis argument
+
+.. EXE: verify if all elements in an array are equal to 1
+.. EXE: verify if any elements in an array are equal to 1
+.. EXE: load data with loadtxt from a file, and compute its basic statistics
+
+.. CHA: implement mean and std using only sum()
 
 .. _broadcasting:
 
