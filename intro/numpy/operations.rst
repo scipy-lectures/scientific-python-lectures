@@ -366,8 +366,17 @@ Other reductions
   .. image:: random_walk.png
      :align: center
 
-  What is the typical distance from the origin of a random walker after
-  ``t`` left or right jumps?
+  .. tip::
+
+    Let us consider a simple 1D random walk process: at each time step a
+    walker jumps right or left with equal probability.
+
+    We are interested in finding the typical distance from the origin of a
+    random walker after ``t`` left or right jumps? We are going to
+    simulate many "walkers" to find this law, and we are going to do so
+    using array computing tricks: we are going to create a 2D array with
+    the "stories" (each walker has a story) in one direction, and the
+    time in the other:
 
   .. only:: latex
 
@@ -422,7 +431,8 @@ Other reductions
 
   .. plot:: pyplots/numpy_intro_5.py
 
-The RMS distance grows as the square root of the time!
+  We find a well-known result in physics: the RMS distance grows as the
+  square root of the time!
 
 
 .. arithmetic: sum/prod/mean/std
@@ -888,3 +898,12 @@ Summary
   broadcasting. Know more Numpy functions to handle various array
   operations.
 
+.. topic:: **Quick read**
+
+   If you want to do a first quick pass through the Scipy lectures to
+   learn the ecosystem, you can directly skip to the next chapter:
+   :ref:`matplotlib`.
+
+   The remainder of this chapter is not necessary to follow the rest of
+   the intro part. But be sure to come back and finish this chapter, as
+   well as to do some more :ref:`exercices <numpy_exercises>`.

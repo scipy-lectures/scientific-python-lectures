@@ -38,7 +38,7 @@ graph.data = np.exp(-graph.data / graph.data.std())
 
 # Force the solver to be arpack, since amg is numerically
 # unstable on this example
-labels = spectral_clustering(graph, k=4)
+labels = spectral_clustering(graph, n_clusters=4)
 label_im = -np.ones(mask.shape)
 label_im[mask] = labels
 

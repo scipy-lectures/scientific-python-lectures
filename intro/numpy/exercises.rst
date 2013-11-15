@@ -1,3 +1,5 @@
+.. _numpy_exercises:
+
 Some exercises
 ==============
 

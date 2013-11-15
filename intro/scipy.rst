@@ -1,3 +1,5 @@
+.. _scipy:
+
 Scipy : high-level scientific computing
 =========================================
 
