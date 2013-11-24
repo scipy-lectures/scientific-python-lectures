@@ -171,6 +171,10 @@ div.body h3, div.body hr {
     margin-top: 30px;
 }
 
+div.body h4 {
+    background-color: #FAFAFA;
+}
+
 div.body hr.docutils {
     border-style: solid;
     color: gray;
