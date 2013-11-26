@@ -206,6 +206,13 @@ C-extension, comes with the `Numpy-C-API
 to create and manipulate Numpy arrays from C, when writing a custom
 C-extension. See also: :ref:`advanced_numpy`_.
 
+.. note::
+
+    If you do ever need to use the Numpy C-API refer to the documentation about
+    `Arrays <http://docs.scipy.org/doc/numpy/reference/c-api.array.html>`_ and
+    `Iterators
+    <http://docs.scipy.org/doc/numpy/reference/c-api.iterator.html>`_.
+
 The following example shows how to pass Numpy arrays as arguments to functions
 and how to iterate over Numpy arrays using the (old) Numpy-C-API. It simply
 takes an array as argument applies the cosine function from the ``math.h`` and
