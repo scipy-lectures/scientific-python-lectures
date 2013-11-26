@@ -97,7 +97,8 @@ return type.
 * Much overhead in the code
 * Must be compiled
 * High maintenance cost
-* No forward compatibility across Python versions as C-Api changes
+* No forward compatibility across Python versions as C-API changes
+* Reference count bugs are easy to create and very hard to track down.
 
 .. note::
 
