@@ -107,6 +107,17 @@ return type.
    high-level understanding of how it works. In 99% of the use-cases you will
    be better off, using an alternative technique.
 
+.. note::
+
+   Since refernce counting bugs are easy to create and hard to track down,
+   anyone really needing to use the Python C-API should read the `section
+   about objects, types and reference counts
+   <http://docs.python.org/2/c-api/intro.html#objects-types-and-reference-counts>`_
+   from the official python documentation. Additionally, there is a tool by the
+   name of `cpychecker
+   <https://gcc-python-plugin.readthedocs.org/en/latest/cpychecker.html>`_
+   which can help discover common errors with reference counting.
+
 Example
 -------
 
