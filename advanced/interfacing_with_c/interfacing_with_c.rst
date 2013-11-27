@@ -93,7 +93,7 @@ return type.
 
 **Disadvantages**
 
-* May requires a substantial amount of effort
+* May require a substantial amount of effort
 * Much overhead in the code
 * Must be compiled
 * High maintenance cost
