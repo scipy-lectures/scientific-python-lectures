@@ -342,7 +342,7 @@ and `numpy.ctypeslib <http://docs.scipy.org/doc/numpy/reference/routines.ctypesl
 
 For the following example, let's consider a C function in a library that takes
 an input and an output array, computes the cosine of the input array and
-stores the result in the output_array.
+stores the result in the output array.
 
 The library consists of the following header file (although this is not
 strictly needed for this example, we list it for completeness):
@@ -746,7 +746,7 @@ Numpy Support
 Cython has support for Numpy via the ``numpy.pyx`` file which allows you to add
 the Numpy array type to your Cython code. I.e. like specifying that variable
 ``i`` is of type ``int``, you can specify that variable ``a`` is of type
-``numpy.ndarray`` with a given ``dtype``. Also certain optimizations such as
+``numpy.ndarray`` with a given ``dtype``. Also, certain optimizations such as
 bounds checking are supported. Look at the corresponding section in the `Cython
 documentation <http://docs.cython.org/src/tutorial/numpy.html>`_. In case you
 want to pass Numpy arrays as C arrays to your Cython wrapped C functions, there

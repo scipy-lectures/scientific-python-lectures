@@ -1,12 +1,11 @@
 """ Example of wrapping a C function that takes C double arrays as input using
     the Numpy declarations from Cython """
 
-# import both numpy and the Cython declarations for numpy
-import numpy as np
+# cimport the Cython declarations for numpy
 cimport numpy as np
 
 # if you want to use the Numpy-C-API from Cython
-# (not strictly necessary for this example)
+# (not strictly necessary for this example, but good practice)
 np.import_array()
 
 # cdefine the signature of our c function
