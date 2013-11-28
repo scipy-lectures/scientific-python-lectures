@@ -12,7 +12,7 @@ array_1d_double = npct.ndpointer(dtype=np.double, ndim=1, flags='CONTIGUOUS')
 # load the library, using numpy mechanisms
 libcd = npct.load_library("libcos_doubles", ".")
 
-# setup the return typs and argument types
+# setup the return types and argument types
 libcd.cos_doubles.restype = None
 libcd.cos_doubles.argtypes = [array_1d_double, array_1d_double, c_int]
 
