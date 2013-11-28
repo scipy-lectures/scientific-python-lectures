@@ -16,16 +16,16 @@ Introduction
 ============
 
 Fortran is perhaps the easiest of the compiled languages to use for building
-python modules, with only minimal modifications in the original Fortran source.
-In addition, from the python side there is no apparent difference from importing
-ordinary module functions.  As always, a combiled languages is a good candidate
+Python modules, with only minimal modifications in the original Fortran source.
+In addition, from the Python side there is no apparent difference from importing
+ordinary module functions.  As always, a compiled languages is a good candidate
 
-* when python is too slow
+* when Python is too slow
 * when an algorithm prevents vectorization
 
 Python and Fortran functions
 ----------------------------
-To illustrate the use of fortran functions we consider the cosine function``cos(x)``.
+To illustrate the use of Fortran functions we consider the cosine function``cos(x)``.
 In this special case we call the interface function ``cos_fun`` so we do not hide the Fortran intrinsic.
 
 ::
@@ -38,11 +38,11 @@ In this special case we call the interface function ``cos_fun`` so we do not hid
     end
 
 We now use the `f2py` command (provided with numpy) to generate a dynamically
-linked library which python can import ::
+linked library which Python can import ::
 
     $ f2py -c -m cos_module cos_module.f
 
-This generates the file ``cos_module.so``. In python we import and use it as
+This generates the file ``cos_module.so``. In Python we import and use it as
 with any other module ::
 
     >>> from cos_module import cos_fun as cos
@@ -53,7 +53,7 @@ with any other module ::
 Fortran subroutines
 -------------------
 In Fortran, input and output arguments to subroutines can be in any
-order, whereas the python convention is that function arguments are input and return values are
+order, whereas the Python convention is that function arguments are input and return values are
 output.  We can supply the subroutine with information on input and output intent, as compiler directives for
 ``f2py``. The module functions that are generated translate the output variables to function return values
  ::
@@ -65,8 +65,8 @@ output.  We can supply the subroutine with information on input and output inten
           return
           end
 
-The default for ``f2py`` is to assume defualt input intent, so there is only one directive for the output variable.
-This subroutine may be  called from python as follows
+The default for ``f2py`` is to assume default input intent, so there is only one directive for the output variable.
+This subroutine may be  called from Python as follows
 ::
 
     >>> from cos_module import cos_sub as cos
@@ -82,7 +82,7 @@ A subroutine interface
 
 We now extend the ``cos_sub`` routine to accept a numpy array as an argument.
 The length ``n`` of the array in the subroutine definition, is not required in
-a call from python, as the size of the array is a property of the array
+a call from Python, as the size of the array is a property of the array
 
 ::
 
@@ -98,7 +98,7 @@ a call from python, as the size of the array is a property of the array
           end
 
 Declaring an array with output intent signals to ``f2py`` that it is to be
-allocated. This subroutine is used from python as follows, ::
+allocated. This subroutine is used from Python as follows, ::
 
     >>> vec = numpy.array([0, math.pi/6, math.pi/3, math.pi/2])
     >>> from cos_module import vec_cos_sub as cos
@@ -113,7 +113,7 @@ In some applications we may be interested in updating an existing array, so we
 now make the interface where we provide an array with x-values as input and
 an empty array for the return values.  Another reason for this approach is to avoid a
 potential source of memory leaks that comes with new allocations for every
-function call.  We thus create the array in python and declare it to have the
+function call.  We thus create the array in Python and declare it to have the
 in/out intent attribute for ``f2py``. 
 
 ::
@@ -140,6 +140,6 @@ Calling this vectorized version is done with the following code
     [  1.00000000e+00   8.66025404e-01   5.00000000e-01   6.12323400e-17]
 
 
-For the interested reader a more detailed account of using Fortran with python can be found in Langtangen: *Python Scripting for Computational Science* 
+For the interested reader a more detailed account of using Fortran with Python can be found in Langtangen: *Python Scripting for Computational Science* 
 
 ..
