@@ -25,8 +25,9 @@ ordinary module functions.  As always, a compiled languages is a good candidate
 
 Python and Fortran functions
 ----------------------------
-To illustrate the use of Fortran functions we consider the cosine function``cos(x)``.
-In this special case we call the interface function ``cos_fun`` so we do not hide the Fortran intrinsic.
+To illustrate the use of Fortran functions we consider the cosine
+function ``cos(x)``.  In this special case we call the interface function
+``cos_fun`` so we do not hide the Fortran intrinsic.
 
 ::
 
@@ -52,11 +53,11 @@ with any other module ::
 
 Fortran subroutines
 -------------------
-In Fortran, input and output arguments to subroutines can be in any
-order, whereas the Python convention is that function arguments are input and return values are
-output.  We can supply the subroutine with information on input and output intent, as compiler directives for
-``f2py``. The module functions that are generated translate the output variables to function return values
- ::
+In Fortran, input and output arguments to subroutines can be in any order,
+whereas the Python convention is that function arguments are input and return
+values are output.  We can supply the subroutine with information on input and
+output intent, as compiler directives for ``f2py``. The module functions that
+are generated translate the output variables to function return values ::
  
           subroutine cos_sub(cos_x, x)
           double precision cos_x, x
@@ -65,9 +66,9 @@ output.  We can supply the subroutine with information on input and output inten
           return
           end
 
-The default for ``f2py`` is to assume default input intent, so there is only one directive for the output variable.
-This subroutine may be  called from Python as follows
-::
+The default for ``f2py`` is to assume default input intent, so there is only one
+directive for the output variable.  This subroutine may be  called from Python
+as follows ::
 
     >>> from cos_module import cos_sub as cos
     >>> print cos(math.pi/3)
@@ -81,8 +82,8 @@ A subroutine interface
 ----------------------
 
 We now extend the ``cos_sub`` routine to accept a numpy array as an argument.
-The length ``n`` of the array in the subroutine definition, is not required in
-a call from Python, as the size of the array is a property of the array
+The length ``n`` of the array in the subroutine definition, is not required in a
+call from Python, as the size of the array is a property of the array
 
 ::
 
@@ -110,9 +111,9 @@ A subroutine with in/out intent arguments
 -----------------------------------------
 
 In some applications we may be interested in updating an existing array, so we
-now make the interface where we provide an array with x-values as input and
-an empty array for the return values.  Another reason for this approach is to avoid a
-potential source of memory leaks that comes with new allocations for every
+now make the interface where we provide an array with x-values as input and an
+empty array for the return values.  Another reason for this approach is to avoid
+a potential source of memory leaks that comes with new allocations for every
 function call.  We thus create the array in Python and declare it to have the
 in/out intent attribute for ``f2py``. 
 
@@ -140,6 +141,5 @@ Calling this vectorized version is done with the following code
     [  1.00000000e+00   8.66025404e-01   5.00000000e-01   6.12323400e-17]
 
 
-For the interested reader a more detailed account of using Fortran with Python can be found in Langtangen: *Python Scripting for Computational Science* 
-
-..
+For the interested reader a more detailed account of using Fortran with Python
+can be found in Langtangen: *Python Scripting for Computational Science* 
