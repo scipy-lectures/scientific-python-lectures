@@ -198,7 +198,7 @@ item number.
     1 powerful
     2 readable
 
-* But, Python provides ``enumerate`` keyword for this::
+* But, Python provides a built-in function - ``enumerate`` - for this::
 
     >>> for index, item in enumerate(words):
     ...     print index, item
