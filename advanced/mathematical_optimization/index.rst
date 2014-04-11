@@ -87,8 +87,8 @@ Convex versus non-convex optimization
 **Optimizing convex functions is easy. Optimizing non-convex functions can
 be very hard.**
 
-.. note:: A convex function provably has only one minimum, no local
-   minimums
+.. note:: It can be proven that for a convex function a local minimum is
+   also a global minimum. Then, in some sense, the minimum is unique.
 
 Smooth and non-smooth problems
 -------------------------------
@@ -934,7 +934,7 @@ Box bounds
 
 Box bounds correspond to limiting each of the individual parameters of
 the optimization. Note that some problems that are not originally written
-as box bounds can be rewritten as such be a change of variables.
+as box bounds can be rewritten as such via change of variables.
 
 .. image:: auto_examples/images/plot_constraints_2.png
     :target: auto_examples/plot_constraints.html
