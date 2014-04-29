@@ -9,7 +9,7 @@ The Python language
     necessary for getting started with Numpy and Scipy is addressed here.
     To learn more about the language, consider going through the
     excellent tutorial http://docs.python.org/tutorial. Dedicated books
-    are also available, such as http://diveintopython.org/.
+    are also available, such as http://diveintopython.net/.
 
 .. image:: python-logo.png
    :align: right
