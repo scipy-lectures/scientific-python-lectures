@@ -12,7 +12,7 @@ def tickline():
     ax.spines['bottom'].set_position(('data',0))
     ax.yaxis.set_ticks_position('none')
     ax.xaxis.set_minor_locator(pl.MultipleLocator(0.1))
-    ax.plot(np.arange(11), np.zeros(11), color='none')
+    ax.plot(np.arange(11), np.zeros(11))
     return ax
 
 locators = [
