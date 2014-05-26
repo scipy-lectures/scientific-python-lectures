@@ -109,7 +109,12 @@ Smooth and non-smooth problems
  
    - **A non-smooth function**
 
-**Optimizing smooth functions is easier.**
+**Optimizing smooth functions is easier**
+(true in the context of *black-box* optimization, otherwise
+`Linear Programming <http://en.wikipedia.org/wiki/Linear_programming>`_
+is an example of methods which deal very efficiently with
+piece-wise linear functions).
+
 
 
 Noisy versus exact cost functions
@@ -199,8 +204,8 @@ It combines a bracketing strategy with a parabolic approximation.
 
 .. note:: 
    
-   Brent's method can be used for optimization constraint to an
-   intervale using :func:`scipy.optimize.fminbound`
+   Brent's method can also be used for optimization *constrained to an
+   interval* using :func:`scipy.optimize.fminbound`
 
 .. note::
    
@@ -216,8 +221,8 @@ Some intuitions about gradient descent
 Here we focus on **intuitions**, not code. Code will follow.
 
 `Gradient descent <http://en.wikipedia.org/wiki/Gradient_descent>`_
-basically consists consists in taking small steps in the direction of the
-gradient.
+basically consists in taking small steps in the direction of the
+gradient, that is the direction of the *steepest descent*.
 
 .. |gradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_0.png
    :scale: 90%
