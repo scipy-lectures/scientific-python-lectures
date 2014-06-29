@@ -54,6 +54,20 @@ Requirements
 * scikit-learn (>= 0.8)
 * scikit-image
 
+Building on Fedora
+------------------
+
+As root::
+
+
+    yum install python make python-matplotlib texlive-pdfjam texlive scipy \ 
+    texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
+    pip install Sphinx
+    pip install Cython
+    pip install scikit-learn
+    pip install scikit-image
+
+
 Contributing
 -------------
 
