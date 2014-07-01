@@ -5,7 +5,7 @@ def marker(m, i):
     X = i * .5 * np.ones(11)
     Y = np.arange(11)
 
-    pl.plot(X, Y, color='None', lw=1, marker=m, ms=10, mfc=(.75, .75, 1, 1),
+    pl.plot(X, Y, lw=1, marker=m, ms=10, mfc=(.75, .75, 1, 1),
             mec=(0, 0, 1, 1))
     pl.text(.5 * i, 10.25, repr(m), rotation=90, fontsize=15, va='bottom')
 
