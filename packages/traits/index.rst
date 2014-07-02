@@ -26,7 +26,7 @@ The Traits project allows you to simply add validation, initialization, delegati
 
     * Python 2.6 or 2.7 (www.python.org)
     * Either wxPython (http://www.wxpython.org/) or PyQt (http://www.riverbankcomputing.co.uk/software/pyqt/intro)
-    * Numpy and Scipy (http://www.scipy.org)
+    * NumPy and Scipy (http://www.scipy.org)
     * Enthought Tool Suite 3.x or higher (http://code.enthought.com/projects)
     * All required software can be obtained by installing the EPD Free (http://www.enthought.com/products/epd.php)
 
@@ -36,7 +36,7 @@ The Traits project allows you to simply add validation, initialization, delegati
    :depth: 2
 
 
-Introduction 
+Introduction
 ============
 
 .. tip::
@@ -62,7 +62,7 @@ The main packages of the Enthought Tool Suite are:
 
 In this tutorial, we will focus on Traits.
 
-Example 
+Example
 =======
 
 Throughout this tutorial, we will use an example based on a water resource
@@ -88,8 +88,8 @@ approximating electric power production at a hydroelectric plant is
     * :math:`h` is height in meters,
     * :math:`r` is flow rate in cubic meters per second,
     * :math:`g` is acceleration due to gravity of 9.8 m/s2,
-    * :math:`k` is a coefficient of efficiency ranging from 0 to 1. 
-      
+    * :math:`k` is a coefficient of efficiency ranging from 0 to 1.
+
 .. tip::
 
     Annual electric energy production depends on the available water supply.
@@ -101,7 +101,7 @@ on controlled and uncontrolled parameters :
 
     :math:`storage_{t+1} = storage_t + inflows - release - spillage - irrigation`
 
-.. warning:: 
+.. warning::
 
     The data used in this tutorial are not real and might even not have sense
     in the reality.
@@ -133,7 +133,7 @@ The common way of creating a traits class is by extending from the
     from traits.api import HasTraits, Str, Float
 
     class Reservoir(HasTraits):
-        
+
         name = Str
         max_storage = Float
 
@@ -143,8 +143,8 @@ The common way of creating a traits class is by extending from the
     If using Traits 3.x, you need to adapt the namespace of the traits
     packages:
 
-        * traits.api should be enthought.traits.api 
-        * traitsui.api should be enthought.traits.ui.api 
+        * traits.api should be enthought.traits.api
+        * traitsui.api should be enthought.traits.ui.api
 
 Using a traits class like that is as simple as any other Python class. Note
 that the trait value are passed using keyword arguments:
@@ -183,7 +183,7 @@ Custom default values can be defined in the code:
     from traits.api import HasTraits, Str, Float
 
     class Reservoir(HasTraits):
-        
+
         name = Str
         max_storage = Float(100)
 
@@ -204,7 +204,7 @@ Custom default values can be defined in the code:
 Validation
 ----------
 
-Every trait does validation when the user tries to set its content: 
+Every trait does validation when the user tries to set its content:
 
 ::
 
@@ -220,7 +220,7 @@ Every trait does validation when the user tries to set its content:
         166         """
         167         raise TraitError( object, name, self.full_info( object, name, value ),
     --> 168                           value )
-        169 
+        169
         170     def arg_error ( self, method, arg_num, object, name, value ):
 
     TraitError: The 'max_storage' trait of a Reservoir instance must be a float, but a value of '23' <type 'str'> was specified.
@@ -236,7 +236,7 @@ declarative approach to the creation of classes makes it self-descriptive:
     from traits.api import HasTraits, Str, Float
 
     class Reservoir(HasTraits):
-        
+
         name = Str
         max_storage = Float(100)
 
@@ -249,7 +249,7 @@ information about the trait :
     from traits.api import HasTraits, Str, Float
 
     class Reservoir(HasTraits):
-        
+
         name = Str
         max_storage = Float(100, desc='Maximal storage [hm3]')
 
@@ -303,8 +303,8 @@ magic **_xxxx_fired** method:
 Dependency between objects can be made automatic using the trait **Property**.
 The **depends_on** attribute expresses the dependency between the property and
 other traits. When the other traits gets changed, the property is invalidated.
-Again, Traits uses magic method names for the property : 
-    
+Again, Traits uses magic method names for the property :
+
     * _get_XXX for the getter of the XXX Property trait
     * _set_XXX for the setter of the XXX Property trait
 
@@ -329,7 +329,7 @@ Let's extend the TraitsUI introduction with the ReservoirState example:
 
 Some use cases need the delegation mechanism to be broken by the user when
 setting the value of the trait. The **PrototypeFrom** trait implements this
-behaviour. 
+behaviour.
 
 .. include:: reservoir_turbine_prototype_from.py
     :literal:
@@ -371,8 +371,8 @@ the dynamic listeners
 .. include:: reservoir_state_dynamic_listener.py
     :literal:
 
-The dynamic trait notification signatures are not the same as the static ones : 
-    
+The dynamic trait notification signatures are not the same as the static ones :
+
     * def wake_up_watchman():
         pass
     * def wake_up_watchman(new):
@@ -429,6 +429,6 @@ References
 
     * ETS repositories: http://github.com/enthought
     * Traits manual: http://github.enthought.com/traits/traits_user_manual/index.html
-    * Traits UI manual: http://github.enthought.com/traitsui/traitsui_user_manual/index.html 
+    * Traits UI manual: http://github.enthought.com/traitsui/traitsui_user_manual/index.html
 
     * Mailing list : enthought-dev@enthought.com

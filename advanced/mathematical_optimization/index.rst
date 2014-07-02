@@ -19,7 +19,7 @@ used for more efficient, non black-box, optimization.
 
 .. topic:: Prerequisites
 
-    * Numpy, Scipy
+    * NumPy, Scipy
     * IPython
     * matplotlib
 
@@ -28,11 +28,11 @@ used for more efficient, non black-box, optimization.
    Mathematical optimization is very ... mathematical. If you want
    performance, it really pays to read the books:
 
-   * `Convex Optimization <http://www.stanford.edu/~boyd/cvxbook/>`_ 
+   * `Convex Optimization <http://www.stanford.edu/~boyd/cvxbook/>`_
      by Boyd and Vandenberghe (pdf available free online).
 
    * `Numerical Optimization
-     <http://users.eecs.northwestern.edu/~nocedal/book/num-opt.html>`_, 
+     <http://users.eecs.northwestern.edu/~nocedal/book/num-opt.html>`_,
      by Nocedal and Wright. Detailed reference on gradient descent methods.
 
    * `Practical Methods of Optimization
@@ -73,13 +73,13 @@ Convex versus non-convex optimization
 .. list-table::
 
  * - |convex_1d_1|
- 
+
    - |convex_1d_2|
 
- * - **A convex function**: 
- 
-     - `f` is above all its tangents.                    
-     - equivalently, for two point A, B, f(C) lies below the segment 
+ * - **A convex function**:
+
+     - `f` is above all its tangents.
+     - equivalently, for two point A, B, f(C) lies below the segment
        [f(A), f(B])], if A < C < B
 
    - **A non-convex function**
@@ -100,13 +100,13 @@ Smooth and non-smooth problems
 .. list-table::
 
  * - |smooth_1d_1|
- 
+
    - |smooth_1d_2|
 
- * - **A smooth function**: 
+ * - **A smooth function**:
 
      The gradient is defined everywhere, and is a continuous function
- 
+
    - **A non-smooth function**
 
 **Optimizing smooth functions is easier**
@@ -125,7 +125,7 @@ Noisy versus exact cost functions
 .. list-table::
 
  * - Noisy (blue) and non-noisy (green) functions
- 
+
    - |noisy|
 
 .. topic:: **Noisy gradients**
@@ -133,7 +133,7 @@ Noisy versus exact cost functions
    Many optimization methods rely on gradients of the objective function.
    If the gradient function is not given, they are computed numerically,
    which induces errors. In such situation, even if the objective
-   function is not noisy, 
+   function is not noisy,
 
 Constraints
 ------------
@@ -145,12 +145,12 @@ Constraints
 
  * - Optimizations under constraints
 
-     Here: 
-     
+     Here:
+
      :math:`-1 < x_1 < 1`
-     
+
      :math:`-1 < x_2 < 1`
- 
+
    - |constraints|
 
 
@@ -181,7 +181,7 @@ It combines a bracketing strategy with a parabolic approximation.
      as the quadratic approximation is then exact.
 
    - |1d_optim_1|
- 
+
    - |1d_optim_2|
 
  * - **Brent's method on a non-convex function**: note that the fact that the
@@ -202,13 +202,13 @@ It combines a bracketing strategy with a parabolic approximation.
     >>> x_min - .7 #doctest: +ELLIPSIS
     -2.1605...e-10
 
-.. note:: 
-   
+.. note::
+
    Brent's method can also be used for optimization *constrained to an
    interval* using :func:`scipy.optimize.fminbound`
 
 .. note::
-   
+
    In scipy 0.11, :func:`scipy.optimize.minimize_scalar` gives a generic
    interface to 1D scalar minimization
 
@@ -241,7 +241,7 @@ gradient, that is the direction of the *steepest descent*.
  * - **A well-conditionned quadratic function.**
 
    - |gradient_quad_cond|
- 
+
    - |gradient_quad_cond_conv|
 
  * - **An ill-conditionned quadratic function.**
@@ -251,7 +251,7 @@ gradient, that is the direction of the *steepest descent*.
      minimum.
 
    - |gradient_quad_icond|
- 
+
    - |gradient_quad_icond_conv|
 
 We can see that very anisotropic (`ill-conditionned
@@ -298,25 +298,25 @@ is done in gradient descent code using a
  * - A well-conditionned quadratic function.
 
    - |agradient_quad_cond|
- 
+
    - |agradient_quad_cond_conv|
 
  * - An ill-conditionned quadratic function.
 
    - |agradient_quad_icond|
- 
+
    - |agradient_quad_icond_conv|
 
  * - An ill-conditionned non-quadratic function.
 
    - |agradient_gauss_icond|
- 
+
    - |agradient_gauss_icond_conv|
 
  * - An ill-conditionned very non-quadratic function.
 
    - |agradient_rosen_icond|
- 
+
    - |agradient_rosen_icond_conv|
 
 The more a function looks like a quadratic function (elliptic
@@ -353,13 +353,13 @@ gradient and sharp turns are reduced.
  * - An ill-conditionned non-quadratic function.
 
    - |cg_gauss_icond|
- 
+
    - |cg_gauss_icond_conv|
 
  * - An ill-conditionned very non-quadratic function.
 
    - |cg_rosen_icond|
- 
+
    - |cg_rosen_icond_conv|
 
 Methods based on conjugate gradient are named with *'cg'* in scipy. The
@@ -432,7 +432,7 @@ purpose, they rely on the 2 first derivative of the function: the
      method is blazing fast
 
    - |ncg_quad_icond|
- 
+
    - |ncg_quad_icond_conv|
 
  * - **An ill-conditionned non-quadratic function:**
@@ -442,13 +442,13 @@ purpose, they rely on the 2 first derivative of the function: the
      and leads to oscillations.
 
    - |ncg_gauss_icond|
- 
+
    - |ncg_gauss_icond_conv|
 
  * - **An ill-conditionned very non-quadratic function:**
 
    - |ncg_rosen_icond|
- 
+
    - |ncg_rosen_icond_conv|
 
 In scipy, the Newton method for optimization is implemented in
@@ -486,19 +486,19 @@ to the algorithm::
             Hessian evaluations: 10
     array([ 1.,  1.])
 
-.. note:: 
-   
+.. note::
+
     At very high-dimension, the inversion of the Hessian can be costly
     and unstable (large scale > 250).
 
-.. note:: 
-   
+.. note::
+
     Newton optimizers should not to be confused with Newton's root finding
     method, based on the same principles, :func:`scipy.optimize.newton`.
 
 .. _quasi_newton:
 
-Quasi-Newton methods: approximating the Hessian on the fly 
+Quasi-Newton methods: approximating the Hessian on the fly
 ...........................................................
 
 **BFGS**: BFGS (Broyden-Fletcher-Goldfarb-Shanno algorithm) refines at
@@ -531,7 +531,7 @@ each step an approximation of the Hessian.
      method, but still very fast.
 
    - |bfgs_quad_icond|
- 
+
    - |bfgs_quad_icond_conv|
 
  * - **An ill-conditionned non-quadratic function:**
@@ -540,13 +540,13 @@ each step an approximation of the Hessian.
      curvature is better than that given by the Hessian.
 
    - |bfgs_gauss_icond|
- 
+
    - |bfgs_gauss_icond_conv|
 
  * - **An ill-conditionned very non-quadratic function:**
 
    - |bfgs_rosen_icond|
- 
+
    - |bfgs_rosen_icond_conv|
 
 ::
@@ -576,8 +576,8 @@ scipy version, :func:`scipy.optimize.fmin_l_bfgs_b`, includes box bounds::
     >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)
     (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([  1.02331202e-07,  -2.59299369e-08]), 'funcalls': 17})
 
-.. note:: 
-   
+.. note::
+
    If you do not specify the gradient to the L-BFGS solver, you
    need to add `approx_grad=1`
 
@@ -617,13 +617,13 @@ Almost a gradient approach
      low dimensions
 
    - |powell_quad_icond|
- 
+
    - |powell_quad_icond_conv|
 
  * - **An ill-conditionned very non-quadratic function:**
 
    - |powell_rosen_icond|
- 
+
    - |powell_rosen_icond_conv|
 
 
@@ -633,7 +633,7 @@ Simplex method: the Nelder-Mead
 The Nelder-Mead algorithms is a generalization of dichotomy approaches to
 high-dimensional spaces. The algorithm works by refining a `simplex
 <http://en.wikipedia.org/wiki/Simplex>`_, the generalization of intervals
-and triangles to high-dimensional spaces, to bracket the minimum. 
+and triangles to high-dimensional spaces, to bracket the minimum.
 
 **Strong points**: it is robust to noise, as it does not rely on
 computing gradients. Thus it can work on functions that are not locally
@@ -660,13 +660,13 @@ methods on smooth, non-noisy functions.
  * - **An ill-conditionned non-quadratic function:**
 
    - |nm_gauss_icond|
- 
+
    - |nm_gauss_icond_conv|
 
  * - **An ill-conditionned very non-quadratic function:**
 
    - |nm_rosen_icond|
- 
+
    - |nm_rosen_icond_conv|
 
 In scipy, :func:`scipy.optimize.fmin` implements the Nelder-Mead
@@ -721,11 +721,11 @@ implemented in :func:`scipy.optimize.anneal`::
     Warning: Cooled to 5057.768838 at [  30.27877642  984.84212523] but this
     is not the smallest point found.
     (array([ -7.70412755,  56.10583526]), 5)
-     
-It is a very popular algorithm, but it is not very reliable. 
+
+It is a very popular algorithm, but it is not very reliable.
 
 .. note::
-   
+
    For function of continuous parameters as studied here, a strategy
    based on grid search for rough exploration and running optimizers like
    the Nelder-Mead or gradient-based methods many times with different
@@ -747,7 +747,7 @@ Choosing a method
  * In general, prefer BFGS (:func:`scipy.optimize.fmin_bfgs`) or L-BFGS
    (:func:`scipy.optimize.fmin_l_bfgs_b`), even if you have to approximate
    numerically gradients
- 
+
  * On well-conditioned problems, Powell
    (:func:`scipy.optimize.fmin_powell`) and Nelder-Mead
    (:func:`scipy.optimize.fmin`), both gradient-free methods, work well in
@@ -757,12 +757,12 @@ Choosing a method
 
  * BFGS (:func:`scipy.optimize.fmin_bfgs`) or L-BFGS
    (:func:`scipy.optimize.fmin_l_bfgs_b`).
- 
+
  * Computational overhead of BFGS is larger than that L-BFGS, itself
    larger than that of conjugate gradient. On the other side, BFGS usually
    needs less function evaluations than CG. Thus conjugate gradient method
    is better than BFGS at optimizing computationally cheap functions.
- 
+
 :With the Hessian:
 
  * If you can compute the Hessian, prefer the Newton method
@@ -796,7 +796,7 @@ the effort. Symbolic computation with :ref:`Sympy <sympy>` may come in
 handy.
 
 .. warning::
-   
+
    A *very* common source of optimization not converging well is human
    error in the computation of the gradient. You can use
    :func:`scipy.optimize.check_grad` to check that your gradient is
@@ -889,8 +889,8 @@ if we compute the norm ourselves and use a good generic optimizer
 
 BFGS needs more function calls, and gives a less precise result.
 
-.. note:: 
-   
+.. note::
+
     `leastsq` is interesting compared to BFGS only if the
     dimensionality of the output vector is large, and larger than the number
     of parameters to optimize.
@@ -917,7 +917,7 @@ scipy provides a helper function for this purpose:
 
     >>> def f(t, omega, phi):
     ...     return np.cos(omega * t + phi)
-    
+
     >>> x = np.linspace(0, 3, 50)
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
@@ -947,7 +947,7 @@ as box bounds can be rewritten as such via change of variables.
     :scale: 75%
 
 * :func:`scipy.optimize.fminbound` for 1D-optimization
-* :func:`scipy.optimize.fmin_l_bfgs_b` a 
+* :func:`scipy.optimize.fmin_l_bfgs_b` a
   :ref:`quasi-Newton <quasi_newton>` method with bound constraints::
 
     >>> def f(x):
@@ -991,18 +991,18 @@ and `g(x)< 0`.
 
 
 
-* :func:`scipy.optimize.fmin_cobyla` Constraints optimization by linear 
+* :func:`scipy.optimize.fmin_cobyla` Constraints optimization by linear
   approximation: inequality constraints only::
 
     >>> optimize.fmin_cobyla(f, np.array([0, 0]), cons=constraint)
        Normal return from subroutine COBYLA
-    
+
        NFVALS =   36   F = 2.474874E+00    MAXCV = 0.000000E+00
        X = 1.250096E+00   2.499038E-01
     array([ 1.25009622,  0.24990378])
 
-.. warning:: 
-   
+.. warning::
+
    The above problem is known as the `Lasso
    <http://en.wikipedia.org/wiki/Lasso_(statistics)#LASSO_method>`_
    problem in statistics, and there exists very efficient solvers for it
@@ -1015,4 +1015,3 @@ and `g(x)< 0`.
    problems can be converted to non-constrained optimization problems
    using a mathematical trick known as `Lagrange multipliers
    <http://en.wikipedia.org/wiki/Lagrange_multiplier>`_.
-   

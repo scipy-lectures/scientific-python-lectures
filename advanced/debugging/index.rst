@@ -12,7 +12,7 @@ that we will employ are tailored to its needs.
 
 .. topic:: Prerequisites
 
-    * Numpy
+    * NumPy
     * IPython
     * nosetests (http://readthedocs.org/docs/nose/en/latest/)
     * pyflakes (http://pypi.python.org/pypi/pyflakes)
@@ -429,10 +429,10 @@ doing integer arithmetic.
 
         /home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in <module>()
              55 pl.matshow(noisy_lena[cut], cmap=pl.cm.gray)
-             56 
+             56
         ---> 57 denoised_lena = iterated_wiener(noisy_lena)
              58 pl.matshow(denoised_lena[cut], cmap=pl.cm.gray)
-             59 
+             59
 
         /home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in iterated_wiener(noisy_img, size)
              38         res = noisy_img - denoised_img
@@ -659,4 +659,3 @@ ____
     .. only:: html
 
         .. literalinclude:: to_debug.py
-
