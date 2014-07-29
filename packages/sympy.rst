@@ -157,7 +157,7 @@ Exercises
 ---------
 
 1. Calculate the expanded form of :math:`(x+y)^6`.
-2. Simplify the trigonometric expression sin(x) / cos(x)
+2. Simplify the trigonometric expression :math:`\sin(x) / \cos(x)`
 
   
 Calculus
@@ -167,7 +167,7 @@ Limits
 ------
 
 Limits are easy to use in SymPy, they follow the syntax limit(function,
-variable, point), so to compute the limit of f(x) as x -> 0, you would issue
+variable, point), so to compute the limit of :math:`f(x)` as :math:`x \rightarrow 0`, you would issue
 limit(f, x, 0)::
 
    >>> limit(sin(x)/x, x, 0)
@@ -233,8 +233,8 @@ a point. Use ``series(expr, var)``::
 Exercises
 ---------
 
-1. Calculate :math:`\lim{x->0, sin(x)/x}`
-2. Calulate the derivative of log(x) for x.
+1. Calculate :math:`\lim_{x\rightarrow 0} \sin(x)/x`
+2. Calculate the derivative of :math:`log(x)` for :math:`x`.
 
 .. index:: integration
 
@@ -385,32 +385,44 @@ unlike a NumPy array, you can also put Symbols in it::
 Differential Equations
 ----------------------
 
-SymPy is capable of solving (some) Ordinary Differential
-Equations. sympy.ode.dsolve works like this::
+SymPy is capable of solving (some) Ordinary Differential. 
+To solve differential equations, use dsolve. First, create
+an undefined function by passing cls=Function to the symbols function.
 
-    In [4]: f(x).diff(x, x) + f(x)
-    Out[4]:
+    In [4]: f, g = symbols('f g', cls=Function)
+    
+f and g are now undefined functions. We can call f(x), and it will represent
+an unknown function.
+
+    In [5]: f(x)
+    Out [5]: f(x) 
+    
+    In [6]: f(x).diff(x, x) + f(x)
+    Out [6]:
        2
       d
     ─────(f(x)) + f(x)
-    dx dx
+       2
+     dx 
 
-    In [5]: dsolve(f(x).diff(x, x) + f(x), f(x))
-    Out[5]: C₁*sin(x) + C₂*cos(x)
+    In [7]: dsolve(f(x).diff(x, x) + f(x), f(x))
+    Out[7]: C₁*sin(x) + C₂*cos(x)
 
 Keyword arguments can be given to this function in order to help if
 find the best possible resolution system. For example, if you know
 that it is a separable equations, you can use keyword hint='separable'
 to force dsolve to resolve it as a separable equation.
 
-   In [6]: dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable')
-   Out[6]: -log(1 - sin(f(x))**2)/2 == C1 + log(1 - sin(x)**2)/2
+   In [8]: dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable')
+   Out[8]: -log(1 - sin(f(x))**2)/2 == C1 + log(1 - sin(x)**2)/2
 
 
 Exercises
 ---------
 
-1. Solve the Bernoulli differential equation x*f(x).diff(x) + f(x) - f(x)**2
+1. Solve the Bernoulli differential equation
+.. math:
+   x \frac{d f(x)}{x} + f(x) - f(x)^2=0
 
 .. warning::
 
