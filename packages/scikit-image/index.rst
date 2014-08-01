@@ -80,13 +80,14 @@ Stable release : 0.8 (included in Canopy and Anaconda)
 
     >>> import skimage
     >>> from skimage import data, filter  # most functions are in subpackages 
+    >>> from skimage.morphology import disk
 
 Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
 
     >>> camera = data.camera()
     >>> camera.dtype
     dtype('uint8')
-    >>> filtered_camera = filter.median_filter(camera)
+    >>> filtered_camera = filter.rank.median(camera, disk(1))
     >>> type(filtered_camera)
     <type 'numpy.ndarray'>
 
@@ -442,9 +443,10 @@ skeletonization, etc.
     ::
 
         >>> from skimage import filter
+        >>> from skimage.morphology import disk
         >>> coins = data.coins()
         >>> coins_zoom = coins[10:80, 300:370]
-        >>> median_coins = filter.median_filter(coins_zoom)
+        >>> median_coins = filter.rank.median(coins_zoom,disk(1))
         >>> tv_coins = filter.denoise_tv_chambolle(coins_zoom, weight=0.1)
         >>> from scipy import ndimage
         >>> gaussian_coins = ndimage.gaussian_filter(coins, sigma=2)
