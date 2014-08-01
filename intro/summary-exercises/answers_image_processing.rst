@@ -25,7 +25,7 @@ Example of solution for the image processing exercise: unmolten grains in glass
 
 2. Crop the image to remove the lower panel with measure information. ::
 
-    >>> dat = dat[60:]
+    >>> dat = dat[:-60]
 
 3. Slightly filter the image with a median filter in order to refine its
    histogram. Check how the histogram changes. ::
