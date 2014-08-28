@@ -362,7 +362,11 @@ global minimum depending on the initial point: ::
 If we don't know the neighborhood of the global minimum to choose the initial
 point, we need to resort to costlier global optimization.  To find the global
 minimum, we use :func:`scipy.optimize.basinhopping` (which combines a local
-optimizer with stochastic sampling of starting points for the local optimizer): ::
+optimizer with stochastic sampling of starting points for the local optimizer):
+
+.. versionadded:: 0.12.0 basinhopping was added in version 0.12.0 of Scipy
+
+::
 
    >>> optimize.basinhopping(f, 0)
                       nfev: 1689
