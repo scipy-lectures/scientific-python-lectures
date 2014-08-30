@@ -361,17 +361,25 @@ global minimum depending on the initial point: ::
 
 If we don't know the neighborhood of the global minimum to choose the initial
 point, we need to resort to costlier global optimization.  To find the global
-minimum, the simplest algorithm is the brute force algorithm, in which the
-function is evaluated on each point of a given grid: ::
+minimum, we use :func:`scipy.optimize.basinhopping` (which combines a local
+optimizer with stochastic sampling of starting points for the local optimizer):
 
-    >>> grid = (-10, 10, 0.1)
-    >>> xmin_global = optimize.brute(f, (grid,))
-    >>> xmin_global
-    array([-1.30641113])
+.. versionadded:: 0.12.0 basinhopping was added in version 0.12.0 of Scipy
 
-For larger grid sizes, :func:`scipy.optimize.brute` becomes quite slow.
-:func:`scipy.optimize.anneal`
-provides an alternative, using simulated annealing. More efficient algorithms
+::
+
+   >>> optimize.basinhopping(f, 0)
+                      nfev: 1689
+     minimization_failures: 0
+                       fun: -7.9458233756152845
+                         x: array([-1.30644002])
+                   message: ['requested number of basinhopping iterations completed successfully']
+                      njev: 563
+                       nit: 100 
+
+Other available (but much less efficient) global optimizers are
+:func:`scipy.optimize.brute` (brute force optimization on a grid) and
+:func:`scipy.optimize.anneal` (simulated annealing).  More efficient algorithms
 for different classes of global optimization problems exist, but this is out of
 the scope of ``scipy``.  Some useful packages for global optimization are
 OpenOpt_, IPOPT_, PyGMO_ and PyEvolve_.
