@@ -152,7 +152,7 @@ that can be combined to obtain a scientific computing environment:
         :align: right
         :scale: 40
 
-* **IPython**, an advanced **Python shell** http://ipython.scipy.org/moin/
+* **IPython**, an advanced **Python shell** http://ipython.org/
 
 * **Numpy** : provides powerful **numerical arrays** objects, and routines to
   manipulate them. http://www.numpy.org/
@@ -169,7 +169,7 @@ that can be combined to obtain a scientific computing environment:
         :align: right
 
 * **Matplotlib** : 2-D visualization, "publication-ready" plots
-  http://matplotlib.sourceforge.net/
+  http://matplotlib.org/
 
   |clear-floats|
 
