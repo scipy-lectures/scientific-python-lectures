@@ -288,6 +288,13 @@ Importing objects from modules into the main namespace
 '__main__' and module loading
 ------------------------------
 
+.. tip::
+
+    Sometimes we want code to be executed when a module is
+    run directly, but not when it is imported by another module.
+    ``if __name__ == '__main__'`` allows us to check whether the
+    module is being run directly.
+
 File ``demo2.py``:
 
   .. literalinclude:: demo2.py
