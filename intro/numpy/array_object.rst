@@ -350,8 +350,8 @@ There are also other types:
 
     * ``int32``
     * ``int64``
-    * ``unit32``
-    * ``unit64``
+    * ``uint32``
+    * ``uint64``
 
 .. XXX: mention: astype
 
