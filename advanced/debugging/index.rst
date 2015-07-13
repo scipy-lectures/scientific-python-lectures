@@ -509,7 +509,7 @@ Debugger commands and interaction
 
     You cannot name the variables the way you want. For instance, if in
     you cannot override the variables in the current frame with the same
-    name: **use different names then your local variable when typing code
+    name: **use different names than your local variable when typing code
     in the debugger**.
 
 Getting help when in the debugger
