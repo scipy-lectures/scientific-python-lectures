@@ -7,12 +7,12 @@
 .. _advanced_numpy:
 
 ==============
-Advanced Numpy
+Advanced NumPy
 ==============
 
 :author: Pauli Virtanen
 
-Numpy is at the base of Python's scientific stack of tools.
+NumPy is at the base of Python's scientific stack of tools.
 Its purpose is simple: implementing efficient operations on
 many items in a block of memory.  Understanding how it works
 in detail helps in making efficient use of its flexibility,
@@ -21,13 +21,13 @@ it.
 
 This tutorial aims to cover:
 
-- Anatomy of Numpy arrays, and its consequences. Tips and
+- Anatomy of NumPy arrays, and its consequences. Tips and
   tricks.
 
 - Universal functions: what, why, and what to do if you want
   a new one.
 
-- Integration with other tools: Numpy offers several ways to
+- Integration with other tools: NumPy offers several ways to
   wrap any data in an ndarray, without unnecessary copies.
 
 - Recently added features, and what's in them for me: PEP
@@ -39,7 +39,7 @@ This tutorial aims to cover:
 
 .. topic:: Prerequisites
 
-    * Numpy (>= 1.2; preferably newer...)
+    * NumPy (>= 1.2; preferably newer...)
     * Cython (>= 0.12, for the Ufunc example)
     * PIL (used in a couple of examples)
 
@@ -107,7 +107,7 @@ Memory address of the data:
 
 The whole ``__array_interface__``:
 
->>> x.__array_interface__ 
+>>> x.__array_interface__
 {'data': (35828928, False),
  'descr': [('', '<i4')],
  'shape': (4,),
@@ -199,7 +199,7 @@ data_size          4-byte unsigned little-endian integer
 - 44-byte block of raw data (in the beginning of the file)
 - ... followed by ``data_size`` bytes of actual sound data.
 
-The ``.wav`` file header as a Numpy *structured* data type:
+The ``.wav`` file header as a NumPy *structured* data type:
 
 >>> wav_header_dtype = np.dtype([
 ...     ("chunk_id", (str, 4)),   # flexible-sized scalar type, item size 4
@@ -260,14 +260,14 @@ Let's try accessing the sub-array:
 
 >>> wav_header['data_id']
 array([[['d', 'a'],
-        ['t', 'a']]], 
+        ['t', 'a']]],
       dtype='|S1')
 >>> wav_header.shape
 (1,)
 >>> wav_header['data_id'].shape
 (1, 2, 2)
 
-When accessing sub-arrays, the dimensions get added to the end! 
+When accessing sub-arrays, the dimensions get added to the end!
 
 .. note::
 
@@ -421,9 +421,9 @@ without copying data? ::
        <a onclick="$('#hidden-item-0').toggle(100)">...</a>
        <div id="hidden-item-0" style="display: none;">
 
-    >>> y = x.view([('r', 'i1'), 
-    ...             ('g', 'i1'), 
-    ...             ('b', 'i1'), 
+    >>> y = x.view([('r', 'i1'),
+    ...             ('g', 'i1'),
+    ...             ('b', 'i1'),
     ...             ('a', 'i1')]
     ...              )[:, :, 0]
 
@@ -466,15 +466,15 @@ Main point
 
 **The question**
 
-  >>> x = np.array([[1, 2, 3], 
-  ...	           [4, 5, 6], 
+  >>> x = np.array([[1, 2, 3],
+  ...	           [4, 5, 6],
   ...	           [7, 8, 9]], dtype=np.int8)
   >>> str(x.data)
   '\x01\x02\x03\x04\x05\x06\x07\x08\t'
 
   At which byte in ``x.data`` does the item ``x[1,2]`` begin?
 
-**The answer** (in Numpy)
+**The answer** (in NumPy)
 
   - **strides**: the number of bytes to jump to find the next element
   - 1 stride per dimension
@@ -482,7 +482,7 @@ Main point
   >>> x.strides
   (3, 1)
   >>> byte_offset = 3*1 + 1*2   # to find x[1,2]
-  >>> x.data[byte_offset] 
+  >>> x.data[byte_offset]
   '\x06'
   >>> x[1, 2]
   6
@@ -493,8 +493,8 @@ Main point
 C and Fortran order
 .....................
 
->>> x = np.array([[1, 2, 3], 
-...               [4, 5, 6], 
+>>> x = np.array([[1, 2, 3],
+...               [4, 5, 6],
 ...               [7, 8, 9]], dtype=np.int16, order='C')
 >>> x.strides
 (6, 2)
@@ -502,7 +502,7 @@ C and Fortran order
 '\x01\x00\x02\x00\x03\x00\x04\x00\x05\x00\x06\x00\x07\x00\x08\x00\t\x00'
 
 * Need to jump 6 bytes to find the next row
-* Need to jump 2 bytes to find the next column 
+* Need to jump 2 bytes to find the next column
 
 
 >>> y = np.array(x, order='F')
@@ -512,7 +512,7 @@ C and Fortran order
 '\x01\x00\x04\x00\x07\x00\x02\x00\x05\x00\x08\x00\x03\x00\x06\x00\t\x00'
 
 * Need to jump 2 bytes to find the next row
-* Need to jump 6 bytes to find the next column 
+* Need to jump 6 bytes to find the next column
 
 
 - Similarly to higher dimensions:
@@ -527,14 +527,14 @@ C and Fortran order
      \mathrm{strides} &= (s_1, s_2, ..., s_n)
      \\
      s_j^C &= d_{j+1} d_{j+2} ... d_{n} \times \mathrm{itemsize}
-     \\ 
+     \\
      s_j^F &= d_{1} d_{2} ... d_{j-1} \times \mathrm{itemsize}
 
 
 .. note::
 
    Now we can understand the behavior of ``.view()``:
-   
+
    >>> y = np.array([[1, 3], [2, 4]], dtype=np.uint8).transpose()
    >>> x = y.copy()
 
@@ -557,7 +557,7 @@ C and Fortran order
 Slicing with integers
 .......................
 
-- *Everything* can be represented by changing only ``shape``, ``strides``, 
+- *Everything* can be represented by changing only ``shape``, ``strides``,
   and possibly adjusting the ``data`` pointer!
 - Never makes copies of the data
 
@@ -623,8 +623,8 @@ as_strided(x, shape=None, strides=None)
 
 .. warning::
 
-   ``as_strided`` does **not** check that you stay inside the memory 
-   block bounds... 
+   ``as_strided`` does **not** check that you stay inside the memory
+   block bounds...
 
 >>> x = np.array([1, 2, 3, 4], dtype=np.int16)
 >>> as_strided(x, strides=(2*2, ), shape=(2, ))
@@ -750,7 +750,7 @@ More tricks: diagonals
 
       >>> as_strided(x[0, 1:], shape=(2, ), strides=((3+1)*x.itemsize, ))
       array([2, 6], dtype=int32)
-        
+
       >>> as_strided(x[1:, 0], shape=(2, ), strides=((3+1)*x.itemsize, ))
       array([4, 8], dtype=int32)
 
@@ -909,7 +909,7 @@ What they are?
 - Automatically support: broadcasting, casting, ...
 
 - The author of an ufunc only has to supply the elementwise operation,
-  Numpy takes care of the rest.
+  NumPy takes care of the rest.
 
 - The elementwise operation needs to be implemented in C (or, e.g., Cython)
 
@@ -923,9 +923,9 @@ Parts of an Ufunc
 
        void ufunc_loop(void **args, int *dimensions, int *steps, void *data)
        {
-           /* 
+           /*
             * int8 output = elementwise_function(int8 input_1, int8 input_2)
-	    * 
+	    *
             * This function must compute the ufunc for many values at once,
             * in the way shown below.
             */
@@ -942,7 +942,7 @@ Parts of an Ufunc
            }
        }
 
-2. The Numpy part, built by
+2. The NumPy part, built by
 
    .. sourcecode:: c
 
@@ -955,22 +955,22 @@ Parts of an Ufunc
       PyObject *python_ufunc = PyUFunc_FromFuncAndData(
           ufunc_loop,
           NULL,
-          types, 
+          types,
           1, /* ntypes */
-          2, /* num_inputs */ 
+          2, /* num_inputs */
           1, /* num_outputs */
           identity_element,
-          name, 
-          docstring, 
+          name,
+          docstring,
           unused)
 
-   - A ufunc can also support multiple different input-output type 
+   - A ufunc can also support multiple different input-output type
      combinations.
 
 Making it easier
 ^^^^^^^^^^^^^^^^
 
-3. ``ufunc_loop`` is of very generic form, and Numpy provides
+3. ``ufunc_loop`` is of very generic form, and NumPy provides
    pre-made ones
 
    ================  =======================================================
@@ -1061,12 +1061,12 @@ E.g. supporting both single- and double-precision versions
 
 .. sourcecode:: c
 
-   cdef void mandel_single_point(double complex *z_in, 
+   cdef void mandel_single_point(double complex *z_in,
                                  double complex *c_in,
                                  double complex *z_out) nogil:
       ...
 
-   cdef void mandel_single_point_singleprec(float complex *z_in, 
+   cdef void mandel_single_point_singleprec(float complex *z_in,
                                             float complex *c_in,
                                             float complex *z_out) nogil:
       ...
@@ -1131,11 +1131,11 @@ Generalized ufuncs
         (m, n), (n, p) -> (m, p)
 
     * This is called the *"signature"* of the generalized ufunc
-    * The dimensions on which the g-ufunc acts, are *"core dimensions"* 
+    * The dimensions on which the g-ufunc acts, are *"core dimensions"*
 
-.. rubric:: Status in Numpy
+.. rubric:: Status in NumPy
 
-* g-ufuncs are in Numpy already ...
+* g-ufuncs are in NumPy already ...
 * new ones can be created with ``PyUFunc_FromFuncAndDataAndSignature``
 * ... but we don't ship with public g-ufuncs, except for testing, ATM
 
@@ -1164,8 +1164,8 @@ Matrix multiplication ``(m,n),(n,p) -> (m,p)``
     void gufunc_loop(void **args, int *dimensions, int *steps, void *data)
     {
 	char *input_1 = (char*)args[0];  /* these are as previously */
-	char *input_2 = (char*)args[1];   
-	char *output = (char*)args[2];   
+	char *input_2 = (char*)args[1];
+	char *output = (char*)args[2];
 
 	int input_1_stride_m = steps[3];  /* strides for the core dimensions */
 	int input_1_stride_n = steps[4];  /* are added after the non-core */
@@ -1177,11 +1177,11 @@ Matrix multiplication ``(m,n),(n,p) -> (m,p)``
 	int m = dimension[1]; /* core dimensions are added after */
 	int n = dimension[2]; /* the main dimension; order as in */
 	int p = dimension[3]; /* signature */
-    
+
 	int i;
 
 	for (i = 0; i < dimensions[0]; ++i) {
-            matmul_for_strided_matrices(input_1, input_2, output, 
+            matmul_for_strided_matrices(input_1, input_2, output,
                                         strides for each array...);
 
 	    input_1 += steps[0];
@@ -1201,10 +1201,10 @@ Suppose you
 
 1. Write a library than handles (multidimensional) binary data,
 
-2. Want to make it easy to manipulate the data with Numpy, or whatever
+2. Want to make it easy to manipulate the data with NumPy, or whatever
    other library,
 
-3. ... but would **not** like to have Numpy as a dependency.
+3. ... but would **not** like to have NumPy as a dependency.
 
 Currently, 3 solutions:
 
@@ -1221,7 +1221,7 @@ The old buffer protocol
 - Only 1-D buffers
 - No data type information
 - C-level interface; ``PyBufferProcs tp_as_buffer`` in the type object
-- But it's integrated into Python  (e.g. strings support it) 
+- But it's integrated into Python  (e.g. strings support it)
 
 Mini-exercise using PIL (Python Imaging Library):
 
@@ -1255,7 +1255,7 @@ Array interface protocol
 
 - Multidimensional buffers
 - Data type information present
-- Numpy-specific approach; slowly deprecated (but not going away)
+- NumPy-specific approach; slowly deprecated (but not going away)
 - Not integrated in Python otherwise
 
 .. seealso::
@@ -1300,10 +1300,10 @@ Array siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
 
 >>> x = np.array(['a', '  bbb', '  ccc']).view(np.chararray)
 >>> x.lstrip(' ')
-chararray(['a', 'bbb', 'ccc'], 
+chararray(['a', 'bbb', 'ccc'],
       dtype='|S5')
 >>> x.upper()
-chararray(['A', '  BBB', '  CCC'], 
+chararray(['A', '  BBB', '  CCC'],
       dtype='|S5')
 
 .. note::
@@ -1336,7 +1336,7 @@ Masked mean ignores masked data::
     >>> np.mean(mx)
     2.75
 
-.. warning:: Not all Numpy functions respect masks, for instance
+.. warning:: Not all NumPy functions respect masks, for instance
    ``np.dot``, so check the return types.
 
 The ``masked_array`` returns a **view** to the original array::
@@ -1401,7 +1401,7 @@ The masked array package also contains domain-aware functions::
 .. note::
 
    Streamlined and more seamless support for dealing with missing data
-   in arrays is making its way into Numpy 1.7.  Stay tuned!
+   in arrays is making its way into NumPy 1.7.  Stay tuned!
 
 .. topic:: Example: Masked statistics
 
@@ -1444,7 +1444,7 @@ The masked array package also contains domain-aware functions::
 >>> arr = np.array([('a', 1), ('b', 2)], dtype=[('x', 'S1'), ('y', int)])
 >>> arr2 = arr.view(np.recarray)
 >>> arr2.x
-chararray(['a', 'b'], 
+chararray(['a', 'b'],
       dtype='|S1')
 >>> arr2.y
 array([1, 2])
@@ -1474,7 +1474,7 @@ Summary
 * Recent additions: PEP 3118, generalized ufuncs
 
 
-Contributing to Numpy/Scipy
+Contributing to NumPy/Scipy
 ===========================
 
     Get this tutorial: http://www.euroscipy.org/talk/882
@@ -1517,7 +1517,7 @@ Good bug report
 
     I'm trying to generate random permutations, using numpy.random.permutations
 
-    When calling numpy.random.permutation with non-integer arguments 
+    When calling numpy.random.permutation with non-integer arguments
     it fails with a cryptic error message::
 
         >>> np.random.permutation(12)
@@ -1536,7 +1536,7 @@ Good bug report
     It would be great if it could cast to integer or at least raise a
     proper error for non-integer types.
 
-    I'm using Numpy 1.4.1, built from the official tarball, on Windows
+    I'm using NumPy 1.4.1, built from the official tarball, on Windows
     64 with Visual studio 2008, on Python.org 64-bit Python.
 
 0. What are you trying to do?
@@ -1549,7 +1549,7 @@ Good bug report
 
 2. Platform (Windows / Linux / OSX, 32/64 bits, x86/PPC, ...)
 
-3. Version of Numpy/Scipy
+3. Version of NumPy/Scipy
 
    >>> print np.__version__ # doctest: +ELLIPSIS
    2...
@@ -1559,9 +1559,9 @@ Good bug report
    >>> print np.__file__ # doctest: +ELLIPSIS
    /...
 
-   In case you have old/broken Numpy installations lying around.
+   In case you have old/broken NumPy installations lying around.
 
-   If unsure, try to remove existing Numpy installations, and reinstall...
+   If unsure, try to remove existing NumPy installations, and reinstall...
 
 Contributing to documentation
 -----------------------------
@@ -1580,7 +1580,7 @@ Contributing to documentation
 
        - But: **you can turn mail delivery off**
 
-       - "change your subscription options", at the bottom of 
+       - "change your subscription options", at the bottom of
 
          http://mail.scipy.org/mailman/listinfo/scipy-dev
 
@@ -1590,7 +1590,7 @@ Contributing to documentation
 
           Hi,
 
-          I'd like to edit Numpy/Scipy docstrings. My account is XXXXX
+          I'd like to edit NumPy/Scipy docstrings. My account is XXXXX
 
 	  Cheers,
 	  N. N.
@@ -1605,7 +1605,7 @@ Contributing to documentation
 
 2. Edit sources and send patches (as for bugs)
 
-3. Complain on the mailing list 
+3. Complain on the mailing list
 
 
 Contributing features
@@ -1648,7 +1648,7 @@ Contributing features
 How to help, in general
 -----------------------
 
-- Bug fixes always welcome! 
+- Bug fixes always welcome!
 
   - What irks you most
   - Browse the tracker
@@ -1671,4 +1671,3 @@ How to help, in general
 
   - ``numpy-discussion`` list
   - ``scipy-dev`` list
-

@@ -10,7 +10,7 @@ scikit-learn: machine learning in Python
 
 .. topic:: Prerequisites
 
-    * Numpy, Scipy
+    * NumPy, Scipy
     * IPython
     * matplotlib
     * scikit-learn (http://scikit-learn.org)
@@ -27,7 +27,7 @@ scikit-learn: machine learning in Python
 
 ..
   For doctesting, to avoid having figures poping up
-  
+
   >>> import matplotlib
   >>> matplotlib.use('svg')
   >>> import numpy as np
@@ -126,8 +126,8 @@ most likely outcome on unseen data:
     >>> clf.predict([[ 5.0,  3.6,  1.3,  0.25]])
     array([0], dtype=int32)
 
-.. note:: 
-   
+.. note::
+
     We can access the parameters of the model via its attributes ending
     with an underscore:
 
@@ -197,7 +197,7 @@ which are the observations closest to the separating hyperplane.
 
 
 .. image:: svm_margin.png
-   :align: right 
+   :align: right
    :scale: 80
 
 
@@ -474,15 +474,15 @@ classification.
 
     """
     Stripped-down version of the face recognition example by Olivier Grisel
-    
+
     http://scikit-learn.org/dev/auto_examples/applications/face_recognition.html
-    
+
     ## original shape of images: 50, 37
     """
     import numpy as np
     import pylab as pl
     from sklearn import cross_val, datasets, decomposition, svm
-    
+
     # ..
     # .. load data ..
     lfw_people = datasets.fetch_lfw_people(min_faces_per_person=70, resize=0.4)
@@ -493,14 +493,14 @@ classification.
     train, test = iter(cross_val.StratifiedKFold(lfw_people.target, k=4)).next()
     X_train, X_test = faces[train], faces[test]
     y_train, y_test = lfw_people.target[train], lfw_people.target[test]
-    
+
     # ..
     # .. dimension reduction ..
     pca = decomposition.RandomizedPCA(n_components=150, whiten=True)
     pca.fit(X_train)
     X_train_pca = pca.transform(X_train)
     X_test_pca = pca.transform(X_test)
-    
+
     # ..
     # .. classification ..
     clf = svm.SVC(C=5., gamma=0.001)
@@ -512,12 +512,12 @@ classification.
         print lfw_people.target_names[clf.predict(X_test_pca[i])[0]]
         _ = pl.imshow(X_test[i].reshape(50, 37), cmap=pl.cm.gray)
         _ = raw_input()
-    
+
 
 
 
 .. only:: html
-   
+
     Full code: :download:`faces.py`
 
 
@@ -536,9 +536,9 @@ Linear model: from regression to sparsity
         >>> diabetes_X_test  = diabetes.data[-20:]
         >>> diabetes_y_train = diabetes.target[:-20]
         >>> diabetes_y_test  = diabetes.target[-20:]
-    
+
     The task at hand is to predict disease prediction from physiological
-    variables. 
+    variables.
 
 
 Sparse models
@@ -553,7 +553,7 @@ zero.  Such methods are called **sparse method**, and sparsity can be
 seen as an application of Occam's razor: prefer simpler models to
 complex ones.
 
-:: 
+::
 
     >>> from sklearn import linear_model
     >>> regr = linear_model.Lasso(alpha=.3)
@@ -603,7 +603,7 @@ estimator during the construction and exposes an estimator API::
     >>> from sklearn import svm, grid_search
     >>> gammas = np.logspace(-6, -1, 10)
     >>> svc = svm.SVC()
-    >>> clf = grid_search.GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas), 
+    >>> clf = grid_search.GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas),
     ...                    n_jobs=-1)
     >>> clf.fit(digits.data[:1000], digits.target[:1000]) # doctest: +ELLIPSIS
     GridSearchCV(cv=None,
@@ -650,10 +650,3 @@ appended to their name.
 
    On the diabetes dataset, find the optimal regularization parameter
    alpha.
-
-
-
-
-
- 
-

@@ -154,7 +154,7 @@ that can be combined to obtain a scientific computing environment:
 
 * **IPython**, an advanced **Python shell** http://ipython.org/
 
-* **Numpy** : provides powerful **numerical arrays** objects, and routines to
+* **NumPy** : provides powerful **numerical arrays** objects, and routines to
   manipulate them. http://www.numpy.org/
 
 ..
@@ -409,4 +409,3 @@ completion also works on file and directory names.*
     In [4]: x.real.
 
 .. :vim:spell:
-

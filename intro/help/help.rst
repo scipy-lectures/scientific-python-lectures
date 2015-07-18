@@ -7,7 +7,7 @@ Getting help and finding documentation
 
     :author: Emmanuelle Gouillart
 
-Rather than knowing all functions in Numpy and Scipy, it is important to
+Rather than knowing all functions in NumPy and Scipy, it is important to
 find rapidly information throughout the documentation and the available
 help. Here are some ways to get information:
 
@@ -16,22 +16,22 @@ help. Here are some ways to get information:
   display the matching functions.
 
   .. sourcecode:: ipython
-  
+
       In [204]: help np.v
       np.vander     np.vdot       np.version    np.void0      np.vstack
-      np.var        np.vectorize  np.void       np.vsplit     
-      
+      np.var        np.vectorize  np.void       np.vsplit
+
       In [204]: help np.vander
-	
+
 In Ipython it is not possible to open a separated window for help and
 documentation; however one can always open a second ``Ipython`` shell
 just to display help and docstrings...
 
-* Numpy's and Scipy's documentations can be browsed online on
+* NumPy's and Scipy's documentations can be browsed online on
   http://docs.scipy.org/doc. The ``search`` button is quite useful inside
   the reference documentation of the two packages
   (http://docs.scipy.org/doc/numpy/reference/ and
-  http://docs.scipy.org/doc/scipy/reference/). 
+  http://docs.scipy.org/doc/scipy/reference/).
 
   Tutorials on various topics as well as the complete API with all
   docstrings are found on this website.
@@ -41,7 +41,7 @@ just to display help and docstrings...
      :align: center
      :scale: 80
 
-* Numpy's and Scipy's documentation is enriched and updated on a regular
+* NumPy's and Scipy's documentation is enriched and updated on a regular
   basis by users on a wiki http://docs.scipy.org/numpy/. As a result,
   some docstrings are clearer or more detailed on the wiki, and you may
   want to read directly the documentation on the wiki instead of the
@@ -56,13 +56,13 @@ just to display help and docstrings...
 
 * Scipy's cookbook http://www.scipy.org/Cookbook gives recipes on many
   common problems frequently encountered, such as fitting data points,
-  solving ODE, etc. 
+  solving ODE, etc.
 
 
 * Matplotlib's website http://matplotlib.sourceforge.net/ features a very
   nice **gallery** with a large number of plots, each of them shows both
   the source code and the resulting plot. This is very useful for
-  learning by example. More standard documentation is also available. 
+  learning by example. More standard documentation is also available.
 
 
   .. image:: matplotlib.png
@@ -87,7 +87,7 @@ Finally, two more "technical" possibilities are useful as well:
 
 
   .. sourcecode:: ipython
-  
+
       In [3]: import numpy as np
       In [4]: %psearch np.diag*
       np.diag
@@ -97,7 +97,7 @@ Finally, two more "technical" possibilities are useful as well:
 * numpy.lookfor looks for keywords inside the docstrings of specified modules.
 
   .. sourcecode:: ipython
-  
+
       In [45]: numpy.lookfor('convolution')
       Search results for 'convolution'
       --------------------------------
@@ -130,7 +130,7 @@ Finally, two more "technical" possibilities are useful as well:
   well. Experts on scientific python often give very enlightening
   explanations on the mailing-list.
 
-    * **Numpy discussion** (numpy-discussion@scipy.org): all about numpy
+    * **NumPy discussion** (numpy-discussion@scipy.org): all about numpy
       arrays, manipulating them, indexation questions, etc.
 
 
@@ -139,5 +139,4 @@ Finally, two more "technical" possibilities are useful as well:
       scipy package.
 
     * matplotlib-users@lists.sourceforge.net for plotting with
-      matplotlib.                               
-                                             
+      matplotlib.

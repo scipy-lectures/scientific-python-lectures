@@ -1022,7 +1022,7 @@ Tutorials
   * `Image tutorial <http://matplotlib.sourceforge.net/users/image_tutorial.html>`_
 
     - Startup commands
-    - Importing image data into Numpy arrays
+    - Importing image data into NumPy arrays
     - Plotting numpy arrays as images
 
   * `Text tutorial <http://matplotlib.sourceforge.net/users/index_text.html>`_
@@ -1223,4 +1223,3 @@ colormaps <https://gist.github.com/2719900>`_.
 
 .. image:: auto_examples/images/plot_colormaps_1.png
    :scale: 80
-

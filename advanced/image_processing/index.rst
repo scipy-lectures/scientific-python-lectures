@@ -6,7 +6,7 @@
 .. _basic_image:
 
 =======================================================
-Image manipulation and processing using Numpy and Scipy
+Image manipulation and processing using NumPy and Scipy
 =======================================================
 
 :authors: Emmanuelle Gouillart, Gaël Varoquaux
@@ -247,7 +247,7 @@ Statistical information
 
 .. topic:: **Exercise**
     :class: green
-    
+
 
     * Open as an array the ``scikit-image`` logo
       (http://scikit-image.org/_static/scikits_image_logo.png), or an
@@ -409,7 +409,7 @@ Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 
 .. topic:: **Exercise: denoising**
     :class: green
-    
+
     * Create a binary image (of 0s and 1s) with several objects (circles,
       ellipses, squares, or random shapes).
 
@@ -682,7 +682,7 @@ Use mathematical morphology to clean up the result::
 .. seealso::
 
     Other Scientific Packages provide algorithms that can be useful for
-    image processing. In this example, we use the spectral clustering 
+    image processing. In this example, we use the spectral clustering
     function of the ``scikit-learn`` in order to segment glued objects.
 
 
@@ -892,4 +892,3 @@ One example with mathematical morphology: **granulometry**
 .. only:: html
 
     [:ref:`Python source code <example_plot_granulo.py>`]
-

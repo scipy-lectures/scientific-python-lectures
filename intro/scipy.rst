@@ -64,7 +64,7 @@ Scipy : high-level scientific computing
 =========================== ===============================================
 
 They all depend on :mod:`numpy`, but are mostly independent of each other. The
-standard way of importing Numpy and these Scipy modules is::
+standard way of importing NumPy and these Scipy modules is::
 
     >>> import numpy as np
     >>> from scipy import stats  # same for other sub-modules
@@ -263,7 +263,7 @@ The result can be viewed with::
 
 .. topic:: `numpy.fft`
 
-   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
+   NumPy also has an implementation of FFT (:mod:`numpy.fft`). However,
    in general the scipy one
    should be preferred, as it uses more efficient underlying implementations.
 
@@ -816,9 +816,9 @@ Image processing: :mod:`scipy.ndimage`
 Summary exercises on scientific computing
 -----------------------------------------
 
-The summary exercises use mainly Numpy, Scipy and Matplotlib. They provide some
+The summary exercises use mainly NumPy, Scipy and Matplotlib. They provide some
 real-life examples of scientific computing with Python. Now that the basics of
-working with Numpy and Scipy have been introduced, the interested user is
+working with NumPy and Scipy have been introduced, the interested user is
 invited to try these exercises.
 
 .. only:: latex

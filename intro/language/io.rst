@@ -2,7 +2,7 @@ Input and Output
 ================
 
 To be exhaustive, here are some information about input and output in
-Python. Since we will use the Numpy methods to read and write files,
+Python. Since we will use the NumPy methods to read and write files,
 **you may skip this chapter at first reading**.
 
 We write or read **strings** to/from files (other types must be converted to
@@ -24,7 +24,7 @@ To read from a file
     In [2]: s = f.read()
 
     In [3]: print(s)
-    This is a test 
+    This is a test
     and another test
 
     In [4]: f.close()
@@ -42,7 +42,7 @@ Iterating over a file
     In [7]: for line in f:
        ...:     print line
        ...:
-    This is a test 
+    This is a test
 
     and another test
 
@@ -61,4 +61,3 @@ File modes
 * Binary mode: ``b``
 
   * Note: Use for binary files, especially on Windows.
-

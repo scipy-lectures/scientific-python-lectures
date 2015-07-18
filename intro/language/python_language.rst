@@ -6,7 +6,7 @@ The Python language
 .. topic:: Python for scientific computing
 
     We introduce here the Python language. Only the bare minimum
-    necessary for getting started with Numpy and Scipy is addressed here.
+    necessary for getting started with NumPy and Scipy is addressed here.
     To learn more about the language, consider going through the
     excellent tutorial http://docs.python.org/tutorial. Dedicated books
     are also available, such as http://diveintopython.net/.
@@ -66,4 +66,3 @@ _____
     standard_library.rst
     exceptions.rst
     oop.rst
-

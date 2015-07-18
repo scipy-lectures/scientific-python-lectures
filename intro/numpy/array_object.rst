@@ -4,17 +4,17 @@
 
 .. currentmodule:: numpy
 
-The Numpy array object
+The NumPy array object
 ======================
 
 .. contents:: Section contents
     :local:
     :depth: 1
 
-What are Numpy and Numpy arrays?
+What are NumPy and NumPy arrays?
 --------------------------------
 
-Numpy arrays
+NumPy arrays
 ............
 
 :**Python** objects:
@@ -24,7 +24,7 @@ Numpy arrays
     - containers: lists (costless insertion and append), dictionaries
       (fast lookup)
 
-:**Numpy** provides:
+:**NumPy** provides:
 
     - extension package to Python for multi-dimensional arrays
 
@@ -83,7 +83,7 @@ operations.
 .. each element of same size and type
 .. efficiency vs. Python lists
 
-Numpy Reference documentation
+NumPy Reference documentation
 ..............................
 
 - On the web: http://docs.scipy.org/
@@ -519,7 +519,7 @@ For multidimensional arrays, indexes are tuples of integers:
 
 .. note::
 
-  * In 2D, the first dimension corresponds to **rows**, the second 
+  * In 2D, the first dimension corresponds to **rows**, the second
     to **columns**.
   * for multidimensional ``a``, ``a[0]`` is interpreted by
     taking all elements in the unspecified dimensions.
@@ -553,7 +553,7 @@ All three slice components are not required: by default, `start` is 0,
     >>> a[3:]
     array([3, 4, 5, 6, 7, 8, 9])
 
-A small illustrated summary of Numpy indexing and slicing...
+A small illustrated summary of NumPy indexing and slicing...
 
 .. only:: latex
 
@@ -734,7 +734,7 @@ Fancy indexing
 
 .. tip::
 
-    Numpy arrays can be indexed with slices, but also with boolean or
+    NumPy arrays can be indexed with slices, but also with boolean or
     integer arrays (**masks**). This method is called *fancy indexing*.
     It creates **copies not views**.
 
@@ -842,5 +842,3 @@ The image below illustrates various fancy indexing applications
 ..     >>> a[i, 2] # same as a[i, 2*np.ones((2, 2), dtype=int)]
 ..     array([[ 2,  6],
 ..            [ 6, 10]])
-
-
