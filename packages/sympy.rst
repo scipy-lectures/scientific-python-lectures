@@ -387,45 +387,41 @@ Differential Equations
 
 SymPy is capable of solving (some) Ordinary Differential. 
 To solve differential equations, use dsolve. First, create
-an undefined function by passing cls=Function to the symbols function.
+an undefined function by passing cls=Function to the symbols function::
 
-    In [4]: f, g = symbols('f g', cls=Function)
+    >>> f, g = symbols('f g', cls=Function)
     
 f and g are now undefined functions. We can call f(x), and it will represent
-an unknown function.
+an unknown function::
 
-    In [5]: f(x)
-    Out [5]: f(x) 
+    >>> f(x)
+    f(x) 
     
-    In [6]: f(x).diff(x, x) + f(x)
-    Out [6]:
+    >>> f(x).diff(x, x) + f(x)
        2
       d
     ─────(f(x)) + f(x)
        2
      dx 
 
-    In [7]: dsolve(f(x).diff(x, x) + f(x), f(x))
-    Out[7]: C₁*sin(x) + C₂*cos(x)
+    >>> dsolve(f(x).diff(x, x) + f(x), f(x))
+    C₁*sin(x) + C₂*cos(x)
 
 Keyword arguments can be given to this function in order to help if
 find the best possible resolution system. For example, if you know
 that it is a separable equations, you can use keyword hint='separable'
-to force dsolve to resolve it as a separable equation.
+to force dsolve to resolve it as a separable equation::
 
-   In [8]: dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable')
-   Out[8]: -log(1 - sin(f(x))**2)/2 == C1 + log(1 - sin(x)**2)/2
+   >>> dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable')
+   -log(1 - sin(f(x))**2)/2 == C1 + log(1 - sin(x)**2)/2
 
 
-Exercises
----------
+.. topic:: **Exercises**
+   :class: green
 
-1. Solve the Bernoulli differential equation
-.. math:
-   x \frac{d f(x)}{x} + f(x) - f(x)^2=0
+   1. Solve the Bernoulli differential equation
 
-.. warning::
+    .. math::
+        x \frac{d f(x)}{x} + f(x) - f(x)^2=0
 
-   TODO: correct this equation and convert to math directive!
-
-2. Solve the same equation using hint='Bernoulli'. What do you observe ?
+   2. Solve the same equation using hint='Bernoulli'. What do you observe ?
