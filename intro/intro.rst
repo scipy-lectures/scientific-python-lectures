@@ -13,11 +13,11 @@ Why Python?
 The scientist's needs
 .......................
 
-* Get data (simulation, experiment control)
+* Get data (simulation, experiment control),
 
-* Manipulate and process data.
+* Manipulate and process data,
 
-* Visualize results... to understand what we are doing!
+* Visualize results (to understand what we are doing!),
 
 * Communicate results: produce figures for reports or publications,
   write presentations.
@@ -273,7 +273,7 @@ IPython Tips and Tricks
 .......................
 
 The IPython user manual contains a wealth of information about using IPython,
-but to get you started we want to give you a quick introduction to three useful
+but to get you started we want to give you a quick introduction to four useful
 features: *history*, *magic functions*, *aliases* and *tab completion*.
 
 Like a UNIX shell, IPython supports command history. Type *up* and *down* to
