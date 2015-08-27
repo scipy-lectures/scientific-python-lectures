@@ -6,7 +6,7 @@ from skimage import data, exposure
 import matplotlib.pyplot as plt
 
 camera = data.camera()
-camera_equalized = exposure.equalize(camera) 
+camera_equalized = exposure.equalize_hist(camera) 
 
 
 

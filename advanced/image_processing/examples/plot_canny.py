@@ -1,8 +1,7 @@
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt
-#from scikits.image.filter import canny
-from image_source_canny import canny
+from skimage.feature import canny
 
 im = np.zeros((256, 256))
 im[64:-64, 64:-64] = 1

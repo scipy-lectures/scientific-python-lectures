@@ -4,11 +4,11 @@ This example illustrates automatic Otsu thresholding.
 
 import matplotlib.pyplot as plt
 from skimage import data
-from skimage import filter
+from skimage import filters
 from skimage import exposure
 
 camera = data.camera()
-val = filter.threshold_otsu(camera)
+val = filters.threshold_otsu(camera)
 
 hist, bins_center = exposure.histogram(camera)
 
