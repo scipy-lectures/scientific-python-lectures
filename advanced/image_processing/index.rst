@@ -89,6 +89,10 @@ Writing an array to a file:
     :align: center
     :scale: 50
 
+.. Comment to provide lena.png so that doctest passes
+   >>> from scipy import misc
+   >>> lena = misc.lena()
+   >>> misc.imsave('lena.png', lena)
 
 Creating a numpy array from an image file::
 
@@ -206,7 +210,7 @@ Images are arrays: use the whole ``numpy`` machinery.
 
 ::
 
-    >>> lena = scipy.misc.lena()
+    >>> lena = misc.lena()
     >>> lena[0, 40]
     166
     >>> # Slicing
