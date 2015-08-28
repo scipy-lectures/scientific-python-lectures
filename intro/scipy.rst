@@ -88,13 +88,19 @@ File input/output: :mod:`scipy.io`
            [ 1.,  1.,  1.],
            [ 1.,  1.,  1.]])
 
+.. Comments to make doctests pass which require an image
+    >>> from scipy import misc
+    >>> misc.imsave('fname.png', np.array([[0]]))
+
 * Reading images::
 
     >>> from scipy import misc
-    >>> misc.imread('fname.png')
+    >>> misc.imread('fname.png')    # doctest: +ELLIPSIS
+    array(...)
     >>> # Matplotlib also has a similar function
     >>> import matplotlib.pyplot as plt
-    >>> plt.imread('fname.png')
+    >>> plt.imread('fname.png')    # doctest: +ELLIPSIS
+    array(...)
 
 See also:
 
@@ -369,18 +375,22 @@ point, we need to resort to costlier global optimization.  To find the global
 minimum, we use :func:`scipy.optimize.basinhopping` (which combines a local
 optimizer with stochastic sampling of starting points for the local optimizer):
 
+
+.. Comment to make doctest pass
+   >>> np.random.seed(42)
+
 .. versionadded:: 0.12.0 basinhopping was added in version 0.12.0 of Scipy
 
 ::
 
    >>> optimize.basinhopping(f, 0)
-                     nfev: 1689
+                     nfev: 1725
     minimization_failures: 0
                       fun: -7.9458233756152845
-                        x: array([-1.30644002])
+                        x: array([-1.30644001])
                   message: ['requested number of basinhopping iterations completed successfully']
-                     njev: 563
-                      nit: 100 
+                     njev: 575
+                      nit: 100
 
 Other available (but much less efficient) global optimizers are
 :func:`scipy.optimize.brute` (brute force optimization on a grid) and
@@ -397,8 +407,8 @@ OpenOpt_, IPOPT_, PyGMO_ and PyEvolve_.
 To find the local minimum, let's constraint the variable to the interval
 ``(0, 10)`` using :func:`scipy.optimize.fminbound`: ::
 
-    >>> xmin_local = optimize.fminbound(f, 0, 10)    # doctest: +ELLIPSIS
-    >>> xmin_local
+    >>> xmin_local = optimize.fminbound(f, 0, 10)
+    >>> xmin_local    # doctest: +ELLIPSIS
     3.8374671...
 
 .. note::
@@ -427,6 +437,9 @@ our initial guess: ::
 
 Suppose we have data sampled from ``f`` with some noise: ::
 
+.. Comment to make doctest pass
+    >>> np.random.seed(42)
+
     >>> xdata = np.linspace(-10, 10, num=20)
     >>> ydata = f(xdata) + np.random.randn(xdata.size)
 
@@ -443,7 +456,7 @@ Then we can use :func:`scipy.optimize.curve_fit` to find ``a`` and ``b``: ::
     >>> guess = [2, 2]
     >>> params, params_covariance = optimize.curve_fit(f2, xdata, ydata, guess)
     >>> params
-    array([ 0.99925147,  9.76065551])
+    array([  0.99667386,  10.17808313])
 
 Now we have found the minima and roots of ``f`` and used curve fitting on it,
 we put all those resuls together in a single plot:
@@ -545,9 +558,9 @@ distribution. Here we fit a normal process to the observed data::
 
     >>> loc, std = stats.norm.fit(a)
     >>> loc     # doctest: +ELLIPSIS
-    -0.045256707490...
+    0.0314345570...
     >>> std     # doctest: +ELLIPSIS
-    0.9870331586690...
+    0.9778613090...
 
 .. topic:: Exercise: Probability distributions
    :class: green
@@ -569,18 +582,18 @@ The median is the value with half of the observations below, and half
 above::
 
     >>> np.median(a)     # doctest: +ELLIPSIS
-    -0.058028034...
+    0.04041769593...
 
 It is also called the percentile 50, because 50% of the observation are
 below it::
 
     >>> stats.scoreatpercentile(a, 50)     # doctest: +ELLIPSIS
-    -0.0580280347...
+    0.0404176959...
 
 Similarly, we can calculate the percentile 90::
 
     >>> stats.scoreatpercentile(a, 90)     # doctest: +ELLIPSIS
-    1.231593551...
+    1.3185699120...
 
 The percentile is an estimator of the CDF: cumulative distribution
 function.
@@ -597,7 +610,7 @@ whether the two sets of observations are significantly different::
     >>> a = np.random.normal(0, 1, size=100)
     >>> b = np.random.normal(1, 1, size=10)
     >>> stats.ttest_ind(a, b)   # doctest: +ELLIPSIS
-    (-3.75832707..., 0.00027786...)
+    (array(-3.177574054...), 0.0019370639...)
 
 The resulting output is composed of:
 
