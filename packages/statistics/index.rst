@@ -287,7 +287,7 @@ statistic, and the p-value (see the function's help)::
     With a p-value of 10^-28 we can claim that the population mean for
     the IQ (VIQ measure) is not 0.
 
-.. image:: images/two_sided.png
+.. image:: two_sided.png
    :scale: 50
    :align: right
 
