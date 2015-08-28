@@ -32,6 +32,8 @@ clean:
 
 test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst testing.py $(shell find intro advanced -name \*.rst -print)
+test-stop-when-failing:
+	nosetests -vx --with-doctest --doctest-tests --doctest-extension=rst testing.py $(shell find intro advanced -name \*.rst -print)
 
 html:
 	mkdir -p build/html build/doctrees

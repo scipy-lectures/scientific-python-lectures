@@ -383,7 +383,7 @@ Or, from the notebook, enable plots in the notebook:
 
 .. sourcecode:: pycon
 
-    >>> %matplotlib inline
+    >>> %matplotlib inline # doctest: +SKIP
 
 The ``inline`` is important for the notebook, so that plots are displayed in
 the notebook and not in a new window.

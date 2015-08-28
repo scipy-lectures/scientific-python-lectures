@@ -20,6 +20,7 @@ Array manipulations
 
    .. sourcecode:: pycon
 
+        >>> import numpy as np
         >>> a = np.arange(25).reshape(5, 5)
 
    elementwise with the array ``b = np.array([1., 5, 10, 15, 20])``.
@@ -120,8 +121,9 @@ northern Canada during 20 years:
  >>> data = np.loadtxt('data/populations.txt')
  >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
+ >>> import matplotlib.pyplot as plt
  >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
- <matplotlib.axes.Axes object at ...>
+ <matplotlib.axes...Axes object at ...>
  >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
  [<matplotlib.lines.Line2D object at ...>, ...]
  >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
