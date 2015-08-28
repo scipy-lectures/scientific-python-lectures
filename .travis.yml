@@ -3,6 +3,9 @@ language: python
 virtualenv:
   system_site_packages: true
 
+notifications:
+  email: false
+
 env:
   global:
     - TEST_RUN_FOLDER="/tmp" # folder where the tests are run from
