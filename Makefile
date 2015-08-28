@@ -32,7 +32,7 @@ clean:
 
 test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst testing.py $(shell find intro advanced -name \*.rst -print)
-testx:
+test-stop-when-failing:
 	nosetests -vx --with-doctest --doctest-tests --doctest-extension=rst testing.py $(shell find intro advanced -name \*.rst -print)
 
 html:
