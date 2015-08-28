@@ -302,6 +302,7 @@ intersphinx_mapping = {
     'http://docs.enthought.com/mayavi/mayavi/': None,
     'http://statsmodels.sourceforge.net/': None,
     'http://pandas.pydata.org/pandas-docs/stable/': None,
+    'http://stanford.edu/~mwaskom/software/seaborn/': None,
 }
 
 extlinks = {

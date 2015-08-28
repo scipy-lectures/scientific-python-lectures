@@ -107,15 +107,16 @@ data are a mixture of numerical and categorical values::
 
 |
 
-**Creating from arrays**:: data-frames can also be seen as a dictionary
-of 1D 'series', eg arrays or lists. If we have 3 numpy arrays::
+**Creating from arrays**: A :class:`pandas.DataFrame` can also be seen
+as a dictionary of 1D 'series', eg arrays or lists. If we have 3 numpy
+arrays::
 
     >>> import numpy as np
     >>> t = np.linspace(-6, 6, 20)
     >>> sin_t = np.sin(t)
     >>> cos_t = np.cos(t)
 
-We can expose them as a pandas dataframe::
+We can expose them as a :class:`pandas.DataFrame`::
 
     >>> pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
              cos       sin         t
@@ -132,15 +133,16 @@ We can expose them as a pandas dataframe::
 
 |
 
-**Other inputs**: pandas can input data from SQL, excel files, or other
-formats. See the `pandas documentation <http://pandas.pydata.org>`_.
+**Other inputs**: `pandas <http://pandas.pydata.org>`_ can input data from
+SQL, excel files, or other formats. See the `pandas documentation
+<http://pandas.pydata.org>`_.
 
 |
 
 Manipulating data
 ..................
 
-`data` is a pandas dataframe, that resembles R's dataframe::
+`data` is a :class:`pandas.DataFrame`, that resembles R's dataframe::
 
     >>> data.shape    # 40 rows and 8 columns
     (40, 8)
@@ -222,8 +224,9 @@ Plotting data
 
 .. currentmodule:: pandas.tools
 
-Pandas comes with some :mod:`plotting` tools (using matplotlib behind the
-scene) to display statistics of the data in dataframes:
+Pandas comes with some plotting tools (:mod:`pandas.tools.plotting`, using
+matplotlib behind the scene) to display statistics of the data in
+dataframes:
 
 **Scatter matrices**::
 
@@ -259,26 +262,35 @@ scene) to display statistics of the data in dataframes:
 Hypothesis testing: comparing two groups
 ==========================================
 
-For simple statistical tests, we will use the `stats` sub-module of 
-`scipy <http://docs.scipy.org/doc/>`_::
+For simple `statistical tests
+<https://en.wikipedia.org/wiki/Statistical_hypothesis_testing>`_, we will
+use the :mod:`scipy.stats` sub-module of `scipy
+<http://docs.scipy.org/doc/>`_::
 
     >>> from scipy import stats
 
 .. seealso::
 
-   Scipy is a vast library. For a tutorial covering the whole scope of
-   scipy, see http://scipy-lectures.github.io/
+   Scipy is a vast library. For a quick summary to the whole library, see
+   the :ref:`scipy <scipy>` chapter.
 
 
-Student's t-test
------------------
+Student's t-test: the simplest statistical test
+------------------------------------------------
 
-1-sample t-test
-...............
+1-sample t-test: testing the value of a population mean
+........................................................
 
-:func:`scipy.stats.ttest_1samp` tests if observations are drawn from a
-Gaussian distributions of given population mean. It returns the T
-statistic, and the p-value (see the function's help)::
+.. image:: two_sided.png
+   :scale: 50
+   :align: right
+
+:func:`scipy.stats.ttest_1samp` tests if the population mean of data is
+likely to be equal to a given value (technically if observations are
+drawn from a Gaussian distributions of given population mean). It returns
+the `T statistic <https://en.wikipedia.org/wiki/Student%27s_t-test>`_,
+and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
+function's help)::
 
     >>> stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
     (array(30.088099970...), 1.32891964...e-28)
@@ -288,18 +300,8 @@ statistic, and the p-value (see the function's help)::
     With a p-value of 10^-28 we can claim that the population mean for
     the IQ (VIQ measure) is not 0.
 
-.. image:: two_sided.png
-   :scale: 50
-   :align: right
-
-.. topic:: **Exercise**
-    :class: green
-
-    Is the test performed above one-sided or two-sided? Which one should
-    we use, and what is the corresponding p-value?
-
-2-sample t-test
-................
+2-sample t-test: testing for difference across populations
+...........................................................
 
 We have seen above that the mean VIQ in the male and female populations
 were different. To test if this is significant, we do a 2-sample t-test
@@ -319,7 +321,7 @@ Paired tests: repeated measurements on the same indivuals
    :align: right
 
 PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
-significantly different. We need to use a 2 sample test::
+significantly different. We can use a 2 sample test::
 
     >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     (array(0.46563759638...), 0.64277250...)
@@ -327,7 +329,8 @@ significantly different. We need to use a 2 sample test::
 The problem with this approach is that it forgets that there are links
 between observations: FSIQ and PIQ are measured on the same individuals.
 Thus the variance due to inter-subject variability is confounding, and
-can be removed, using a "paired test", or "repeated measures test"::
+can be removed, using a "paired test", or `"repeated measures test"
+<https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
     >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     (array(1.784201940...), 0.082172638183...)
@@ -371,7 +374,7 @@ this assumption::
 Linear models, multiple factors, and analysis of variance
 ==========================================================
 
-"formulas" to speficy statistical models in Python
+"formulas" to specify statistical models in Python
 --------------------------------------------------
 
 A simple linear regression
@@ -449,8 +452,8 @@ We can inspect the various statistics derived from the fit::
 
     Statsmodel uses a statistical terminology: the `y` variable in
     statsmodel is called 'endogenous' while the `x` variable is called
-    exogenous.  This is discussed in more detail here:
-    http://statsmodels.sourceforge.net/devel/endog_exog.html
+    exogenous.  This is discussed in more detail `here 
+    <http://statsmodels.sourceforge.net/devel/endog_exog.html>`_.
 
     To simplify, `y` (endogenous) is the value you are trying to predict,
     while `x` (exogenous) represents the features you are using to make
@@ -465,8 +468,8 @@ We can inspect the various statistics derived from the fit::
 
 |
 
-Categorical variables
-.......................
+Categorical variables: comparing groups or multiple categories
+...............................................................
 
 Let us go back the data on brain size::
 
@@ -499,9 +502,9 @@ model::
      Kurtosis:                       1.510   Cond. No.                         2.62
      =======================================================================...
 
-.. note:: Tips on specifying model
+.. topic:: **Tips on specifying model**
  
-   **Forcing categorical** the 'Gender' is automatical detected as a
+   **Forcing categorical**: the 'Gender' is automatical detected as a
    categorical variable, and thus each of its different values are
    treated as different entities.
 
@@ -509,7 +512,7 @@ model::
 
     >>> model = ols('VIQ ~ C(Gender)', data).fit()
 
-   **Intercept** We can remove the intercept using `- 1` in the formula,
+   **Intercept**: We can remove the intercept using `- 1` in the formula,
    or force the use of an intercept using `+ 1`.
 
    .. tip::
@@ -584,7 +587,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
 |
 |
 
-**Example: the iris data**
+**Example: the iris data** (:download:`examples/iris.csv`)
 
 .. tip::
 
@@ -634,9 +637,11 @@ In the above iris example, we wish to test if the petal length is
 different between versicolor and virginica, after removing the effect of
 sepal width. This can be formulated as testing the difference between the
 coefficient associated to versicolor and virginica in the linear model
-estimated above (it is an Analysis of Variance, ANOVA). For this, we
-write a **vector of 'contrast'** on the parameters estimated: we want to test
-"name[T.versicolor] - name[T.virginica]", with an 'F-test'::
+estimated above (it is an Analysis of Variance, `ANOVA
+<https://en.wikipedia.org/wiki/Analysis_of_variance>`_). For this, we
+write a **vector of 'contrast'** on the parameters estimated: we want to
+test "name[T.versicolor] - name[T.virginica]", with an `F-test
+<https://en.wikipedia.org/wiki/F-test>`_::
 
     >>> print(model.f_test([0, 1, -1, 0]))
     <F test: F=array([[ 3.24533535]]), p=[[ 0.07369059]], df_denom=146, df_num=1>
@@ -668,6 +673,11 @@ Let us consider a data giving wages and many other personal information
 on 500 individuals (`Berndt, ER. The Practice of Econometrics. 1991. NY:
 Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
 
+.. tip::
+
+   The full code loading and plotting of the wages data is found in 
+   :ref:`corresponding example <example_plot_wage_data.py>`.
+
 ::
 
    >>> print data  # doctest: +SKIP
@@ -678,8 +688,11 @@ Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
    3           12      0    0           4      0  0.602060   22     3 
    ...
 
+Pairplot: scatter matrices
+--------------------------
+
 We can easily have an intuition on the interactions between continuous
-variables using seaborn.pairplot to display a scatter matrix::
+variables using :func:`seaborn.pairplot` to display a scatter matrix::
 
    >>> import seaborn
    >>> seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
@@ -701,6 +714,21 @@ Categorical variables can be plotted as the hue::
    :target: auto_examples/plot_wage_data.html
    :align: center
    :scale: 60
+
+.. topic:: **Look and feel and matplotlib settings**
+
+   Seaborn changes the default of matplotlib figures to achieve a more
+   "modern", "excel-like" look. It does that upon import. You can reset
+   the default using::
+
+    >>> from matplotlib import pyplot as plt
+    >>> plt.rcdefaults()
+
+   .. tip::
+
+     To switch back to seaborn settings, or understand better styling in
+     seaborn, see the `relevent section of the seaborn documentation
+     <http://stanford.edu/~mwaskom/software/seaborn/tutorial/aesthetics.html>`_.
 
 Testing for interactions
 =========================
