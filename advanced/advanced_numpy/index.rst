@@ -1552,7 +1552,7 @@ Good bug report
 3. Version of Numpy/Scipy
 
    >>> print np.__version__ # doctest: +ELLIPSIS
-   2...
+   1...
 
    **Check that the following is what you expect**
 
