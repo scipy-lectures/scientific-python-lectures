@@ -31,7 +31,7 @@ script:
     # than the one from the current working directory
     # Parentheses (run in a subshell) are used to leave
     # the current directory unchanged
-    - echo
+    - make test
 
 after_success:
     # Ignore coveralls failures as the coveralls server is not very reliable
