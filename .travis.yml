@@ -1,0 +1,42 @@
+language: python
+
+virtualenv:
+  system_site_packages: true
+
+notifications:
+  email: false
+
+env:
+  global:
+    - TEST_RUN_FOLDER="/tmp" # folder where the tests are run from
+  matrix:
+    # Ubuntu 14.04 versions
+    - DISTRIB="conda" PYTHON_VERSION="2.7"
+      NUMPY_VERSION="1.8.1" SCIPY_VERSION="0.13.3"
+      SCIKIT_LEARN_VERSION="0.14.1" MATPLOTLIB_VERSION="1.3.1"
+
+before_install:
+    - sudo apt-get install texlive texlive-latex-extra
+
+install: 
+    - source continuous_integration/install.sh
+
+before_script:
+    - make clean
+
+script:
+    - python continuous_integration/show-python-packages-versions.py
+    # We want to back out of the current working directory to make
+    # sure we are using nilearn installed in site-packages rather
+    # than the one from the current working directory
+    # Parentheses (run in a subshell) are used to leave
+    # the current directory unchanged
+    - echo
+
+after_success:
+    # Ignore coveralls failures as the coveralls server is not very reliable
+    # but we don't want travis to report a failure in the github UI just
+    # because the coverage report failed to be published.
+    # coveralls need to be run from the git checkout
+    # so we need to copy the coverage results from TEST_RUN_FOLDER
+    - if [[ "$COVERAGE" == "true" ]]; then cp "$TEST_RUN_FOLDER/.coverage" .; coveralls || echo "failed"; fi
