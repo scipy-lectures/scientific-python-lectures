@@ -40,7 +40,7 @@ Listed by alphabetical order.
 
 - Zbigniew Jędrzejewski-Szmek
 
-- Valentin Haenel
+- Valentin Haenel (editor from 2011 to 2015)
 
 Additional Contributions
 =========================
