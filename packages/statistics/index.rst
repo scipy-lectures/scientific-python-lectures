@@ -34,7 +34,6 @@ Statistics in Python
 
 _____
 
-.. sectnum::
 
 .. contents:: Contents
    :local:
