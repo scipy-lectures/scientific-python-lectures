@@ -25,14 +25,11 @@ Statistics in Python
     **Why Python for statistics?**
 
     R is a language dedicated to statistics. Python is a general purpose
-    language with statistics module. R has more statistical analysis
+    language with statistics modules. R has more statistical analysis
     features than Python, and specialized syntaxes. However, when it
     comes to building complex analysis pipelines that mix statistics with
     e.g. image analysis, text mining, or control of a physical
     experiment, the richness of Python is an invaluable asset.
-
-
-_____
 
 
 .. contents:: Contents
@@ -41,9 +38,19 @@ _____
 
 .. tip::
 
+    **Code blocks**
+
     In this document, the Python prompts are represented with the sign
     ">>>". To copy-paste code, you can click on the top right of the code
     blocks, to hide the prompts and the outputs.
+
+    |
+
+    **Disclaimer: Gender questions**
+
+    Some of the examples of this tutorial are chosen around touchy
+    gender questions. The reason is that on such questions the true
+    value of a claim actually matters to many people. 
 
 |
 
