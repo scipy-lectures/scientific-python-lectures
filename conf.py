@@ -308,6 +308,13 @@ pngmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
 pngmath_use_preview = True
 
 
+# Hack: avoid matplotlib backend problems, eg on travis
+import os
+if os.name == 'posix' and 'DISPLAY' not in os.environ:
+    import matplotlib
+    matplotlib.use('Agg')
+
+
 # Add the 'copybutton' javascript, to hide/show the prompt in code
 # examples
 def setup(app):
