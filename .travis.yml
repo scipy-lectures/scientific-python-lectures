@@ -11,12 +11,9 @@ env:
     - TEST_RUN_FOLDER="/tmp" # folder where the tests are run from
   matrix:
     # Ubuntu 14.04 versions
-    - DISTRIB="conda" 
-      PYTHON_VERSION="2.7"
-      NUMPY_VERSION="1.8.2" # as in Ubuntu 15.04 
-      SCIPY_VERSION="0.14.0"
-      SCIKIT_LEARN_VERSION="0.14.1" 
-      MATPLOTLIB_VERSION="1.3.1"
+    - DISTRIB="conda" PYTHON_VERSION="2.7" 
+      NUMPY_VERSION="1.8.2" SCIPY_VERSION="0.14.0" 
+      SCIKIT_LEARN_VERSION="0.14.1" MATPLOTLIB_VERSION="1.3.1"
 
 before_install:
     - sudo apt-get install texlive texlive-latex-extra
