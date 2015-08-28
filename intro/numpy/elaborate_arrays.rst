@@ -223,8 +223,8 @@ Fancy indexing works, as usual::
 
 * Masking versions of common functions::
 
-    >>> np.ma.sqrt([1, -1, 2, -2])
-    masked_array(data = [1.0 -- 1.41421356237 --],
+    >>> np.ma.sqrt([1, -1, 2, -2]) #doctest:+ELLIPSIS
+    masked_array(data = [1.0 -- 1.41421356237... --],
                  mask = [False  True False  True],
            fill_value = 1e+20)
     <BLANKLINE>
