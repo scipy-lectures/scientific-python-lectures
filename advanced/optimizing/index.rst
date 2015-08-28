@@ -90,7 +90,7 @@ Useful when you have a large program to profile, for example the
     component analysis (`PCA
     <http://en.wikipedia.org/wiki/Principal_component_analysis>`_) and
     independent component analysis
-    (`ICA<http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_). PCA
+    (`ICA <http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_). PCA
     is a technique for dimensionality reduction, i.e. an algorithm to explain
     the observed variance in your data using less dimensions. ICA is a source
     seperation technique, for example to unmix multiple signals that have been
@@ -149,6 +149,30 @@ Clearly the ``svd`` (in `decomp.py`) is what takes most of our time, a.k.a. the
 bottleneck. We have to find a way to make this step go faster, or to avoid this
 step (algorithmic optimization). Spending time on the rest of the code is
 useless.
+
+Alternatively you can also use the ``%prun`` magic to profile a function call.
+This is useful if you do not have an executable script but are profiling part
+of a library. This magic has a useful switch ``-l`` which can be used to limit
+the number of lines of output. (Shown below is a run from a different machine,
+hence the difference in timing.)
+
+.. sourcecode:: ipython
+
+    In [44]: import demo
+
+    In [45]: %prun -l 5 demo.test()
+
+             286 function calls in 5.053 seconds
+
+       Ordered by: internal time
+       List reduced from 64 to 5 due to restriction <5>
+
+       ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+            1    5.034    5.034    5.037    5.037 decomp_svd.py:15(svd)
+            1    0.008    0.008    5.053    5.053 <string>:1(<module>)
+            1    0.006    0.006    0.006    0.006 {method 'random_sample' of 'mtrand.RandomState' objects}
+           14    0.002    0.000    0.002    0.000 {numpy.core._dotblas.dot}
+            1    0.002    0.002    0.002    0.002 function_base.py:527(asarray_chkfinite)
 
 Line-profiler
 --------------
@@ -242,6 +266,88 @@ For a high-level view of the problem, a good understanding of the maths
 behind the algorithm helps. However, it is not uncommon to find simple
 changes, like **moving computation or memory allocation outside a for
 loop**, that bring in big gains.
+
+Complexity Theory
+.................
+
+In order to asses the runtime complexity of algorithms a brief interlude is
+needed. In computer science so called **Big-Oh** notation (`Wikipedia
+<http://en.wikipedia.org/wiki/Big_O_notation>`_) is used to classify the
+asymptotic complexity of algorithms in terms of the size of their input. While
+a formal mathematical treatment is well beyond the scope of this tutorial, some
+simple intuitive ideas about complexity can be enough to provide some insights.
+
+A definition of Big-Oh is:
+
+.. math::
+
+   f(n) = \mathcal{O}(g(n))
+
+means there are positive constants :math:`c` and :math:`k`, such that :math:`0
+≤ f(n) ≤ cg(n)` for all :math:`n ≥ k`. The values of :math:`c` and :math:`k`
+must be fixed for the function :math:`f` and must not depend on :math:`n`.
+
+For example the implementation of max:
+
+.. literalinclude:: max.py
+   :lines: 6-11
+
+As you can see, this algorithms needs to check each value once. Hence we say
+that it is of linear complexity, or it is **Big-Oh of n**:
+
+.. math::
+
+   f(n) = \mathcal{O}(n)
+
+Now, let's look at the following example of the insertion sort algorithm:
+
+.. literalinclude:: insertion_sort.py
+   :lines: 7-15
+
+As you can see here we have two for loops. While the first loop iterates over
+n, the second one iterates of the sequence :math:`(n-1)` the first time,
+:math:`(n-2)` the second time, :math:`(n-3)` the third time and so on. This is
+an arithmetic progression and the solution is:
+
+.. math::
+
+   \frac{n(n-1)}{2}
+
+Since we are dealing with asymptotic complexity, we need only look at the
+dominating term, i.e. the term that grows fastest in the expression, and thus
+insertion sort has complexity:
+
+.. math::
+
+   f(n) = \mathcal{O}(n^2)
+
+Note that the complexity analysis has been fairly easy in this case because the
+number of comparisons does not depend on the order of the data. I.e. even if
+the array is already sorted. Other sorting algorithms are not so easy in terms
+of analysis and may have best-case, average-case and worst-case complexities.
+
+Lastly, let's look at the binary search algorithm, that finds the index of an
+element in a sorted array:
+
+.. literalinclude:: binary_search.py
+   :lines: 7-18
+
+We can see that we keep partitioning the set into roughly half for every
+iteration of the while loop. So we make at most  :math:`⌊log_{2}(n)+1⌋`
+comparisons, leading to a complexity of:
+
+.. math::
+
+   f(n) = \mathcal{O}(log_{2}n)
+
+Incidentally the best-case runtime is:
+
+.. math::
+
+   f(n) = \mathcal{O}(1)
+
+And this happens when we find the desired element after the first comparison.
+
 
 Example of the SVD
 ...................
@@ -429,6 +535,55 @@ discuss only some commonly encountered tricks to make code faster.
    For all the above: profile and time your choices. Don't base your
    optimization on theoretical considerations.
 
+Hardware... Software...
+-----------------------
+
+Lastly, let's look at an interesting optimization in Numpy. The optimization is
+that the power operator ``**`` checks if the exponent is two (square) and then
+does a multiplication avoiding the expensive ``power`` implementation which
+presumably takes care of all sorts of edge cases such as floating point
+exponents etc.. We say that multiplication is *implemented in hardware* whereas
+power is *implemented in software*.
+
+.. sourcecode:: ipython
+
+    In [4]: %timeit np.power(a, 2)
+    100 loops, best of 3: 17.8 ms per loop
+
+    In [5]: %timeit a ** 2
+    1000 loops, best of 3: 1.55 ms per loop
+
+    In [6]: %timeit a * a
+    1000 loops, best of 3: 1.53 ms per loop
+
+As a comparison, here are the timings for the cube:
+
+.. sourcecode:: ipython
+
+    In [7]: %timeit np.power(a, 3)
+    10 loops, best of 3: 78.7 ms per loop
+
+    In [8]: %timeit a ** 3
+    10 loops, best of 3: 78.7 ms per loop
+
+    In [9]: %timeit a * a * a
+    100 loops, best of 3: 6.02 ms per loop
+
+As you can see, implementing this with multiplication is much faster, but the
+Numpy code base is not optimized for this case.
+
+Lastly, to instill some curiosity let's look at the timings we get when using
+the `numexpr <http://code.google.com/p/numexpr/>`_ tool:
+
+.. sourcecode:: ipython
+
+    In [21]: %timeit numexpr.evaluate('a ** 3')
+    1000 loops, best of 3: 1.7 ms per loop
+
+As you can see even the cube is much faster with numexpr than with any of the
+three previous approaches. Can you figure out why? How does it look for square?
+
+
 Additional Links
 ----------------
 
@@ -439,9 +594,13 @@ Additional Links
   `gperftools <http://code.google.com/p/gperftools/?redir=1>`_ from Python with
   `yep <http://pypi.python.org/pypi/yep>`_.
 
-* If you would like to track performace of your code across time, i.e. as you
+* If you would like to track performance of your code across time, i.e. as you
   make new commits to your repository, you could try:
   `vbench <https://github.com/pydata/vbench>`_
 
 * If you need some interactive visualization why not try `RunSnakeRun
   <http://www.vrplumber.com/programming/runsnakerun/>`_
+
+* `Article by Wes McKinney on how he made Pandas so fast <http://wesmckinney.com/blog/?p=489>`_
+
+* `Big-Oh complexity of various python operations <https://wiki.python.org/moin/TimeComplexity>`_

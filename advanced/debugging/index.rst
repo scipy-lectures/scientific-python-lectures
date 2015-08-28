@@ -51,6 +51,12 @@ Coding best practices to avoid getting in trouble
 * Give your variables, functions and modules meaningful names (not
   mathematics names)
 
+.. note:: Debugging with print statements
+
+   Many people frown upon debugging with print statements. This is a good
+   approach and please do use it if you so prefer. However, bear in mind, that
+   there may sometimes be quicker ways.
+
 pyflakes: fast static analysis
 -------------------------------
 
@@ -222,8 +228,16 @@ Specifically it allows you to:
     Yes, ``print`` statements do work as a debugging tool. However to
     inspect runtime, it is often more efficient to use the debugger.
 
+The IPython Debugger
+--------------------
+
+The ``ipdb`` is a debugger that ships with ipython and can be used from within
+ipython and from nosetests using a special plug-in. It is in many ways superior
+to the standard ``pdb`` since it comes in color, which makes stack-traces much
+easier to read and has some other nice goodies such as tab completion.
+
 Invoking the debugger
------------------------
+---------------------
 
 Ways to launch the debugger:
 
@@ -289,7 +303,9 @@ Here we debug the file :download:`index_error.py`. When running it, an
 
    In some situations you cannot use IPython, for instance to debug a
    script that wants to be called from the command line. In this case,
-   you can call the script with ``python -m pdb script.py``::
+   you can call the script with ``python -m pdb script.py``:
+
+   .. sourcecode:: console
 
     $ python -m pdb index_error.py
     > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(1)<module>()
@@ -313,6 +329,42 @@ Here we debug the file :download:`index_error.py`. When running it, an
     > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
     -> print lst[len(lst)]
     (Pdb)
+
+   Although, having said that you may get away with using the ``--pdb`` flag
+   for IPython:
+
+   .. sourcecode:: console
+
+    $ ipython --pdb index_error.py
+
+     Numpy is available as np
+     ---------------------------------------------------------------------------
+     IndexError                                Traceback (most recent call last)
+     /home/esc/anaconda/lib/python2.7/site-packages/IPython/utils/py3compat.pyc in execfile(fname, *where)
+         202             else:
+         203                 filename = fname
+     --> 204             __builtin__.execfile(filename, *where)
+
+     /home/esc/gw/scipy-lecture-notes/advanced/debugging/index_error.py in <module>()
+           6
+           7 if __name__ == '__main__':
+     ----> 8     index_error()
+           9
+
+     /home/esc/gw/scipy-lecture-notes/advanced/debugging/index_error.py in index_error()
+           3 def index_error():
+           4     lst = list('foobar')
+     ----> 5     print lst[len(lst)]
+           6
+           7 if __name__ == '__main__':
+
+     IndexError: list index out of range
+     > /home/esc/gw/scipy-lecture-notes/advanced/debugging/index_error.py(5)index_error()
+           4     lst = list('foobar')
+     ----> 5     print lst[len(lst)]
+           6
+
+     ipdb>
 
 Step-by-step execution
 .......................
