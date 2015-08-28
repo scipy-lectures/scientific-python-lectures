@@ -43,6 +43,15 @@ extensions = [
 
 doctest_test_doctest_blocks = 'true'
 
+# Create an examples directory list
+examples_dirs = [os.path.join(dir_path, 'examples')
+    for dir_path, dir_names, file_names in os.walk(".")
+    if (not ('build' in dir_path.split(os.sep)
+                or 'auto_examples' in dir_path.split(os.sep))
+       and 'examples' in dir_names)]
+
+
+
 sphinxgallery_conf = {
     'doc_module'        : 'scipy-lecture-notes',
     'reference_url'     : {
@@ -52,7 +61,8 @@ sphinxgallery_conf = {
         'scikit-learn': 'http://scikit-learn.org/stable',
         'scikit-image': 'http://scikit-image.org/docs/0.8.0/',
         'mayavi': 'http://docs.enthought.com/mayavi/mayavi/',
-        }
+        },
+    'examples_dirs': examples_dirs,
     }
 
 # Add any paths that contain templates here, relative to this directory.
