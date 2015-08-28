@@ -221,7 +221,9 @@ operations on the resulting group of dataframes::
 Plotting data
 ..............
 
-Pandas comes with some plotting tools (that use matplotlib behind the
+.. currentmodule:: pandas.tools
+
+Pandas comes with some :mod:`plotting` tools (using matplotlib behind the
 scene) to display statistics of the data in dataframes:
 
 **Scatter matrices**::
