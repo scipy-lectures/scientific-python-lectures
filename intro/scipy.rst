@@ -252,11 +252,16 @@ The resulting filtered signal can be computed by the
 The result can be viewed with::
 
     >>> import pylab as plt
-    >>> plt.figure()
-    >>> plt.plot(time_vec, sig)
-    >>> plt.plot(time_vec, main_sig, linewidth=3)
-    >>> plt.xlabel('Time [s]')
-    >>> plt.ylabel('Amplitude')
+    >>> plt.figure()    # doctest: +ELLIPSIS
+    <matplotlib.figure.Figure object at 0x...>
+    >>> plt.plot(time_vec, sig)    # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at 0x...>]
+    >>> plt.plot(time_vec, main_sig, linewidth=3)    # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at 0x...>]
+    >>> plt.xlabel('Time [s]')    # doctest: +ELLIPSIS
+    <matplotlib.text.Text object at 0x...>
+    >>> plt.ylabel('Amplitude')    # doctest: +ELLIPSIS
+    <matplotlib.text.Text object at 0x...>
 
 .. plot:: pyplots/fftpack_signals.py
     :scale: 70
@@ -369,13 +374,13 @@ optimizer with stochastic sampling of starting points for the local optimizer):
 ::
 
    >>> optimize.basinhopping(f, 0)
-                      nfev: 1689
-     minimization_failures: 0
-                       fun: -7.9458233756152845
-                         x: array([-1.30644002])
-                   message: ['requested number of basinhopping iterations completed successfully']
-                      njev: 563
-                       nit: 100 
+                     nfev: 1689
+    minimization_failures: 0
+                      fun: -7.9458233756152845
+                        x: array([-1.30644002])
+                  message: ['requested number of basinhopping iterations completed successfully']
+                     njev: 563
+                      nit: 100 
 
 Other available (but much less efficient) global optimizers are
 :func:`scipy.optimize.brute` (brute force optimization on a grid) and
