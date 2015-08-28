@@ -25,8 +25,7 @@ script:
     # than the one from the current working directory
     # Parentheses (run in a subshell) are used to leave
     # the current directory unchanged
-    - (cd "$TEST_RUN_FOLDER" && make -f $OLDPWD/Makefile test-code)
-    - test "$MATPLOTLIB_VERSION" == "" || make test-doc
+    - make test
 
 after_success:
     # Ignore coveralls failures as the coveralls server is not very reliable
