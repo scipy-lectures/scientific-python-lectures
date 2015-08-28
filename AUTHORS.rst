@@ -5,8 +5,6 @@ Authors
 Editors
 =========
 
-- Valentin Haenel
-
 - Emmanuelle Gouillart
 
 - Gaël Varoquaux
@@ -42,6 +40,8 @@ Listed by alphabetical order.
 
 - Zbigniew Jędrzejewski-Szmek
 
+- Valentin Haenel
+
 Additional Contributions
 =========================
 
@@ -66,3 +66,4 @@ Additional Contributions
 - Robert Gieseke
 
 - Jonathan J. Helmus
+
