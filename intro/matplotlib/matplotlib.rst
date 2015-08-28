@@ -1086,7 +1086,7 @@ from within a python session:
 ::
 
    >>> import pylab as pl
-   >>> help(pl.plot)
+   >>> help(pl.plot)    # doctest: +ELLIPSIS
    Help on function plot in module matplotlib.pyplot:
 
    plot(*args, **kwargs)
