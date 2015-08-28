@@ -1,6 +1,9 @@
 .. For doctests
    >>> import numpy as np
    >>> np.random.seed(0)
+   >>> # For doctest on headless environments
+   >>> import matplotlib
+   >>> matplotlib.use('Agg')
    >>> from matplotlib import pyplot as plt
 
 
