@@ -17,12 +17,7 @@ import subprocess
 # is relative to the documentation root, use os.path.abspath to make it
 # absolute, like shown here.
 sys.path.append(os.path.abspath('sphinxext'))
-
-# Try to override the matplotlib configuration as early as possible
-try:
-    import gen_rst
-except:
-    pass
+import sphinxgallery
 
 
 # General configuration
@@ -33,7 +28,7 @@ needs_sphinx = '1.0'
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-        'gen_rst',
+        'sphinxgallery.gen_gallery',
         'sphinx.ext.autodoc',
         'sphinx.ext.doctest',
         #'matplotlib.sphinxext.plot_directive',
@@ -47,6 +42,18 @@ extensions = [
 ]
 
 doctest_test_doctest_blocks = 'true'
+
+sphinxgallery_conf = {
+    'doc_module'        : 'scipy-lecture-notes',
+    'reference_url'     : {
+        'numpy': 'http://docs.scipy.org/doc/numpy',
+        'scipy': 'http://docs.scipy.org/doc/scipy/reference',
+        'matplotlib': 'http://matplotlib.org',
+        'scikit-learn': 'http://scikit-learn.org/stable',
+        'scikit-image': 'http://scikit-image.org/docs/0.8.0/',
+        'mayavi': 'http://docs.enthought.com/mayavi/mayavi/',
+        }
+    }
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -188,7 +195,7 @@ html_title = "Scipy lecture notes"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['themes/scipy_lectures/static']
+html_static_path = ['themes/scipy_lectures/static', sphinxgallery.path_static()]
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
