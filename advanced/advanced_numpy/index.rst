@@ -1285,8 +1285,6 @@ Array interface protocol
 >>> x = np.asarray(img)
 >>> x.shape
 (200, 200, 4)
->>> x.dtype
-dtype('uint64')
 
 
 .. note::
