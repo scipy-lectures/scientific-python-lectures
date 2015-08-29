@@ -397,12 +397,17 @@ optimizer with stochastic sampling of starting points for the local optimizer):
                      njev: 575
                       nit: 100
 
-Other available (but much less efficient) global optimizers are
-:func:`scipy.optimize.brute` (brute force optimization on a grid) and
-:func:`scipy.optimize.anneal` (simulated annealing).  More efficient algorithms
+Another available (but much less efficient) global optimizer is
+:func:`scipy.optimize.brute` (brute force optimization on a grid).
+More efficient algorithms
 for different classes of global optimization problems exist, but this is out of
 the scope of ``scipy``.  Some useful packages for global optimization are
 OpenOpt_, IPOPT_, PyGMO_ and PyEvolve_.
+
+.. note::
+
+   ``scipy`` used to contain the routine `anneal`, it has been deprecated since
+   SciPy 0.14.0 and removed in SciPy 0.16.0.
 
 .. _OpenOpt: http://openopt.org/Welcome
 .. _IPOPT: https://github.com/xuy/pyipopt
