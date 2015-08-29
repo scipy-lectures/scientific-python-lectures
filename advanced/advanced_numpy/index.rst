@@ -230,7 +230,7 @@ dtype('|S4')
 >>> wav_header_dtype.fields     # doctest: +ELLIPSIS
 <dictproxy object at ...>
 >>> wav_header_dtype.fields['format']
-(dtype('|S4'), 8)
+(dtype('S4'), 8)
 
 - The first element is the sub-dtype in the structured data, corresponding
   to the name ``format``
@@ -316,7 +316,7 @@ Casting
     >>> y + 1
     array([2, 3, 4, 5], dtype=int8)
     >>> y + 256
-    array([1, 2, 3, 4], dtype=int8)
+    array([1, 2, 3, 4], dtype=int16)
     >>> y + 256.0
     array([ 257.,  258.,  259.,  260.])
     >>> y + np.array([256], dtype=np.int32)
@@ -865,7 +865,7 @@ Example: inplace operations (caveat emptor)
 
 >>> x = np.array([[1, 2], [3, 4]])
 >>> x -= x.transpose()
->>> x
+>>> x   # doctest: +SKIP
 array([[ 0, -1],
        [ 4,  0]])
 
