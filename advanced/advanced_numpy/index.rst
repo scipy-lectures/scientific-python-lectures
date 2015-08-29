@@ -110,7 +110,7 @@ Memory address of the data:
 
 The whole ``__array_interface__``:
 
->>> x.__array_interface__ 
+>>> x.__array_interface__  # doctest: +SKIP
 {'data': (35828928, False),
  'descr': [('', '<i4')],
  'shape': (4,),
