@@ -718,9 +718,7 @@ implemented in :func:`scipy.optimize.anneal`::
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> optimize.anneal(f, [2, 2])
-    Warning: Cooled to 5057.768838 at [  30.27877642  984.84212523] but this
-    is not the smallest point found.
-    (array([ -7.70412755,  56.10583526]), 5)
+    (array([  -9.482...,  105.99...]), 0)
      
 It is a very popular algorithm, but it is not very reliable. 
 
@@ -876,16 +874,16 @@ if we compute the norm ourselves and use a good generic optimizer
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
-    >>> optimize.fmin_bfgs(g, x0)
+    >>> optimize.fmin_bfgs(g, x0)   #doctest: +ELLIPSIS
     Optimization terminated successfully.
              Current function value: 0.000000
              Iterations: 11
              Function evaluations: 144
              Gradient evaluations: 12
-    array([ -7.38998277e-09,   1.11112265e-01,   2.22219893e-01,
-             3.33331914e-01,   4.44449794e-01,   5.55560493e-01,
-             6.66672149e-01,   7.77779758e-01,   8.88882036e-01,
-             1.00001026e+00])
+    array([ -7.4...-09,   1.1...e-01,   2.2...e-01,
+             3.3...e-01,   4.4...e-01,   5.5...e-01,
+             6.6...e-01,   7.7...e-01,   8.8...e-01,
+             1.0...e+00])
 
 BFGS needs more function calls, and gives a less precise result.
 
@@ -995,10 +993,6 @@ and `g(x)< 0`.
   approximation: inequality constraints only::
 
     >>> optimize.fmin_cobyla(f, np.array([0, 0]), cons=constraint)
-       Normal return from subroutine COBYLA
-    
-       NFVALS =   36   F = 2.474874E+00    MAXCV = 0.000000E+00
-       X = 1.250096E+00   2.499038E-01
     array([ 1.25009622,  0.24990378])
 
 .. warning:: 
