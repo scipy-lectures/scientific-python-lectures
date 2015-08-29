@@ -33,7 +33,7 @@ print_conda_requirements() {
     # if yes which version to install. For example:
     #   - for numpy, NUMPY_VERSION is used
     #   - for scikit-learn, SCIKIT_LEARN_VERSION is used
-    TO_INSTALL_ALWAYS="pip nose"
+    TO_INSTALL_ALWAYS="pip nose pillow"
     REQUIREMENTS="$TO_INSTALL_ALWAYS"
     TO_INSTALL_MAYBE="python numpy scipy matplotlib scikit-learn"
     for PACKAGE in $TO_INSTALL_MAYBE; do

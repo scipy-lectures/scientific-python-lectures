@@ -1,9 +1,9 @@
 .. For doctests
    >>> import numpy as np
-   >>> from matplotlib import pyplot as plt
    >>> # For doctest on headless environments
    >>> import matplotlib
    >>> matplotlib.use('Agg')
+   >>> from matplotlib import pyplot as plt
 
 
 .. currentmodule:: numpy
