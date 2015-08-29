@@ -1284,6 +1284,8 @@ Array interface protocol
    >>> import matplotlib
    >>> matplotlib.use('Agg')
    >>> from matplotlib import pyplot as plt
+   >>> import os
+   >>> if not os.path.exists('data'): os.mkdir('data')
    >>> plt.imsave('data/test.png')
 
 
