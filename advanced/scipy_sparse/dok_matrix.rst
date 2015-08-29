@@ -54,7 +54,5 @@ Examples
     >>> mtx[1, 1:3].todense()
     matrix([[ 0.,  1.]])
     >>> mtx[[2,1], 1:3].todense() # doctest: +ELLIPSIS
-    Traceback (most recent call last):
-     ...
-    NotImplementedError: fancy indexing supported over one axis only
-
+    matrix([[ 0.,  0.],
+            [ 0.,  0.]])
