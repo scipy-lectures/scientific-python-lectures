@@ -1236,7 +1236,7 @@ Imaging Library):
 >>> data[:, :] = [255, 0, 0, 255] # Red
 >>> # In PIL, RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA]
 >>> data = data.view(np.int32).squeeze()
->>> img = Image.frombuffer("RGBA", (200, 200), data)
+>>> img = Image.frombuffer("RGBA", (200, 200), data, "raw", "RGBA", 0, 1)
 >>> img.save('test.png')
 
 **Q:**
