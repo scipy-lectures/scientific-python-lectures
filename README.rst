@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/scipy-lectures/scipy-lecture-notes.svg?branch=master
+    :target: https://travis-ci.org/scipy-lectures/scipy-lecture-notes
+
 ===================
 Scipy-Lecture-Notes
 ===================

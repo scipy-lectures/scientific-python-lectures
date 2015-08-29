@@ -198,7 +198,7 @@ It combines a bracketing strategy with a parabolic approximation.
     ...     return -np.exp(-(x - .7)**2)
     >>> x_min = optimize.brent(f)  # It actually converges in 9 iterations!
     >>> x_min #doctest: +ELLIPSIS
-    0.6999999997759...
+    0.699999999...
     >>> x_min - .7 #doctest: +ELLIPSIS
     -2.1605...e-10
 
@@ -368,7 +368,7 @@ simple conjugate gradient method to minimize a function is
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.fmin_cg(f, [2, 2])
+    >>> optimize.fmin_cg(f, [2, 2])    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
             Iterations: 13
@@ -381,13 +381,13 @@ will perform better if you can pass them the gradient::
 
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_cg(f, [2, 2], fprime=fprime)
+    >>> optimize.fmin_cg(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
             Iterations: 13
             Function evaluations: 30
             Gradient evaluations: 30
-    array([ 0.99999199,  0.99997536])
+    array([ 0.99999199,  0.99998336])
 
 Note that the function has only been evaluated 30 times, compared to 120
 without the gradient.
@@ -461,12 +461,12 @@ problems, although it is less versatile::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime)
+    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
-            Iterations: 10
-            Function evaluations: 12
-            Gradient evaluations: 44
+            Iterations: 9
+            Function evaluations: 11
+            Gradient evaluations: 51
             Hessian evaluations: 0
     array([ 1.,  1.])
 
@@ -477,13 +477,13 @@ to the algorithm::
 
     >>> def hessian(x): # Computed with sympy
     ...     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
-    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime, fhess=hessian)
+    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime, fhess=hessian)    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
-            Iterations: 10
-            Function evaluations: 12
-            Gradient evaluations: 10
-            Hessian evaluations: 10
+            Iterations: 9
+            Function evaluations: 11
+            Gradient evaluations: 19
+            Hessian evaluations: 9
     array([ 1.,  1.])
 
 .. note:: 
@@ -574,7 +574,7 @@ scipy version, :func:`scipy.optimize.fmin_l_bfgs_b`, includes box bounds::
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)
-    (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([  1.02331202e-07,  -2.59299369e-08]), 'funcalls': 17})
+    (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([  1.02331202e-07,  -2.59299369e-08]), 'nit': 16, 'funcalls': 17})
 
 .. note:: 
    
@@ -714,6 +714,9 @@ does random jumps around the starting point to explore its vicinity,
 progressively narrowing the jumps around the minimum points it finds. Its
 output depends on the random number generator. In scipy, it is
 implemented in :func:`scipy.optimize.anneal`::
+
+.. Comment to make the following doctest reproducible
+    >>> np.random.seed(42)
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
@@ -865,8 +868,7 @@ Lets try to minimize the norm of the following vectorial function::
     >>> x0 = np.zeros(10)
     >>> optimize.leastsq(f, x0)
     (array([ 0.        ,  0.11111111,  0.22222222,  0.33333333,  0.44444444,
-            0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ]),
-     2)
+            0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ]), 2)
 
 This took 67 function evaluations (check it with 'full_output=1'). What
 if we compute the norm ourselves and use a good generic optimizer
@@ -920,9 +922,8 @@ scipy provides a helper function for this purpose:
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
     >>> optimize.curve_fit(f, x, y)
-    (array([ 1.51854577,  0.92665541]),
-     array([[ 0.00037994, -0.00056796],
-           [-0.00056796,  0.00123978]]))
+    (array([ 1.52129341,  0.96084285]), array([[ 0.00032879, -0.00049033],
+           [-0.00049033,  0.00106799]]))
 
 .. topic:: **Exercise**
    :class: green
@@ -950,9 +951,8 @@ as box bounds can be rewritten as such via change of variables.
 
     >>> def f(x):
     ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
-    >>> optimize.fmin_l_bfgs_b(f, np.array([0, 0]), approx_grad=1,
-                           bounds=((-1.5, 1.5), (-1.5, 1.5)))
-    (array([ 1.5,  1.5]), 1.5811388300841898, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([-0.94868331, -0.31622778]), 'funcalls': 3})
+    >>> optimize.fmin_l_bfgs_b(f, np.array([0, 0]), approx_grad=1, bounds=((-1.5, 1.5), (-1.5, 1.5)))
+    (array([ 1.5,  1.5]), 1.5811388300841898, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([-0.94868331, -0.31622778]), 'nit': 2, 'funcalls': 12})
 
 
 

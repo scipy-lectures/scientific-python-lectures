@@ -89,6 +89,10 @@ Writing an array to a file:
     :align: center
     :scale: 50
 
+.. Comment to provide lena.png so that doctest passes
+   >>> from scipy import misc
+   >>> lena = misc.lena()
+   >>> misc.imsave('lena.png', lena)
 
 Creating a numpy array from an image file::
 
@@ -137,21 +141,21 @@ Use ``matplotlib`` and ``imshow`` to display an image inside a
 
     >>> l = misc.lena()
     >>> import matplotlib.pyplot as plt
-    >>> plt.imshow(l, cmap=plt.cm.gray)
-    <matplotlib.image.AxesImage object at 0x3c7f710>
+    >>> plt.imshow(l, cmap=plt.cm.gray)        # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at 0x...>
 
 Increase contrast by setting min and max values::
 
-    >>> plt.imshow(l, cmap=plt.cm.gray, vmin=30, vmax=200)
-    <matplotlib.image.AxesImage object at 0x33ef750>
+    >>> plt.imshow(l, cmap=plt.cm.gray, vmin=30, vmax=200)        # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at 0x...>
     >>> # Remove axes and ticks
     >>> plt.axis('off')
     (-0.5, 511.5, 511.5, -0.5)
 
 Draw contour lines::
 
-    >>> plt.contour(l, [60, 211])
-    <matplotlib.contour.ContourSet instance at 0x33f8c20>
+    >>> plt.contour(l, [60, 211])        # doctest: +ELLIPSIS
+    <matplotlib.contour.QuadContourSet instance at 0x...>
 
 
 .. figure:: auto_examples/images/plot_display_lena_1.png
@@ -165,8 +169,10 @@ Draw contour lines::
 For fine inspection of intensity variations, use
 ``interpolation='nearest'``::
 
-    >>> plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray)
-    >>> plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')
+    >>> plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray)        # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at 0x...>
+    >>> plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')        # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at 0x...>
 
 .. figure:: auto_examples/images/plot_interpolation_lena_1.png
     :scale: 80
@@ -204,7 +210,7 @@ Images are arrays: use the whole ``numpy`` machinery.
 
 ::
 
-    >>> lena = scipy.misc.lena()
+    >>> lena = misc.lena()
     >>> lena[0, 40]
     166
     >>> # Slicing
@@ -750,7 +756,7 @@ Label connected components: ``ndimage.label``::
     >>> nb_labels # how many regions?
     23
     >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
-    <matplotlib.image.AxesImage object at ...>
+    <matplotlib.image.AxesImage object at 0x...>
 
 .. figure:: auto_examples/images/plot_synthetic_data_1.png
     :scale: 90
@@ -773,7 +779,7 @@ Clean up small connect components::
     (256, 256)
     >>> label_im[remove_pixel] = 0
     >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
-    <matplotlib.image.AxesImage object at ...>
+    <matplotlib.image.AxesImage object at 0x...>
 
 Now reassign labels with ``np.searchsorted``::
 
@@ -793,7 +799,7 @@ Find region of interest enclosing object::
     >>> slice_x, slice_y = ndimage.find_objects(label_im==4)[0]
     >>> roi = im[slice_x, slice_y]
     >>> plt.imshow(roi)     # doctest: +ELLIPSIS
-    <matplotlib.image.AxesImage object at ...>
+    <matplotlib.image.AxesImage object at 0x...>
 
 .. figure:: auto_examples/images/plot_find_object_1.png
     :scale: 130
