@@ -624,7 +624,7 @@ whether the two sets of observations are significantly different::
 
     >>> a = np.random.normal(0, 1, size=100)
     >>> b = np.random.normal(1, 1, size=10)
-    >>> stats.ttest_ind(a, b)   # doctest: +ELLIPSIS
+    >>> stats.ttest_ind(a, b)   # doctest: +SKIP
     (array(-3.177574054...), 0.0019370639...)
 
 The resulting output is composed of:
