@@ -226,9 +226,9 @@ The ``.wav`` file header as a Numpy *structured* data type:
 .. seealso:: wavreader.py
 
 >>> wav_header_dtype['format']
-dtype('|S4')
+dtype('S4')
 >>> wav_header_dtype.fields     # doctest: +ELLIPSIS
-<dictproxy object at ...>
+dictproxy({'block_align': (dtype('uint16'), 32), 'format': (dtype('S4'), 8), 'data_id': (dtype(('S1', (2, 2))), 36), 'fmt_id': (dtype('S4'), 12), 'byte_rate': (dtype('uint32'), 28), 'chunk_id': (dtype('S4'), 0), 'num_channels': (dtype('uint16'), 22), 'sample_rate': (dtype('uint32'), 24), 'bits_per_sample': (dtype('uint16'), 34), 'chunk_size': (dtype('uint32'), 4), 'fmt_size': (dtype('uint32'), 16), 'data_size': (dtype('uint32'), 40), 'audio_fmt': (dtype('uint16'), 20)})
 >>> wav_header_dtype.fields['format']
 (dtype('S4'), 8)
 
@@ -316,7 +316,7 @@ Casting
     >>> y + 1
     array([2, 3, 4, 5], dtype=int8)
     >>> y + 256
-    array([1, 2, 3, 4], dtype=int16)
+    array([257, 258, 259, 260], dtype=int16)
     >>> y + 256.0
     array([ 257.,  258.,  259.,  260.])
     >>> y + np.array([256], dtype=np.int32)
@@ -1226,11 +1226,12 @@ The old buffer protocol
 - C-level interface; ``PyBufferProcs tp_as_buffer`` in the type object
 - But it's integrated into Python  (e.g. strings support it) 
 
-Mini-exercise using PIL (Python Imaging Library):
+Mini-exercise using `Pillow <https://python-pillow.github.io/>`_ (Python
+Imaging Library):
 
 .. seealso:: pilbuffer.py
 
->>> import Image
+>>> from PIL import Image
 >>> data = np.zeros((200, 200, 4), dtype=np.int8)
 >>> data[:, :] = [255, 0, 0, 255] # Red
 >>> # In PIL, RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA]
