@@ -704,35 +704,6 @@ value. The parameters are specified with ranges given to
     array([ 1.00001462,  1.00001547])
 
 
-Simulated annealing
-....................
-
-.. np.random.seed(0)
-
-`Simulated annealing <http://en.wikipedia.org/wiki/Simulated_annealing>`_
-does random jumps around the starting point to explore its vicinity,
-progressively narrowing the jumps around the minimum points it finds. Its
-output depends on the random number generator. In scipy, it is
-implemented in :func:`scipy.optimize.anneal`::
-
-.. Comment to make the following doctest reproducible
-    >>> np.random.seed(42)
-
-    >>> def f(x):   # The rosenbrock function
-    ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.anneal(f, [2, 2])
-    (array([  -9.482...,  105.99...]), 0)
-     
-It is a very popular algorithm, but it is not very reliable. 
-
-.. note::
-   
-   For function of continuous parameters as studied here, a strategy
-   based on grid search for rough exploration and running optimizers like
-   the Nelder-Mead or gradient-based methods many times with different
-   starting points should often be preferred to heuristic methods such as
-   simulated annealing.
-
 Practical guide to optimization with scipy
 ===========================================
 
