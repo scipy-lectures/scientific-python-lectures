@@ -1,6 +1,8 @@
 .. for doctests
    >>> import numpy as np
    >>> np.random.seed(0)
+   >>> import matplotlib.pyplot as plt
+   >>> plt.switch_backend("Agg")
 
 
 .. _basic_image:

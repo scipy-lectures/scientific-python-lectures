@@ -1,3 +1,7 @@
+.. for doctests
+   >>> import matplotlib.pyplot as plt
+   >>> plt.switch_backend("Agg")
+
 .. _numpy_exercises:
 
 Some exercises

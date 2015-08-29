@@ -3,7 +3,9 @@
    >>> # For doctest on headless environments
    >>> import matplotlib
    >>> matplotlib.use('Agg')
-   >>> from matplotlib import pyplot as plt
+   >>> import matplotlib.pyplot as plt
+   >>> plt.switch_backend("Agg")
+
 
 
 .. currentmodule:: numpy

@@ -1,3 +1,8 @@
+.. for doctests
+    >>> import matplotlib.pyplot as plt
+    >>> plt.switch_backend("Agg")
+
+
 .. _scipy:
 
 Scipy : high-level scientific computing

@@ -1,3 +1,9 @@
+.. for doctests
+    >>> import matplotlib.pyplot as plt
+    >>> plt.switch_backend("Agg")
+
+
+
 .. _summary_exercise_optimize:
 
 Non linear least squares curve fitting: application to point extraction in topographical lidar data
@@ -52,8 +58,8 @@ and visualize it:
 
     >>> import matplotlib.pyplot as plt
     >>> t = np.arange(len(waveform_1))
-    >>> plt.plot(t, waveform_1) # doctest:+SKIP
-    >>> plt.show() # doctest:+SKIP
+    >>> plt.plot(t, waveform_1)
+    >>> plt.show()
 
 .. image:: waveform_1.png
    :align: center
@@ -131,9 +137,9 @@ And visualize the solution:
 
 .. doctest::
 
-    >>> plt.plot(t, waveform_1, t, model(t, x)) # doctest:+SKIP
-    >>> plt.legend(['waveform', 'model']) # doctest:+SKIP
-    >>> plt.show() # doctest:+SKIP
+    >>> plt.plot(t, waveform_1, t, model(t, x))
+    >>> plt.legend(['waveform', 'model'])
+    >>> plt.show()
 
 *Remark:* from scipy v0.8 and above, you should rather use ``scipy.optimize.curve_fit`` which takes the model and the data as arguments, so you don't need to define the residuals any more.
 

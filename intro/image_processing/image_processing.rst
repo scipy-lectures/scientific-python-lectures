@@ -1,3 +1,7 @@
+.. for doctests
+   >>> import matplotlib.pyplot as plt
+   >>> plt.switch_backend("Agg")
+
 The submodule dedicated to image processing in scipy is :mod:`scipy.ndimage`. ::
 
     >>> from scipy import ndimage
