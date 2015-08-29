@@ -308,6 +308,7 @@ pngmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
 pngmath_use_preview = True
 
 
+
 # Add the 'copybutton' javascript, to hide/show the prompt in code
 # examples
 def setup(app):

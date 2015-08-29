@@ -1,6 +1,9 @@
 .. For doctests
    >>> import numpy as np
    >>> np.random.seed(0)
+   >>> # For doctest on headless environments
+   >>> import matplotlib
+   >>> matplotlib.use('Agg')
    >>> from matplotlib import pyplot as plt
 
 
@@ -227,7 +230,7 @@ dtype('|S4')
 >>> wav_header_dtype.fields     # doctest: +ELLIPSIS
 <dictproxy object at ...>
 >>> wav_header_dtype.fields['format']
-(dtype('|S4'), 8)
+(dtype('S4'), 8)
 
 - The first element is the sub-dtype in the structured data, corresponding
   to the name ``format``
@@ -313,7 +316,7 @@ Casting
     >>> y + 1
     array([2, 3, 4, 5], dtype=int8)
     >>> y + 256
-    array([1, 2, 3, 4], dtype=int8)
+    array([1, 2, 3, 4], dtype=int16)
     >>> y + 256.0
     array([ 257.,  258.,  259.,  260.])
     >>> y + np.array([256], dtype=np.int32)
@@ -862,7 +865,7 @@ Example: inplace operations (caveat emptor)
 
 >>> x = np.array([[1, 2], [3, 4]])
 >>> x -= x.transpose()
->>> x
+>>> x   # doctest: +SKIP
 array([[ 0, -1],
        [ 4,  0]])
 
@@ -1282,8 +1285,6 @@ Array interface protocol
 >>> x = np.asarray(img)
 >>> x.shape
 (200, 200, 4)
->>> x.dtype
-dtype('uint8')
 
 
 .. note::
@@ -1393,7 +1394,7 @@ Domain-aware functions
 The masked array package also contains domain-aware functions::
 
     >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
-    masked_array(data = [0.0 0.69314718056 -- -- 1.09861228867 --],
+    masked_array(data = [0.0 0.6931471805599453 -- -- 1.0986122886681098 --],
                  mask = [False False  True  True False  True],
            fill_value = 1e+20)
     <BLANKLINE>
@@ -1421,12 +1422,12 @@ The masked array package also contains domain-aware functions::
     >>> populations[bad_years, 1] = np.ma.masked
 
     >>> populations.mean(axis=0)
-    masked_array(data = [40472.7272727 18627.2727273 42400.0],
+    masked_array(data = [40472.72727272727 18627.272727272728 42400.0],
                  mask = [False False False],
            fill_value = 1e+20)
     <BLANKLINE>
     >>> populations.std(axis=0)
-    masked_array(data = [21087.656489 15625.7998142 3322.50622558],
+    masked_array(data = [21087.656489006717 15625.799814240254 3322.5062255844787],
                  mask = [False False False],
            fill_value = 1e+20)
     <BLANKLINE>
@@ -1552,7 +1553,7 @@ Good bug report
 3. Version of Numpy/Scipy
 
    >>> print np.__version__ # doctest: +ELLIPSIS
-   2...
+   1...
 
    **Check that the following is what you expect**
 

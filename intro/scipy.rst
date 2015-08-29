@@ -9,6 +9,11 @@ Scipy : high-level scientific computing
 ..
     >>> import numpy as np
     >>> np.random.seed(0)
+    >>> # For doctest on headless environments
+    >>> import matplotlib
+    >>> matplotlib.use('Agg')
+
+
 
 .. topic:: Scipy
 
@@ -89,8 +94,8 @@ File input/output: :mod:`scipy.io`
            [ 1.,  1.,  1.]])
 
 .. Comments to make doctests pass which require an image
-    >>> from scipy import misc
-    >>> misc.imsave('fname.png', np.array([[0]]))
+    >>> from matplotlib import pyplot as plt
+    >>> plt.imsave('fname.png', np.array([[0]]))
 
 * Reading images::
 
