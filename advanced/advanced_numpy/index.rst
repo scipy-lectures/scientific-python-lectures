@@ -228,7 +228,7 @@ The ``.wav`` file header as a Numpy *structured* data type:
 >>> wav_header_dtype['format']
 dtype('S4')
 >>> wav_header_dtype.fields     # doctest: +ELLIPSIS
-dictproxy({'block_align': (dtype('uint16'), 32), 'format': (dtype('S4'), 8), 'data_id': (dtype(('S1', (2, 2))), 36), 'fmt_id': (dtype('S4'), 12), 'byte_rate': (dtype('uint32'), 28), 'chunk_id': (dtype('S4'), 0), 'num_channels': (dtype('uint16'), 22), 'sample_rate': (dtype('uint32'), 24), 'bits_per_sample': (dtype('uint16'), 34), 'chunk_size': (dtype('uint32'), 4), 'fmt_size': (dtype('uint32'), 16), 'data_size': (dtype('uint32'), 40), 'audio_fmt': (dtype('uint16'), 20)})
+dict_proxy({'block_align': (dtype('uint16'), 32), 'format': (dtype('S4'), 8), 'data_id': (dtype(('S1', (2, 2))), 36), 'fmt_id': (dtype('S4'), 12), 'byte_rate': (dtype('uint32'), 28), 'chunk_id': (dtype('S4'), 0), 'num_channels': (dtype('uint16'), 22), 'sample_rate': (dtype('uint32'), 24), 'bits_per_sample': (dtype('uint16'), 34), 'chunk_size': (dtype('uint32'), 4), 'fmt_size': (dtype('uint32'), 16), 'data_size': (dtype('uint32'), 40), 'audio_fmt': (dtype('uint16'), 20)})
 >>> wav_header_dtype.fields['format']
 (dtype('S4'), 8)
 
@@ -1267,25 +1267,36 @@ Array interface protocol
    Documentation:
    http://docs.scipy.org/doc/numpy/reference/arrays.interface.html
 
->>> x = np.array([[1, 2], [3, 4]])
->>> x.__array_interface__   # doctest: +SKIP
-{'data': (171694552, False),      # memory address of data, is readonly?
- 'descr': [('', '<i4')],          # data type descriptor
- 'typestr': '<i4',                # same, in another form
- 'strides': None,                 # strides; or None if in C-order
- 'shape': (2, 2),
- 'version': 3,
-}
+::
 
->>> import Image
->>> img = Image.open('data/test.png')
->>> img.__array_interface__     # doctest: +SKIP
-{'data': ...,
- 'shape': (200, 200, 4),
- 'typestr': '|u1'}
->>> x = np.asarray(img)
->>> x.shape
-(200, 200, 4)
+    >>> x = np.array([[1, 2], [3, 4]])
+    >>> x.__array_interface__   # doctest: +SKIP
+    {'data': (171694552, False),      # memory address of data, is readonly?
+     'descr': [('', '<i4')],          # data type descriptor
+     'typestr': '<i4',                # same, in another form
+     'strides': None,                 # strides; or None if in C-order
+     'shape': (2, 2),
+     'version': 3,
+    }
+
+
+.. for doctest
+   >>> import matplotlib
+   >>> matplotlib.use('Agg')
+   >>> from matplotlib import pyplot as plt
+   >>> plt.imsave('data/test.png')
+
+
+:: 
+    >>> from PIL import Image
+    >>> img = Image.open('data/test.png')
+    >>> img.__array_interface__     # doctest: +SKIP
+    {'data': ...,
+     'shape': (200, 200, 4),
+     'typestr': '|u1'}
+    >>> x = np.asarray(img)
+    >>> x.shape
+    (200, 200, 4)
 
 
 .. note::
