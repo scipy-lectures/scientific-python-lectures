@@ -90,9 +90,9 @@ in order to modify other geometrical structures.
 Let us first generate a structuring element ::
 
     >>> el = ndimage.generate_binary_structure(2, 1)
-    >>> el
+    >>> el# doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     array([[False, True, False],
-           [True, True, True],
+           [...True, True, True],
            [False, True, False]], dtype=bool)
     >>> el.astype(np.int)
     array([[0, 1, 0],

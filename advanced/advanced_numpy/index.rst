@@ -1284,7 +1284,7 @@ Array interface protocol
    >>> from matplotlib import pyplot as plt
    >>> import os
    >>> if not os.path.exists('data'): os.mkdir('data')
-   >>> plt.imsave('data/test.png')
+   >>> plt.imsave('data/test.png', data)
 
 
 :: 

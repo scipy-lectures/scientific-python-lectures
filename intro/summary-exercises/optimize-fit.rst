@@ -58,7 +58,7 @@ and visualize it:
 
     >>> import matplotlib.pyplot as plt
     >>> t = np.arange(len(waveform_1))
-    >>> plt.plot(t, waveform_1)
+    >>> plt.plot(t, waveform_1) #doctest: +SKIP
     >>> plt.show()
 
 .. image:: waveform_1.png
@@ -137,8 +137,8 @@ And visualize the solution:
 
 .. doctest::
 
-    >>> plt.plot(t, waveform_1, t, model(t, x))
-    >>> plt.legend(['waveform', 'model'])
+    >>> plt.plot(t, waveform_1, t, model(t, x)) #doctest: +SKIP
+    >>> plt.legend(['waveform', 'model']) #doctest: +SKIP
     >>> plt.show()
 
 *Remark:* from scipy v0.8 and above, you should rather use ``scipy.optimize.curve_fit`` which takes the model and the data as arguments, so you don't need to define the residuals any more.
