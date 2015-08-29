@@ -79,7 +79,6 @@ of probabilities::
 
     >>> nprob = np.linspace(0, 1, 1e2)
     >>> fitted_max_speeds = quantile_func(nprob)
-    2%
 
 In the current model, the maximum wind speed occurring every 50 years is
 defined as the upper 2% quantile. As a result, the cumulative probability
@@ -92,7 +91,7 @@ So the storm wind speed occurring every 50 years can be guessed by::
 
     >>> fifty_wind = quantile_func(fifty_prob)
     >>> fifty_wind      # doctest: +ELLIPSIS
-    32.97989825...
+    array(32.97989825...)
 
 The results are now gathered on a Matplotlib figure:
 
