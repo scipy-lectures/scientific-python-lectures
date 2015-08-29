@@ -1086,7 +1086,7 @@ from within a python session:
 ::
 
    >>> import pylab as pl
-   >>> help(pl.plot)    # doctest: +ELLIPSIS
+   >>> help(pl.plot)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
    Help on function plot in module matplotlib.pyplot:
 
    plot(*args, **kwargs)
