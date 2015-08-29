@@ -101,13 +101,13 @@ Creating a numpy array from an image file::
     >>> type(lena)
     <type 'numpy.ndarray'>
     >>> lena.shape, lena.dtype
-    ((512, 512), dtype('uint8'))
+    ((512, 512), dtype('uint64'))
 
 dtype is uint8 for 8-bit images (0-255)
 
 Opening raw files (camera, 3-D images) ::
 
-    >>> l.tofile('lena.raw') # Create raw file
+    >>> lena.tofile('lena.raw') # Create raw file
     >>> lena_from_raw = np.fromfile('lena.raw', dtype=np.int64)
     >>> lena_from_raw.shape
     (262144,)
@@ -216,8 +216,8 @@ Images are arrays: use the whole ``numpy`` machinery.
     >>> # Slicing
     >>> lena[10:13, 20:23]
     array([[158, 156, 157],
-    [157, 155, 155],
-    [157, 157, 158]])
+           [157, 155, 155],
+           [157, 157, 158]])
     >>> lena[100:120] = 255
     >>>
     >>> lx, ly = lena.shape
