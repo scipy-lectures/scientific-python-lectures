@@ -1,4 +1,13 @@
-{% extends '!layout.html' %}
+{% extends 'basic/layout.html' %}
+
+{% block extrahead %}
+  {{ super() }}
+    <link rel="stylesheet"
+	  href="http://yui.yahooapis.com/pure/0.6.0/base-min.css">
+
+    <link rel="stylesheet"
+	  href="{{ pathto('_static/sln.css', 1) }}">
+{% endblock %}
 
 {% block relbaritems %}
     {{ super() }}
@@ -25,6 +34,7 @@
 {% block header %}
    <!-- Use the header to add javascript -->
     {{ super() }}
+
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
@@ -84,3 +94,4 @@
     </script>
 
 {% endblock %}
+
