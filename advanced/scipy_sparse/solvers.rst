@@ -53,7 +53,7 @@ Examples
                 [ 0,  0,  3,  9,  0],
                 [ 0,  0,  0,  4, 10],
                 [ 0,  0,  0,  0,  5]])
-        >>> rhs = np.array([1, 2, 3, 4, 5])
+        >>> rhs = np.array([1, 2, 3, 4, 5], dtype=np.float32)
 
     * solve as single precision real::
 
