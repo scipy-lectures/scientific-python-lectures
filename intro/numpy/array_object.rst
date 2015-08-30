@@ -399,8 +399,7 @@ the notebook and not in a new window.
 
     >>> import matplotlib.pyplot as plt  # the tidy way
 
-And then use (note that you have to use ``show`` explicitly if you have not enabled interactive plots with
-``%matplotlib``)::
+And then use (note that you have to use ``show`` explicitly if you have not enabled interactive plots with ``%matplotlib``):
 
 .. sourcecode:: pycon
 

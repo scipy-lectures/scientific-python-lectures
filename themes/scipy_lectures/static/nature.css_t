@@ -145,12 +145,6 @@ div.document {
     border-width: 2px 0;
 }
  
-/* special colors for exercises */
-div.green {
-    background-color: #e4ffe4;
-    border: 1px solid #6f6;
-}
-
 /* bold section titles */
 div.body h1, div.body h2 {
     font-weight: bold;
@@ -271,13 +265,26 @@ div.topic, div.admonition {
     border-radius: 4px 4px 4px 4px;
 }
 
-div.topic, div.sidebar {
+div.sidebar {
     padding-top: 2px;
+}
+
+div.topic {
+    background-color: #F9F9F9;
+    margin-top: 15px;
+    padding-top: 3px;
 }
 
 div.seealso {
     margin-top: 25px;
 }
+
+/* special colors for exercises */
+div.green {
+    background-color: #e4ffe4;
+    border: 1px solid #6f6;
+}
+
 
 /* Content div */
 div.contents {
