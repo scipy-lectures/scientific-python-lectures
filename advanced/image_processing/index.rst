@@ -505,6 +505,7 @@ image.
 Also works for grey-valued images::
 
     >>> np.random.seed(2)
+    >>> im = np.zeros((64, 64))
     >>> x, y = (63*np.random.random((2, 8))).astype(np.int)
     >>> im[x, y] = np.arange(8)
 
