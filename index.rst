@@ -8,9 +8,13 @@ Python Scientific Lecture Notes
   <style type="text/css">
     div.documentwrapper h1 {
         text-align: center;
-        font-size: 200% ;
+        font-size: 240% ;
         font-weight: bold;
         margin-bottom: 30px;
+    }
+
+    h1:hover > a.headerlink {
+        visibility: hidden;
     }
 
     div.sidebar {
@@ -52,7 +56,7 @@ Python Scientific Lecture Notes
             README.rst
             LICENSE.rst
 
-_____
+|
 
 .. toctree::
    :numbered:
