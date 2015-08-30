@@ -3,6 +3,8 @@ Sparse Matrices in SciPy
 
 **Author**: *Robert Cimrman*
 
+|
+
 .. toctree::
    :maxdepth: 3
 
