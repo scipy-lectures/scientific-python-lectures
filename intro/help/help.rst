@@ -27,6 +27,11 @@ In Ipython it is not possible to open a separated window for help and
 documentation; however one can always open a second ``Ipython`` shell
 just to display help and docstrings...
 
+.. image:: scipy_doc.png
+     :align: right
+     :target: http://docs.scipy.org/doc/scipy/reference/
+     :width: 45%
+
 * Numpy's and Scipy's documentations can be browsed online on
   http://docs.scipy.org/doc. The ``search`` button is quite useful inside
   the reference documentation of the two packages
@@ -36,10 +41,12 @@ just to display help and docstrings...
   Tutorials on various topics as well as the complete API with all
   docstrings are found on this website.
 
+  |clear-floats|
 
-  .. image:: scipy_doc.png
-     :align: center
-     :scale: 80
+  .. image:: docwiki.png
+     :align: right
+     :target: http://docs.scipy.org/numpy/
+     :width: 45%
 
 * Numpy's and Scipy's documentation is enriched and updated on a regular
   basis by users on a wiki http://docs.scipy.org/numpy/. As a result,
@@ -50,34 +57,24 @@ just to display help and docstrings...
   contribute to an open-source project and improve the tools you are
   using!
 
-  .. image:: docwiki.png
-     :align: center
-     :scale: 80
+  |clear-floats|
 
 * Scipy's cookbook http://www.scipy.org/Cookbook gives recipes on many
   common problems frequently encountered, such as fitting data points,
   solving ODE, etc. 
 
+  .. image:: matplotlib.png
+     :align: right
+     :target: http://matplotlib.sourceforge.net/
+     :width: 45%
 
 * Matplotlib's website http://matplotlib.sourceforge.net/ features a very
   nice **gallery** with a large number of plots, each of them shows both
   the source code and the resulting plot. This is very useful for
   learning by example. More standard documentation is also available. 
 
+  |clear-floats|
 
-  .. image:: matplotlib.png
-     :align: center
-     :scale: 80
-
-* Mayavi's website
-  http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/
-  also has a very nice gallery of examples
-  http://code.enthought.com/projects/mayavi/docs/development/html/mayavi/auto/examples.html
-  in which one can browse for different visualization solutions.
-
-  .. image:: mayavi_website.png
-     :align: center
-     :scale: 80
 
 Finally, two more "technical" possibilities are useful as well:
 

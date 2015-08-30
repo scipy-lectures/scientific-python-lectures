@@ -169,6 +169,13 @@ div.body h4 {
     background-color: #FAFAFA;
 }
 
+div.body h1 a.toc-backref:visited,
+div.body h2 a.toc-backref:visited,
+div.body h3 a.toc-backref:visited,
+div.body h4 a.toc-backref:visited {
+    color: #20435c;
+}
+
 div.body hr.docutils {
     border-style: solid;
     color: gray;
