@@ -5,7 +5,7 @@
 Scikit-image: image processing
 ==============================
 
-:author: Emmanuelle Gouillart
+**Author**: *Emmanuelle Gouillart*
 
 `scikit-image <http://scikit-image.org/>`_ is a Python package dedicated
 to image processing, and using natively NumPy arrays as image objects.

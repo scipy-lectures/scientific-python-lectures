@@ -9,7 +9,7 @@
 Sympy : Symbolic Mathematics in Python
 ======================================
 
-:author: Fabian Pedregosa
+**Author**: *Fabian Pedregosa*
 
 .. topic:: Objectives
 

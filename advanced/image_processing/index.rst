@@ -11,10 +11,10 @@
 Image manipulation and processing using Numpy and Scipy
 =======================================================
 
-:authors: Emmanuelle Gouillart, Gaël Varoquaux
+**Authors**: *Emmanuelle Gouillart, Gaël Varoquaux*
 
 
-This chapter addresses basic image manipulation and processing using the
+This section addresses basic image manipulation and processing using the
 core scientific modules NumPy and SciPy. Some of the operations covered
 by this tutorial may be useful for other kinds of multidimensional array
 processing than image processing. In particular, the submodule
@@ -61,17 +61,6 @@ arrays.
 
 * ...
 
-
-More powerful and complete modules:
-
-* `OpenCV <http://opencv.willowgarage.com/documentation/python/cookbook.html>`_
-  (Python bindings)
-
-* `CellProfiler <http://www.cellprofiler.org>`_
-
-* `ITK <http://www.itk.org/>`_ with Python bindings
-
-* many more...
 
 .. contents:: Chapters contents
    :local:
@@ -898,4 +887,19 @@ One example with mathematical morphology: **granulometry**
 .. only:: html
 
     [:ref:`Python source code <example_plot_granulo.py>`]
+
+|
+
+
+.. seealso:: More on image-processing:
+
+   * The chapter on :ref:`Scikit-image <scikit_image>`
+   
+   * Other, more powerful and complete modules: `OpenCV
+     <http://opencv.willowgarage.com/documentation/python/cookbook.html>`_
+     (Python bindings), `CellProfiler <http://www.cellprofiler.org>`_,
+     `ITK <http://www.itk.org/>`_ with Python bindings
+
+
+
 

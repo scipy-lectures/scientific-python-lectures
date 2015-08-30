@@ -4,7 +4,7 @@
 Traits: building interactive dialogs
 ======================================
 
-:author: Didrik Pinte
+**Author**: *Didrik Pinte*
 
 The Traits project allows you to simply add validation, initialization, delegation, notification and a graphical user interface to Python object attributes.
 
@@ -424,8 +424,7 @@ TraitsUI Item, the ChacoPlotItem:
 .. image:: reservoir_evolution.png
     :align: center
 
-References
-==========
+.. seealso:: References
 
     * ETS repositories: http://github.com/enthought
     * Traits manual: http://github.enthought.com/traits/traits_user_manual/index.html

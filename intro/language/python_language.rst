@@ -1,7 +1,8 @@
 The Python language
 =====================================
 
-:authors: Chris Burns, Christophe Combelles, Emmanuelle Gouillart, Gaël Varoquaux
+**Authors**: *Chris Burns, Christophe Combelles, Emmanuelle Gouillart,
+Gaël Varoquaux*
 
 .. topic:: Python for scientific computing
 

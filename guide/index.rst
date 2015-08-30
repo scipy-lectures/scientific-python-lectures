@@ -4,7 +4,7 @@
 How to contribute
 =================
 
-:authors: Nicolas Rougier
+**Author**: *Nicolas Rougier*
 
 .. topic:: Foreword
 

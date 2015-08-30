@@ -1,7 +1,8 @@
 Scientific computing with tools and workflow
 =============================================
 
-:authors: Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux, Valentin Haenel
+**Authors**: *Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux,
+Valentin Haenel*
 
 ..
     .. image:: phd053104s.png

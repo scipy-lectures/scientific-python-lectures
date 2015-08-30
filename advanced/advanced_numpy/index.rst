@@ -11,16 +11,14 @@
 Advanced Numpy
 ==============
 
-:author: Pauli Virtanen
+**Author**: *Pauli Virtanen*
 
-Numpy is at the base of Python's scientific stack of tools.
-Its purpose is simple: implementing efficient operations on
-many items in a block of memory.  Understanding how it works
-in detail helps in making efficient use of its flexibility,
-taking useful shortcuts, and in building new work based on
-it.
+Numpy is at the base of Python's scientific stack of tools. Its purpose
+to implement efficient operations on many items in a block of memory.
+Understanding how it works in detail helps in making efficient use of its
+flexibility, taking useful shortcuts.
 
-This tutorial aims to cover:
+This section covers:
 
 - Anatomy of Numpy arrays, and its consequences. Tips and
   tricks.
@@ -31,26 +29,26 @@ This tutorial aims to cover:
 - Integration with other tools: Numpy offers several ways to
   wrap any data in an ndarray, without unnecessary copies.
 
-- Recently added features, and what's in them for me: PEP
+- Recently added features, and what's in them: PEP
   3118 buffers, generalized ufuncs, ...
 
 .. currentmodule:: numpy
 
-.. time limit: 1.5 hours; probably ~ 2 x 45 min
-
 .. topic:: Prerequisites
 
-    * Numpy (>= 1.2; preferably newer...)
-    * Cython (>= 0.12, for the Ufunc example)
-    * PIL (used in a couple of examples)
-
-In this section, numpy will be imported as follows::
-
-    >>> import numpy as np
+    * Numpy
+    * Cython
+    * Pillow (Python imaging library, used in a couple of examples)
 
 .. contents:: Chapter contents
    :local:
    :depth: 2
+
+.. tip::
+   
+   In this section, numpy will be imported as follows::
+
+    >>> import numpy as np
 
 
 Life of ndarray

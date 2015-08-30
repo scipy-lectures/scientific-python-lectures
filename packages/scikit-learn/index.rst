@@ -2,7 +2,7 @@
 scikit-learn: machine learning in Python
 ========================================
 
-:author: Fabian Pedregosa, Gael Varoquaux
+**Authors**: *Fabian Pedregosa, Gael Varoquaux*
 
 .. image:: scikit-learn-logo.png
    :scale: 40
@@ -19,11 +19,6 @@ scikit-learn: machine learning in Python
 .. contents:: Chapters contents
    :local:
    :depth: 2
-
-.. warning::
-
-   As of version 0.9 (released in September 2011), the import path for
-   scikit-learn has changed from `scikits.learn` to `sklearn`
 
 ..
   For doctesting, to avoid having figures poping up

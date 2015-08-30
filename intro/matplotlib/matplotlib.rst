@@ -5,12 +5,12 @@
 Matplotlib: plotting
 ====================
 
-:authors: Nicolas Rougier, Mike Müller, Gaël Varoquaux
-
 .. sidebar:: **Thanks**
 
     Many thanks to **Bill Wing** and **Christoph Deil** for review and
     corrections.
+
+**Authors**: *Nicolas Rougier, Mike Müller, Gaël Varoquaux*
 
 .. contents:: Chapters contents
    :local:

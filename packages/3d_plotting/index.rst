@@ -11,7 +11,7 @@
     .. image:: mayavi-logo.png
         :align: right
 
-:author: Gaël Varoquaux
+**Author**: *Gaël Varoquaux*
 
 .. tip::
    

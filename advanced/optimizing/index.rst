@@ -6,15 +6,13 @@ Optimizing code
 
    *“Premature optimization is the root of all evil”*
 
-:author: Gaël Varoquaux
+**Author**: *Gaël Varoquaux*
 
 This chapter deals with strategies to make Python code go faster.
 
 .. topic:: Prerequisites
 
     * `line_profiler <http://packages.python.org/line_profiler/>`_
-    * `gprof2dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_
-    * `dot utility from Graphviz <http://www.graphviz.org/>`_
 
 .. contents:: Chapters contents
    :local:
@@ -150,11 +148,27 @@ bottleneck. We have to find a way to make this step go faster, or to avoid this
 step (algorithmic optimization). Spending time on the rest of the code is
 useless.
 
+.. topic:: **Profiling outside of IPython, running ``cProfile``**
+
+    Similar profiling can be done outside of IPython, simply calling the
+    built-in `Python profilers
+    <http://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
+    ``profile``.
+
+    .. sourcecode:: console
+
+        $  python -m cProfile -o demo.prof demo.py
+
+    Using the ``-o`` switch will output the profiler results to the file
+    ``demo.prof`` to view with an external tool. This can be useful if
+    you wish to process the profiler output with a visualization tool.
+
+
 Line-profiler
 --------------
 
-The profiler is great: it tells us which function takes most of the time,
-but not where it is called.
+The profiler tells us which function takes most of the time, but not
+where it is called.
 
 For this, we use the
 `line_profiler <http://packages.python.org/line_profiler/>`_: in the
@@ -195,36 +209,6 @@ Then we run the script using the `kernprof.py
 
 **The SVD is taking all the time.** We need to optimise this line.
 
-Running ``cProfile``
---------------------
-
-In the IPython example above, IPython simply calls the built-in `Python
-profilers <http://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
-``profile``. This can be useful if you wish to process the profiler output with a
-visualization tool.
-
-.. sourcecode:: console
-
-   $  python -m cProfile -o demo.prof demo.py
-
-Using the ``-o`` switch will output the profiler results to the file
-``demo.prof``.
-
-Using ``gprof2dot``
--------------------
-
-In case you want a more visual representation of the profiler output, you can
-use the `gprof2dot <http://code.google.com/p/jrfonseca/wiki/Gprof2Dot>`_ tool:
-
-.. sourcecode:: console
-
-    $ gprof2dot -f pstats demo.prof | dot -Tpng -o demo-prof.png
-
-Which will produce the following picture:
-
-.. image:: demo-prof.png
-
-Which again paints a similar picture as the previous approaches.
 
 Making code go faster
 ======================

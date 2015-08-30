@@ -2,7 +2,7 @@
 Interfacing with C
 ==================
 
-:author: Valentin Haenel
+**Author**: *Valentin Haenel*
 
 .. TODO:
    
@@ -11,15 +11,14 @@ Interfacing with C
    * Additional documentation
    * What about overflow?
 
-.. topic:: Foreword
-
-This chapter contains an *introduction* to the many different routes for making
-your native code (primarily ``C/C++``) available from Python, a process
-commonly referred to *wrapping*. The goal of this chapter is to give you a
-flavour of what technologies exist and what their respective merits and
-shortcomings are, so that you can select the appropriate one for your specific
-needs. In any case, once you do start wrapping, you almost certainly will want
-to consult the respective documentation for your selected technique.
+This chapter contains an *introduction* to the many different routes for
+making your native code (primarily ``C/C++``) available from Python, a
+process commonly referred to *wrapping*. The goal of this chapter is to
+give you a flavour of what technologies exist and what their respective
+merits and shortcomings are, so that you can select the appropriate one
+for your specific needs. In any case, once you do start wrapping, you
+almost certainly will want to consult the respective documentation for
+your selected technique.
 
 .. contents:: Chapters contents
    :local:

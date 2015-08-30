@@ -2,9 +2,9 @@
 Debugging code
 ==============
 
-:author: Gaël Varoquaux
+**Author**: *Gaël Varoquaux*
 
-This tutorial explores tool to understand better your code base:
+This section explores tools to understand better your code base:
 debugging, to find and fix bugs.
 
 It is not specific to the scientific Python community, but the strategies

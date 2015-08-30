@@ -8,8 +8,8 @@
 Scipy : high-level scientific computing
 =========================================
 
-:authors: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart,
-          Gaël Varoquaux, Ralf Gommers
+**Authors**: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
+Varoquaux, Ralf Gommers
 
 ..
     >>> import numpy as np

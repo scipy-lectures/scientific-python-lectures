@@ -5,9 +5,10 @@
 ==========================
 Advanced Python Constructs
 ==========================
-:author: Zbigniew Jędrzejewski-Szmek
 
-This chapter is about some features of the Python language which can
+**Author** *Zbigniew Jędrzejewski-Szmek*
+
+This section covers some features of the Python language which can
 be considered advanced --- in the sense that not every language has
 them, and also in the sense that they are more useful in more
 complicated programs or libraries, but not in the sense of being
@@ -19,14 +20,9 @@ complemented by functionality of the Python stdlib, which could not be
 implemented through clever external modules.
 
 The process of developing the Python programming language, its syntax,
-is unique because it is very transparent, proposed changes are
-evaluated from various angles and discussed on public mailing lists,
-and the final decision takes into account the balance between the
-importance of envisioned use cases, the burden of carrying more
-language features, consistency with the rest of the syntax, and
-whether the proposed variant is the easiest to read, write, and
-understand. This process is formalised in Python Enhancement
-Proposals --- PEPs_. As a result, features described in this chapter
+is very transparent; proposed changes are
+evaluated from various angles and discussed via *Python Enhancement
+Proposals* --- PEPs_. As a result, features described in this chapter
 were added after it was shown that they indeed solve real problems and
 that their use is as simple as possible.
 

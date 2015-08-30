@@ -4,7 +4,7 @@
 Mathematical optimization: finding minima of functions
 =======================================================
 
-:authors: Gaël Varoquaux
+**Authors**: *Gaël Varoquaux*
 
 `Mathematical optimization
 <http://en.wikipedia.org/wiki/Mathematical_optimization>`_ deals with the
