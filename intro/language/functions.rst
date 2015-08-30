@@ -4,14 +4,12 @@ Defining functions
 Function definition
 -------------------
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [56]: def test():
-       ....:     print('in test function')
-       ....:
-       ....:
+    >>> def test():
+    ...     print('in test function')
 
-    In [57]: test()
+    >>> test()
     in test function
 
 .. Warning::
@@ -23,14 +21,13 @@ Return statement
 
 Functions can *optionally* return values.
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [6]: def disk_area(radius):
-       ...:     return 3.14 * radius * radius
-       ...:
+    >>> def disk_area(radius):
+    ...     return 3.14 * radius * radius
 
-    In [8]: disk_area(1.5)
-    Out[8]: 7.0649999999999995
+    >>> disk_area(1.5)
+    7.0649999999999995
 
 .. Note:: By default, functions return ``None``.
 
@@ -53,16 +50,15 @@ Parameters
 
 Mandatory parameters (positional arguments)
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [81]: def double_it(x):
-       ....:     return x * 2
-       ....:
+    >>> def double_it(x):
+    ...     return x * 2
 
-    In [82]: double_it(3)
-    Out[82]: 6
+    >>> double_it(3)
+    6
 
-    In [83]: double_it()
+    >>> double_it()
     ---------------------------------------------------------------------------
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
@@ -70,17 +66,16 @@ Mandatory parameters (positional arguments)
 
 Optional parameters (keyword or named arguments)
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [84]: def double_it(x=2):
-       ....:     return x * 2
-       ....:
+    >>> def double_it(x=2):
+    ...     return x * 2
 
-    In [85]: double_it()
-    Out[85]: 4
+    >>> double_it()
+    4
 
-    In [86]: double_it(3)
-    Out[86]: 6
+    >>> double_it(3)
+    6
 
 Keyword arguments allow you to specify *default values*.
 
@@ -93,76 +88,73 @@ Keyword arguments allow you to specify *default values*.
 
    Using an immutable type in a keyword argument:
 
-   .. sourcecode:: ipython
+   .. sourcecode:: pycon
 
-       In [124]: bigx = 10
+       >>> bigx = 10
 
-       In [125]: def double_it(x=bigx):
-          .....:     return x * 2
-          .....:
+       >>> def double_it(x=bigx):
+       ...     return x * 2
 
-       In [126]: bigx = 1e9  # Now really big
+       >>> bigx = 1e9  # Now really big
 
-       In [128]: double_it()
-       Out[128]: 20
+       >>> double_it()
+       20
 
    Using an mutable type in a keyword argument (and modifying it inside the
    function body):
 
-   .. sourcecode:: ipython
+   .. sourcecode:: pycon
 
-       In [2]: def add_to_dict(args={'a': 1, 'b': 2}):
-          ...:     for i in args.keys():
-          ...:         args[i] += 1
-          ...:     print args
-          ...:
+       >>> def add_to_dict(args={'a': 1, 'b': 2}):
+       ...     for i in args.keys():
+       ...         args[i] += 1
+       ...     print args
 
-       In [3]: add_to_dict
-       Out[3]: <function __main__.add_to_dict>
+       >>> add_to_dict    # doctest: +ELLIPSIS
+       <function add_to_dict at 0x...>
 
-       In [4]: add_to_dict()
+       >>> add_to_dict()
        {'a': 2, 'b': 3}
 
-       In [5]: add_to_dict()
+       >>> add_to_dict()
        {'a': 3, 'b': 4}
 
-       In [6]: add_to_dict()
+       >>> add_to_dict()
        {'a': 4, 'b': 5}
 
 .. tip::
 
   More involved example implementing python's slicing:
 
-  .. sourcecode:: ipython
+  .. sourcecode:: pycon
 
-    In [98]: def slicer(seq, start=None, stop=None, step=None):
-       ....:     """Implement basic python slicing."""
-       ....:     return seq[start:stop:step]
-       ....:
+    >>> def slicer(seq, start=None, stop=None, step=None):
+    ...     """Implement basic python slicing."""
+    ...     return seq[start:stop:step]
 
-    In [101]: rhyme = 'one fish, two fish, red fish, blue fish'.split()
+    >>> rhyme = 'one fish, two fish, red fish, blue fish'.split()
 
-    In [102]: rhyme
-    Out[102]: ['one', 'fish,', 'two', 'fish,', 'red', 'fish,', 'blue', 'fish']
+    >>> rhyme
+    ['one', 'fish,', 'two', 'fish,', 'red', 'fish,', 'blue', 'fish']
 
-    In [103]: slicer(rhyme)
-    Out[103]: ['one', 'fish,', 'two', 'fish,', 'red', 'fish,', 'blue', 'fish']
+    >>> slicer(rhyme)
+    ['one', 'fish,', 'two', 'fish,', 'red', 'fish,', 'blue', 'fish']
 
-    In [104]: slicer(rhyme, step=2)
-    Out[104]: ['one', 'two', 'red', 'blue']
+    >>> slicer(rhyme, step=2)
+    ['one', 'two', 'red', 'blue']
 
-    In [105]: slicer(rhyme, 1, step=2)
-    Out[105]: ['fish,', 'fish,', 'fish,', 'fish']
+    >>> slicer(rhyme, 1, step=2)
+    ['fish,', 'fish,', 'fish,', 'fish']
 
-    In [106]: slicer(rhyme, start=1, stop=4, step=2)
-    Out[106]: ['fish,', 'fish,']
+    >>> slicer(rhyme, start=1, stop=4, step=2)
+    ['fish,', 'fish,']
 
   The order of the keyword arguments does not matter:
 
-  .. sourcecode:: ipython
+  .. sourcecode:: pycon
 
-    In [107]: slicer(rhyme, step=2, start=1, stop=4)
-    Out[107]: ['fish,', 'fish,']
+    >>> slicer(rhyme, step=2, start=1, stop=4)
+    ['fish,', 'fish,']
 
   but it is good practice to use the same ordering as the function's
   definition.
@@ -226,52 +218,47 @@ Global variables
 Variables declared outside the function can be referenced within the
 function:
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [114]: x = 5
+    >>> x = 5
 
-    In [115]: def addx(y):
-       .....:     return x + y
-       .....:
+    >>> def addx(y):
+    ...     return x + y
 
-    In [116]: addx(10)
-    Out[116]: 15
+    >>> addx(10)
+    15
 
 But these "global" variables cannot be modified within the function,
 unless declared **global** in the function.
 
 This doesn't work:
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [117]: def setx(y):
-       .....:     x = y
-       .....:     print('x is %d' % x)
-       .....:
-       .....:
+    >>> def setx(y):
+    ...     x = y
+    ...     print('x is %d' % x)
 
-    In [118]: setx(10)
+    >>> setx(10)
     x is 10
 
-    In [120]: x
-    Out[120]: 5
+    >>> x
+    5
 
 This works:
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [121]: def setx(y):
-       .....:     global x
-       .....:     x = y
-       .....:     print('x is %d' % x)
-       .....:
-       .....:
+    >>> def setx(y):
+    ...     global x
+    ...     x = y
+    ...     print('x is %d' % x)
 
-    In [122]: setx(10)
+    >>> setx(10)
     x is 10
 
-    In [123]: x
-    Out[123]: 10
+    >>> x
+    10
 
 
 Variable number of parameters
@@ -280,14 +267,13 @@ Special forms of parameters:
   * ``*args``: any number of positional arguments packed into a tuple
   * ``**kwargs``: any number of keyword arguments packed into a dictionary
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [35]: def variable_args(*args, **kwargs):
-       ....:     print 'args is', args
-       ....:     print 'kwargs is', kwargs
-       ....:
+    >>> def variable_args(*args, **kwargs):
+    ...     print 'args is', args
+    ...     print 'kwargs is', kwargs
 
-    In [36]: variable_args('one', 'two', x=1, y=2, z=3)
+    >>> variable_args('one', 'two', x=1, y=2, z=3)
     args is ('one', 'two')
     kwargs is {'y': 2, 'x': 1, 'z': 3}
 
@@ -298,7 +284,7 @@ Docstrings
 Documentation about what the function does and its parameters.  General
 convention:
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
     In [67]: def funcname(params):
        ....:     """Concise one-line sentence describing the function.
@@ -343,11 +329,11 @@ Functions are first-class objects, which means they can be:
   * an item in a list (or any collection)
   * passed as an argument to another function.
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [38]: va = variable_args
+    >>> va = variable_args
 
-    In [39]: va('three', x=1, y=2)
+    >>> va('three', x=1, y=2)
     args is ('three',)
     kwargs is {'y': 2, 'x': 1}
 
