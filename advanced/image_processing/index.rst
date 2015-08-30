@@ -110,8 +110,6 @@ Opening raw files (camera, 3-D images) ::
     >>> lena_from_raw.shape
     (262144,)
     >>> lena_from_raw.shape = (512, 512)
-    >>> import os
-    >>> os.remove('lena.raw')
 
 Need to know the shape and dtype of the image (how to separate data
 bytes).
@@ -888,6 +886,7 @@ One example with mathematical morphology: **granulometry**
     >>> mask = im > im.mean()
     >>>
     >>> granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
+
 
 .. figure:: auto_examples/images/plot_granulo_1.png
     :scale: 100
