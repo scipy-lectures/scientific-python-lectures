@@ -1,7 +1,16 @@
 What's new
 ==========
 
-Release 2013.2 beta (21 August 2013)
+Release 2015.1 (September 2015)
+-------------------------------------
+
+* New layout and simplified formatting (Gaël Varoquaux, Nelle Varoquaux)
+
+* Code put up to date for more recent versions of project (Pierre de
+  Buyl, Gert-Ludwig Ingold, Nicolas Pettiaux, Olav Vahtras, Gaël
+  Varoquaux, Nelle Varoquaux)
+
+Release 2013.2 (21 August 2013)
 -------------------------------------
 
 * Numpy chapter simplified (Valentin Haenel)

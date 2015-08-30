@@ -51,19 +51,26 @@ Additional Contributions
 
 - egens
 
-- Lars Buitinck
-
-- Olivier Verdier
-
-- Virgile Fritsch
-
-- Ozan Çağlayan
-
-- kikocorreo
-
-- Sergio Oller
-
-- Robert Gieseke
+- Gert-Ludwig Ingold
 
 - Jonathan J. Helmus
 
+- kikocorreo
+
+- Lars Buitinck
+
+- Nicolas Pettiaux
+
+- Olav Vahtras
+
+- Olivier Verdier
+
+- Ozan Çağlayan
+
+- Pierre de Buyl
+
+- Robert Gieseke
+
+- Sergio Oller
+
+- Virgile Fritsch
