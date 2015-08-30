@@ -15,19 +15,17 @@ strings). To write in a file::
     >>> f.write('This is a test \nand another test')
     >>> f.close()
 
-To read from a file
+To read from a file::
 
-.. sourcecode:: ipython
+    >>> f = open('workfile', 'r')
 
-    In [1]: f = open('workfile', 'r')
+    >>> s = f.read()
 
-    In [2]: s = f.read()
-
-    In [3]: print(s)
+    >>> print(s)
     This is a test 
     and another test
 
-    In [4]: f.close()
+    >>> f.close()
 
 
 For more details: http://docs.python.org/tutorial/inputoutput.html
@@ -35,18 +33,17 @@ For more details: http://docs.python.org/tutorial/inputoutput.html
 Iterating over a file
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. sourcecode:: ipython
+.. sourcecode:: pycon
 
-    In [6]: f = open('workfile', 'r')
+    >>> f = open('workfile', 'r')
 
-    In [7]: for line in f:
-       ...:     print line
-       ...:
+    >>> for line in f:
+    ...     print line
     This is a test 
 
     and another test
 
-    In [8]: f.close()
+    >>> f.close()
 
 File modes
 ----------
