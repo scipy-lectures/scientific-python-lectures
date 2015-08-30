@@ -262,6 +262,10 @@ table.docutils tr {
     border-color: #AAAAAA;
 }
 
+table.field-list {
+    width: 100%;
+}
+
 /* Boxes */
 div.topic, div.admonition {
     border-radius: 4px 4px 4px 4px;

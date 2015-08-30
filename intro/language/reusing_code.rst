@@ -394,8 +394,10 @@ Modules must be located in the search path, therefore you can:
     directory to your sys.path each time you want to import from a module
     in this directory.
 
-See http://docs.python.org/tutorial/modules.html for more information
-about modules.
+.. seealso::
+
+    See http://docs.python.org/tutorial/modules.html for more information
+    about modules.
 
 Packages
 --------

@@ -30,7 +30,9 @@ To read from a file
     In [4]: f.close()
 
 
-For more details: http://docs.python.org/tutorial/inputoutput.html
+.. seealso::
+   
+   For more details: http://docs.python.org/tutorial/inputoutput.html
 
 Iterating over a file
 ~~~~~~~~~~~~~~~~~~~~~

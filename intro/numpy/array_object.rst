@@ -37,6 +37,8 @@ Numpy arrays
 
     - Also known as *array oriented computing*
 
+|
+
 .. sourcecode:: pycon
 
     >>> import numpy as np
