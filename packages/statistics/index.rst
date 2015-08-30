@@ -52,7 +52,6 @@ Statistics in Python
     gender questions. The reason is that on such questions the true
     value of a claim actually matters to many people. 
 
-|
 
 Data representation and interaction
 ====================================
@@ -264,7 +263,6 @@ dataframes:
     Plot the scatter matrix for males only, and for females only. Do you
     think that the 2 sub-populations correspond to gender?
 
-|
 
 Hypothesis testing: comparing two groups
 ==========================================
