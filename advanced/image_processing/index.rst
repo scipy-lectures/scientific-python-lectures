@@ -89,26 +89,24 @@ Writing an array to a file:
     :align: center
     :scale: 50
 
-.. Comment to provide lena.png so that doctest passes
-   >>> from scipy import misc
-   >>> lena = misc.lena()
-   >>> misc.imsave('lena.png', lena)
-
 Creating a numpy array from an image file::
 
     >>> from scipy import misc
+    >>> lena = misc.lena()
+    >>> misc.imsave('lena.png', lena) # First we need to create the PNG file
+    
     >>> lena = misc.imread('lena.png')
     >>> type(lena)
     <type 'numpy.ndarray'>
     >>> lena.shape, lena.dtype
-    ((512, 512), dtype('uint64'))
+    ((512, 512), dtype('uint8'))
 
 dtype is uint8 for 8-bit images (0-255)
 
 Opening raw files (camera, 3-D images) ::
 
     >>> lena.tofile('lena.raw') # Create raw file
-    >>> lena_from_raw = np.fromfile('lena.raw', dtype=np.int64)
+    >>> lena_from_raw = np.fromfile('lena.raw', dtype=np.uint8)
     >>> lena_from_raw.shape
     (262144,)
     >>> lena_from_raw.shape = (512, 512)
@@ -120,7 +118,7 @@ bytes).
 
 For large data, use ``np.memmap`` for memory mapping::
 
-    >>> lena_memmap = np.memmap('lena.raw', dtype=np.int64, shape=(512, 512))
+    >>> lena_memmap = np.memmap('lena.raw', dtype=np.uint8, shape=(512, 512))
 
 (data are read from the file, and not loaded into memory)
 
