@@ -974,23 +974,22 @@ the source of a program.
 .. _`unicode literal notation`:
    http://docs.python.org/2.7/reference/lexical_analysis.html#string-literals
 
-More examples and reading
-^^^^^^^^^^^^^^^^^^^^^^^^^
+.. seealso:: **More examples and reading**
 
-* :pep:`318` (function and method decorator syntax)
-* :pep:`3129` (class decorator syntax)
-* http://wiki.python.org/moin/PythonDecoratorLibrary
-* http://docs.python.org/dev/library/functools.html
-* http://pypi.python.org/pypi/decorator
-* Bruce Eckel
+    * :pep:`318` (function and method decorator syntax)
+    * :pep:`3129` (class decorator syntax)
+    * http://wiki.python.org/moin/PythonDecoratorLibrary
+    * http://docs.python.org/dev/library/functools.html
+    * http://pypi.python.org/pypi/decorator
+    * Bruce Eckel
 
-  - `Decorators I`_: Introduction to Python Decorators
-  - `Python Decorators II`_: Decorator Arguments
-  - `Python Decorators III`_: A Decorator-Based Build System
-
-.. _`Decorators I`: http://www.artima.com/weblogs/viewpost.jsp?thread=240808
-.. _`Python Decorators II`: http://www.artima.com/weblogs/viewpost.jsp?thread=240845
-.. _`Python Decorators III`: http://www.artima.com/weblogs/viewpost.jsp?thread=241209
+      - `Decorators I`_: Introduction to Python Decorators
+      - `Python Decorators II`_: Decorator Arguments
+      - `Python Decorators III`_: A Decorator-Based Build System
+     
+      .. _`Decorators I`: http://www.artima.com/weblogs/viewpost.jsp?thread=240808
+      .. _`Python Decorators II`: http://www.artima.com/weblogs/viewpost.jsp?thread=240845
+      .. _`Python Decorators III`: http://www.artima.com/weblogs/viewpost.jsp?thread=241209
 
 
 Context managers
