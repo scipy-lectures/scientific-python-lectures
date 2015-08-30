@@ -91,38 +91,34 @@ Writing an array to a file:
     :align: center
     :scale: 50
 
-.. Comment to provide lena.png so that doctest passes
-   >>> from scipy import misc
-   >>> lena = misc.lena()
-   >>> misc.imsave('lena.png', lena)
-
 Creating a numpy array from an image file::
 
     >>> from scipy import misc
+    >>> lena = misc.lena()
+    >>> misc.imsave('lena.png', lena) # First we need to create the PNG file
+    
     >>> lena = misc.imread('lena.png')
     >>> type(lena)
     <type 'numpy.ndarray'>
     >>> lena.shape, lena.dtype
-    ((512, 512), dtype('uint64'))
+    ((512, 512), dtype('uint8'))
 
 dtype is uint8 for 8-bit images (0-255)
 
 Opening raw files (camera, 3-D images) ::
 
     >>> lena.tofile('lena.raw') # Create raw file
-    >>> lena_from_raw = np.fromfile('lena.raw', dtype=np.int64)
+    >>> lena_from_raw = np.fromfile('lena.raw', dtype=np.uint8)
     >>> lena_from_raw.shape
     (262144,)
     >>> lena_from_raw.shape = (512, 512)
-    >>> import os
-    >>> os.remove('lena.raw')
 
 Need to know the shape and dtype of the image (how to separate data
 bytes).
 
 For large data, use ``np.memmap`` for memory mapping::
 
-    >>> lena_memmap = np.memmap('lena.raw', dtype=np.int64, shape=(512, 512))
+    >>> lena_memmap = np.memmap('lena.raw', dtype=np.uint8, shape=(512, 512))
 
 (data are read from the file, and not loaded into memory)
 
@@ -511,6 +507,7 @@ image.
 Also works for grey-valued images::
 
     >>> np.random.seed(2)
+    >>> im = np.zeros((64, 64))
     >>> x, y = (63*np.random.random((2, 8))).astype(np.int)
     >>> im[x, y] = np.arange(8)
 
@@ -669,10 +666,10 @@ Use mathematical morphology to clean up the result::
 	>>> tmp = np.logical_not(reconstruct_img)
 	>>> eroded_tmp = ndimage.binary_erosion(tmp)
 	>>> reconstruct_final = np.logical_not(ndimage.binary_propagation(eroded_tmp, mask=tmp))
-	>>> np.abs(mask - close_img).mean()
-	0.014678955078125
-	>>> np.abs(mask - reconstruct_final).mean()
-	0.0042572021484375
+	>>> np.abs(mask - close_img).mean() # doctest: +ELLIPSIS
+	0.00727836...
+	>>> np.abs(mask - reconstruct_final).mean() # doctest: +ELLIPSIS
+	0.00059502...
 
 .. topic:: **Exercise**
     :class: green
@@ -727,7 +724,7 @@ Use mathematical morphology to clean up the result::
         >>> # dependant from the gradient the segmentation is close to a voronoi
         >>> graph.data = np.exp(-graph.data/graph.data.std())
 
-        >>> labels = spectral_clustering(graph, k=4, mode='arpack')
+        >>> labels = spectral_clustering(graph, n_clusters=4, eigen_solver='arpack')
         >>> label_im = -np.ones(mask.shape)
         >>> label_im[mask] = labels
 
@@ -756,7 +753,7 @@ Label connected components: ``ndimage.label``::
 
     >>> label_im, nb_labels = ndimage.label(mask)
     >>> nb_labels # how many regions?
-    23
+    16
     >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
@@ -892,6 +889,7 @@ One example with mathematical morphology: **granulometry**
     >>> mask = im > im.mean()
     >>>
     >>> granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
+
 
 .. figure:: auto_examples/images/plot_granulo_1.png
     :scale: 100
