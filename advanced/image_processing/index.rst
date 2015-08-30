@@ -666,10 +666,10 @@ Use mathematical morphology to clean up the result::
 	>>> tmp = np.logical_not(reconstruct_img)
 	>>> eroded_tmp = ndimage.binary_erosion(tmp)
 	>>> reconstruct_final = np.logical_not(ndimage.binary_propagation(eroded_tmp, mask=tmp))
-	>>> np.abs(mask - close_img).mean()
-	0.014678955078125
-	>>> np.abs(mask - reconstruct_final).mean()
-	0.0042572021484375
+	>>> np.abs(mask - close_img).mean() # doctest: +ELLIPSIS
+	0.00727836...
+	>>> np.abs(mask - reconstruct_final).mean() # doctest: +ELLIPSIS
+	0.00059502...
 
 .. topic:: **Exercise**
     :class: green
@@ -724,7 +724,7 @@ Use mathematical morphology to clean up the result::
         >>> # dependant from the gradient the segmentation is close to a voronoi
         >>> graph.data = np.exp(-graph.data/graph.data.std())
 
-        >>> labels = spectral_clustering(graph, k=4, mode='arpack')
+        >>> labels = spectral_clustering(graph, n_clusters=4, eigen_solver='arpack')
         >>> label_im = -np.ones(mask.shape)
         >>> label_im[mask] = labels
 
