@@ -2,7 +2,7 @@
 Statistics in Python
 =====================
 
-:authors: Gaël Varoquaux
+**Author**: *Gaël Varoquaux*
 
 .. topic:: **Requirements**
 
@@ -645,7 +645,7 @@ coefficient associated to versicolor and virginica in the linear model
 estimated above (it is an Analysis of Variance, `ANOVA
 <https://en.wikipedia.org/wiki/Analysis_of_variance>`_). For this, we
 write a **vector of 'contrast'** on the parameters estimated: we want to
-test "name[T.versicolor] - name[T.virginica]", with an `F-test
+test ``"name[T.versicolor] - name[T.virginica]"``, with an `F-test
 <https://en.wikipedia.org/wiki/F-test>`_::
 
     >>> print(model.f_test([0, 1, -1, 0]))
@@ -655,9 +655,6 @@ Is this difference significant?
 
 |
 
-______
-
-|
 
 .. topic:: **Exercice**
    :class: green
@@ -734,6 +731,36 @@ Categorical variables can be plotted as the hue::
      To switch back to seaborn settings, or understand better styling in
      seaborn, see the `relevent section of the seaborn documentation
      <http://stanford.edu/~mwaskom/software/seaborn/tutorial/aesthetics.html>`_.
+
+
+lmplot: plotting a univariate regression
+-----------------------------------------
+
+A regression capturing the relation between one variable and another, eg
+wage and eduction, can be plotted using :func:`seaborn.lmplot`::
+
+    >>> seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)
+
+.. image:: auto_examples/images/plot_wage_data_5.png
+   :target: auto_examples/plot_wage_data.html
+   :align: center
+   :scale: 60
+
+.. topic:: **Robust regression**
+
+    .. tip::
+
+        Given that, in the above plot, there seems to be a couple of data
+        points that are outside of the main cloud to the right, they might be
+        outliers, not representative of the population, but driving the
+        regression.
+
+    To compute a regression that is less sentive to outliers, one must
+    use a **robust model**. This is done in seaborn using ``robust=True``
+    in the plotting functions, or in statsmodels by replacing the use of
+    the OLS by a "Robust Linear Model",
+    :func:`statsmodels.formula.api.rlm`.
+
 
 Testing for interactions
 =========================

@@ -76,5 +76,10 @@ seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
 plt.suptitle('Effect of union: 1=Union member, 0=Not union member')
 
 
+##############################################################################
+# Plot a simple regression
+
+seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)
+
 plt.show()
 
