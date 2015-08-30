@@ -30,18 +30,16 @@ Changing orientation, resolution, .. ::
    :scale: 70
 
 
-.. sourcecode:: ipython
+    >>> plt.subplot(151)    # doctest: +ELLIPSIS
+    <matplotlib.axes._subplots.AxesSubplot object at 0x...>
 
-    In [35]: subplot(151)
-    Out[35]: <matplotlib.axes.AxesSubplot object at 0x925f46c>
+    >>> plt.imshow(shifted_lena, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at 0x...>
 
-    In [36]: pl.imshow(shifted_lena, cmap=cm.gray)
-    Out[36]: <matplotlib.image.AxesImage object at 0x9593f6c>
+    >>> plt.axis('off')
+    (-0.5, 511.5, 511.5, -0.5)
 
-    In [37]: axis('off')
-    Out[37]: (-0.5, 511.5, 511.5, -0.5)
-
-    In [39]: # etc.
+    >>> # etc.
 
 
 Image filtering
