@@ -170,9 +170,13 @@ div.body h4 {
 }
 
 div.body h1 a.toc-backref:visited,
+div.body h1 a.toc-backref,
 div.body h2 a.toc-backref:visited,
+div.body h2 a.toc-backref,
 div.body h3 a.toc-backref:visited,
-div.body h4 a.toc-backref:visited {
+div.body h3 a.toc-backref,
+div.body h4 a.toc-backref:visited,
+div.body h4 a.toc-backref {
     color: #20435c;
 }
 
