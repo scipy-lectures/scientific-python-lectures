@@ -93,11 +93,11 @@ It's...
 Block of memory
 ---------------
 
->>> x = np.array([1, 2, 3, 4], dtype=np.int32)
->>> x.data      # doctest: +SKIP
-<read-write buffer for ..., size 16, offset 0 at ...>
+>>> x = np.array([1, 2, 3], dtype=np.int32)
+>>> x.data      # doctest: +ELLIPSIS
+<read-write buffer for ..., size 12, offset 0 at ...>
 >>> str(x.data)
-'\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\x04\x00\x00\x00'
+'\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
 
 Memory address of the data:
 
@@ -492,26 +492,28 @@ Main point
 C and Fortran order
 .....................
 
->>> x = np.array([[1, 2, 3], 
-...               [4, 5, 6], 
-...               [7, 8, 9]], dtype=np.int16, order='C')
->>> x.strides
-(6, 2)
->>> str(x.data)
-'\x01\x00\x02\x00\x03\x00\x04\x00\x05\x00\x06\x00\x07\x00\x08\x00\t\x00'
+::
+
+    >>> x = np.array([[1, 2, 3], 
+    ...               [4, 5, 6]], dtype=np.int16, order='C')
+    >>> x.strides
+    (6, 2)
+    >>> str(x.data)
+    '\x01\x00\x02\x00\x03\x00\x04\x00\x05\x00\x06\x00'
 
 * Need to jump 6 bytes to find the next row
 * Need to jump 2 bytes to find the next column 
 
+::
 
->>> y = np.array(x, order='F')
->>> y.strides
-(2, 6)
->>> str(y.data)
-'\x01\x00\x04\x00\x07\x00\x02\x00\x05\x00\x08\x00\x03\x00\x06\x00\t\x00'
+    >>> y = np.array(x, order='F')
+    >>> y.strides
+    (2, 4)
+    >>> str(y.data)
+    '\x01\x00\x04\x00\x02\x00\x05\x00\x03\x00\x06\x00'
 
 * Need to jump 2 bytes to find the next row
-* Need to jump 6 bytes to find the next column 
+* Need to jump 4 bytes to find the next column 
 
 
 - Similarly to higher dimensions:
