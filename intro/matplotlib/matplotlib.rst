@@ -1120,11 +1120,10 @@ Mailing lists
 --------------
 
 Finally, there is a `user mailing list
-<https://lists.sourceforge.net/lists/listinfo/matplotlib-users>`_ where you can
+<https://mail.python.org/mailman/listinfo/matplotlib-users>`_ where you can
 ask for help and a `developers mailing list
-<https://lists.sourceforge.net/lists/listinfo/matplotlib-devel>`_ that is more
+<https://mail.python.org/mailman/listinfo/matplotlib-devel>`_ that is more
 technical.
-
 
 
 Quick references
