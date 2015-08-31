@@ -1,16 +1,16 @@
-========
+
 Authors
 ========
 
 Editors
-=========
+--------
 
 - Emmanuelle Gouillart
 
 - Gaël Varoquaux
 
 Chapter authors 
-===============
+----------------
 
 Listed by alphabetical order.
 
@@ -43,7 +43,7 @@ Listed by alphabetical order.
 - Valentin Haenel (editor from 2011 to 2015)
 
 Additional Contributions
-=========================
+------------------------
 
 - Akihiro Uchida
 
