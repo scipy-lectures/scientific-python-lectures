@@ -4,7 +4,8 @@ What's new
 Release 2015.1 (September 2015)
 -------------------------------------
 
-* New layout and simplified formatting (Gaël Varoquaux, Nelle Varoquaux)
+* New layout, simplified formatting, mobile-friendly (Gaël Varoquaux,
+  Nelle Varoquaux)
 
 * Code put up to date for more recent versions of project (Pierre de
   Buyl, Gert-Ludwig Ingold, Nicolas Pettiaux, Olav Vahtras, Gaël

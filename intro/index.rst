@@ -12,7 +12,9 @@ itself, to numerical computing or plotting.
 
 .. include:: ../tune_toc.rst
 
-.. toctree::
+.. rst-class:: tune
+
+  .. toctree::
 
    intro.rst
    language/python_language.rst

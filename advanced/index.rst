@@ -11,7 +11,9 @@ tackles various specific topics.
 
 .. include:: ../tune_toc.rst
 
-.. toctree::
+.. rst-class:: tune
+
+  .. toctree::
 
    advanced_python/index.rst
    advanced_numpy/index.rst

@@ -11,7 +11,9 @@ packages useful for extended needs.
 
 .. include:: ../tune_toc.rst
 
-.. toctree::
+.. rst-class:: tune
+
+  .. toctree::
    :maxdepth: 3
 
    sympy.rst

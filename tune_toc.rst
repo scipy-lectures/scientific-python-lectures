@@ -54,11 +54,11 @@
         padding-left: 0px ;
     }
 
-    li, ul {
+    div.tune li, div.tune ul {
         transition-duration: 0.2s;
     }
 
-    li.toctree-l1 {
+    div.tune li.toctree-l1 {
         padding: 5px 0 0;
         list-style-type: none;
         font-size: 150% ;
@@ -71,12 +71,12 @@
         font-weight: bold;
         }
 
-    li.toctree-l1 a {
+    div.tune li.toctree-l1 a {
         padding: 0 0 0 10px ;
         color: #314F64 ;
     }
 
-    li.toctree-l2 {
+    div.tune li.toctree-l2 {
         padding: 0.25em 0 0.25em 0 ;
         list-style-type: none;
         background-color: #FFFFFF;
@@ -84,12 +84,12 @@
         font-weight: normal;
     }
 
-    li.toctree-l2 ul {
+    div.tune li.toctree-l2 ul {
         padding-left: 40px ;
     }
 
 
-    li.toctree-l2:before {
+    div.tune li.toctree-l2:before {
         content: attr(data-content) ;
         font-size: 85% ;
         color: #777 ;
@@ -97,36 +97,32 @@
         width: 10px;
     }
 
-    li.toctree-l3 {
+    div.tune li.toctree-l3 {
         font-size: 75% ;
         list-style-type: square;
         font-weight: normal;
     }
 
-    li.toctree-l4 {
+    div.tune li.toctree-l4 {
         font-size: 85% ;
         list-style-type: circle;
         font-weight: normal;
     }
 
-    div.topic li.toctree-l1 {
-        font-size: 100% ;
+    div.preface li.toctree-l1 {
         font-weight: bold;
         background-color: transparent;
         margin-bottom: 0;
-        margin-left: 1.5em;
-        display:inline;
+        margin-left: 0;
+        margin-top: 10px;
+        display: inline;
     }
 
-    div.topic p {
-        font-size: 90% ;
-        margin: 0.4ex;
-    }
-
-    div.topic p.topic-title {
-        display:inline;
-        font-size: 100% ;
+    div.preface li.toctree-l2 {
+        background-color: transparent;
         margin-bottom: 0;
+        margin-left: 1.5em;
+        display: inline;
     }
 
     div.sidebar {

@@ -1,6 +1,9 @@
 Python Scientific Lecture Notes 
 ===================================================================
 
+One document to learn numerics, science, and data with Python
+--------------------------------------------------------------
+
 .. raw html to center the title
 
 .. raw:: html
@@ -10,10 +13,21 @@ Python Scientific Lecture Notes
         text-align: center;
         font-size: 240% ;
         font-weight: bold;
-        margin-bottom: 30px;
+        margin-bottom: 4px;
     }
 
-    h1:hover > a.headerlink {
+    div.documentwrapper h2 {
+        background-color: white;
+        border: none;
+        font-size: 130%;
+        text-align: center;
+        margin-bottom: 40px;
+        margin-top: 4px;
+    }
+
+    h1:hover > a.headerlink,
+    h2:hover > a.headerlink,
+    {
         visibility: hidden;
     }
 
@@ -22,7 +36,11 @@ Python Scientific Lecture Notes
         margin-top: -10px;
         border-radius: 6px;
     }
-  
+
+    div.preface {
+        margin-top: 20px;
+    }
+
   </style>
 
 .. nice layout in the toc
@@ -41,29 +59,29 @@ Python Scientific Lecture Notes
      
        * `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
-    .. topic:: This document
 
-        Tutorial material on the scientific Python ecosystem, a quick
-        introduction to central tools and techniques. The different chapters
-        each correspond to a 1 to 2 hours course with increasing level of
-        expertise, from beginner to expert.
+    Tutorials on the scientific Python ecosystem: a quick introduction to
+    central tools and techniques. The different chapters each correspond
+    to a 1 to 2 hours course with increasing level of expertise, from
+    beginner to expert.
+
+    .. rst-class:: preface
 
         .. toctree::
-            :maxdepth: 1
+            :maxdepth: 2
 
-            AUTHORS.rst
-            CHANGES.rst
-            README.rst
-            LICENSE.rst
+            preface.rst
 
 |
 
-.. toctree::
-   :numbered:
+.. rst-class:: tune
 
-   intro/index.rst
-   advanced/index.rst
-   packages/index.rst
+  .. toctree::
+    :numbered:
+
+    intro/index.rst
+    advanced/index.rst
+    packages/index.rst
 ____
 
 

@@ -133,9 +133,9 @@ div.related li.edit_on_github:hover span.tooltip {
   }
 }
 
-@media	only screen and (-webkit-min-device-pixel-ratio: 1.3),
-	only screen and (-o-min-device-pixel-ratio: 13/10),
-	only screen and (min-resolution: 120dpi)
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 15/10),
+	only screen and (min-resolution: 140dpi)
 {
   /* High DPI devices */
   div.related {
