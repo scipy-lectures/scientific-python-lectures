@@ -23,9 +23,8 @@ Sympy : Symbolic Mathematics in Python
 .. role:: input(strong)
 
 **What is SymPy?** SymPy is a Python library for symbolic mathematics. It
-aims become a full featured computer algebra system that can compete
-directly with commercial alternatives (Mathematica, Maple) while keeping
-the code as simple as possible in order to be comprehensible and easily
+aims to be an alternative to systems such as Mathematica or Maple while keeping
+the code as simple as possible and easily
 extensible.  SymPy is written entirely in Python and does not require any
 external libraries.
 
