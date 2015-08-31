@@ -11,6 +11,42 @@
 @import url("basic.css");
 @import url("default.css");
 
+body {
+  font-size: 110%;
+  line-height: 1.45;
+  color: #333332;
+  background-color: white;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  margin: 0 0;
+  font-family: sans-serif;
+}
+
+div.body {
+  color: #333332;
+  padding: 0 10px 30px 10px;
+}
+
+div.body li {
+   line-height: 1.45;
+}
+
+div.body p {
+   line-height: 1.45;
+}
+
+ul, menu, dir {
+  display: block;
+  list-style-type: disc;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+}
+
 /************************ Header *****************************/
 
 div.related li {
@@ -91,10 +127,40 @@ div.related li.edit_on_github:hover span.tooltip {
     border-radius: 6px;
 }
 
-@media all and (max-width: 840px) {
+@media (max-width: 840px) {
   li.edit_on_github a {
       display: none;
   }
+}
+
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.3),
+	only screen and (-o-min-device-pixel-ratio: 13/10),
+	only screen and (min-resolution: 120dpi)
+{
+  /* High DPI devices */
+  div.related {
+    font-size: 120%;
+    padding-top: 1pt;
+    padding-bottom: 1pt;
+  }
+}
+
+
+@media	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5),
+	only screen and (max-width: 1080px) and (-o-min-device-pixel-ratio: 25/10),
+	only screen and (max-width: 1080px) and (min-resolution: 250dpi)
+{
+  /* High DPI small screen devices, typically mobile phones */
+  div.related {
+    font-size: 140%;
+    padding-top: 3pt;
+    padding-bottom: 3pt;
+  }
+
+  li.edit_on_github a {
+      display: none;
+  }
+
 }
 
 
@@ -136,6 +202,21 @@ div.body {
     border-width: 0px 1px 0px 1px;
     border-color: rgb(204, 204, 204);*/
 }
+
+@media	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5),
+	only screen and (max-width: 1080px) and (-o-min-device-pixel-ratio: 25/10),
+	only screen and (max-width: 1080px) and (min-resolution: 250dpi)
+{
+  /* Necessary for good layout on Android phones */
+  div.body {
+      max-width: 102ex;
+  }
+
+  ol.arabic {
+      padding-left: 5.9ex;
+  }
+}
+
 
 div.document {
     /*background-color: #edf7fb;*/
@@ -240,13 +321,15 @@ div.body ul, div.body ol, div.body blockquote {
     margin-top : .3em;
 }
 
-/* Required for clean overlap in left or right align */
 div.body img {
+    /* Required for clean overlap in left or right align */
     position: relative;
     z-index: 10;
+    /* Avoid being larger than the page (for small-screen devices) */
+    max-width: 100%;
 }
 
-/* Center figures that are large than 100% of the figure */
+/* Center figures that are larger than 100% of the figure */
 div.body div.figure {
     margin-left: -200px;
     margin-right: -200px;

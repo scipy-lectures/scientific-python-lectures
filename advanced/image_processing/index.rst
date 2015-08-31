@@ -146,7 +146,7 @@ Draw contour lines::
 
 
 .. figure:: auto_examples/images/plot_display_lena_1.png
-    :scale: 100
+    :scale: 80
     :target: auto_examples/plot_display_lena.html
 
 .. only:: html
@@ -280,7 +280,7 @@ Geometrical transformations
     >>> rotate_lena_noreshape = ndimage.rotate(lena, 45, reshape=False)
 
 .. figure:: auto_examples/images/plot_geom_lena_1.png
-    :scale: 80
+    :scale: 65
     :target: auto_examples/plot_geom_lena.html
 
 .. only:: html
@@ -315,7 +315,7 @@ Blurring/smoothing
     >>> local_mean = ndimage.uniform_filter(lena, size=11)
 
 .. figure:: auto_examples/images/plot_blur_1.png
-    :scale: 80
+    :scale: 90
     :target: auto_examples/plot_blur.html
 
 .. only:: html
@@ -339,7 +339,7 @@ Laplacian::
     >>> sharpened = blurred_l + alpha * (blurred_l - filter_blurred_l)
 
 .. figure:: auto_examples/images/plot_sharpen_1.png
-    :scale: 100
+    :scale: 65
     :target: auto_examples/plot_sharpen.html
 
 .. only:: html
@@ -385,7 +385,7 @@ Median filter: better result for straight boundaries (**low curvature**)::
     >>> im_med = ndimage.median_filter(im_noise, 3)
 
 .. figure:: auto_examples/images/plot_denoising_1.png
-    :scale: 60
+    :scale: 50
     :target: auto_examples/plot_denoising.html
 
 .. only:: html

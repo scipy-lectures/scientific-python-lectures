@@ -22,4 +22,5 @@ plt.subplot(133)
 plt.imshow(sharpened, cmap=plt.cm.gray)
 plt.axis('off')
 
+plt.tight_layout()
 plt.show()

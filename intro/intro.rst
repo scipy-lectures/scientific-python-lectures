@@ -343,7 +343,7 @@ Other useful magic functions are:
 
 
     In [8]: debug
-    > /home/esc/anaconda/lib/python2.7/site-packages/IPython/core/compilerop.py(87)ast_parse()
+    > /.../IPython/core/compilerop.py (87)ast_parse()
          86         and are passed to the built-in compile function."""
     ---> 87         return compile(source, filename, symbol, self.flags | PyCF_ONLY_AST, 1)
          88
