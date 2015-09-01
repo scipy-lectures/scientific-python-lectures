@@ -88,7 +88,7 @@ Useful when you have a large program to profile, for example the
     component analysis (`PCA
     <http://en.wikipedia.org/wiki/Principal_component_analysis>`_) and
     independent component analysis
-    (`ICA<http://en.wikipedia.org/wiki/Independent_component_ana lysis>`_). PCA
+    (`ICA <http://en.wikipedia.org/wiki/Independent_component_analysis>`_). PCA
     is a technique for dimensionality reduction, i.e. an algorithm to explain
     the observed variance in your data using less dimensions. ICA is a source
     seperation technique, for example to unmix multiple signals that have been
@@ -117,30 +117,30 @@ and profile it:
 
    Ordered by: internal time
 
-   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
-        1   14.457   14.457   14.479   14.479 decomp.py:849(svd)
+   ncalls  tottime  percall  cumtime  percall filename:lineno (function)
+        1   14.457   14.457   14.479   14.479 decomp.py:849 (svd)
         1    0.054    0.054    0.054    0.054 {method 'random_sample' of 'mtrand.RandomState' objects}
-        1    0.017    0.017    0.021    0.021 function_base.py:645(asarray_chkfinite)
+        1    0.017    0.017    0.021    0.021 function_base.py:645 (asarray_chkfinite)
        54    0.011    0.000    0.011    0.000 {numpy.core._dotblas.dot}
         2    0.005    0.002    0.005    0.002 {method 'any' of 'numpy.ndarray' objects}
-        6    0.001    0.000    0.001    0.000 ica.py:195(gprime)
-        6    0.001    0.000    0.001    0.000 ica.py:192(g)
+        6    0.001    0.000    0.001    0.000 ica.py:195 (gprime)
+        6    0.001    0.000    0.001    0.000 ica.py:192 (g)
        14    0.001    0.000    0.001    0.000 {numpy.linalg.lapack_lite.dsyevd}
-       19    0.001    0.000    0.001    0.000 twodim_base.py:204(diag)
-        1    0.001    0.001    0.008    0.008 ica.py:69(_ica_par)
+       19    0.001    0.000    0.001    0.000 twodim_base.py:204 (diag)
+        1    0.001    0.001    0.008    0.008 ica.py:69 (_ica_par)
         1    0.001    0.001   14.551   14.551 {execfile}
-      107    0.000    0.000    0.001    0.000 defmatrix.py:239(__array_finalize__)
-        7    0.000    0.000    0.004    0.001 ica.py:58(_sym_decorrelation)
-        7    0.000    0.000    0.002    0.000 linalg.py:841(eigh)
+      107    0.000    0.000    0.001    0.000 defmatrix.py:239 (__array_finalize__)
+        7    0.000    0.000    0.004    0.001 ica.py:58 (_sym_decorrelation)
+        7    0.000    0.000    0.002    0.000 linalg.py:841 (eigh)
       172    0.000    0.000    0.000    0.000 {isinstance}
-        1    0.000    0.000   14.551   14.551 demo.py:1(<module>)
-       29    0.000    0.000    0.000    0.000 numeric.py:180(asarray)
-       35    0.000    0.000    0.000    0.000 defmatrix.py:193(__new__)
-       35    0.000    0.000    0.001    0.000 defmatrix.py:43(asmatrix)
-       21    0.000    0.000    0.001    0.000 defmatrix.py:287(__mul__)
+        1    0.000    0.000   14.551   14.551 demo.py:1 (<module>)
+       29    0.000    0.000    0.000    0.000 numeric.py:180 (asarray)
+       35    0.000    0.000    0.000    0.000 defmatrix.py:193 (__new__)
+       35    0.000    0.000    0.001    0.000 defmatrix.py:43 (asmatrix)
+       21    0.000    0.000    0.001    0.000 defmatrix.py:287 (__mul__)
        41    0.000    0.000    0.000    0.000 {numpy.core.multiarray.zeros}
        28    0.000    0.000    0.000    0.000 {method 'transpose' of 'numpy.ndarray' objects}
-        1    0.000    0.000    0.008    0.008 ica.py:97(fastica)
+        1    0.000    0.000    0.008    0.008 ica.py:97 (fastica)
         ...
 
 Clearly the ``svd`` (in `decomp.py`) is what takes most of our time, a.k.a. the
@@ -199,7 +199,7 @@ Then we run the script using the `kernprof.py
     Total time: 14.2793 s
 
     Line #      Hits         Time  Per Hit   % Time  Line Contents
-    ==============================================================
+    =========== ============ ===== ========= ======= ==== ========
         5                                           @profile
         6                                           def test():
         7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))

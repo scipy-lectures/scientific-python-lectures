@@ -291,6 +291,11 @@ div.body pre {
     text-overflow: ellipsis;
     background-color: hsl(210, 100%, 98%);
     border-color: #B8BEC3;
+    /* Break words to avoid too long lines */
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+	-ms-hyphens: auto;
+	    hyphens: auto;
 }
 
 div.highlight pre {
