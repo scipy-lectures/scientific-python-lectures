@@ -43,7 +43,7 @@ used for more efficient, non black-box, optimization.
 
 .. contents:: Chapters contents
    :local:
-   :depth: 4
+   :depth: 2
 
 .. XXX: should I discuss root finding?
 
