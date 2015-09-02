@@ -110,6 +110,6 @@ install: pdf html
 epub:
 	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) build/epub
 	@echo
-	@echo "Build finished. The epub file is in _build/epub."
+	@echo "Build finished. The epub file is in build/epub."
 
 

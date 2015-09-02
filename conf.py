@@ -228,6 +228,11 @@ html_use_index = False
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'PythonScientic'
 
+# Options for epub output
+# ------------------------
+
+epub_theme = 'epub'
+epub_theme_options = {'relbar1': False, 'footer': False}
 
 # Options for LaTeX output
 # ------------------------
