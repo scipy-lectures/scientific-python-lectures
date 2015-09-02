@@ -18,6 +18,13 @@ Statistics in Python
    download `Anaconda Python <http://continuum.io/downloads>`_, or use
    Ubuntu's package manager.
 
+.. seealso:: **Bayesian statistics in Python**
+
+   This chapter does not cover tools for Bayesian statistics. Of
+   particular interest for Bayesian modelling is `PyMC
+   <http://pymc-devs.github.io/pymc>`_, which implements a probabilistic
+   programming language in Python.
+
 |
 
 .. tip::
@@ -756,17 +763,18 @@ wage and eduction, can be plotted using :func:`seaborn.lmplot`::
         regression.
 
     To compute a regression that is less sentive to outliers, one must
-    use a **robust model**. This is done in seaborn using ``robust=True``
-    in the plotting functions, or in statsmodels by replacing the use of
-    the OLS by a "Robust Linear Model",
-    :func:`statsmodels.formula.api.rlm`.
+    use a `robust model
+    <https://en.wikipedia.org/wiki/Robust_statistics>`_. This is done in
+    seaborn using ``robust=True`` in the plotting functions, or in
+    statsmodels by replacing the use of the OLS by a "Robust Linear
+    Model", :func:`statsmodels.formula.api.rlm`.
 
 
 Testing for interactions
 =========================
 
 .. image:: auto_examples/images/plot_wage_education_gender_1.png
-   :target: auto_examples/plot_education_gender.html
+   :target: auto_examples/plot_wage_education_gender.html
    :align: center
    :scale: 60
 
