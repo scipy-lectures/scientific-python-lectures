@@ -45,32 +45,106 @@ Listed by alphabetical order.
 Additional Contributions
 ------------------------
 
-- Akihiro Uchida
+Listed by alphabetical order
 
-- Corey Farwell
+- arunpersaud
 
-- egens
-
-- Gert-Ludwig Ingold
-
-- Jonathan J. Helmus
-
-- kikocorreo
+- Matthew Brett
 
 - Lars Buitinck
 
-- Nicolas Pettiaux
-
-- Olav Vahtras
-
-- Olivier Verdier
+- Pierre de Buyl
 
 - Ozan Çağlayan
 
-- Pierre de Buyl
+- Adrien Chauve
+
+- Robert Cimrman
+
+- Christophe Combelles
+
+- David Cournapeau
+
+- egens
+
+- emmanuelle
+
+- Andre Espaze
+
+- André Espaze
+
+- Corey Farwell
 
 - Robert Gieseke
 
+- Philip Gillißen
+
+- Ralf Gommers
+
+- Emmanuelle Gouillart
+
+- Valentin Haenel
+
+- Pierre Haessig
+
+- Jonathan Helmus
+
+- Tarek Hoteit
+
+- Gert-Ludwig Ingold
+
+- Zbigniew Jędrzejewski-Szmek
+
+- kikocorreoso
+
+- mhemantha
+
+- mriehl
+
+- nicoguaro
+
 - Sergio Oller
 
-- Virgile Fritsch
+- Fabian Pedregosa
+
+- Tiago M. D. Pereira
+
+- Nicolas Pettiaux
+
+- Didrik Pinte
+
+- reverland
+
+- Maximilien Riehl
+
+- Nicolas Rougier
+
+- Helen Sherwood-Taylor
+
+- Simon
+
+- strpeter
+
+- Wes Turner
+
+- Akihiro Uchida
+
+- Utkarsh Upadhyay
+
+- Olav Vahtras
+
+- Gael Varoquaux
+
+- Nelle Varoquaux
+
+- Olivier Verdier
+
+- VirgileFritsch
+
+- Pauli Virtanen
+
+- Yosh Wakeham
+
+- Stefan van der Walt
+
+- yasutomo57jp
