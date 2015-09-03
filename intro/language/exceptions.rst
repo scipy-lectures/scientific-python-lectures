@@ -1,7 +1,7 @@
 Exception handling in Python
 ============================
 
-It is highly unlikely that you haven't yet raised Exceptions if you have
+It is likely that you have raised Exceptions if you have
 typed all the previous commands of the tutorial. For example, you may
 have raised an exception if you entered a command with a typo.
 
