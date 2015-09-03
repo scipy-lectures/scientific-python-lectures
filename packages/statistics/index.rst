@@ -178,6 +178,8 @@ Manipulating data
 .. note:: For a quick view on a large dataframe, use its `describe`
     method: :meth:`pandas.DataFrame.describe`.
 
+|
+
 **groupby**: splitting a dataframe on values of categorical variables::
 
     >>> groupby_gender = data.groupby('Gender')
