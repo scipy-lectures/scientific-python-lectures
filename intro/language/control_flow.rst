@@ -9,7 +9,7 @@ if/elif/else
 .. sourcecode:: python
 
     >>> if 2**2 == 4:
-    ...     print 'Obvious!'
+    ...     print('Obvious!')
     ...
     Obvious!
 
@@ -24,17 +24,16 @@ if/elif/else
     decrease the indentation depth, go four spaces to the left with the
     Backspace key. Press the Enter key twice to leave the logical block.
 
-.. sourcecode:: ipython
+.. sourcecode:: python
 
-    In [1]: a = 10
+    >>> a = 10
 
-    In [2]: if a == 1:
-       ...:     print(1)
-       ...: elif a == 2:
-       ...:     print(2)
-       ...: else:
-       ...:     print('A lot')
-       ...:
+    >>> if a == 1:
+    ...     print(1)
+    ... elif a == 2:
+    ...     print(2)
+    ... else:
+    ...     print('A lot')
     A lot
 
 Indentation is compulsory in scripts as well. As an exercise, re-type the
@@ -91,7 +90,7 @@ Typical C-style while loop (Mandelbrot problem)::
     >>> for element in a:
     ...     if element == 0:
     ...         continue
-    ...     print 1. / element
+    ...     print(1. / element)
     1.0
     0.5
     0.25
@@ -156,8 +155,10 @@ a file, ...)::
 
     >>> for i in 'powerful':
     ...     if i in vowels:
-    ...         print(i),
-    o e u
+    ...         print(i)
+    o
+    e
+    u
 
 ::
 
@@ -165,7 +166,7 @@ a file, ...)::
     >>> message.split() # returns a list
     ['Hello', 'how', 'are', 'you?']
     >>> for word in message.split():
-    ...     print word
+    ...     print(word)
     ...
     Hello
     how
@@ -193,33 +194,38 @@ item number.
 
     >>> words = ('cool', 'powerful', 'readable')
     >>> for i in range(0, len(words)):
-    ...     print i, words[i]
-    0 cool
-    1 powerful
-    2 readable
+    ...     print((i, words[i]))
+    (0, 'cool')
+    (1, 'powerful')
+    (2, 'readable')
 
 * But, Python provides a built-in function - ``enumerate`` - for this::
 
     >>> for index, item in enumerate(words):
-    ...     print index, item
-    0 cool
-    1 powerful
-    2 readable
+    ...     print((index, item))
+    (0, 'cool')
+    (1, 'powerful')
+    (2, 'readable')
 
 
 
 Looping over a dictionary
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use **iteritems**::
+Use **items**::
 
     >>> d = {'a': 1, 'b':1.2, 'c':1j}
 
-    >>> for key, val in d.iteritems():
+    >>> for key, val in sorted(d.items()):
     ...     print('Key: %s has value: %s' % (key, val))
     Key: a has value: 1
-    Key: c has value: 1j
     Key: b has value: 1.2
+    Key: c has value: 1j
+
+.. note::
+
+   The ordering of a dictionary in random, thus we use :func:`sorted`
+   which will sort on the keys.
 
 List Comprehensions
 -------------------

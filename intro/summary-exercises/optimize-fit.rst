@@ -130,7 +130,7 @@ following arguments:
 
     >>> from scipy.optimize import leastsq
     >>> x, flag = leastsq(residuals, x0, args=(waveform_1, t))
-    >>> print x
+    >>> print(x)
     [  2.70363341  27.82020742  15.47924562   3.05636228]
 
 And visualize the solution:

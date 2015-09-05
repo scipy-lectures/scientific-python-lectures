@@ -237,14 +237,14 @@ Now we look for various information about the objects in the image::
     >>> labels, nb = ndimage.label(mask)
     >>> nb
     8
-    >>> areas = ndimage.sum(mask, labels, xrange(1, labels.max()+1))
+    >>> areas = ndimage.sum(mask, labels, range(1, labels.max()+1))
     >>> areas
     array([ 190.,   45.,  424.,  278.,  459.,  190.,  549.,  424.])
-    >>> maxima = ndimage.maximum(sig, labels, xrange(1, labels.max()+1))
+    >>> maxima = ndimage.maximum(sig, labels, range(1, labels.max()+1))
     >>> maxima
     array([  1.80238238,   1.13527605,   5.51954079,   2.49611818,
              6.71673619,   1.80238238,  16.76547217,   5.51954079])
-    >>> ndimage.find_objects(labels==4)
+    >>> ndimage.find_objects(labels==4) # doctest: +SKIP
     [(slice(30L, 48L, None), slice(30L, 48L, None))]
     >>> sl = ndimage.find_objects(labels==4)
     >>> import pylab as pl

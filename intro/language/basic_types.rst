@@ -13,13 +13,13 @@ Numerical types
     >>> 1 + 1
     2
     >>> a = 4
-    >>> type(a)
+    >>> type(a)   # doctest: +SKIP
     <type 'int'>
 
 :Floats:
 
     >>> c = 2.1
-    >>> type(c)
+    >>> type(c)   # doctest: +SKIP
     <type 'float'>
 
 :Complex:
@@ -29,7 +29,7 @@ Numerical types
     1.5
     >>> a.imag
     0.5
-    >>> type(1. + 0j )
+    >>> type(1. + 0j)   # doctest: +SKIP
     <type 'complex'>
 
 :Booleans:
@@ -39,7 +39,7 @@ Numerical types
     >>> test = (3 > 4)
     >>> test
     False
-    >>> type(test)
+    >>> type(test)      # doctest: +SKIP
     <type 'bool'>
 
 .. tip::
@@ -64,9 +64,9 @@ Type conversion (casting)::
 
 .. warning:: Integer division
 
-    ::
+    In Python 2 (but not in Python 3)::
 
-        >>> 3 / 2
+        >>> 3 / 2   # doctest: +SKIP
         1
 
     **Trick**: use floats::
@@ -76,7 +76,7 @@ Type conversion (casting)::
 
         >>> a = 3
         >>> b = 2
-        >>> a / b
+        >>> a / b # In Python 2  # doctest: +SKIP
         1
         >>> a / float(b)
         1.5
@@ -113,20 +113,20 @@ Lists
 
 ::
 
-    >>> L = ['red', 'blue', 'green', 'black', 'white']
-    >>> type(L)
+    >>> l = ['red', 'blue', 'green', 'black', 'white']
+    >>> type(l)     # doctest: +SKIP
     <type 'list'>
 
 Indexing: accessing individual objects contained in the list::
 
-    >>> L[2]
+    >>> l[2]
     'green'
 
 Counting from the end with negative indices::
 
-    >>> L[-1]
+    >>> l[-1]
     'white'
-    >>> L[-2]
+    >>> l[-2]
     'black'
 
 .. warning::
@@ -135,49 +135,49 @@ Counting from the end with negative indices::
 
 Slicing: obtaining sublists of regularly-spaced elements::
 
-    >>> L
+    >>> l
     ['red', 'blue', 'green', 'black', 'white']
-    >>> L[2:4]
+    >>> l[2:4]
     ['green', 'black']
 
 .. Warning::
 
-    Note that ``L[start:stop]`` contains the elements with indices ``i``
+    Note that ``l[start:stop]`` contains the elements with indices ``i``
     such as  ``start<= i < stop`` (``i`` ranging from ``start`` to
-    ``stop-1``). Therefore, ``L[start:stop]`` has ``(stop-start)`` elements.
+    ``stop-1``). Therefore, ``l[start:stop]`` has ``(stop - start)`` elements.
 
-**Slicing syntax**: ``L[start:stop:stride]``
+**Slicing syntax**: ``l[start:stop:stride]``
 
 .. tip::
 
   All slicing parameters are optional::
 
-    >>> L
+    >>> l
     ['red', 'blue', 'green', 'black', 'white']
-    >>> L[3:]
+    >>> l[3:]
     ['black', 'white']
-    >>> L[:3]
+    >>> l[:3]
     ['red', 'blue', 'green']
-    >>> L[::2]
+    >>> l[::2]
     ['red', 'green', 'white']
 
 Lists are *mutable* objects and can be modified::
 
-    >>> L[0] = 'yellow'
-    >>> L
+    >>> l[0] = 'yellow'
+    >>> l
     ['yellow', 'blue', 'green', 'black', 'white']
-    >>> L[2:4] = ['gray', 'purple']
-    >>> L
+    >>> l[2:4] = ['gray', 'purple']
+    >>> l
     ['yellow', 'blue', 'gray', 'purple', 'white']
 
 .. Note::
 
    The elements of a list may have different types::
 
-        >>> L = [3, -200, 'hello']
-        >>> L
+        >>> l = [3, -200, 'hello']
+        >>> l
         [3, -200, 'hello']
-        >>> L[1], L[2]
+        >>> l[1], l[2]
         (-200, 'hello')
 
    .. tip::
@@ -393,13 +393,13 @@ Dictionaries
 
     >>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
     >>> tel['francis'] = 5915
-    >>> tel
+    >>> tel     # doctest: +SKIP
     {'sebastian': 5578, 'francis': 5915, 'emmanuelle': 5752}
     >>> tel['sebastian']
     5578
-    >>> tel.keys()
+    >>> tel.keys()   # doctest: +SKIP
     ['sebastian', 'francis', 'emmanuelle']
-    >>> tel.values()
+    >>> tel.values()   # doctest: +SKIP
     [5578, 5915, 5752]
     >>> 'francis' in tel
     True
@@ -414,7 +414,7 @@ Dictionaries
   A dictionary can have keys (resp. values) with different types::
 
     >>> d = {'a':1, 'b':2, 3:'hello'}
-    >>> d
+    >>> d       # doctest: +SKIP
     {'a': 1, 3: 'hello', 'b': 2}
 
 More container types
@@ -435,9 +435,9 @@ between parentheses, or just separated by commas::
 **Sets:** unordered, unique items::
 
     >>> s = set(('a', 'b', 'c', 'a'))
-    >>> s
+    >>> s    # doctest: +SKIP
     set(['a', 'c', 'b'])
-    >>> s.difference(('a', 'b'))
+    >>> s.difference(('a', 'b'))    # doctest: +SKIP
     set(['c'])
 
 Assignment operator

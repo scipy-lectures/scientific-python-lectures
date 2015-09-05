@@ -573,8 +573,8 @@ scipy version, :func:`scipy.optimize.fmin_l_bfgs_b`, includes box bounds::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)
-    (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([  1.02331202e-07,  -2.59299369e-08]), 'nit': 16, 'funcalls': 17})
+    >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)    # doctest: +ELLIPSIS
+    (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {...})
 
 .. note:: 
    
@@ -926,8 +926,8 @@ as box bounds can be rewritten as such via change of variables.
 
     >>> def f(x):
     ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
-    >>> optimize.fmin_l_bfgs_b(f, np.array([0, 0]), approx_grad=1, bounds=((-1.5, 1.5), (-1.5, 1.5)))
-    (array([ 1.5,  1.5]), 1.5811388300841898, {'warnflag': 0, 'task': 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL', 'grad': array([-0.94868331, -0.31622778]), 'nit': 2, 'funcalls': 12})
+    >>> optimize.fmin_l_bfgs_b(f, np.array([0, 0]), approx_grad=1, bounds=((-1.5, 1.5), (-1.5, 1.5)))   # doctest: +ELLIPSIS
+    (array([ 1.5,  1.5]), 1.5811388300841898, {...})
 
 
 General constraints

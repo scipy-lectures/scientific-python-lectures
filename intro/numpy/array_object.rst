@@ -348,7 +348,7 @@ There are also other types:
   .. sourcecode:: pycon
 
         >>> f = np.array(['Bonjour', 'Hello', 'Hallo',])
-        >>> f.dtype     # <--- strings containing max. 7 letters
+        >>> f.dtype     # <--- strings containing max. 7 letters  # doctest: +SKIP
         dtype('S7')
 
 :Much more:

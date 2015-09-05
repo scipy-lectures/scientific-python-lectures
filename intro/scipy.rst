@@ -187,10 +187,10 @@ LAPACK).
 
     >>> arr = np.array([[3, 2],
     ...                 [6, 4]])
-    >>> linalg.inv(arr)
+    >>> linalg.inv(arr)  # doctest: +SKIP
     Traceback (most recent call last):
     ...
-    LinAlgError: singular matrix
+    ...LinAlgError: singular matrix
 
 * More advanced operations are available, for example singular-value
   decomposition (SVD)::
@@ -393,7 +393,7 @@ optimizer with stochastic sampling of starting points for the local optimizer):
 
 ::
 
-   >>> optimize.basinhopping(f, 0)
+   >>> optimize.basinhopping(f, 0)  # doctest: +SKIP
                      nfev: 1725
     minimization_failures: 0
                       fun: -7.9458233756152845

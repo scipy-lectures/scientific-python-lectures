@@ -49,8 +49,8 @@ Examples
     >>> col = np.array([0, 3, 1, 2])
     >>> data = np.array([4, 5, 7, 9])
     >>> mtx = sparse.coo_matrix((data, (row, col)), shape=(4, 4))
-    >>> mtx     # doctest: +NORMALIZE_WHITESPACE
-    <4x4 sparse matrix of type '<type 'numpy.int64'>'
+    >>> mtx     # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    <4x4 sparse matrix of type '<... 'numpy.int64'>'
             with 4 stored elements in COOrdinate format>
     >>> mtx.todense()
     matrix([[4, 0, 9, 0],
