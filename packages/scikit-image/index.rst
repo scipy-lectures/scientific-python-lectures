@@ -79,8 +79,16 @@ for Ubuntu/Debian.
 
 
     >>> import skimage
-    >>> from skimage import data, filters  # most functions are in subpackages 
+    >>> from skimage import data  # most functions are in subpackages 
     >>> from skimage.morphology import disk
+
+::
+
+    try:
+        from skimage import filters
+    except Import Error:
+        from skimage import filter as filters
+        
 
 Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
 
@@ -89,7 +97,7 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
     dtype('uint8')
     >>> camera.shape
     (512, 512)
-    >>> filtered_camera = filters.median(camera, disk(1))
+    >>> filtered_camera = filters.gaussian_filter(camera, 3)
     >>> type(filtered_camera)
     <type 'numpy.ndarray'>
 
@@ -214,7 +222,6 @@ Some image processing routines need to work with float arrays, and may
 hence output an array with a different type and the data range from the
 input array ::
 
-    >>> from skimage import filters
     >>> camera_sobel = filters.sobel(camera)
     >>> camera_sobel.max()
     0.8365106670670005
@@ -234,8 +241,8 @@ Colorspaces
 Color images are of shape (N, M, 3) or (N, M, 4) (when an alpha channel
 encodes transparency) ::
 
-    >>> astronaut = data.astronaut()
-    >>> astronaut.shape
+    >>> lena = data.lena()
+    >>> lena.shape
     (512, 512, 3)
 
 
