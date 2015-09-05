@@ -88,14 +88,6 @@ for Ubuntu/Debian.
 
     >>> import skimage
     >>> from skimage import data  # most functions are in subpackages 
-    >>> from skimage.morphology import disk
-
-::
-
-    >>> try:
-    ...     from skimage import filters
-    ... except ImportError:
-    ...     from skimage import filter as filters
 
 
 Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
@@ -105,7 +97,8 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
     dtype('uint8')
     >>> camera.shape
     (512, 512)
-    >>> filtered_camera = filters.gaussian_filter(camera, 3)
+    >>> from skimage import restoration
+    >>> filtered_camera = restoration.denoise_bilateral(camera)
     >>> type(filtered_camera)
     <type 'numpy.ndarray'>
 
@@ -136,7 +129,7 @@ What's to be found in scikit-image
 * Gallery of examples (as in
   `matplotlib <http://matplotlib.org/gallery.html>`_ or
   `scikit-learn <http://scikit-learn.org>`_):
-  http://scikit-image.org/docs/dev/auto_examples/
+  http://scikit-image.org/docs/stable/auto_examples/
 
 Different kinds of functions, from boilerplate utility functions to
 high-level recent algorithms.
@@ -225,17 +218,26 @@ Some image processing routines need to work with float arrays, and may
 hence output an array with a different type and the data range from the
 input array ::
 
+    >>> try:
+    ...     from skimage import filters
+    ... except ImportError:
+    ...     from skimage import filter as filters
     >>> camera_sobel = filters.sobel(camera)
     >>> camera_sobel.max() # doctest: +SKIP 
     0.591502...
 
+.. warning:: 
+
+    In the example above, we use the ``filters`` submodule of scikit-image,
+    that has been renamed from ``filter`` to ``filters`` between versions 0.10
+    and 0.11, in order to avoid a collision with Python's built-in name ``filter``. 
 
 Utility functions are provided in :mod:`skimage` to convert both the
 dtype and the data range, following skimage's conventions:
 ``util.img_as_float``, ``util.img_as_ubyte``, etc.
 
 See the `user guide
-<http://scikit-image.org/docs/dev/user_guide/data_types.html>`_ for
+<http://scikit-image.org/docs/stable/user_guide/data_types.html>`_ for
 more details.
 
 Colorspaces
@@ -715,8 +717,8 @@ Example: detecting corners using Harris detector ::
     :align: center
 
 (this example is taken from
-http://scikit-image.org/docs/dev/auto_examples/plot_corner.html)
+http://scikit-image.org/docs/stable/auto_examples/plot_corner.html)
 
 Points of interest such as corners can then be used to match objects in
 different images, as described in
-http://scikit-image.org/docs/dev/auto_examples/plot_matching.html
+http://scikit-image.org/docs/stable/auto_examples/plot_matching.html
