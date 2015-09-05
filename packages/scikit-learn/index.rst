@@ -20,13 +20,13 @@ scikit-learn: machine learning in Python
    :local:
    :depth: 2
 
-..
-  For doctesting, to avoid having figures poping up
-  
-  >>> import matplotlib
-  >>> matplotlib.use('svg')
-  >>> import numpy as np
-  >>> np.random.seed(0)
+.. For doctests
+   >>> import numpy as np
+   >>> np.random.seed(0)
+   >>> # For doctest on headless environments
+   >>> from matplotlib import pyplot as plt
+   >>> plt.switch_backend('Agg')
+
 
 Loading an example dataset
 ==========================
@@ -119,7 +119,7 @@ Once we have learned from the data, we can use our model to predict the
 most likely outcome on unseen data:
 
     >>> clf.predict([[ 5.0,  3.6,  1.3,  0.25]])
-    array([0], dtype=int32)
+    array([0])
 
 .. note:: 
    
@@ -317,9 +317,9 @@ object API and several additional features, including smart initialization.)
 
     >>> from sklearn import cluster, datasets
     >>> iris = datasets.load_iris()
-    >>> k_means = cluster.KMeans(k=3)
+    >>> k_means = cluster.KMeans(n_clusters=3)
     >>> k_means.fit(iris.data) # doctest: +ELLIPSIS
-    KMeans(copy_x=True, init='k-means++', k=3, ...
+    KMeans(...)
     >>> print k_means.labels_[::10]
     [1 1 1 1 1 0 0 0 0 0 2 2 2 2 2]
     >>> print iris.target[::10]
@@ -601,11 +601,10 @@ estimator during the construction and exposes an estimator API::
     >>> clf = grid_search.GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas), 
     ...                    n_jobs=-1)
     >>> clf.fit(digits.data[:1000], digits.target[:1000]) # doctest: +ELLIPSIS
-    GridSearchCV(cv=None,
-           estimator=SVC(C=1.0, ...
-    >>> clf.best_score
-    0.98899798001594419
-    >>> clf.best_estimator.gamma
+    GridSearchCV(cv=None,...)
+    >>> clf.best_score_  # doctest: +ELLIPSIS
+    0.9...
+    >>> clf.best_estimator_.gamma
     0.00059948425031894088
 
 
@@ -628,14 +627,11 @@ automatically by cross-validation::
     >>> diabetes = datasets.load_diabetes()
     >>> X_diabetes = diabetes.data
     >>> y_diabetes = diabetes.target
-    >>> lasso.fit(X_diabetes, y_diabetes)
-    LassoCV(alphas=array([ 2.14804,  2.00327, ...,  0.0023 ,  0.00215]),
-        copy_X=True, cv=None, eps=0.001, fit_intercept=True, max_iter=1000,
-        n_alphas=100, normalize=False, precompute='auto', tol=0.0001,
-        verbose=False)
+    >>> lasso.fit(X_diabetes, y_diabetes) # doctest: +ELLIPSIS
+    LassoCV(alphas=None, ...)
     >>> # The estimator chose automatically its lambda:
-    >>> lasso.alpha # doctest: +ELLIPSIS
-    0.013...
+    >>> lasso.alpha_ # doctest: +ELLIPSIS
+    0.012...
 
 These estimators are called similarly to their counterparts, with 'CV'
 appended to their name.

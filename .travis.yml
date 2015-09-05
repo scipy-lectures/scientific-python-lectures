@@ -18,7 +18,7 @@ env:
     - DISTRIB="conda" PYTHON_VERSION="$TRAVIS_PYTHON_VERSION"
       NUMPY_VERSION="1.8.2" SCIPY_VERSION="0.14.0" 
       SCIKIT_LEARN_VERSION="0.15.1" MATPLOTLIB_VERSION="1.4.0"
-      SCIKIT_IMAGE_VERSION="0.10.1"
+      SCIKIT_IMAGE_VERSION="0.10.1" SYMPY_VERSION="0.7.5"
 
 before_install:
     - sudo apt-get install texlive texlive-latex-extra
