@@ -10,7 +10,7 @@ background are used as seeds.
 import numpy as np
 from skimage.morphology import watershed
 from skimage.feature import peak_local_max
-from skimage import morphology
+from skimage import measure
 from skimage.segmentation import random_walker
 import matplotlib.pyplot as plt
 from scipy import ndimage
@@ -28,7 +28,7 @@ image = np.logical_or(mask_circle1, mask_circle2)
 distance = ndimage.distance_transform_edt(image)
 local_maxi = peak_local_max(
     distance, indices=False, footprint=np.ones((3, 3)), labels=image)
-markers = morphology.label(local_maxi)
+markers = measure.label(local_maxi)
 labels_ws = watershed(-distance, markers, mask=image)
 
 markers[~image] = -1

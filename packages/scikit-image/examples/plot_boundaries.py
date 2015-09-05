@@ -2,15 +2,19 @@
 Visiualize segmentation contours on original grayscale image.
 """
 
-from skimage import data, segmentation, filter, color
+from skimage import data, segmentation
+try:
+    from skimage import filters
+except ImportError:
+    from skimage import filter as filters
 import matplotlib.pyplot as plt
+import numpy as np
 
 coins = data.coins()
-mask = coins > filter.threshold_otsu(coins)
-clean_border = segmentation.clear_border(mask)
+mask = coins > filters.threshold_otsu(coins)
+clean_border = segmentation.clear_border(mask).astype(np.int)
 
-coins_edges = segmentation.visualize_boundaries(color.gray2rgb(coins),
-                            clean_border)
+coins_edges = segmentation.mark_boundaries(coins, clean_border)
 
 plt.figure(figsize=(8, 3.5))
 plt.subplot(121)

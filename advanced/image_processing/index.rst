@@ -243,13 +243,13 @@ Statistical information
     
 
     * Open as an array the ``scikit-image`` logo
-      (http://scikit-image.org/_static/scikits_image_logo.png), or an
+      (http://scikit-image.org/_static/img/logo.png), or an
       image that you have on your computer.
 
     * Crop a meaningful part of the image, for example the python circle
       in the logo.
 
-    * Display the image array using ``matlplotlib``. Change the
+    * Display the image array using ``matplotlib``. Change the
       interpolation method and zoom to see the difference.
 
     * Transform your image to greyscale
@@ -414,6 +414,12 @@ Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
     * Compare the histograms of the two different denoised images.
       Which one is the closest to the histogram of the original (noise-free)
       image?
+
+.. seealso::
+
+    More denoising filters are available in :mod:`skimage.denoising`,
+    see the :ref:`scikit_image` tutorial.
+
 
 
 Mathematical morphology
