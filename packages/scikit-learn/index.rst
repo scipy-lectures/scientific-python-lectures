@@ -601,7 +601,7 @@ estimator during the construction and exposes an estimator API::
     >>> clf = grid_search.GridSearchCV(estimator=svc, param_grid=dict(gamma=gammas), 
     ...                    n_jobs=-1)
     >>> clf.fit(digits.data[:1000], digits.target[:1000]) # doctest: +ELLIPSIS
-    GridSearchCV(cv=None, ...)
+    GridSearchCV(cv=None,...)
     >>> clf.best_score_  # doctest: +ELLIPSIS
     0.9...
     >>> clf.best_estimator_.gamma
