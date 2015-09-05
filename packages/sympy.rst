@@ -2,6 +2,8 @@
 .. TODO: bench and fit in 1:30
 
 .. TODO: plotting <- broken in OSX
+   >>> import sympy
+   >>> sympy.init_printing(use_unicode=False, wrap_line=True, no_global=False)
 
 .. _sympy:
 
@@ -64,7 +66,8 @@ way, some special constants, like e, pi, oo (Infinity), are treated as
 symbols and can be evaluated with arbitrary precision::
 
     >>> pi**2
-    pi**2
+      2
+    pi 
 
     >>> pi.evalf()
     3.14159265358979
@@ -102,14 +105,22 @@ symbolic variables explicitly::
 
 Then you can manipulate them::
 
-    >>> x+y+x-y
+    >>> x + y + x - y
     2*x
 
-    >>> (x+y)**2
-    (x + y)**2
+    >>> (x + y)**2
+           2
+    (x + y) 
 
 Symbols can now be manipulated using some of python operators: +, -, \*, \*\* 
 (arithmetic), &, |, ~ , >>, << (boolean).
+
+
+.. topic:: **Printing**
+
+   Here we use the following setting for printing
+
+    >>> sympy.init_printing(use_unicode=False, wrap_line=True)
 
 
 
@@ -143,7 +154,7 @@ Simplify
 Use simplify if you would like to transform an expression into a
 simpler form::
 
-    In [19]: simplify((x+x*y)/x)
+    In [19]: simplify((x + x*y)/x)
     Out[19]: 1 + y
 
 
@@ -152,11 +163,11 @@ alternatives to simplify exists: powsimp (simplification of
 exponents), trigsimp (for trigonometric expressions) , logcombine,
 radsimp, together.
 
-Exercises
----------
+.. topic:: **Exercises**
+   :class: green
 
-1. Calculate the expanded form of :math:`(x+y)^6`.
-2. Simplify the trigonometric expression :math:`\sin(x) / \cos(x)`
+   1. Calculate the expanded form of :math:`(x+y)^6`.
+   2. Simplify the trigonometric expression :math:`\sin(x) / \cos(x)`
 
   
 Calculus
@@ -198,12 +209,14 @@ var)``. Examples::
     2*cos(2*x)
 
     >>> diff(tan(x), x)
-    1 + tan(x)**2
+       2       
+    tan (x) + 1
 
 You can check, that it is correct by::
 
     >>> limit((tan(x+y)-tan(x))/y, y, 0)
-    1 + tan(x)**2
+       2       
+    tan (x) + 1
 
 Higher derivatives can be calculated using the ``diff(func, var, n)`` method::
 
@@ -224,16 +237,22 @@ SymPy also knows how to compute the Taylor series of an expression at
 a point. Use ``series(expr, var)``::
 
     >>> series(cos(x), x)
-    1 - x**2/2 + x**4/24 + O(x**6)
+         2    4        
+        x    x     / 6\
+    1 - -- + -- + O\x /
+        2    24        
     >>> series(1/cos(x), x)
-    1 + x**2/2 + 5*x**4/24 + O(x**6)
+         2      4        
+        x    5*x     / 6\
+    1 + -- + ---- + O\x /
+        2     24         
 
 
-Exercises
----------
+.. topic:: **Exercises**
+   :class: green
 
-1. Calculate :math:`\lim_{x\rightarrow 0} \sin(x)/x`
-2. Calculate the derivative of :math:`log(x)` for :math:`x`.
+   1. Calculate :math:`\lim_{x\rightarrow 0} \sin(x)/x`
+   2. Calculate the derivative of :math:`log(x)` for :math:`x`.
 
 .. index:: integration
 
@@ -246,18 +265,23 @@ powerful extended Risch-Norman algorithm and some heuristics and pattern
 matching. You can integrate elementary functions::
 
     >>> integrate(6*x**5, x)
-    x**6
+     6
+    x 
     >>> integrate(sin(x), x)
     -cos(x)
     >>> integrate(log(x), x)
-    -x + x*log(x)
+    x*log(x) - x
     >>> integrate(2*x + sinh(x), x)
-    cosh(x) + x**2
+     2          
+    x  + cosh(x)
 
 Also special functions are handled easily::
 
     >>> integrate(exp(-x**2)*erf(x), x)
-    pi**(1/2)*erf(x)**2/4
+      ____    2   
+    \/ pi *erf (x)
+    --------------
+          4       
 
 It is possible to compute definite integral::
 
@@ -273,7 +297,8 @@ Also improper integrals are supported as well::
     >>> integrate(exp(-x), (x, 0, oo))
     1
     >>> integrate(exp(-x**2), (x, -oo, oo))
-    pi**(1/2)
+      ____
+    \/ pi 
 
 
 .. index:: equations; algebraic, solve
@@ -362,8 +387,9 @@ Matrices are created as instances from the Matrix class::
 
     >>> from sympy import Matrix
     >>> Matrix([[1,0], [0,1]])
-    [1, 0]
-    [0, 1]
+    [1  0]
+    [    ]
+    [0  1]
 
 unlike a NumPy array, you can also put Symbols in it::
 
@@ -371,12 +397,14 @@ unlike a NumPy array, you can also put Symbols in it::
     >>> y = Symbol('y')
     >>> A = Matrix([[1,x], [y,1]])
     >>> A
-    [1, x]
-    [y, 1]
+    [1  x]
+    [    ]
+    [y  1]
 
     >>> A**2
-    [1 + x*y,     2*x]
-    [    2*y, 1 + x*y]
+    [x*y + 1    2*x  ]
+    [                ]
+    [  2*y    x*y + 1]
 
 
 .. index:: equations; differential, diff, dsolve
@@ -394,27 +422,38 @@ f and g are now undefined functions. We can call f(x), and it will represent
 an unknown function::
 
     >>> f(x)
-    f(x) 
+    f(x)
     
     >>> f(x).diff(x, x) + f(x)
-       2
-      d
-    ─────(f(x)) + f(x)
-       2
-     dx 
+             2      
+            d       
+    f(x) + ---(f(x))
+             2      
+           dx       
 
     >>> dsolve(f(x).diff(x, x) + f(x), f(x))
-    C₁*sin(x) + C₂*cos(x)
+    f(x) = C1*sin(x) + C2*cos(x)
+
 
 Keyword arguments can be given to this function in order to help if
 find the best possible resolution system. For example, if you know
 that it is a separable equations, you can use keyword hint='separable'
 to force dsolve to resolve it as a separable equation::
 
-   >>> dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable')
-   -log(1 - sin(f(x))**2)/2 == C1 + log(1 - sin(x)**2)/2
+   >>> dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
+                 /     _____________\                  /     _____________\
+                 |    /    C1       |                  |    /    C1       |
+   [f(x) = - asin|   /  ------- + 1 | + pi, f(x) = asin|   /  ------- + 1 | + pi,
+                 |  /      2        |                  |  /      2        |
+                 \\/    cos (x)     /                  \\/    cos (x)     /
+   <BLANKLINE>
+                /     _____________\             /     _____________\
+                |    /    C1       |             |    /    C1       |
+    f(x) = -asin|   /  ------- + 1 |, f(x) = asin|   /  ------- + 1 |]
+                |  /      2        |             |  /      2        |
+                \\/    cos (x)     /             \\/    cos (x)     /
 
-
+   
 .. topic:: **Exercises**
    :class: green
 
