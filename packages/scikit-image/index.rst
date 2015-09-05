@@ -1,3 +1,10 @@
+.. for doctests
+   >>> import numpy as np
+   >>> np.random.seed(0)
+   >>> import matplotlib.pyplot as plt
+   >>> plt.switch_backend("Agg")
+
+
 .. _scikit_image:
 
 .. currentmodule:: skimage
@@ -55,12 +62,13 @@ Images are NumPy's arrays ``np.ndarray``
 
 
 ::
-
+    
+    >>> import numpy as np
     >>> check = np.zeros((9, 9))
     >>> check[::2, 1::2] = 1
     >>> check[1::2, ::2] = 1
     >>> import matplotlib.pyplot as plt
-    >>> plt.imshow(check, cmap='gray', interpolation='nearest')
+    >>> plt.imshow(check, cmap='gray', interpolation='nearest') # doctest: +SKIP
 
 
 .. image:: auto_examples/images/plot_check_1.png
@@ -84,11 +92,11 @@ for Ubuntu/Debian.
 
 ::
 
-    try:
-        from skimage import filters
-    except Import Error:
-        from skimage import filter as filters
-        
+    >>> try:
+    ...     from skimage import filters
+    ... except ImportError:
+    ...     from skimage import filter as filters
+
 
 Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
 
@@ -154,6 +162,7 @@ I/O: :mod:`skimage.io` ::
 
 Reading from files: :func:`skimage.io.imread` ::
 
+    >>> import os
     >>> filename = os.path.join(skimage.data_dir, 'camera.png')
     >>> camera = io.imread(filename)
 
@@ -176,12 +185,6 @@ Saving to files::
 
 (``imsave`` also uses an external plugin such as PIL)
 
-I/O also available for videos if external backends such as GStreamer
-or OpenCV are present
-::
-
-    >>> movie = io.video.Video('video_file.avi')
-    >>> image_array = movie.get_index_frame(10)
 
 Data types
 ~~~~~~~~~~
@@ -223,8 +226,8 @@ hence output an array with a different type and the data range from the
 input array ::
 
     >>> camera_sobel = filters.sobel(camera)
-    >>> camera_sobel.max()
-    0.8365106670670005
+    >>> camera_sobel.max() # doctest: +SKIP 
+    0.591502...
 
 
 Utility functions are provided in :mod:`skimage` to convert both the
@@ -312,6 +315,7 @@ Non-local filters
 Non-local filters use a large region of the image (or all the image) to
 transform the value of one pixel::
 
+    >>> from skimage import exposure
     >>> camera = data.camera()
     >>> camera_equalized = exposure.equalize_hist(camera)
 
@@ -430,12 +434,12 @@ skeletonization, etc.
 
     ::
 
-        >>> from skimage import filters
         >>> from skimage.morphology import disk
         >>> coins = data.coins()
         >>> coins_zoom = coins[10:80, 300:370]
-        >>> median_coins = filters.median(coins_zoom, disk(1))
-        >>> tv_coins = filters.denoise_tv_chambolle(coins_zoom, weight=0.1)
+        >>> median_coins = filters.rank.median(coins_zoom, disk(1))
+        >>> from skimage import restoration
+        >>> tv_coins = restoration.denoise_tv_chambolle(coins_zoom, weight=0.1)
         >>> gaussian_coins = filters.gaussian_filter(coins, sigma=2)
 
     .. image:: auto_examples/images/plot_filter_coins_1.png
@@ -495,6 +499,7 @@ Synthetic data::
 
 Label all connected components::
 
+    >>> from skimage import measure
     >>> all_labels = measure.label(blobs)
 
 Label only foreground connected components::
@@ -550,6 +555,7 @@ The random walker algorithm (:func:`skimage.segmentation.random_walker`)
 is similar to the Watershed, but with a more "probabilistic" approach. It
 is based on the idea of the diffusion of labels in the image::
 
+    >>> from skimage import segmentation
     >>> # Transform markers image so that 0-valued pixels are to
     >>> # be labelled, and -1-valued pixels represent background
     >>> markers[~image] = -1
@@ -590,13 +596,14 @@ Measuring regions' properties
 ::
 
     >>> from skimage import measure
-    >>> measure.regionprops?
 
 Example: compute the size and perimeter of the two segmented regions::
 
-    >>> measure.regionprops(labels_rw, properties=['Area', 'Perimeter'])
-    [{'Perimeter': 117.25483399593905, 'Area': 770.0, 'Label': 1},
-    {'Perimeter': 149.1543289325507, 'Area': 1168.0, 'Label': 2}]
+    >>> properties = measure.regionprops(labels_rw)
+    >>> [prop.area for prop in properties]
+    [770.0, 1168.0]
+    >>> [prop.perimeter for prop in properties] # doctest: +ELLIPSIS
+    [100.91..., 126.81...]
 
 .. seealso::
 
@@ -624,23 +631,28 @@ pipeline.
 Some image processing operations::
 
     >>> coins = data.coins()
-    >>> mask = coins > filter.threshold_otsu(coins)
+    >>> mask = coins > filters.threshold_otsu(coins)
     >>> clean_border = segmentation.clear_border(mask)
 
 Visualize binary result::
 
-    >>> plt.figure()
-    >>> plt.imshow(clean_border, cmap='gray')
+    >>> plt.figure() # doctest: +ELLIPSIS
+    <matplotlib.figure.Figure object at 0x...>
+    >>> plt.imshow(clean_border, cmap='gray') # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at 0x...>
 
 Visualize contour ::
 
-    >>> plt.figure()
-    >>> plt.imshow(coins, cmap='gray')
-    >>> plt.contour(clean_border, [0.5])
+    >>> plt.figure() # doctest: +ELLIPSIS
+    <matplotlib.figure.Figure object at 0x...>
+    >>> plt.imshow(coins, cmap='gray') # doctest: +ELLIPSIS
+    <matplotlib.image.AxesImage object at 0x...>
+    >>> plt.contour(clean_border, [0.5]) # doctest: +ELLIPSIS
+    <matplotlib.contour.QuadContourSet instance at 0x...>
 
 Use ``skimage`` dedicated utility function::
 
-    >>> coins_edges = segmentation.mark_boundaries(coins, clean_border.astype(np.int)
+    >>> coins_edges = segmentation.mark_boundaries(coins, clean_border.astype(np.int))
 
 .. image:: auto_examples/images/plot_boundaries_1.png
     :width: 90%
@@ -653,17 +665,17 @@ Use ``skimage`` dedicated utility function::
 experimental Qt-based GUI-toolkit ::
 
     >>> from skimage import viewer
-    >>> new_viewer = viewer.ImageViewer(coins)
-    >>> new_viewer.show()
+    >>> new_viewer = viewer.ImageViewer(coins) # doctest: +SKIP
+    >>> new_viewer.show() # doctest: +SKIP
 
 Useful for displaying pixel values.
 
 For more interaction, plugins can be added to the viewer::
 
-    >>> new_viewer = viewer.ImageViewer(coins)
+    >>> new_viewer = viewer.ImageViewer(coins) # doctest: +SKIP
     >>> from skimage.viewer.plugins import lineprofile
-    >>> new_viewer += lineprofile.LineProfile()
-    >>> new_viewer.show()
+    >>> new_viewer += lineprofile.LineProfile() # doctest: +SKIP
+    >>> new_viewer.show() # doctest: +SKIP
 
 .. image:: viewer.png
     :align: center

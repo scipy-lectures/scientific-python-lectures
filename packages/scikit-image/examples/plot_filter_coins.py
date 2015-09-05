@@ -6,12 +6,16 @@ a Gaussian filter, a median filter, and total variation denoising.
 import numpy as np
 import matplotlib.pyplot as plt
 from skimage import data
-from skimage import filters
+try:
+    from skimage import filters
+except ImportError:
+    from skimage import filter as filters
+from skimage import restoration
 
 coins = data.coins()
 gaussian_filter_coins = filters.gaussian_filter(coins, sigma=2)
-med_filter_coins = filters.median(coins, np.ones((3, 3)))
-tv_filter_coins = filters.denoise_tv_chambolle(coins, weight=0.1)
+med_filter_coins = filters.rank.median(coins, np.ones((3, 3)))
+tv_filter_coins = restoration.denoise_tv_chambolle(coins, weight=0.1)
 
 plt.figure(figsize=(16, 4))
 plt.subplot(141)

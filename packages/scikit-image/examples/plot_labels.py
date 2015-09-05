@@ -1,9 +1,13 @@
 """
 This example shows how to label connected components of a binary image, using
-the dedicated skimage.morphology.label function.
+the dedicated skimage.measure.label function.
 """
 
-from skimage import measure, filters
+from skimage import measure
+try:
+    from skimage import filters
+except ImportError:
+    from skimage import filter as filters
 import matplotlib.pyplot as plt
 import numpy as np
 

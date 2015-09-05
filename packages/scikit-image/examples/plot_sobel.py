@@ -3,7 +3,11 @@ This example illustrates the use of the horizontal Sobel filter, to compute
 horizontal gradients.
 """
 
-from skimage import data, filters
+from skimage import data
+try:
+    from skimage import filters
+except ImportError:
+    from skimage import filter as filters
 import matplotlib.pyplot as plt
 
 text = data.text()
