@@ -72,7 +72,7 @@ create an iterator object is the most straightforward way to get hold
 of an iterator. The `iter` function does that for us, saving a few
 keystrokes. ::
 
-    >>> nums = [1,2,3]      # note that ... varies: these are different objects
+    >>> nums = [1, 2, 3]      # note that ... varies: these are different objects
     >>> iter(nums)                           # doctest: +ELLIPSIS
     <...iterator object at ...>
     >>> nums.__iter__()                      # doctest: +ELLIPSIS
@@ -134,27 +134,18 @@ the process is short-circuited and we get a ``list``. ::
     >>> list(i for i in nums)
     [1, 2, 3]
 
-In Python 2.7 and 3.x the list comprehension syntax was extended to
+The list comprehension syntax also extends to
 **dictionary and set comprehensions**.
 A ``set`` is created when the generator expression is enclosed in curly
 braces. A ``dict`` is created when the generator expression contains
 "pairs" of the form ``key:value``::
 
-    >>> {i for i in range(3)}   # doctest: +SKIP
+    >>> {i for i in range(3)}  # doctest: +SKIP
     set([0, 1, 2])
     >>> {i:i**2 for i in range(3)}   # doctest: +SKIP
     {0: 0, 1: 1, 2: 4}
 
-If you are stuck at some previous Python version, the syntax is only a
-bit worse: ::
-
-    >>> set(i for i in 'abc')   # doctest: +SKIP
-    set(['a', 'c', 'b'])
-    >>> dict((i, ord(i)) for i in 'abc')   # doctest: +SKIP
-    {'a': 97, 'c': 99, 'b': 98}
-
-Generator expression are fairly simple, not much to say here. Only one
-*gotcha* should be mentioned: in old Pythons the index variable
+One *gotcha* should be mentioned: in old Pythons the index variable
 (``i``) would leak, and in versions >= 3 this is fixed.
 
 Generators

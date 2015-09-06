@@ -39,8 +39,8 @@ One state of the art method to extract information from these data is to
 decompose them in a sum of Gaussian functions where each function represents the
 contribution of a target hit by the laser beam.
 
-Therefore, we use the ``scipy.optimize`` module to fit a waveform to one or a sum of
-Gaussian functions.
+Therefore, we use the :mod:`scipy.optimize` module to fit a waveform to one
+or a sum of Gaussian functions.
 
 .. _first_step:
 
@@ -52,13 +52,12 @@ Load the first waveform using::
     >>> import numpy as np
     >>> waveform_1 = np.load('data/waveform_1.npy')
 
-and visualize it:
-
-.. doctest::
+and visualize it::
 
     >>> import matplotlib.pyplot as plt
     >>> t = np.arange(len(waveform_1))
-    >>> plt.plot(t, waveform_1) #doctest: +SKIP
+    >>> plt.plot(t, waveform_1) #doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
     >>> plt.show()
 
 .. image:: waveform_1.png
@@ -119,29 +118,29 @@ difference between the data and the model)::
     >>> def residuals(coeffs, y, t):
     ...     return y - model(t, coeffs)
 
-So let's get our solution by calling ``scipy.optimize.leastsq`` with the
+So let's get our solution by calling :func:`scipy.optimize.leastsq` with the
 following arguments:
 
 * the function to minimize
 * an initial solution
 * the additional arguments to pass to the function
 
-.. doctest::
+::
 
     >>> from scipy.optimize import leastsq
     >>> x, flag = leastsq(residuals, x0, args=(waveform_1, t))
     >>> print(x)
     [  2.70363341  27.82020742  15.47924562   3.05636228]
 
-And visualize the solution:
+And visualize the solution::
 
-.. doctest::
-
-    >>> plt.plot(t, waveform_1, t, model(t, x)) #doctest: +SKIP
-    >>> plt.legend(['waveform', 'model']) #doctest: +SKIP
+    >>> plt.plot(t, waveform_1, t, model(t, x)) #doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
+    >>> plt.legend(['waveform', 'model']) #doctest: +ELLIPSIS
+    <matplotlib.legend.Legend object at ...>
     >>> plt.show()
 
-*Remark:* from scipy v0.8 and above, you should rather use ``scipy.optimize.curve_fit`` which takes the model and the data as arguments, so you don't need to define the residuals any more.
+*Remark:* from scipy v0.8 and above, you should rather use :func:`scipy.optimize.curve_fit` which takes the model and the data as arguments, so you don't need to define the residuals any more.
 
 
 
@@ -169,8 +168,8 @@ Going further
 
     >>> x0 = np.array([3, 50, 20, 1], dtype=float)
 
-  compare the result of ``scipy.optimize.leastsq`` and what you can get with
-  ``scipy.optimize.fmin_slsqp`` when adding boundary constraints.
+  compare the result of :func:`scipy.optimize.leastsq` and what you can get with
+  :func:`scipy.optimize.fmin_slsqp` when adding boundary constraints.
 
 
 .. [#data] The data used for this tutorial are part of the demonstration data available for the `FullAnalyze software <http://fullanalyze.sourceforge.net>`_ and were kindly provided by the `GIS DRAIX <http://www.ore.fr/rubrique.php3?id_rubrique=24>`_.

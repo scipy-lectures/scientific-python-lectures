@@ -124,15 +124,9 @@ Reminder: two :class:`ndarrays <ndarray>` may share the same memory::
 
 Memory does not need to be owned by an :class:`ndarray`::
 
-    >>> x = '1234'      # In Python 3, use:   x = b'1234'
+    >>> x = b'1234'      # The 'b' is for "bytes", necessary in Python 3
 
-.. For Python3
-   >>> try:
-   ...     x = b'1234'
-   ... except:
-   ...     pass
-
-x is a string (in Python 3 a buffer), we can represent its data as an
+x is a string (in Python 3 a bytes), we can represent its data as an
 array of ints::
 
     >>> y = np.frombuffer(x, dtype=np.int8)
@@ -207,18 +201,10 @@ data_size          4-byte unsigned little-endian integer
 - 44-byte block of raw data (in the beginning of the file)
 - ... followed by ``data_size`` bytes of actual sound data.
 
-..  For python3 doctests:
-    
-    >>> try:
-    ...    str = bytes
-    ... except:
-    ...    skip
-
 The ``.wav`` file header as a Numpy *structured* data type::
 
     >>> wav_header_dtype = np.dtype([
-    ...     ("chunk_id", (str, 4)),   # flexible-sized scalar type, item size 4
-    ...                               # In Python3, use "(bytes, 4)"
+    ...     ("chunk_id", (bytes, 4)), # flexible-sized scalar type, item size 4
     ...     ("chunk_size", "<u4"),    # little-endian unsigned 32-bit integer
     ...     ("format", "S4"),         # 4-byte string
     ...     ("fmt_id", "S4"),
@@ -268,6 +254,7 @@ The ``.wav`` file header as a Numpy *structured* data type::
 
 >>> f = open('data/test.wav', 'r')
 >>> wav_header = np.fromfile(f, dtype=wav_header_dtype, count=1)
+>>> f.close()  # doctest: +SKIP
 >>> print(wav_header)   # doctest: +SKIP
 [ ('RIFF', 17402L, 'WAVE', 'fmt ', 16L, 1, 1, 16000L, 32000L, 2, 16, [['d', 'a'], ['t', 'a']], 17366L)]
 >>> wav_header['sample_rate']
@@ -798,11 +785,11 @@ More tricks: diagonals
 
    Compute the tensor trace::
 
-    >>> x = np.arange(5*5*5*5).reshape(5,5,5,5)
+    >>> x = np.arange(5*5*5*5).reshape(5, 5, 5, 5)
     >>> s = 0
     >>> for i in range(5):
     ...    for j in range(5):
-    ...       s += x[j,i,j,i]
+    ...       s += x[j, i, j, i]
 
    by striding, and using ``sum()`` on the result. ::
 
