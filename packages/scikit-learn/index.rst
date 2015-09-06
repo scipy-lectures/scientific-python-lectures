@@ -320,9 +320,9 @@ object API and several additional features, including smart initialization.)
     >>> k_means = cluster.KMeans(n_clusters=3)
     >>> k_means.fit(iris.data) # doctest: +ELLIPSIS
     KMeans(...)
-    >>> print k_means.labels_[::10]
+    >>> print(k_means.labels_[::10])
     [1 1 1 1 1 0 0 0 0 0 2 2 2 2 2]
-    >>> print iris.target[::10]
+    >>> print(iris.target[::10])
     [0 0 0 0 0 1 1 1 1 1 2 2 2 2 2]
 
 .. |cluster_iris_truth| image:: cluster_iris_truth.png
@@ -504,7 +504,7 @@ classification.
     # ..
     # .. predict on new images ..
     for i in range(10):
-        print lfw_people.target_names[clf.predict(X_test_pca[i])[0]]
+        print(lfw_people.target_names[clf.predict(X_test_pca[i])[0]])
         _ = pl.imshow(X_test[i].reshape(50, 37), cmap=pl.cm.gray)
         _ = raw_input()
     

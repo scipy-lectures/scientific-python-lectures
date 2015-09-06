@@ -21,7 +21,7 @@ Start the **Ipython** shell (an enhanced interactive Python shell):
 
 Once you have started the interpreter, type ::
 
-    >>> print "Hello, world!"
+    >>> print("Hello, world!")
     Hello, world!
 
 .. tip::
@@ -33,19 +33,22 @@ To get yourself started, type the following stack of instructions ::
 
     >>> a = 3
     >>> b = 2*a
-    >>> type(b)
+    >>> type(b)     # doctest: +SKIP
     <type 'int'>
-    >>> print b
+    >>> print(b)
     6
     >>> a*b 
     18
     >>> b = 'hello' 
-    >>> type(b)
+    >>> type(b)    # doctest: +SKIP
     <type 'str'>
     >>> b + b
     'hellohello'
     >>> 2*b
     'hellohello'
+
+.. We need to skip the call to 'type' because in Python3 is prints as
+   'type', but in Python2 as 'class'
 
 .. tip::
 

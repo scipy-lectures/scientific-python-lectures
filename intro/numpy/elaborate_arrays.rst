@@ -68,8 +68,7 @@ Integers (signed):
     dtype('int64')
     >>> np.iinfo(np.int32).max, 2**31 - 1
     (2147483647, 2147483647)
-    >>> np.iinfo(np.int64).max, 2**63 - 1
-    (9223372036854775807, 9223372036854775807L)
+
 
 Unsigned integers:
 
@@ -84,8 +83,16 @@ Unsigned integers:
 
     >>> np.iinfo(np.uint32).max, 2**32 - 1
     (4294967295, 4294967295)
-    >>> np.iinfo(np.uint64).max, 2**64 - 1
-    (18446744073709551615L, 18446744073709551615L)
+
+.. sidebar:: Long integers
+
+    Python 2 has a specific type for 'long' integers, that cannot
+    overflow, represented with an 'L' at the end. In Python 3, all
+    integers are long, and thus cannot overflow.
+
+     >>> np.iinfo(np.int64).max, 2**63 - 1  # doctest: +SKIP
+     (9223372036854775807, 9223372036854775807L)
+
 
 Floating-point numbers:
 
@@ -165,23 +172,23 @@ Structured data types
 
     >>> samples[:] = [('ALFA',   1, 0.37), ('BETA', 1, 0.11), ('TAU', 1,   0.13),
     ...               ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
-    >>> samples
+    >>> samples     # doctest: +SKIP
     array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13),
            ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)], 
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 Field access works by indexing with field names::
 
-    >>> samples['sensor_code']
+    >>> samples['sensor_code']    # doctest: +SKIP
     array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'], 
           dtype='|S4')
     >>> samples['value']
     array([ 0.37,  0.11,  0.13,  0.37,  0.11,  0.13])
-    >>> samples[0]
+    >>> samples[0]    # doctest: +SKIP
     ('ALFA', 1.0, 0.37)
 
     >>> samples[0]['sensor_code'] = 'TAU'
-    >>> samples[0]
+    >>> samples[0]    # doctest: +SKIP
     ('TAU', 1.0, 0.37)
 
 Multiple fields at once::
@@ -193,7 +200,7 @@ Multiple fields at once::
 
 Fancy indexing works, as usual::
 
-    >>> samples[samples['sensor_code'] == 'ALFA']
+    >>> samples[samples['sensor_code'] == 'ALFA']    # doctest: +SKIP
     array([('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11)], 
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 

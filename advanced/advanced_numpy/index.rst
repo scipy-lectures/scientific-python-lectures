@@ -95,8 +95,8 @@ Block of memory
 
 >>> x = np.array([1, 2, 3], dtype=np.int32)
 >>> x.data      # doctest: +ELLIPSIS
-<read-write buffer for ..., size 12, offset 0 at ...>
->>> str(x.data)
+<... at ...>
+>>> str(x.data)  # doctest: +SKIP
 '\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
 
 Memory address of the data:
@@ -124,10 +124,14 @@ Reminder: two :class:`ndarrays <ndarray>` may share the same memory::
 
 Memory does not need to be owned by an :class:`ndarray`::
 
-    >>> x = '1234'
+    >>> x = b'1234'      # The 'b' is for "bytes", necessary in Python 3
+
+x is a string (in Python 3 a bytes), we can represent its data as an
+array of ints::
+
     >>> y = np.frombuffer(x, dtype=np.int8)
     >>> y.data      # doctest: +ELLIPSIS
-    <read-only buffer for ..., size 4, offset 0 at ...>
+    <... at ...>
     >>> y.base is x
     True
 
@@ -142,8 +146,7 @@ Memory does not need to be owned by an :class:`ndarray`::
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
 
-See also : `array interface
-<http://docs.scipy.org/doc/numpy/reference/arrays.interface.html>`_
+.. seealso::: `array interface <http://docs.scipy.org/doc/numpy/reference/arrays.interface.html>`_
 
 Data types
 ----------
@@ -166,7 +169,7 @@ fields      sub-dtypes, if it's a **structured data type**
 shape       shape of the array, if it's a **sub-array**
 =========   ===================================================
 
->>> np.dtype(int).type
+>>> np.dtype(int).type      # doctest: +SKIP
 <type 'numpy.int64'>
 >>> np.dtype(int).itemsize
 8
@@ -198,35 +201,37 @@ data_size          4-byte unsigned little-endian integer
 - 44-byte block of raw data (in the beginning of the file)
 - ... followed by ``data_size`` bytes of actual sound data.
 
-The ``.wav`` file header as a Numpy *structured* data type:
+The ``.wav`` file header as a Numpy *structured* data type::
 
->>> wav_header_dtype = np.dtype([
-...     ("chunk_id", (str, 4)),   # flexible-sized scalar type, item size 4
-...     ("chunk_size", "<u4"),    # little-endian unsigned 32-bit integer
-...     ("format", "S4"),         # 4-byte string
-...     ("fmt_id", "S4"),
-...     ("fmt_size", "<u4"),
-...     ("audio_fmt", "<u2"),     #
-...     ("num_channels", "<u2"),  # .. more of the same ...
-...     ("sample_rate", "<u4"),   #
-...     ("byte_rate", "<u4"),
-...     ("block_align", "<u2"),
-...     ("bits_per_sample", "<u2"),
-...     ("data_id", ("S1", (2, 2))), # sub-array, just for fun!
-...     ("data_size", "u4"),
-...     #
-...     # the sound data itself cannot be represented here:
-...     # it does not have a fixed size
-...    ])
+    >>> wav_header_dtype = np.dtype([
+    ...     ("chunk_id", (bytes, 4)), # flexible-sized scalar type, item size 4
+    ...     ("chunk_size", "<u4"),    # little-endian unsigned 32-bit integer
+    ...     ("format", "S4"),         # 4-byte string
+    ...     ("fmt_id", "S4"),
+    ...     ("fmt_size", "<u4"),
+    ...     ("audio_fmt", "<u2"),     #
+    ...     ("num_channels", "<u2"),  # .. more of the same ...
+    ...     ("sample_rate", "<u4"),   #
+    ...     ("byte_rate", "<u4"),
+    ...     ("block_align", "<u2"),
+    ...     ("bits_per_sample", "<u2"),
+    ...     ("data_id", ("S1", (2, 2))), # sub-array, just for fun!
+    ...     ("data_size", "u4"),
+    ...     #
+    ...     # the sound data itself cannot be represented here:
+    ...     # it does not have a fixed size
+    ...    ])
 
 .. seealso:: wavreader.py
 
->>> wav_header_dtype['format']
-dtype('S4')
->>> wav_header_dtype.fields     # doctest: +ELLIPSIS
-dict_proxy({'block_align': (dtype('uint16'), 32), 'format': (dtype('S4'), 8), 'data_id': (dtype(('S1', (2, 2))), 36), 'fmt_id': (dtype('S4'), 12), 'byte_rate': (dtype('uint32'), 28), 'chunk_id': (dtype('S4'), 0), 'num_channels': (dtype('uint16'), 22), 'sample_rate': (dtype('uint32'), 24), 'bits_per_sample': (dtype('uint16'), 34), 'chunk_size': (dtype('uint32'), 4), 'fmt_size': (dtype('uint32'), 16), 'data_size': (dtype('uint32'), 40), 'audio_fmt': (dtype('uint16'), 20)})
->>> wav_header_dtype.fields['format']
-(dtype('S4'), 8)
+::
+
+    >>> wav_header_dtype['format']
+    dtype('S4')
+    >>> wav_header_dtype.fields     # doctest: +SKIP
+    dict_proxy({'block_align': (dtype('uint16'), 32), 'format': (dtype('S4'), 8), 'data_id': (dtype(('S1', (2, 2))), 36), 'fmt_id': (dtype('S4'), 12), 'byte_rate': (dtype('uint32'), 28), 'chunk_id': (dtype('S4'), 0), 'num_channels': (dtype('uint16'), 22), 'sample_rate': (dtype('uint32'), 24), 'bits_per_sample': (dtype('uint16'), 34), 'chunk_size': (dtype('uint32'), 4), 'fmt_size': (dtype('uint32'), 16), 'data_size': (dtype('uint32'), 40), 'audio_fmt': (dtype('uint16'), 20)})
+    >>> wav_header_dtype.fields['format']
+    (dtype('S4'), 8)
 
 - The first element is the sub-dtype in the structured data, corresponding
   to the name ``format``
@@ -249,15 +254,15 @@ dict_proxy({'block_align': (dtype('uint16'), 32), 'format': (dtype('S4'), 8), 'd
 
 >>> f = open('data/test.wav', 'r')
 >>> wav_header = np.fromfile(f, dtype=wav_header_dtype, count=1)
->>> f.close()
->>> print(wav_header)
+>>> f.close()  # doctest: +SKIP
+>>> print(wav_header)   # doctest: +SKIP
 [ ('RIFF', 17402L, 'WAVE', 'fmt ', 16L, 1, 1, 16000L, 32000L, 2, 16, [['d', 'a'], ['t', 'a']], 17366L)]
 >>> wav_header['sample_rate']
 array([16000], dtype=uint32)
 
 Let's try accessing the sub-array:
 
->>> wav_header['data_id']
+>>> wav_header['data_id']  # doctest: +SKIP
 array([[['d', 'a'],
         ['t', 'a']]], 
       dtype='|S1')
@@ -463,28 +468,28 @@ Indexing scheme: strides
 Main point
 ^^^^^^^^^^
 
-**The question**
+**The question**::
 
   >>> x = np.array([[1, 2, 3], 
-  ...	           [4, 5, 6], 
-  ...	           [7, 8, 9]], dtype=np.int8)
-  >>> str(x.data)
+  ...	            [4, 5, 6], 
+  ...	            [7, 8, 9]], dtype=np.int8)
+  >>> str(x.data)  # doctest: +SKIP
   '\x01\x02\x03\x04\x05\x06\x07\x08\t'
 
-  At which byte in ``x.data`` does the item ``x[1,2]`` begin?
+  At which byte in ``x.data`` does the item ``x[1, 2]`` begin?
 
 **The answer** (in Numpy)
 
   - **strides**: the number of bytes to jump to find the next element
-  - 1 stride per dimension
+  - 1 stride per dimension::
 
-  >>> x.strides
-  (3, 1)
-  >>> byte_offset = 3*1 + 1*2   # to find x[1,2]
-  >>> x.data[byte_offset] 
-  '\x06'
-  >>> x[1, 2]
-  6
+    >>> x.strides
+    (3, 1)
+    >>> byte_offset = 3*1 + 1*2   # to find x[1, 2]
+    >>> x.flat[byte_offset] 
+    6
+    >>> x[1, 2]
+    6
 
   - simple, **flexible**
 
@@ -498,7 +503,7 @@ C and Fortran order
     ...               [4, 5, 6]], dtype=np.int16, order='C')
     >>> x.strides
     (6, 2)
-    >>> str(x.data)
+    >>> str(x.data)  # doctest: +SKIP
     '\x01\x00\x02\x00\x03\x00\x04\x00\x05\x00\x06\x00'
 
 * Need to jump 6 bytes to find the next row
@@ -509,7 +514,7 @@ C and Fortran order
     >>> y = np.array(x, order='F')
     >>> y.strides
     (2, 4)
-    >>> str(y.data)
+    >>> str(y.data)  # doctest: +SKIP
     '\x01\x00\x04\x00\x02\x00\x05\x00\x03\x00\x06\x00'
 
 * Need to jump 2 bytes to find the next row
@@ -546,9 +551,9 @@ C and Fortran order
    >>> y.strides
    (1, 2)
 
-   >>> str(x.data)
+   >>> str(x.data)  # doctest: +SKIP
    '\x01\x02\x03\x04'
-   >>> str(y.data)
+   >>> str(y.data)  # doctest: +SKIP
    '\x01\x03\x02\x04'
 
    - the results are different when interpreted as 2 of int16
@@ -562,49 +567,51 @@ Slicing with integers
   and possibly adjusting the ``data`` pointer!
 - Never makes copies of the data
 
->>> x = np.array([1, 2, 3, 4, 5, 6], dtype=np.int32)
->>> y = x[::-1]
->>> y
-array([6, 5, 4, 3, 2, 1], dtype=int32)
->>> y.strides
-(-4,)
+::
 
->>> y = x[2:]
->>> y.__array_interface__['data'][0] - x.__array_interface__['data'][0]
-8
+    >>> x = np.array([1, 2, 3, 4, 5, 6], dtype=np.int32)
+    >>> y = x[::-1]
+    >>> y
+    array([6, 5, 4, 3, 2, 1], dtype=int32)
+    >>> y.strides
+    (-4,)
 
->>> x = np.zeros((10, 10, 10), dtype=np.float)
->>> x.strides
-(800, 80, 8)
->>> x[::2,::3,::4].strides
-(1600, 240, 32)
+    >>> y = x[2:]
+    >>> y.__array_interface__['data'][0] - x.__array_interface__['data'][0]
+    8
 
-- Similarly, transposes never make copies (it just swaps strides)
+    >>> x = np.zeros((10, 10, 10), dtype=np.float)
+    >>> x.strides
+    (800, 80, 8)
+    >>> x[::2,::3,::4].strides
+    (1600, 240, 32)
 
->>> x = np.zeros((10, 10, 10), dtype=np.float)
->>> x.strides
-(800, 80, 8)
->>> x.T.strides
-(8, 80, 800)
+- Similarly, transposes never make copies (it just swaps strides)::
+
+    >>> x = np.zeros((10, 10, 10), dtype=np.float)
+    >>> x.strides
+    (800, 80, 8)
+    >>> x.T.strides
+    (8, 80, 800)
 
 But: not all reshaping operations can be represented by playing with
-strides.
+strides::
 
->>> a = np.arange(6, dtype=np.int8).reshape(3, 2)
->>> b = a.T
->>> b.strides
-(1, 2)
+    >>> a = np.arange(6, dtype=np.int8).reshape(3, 2)
+    >>> b = a.T
+    >>> b.strides
+    (1, 2)
 
-So far, so good. However:
+So far, so good. However::
 
->>> str(a.data)
-'\x00\x01\x02\x03\x04\x05'
->>> b
-array([[0, 2, 4],
-       [1, 3, 5]], dtype=int8)
->>> c = b.reshape(3*2)
->>> c
-array([0, 2, 4, 1, 3, 5], dtype=int8)
+    >>> str(a.data)  # doctest: +SKIP
+    '\x00\x01\x02\x03\x04\x05'
+    >>> b
+    array([[0, 2, 4],
+           [1, 3, 5]], dtype=int8)
+    >>> c = b.reshape(3*2)
+    >>> c
+    array([0, 2, 4, 1, 3, 5], dtype=int8)
 
 Here, there is no way to represent the array ``c`` given one stride
 and the block of memory for ``a``. Therefore, the ``reshape``
@@ -778,11 +785,11 @@ More tricks: diagonals
 
    Compute the tensor trace::
 
-    >>> x = np.arange(5*5*5*5).reshape(5,5,5,5)
+    >>> x = np.arange(5*5*5*5).reshape(5, 5, 5, 5)
     >>> s = 0
-    >>> for i in xrange(5):
-    ...    for j in xrange(5):
-    ...       s += x[j,i,j,i]
+    >>> for i in range(5):
+    ...    for j in range(5):
+    ...       s += x[j, i, j, i]
 
    by striding, and using ``sum()`` on the result. ::
 
@@ -1312,12 +1319,12 @@ Array siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
 --------------------------------------------------
 
 >>> x = np.array(['a', '  bbb', '  ccc']).view(np.chararray)
->>> x.lstrip(' ')
+>>> x.lstrip(' ')       # doctest: +ELLIPSIS
 chararray(['a', 'bbb', 'ccc'], 
-      dtype='|S5')
->>> x.upper()
+      dtype='...')
+>>> x.upper()       # doctest: +ELLIPSIS
 chararray(['A', '  BBB', '  CCC'], 
-      dtype='|S5')
+      dtype='...')
 
 .. note::
 
@@ -1456,7 +1463,7 @@ The masked array package also contains domain-aware functions::
 
 >>> arr = np.array([('a', 1), ('b', 2)], dtype=[('x', 'S1'), ('y', int)])
 >>> arr2 = arr.view(np.recarray)
->>> arr2.x
+>>> arr2.x       # doctest: +SKIP
 chararray(['a', 'b'], 
       dtype='|S1')
 >>> arr2.y
@@ -1564,12 +1571,12 @@ Good bug report
 
 3. Version of Numpy/Scipy
 
-   >>> print np.__version__ # doctest: +ELLIPSIS
+   >>> print(np.__version__) # doctest: +ELLIPSIS
    1...
 
    **Check that the following is what you expect**
 
-   >>> print np.__file__ # doctest: +ELLIPSIS
+   >>> print(np.__file__) # doctest: +ELLIPSIS
    /...
 
    In case you have old/broken Numpy installations lying around.

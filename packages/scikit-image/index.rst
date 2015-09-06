@@ -99,7 +99,7 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
     (512, 512)
     >>> from skimage import restoration
     >>> filtered_camera = restoration.denoise_bilateral(camera)
-    >>> type(filtered_camera)
+    >>> type(filtered_camera)   # doctest: +SKIP
     <type 'numpy.ndarray'>
 
 Other Python packages are available for image processing and work with
@@ -650,7 +650,7 @@ Visualize contour ::
     >>> plt.imshow(coins, cmap='gray') # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
     >>> plt.contour(clean_border, [0.5]) # doctest: +ELLIPSIS
-    <matplotlib.contour.QuadContourSet instance at 0x...>
+    <matplotlib.contour.QuadContourSet ...>
 
 Use ``skimage`` dedicated utility function::
 

@@ -8,11 +8,10 @@ Python. Since we will use the Numpy methods to read and write files,
 We write or read **strings** to/from files (other types must be converted to
 strings). To write in a file::
 
-
     >>> f = open('workfile', 'w') # opens the workfile file
-    >>> type(f)
+    >>> type(f)    # doctest: +SKIP 
     <type 'file'>
-    >>> f.write('This is a test \nand another test')
+    >>> f.write('This is a test \nand another test')   # doctest: +SKIP 
     >>> f.close()
 
 To read from a file

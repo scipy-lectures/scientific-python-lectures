@@ -87,8 +87,8 @@ Creating a numpy array from an image file::
     >>> misc.imsave('lena.png', lena) # First we need to create the PNG file
     
     >>> lena = misc.imread('lena.png')
-    >>> type(lena)
-    <type 'numpy.ndarray'>
+    >>> type(lena)      # doctest: +ELLIPSIS
+    <... 'numpy.ndarray'>
     >>> lena.shape, lena.dtype
     ((512, 512), dtype('uint8'))
 
@@ -142,7 +142,7 @@ Increase contrast by setting min and max values::
 Draw contour lines::
 
     >>> plt.contour(l, [60, 211])        # doctest: +ELLIPSIS
-    <matplotlib.contour.QuadContourSet instance at 0x...>
+    <matplotlib.contour.QuadContourSet ...>
 
 
 .. figure:: auto_examples/images/plot_display_lena_1.png
@@ -814,10 +814,10 @@ Example: block mean::
     >>> l = misc.lena()
     >>> sx, sy = l.shape
     >>> X, Y = np.ogrid[0:sx, 0:sy]
-    >>> regions = sy/6 * (X/4) + Y/6  # note that we use broadcasting
+    >>> regions = (sy//6) * (X//4) + (Y//6)  # note that we use broadcasting
     >>> block_mean = ndimage.mean(l, labels=regions, index=np.arange(1,
     ...     regions.max() +1))
-    >>> block_mean.shape = (sx/4, sy/6)
+    >>> block_mean.shape = (sx // 4, sy // 6)
 
 .. figure:: auto_examples/images/plot_block_mean_1.png
     :scale: 70
