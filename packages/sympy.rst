@@ -136,17 +136,25 @@ Expand
 Use this to expand an algebraic expression. It will try to denest
 powers and multiplications::
 
-    In [23]: expand((x+y)**3)
-    Out[23]: 3*x*y**2 + 3*y*x**2 + x**3 + y**3
+    >>> expand((x+y)**3)
+     3      2          2    3
+    x  + 3*x *y + 3*x*y  + y 
+    >>> 3*x*y**2 + 3*y*x**2 + x**3 + y**3
+     3      2          2    3
+    x  + 3*x *y + 3*x*y  + y 
+
 
 Further options can be given in form on keywords::
 
-    In [28]: expand(x+y, complex=True)
-    Out[28]: I*im(x) + I*im(y) + re(x) + re(y)
+    >>> expand(x+y, complex=True)
+    re(x) + re(y) + I*im(x) + I*im(y)
+    >>> I*im(x) + I*im(y) + re(x) + re(y)
+    re(x) + re(y) + I*im(x) + I*im(y)
 
-    In [30]: expand(cos(x+y), trig=True)
-    Out[30]: cos(x)*cos(y) - sin(x)*sin(y)
-
+    >>> expand(cos(x + y), trig=True)
+    -sin(x)*sin(y) + cos(x)*cos(y)
+    >>> cos(x)*cos(y) - sin(x)*sin(y)
+    -sin(x)*sin(y) + cos(x)*cos(y)
 
 Simplify
 --------
@@ -154,8 +162,8 @@ Simplify
 Use simplify if you would like to transform an expression into a
 simpler form::
 
-    In [19]: simplify((x + x*y)/x)
-    Out[19]: 1 + y
+    >>> simplify((x + x*y) / x)
+    y + 1
 
 
 Simplification is a somewhat vague term, and more precises
