@@ -1,3 +1,17 @@
+.. for doctests
+    >>> import matplotlib.pyplot as plt
+    >>> plt.switch_backend("Agg")
+    >>> import numpy as np
+    >>> np.random.seed(0)
+
+.. also switch current directory from the root directory (where the tests
+   are run) to be able to load the data
+   >>> import os
+   >>> os.chdir('packages/statistics')
+
+
+.. _statistics:
+
 =====================
 Statistics in Python
 =====================
@@ -160,10 +174,10 @@ Manipulating data
     >>> data.shape    # 40 rows and 8 columns
     (40, 8)
 
-    >>> data.columns  # It has columns   # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+    >>> data.columns  # It has columns   # doctest: +SKIP
     Index([u'Unnamed: 0', u'Gender', u'FSIQ', u'VIQ', u'PIQ', u'Weight', u'Height', u'MRI_Count'], dtype='object')
 
-    >>> print data['Gender']  # Columns can be addressed by name   # doctest: +ELLIPSIS
+    >>> print(data['Gender'])  # Columns can be addressed by name   # doctest: +ELLIPSIS
     0     Female
     1       Male
     2       Male
@@ -184,9 +198,9 @@ Manipulating data
 
     >>> groupby_gender = data.groupby('Gender')
     >>> for gender, value in groupby_gender['VIQ']:
-    ...     print gender, value.mean()
-    Female 109.45
-    Male 115.25
+    ...     print((gender, value.mean()))
+    ('Female', 109.45)
+    ('Male', 115.25)
 
 
 `groupby_gender` is a powerfull object that exposes many
@@ -439,7 +453,7 @@ Then we specify an OLS model and fit it::
 
 We can inspect the various statistics derived from the fit::
 
-    >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+    >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
                                 OLS Regression Results                            
     ==============================================================================
     Dep. Variable:                      y   R-squared:                       0.804
@@ -460,7 +474,8 @@ We can inspect the various statistics derived from the fit::
     Prob(Omnibus):                  0.951   Jarque-Bera (JB):                0.322
     Skew:                          -0.058   Prob(JB):                        0.851
     Kurtosis:                       2.390   Cond. No.                         3.03
-    ==============================================================================
+    =========================================================================...
+
 
 .. topic:: Terminology:
 
@@ -617,7 +632,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
 
     >>> data = pandas.read_csv('examples/iris.csv')
     >>> model = ols('sepal_width ~ name + petal_length', data).fit()
-    >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+    >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
                                 OLS Regression Results                            
     ==============================================================================
     Dep. Variable:            sepal_width   R-squared:                       0.478
@@ -748,7 +763,7 @@ lmplot: plotting a univariate regression
 A regression capturing the relation between one variable and another, eg
 wage and eduction, can be plotted using :func:`seaborn.lmplot`::
 
-    >>> seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)
+    >>> seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)  # doctest: +SKIP
 
 .. image:: auto_examples/images/plot_wage_data_5.png
    :target: auto_examples/plot_wage_data.html

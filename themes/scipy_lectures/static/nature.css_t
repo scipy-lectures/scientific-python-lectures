@@ -355,6 +355,10 @@ table.docutils tr {
     border-color: #AAAAAA;
 }
 
+table.docutils {
+    margin-bottom: 10px;
+}
+
 table.field-list {
     width: 100%;
 }
