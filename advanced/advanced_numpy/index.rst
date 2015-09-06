@@ -132,7 +132,7 @@ Memory does not need to be owned by an :class:`ndarray`::
    ... except:
    ...     pass
 
-x is a string (in Python 3 a buffer), we can represent it's data as an
+x is a string (in Python 3 a buffer), we can represent its data as an
 array of ints::
 
     >>> y = np.frombuffer(x, dtype=np.int8)
