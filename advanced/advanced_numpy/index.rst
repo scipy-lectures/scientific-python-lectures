@@ -762,7 +762,7 @@ More tricks: diagonals
       >>> as_strided(x[1:, 0], shape=(2, ), strides=((3+1)*x.itemsize, ))
       array([4, 8], dtype=int32)
 
-    .. note::
+    .. note:: **Using np.diag**
 
        >>> y = np.diag(x, k=1)
        >>> y
@@ -770,10 +770,11 @@ More tricks: diagonals
 
        However,
 
-       >>> y.flags.owndata
-       True
+       >>> y.flags.owndata  # doctest: +SKIP
+       False
 
-       It makes a copy?!
+       **Note** This behavior has changed: before numpy 1.9, np.diag
+       would make a copy.
 
     .. raw:: html
 
