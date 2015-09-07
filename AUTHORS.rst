@@ -67,8 +67,6 @@ Listed by alphabetical order
 
 - egens
 
-- emmanuelle
-
 - Andre Espaze
 
 - André Espaze
@@ -82,6 +80,8 @@ Listed by alphabetical order
 - Ralf Gommers
 
 - Emmanuelle Gouillart
+
+- Julia Gustavsen
 
 - Valentin Haenel
 
@@ -98,8 +98,6 @@ Listed by alphabetical order
 - kikocorreoso
 
 - mhemantha
-
-- mriehl
 
 - nicoguaro
 
