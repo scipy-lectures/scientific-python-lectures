@@ -113,4 +113,5 @@ epub:
 	@echo
 	@echo "Build finished. The epub file is in build/epub."
 
-
+contributors:
+	git shortlog -sn  2>&1 | awk '{print $$NF, $$0}' | sort | cut -d ' ' -f 2- | sed "s/^  *[0-9][0-9]*	/\n- /"
