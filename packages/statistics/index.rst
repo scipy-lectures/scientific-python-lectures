@@ -321,7 +321,7 @@ and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
 function's help)::
 
     >>> stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
-    (array(30.088099970...), 1.32891964...e-28)
+    (...30.088099970..., 1.32891964...e-28)
 
 .. tip::
    
@@ -338,7 +338,7 @@ with :func:`scipy.stats.ttest_ind`::
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
     >>> stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
-    (array(-0.77261617232...), 0.4445287677858...)
+    (...-0.77261617232..., 0.4445287677858...)
 
 Paired tests: repeated measurements on the same indivuals
 ----------------------------------------------------------
@@ -352,7 +352,7 @@ PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
 significantly different. We can use a 2 sample test::
 
     >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-    (array(0.46563759638...), 0.64277250...)
+    (...0.46563759638..., 0.64277250...)
 
 The problem with this approach is that it forgets that there are links
 between observations: FSIQ and PIQ are measured on the same individuals.
@@ -361,7 +361,7 @@ can be removed, using a "paired test", or `"repeated measures test"
 <https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
     >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-    (array(1.784201940...), 0.082172638183...)
+    (...1.784201940..., 0.082172638183...)
 
 .. image:: auto_examples/images/plot_paired_boxplots_2.png
    :target: auto_examples/plot_pandas.html
@@ -371,7 +371,7 @@ can be removed, using a "paired test", or `"repeated measures test"
 This is equivalent to a 1-sample test on the difference::
 
     >>> stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
-    (array(1.784201940...), 0.082172638...)
+    (...1.784201940..., 0.082172638...)
 
 |
 
@@ -592,7 +592,7 @@ model::
     previous t-test::
 
      >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-     (array(0.46563759638...), 0.64277250...)
+     (...0.46563759638..., 0.64277250...)
 
 
 Multiple Regression: including multiple factors
