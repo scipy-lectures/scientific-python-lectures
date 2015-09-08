@@ -298,7 +298,7 @@ intersphinx_mapping = {
     'http://docs.scipy.org/doc/scipy/reference': None,
     'http://matplotlib.org/': None,
     'http://scikit-learn.org/stable': None,
-    'http://scikit-image.org/docs/0.8.0/': None,
+    'http://scikit-image.org/docs/stable/': None,
     'http://docs.enthought.com/mayavi/mayavi/': None,
 }
 
