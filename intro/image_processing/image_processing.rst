@@ -29,6 +29,7 @@ Changing orientation, resolution, .. ::
    :align: center
    :scale: 70
 
+::
 
     >>> plt.subplot(151)    # doctest: +ELLIPSIS
     <matplotlib.axes._subplots.AxesSubplot object at 0x...>
