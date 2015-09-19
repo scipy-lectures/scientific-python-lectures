@@ -261,8 +261,7 @@ scipy are richer then those in numpy and should be preferred.
 We can then use this insight to :download:`optimize the previous code <demo_opt.py>`:
 
 .. literalinclude:: demo_opt.py
-   :start-line: 9
-   :end-line: 13
+   :pyobject: test
 
 .. sourcecode:: ipython
 
