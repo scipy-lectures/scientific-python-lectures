@@ -29,8 +29,9 @@ Statistics in Python
    * `Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_
 
    To install Python and these dependencies, we recommend that you
-   download `Anaconda Python <http://continuum.io/downloads>`_, or use
-   Ubuntu's package manager.
+   download `Anaconda Python <http://continuum.io/downloads>`_ or
+   `Enthought Canopy <https://store.enthought.com/>`_, or preferably use
+   the package manager if you are under Ubuntu or other linux.
 
 .. seealso:: **Bayesian statistics in Python**
 
