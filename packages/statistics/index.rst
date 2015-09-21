@@ -46,7 +46,7 @@ Statistics in Python
 
     **Why Python for statistics?**
 
-    R is a language dedicated to statistics. Python is a general purpose
+    R is a language dedicated to statistics. Python is a general-purpose
     language with statistics modules. R has more statistical analysis
     features than Python, and specialized syntaxes. However, when it
     comes to building complex analysis pipelines that mix statistics with
@@ -70,9 +70,9 @@ Statistics in Python
 
     **Disclaimer: Gender questions**
 
-    Some of the examples of this tutorial are chosen around touchy
-    gender questions. The reason is that on such questions the true
-    value of a claim actually matters to many people. 
+    Some of the examples of this tutorial are chosen around gender 
+    questions. The reason is that on such questions controlling the truth
+    of a claim actually matters to many people. 
 
 
 Data representation and interaction
@@ -84,7 +84,7 @@ Data as a table
 The setting that we consider for statistical analysis is that of multiple
 *observations* or *samples* described by a set of different *attributes*
 or *features*. The data can than be seen as a 2D table, or matrix, with
-columns given the different attributes of the data, and rows the
+columns giving the different attributes of the data, and rows the
 observations. For instance, the data contained in
 :download:`examples/brain_size.csv`:
 
@@ -101,8 +101,8 @@ The panda data-frame
     We will store and manipulate this data in a
     :class:`pandas.DataFrame`, from the `pandas
     <http://pandas.pydata.org>`_ module. It is the Python equivalent of
-    the spreadsheet table. It is different from a 2D numpy array as it
-    has named columns, can contained a mixture of different data types by
+    the spreadsheet table. It is different from a 2D ``numpy`` array as it
+    has named columns, can contain a mixture of different data types by
     column, and has elaborate selection and pivotal mechanisms.
 
 Creating dataframes: reading data files or converting arrays
@@ -136,8 +136,8 @@ data are a mixture of numerical and categorical values::
 |
 
 **Creating from arrays**: A :class:`pandas.DataFrame` can also be seen
-as a dictionary of 1D 'series', eg arrays or lists. If we have 3 numpy
-arrays::
+as a dictionary of 1D 'series', eg arrays or lists. If we have 3
+``numpy`` arrays::
 
     >>> import numpy as np
     >>> t = np.linspace(-6, 6, 20)
@@ -204,7 +204,7 @@ Manipulating data
     ('Male', 115.25)
 
 
-`groupby_gender` is a powerfull object that exposes many
+`groupby_gender` is a powerful object that exposes many
 operations on the resulting group of dataframes::
 
     >>> groupby_gender.mean()
@@ -397,6 +397,9 @@ this assumption::
 
    * Use non parametric statistics to test the difference between VIQ in
      males and females.
+
+   **Conclusion**: we find that the data does not support the hypothesis
+   that males and females have different VIQ.
 
 |
 
