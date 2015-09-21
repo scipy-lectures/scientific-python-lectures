@@ -326,7 +326,7 @@ div.highlight:hover span.copybutton:hover {
 }
 
 div.highlight:hover span.copybutton:after{
-    background: rgba(0,0,0,.8);
+    background: #3F556B;
     border-radius: 5px;
     color: white;
     content: attr(button_hint);

@@ -60,11 +60,8 @@ Statistics in Python
 
 .. tip::
 
-    **Code blocks**
-
-    In this document, the Python prompts are represented with the sign
-    ">>>". To copy-paste code, you can click on the top right of the code
-    blocks, to hide the prompts and the outputs.
+    In this document, the Python inputs are represented with the sign
+    ">>>". 
 
     |
 

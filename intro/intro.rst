@@ -312,7 +312,7 @@ Other useful magic functions are:
       10000000 loops, best of 3: 39 ns per loop
 
 * ``%cpaste`` allows you to paste code, especially code from websites which has
-  been prefixed with the standard python prompt (e.g. ``>>>``) or with an ipython
+  been prefixed with the standard Python prompt (e.g. ``>>>``) or with an ipython
   prompt, (e.g. ``in [3]``):
 
   .. sourcecode:: ipython
