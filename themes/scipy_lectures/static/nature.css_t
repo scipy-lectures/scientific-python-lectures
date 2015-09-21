@@ -251,6 +251,10 @@ div.sphinxsidebar h3 a {
     div.sphinxsidebar {
         display: none !important;
     }
+
+    div.bodywrapper {
+	margin: 0px;
+    }
 }
 
 div.sphinxsidebar ul {
