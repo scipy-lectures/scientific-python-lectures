@@ -1,3 +1,10 @@
+"""
+Bar plot advanced
+==================
+
+An more elaborate bar plot example
+"""
+
 import pylab as pl
 import numpy as np
 

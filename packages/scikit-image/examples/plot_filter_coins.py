@@ -1,4 +1,7 @@
 """
+Various denoising filters
+=========================
+
 This example compares several denoising filters available in scikit-image:
 a Gaussian filter, a median filter, and total variation denoising.
 """

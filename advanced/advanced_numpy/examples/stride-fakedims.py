@@ -1,3 +1,11 @@
+"""
+Exercise: using strides to create fake dimensions
+==================================================
+
+Use strides to create fake dimensions.
+
+"""
+
 import numpy as np
 from numpy.lib.stride_tricks import as_strided
 

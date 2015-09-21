@@ -1,4 +1,7 @@
 """
+Different Mayavi plotting modes
+================================
+
 Example generating the figures for the tutorial.
 """
 import numpy as np

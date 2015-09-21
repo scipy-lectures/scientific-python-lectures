@@ -1,3 +1,10 @@
+"""
+Exercise 3
+==========
+
+Exercise 3 with matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

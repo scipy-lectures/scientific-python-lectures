@@ -1,4 +1,7 @@
 """
+Comparing optimizers
+=====================
+
 Comparison of optimizers on various problems.
 """
 import functools

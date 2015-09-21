@@ -1,3 +1,13 @@
+"""
+Segmentation with Gaussian mixture models
+=========================================
+
+This example performs a Gaussian mixture model analysis of the image
+histogram to find the right thresholds for separating foreground from
+background.
+
+"""
+
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt

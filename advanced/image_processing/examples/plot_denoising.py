@@ -1,5 +1,12 @@
+"""
+Denoising an image with the median filter
+==========================================
+
+This example shows the original image, the noisy image, the denoised
+one (with the median filter) and the difference between the two.
+"""
+
 import numpy as np
-import scipy
 from scipy import ndimage
 import matplotlib.pyplot as plt
 
@@ -30,6 +37,7 @@ plt.axis('off')
 plt.title('Error', fontsize=20)
 
 
-plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9, bottom=0, left=0, right=1)
+plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9, bottom=0, left=0,
+                    right=1)
 
 plt.show()

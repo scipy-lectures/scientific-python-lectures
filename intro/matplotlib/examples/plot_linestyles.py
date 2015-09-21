@@ -1,3 +1,10 @@
+"""
+Linestyles
+==========
+
+Plot the different line styles.
+"""
+
 import pylab as pl
 import numpy as np
 

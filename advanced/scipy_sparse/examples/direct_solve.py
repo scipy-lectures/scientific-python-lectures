@@ -1,4 +1,7 @@
 """
+Solve a linear system
+=======================
+
 Construct a 1000x1000 lil_matrix and add some values to it, convert it
 to CSR format and solve A x = b for x:and solve a linear system with a
 direct solver.
@@ -24,4 +27,4 @@ rhs = rand(1000)
 
 x = linsolve.spsolve(mtx, rhs)
 
-print 'rezidual:', np.linalg.norm(mtx * x - rhs)
+print('rezidual: %r' % np.linalg.norm(mtx * x - rhs))

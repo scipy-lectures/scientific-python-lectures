@@ -1,3 +1,10 @@
+"""
+Exercise: reading a wav header
+================================
+
+An exercise to learn complex dtypes.
+"""
+
 import sys
 import numpy as np
 
@@ -22,7 +29,7 @@ wav_header_dtype = np.dtype([
 
 print wav_header_dtype.fields
 
-# Mini-exercise: Rewrite the above by supplying only the ``sample_rate`` and 
+# Mini-exercise: Rewrite the above by supplying only the ``sample_rate`` and
 #                ``num_channels`` fields.
 #
 #  wav_header_dtype = np.dtype(dict(

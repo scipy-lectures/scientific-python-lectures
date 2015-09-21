@@ -1,3 +1,11 @@
+"""
+Plot Mandelbrot
+================
+
+Plot the Mandelbrot ensemble.
+
+"""
+
 import numpy as np
 import mandel
 x = np.linspace(-1.7, 0.6, 1000)

@@ -1,3 +1,11 @@
+"""
+Measurements from images
+==========================
+
+This examples shows how to measure quantities from various images.
+
+"""
+
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt

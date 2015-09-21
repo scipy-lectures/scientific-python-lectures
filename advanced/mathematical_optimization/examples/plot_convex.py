@@ -1,5 +1,8 @@
 """
-Definition of a convex function
+Convex function
+================
+
+A figure showing the definition of a convex function
 """
 
 import numpy as np

@@ -1,3 +1,10 @@
+"""
+Blurring of images
+===================
+
+An example showing various processes that blur an image.
+"""
+
 import scipy
 from scipy import ndimage
 import matplotlib.pyplot as plt

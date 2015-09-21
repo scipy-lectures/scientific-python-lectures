@@ -1,3 +1,10 @@
+"""
+Dash capstyle
+=============
+
+An example demoing the dash capstyle.
+"""
+
 import pylab as pl
 import numpy as np
 

@@ -1,3 +1,9 @@
+"""
+Marker edge color
+==================
+
+Demo the marker edge color of matplotlib's markers.
+"""
 import pylab as pl
 import numpy as np
 

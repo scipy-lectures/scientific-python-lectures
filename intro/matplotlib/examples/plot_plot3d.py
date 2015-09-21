@@ -1,3 +1,10 @@
+"""
+3D plotting vignette
+=====================
+
+Demo 3D plotting with matplotlib and decorate the figure.
+"""
+
 import pylab as pl
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D

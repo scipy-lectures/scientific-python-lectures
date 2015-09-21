@@ -8,7 +8,6 @@ $(document).ready(function() {
     var pre = div.find('pre');
 
     // get the styles from the current theme
-    pre.parent().parent().css('position', 'relative');
     var hide_text = 'Hide the prompts and output';
     var show_text = 'Show the prompts and output';
     var border_width = pre.css('border-top-width');
@@ -29,6 +28,7 @@ $(document).ready(function() {
             button.css(button_styles)
             button.attr('button_hint', hide_text);
             jthis.prepend(button);
+	    jthis.parent().css('position', 'relative');
         }
         // tracebacks (.gt) contain bare text elements that need to be
         // wrapped in a span to work with .nextUntil() (see later)
@@ -44,7 +44,7 @@ $(document).ready(function() {
             button.parent().find('.go, .gp, .gt').hide();
             button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
             button.css('text-decoration', 'line-through');
-            button.attr('title', show_text);
+            button.attr('button_hint', show_text);
         },
         function() {
             var button = $(this);

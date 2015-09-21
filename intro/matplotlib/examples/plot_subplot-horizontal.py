@@ -1,3 +1,10 @@
+"""
+Horizontal arrangement of subplots
+==================================
+
+An example showing horizontal arrangement of subplots with matplotlib.
+"""
+
 import pylab as pl
 
 pl.figure(figsize=(6, 4))

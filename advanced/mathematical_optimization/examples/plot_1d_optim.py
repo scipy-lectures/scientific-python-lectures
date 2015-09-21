@@ -1,4 +1,7 @@
 """
+Brent's method
+================
+
 Illustration of 1D optimization: Brent's method
 """
 

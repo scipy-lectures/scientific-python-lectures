@@ -1,4 +1,7 @@
 """
+Labelling connected components of an image
+===========================================
+
 This example shows how to label connected components of a binary image, using
 the dedicated skimage.measure.label function.
 """

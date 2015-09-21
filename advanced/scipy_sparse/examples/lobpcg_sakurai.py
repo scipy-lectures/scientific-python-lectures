@@ -1,3 +1,10 @@
+"""
+LOBPCG: block-preconditionned solver
+=======================================
+
+This example demos the LOBPCG block-preconditionned solver.
+"""
+
 from scipy import array, arange, ones, sort, cos, pi, rand, \
      set_printoptions, r_
 from scipy.sparse.linalg import lobpcg

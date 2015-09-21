@@ -1,3 +1,10 @@
+"""
+Dash join style
+================
+
+Example demoing the dash join style.
+"""
+
 import pylab as pl
 import numpy as np
 

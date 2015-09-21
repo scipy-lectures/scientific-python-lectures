@@ -1,3 +1,10 @@
+"""
+Multiple plots vignette
+========================
+
+Demo multiple plots and style the figure.
+"""
+
 import pylab as pl
 
 ax = pl.subplot(2, 1, 1)

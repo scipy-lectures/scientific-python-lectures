@@ -1,4 +1,7 @@
 """
+Cost functions
+================
+
 Example cost functions or objective functions to optimize.
 """
 import numpy as np

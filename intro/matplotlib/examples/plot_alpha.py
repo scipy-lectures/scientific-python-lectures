@@ -1,3 +1,10 @@
+"""
+Alpha: transparency
+===================
+
+This example demonstrates using alpha for transparency.
+"""
+
 import pylab as pl
 
 size = 256,16

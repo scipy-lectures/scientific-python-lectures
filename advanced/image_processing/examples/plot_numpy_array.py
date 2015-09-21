@@ -1,3 +1,12 @@
+"""
+Image manipulation and numpy arrays
+====================================
+
+This example shows how to do image manipulation using common numpy arrays
+tricks.
+
+"""
+
 import numpy as np
 import scipy
 import matplotlib.pyplot as plt

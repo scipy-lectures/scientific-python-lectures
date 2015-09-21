@@ -1,5 +1,6 @@
 """
 Compute eigenvectors and eigenvalues using a preconditioned eigensolver
+========================================================================
 
 In this example Smoothed Aggregation (SA) is used to precondition
 the LOBPCG eigensolver on a two-dimensional Poisson problem with

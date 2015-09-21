@@ -1,5 +1,8 @@
 """
-Optimization with constraints
+Constraint optimization: visualizing the geometry
+==================================================
+
+A small figure explaining optimization with constraints
 """
 import numpy as np
 import pylab as pl

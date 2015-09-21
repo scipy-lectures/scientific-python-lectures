@@ -375,7 +375,7 @@ This is equivalent to a 1-sample test on the difference::
 
 T-tests assume Gaussian errors. We
 can use a `Wilcoxon signed-rank test
-<http://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, that relaxes
+<https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, that relaxes
 this assumption::
 
     >>> stats.wilcoxon(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
@@ -384,7 +384,7 @@ this assumption::
 .. note::
 
    The corresponding test in the non paired case is the `Mann–Whitney U
-   test <http://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
+   test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
    :func:`scipy.stats.mannwhitneyu`.
 
 .. topic:: **Exercice**
@@ -423,7 +423,7 @@ where `e` is observation noise. We will use the `statmodels
 <http://statsmodels.sourceforge.net/>`_ module to:
 
 #. Fit a linear model. We will use the simplest strategy, `ordinary least
-   squares <http://en.wikipedia.org/wiki/Ordinary_least_squares>`_ (OLS).
+   squares <https://en.wikipedia.org/wiki/Ordinary_least_squares>`_ (OLS).
 
 #. Test that `coef` is non zero.
 

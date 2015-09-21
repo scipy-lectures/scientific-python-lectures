@@ -1,3 +1,11 @@
+"""
+Building the mandel C-Python extension
+=======================================
+
+The "setup.py" script that builds the mandel.so extension from the
+C sources.
+"""
+
 import os
 import sys
 from os.path import join

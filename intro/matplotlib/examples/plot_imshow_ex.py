@@ -1,3 +1,10 @@
+"""
+Imshow elaborate
+=================
+
+An example demoing imshow and styling the figure.
+"""
+
 import pylab as pl
 import numpy as np
 

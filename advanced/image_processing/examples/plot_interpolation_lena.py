@@ -1,3 +1,10 @@
+"""
+Image interpolation
+=====================
+
+The example demonstrates image interpolation on Lena.
+"""
+
 import scipy
 import matplotlib.pyplot as plt
 

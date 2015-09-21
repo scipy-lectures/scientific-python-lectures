@@ -1,3 +1,10 @@
+"""
+Solid cap style
+================
+
+An example demoing the solide cap style in matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

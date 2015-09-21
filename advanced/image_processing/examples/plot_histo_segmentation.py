@@ -1,3 +1,10 @@
+"""
+Histogram segmentation
+======================
+
+This example does simple histogram analysis to perform segmentation.
+"""
+
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt

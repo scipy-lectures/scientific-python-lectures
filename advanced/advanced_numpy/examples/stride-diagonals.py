@@ -1,3 +1,10 @@
+"""
+Exercise: stride in diagonal
+==============================
+
+A small striding exercise
+"""
+
 import numpy as np
 from numpy.lib.stride_tricks import as_strided
 

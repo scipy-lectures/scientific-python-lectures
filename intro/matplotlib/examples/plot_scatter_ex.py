@@ -1,3 +1,10 @@
+"""
+Plotting a scatter of points
+==============================
+
+A simple example showing how to plot a scatter of points with matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

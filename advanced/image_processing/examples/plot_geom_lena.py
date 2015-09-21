@@ -1,3 +1,10 @@
+"""
+Geometrical transformations
+==============================
+
+This examples demos some simple geometrical transformations on lena.
+"""
+
 import numpy as np
 import scipy
 from scipy import ndimage

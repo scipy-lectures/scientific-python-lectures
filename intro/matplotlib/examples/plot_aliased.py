@@ -1,3 +1,10 @@
+"""
+Aliased versus anti-aliased
+=============================
+
+This example demonstrates aliased versus anti-aliased text.
+"""
+
 import pylab as pl
 
 size = 128, 16

@@ -1,3 +1,10 @@
+"""
+Surface plot
+============
+
+A simple surface plot with Mayavi
+"""
+
 import numpy as np
 
 x, y = np.mgrid[-10:10:100j, -10:10:100j]
