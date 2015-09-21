@@ -393,6 +393,14 @@ div.sidebar {
     padding-top: 2px;
 }
 
+@media (max-width: 840px) {
+    div.sidebar {
+	float: none;
+	width: 95%;
+	padding-top: 8px;
+    }
+}
+
 div.topic {
     background-color: #F9F9F9;
     margin-top: 15px;
