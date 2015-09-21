@@ -44,7 +44,7 @@ $(document).ready(function() {
             button.parent().find('.go, .gp, .gt').hide();
             button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'hidden');
             button.css('text-decoration', 'line-through');
-            button.attr('title', show_text);
+            button.attr('button_hint', show_text);
         },
         function() {
             var button = $(this);
