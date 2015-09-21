@@ -256,6 +256,7 @@ div.sphinxsidebar h3 {
 
 div.sphinxsidebar h3 a {
     color: #393333;
+    font-weight: 600;
 }
 
 @media (max-width: 1324px) {
