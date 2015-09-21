@@ -1,3 +1,10 @@
+"""
+3D plotting
+===========
+
+A simple example of 3D plotting.
+"""
+
 import pylab as pl
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D

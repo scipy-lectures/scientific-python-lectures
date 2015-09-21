@@ -1,3 +1,10 @@
+"""
+Exercise: using the buffer protocole
+====================================
+
+Skeletton of the code to do an exercise using the buffer protocole.
+"""
+
 import numpy as np
 import Image
 
@@ -5,10 +12,10 @@ import Image
 
 x = np.zeros((200, 200, 4), dtype=np.int8)
 
-TODO: fill `x` with fully opaque red [255, 0, 0, 255]
+# TODO: fill `x` with fully opaque red [255, 0, 0, 255]
 
-TODO: RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA]
-      How to get that from ``x``?
+# TODO: RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA]
+#       How to get that from ``x``?
 
 data = ...
 

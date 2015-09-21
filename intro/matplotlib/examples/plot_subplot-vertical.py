@@ -1,3 +1,10 @@
+"""
+Subplot plot arrangement vertical
+==================================
+
+An example showing vertical arrangement of subplots with matplotlib.
+"""
+
 import pylab as pl
 
 pl.figure(figsize=(6, 4))

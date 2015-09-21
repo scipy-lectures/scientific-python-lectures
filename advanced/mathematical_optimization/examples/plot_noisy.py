@@ -1,5 +1,8 @@
 """
-Noisy vs non-noisy
+Noisy optimization problem
+===========================
+
+Draws a figure explaining noisy vs non-noisy optimization
 """
 import numpy as np
 import pylab as pl

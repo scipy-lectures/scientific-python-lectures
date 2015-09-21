@@ -1,4 +1,7 @@
 """
+Watershed and random walker for segmentation
+============================================
+
 This example compares two segmentation methods in order to separate two
 connected disks: the watershed algorithm, and the random walker algorithm.
 

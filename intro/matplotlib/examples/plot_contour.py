@@ -1,3 +1,11 @@
+"""
+Display the contours of a function
+===================================
+
+An example demoing how to plot the contours of a function, with
+additional layout tweeks.
+
+"""
 import pylab as pl
 import numpy as np
 

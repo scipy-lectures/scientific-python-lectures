@@ -1,3 +1,11 @@
+"""
+Image sharpening
+=================
+
+This example shows how to sharpen an image in noiseless situation by
+applying the filter inverse to the blur.
+"""
+
 import scipy
 from scipy import ndimage
 import matplotlib.pyplot as plt

@@ -1,9 +1,13 @@
 """
+Computing horizontal gradients with the Sobel filter
+=====================================================
+
 This example illustrates the use of the horizontal Sobel filter, to compute
 horizontal gradients.
 """
 
 from skimage import data
+# scikit-image has changes its API
 try:
     from skimage import filters
 except ImportError:

@@ -1,3 +1,10 @@
+"""
+Watershed segmentation
+=======================
+
+This example shows how to do segmentation with watershed.
+"""
+
 import numpy as np
 from skimage.morphology import watershed
 from skimage.feature import peak_local_max

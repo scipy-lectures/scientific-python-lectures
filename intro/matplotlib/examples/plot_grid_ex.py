@@ -1,3 +1,10 @@
+"""
+Grid
+====
+
+Displaying a grid on the axes in matploblib.
+"""
+
 import pylab as pl
 
 ax = pl.axes([0.025, 0.025, 0.95, 0.95])

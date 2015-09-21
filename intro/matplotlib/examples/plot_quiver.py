@@ -1,3 +1,10 @@
+"""
+Plotting quiver decorated
+==========================
+
+An example showing quiver with decorations.
+"""
+
 import pylab as pl
 import numpy as np
 

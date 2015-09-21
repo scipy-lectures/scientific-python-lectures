@@ -1,14 +1,15 @@
 """
+Equalizing the histogram of an image
+=====================================
 
+Histogram equalizing makes images have a uniform histogram.
 """
 
 from skimage import data, exposure
 import matplotlib.pyplot as plt
 
 camera = data.camera()
-camera_equalized = exposure.equalize_hist(camera) 
-
-
+camera_equalized = exposure.equalize_hist(camera)
 
 plt.figure(figsize=(7, 3))
 

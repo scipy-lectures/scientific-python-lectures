@@ -1,3 +1,10 @@
+"""
+Bar plots
+==========
+
+An example of bar plots with matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

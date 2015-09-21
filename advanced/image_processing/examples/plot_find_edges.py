@@ -1,3 +1,10 @@
+"""
+Finding edges with Sobel filters
+==================================
+
+The Sobel filter is one of the simplest way of finding edges.
+"""
+
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt

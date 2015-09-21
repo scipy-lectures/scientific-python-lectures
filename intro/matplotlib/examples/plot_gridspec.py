@@ -1,3 +1,10 @@
+"""
+GridSpec
+=========
+
+An example demoing gridspec
+"""
+
 import pylab as pl
 import matplotlib.gridspec as gridspec
 

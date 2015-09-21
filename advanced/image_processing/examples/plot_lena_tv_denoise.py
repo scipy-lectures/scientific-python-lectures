@@ -1,3 +1,10 @@
+"""
+Total Variation denoising
+===========================
+
+This example demoes Total-Variation (TV) denoising on Lena.
+"""
+
 import numpy as np
 import scipy
 import matplotlib.pyplot as plt

@@ -1,3 +1,10 @@
+"""
+Subplots
+=========
+
+Show multiple subplots in matplotlib.
+"""
+
 import pylab as pl
 
 fig = pl.figure()

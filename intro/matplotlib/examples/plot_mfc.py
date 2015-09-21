@@ -1,3 +1,10 @@
+"""
+Marker face color
+==================
+
+Demo the marker face color of matplotlib's markers.
+"""
+
 import pylab as pl
 import numpy as np
 

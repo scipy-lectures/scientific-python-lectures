@@ -1,3 +1,10 @@
+"""
+Synthetic data
+===============
+
+The example generates and displays simple synthetic data.
+"""
+
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt

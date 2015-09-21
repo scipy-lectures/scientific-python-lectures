@@ -1,3 +1,10 @@
+"""
+Linewidth
+=========
+
+Plot various linewidth with matplotlib.
+"""
+
 import pylab as pl
 
 size = 256, 16

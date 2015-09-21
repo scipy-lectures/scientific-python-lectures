@@ -1,3 +1,11 @@
+"""
+Plot the block mean of an image
+================================
+
+An example showing how to use broad-casting to plot the mean of
+blocks of an image.
+"""
+
 import numpy as np
 import scipy
 from scipy import ndimage

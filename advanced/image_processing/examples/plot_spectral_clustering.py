@@ -1,3 +1,10 @@
+"""
+Segmentation with spectral clustering
+======================================
+
+This example uses spectral clustering to do segmentation.
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 

@@ -1,3 +1,9 @@
+"""
+Display lena
+=============
+
+An example that displays lena with matplotlib.
+"""
 import scipy
 import matplotlib.pyplot as plt
 

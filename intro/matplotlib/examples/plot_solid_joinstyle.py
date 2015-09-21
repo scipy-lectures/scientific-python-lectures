@@ -1,3 +1,10 @@
+"""
+Solid joint style
+==================
+
+An example showing the differen solid joint styles in matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

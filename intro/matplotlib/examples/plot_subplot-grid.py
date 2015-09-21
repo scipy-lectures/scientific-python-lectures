@@ -1,3 +1,10 @@
+"""
+Subplot grid
+=============
+
+An example showing the subplot grid in matplotlib.
+"""
+
 import pylab as pl
 
 pl.figure(figsize=(6, 4))

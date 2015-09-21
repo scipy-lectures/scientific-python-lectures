@@ -1,3 +1,10 @@
+"""
+Plot example vignette
+=======================
+
+An example of plots with matplotlib, and added annotations.
+"""
+
 import pylab as pl
 import numpy as np
 

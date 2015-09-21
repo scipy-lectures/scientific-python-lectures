@@ -1,3 +1,10 @@
+"""
+A simple, good-looking plot
+===========================
+
+Demoing some simple features of matplotlib
+"""
+
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')

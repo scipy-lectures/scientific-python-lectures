@@ -1,3 +1,10 @@
+"""
+Imshow demo
+============
+
+Demoing imshow
+"""
+
 import pylab as pl
 import numpy as np
 

@@ -1,3 +1,10 @@
+"""
+Markers
+=======
+
+Show the different markers of matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

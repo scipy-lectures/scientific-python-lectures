@@ -1,3 +1,10 @@
+"""
+The colors matplotlib line plots
+==================================
+
+An example demoing the various colors taken by matplotlib's plot.
+"""
+
 import pylab as pl
 
 size = 256, 16

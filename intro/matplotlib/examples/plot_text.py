@@ -1,3 +1,10 @@
+"""
+Text printing decorated
+=======================
+
+An example showing text printing and decorating the resulting figure.
+"""
+
 import pylab as pl
 import numpy as np
 

@@ -1,7 +1,15 @@
+"""
+Cleaning segmentation with mathematical morphology
+===================================================
+
+An example showing how to clean segmentation with mathematical
+morphology: removing small regions and holes.
+
+"""
+
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt
-from sklearn.mixture import GMM
 
 np.random.seed(1)
 n = 10

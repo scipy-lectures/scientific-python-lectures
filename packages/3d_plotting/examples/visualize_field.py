@@ -1,4 +1,7 @@
 """
+Helmoltz coils
+==============
+
 Visualize the field created by a pair of Helmoltz coils
 """
 

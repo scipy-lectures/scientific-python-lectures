@@ -1,3 +1,10 @@
+"""
+Image denoising
+================
+
+This example demoes image denoising on Lena.
+"""
+
 import numpy as np
 import scipy
 from scipy import ndimage

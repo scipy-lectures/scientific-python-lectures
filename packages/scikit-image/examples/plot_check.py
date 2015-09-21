@@ -1,4 +1,7 @@
 """
+Creating an image
+==================
+
 How to create an image with basic NumPy commands : ``np.zeros``, slicing...
 
 This examples show how to create a simple checkerboard.

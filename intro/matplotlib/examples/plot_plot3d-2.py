@@ -1,3 +1,10 @@
+"""
+3D plotting
+============
+
+Demo 3D plotting with matplotlib and style the figure.
+"""
+
 import pylab as pl
 from mpl_toolkits.mplot3d import axes3d
 

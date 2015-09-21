@@ -1,4 +1,8 @@
-"""Generate the exercise results on the Gumbell distribution
+"""
+The Gumbell distribution
+=========================
+
+Generate the exercise results on the Gumbell distribution
 """
 import numpy as np
 from scipy.interpolate import UnivariateSpline

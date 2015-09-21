@@ -1,4 +1,7 @@
 """
+Volume visualization
+=====================
+
 Use Mayavi to visualize the structure of a VolumeImg
 """
 

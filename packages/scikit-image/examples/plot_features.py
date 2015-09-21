@@ -1,3 +1,10 @@
+"""
+Affine transform
+=================
+
+Warping and affine transforms of images.
+"""
+
 from matplotlib import pyplot as plt
 
 from skimage import data

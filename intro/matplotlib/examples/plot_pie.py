@@ -1,3 +1,10 @@
+"""
+Pie chart vignette
+===================
+
+Demo pie chart with matplotlib and style the figure.
+"""
+
 import pylab as pl
 import numpy as np
 

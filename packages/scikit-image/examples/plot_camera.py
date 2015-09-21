@@ -1,4 +1,7 @@
 """
+Displaying a simple image
+=========================
+
 Load and display an image
 """
 

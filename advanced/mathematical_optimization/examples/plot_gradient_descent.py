@@ -1,5 +1,9 @@
 """
-Demo gradient descent
+Gradient descent
+==================
+
+An example demoing gradient descent by creating figures that trace the
+evolution of the optimizer.
 """
 import numpy as np
 import pylab as pl

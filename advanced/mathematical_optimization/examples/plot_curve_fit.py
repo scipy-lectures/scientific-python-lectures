@@ -1,4 +1,7 @@
 """
+Curve fitting
+=============
+
 A curve fitting example
 """
 

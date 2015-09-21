@@ -1,3 +1,11 @@
+"""
+Plotting in polar coordinnates
+===============================
+
+A simple example showing how to plot in polar coordinnates with
+matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

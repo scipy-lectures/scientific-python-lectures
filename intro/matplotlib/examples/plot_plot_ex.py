@@ -1,3 +1,10 @@
+"""
+Plot and filled plots
+=====================
+
+Simple example of plots and filling between them with matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

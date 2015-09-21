@@ -1,3 +1,10 @@
+"""
+Importing the compiled module
+==============================
+
+Playing with the module defined in myobject.c
+"""
+
 #
 # Compile myobject.c first with
 #

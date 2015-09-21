@@ -1,3 +1,11 @@
+"""
+Plotting in polar, decorated
+=============================
+
+An example showing how to plot in polar coordinnate, and some
+decorations.
+"""
+
 import pylab as pl
 import numpy as np
 

@@ -1,3 +1,10 @@
+"""
+Plot scatter decorated
+=======================
+
+An example showing the scatter function, with decorations.
+"""
+
 import pylab as pl
 import numpy as np
 

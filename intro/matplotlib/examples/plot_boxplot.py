@@ -1,3 +1,11 @@
+"""
+Boxplot with matplotlib
+=======================
+
+An example of doing box plots with matplotlib
+
+"""
+
 import numpy as np
 import matplotlib
 matplotlib.use('Agg')

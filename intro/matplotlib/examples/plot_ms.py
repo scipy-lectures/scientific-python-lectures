@@ -1,3 +1,10 @@
+"""
+Marker size
+===========
+
+Demo the marker size control in matplotlib.
+"""
+
 import pylab as pl
 
 size = 256, 16

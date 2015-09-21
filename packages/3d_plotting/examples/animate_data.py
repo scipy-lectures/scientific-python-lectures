@@ -1,5 +1,7 @@
 """
 A small demo of data animation
+===============================
+
 """
 import numpy as np
 from mayavi import mlab

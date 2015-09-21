@@ -1,3 +1,10 @@
+"""
+Grid elaborate
+===============
+
+An example displaying a grid on the axes and tweaking the layout.
+"""
+
 import pylab as pl
 from matplotlib.ticker import MultipleLocator
 

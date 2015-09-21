@@ -1,3 +1,10 @@
+"""
+Radial mean
+============
+
+This example shows how to do a radial mean with scikit-image.
+"""
+
 import numpy as np
 import scipy
 from scipy import ndimage

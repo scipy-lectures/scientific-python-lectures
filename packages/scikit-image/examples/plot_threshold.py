@@ -1,4 +1,7 @@
 """
+Otsu thresholding
+==================
+
 This example illustrates automatic Otsu thresholding.
 """
 

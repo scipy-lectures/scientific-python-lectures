@@ -1,3 +1,10 @@
+"""
+Granulometry
+============
+
+This example performs a simple granulometry analysis.
+"""
+
 import numpy as np
 from scipy import ndimage
 import matplotlib.pyplot as plt

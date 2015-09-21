@@ -1,4 +1,7 @@
 """
+A dialog with Mayavi
+====================
+
 Simple example demoing a dialog with Mayavi
 """
 

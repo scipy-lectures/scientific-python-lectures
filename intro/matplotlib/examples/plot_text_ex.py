@@ -1,3 +1,10 @@
+"""
+Demo text printing
+===================
+
+A example showing off elaborate text printing with matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 

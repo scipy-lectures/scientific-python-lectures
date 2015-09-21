@@ -1,3 +1,9 @@
+"""
+Marker edge width
+=================
+
+Demo the marker edge widths of matplotlib's markers.
+"""
 import pylab as pl
 
 size = 256, 16

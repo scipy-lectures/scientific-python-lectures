@@ -1,3 +1,11 @@
+"""
+Locators for tick on axis
+==========================
+
+An example demoing different locators to position ticks on axis for
+matplotlib.
+"""
+
 import pylab as pl
 import numpy as np
 
