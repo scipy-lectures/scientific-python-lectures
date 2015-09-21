@@ -554,9 +554,7 @@ the random process's PDF (probability density function): ::
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
     >>> from scipy import stats
     >>> b = stats.norm.pdf(bins)  # norm is a distribution
-
-.. sourcecode:: ipython
-
+    
     >>> plt.plot(bins, histogram) # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
     >>> plt.plot(bins, b) # doctest: +ELLIPSIS
