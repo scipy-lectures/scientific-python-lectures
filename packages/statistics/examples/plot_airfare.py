@@ -31,7 +31,7 @@ if not os.path.exists('airfares.txt'):
 
 # As a seperator, ' +' is a regular expression that means 'one of more
 # space'
-data = pandas.read_csv('clinical.txt', sep=' +', header=0,
+data = pandas.read_csv('airfares.txt', sep=' +', header=0,
                        names=['city1', 'city2', 'pop1', 'pop2',
                               'dist', 'fare_2000', 'nb_passengers_2000',
                               'fare_2001', 'nb_passengers_2001'])
