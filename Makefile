@@ -41,6 +41,9 @@ test-stop-when-failing:
 
 html:
 	mkdir -p build/html build/doctrees
+	# This line makes the build a bit more lengthy, and the
+	# the embedding of images more robust
+	rm -rf $(BUILDDIR)/html/_images
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
 	@echo
 	@echo "Build finished. The HTML pages are in build/html."
