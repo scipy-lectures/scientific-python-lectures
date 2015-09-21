@@ -4,13 +4,14 @@
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend("Agg")
 
-
 .. _scikit_image:
+
+==============================
+Scikit-image: image processing
+==============================
 
 .. currentmodule:: skimage
 
-Scikit-image: image processing
-==============================
 
 **Author**: *Emmanuelle Gouillart*
 
@@ -36,7 +37,7 @@ modules such as NumPy and SciPy.
 
 
 Introduction and concepts
--------------------------
+=========================
 
 Images are NumPy's arrays ``np.ndarray``
 
@@ -77,7 +78,7 @@ Images are NumPy's arrays ``np.ndarray``
     :align: center
 
 ``scikit-image`` and the ``SciPy`` ecosystem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------------
 
 Recent versions of ``scikit-image`` is packaged in most Scientific Python
 distributions, such as Anaconda or Enthought Canopy. It is also packaged
@@ -122,7 +123,7 @@ Also, powerful image processing libraries have Python bindings:
 
 
 What's to be found in scikit-image
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 * Website: http://scikit-image.org/
 
@@ -146,7 +147,7 @@ high-level recent algorithms.
  * Other actions: I/O, visualization, etc.
 
 Input/output, data types and colorspaces
-----------------------------------------
+=========================================
 
 I/O: :mod:`skimage.io` ::
 
@@ -180,7 +181,7 @@ Saving to files::
 
 
 Data types
-~~~~~~~~~~
+-----------
 
 
 .. image:: auto_examples/images/plot_camera_uint_1.png
@@ -241,7 +242,7 @@ See the `user guide
 more details.
 
 Colorspaces
-~~~~~~~~~~~
+------------
 
 Color images are of shape (N, M, 3) or (N, M, 4) (when an alpha channel
 encodes transparency) ::
@@ -275,13 +276,13 @@ images.
     Convert the image to grayscale and plot its histogram.
 
 Image preprocessing / enhancement
----------------------------------
+==================================
 
 Goals: denoising, feature (edges) extraction, ...
 
 
 Local filters
-~~~~~~~~~~~~~
+--------------
 
 Local filters replace the value of pixels by a function of the
 values of neighboring pixels. The function can be linear or non-linear.
@@ -312,7 +313,7 @@ Uses the following linear kernel for computing horizontal gradients::
 
 
 Non-local filters
-~~~~~~~~~~~~~~~~~
+-----------------
 
 Non-local filters use a large region of the image (or all the image) to
 transform the value of one pixel::
@@ -329,7 +330,7 @@ Enhances contrast in large almost uniform regions.
     :align: center
 
 Mathematical morphology
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 See http://en.wikipedia.org/wiki/Mathematical_morphology
 
@@ -449,14 +450,14 @@ skeletonization, etc.
         :target: auto_examples/plot_filter_coins.html
 
 Image segmentation
-------------------
+===================
 
 Image segmentation is the attribution of different labels to different
 regions of the image, for example in order to extract the pixels of an
 object of interest.
 
 Binary segmentation: foreground + background
-.............................................
+---------------------------------------------
 
 Histogram-based method: **Otsu thresholding**
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -481,7 +482,7 @@ Histogram-based method: **Otsu thresholding**
     :align: center
 
 Labeling connected components of a discrete image
-..................................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. tip::
 
@@ -520,13 +521,13 @@ Label only foreground connected components::
    object in an image.
 
 Marker based methods
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------------
 
 If you have markers inside a set of regions, you can use these to segment
 the regions.
 
 *Watershed* segmentation
-..........................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Watershed (:func:`skimage.morphology.watershed`) is a region-growing
 approach that fills "basins" in the image ::
@@ -551,7 +552,7 @@ approach that fills "basins" in the image ::
     >>> labels_ws = watershed(-distance, markers, mask=image)
 
 *Random walker* segmentation
-..............................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The random walker algorithm (:func:`skimage.segmentation.random_walker`)
 is similar to the Watershed, but with a more "probabilistic" approach. It
@@ -593,7 +594,7 @@ is based on the idea of the diffusion of labels in the image::
 
 
 Measuring regions' properties
------------------------------
+==============================
 
 ::
 
@@ -614,7 +615,7 @@ Example: compute the size and perimeter of the two segmented regions::
    returned).
 
 
-.. topic:: Exercise (cont'd)
+.. topic:: Exercise (continued)
    :class: green
 
     * Use the binary image of the coins and background from the previous
@@ -625,7 +626,7 @@ Example: compute the size and perimeter of the two segmented regions::
     * Compute the size and eccentricity of all coins.
 
 Data visualization and interaction
-----------------------------------
+===================================
 
 Meaningful visualizations are useful when testing a given processing
 pipeline.
@@ -683,7 +684,7 @@ For more interaction, plugins can be added to the viewer::
     :align: center
 
 Feature extraction for computer vision
---------------------------------------
+=======================================
 
 Geometric or textural descriptor can be extracted from images in order to
 
