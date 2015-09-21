@@ -163,7 +163,7 @@ html_theme_path = ['themes']
 #html_style = 'default.css'
 
 html_theme_options = {
-                'nosidebar': 'true',
+                #'nosidebar': 'true',
                 'footerbgcolor': '#000000',
                 'relbarbgcolor': '#000000',
                 }

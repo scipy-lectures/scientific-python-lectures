@@ -217,6 +217,88 @@ div.body {
   }
 }
 
+/********** The general sidebar **************/
+
+div.sphinxsidebar {
+    width: 300px;
+    float: none;
+    position: fixed;
+    margin-left: 10px;
+    margin-top: 5px;
+    padding-bottom: 10px;
+    background-color: #F7F7F7;
+    border: solid 1px #EEE;
+}
+
+div.sphinxsidebar p {
+    display: none;
+}
+
+div.sphinxsidebar a {
+    color: #393333;
+}
+
+div.sphinxsidebar h3 {
+    color: #393333;
+    font-size: 110%;
+}
+
+div.sphinxsidebar h3 a {
+    display: none;
+}
+
+@media (max-width: 1324px) {
+    div.sphinxsidebar {
+        display: none !important;
+    }
+}
+
+div.sphinxsidebar ul {
+    margin: 0px 5px 15px 0px;
+    font-size: 110%;
+    padding-left: 3ex;
+    text-indent: -3.5ex;
+}
+
+div.sphinxsidebar ul ul {
+    padding-left: 4ex;
+    text-indent: -4ex;
+    font-size: 90%;
+    list-style: none;
+    margin: 0.5ex 0px 0px -1.7ex;
+}
+
+div.sphinxsidebar ul {
+    transition-duration: 0.3s;
+}
+
+div.sphinxsidebar ul ul ul {
+    display: none; /* Hide 3 level down in the contents */
+}
+
+div.sphinxsidebarwrapper ul ul li.active a {
+    font-weight: bold;
+}
+
+div.sphinxsidebarwrapper ul ul li.active ul {
+    display: block; /* Show the active level 3 */
+}
+
+div.sphinxsidebarwrapper ul ul li.active ul a{
+    font-weight: normal;
+}
+
+div.sphinxsidebarwrapper ul ul li.active ul li.active a{
+    font-weight: bold;
+}
+
+
+div.sphinxsidebarwrapper ul ul li.active ul ul {
+    display: none; /* Alway hide 4 level down */
+}
+
+/*********************************************/
+
 
 div.document {
     /*background-color: #edf7fb;*/
@@ -391,14 +473,6 @@ div.topic, div.admonition {
 
 div.sidebar {
     padding-top: 2px;
-}
-
-@media (max-width: 840px) {
-    div.sidebar {
-	float: none;
-	width: 95%;
-	padding-top: 8px;
-    }
 }
 
 div.topic {
@@ -610,6 +684,15 @@ div.sidebar {
     margin-right: 2px;
     z-index: 50;
 }
+
+@media (max-width: 840px) {
+    div.sidebar {
+	float: none;
+	width: 95%;
+	padding-top: 8px;
+    }
+}
+
 
 /************* Code examples *****************/
 ul.horizontal img {
