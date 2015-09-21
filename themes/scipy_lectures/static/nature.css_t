@@ -282,6 +282,7 @@ div.sphinxsidebarwrapper ul ul li.active a {
 
 div.sphinxsidebarwrapper ul ul li.active ul {
     display: block; /* Show the active level 3 */
+    margin: 0.1ex 0px 0.5ex -2ex;
 }
 
 div.sphinxsidebarwrapper ul ul li.active ul a{
