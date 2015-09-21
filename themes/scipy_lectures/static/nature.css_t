@@ -237,6 +237,10 @@ div.sidebartoc {
     padding: 10px 3px 3px 10px;
 }
 
+div.sidebartoc:empty {
+    display: none
+}
+
 div.sphinxsidebar p {
     display: none;
 }

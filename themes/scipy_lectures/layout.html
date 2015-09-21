@@ -49,9 +49,7 @@ $(function () {
 
 {% block sidebartoc %}
     {%- if (pathto('index') != '#') %}
-	<div class="sidebartoc">
-	    {{ super() }}
-	</div>
+	<div class="sidebartoc">{{ super() }}</div>
     {%- endif %}
 {% endblock %}
 
