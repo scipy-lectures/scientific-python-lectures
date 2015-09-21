@@ -332,7 +332,7 @@ Enhances contrast in large almost uniform regions.
 Mathematical morphology
 -----------------------
 
-See http://en.wikipedia.org/wiki/Mathematical_morphology
+See https://en.wikipedia.org/wiki/Mathematical_morphology
 
 Probe an image with a simple shape (a **structuring element**), and
 modify this image according to how the shape locally fits or misses the
@@ -464,16 +464,21 @@ Histogram-based method: **Otsu thresholding**
 
 .. tip::
 
-   The `Otsu method <http://en.wikipedia.org/wiki/Otsu's_method>`_ is a
+   The `Otsu method <https://en.wikipedia.org/wiki/Otsu's_method>`_ is a
    simple heuristic to find a threshold to separate the foreground from
    the background.
+
+.. sidebar:: Earlier scikit-image versions
+
+   :mod:`skimage.filters` is called :mod:`skimage.filter` in earlier
+   versions of scikit-image
 
 ::
 
     from skimage import data
     from skimage import filters
     camera = data.camera()
-    val = filter.threshold_otsu(camera)
+    val = filters.threshold_otsu(camera)
     mask = camera < val
 
 .. image:: auto_examples/images/plot_threshold_1.png

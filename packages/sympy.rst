@@ -31,7 +31,7 @@ extensible.  SymPy is written entirely in Python and does not require any
 external libraries.
 
 Sympy documentation and packages for installation can be found on
-http://sympy.org/
+http://www.sympy.org/
 
 .. contents:: Chapters contents
    :local:

@@ -25,10 +25,13 @@ The Traits project allows you to simply add validation, initialization, delegati
 .. topic:: Requirements
 
     * Python 2.6 or 2.7 (www.python.org)
-    * Either wxPython (http://www.wxpython.org/) or PyQt (http://www.riverbankcomputing.co.uk/software/pyqt/intro)
+    * Either wxPython (http://www.wxpython.org/), 
+      PyQt (https://riverbankcomputing.com/software/pyqt/intro) or
+      PySide (https://pyside.github.io/docs/pyside/)
     * Numpy and Scipy (http://www.scipy.org)
     * Enthought Tool Suite 3.x or higher (http://code.enthought.com/projects)
-    * All required software can be obtained by installing the EPD Free (http://www.enthought.com/products/epd.php)
+    * All required software can be obtained by installing the EPD Free
+      (https://store.enthought.com/)
 
 
 .. contents:: Tutorial content
@@ -427,7 +430,7 @@ TraitsUI Item, the ChacoPlotItem:
 .. seealso:: References
 
     * ETS repositories: http://github.com/enthought
-    * Traits manual: http://github.enthought.com/traits/traits_user_manual/index.html
-    * Traits UI manual: http://github.enthought.com/traitsui/traitsui_user_manual/index.html 
+    * Traits manual: http://docs.enthought.com/traits/traits_user_manual/index.html
+    * Traits UI manual: http://docs.enthought.com/traitsui/traitsui_user_manual/index.html 
 
     * Mailing list : enthought-dev@enthought.com
