@@ -27,7 +27,7 @@ $(document).ready(function() {
         if (jthis.find('.gp').length > 0) {
             var button = $('<span class="copybutton">&gt;&gt;&gt;</span>');
             button.css(button_styles)
-            button.attr('title', hide_text);
+            button.attr('button_hint', hide_text);
             jthis.prepend(button);
         }
         // tracebacks (.gt) contain bare text elements that need to be
@@ -51,7 +51,7 @@ $(document).ready(function() {
             button.parent().find('.go, .gp, .gt').show();
             button.next('pre').find('.gt').nextUntil('.gp, .go').css('visibility', 'visible');
             button.css('text-decoration', 'none');
-            button.attr('title', hide_text);
+            button.attr('button_hint', hide_text);
         });
 });
 

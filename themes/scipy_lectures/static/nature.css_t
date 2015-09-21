@@ -317,6 +317,27 @@ div.highlight pre div.newline {
     visibility: hidden;
 }
 
+div.highlight:hover span.copybutton {
+    background-color: #3F556B;
+}
+
+div.highlight:hover span.copybutton:hover {
+    background-color: #20252B;
+}
+
+div.highlight:hover span.copybutton:after{
+    background: rgba(0,0,0,.8);
+    border-radius: 5px;
+    color: white;
+    content: attr(button_hint);
+    left: 110%;
+    padding: 5px 15px;
+    position: absolute;
+    z-index: 98;
+    width: 140px;
+    top: -10px;
+}
+
 div.body p {
     margin-bottom : .3em;
     margin-top : .7em;
