@@ -15,7 +15,7 @@ ALLSPHINXOPTS   = -d build/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 .PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip
 
-all: html
+all: html-noplot
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -39,11 +39,16 @@ test:
 test-stop-when-failing:
 	nosetests -vx --with-doctest --doctest-tests --doctest-extension=rst testing.py $(shell find intro advanced packages -name \*.rst -print)
 
+html-noplot:
+	$(SPHINXBUILD) -D plot_gallery=0 -b html $(ALLSPHINXOPTS) build/html
+	@echo
+	@echo "Build finished. The HTML pages are in build/html."
+
 html:
 	mkdir -p build/html build/doctrees
 	# This line makes the build a bit more lengthy, and the
 	# the embedding of images more robust
-	rm -rf $(BUILDDIR)/html/_images
+	rm -rf build/html/_images
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
 	@echo
 	@echo "Build finished. The HTML pages are in build/html."
