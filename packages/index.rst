@@ -16,6 +16,7 @@ packages useful for extended needs.
   .. toctree::
    :maxdepth: 3
 
+   statistics/index.rst
    sympy.rst
    scikit-image/index.rst
    traits/index.rst

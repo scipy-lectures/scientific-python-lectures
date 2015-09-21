@@ -1,23 +1,16 @@
 .. for doctests
     >>> import matplotlib.pyplot as plt
     >>> plt.switch_backend("Agg")
-
+    >>> import numpy as np
+    >>> np.random.seed(0)
 
 .. _scipy:
 
 Scipy : high-level scientific computing
 =========================================
 
-**Authors**: Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
-Varoquaux, Ralf Gommers
-
-..
-    >>> import numpy as np
-    >>> np.random.seed(0)
-    >>> # For doctest on headless environments
-    >>> import matplotlib
-    >>> matplotlib.use('Agg')
-
+**Authors**: *Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
+Varoquaux, Ralf Gommers*
 
 
 .. topic:: Scipy
@@ -73,15 +66,19 @@ Varoquaux, Ralf Gommers
 :mod:`scipy.stats`           Statistics
 =========================== ===============================================
 
-They all depend on :mod:`numpy`, but are mostly independent of each other. The
-standard way of importing Numpy and these Scipy modules is::
+.. tip::
+   
+   They all depend on :mod:`numpy`, but are mostly independent of each
+   other. The standard way of importing Numpy and these Scipy modules
+   is::
 
     >>> import numpy as np
     >>> from scipy import stats  # same for other sub-modules
 
-The main ``scipy`` namespace mostly contains functions that are really
-numpy functions (try ``scipy.cos is np.cos``). Those are exposed for historical
-reasons only; there's usually no reason to use ``import scipy`` in your code.
+   The main ``scipy`` namespace mostly contains functions that are really
+   numpy functions (try ``scipy.cos is np.cos``). Those are exposed for
+   historical reasons only; there's usually no reason to use ``import
+   scipy`` in your code.
 
 
 File input/output: :mod:`scipy.io`
@@ -557,11 +554,11 @@ the random process's PDF (probability density function): ::
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
     >>> from scipy import stats
     >>> b = stats.norm.pdf(bins)  # norm is a distribution
-
-.. sourcecode:: ipython
-
-    In [1]: pl.plot(bins, histogram)
-    In [2]: pl.plot(bins, b)
+    
+    >>> plt.plot(bins, histogram) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(bins, b) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
 .. plot:: pyplots/normal_distribution.py
     :scale: 70
@@ -627,7 +624,7 @@ whether the two sets of observations are significantly different::
     >>> stats.ttest_ind(a, b)   # doctest: +SKIP
     (array(-3.177574054...), 0.0019370639...)
 
-The resulting output is composed of:
+.. tip:: The resulting output is composed of:
 
     * The T statistic value: it is a number the sign of which is
       proportional to the difference between the two random processes and
@@ -637,6 +634,12 @@ The resulting output is composed of:
       is close to 1, the two process are almost certainly identical.
       The closer it is to zero, the more likely it is that the processes
       have different means.
+
+.. seealso::
+
+   The chapter on :ref:`statistics <statistics>` introduces much more
+   elaborate tools for statistical testing and statistical data
+   loading and visualization outside of scipy.
 
 
 Interpolation: :mod:`scipy.interpolate`
@@ -807,22 +810,26 @@ Signal processing: :mod:`scipy.signal`
 
 * :func:`scipy.signal.detrend`: remove linear trend from signal::
 
-    t = np.linspace(0, 5, 100)
-    x = t + np.random.normal(size=100)
+    >>> t = np.linspace(0, 5, 100)
+    >>> x = t + np.random.normal(size=100)
 
-    pl.plot(t, x, linewidth=3)
-    pl.plot(t, signal.detrend(x), linewidth=3)
+    >>> plt.plot(t, x, linewidth=3) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(t, signal.detrend(x), linewidth=3) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
   .. plot:: pyplots/demo_detrend.py
     :scale: 70
 
 * :func:`scipy.signal.resample`: resample a signal to `n` points using FFT. ::
 
-    t = np.linspace(0, 5, 100)
-    x = np.sin(t)
+    >>> t = np.linspace(0, 5, 100)
+    >>> x = np.sin(t)
 
-    pl.plot(t, x, linewidth=3)
-    pl.plot(t[::2], signal.resample(x, 50), 'ko')
+    >>> plt.plot(t, x, linewidth=3) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(t[::2], signal.resample(x, 50), 'ko') # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
   .. plot:: pyplots/demo_resample.py
     :scale: 70

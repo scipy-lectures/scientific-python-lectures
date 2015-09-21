@@ -300,6 +300,9 @@ intersphinx_mapping = {
     'http://scikit-learn.org/stable': None,
     'http://scikit-image.org/docs/stable/': None,
     'http://docs.enthought.com/mayavi/mayavi/': None,
+    'http://statsmodels.sourceforge.net/': None,
+    'http://pandas.pydata.org/pandas-docs/stable/': None,
+    'http://stanford.edu/~mwaskom/software/seaborn/': None,
 }
 
 extlinks = {
