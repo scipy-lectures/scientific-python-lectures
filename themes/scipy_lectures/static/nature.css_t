@@ -412,12 +412,30 @@ div.highlight pre a {
     color: #111;
     text-decoration:underline;    
 }
+
 /* Hack to have indented line wraps */
 div.highlight pre div.newline {
     margin-right: -4.5em;
     padding-left: 1em;
     display: inline-block;
     visibility: hidden;
+}
+
+/* Line wrap after "()[]" (that are set in a span.p by pygment) and 
+ * '.,=' (that are set in a span.o by pygment) */
+div.body pre span.o:after, div.body pre span.p:after{
+ -ms-word-break: break-all;
+     word-break: break-all;
+
+     /* Non standard for webkit */
+     word-break: break-word;
+
+-webkit-hyphens: auto;
+   -moz-hyphens: auto;
+    -ms-hyphens: auto;
+        hyphens: auto;
+
+    content: "";
 }
 
 div.highlight:hover span.copybutton {
