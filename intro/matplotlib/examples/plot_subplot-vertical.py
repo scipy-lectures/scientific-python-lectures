@@ -4,7 +4,7 @@ Subplot plot arrangement vertical
 
 An example showing vertical arrangement of subplots with matplotlib.
 """
-import numpy as np
+
 import matplotlib.pyplot as plt
 
 

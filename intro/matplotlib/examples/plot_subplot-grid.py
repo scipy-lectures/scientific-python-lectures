@@ -4,7 +4,7 @@ Subplot grid
 
 An example showing the subplot grid in matplotlib.
 """
-import numpy as np
+
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(6, 4))

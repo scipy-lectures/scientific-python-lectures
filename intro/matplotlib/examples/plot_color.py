@@ -5,7 +5,6 @@ The colors matplotlib line plots
 An example demoing the various colors taken by matplotlib's plot.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 size = 256, 16

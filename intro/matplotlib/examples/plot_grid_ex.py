@@ -5,7 +5,6 @@ Grid
 Displaying a grid on the axes in matploblib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 ax = plt.axes([0.025, 0.025, 0.95, 0.95])

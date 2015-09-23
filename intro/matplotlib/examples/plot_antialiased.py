@@ -5,7 +5,6 @@ Aliased versus anti-aliased
 The example shows aliased versus anti-aliased text.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 size = 128, 16

@@ -4,7 +4,7 @@ Horizontal arrangement of subplots
 
 An example showing horizontal arrangement of subplots with matplotlib.
 """
-import numpy as np
+
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(6, 4))

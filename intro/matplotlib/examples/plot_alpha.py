@@ -5,7 +5,6 @@ Alpha: transparency
 This example demonstrates using alpha for transparency.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 size = 256,16

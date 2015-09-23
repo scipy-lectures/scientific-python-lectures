@@ -5,7 +5,6 @@ Subplots
 Show multiple subplots in matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 fig = plt.figure()

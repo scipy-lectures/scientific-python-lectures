@@ -5,7 +5,6 @@ Multiple plots vignette
 Demo multiple plots and style the figure.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 ax = plt.subplot(2, 1, 1)

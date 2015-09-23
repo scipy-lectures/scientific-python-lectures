@@ -6,7 +6,6 @@ This example shows various axes command to position matplotlib axes.
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 plt.axes([.1, .1, .5, .5])

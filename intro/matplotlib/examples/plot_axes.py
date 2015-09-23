@@ -6,7 +6,6 @@ This example shows a couple of simple usage of axes.
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 plt.axes([.1, .1, .8, .8])
