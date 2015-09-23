@@ -233,6 +233,8 @@ htmlhelp_basename = 'PythonScientic'
 
 epub_theme = 'epub'
 epub_theme_options = {'relbar1': False, 'footer': False}
+epub_show_urls = 'no'
+epub_tocdup = False
 
 # Options for LaTeX output
 # ------------------------
