@@ -678,7 +678,7 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
         if not os.path.exists(first_image_file) or \
            os.stat(first_image_file).st_mtime <= os.stat(src_file).st_mtime:
             # We need to execute the code
-            print 'plotting %s' % fname
+            print('plotting %s' % fname)
             t0 = time()
             import matplotlib.pyplot as plt
             plt.close('all')
@@ -687,11 +687,14 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
                 # First CD in the original example dir, so that any file
                 # created by the example get created in this directory
                 orig_stdout = sys.stdout
-                os.chdir(os.path.dirname(src_file))
+                dir_path = os.path.dirname(src_file)
+                os.chdir(dir_path)
                 my_buffer = StringIO()
                 my_stdout = Tee(sys.stdout, my_buffer)
                 sys.stdout = my_stdout
                 my_globals = {'pl': plt}
+                # Add the directory for local imports
+                sys.path.append(dir_path)
                 execfile(os.path.basename(src_file), my_globals)
                 time_elapsed = time() - t0
                 sys.stdout = orig_stdout
@@ -815,6 +818,7 @@ def generate_file_rst(fname, target_dir, src_dir, root_dir, plot_gallery):
                 os.chdir(cwd)
                 sys.stdout = orig_stdout
                 plt.rcdefaults()
+                sys.path.remove(dir_path)
                 # Horrible code to 'unload' seaborn, so that it resets
                 # its default when is load
                 for module in sys.modules.keys():
