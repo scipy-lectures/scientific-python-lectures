@@ -42,16 +42,15 @@ We start IPython with the command line argument ``-pylab`` (``--pylab``
 since IPython version 0.12), for interactive matplotlib sessions with
 Matlab/Mathematica-like functionality.
 
-pylab
------
+pyplot
+------
 
 .. tip::
 
-    *pylab* provides a procedural interface to the matplotlib
-    object-oriented plotting library. It is modeled closely after
-    Matlab™. Therefore, the majority of plotting commands in pylab have
-    Matlab™ analogs with similar arguments.  Important commands are
-    explained with interactive examples.
+    *pyplot* provides a procedural interface to the matplotlib object-oriented
+    plotting library. It is modeled closely after Matlab™. Therefore, the
+    majority of plotting commands in pyplot have Matlab™ analogs with similar
+    arguments.  Important commands are explained with interactive examples.
 
 
 Simple plot
@@ -59,9 +58,9 @@ Simple plot
 
 .. tip::
 
-    In this section, we want to draw the cosine and sine functions on the
-    same plot. Starting from the default settings, we'll enrich the
-    figure step by step to make it nicer.
+    In this section, we want to draw the cosine and sine functions on the same
+    plot. Starting from the default settings, we'll enrich the figure step by
+    step to make it nicer.
 
     First step is to get the data for the sine and cosine functions:
 
@@ -125,16 +124,16 @@ Plotting with default settings
 
 ::
 
-   import pylab as pl
    import numpy as np
+   import matplotlib.pyplot as plt
 
    X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
    C, S = np.cos(X), np.sin(X)
 
-   pl.plot(X, C)
-   pl.plot(X, S)
+   plt.plot(X, C)
+   plt.plot(X, S)
 
-   pl.show()
+   plt.show()
 
 
 Instantiating defaults
@@ -160,41 +159,41 @@ that influence the appearance of the plot.
 
 ::
 
-   import pylab as pl
    import numpy as np
-
+   import matplotlib.pyplot as plt
+   
    # Create a figure of size 8x6 inches, 80 dots per inch
-   pl.figure(figsize=(8, 6), dpi=80)
+   plt.figure(figsize=(8, 6), dpi=80)
 
    # Create a new subplot from a grid of 1x1
-   pl.subplot(1, 1, 1)
+   plt.subplot(1, 1, 1)
 
    X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
    C, S = np.cos(X), np.sin(X)
 
    # Plot cosine with a blue continuous line of width 1 (pixels)
-   pl.plot(X, C, color="blue", linewidth=1.0, linestyle="-")
+   plt.plot(X, C, color="blue", linewidth=1.0, linestyle="-")
 
    # Plot sine with a green continuous line of width 1 (pixels)
-   pl.plot(X, S, color="green", linewidth=1.0, linestyle="-")
+   plt.plot(X, S, color="green", linewidth=1.0, linestyle="-")
 
    # Set x limits
-   pl.xlim(-4.0, 4.0)
+   plt.xlim(-4.0, 4.0)
 
    # Set x ticks
-   pl.xticks(np.linspace(-4, 4, 9, endpoint=True))
+   plt.xticks(np.linspace(-4, 4, 9, endpoint=True))
 
    # Set y limits
-   pl.ylim(-1.0, 1.0)
+   plt.ylim(-1.0, 1.0)
 
    # Set y ticks
-   pl.yticks(np.linspace(-1, 1, 5, endpoint=True))
+   plt.yticks(np.linspace(-1, 1, 5, endpoint=True))
 
    # Save figure using 72 dots per inch
-   # savefig("exercice_2.png", dpi=72)
+   # plt.savefig("exercice_2.png", dpi=72)
 
    # Show result on screen
-   pl.show()
+   plt.show()
 
 
 Changing colors and line widths
@@ -212,16 +211,16 @@ Changing colors and line widths
 
 .. tip::
 
-    First step, we want to have the cosine in blue and the sine in red
-    and a slighty thicker line for both of them. We'll also slightly
-    alter the figure size to make it more horizontal.
+    First step, we want to have the cosine in blue and the sine in red and a
+    slighty thicker line for both of them. We'll also slightly alter the figure
+    size to make it more horizontal.
 
 ::
 
    ...
-   pl.figure(figsize=(10, 6), dpi=80)
-   pl.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
-   pl.plot(X, S, color="red",  linewidth=2.5, linestyle="-")
+   plt.figure(figsize=(10, 6), dpi=80)
+   plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+   plt.plot(X, S, color="red",  linewidth=2.5, linestyle="-")
    ...
 
 
@@ -246,8 +245,8 @@ Setting limits
 ::
 
    ...
-   pl.xlim(X.min() * 1.1, X.max() * 1.1)
-   pl.ylim(C.min() * 1.1, C.max() * 1.1)
+   plt.xlim(X.min() * 1.1, X.max() * 1.1)
+   plt.ylim(C.min() * 1.1, C.max() * 1.1)
    ...
 
 
@@ -269,15 +268,15 @@ Setting ticks
 
 .. tip::
 
-    Current ticks are not ideal because they do not show the interesting
-    values (+/-π,+/-π/2) for sine and cosine. We'll change them such that
-    they show only these values.
+    Current ticks are not ideal because they do not show the interesting values
+    (+/-π,+/-π/2) for sine and cosine. We'll change them such that they show
+    only these values.
 
 ::
 
    ...
-   pl.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
-   pl.yticks([-1, 0, +1])
+   plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
+   plt.yticks([-1, 0, +1])
    ...
 
 
@@ -311,10 +310,10 @@ Setting tick labels
 ::
 
    ...
-   pl.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],
+   plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],
              [r'$-\pi$', r'$-\pi/2$', r'$0$', r'$+\pi/2$', r'$+\pi$'])
 
-   pl.yticks([-1, 0, +1],
+   plt.yticks([-1, 0, +1],
              [r'$-1$', r'$0$', r'$+1$'])
    ...
 
@@ -348,7 +347,7 @@ Moving spines
 ::
 
    ...
-   ax = pl.gca()  # gca stands for 'get current axis'
+   ax = plt.gca()  # gca stands for 'get current axis'
    ax.spines['right'].set_color('none')
    ax.spines['top'].set_color('none')
    ax.xaxis.set_ticks_position('bottom')
@@ -383,10 +382,10 @@ Adding a legend
 ::
 
    ...
-   pl.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine")
-   pl.plot(X, S, color="red",  linewidth=2.5, linestyle="-", label="sine")
+   plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine")
+   plt.plot(X, S, color="red",  linewidth=2.5, linestyle="-", label="sine")
 
-   pl.legend(loc='upper left')
+   plt.legend(loc='upper left')
    ...
 
 
@@ -418,21 +417,21 @@ Annotate some points
    ...
 
    t = 2 * np.pi / 3
-   pl.plot([t, t], [0, np.cos(t)], color='blue', linewidth=2.5, linestyle="--")
-   pl.scatter([t, ], [np.cos(t), ], 50, color='blue')
+   plt.plot([t, t], [0, np.cos(t)], color='blue', linewidth=2.5, linestyle="--")
+   plt.scatter([t, ], [np.cos(t), ], 50, color='blue')
 
-   pl.annotate(r'$sin(\frac{2\pi}{3})=\frac{\sqrt{3}}{2}$',
-               xy=(t, np.sin(t)), xycoords='data',
-               xytext=(+10, +30), textcoords='offset points', fontsize=16,
-               arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))
+   plt.annotate(r'$sin(\frac{2\pi}{3})=\frac{\sqrt{3}}{2}$',
+                xy=(t, np.sin(t)), xycoords='data',
+                xytext=(+10, +30), textcoords='offset points', fontsize=16,
+                arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))
 
-   pl.plot([t, t],[0, np.sin(t)], color='red', linewidth=2.5, linestyle="--")
-   pl.scatter([t, ],[np.sin(t), ], 50, color='red')
+   plt.plot([t, t],[0, np.sin(t)], color='red', linewidth=2.5, linestyle="--")
+   plt.scatter([t, ],[np.sin(t), ], 50, color='red')
 
-   pl.annotate(r'$cos(\frac{2\pi}{3})=-\frac{1}{2}$',
-               xy=(t, np.cos(t)), xycoords='data',
-               xytext=(-90, -50), textcoords='offset points', fontsize=16,
-               arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))
+   plt.annotate(r'$cos(\frac{2\pi}{3})=-\frac{1}{2}$',
+                xy=(t, np.cos(t)), xycoords='data',
+                xytext=(-90, -50), textcoords='offset points', fontsize=16,
+                arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"))
    ...
 
 
@@ -476,26 +475,25 @@ Within this figure there can be **"subplots"**.
 
 .. tip::
 
-    So far we have used implicit figure and axes creation. This is handy
-    for fast plots. We can have more control over the display using
-    figure, subplot, and axes explicitly.  While subplot positions the
-    plots in a regular grid, axes allows free placement within the
-    figure. Both can be useful depending on your intention. We've already
-    worked with figures and subplots without explicitly calling them.
-    When we call plot, matplotlib calls ``gca()`` to get the current axes
-    and gca in turn calls ``gcf()`` to get the current figure. If there
-    is none it calls ``figure()`` to make one, strictly speaking, to make
-    a ``subplot(111)``. Let's look at the details.
+    So far we have used implicit figure and axes creation. This is handy for
+    fast plots. We can have more control over the display using figure,
+    subplot, and axes explicitly.  While subplot positions the plots in a
+    regular grid, axes allows free placement within the figure. Both can be
+    useful depending on your intention. We've already worked with figures and
+    subplots without explicitly calling them.  When we call plot, matplotlib
+    calls ``gca()`` to get the current axes and gca in turn calls ``gcf()`` to
+    get the current figure. If there is none it calls ``figure()`` to make one,
+    strictly speaking, to make a ``subplot(111)``. Let's look at the details.
 
 Figures
 -------
 
 .. tip::
 
-    A figure is the windows in the GUI that has "Figure #" as title.
-    Figures are numbered starting from 1 as opposed to the normal Python
-    way starting from 0. This is clearly MATLAB-style.  There are several
-    parameters that determine what the figure looks like:
+    A figure is the windows in the GUI that has "Figure #" as title.  Figures
+    are numbered starting from 1 as opposed to the normal Python way starting
+    from 0. This is clearly MATLAB-style.  There are several parameters that
+    determine what the figure looks like:
 
 ==============  ======================= ============================================
 Argument        Default                 Description
@@ -510,23 +508,21 @@ Argument        Default                 Description
 
 .. tip::
 
-    The defaults can be specified in the resource file and will be used
-    most of the time. Only the number of the figure is frequently
-    changed.
+    The defaults can be specified in the resource file and will be used most of
+    the time. Only the number of the figure is frequently changed.
 
-    As with other objects, you can set figure properties also setp or
-    with the set_something methods.
+    As with other objects, you can set figure properties also setp or with the
+    set_something methods.
 
-    When you work with the GUI you can close a figure by clicking on the
-    x in the upper right corner. But you can close a figure
-    programmatically by calling close. Depending on the argument it
-    closes (1) the current figure (no argument), (2) a specific figure
-    (figure number or figure instance as argument), or (3) all figures
-    (``"all"`` as argument).
+    When you work with the GUI you can close a figure by clicking on the x in
+    the upper right corner. But you can close a figure programmatically by
+    calling close. Depending on the argument it closes (1) the current figure
+    (no argument), (2) a specific figure (figure number or figure instance as
+    argument), or (3) all figures (``"all"`` as argument).
 
 ::
 
-    pl.close(1)     # Closes figure 1
+    plt.close(1)     # Closes figure 1
 
 
 Subplots
@@ -534,11 +530,10 @@ Subplots
 
 .. tip::
 
-    With subplot you can arrange plots in a regular grid. You need to
-    specify the number of rows and columns and the number of the plot.
-    Note that the `gridspec
-    <http://matplotlib.sourceforge.net/users/gridspec.html>`_ command is
-    a more powerful alternative.
+    With subplot you can arrange plots in a regular grid. You need to specify
+    the number of rows and columns and the number of the plot.  Note that the
+    `gridspec <http://matplotlib.sourceforge.net/users/gridspec.html>`_ command
+    is a more powerful alternative.
 
 .. avoid an ugly interplay between 'tip' and the images below: we want a
    line-return
@@ -591,7 +586,7 @@ Tick Locators
 Tick locators control the positions of the ticks. They are set as
 follows::
 
-    ax = pl.gca()
+    ax = plt.gca()
     ax.xaxis.set_major_locator(eval(locator))
 
 There are several locators for different kind of requirements:
@@ -669,8 +664,8 @@ care of filled areas::
    X = np.linspace(-np.pi, np.pi, n, endpoint=True)
    Y = np.sin(2 * X)
 
-   pl.plot(X, Y + 1, color='blue', alpha=1.00)
-   pl.plot(X, Y - 1, color='blue', alpha=1.00)
+   plt.plot(X, Y + 1, color='blue', alpha=1.00)
+   plt.plot(X, Y - 1, color='blue', alpha=1.00)
 
 Click on the figure for solution.
 
@@ -697,7 +692,7 @@ care of marker size, color and transparency.
    X = np.random.normal(0,1,n)
    Y = np.random.normal(0,1,n)
 
-   pl.scatter(X,Y)
+   plt.scatter(X,Y)
 
 Click on figure for solution.
 
@@ -725,13 +720,13 @@ adding labels for red bars.
    Y1 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
    Y2 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
 
-   pl.bar(X, +Y1, facecolor='#9999ff', edgecolor='white')
-   pl.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
+   plt.bar(X, +Y1, facecolor='#9999ff', edgecolor='white')
+   plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
 
    for x, y in zip(X, Y1):
-       pl.text(x + 0.4, y + 0.05, '%.2f' % y, ha='center', va='bottom')
+       plt.text(x + 0.4, y + 0.05, '%.2f' % y, ha='center', va='bottom')
 
-   pl.ylim(-1.25, +1.25)
+   plt.ylim(-1.25, +1.25)
 
 Click on figure for solution.
 
@@ -764,8 +759,8 @@ care of the colormap (see `Colormaps`_ below).
    y = np.linspace(-3, 3, n)
    X, Y = np.meshgrid(x, y)
 
-   pl.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap='jet')
-   C = pl.contour(X, Y, f(X, Y), 8, colors='black', linewidth=.5)
+   plt.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap='jet')
+   C = plt.contour(X, Y, f(X, Y), 8, colors='black', linewidth=.5)
 
 Click on figure for solution.
 
@@ -799,7 +794,7 @@ care of colormap, image interpolation and origin.
    x = np.linspace(-3, 3, 4 * n)
    y = np.linspace(-3, 3, 3 * n)
    X, Y = np.meshgrid(x, y)
-   pl.imshow(f(X, Y))
+   plt.imshow(f(X, Y))
 
 Click on the figure for the solution.
 
@@ -823,7 +818,7 @@ care of colors and slices size.
 ::
 
    Z = np.random.uniform(0, 1, 20)
-   pl.pie(Z)
+   plt.pie(Z)
 
 Click on the figure for the solution.
 
@@ -849,7 +844,7 @@ care of colors and orientations.
 
    n = 8
    X, Y = np.mgrid[0:n, 0:n]
-   pl.quiver(X, Y)
+   plt.quiver(X, Y)
 
 Click on figure for solution.
 
@@ -868,7 +863,7 @@ care of line styles.
 
 ::
 
-   axes = pl.gca()
+   axes = plt.gca()
    axes.set_xlim(0, 4)
    axes.set_ylim(0, 3)
    axes.set_xticklabels([])
@@ -895,9 +890,9 @@ Starting from the code below, try to reproduce the graphic on the right.
 
 ::
 
-   pl.subplot(2, 2, 1)
-   pl.subplot(2, 2, 3)
-   pl.subplot(2, 2, 4)
+   plt.subplot(2, 2, 1)
+   plt.subplot(2, 2, 3)
+   plt.subplot(2, 2, 4)
 
 Click on figure for solution.
 
@@ -920,13 +915,13 @@ Starting from the code below, try to reproduce the graphic on the right.
 
 ::
 
-   pl.axes([0, 0, 1, 1])
+   plt.axes([0, 0, 1, 1])
 
    N = 20
    theta = np.arange(0., 2 * np.pi, 2 * np.pi / N)
    radii = 10 * np.random.rand(N)
    width = np.pi / 4 * np.random.rand(N)
-   bars = pl.bar(theta, radii, width=width, bottom=0.0)
+   bars = plt.bar(theta, radii, width=width, bottom=0.0)
 
    for r, bar in zip(radii, bars):
        bar.set_facecolor(cm.jet(r / 10.))
@@ -956,7 +951,7 @@ Starting from the code below, try to reproduce the graphic on the right.
 
    from mpl_toolkits.mplot3d import Axes3D
 
-   fig = pl.figure()
+   fig = plt.figure()
    ax = Axes3D(fig)
    X = np.arange(-4, 4, 0.25)
    Y = np.arange(-4, 4, 0.25)
@@ -1085,8 +1080,8 @@ from within a python session:
 
 ::
 
-   >>> import pylab as pl
-   >>> help(pl.plot)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+   >>> import matplotlib.pyplot as plt
+   >>> help(plt.plot)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
    Help on function plot in module matplotlib.pyplot:
    <BLANKLINE>
    plot(*args, **kwargs)

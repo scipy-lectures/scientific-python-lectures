@@ -6,18 +6,18 @@ This example shows a couple of simple usage of axes.
 
 """
 
-import pylab as pl
+import matplotlib.pyplot as plt
 
-pl.axes([.1, .1, .8, .8])
-pl.xticks(())
-pl.yticks(())
-pl.text(.6, .6, 'axes([0.1, 0.1, .8, .8])', ha='center', va='center',
+plt.axes([.1, .1, .8, .8])
+plt.xticks(())
+plt.yticks(())
+plt.text(.6, .6, 'axes([0.1, 0.1, .8, .8])', ha='center', va='center',
         size=20, alpha=.5)
 
-pl.axes([.2, .2, .3, .3])
-pl.xticks(())
-pl.yticks(())
-pl.text(.5, .5, 'axes([0.2, 0.2, .3, .3])', ha='center', va='center',
+plt.axes([.2, .2, .3, .3])
+plt.xticks(())
+plt.yticks(())
+plt.text(.5, .5, 'axes([0.2, 0.2, .3, .3])', ha='center', va='center',
         size=16, alpha=.5)
 
-pl.show()
+plt.show()
