@@ -11,6 +11,9 @@ Release 2015.1 (September 2015)
   Buyl, Gert-Ludwig Ingold, Nicolas Pettiaux, Olav Vahtras, Gaël
   Varoquaux, Nelle Varoquaux)
 
+* Matplotlib updated with removal of deprecated pylab interface (Nicolas
+  Rougier)
+
 Release 2013.2 (21 August 2013)
 -------------------------------------
 
