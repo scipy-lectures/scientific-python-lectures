@@ -72,7 +72,7 @@ symbols and can be evaluated with arbitrary precision::
     >>> pi.evalf()
     3.14159265358979
 
-    >>> (pi+exp(1)).evalf()
+    >>> (pi + exp(1)).evalf()
     5.85987448204884
 
 as you see, evalf evaluates the expression to a floating-point number.
@@ -136,7 +136,7 @@ Expand
 Use this to expand an algebraic expression. It will try to denest
 powers and multiplications::
 
-    >>> expand((x+y)**3)
+    >>> expand((x + y)**3)
      3      2          2    3
     x  + 3*x *y + 3*x*y  + y 
     >>> 3*x*y**2 + 3*y*x**2 + x**3 + y**3
@@ -146,7 +146,7 @@ powers and multiplications::
 
 Further options can be given in form on keywords::
 
-    >>> expand(x+y, complex=True)
+    >>> expand(x + y, complex=True)
     re(x) + re(y) + I*im(x) + I*im(y)
     >>> I*im(x) + I*im(y) + re(x) + re(y)
     re(x) + re(y) + I*im(x) + I*im(y)
@@ -222,7 +222,7 @@ var)``. Examples::
 
 You can check, that it is correct by::
 
-    >>> limit((tan(x+y)-tan(x))/y, y, 0)
+    >>> limit((tan(x+y) - tan(x))/y, y, 0)
        2       
     tan (x) + 1
 
