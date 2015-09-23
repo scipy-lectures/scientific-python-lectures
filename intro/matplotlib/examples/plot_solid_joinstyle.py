@@ -5,26 +5,26 @@ Solid joint style
 An example showing the differen solid joint styles in matplotlib.
 """
 
-import pylab as pl
 import numpy as np
+import matplotlib.pyplot as plt
 
 size = 256, 16
 dpi = 72.0
 figsize = size[0] / float(dpi), size[1] / float(dpi)
-fig = pl.figure(figsize=figsize, dpi=dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
 fig.patch.set_alpha(0)
-pl.axes([0, 0, 1, 1], frameon=False)
+plt.axes([0, 0, 1, 1], frameon=False)
 
-pl.plot(np.arange(3), [0, 1, 0], color="blue", linewidth=8,
+plt.plot(np.arange(3), [0, 1, 0], color="blue", linewidth=8,
         solid_joinstyle='miter')
-pl.plot(4 + np.arange(3), [0, 1, 0], color="blue", linewidth=8,
+plt.plot(4 + np.arange(3), [0, 1, 0], color="blue", linewidth=8,
         solid_joinstyle='bevel')
-pl.plot(8 + np.arange(3), [0, 1, 0], color="blue", linewidth=8,
+plt.plot(8 + np.arange(3), [0, 1, 0], color="blue", linewidth=8,
         solid_joinstyle='round')
 
-pl.xlim(0, 12)
-pl.ylim(-1, 2)
-pl.xticks(())
-pl.yticks(())
+plt.xlim(0, 12)
+plt.ylim(-1, 2)
+plt.xticks(())
+plt.yticks(())
 
-pl.show()
+plt.show()

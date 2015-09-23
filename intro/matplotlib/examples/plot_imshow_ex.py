@@ -5,8 +5,8 @@ Imshow elaborate
 An example demoing imshow and styling the figure.
 """
 
-import pylab as pl
 import numpy as np
+import matplotlib.pyplot as plt
 
 def f(x, y):
     return (1 - x / 2 + x ** 5 + y ** 3 ) * np.exp(-x ** 2 - y ** 2)
@@ -17,10 +17,10 @@ y = np.linspace(-3, 3, 3.0 * n)
 X, Y = np.meshgrid(x, y)
 Z = f(X, Y)
 
-pl.axes([0.025, 0.025, 0.95, 0.95])
-pl.imshow(Z, interpolation='nearest', cmap='bone', origin='lower')
-pl.colorbar(shrink=.92)
+plt.axes([0.025, 0.025, 0.95, 0.95])
+plt.imshow(Z, interpolation='nearest', cmap='bone', origin='lower')
+plt.colorbar(shrink=.92)
 
-pl.xticks(())
-pl.yticks(())
-pl.show()
+plt.xticks(())
+plt.yticks(())
+plt.show()

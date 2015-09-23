@@ -5,12 +5,12 @@ Text printing decorated
 An example showing text printing and decorating the resulting figure.
 """
 
-import pylab as pl
 import numpy as np
+import matplotlib.pyplot as plt
 
-fig = pl.figure()
-pl.xticks(())
-pl.yticks(())
+fig = plt.figure()
+plt.xticks(())
+plt.yticks(())
 
 eqs = []
 eqs.append((r"$W^{3\beta}_{\delta_1 \rho_1 \sigma_2} = U^{3\beta}_{\delta_1 \rho_1} + \frac{1}{8 \pi 2} \int^{\alpha_2}_{\alpha_2} d \alpha^\prime_2 \left[\frac{ U^{2\beta}_{\delta_1 \rho_1} - \alpha^\prime_2U^{1\beta}_{\rho_1 \sigma_2} }{U^{0\beta}_{\rho_1 \sigma_2}}\right]$"))
@@ -25,20 +25,20 @@ for i in range(24):
     size = np.random.uniform(12,32)
     x,y = np.random.uniform(0,1,2)
     alpha = np.random.uniform(0.25,.75)
-    pl.text(x, y, eq, ha='center', va='center', color="#11557c", alpha=alpha,
-         transform=pl.gca().transAxes, fontsize=size, clip_on=True)
+    plt.text(x, y, eq, ha='center', va='center', color="#11557c", alpha=alpha,
+         transform=plt.gca().transAxes, fontsize=size, clip_on=True)
 
-pl.text(-0.05, 1.02, " Text:                   pl.text(...)\n",
+plt.text(-0.05, 1.02, " Text:                   plt.text(...)\n",
         horizontalalignment='left',
         verticalalignment='top',
         size='xx-large',
         bbox=dict(facecolor='white', alpha=1.0, width=400, height=65),
-        transform=pl.gca().transAxes)
+        transform=plt.gca().transAxes)
 
-pl.text(-0.05, 1.01, "\n\n     Draw any kind of text ",
+plt.text(-0.05, 1.01, "\n\n     Draw any kind of text ",
         horizontalalignment='left',
         verticalalignment='top',
         size='large',
-        transform=pl.gca().transAxes)
+        transform=plt.gca().transAxes)
 
-pl.show()
+plt.show()
