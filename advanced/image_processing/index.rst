@@ -261,7 +261,7 @@ Statistical information
 
     * Save the array to two different file formats (png, jpg, tiff)
 
-    .. image:: scikits_image_logo.png
+    .. image:: scikit_image_logo.png
         :align: center
 
 
