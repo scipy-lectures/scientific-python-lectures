@@ -1,8 +1,10 @@
 Python Scientific Lecture Notes 
 ===================================================================
 
-One document to learn numerics, science, and data with Python
---------------------------------------------------------------
+.. only:: html
+
+   One document to learn numerics, science, and data with Python
+   --------------------------------------------------------------
 
 .. raw html to center the title
 

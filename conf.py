@@ -226,7 +226,7 @@ html_use_index = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'PythonScientic'
+htmlhelp_basename = 'ScipyLectures'
 
 # Options for epub output
 # ------------------------
@@ -251,7 +251,7 @@ latex_show_pagerefs = True
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'PythonScientific.tex', ur'Python Scientific lecture notes',
+  ('index', 'ScipyLectures.tex', ur'Scipy lecture notes',
    ur"""EuroScipy tutorial team \\\relax\normalfont Editors: Valentin Haenel, Emmanuelle Gouillart, Gaël Varoquaux"""
    + r"\\\relax ~\\\relax http://scipy-lectures.github.com",
    'manual'),
