@@ -732,6 +732,19 @@ div.sidebar {
     }
 }
 
+/* Warnings: replace the admonition name by a warning sign */
+div.warning .first {
+    display: none;
+    /*overflow: hidden;*/
+    margin-right: -2ex;
+    margin-left: -2ex;
+    height: auto;
+}
+
+div.warning:before {
+    content: "\f071";
+    margin-right: .5ex;
+}
 
 /************* Code examples *****************/
 ul.horizontal img {
