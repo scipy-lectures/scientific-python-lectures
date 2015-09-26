@@ -63,10 +63,10 @@ just to display help and docstrings...
 
   .. image:: matplotlib.png
      :align: right
-     :target: http://matplotlib.sourceforge.net/
+     :target: http://matplotlib.org/
      :width: 45%
 
-* Matplotlib's website http://matplotlib.sourceforge.net/ features a very
+* Matplotlib's website http://matplotlib.org/ features a very
   nice **gallery** with a large number of plots, each of them shows both
   the source code and the resulting plot. This is very useful for
   learning by example. More standard documentation is also available. 

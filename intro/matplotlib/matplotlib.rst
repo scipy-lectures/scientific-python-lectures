@@ -111,8 +111,8 @@ Plotting with default settings
 
 .. hint:: Documentation
 
-   * `plot tutorial <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html>`_
-   * `plot() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot>`_
+   * `plot tutorial <http://matplotlib.org/users/pyplot_tutorial.html>`_
+   * `plot() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot>`_
 
 .. tip::
 
@@ -146,7 +146,7 @@ Instantiating defaults
 
 .. hint:: Documentation
 
-   *  `Customizing matplotlib <http://matplotlib.sourceforge.net/users/customizing.html>`_
+   *  `Customizing matplotlib <http://matplotlib.org/users/customizing.html>`_
 
 In the script below, we've instantiated (and commented) all the figure settings
 that influence the appearance of the plot.
@@ -206,8 +206,8 @@ Changing colors and line widths
 
 .. hint:: Documentation
 
-   * `Controlling line properties <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html#controlling-line-properties>`_
-   * `Line API <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.lines.Line2D>`_
+   * `Controlling line properties <http://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties>`_
+   * `Line API <http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D>`_
 
 .. tip::
 
@@ -234,8 +234,8 @@ Setting limits
 
 .. hint:: Documentation
 
-   * `xlim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
-   * `ylim() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
+   * `xlim() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
+   * `ylim() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
 
 .. tip::
 
@@ -261,10 +261,10 @@ Setting ticks
 
 .. hint:: Documentation
 
-   * `xticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
-   * `yticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
-   * `Tick container <http://matplotlib.sourceforge.net/users/artists.html#axis-container>`_
-   * `Tick locating and formatting <http://matplotlib.sourceforge.net/api/ticker_api.html>`_
+   * `xticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
+   * `yticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
+   * `Tick container <http://matplotlib.org/users/artists.html#axis-container>`_
+   * `Tick locating and formatting <http://matplotlib.org/api/ticker_api.html>`_
 
 .. tip::
 
@@ -292,11 +292,11 @@ Setting tick labels
 
 .. hint:: Documentation
 
-   * `Working with text <http://matplotlib.sourceforge.net/users/index_text.html>`_
-   * `xticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
-   * `yticks() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
-   * `set_xticklabels() <http://matplotlib.sourceforge.net/api/axes_api.html?#matplotlib.axes.Axes.set_xticklabels>`_
-   * `set_yticklabels() <http://matplotlib.sourceforge.net/api/axes_api.html?#matplotlib.axes.Axes.set_yticklabels>`_
+   * `Working with text <http://matplotlib.org/users/index_text.html>`_
+   * `xticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
+   * `yticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
+   * `set_xticklabels() <http://matplotlib.org/api/axes_api.html?#matplotlib.axes.Axes.set_xticklabels>`_
+   * `set_yticklabels() <http://matplotlib.org/api/axes_api.html?#matplotlib.axes.Axes.set_yticklabels>`_
 
 
 .. tip::
@@ -330,9 +330,9 @@ Moving spines
 
 .. hint:: Documentation
 
-   * `Spines <http://matplotlib.sourceforge.net/api/spines_api.html#matplotlib.spines>`_
-   * `Axis container <http://matplotlib.sourceforge.net/users/artists.html#axis-container>`_
-   * `Transformations tutorial <http://matplotlib.sourceforge.net/users/transforms_tutorial.html>`_
+   * `Spines <http://matplotlib.org/api/spines_api.html#matplotlib.spines>`_
+   * `Axis container <http://matplotlib.org/users/artists.html#axis-container>`_
+   * `Transformations tutorial <http://matplotlib.org/users/transforms_tutorial.html>`_
 
 .. tip::
 
@@ -369,9 +369,9 @@ Adding a legend
 
 .. hint:: Documentation
 
-   * `Legend guide <http://matplotlib.sourceforge.net/users/legend_guide.html>`_
-   * `legend() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.legend>`_
-   * `Legend API <http://matplotlib.sourceforge.net/api/legend_api.html#matplotlib.legend.Legend>`_
+   * `Legend guide <http://matplotlib.org/users/legend_guide.html>`_
+   * `legend() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.legend>`_
+   * `Legend API <http://matplotlib.org/api/legend_api.html#matplotlib.legend.Legend>`_
 
 .. tip::
 
@@ -401,8 +401,8 @@ Annotate some points
 
 .. hint:: Documentation
 
-   * `Annotating axis <http://matplotlib.sourceforge.net/users/annotations_guide.html>`_
-   * `annotate() command <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
+   * `Annotating axis <http://matplotlib.org/users/annotations_guide.html>`_
+   * `annotate() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
 
 .. tip::
 
@@ -446,8 +446,8 @@ Devil is in the details
 
 .. hint:: Documentation
 
-   * `Artists <http://matplotlib.sourceforge.net/api/artist_api.html>`_
-   * `BBox <http://matplotlib.sourceforge.net/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
+   * `Artists <http://matplotlib.org/api/artist_api.html>`_
+   * `BBox <http://matplotlib.org/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
 
 .. tip::
 
@@ -532,7 +532,7 @@ Subplots
 
     With subplot you can arrange plots in a regular grid. You need to specify
     the number of rows and columns and the number of the plot.  Note that the
-    `gridspec <http://matplotlib.sourceforge.net/users/gridspec.html>`_ command
+    `gridspec <http://matplotlib.org/users/gridspec.html>`_ command
     is a more powerful alternative.
 
 .. avoid an ugly interplay between 'tip' and the images below: we want a
@@ -654,7 +654,7 @@ Regular Plots
 .. hint::
 
    You need to use the `fill_between
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_
+   <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_
    command.
 
 Starting from the code below, try to reproduce the graphic on the right taking
@@ -743,7 +743,7 @@ Contour Plots
 .. hint::
 
    You need to use the `clabel
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.clabel>`_
+   <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.clabel>`_
    command.
 
 Starting from the code below, try to reproduce the graphic on the right taking
@@ -779,7 +779,7 @@ Imshow
 
    You need to take care of the ``origin`` of the image in the imshow command and
    use a `colorbar
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.colorbar>`_
+   <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.colorbar>`_
 
 
 Starting from the code below, try to reproduce the graphic on the right taking
@@ -942,7 +942,7 @@ Click on figure for solution.
 .. hint::
 
    You need to use `contourf
-   <http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
+   <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
 
 
 Starting from the code below, try to reproduce the graphic on the right.
@@ -978,7 +978,7 @@ Text
 .. hint::
 
    Have a look at the `matplotlib logo
-   <http://matplotlib.sourceforge.net/examples/api/logo2.html>`_.
+   <http://matplotlib.org/examples/api/logo2.html>`_.
 
 Try to do the same from scratch !
 
@@ -1007,20 +1007,20 @@ Tutorials
 
 .. hlist::
 
-  * `Pyplot tutorial <http://matplotlib.sourceforge.net/users/pyplot_tutorial.html>`_
+  * `Pyplot tutorial <http://matplotlib.org/users/pyplot_tutorial.html>`_
 
     - Introduction
     - Controlling line properties
     - Working with multiple figures and axes
     - Working with text
 
-  * `Image tutorial <http://matplotlib.sourceforge.net/users/image_tutorial.html>`_
+  * `Image tutorial <http://matplotlib.org/users/image_tutorial.html>`_
 
     - Startup commands
     - Importing image data into Numpy arrays
     - Plotting numpy arrays as images
 
-  * `Text tutorial <http://matplotlib.sourceforge.net/users/index_text.html>`_
+  * `Text tutorial <http://matplotlib.org/users/index_text.html>`_
 
     - Text introduction
     - Basic text commands
@@ -1029,7 +1029,7 @@ Tutorials
     - Text rendering With LaTeX
     - Annotating text
 
-  * `Artist tutorial <http://matplotlib.sourceforge.net/users/artists.html>`_
+  * `Artist tutorial <http://matplotlib.org/users/artists.html>`_
 
     - Introduction
     - Customizing your objects
@@ -1039,13 +1039,13 @@ Tutorials
     - Axis containers
     - Tick containers
 
-  * `Path tutorial <http://matplotlib.sourceforge.net/users/path_tutorial.html>`_
+  * `Path tutorial <http://matplotlib.org/users/path_tutorial.html>`_
 
     - Introduction
     - Bézier example
     - Compound paths
 
-  * `Transforms tutorial <http://matplotlib.sourceforge.net/users/transforms_tutorial.html>`_
+  * `Transforms tutorial <http://matplotlib.org/users/transforms_tutorial.html>`_
 
     - Introduction
     - Data coordinates
@@ -1059,9 +1059,9 @@ Tutorials
 Matplotlib documentation
 ------------------------
 
-* `User guide <http://matplotlib.sourceforge.net/users/index.html>`_
+* `User guide <http://matplotlib.org/users/index.html>`_
 
-* `FAQ <http://matplotlib.sourceforge.net/faq/index.html>`_
+* `FAQ <http://matplotlib.org/faq/index.html>`_
 
   - Installation
   - Usage
@@ -1069,7 +1069,7 @@ Matplotlib documentation
   - Troubleshooting
   - Environment Variables
 
-* `Screenshots <http://matplotlib.sourceforge.net/users/screenshots.html>`_
+* `Screenshots <http://matplotlib.org/users/screenshots.html>`_
 
 
 Code documentation
@@ -1104,7 +1104,7 @@ from within a python session:
 Galleries
 ---------
 
-The `matplotlib gallery <http://matplotlib.sourceforge.net/gallery.html>`_ is
+The `matplotlib gallery <http://matplotlib.org/gallery.html>`_ is
 also incredibly useful when you search how to render a given graphic. Each
 example comes with its source.
 

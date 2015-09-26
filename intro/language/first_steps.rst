@@ -9,7 +9,7 @@ Start the **Ipython** shell (an enhanced interactive Python shell):
   `EPD`_ menu if you have installed one of these scientific-Python suites.
 
 .. _`Python(x,y)`: http://www.pythonxy.com/
-.. _`EPD`: http://www.enthought.com/products/epd.php
+.. _`EPD`: http://store.enthought.com/
 
 .. tip::
 
