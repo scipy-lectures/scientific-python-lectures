@@ -252,8 +252,8 @@ latex_show_pagerefs = True
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
   ('index', 'ScipyLectures.tex', ur'Scipy lecture notes',
-   ur"""EuroScipy tutorial team \\\relax\normalfont Editors: Valentin Haenel, Emmanuelle Gouillart, Gaël Varoquaux"""
-   + r"\\\relax ~\\\relax http://scipy-lectures.github.com",
+   ur"""EuroScipy tutorial team \\\relax\normalfont Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras"""
+   + r"\\\relax ~\\\relax http://scipy-lectures.github.io",
    'manual'),
 ]
 

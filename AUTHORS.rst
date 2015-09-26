@@ -5,9 +5,11 @@ Authors
 Editors
 --------
 
+- Gaël Varoquaux
+
 - Emmanuelle Gouillart
 
-- Gaël Varoquaux
+- Olav Vahtras
 
 Chapter authors 
 ----------------

@@ -95,10 +95,9 @@ linkcheck:
 	      "or in build/linkcheck/output.txt."
 
 pdf: latex
-	cd build/latex ; make all-pdf ; pdfnup .pdf
+	cd build/latex ; make all-pdf ; pdfnup ScipyLectures.pdf
 	cp build/latex/ScipyLectures.pdf ScipyLectures-simple.pdf
 	cp build/latex/ScipyLectures-nup.pdf ScipyLectures.pdf
-	#cd build/latex ; make all-pdf ; pdfnup python4science.pdf
 
 zip: html pdf
 	mkdir -p build/scipy_lecture_notes ;
