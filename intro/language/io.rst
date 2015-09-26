@@ -31,7 +31,7 @@ To read from a file
 
 .. seealso::
    
-   For more details: http://docs.python.org/tutorial/inputoutput.html
+   For more details: https://docs.python.org/tutorial/inputoutput.html
 
 Iterating over a file
 ~~~~~~~~~~~~~~~~~~~~~

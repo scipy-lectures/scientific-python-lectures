@@ -396,7 +396,7 @@ Modules must be located in the search path, therefore you can:
 
 .. seealso::
 
-    See http://docs.python.org/tutorial/modules.html for more information
+    See https://docs.python.org/tutorial/modules.html for more information
     about modules.
 
 Packages

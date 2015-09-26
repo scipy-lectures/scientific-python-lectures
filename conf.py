@@ -291,7 +291,7 @@ latex_elements = {
     #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 }
 
-_python_doc_base = 'http://docs.python.org/2.7'
+_python_doc_base = 'https://docs.python.org/2.7'
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {

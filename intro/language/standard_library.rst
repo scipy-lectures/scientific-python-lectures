@@ -4,7 +4,7 @@ Standard Library
 .. note:: Reference document for this section:
 
  * The Python Standard Library documentation:
-   http://docs.python.org/library/index.html
+   https://docs.python.org/library/index.html
 
  * Python Essential Reference, David Beazley, Addison-Wesley Professional
 

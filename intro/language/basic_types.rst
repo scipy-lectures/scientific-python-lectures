@@ -204,7 +204,7 @@ Lists are *mutable* objects and can be modified::
 
     Python offers a large panel of functions to modify lists, or query
     them. Here are a few examples; for more details, see
-    http://docs.python.org/tutorial/datastructures.html#more-on-lists
+    https://docs.python.org/tutorial/datastructures.html#more-on-lists
 
 Add and remove elements::
 
@@ -347,7 +347,7 @@ Slicing::
    
     Accents and special characters can also be handled in Unicode strings
     (see
-    http://docs.python.org/tutorial/introduction.html#unicode-strings).
+    https://docs.python.org/tutorial/introduction.html#unicode-strings).
 
 
 A string is an **immutable object** and it is not possible to modify its
@@ -377,8 +377,8 @@ contents. One may however create new strings from the original one.
 
     Python offers advanced possibilities for manipulating strings,
     looking for patterns or formatting. The interested reader is referred to
-    http://docs.python.org/library/stdtypes.html#string-methods and
-    http://docs.python.org/library/string.html#new-string-formatting
+    https://docs.python.org/library/stdtypes.html#string-methods and
+    https://docs.python.org/library/string.html#new-string-formatting
 
 String formatting::
 
@@ -417,7 +417,7 @@ Dictionaries
 
   It can be used to conveniently store and retrieve values
   associated with a name (a string for a date, a name, etc.). See
-  http://docs.python.org/tutorial/datastructures.html#dictionaries
+  https://docs.python.org/tutorial/datastructures.html#dictionaries
   for more information.
 
   A dictionary can have keys (resp. values) with different types::
@@ -455,7 +455,7 @@ Assignment operator
 .. tip::
 
  `Python library reference
- <http://docs.python.org/reference/simple_stmts.html#assignment-statements>`_
+ <https://docs.python.org/reference/simple_stmts.html#assignment-statements>`_
  says:
 
   Assignment statements are used to (re)bind names to values and to

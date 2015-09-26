@@ -429,7 +429,7 @@ TraitsUI Item, the ChacoPlotItem:
 
 .. seealso:: References
 
-    * ETS repositories: http://github.com/enthought
+    * ETS repositories: https://github.com/enthought
     * Traits manual: http://docs.enthought.com/traits/traits_user_manual/index.html
     * Traits UI manual: http://docs.enthought.com/traitsui/traitsui_user_manual/index.html 
 

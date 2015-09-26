@@ -50,7 +50,7 @@ Profiling Python code
 Timeit
 ---------
 
-In IPython, use ``timeit`` (http://docs.python.org/library/timeit.html) to time elementary operations:
+In IPython, use ``timeit`` (https://docs.python.org/library/timeit.html) to time elementary operations:
 
 .. sourcecode:: ipython
 
@@ -86,9 +86,9 @@ Useful when you have a large program to profile, for example the
 .. note::
     This is a combination of two unsupervised learning techniques, principal
     component analysis (`PCA
-    <http://en.wikipedia.org/wiki/Principal_component_analysis>`_) and
+    <httsp://en.wikipedia.org/wiki/Principal_component_analysis>`_) and
     independent component analysis
-    (`ICA <http://en.wikipedia.org/wiki/Independent_component_analysis>`_). PCA
+    (`ICA <https://en.wikipedia.org/wiki/Independent_component_analysis>`_). PCA
     is a technique for dimensionality reduction, i.e. an algorithm to explain
     the observed variance in your data using less dimensions. ICA is a source
     seperation technique, for example to unmix multiple signals that have been
@@ -152,7 +152,7 @@ useless.
 
     Similar profiling can be done outside of IPython, simply calling the
     built-in `Python profilers
-    <http://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
+    <https://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
     ``profile``.
 
     .. sourcecode:: console
@@ -231,7 +231,7 @@ Example of the SVD
 ...................
 
 In both examples above, the SVD -
-`Singular Value Decomposition <http://en.wikipedia.org/wiki/Singular_value_decomposition>`_
+`Singular Value Decomposition <https://en.wikipedia.org/wiki/Singular_value_decomposition>`_
 - is what
 takes most of the time. Indeed, the computational cost of this algorithm is
 roughly :math:`n^3` in the size of the input matrix.

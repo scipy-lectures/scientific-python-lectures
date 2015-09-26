@@ -7,7 +7,7 @@ Mathematical optimization: finding minima of functions
 **Authors**: *Gaël Varoquaux*
 
 `Mathematical optimization
-<http://en.wikipedia.org/wiki/Mathematical_optimization>`_ deals with the
+<https://en.wikipedia.org/wiki/Mathematical_optimization>`_ deals with the
 problem of finding numerically minimums (or maximums or zeros) of
 a function. In this context, the function is called *cost function*, or
 *objective function*, or *energy*.

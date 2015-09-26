@@ -206,7 +206,7 @@ in. There is no silver bullet. Yet, strategies help:
 Using the Python debugger
 =========================
 
-The python debugger, ``pdb``: http://docs.python.org/library/pdb.html,
+The python debugger, ``pdb``: https://docs.python.org/library/pdb.html,
 allows you to inspect your code interactively.
 
 Specifically it allows you to:

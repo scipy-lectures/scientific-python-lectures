@@ -1655,7 +1655,7 @@ Contributing features
 
       git commit -a
 
-   - Create account on http://github.com  (or anywhere)
+   - Create account on https://github.com  (or anywhere)
 
    - Create a new repository @ Github
 

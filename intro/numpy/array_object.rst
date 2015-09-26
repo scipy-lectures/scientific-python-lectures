@@ -470,7 +470,7 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 ..    etc.
 ..
 ..    For more information on Mayavi :
-..    http://github.enthought.com/mayavi/mayavi
+..    https://github.enthought.com/mayavi/mayavi
 ..
 ..   .. seealso:: More in the :ref:`Mayavi chapter <mayavi-label>`
 
@@ -727,7 +727,7 @@ memory and time.
      - Run it to check it works
 
      - Use the optimization suggested in `the sieve of Eratosthenes
-       <http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`_:
+       <https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes>`_:
 
       1. Skip ``j`` which are already known to not be primes
 

@@ -58,7 +58,7 @@ which, when called, returns the next item in the sequence, and when
 there's nothing to return, raises the
 `StopIteration <exceptions.StopIteration>` exception.
 
-.. _`iterator protocol`: http://docs.python.org/dev/library/stdtypes.html#iterator-types
+.. _`iterator protocol`: https://docs.python.org/dev/library/stdtypes.html#iterator-types
 
 An iterator object allows to loop just once. It
 holds the state (position) of a single iteration, or from the other
@@ -961,14 +961,14 @@ directly, it would be impossible to distinguish it from an en-dash in
 the source of a program.
 
 .. _`unicode literal notation`:
-   http://docs.python.org/2.7/reference/lexical_analysis.html#string-literals
+   https://docs.python.org/2.7/reference/lexical_analysis.html#string-literals
 
 .. seealso:: **More examples and reading**
 
     * :pep:`318` (function and method decorator syntax)
     * :pep:`3129` (class decorator syntax)
     * http://wiki.python.org/moin/PythonDecoratorLibrary
-    * http://docs.python.org/dev/library/functools.html
+    * https://docs.python.org/dev/library/functools.html
     * http://pypi.python.org/pypi/decorator
     * Bruce Eckel
 

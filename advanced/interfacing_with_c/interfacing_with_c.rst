@@ -29,8 +29,8 @@ Introduction
 
 This chapter covers the following techniques:
 
-* `Python-C-Api <http://docs.python.org/2/c-api/>`_
-* `Ctypes <http://docs.python.org/2/library/ctypes.html>`_
+* `Python-C-Api <https://docs.python.org/2/c-api/>`_
+* `Ctypes <https://docs.python.org/2/library/ctypes.html>`_
 * `SWIG (Simplified Wrapper and Interface Generator) <http://www.swig.org/>`_
 * `Cython <http://cython.org/>`_
 
@@ -74,7 +74,7 @@ Last but not least, two small warnings:
 Python-C-Api
 ============
 
-The `Python-C-API <http://docs.python.org/2/c-api/>`_ is the backbone of the
+The `Python-C-API <https://docs.python.org/2/c-api/>`_ is the backbone of the
 standard Python interpreter (a.k.a *CPython*). Using this API it is possible to
 write Python extension module in C and C++. Obviously, these extension modules
 can, by virtue of language compatibility, call any function written in C or
@@ -111,7 +111,7 @@ return type.
    Since refernce counting bugs are easy to create and hard to track down,
    anyone really needing to use the Python C-API should read the `section
    about objects, types and reference counts
-   <http://docs.python.org/2/c-api/intro.html#objects-types-and-reference-counts>`_
+   <https://docs.python.org/2/c-api/intro.html#objects-types-and-reference-counts>`_
    from the official python documentation. Additionally, there is a tool by the
    name of `cpychecker
    <https://gcc-python-plugin.readthedocs.org/en/latest/cpychecker.html>`_
@@ -241,7 +241,7 @@ And this should result in the following figure:
 Ctypes
 ======
 
-`Ctypes <http://docs.python.org/2/library/ctypes.html>`_ is a *foreign
+`Ctypes <https://docs.python.org/2/library/ctypes.html>`_ is a *foreign
 function library* for Python. It provides C compatible data types, and allows
 calling functions in DLLs or shared libraries. It can be used to wrap these
 libraries in pure Python.
@@ -268,7 +268,7 @@ As advertised, the wrapper code is in pure Python.
 
 * Finding and loading the library may vary depending on your operating system,
   check `the documentation
-  <http://docs.python.org/2/library/ctypes.html#loading-dynamic-link-libraries>`_
+  <https://docs.python.org/2/library/ctypes.html#loading-dynamic-link-libraries>`_
   for details
 * This may be somewhat deceptive, since the math library exists in compiled
   form on the system already. If you were to wrap a in-house library, you would

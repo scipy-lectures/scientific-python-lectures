@@ -616,7 +616,7 @@ Statistical tests
 A statistical test is a decision indicator. For instance, if we have two
 sets of observations, that we assume are generated from Gaussian
 processes, we can use a
-`T-test <http://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide
+`T-test <https://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide
 whether the two sets of observations are significantly different::
 
     >>> a = np.random.normal(0, 1, size=100)

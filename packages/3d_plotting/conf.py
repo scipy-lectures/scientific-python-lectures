@@ -214,4 +214,4 @@ latex_elements = {
 } 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {'http://docs.python.org/dev': None}
+intersphinx_mapping = {'https://docs.python.org/dev': None}

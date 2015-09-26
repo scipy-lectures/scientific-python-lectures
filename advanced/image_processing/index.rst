@@ -425,7 +425,7 @@ Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 Mathematical morphology
 -----------------------
 
-See http://en.wikipedia.org/wiki/Mathematical_morphology
+See https://en.wikipedia.org/wiki/Mathematical_morphology
 
 Probe an image with a simple shape (a **structuring element**), and
 modify this image according to how the shape locally fits or misses the
@@ -852,7 +852,7 @@ Non-regularly-spaced blocks: radial mean::
 Correlation function, Fourier/wavelet spectrum, etc.
 
 One example with mathematical morphology: **granulometry**
-(http://en.wikipedia.org/wiki/Granulometry_%28morphology%29)
+(https://en.wikipedia.org/wiki/Granulometry_%28morphology%29)
 
 ::
 
