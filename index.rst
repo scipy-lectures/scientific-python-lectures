@@ -28,7 +28,7 @@ Python Scientific Lecture Notes
     }
 
     h1:hover > a.headerlink,
-    h2:hover > a.headerlink,
+    h2:hover > a.headerlink
     {
         visibility: hidden;
     }
@@ -51,7 +51,7 @@ Python Scientific Lecture Notes
 
 .. only:: html
 
-    .. sidebar:: Download 
+    .. sidebar::  Download 
        
        * `PDF, 2 pages per side <./_downloads/PythonScientific.pdf>`_
 
