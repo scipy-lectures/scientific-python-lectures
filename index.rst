@@ -1,5 +1,5 @@
-Python Scientific Lecture Notes 
-===================================================================
+Scipy Lecture Notes 
+===========================
 
 .. only:: html
 
@@ -13,7 +13,7 @@ Python Scientific Lecture Notes
   <style type="text/css">
     div.documentwrapper h1 {
         text-align: center;
-        font-size: 240% ;
+        font-size: 280% ;
         font-weight: bold;
         margin-bottom: 4px;
     }
