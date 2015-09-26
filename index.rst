@@ -107,7 +107,7 @@ ____
  
    <div style='visibility: hidden ; height=0'>
 
- :download:`PythonScientific.pdf` :download:`PythonScientific-simple.pdf`
+ :download:`ScipyLectures.pdf` :download:`ScipyLectures-simple.pdf`
  
  .. image:: themes/plusBox.png
 
