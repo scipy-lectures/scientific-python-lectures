@@ -45,6 +45,10 @@ Scipy Lecture Notes
         color: #555;
     }
 
+    div.sidebar li {
+        margin-top: .5ex;
+    }
+
     div.preface {
         margin-top: 20px;
     }
