@@ -96,18 +96,8 @@ Scipy Lecture Notes
     intro/index.rst
     advanced/index.rst
     packages/index.rst
-____
 
-
-.. only:: html
-
- .. raw:: html
-
-   <small style="color: gray">
-
- Version: |version| (output of ``git describe`` for `project repository`_)
-
- .. _`project repository`: https://github.com/scipy-lectures/scipy-lecture-notes
+|
 
 ..  
  FIXME: I need the link below to make sure the banner gets copied to the
@@ -117,7 +107,7 @@ ____
 
  .. raw:: html
  
-   <div style='visibility: hidden ; height=0'>
+   <div style='display: none; height=0px;'>
 
  :download:`ScipyLectures.pdf` :download:`ScipyLectures-simple.pdf`
  
