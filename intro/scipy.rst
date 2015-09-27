@@ -404,16 +404,15 @@ Another available (but much less efficient) global optimizer is
 More efficient algorithms
 for different classes of global optimization problems exist, but this is out of
 the scope of ``scipy``.  Some useful packages for global optimization are
-OpenOpt_, IPOPT_, PyGMO_ and PyEvolve_.
+OpenOpt, IPOPT_, PyGMO_ and PyEvolve_.
 
 .. note::
 
    ``scipy`` used to contain the routine `anneal`, it has been deprecated since
    SciPy 0.14.0 and removed in SciPy 0.16.0.
 
-.. _OpenOpt: http://openopt.org/Welcome
 .. _IPOPT: https://github.com/xuy/pyipopt
-.. _PyGMO: http://pagmo.sourceforge.net/pygmo/index.html
+.. _PyGMO: http://esa.github.io/pygmo/
 .. _PyEvolve: http://pyevolve.sourceforge.net/
 
 To find the local minimum, let's constraint the variable to the interval

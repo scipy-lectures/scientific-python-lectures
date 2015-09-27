@@ -165,7 +165,7 @@ Numpy has its own binary format, not portable but with efficient I/O::
 Well-known (& more obscure) file formats
 .........................................
 
-* HDF5: `h5py <http://code.google.com/p/h5py/>`__, `PyTables <http://www.pytables.org>`__
+* HDF5: `h5py <http://www.h5py.org/>`__, `PyTables <http://www.pytables.org>`__
 * NetCDF: ``scipy.io.netcdf_file``, `netcdf4-python <http://code.google.com/p/netcdf4-python/>`__, ...
 * Matlab: ``scipy.io.loadmat``, ``scipy.io.savemat``
 * MatrixMarket: ``scipy.io.mmread``, ``scipy.io.mmwrite``

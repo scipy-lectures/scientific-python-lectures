@@ -26,7 +26,7 @@ Proposals* --- PEPs_. As a result, features described in this chapter
 were added after it was shown that they indeed solve real problems and
 that their use is as simple as possible.
 
-.. _PEPs: http://www.python.org/dev/peps/
+.. _PEPs: https://www.python.org/dev/peps/
 
 .. contents:: Chapters contents
    :local:

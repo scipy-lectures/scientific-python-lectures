@@ -185,7 +185,7 @@ source file, we decorate a few functions that we want to inspect with
         results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
-<http://packages.python.org/line_profiler/kernprof.py>`_ program, with switches ``-l, --line-by-line`` and ``-v, --view`` to use the line-by-line profiler and view the results in addition to saving them:
+<http://packages.python.org/line_profiler>`_ program, with switches ``-l, --line-by-line`` and ``-v, --view`` to use the line-by-line profiler and view the results in addition to saving them:
 
 .. sourcecode:: console
 
@@ -303,7 +303,8 @@ Writing faster numerical code
 A complete discussion on advanced use of numpy is found in chapter
 :ref:`advanced_numpy`, or in the article `The NumPy array: a structure
 for efficient numerical computation
-<http://hal.inria.fr/inria-00564007/en>`_ by van der Walt et al. Here we
+<https://hal.inria.fr/inria-00564007/en>`_
+by van der Walt et al. Here we
 discuss only some commonly encountered tricks to make code faster.
 
 * **Vectorizing for loops**
@@ -416,11 +417,12 @@ Additional Links
 ----------------
 
 * If you need to profile memory usage, you could try the `memory_profiler
-  <http://pypi.python.org/pypi/memory_profiler>`_
+  <https://pypi.python.org/pypi/memory_profiler>`_
 
 * If you need to profile down into C extensions, you could try using
-  `gperftools <http://code.google.com/p/gperftools/?redir=1>`_ from Python with
-  `yep <http://pypi.python.org/pypi/yep>`_.
+  `gperftools <https://github.com/gperftools/gperftools>`_
+  from Python with
+  `yep <https://pypi.python.org/pypi/yep>`_.
 
 * If you would like to track performace of your code across time, i.e. as you
   make new commits to your repository, you could try:

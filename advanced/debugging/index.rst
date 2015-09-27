@@ -71,7 +71,7 @@ Here we focus on `pyflakes`, which is the simplest tool.
 Another good recommendation is the `flake8` tool which is a combination of
 pyflakes and pep8. Thus, in addition to the types of errors that pyflakes
 catches, flake8 detects violations of the recommendation in `PEP8
-<http://www.python.org/dev/peps/pep-0008/>`_ style guide.
+<https://www.python.org/dev/peps/pep-0008/>`_ style guide.
 
 Integrating pyflakes (or flake8) in your editor or IDE is highly
 recommended, it **does yield productivity gains**.

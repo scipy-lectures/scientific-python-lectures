@@ -113,7 +113,8 @@ NumPy arrays:
 
 Also, powerful image processing libraries have Python bindings:
 
- * `OpenCV <http://opencv.willowgarage.com/wiki/>`_ (computer vision)
+ * `OpenCV <https://opencv-python-tutroals.readthedocs.org/en/latest/>`_
+   (computer vision)
 
  * `ITK <http://www.itk.org/itkindex.html>`_ (3D images and registration)
 
@@ -464,7 +465,7 @@ Histogram-based method: **Otsu thresholding**
 
 .. tip::
 
-   The `Otsu method <https://en.wikipedia.org/wiki/Otsu's_method>`_ is a
+   The `Otsu method <https://en.wikipedia.org/wiki/Otsu%27s_method>`_ is a
    simple heuristic to find a threshold to separate the foreground from
    the background.
 
@@ -698,7 +699,7 @@ Geometric or textural descriptor can be extracted from images in order to
 * match parts of different images (e.g. for object detection)
 
 * and many other applications of
-  `Computer Vision <http://en.wikipedia.org/wiki/Computer_vision>`_
+  `Computer Vision <https://en.wikipedia.org/wiki/Computer_vision>`_
 
 ::
 

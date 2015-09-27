@@ -1589,7 +1589,7 @@ Contributing to documentation
 
 1. Documentation editor
 
-   - http://docs.scipy.org/numpy
+   - http://docs.scipy.org/doc/numpy
 
    - Registration
 
@@ -1618,7 +1618,7 @@ Contributing to documentation
 
     - Check the style guide:
 
-      - http://docs.scipy.org/numpy/
+      - http://docs.scipy.org/doc/numpy/
 
       - Don't be intimidated; to fix a small thing, just fix it
 

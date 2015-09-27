@@ -902,7 +902,7 @@ One example with mathematical morphology: **granulometry**
    * The chapter on :ref:`Scikit-image <scikit_image>`
    
    * Other, more powerful and complete modules: `OpenCV
-     <http://opencv.willowgarage.com/documentation/python/cookbook.html>`_
+     <https://opencv-python-tutroals.readthedocs.org/en/latest>`_
      (Python bindings), `CellProfiler <http://www.cellprofiler.org>`_,
      `ITK <http://www.itk.org/>`_ with Python bindings
 

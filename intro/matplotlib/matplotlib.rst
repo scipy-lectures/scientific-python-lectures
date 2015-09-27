@@ -1108,8 +1108,6 @@ The `matplotlib gallery <http://matplotlib.org/gallery.html>`_ is
 also incredibly useful when you search how to render a given graphic. Each
 example comes with its source.
 
-A smaller gallery is also available `here <http://www.loria.fr/~rougier/coding/gallery/>`_.
-
 
 Mailing lists
 --------------
@@ -1214,7 +1212,7 @@ All colormaps can be reversed by appending ``_r``. For instance, ``gray_r`` is
 the reverse of ``gray``.
 
 If you want to know more about colormaps, checks `Documenting the matplotlib
-colormaps <https://gist.github.com/2719900>`_.
+colormaps <intro/matplotlib/matplotlib.rst>`_.
 
 .. image:: auto_examples/images/plot_colormaps_1.png
    :scale: 80

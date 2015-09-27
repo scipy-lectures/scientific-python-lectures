@@ -262,11 +262,11 @@ to optimize.
 
    If you know natural scaling for your variables, prescale them so that
    they behave similarly. This is related to `preconditioning
-   <http://en.wikipedia.org/wiki/Preconditioner>`_.
+   <https://en.wikipedia.org/wiki/Preconditioner>`_.
 
 Also, it clearly can be advantageous to take bigger steps. This
 is done in gradient descent code using a
-`line search <http://en.wikipedia.org/wiki/Line_search>`_.
+`line search <https://en.wikipedia.org/wiki/Line_search>`_.
 
 .. |agradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_1.png
    :scale: 90%
@@ -828,7 +828,7 @@ Minimizing the norm of a vector function
 
 Least square problems, minimizing the norm of a vector function, have a
 specific structure that can be used in the `Levenberg–Marquardt algorithm
-<http://en.wikipedia.org/wiki/Levenberg-Marquardt_algorithm>`_
+<https://en.wikipedia.org/wiki/Levenberg-Marquardt_algorithm>`_
 implemented in :func:`scipy.optimize.leastsq`.
 
 Lets try to minimize the norm of the following vectorial function::
@@ -981,5 +981,5 @@ and `g(x)< 0`.
    If you are ready to do a bit of math, many constrained optimization
    problems can be converted to non-constrained optimization problems
    using a mathematical trick known as `Lagrange multipliers
-   <http://en.wikipedia.org/wiki/Lagrange_multiplier>`_.
+   <https://en.wikipedia.org/wiki/Lagrange_multiplier>`_.
    

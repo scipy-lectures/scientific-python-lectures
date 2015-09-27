@@ -257,8 +257,8 @@ recall good coding practice, which really do pay off in the long run:
       A certain number of rules for writing "beautiful" code (and, more
       importantly, using the same conventions as everybody else!) are
       given in the `Style Guide for Python Code
-      <http://www.python.org/dev/peps/pep-0008>`_ and the `Docstring
-      Conventions <http://www.python.org/dev/peps/pep-0257>`_ page (to
+      <https://www.python.org/dev/peps/pep-0008>`_ and the `Docstring
+      Conventions <https://www.python.org/dev/peps/pep-0257>`_ page (to
       manage help strings).
 
     * Except some rare cases, variable names and comments in English.

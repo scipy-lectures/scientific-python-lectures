@@ -531,7 +531,7 @@ Good practices
   A certain number of rules
   for writing "beautiful" code (and more importantly using the same
   conventions as anybody else!) are given in the `Style Guide for Python
-  Code <http://www.python.org/dev/peps/pep-0008>`_.
+  Code <https://www.python.org/dev/peps/pep-0008>`_.
 
 
 ____

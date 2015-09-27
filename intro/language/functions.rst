@@ -325,7 +325,7 @@ convention:
 
 
     For the sake of standardization, the `Docstring
-    Conventions <http://www.python.org/dev/peps/pep-0257>`_ webpage
+    Conventions <https://www.python.org/dev/peps/pep-0257>`_ webpage
     documents the semantics and conventions associated with Python
     docstrings.
 
