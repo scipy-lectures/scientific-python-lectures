@@ -252,14 +252,13 @@ latex_show_pagerefs = True
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
   ('index', 'ScipyLectures.tex', ur'Scipy lecture notes',
-   ur"""EuroScipy tutorial team \\\relax\normalfont Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras"""
-   + r"\\\relax ~\\\relax http://scipy-lectures.github.io",
+   ur"""Scipy lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
    'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = 'euroscipy_back.pdf'
+latex_logo = 'images/cover-v2.pdf'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -288,6 +287,22 @@ latex_preamble = """
 latex_elements = {
     'classoptions': ',oneside,openany',
     'babel': '\usepackage[english]{babel}',
+    'releasename': 'Edition',
+    'maketitle':
+    r'''\hspace*{-.05\linewidth}\rule{0pt}{\textheight}\smash{\rlap{%
+        \includegraphics[width=1.1\linewidth]{cover-v2}}%
+}%
+\makeatletter%
+\hypersetup{
+    pdfinfo={
+        Title={\@title},
+        Author={\@author},
+        License={CC-BY},
+    }
+}%
+\makeatother%
+\newpage\newpage
+'''
     #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 }
 
