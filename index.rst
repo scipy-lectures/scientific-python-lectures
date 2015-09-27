@@ -39,6 +39,12 @@ Scipy Lecture Notes
         border-radius: 6px;
     }
 
+    div.sidebar ul {
+        list-style: none;
+        text-indent: -3ex;
+        color: #555;
+    }
+
     div.preface {
         margin-top: 20px;
     }
@@ -49,17 +55,23 @@ Scipy Lecture Notes
 
 .. include:: tune_toc.rst 
 
+.. |pdf| unicode:: U+f1c1 .. PDF file
+
+.. |archive| unicode:: U+f187 .. archive file
+
+.. |github| unicode:: U+f09b  .. github logo
+
 .. only:: html
 
     .. sidebar::  Download 
        
-       * `PDF, 2 pages per side <./_downloads/PythonScientific.pdf>`_
+       * |pdf| `PDF, 2 pages per side <./_downloads/PythonScientific.pdf>`_
 
-       * `PDF, 1 page per side <./_downloads/PythonScientific-simple.pdf>`_
+       * |pdf| `PDF, 1 page per side <./_downloads/PythonScientific-simple.pdf>`_
    
-       * `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
+       * |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
      
-       * `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
+       * |github| `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
 
     Tutorials on the scientific Python ecosystem: a quick introduction to
