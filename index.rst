@@ -111,6 +111,8 @@ ____
  
  .. image:: themes/plusBox.png
 
+ .. image:: images/logo.svg
+
  .. raw:: html
  
    </div>

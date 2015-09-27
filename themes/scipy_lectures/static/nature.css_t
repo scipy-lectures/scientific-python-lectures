@@ -259,6 +259,17 @@ div.sphinxsidebar h3 a {
     font-weight: 600;
 }
 
+img.sidebarlogo {
+    max-width: 105%;
+    width: 105%;
+    margin-top: -10px;
+    margin-left: -13%;
+}
+
+div.script_container {
+    min-height: 70px;
+}
+
 @media (max-width: 1324px) {
     div.sphinxsidebar {
         display: none !important;
