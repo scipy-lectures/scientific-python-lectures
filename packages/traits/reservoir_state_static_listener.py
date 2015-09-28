@@ -26,7 +26,7 @@ class ReservoirState(HasTraits):
                 self.spillage)
         print '-' * 79
 
-    ### Traits listeners #####################################################
+    ### Traits listeners ###########
     def _release_changed(self, new):
         """When the release is higher than zero, warn all the inhabitants of
         the valley.

@@ -333,7 +333,8 @@ Enhances contrast in large almost uniform regions.
 Mathematical morphology
 -----------------------
 
-See https://en.wikipedia.org/wiki/Mathematical_morphology
+See `wikipedia <https://en.wikipedia.org/wiki/Mathematical_morphology>`_
+for an introduction on mathematical morphology.
 
 Probe an image with a simple shape (a **structuring element**), and
 modify this image according to how the shape locally fits or misses the
@@ -723,9 +724,11 @@ Example: detecting corners using Harris detector ::
     :target: auto_examples/plot_features.html
     :align: center
 
-(this example is taken from
-http://scikit-image.org/docs/stable/auto_examples/plot_corner.html)
+(this example is taken from the `plot_corner
+<http://scikit-image.org/docs/stable/auto_examples/plot_corner.html>`_
+example in scikit-image)
 
 Points of interest such as corners can then be used to match objects in
-different images, as described in
-http://scikit-image.org/docs/stable/auto_examples/plot_matching.html
+different images, as described in the `plot_matching 
+<http://scikit-image.org/docs/stable/auto_examples/plot_matching.html>`_
+example of scikit-image.

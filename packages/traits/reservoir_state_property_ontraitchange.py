@@ -25,10 +25,10 @@ class ReservoirState(HasTraits):
         )
 
 
-    ### Private traits. ######################################################
+    ### Private traits. ##########
     _storage = Float
 
-    ### Traits property implementation. ######################################
+    ### Traits property implementation.
     def _get_storage(self):
         new_storage = self._storage - self.release + self.inflows
         return min(new_storage, self.max_storage)

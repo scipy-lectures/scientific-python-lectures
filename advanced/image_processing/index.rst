@@ -38,7 +38,8 @@ arrays.
 * ``numpy``: basic array manipulation
 
 * ``scipy``: ``scipy.ndimage`` submodule dedicated to image processing
-  (n-dimensional images). See http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html ::
+  (n-dimensional images). See the `documentation
+  <http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html>`_::
 
     >>> from scipy import ndimage
 
@@ -425,7 +426,8 @@ Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 Mathematical morphology
 -----------------------
 
-See https://en.wikipedia.org/wiki/Mathematical_morphology
+See `wikipedia <https://en.wikipedia.org/wiki/Mathematical_morphology>`_
+for a definition of mathematical morphology.
 
 Probe an image with a simple shape (a **structuring element**), and
 modify this image according to how the shape locally fits or misses the
@@ -851,8 +853,8 @@ Non-regularly-spaced blocks: radial mean::
 
 Correlation function, Fourier/wavelet spectrum, etc.
 
-One example with mathematical morphology: **granulometry**
-(https://en.wikipedia.org/wiki/Granulometry_%28morphology%29)
+One example with mathematical morphology: `granulometry
+<https://en.wikipedia.org/wiki/Granulometry_%28morphology%29>`_
 
 ::
 

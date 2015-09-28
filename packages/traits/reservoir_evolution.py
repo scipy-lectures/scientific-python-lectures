@@ -21,7 +21,7 @@ class ReservoirEvolution(HasTraits):
 
     month = Property(depends_on='stock')
 
-    ### Traits view ##########################################################
+    ### Traits view ###########
     traits_view = View(
         Item('name'),
         Group(
@@ -31,7 +31,7 @@ class ReservoirEvolution(HasTraits):
         resizable = True
     )
 
-    ### Traits properties ####################################################
+    ### Traits properties #####
     def _get_stock(self):
         """
         fixme: should handle cases where we go over the max storage

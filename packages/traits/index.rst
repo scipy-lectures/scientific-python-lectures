@@ -24,14 +24,13 @@ The Traits project allows you to simply add validation, initialization, delegati
 
 .. topic:: Requirements
 
-    * Python 2.6 or 2.7 (www.python.org)
-    * Either wxPython (http://www.wxpython.org/), 
-      PyQt (https://riverbankcomputing.com/software/pyqt/intro) or
-      PySide (https://pyside.github.io/docs/pyside/)
-    * Numpy and Scipy (http://www.scipy.org)
-    * Enthought Tool Suite 3.x or higher (http://code.enthought.com/projects)
-    * All required software can be obtained by installing the EPD Free
-      (https://store.enthought.com/)
+    * Either `wxPython <http://www.wxpython.org>`_, 
+      `PyQt <https://riverbankcomputing.com/software/pyqt/intro>`_ or
+      `PySide <https://pyside.github.io/docs/pyside/>`_
+    * Numpy and Scipy
+    * `Enthought Tool Suite <http://code.enthought.com/projects>`_
+    * All required software can be obtained by installing the `EPD Free
+      <https://store.enthought.com/>`_
 
 
 .. contents:: Tutorial content
@@ -216,10 +215,10 @@ Every trait does validation when the user tries to set its content:
     reservoir.max_storage = '230'
     ---------------------------------------------------------------------------
     TraitError                                Traceback (most recent call last)
-    /Users/dpinte/projects/scipy-lecture-notes/advanced/traits/<ipython-input-7-979bdff9974a> in <module>()
+    .../scipy-lecture-notes/advanced/traits/<ipython-input-7-979bdff9974a> in <module>()
     ----> 1 reservoir.max_storage = '230'
 
-    /Users/dpinte/projects/ets/traits/traits/trait_handlers.pyc in error(self, object, name, value)
+    .../traits/trait_handlers.pyc in error(self, object, name, value)
         166         """
         167         raise TraitError( object, name, self.full_info( object, name, value ),
     --> 168                           value )
@@ -429,8 +428,7 @@ TraitsUI Item, the ChacoPlotItem:
 
 .. seealso:: References
 
-    * ETS repositories: https://github.com/enthought
-    * Traits manual: http://docs.enthought.com/traits/traits_user_manual/index.html
-    * Traits UI manual: http://docs.enthought.com/traitsui/traitsui_user_manual/index.html 
-
+    * `ETS repositories <https://github.com/enthought>`_
+    * `Traits manual <http://docs.enthought.com/traits/traits_user_manual/index.html>`_
+    * `Traits UI manual <http://docs.enthought.com/traitsui/traitsui_user_manual/index.html>`_
     * Mailing list : enthought-dev@enthought.com

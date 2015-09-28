@@ -331,8 +331,8 @@ Casting
 
 .. note::
 
-   Exact rules: see documentation:
-   http://docs.scipy.org/doc/numpy/reference/ufuncs.html#casting-rules
+   Exact rules: see `numpy documentation
+   <http://docs.scipy.org/doc/numpy/reference/ufuncs.html#casting-rules>`_
 
 
 Re-interpretation / viewing
