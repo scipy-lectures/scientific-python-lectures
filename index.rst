@@ -35,6 +35,8 @@ Scipy Lecture Notes
         margin-right: -20px;
         margin-top: -10px;
         border-radius: 6px;
+        font-family: FontAwesome, sans-serif;
+        min-width: 200pt;
     }
 
     div.sidebar ul {
