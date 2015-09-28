@@ -375,6 +375,35 @@ div.body h4 a.toc-backref {
     color: #20435c;
 }
 
+a.headerlink:after {
+    content: "\f0c1";
+    margin-left: -1.1ex;
+}
+
+h1:hover a.headerlink, h2:hover a.headerlink, 
+h3:hover a.headerlink, h4:hover a.headerlink {
+    visibility: hidden;
+    display: inline-block;
+}
+
+a.headerlink {
+    display: inline-block;
+}
+
+h1:hover a.headerlink:after, h2:hover a.headerlink:after, 
+h3:hover a.headerlink:after, h4:hover a.headerlink:after {
+    visibility: visible;
+}
+
+
+a.headerlink {
+    color: #8a0d0d;
+}
+
+a.headerlink:hover {
+    color: #f21515;
+}
+
 div.body hr.docutils {
     border-style: solid;
     color: gray;
