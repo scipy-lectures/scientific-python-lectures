@@ -27,10 +27,8 @@ Scipy Lecture Notes
         margin-top: 4px;
     }
 
-    h1:hover > a.headerlink,
-    h2:hover > a.headerlink
-    {
-        visibility: hidden;
+    a.headerlink:after {
+        content: "";
     }
 
     div.sidebar {
