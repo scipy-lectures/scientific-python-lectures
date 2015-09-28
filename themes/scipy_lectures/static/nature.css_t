@@ -476,6 +476,7 @@ div.body pre span.o:after, div.body pre span.p:after{
         hyphens: auto;
 
     content: "";
+    display: inline-block;
 }
 
 div.highlight:hover span.copybutton {
