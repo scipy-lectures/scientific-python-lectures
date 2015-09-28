@@ -73,7 +73,7 @@ htmlhelp:
 	@echo "Build finished; now you can run HTML Help Workshop with the" \
 	      ".hhp project file in build/htmlhelp."
 
-latex:
+latex: cleandoctrees
 	mkdir -p build/latex build/doctrees
 	$(SPHINXBUILD) -b $@ $(ALLSPHINXOPTS) build/latex
 	@echo
@@ -109,7 +109,7 @@ zip: html pdf
 	cp ScipyLectures.pdf build/scipy_lecture_notes;
 	zip -r build/scipy_lecture_notes.zip build/scipy_lecture_notes  
 
-install: cleandoctrees pdf html 
+install: cleandoctrees html pdf
 	rm -rf build/scipy-lectures.github.com
 	cd build/ && \
 	git clone git@github.com:scipy-lectures/scipy-lectures.github.com.git && \
