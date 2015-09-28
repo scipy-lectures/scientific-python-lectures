@@ -53,6 +53,9 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in build/html."
 
+cleandoctrees:
+	rm -rf build/doctrees
+
 pickle:
 	mkdir -p build/pickle build/doctrees
 	$(SPHINXBUILD) -b pickle $(ALLSPHINXOPTS) build/pickle
@@ -106,7 +109,7 @@ zip: html pdf
 	cp ScipyLectures.pdf build/scipy_lecture_notes;
 	zip -r build/scipy_lecture_notes.zip build/scipy_lecture_notes  
 
-install: pdf html 
+install: cleandoctrees pdf html 
 	rm -rf build/scipy-lectures.github.com
 	cd build/ && \
 	git clone git@github.com:scipy-lectures/scipy-lectures.github.com.git && \
