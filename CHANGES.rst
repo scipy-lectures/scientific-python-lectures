@@ -4,10 +4,16 @@ What's new
 Release 2015.1 (September 2015)
 -------------------------------------
 
-* New chapter on statistics with Python
+* New chapter on statistics with Python (Gaël Varoquaux)
+
+* Better layout in PDF (Gaël Varoquaux)
 
 * New HTML layout, simplified formatting, mobile-friendly and sidebar
   (Gaël Varoquaux, Nelle Varoquaux)
+
+* Logos on the HTML front page and on the PDF cover (Nicolas Rougier)
+
+* Python 3 compatible code (Gaël Varoquaux, Olav Vahtras)
 
 * Code put up to date for more recent versions of project (Pierre de
   Buyl, Gert-Ludwig Ingold, Nicolas Pettiaux, Olav Vahtras, Gaël
