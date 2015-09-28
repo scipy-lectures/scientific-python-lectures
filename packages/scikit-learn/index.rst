@@ -465,15 +465,11 @@ classification.
    :scale: 70
 
 
+Stripped-down version of the `face recognition example 
+<http://scikit-learn.org/dev/auto_examples/applications/face_recognition.html>`_:
+
 .. sourcecode:: python
 
-    """
-    Stripped-down version of the face recognition example by Olivier Grisel
-    
-    http://scikit-learn.org/dev/auto_examples/applications/face_recognition.html
-    
-    ## original shape of images: 50, 37
-    """
     import numpy as np
     import pylab as pl
     from sklearn import cross_val, datasets, decomposition, svm
@@ -645,6 +641,4 @@ appended to their name.
 
 
 
-
- 
 
