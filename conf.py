@@ -310,7 +310,7 @@ latex_preamble = r"""
 
 \def\shadowbox#1{\rule{\linewidth}{1pt}\nopagebreak
 
-\nopagebreak#1\nopagebreak
+\nopagebreak\hspace*{.02\linewidth}#1\nopagebreak
 
 \nopagebreak\rule{\linewidth}{1pt}
 }
