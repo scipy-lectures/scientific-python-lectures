@@ -519,6 +519,10 @@ div.body ul, div.body ol, div.body blockquote {
     margin-top : .3em;
 }
 
+div.body a.reference.external {
+    overflow-wrap: break-word;
+}
+
 div.body img {
     /* Required for clean overlap in left or right align */
     position: relative;

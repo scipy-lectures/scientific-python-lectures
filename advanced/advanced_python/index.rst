@@ -644,14 +644,14 @@ and ``__name__`` (the full name of the function), and
 value of the function available in Python 3). This can be done
 automatically by using `functools.update_wrapper`.
 
-.. sidebar:: `functools.update_wrapper(wrapper, wrapped) <functools.update_wrapper>`
+.. topic:: `functools.update_wrapper(wrapper, wrapped) <functools.update_wrapper>`
 
    "Update a wrapper function to look like the wrapped function."
 
    ::
    
     >>> import functools
-    >>> def better_replacing_decorator_with_args(arg):
+    >>> def replacing_decorator_with_args(arg):
     ...   print("defining the decorator")
     ...   def _decorator(function):
     ...       print("doing decoration, %r" % arg)
@@ -660,7 +660,7 @@ automatically by using `functools.update_wrapper`.
     ...           return function(*args, **kwargs)
     ...       return functools.update_wrapper(_wrapper, function)
     ...   return _decorator
-    >>> @better_replacing_decorator_with_args("abc")
+    >>> @replacing_decorator_with_args("abc")
     ... def function():
     ...     "extensive documentation"
     ...     print("inside function")
