@@ -12,7 +12,7 @@ Matplotlib: plotting
 
 **Authors**: *Nicolas Rougier, Mike Müller, Gaël Varoquaux*
 
-.. contents:: Chapters contents
+.. contents:: Chapter contents
    :local:
    :depth: 2
 

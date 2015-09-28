@@ -246,7 +246,7 @@ epub_tocdup = False
 #latex_font_size = '10pt'
 
 # Latex references with page numbers (only Sphinx 1.0)
-latex_show_pagerefs = True
+latex_show_pagerefs = False
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
@@ -272,7 +272,7 @@ latex_use_modindex = False
 
 
 # Additional stuff for the LaTeX preamble.
-latex_preamble = """
+latex_preamble = r"""
 \definecolor{VerbatimColor}{rgb}{0.961, .98, 1.}
 \definecolor{VerbatimBorderColor}{rgb}{0.6,0.6,0.6}
 \setcounter{tocdepth}{1}
@@ -282,9 +282,47 @@ latex_preamble = """
 \DeclareUnicodeCharacter{2461}{\ding{183}}
 \DeclareUnicodeCharacter{2462}{\ding{184}}
 \DeclareUnicodeCharacter{2794}{\ding{229}}
+
+\definecolor{Admonition}{RGB}{249,249,249}
+
+\usepackage{ifthen}
+\usepackage{xcolor}
+\usepackage{fourier}
+
+\makeatletter
+  \renewenvironment{notice}[2]{%
+    \def\thishead{}%
+    \ifthenelse{\equal{#1}{tip}}%
+	{\colorlet{thiscolor}{white}}%
+	{\ifthenelse{\equal{#1}{warning}}
+	 {\colorlet{thiscolor}{red!10!white}%
+	  \def\thishead{\llap{\smash{\raisebox{-1em}{\small\danger~\,~}}}}}%
+	 {\colorlet{thiscolor}{Admonition}}%
+	}%
+    \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}%
+    \thishead%
+  }{%
+    \end{minipage}\end{lrbox}%
+    \colorbox{thiscolor}{\usebox{\@tempboxa}}%
+  }
+
+\makeatother
+
+\def\shadowbox#1{\rule{\linewidth}{1pt}\nopagebreak
+
+\nopagebreak#1\nopagebreak
+
+\nopagebreak\rule{\linewidth}{1pt}
+}
 """
 
 latex_elements = {
+    'fontpkg': '\\usepackage{lmodern}',
+    'fncychap': r'''%
+    \usepackage[Sonny]{fncychap}%
+    \ChRuleWidth{1.5pt}%
+    \ChNumVar{\fontsize{76}{80}\sffamily\slshape}
+    \ChTitleVar{\raggedleft\Huge\sffamily\bfseries}''',
     'classoptions': ',oneside,openany',
     'babel': '\usepackage[english]{babel}',
     'releasename': 'Edition',

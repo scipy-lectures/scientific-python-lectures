@@ -28,7 +28,7 @@ that their use is as simple as possible.
 
 .. _PEPs: https://www.python.org/dev/peps/
 
-.. contents:: Chapters contents
+.. contents:: Chapter contents
    :local:
    :depth: 4
 
