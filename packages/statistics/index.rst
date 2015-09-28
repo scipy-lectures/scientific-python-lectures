@@ -456,7 +456,7 @@ We can inspect the various statistics derived from the fit::
 
     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
                                 OLS Regression Results                            
-    ==============================================================================
+    ==========================...
     Dep. Variable:                      y   R-squared:                       0.804
     Model:                            OLS   Adj. R-squared:                  0.794
     Method:                 Least Squares   F-statistic:                     74.03
@@ -465,17 +465,17 @@ We can inspect the various statistics derived from the fit::
     No. Observations:                  20   AIC:                             120.0
     Df Residuals:                      18   BIC:                             122.0
     Df Model:                           1                                         
-    ==============================================================================
+    ==========================...
                      coef    std err          t      P>|t|      [95.0% Conf. Int.]
-    ------------------------------------------------------------------------------
+    ------------------------------------------...
     Intercept     -5.5335      1.036     -5.342      0.000        -7.710    -3.357
     x              2.9369      0.341      8.604      0.000         2.220     3.654
-    ==============================================================================
+    ==========================...
     Omnibus:                        0.100   Durbin-Watson:                   2.956
     Prob(Omnibus):                  0.951   Jarque-Bera (JB):                0.322
     Skew:                          -0.058   Prob(JB):                        0.851
     Kurtosis:                       2.390   Cond. No.                         3.03
-    =========================================================================...
+    ==========================...
 
 
 .. topic:: Terminology:
@@ -511,7 +511,7 @@ model::
      >>> model = ols("VIQ ~ Gender + 1", data).fit()
      >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
                                  OLS Regression Results                            
-     ==============================================================================
+     ==========================...
      Dep. Variable:                    VIQ   R-squared:                       0.015
      Model:                            OLS   Adj. R-squared:                 -0.010
      Method:                 Least Squares   F-statistic:                    0.5969
@@ -520,17 +520,17 @@ model::
      No. Observations:                  40   AIC:                             368.8
      Df Residuals:                      38   BIC:                             372.2
      Df Model:                           1                                      
-     =======================================================================...
+     ==========================...
                        coef    std err        t      P>|t|      [95.0% Conf. Int.]
      -----------------------------------------------------------------------...
      Intercept        109.4500     5.308     20.619     0.000      98.704   120.196
      Gender[T.Male]     5.8000     7.507      0.773     0.445      -9.397    20.997
-     =======================================================================...
+     ==========================...
      Omnibus:                       26.188   Durbin-Watson:                   1.709
      Prob(Omnibus):                  0.000   Jarque-Bera (JB):                3.703
      Skew:                           0.010   Prob(JB):                        0.157
      Kurtosis:                       1.510   Cond. No.                         2.62
-     =======================================================================...
+     ==========================...
 
 .. topic:: **Tips on specifying model**
  
@@ -581,9 +581,9 @@ model::
      >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
                                  OLS Regression Results  
      ...
-     =======================================================================...
+     ==========================...
                       coef    std err          t      P>|t|      [95.0% Conf. Int.]
-     -----------------------------------------------------------------------...
+     ------------------------------------------...
      Intercept     113.4500      3.683     30.807      0.000       106.119   120.781
      type[T.piq]    -2.4250      5.208     -0.466      0.643       -12.793     7.943
      ...
@@ -635,7 +635,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     >>> model = ols('sepal_width ~ name + petal_length', data).fit()
     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
                                 OLS Regression Results                            
-    ==============================================================================
+    ==========================...
     Dep. Variable:            sepal_width   R-squared:                       0.478
     Model:                            OLS   Adj. R-squared:                  0.468
     Method:                 Least Squares   F-statistic:                     44.63
@@ -644,19 +644,19 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     No. Observations:                 150   AIC:                             84.37
     Df Residuals:                     146   BIC:                             96.41
     Df Model:                           3                                     
-    ===========================================================================...
+    ==========================...
                              coef    std err          t     P>|t|  [95.0% Conf. Int.]
-    ---------------------------------------------------------------------------...
+    ------------------------------------------...
     Intercept              2.9813      0.099     29.989     0.000      2.785     3.178
     name[T.versicolor]    -1.4821      0.181     -8.190     0.000     -1.840    -1.124
     name[T.virginica]     -1.6635      0.256     -6.502     0.000     -2.169    -1.158
     petal_length           0.2983      0.061      4.920     0.000      0.178     0.418
-    ==============================================================================
+    ==========================...
     Omnibus:                        2.868   Durbin-Watson:                   1.753
     Prob(Omnibus):                  0.238   Jarque-Bera (JB):                2.885
     Skew:                          -0.082   Prob(JB):                        0.236
     Kurtosis:                       3.659   Cond. No.                         54.0
-    ==============================================================================
+    ==========================...
 
 |
 
@@ -818,7 +818,7 @@ Do wages increase more with education for males than females?
     gender[T.male]              0.2750   0.093    2.972   0.003     0.093   0.457
     education                   0.0415   0.005    7.647   0.000     0.031   0.052
     education:gender[T.male]   -0.0134   0.007   -1.919   0.056    -0.027   0.000
-    ==============================================================================
+    ==========================...
     ...
 
 Can we conclude that education benefits males more than females?
