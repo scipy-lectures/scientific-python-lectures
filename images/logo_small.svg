@@ -14,11 +14,11 @@
    height="256"
    id="svg3943"
    version="1.1"
-   inkscape:version="0.48.5 r10040"
-   sodipodi:docname="logo-v2.svg"
-   inkscape:export-filename="/Users/rougier/Documents/Artwork/2015/logo-v2-64.png"
-   inkscape:export-xdpi="22.500002"
-   inkscape:export-ydpi="22.500002">
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="logo_small.svg"
+   inkscape:export-filename="/home/varoquau/dev/scipy-lecture-notes/icon-128.png"
+   inkscape:export-xdpi="45"
+   inkscape:export-ydpi="45">
   <defs
      id="defs3">
     <linearGradient
@@ -64,7 +64,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.1367188"
-     inkscape:cx="128"
+     inkscape:cx="74.440848"
      inkscape:cy="128"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -72,7 +72,7 @@
      inkscape:window-width="1311"
      inkscape:window-height="990"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="24"
      inkscape:window-maximized="0"
      inkscape:snap-bbox="true"
      inkscape:bbox-paths="false"
@@ -100,7 +100,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
