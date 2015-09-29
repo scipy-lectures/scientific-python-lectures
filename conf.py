@@ -319,6 +319,7 @@ latex_preamble = r"""
 latex_elements = {
     'fontpkg': '\\usepackage{lmodern}',
     'fncychap': r'''%
+    \usepackage{pdfpages}%
     \usepackage[Sonny]{fncychap}%
     \ChRuleWidth{1.5pt}%
     \ChNumVar{\fontsize{76}{80}\sffamily\slshape}
@@ -327,9 +328,7 @@ latex_elements = {
     'babel': '\usepackage[english]{babel}',
     'releasename': 'Edition',
     'maketitle':
-    r'''\hspace*{-.05\linewidth}\rule{0pt}{\textheight}\smash{\rlap{%
-        \includegraphics[width=1.1\linewidth]{cover-v2}}%
-}%
+    r'''\includepdf[noautoscale]{cover-v2}
 \makeatletter%
 \hypersetup{
     pdfinfo={
