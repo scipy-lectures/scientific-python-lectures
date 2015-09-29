@@ -16,8 +16,8 @@ Release 2015.1 (September 2015)
 * Python 3 compatible code (Gaël Varoquaux, Olav Vahtras)
 
 * Code put up to date for more recent versions of project (Pierre de
-  Buyl, Gert-Ludwig Ingold, Nicolas Pettiaux, Olav Vahtras, Gaël
-  Varoquaux, Nelle Varoquaux)
+  Buyl, Emmanuelle Gouillart, Gert-Ludwig Ingold, Nicolas Pettiaux, Olav
+  Vahtras, Gaël Varoquaux, Nelle Varoquaux)
 
 * Matplotlib updated with removal of deprecated pylab interface (Nicolas
   Rougier)
