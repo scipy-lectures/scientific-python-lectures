@@ -275,6 +275,9 @@ latex_use_modindex = False
 latex_preamble = r"""
 \definecolor{VerbatimColor}{rgb}{0.961, .98, 1.}
 \definecolor{VerbatimBorderColor}{rgb}{0.6,0.6,0.6}
+\usepackage{graphics}
+\usepackage[final]{pdfpages}
+
 \setcounter{tocdepth}{1}
 \usepackage{amssymb}
 \usepackage{pifont}
@@ -327,9 +330,7 @@ latex_elements = {
     'babel': '\usepackage[english]{babel}',
     'releasename': 'Edition',
     'maketitle':
-    r'''\hspace*{-.05\linewidth}\rule{0pt}{\textheight}\smash{\rlap{%
-        \includegraphics[width=1.1\linewidth]{cover-v2}}%
-}%
+    r'''\includepdf[noautoscale]{cover-v2}
 \makeatletter%
 \hypersetup{
     pdfinfo={
