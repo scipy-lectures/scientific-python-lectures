@@ -275,6 +275,9 @@ latex_use_modindex = False
 latex_preamble = r"""
 \definecolor{VerbatimColor}{rgb}{0.961, .98, 1.}
 \definecolor{VerbatimBorderColor}{rgb}{0.6,0.6,0.6}
+\usepackage{graphics}
+\usepackage[final]{pdfpages}
+
 \setcounter{tocdepth}{1}
 \usepackage{amssymb}
 \usepackage{pifont}
@@ -319,7 +322,6 @@ latex_preamble = r"""
 latex_elements = {
     'fontpkg': '\\usepackage{lmodern}',
     'fncychap': r'''%
-    \usepackage{pdfpages}%
     \usepackage[Sonny]{fncychap}%
     \ChRuleWidth{1.5pt}%
     \ChNumVar{\fontsize{76}{80}\sffamily\slshape}
