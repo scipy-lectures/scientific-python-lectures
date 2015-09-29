@@ -894,7 +894,7 @@ scipy provides a helper function for this purpose:
     >>> x = np.linspace(0, 3, 50)
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
-    >>> optimize.curve_fit(f, x, y)
+    >>> optimize.curve_fit(f, x, y) #doctest: +SKIP
     (array([ 1.51854577,  0.92665541]), array([[ 0.00037994, -0.00056796],
            [-0.00056796,  0.00123978]]))
 
