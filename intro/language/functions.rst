@@ -376,7 +376,9 @@ Exercises
 .. topic:: Exercise: Quicksort
     :class: green
 
-    Implement the quicksort algorithm, as defined by wikipedia::
+    Implement the quicksort algorithm, as defined by wikipedia
+
+.. parsed-literal::
 
     function quicksort(array)
         var list less, greater

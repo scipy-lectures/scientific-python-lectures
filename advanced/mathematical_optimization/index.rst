@@ -886,8 +886,7 @@ While it is possible to construct our optimization problem ourselves,
 scipy provides a helper function for this purpose:
 :func:`scipy.optimize.curve_fit`::
 
-.. Comment to make doctest pass
-    >>> np.random.seed(0)
+    >>> np.random.seed(0) #doctest: +SKIP
 
     >>> def f(t, omega, phi):
     ...     return np.cos(omega * t + phi)
