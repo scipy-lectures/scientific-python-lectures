@@ -90,7 +90,7 @@ This is the way to include your image and link it to the code:
 You can display the corresponding code using the ``literal-include``
 directive.
 
-.. literal-include:: examples/plot_simple.py
+.. literalinclude:: examples/plot_simple.py
 
 .. note::
 

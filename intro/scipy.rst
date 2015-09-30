@@ -446,10 +446,11 @@ our initial guess: ::
 
 **Curve fitting**
 
-Suppose we have data sampled from ``f`` with some noise: ::
-
 .. Comment to make doctest pass
     >>> np.random.seed(42)
+
+Suppose we have data sampled from ``f`` with some noise: ::
+
 
     >>> xdata = np.linspace(-10, 10, num=20)
     >>> ydata = f(xdata) + np.random.randn(xdata.size)

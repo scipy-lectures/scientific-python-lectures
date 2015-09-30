@@ -481,7 +481,9 @@ Main point
 **The answer** (in Numpy)
 
   - **strides**: the number of bytes to jump to find the next element
-  - 1 stride per dimension::
+  - 1 stride per dimension
+
+.. code-block:: python
 
     >>> x.strides
     (3, 1)
