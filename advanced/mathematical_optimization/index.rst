@@ -881,12 +881,14 @@ Curve fitting
     :target: auto_examples/plot_curve_fit.html
     :align: right
 
+.. Comment to make doctest pass
+    >>> np.random.seed(0)
+
 Least square problems occur often when fitting a non-linear to data.
 While it is possible to construct our optimization problem ourselves,
 scipy provides a helper function for this purpose:
 :func:`scipy.optimize.curve_fit`::
 
-    >>> np.random.seed(0) #doctest: +SKIP
 
     >>> def f(t, omega, phi):
     ...     return np.cos(omega * t + phi)
@@ -894,7 +896,7 @@ scipy provides a helper function for this purpose:
     >>> x = np.linspace(0, 3, 50)
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
-    >>> optimize.curve_fit(f, x, y) #doctest: +SKIP
+    >>> optimize.curve_fit(f, x, y)
     (array([ 1.51854577,  0.92665541]), array([[ 0.00037994, -0.00056796],
            [-0.00056796,  0.00123978]]))
 
