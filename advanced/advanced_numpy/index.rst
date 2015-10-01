@@ -1665,7 +1665,7 @@ Contributing features
 
    ::
 
-       git remote add github git@github:YOURUSERNAME/YOURREPOSITORYNAME.git
+       git remote add github git@github:USERNAME/REPOSITORYNAME.git
        git push github name-of-my-feature-branch
 
 How to help, in general

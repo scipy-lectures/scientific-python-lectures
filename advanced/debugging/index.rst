@@ -95,7 +95,7 @@ You can bind a key to run pyflakes in the current buffer.
   Menu: TextMate -> Preferences -> Advanced -> Shell variables, add a
   shell variable::
 
-    TM_PYCHECKER=/Library/Frameworks/Python.framework/Versions/Current/bin/pyflakes
+    TM_PYCHECKER = /Library/Frameworks/Python.framework/Versions/Current/bin/pyflakes
 
   Then `Ctrl-Shift-V` is binded to a pyflakes report
 
@@ -245,13 +245,13 @@ Here we debug the file :download:`index_error.py`. When running it, an
     In [1]: %run index_error.py
     ---------------------------------------------------------------------------
     IndexError                                Traceback (most recent call last)
-    /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py in <module>()
+    /home/varoquau/dev/scipy-lecture-notes/advanced/debugging/index_error.py in <module>()
           6
           7 if __name__ == '__main__':
     ----> 8     index_error()
           9
 
-    /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py in index_error()
+    /home/varoquau/dev/scipy-lecture-notes/advanced/debugging/index_error.py in index_error()
           3 def index_error():
           4     lst = list('foobar')
     ----> 5     print lst[len(lst)]
@@ -261,7 +261,7 @@ Here we debug the file :download:`index_error.py`. When running it, an
     IndexError: list index out of range
 
     In [2]: %debug
-    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging/index_error.py(5)index_error()
           4     lst = list('foobar')
     ----> 5     print lst[len(lst)]
           6
@@ -292,7 +292,7 @@ Here we debug the file :download:`index_error.py`. When running it, an
    you can call the script with ``python -m pdb script.py``::
 
     $ python -m pdb index_error.py
-    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(1)<module>()
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/index_error.py(1)<module>()
     -> """Small snippet to raise an IndexError."""
     (Pdb) continue
     Traceback (most recent call last):
@@ -310,7 +310,7 @@ Here we debug the file :download:`index_error.py`. When running it, an
     IndexError: list index out of range
     Uncaught exception. Entering post mortem debugging
     Running 'cont' or 'step' will restart the program
-    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/index_error.py(5)index_error()
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/index_error.py(5)index_error()
     -> print lst[len(lst)]
     (Pdb)
 
@@ -331,7 +331,7 @@ Indeed the code runs, but the filtering does not work well.
     *** Blank or comment
     *** Blank or comment
     *** Blank or comment
-    Breakpoint 1 at /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py:4
+    Breakpoint 1 at /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py:4
     NOTE: Enter 'c' at the ipdb>  prompt to start your script.
     > <string>(1)<module>()
 
@@ -340,20 +340,20 @@ Indeed the code runs, but the filtering does not work well.
   .. sourcecode:: ipython
 
     ipdb> n
-    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(4)<module>()
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(4)<module>()
           3
     1---> 4 import numpy as np
           5 import scipy as sp
 
     ipdb> b 34
-    Breakpoint 2 at /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py:34
+    Breakpoint 2 at /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py:34
 
 * Continue execution to next breakpoint with ``c(ont(inue))``:
 
   .. sourcecode:: ipython
 
     ipdb> c
-    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(34)iterated_wiener()
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(34)iterated_wiener()
          33     """
     2--> 34     noisy_img = noisy_img
          35     denoised_img = local_mean(noisy_img, size=size)
@@ -365,13 +365,13 @@ Indeed the code runs, but the filtering does not work well.
   .. sourcecode:: ipython
 
     ipdb> s
-    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(35)iterated_wiener()
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(35)iterated_wiener()
     2    34     noisy_img = noisy_img
     ---> 35     denoised_img = local_mean(noisy_img, size=size)
          36     l_var = local_var(noisy_img, size=size)
 
     ipdb> n
-    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(36)iterated_wiener()
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(36)iterated_wiener()
          35     denoised_img = local_mean(noisy_img, size=size)
     ---> 36     l_var = local_var(noisy_img, size=size)
          37     for i in range(3):
@@ -382,7 +382,7 @@ Indeed the code runs, but the filtering does not work well.
   .. sourcecode:: ipython
 
     ipdb> n
-    > /home/varoquau/dev/scipy-lecture-notes/advanced/debugging_optimizing/wiener_filtering.py(37)iterated_wiener()
+    > /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/wiener_filtering.py(37)iterated_wiener()
          36     l_var = local_var(noisy_img, size=size)
     ---> 37     for i in range(3):
          38         res = noisy_img - denoised_img
