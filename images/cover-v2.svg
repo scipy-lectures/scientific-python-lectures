@@ -88,7 +88,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1347,38 +1347,37 @@
        xml:space="preserve"
        style="font-size:18px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;line-height:125%;letter-spacing:0.34999999px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
        x="371.55225"
-       y="918.96649"
+       y="925.51917"
        id="text3210"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          x="371.55225"
-         y="918.96649"
-         id="tspan3218"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0.34999999px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro" /><tspan
-         sodipodi:role="line"
-         x="373.34521"
-         y="941.46649"
-         id="tspan3222"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light">Christopher Burns • Adrian Chauve • Robert Cimrman • André Espaze </tspan><tspan
-         sodipodi:role="line"
-         x="371.85223"
-         y="963.96649"
-         id="tspan3232"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0.57px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light"
-         dx="0">Christophe Combelles • Emmanuelle Gouillart • Valentin Haenel</tspan><tspan
-         sodipodi:role="line"
-         x="371.89224"
-         y="986.46649"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0.65px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light"
-         id="tspan3275">Zbigniew Jędrzejewski-Szmek • Mike Müller • Fabian Pedregosa</tspan><tspan
-         sodipodi:role="line"
-         x="371.92224"
-         y="1008.9665"
+         y="925.51917"
          id="tspan3236"
-         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0.7px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light">Didrik Pinte • Nicolas Rougier • Gaël Varoquaux • Pauli Virtanen</tspan><tspan
+         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:1px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light">Gaël  Varoquaux  •  Emmanuelle  Gouillart  •  Olav  Vahtras</tspan><tspan
          sodipodi:role="line"
-         x="373.34521"
-         y="1031.4666"
+         x="371.55225"
+         y="948.01917"
+         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:1.23px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light"
+         id="tspan3255">Valentin  Haenel  •  Nicolas  P.  Rougier  •  Ralf  Gommers</tspan><tspan
+         sodipodi:role="line"
+         x="371.55225"
+         y="970.51917"
+         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light"
+         id="tspan3257">Fabian Pedregosa • Zbigniew Jędrzejewski-Szmek • Pauli Virtanen</tspan><tspan
+         sodipodi:role="line"
+         x="371.55225"
+         y="993.01917"
+         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:1.14px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light"
+         id="tspan3259">Christophe  Combelles  •  Didrik Pinte  •  Robert Cimrman</tspan><tspan
+         sodipodi:role="line"
+         x="371.55225"
+         y="1015.5192"
+         style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:1.5px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light"
+         id="tspan3269">André  Espaze  •   Adrian  Chauve  •  Christopher  Burns</tspan><tspan
+         sodipodi:role="line"
+         x="371.55225"
+         y="1038.0192"
          id="tspan3238"
          style="font-size:18px;font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1;font-family:Source Sans Pro;-inkscape-font-specification:Source Sans Pro Light" /></text>
     <flowRoot
