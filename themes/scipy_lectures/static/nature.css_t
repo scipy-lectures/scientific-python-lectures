@@ -489,6 +489,13 @@ div.body pre span.o:after, div.body pre span.p:after{
     display: inline-block;
 }
 
+
+/* On *results* of commands (tagged as "go") force word wrapping */
+div.highlight pre span.go {
+    word-break: break-word;
+}
+
+
 div.highlight:hover span.copybutton {
     background-color: #3F556B;
 }
