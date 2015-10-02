@@ -1,6 +1,15 @@
 What's new
 ==========
 
+Release 2015.2 (October 2015)
+-------------------------------------
+
+* Authors on cover ordered as in bibtex entry (Nicolas Rougier)
+
+* Better rendering on mobile (Gaël Varoquaux)
+
+* Fix restructured text markup errors (Olav Vahtras)
+
 Release 2015.1 (September 2015)
 -------------------------------------
 
