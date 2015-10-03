@@ -796,13 +796,14 @@ div.sidebar {
 	width: 95%;
 	padding-top: 8px;
     }
+}
 
 @media (max-width: 60ex) {
     img.align-right {
 	float: none;
     }
 
-    img.align-right {
+    img.align-left {
 	float: none;
     }
 }
