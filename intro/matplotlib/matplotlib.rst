@@ -14,7 +14,7 @@ Matplotlib: plotting
 
 .. contents:: Chapter contents
    :local:
-   :depth: 2
+   :depth: 1
 
 Introduction
 ============
