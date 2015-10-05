@@ -27,8 +27,8 @@ Introduction
     many formats.  We are going to explore matplotlib in interactive mode
     covering most common cases.
 
-IPython and the pylab mode
---------------------------
+IPython and the matplotlib mode
+--------------------------------
 
 .. tip::
 
@@ -38,9 +38,22 @@ IPython and the pylab mode
     more. It is central to the scientific-computing workflow in Python
     for its use in combination with Matplotlib:
 
-We start IPython with the command line argument ``-pylab`` (``--pylab``
-since IPython version 0.12), for interactive matplotlib sessions with
-Matlab/Mathematica-like functionality.
+    For interactive matplotlib sessions with Matlab/Mathematica-like
+    functionality, we use IPython with it's special Matplotlib mode that
+    enables non-blocking plotting.
+
+:IPython console:
+
+  When using the IPython console, we start it with the command line
+  argument ``--matplotlib`` (``-pylab`` in very old versions). 
+
+:IPython notebook:
+
+  In the IPython notebook, we insert, **at the beginning of the
+  notebook** the following `magic
+  <http://ipython.readthedocs.org/en/stable/interactive/magics.html>`_::
+
+    %matplotlib inline
 
 pyplot
 ------
@@ -52,6 +65,9 @@ pyplot
     majority of plotting commands in pyplot have Matlab™ analogs with similar
     arguments.  Important commands are explained with interactive examples.
 
+::
+
+    from matplotlitb import pyplot as plt
 
 Simple plot
 ===========
