@@ -386,7 +386,7 @@ div.body h4 a.toc-backref {
 }
 
 a.headerlink:after {
-    content: "\f0c1";
+    content: "\f02b";
     margin-left: -1.1ex;
 }
 
