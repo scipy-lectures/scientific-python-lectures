@@ -408,6 +408,8 @@ h3:hover a.headerlink:after, h4:hover a.headerlink:after {
 
 a.headerlink {
     color: #8a0d0d;
+    float: right;
+    font-weight: normal;
 }
 
 a.headerlink:hover {
