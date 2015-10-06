@@ -453,16 +453,16 @@ div.body pre {
 	    hyphens: auto;
 }
 
+div.highlight pre a {
+    color: #111;
+    text-decoration:underline;    
+}
+
 div.highlight pre {
     /* Hack to have indented line wraps */
     white-space: pre-wrap;
     padding-left: 3.6em;
     text-indent: -3.5em;
-}
-
-div.highlight pre a {
-    color: #111;
-    text-decoration:underline;    
 }
 
 /* Hack to have indented line wraps */
@@ -471,6 +471,30 @@ div.highlight pre div.newline {
     padding-left: 1em;
     display: inline-block;
     visibility: hidden;
+}
+
+/* Disable the above hack on android phone, as font scaling breaks it */
+@media screen 
+  and (min-device-width: 820px) 
+  and (-webkit-device-pixel-ratio: 2) {
+    div.highlight pre {
+	padding-left: 0pt;
+	text-indent: 0pt;
+    }
+
+    div.highlight pre div.newline {
+	margin-right: 0pt;
+	padding-left: 0pt;
+    }
+}
+
+/* On non text-highlighted code, break all words */
+div.body pre {
+    word-break: break-all;
+}
+
+div.body pre span {
+    word-break: normal;
 }
 
 /* Line wrap after "()[]" (that are set in a span.p by pygment) and 
