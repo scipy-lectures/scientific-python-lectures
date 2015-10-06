@@ -474,9 +474,10 @@ div.highlight pre div.newline {
 }
 
 /* Disable the above hack on android phone, as font scaling breaks it */
-@media screen 
-  and (min-device-width: 820px) 
-  and (-webkit-device-pixel-ratio: 2) {
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 15/10),
+	only screen and (min-resolution: 140dpi)
+  {
     div.highlight pre {
 	padding-left: 0pt;
 	text-indent: 0pt;
@@ -531,7 +532,7 @@ div.highlight:hover span.copybutton:hover {
 }
 
 
-@media (min-width: 80ex) {
+@media (min-width: 1060px) {
     div.highlight:hover span.copybutton:after{
 	background: #3F556B;
 	border-radius: 5px;
@@ -632,6 +633,12 @@ div.contents li {
       list-style-type: none;
       font-size: 110% ;
       font-weight: bold;
+}
+
+@media (max-width: 70ex) {
+    div.contents ul {
+	padding-left: 2.5ex;
+    }
 }
 
 div.contents p {
@@ -816,7 +823,7 @@ div.sidebar {
 }
 
 /* Suppress floats on small screens */
-@media (max-width: 70ex) {
+@media 	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 70ex) {
     div.sidebar {
 	float: none;
 	width: 95%;
@@ -824,7 +831,7 @@ div.sidebar {
     }
 }
 
-@media (max-width: 60ex) {
+@media 	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 60ex) {
     img.align-right {
 	float: none;
     }

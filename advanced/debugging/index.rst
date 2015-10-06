@@ -18,9 +18,9 @@ that we will employ are tailored to its needs.
     * pyflakes (http://pypi.python.org/pypi/pyflakes)
     * gdb for the C-debugging part.
 
-.. contents:: Chapters contents
+.. contents:: Chapter contents
    :local:
-   :depth: 4
+   :depth: 2
 
 
 Avoiding bugs

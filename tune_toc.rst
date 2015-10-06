@@ -129,6 +129,15 @@
         width: 25ex ;
     }
 
+    @media 	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 70ex) {
+        div.sidebar {
+            width: 80%;
+            margin-left: 15%;
+            font-size: 80%;
+        }
+    }
+
+
   </style>
 
 
