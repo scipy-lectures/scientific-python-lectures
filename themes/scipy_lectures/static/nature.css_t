@@ -280,13 +280,46 @@ div.script_container {
     min-height: 70px;
 }
 
-@media (max-width: 1324px) {
+@media (max-width: 70ex),
+ only screen and (-webkit-min-device-pixel-ratio: 2.5)
+{
     div.sphinxsidebar {
         display: none !important;
     }
 
     div.bodywrapper {
 	margin: 0px;
+    }
+}
+
+@media (max-width: 1324px) {
+    div.sphinxsidebar {
+	margin-top: 0px;
+	width: 2em;
+	min-width: 20px;
+    }
+
+    div.sphinxsidebar:before {
+	content: "\f0c9";
+	margin-left: 1.1ex;
+	font-family: FontAwesome;
+	color: rgba(0, 0, 0, .3);
+    }
+
+    div.bodywrapper {
+	margin: 0px;
+    }
+
+    div.sphinxsidebarwrapper {
+	display: none;
+    }
+
+    div.sphinxsidebar:hover {
+	width: 300px;
+    }
+
+    div.sphinxsidebar:hover div.sphinxsidebarwrapper {
+	display: block;
     }
 }
 
@@ -388,6 +421,7 @@ div.body h4 a.toc-backref {
 a.headerlink:after {
     content: "\f02b";
     margin-left: -1.1ex;
+    font-family: FontAwesome;
 }
 
 h1:hover a.headerlink, h2:hover a.headerlink, 

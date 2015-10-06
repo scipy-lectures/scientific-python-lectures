@@ -137,6 +137,11 @@
         }
     }
 
+  @media (max-width: 1324px) {
+        div.sphinxsidebar {
+            display: none;
+        }
+  }
 
   </style>
 
