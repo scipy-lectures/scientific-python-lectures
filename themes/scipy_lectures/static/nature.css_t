@@ -276,10 +276,6 @@ img.sidebarlogo {
     margin-left: -13%;
 }
 
-div.script_container {
-    min-height: 70px;
-}
-
 @media (max-width: 70ex),
  only screen and (-webkit-min-device-pixel-ratio: 2.5)
 {
