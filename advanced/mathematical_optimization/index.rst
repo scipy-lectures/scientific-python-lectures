@@ -20,10 +20,9 @@ used for more efficient, non black-box, optimization.
 .. topic:: Prerequisites
 
     * Numpy, Scipy
-    * IPython
     * matplotlib
 
-.. topic:: References
+.. seealso::  **References**
 
    Mathematical optimization is very ... mathematical. If you want
    performance, it really pays to read the books:
