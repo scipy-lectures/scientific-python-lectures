@@ -132,7 +132,8 @@ Noisy versus exact cost functions
    Many optimization methods rely on gradients of the objective function.
    If the gradient function is not given, they are computed numerically,
    which induces errors. In such situation, even if the objective
-   function is not noisy, 
+   function is not noisy, a gradient-based optimization may be a noisy
+   optimization.
 
 Constraints
 ------------
