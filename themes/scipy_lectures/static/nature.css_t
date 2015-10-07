@@ -316,10 +316,12 @@ div.script_container {
 
     div.sphinxsidebar:hover {
 	width: 300px;
+	z-index: 1000;
     }
 
     div.sphinxsidebar:hover div.sphinxsidebarwrapper {
 	display: block;
+	box-shadow: 10px 10px 5px #888888;
     }
 }
 
