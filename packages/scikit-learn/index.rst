@@ -47,21 +47,17 @@ Loading an example dataset
 First we will load some data to play with. The data we will use is a
 very simple flower database known as the Iris dataset.
 
-We have 150 observations of the iris flower specifying some
-measurements: sepal length, sepal width, petal length and petal width
-together with its subtype: *Iris setosa*, *Iris versicolor*, *Iris
-virginica*.
+We have 150 observations of the iris flower specifying some measurements:
+sepal length, sepal width, petal length and petal width together
+with its subtype: *Iris setosa*, *Iris versicolor*, *Iris virginica*.
 
 .. For now, a dataset is just a matrix of floating-point numbers,
 .. together with a class value.
 
-To load the dataset into a Python object:
+To load the dataset into a Python object::
 
-
-::
-
-  >>> from sklearn import datasets
-  >>> iris = datasets.load_iris()
+    >>> from sklearn import datasets
+    >>> iris = datasets.load_iris()
 
 This data is stored in the ``.data`` member, which
 is a ``(n_samples, n_features)`` array.
@@ -70,7 +66,7 @@ is a ``(n_samples, n_features)`` array.
     (150, 4)
 
 The class of each observation is stored in the ``.target`` attribute of the
-dataset. This is an integer 1D array of length ``n_samples``:
+dataset. This is an integer 1D array of length ``n_samples``::
 
     >>> iris.target.shape
     (150,)
@@ -86,7 +82,7 @@ dataset. This is an integer 1D array of length ``n_samples``:
         :align: right
 
     The digits dataset consists of 1797 images, where each one is an 8x8
-    pixel image representing a hand-written digit ::
+    pixel image representing a hand-written digit::
 
         >>> digits = datasets.load_digits()
         >>> digits.images.shape
@@ -96,7 +92,7 @@ dataset. This is an integer 1D array of length ``n_samples``:
         <matplotlib.image.AxesImage object at ...>
 
     To use this dataset with the scikit, we transform each 8x8 image
-    into a vector of length 64 ::
+    into a vector of length 64::
 
         >>> data = digits.images.reshape((digits.images.shape[0], -1))
 
@@ -214,11 +210,11 @@ The most commonly used ones are ``svm.SVC``, ``svm.NuSVC`` and ``svm.LinearSVC``
 "SVC" stands for Support Vector Classifier (there also exist SVMs for regression,
 which are called "SVR" in ``scikit-learn``).
 
-.. topic:: **Excercise**
+.. topic:: **Exercise**
    :class: green
 
    Train an ``svm.SVC`` on the digits dataset. Leave out the
-   last 10% and test prediction performance on these observations.
+   last 10%, and test prediction performance on these observations.
 
 
 
@@ -395,7 +391,7 @@ object API and several additional features, including smart initialization.)
 
         - Raw image
 
-        - K-means quantization
+        - K-means quantization (K=5)
 
 
 
