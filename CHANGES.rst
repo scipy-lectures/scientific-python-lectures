@@ -1,6 +1,11 @@
 What's new
 ==========
 
+Release 2015.3 (Pending)
+-------------------------------------
+
+* Collapsed sidebar can now pop up for mid-sized display
+
 Release 2015.2 (October 2015)
 -------------------------------------
 
