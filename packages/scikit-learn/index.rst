@@ -364,14 +364,14 @@ object API and several additional features, including smart initialization.)
 .. topic:: **Application to Image Compression**
 
     Clustering can be seen as a way of choosing a small number of
-    observations from the information. For instance, this can be used
-    to posterize an image (conversion of a continuous gradation of
-    tone to several regions of fewer tones)::
+    information from the observations (like a projection on a smaller space).
+    For instance, this can be used to posterize an image
+    (conversion of a continuous gradation of tone to several regions of fewer tones)::
 
      >>> from scipy import misc
      >>> lena = misc.lena().astype(np.float32)
-     >>> X = lena.reshape((-1, 1)) # We need an (n_sample, n_feature) array
-     >>> k_means = cluster.KMeans(n_clusters=5)
+     >>> X = lena.reshape((-1, 1))  # We need an (n_sample, n_feature) array
+     >>> K = k_means = cluster.KMeans(n_clusters=5)  # 5 clusters
      >>> k_means.fit(X) # doctest: +ELLIPSIS
      KMeans(...)
      >>> values = k_means.cluster_centers_.squeeze()
@@ -462,7 +462,7 @@ classification.
 
 
 Stripped-down version of the `face recognition example 
-<http://scikit-learn.org/dev/auto_examples/applications/face_recognition.html>`_:
+<http://scikit-learn.org/stable/auto_examples/applications/face_recognition.html>`_:
 
 .. sourcecode:: python
 
