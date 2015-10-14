@@ -171,7 +171,7 @@ For fine inspection of intensity variations, use
     [:ref:`Python source code <example_plot_interpolation_lena.py>`]
 
 
-.. topic:: 3-D visualization: Mayavi
+.. seealso:: 3-D visualization: Mayavi
 
     See :ref:`mayavi-label`.
 
@@ -181,10 +181,9 @@ For fine inspection of intensity variations, use
 
 	* ...
 
-..  FIXME: image does not exits??
-..    .. image:: ../3d_plotting/ipw.png
-..	:align: center
-..	:scale: 65
+.. image:: ../../packages/3d_plotting/decorations.png
+    :align: center
+    :scale: 65
 
 
 Basic manipulations
