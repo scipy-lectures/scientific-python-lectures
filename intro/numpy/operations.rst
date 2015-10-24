@@ -177,6 +177,9 @@ Other operations
 
         >>> a += a.T
 
+    It will work for small arrays (because of buffering) but fail for
+    large one, in unpredictable ways.
+
 .. note:: **Linear algebra**
 
     The sub-module :mod:`numpy.linalg` implements basic linear algebra, such as
