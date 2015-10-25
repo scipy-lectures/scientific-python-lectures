@@ -284,6 +284,11 @@ Importing objects from modules into the main namespace
 
         In [10]: reload(demo)
 
+    In Python3 instead ``reload`` is not builtin, so you have to import the ``importlib`` module first and then do:
+    
+     .. sourcecode :: ipython
+
+        In [10]: importlib.reload(demo)
 
 '__main__' and module loading
 ------------------------------
