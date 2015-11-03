@@ -16,16 +16,16 @@ Geometrical transformations on images
 Changing orientation, resolution, .. ::
 
     >>> from scipy import misc
-    >>> lena = misc.lena()
-    >>> shifted_lena = ndimage.shift(lena, (50, 50))
-    >>> shifted_lena2 = ndimage.shift(lena, (50, 50), mode='nearest')
-    >>> rotated_lena = ndimage.rotate(lena, 30)
-    >>> cropped_lena = lena[50:-50, 50:-50]
-    >>> zoomed_lena = ndimage.zoom(lena, 2)
-    >>> zoomed_lena.shape
+    >>> face = misc.face(gray=True)
+    >>> shifted_face = ndimage.shift(face, (50, 50))
+    >>> shifted_face2 = ndimage.shift(face, (50, 50), mode='nearest')
+    >>> rotated_face = ndimage.rotate(face, 30)
+    >>> cropped_face = face[50:-50, 50:-50]
+    >>> zoomed_face = ndimage.zoom(face, 2)
+    >>> zoomed_face.shape
     (1024, 1024)
 
-.. figure:: image_processing/lena_transforms.png
+.. figure:: image_processing/face_transforms.png
    :align: center
    :scale: 70
 
@@ -34,7 +34,7 @@ Changing orientation, resolution, .. ::
     >>> plt.subplot(151)    # doctest: +ELLIPSIS
     <matplotlib.axes._subplots.AxesSubplot object at 0x...>
 
-    >>> plt.imshow(shifted_lena, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+    >>> plt.imshow(shifted_face, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
     >>> plt.axis('off')
@@ -49,16 +49,17 @@ Image filtering
 ::
 
     >>> from scipy import misc
-    >>> lena = misc.lena()
+    >>> face = misc.face(gray=True)
+    >>> face = face[:512, -512:]  # crop out square on right
     >>> import numpy as np
-    >>> noisy_lena = np.copy(lena).astype(np.float)
-    >>> noisy_lena += lena.std() * 0.5 * np.random.standard_normal(lena.shape)
-    >>> blurred_lena = ndimage.gaussian_filter(noisy_lena, sigma=3)
-    >>> median_lena = ndimage.median_filter(blurred_lena, size=5)
+    >>> noisy_face = np.copy(face).astype(np.float)
+    >>> noisy_face += face.std() * 0.5 * np.random.standard_normal(face.shape)
+    >>> blurred_face = ndimage.gaussian_filter(noisy_face, sigma=3)
+    >>> median_face = ndimage.median_filter(noisy_face, size=5)
     >>> from scipy import signal
-    >>> wiener_lena = signal.wiener(blurred_lena, (5, 5))
+    >>> wiener_face = signal.wiener(noisy_face, (5, 5))
 
-.. figure:: image_processing/filtered_lena.png
+.. figure:: image_processing/filtered_face.png
    :align: center
    :scale: 80
 

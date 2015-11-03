@@ -351,13 +351,10 @@ object API and several additional features, including smart initialization.)
 
 
 
-.. |lena| image:: lena.png
+.. |face| image:: face.png
    :scale: 50
 
-.. |lena_regular| image:: lena_regular.png
-   :scale: 50
-
-.. |lena_compressed| image:: lena_compressed.png
+.. |face_compressed| image:: face_compressed.png
    :scale: 50
 
 
@@ -369,23 +366,23 @@ object API and several additional features, including smart initialization.)
     (conversion of a continuous gradation of tone to several regions of fewer tones)::
 
      >>> from scipy import misc
-     >>> lena = misc.lena().astype(np.float32)
-     >>> X = lena.reshape((-1, 1))  # We need an (n_sample, n_feature) array
+     >>> face = misc.face(gray=True).astype(np.float32)
+     >>> X = face.reshape((-1, 1))  # We need an (n_sample, n_feature) array
      >>> K = k_means = cluster.KMeans(n_clusters=5)  # 5 clusters
      >>> k_means.fit(X) # doctest: +ELLIPSIS
      KMeans(...)
      >>> values = k_means.cluster_centers_.squeeze()
      >>> labels = k_means.labels_
-     >>> lena_compressed = np.choose(labels, values)
-     >>> lena_compressed.shape = lena.shape
+     >>> face_compressed = np.choose(labels, values)
+     >>> face_compressed.shape = face.shape
 
     .. list-table::
       :class: centered
 
       *
-        - |lena|
+        - |face|
 
-        - |lena_compressed|
+        - |face_compressed|
 
       *
 
