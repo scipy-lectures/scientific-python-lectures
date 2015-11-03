@@ -41,25 +41,21 @@ Array manipulations
      ``j``.)
 
 
-Picture manipulation: Framing Lena
------------------------------------
+Picture manipulation: Framing a Face
+------------------------------------
 
-Let's do some manipulations on numpy arrays by starting with the
-famous image of Lena (http://www.cs.cmu.edu/~chuck/lennapg/).
-``scipy`` provides a 2D array of this image with the ``scipy.lena``
-function::
+Let's do some manipulations on numpy arrays by starting with an image
+of a racoon.  ``scipy`` provides a 2D array of this image with the
+``scipy.misc.face`` function::
 
 
     >>> from scipy import misc
-    >>> lena = misc.lena()
-
-**Note:** In older versions of scipy, you will find lena under
-``scipy.lena()``
+    >>> face = misc.face(gray=True)  # 2D grayscale image
 
 Here are a few images we will be able to obtain with our manipulations:
 use different colormaps, crop the image, change some parts of the image.
 
-.. image:: images/lenas.png
+.. image:: images/faces.png
     :align: center
 
 * Let's use the imshow function of pylab to display the image.
@@ -67,37 +63,38 @@ use different colormaps, crop the image, change some parts of the image.
     .. sourcecode:: pycon
 
         >>> import pylab as plt
-        >>> lena = misc.lena()
-        >>> plt.imshow(lena)    # doctest: +ELLIPSIS
+        >>> face = misc.face(gray=True)
+        >>> plt.imshow(face)    # doctest: +ELLIPSIS
         <matplotlib.image.AxesImage object at 0x...>
 
-* Lena is then displayed in false colors. A colormap must be
-    specified for her to be displayed in grey.
+* The face is displayed in false colors. A colormap must be
+    specified for it to be displayed in grey.
 
     .. sourcecode:: pycon
 
-        >>> plt.imshow(lena, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+        >>> plt.imshow(face, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
         <matplotlib.image.AxesImage object at 0x...>
 
 * Create an array of the image with a narrower centering : for example,
-    remove 30 pixels from all the borders of the image. To check the result,
+    remove 100 pixels from all the borders of the image. To check the result,
     display this new array with ``imshow``.
 
     .. sourcecode:: pycon
 
-        >>> crop_lena = lena[30:-30,30:-30]
+        >>> crop_face = face[100:-100, 100:-100]
 
-* We will now frame Lena's face with a black locket. For this, we
+* We will now frame the face with a black locket. For this, we
     need to create a mask corresponding to the pixels we want to be
-    black. The mask is defined by this condition ``(y-256)**2 +
-    (x-256)**2``
+    black. The center of the face is around (660, 330), so we defined
+    the mask by this condition ``(y-300)**2 + (x-660)**2``
 
     .. sourcecode:: pycon
 
-        >>> y, x = np.ogrid[0:512,0:512] # x and y indices of pixels
+        >>> sy, sx = face.shape
+        >>> y, x = np.ogrid[0:sy, 0:sx] # x and y indices of pixels
         >>> y.shape, x.shape
-        ((512, 1), (1, 512))
-        >>> centerx, centery = (256, 256) # center of the image
+        ((768, 1), (1, 1024))
+        >>> centerx, centery = (660, 300) # center of the image
         >>> mask = ((y - centery)**2 + (x - centerx)**2) > 230**2 # circle
 
     then we assign the value 0 to the pixels of the image corresponding
@@ -105,13 +102,13 @@ use different colormaps, crop the image, change some parts of the image.
 
     .. sourcecode:: pycon
 
-        >>> lena[mask] = 0
-        >>> plt.imshow(lena)    # doctest: +ELLIPSIS
+        >>> face[mask] = 0
+        >>> plt.imshow(face)    # doctest: +ELLIPSIS
         <matplotlib.image.AxesImage object at 0x...>
 
 * Follow-up: copy all instructions of this exercise in a script called
-    ``lena_locket.py`` then execute this script in IPython with ``%run
-    lena_locket.py``.
+    ``face_locket.py`` then execute this script in IPython with ``%run
+    face_locket.py``.
 
     Change the circle to an ellipsoid.
 

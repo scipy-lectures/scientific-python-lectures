@@ -248,8 +248,8 @@ Colorspaces
 Color images are of shape (N, M, 3) or (N, M, 4) (when an alpha channel
 encodes transparency) ::
 
-    >>> lena = data.lena()
-    >>> lena.shape
+    >>> astronaut = data.astronaut()
+    >>> astronaut.shape
     (512, 512, 3)
 
 

@@ -74,41 +74,41 @@ Opening and writing to image files
 
 Writing an array to a file:
 
-.. literalinclude:: examples/plot_lena.py
+.. literalinclude:: examples/plot_face.py
    :lines: 2-
 
-.. image:: examples/lena.png
+.. image:: examples/face.png
     :align: center
     :scale: 50
 
 Creating a numpy array from an image file::
 
     >>> from scipy import misc
-    >>> lena = misc.lena()
-    >>> misc.imsave('lena.png', lena) # First we need to create the PNG file
+    >>> face = misc.face()
+    >>> misc.imsave('face.png', face) # First we need to create the PNG file
     
-    >>> lena = misc.imread('lena.png')
-    >>> type(lena)      # doctest: +ELLIPSIS
+    >>> face = misc.imread('face.png')
+    >>> type(face)      # doctest: +ELLIPSIS
     <... 'numpy.ndarray'>
-    >>> lena.shape, lena.dtype
-    ((512, 512), dtype('uint8'))
+    >>> face.face, face.dtype
+    ((768, 1024, 3), dtype('uint8'))
 
 dtype is uint8 for 8-bit images (0-255)
 
 Opening raw files (camera, 3-D images) ::
 
-    >>> lena.tofile('lena.raw') # Create raw file
-    >>> lena_from_raw = np.fromfile('lena.raw', dtype=np.uint8)
-    >>> lena_from_raw.shape
-    (262144,)
-    >>> lena_from_raw.shape = (512, 512)
+    >>> face.tofile('face.raw') # Create raw file
+    >>> face_from_raw = np.fromfile('face.raw', dtype=np.uint8)
+    >>> face_from_raw.shape
+    (2359296,)
+    >>> face_from_raw.shape = (768, 1024, 3)
 
 Need to know the shape and dtype of the image (how to separate data
 bytes).
 
 For large data, use ``np.memmap`` for memory mapping::
 
-    >>> lena_memmap = np.memmap('lena.raw', dtype=np.uint8, shape=(512, 512))
+    >>> face_memmap = np.memmap('face.raw', dtype=np.uint8, shape=(768, 1024, 3))
 
 (data are read from the file, and not loaded into memory)
 
@@ -127,14 +127,14 @@ Displaying images
 Use ``matplotlib`` and ``imshow`` to display an image inside a
 ``matplotlib figure``::
 
-    >>> l = misc.lena()
+    >>> f = misc.face(gray=True)  # retrieve a grayscale image
     >>> import matplotlib.pyplot as plt
-    >>> plt.imshow(l, cmap=plt.cm.gray)        # doctest: +ELLIPSIS
+    >>> plt.imshow(f, cmap=plt.cm.gray)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
 Increase contrast by setting min and max values::
 
-    >>> plt.imshow(l, cmap=plt.cm.gray, vmin=30, vmax=200)        # doctest: +ELLIPSIS
+    >>> plt.imshow(f, cmap=plt.cm.gray, vmin=30, vmax=200)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
     >>> # Remove axes and ticks
     >>> plt.axis('off')
@@ -142,33 +142,33 @@ Increase contrast by setting min and max values::
 
 Draw contour lines::
 
-    >>> plt.contour(l, [60, 211])        # doctest: +ELLIPSIS
+    >>> plt.contour(f, [50, 200])        # doctest: +ELLIPSIS
     <matplotlib.contour.QuadContourSet ...>
 
 
-.. figure:: auto_examples/images/plot_display_lena_1.png
+.. figure:: auto_examples/images/plot_display_face_1.png
     :scale: 80
-    :target: auto_examples/plot_display_lena.html
+    :target: auto_examples/plot_display_face.html
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_display_lena.py>`]
+    [:ref:`Python source code <example_plot_display_face.py>`]
 
 For fine inspection of intensity variations, use
 ``interpolation='nearest'``::
 
-    >>> plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray)        # doctest: +ELLIPSIS
+    >>> plt.imshow(f[200:220, 200:220], cmap=plt.cm.gray)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
-    >>> plt.imshow(l[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')        # doctest: +ELLIPSIS
+    >>> plt.imshow(f[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
-.. figure:: auto_examples/images/plot_interpolation_lena_1.png
+.. figure:: auto_examples/images/plot_interpolation_face_1.png
     :scale: 80
-    :target: auto_examples/plot_interpolation_lena.html
+    :target: auto_examples/plot_interpolation_face.html
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_interpolation_lena.py>`]
+    [:ref:`Python source code <example_plot_interpolation_face.py>`]
 
 
 .. seealso:: 3-D visualization: Mayavi
@@ -197,23 +197,23 @@ Images are arrays: use the whole ``numpy`` machinery.
 
 ::
 
-    >>> lena = misc.lena()
-    >>> lena[0, 40]
+    >>> face = misc.face()
+    >>> face[0, 40]
     166
     >>> # Slicing
-    >>> lena[10:13, 20:23]
+    >>> face[10:13, 20:23]
     array([[158, 156, 157],
            [157, 155, 155],
            [157, 157, 158]])
-    >>> lena[100:120] = 255
+    >>> face[100:120] = 255
     >>>
-    >>> lx, ly = lena.shape
+    >>> lx, ly = face.shape
     >>> X, Y = np.ogrid[0:lx, 0:ly]
     >>> mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
     >>> # Masks
-    >>> lena[mask] = 0
+    >>> face[mask] = 0
     >>> # Fancy indexing
-    >>> lena[range(400), range(400)] = 255
+    >>> face[range(400), range(400)] = 255
 
 .. figure:: auto_examples/images/plot_numpy_array_1.png
     :scale: 100
@@ -229,11 +229,11 @@ Statistical information
 
 ::
 
-    >>> lena = misc.lena()
-    >>> lena.mean()
-    124.04678344726562
-    >>> lena.max(), lena.min()
-    (245, 25)
+    >>> face = misc.face(gray=True)
+    >>> face.mean()
+    110.16274388631184
+    >>> face.max(), face.min()
+    (255, 0)
 
 
 ``np.histogram``
@@ -269,23 +269,23 @@ Geometrical transformations
 ---------------------------
 ::
 
-    >>> lena = misc.lena()
-    >>> lx, ly = lena.shape
+    >>> face = misc.face(gray=True)
+    >>> lx, ly = face.shape
     >>> # Cropping
-    >>> crop_lena = lena[lx / 4: - lx / 4, ly / 4: - ly / 4]
+    >>> crop_face = face[lx / 4: - lx / 4, ly / 4: - ly / 4]
     >>> # up <-> down flip
-    >>> flip_ud_lena = np.flipud(lena)
+    >>> flip_ud_face = np.flipud(face)
     >>> # rotation
-    >>> rotate_lena = ndimage.rotate(lena, 45)
-    >>> rotate_lena_noreshape = ndimage.rotate(lena, 45, reshape=False)
+    >>> rotate_face = ndimage.rotate(face, 45)
+    >>> rotate_face_noreshape = ndimage.rotate(face, 45, reshape=False)
 
-.. figure:: auto_examples/images/plot_geom_lena_1.png
+.. figure:: auto_examples/images/plot_geom_face_1.png
     :scale: 65
-    :target: auto_examples/plot_geom_lena.html
+    :target: auto_examples/plot_geom_face.html
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_geom_lena.py>`]
+    [:ref:`Python source code <example_plot_geom_face.py>`]
 
 Image filtering
 ===============
@@ -306,13 +306,13 @@ Blurring/smoothing
 **Gaussian filter** from ``scipy.ndimage``::
 
     >>> from scipy import misc
-    >>> lena = misc.lena()
-    >>> blurred_lena = ndimage.gaussian_filter(lena, sigma=3)
-    >>> very_blurred = ndimage.gaussian_filter(lena, sigma=5)
+    >>> face = misc.face(gray=True)
+    >>> blurred_face = ndimage.gaussian_filter(face, sigma=3)
+    >>> very_blurred = ndimage.gaussian_filter(face, sigma=5)
 
 **Uniform filter** ::
 
-    >>> local_mean = ndimage.uniform_filter(lena, size=11)
+    >>> local_mean = ndimage.uniform_filter(face, size=11)
 
 .. figure:: auto_examples/images/plot_blur_1.png
     :scale: 90
@@ -328,15 +328,15 @@ Sharpening
 Sharpen a blurred image::
 
     >>> from scipy import misc
-    >>> lena = misc.lena()
-    >>> blurred_l = ndimage.gaussian_filter(lena, 3)
+    >>> face = misc.face(gray=True).astype(float)
+    >>> blurred_f = ndimage.gaussian_filter(face, 3)
 
 increase the weight of edges by adding an approximation of the
 Laplacian::
 
-    >>> filter_blurred_l = ndimage.gaussian_filter(blurred_l, 1)
+    >>> filter_blurred_f = ndimage.gaussian_filter(blurred_f, 1)
     >>> alpha = 30
-    >>> sharpened = blurred_l + alpha * (blurred_l - filter_blurred_l)
+    >>> sharpened = blurred_f + alpha * (blurred_f - filter_blurred_f)
 
 .. figure:: auto_examples/images/plot_sharpen_1.png
     :scale: 65
@@ -350,12 +350,12 @@ Laplacian::
 Denoising
 ---------
 
-Noisy lena::
+Noisy face::
 
     >>> from scipy import misc
-    >>> l = misc.lena()
-    >>> l = l[230:310, 210:350]
-    >>> noisy = l + 0.4 * l.std() * np.random.random(l.shape)
+    >>> f = misc.face(gray=True)
+    >>> f = l[230:290, 220:320]
+    >>> noisy = f + 0.4 * f.std() * np.random.random(f.shape)
 
 A **Gaussian filter** smoothes the noise out... and the edges as well::
 
@@ -367,13 +367,13 @@ A **median filter** preserves better the edges::
 
     >>> med_denoised = ndimage.median_filter(noisy, 3)
 
-.. figure:: auto_examples/images/plot_lena_denoise_1.png
+.. figure:: auto_examples/images/plot_face_denoise_1.png
     :scale: 60
-    :target: auto_examples/plot_lena_denoise.html
+    :target: auto_examples/plot_face_denoise.html
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_lena_denoise.py>`]
+    [:ref:`Python source code <example_plot_face_denoise.py>`]
 
 
 Median filter: better result for straight boundaries (**low curvature**)::
@@ -812,11 +812,11 @@ Can be used outside the limited scope of segmentation applications.
 Example: block mean::
 
     >>> from scipy import misc
-    >>> l = misc.lena()
-    >>> sx, sy = l.shape
+    >>> f = misc.face(gray=True)
+    >>> sx, sy = f.shape
     >>> X, Y = np.ogrid[0:sx, 0:sy]
     >>> regions = (sy//6) * (X//4) + (Y//6)  # note that we use broadcasting
-    >>> block_mean = ndimage.mean(l, labels=regions, index=np.arange(1,
+    >>> block_mean = ndimage.mean(f, labels=regions, index=np.arange(1,
     ...     regions.max() +1))
     >>> block_mean.shape = (sx // 4, sy // 6)
 
@@ -833,11 +833,11 @@ tricks (:ref:`stride-manipulation-label`).
 
 Non-regularly-spaced blocks: radial mean::
 
-    >>> sx, sy = l.shape
+    >>> sx, sy = f.shape
     >>> X, Y = np.ogrid[0:sx, 0:sy]
     >>> r = np.hypot(X - sx/2, Y - sy/2)
     >>> rbin = (20* r/r.max()).astype(np.int)
-    >>> radial_mean = ndimage.mean(l, labels=rbin, index=np.arange(1, rbin.max() +1))
+    >>> radial_mean = ndimage.mean(f, labels=rbin, index=np.arange(1, rbin.max() +1))
 
 .. figure:: auto_examples/images/plot_radial_mean_1.png
     :scale: 70

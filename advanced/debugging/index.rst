@@ -428,10 +428,10 @@ doing integer arithmetic.
         --> 178             __builtin__.execfile(filename, *where)
 
         /home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in <module>()
-             55 pl.matshow(noisy_lena[cut], cmap=pl.cm.gray)
+             55 pl.matshow(noisy_face[cut], cmap=pl.cm.gray)
              56 
-        ---> 57 denoised_lena = iterated_wiener(noisy_lena)
-             58 pl.matshow(denoised_lena[cut], cmap=pl.cm.gray)
+        ---> 57 denoised_face = iterated_wiener(noisy_face)
+             58 pl.matshow(denoised_face[cut], cmap=pl.cm.gray)
              59 
 
         /home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in iterated_wiener(noisy_img, size)

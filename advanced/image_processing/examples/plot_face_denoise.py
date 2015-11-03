@@ -2,18 +2,19 @@
 Image denoising
 ================
 
-This example demoes image denoising on Lena.
+This example demoes image denoising on a face.
 """
 
 import numpy as np
 import scipy
+import scipy.misc
 from scipy import ndimage
 import matplotlib.pyplot as plt
 
-l = scipy.misc.lena()
-l = l[230:290, 220:320]
+f = scipy.misc.face(gray=True)
+f = f[230:290, 220:320]
 
-noisy = l + 0.4*l.std()*np.random.random(l.shape)
+noisy = f + 0.4*f.std()*np.random.random(f.shape)
 
 gauss_denoised = ndimage.gaussian_filter(noisy, 2)
 med_denoised = ndimage.median_filter(noisy, 3)

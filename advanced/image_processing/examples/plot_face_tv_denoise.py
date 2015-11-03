@@ -2,18 +2,19 @@
 Total Variation denoising
 ===========================
 
-This example demoes Total-Variation (TV) denoising on Lena.
+This example demoes Total-Variation (TV) denoising on a Face.
 """
 
 import numpy as np
 import scipy
+import scipy.misc
 import matplotlib.pyplot as plt
-from skimage.filter import denoise_tv_chambolle
+from skimage.restoration import denoise_tv_chambolle
 
-l = scipy.misc.lena()
-l = l[230:290, 220:320]
+f = scipy.misc.face(gray=True)
+f = f[230:290, 220:320]
 
-noisy = l + 0.4*l.std()*np.random.random(l.shape)
+noisy = f + 0.4*f.std()*np.random.random(f.shape)
 
 tv_denoised = denoise_tv_chambolle(noisy, weight=10)
 
