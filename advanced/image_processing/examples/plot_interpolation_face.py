@@ -2,7 +2,7 @@
 Image interpolation
 =====================
 
-The example demonstrates image interpolation on a face.
+The example demonstrates image interpolation on a Racoon face.
 """
 
 import scipy.misc

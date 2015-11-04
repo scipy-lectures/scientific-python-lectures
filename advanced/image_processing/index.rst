@@ -90,7 +90,7 @@ Creating a numpy array from an image file::
     >>> face = misc.imread('face.png')
     >>> type(face)      # doctest: +ELLIPSIS
     <... 'numpy.ndarray'>
-    >>> face.face, face.dtype
+    >>> face.shape, face.dtype
     ((768, 1024, 3), dtype('uint8'))
 
 dtype is uint8 for 8-bit images (0-255)
@@ -138,7 +138,7 @@ Increase contrast by setting min and max values::
     <matplotlib.image.AxesImage object at 0x...>
     >>> # Remove axes and ticks
     >>> plt.axis('off')
-    (-0.5, 511.5, 511.5, -0.5)
+    (-0.5, 1023.5, 767.5, -0.5)
 
 Draw contour lines::
 
@@ -197,14 +197,14 @@ Images are arrays: use the whole ``numpy`` machinery.
 
 ::
 
-    >>> face = misc.face()
+    >>> face = misc.face(gray=True)
     >>> face[0, 40]
-    166
+    127
     >>> # Slicing
     >>> face[10:13, 20:23]
-    array([[158, 156, 157],
-           [157, 155, 155],
-           [157, 157, 158]])
+    array([[141 153 145]
+          [133 134 125]
+          [ 96  92  94]])
     >>> face[100:120] = 255
     >>>
     >>> lx, ly = face.shape
@@ -231,9 +231,9 @@ Statistical information
 
     >>> face = misc.face(gray=True)
     >>> face.mean()
-    110.16274388631184
+    113.48026784261067
     >>> face.max(), face.min()
-    (255, 0)
+    (250, 0)
 
 
 ``np.histogram``

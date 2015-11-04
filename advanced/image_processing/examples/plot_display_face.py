@@ -1,8 +1,8 @@
 """
-Display a Face
-==============
+Display a Raccon Face
+=====================
 
-An example that displays a face with matplotlib.
+An example that displays a racoon face with matplotlib.
 """
 import scipy.misc
 import matplotlib.pyplot as plt

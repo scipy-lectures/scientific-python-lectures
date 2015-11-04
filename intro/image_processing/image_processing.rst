@@ -23,7 +23,7 @@ Changing orientation, resolution, .. ::
     >>> cropped_face = face[50:-50, 50:-50]
     >>> zoomed_face = ndimage.zoom(face, 2)
     >>> zoomed_face.shape
-    (1024, 1024)
+    (1536, 2048)
 
 .. figure:: image_processing/face_transforms.png
    :align: center
@@ -38,7 +38,7 @@ Changing orientation, resolution, .. ::
     <matplotlib.image.AxesImage object at 0x...>
 
     >>> plt.axis('off')
-    (-0.5, 511.5, 511.5, -0.5)
+    (-0.5, 1023.5, 767.5, -0.5)
 
     >>> # etc.
 

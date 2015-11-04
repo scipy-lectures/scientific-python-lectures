@@ -2,14 +2,14 @@
 Total Variation denoising
 ===========================
 
-This example demoes Total-Variation (TV) denoising on a Face.
+This example demoes Total-Variation (TV) denoising on a Racoon face.
 """
 
 import numpy as np
 import scipy
 import scipy.misc
 import matplotlib.pyplot as plt
-from skimage.restoration import denoise_tv_chambolle
+from skimage.filter import denoise_tv_chambolle
 
 f = scipy.misc.face(gray=True)
 f = f[230:290, 220:320]
