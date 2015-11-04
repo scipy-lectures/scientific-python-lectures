@@ -1,5 +1,5 @@
 """
-Display a Raccon Face
+Display a Racoon Face
 =====================
 
 An example that displays a racoon face with matplotlib.

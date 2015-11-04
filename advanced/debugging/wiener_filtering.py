@@ -1,4 +1,4 @@
-""" Wiener filtering a noisy face: this module is buggy
+""" Wiener filtering a noisy racoon face: this module is buggy
 """
 
 import numpy as np
