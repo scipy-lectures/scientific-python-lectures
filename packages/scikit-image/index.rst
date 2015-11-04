@@ -1,5 +1,6 @@
 .. for doctests
    >>> import numpy as np
+   >>> import scipy.misc
    >>> np.random.seed(0)
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend("Agg")
@@ -248,9 +249,9 @@ Colorspaces
 Color images are of shape (N, M, 3) or (N, M, 4) (when an alpha channel
 encodes transparency) ::
 
-    >>> astronaut = data.astronaut()
-    >>> astronaut.shape
-    (512, 512, 3)
+    >>> face = scipy.misc.face()
+    >>> face.shape
+    (768, 2024, 3)
 
 
 Routines converting between different colorspaces (RGB, HSV, LAB etc.)

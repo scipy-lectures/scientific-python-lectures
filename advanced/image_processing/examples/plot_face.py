@@ -1,8 +1,8 @@
 """
-Displaying a Face
-=================
+Displaying a Racoon Face
+========================
 
-Small example to plot a face.
+Small example to plot a racoon face.
 """
 
 from scipy import misc
