@@ -10,21 +10,21 @@ import scipy
 from scipy import ndimage
 import matplotlib.pyplot as plt
 
-l = scipy.misc.lena()
-blurred_l = ndimage.gaussian_filter(l, 3)
+f = scipy.misc.face(gray=True).astype(float)
+blurred_f = ndimage.gaussian_filter(f, 3)
 
-filter_blurred_l = ndimage.gaussian_filter(blurred_l, 1)
+filter_blurred_f = ndimage.gaussian_filter(blurred_f, 1)
 
 alpha = 30
-sharpened = blurred_l + alpha * (blurred_l - filter_blurred_l)
+sharpened = blurred_f + alpha * (blurred_f - filter_blurred_f)
 
 plt.figure(figsize=(12, 4))
 
 plt.subplot(131)
-plt.imshow(l, cmap=plt.cm.gray)
+plt.imshow(f, cmap=plt.cm.gray)
 plt.axis('off')
 plt.subplot(132)
-plt.imshow(blurred_l, cmap=plt.cm.gray)
+plt.imshow(blurred_f, cmap=plt.cm.gray)
 plt.axis('off')
 plt.subplot(133)
 plt.imshow(sharpened, cmap=plt.cm.gray)
