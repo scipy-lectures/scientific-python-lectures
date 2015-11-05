@@ -202,9 +202,9 @@ Images are arrays: use the whole ``numpy`` machinery.
     127
     >>> # Slicing
     >>> face[10:13, 20:23]
-    array([[141 153 145]
-          [133 134 125]
-          [ 96  92  94]])
+    array([[141, 153, 145]
+          [133, 134, 125]
+          [ 96,  92,  94]], dtype=uint8)
     >>> face[100:120] = 255
     >>>
     >>> lx, ly = face.shape
@@ -354,7 +354,7 @@ Noisy face::
 
     >>> from scipy import misc
     >>> f = misc.face(gray=True)
-    >>> f = l[230:290, 220:320]
+    >>> f = f[230:290, 220:320]
     >>> noisy = f + 0.4 * f.std() * np.random.random(f.shape)
 
 A **Gaussian filter** smoothes the noise out... and the edges as well::

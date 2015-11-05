@@ -251,7 +251,7 @@ encodes transparency) ::
 
     >>> face = scipy.misc.face()
     >>> face.shape
-    (768, 2024, 3)
+    (768, 1024, 3)
 
 
 Routines converting between different colorspaces (RGB, HSV, LAB etc.)
