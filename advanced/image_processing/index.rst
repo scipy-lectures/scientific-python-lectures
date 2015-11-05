@@ -202,9 +202,9 @@ Images are arrays: use the whole ``numpy`` machinery.
     127
     >>> # Slicing
     >>> face[10:13, 20:23]
-    array([[141, 153, 145]
-          [133, 134, 125]
-          [ 96,  92,  94]], dtype=uint8)
+    array([[141, 153, 145],
+           [133, 134, 125],
+           [ 96,  92,  94]], dtype=uint8)
     >>> face[100:120] = 255
     >>>
     >>> lx, ly = face.shape
