@@ -75,7 +75,7 @@ Opening and writing to image files
 Writing an array to a file:
 
 .. literalinclude:: examples/plot_face.py
-   :lines: 2-
+   :lines: 8-
 
 .. image:: examples/face.png
     :align: center
@@ -157,9 +157,9 @@ Draw contour lines::
 For fine inspection of intensity variations, use
 ``interpolation='nearest'``::
 
-    >>> plt.imshow(f[200:220, 200:220], cmap=plt.cm.gray)        # doctest: +ELLIPSIS
+    >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
-    >>> plt.imshow(f[200:220, 200:220], cmap=plt.cm.gray, interpolation='nearest')        # doctest: +ELLIPSIS
+    >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='nearest')        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
 .. figure:: auto_examples/images/plot_interpolation_face_1.png
