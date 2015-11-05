@@ -12,7 +12,6 @@ f = scipy.misc.face(gray=True)
 
 plt.figure(figsize=(8, 4))
 
-plt.close('all')
 plt.subplot(1, 2, 1)
 plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray)
 plt.axis('off')
