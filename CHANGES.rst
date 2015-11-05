@@ -1,10 +1,12 @@
 What's new
 ==========
 
-Release 2015.3 (Pending)
+Release 2015.3 (November 2015)
 -------------------------------------
 
-* Collapsed sidebar can now pop up for mid-sized display
+* Collapsed sidebar can now pop up for mid-sized display (Gaël Varoquaux)
+
+* Relaced pictures of Lena by racoon face (Thouis Jones)
 
 Release 2015.2 (October 2015)
 -------------------------------------
