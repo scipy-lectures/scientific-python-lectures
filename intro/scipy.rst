@@ -777,30 +777,32 @@ so the system will be underdamped, because::
 For the :func:`scipy.integrate.odeint` solver the 2nd order equation 
 needs to be transformed in a system of two first-order equations for 
 the vector :math:`Y = (y, y')`.  It will be convenient to define 
-:math:`\nu = 2 \varepsilon * \omega_0 = c / m` and :math:`om = \omega_0^2 = k/m`::
+:math:`\nu = 2 \varepsilon * \omega_0 = c / m` and :math:`\Omega = \omega_0^2 = k/m`::
 
-    >>> nu_coef = cviscous / mass
-    >>> om_coef = kspring / mass
+    >>> nu_coef = cviscous / mass  # nu
+    >>> om_coef = kspring / mass  # Omega
 
 Thus the function will calculate the velocity and acceleration by::
 
-    >>> def calc_deri(yvec, time, nuc, omc):
-    ...     return (yvec[1], -nuc * yvec[1] - omc * yvec[0])
+    >>> def calc_deri(yvec, time, nu, om):
+    ...     return (yvec[1], -nu * yvec[1] - om * yvec[0])
     ...
     >>> time_vec = np.linspace(0, 10, 100)
-    >>> yarr = odeint(calc_deri, (1, 0), time_vec, args=(nu_coef, om_coef))
+    >>> yinit = (1, 0)
+    >>> yarr = odeint(calc_deri, yinit, time_vec, args=(nu_coef, om_coef))
 
 The final position and velocity are shown on the following Matplotlib figure:
 
 .. plot:: pyplots/odeint_damped_spring_mass.py
     :scale: 70
 
+
 These two examples were only Ordinary Differential Equations (ODE).
 However, there is no Partial Differential Equations (PDE) solver in Scipy.
 Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
 
 .. _fipy: http://www.ctcms.nist.gov/fipy/
-.. _SfePy: http://code.google.com/p/sfepy/
+.. _SfePy: http://sfepy.org/doc/
 
 
 Signal processing: :mod:`scipy.signal`
