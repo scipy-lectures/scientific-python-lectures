@@ -7,7 +7,7 @@
 .. _scipy:
 
 Scipy : high-level scientific computing
-=========================================
+=======================================
 
 **Authors**: *Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
 Varoquaux, Ralf Gommers*
@@ -48,7 +48,7 @@ Varoquaux, Ralf Gommers*
 
 :mod:`scipy` is composed of task-specific sub-modules:
 
-=========================== ===============================================
+=========================== ==========================================
 :mod:`scipy.cluster`         Vector quantization / Kmeans
 :mod:`scipy.constants`       Physical and mathematical constants
 :mod:`scipy.fftpack`         Fourier transform
@@ -64,7 +64,7 @@ Varoquaux, Ralf Gommers*
 :mod:`scipy.spatial`         Spatial data structures and algorithms
 :mod:`scipy.special`         Any special mathematical functions
 :mod:`scipy.stats`           Statistics
-=========================== ===============================================
+=========================== ==========================================
 
 .. tip::
    
@@ -120,7 +120,6 @@ See also:
       :func:`numpy.save`/:func:`numpy.load`
 
 
-
 Special functions: :mod:`scipy.special`
 ---------------------------------------
 
@@ -144,7 +143,7 @@ functions here. Frequently used ones are:
 .. _scipy_linalg:
 
 Linear algebra operations: :mod:`scipy.linalg`
------------------------------------------------
+----------------------------------------------
 
 The :mod:`scipy.linalg` module provides standard linear algebra
 operations, relying on an underlying efficient implementation (BLAS,
@@ -214,7 +213,7 @@ LAPACK).
 
 
 Fast Fourier transforms: :mod:`scipy.fftpack`
-----------------------------------------------
+---------------------------------------------
 
 The :mod:`scipy.fftpack` module allows to compute fast Fourier transforms.
 As an illustration, a (noisy) input signal may look like::
@@ -429,14 +428,14 @@ To find the local minimum, let's constraint the variable to the interval
 
 **Finding the roots of a scalar function**
 
-To find a root, i.e. a point where ``f(x) = 0``, of the function ``f`` above
+To find a root, i.e. a point where :math:`f(x) = 0`, of the function :math:`f` above
 we can use for example :func:`scipy.optimize.fsolve`: ::
 
     >>> root = optimize.fsolve(f, 1)  # our initial guess is 1
     >>> root
     array([ 0.])
 
-Note that only one root is found.  Inspecting the plot of ``f`` reveals that
+Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
 there is a second root around -2.5. We find the exact value of it by adjusting
 our initial guess: ::
 
@@ -449,21 +448,21 @@ our initial guess: ::
 .. Comment to make doctest pass
     >>> np.random.seed(42)
 
-Suppose we have data sampled from ``f`` with some noise: ::
+Suppose we have data sampled from :math:`f` with some noise: ::
 
 
     >>> xdata = np.linspace(-10, 10, num=20)
     >>> ydata = f(xdata) + np.random.randn(xdata.size)
 
 Now if we know the functional form of the function from which the samples were
-drawn (``x^2 + sin(x)`` in this case) but not the amplitudes of the terms, we
+drawn (:math:`x^2 + \sin(x)` in this case) but not the amplitudes of the terms, we
 can find those by least squares curve fitting. First we have to define the
 function to fit::
 
     >>> def f2(x, a, b):
     ...     return a*x**2 + b*np.sin(x)
 
-Then we can use :func:`scipy.optimize.curve_fit` to find ``a`` and ``b``: ::
+Then we can use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`: ::
 
     >>> guess = [2, 2]
     >>> params, params_covariance = optimize.curve_fit(f2, xdata, ydata, guess)
@@ -518,14 +517,14 @@ problems in :mod:`scipy.optimize`.
 
     Hints:
 
-        - Variables can be restricted to ``-2 < x < 2`` and ``-1 < y < 1``.
+        - Variables can be restricted to :math:`-2 < x < 2` and :math:`-1 < y < 1`.
         - Use :func:`numpy.meshgrid` and :func:`pylab.imshow` to find visually the
           regions.
         - Use :func:`scipy.optimize.fmin_bfgs` or another multi-dimensional
           minimizer.
 
     How many global minima are there, and what is the function value at those
-    points?  What happens for an initial guess of ``(x, y) = (0, 0)``?
+    points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
 
 See the summary exercise on :ref:`summary_exercise_optimize` for another, more
 advanced example.
@@ -539,7 +538,7 @@ descriptions of random processes. Random number generators for various
 random process can be found in :mod:`numpy.random`.
 
 Histogram and probability density function
-...............................................
+..........................................
 
 Given observations of a random process, their histogram is an estimator of
 the random process's PDF (probability density function): ::
@@ -588,7 +587,7 @@ distribution. Here we fit a normal process to the observed data::
 
 
 Percentiles
-.............
+...........
 
 The median is the value with half of the observations below, and half
 above::
@@ -611,7 +610,7 @@ The percentile is an estimator of the CDF: cumulative distribution
 function.
 
 Statistical tests
-...................
+.................
 
 A statistical test is a decision indicator. For instance, if we have two
 sets of observations, that we assume are generated from Gaussian
@@ -643,7 +642,7 @@ whether the two sets of observations are significantly different::
 
 
 Interpolation: :mod:`scipy.interpolate`
-----------------------------------------
+---------------------------------------
 
 The :mod:`scipy.interpolate` is useful for fitting a function from experimental
 data and thus evaluating points where no measure exists. The module is based
@@ -689,7 +688,7 @@ interpolation example.
 
 
 Numerical integration: :mod:`scipy.integrate`
-------------------------------------------------
+---------------------------------------------
 
 The most generic integration routine is :func:`scipy.integrate.quad`::
 
@@ -716,9 +715,9 @@ for more details.
 
     dy/dt = rhs(y1, y2, .., t0,...)
 
-As an introduction, let us solve the ODE ``dy/dt = -2y`` between ``t =
-0..4``, with the  initial condition ``y(t=0) = 1``. First the function
-computing the derivative of the position needs to be defined::
+As an introduction, let us solve the ODE :math:`\frac{dy}{dt} = -2 y` between 
+:math:`t = 0 \dots 4`, with the  initial condition :math:`y(t=0) = 1`.
+First the function computing the derivative of the position needs to be defined::
 
     >>> def calc_derivative(ypos, time, counter_arr):
     ...     counter_arr += 1
@@ -756,12 +755,13 @@ The solution ``yvec`` for the trajectory can now be plotted:
   .. plot:: pyplots/odeint_introduction.py
     :scale: 70
 
+
 Another example with :func:`scipy.integrate.odeint` will be a damped
-spring-mass oscillator
-(2nd order oscillator). The position of a mass attached to a spring obeys
-the 2nd order ODE ``y'' + 2 eps wo  y' + wo^2 y = 0`` with ``wo^2 = k/m``
-with ``k`` the spring constant, ``m`` the mass and ``eps=c/(2 m wo)``
-with ``c`` the damping coefficient.
+spring-mass oscillator (2nd order oscillator).
+The position of a mass attached to a spring obeys the 2nd order **ODE**
+:math:`y'' + 2 \varepsilon \omega_0  y' + \omega_0^2 y = 0` with 
+:math:`\omega_0^2 = k/m` with :math:`k` the spring constant, :math:`m` the mass
+and :math:`\varepsilon = c/(2 m \omega_0)` with :math:`c` the damping coefficient.
 For this example, we choose the parameters as::
 
     >>> mass = 0.5  # kg
@@ -774,35 +774,39 @@ so the system will be underdamped, because::
     >>> eps < 1
     True
 
-For the :func:`scipy.integrate.odeint` solver the 2nd order equation needs to be transformed in a
-system of two first-order equations for the vector ``Y=(y, y')``.  It will
-be convenient to define ``nu = 2 eps * wo = c / m`` and ``om = wo^2 = k/m``::
+For the :func:`scipy.integrate.odeint` solver the 2nd order equation 
+needs to be transformed in a system of two first-order equations for 
+the vector :math:`Y = (y, y')`.  It will be convenient to define 
+:math:`\nu = 2 \varepsilon * \omega_0 = c / m` and :math:`\Omega = \omega_0^2 = k/m`::
 
-    >>> nu_coef = cviscous / mass
-    >>> om_coef = kspring / mass
+    >>> nu_coef = cviscous / mass  # nu
+    >>> om_coef = kspring / mass  # Omega
 
 Thus the function will calculate the velocity and acceleration by::
 
-    >>> def calc_deri(yvec, time, nuc, omc):
-    ...     return (yvec[1], -nuc * yvec[1] - omc * yvec[0])
+    >>> def calc_deri(yvec, time, nu, om):
+    ...     return (yvec[1], -nu * yvec[1] - om * yvec[0])
     ...
     >>> time_vec = np.linspace(0, 10, 100)
-    >>> yarr = odeint(calc_deri, (1, 0), time_vec, args=(nu_coef, om_coef))
+    >>> yinit = (1, 0)
+    >>> yarr = odeint(calc_deri, yinit, time_vec, args=(nu_coef, om_coef))
 
 The final position and velocity are shown on the following Matplotlib figure:
 
 .. plot:: pyplots/odeint_damped_spring_mass.py
     :scale: 70
 
-There is no Partial Differential Equations (PDE) solver in Scipy.
+
+These two examples were only Ordinary Differential Equations (ODE).
+However, there is no Partial Differential Equations (PDE) solver in Scipy.
 Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
 
 .. _fipy: http://www.ctcms.nist.gov/fipy/
-.. _SfePy: http://code.google.com/p/sfepy/
+.. _SfePy: http://sfepy.org/doc/
 
 
 Signal processing: :mod:`scipy.signal`
----------------------------------------
+--------------------------------------
 
 ::
 
@@ -848,7 +852,7 @@ Signal processing: :mod:`scipy.signal`
 
 
 Image processing: :mod:`scipy.ndimage`
-------------------------------------------
+--------------------------------------
 
 .. include:: image_processing/image_processing.rst
 
