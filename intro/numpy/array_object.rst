@@ -410,7 +410,7 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 
 .. sourcecode:: pycon
 
-    >>> plot(x, y)       # line plot    # doctest: +SKIP
+    >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
 
 * **1D plotting**:
 
