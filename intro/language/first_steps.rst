@@ -53,7 +53,7 @@ To get yourself started, type the following stack of instructions ::
 .. tip::
 
   Two variables ``a`` and ``b`` have been defined above. Note that one does
-  not declare the type of an variable before assigning its value. In C,
+  not declare the type of a variable before assigning its value. In C,
   conversely, one should write:
 
   .. sourcecode:: c
