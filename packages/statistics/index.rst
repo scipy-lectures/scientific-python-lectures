@@ -90,7 +90,7 @@ observations. For instance, the data contained in
    :end-line: 6
 
 
-The panda data-frame
+The pandas data-frame
 ------------------------
 
 .. tip::
