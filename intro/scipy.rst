@@ -159,7 +159,7 @@ LAPACK).
     -2.0
     >>> arr = np.array([[3, 2],
     ...                 [6, 4]])
-    >>> linalg.det(arr)
+    >>> linalg.det(arr) # doctest: +SKIP
     0.0
     >>> linalg.det(np.ones((3, 4)))
     Traceback (most recent call last):
