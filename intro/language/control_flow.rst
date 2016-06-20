@@ -20,7 +20,7 @@ if/elif/else
    
     Type the following lines in your Python interpreter, and be careful
     to **respect the indentation depth**. The Ipython shell automatically
-    increases the indentation depth after a column ``:`` sign; to
+    increases the indentation depth after a colon ``:`` sign; to
     decrease the indentation depth, go four spaces to the left with the
     Backspace key. Press the Enter key twice to leave the logical block.
 
