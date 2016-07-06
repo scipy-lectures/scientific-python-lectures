@@ -387,7 +387,7 @@ this assumption::
    test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
    :func:`scipy.stats.mannwhitneyu`.
 
-.. topic:: **Exercice**
+.. topic:: **Exercise**
    :class: green
 
    * Test the difference between weights in males and females.
@@ -559,7 +559,7 @@ model::
 
 .. topic:: **Link to t-tests between different FSIQ and PIQ**
 
-    To compare different type of IQ, we need to create a "long-form"
+    To compare different types of IQ, we need to create a "long-form"
     table, listing IQs, where the type of IQ is indicated by a
     categorical variable::
 
@@ -681,7 +681,7 @@ Is this difference significant?
 |
 
 
-.. topic:: **Exercice**
+.. topic:: **Exercise**
    :class: green
 
    Going back to the brain size + IQ data, test if the VIQ of male and
