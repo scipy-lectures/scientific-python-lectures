@@ -480,8 +480,8 @@ We can inspect the various statistics derived from the fit::
 
 .. topic:: Terminology:
 
-    Statsmodel uses a statistical terminology: the `y` variable in
-    statsmodel is called 'endogenous' while the `x` variable is called
+    Statsmodels uses a statistical terminology: the `y` variable in
+    statsmodels is called 'endogenous' while the `x` variable is called
     exogenous.  This is discussed in more detail `here 
     <http://statsmodels.sourceforge.net/devel/endog_exog.html>`_.
 
@@ -547,7 +547,7 @@ model::
 
    .. tip::
 
-     By default, statsmodel treats a categorical variable with K possible
+     By default, statsmodels treats a categorical variable with K possible
      values as K-1 'dummy' boolean variables (the last level being
      absorbed into the intercept term).  This is almost always a good
      default choice - however, it is possible to specify different
