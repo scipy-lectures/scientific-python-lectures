@@ -419,7 +419,7 @@ hypothesis that `y` is a linear function of `x`. In other terms:
 
     :math:`y = x * coef + intercept + e`
 
-where `e` is observation noise. We will use the `statmodels
+where `e` is observation noise. We will use the `statsmodels
 <http://statsmodels.sourceforge.net/>`_ module to:
 
 #. Fit a linear model. We will use the simplest strategy, `ordinary least
@@ -534,7 +534,7 @@ model::
 
 .. topic:: **Tips on specifying model**
  
-   **Forcing categorical**: the 'Gender' is automatical detected as a
+   **Forcing categorical**: the 'Gender' is automatically detected as a
    categorical variable, and thus each of its different values are
    treated as different entities.
 
