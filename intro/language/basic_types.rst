@@ -122,20 +122,20 @@ Lists
 
 ::
 
-    >>> l = ['red', 'blue', 'green', 'black', 'white']
-    >>> type(l)     # doctest: +SKIP
+    >>> colors = ['red', 'blue', 'green', 'black', 'white']
+    >>> type(colors)     # doctest: +SKIP
     <type 'list'>
 
 Indexing: accessing individual objects contained in the list::
 
-    >>> l[2]
+    >>> colors[2]
     'green'
 
 Counting from the end with negative indices::
 
-    >>> l[-1]
+    >>> colors[-1]
     'white'
-    >>> l[-2]
+    >>> colors[-2]
     'black'
 
 .. warning::
@@ -144,49 +144,49 @@ Counting from the end with negative indices::
 
 Slicing: obtaining sublists of regularly-spaced elements::
 
-    >>> l
+    >>> colors
     ['red', 'blue', 'green', 'black', 'white']
-    >>> l[2:4]
+    >>> colors[2:4]
     ['green', 'black']
 
 .. Warning::
 
-    Note that ``l[start:stop]`` contains the elements with indices ``i``
+    Note that ``colors[start:stop]`` contains the elements with indices ``i``
     such as  ``start<= i < stop`` (``i`` ranging from ``start`` to
-    ``stop-1``). Therefore, ``l[start:stop]`` has ``(stop - start)`` elements.
+    ``stop-1``). Therefore, ``colors[start:stop]`` has ``(stop - start)`` elements.
 
-**Slicing syntax**: ``l[start:stop:stride]``
+**Slicing syntax**: ``colors[start:stop:stride]``
 
 .. tip::
 
   All slicing parameters are optional::
 
-    >>> l
+    >>> colors
     ['red', 'blue', 'green', 'black', 'white']
-    >>> l[3:]
+    >>> colors[3:]
     ['black', 'white']
-    >>> l[:3]
+    >>> colors[:3]
     ['red', 'blue', 'green']
-    >>> l[::2]
+    >>> colors[::2]
     ['red', 'green', 'white']
 
 Lists are *mutable* objects and can be modified::
 
-    >>> l[0] = 'yellow'
-    >>> l
+    >>> colors[0] = 'yellow'
+    >>> colors
     ['yellow', 'blue', 'green', 'black', 'white']
-    >>> l[2:4] = ['gray', 'purple']
-    >>> l
+    >>> colors[2:4] = ['gray', 'purple']
+    >>> colors
     ['yellow', 'blue', 'gray', 'purple', 'white']
 
 .. Note::
 
    The elements of a list may have different types::
 
-        >>> l = [3, -200, 'hello']
-        >>> l
+        >>> colors = [3, -200, 'hello']
+        >>> colors
         [3, -200, 'hello']
-        >>> l[1], l[2]
+        >>> colors[1], colors[2]
         (-200, 'hello')
 
    .. tip::
@@ -208,38 +208,38 @@ Lists are *mutable* objects and can be modified::
 
 Add and remove elements::
 
-    >>> L = ['red', 'blue', 'green', 'black', 'white']
-    >>> L.append('pink')
-    >>> L
+    >>> colors = ['red', 'blue', 'green', 'black', 'white']
+    >>> colors.append('pink')
+    >>> colors
     ['red', 'blue', 'green', 'black', 'white', 'pink']
-    >>> L.pop() # removes and returns the last item
+    >>> colors.pop() # removes and returns the last item
     'pink'
-    >>> L
+    >>> colors
     ['red', 'blue', 'green', 'black', 'white']
-    >>> L.extend(['pink', 'purple']) # extend L, in-place
-    >>> L
+    >>> colors.extend(['pink', 'purple']) # extend colors, in-place
+    >>> colors
     ['red', 'blue', 'green', 'black', 'white', 'pink', 'purple']
-    >>> L = L[:-2]
-    >>> L
+    >>> colors = colors[:-2]
+    >>> colors
     ['red', 'blue', 'green', 'black', 'white']
 
 Reverse::
 
-    >>> r = L[::-1]
-    >>> r
+    >>> rcolors = colors[::-1]
+    >>> rcolors
     ['white', 'black', 'green', 'blue', 'red']
-    >>> r2 = list(L)
-    >>> r2
+    >>> rcolors2 = list(colors)
+    >>> rcolors2
     ['red', 'blue', 'green', 'black', 'white']
-    >>> r2.reverse() # in-place
-    >>> r2
+    >>> rcolors2.reverse() # in-place
+    >>> rcolors2
     ['white', 'black', 'green', 'blue', 'red']
 
 Concatenate and repeat lists::
 
-    >>> r + L
+    >>> rcolors + colors
     ['white', 'black', 'green', 'blue', 'red', 'red', 'blue', 'green', 'black', 'white']
-    >>> r * 2
+    >>> rcolors * 2
     ['white', 'black', 'green', 'blue', 'red', 'white', 'black', 'green', 'blue', 'red']
 
 
@@ -247,19 +247,19 @@ Concatenate and repeat lists::
 
   Sort::
 
-    >>> sorted(r) # new object
+    >>> sorted(rcolors) # new object
     ['black', 'blue', 'green', 'red', 'white']
-    >>> r
+    >>> rcolors
     ['white', 'black', 'green', 'blue', 'red']
-    >>> r.sort()  # in-place
-    >>> r
+    >>> rcolors.sort()  # in-place
+    >>> rcolors
     ['black', 'blue', 'green', 'red', 'white']
 
 .. topic:: **Methods and Object-Oriented Programming**
 
-    The notation ``r.method()`` (e.g. ``r.append(3)`` and ``L.pop()``) is our
+    The notation ``rcolors.method()`` (e.g. ``rcolors.append(3)`` and ``colors.pop()``) is our
     first example of object-oriented programming (OOP). Being a ``list``, the
-    object `r` owns the *method* `function` that is called using the notation
+    object `rcolors` owns the *method* `function` that is called using the notation
     **.**. No further knowledge of OOP than understanding the notation **.** is
     necessary for going through this tutorial.
 
@@ -270,22 +270,22 @@ Concatenate and repeat lists::
 
     .. sourcecode:: ipython
 
-        In [28]: r.<TAB>
-        r.__add__           r.__iadd__          r.__setattr__
-        r.__class__         r.__imul__          r.__setitem__
-        r.__contains__      r.__init__          r.__setslice__
-        r.__delattr__       r.__iter__          r.__sizeof__
-        r.__delitem__       r.__le__            r.__str__
-        r.__delslice__      r.__len__           r.__subclasshook__
-        r.__doc__           r.__lt__            r.append
-        r.__eq__            r.__mul__           r.count
-        r.__format__        r.__ne__            r.extend
-        r.__ge__            r.__new__           r.index
-        r.__getattribute__  r.__reduce__        r.insert
-        r.__getitem__       r.__reduce_ex__     r.pop
-        r.__getslice__      r.__repr__          r.remove
-        r.__gt__            r.__reversed__      r.reverse
-        r.__hash__          r.__rmul__          r.sort
+        In [28]: rcolors.<TAB>
+        rcolors.__add__           rcolors.__iadd__          rcolors.__setattr__
+        rcolors.__class__         rcolors.__imul__          rcolors.__setitem__
+        rcolors.__contains__      rcolors.__init__          rcolors.__setslice__
+        rcolors.__delattr__       rcolors.__iter__          rcolors.__sizeof__
+        rcolors.__delitem__       rcolors.__le__            rcolors.__str__
+        rcolors.__delslice__      rcolors.__len__           rcolors.__subclasshook__
+        rcolors.__doc__           rcolors.__lt__            rcolors.append
+        rcolors.__eq__            rcolors.__mul__           rcolors.count
+        rcolors.__format__        rcolors.__ne__            rcolors.extend
+        rcolors.__ge__            rcolors.__new__           rcolors.index
+        rcolors.__getattribute__  rcolors.__reduce__        rcolors.insert
+        rcolors.__getitem__       rcolors.__reduce_ex__     rcolors.pop
+        rcolors.__getslice__      rcolors.__repr__          rcolors.remove
+        rcolors.__gt__            rcolors.__reversed__      rcolors.reverse
+        rcolors.__hash__          rcolors.__rmul__          rcolors.sort
 
 Strings
 ~~~~~~~
