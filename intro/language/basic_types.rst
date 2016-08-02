@@ -259,7 +259,7 @@ Concatenate and repeat lists::
 
     The notation ``rcolors.method()`` (e.g. ``rcolors.append(3)`` and ``colors.pop()``) is our
     first example of object-oriented programming (OOP). Being a ``list``, the
-    object `r` owns the *method* `function` that is called using the notation
+    object `rcolors` owns the *method* `function` that is called using the notation
     **.**. No further knowledge of OOP than understanding the notation **.** is
     necessary for going through this tutorial.
 
@@ -270,22 +270,22 @@ Concatenate and repeat lists::
 
     .. sourcecode:: ipython
 
-        In [28]: r.<TAB>
-        r.__add__           r.__iadd__          r.__setattr__
-        r.__class__         r.__imul__          r.__setitem__
-        r.__contains__      r.__init__          r.__setslice__
-        r.__delattr__       r.__iter__          r.__sizeof__
-        r.__delitem__       r.__le__            r.__str__
-        r.__delslice__      r.__len__           r.__subclasshook__
-        r.__doc__           r.__lt__            r.append
-        r.__eq__            r.__mul__           r.count
-        r.__format__        r.__ne__            r.extend
-        r.__ge__            r.__new__           r.index
-        r.__getattribute__  r.__reduce__        r.insert
-        r.__getitem__       r.__reduce_ex__     r.pop
-        r.__getslice__      r.__repr__          r.remove
-        r.__gt__            r.__reversed__      r.reverse
-        r.__hash__          r.__rmul__          r.sort
+        In [28]: rcolors.<TAB>
+        rcolors.__add__           rcolors.__iadd__          rcolors.__setattr__
+        rcolors.__class__         rcolors.__imul__          rcolors.__setitem__
+        rcolors.__contains__      rcolors.__init__          rcolors.__setslice__
+        rcolors.__delattr__       rcolors.__iter__          rcolors.__sizeof__
+        rcolors.__delitem__       rcolors.__le__            rcolors.__str__
+        rcolors.__delslice__      rcolors.__len__           rcolors.__subclasshook__
+        rcolors.__doc__           rcolors.__lt__            rcolors.append
+        rcolors.__eq__            rcolors.__mul__           rcolors.count
+        rcolors.__format__        rcolors.__ne__            rcolors.extend
+        rcolors.__ge__            rcolors.__new__           rcolors.index
+        rcolors.__getattribute__  rcolors.__reduce__        rcolors.insert
+        rcolors.__getitem__       rcolors.__reduce_ex__     rcolors.pop
+        rcolors.__getslice__      rcolors.__repr__          rcolors.remove
+        rcolors.__gt__            rcolors.__reversed__      rcolors.reverse
+        rcolors.__hash__          rcolors.__rmul__          rcolors.sort
 
 Strings
 ~~~~~~~
