@@ -387,7 +387,7 @@ this assumption::
    test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
    :func:`scipy.stats.mannwhitneyu`.
 
-.. topic:: **Exercice**
+.. topic:: **Exercise**
    :class: green
 
    * Test the difference between weights in males and females.
@@ -419,7 +419,7 @@ hypothesis that `y` is a linear function of `x`. In other terms:
 
     :math:`y = x * coef + intercept + e`
 
-where `e` is observation noise. We will use the `statmodels
+where `e` is observation noise. We will use the `statsmodels
 <http://statsmodels.sourceforge.net/>`_ module to:
 
 #. Fit a linear model. We will use the simplest strategy, `ordinary least
@@ -480,8 +480,8 @@ We can inspect the various statistics derived from the fit::
 
 .. topic:: Terminology:
 
-    Statsmodel uses a statistical terminology: the `y` variable in
-    statsmodel is called 'endogenous' while the `x` variable is called
+    Statsmodels uses a statistical terminology: the `y` variable in
+    statsmodels is called 'endogenous' while the `x` variable is called
     exogenous.  This is discussed in more detail `here 
     <http://statsmodels.sourceforge.net/devel/endog_exog.html>`_.
 
@@ -534,7 +534,7 @@ model::
 
 .. topic:: **Tips on specifying model**
  
-   **Forcing categorical**: the 'Gender' is automatical detected as a
+   **Forcing categorical**: the 'Gender' is automatically detected as a
    categorical variable, and thus each of its different values are
    treated as different entities.
 
@@ -547,7 +547,7 @@ model::
 
    .. tip::
 
-     By default, statsmodel treats a categorical variable with K possible
+     By default, statsmodels treats a categorical variable with K possible
      values as K-1 'dummy' boolean variables (the last level being
      absorbed into the intercept term).  This is almost always a good
      default choice - however, it is possible to specify different
@@ -559,7 +559,7 @@ model::
 
 .. topic:: **Link to t-tests between different FSIQ and PIQ**
 
-    To compare different type of IQ, we need to create a "long-form"
+    To compare different types of IQ, we need to create a "long-form"
     table, listing IQs, where the type of IQ is indicated by a
     categorical variable::
 
@@ -681,7 +681,7 @@ Is this difference significant?
 |
 
 
-.. topic:: **Exercice**
+.. topic:: **Exercise**
    :class: green
 
    Going back to the brain size + IQ data, test if the VIQ of male and
