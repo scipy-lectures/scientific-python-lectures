@@ -197,10 +197,11 @@ iteration::
 
     c = x + 1j*y
 
+    z = 0
     for j in xrange(N_max):
         z = z**2 + c
 
-Point (x, y) belongs to the Mandelbrot set if :math:`|c|` <
+Point (x, y) belongs to the Mandelbrot set if :math:`|z|` <
 ``some_threshold``.
 
 Do this computation by:
