@@ -17,6 +17,16 @@ The Numpy array object
 What are Numpy and Numpy arrays?
 --------------------------------
 
+Import conventions
+..................
+
+The recommended convention to import numpy is:
+
+.. sourcecode:: pycon
+
+   >>> import numpy as np
+
+
 Numpy arrays
 ............
 
@@ -132,15 +142,6 @@ Numpy Reference documentation
      np.conj
      np.conjugate
      np.convolve
-
-Import conventions
-..................
-
-The recommended convention to import numpy is:
-
-.. sourcecode:: pycon
-
-   >>> import numpy as np
 
 
 Creating arrays
