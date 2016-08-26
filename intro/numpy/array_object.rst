@@ -714,8 +714,8 @@ memory and time.
 
    .. sourcecode:: pycon
 
-       >>> N_max = int(np.sqrt(len(is_prime)-1))
-       >>> for j in range(2, N_max+1):
+       >>> N_max = int(np.sqrt(len(is_prime) - 1))
+       >>> for j in range(2, N_max + 1):
        ...     is_prime[2*j::j] = False
 
    * Skim through ``help(np.nonzero)``, and print the prime numbers
