@@ -515,7 +515,7 @@ Figures
 Argument        Default                 Description
 ==============  ======================= ============================================
 ``num``         ``1``                   number of figure
-``figsize``     ``figure.figsize``      figure size in in inches (width, height)
+``figsize``     ``figure.figsize``      figure size in inches (width, height)
 ``dpi``         ``figure.dpi``          resolution in dots per inch
 ``facecolor``   ``figure.facecolor``    color of the drawing background
 ``edgecolor``   ``figure.edgecolor``    color of edge around the drawing background
