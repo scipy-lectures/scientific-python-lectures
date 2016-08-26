@@ -19,7 +19,6 @@ libm.cos.argtypes = [ctypes.c_double]
 libm.cos.restype = ctypes.c_double
 
 
-
 def cos_func(arg):
     ''' Wrapper for cos from math.h '''
     return libm.cos(arg)
