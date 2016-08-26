@@ -238,13 +238,13 @@ gradient, that is the direction of the *steepest descent*.
 
 .. list-table:: **Fixed step gradient descent**
 
- * - **A well-conditionned quadratic function.**
+ * - **A well-conditioned quadratic function.**
 
    - |gradient_quad_cond|
  
    - |gradient_quad_cond_conv|
 
- * - **An ill-conditionned quadratic function.**
+ * - **An ill-conditioned quadratic function.**
 
      The core problem of gradient-methods on ill-conditioned problems is
      that the gradient tends not to point in the direction of the
@@ -254,7 +254,7 @@ gradient, that is the direction of the *steepest descent*.
  
    - |gradient_quad_icond_conv|
 
-We can see that very anisotropic (`ill-conditionned
+We can see that very anisotropic (`ill-conditioned
 <http://en.wikipedia.org/wiki/Condition_number>`_) functions are harder
 to optimize.
 
@@ -295,25 +295,25 @@ is done in gradient descent code using a
 
 .. list-table:: **Adaptive step gradient descent**
 
- * - A well-conditionned quadratic function.
+ * - A well-conditioned quadratic function.
 
    - |agradient_quad_cond|
  
    - |agradient_quad_cond_conv|
 
- * - An ill-conditionned quadratic function.
+ * - An ill-conditioned quadratic function.
 
    - |agradient_quad_icond|
  
    - |agradient_quad_icond_conv|
 
- * - An ill-conditionned non-quadratic function.
+ * - An ill-conditioned non-quadratic function.
 
    - |agradient_gauss_icond|
  
    - |agradient_gauss_icond_conv|
 
- * - An ill-conditionned very non-quadratic function.
+ * - An ill-conditioned very non-quadratic function.
 
    - |agradient_rosen_icond|
  
@@ -350,13 +350,13 @@ gradient and sharp turns are reduced.
 
 .. list-table:: **Conjugate gradient descent**
 
- * - An ill-conditionned non-quadratic function.
+ * - An ill-conditioned non-quadratic function.
 
    - |cg_gauss_icond|
  
    - |cg_gauss_icond_conv|
 
- * - An ill-conditionned very non-quadratic function.
+ * - An ill-conditioned very non-quadratic function.
 
    - |cg_rosen_icond|
  
@@ -426,7 +426,7 @@ purpose, they rely on the 2 first derivative of the function: the
 
 .. list-table::
 
- * - **An ill-conditionned quadratic function:**
+ * - **An ill-conditioned quadratic function:**
 
      Note that, as the quadratic approximation is exact, the Newton
      method is blazing fast
@@ -435,7 +435,7 @@ purpose, they rely on the 2 first derivative of the function: the
  
    - |ncg_quad_icond_conv|
 
- * - **An ill-conditionned non-quadratic function:**
+ * - **An ill-conditioned non-quadratic function:**
 
      Here we are optimizing a Gaussian, which is always below its
      quadratic approximation. As a result, the Newton method overshoots
@@ -445,7 +445,7 @@ purpose, they rely on the 2 first derivative of the function: the
  
    - |ncg_gauss_icond_conv|
 
- * - **An ill-conditionned very non-quadratic function:**
+ * - **An ill-conditioned very non-quadratic function:**
 
    - |ncg_rosen_icond|
  
@@ -525,7 +525,7 @@ each step an approximation of the Hessian.
 
 .. list-table::
 
- * - **An ill-conditionned quadratic function:**
+ * - **An ill-conditioned quadratic function:**
 
      On a exactly quadratic function, BFGS is not as fast as Newton's
      method, but still very fast.
@@ -534,7 +534,7 @@ each step an approximation of the Hessian.
  
    - |bfgs_quad_icond_conv|
 
- * - **An ill-conditionned non-quadratic function:**
+ * - **An ill-conditioned non-quadratic function:**
 
      Here BFGS does better than Newton, as its empirical estimate of the
      curvature is better than that given by the Hessian.
@@ -543,7 +543,7 @@ each step an approximation of the Hessian.
  
    - |bfgs_gauss_icond_conv|
 
- * - **An ill-conditionned very non-quadratic function:**
+ * - **An ill-conditioned very non-quadratic function:**
 
    - |bfgs_rosen_icond|
  
@@ -611,7 +611,7 @@ Almost a gradient approach
 
 .. list-table::
 
- * - **An ill-conditionned quadratic function:**
+ * - **An ill-conditioned quadratic function:**
 
      Powell's method isn't too sensitive to local ill-conditionning in
      low dimensions
@@ -620,7 +620,7 @@ Almost a gradient approach
  
    - |powell_quad_icond_conv|
 
- * - **An ill-conditionned very non-quadratic function:**
+ * - **An ill-conditioned very non-quadratic function:**
 
    - |powell_rosen_icond|
  
@@ -657,13 +657,13 @@ methods on smooth, non-noisy functions.
 
 .. list-table::
 
- * - **An ill-conditionned non-quadratic function:**
+ * - **An ill-conditioned non-quadratic function:**
 
    - |nm_gauss_icond|
  
    - |nm_gauss_icond_conv|
 
- * - **An ill-conditionned very non-quadratic function:**
+ * - **An ill-conditioned very non-quadratic function:**
 
    - |nm_rosen_icond|
  
