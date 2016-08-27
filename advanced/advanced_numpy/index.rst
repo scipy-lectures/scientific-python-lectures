@@ -1153,7 +1153,7 @@ Generalized ufuncs
 
 >>> import numpy as np
 >>> np.linalg.det(np.random.rand(3, 5, 5))
-array([-0.01404366,  0.02263015, -0.01137558])
+array([ 0.00965823, -0.13344729,  0.04583961])
 >>> np.linalg._umath_linalg.det.signature
 '(m,m)->()'
 
@@ -1553,7 +1553,7 @@ Good bug report
     it fails with a cryptic error message::
 
         >>> np.random.permutation(12)
-        array([ 6, 11,  4, 10,  2,  8,  1,  7,  9,  3,  0,  5])
+        array([11,  5,  8,  4,  6,  1,  9,  3,  7,  2, 10,  0])
         >>> np.random.permutation(12.)
         Traceback (most recent call last):
           File "<stdin>", line 1, in <module>
