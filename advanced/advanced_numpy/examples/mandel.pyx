@@ -58,43 +58,34 @@ cdef void mandel_single_point(double complex *z_in,
 
 # Boilerplate Cython definitions
 #
-# The litany below is particularly long, but you don't really need to
-# read this part; it just pulls in stuff from the Numpy C headers.
-# ----------------------------------------------------------
+#  pulls definitions from the Numpy C headers.
+# --------------------------------------------
 
-cdef extern from "numpy/arrayobject.h":
-    void import_array()
-    ctypedef int npy_intp
-    cdef enum NPY_TYPES:
-        NPY_DOUBLE
-        NPY_CDOUBLE
-        NPY_LONG
+from numpy cimport import_array, import_ufunc 
+from numpy cimport (PyUFunc_FromFuncAndData,
+                    PyUFuncGenericFunction)
+from numpy cimport NPY_CDOUBLE, NP_DOUBLE, NPY_LONG
 
-cdef extern from "numpy/ufuncobject.h":
-    void import_ufunc()
-    ctypedef void (*PyUFuncGenericFunction)(char**, npy_intp*, npy_intp*, void*)
-    object PyUFunc_FromFuncAndData(PyUFuncGenericFunction* func, void** data,
-        char* types, int ntypes, int nin, int nout,
-        int identity, char* name, char* doc, int c)
+# Import all pre-defined loop functions
+# you won't need all of them - keep the relevant ones
 
-    # List of pre-defined loop functions
-
-    void PyUFunc_f_f_As_d_d(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_d_d(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_f_f(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_g_g(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_F_F_As_D_D(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_F_F(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_D_D(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_G_G(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_ff_f_As_dd_d(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_ff_f(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_dd_d(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_gg_g(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_FF_F_As_DD_D(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_DD_D(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_FF_F(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
-    void PyUFunc_GG_G(char** args, npy_intp* dimensions, npy_intp* steps, void* func)
+from numpy cimport (
+    PyUFunc_f_f_As_d_d,
+    PyUFunc_d_d,
+    PyUFunc_f_f,
+    PyUFunc_g_g,
+    PyUFunc_F_F_As_D_D,
+    PyUFunc_F_F,
+    PyUFunc_D_D,
+    PyUFunc_G_G,
+    PyUFunc_ff_f_As_dd_d,
+    PyUFunc_ff_f,
+    PyUFunc_dd_d,
+    PyUFunc_gg_g,
+    PyUFunc_FF_F_As_DD_D,
+    PyUFunc_DD_D,
+    PyUFunc_FF_F,
+    PyUFunc_GG_G)
 
 
 # Required module initialization
