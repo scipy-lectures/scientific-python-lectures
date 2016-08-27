@@ -1,6 +1,6 @@
 """
-Segementation contours
-======================
+Segmentation contours
+=====================
 
 Visualize segmentation contours on original grayscale image.
 """
