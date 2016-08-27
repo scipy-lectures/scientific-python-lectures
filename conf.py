@@ -55,7 +55,17 @@ sphinx_gallery_conf = {
                      'advanced/image_processing/auto_examples',
                      'advanced/mathematical_optimization/auto_examples',
                      'packages/scikit-image/auto_examples',
-                     'packages/statistics/auto_examples']}
+                     'packages/statistics/auto_examples'],
+    'doc_module': 'scipy-lecture-notes',
+    'reference_url': {
+        'numpy': 'http://docs.scipy.org/doc/numpy',
+        'scipy': 'http://docs.scipy.org/doc/scipy/reference',
+        'matplotlib': 'http://matplotlib.org',
+        'scikit-learn': 'http://scikit-learn.org/stable',
+        'scikit-image': 'http://scikit-image.org/docs/0.12.x/',
+        'mayavi': 'http://docs.enthought.com/mayavi/mayavi/',
+        }
+    }
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
