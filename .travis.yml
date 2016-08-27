@@ -11,12 +11,10 @@ notifications:
   email: false
 
 env:
-  global:
-    - TEST_RUN_FOLDER="/tmp" # folder where the tests are run from
   matrix:
     # Ubuntu 14.04 versions
     - DISTRIB="conda" PYTHON_VERSION="$TRAVIS_PYTHON_VERSION"
-      NUMPY_VERSION="1.9" SCIPY_VERSION="0.14.0" 
+      NUMPY_VERSION="1.9" SCIPY_VERSION="0.14.0"
       SCIKIT_LEARN_VERSION="0.16.1" MATPLOTLIB_VERSION="1.4.0"
       SCIKIT_IMAGE_VERSION="0.10.1" SYMPY_VERSION="0.7.5"
       STATSMODELS_VERSION="0.5" SEABORN_VERSION="0.6"
@@ -25,7 +23,7 @@ env:
 before_install:
     - sudo apt-get install texlive texlive-latex-extra
 
-install: 
+install:
     - source continuous_integration/install.sh
 
 before_script:
@@ -33,17 +31,4 @@ before_script:
 
 script:
     - python continuous_integration/show-python-packages-versions.py
-    # We want to back out of the current working directory to make
-    # sure we are using nilearn installed in site-packages rather
-    # than the one from the current working directory
-    # Parentheses (run in a subshell) are used to leave
-    # the current directory unchanged
     - make test
-
-after_success:
-    # Ignore coveralls failures as the coveralls server is not very reliable
-    # but we don't want travis to report a failure in the github UI just
-    # because the coverage report failed to be published.
-    # coveralls need to be run from the git checkout
-    # so we need to copy the coverage results from TEST_RUN_FOLDER
-    - if [[ "$COVERAGE" == "true" ]]; then cp "$TEST_RUN_FOLDER/.coverage" .; coveralls || echo "failed"; fi
