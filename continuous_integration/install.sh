@@ -27,7 +27,7 @@ create_new_venv() {
 
 print_conda_requirements() {
     # Echo a conda requirement string for example
-    # "pip nose python='.7.3 scikit-learn=*". It has a hardcoded
+    # "pip nose python='2.7.3 scikit-learn=*". It has a hardcoded
     # list of possible packages to install and looks at _VERSION
     # environment variables to know whether to install a given package and
     # if yes which version to install. For example:
@@ -52,30 +52,28 @@ print_conda_requirements() {
 }
 
 create_new_conda_env() {
-    # Deactivate the travis-provided virtual environment and setup a
-    # conda-based environment instead
-    deactivate
+    # Skip Travis related code on circle ci.
+    if [ -z $CIRCLECI ]; then
+        # Deactivate the travis-provided virtual environment and setup a
+        # conda-based environment instead
+        deactivate
+    fi
 
     # Use the miniconda installer for faster download / install of conda
     # itself
-    if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-        wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh \
-        -O miniconda.sh
-    else
-        wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-        -O miniconda.sh
-    fi
+    wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh \
+         -O miniconda.sh
     bash miniconda.sh -b -p $HOME/miniconda
-    export PATH=/home/travis/miniconda/bin:$PATH
+    export PATH=$HOME/miniconda/bin:$PATH
     conda update --yes conda
 
     # Configure the conda environment and put it in the path using the
     # provided versions
     REQUIREMENTS=$(print_conda_requirements)
     echo "conda requirements string: $REQUIREMENTS"
-    conda create -n testenv --yes $REQUIREMENTS
+    conda create -n testenv --quiet --yes $REQUIREMENTS
     source activate testenv
-    conda install --yes python=$TRAVIS_PYTHON_VERSION libgfortran=1
+    conda install --yes libgfortran=1
 
     if [[ "$INSTALL_MKL" == "true" ]]; then
         # Make sure that MKL is used
@@ -93,13 +91,6 @@ if [[ "$DISTRIB" == "neurodebian" ]]; then
 
 elif [[ "$DISTRIB" == "conda" ]]; then
     create_new_conda_env
-    # Note: nibabel is in setup.py install_requires so nibabel will
-    # always be installed eventually. Defining NIBABEL_VERSION is only
-    # useful if you happen to want a specific nibabel version rather
-    # than the latest available one.
-    if [ -n "$NIBABEL_VERSION" ]; then
-        pip install nibabel=="$NIBABEL_VERSION"
-    fi
 
 else
     echo "Unrecognized distribution ($DISTRIB); cannot setup travis environment."
