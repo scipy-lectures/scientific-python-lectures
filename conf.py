@@ -44,10 +44,14 @@ extensions = [
 doctest_test_doctest_blocks = 'true'
 
 sphinx_gallery_conf = {
-    'examples_dirs': ['intro/summary-exercises/examples/',
-                      'intro/matplotlib/examples'],
+    'examples_dirs': ['intro/summary-exercises/examples',
+                      'intro/matplotlib/examples',
+                      'advanced/image_processing/examples',
+                      'advanced/mathematical_optimization/examples'],
     'gallery_dirs': ['intro/summary-exercises/auto_examples',
-                     'intro/matplotlib/auto_examples']}
+                     'intro/matplotlib/auto_examples',
+                     'advanced/image_processing/auto_examples',
+                     'advanced/mathematical_optimization/auto_examples']}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
