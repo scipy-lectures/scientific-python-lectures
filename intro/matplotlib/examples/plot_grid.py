@@ -24,11 +24,20 @@ axes.grid(which='minor', axis='y', linewidth=0.25, linestyle='-', color='0.75')
 axes.set_xticklabels([])
 axes.set_yticklabels([])
 
+
+# Add a title and a box around it
+from matplotlib.patches import FancyBboxPatch
+ax = plt.gca()
+ax.add_patch(FancyBboxPatch((-0.05, .87),
+                            width=.66, height=.165, clip_on=False,
+                            boxstyle="square,pad=0", zorder=3,
+                            facecolor='white', alpha=1.0,
+                            transform=plt.gca().transAxes))
+
 plt.text(-0.05, 1.02, " Grid:                  plt.grid(...)\n",
           horizontalalignment='left',
           verticalalignment='top',
           size='xx-large',
-          bbox=dict(facecolor='white', alpha=1.0, width=400, height=65),
           transform=axes.transAxes)
 
 plt.text(-0.05, 1.01, "\n\n    Draw ticks and grid ",
