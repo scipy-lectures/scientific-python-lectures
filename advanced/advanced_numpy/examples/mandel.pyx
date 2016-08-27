@@ -58,8 +58,8 @@ cdef void mandel_single_point(double complex *z_in,
 
 # Boilerplate Cython definitions
 #
-#  pulls definitions from the Numpy C headers.
-# --------------------------------------------
+# Pulls definitions from the Numpy C headers.
+# -------------------------------------------
 
 from numpy cimport import_array, import_ufunc 
 from numpy cimport (PyUFunc_FromFuncAndData,

@@ -1149,24 +1149,24 @@ Generalized ufuncs
 * g-ufuncs are in Numpy already ...
 * new ones can be created with ``PyUFunc_FromFuncAndDataAndSignature``
 * most linear-algebra functions are implemented as g-ufuncs to enable working
-  with stacked arrays
+  with stacked arrays::
 
->>> import numpy as np
->>> np.linalg.det(np.random.rand(3, 5, 5))
-array([ 0.00965823, -0.13344729,  0.04583961])
->>> np.linalg._umath_linalg.det.signature
-'(m,m)->()'
+    >>> import numpy as np
+    >>> np.linalg.det(np.random.rand(3, 5, 5))
+    array([ 0.00965823, -0.13344729,  0.04583961])
+    >>> np.linalg._umath_linalg.det.signature
+    '(m,m)->()'
 
-* we also ship with a few g-ufuncs for testing, ATM
+* we also ship with a few g-ufuncs for testing, ATM::
 
->>> import numpy.core.umath_tests as ut
->>> ut.matrix_multiply.signature
-'(m,n),(n,p)->(m,p)'
-
->>> x = np.ones((10, 2, 4))
->>> y = np.ones((10, 4, 5))
->>> ut.matrix_multiply(x, y).shape
-(10, 2, 5)
+    >>> import numpy.core.umath_tests as ut
+    >>> ut.matrix_multiply.signature
+    '(m,n),(n,p)->(m,p)'
+    
+    >>> x = np.ones((10, 2, 4))
+    >>> y = np.ones((10, 4, 5))
+    >>> ut.matrix_multiply(x, y).shape
+    (10, 2, 5)
 
 * in both examples the last two dimensions became *core dimensions*,
   and are modified as per the *signature*
