@@ -1,3 +1,3 @@
-Examples for the the Matplotlib chapter
-========================================
+Examples for the Matplotlib chapter
+===================================
 
