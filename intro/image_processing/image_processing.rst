@@ -25,7 +25,7 @@ Changing orientation, resolution, .. ::
     >>> zoomed_face.shape
     (1536, 2048)
 
-.. figure:: image_processing/face_transforms.png
+.. figure:: face_transforms.png
    :align: center
    :scale: 70
 
@@ -59,7 +59,7 @@ Image filtering
     >>> from scipy import signal
     >>> wiener_face = signal.wiener(noisy_face, (5, 5))
 
-.. figure:: image_processing/filtered_face.png
+.. figure:: filtered_face.png
    :align: center
    :scale: 80
 
@@ -81,7 +81,7 @@ theory. It characterizes and transforms geometrical structures. Binary
 theory: the sets to be transformed are the sets of neighboring
 non-zero-valued pixels. The theory was also extended to gray-valued images.
 
-.. image:: image_processing/morpho_mat.png
+.. image:: morpho_mat.png
    :align: center
 
 Elementary mathematical-morphology operations use a *structuring element*
@@ -190,7 +190,7 @@ image. ::
     >>> opened_mask = ndimage.binary_opening(mask)
     >>> closed_mask = ndimage.binary_closing(opened_mask)
 
-.. figure:: image_processing/morpho.png
+.. figure:: morpho.png
    :align: center
    :scale: 75
 
@@ -255,7 +255,7 @@ Now we look for various information about the objects in the image::
     <matplotlib.image.AxesImage object at ...>
 
 
-.. figure:: image_processing/measures.png
+.. figure:: measures.png
    :align: center
    :scale: 80
 
