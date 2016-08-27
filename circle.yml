@@ -29,7 +29,8 @@ dependencies:
             STATSMODELS_VERSION: "0.5"
             SEABORN_VERSION: "0.6"
             PANDAS_VERSION: "0.15"
-    - conda install sphinx coverage pillow sphinx-gallery -y -n testenv --quiet
+    - conda install sphinx coverage pillow -y -n testenv --quiet
+    - source activate testenv && pip install sphinx-gallery
     - source activate testenv && python continuous_integration/show-python-packages-versions.py
 
 test:
