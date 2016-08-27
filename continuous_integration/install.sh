@@ -91,13 +91,6 @@ if [[ "$DISTRIB" == "neurodebian" ]]; then
 
 elif [[ "$DISTRIB" == "conda" ]]; then
     create_new_conda_env
-    # Note: nibabel is in setup.py install_requires so nibabel will
-    # always be installed eventually. Defining NIBABEL_VERSION is only
-    # useful if you happen to want a specific nibabel version rather
-    # than the latest available one.
-    if [ -n "$NIBABEL_VERSION" ]; then
-        pip install nibabel=="$NIBABEL_VERSION"
-    fi
 
 else
     echo "Unrecognized distribution ($DISTRIB); cannot setup travis environment."
