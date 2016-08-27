@@ -45,8 +45,8 @@ x_subdiag = TODO
 x = np.arange(5*5*5*5).reshape(5,5,5,5)
 
 s = 0
-for i in xrange(5):
-    for j in xrange(5):
+for i in range(5):
+    for j in range(5):
         s += x[j,i,j,i]
 
 # by striding and using .sum()
