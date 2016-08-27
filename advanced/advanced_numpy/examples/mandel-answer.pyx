@@ -39,25 +39,14 @@ cdef void mandel_single_point(double complex *z_in,
 
 # Boilerplate Cython definitions
 #
-# You don't really need to read this part, it just pulls in
-# stuff from the Numpy C headers.
-# ----------------------------------------------------------
+# Pulls definitions from the Numpy C headers.
+# -------------------------------------------
 
-cdef extern from "numpy/arrayobject.h":
-    void import_array()
-    ctypedef int npy_intp
-    cdef enum NPY_TYPES:
-        NPY_CDOUBLE
-
-cdef extern from "numpy/ufuncobject.h":
-    void import_ufunc()
-    ctypedef void (*PyUFuncGenericFunction)(char**, npy_intp*, npy_intp*, void*)
-    object PyUFunc_FromFuncAndData(PyUFuncGenericFunction* func, void** data,
-        char* types, int ntypes, int nin, int nout,
-        int identity, char* name, char* doc, int c)
-
-    void PyUFunc_DD_D(char**, npy_intp*, npy_intp*, void*)
-
+from numpy cimport import_array, import_ufunc 
+from numpy cimport (PyUFunc_FromFuncAndData,
+                    PyUFuncGenericFunction)
+from numpy cimport NPY_CDOUBLE
+from numpy cimport PyUFunc_DD_D
 
 # Required module initialization
 # ------------------------------
