@@ -10,7 +10,7 @@ import pylab as pl
 from scipy import optimize
 
 import sys, os
-sys.path.append(os.path.abspath('.'))
+sys.path.append(os.path.abspath('helper'))
 from cost_functions import mk_quad, mk_gauss, rosenbrock,\
     rosenbrock_prime, rosenbrock_hessian, LoggingFunction,\
     CountingFunction
