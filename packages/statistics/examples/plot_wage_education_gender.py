@@ -12,7 +12,7 @@ statsmodels' formulas
 (http://statsmodels.sourceforge.net/stable/example_formulas.html).
 
 """
-from __future__ import print_function
+
 
 ##############################################################################
 # Load and massage the data

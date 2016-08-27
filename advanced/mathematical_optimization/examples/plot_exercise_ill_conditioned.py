@@ -7,7 +7,7 @@ ill-conditioned matrix. This can easily be seen, as the Hessian of the
 first term in simply 2*np.dot(K.T, K). Thus the conditioning of the
 problem can be judged from looking at the conditioning of K.
 """
-from __future__ import print_function
+
 import time
 
 import numpy as np

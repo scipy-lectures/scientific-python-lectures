@@ -2,7 +2,7 @@
 
 Data is stored in data.txt.
 """
-from __future__ import print_function
+
 
 def load_data(filename):
     fp = open(filename)

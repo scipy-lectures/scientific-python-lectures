@@ -1,7 +1,7 @@
 """ Simple code that creates a segfault using numpy. Used to learn
 debugging segfaults with GDB.
 """
-from __future__ import print_function
+
 
 import numpy as np
 from numpy.lib import stride_tricks

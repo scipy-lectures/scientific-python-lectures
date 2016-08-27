@@ -1,3 +1,4 @@
+# print is a function in Python3. Import that behavior in Python2
 from __future__ import print_function
 import numpy as np
 

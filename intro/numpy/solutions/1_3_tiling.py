@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 import numpy as np
 
 block = np.array([[4, 3], [2, 1]])

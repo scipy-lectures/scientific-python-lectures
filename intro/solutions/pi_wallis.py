@@ -2,7 +2,7 @@
 The correction for the calculation of pi using the Wallis formula.
 """
 from __future__ import division
-from __future__ import print_function
+
 from functools import reduce
 
 pi = 3.14159265358979312

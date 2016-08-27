@@ -1,5 +1,5 @@
 "A demo module."
-from __future__ import print_function
+
 
 def print_b():
     "Prints b."

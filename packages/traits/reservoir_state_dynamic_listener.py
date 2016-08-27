@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 from reservoir import Reservoir
 from reservoir_state_property import ReservoirState
 

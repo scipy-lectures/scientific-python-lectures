@@ -2,7 +2,7 @@
 Script to list all the '.py' files in a directory, in the order of file
 name length.
 """
-from __future__ import print_function
+
 
 import os
 import sys

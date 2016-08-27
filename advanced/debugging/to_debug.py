@@ -12,7 +12,7 @@ The output of the script sould look like:
                 ridder:   778394 total function calls
                 bisect:  2148380 total function calls
 """
-from __future__ import print_function
+
 from itertools import product
 
 import numpy as np

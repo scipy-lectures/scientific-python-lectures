@@ -4,7 +4,7 @@ Comparing optimizers
 
 Comparison of optimizers on various problems.
 """
-from __future__ import print_function
+
 import functools
 import pickle
 

@@ -5,7 +5,6 @@ Solution to the stride diagonal exercise
 Solution showing how to use as_strided to stride in diagonal.
 
 """
-from __future__ import print_function
 
 import numpy as np
 from numpy.lib.stride_tricks import as_strided

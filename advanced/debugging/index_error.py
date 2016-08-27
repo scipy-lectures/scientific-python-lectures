@@ -1,5 +1,5 @@
 """Small snippet to raise an IndexError."""
-from __future__ import print_function
+
 
 def index_error():
     lst = list('foobar')

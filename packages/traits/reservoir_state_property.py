@@ -1,4 +1,4 @@
-from __future__ import print_function
+
 from traits.api import HasTraits, Instance, DelegatesTo, Float, Range
 from traits.api import Property
 
