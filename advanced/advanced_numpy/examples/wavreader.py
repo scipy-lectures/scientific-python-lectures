@@ -4,6 +4,7 @@ Exercise: reading a wav header
 
 An exercise to learn complex dtypes.
 """
+from __future__ import print_function
 
 import sys
 import numpy as np
@@ -27,7 +28,7 @@ wav_header_dtype = np.dtype([
      # it does not have a fixed size
 ])
 
-print wav_header_dtype.fields
+print(wav_header_dtype.fields)
 
 # Mini-exercise: Rewrite the above by supplying only the ``sample_rate`` and
 #                ``num_channels`` fields.
@@ -43,7 +44,7 @@ f = open(sys.argv[1], 'r')
 wav_header = np.fromfile(f, dtype=wav_header_dtype, count=1)
 f.close()
 
-print "Sample rate: %d, channels: %d" % (
+print("Sample rate: %d, channels: %d" % (
     wav_header['sample_rate'][0],
     wav_header['num_channels'][0]
-    )
+    ))

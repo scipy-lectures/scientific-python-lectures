@@ -4,6 +4,7 @@ Importing the compiled module
 
 Playing with the module defined in myobject.c
 """
+from __future__ import print_function
 
 #
 # Compile myobject.c first with

@@ -14,6 +14,7 @@ significantly non-zero: the air fares have decreased between 2000 and
 2001, and their dependence on distance travelled has also decreased
 
 """
+from __future__ import print_function
 
 # Standard library imports
 import urllib

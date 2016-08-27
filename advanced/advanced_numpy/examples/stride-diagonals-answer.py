@@ -5,6 +5,7 @@ Solution to the stride diagonal exercise
 Solution showing how to use as_strided to stride in diagonal.
 
 """
+from __future__ import print_function
 
 import numpy as np
 from numpy.lib.stride_tricks import as_strided
@@ -21,9 +22,9 @@ x_diag = as_strided(x, shape=(3,), strides=((3+1)*x.itemsize,))
 x_supdiag = as_strided(x[0,1:], shape=(2,), strides=((3+1)*x.itemsize,))
 x_subdiag = as_strided(x[1:,0], shape=(2,), strides=((3+1)*x.itemsize,))
 
-print x_diag
-print x_supdiag
-print x_subdiag
+print(x_diag)
+print(x_supdiag)
+print(x_subdiag)
 
 #
 # Mini-exercise: (assume C memory order)

@@ -5,6 +5,7 @@ Simple Regression
 Fit a simple linear regression using 'statsmodels', compute corresponding
 p-values.
 """
+from __future__ import print_function
 # Original author: Thomas Haslwanter
 
 import numpy as np

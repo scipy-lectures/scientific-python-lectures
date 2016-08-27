@@ -4,6 +4,7 @@ LOBPCG: block-preconditionned solver
 
 This example demos the LOBPCG block-preconditionned solver.
 """
+from __future__ import print_function
 
 from scipy import array, arange, ones, sort, cos, pi, rand, \
      set_printoptions, r_
@@ -42,15 +43,15 @@ data=[]
 tt = time.clock()
 eigs,vecs, resnh = lobpcg(A,X,B, tol=1e-6, maxiter=500, retResidualNormsHistory=1)
 data.append(time.clock()-tt)
-print 'Results by LOBPCG for n='+str(n)
-print
-print eigs
-print
-print 'Exact eigenvalues'
-print
-print w_ex[:m]
-print
-print 'Elapsed time',data[0]
+print('Results by LOBPCG for n='+str(n))
+print()
+print(eigs)
+print()
+print('Exact eigenvalues')
+print()
+print(w_ex[:m])
+print()
+print('Elapsed time',data[0])
 loglog(arange(1,n+1),w_ex,'b.')
 xlabel(r'Number $i$')
 ylabel(r'$\lambda_i$')

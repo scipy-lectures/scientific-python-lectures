@@ -2,6 +2,7 @@
 Script to list all the '.py' files in a directory, in the order of file
 name length.
 """
+from __future__ import print_function
 
 import os
 import sys
@@ -24,5 +25,5 @@ def filter_and_sort(file_list):
 if __name__ == '__main__':
     file_list = os.listdir(sys.argv[-1])
     sorted_file_list = filter_and_sort(file_list)
-    print sorted_file_list
+    print(sorted_file_list)
 

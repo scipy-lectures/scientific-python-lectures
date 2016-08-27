@@ -1,3 +1,4 @@
+from __future__ import print_function
 import numpy as np
 
 a = np.ones((4, 4), dtype=int)
@@ -7,5 +8,5 @@ a[2,3] = 2
 b = np.zeros((6, 5))
 b[1:] = np.diag(np.arange(2, 7))
 
-print a
-print b
+print(a)
+print(b)

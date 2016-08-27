@@ -2,6 +2,7 @@
 
 Data is stored in data.txt.
 """
+from __future__ import print_function
 
 def parse_data(data_string):
     data = []

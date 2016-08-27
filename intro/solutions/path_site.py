@@ -1,4 +1,5 @@
 """Script to search the PYTHONPATH for the module site.py"""
+from __future__ import print_function
 
 import os
 import sys
@@ -20,5 +21,5 @@ def find_module(module):
 
 if __name__ == '__main__':
     result = find_module('site.py')
-    print result
+    print(result)
     

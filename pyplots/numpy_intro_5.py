@@ -1,3 +1,4 @@
+from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -8,7 +9,7 @@ t_max = 200      # time during which we follow the walker
 
 t = np.arange(t_max)
 steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
-print np.unique(steps) # Verification: all steps are 1 or -1
+print(np.unique(steps)) # Verification: all steps are 1 or -1
 # [-1,  1]
 
 # We build the walks by summing steps along the time

@@ -1,3 +1,4 @@
+from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -13,13 +14,13 @@ plt.show()
 
 # The mean populations over time:
 populations = data[:,1:]
-print populations.mean(axis=0)
+print(populations.mean(axis=0))
 # [ 34080.95238095,  20166.66666667,  42400.        ]
 
 # The sample standard deviations:
-print populations.std(axis=0, ddof=1)
+print(populations.std(axis=0, ddof=1))
 # [ 21413.98185877,  16655.99991995,   3404.55577132]
 
 # Which species has the highest population each year?
-print np.argmax(populations, axis=1)
+print(np.argmax(populations, axis=1))
 # [2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2]
