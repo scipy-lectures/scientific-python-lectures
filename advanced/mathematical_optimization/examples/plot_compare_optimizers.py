@@ -11,7 +11,7 @@ import pickle
 import numpy as np
 import pylab as pl
 
-results = pickle.load(file('compare_optimizers.pkl'))
+results = pickle.load(file('helper/compare_optimizers.pkl'))
 #results = pickle.load(file('compare_optimizers_gradients.pkl'))
 n_methods = len(results.values()[0]['Rosenbrock  '])
 n_dims = len(results)
