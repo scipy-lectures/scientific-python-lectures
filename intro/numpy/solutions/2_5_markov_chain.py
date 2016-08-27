@@ -17,7 +17,7 @@ P /= P.sum(axis=1)[:,np.newaxis]
 p /= p.sum()
 
 # Take steps
-for k in xrange(n_steps):
+for k in range(n_steps):
     p = P.T.dot(p)
 
 p_50 = p

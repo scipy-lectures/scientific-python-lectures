@@ -15,7 +15,7 @@ def compute_mandelbrot(N_max, some_threshold, nx, ny):
     # Mandelbrot iteration
 
     z = c
-    for j in xrange(N_max):
+    for j in range(N_max):
         z = z**2 + c
 
     mandelbrot_set = (abs(z) < some_threshold)

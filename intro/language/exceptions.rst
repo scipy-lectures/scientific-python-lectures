@@ -119,7 +119,7 @@ Raising exceptions
     In [15]: def filter_name(name):
        ....:	try:
        ....:	    name = name.encode('ascii')
-       ....:	except UnicodeError, e:
+       ....:	except UnicodeError as e:
        ....:	    if name == 'Gaël':
        ....:		print('OK, Gaël')
        ....:	    else:
