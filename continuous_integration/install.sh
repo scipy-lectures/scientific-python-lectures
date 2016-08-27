@@ -58,10 +58,15 @@ create_new_conda_env() {
 
     # Use the miniconda installer for faster download / install of conda
     # itself
-    wget http://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh \
+    if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
+        wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh \
         -O miniconda.sh
-    chmod +x miniconda.sh && ./miniconda.sh -b
-    export PATH=/home/travis/miniconda2/bin:$PATH
+    else
+        wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+        -O miniconda.sh
+    fi
+    bash miniconda.sh -b -p $HOME/miniconda
+    export PATH=/home/travis/miniconda/bin:$PATH
     conda update --yes conda
 
     # Configure the conda environment and put it in the path using the
@@ -70,7 +75,7 @@ create_new_conda_env() {
     echo "conda requirements string: $REQUIREMENTS"
     conda create -n testenv --yes $REQUIREMENTS
     source activate testenv
-    conda install --yes libgfortran=1
+    conda install --yes python=$TRAVIS_PYTHON_VERSION libgfortran=1
 
     if [[ "$INSTALL_MKL" == "true" ]]; then
         # Make sure that MKL is used
