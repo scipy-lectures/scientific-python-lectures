@@ -18,12 +18,7 @@ import subprocess
 # absolute, like shown here.
 sys.path.append(os.path.abspath('sphinxext'))
 
-# Try to override the matplotlib configuration as early as possible
-try:
-    import gen_rst
-except:
-    pass
-
+import sphinx_gallery
 
 # General configuration
 # ---------------------
@@ -33,7 +28,6 @@ needs_sphinx = '1.0'
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-        'gen_rst',
         'sphinx.ext.autodoc',
         'sphinx.ext.doctest',
         #'matplotlib.sphinxext.plot_directive',
@@ -44,9 +38,16 @@ extensions = [
         'sphinx.ext.pngmath',
         'sphinx.ext.intersphinx',
         'sphinx.ext.extlinks',
+        'sphinx_gallery.gen_gallery',
 ]
 
 doctest_test_doctest_blocks = 'true'
+
+sphinx_gallery_conf = {
+    'examples_dirs': ['intro/summary-exercises/examples/',
+                      'intro/matplotlib/examples'],
+    'gallery_dirs': ['intro/summary-exercises/auto_examples',
+                     'intro/matplotlib/auto_examples']}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
