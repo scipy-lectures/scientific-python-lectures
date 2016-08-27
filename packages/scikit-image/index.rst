@@ -73,7 +73,7 @@ Images are NumPy's arrays ``np.ndarray``
     >>> plt.imshow(check, cmap='gray', interpolation='nearest') # doctest: +SKIP
 
 
-.. image:: auto_examples/images/plot_check_1.png
+.. image:: auto_examples/images/sphx_glr_plot_check_001.png
     :scale: 60
     :target: auto_examples/plot_check.html
     :align: center
@@ -162,7 +162,7 @@ Reading from files: :func:`skimage.io.imread` ::
     >>> filename = os.path.join(skimage.data_dir, 'camera.png')
     >>> camera = io.imread(filename)
 
-.. image:: auto_examples/images/plot_camera_1.png
+.. image:: auto_examples/images/sphx_glr_plot_camera_001.png
     :width: 50%
     :target: auto_examples/plot_camera.html
     :align: center
@@ -186,7 +186,7 @@ Data types
 -----------
 
 
-.. image:: auto_examples/images/plot_camera_uint_1.png
+.. image:: auto_examples/images/sphx_glr_plot_camera_uint_001.png
     :align: right
     :width: 50%
     :target: auto_examples/plot_camera_uint.html
@@ -308,7 +308,7 @@ Uses the following linear kernel for computing horizontal gradients::
     0   0   0
     -1  -2  -1
 
-.. image:: auto_examples/images/plot_sobel_1.png
+.. image:: auto_examples/images/sphx_glr_plot_sobel_001.png
     :width: 70%
     :target: auto_examples/plot_sobel.html
     :align: center
@@ -326,7 +326,7 @@ transform the value of one pixel::
 
 Enhances contrast in large almost uniform regions.
 
-.. image:: auto_examples/images/plot_equalize_hist_1.png
+.. image:: auto_examples/images/sphx_glr_plot_equalize_hist_001.png
     :width: 70%
     :target: auto_examples/plot_equalize_hist.html
     :align: center
@@ -448,7 +448,7 @@ skeletonization, etc.
         >>> tv_coins = restoration.denoise_tv_chambolle(coins_zoom, weight=0.1)
         >>> gaussian_coins = filters.gaussian_filter(coins, sigma=2)
 
-    .. image:: auto_examples/images/plot_filter_coins_1.png
+    .. image:: auto_examples/images/sphx_glr_plot_filter_coins_001.png
         :width: 99%
         :target: auto_examples/plot_filter_coins.html
 
@@ -484,7 +484,7 @@ Histogram-based method: **Otsu thresholding**
     val = filters.threshold_otsu(camera)
     mask = camera < val
 
-.. image:: auto_examples/images/plot_threshold_1.png
+.. image:: auto_examples/images/sphx_glr_plot_threshold_001.png
     :width: 70%
     :target: auto_examples/plot_threshold.html
     :align: center
@@ -518,7 +518,7 @@ Label only foreground connected components::
     >>> blobs_labels = measure.label(blobs, background=0)
 
 
-.. image:: auto_examples/images/plot_labels_1.png
+.. image:: auto_examples/images/sphx_glr_plot_labels_001.png
     :width: 90%
     :target: auto_examples/plot_labels.html
     :align: center
@@ -572,7 +572,7 @@ is based on the idea of the diffusion of labels in the image::
     >>> markers[~image] = -1
     >>> labels_rw = segmentation.random_walker(image, markers)
 
-.. image:: auto_examples/images/plot_segmentations_1.png
+.. image:: auto_examples/images/sphx_glr_plot_segmentations_001.png
     :width: 90%
     :target: auto_examples/plot_segmentations.html
     :align: center
@@ -665,7 +665,7 @@ Use ``skimage`` dedicated utility function::
 
     >>> coins_edges = segmentation.mark_boundaries(coins, clean_border.astype(np.int))
 
-.. image:: auto_examples/images/plot_boundaries_1.png
+.. image:: auto_examples/images/sphx_glr_plot_boundaries_001.png
     :width: 90%
     :target: auto_examples/plot_boundaries.html
     :align: center
@@ -720,7 +720,7 @@ Example: detecting corners using Harris detector ::
     coords = corner_peaks(corner_harris(image), min_distance=5)
     coords_subpix = corner_subpix(image, coords, window_size=13)
 
-.. image:: auto_examples/images/plot_features_1.png
+.. image:: auto_examples/images/sphx_glr_plot_features_001.png
     :width: 90%
     :target: auto_examples/plot_features.html
     :align: center
