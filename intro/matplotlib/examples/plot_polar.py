@@ -22,12 +22,14 @@ for r, bar in zip(radii, bars):
 plt.gca().set_xticklabels([])
 plt.gca().set_yticklabels([])
 
-plt.text(-0.2, 1.02, " Polar Axis\n",
+
+plt.text(-0.2, 1.02, " Polar Axis                  \n",
       horizontalalignment='left',
       verticalalignment='top',
       size='xx-large',
-      bbox=dict(facecolor='white', alpha=1.0, width=400, height=65),
+      bbox=dict(facecolor='white', alpha=1.0),
       transform=plt.gca().transAxes)
+
 plt.text(-0.2, 1.01, "\n\n Plot anything using polar axis ",
       horizontalalignment='left',
       verticalalignment='top',

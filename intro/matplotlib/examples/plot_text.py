@@ -28,11 +28,20 @@ for i in range(24):
     plt.text(x, y, eq, ha='center', va='center', color="#11557c", alpha=alpha,
          transform=plt.gca().transAxes, fontsize=size, clip_on=True)
 
+
+# Add a title and a box around it
+from matplotlib.patches import FancyBboxPatch
+ax = plt.gca()
+ax.add_patch(FancyBboxPatch((-0.05, .87),
+                            width=.66, height=.165, clip_on=False,
+                            boxstyle="square,pad=0", zorder=3,
+                            facecolor='white', alpha=1.0,
+                            transform=plt.gca().transAxes))
+
 plt.text(-0.05, 1.02, " Text:                   plt.text(...)\n",
         horizontalalignment='left',
         verticalalignment='top',
         size='xx-large',
-        bbox=dict(facecolor='white', alpha=1.0, width=400, height=65),
         transform=plt.gca().transAxes)
 
 plt.text(-0.05, 1.01, "\n\n     Draw any kind of text ",

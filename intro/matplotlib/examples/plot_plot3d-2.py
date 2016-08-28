@@ -17,12 +17,13 @@ plt.xticks(())
 plt.yticks(())
 ax.set_zticks(())
 
-ax.text2D(-0.05, 1.05, " 3D plots \n\n",
+
+ax.text2D(-0.05, 1.05, " 3D plots             \n",
           horizontalalignment='left',
           verticalalignment='top',
+          bbox=dict(facecolor='white', alpha=1.0),
           family='Lint McCree Intl BB',
           size='x-large',
-          bbox=dict(facecolor='white', alpha=1.0, width=350,height=60),
           transform=plt.gca().transAxes)
 
 ax.text2D(-0.05, .975, " Plot 2D or 3D data",

@@ -24,11 +24,11 @@ plt.xticks(())
 plt.yticks(())
 ax.set_zticks(())
 
-ax.text2D(0.05, .93, " 3D plots \n",
+ax.text2D(0.05, .93, " 3D plots             \n",
           horizontalalignment='left',
           verticalalignment='top',
           size='xx-large',
-          bbox=dict(facecolor='white', alpha=1.0, width=400, height=65),
+          bbox=dict(facecolor='white', alpha=1.0),
           transform=plt.gca().transAxes)
 
 ax.text2D(0.05, .87, " Plot 2D or 3D data",
