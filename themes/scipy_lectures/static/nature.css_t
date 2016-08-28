@@ -645,7 +645,8 @@ div.topic {
 }
 
 div.seealso {
-    margin-top: 25px;
+    margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 /* special colors for exercises */

@@ -1,3 +1,5 @@
+.. _scikit-learn_chapter:
+
 ========================================
 scikit-learn: machine learning in Python
 ========================================

@@ -1,3 +1,5 @@
+.. _python_language_chapter:
+
 The Python language
 =====================================
 
