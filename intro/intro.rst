@@ -29,10 +29,10 @@ Python's strengths
   have they been trained so. They need to be able to draw a curve, smooth
   a signal, do a Fourier transform in a few minutes.
 
-* **Easy communication** To keep code alive within a lab or a company:
-  the code should be as readable as a book by collaborators, students, or
+* **Easy communication** To keep code alive within a lab or a company
+  it should be as readable as a book by collaborators, students, or
   maybe customers. Python syntax is simple, avoiding strange symbols or
-  lengthy routine specifications that would divert the reader from the
+  lengthy routine specifications that would divert the reader from
   mathematical or scientific understanding of the code.
 
 * **Efficient code** Python numerical modules are computationally
@@ -51,15 +51,14 @@ Compiled languages: C, C++, Fortran...
 
 :Pros:
 
-  * Very fast. Very optimized compilers. For heavy computations, it's difficult
-    to outperform these languages.
+  * Very fast. For heavy computations, it's difficult to outperform these
+    languages.
 
 :Cons:
 
-  * Painful usage: no interactivity during development,
-    mandatory compilation steps, verbose syntax (&, ::, }}, ; etc.),
-    manual memory management (tricky in C). These are **difficult
-    languages** for non computer scientists.
+  * Painful usage: no interactivity during development, mandatory
+    compilation steps, verbose syntax, manual memory management. These
+    are **difficult languages** for non programmers.
 
 Matlab scripting language
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -70,8 +69,8 @@ Matlab scripting language
     different domains. Fast execution because these libraries are often written
     in a compiled language.
 
-  * Pleasant development environment: comprehensive and well organized help,
-    integrated editor, etc.
+  * Pleasant development environment: comprehensive and help, integrated
+    editor, etc.
 
   * Commercial support is available.
 
@@ -81,23 +80,23 @@ Matlab scripting language
 
   * Not free.
 
-Other scripting languages: Scilab, Octave, Igor, R, IDL, etc.
+Other scripting languages: Scilab, Octave, R, IDL, etc.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :Pros:
 
   * Open-source, free, or at least cheaper than Matlab.
 
-  * Some features can be very advanced (statistics in R, figures in Igor, etc.)
+  * Some features can be very advanced (statistics in R, etc.)
 
 :Cons:
 
   * Fewer available algorithms than in Matlab, and the language
     is not more advanced.
 
-  * Some software are dedicated to one domain. Ex: Gnuplot or xmgrace
-    to draw curves. These programs are very powerful, but they are
-    restricted to a single type of usage, such as plotting.
+  * Some software are dedicated to one domain. Ex: Gnuplot to draw
+    curves. These programs are very powerful, but they are restricted to
+    a single type of usage, such as plotting.
 
 Python
 ~~~~~~
@@ -128,7 +127,7 @@ Python
 The Scientific Python ecosystem
 --------------------------------
 
-Unlike Matlab, Scilab or R, Python does not come with a pre-bundled set
+Unlike Matlab, or R, Python does not come with a pre-bundled set
 of modules for scientific computing. Below are the basic building blocks
 that can be combined to obtain a scientific computing environment:
 
@@ -143,7 +142,7 @@ that can be combined to obtain a scientific computing environment:
   management, simple network protocols.
 
 * A large number of specialized modules or applications written in
-  Python: web protocols, web framework, etc. ... and scientific
+  Python: web framework, etc. ... and scientific
   computing.
 
 * Development tools (automatic testing, documentation generation)
@@ -229,8 +228,8 @@ and much more packages not documented in the scipy lectures.
     >>> np.random.seed(4)
 
 
-Installing a working environment
----------------------------------
+Before starting: Installing a working environment
+--------------------------------------------------
 Python comes in many flavors, and there are many ways to install it.
 However, we recommend to install a scientific-computing distribution,
 that comes readily with optimized versions of scientific modules.
@@ -430,16 +429,14 @@ Other useful magic functions are:
 
   .. sourcecode:: ipython
 
-    In [5]: cpaste
+    In [1]: cpaste
     Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
-    :In [3]: timeit x = 10
+    :>>> for i in range(3):
+    :...     print(i)
     :--
-    10000000 loops, best of 3: 85.9 ns per loop
-    In [6]: cpaste
-    Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
-    :>>> timeit x = 10
-    :--
-    10000000 loops, best of 3: 86 ns per loop
+    0
+    1
+    2
 
 * ``%timeit`` allows you to time the execution of short snippets using the
   ``timeit`` module from the standard library:
