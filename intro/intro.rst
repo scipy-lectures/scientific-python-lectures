@@ -420,7 +420,7 @@ Other useful magic functions are:
 
   .. sourcecode:: ipython
 
-    In [2]: cd /tmp
+    In [1]: cd /tmp
     /tmp
 
 * ``%cpaste`` allows you to paste code, especially code from websites which has
@@ -429,7 +429,7 @@ Other useful magic functions are:
 
   .. sourcecode:: ipython
 
-    In [1]: cpaste
+    In [2]: %cpaste
     Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
     :>>> for i in range(3):
     :...     print(i)
@@ -443,7 +443,7 @@ Other useful magic functions are:
 
   .. sourcecode:: ipython
 
-      In [3]: timeit x = 10
+      In [3]: %timeit x = 10
       10000000 loops, best of 3: 39 ns per loop
 
 * ``%debug`` allows you to enter post-mortem debugging. That is to say, if the
@@ -452,14 +452,14 @@ Other useful magic functions are:
 
   .. sourcecode:: ipython
 
-    In [7]: x === 10
+    In [4]: x === 10
       File "<ipython-input-6-12fd421b5f28>", line 1
         x === 10
             ^
     SyntaxError: invalid syntax
 
 
-    In [8]: debug
+    In [5]: %debug
     > /.../IPython/core/compilerop.py (87)ast_parse()
          86         and are passed to the built-in compile function."""
     ---> 87         return compile(source, filename, symbol, self.flags | PyCF_ONLY_AST, 1)
