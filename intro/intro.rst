@@ -234,7 +234,7 @@ Python comes in many flavors, and there are many ways to install it.
 However, we recommend to install a scientific-computing distribution,
 that comes readily with optimized versions of scientific modules.
 
-**Under linux**
+**Under Linux**
 
 If you have a recent distribution, most of the tools are probably
 packaged, and it is recommended to use your package manager.
