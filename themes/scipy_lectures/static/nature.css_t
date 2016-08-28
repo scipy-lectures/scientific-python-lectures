@@ -601,12 +601,11 @@ div.body img {
 }
 
 /* Center figures that are larger than 100% of the figure */
-/* div.body div.figure {
+div.body a.image-reference div.figure {
     margin-left: -200px;
     margin-right: -200px;
     text-align: center;
   }
-*/
 
 /* alternating colors in table rows */
 table.docutils tr:nth-child(even) {
