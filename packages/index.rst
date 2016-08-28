@@ -1,5 +1,7 @@
+.. _applications_part:
+
 Packages and applications
-===================================================================
+==========================
 
 This part of the *Scipy lecture notes* is dedicated to various scientific
 packages useful for extended needs.

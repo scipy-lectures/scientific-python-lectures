@@ -1,5 +1,7 @@
+.. _advanced_topics_part:
+
 Advanced topics
-===================================================================
+================
 
 This part of the *Scipy lecture notes* is dedicated to advanced usage. It
 strives to educate the proficient Python coder to be an expert and
