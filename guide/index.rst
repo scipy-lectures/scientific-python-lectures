@@ -23,23 +23,53 @@ Make sure to read this `Documentation style guide`_ as well as these
 How to contribute ?
 ===================
 
-Choose a topic that is not yet covered and write it up !
+* If you spot typos, unclear or clumsy wording in the lecture notes, please
+  help to improve them. Simple text editing can be done by `editing files
+  in your GitHub fork
+  <https://help.github.com/articles/editing-files-in-your-repository/>`_ of
+  the lecture notes. On every html page of the lecture notes, an **edit** 
+  button on the top right links to the editable source of the page (you still
+  need to create a fork of the project). Edit the source and choose
+  "Create a new branch for this commit and start a pull request".
 
-Create a new directory in either the ``intro`` or ``advanded`` part and start
-writing into ``index.rst``. Don't forget to also update the ``index.rst`` in
-the corresponding part such that your new tutorial appear in the table of
-contents.
+* Choose a topic that is not yet covered and write it up !
 
-Also keep in mind that these tutorials are to being taught at different places
-and different parts may be combined into a course on Python for scientific
-computing. Thus you want them to be quite interactive and reasonably short
-(one to two hours) or your audience might just fall asleep long before you've
-finished talking...
+  First create a new issue on GitHub to explain the topic which you would
+  like to cover, in order to discuss with editors and contributors about
+  the scope of the future tutorial. 
+  
+  Then create a new directory inside one of the chapters directories 
+  (``intro``, ``advanced``, or ``packages``) and create a file ``index.rst``
+  for the new tutorial. Add the new file in the table of contents of the
+  corresponding chapter (in its ``index.rst``).
 
-Last but not least, the goal of this material is to provide a concise text
-useful to learning the main features of the scipy ecosystem. If you want to
-contribute to reference material, we suggest that you contribute to the
-documentation of the specific packages that you are interested in.
+Keep in mind that tutorials are to be taught at different places and
+different parts may be combined into a course on Python for scientific
+computing. Thus you want them to be interactive and reasonably short (one
+to two hours).
+
+Last but not least, the goal of this material is to provide a concise
+text to learn the main features of the scientific Python ecosystem. If
+you want to contribute to reference material, we suggest that you
+contribute to the documentation of the specific packages that you are
+interested in.
+
+Using GitHub
+============
+
+The easiest way to make your own version of this teaching material
+is to fork it under GitHub, and use the git version control system to
+maintain your own fork. For this, all you have to do is create an account
+on GitHub and click on the *fork* button, on the top right of `this
+page <https://github.com/scipy-lectures/scipy-lecture-notes>`_. You can use git to pull from your *fork*, and push back to it the
+changes. If you want to contribute the changes back, just fill a
+*pull request*, using the button on the top of your fork's page.
+
+Several resources are available online to learn git and GitHub, such as
+https://try.github.io for complete beginners.
+
+Please refrain from modifying the Makefile unless it is absolutely
+necessary.
 
 Keeping it concise: collapsing paragraphs
 ===========================================
@@ -47,10 +77,10 @@ Keeping it concise: collapsing paragraphs
 The HTML output is used for displaying on screen while teaching. The goal
 is to have the same material displayed as in the notes. Thus there needs
 to be a very concise display, with bullet-lists rather than full-blown
-paragraphs and sentences. However, in the long run, it is useful to have
-more elaborate discussions that people can read and refer to. For this,
-the ``tip`` sphinx directive will create collapsible paragraphs, that can
-be hidden during an oral presentation::
+paragraphs and sentences. For more elaborate discussions that people can
+read and refer to, please use the ``tip`` sphinx directive. It creates
+collapsible paragraphs, that can be hidden during an oral
+presentation::
 
     .. tip::
 
@@ -59,7 +89,7 @@ be hidden during an oral presentation::
 
         It can span on multiple paragraphs
 
-This renders as following:
+This renders as:
 
     .. tip::
 
@@ -94,8 +124,9 @@ directive.
 
 .. note::
 
-    The code to provide this style of plot inclusion was adopted from the
-    scikits.learn project and can be found in ``sphinxext/gen_rst.py``.
+    The transformation of Python scripts into figures and galleries of
+    examples is provided by the `sphinx-gallery
+    <http://sphinx-gallery.readthedocs.io/>`_ package.
 
 Using Markup
 ============
@@ -154,20 +185,6 @@ difficult to read:
    And some text.
 
 
-Using Github
-============
-
-The easiest way to make your own version of this teaching material
-is to fork it under Github, and use the git version control system to
-maintain your own fork. For this, all you have to do is create an account
-on github (this site) and click on the *fork* button, on the top right of this
-page. You can use git to pull from your *fork*, and push back to it the
-changes. If you want to contribute the changes back, just fill a
-*pull request*, using the button on the top of your fork's page.
-
-Please refrain from modifying the Makefile unless it is absolutely
-necessary.
-
 Admonitions
 ============
 
@@ -182,7 +199,7 @@ Admonitions
 Clearing floats
 ================
 
-Figures positionned with `:align: right` are float. To flush them, use::
+Figures positioned with `:align: right` are float. To flush them, use::
 
     |clear-floats|
 
