@@ -106,7 +106,7 @@ Any figure must be generated from a python script that needs to be named
 ``plot_xxx.py`` (xxx can be anything of course) and put into the ``examples``
 directory. The generated image will be named from the script name.
 
-.. image::  auto_examples/images/plot_simple_1.png
+.. image::  auto_examples/images/sphx_glr_plot_simple_001.png
    :target: auto_examples/plot_simple.html
 
 
@@ -114,7 +114,7 @@ This is the way to include your image and link it to the code:
 
 .. code-block:: rst
 
-   .. image::  auto_examples/images/plot_simple_1.png
+    .. image::  auto_examples/images/sphx_glr_plot_simple_001.png
       :target: auto_examples/plot_simple.html
 
 You can display the corresponding code using the ``literal-include``
