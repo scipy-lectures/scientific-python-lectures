@@ -190,7 +190,7 @@ image. ::
     >>> opened_mask = ndimage.binary_opening(mask)
     >>> closed_mask = ndimage.binary_closing(opened_mask)
 
-.. figure:: morpho.png
+.. figure:: image_processing/morpho.png
    :align: center
    :scale: 75
 

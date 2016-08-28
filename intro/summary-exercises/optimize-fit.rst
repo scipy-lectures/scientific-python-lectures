@@ -151,8 +151,8 @@ Going further
   that contains three significant peaks. You must adapt the model which is
   now a sum of Gaussian functions instead of only one Gaussian peak.
 
-.. image:: waveform_2.png
-   :align: center
+  .. image:: waveform_2.png
+     :align: center
 
 * In some cases, writing an explicit function to compute the Jacobian is faster
   than letting ``leastsq`` estimate it numerically. Create a function to compute
