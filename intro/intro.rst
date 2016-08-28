@@ -80,6 +80,21 @@ Matlab scripting language
 
   * Not free.
 
+Julia
+~~~~~~~
+
+:Pros:
+
+  * Fast code, yet interactive and simple.
+
+  * Easily connects to Python or C.
+
+:Cons:
+
+  * Ecosystem limited to numerical computing.
+
+  * Still young.
+
 Other scripting languages: Scilab, Octave, R, IDL, etc.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -108,8 +123,8 @@ Python
   * Well thought out language, allowing to write very readable and well
     structured code: we "code what we think".
 
-  * Many libraries for other tasks than scientific computing (web server
-    management, serial port access, etc.)
+  * Many libraries beyond scientific computing (web server,
+    serial port access, etc.)
 
   * Free and open-source software, widely spread, with a vibrant community.
 
@@ -275,7 +290,7 @@ Interactive work
 .................
 
 We recommend an interactive work with the `IPython
-<http://ipython.org>`__ console, or it's offspring, the `Jupyter notebook
+<http://ipython.org>`__ console, or its offspring, the `Jupyter notebook
 <http://jupyter.readthedocs.io/en/latest/content-quickstart.html>`_. They
 are handy to explore and understand algorithms.
 
@@ -320,12 +335,12 @@ Elaboration of the work in an editor
 
 As you move forward, it will be important to not only work interactively,
 but also to create and reuse Python files. For this, a powerful code editor
-will get you far. Here are several good easy-to-use options:
+will get you far. Here are several good easy-to-use editors:
 
   * `Spyder <https://pythonhosted.org/spyder/>`_: integrates an IPython
-    console, a debuger, a profiler...
+    console, a debugger, a profiler...
   * `PyCharm <https://www.jetbrains.com/pycharm>`_: integrates an IPython
-    console, notebooks, a debuger... (freely available,
+    console, notebooks, a debugger... (freely available,
     but commercial)
   * `Atom <https://atom.io>`_
 
@@ -371,7 +386,7 @@ resulting variables:
 IPython and Jupyter Tips and Tricks
 ....................................
 
-The user manuals contains a wealth of information. Here we give a quick
+The user manuals contain a wealth of information. Here we give a quick
 introduction to four useful features: *history*, *tab completion*, *magic
 functions*, and *aliases*.
 
@@ -408,7 +423,7 @@ completion also works on file and directory names.*
 |
 
 **Magic functions**
-The console and the notebooks support so called *magic* functions by prefixing a command with the
+The console and the notebooks support so-called *magic* functions by prefixing a command with the
 ``%`` character. For example, the ``run`` and ``whos`` functions from the
 previous section are magic functions. Note that, the setting ``automagic``,
 which is enabled by default, allows you to omit the preceding ``%`` sign. Thus,
@@ -446,6 +461,8 @@ Other useful magic functions are:
       In [3]: %timeit x = 10
       10000000 loops, best of 3: 39 ns per loop
 
+  .. seealso:: :ref:`Chapter on optimizing code <optimizing_code_chapter>`
+
 * ``%debug`` allows you to enter post-mortem debugging. That is to say, if the
   code you try to execute, raises an exception, using ``%debug`` will enter the
   debugger at the point where the exception was thrown.
@@ -470,6 +487,7 @@ Other useful magic functions are:
     <IPython.core.compilerop.CachingCompiler instance at 0x2ad8ef0>,
     'filename': '<ipython-input-6-12fd421b5f28>'}
 
+  .. seealso:: :ref:`Chapter on debugging <debugging_chapter>`
 
 |
 

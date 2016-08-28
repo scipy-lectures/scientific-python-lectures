@@ -1,3 +1,5 @@
+.. _optimizing_code_chapter:
+
 =================
 Optimizing code
 =================

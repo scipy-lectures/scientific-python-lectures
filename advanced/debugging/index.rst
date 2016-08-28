@@ -1,3 +1,5 @@
+.. _debugging_chapter:
+
 ==============
 Debugging code
 ==============
@@ -59,7 +61,6 @@ They are several static analysis tools in Python; to name a few:
 * `pylint <http://www.logilab.org/857>`_
 * `pychecker <http://pychecker.sourceforge.net/>`_
 * `pyflakes <http://pypi.python.org/pypi/pyflakes>`_
-* `pep8 <http://pypi.python.org/pypi/pep8>`_
 * `flake8 <http://pypi.python.org/pypi/flake8>`_
 
 Here we focus on `pyflakes`, which is the simplest tool.
