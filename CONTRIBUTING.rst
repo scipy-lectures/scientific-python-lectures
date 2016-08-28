@@ -1,6 +1,21 @@
 Contributing
 =============
 
+The SciPy lecture notes are a community-based effort and require constant
+maintenance and improvements. New contributions such as wording
+improvements or inclusion of new topics are welcome.
+
+Contributing guide
+------------------
+
+The directory ``guide`` contains instructions on how to contribute:
+
+.. topic::  **Example chapter**
+
+  .. toctree::
+
+   guide/index.rst
+
 Building instructions
 ----------------------
 
@@ -17,9 +32,9 @@ To generate the pdf file for printing::
 
     make pdf
 
-The pdf builder is a bit pointy and you might have some TeX errors. Tweaking
-the layout in the ``*.rst`` files is usually enough to work around these
-problems.
+The pdf builder is a bit difficult and you might have some TeX errors.
+Tweaking the layout in the ``*.rst`` files is usually enough to work
+around these problems.
 
 Requirements
 ............
@@ -36,27 +51,17 @@ Requirements
 * pandas
 * seaborn
 
-Building on Fedora
-------------------
+|
+|
 
-As root::
+.. topic:: Building on Fedora
 
-    yum install python make python-matplotlib texlive-pdfjam texlive scipy \ 
-    texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
-    pip install Sphinx
-    pip install Cython
-    pip install scikit-learn
-    pip install scikit-image
+    As root::
 
+        yum install python make python-matplotlib texlive-pdfjam texlive scipy \ 
+        texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
+        pip install Sphinx
+        pip install Cython
+        pip install scikit-learn
+        pip install scikit-image
 
-Contributing guide and example chapter
----------------------------------------
-
-The directory ``guide`` contains an example chapter with specific
-instructions on how to contribute:
-
-.. topic::  **Example chapter**
-
-  .. toctree::
-
-   guide/index.rst
