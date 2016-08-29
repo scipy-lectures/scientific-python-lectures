@@ -221,7 +221,7 @@ operations on the resulting group of dataframes::
 
 |
 
-.. image:: auto_examples/images/plot_pandas_1.png
+.. image:: auto_examples/images/sphx_glr_plot_pandas_001.png
    :target: auto_examples/plot_pandas.html
    :align: right
    :scale: 42
@@ -260,7 +260,7 @@ dataframes:
     >>> from pandas.tools import plotting
     >>> plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])   # doctest: +SKIP
 
-.. image:: auto_examples/images/plot_pandas_2.png
+.. image:: auto_examples/images/sphx_glr_plot_pandas_002.png
    :target: auto_examples/plot_pandas.html
    :scale: 70
    :align: center
@@ -273,7 +273,7 @@ dataframes:
 
    The IQ metrics are bimodal, as if there are 2 sub-populations.
 
-.. image:: auto_examples/images/plot_pandas_3.png
+.. image:: auto_examples/images/sphx_glr_plot_pandas_003.png
    :target: auto_examples/plot_pandas.html
    :scale: 70
    :align: center
@@ -341,7 +341,7 @@ with :func:`scipy.stats.ttest_ind`::
 Paired tests: repeated measurements on the same indivuals
 ----------------------------------------------------------
 
-.. image:: auto_examples/images/plot_paired_boxplots_1.png
+.. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_001.png
    :target: auto_examples/plot_pandas.html
    :scale: 70
    :align: right
@@ -361,7 +361,7 @@ can be removed, using a "paired test", or `"repeated measures test"
     >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     (...1.784201940..., 0.082172638183...)
 
-.. image:: auto_examples/images/plot_paired_boxplots_2.png
+.. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_002.png
    :target: auto_examples/plot_pandas.html
    :scale: 60
    :align: right
@@ -409,7 +409,7 @@ Linear models, multiple factors, and analysis of variance
 A simple linear regression
 ...........................
 
-.. image:: auto_examples/images/plot_regression_1.png
+.. image:: auto_examples/images/sphx_glr_plot_regression_001.png
    :target: auto_examples/plot_regression.html
    :scale: 60
    :align: right
@@ -599,7 +599,7 @@ model::
 Multiple Regression: including multiple factors
 -------------------------------------------------
 
-.. image:: auto_examples/images/plot_regression_3d_1.png
+.. image:: auto_examples/images/sphx_glr_plot_regression_3d_001.png
    :target: auto_examples/plot_regression_3d.html
    :scale: 45
    :align: right
@@ -624,7 +624,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Sepal and petal size tend to be related: bigger flowers are bigger!
     But is there in addition a systematic effect of species?
 
-.. image:: auto_examples/images/plot_iris_analysis_1.png
+.. image:: auto_examples/images/sphx_glr_plot_iris_analysis_001.png
    :target: auto_examples/plot_iris_analysis_1.html
    :scale: 80
    :align: center
@@ -726,7 +726,7 @@ variables using :func:`seaborn.pairplot` to display a scatter matrix::
    ...                  kind='reg')  # doctest: +SKIP
 
 
-.. image:: auto_examples/images/plot_wage_data_1.png
+.. image:: auto_examples/images/sphx_glr_plot_wage_data_001.png
    :target: auto_examples/plot_wage_data.html
    :align: center
    :scale: 60
@@ -737,7 +737,7 @@ Categorical variables can be plotted as the hue::
    ...                  kind='reg', hue='SEX')  # doctest: +SKIP
 
 
-.. image:: auto_examples/images/plot_wage_data_2.png
+.. image:: auto_examples/images/sphx_glr_plot_wage_data_002.png
    :target: auto_examples/plot_wage_data.html
    :align: center
    :scale: 60
@@ -766,7 +766,7 @@ wage and eduction, can be plotted using :func:`seaborn.lmplot`::
 
     >>> seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)  # doctest: +SKIP
 
-.. image:: auto_examples/images/plot_wage_data_5.png
+.. image:: auto_examples/images/sphx_glr_plot_wage_data_005.png
    :target: auto_examples/plot_wage_data.html
    :align: center
    :scale: 60
@@ -791,7 +791,7 @@ wage and eduction, can be plotted using :func:`seaborn.lmplot`::
 Testing for interactions
 =========================
 
-.. image:: auto_examples/images/plot_wage_education_gender_1.png
+.. image:: auto_examples/images/sphx_glr_plot_wage_education_gender_001.png
    :target: auto_examples/plot_wage_education_gender.html
    :align: center
    :scale: 60

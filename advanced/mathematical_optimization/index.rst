@@ -65,9 +65,9 @@ to choose the right tool.
 Convex versus non-convex optimization
 ---------------------------------------
 
-.. |convex_1d_1| image:: auto_examples/images/plot_convex_1.png
+.. |convex_1d_1| image:: auto_examples/images/sphx_glr_plot_convex_001.png
 
-.. |convex_1d_2| image:: auto_examples/images/plot_convex_2.png
+.. |convex_1d_2| image:: auto_examples/images/sphx_glr_plot_convex_002.png
 
 .. list-table::
 
@@ -92,9 +92,9 @@ be very hard.**
 Smooth and non-smooth problems
 -------------------------------
 
-.. |smooth_1d_1| image:: auto_examples/images/plot_smooth_1.png
+.. |smooth_1d_1| image:: auto_examples/images/sphx_glr_plot_smooth_001.png
 
-.. |smooth_1d_2| image:: auto_examples/images/plot_smooth_2.png
+.. |smooth_1d_2| image:: auto_examples/images/sphx_glr_plot_smooth_002.png
 
 .. list-table::
 
@@ -119,7 +119,7 @@ piece-wise linear functions).
 Noisy versus exact cost functions
 ----------------------------------
 
-.. |noisy| image:: auto_examples/images/plot_noisy_1.png
+.. |noisy| image:: auto_examples/images/sphx_glr_plot_noisy_001.png
 
 .. list-table::
 
@@ -138,7 +138,7 @@ Noisy versus exact cost functions
 Constraints
 ------------
 
-.. |constraints| image:: auto_examples/images/plot_constraints_1.png
+.. |constraints| image:: auto_examples/images/sphx_glr_plot_constraints_001.png
     :target: auto_examples/plot_constraints.html
 
 .. list-table::
@@ -163,16 +163,16 @@ Getting started: 1D optimization
 Use :func:`scipy.optimize.brent` to minimize 1D functions.
 It combines a bracketing strategy with a parabolic approximation.
 
-.. |1d_optim_1| image:: auto_examples/images/plot_1d_optim_1.png
+.. |1d_optim_1| image:: auto_examples/images/sphx_glr_plot_1d_optim_001.png
    :scale: 90%
 
-.. |1d_optim_2| image:: auto_examples/images/plot_1d_optim_2.png
+.. |1d_optim_2| image:: auto_examples/images/sphx_glr_plot_1d_optim_002.png
    :scale: 75%
 
-.. |1d_optim_3| image:: auto_examples/images/plot_1d_optim_3.png
+.. |1d_optim_3| image:: auto_examples/images/sphx_glr_plot_1d_optim_003.png
    :scale: 90%
 
-.. |1d_optim_4| image:: auto_examples/images/plot_1d_optim_4.png
+.. |1d_optim_4| image:: auto_examples/images/sphx_glr_plot_1d_optim_004.png
    :scale: 75%
 
 .. list-table::
@@ -224,16 +224,16 @@ Here we focus on **intuitions**, not code. Code will follow.
 basically consists in taking small steps in the direction of the
 gradient, that is the direction of the *steepest descent*.
 
-.. |gradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_0.png
+.. |gradient_quad_cond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_000.png
    :scale: 90%
 
-.. |gradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_100.png
+.. |gradient_quad_cond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_100.png
    :scale: 75%
 
-.. |gradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_2.png
+.. |gradient_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_002.png
    :scale: 90%
 
-.. |gradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_102.png
+.. |gradient_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_102.png
    :scale: 75%
 
 .. list-table:: **Fixed step gradient descent**
@@ -268,28 +268,28 @@ Also, it clearly can be advantageous to take bigger steps. This
 is done in gradient descent code using a
 `line search <https://en.wikipedia.org/wiki/Line_search>`_.
 
-.. |agradient_quad_cond| image:: auto_examples/images/plot_gradient_descent_1.png
+.. |agradient_quad_cond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_001.png
    :scale: 90%
 
-.. |agradient_quad_cond_conv| image:: auto_examples/images/plot_gradient_descent_101.png
+.. |agradient_quad_cond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_101.png
    :scale: 75%
 
-.. |agradient_quad_icond| image:: auto_examples/images/plot_gradient_descent_3.png
+.. |agradient_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_003.png
    :scale: 90%
 
-.. |agradient_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_103.png
+.. |agradient_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_103.png
    :scale: 75%
 
-.. |agradient_gauss_icond| image:: auto_examples/images/plot_gradient_descent_4.png
+.. |agradient_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_004.png
    :scale: 90%
 
-.. |agradient_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_104.png
+.. |agradient_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_104.png
    :scale: 75%
 
-.. |agradient_rosen_icond| image:: auto_examples/images/plot_gradient_descent_5.png
+.. |agradient_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_005.png
    :scale: 90%
 
-.. |agradient_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_105.png
+.. |agradient_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_105.png
    :scale: 75%
 
 
@@ -335,16 +335,16 @@ it cross the valley. The conjugate gradient solves this problem by adding
 a *friction* term: each step depends on the two last values of the
 gradient and sharp turns are reduced.
 
-.. |cg_gauss_icond| image:: auto_examples/images/plot_gradient_descent_6.png
+.. |cg_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_006.png
    :scale: 90%
 
-.. |cg_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_106.png
+.. |cg_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_106.png
    :scale: 75%
 
-.. |cg_rosen_icond| image:: auto_examples/images/plot_gradient_descent_7.png
+.. |cg_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_007.png
    :scale: 90%
 
-.. |cg_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_107.png
+.. |cg_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_107.png
    :scale: 75%
 
 
@@ -405,22 +405,22 @@ purpose, they rely on the 2 first derivative of the function: the
 *gradient* and the `Hessian
 <http://en.wikipedia.org/wiki/Hessian_matrix>`_.
 
-.. |ncg_quad_icond| image:: auto_examples/images/plot_gradient_descent_8.png
+.. |ncg_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_008.png
    :scale: 90%
 
-.. |ncg_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_108.png
+.. |ncg_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_108.png
    :scale: 75%
 
-.. |ncg_gauss_icond| image:: auto_examples/images/plot_gradient_descent_9.png
+.. |ncg_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_009.png
    :scale: 90%
 
-.. |ncg_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_109.png
+.. |ncg_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_109.png
    :scale: 75%
 
-.. |ncg_rosen_icond| image:: auto_examples/images/plot_gradient_descent_10.png
+.. |ncg_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_010.png
    :scale: 90%
 
-.. |ncg_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_110.png
+.. |ncg_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_110.png
    :scale: 75%
 
 
@@ -504,22 +504,22 @@ Quasi-Newton methods: approximating the Hessian on the fly
 **BFGS**: BFGS (Broyden-Fletcher-Goldfarb-Shanno algorithm) refines at
 each step an approximation of the Hessian.
 
-.. |bfgs_quad_icond| image:: auto_examples/images/plot_gradient_descent_11.png
+.. |bfgs_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_011.png
    :scale: 90%
 
-.. |bfgs_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_111.png
+.. |bfgs_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_111.png
    :scale: 75%
 
-.. |bfgs_gauss_icond| image:: auto_examples/images/plot_gradient_descent_12.png
+.. |bfgs_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_012.png
    :scale: 90%
 
-.. |bfgs_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_112.png
+.. |bfgs_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_112.png
    :scale: 75%
 
-.. |bfgs_rosen_icond| image:: auto_examples/images/plot_gradient_descent_13.png
+.. |bfgs_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_013.png
    :scale: 90%
 
-.. |bfgs_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_113.png
+.. |bfgs_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_113.png
    :scale: 75%
 
 
@@ -589,23 +589,23 @@ A shooting method: the Powell algorithm
 
 Almost a gradient approach
 
-.. |powell_quad_icond| image:: auto_examples/images/plot_gradient_descent_14.png
+.. |powell_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_014.png
    :scale: 90%
 
-.. |powell_quad_icond_conv| image:: auto_examples/images/plot_gradient_descent_114.png
+.. |powell_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_114.png
    :scale: 75%
 
-.. |powell_gauss_icond| image:: auto_examples/images/plot_gradient_descent_15.png
+.. |powell_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_015.png
    :scale: 90%
 
-.. |powell_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_115.png
+.. |powell_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_115.png
    :scale: 75%
 
 
-.. |powell_rosen_icond| image:: auto_examples/images/plot_gradient_descent_16.png
+.. |powell_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_016.png
    :scale: 90%
 
-.. |powell_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_116.png
+.. |powell_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_116.png
    :scale: 75%
 
 
@@ -641,17 +641,17 @@ smooth such as experimental data points, as long as they display a
 large-scale bell-shape behavior. However it is slower than gradient-based
 methods on smooth, non-noisy functions.
 
-.. |nm_gauss_icond| image:: auto_examples/images/plot_gradient_descent_17.png
+.. |nm_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_017.png
    :scale: 90%
 
-.. |nm_gauss_icond_conv| image:: auto_examples/images/plot_gradient_descent_117.png
+.. |nm_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_117.png
    :scale: 75%
 
 
-.. |nm_rosen_icond| image:: auto_examples/images/plot_gradient_descent_18.png
+.. |nm_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_018.png
    :scale: 90%
 
-.. |nm_rosen_icond_conv| image:: auto_examples/images/plot_gradient_descent_118.png
+.. |nm_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_118.png
    :scale: 75%
 
 
@@ -710,7 +710,7 @@ Practical guide to optimization with scipy
 Choosing a method
 ------------------
 
-.. image:: auto_examples/images/plot_compare_optimizers_1.png
+.. image:: auto_examples/images/sphx_glr_plot_compare_optimizers_001.png
    :align: center
    :width: 95%
 
@@ -783,15 +783,15 @@ handy.
 Synthetic exercices
 -------------------
 
-.. |flat_min_0| image:: auto_examples/images/plot_exercise_flat_minimum_0.png
+.. |flat_min_0| image:: auto_examples/images/sphx_glr_plot_exercise_flat_minimum_000.png
     :scale: 48%
     :target: auto_examples/plot_exercise_flat_minimum.html
 
-.. |flat_min_1| image:: auto_examples/images/plot_exercise_flat_minimum_1.png
+.. |flat_min_1| image:: auto_examples/images/sphx_glr_plot_exercise_flat_minimum_001.png
     :scale: 48%
     :target: auto_examples/plot_exercise_flat_minimum.html
 
-.. image:: auto_examples/images/plot_exercise_ill_conditioned_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercise_ill_conditioned_001.png
     :scale: 35%
     :target: auto_examples/plot_exercise_ill_conditioned.html
     :align: right
@@ -876,7 +876,7 @@ Curve fitting
 
 .. np.random.seed(0)
 
-.. image:: auto_examples/images/plot_curve_fit_1.png
+.. image:: auto_examples/images/sphx_glr_plot_curve_fit_001.png
     :scale: 48%
     :target: auto_examples/plot_curve_fit.html
     :align: right
@@ -916,7 +916,7 @@ Box bounds correspond to limiting each of the individual parameters of
 the optimization. Note that some problems that are not originally written
 as box bounds can be rewritten as such via change of variables.
 
-.. image:: auto_examples/images/plot_constraints_2.png
+.. image:: auto_examples/images/sphx_glr_plot_constraints_002.png
     :target: auto_examples/plot_constraints.html
     :align: right
     :scale: 75%
@@ -940,7 +940,7 @@ and `g(x)< 0`.
 * :func:`scipy.optimize.fmin_slsqp` Sequential least square programming:
   equality and inequality constraints:
 
-  .. image:: auto_examples/images/plot_non_bounds_constraints_1.png
+  .. image:: auto_examples/images/sphx_glr_plot_non_bounds_constraints_001.png
     :target: auto_examples/plot_non_bounds_constraints.html
     :align: right
     :scale: 75%

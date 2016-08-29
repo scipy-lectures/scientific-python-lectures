@@ -18,12 +18,7 @@ import subprocess
 # absolute, like shown here.
 sys.path.append(os.path.abspath('sphinxext'))
 
-# Try to override the matplotlib configuration as early as possible
-try:
-    import gen_rst
-except:
-    pass
-
+import sphinx_gallery
 
 # General configuration
 # ---------------------
@@ -33,7 +28,6 @@ needs_sphinx = '1.0'
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-        'gen_rst',
         'sphinx.ext.autodoc',
         'sphinx.ext.doctest',
         #'matplotlib.sphinxext.plot_directive',
@@ -44,9 +38,34 @@ extensions = [
         'sphinx.ext.pngmath',
         'sphinx.ext.intersphinx',
         'sphinx.ext.extlinks',
+        'sphinx_gallery.gen_gallery',
 ]
 
 doctest_test_doctest_blocks = 'true'
+
+sphinx_gallery_conf = {
+    'examples_dirs': ['intro/summary-exercises/examples',
+                      'intro/matplotlib/examples',
+                      'advanced/image_processing/examples',
+                      'advanced/mathematical_optimization/examples',
+                      'packages/scikit-image/examples',
+                      'packages/statistics/examples'],
+    'gallery_dirs': ['intro/summary-exercises/auto_examples',
+                     'intro/matplotlib/auto_examples',
+                     'advanced/image_processing/auto_examples',
+                     'advanced/mathematical_optimization/auto_examples',
+                     'packages/scikit-image/auto_examples',
+                     'packages/statistics/auto_examples'],
+    'doc_module': 'scipy-lecture-notes',
+    'reference_url': {
+        'numpy': 'http://docs.scipy.org/doc/numpy',
+        'scipy': 'http://docs.scipy.org/doc/scipy/reference',
+        'matplotlib': 'http://matplotlib.org',
+        'scikit-learn': 'http://scikit-learn.org/stable',
+        'scikit-image': 'http://scikit-image.org/docs/0.12.x/',
+        'mayavi': 'http://docs.enthought.com/mayavi/mayavi/',
+        }
+    }
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
