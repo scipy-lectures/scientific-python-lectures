@@ -1,4 +1,4 @@
-.. _guide
+.. _guide:
 
 =================
 How to contribute
