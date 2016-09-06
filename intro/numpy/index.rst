@@ -11,7 +11,7 @@ Pauli Virtanen*
    :local:
    :depth: 4
 
-This chapter gives an overview of Numpy, the core tool for performant
+This chapter gives an overview of NumPy, the core tool for performant
 numerical computing with Python.
 
 ____

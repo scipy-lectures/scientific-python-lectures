@@ -8,25 +8,25 @@
 .. _advanced_numpy:
 
 ==============
-Advanced Numpy
+Advanced NumPy
 ==============
 
 **Author**: *Pauli Virtanen*
 
-Numpy is at the base of Python's scientific stack of tools. Its purpose
+NumPy is at the base of Python's scientific stack of tools. Its purpose
 to implement efficient operations on many items in a block of memory.
 Understanding how it works in detail helps in making efficient use of its
 flexibility, taking useful shortcuts.
 
 This section covers:
 
-- Anatomy of Numpy arrays, and its consequences. Tips and
+- Anatomy of NumPy arrays, and its consequences. Tips and
   tricks.
 
 - Universal functions: what, why, and what to do if you want
   a new one.
 
-- Integration with other tools: Numpy offers several ways to
+- Integration with other tools: NumPy offers several ways to
   wrap any data in an ndarray, without unnecessary copies.
 
 - Recently added features, and what's in them: PEP
@@ -36,7 +36,7 @@ This section covers:
 
 .. topic:: Prerequisites
 
-    * Numpy
+    * NumPy
     * Cython
     * Pillow (Python imaging library, used in a couple of examples)
 
@@ -201,7 +201,7 @@ data_size          4-byte unsigned little-endian integer
 - 44-byte block of raw data (in the beginning of the file)
 - ... followed by ``data_size`` bytes of actual sound data.
 
-The ``.wav`` file header as a Numpy *structured* data type::
+The ``.wav`` file header as a NumPy *structured* data type::
 
     >>> wav_header_dtype = np.dtype([
     ...     ("chunk_id", (bytes, 4)), # flexible-sized scalar type, item size 4
@@ -478,7 +478,7 @@ Main point
 
   At which byte in ``x.data`` does the item ``x[1, 2]`` begin?
 
-**The answer** (in Numpy)
+**The answer** (in NumPy)
 
   - **strides**: the number of bytes to jump to find the next element
   - 1 stride per dimension
@@ -920,7 +920,7 @@ What they are?
 - Automatically support: broadcasting, casting, ...
 
 - The author of an ufunc only has to supply the elementwise operation,
-  Numpy takes care of the rest.
+  NumPy takes care of the rest.
 
 - The elementwise operation needs to be implemented in C (or, e.g., Cython)
 
@@ -953,7 +953,7 @@ Parts of an Ufunc
            }
        }
 
-2. The Numpy part, built by
+2. The NumPy part, built by
 
    .. sourcecode:: c
 
@@ -981,7 +981,7 @@ Parts of an Ufunc
 Making it easier
 ^^^^^^^^^^^^^^^^
 
-3. ``ufunc_loop`` is of very generic form, and Numpy provides
+3. ``ufunc_loop`` is of very generic form, and NumPy provides
    pre-made ones
 
    ================  =======================================================
@@ -1144,9 +1144,9 @@ Generalized ufuncs
     * This is called the *"signature"* of the generalized ufunc
     * The dimensions on which the g-ufunc acts, are *"core dimensions"* 
 
-.. rubric:: Status in Numpy
+.. rubric:: Status in NumPy
 
-* g-ufuncs are in Numpy already ...
+* g-ufuncs are in NumPy already ...
 * new ones can be created with ``PyUFunc_FromFuncAndDataAndSignature``
 * most linear-algebra functions are implemented as g-ufuncs to enable working
   with stacked arrays::
@@ -1221,10 +1221,10 @@ Suppose you
 
 1. Write a library than handles (multidimensional) binary data,
 
-2. Want to make it easy to manipulate the data with Numpy, or whatever
+2. Want to make it easy to manipulate the data with NumPy, or whatever
    other library,
 
-3. ... but would **not** like to have Numpy as a dependency.
+3. ... but would **not** like to have NumPy as a dependency.
 
 Currently, 3 solutions:
 
@@ -1276,7 +1276,7 @@ Array interface protocol
 
 - Multidimensional buffers
 - Data type information present
-- Numpy-specific approach; slowly deprecated (but not going away)
+- NumPy-specific approach; slowly deprecated (but not going away)
 - Not integrated in Python otherwise
 
 .. seealso::
@@ -1368,7 +1368,7 @@ Masked mean ignores masked data::
     >>> np.mean(mx)
     2.75
 
-.. warning:: Not all Numpy functions respect masks, for instance
+.. warning:: Not all NumPy functions respect masks, for instance
    ``np.dot``, so check the return types.
 
 The ``masked_array`` returns a **view** to the original array::
@@ -1433,7 +1433,7 @@ The masked array package also contains domain-aware functions::
 .. note::
 
    Streamlined and more seamless support for dealing with missing data
-   in arrays is making its way into Numpy 1.7.  Stay tuned!
+   in arrays is making its way into NumPy 1.7.  Stay tuned!
 
 .. topic:: Example: Masked statistics
 
@@ -1506,7 +1506,7 @@ Summary
 * Recent additions: PEP 3118, generalized ufuncs
 
 
-Contributing to Numpy/Scipy
+Contributing to NumPy/Scipy
 ===========================
 
     Get this tutorial: http://www.euroscipy.org/talk/882
@@ -1568,7 +1568,7 @@ Good bug report
     It would be great if it could cast to integer or at least raise a
     proper error for non-integer types.
 
-    I'm using Numpy 1.4.1, built from the official tarball, on Windows
+    I'm using NumPy 1.4.1, built from the official tarball, on Windows
     64 with Visual studio 2008, on Python.org 64-bit Python.
 
 0. What are you trying to do?
@@ -1581,7 +1581,7 @@ Good bug report
 
 2. Platform (Windows / Linux / OSX, 32/64 bits, x86/PPC, ...)
 
-3. Version of Numpy/Scipy
+3. Version of NumPy/Scipy
 
    >>> print(np.__version__) # doctest: +ELLIPSIS
    1...
@@ -1591,9 +1591,9 @@ Good bug report
    >>> print(np.__file__) # doctest: +ELLIPSIS
    /...
 
-   In case you have old/broken Numpy installations lying around.
+   In case you have old/broken NumPy installations lying around.
 
-   If unsure, try to remove existing Numpy installations, and reinstall...
+   If unsure, try to remove existing NumPy installations, and reinstall...
 
 Contributing to documentation
 -----------------------------
@@ -1622,7 +1622,7 @@ Contributing to documentation
 
           Hi,
 
-          I'd like to edit Numpy/Scipy docstrings. My account is XXXXX
+          I'd like to edit NumPy/Scipy docstrings. My account is XXXXX
 
 	  Cheers,
 	  N. N.

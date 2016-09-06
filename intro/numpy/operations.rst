@@ -326,7 +326,7 @@ Other reductions
 
      In [1]: !cat data/populations.txt
 
-   First, load the data into a Numpy array:
+   First, load the data into a NumPy array:
 
    .. sourcecode:: pycon
 
@@ -464,7 +464,7 @@ Broadcasting
 * This works on arrays of the same size.
 
     | **Nevertheless**, It's also possible to do operations on arrays of different
-    | sizes if *Numpy* can transform these arrays so that they all have
+    | sizes if *NumPy* can transform these arrays so that they all have
     | the same size: this conversion is called **broadcasting**.
 
 The image below gives an example of broadcasting:
@@ -900,7 +900,7 @@ Summary
   ``help()``, ``lookfor()``)!!
 
 * For advanced use: master the indexing with arrays of integers, as well as
-  broadcasting. Know more Numpy functions to handle various array
+  broadcasting. Know more NumPy functions to handle various array
   operations.
 
 .. topic:: **Quick read**
