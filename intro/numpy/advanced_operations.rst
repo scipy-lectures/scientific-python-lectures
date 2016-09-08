@@ -20,7 +20,7 @@ Advanced operations
 Polynomials
 -----------
 
-Numpy also contains polynomials in different bases:
+NumPy also contains polynomials in different bases:
 
 For example, :math:`3x^2 + 2x - 1`::
 
@@ -50,7 +50,7 @@ for more.
 More polynomials (with more bases)
 ...................................
 
-Numpy also has a more sophisticated polynomial interface, which supports
+NumPy also has a more sophisticated polynomial interface, which supports
 e.g. the Chebyshev basis.
 
 :math:`3x^2 + 2x - 1`::
@@ -153,10 +153,10 @@ Other libraries::
 .. plot:: pyplots/numpy_intro_3.py
 
 
-Numpy's own format
+NumPy's own format
 ...................
 
-Numpy has its own binary format, not portable but with efficient I/O::
+NumPy has its own binary format, not portable but with efficient I/O::
 
     >>> data = np.ones((3, 3))
     >>> np.save('pop.npy', data)
@@ -195,8 +195,8 @@ Well-known (& more obscure) file formats
 .. EXE: advanced: read the data in a PPM file
 
 
-.. topic:: Numpy internals
+.. topic:: NumPy internals
 
-    If you are interested in the Numpy internals, there is a good discussion in
+    If you are interested in the NumPy internals, there is a good discussion in
     :ref:`advanced_numpy`.
 
