@@ -1,3 +1,4 @@
+from __future__ import print_function
 # Author: Pierre Lafaye de Micheaux, Stefan van der Walt
 # Python FastICA
 # License: GPL unless permission obtained otherwise
@@ -186,7 +187,7 @@ def fastica(X, n_comp=None,
     if (alpha < 1) or (alpha > 2):
         raise ValueError("alpha must be in [1,2]")
 
-    if type(fun) is types.StringType:
+    if type(fun) is bytes:
         # Some standard nonlinear functions
         if fun == 'logcosh':
             def g(x, fun_args):

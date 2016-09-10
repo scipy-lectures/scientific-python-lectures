@@ -1,8 +1,9 @@
+from __future__ import print_function
 import numpy as np
 import matplotlib.pyplot as plt
 
 img = plt.imread('../data/elephant.png')
-print img.shape, img.dtype
+print(img.shape, img.dtype)
 # (200, 300, 3)  dtype('float32')
 
 plt.imshow(img)

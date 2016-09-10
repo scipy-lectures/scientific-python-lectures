@@ -5,6 +5,9 @@ Importing the compiled module
 Playing with the module defined in myobject.c
 """
 
+# print is a function in Python3. Import that behavior in Python2
+from __future__ import print_function
+
 #
 # Compile myobject.c first with
 #

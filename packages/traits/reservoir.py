@@ -1,3 +1,4 @@
+
 from traits.api import HasTraits, Str, Float, Range
 
 class Reservoir(HasTraits):
@@ -24,6 +25,6 @@ if __name__ == '__main__':
                     )
 
     release = 80
-    print 'Releasing {} m3/s produces {} kWh'.format(
+    print('Releasing {} m3/s produces {} kWh'.format(
                         release, reservoir.energy_production(release)
-                    )
+                    ))

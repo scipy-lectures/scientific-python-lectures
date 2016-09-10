@@ -1,3 +1,5 @@
+# print is a function in Python3. Import that behavior in Python2
+from __future__ import print_function
 import numpy as np
 from numpy import newaxis
 
@@ -19,5 +21,5 @@ samples = f(a[:,newaxis,newaxis],
 
 integral = samples.mean()
 
-print "Approximation:", integral
-print "Exact:", np.log(2) - 0.5
+print("Approximation:", integral)
+print("Exact:", np.log(2) - 0.5)

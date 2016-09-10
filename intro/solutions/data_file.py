@@ -3,6 +3,7 @@
 Data is stored in data.txt.
 """
 
+
 def load_data(filename):
     fp = open(filename)
     data_string = fp.read()

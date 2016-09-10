@@ -4,6 +4,7 @@ Brent's method
 
 Illustration of 1D optimization: Brent's method
 """
+from __future__ import print_function
 
 import numpy as np
 import pylab as pl
@@ -31,7 +32,7 @@ for epsilon in (0, 1):
                              full_output=True,
                              tol=np.finfo(1.).eps)
         if iter != out[-2]:
-            print 'Converged at ', iter
+            print('Converged at ', iter)
             break
         this_x = out[0]
         all_x.append(this_x)

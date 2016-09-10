@@ -10,6 +10,7 @@ Ilustrate an analysis on a real dataset:
   of a continuous confound
 
 """
+
 import matplotlib.pyplot as plt
 
 import pandas

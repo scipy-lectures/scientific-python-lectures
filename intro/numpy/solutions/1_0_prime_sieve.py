@@ -4,6 +4,7 @@ Computing prime numbers with the archimedean sieve.
 (Of course, this is not an optimal way for computing prime numbers...)
 
 """
+from __future__ import print_function
 
 import numpy as np
 
@@ -29,4 +30,4 @@ else:
             mask[j*j::j] = False
 
 # print indices where mask is True
-print np.nonzero(mask)[0]
+print(np.nonzero(mask)[0])

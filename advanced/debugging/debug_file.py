@@ -3,6 +3,7 @@
 Data is stored in data.txt.
 """
 
+
 def parse_data(data_string):
     data = []
     for x in data_string.split('.'):

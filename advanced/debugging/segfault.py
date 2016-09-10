@@ -2,6 +2,7 @@
 debugging segfaults with GDB.
 """
 
+
 import numpy as np
 from numpy.lib import stride_tricks
 
@@ -12,7 +13,7 @@ def make_big_array(small_array):
 
 def print_big_array(small_array):
     big_array = make_big_array(small_array)
-    print big_array[-10:]
+    print(big_array[-10:])
     return big_array
 
 

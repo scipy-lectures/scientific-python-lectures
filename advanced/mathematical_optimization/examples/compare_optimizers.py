@@ -4,6 +4,7 @@ Comparing optimizers
 
 Comparison of optimizers on various problems.
 """
+
 import functools
 import pickle
 
@@ -167,9 +168,9 @@ if 1:
                     function_bench[method_name][-1] /= x0_mean
             this_dim_benchs[cost_name] = function_bench
         gradient_less_benchs[ndim] = this_dim_benchs
-        print 80*'_'
-        print 'Done cost %s, ndim %s' % (cost_name, ndim)
-        print 80*'_'
+        print(80*'_')
+        print('Done cost %s, ndim %s' % (cost_name, ndim))
+        print(80*'_')
 
     pickle.dump(gradient_less_benchs, file('compare_optimizers.pkl', 'w'))
 
