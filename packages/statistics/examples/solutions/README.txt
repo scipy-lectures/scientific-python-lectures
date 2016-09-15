@@ -1,3 +1,3 @@
-Solutions to the exercises of the course
+Solutions to this chapter's exercises
 ----------------------------------------
 
