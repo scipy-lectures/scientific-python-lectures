@@ -61,15 +61,18 @@ import statsmodels.formula.api as sm
 result = sm.ols(formula='wage ~ education + gender', data=data).fit()
 print(result.summary())
 
+
+##############################################################################
 # The plots above highlight that there is not only a different offset in
 # wage but also a different slope
-
+#
 # We need to model this using an interaction
 result = sm.ols(formula='wage ~ education + gender + education * gender',
                 data=data).fit()
 print(result.summary())
 
 
+##############################################################################
 # Looking at the p-value of the interaction of gender and education, the
 # data does not support the hypothesis that education benefits males
 # more than female (p-value > 0.05).

@@ -120,7 +120,7 @@ This brings us to the IPython prompt: ::
 Plotting with default settings
 -------------------------------
 
-.. image:: auto_examples/images/plot_exercice_1_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_1_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_1.html
@@ -155,7 +155,7 @@ Plotting with default settings
 Instantiating defaults
 ----------------------
 
-.. image:: auto_examples/images/plot_exercice_2_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_2_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_2.html
@@ -215,7 +215,7 @@ that influence the appearance of the plot.
 Changing colors and line widths
 --------------------------------
 
-.. image:: auto_examples/images/plot_exercice_3_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_3_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_3.html
@@ -243,7 +243,7 @@ Changing colors and line widths
 Setting limits
 --------------
 
-.. image:: auto_examples/images/plot_exercice_4_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_4_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_4.html
@@ -270,7 +270,7 @@ Setting limits
 Setting ticks
 -------------
 
-.. image:: auto_examples/images/plot_exercice_5_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_5_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_5.html
@@ -300,7 +300,7 @@ Setting ticks
 Setting tick labels
 -------------------
 
-.. image:: auto_examples/images/plot_exercice_6_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_6_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_6.html
@@ -338,7 +338,7 @@ Setting tick labels
 Moving spines
 -------------
 
-.. image:: auto_examples/images/plot_exercice_7_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_7_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_7.html
@@ -377,7 +377,7 @@ Moving spines
 Adding a legend
 ---------------
 
-.. image:: auto_examples/images/plot_exercice_8_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_8_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_8.html
@@ -409,7 +409,7 @@ Adding a legend
 Annotate some points
 --------------------
 
-.. image:: auto_examples/images/plot_exercice_9_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_9_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_9.html
@@ -455,7 +455,7 @@ Annotate some points
 Devil is in the details
 ------------------------
 
-.. image:: auto_examples/images/plot_exercice_10_1.png
+.. image:: auto_examples/images/sphx_glr_plot_exercice_10_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_exercice_10.html
@@ -556,16 +556,16 @@ Subplots
 
 |clear-floats|
 
-.. image:: auto_examples/images/plot_subplot-horizontal_1.png
+.. image:: auto_examples/images/sphx_glr_plot_subplot-horizontal_001.png
    :scale: 28
    :target: auto_examples/plot_subplot-horizontal.html
-.. image:: auto_examples/images/plot_subplot-vertical_1.png
+.. image:: auto_examples/images/sphx_glr_plot_subplot-vertical_001.png
    :scale: 28
    :target: auto_examples/plot_subplot-vertical.html
-.. image:: auto_examples/images/plot_subplot-grid_1.png
+.. image:: auto_examples/images/sphx_glr_plot_subplot-grid_001.png
    :scale: 28
    :target: auto_examples/plot_subplot-grid.html
-.. image:: auto_examples/images/plot_gridspec_1.png
+.. image:: auto_examples/images/sphx_glr_plot_gridspec_001.png
    :scale: 28
    :target: auto_examples/plot_gridspec.html
 
@@ -577,10 +577,10 @@ Axes are very similar to subplots but allow placement of plots at any location
 in the figure. So if we want to put a smaller plot inside a bigger one we do
 so with axes.
 
-.. image:: auto_examples/images/plot_axes_1.png
+.. image:: auto_examples/images/sphx_glr_plot_axes_001.png
    :scale: 35
    :target: auto_examples/plot_axes.html
-.. image:: auto_examples/images/plot_axes-2_1.png
+.. image:: auto_examples/images/sphx_glr_plot_axes-2_001.png
    :scale: 35
    :target: auto_examples/plot_axes-2.html
 
@@ -607,7 +607,7 @@ follows::
 
 There are several locators for different kind of requirements:
 
-.. image:: auto_examples/images/plot_ticks_1.png
+.. image:: auto_examples/images/sphx_glr_plot_ticks_001.png
     :scale: 60
     :target: auto_examples/plot_ticks.html
 
@@ -621,40 +621,40 @@ matplotlib.dates.
 Other Types of Plots: examples and exercises
 =============================================
 
-.. image:: auto_examples/images/plot_plot_1.png
+.. image:: auto_examples/images/sphx_glr_plot_plot_001.png
    :scale: 39
    :target: `Regular Plots`_
-.. image:: auto_examples/images/plot_scatter_1.png
+.. image:: auto_examples/images/sphx_glr_plot_scatter_001.png
    :scale: 39
    :target: `Scatter Plots`_
-.. image:: auto_examples/images/plot_bar_1.png
+.. image:: auto_examples/images/sphx_glr_plot_bar_001.png
    :scale: 39
    :target: `Bar Plots`_
-.. image:: auto_examples/images/plot_contour_1.png
+.. image:: auto_examples/images/sphx_glr_plot_contour_001.png
    :scale: 39
    :target: `Contour Plots`_
-.. image:: auto_examples/images/plot_imshow_1.png
+.. image:: auto_examples/images/sphx_glr_plot_imshow_001.png
    :scale: 39
    :target: `Imshow`_
-.. image:: auto_examples/images/plot_quiver_1.png
+.. image:: auto_examples/images/sphx_glr_plot_quiver_001.png
    :scale: 39
    :target: `Quiver Plots`_
-.. image:: auto_examples/images/plot_pie_1.png
+.. image:: auto_examples/images/sphx_glr_plot_pie_001.png
    :scale: 39
    :target: `Pie Charts`_
-.. image:: auto_examples/images/plot_grid_1.png
+.. image:: auto_examples/images/sphx_glr_plot_grid_001.png
    :scale: 39
    :target: `Grids`_
-.. image:: auto_examples/images/plot_multiplot_1.png
+.. image:: auto_examples/images/sphx_glr_plot_multiplot_001.png
    :scale: 39
    :target: `Multi Plots`_
-.. image:: auto_examples/images/plot_polar_1.png
+.. image:: auto_examples/images/sphx_glr_plot_polar_001.png
    :scale: 39
    :target: `Polar Axis`_
-.. image:: auto_examples/images/plot_plot3d_1.png
+.. image:: auto_examples/images/sphx_glr_plot_plot3d_001.png
    :scale: 39
    :target: `3D Plots`_
-.. image:: auto_examples/images/plot_text_1.png
+.. image:: auto_examples/images/sphx_glr_plot_text_001.png
    :scale: 39
    :target: `Text`_
 
@@ -662,7 +662,7 @@ Other Types of Plots: examples and exercises
 Regular Plots
 -------------
 
-.. image:: auto_examples/images/plot_plot_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_plot_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_plot_ex.html
@@ -689,7 +689,7 @@ Click on the figure for solution.
 Scatter Plots
 -------------
 
-.. image:: auto_examples/images/plot_scatter_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_scatter_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_scatter_ex.html
@@ -716,7 +716,7 @@ Click on figure for solution.
 Bar Plots
 ---------
 
-.. image:: auto_examples/images/plot_bar_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_bar_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_bar_ex.html
@@ -750,7 +750,7 @@ Click on figure for solution.
 Contour Plots
 -------------
 
-.. image:: auto_examples/images/plot_contour_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_contour_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_contour_ex.html
@@ -785,7 +785,7 @@ Click on figure for solution.
 Imshow
 ------
 
-.. image:: auto_examples/images/plot_imshow_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_imshow_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_imshow_ex.html
@@ -818,7 +818,7 @@ Click on the figure for the solution.
 Pie Charts
 ----------
 
-.. image:: auto_examples/images/plot_pie_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_pie_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_pie_ex.html
@@ -843,7 +843,7 @@ Click on the figure for the solution.
 Quiver Plots
 ------------
 
-.. image:: auto_examples/images/plot_quiver_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_quiver_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_quiver_ex.html
@@ -868,7 +868,7 @@ Click on figure for solution.
 Grids
 -----
 
-.. image:: auto_examples/images/plot_grid_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_grid_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_grid_ex.html
@@ -892,7 +892,7 @@ Click on figure for solution.
 Multi Plots
 -----------
 
-.. image:: auto_examples/images/plot_multiplot_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_multiplot_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_multiplot_ex.html
@@ -916,7 +916,7 @@ Click on figure for solution.
 Polar Axis
 ----------
 
-.. image:: auto_examples/images/plot_polar_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_polar_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_polar_ex.html
@@ -949,7 +949,7 @@ Click on figure for solution.
 3D Plots
 --------
 
-.. image:: auto_examples/images/plot_plot3d_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_plot3d_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_plot3d_ex.html
@@ -985,7 +985,7 @@ Text
 ----
 
 
-.. image:: auto_examples/images/plot_text_ex_1.png
+.. image:: auto_examples/images/sphx_glr_plot_text_ex_001.png
    :align: right
    :scale: 35
    :target: auto_examples/plot_text_ex.html
@@ -1153,16 +1153,16 @@ Line properties
 
    * - alpha (or a)
      - alpha transparency on 0-1 scale
-     - .. image:: auto_examples/images/plot_alpha_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_alpha_001.png
 
    * - antialiased
      - True or False - use antialised rendering
-     - .. image:: auto_examples/images/plot_aliased_1.png
-       .. image:: auto_examples/images/plot_antialiased_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_aliased_001.png
+       .. image:: auto_examples/images/sphx_glr_plot_antialiased_001.png
 
    * - color (or c)
      - matplotlib color arg
-     - .. image:: auto_examples/images/plot_color_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_color_001.png
 
    * - linestyle (or ls)
      - see `Line properties`_
@@ -1170,23 +1170,23 @@ Line properties
 
    * - linewidth (or lw)
      - float, the line width in points
-     - .. image:: auto_examples/images/plot_linewidth_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_linewidth_001.png
 
    * - solid_capstyle
      - Cap style for solid lines
-     - .. image:: auto_examples/images/plot_solid_capstyle_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_solid_capstyle_001.png
 
    * - solid_joinstyle
      - Join style for solid lines
-     - .. image:: auto_examples/images/plot_solid_joinstyle_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_solid_joinstyle_001.png
 
    * - dash_capstyle
      - Cap style for dashes
-     - .. image:: auto_examples/images/plot_dash_capstyle_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_dash_capstyle_001.png
 
    * - dash_joinstyle
      - Join style for dashes
-     - .. image:: auto_examples/images/plot_dash_joinstyle_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_dash_joinstyle_001.png
 
    * - marker
      - see `Markers`_
@@ -1194,31 +1194,31 @@ Line properties
 
    * - markeredgewidth (mew)
      - line width around the marker symbol
-     - .. image:: auto_examples/images/plot_mew_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_mew_001.png
 
    * - markeredgecolor (mec)
      - edge color if a marker is used
-     - .. image:: auto_examples/images/plot_mec_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_mec_001.png
 
    * - markerfacecolor (mfc)
      - face color if a marker is used
-     - .. image:: auto_examples/images/plot_mfc_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_mfc_001.png
 
    * - markersize (ms)
      - size of the marker in points
-     - .. image:: auto_examples/images/plot_ms_1.png
+     - .. image:: auto_examples/images/sphx_glr_plot_ms_001.png
 
 
 
 Line styles
 -----------
 
-.. image:: auto_examples/images/plot_linestyles_1.png
+.. image:: auto_examples/images/sphx_glr_plot_linestyles_001.png
 
 Markers
 -------
 
-.. image:: auto_examples/images/plot_markers_1.png
+.. image:: auto_examples/images/sphx_glr_plot_markers_001.png
    :scale: 90
 
 Colormaps
@@ -1230,6 +1230,6 @@ the reverse of ``gray``.
 If you want to know more about colormaps, checks `Documenting the matplotlib
 colormaps <intro/matplotlib/matplotlib.rst>`_.
 
-.. image:: auto_examples/images/plot_colormaps_1.png
+.. image:: auto_examples/images/sphx_glr_plot_colormaps_001.png
    :scale: 80
 

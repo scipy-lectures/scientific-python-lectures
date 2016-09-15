@@ -601,11 +601,11 @@ div.body img {
 }
 
 /* Center figures that are larger than 100% of the figure */
-div.body div.figure {
+div.body a.image-reference div.figure {
     margin-left: -200px;
     margin-right: -200px;
     text-align: center;
-}
+  }
 
 /* alternating colors in table rows */
 table.docutils tr:nth-child(even) {
@@ -901,76 +901,21 @@ div.max-height pre {
     max-height: 30em;
 }
 
-/******** For the gallery **************/
-
-/* ------- Fix maximum size of thumbnails in example gallery -------------- */
-div.thumbnailContainer img {
-    max-width: 160px;
-    max-height: 160px;
-    /*display: block;*/
-    margin: auto auto auto -8px;
-    display: inline;
+/************* For sphinx-gallery ************/
+p.sphx-glr-script-out {
+    margin-left: -2.3em;
 }
 
-div.thumbnailContainer div.figure {
-    float: left;
-    margin: 10px 11px 7em 11px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    border: 2px solid #FFF;
-    background-color: #FFF;
-    width: 150px;
-    height: 100px;
-    -webkit-background-size: 150px 100px;
-    -moz-background-size: 150px 100px;
+div.sphx-glr-script-out div.highlight {
+    margin-left: 0em;
 }
 
-*[tooltip] {
-    position: relative;
-    float: left;
+/* Undo clever wrapping of code in sphinx output */
+div.sphx-glr-script-out div.highlight pre div.newline {
+    margin-right: 0em;
+    padding-left: 0em;
 }
 
-*[tooltip]:hover:after{
-    background: rgba(0,0,0,.8);
-    border-radius: 5px;
-    color: white;
-    content: attr(tooltip);
-    left: 95%;
-    padding: 5px 15px;
-    position: absolute;
-    z-index: 98;
-    width: 220px;
-    bottom: 52%
-}
-
-
-*[tooltip]:hover:before {
-    content: "";
-    position: absolute;
-    z-index: 99;
-    border: solid;
-    border-color: #333 transparent;
-    border-width: 18px 0px 0px 20px;
-    left: 85%;
-    bottom: 58%
-}
-
-div.thumbnailContainer {
-    box-shadow: none;
-    border: solid white 1px;
-    padding-top: 5px;
-}
-
-div.thumbnailContainer:hover {
-    box-shadow: 0 0 15px rgba(142, 176, 202, 0.5);
-    border: solid #B4DDFC 1px;
-}
-
-div.thumbnailContainer div p {
-    margin: 0 0 .1em 0;
-}
-
-div.thumbnailContainer div a {
-    display: block; /* To have a better hover behavior */
+div.sphx-glr-script-out div.highlight pre {
+    text-indent: 0em;
 }

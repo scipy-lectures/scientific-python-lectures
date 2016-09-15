@@ -1,10 +1,9 @@
 
 .. only:: html
 
-
->>> import numpy as np
->>> import pylab as pl
->>> from scipy import ndimage
+    >>> import numpy as np
+    >>> import pylab as pl
+    >>> from scipy import ndimage
 
 .. _image-answers:
 
@@ -12,9 +11,8 @@ Example of solution for the image processing exercise: unmolten grains in glass
 ===============================================================================
 
 
-  .. image:: ../image_processing/MV_HFV_012.jpg
-     :align: center
-     :scale: 70
+.. image:: ../image_processing/MV_HFV_012.jpg
+   :align: center
 
 1. Open the image file MV_HFV_012.jpg and display it. Browse through the
    keyword arguments in the docstring of ``imshow`` to display the image
@@ -34,8 +32,8 @@ Example of solution for the image processing exercise: unmolten grains in glass
     >>> hi_dat = np.histogram(dat, bins=np.arange(256))
     >>> hi_filtdat = np.histogram(filtdat, bins=np.arange(256))
 
-.. image:: ../image_processing/exo_histos.png
-   :align: center
+   .. image:: ../image_processing/exo_histos.png
+      :align: center
 
 4. Using the histogram of the filtered image, determine thresholds that
    allow to define masks for sand pixels, glass pixels and bubble pixels.
@@ -51,8 +49,8 @@ Example of solution for the image processing exercise: unmolten grains in glass
 
     >>> phases = void.astype(np.int) + 2*glass.astype(np.int) + 3*sand.astype(np.int)
 
-.. image:: ../image_processing/three_phases.png
-   :align: center
+   .. image:: ../image_processing/three_phases.png
+     :align: center
 
 6. Use mathematical morphology to clean the different phases. ::
 
@@ -67,8 +65,8 @@ Example of solution for the image processing exercise: unmolten grains in glass
     >>> mask = sand_areas > 100
     >>> remove_small_sand = mask[sand_labels.ravel()].reshape(sand_labels.shape)
 
-.. image:: ../image_processing/sands.png
-   :align: center
+   .. image:: ../image_processing/sands.png
+     :align: center
 
 
 8. Compute the mean size of bubbles. ::

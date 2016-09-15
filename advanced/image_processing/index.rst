@@ -146,7 +146,7 @@ Draw contour lines::
     <matplotlib.contour.QuadContourSet ...>
 
 
-.. figure:: auto_examples/images/plot_display_face_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_display_face_001.png
     :scale: 80
     :target: auto_examples/plot_display_face.html
 
@@ -162,7 +162,7 @@ For fine inspection of intensity variations, use
     >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='nearest')        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
-.. figure:: auto_examples/images/plot_interpolation_face_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_interpolation_face_001.png
     :scale: 80
     :target: auto_examples/plot_interpolation_face.html
 
@@ -215,7 +215,7 @@ Images are arrays: use the whole ``numpy`` machinery.
     >>> # Fancy indexing
     >>> face[range(400), range(400)] = 255
 
-.. figure:: auto_examples/images/plot_numpy_array_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_numpy_array_001.png
     :scale: 100
     :target: auto_examples/plot_numpy_array.html
 
@@ -279,7 +279,7 @@ Geometrical transformations
     >>> rotate_face = ndimage.rotate(face, 45)
     >>> rotate_face_noreshape = ndimage.rotate(face, 45, reshape=False)
 
-.. figure:: auto_examples/images/plot_geom_face_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_geom_face_001.png
     :scale: 65
     :target: auto_examples/plot_geom_face.html
 
@@ -314,7 +314,7 @@ Blurring/smoothing
 
     >>> local_mean = ndimage.uniform_filter(face, size=11)
 
-.. figure:: auto_examples/images/plot_blur_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_blur_001.png
     :scale: 90
     :target: auto_examples/plot_blur.html
 
@@ -338,7 +338,7 @@ Laplacian::
     >>> alpha = 30
     >>> sharpened = blurred_f + alpha * (blurred_f - filter_blurred_f)
 
-.. figure:: auto_examples/images/plot_sharpen_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_sharpen_001.png
     :scale: 65
     :target: auto_examples/plot_sharpen.html
 
@@ -367,7 +367,7 @@ A **median filter** preserves better the edges::
 
     >>> med_denoised = ndimage.median_filter(noisy, 3)
 
-.. figure:: auto_examples/images/plot_face_denoise_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_face_denoise_001.png
     :scale: 60
     :target: auto_examples/plot_face_denoise.html
 
@@ -384,7 +384,7 @@ Median filter: better result for straight boundaries (**low curvature**)::
     >>> im_noise = im + 0.2 * np.random.randn(*im.shape)
     >>> im_med = ndimage.median_filter(im_noise, 3)
 
-.. figure:: auto_examples/images/plot_denoising_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_denoising_001.png
     :scale: 50
     :target: auto_examples/plot_denoising.html
 
@@ -516,7 +516,7 @@ Also works for grey-valued images::
     ...         structure=np.ones((3, 3)))
 
 
-.. figure:: auto_examples/images/plot_greyscale_dilation_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_greyscale_dilation_001.png
     :scale: 40
     :target: auto_examples/plot_greyscale_dilation.html
 
@@ -562,7 +562,7 @@ Also works for grey-valued images::
     >>> eroded_square = ndimage.binary_erosion(square)
     >>> reconstruction = ndimage.binary_propagation(eroded_square, mask=square)
 
-.. figure:: auto_examples/images/plot_propagation_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_propagation_001.png
     :scale: 40
     :target: auto_examples/plot_propagation.html
 
@@ -595,7 +595,7 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
     >>> sy = ndimage.sobel(im, axis=1, mode='constant')
     >>> sob = np.hypot(sx, sy)
 
-.. figure:: auto_examples/images/plot_find_edges_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_find_edges_001.png
     :scale: 40
     :target: auto_examples/plot_find_edges.html
 
@@ -628,7 +628,7 @@ Segmentation
 
     >>> binary_img = img > 0.5
 
-.. figure:: auto_examples/images/plot_histo_segmentation_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_histo_segmentation_001.png
     :scale: 65
     :target: auto_examples/plot_histo_segmentation.html
 
@@ -643,7 +643,7 @@ Use mathematical morphology to clean up the result::
     >>> # Remove small black hole
     >>> close_img = ndimage.binary_closing(open_img)
 
-.. figure:: auto_examples/images/plot_clean_morpho_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_clean_morpho_001.png
     :scale: 65
     :target: auto_examples/plot_clean_morpho.html
 
@@ -753,7 +753,7 @@ Label connected components: ``ndimage.label``::
     >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
-.. figure:: auto_examples/images/plot_synthetic_data_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_synthetic_data_001.png
     :scale: 90
     :target: auto_examples/plot_synthetic_data.html
 
@@ -781,7 +781,7 @@ Now reassign labels with ``np.searchsorted``::
     >>> labels = np.unique(label_im)
     >>> label_im = np.searchsorted(labels, label_im)
 
-.. figure:: auto_examples/images/plot_measure_data_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_measure_data_001.png
     :scale: 90
     :target: auto_examples/plot_measure_data.html
 
@@ -796,7 +796,7 @@ Find region of interest enclosing object::
     >>> plt.imshow(roi)     # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
-.. figure:: auto_examples/images/plot_find_object_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_find_object_001.png
     :scale: 130
     :target: auto_examples/plot_find_object.html
 
@@ -820,7 +820,7 @@ Example: block mean::
     ...     regions.max() +1))
     >>> block_mean.shape = (sx // 4, sy // 6)
 
-.. figure:: auto_examples/images/plot_block_mean_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_block_mean_001.png
     :scale: 70
     :target: auto_examples/plot_block_mean.html
 
@@ -839,7 +839,7 @@ Non-regularly-spaced blocks: radial mean::
     >>> rbin = (20* r/r.max()).astype(np.int)
     >>> radial_mean = ndimage.mean(f, labels=rbin, index=np.arange(1, rbin.max() +1))
 
-.. figure:: auto_examples/images/plot_radial_mean_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_radial_mean_001.png
     :scale: 70
     :target: auto_examples/plot_radial_mean.html
 
@@ -887,7 +887,7 @@ One example with mathematical morphology: `granulometry
     >>> granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
 
 
-.. figure:: auto_examples/images/plot_granulo_1.png
+.. figure:: auto_examples/images/sphx_glr_plot_granulo_001.png
     :scale: 100
     :target: auto_examples/plot_granulo.html
 
