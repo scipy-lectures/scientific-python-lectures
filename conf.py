@@ -66,6 +66,8 @@ sphinx_gallery_conf = {
     'reference_url': {
         'numpy': 'http://docs.scipy.org/doc/numpy',
         'scipy': 'http://docs.scipy.org/doc/scipy/reference',
+        'pandas': 'http://pandas.pydata.org/pandas-docs/stable/',
+        'seaborn': 'http://stanford.edu/~mwaskom/software/seaborn/',
         'matplotlib': 'http://matplotlib.org',
         'scikit-learn': 'http://scikit-learn.org/stable',
         'scikit-image': 'http://scikit-image.org/docs/0.12.x/',
