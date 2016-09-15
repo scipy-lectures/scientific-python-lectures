@@ -72,6 +72,7 @@ sphinx_gallery_conf = {
         'scikit-learn': 'http://scikit-learn.org/stable',
         'scikit-image': 'http://scikit-image.org/docs/0.12.x/',
         'mayavi': 'http://docs.enthought.com/mayavi/mayavi/',
+        'statsmodels': 'http://statsmodels.sourceforge.net/',
         }
     }
 

@@ -900,3 +900,22 @@ div.max-height pre {
     overflow-x: scroll;
     max-height: 30em;
 }
+
+/************* For sphinx-gallery ************/
+p.sphx-glr-script-out {
+    margin-left: -2.3em;
+}
+
+div.sphx-glr-script-out div.highlight {
+    margin-left: 0em;
+}
+
+/* Undo clever wrapping of code in sphinx output */
+div.sphx-glr-script-out div.highlight pre div.newline {
+    margin-right: 0em;
+    padding-left: 0em;
+}
+
+div.sphx-glr-script-out div.highlight pre {
+    text-indent: 0em;
+}
