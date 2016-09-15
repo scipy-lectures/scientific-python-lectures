@@ -841,7 +841,11 @@ Can we conclude that education benefits males more than females?
 
 |
 
-.. only:: html
+Full code examples
+===================
 
-    .. include:: auto_examples/index.rst
+.. toctree::
+
+    auto_examples/index.rst
+
 

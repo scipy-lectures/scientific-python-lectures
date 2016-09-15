@@ -1234,8 +1234,8 @@ colormaps <intro/matplotlib/matplotlib.rst>`_.
    :scale: 80
 
 
-Code examples
-==============
+Full code examples
+==================
 
 .. toctree::
 
