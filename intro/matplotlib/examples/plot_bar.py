@@ -1,44 +1,31 @@
 """
-Bar plot advanced
-==================
+Bar plots
+==========
 
-An more elaborate bar plot example
+An example of bar plots with matplotlib.
 """
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-n = 16
+n = 12
 X = np.arange(n)
 Y1 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
 Y2 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
-plt.bar(X, Y1, facecolor='#9999ff', edgecolor='white')
+
+plt.axes([0.025, 0.025, 0.95, 0.95])
+plt.bar(X, +Y1, facecolor='#9999ff', edgecolor='white')
 plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
+
+for x, y in zip(X, Y1):
+    plt.text(x + 0.4, y + 0.05, '%.2f' % y, ha='center', va= 'bottom')
+
+for x, y in zip(X, Y2):
+    plt.text(x + 0.4, -y - 0.05, '%.2f' % y, ha='center', va= 'top')
+
 plt.xlim(-.5, n)
 plt.xticks(())
-plt.ylim(-1, 1)
+plt.ylim(-1.25, 1.25)
 plt.yticks(())
-
-
-# Add a title and a box around it
-from matplotlib.patches import FancyBboxPatch
-ax = plt.gca()
-ax.add_patch(FancyBboxPatch((-0.05, .87),
-                            width=.66, height=.165, clip_on=False,
-                            boxstyle="square,pad=0", zorder=3,
-                            facecolor='white', alpha=1.0,
-                            transform=plt.gca().transAxes))
-
-plt.text(-0.05, 1.02, " Bar Plot:              plt.bar(...)\n",
-      horizontalalignment='left',
-      verticalalignment='top',
-      size='xx-large',
-      transform=plt.gca().transAxes)
-
-plt.text(-0.05, 1.01, "\n\n   Make a bar plot with rectangles ",
-      horizontalalignment='left',
-      verticalalignment='top',
-      size='large',
-      transform=plt.gca().transAxes)
 
 plt.show()

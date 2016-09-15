@@ -325,7 +325,7 @@ div.sphinxsidebar ul {
     margin: 0px 5px 15px 0px;
     font-size: 110%;
     padding-left: 2ex;
-    text-indent: -3.5ex;
+    text-indent: -2.5ex;
 }
 
 div.sphinxsidebar ul ul {
@@ -337,10 +337,14 @@ div.sphinxsidebar ul ul {
 }
 
 div.sphinxsidebar ul li a {
-    display: none; /* Hide level 1 */
+
 }
 
-div.sphinxsidebar ul ul li a {
+div.sphinxsidebar ul li:only-child a {
+    display: none; /* Hide level 1 if there is only 1 */
+}
+
+div.sphinxsidebar ul ul li a, div.sphinxsidebar ul li:only-child ul a {
     display: inline;
 }
 

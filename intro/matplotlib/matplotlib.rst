@@ -621,40 +621,40 @@ matplotlib.dates.
 Other Types of Plots: examples and exercises
 =============================================
 
-.. image:: auto_examples/images/sphx_glr_plot_plot_001.png
-   :scale: 39
-   :target: `Regular Plots`_
-.. image:: auto_examples/images/sphx_glr_plot_scatter_001.png
-   :scale: 39
-   :target: `Scatter Plots`_
-.. image:: auto_examples/images/sphx_glr_plot_bar_001.png
-   :scale: 39
-   :target: `Bar Plots`_
-.. image:: auto_examples/images/sphx_glr_plot_contour_001.png
-   :scale: 39
-   :target: `Contour Plots`_
-.. image:: auto_examples/images/sphx_glr_plot_imshow_001.png
-   :scale: 39
-   :target: `Imshow`_
-.. image:: auto_examples/images/sphx_glr_plot_quiver_001.png
-   :scale: 39
-   :target: `Quiver Plots`_
-.. image:: auto_examples/images/sphx_glr_plot_pie_001.png
-   :scale: 39
-   :target: `Pie Charts`_
-.. image:: auto_examples/images/sphx_glr_plot_grid_001.png
-   :scale: 39
-   :target: `Grids`_
-.. image:: auto_examples/images/sphx_glr_plot_multiplot_001.png
-   :scale: 39
-   :target: `Multi Plots`_
-.. image:: auto_examples/images/sphx_glr_plot_polar_001.png
-   :scale: 39
-   :target: `Polar Axis`_
-.. image:: auto_examples/images/sphx_glr_plot_plot3d_001.png
-   :scale: 39
-   :target: `3D Plots`_
-.. image:: auto_examples/images/sphx_glr_plot_text_001.png
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_plot_ext_001.png
+   :scale: 39                         
+   :target: `Regular Plot             s`_
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_scatter_ext_001.png
+   :scale: 39                         
+   :target: `Scatter Plot             s`_
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_bar_ext_001.png
+   :scale: 39                         
+   :target: `Bar Plots`_              
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_contour_ext_001.png
+   :scale: 39                         
+   :target: `Contour Plot             s`_
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_imshow_ext_001.png
+   :scale: 39                         
+   :target: `Imshow`_                 
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_quiver_ext_001.png
+   :scale: 39                         
+   :target: `Quiver Plots             `_
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_pie_ext_001.png
+   :scale: 39                         
+   :target: `Pie Charts`_             
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_grid_ext_001.png
+   :scale: 39                         
+   :target: `Grids`_                  
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_multiplot_ext_001.png
+   :scale: 39                         
+   :target: `Multi Plots`             _
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_polar_ext_001.png
+   :scale: 39                         
+   :target: `Polar Axis`_             
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_plot3d_ext_001.png
+   :scale: 39                         
+   :target: `3D Plots`_               
+.. image:: auto_examples/pretty_plots/images/sphx_glr_plot_text_ext_001.png
    :scale: 39
    :target: `Text`_
 
@@ -662,10 +662,10 @@ Other Types of Plots: examples and exercises
 Regular Plots
 -------------
 
-.. image:: auto_examples/images/sphx_glr_plot_plot_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_plot_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_plot_ex.html
+   :target: auto_examples/plot_plot.html
 
 .. hint::
 
@@ -689,10 +689,10 @@ Click on the figure for solution.
 Scatter Plots
 -------------
 
-.. image:: auto_examples/images/sphx_glr_plot_scatter_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_scatter_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_scatter_ex.html
+   :target: auto_examples/plot_scatter.html
 
 .. hint::
 
@@ -716,10 +716,10 @@ Click on figure for solution.
 Bar Plots
 ---------
 
-.. image:: auto_examples/images/sphx_glr_plot_bar_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_bar_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_bar_ex.html
+   :target: auto_examples/plot_bar.html
 
 .. hint::
 
@@ -750,10 +750,10 @@ Click on figure for solution.
 Contour Plots
 -------------
 
-.. image:: auto_examples/images/sphx_glr_plot_contour_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_contour_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_contour_ex.html
+   :target: auto_examples/plot_contour.html
 
 
 .. hint::
@@ -785,10 +785,10 @@ Click on figure for solution.
 Imshow
 ------
 
-.. image:: auto_examples/images/sphx_glr_plot_imshow_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_imshow_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_imshow_ex.html
+   :target: auto_examples/plot_imshow.html
 
 
 .. hint::
@@ -818,10 +818,10 @@ Click on the figure for the solution.
 Pie Charts
 ----------
 
-.. image:: auto_examples/images/sphx_glr_plot_pie_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_pie_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_pie_ex.html
+   :target: auto_examples/plot_pie.html
 
 
 .. hint::
@@ -843,10 +843,10 @@ Click on the figure for the solution.
 Quiver Plots
 ------------
 
-.. image:: auto_examples/images/sphx_glr_plot_quiver_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_quiver_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_quiver_ex.html
+   :target: auto_examples/plot_quiver.html
 
 
 .. hint::
@@ -868,10 +868,10 @@ Click on figure for solution.
 Grids
 -----
 
-.. image:: auto_examples/images/sphx_glr_plot_grid_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_grid_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_grid_ex.html
+   :target: auto_examples/plot_grid.html
 
 
 Starting from the code below, try to reproduce the graphic on the right taking
@@ -892,10 +892,10 @@ Click on figure for solution.
 Multi Plots
 -----------
 
-.. image:: auto_examples/images/sphx_glr_plot_multiplot_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_multiplot_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_multiplot_ex.html
+   :target: auto_examples/plot_multiplot.html
 
 .. hint::
 
@@ -916,10 +916,10 @@ Click on figure for solution.
 Polar Axis
 ----------
 
-.. image:: auto_examples/images/sphx_glr_plot_polar_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_polar_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_polar_ex.html
+   :target: auto_examples/plot_polar.html
 
 
 .. hint::
@@ -949,10 +949,10 @@ Click on figure for solution.
 3D Plots
 --------
 
-.. image:: auto_examples/images/sphx_glr_plot_plot3d_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_plot3d_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_plot3d_ex.html
+   :target: auto_examples/plot_plot3d.html
 
 
 .. hint::
@@ -985,10 +985,10 @@ Text
 ----
 
 
-.. image:: auto_examples/images/sphx_glr_plot_text_ex_001.png
+.. image:: auto_examples/images/sphx_glr_plot_text_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/plot_text_ex.html
+   :target: auto_examples/plot_text.html
 
 
 .. hint::
@@ -1233,3 +1233,10 @@ colormaps <intro/matplotlib/matplotlib.rst>`_.
 .. image:: auto_examples/images/sphx_glr_plot_colormaps_001.png
    :scale: 80
 
+
+Code examples
+==============
+
+.. toctree::
+
+    auto_examples/index.rst

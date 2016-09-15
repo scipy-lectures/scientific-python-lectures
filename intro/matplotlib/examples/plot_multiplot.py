@@ -1,43 +1,28 @@
 """
-Multiple plots vignette
-========================
+Subplots
+=========
 
-Demo multiple plots and style the figure.
+Show multiple subplots in matplotlib.
 """
 
 import matplotlib.pyplot as plt
 
-ax = plt.subplot(2, 1, 1)
-ax.set_xticklabels([])
-ax.set_yticklabels([])
+fig = plt.figure()
+fig.subplots_adjust(bottom=0.025, left=0.025, top = 0.975, right=0.975)
 
+plt.subplot(2, 1, 1)
+plt.xticks(()), plt.yticks(())
 
-# Add a title and a box around it
-from matplotlib.patches import FancyBboxPatch
-ax = plt.gca()
-ax.add_patch(FancyBboxPatch((-0.05, .72),
-                            width=.66, height=.34, clip_on=False,
-                            boxstyle="square,pad=0", zorder=3,
-                            facecolor='white', alpha=1.0,
-                            transform=plt.gca().transAxes))
+plt.subplot(2, 3, 4)
+plt.xticks(())
+plt.yticks(())
 
-plt.text(-0.05, 1.02, " Multiplot:     plt.subplot(...)\n",
-      horizontalalignment='left',
-      verticalalignment='top',
-      size='xx-large',
-      transform=ax.transAxes)
-plt.text(-0.05, 1.01, "\n\n    Plot several plots at once ",
-      horizontalalignment='left',
-      verticalalignment='top',
-      size='large',
-      transform=ax.transAxes)
+plt.subplot(2, 3, 5)
+plt.xticks(())
+plt.yticks(())
 
-ax = plt.subplot(2, 2, 3)
-ax.set_xticklabels([])
-ax.set_yticklabels([])
-
-ax = plt.subplot(2, 2, 4)
-ax.set_xticklabels([])
-ax.set_yticklabels([])
+plt.subplot(2, 3, 6)
+plt.xticks(())
+plt.yticks(())
 
 plt.show()

@@ -1,3 +1,7 @@
-Examples for the Matplotlib chapter
-===================================
+
+
+Code samples for Matplotlib
+----------------------------
+
+
 
