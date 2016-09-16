@@ -38,13 +38,12 @@ About the scipy lecture notes
     }
 
     div.section#authors ul.simple:after,
-    div.section#requirements ul.simple:after li{
-        visibility: hidden;
+    div.section#requirements ul.simple li:after {
         display: block;
         font-size: 0;
         content: " ";
         clear: both;
-        height: 0;
+        height: 1em;
     }
   </style>
 
