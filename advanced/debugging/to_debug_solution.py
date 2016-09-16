@@ -54,12 +54,12 @@ def compare_optimizers(optimizers):
     for value in param_grid:
         values.append(value)
     param_grid = values
-    print "Benching 1D root-finder optimizers from scipy.optimize:"
+    print("Benching 1D root-finder optimizers from scipy.optimize:")
     for optimizer in OPTIMIZERS:
-        print '% 20s: % 8i total function calls' % (
+        print('% 20s: % 8i total function calls' % (
                     optimizer.__name__, 
                     bench_optimizer(optimizer, param_grid)
-                )
+                ))
 
 
 if __name__ == '__main__':

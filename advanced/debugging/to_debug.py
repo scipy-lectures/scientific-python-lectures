@@ -51,12 +51,12 @@ def compare_optimizers(optimizers):
     random_a = -1.3 + np.random.random(size=100)
     random_b =   .3 + np.random.random(size=100)
     param_grid = product(FUNCTIONS, random_a, random_b)
-    print "Benching 1D root-finder optimizers from scipy.optimize:"
+    print("Benching 1D root-finder optimizers from scipy.optimize:")
     for optimizer in OPTIMIZERS:
-        print '% 20s: % 8i total function calls' % (
+        print('% 20s: % 8i total function calls' % (
                     optimizer.__name__, 
                     bench_optimizer(optimizer, param_grid)
-                )
+                ))
 
 
 if __name__ == '__main__':
