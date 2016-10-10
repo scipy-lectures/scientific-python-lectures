@@ -573,7 +573,7 @@ div.highlight:hover span.copybutton:hover {
 	background: #3F556B;
 	border-radius: 5px;
 	color: white;
-	content: attr(button_hint);
+	content: attr(title);
 	left: 110%;
 	padding: 5px 15px;
 	position: absolute;
