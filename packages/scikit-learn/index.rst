@@ -330,30 +330,20 @@ Let's try it out on our iris classification problem::
    :align: center
    :target: auto_examples/plot_iris_knn.html
 
-    A plot of the sepal space and the prediction of the KNN
+   A plot of the sepal space and the prediction of the KNN
 
 **Regression**: The simplest possible regression setting is the linear
-regression one::
+regression one:
 
-    # Create some simple data
-    import numpy as np
-    np.random.seed(0)
-    X = np.random.random(size=(20, 1))
-    y = 3 * X[:, 0] + 2 + np.random.normal(size=20)
-    
-    # Fit a linear regression to it
-    from sklearn.linear_model import LinearRegression
-    model = LinearRegression(fit_intercept=True)
-    model.fit(X, y)
-    print("Model coefficient: %.5f, and intercept: %.5f"
-          % (model.coef_, model.intercept_))
-    
-    # Plot the data and the model prediction
-    X_test = np.linspace(0, 1, 100)[:, np.newaxis]
-    y_test = model.predict(X_test)
-    import pylab as pl
-    plt.plot(X[:, 0], y, 'o')
-    plt.plot(X_test[:, 0], y_test)
+.. literalinclude:: examples/plot_linear_regression.py
+    :start-after: import matplotlib.pyplot as plt
+    :end-before: # plot the results
+
+.. figure:: auto_examples/images/sphx_glr_plot_linear_regression_001.png
+   :align: center
+   :target: auto_examples/plot_linear_regression.html
+
+   A plot of a simple linear regression.
 
 A recap on Scikit-learn's estimator interface
 ----------------------------------------------
@@ -362,33 +352,33 @@ Scikit-learn strives to have a uniform interface across all methods, and
 we’ll see examples of these below. Given a scikit-learn *estimator*
 object named ``model``, the following methods are available:
 
--  Available in **all Estimators**
--  ``model.fit()`` : fit training data. For supervised learning
-   applications, this accepts two arguments: the data ``X`` and the
-   labels ``y`` (e.g. ``model.fit(X, y)``). For unsupervised learning
-   applications, this accepts only a single argument, the data ``X``
-   (e.g. ``model.fit(X)``).
--  Available in **supervised estimators**
--  ``model.predict()`` : given a trained model, predict the label of a
-   new set of data. This method accepts one argument, the new data
-   ``X_new`` (e.g. ``model.predict(X_new)``), and returns the learned
-   label for each object in the array.
--  ``model.predict_proba()`` : For classification problems, some
-   estimators also provide this method, which returns the probability
-   that a new observation has each categorical label. In this case, the
-   label with the highest probability is returned by
-   ``model.predict()``.
--  ``model.score()`` : for classification or regression problems, most
-   (all?) estimators implement a score method. Scores are between 0 and
-   1, with a larger score indicating a better fit.
--  Available in **unsupervised estimators**
--  ``model.transform()`` : given an unsupervised model, transform new
-   data into the new basis. This also accepts one argument ``X_new``,
-   and returns the new representation of the data based on the
-   unsupervised model.
--  ``model.fit_transform()`` : some estimators implement this method,
-   which more efficiently performs a fit and a transform on the same
-   input data.
+* Available in **all Estimators**
+  - ``model.fit()`` : fit training data. For supervised learning
+    applications, this accepts two arguments: the data ``X`` and the
+    labels ``y`` (e.g. ``model.fit(X, y)``). For unsupervised learning
+    applications, this accepts only a single argument, the data ``X``
+    (e.g. ``model.fit(X)``).
+* Available in **supervised estimators**
+  - ``model.predict()`` : given a trained model, predict the label of a
+    new set of data. This method accepts one argument, the new data
+    ``X_new`` (e.g. ``model.predict(X_new)``), and returns the learned
+    label for each object in the array.
+  - ``model.predict_proba()`` : For classification problems, some
+    estimators also provide this method, which returns the probability
+    that a new observation has each categorical label. In this case, the
+    label with the highest probability is returned by
+    ``model.predict()``.
+  - ``model.score()`` : for classification or regression problems, most
+    (all?) estimators implement a score method. Scores are between 0 and
+    1, with a larger score indicating a better fit.
+* Available in **unsupervised estimators**
+  - ``model.transform()`` : given an unsupervised model, transform new
+    data into the new basis. This also accepts one argument ``X_new``,
+    and returns the new representation of the data based on the
+    unsupervised model.
+  - ``model.fit_transform()`` : some estimators implement this method,
+    which more efficiently performs a fit and a transform on the same
+    input data.
 
 Regularization: what it is and why it is necessary
 ----------------------------------------------------
