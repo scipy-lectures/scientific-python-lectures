@@ -50,12 +50,8 @@ X1, X2 = np.meshgrid(x, y)
 Z = clf.decision_function(np.c_[X1.ravel(), X2.ravel()])
 Z = Z.reshape(X1.shape)
 
-levels = [-1.0, 0.0, 1.0]
-linestyles = ['dashed', 'solid', 'dashed']
-colors = 'k'
-ax.contour(X1, X2, Z, levels,
-            colors=colors,
-            linestyles=linestyles)
+ax.contour(X1, X2, Z, [-1.0, 0.0, 1.0], colors='k',
+           linestyles=['dashed', 'solid', 'dashed'])
 
 
 ##############################################################################
@@ -87,9 +83,8 @@ plt.figure()
 ax = plt.subplot(1, 1, 1, xticks=[], yticks=[])
 ax.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.bone, zorder=2)
 
-ax.scatter(clf.support_vectors_[:, 0],
-            clf.support_vectors_[:, 1],
-            s=80, edgecolors="k", facecolors="none")
+ax.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1],
+           s=80, edgecolors="k", facecolors="none")
 
 delta = 1
 y_min, y_max = -50, 50
@@ -100,10 +95,7 @@ X1, X2 = np.meshgrid(x, y)
 Z = clf.decision_function(np.c_[X1.ravel(), X2.ravel()])
 Z = Z.reshape(X1.shape)
 
-ax.contourf(X1, X2, Z, 10, cmap=matplotlib.cm.bone,
-            origin='lower',
-            alpha=0.85, zorder=1)
-ax.contour(X1, X2, Z, [0.0], colors='k',
-            linestyles=['solid'], zorder=1)
+ax.contour(X1, X2, Z, [-1.0, 0.0, 1.0], colors='k',
+            linestyles=['dashed', 'solid', 'dashed'], zorder=1)
 
 plt.show()

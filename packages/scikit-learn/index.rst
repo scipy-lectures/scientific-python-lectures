@@ -253,7 +253,7 @@ when it is instantiated::
     LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=True)
 
 Fitting on data
-----------------
+~~~~~~~~~~~~~~~
 
 Let's create some simple data::
 
@@ -436,10 +436,20 @@ make the decision. k=1 amounts to no regularization: 0 error on the
 training set, whereas large k will push toward smoother decision
 boundaries in the feature space.
 
-Exercise: Interactive Demo on linearly separable data
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+More complex models in classification
+-----------------------------------------
 
-Run the **svm\_gui.py** file in the repository:
-https://github.com/GaelVaroquaux/sklearn\_ensae\_course
+.. |linear| image:: auto_examples/images/sphx_glr_plot_svm_non_linear_001.png
+   :width: 400
+   :target: auto_examples/plot_svm_non_linear.html
 
---------------
+.. |nonlinear| image:: auto_examples/images/sphx_glr_plot_svm_non_linear_002.png
+   :width: 400
+   :target: auto_examples/plot_svm_non_linear.html
+
+========================== ==========================
+|linear|                   |nonlinear|
+========================== ==========================
+A linear separation        A non-linear separation
+========================== ==========================
+
