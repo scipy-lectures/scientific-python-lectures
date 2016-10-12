@@ -19,8 +19,11 @@ used for more efficient, non black-box, optimization.
 
 .. topic:: Prerequisites
 
-    * Numpy, Scipy
-    * matplotlib
+   .. rst-class:: horizontal
+
+    * :ref:`Numpy <numpy>`
+    * :ref:`Scipy <scipy>`
+    * :ref:`Matplotlib <matplotlib>`
 
 .. seealso::  **References**
 

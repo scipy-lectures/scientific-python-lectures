@@ -58,12 +58,12 @@ Typical Applications
 Prerequisites
 -------------
 
-recent versions of
-
-* ``numpy``
-* ``scipy``
-* ``matplotlib`` (optional)
-* ``ipython`` (the enhancements come handy)
+.. rst-class:: horizontal
+  
+    * :ref:`numpy <numpy>`
+    * :ref:`scipy <scipy>`
+    * :ref:`matplotlib (optional) <matplotlib>`
+    * :ref:`ipython (the enhancements come handy) <interactive_work>`
 
 Sparsity Structure Visualization
 --------------------------------

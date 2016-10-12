@@ -286,6 +286,8 @@ this makes it harder for beginners to find their way, it makes it
 possible for Python to be used for programs, in web servers, or
 embedded devices.
 
+.. _interactive_work:
+
 Interactive work
 .................
 
