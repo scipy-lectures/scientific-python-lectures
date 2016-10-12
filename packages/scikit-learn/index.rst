@@ -12,10 +12,12 @@ scikit-learn: machine learning in Python
 
 .. topic:: Prerequisites
 
-    * Numpy, Scipy
-    * IPython
-    * matplotlib
-    * scikit-learn (http://scikit-learn.org)
+   .. rst-class:: horizontal
+
+    * :ref:`numpy <numpy>`
+    * :ref:`scipy <scipy>`
+    * :ref:`matplotlib (optional) <matplotlib>`
+    * :ref:`ipython (the enhancements come handy) <interactive_work>`
 
 .. seealso:: **Statistics in Python**
 
@@ -128,8 +130,7 @@ The application problem
 
 As an example of a simple dataset, we are going to take a look at the
 iris data stored by scikit-learn. The data consists of measurements of
-three different species of irises. There are three species of iris in
-the dataset:
+three different species of irises:
 
 .. |setosa_picture| image:: images/iris_setosa.jpg
     
@@ -167,16 +168,20 @@ species. The data consist of the following:
 
 -  Features in the Iris dataset:
 
-    1. sepal length in cm
-    2. sepal width in cm
-    3. petal length in cm
-    4. petal width in cm
+   .. rst-class:: horizontal
+
+    * sepal length (cm)
+    * sepal width (cm)
+    * petal length (cm)
+    * petal width (cm)
 
 -  Target classes to predict:
 
-    1. Iris Setosa
-    2. Iris Versicolour
-    3. Iris Virginica
+   .. rst-class:: horizontal
+
+    * Setosa
+    * Versicolour
+    * Virginica
 
 ``scikit-learn`` embeds a copy of the iris CSV file along with a helper
 function to load it into numpy arrays::

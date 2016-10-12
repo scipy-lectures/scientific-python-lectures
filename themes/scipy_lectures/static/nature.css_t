@@ -88,6 +88,20 @@ div.body li {
    line-height: 1.45;
 }
 
+li.horizontal {
+    display: inline-block;
+}
+
+ul.horizontal li {
+    display: inline-block;
+}
+
+ul.horizontal li:before {
+    content: "\2022";
+    margin-right: .5ex;
+    margin-left: 1.5ex;
+}
+
 div.body p {
    line-height: 1.45;
 }
