@@ -216,7 +216,7 @@ The names of the classes are stored in the last attribute, namely
     ['setosa' 'versicolor' 'virginica']
 
 This data is four-dimensional, but we can visualize two of the
-dimensions at a time using a simple scatter-plot: 
+dimensions at a time using a scatter plot: 
 
 .. image:: auto_examples/images/sphx_glr_plot_iris_scatter_001.png
    :align: center
@@ -255,8 +255,9 @@ when it is instantiated::
 Fitting on data
 ~~~~~~~~~~~~~~~
 
-Let's create some simple data::
+Let's create some simple data with :ref:`numpy <numpy>`::
 
+    >>> import numpy as np
     >>> x = np.array([0, 1, 2])
     >>> y = np.array([0, 1, 2])
 
@@ -313,9 +314,7 @@ problem, because the label (age) is a continuous quantity.
 **Classification**: K nearest neighbors (kNN) is one of the simplest
 learning strategies: given a new, unknown observation, look up in your
 reference database which ones have the closest features and assign the
-predominant class.
-
-Let's try it out on our iris classification problem::
+predominant class. Let's try it out on our iris classification problem::
 
     from sklearn import neighbors, datasets
     iris = datasets.load_iris()
@@ -353,12 +352,14 @@ we’ll see examples of these below. Given a scikit-learn *estimator*
 object named ``model``, the following methods are available:
 
 * Available in **all Estimators**
+
   - ``model.fit()`` : fit training data. For supervised learning
     applications, this accepts two arguments: the data ``X`` and the
     labels ``y`` (e.g. ``model.fit(X, y)``). For unsupervised learning
     applications, this accepts only a single argument, the data ``X``
     (e.g. ``model.fit(X)``).
 * Available in **supervised estimators**
+
   - ``model.predict()`` : given a trained model, predict the label of a
     new set of data. This method accepts one argument, the new data
     ``X_new`` (e.g. ``model.predict(X_new)``), and returns the learned
@@ -372,6 +373,7 @@ object named ``model``, the following methods are available:
     (all?) estimators implement a score method. Scores are between 0 and
     1, with a larger score indicating a better fit.
 * Available in **unsupervised estimators**
+
   - ``model.transform()`` : given an unsupervised model, transform new
     data into the new basis. This also accepts one argument ``X_new``,
     and returns the new representation of the data based on the
@@ -382,6 +384,9 @@ object named ``model``, the following methods are available:
 
 Regularization: what it is and why it is necessary
 ----------------------------------------------------
+
+Prefering simpler models
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Train errors** Suppose you are using a 1-nearest neighbor estimator.
 How many errors do you expect on your train set?
@@ -419,15 +424,17 @@ Let's look at the ground truth:
    :scale: 90
    :target: auto_examples/plot_polynomial_regression.html
 
-Regularization is ubiquitous in machine learning. Most scikit-learn
-estimators have a parameter to tune the amount of regularization. For
-instance, with k-NN, it is 'k', the number of nearest neighbors used to
-make the decision. k=1 amounts to no regularization: 0 error on the
-training set, whereas large k will push toward smoother decision
-boundaries in the feature space.
+.. tip::
 
-More complex models in classification
------------------------------------------
+    Regularization is ubiquitous in machine learning. Most scikit-learn
+    estimators have a parameter to tune the amount of regularization. For
+    instance, with k-NN, it is 'k', the number of nearest neighbors used to
+    make the decision. k=1 amounts to no regularization: 0 error on the
+    training set, whereas large k will push toward smoother decision
+    boundaries in the feature space.
+
+Simple versus complex models for classification
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. |linear| image:: auto_examples/images/sphx_glr_plot_svm_non_linear_001.png
    :width: 400
@@ -443,3 +450,9 @@ More complex models in classification
 A linear separation        A non-linear separation
 ========================== ==========================
 
+.. tip::
+
+   For classification models, the decision boundary, that separates the
+   class expresses the complexity of the model. For instance, a linear
+   model, that makes a decision based on a linear combination of
+   features, is more complex than a non-linear one.
