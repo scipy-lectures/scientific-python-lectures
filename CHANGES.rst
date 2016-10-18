@@ -1,6 +1,17 @@
 What's new
 ==========
 
+* Rework of intro chapter (Gaël Varoquaux)
+
+* Integrate sphinx-gallery: examples are now Jupyter notebooks (Gaël
+  Varoquaux, Gerg-Ludwig Ingold, Óscar Nájera)
+
+* Better Python 3 tests and support (Gert-Ludwig Ingold)
+
+* Adapt examples to Matplotlib 1.5 (Gaël Varoquaux)
+
+* Modernize numpy chapter (Bartosz Telenczuk)
+
 Release 2015.3 (November 2015)
 -------------------------------------
 
