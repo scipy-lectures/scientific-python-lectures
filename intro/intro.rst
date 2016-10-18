@@ -258,8 +258,7 @@ packaged, and it is recommended to use your package manager.
 
 There are several fully-featured Scientific Python distributions:
 
-.. hlist::
-  :columns: 3
+.. rst-class:: horizontal
 
   * `Anaconda <https://www.continuum.io/downloads>`_
   * `EPD <https://store.enthought.com/downloads>`_
