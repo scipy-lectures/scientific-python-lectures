@@ -461,3 +461,167 @@ A linear separation        A non-linear separation
    class expresses the complexity of the model. For instance, a linear
    model, that makes a decision based on a linear combination of
    features, is more complex than a non-linear one.
+
+
+Supervised Learning: Classification of Handwritten Digits
+=========================================================
+
+The nature of the data
+-----------------------
+
+.. sidebar:: Code and notebook
+
+   Python code and Jupyter notebook for this section are found 
+   `here <sphx_glr_packages_scikit-learn_auto_examples_plot_digits_simple_classif.py>`_
+
+
+In this section we'll apply scikit-learn to the classification of
+handwritten digits. This will go a bit beyond the iris classification we
+saw before: we'll discuss some of the metrics which can be used in
+evaluating the effectiveness of a classification model. ::
+
+    >>> from sklearn.datasets import load_digits
+    >>> digits = load_digits()
+
+.. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_001.png
+   :target: auto_examples/plot_digits_simple_classif.html
+   :align: center
+
+Let us visualize the data and remind us what we're looking at (click on
+the figure for the full code)::
+
+    # plot the digits: each image is 8x8 pixels
+    for i in range(64):
+        ax = fig.add_subplot(8, 8, i + 1, xticks=[], yticks=[])
+        ax.imshow(digits.images[i], cmap=plt.cm.binary, interpolation='nearest')
+
+Visualizing the Data on its principal components
+-------------------------------------------------
+
+A good first-step for many problems is to visualize the data using a
+*Dimensionality Reduction* technique. We'll start with the most
+straightforward one, Principal Component Analysis (PCA).
+
+PCA seeks orthogonal linear combinations of the features which show the
+greatest variance, and as such, can help give you a good idea of the
+structure of the data set. Here we'll use ``RandomizedPCA``, because
+it's faster for large ``N``::
+
+    >>> from sklearn.decomposition import RandomizedPCA
+    >>> pca = RandomizedPCA(n_components=2)
+    >>> proj = pca.fit_transform(digits.data)
+    >>> plt.scatter(proj[:, 0], proj[:, 1], c=digits.target)
+    >>> plt.colorbar() # doctest: +SKIP
+
+.. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_002.png
+   :align: center 
+   :target: auto_examples/plot_digits_simple_classif.html
+
+.. topic:: **Question**
+   
+    Given these projections of the data, which numbers do you think a
+    classifier might have trouble distinguishing?
+
+Gaussian Naive Bayes Classification
+-----------------------------------
+
+For most classification problems, it's nice to have a simple, fast,
+go-to method to provide a quick baseline classification. If the simple
+and fast method is sufficient, then we don't have to waste CPU cycles on
+more complex models. If not, we can use the results of the simple method
+to give us clues about our data.
+
+One good method to keep in mind is Gaussian Naive Bayes. It fits a
+Gaussian distribution to each training label independantly on each
+feature, and uses this to quickly give a rough classification. It is
+generally not sufficiently accurate for real-world data, but can perform
+surprisingly well, for instance on text data::
+
+    from sklearn.naive_bayes import GaussianNB
+    from sklearn.cross_validation import train_test_split
+
+    # split the data into training and validation sets
+    X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target)
+    
+    # train the model
+    clf = GaussianNB()
+    clf.fit(X_train, y_train)
+    
+    # use the model to predict the labels of the test data
+    predicted = clf.predict(X_test)
+    expected = y_test
+
+.. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_002.png
+   :align: center 
+   :target: auto_examples/plot_digits_simple_classif.html
+
+As above, we can plot the digits with the predicted labels to get an idea of
+how well the classification is working:
+
+.. topic:: **Question**
+
+    Why did we split the data into training and validation sets?
+
+Quantitative Measurement of Performance
+---------------------------------------
+
+We'd like to measure the performance of our estimator without having to
+resort to plotting examples. A simple method might be to simply compare
+the number of matches::
+
+    >>> matches = (predicted == expected)
+    >>> print(matches.sum())
+    397
+    >>> print(len(matches))
+    450
+    >>> matches.sum() / float(len(matches))
+    0.88222222222222224
+
+
+
+We see that nearly 1500 of the 1800 predictions match the input. But
+there are other more sophisticated metrics that can be used to judge the
+performance of a classifier: several are available in the
+``sklearn.metrics`` submodule.
+
+One of the most useful metrics is the ``classification_report``, which
+combines several measures and prints a table with the results::
+
+    >>> from sklearn import metrics
+    >>> print(metrics.classification_report(expected, predicted))
+                 precision    recall  f1-score   support
+    
+              0       1.00      0.98      0.99        44
+              1       0.84      0.82      0.83        39
+              2       0.93      0.84      0.88        45
+              3       0.91      0.83      0.87        48
+              4       0.93      0.89      0.91        47
+              5       0.94      0.88      0.91        51
+              6       0.95      1.00      0.98        40
+              7       0.78      1.00      0.88        46
+              8       0.68      0.92      0.78        39
+              9       0.95      0.69      0.80        51
+    
+    avg / total       0.89      0.88      0.88       450
+    
+
+
+Another enlightening metric for this sort of multi-label classification
+is a *confusion matrix*: it helps us visualize which labels are being
+interchanged in the classification errors::
+
+    >>> print(metrics.confusion_matrix(expected, predicted))
+    [[43  0  0  0  0  0  0  1  0  0]
+     [ 0 32  2  0  0  0  1  1  2  1]
+     [ 0  1 38  0  1  0  0  0  5  0]
+     [ 0  0  1 40  0  2  0  1  3  1]
+     [ 0  0  0  0 42  1  1  3  0  0]
+     [ 0  0  0  2  1 45  0  2  1  0]
+     [ 0  0  0  0  0  0 40  0  0  0]
+     [ 0  0  0  0  0  0  0 46  0  0]
+     [ 0  2  0  0  0  0  0  1 36  0]
+     [ 0  3  0  2  1  0  0  4  6 35]]
+
+
+We see here that in particular, the numbers 1, 2, 3, and 9 are often
+being labeled 8.
