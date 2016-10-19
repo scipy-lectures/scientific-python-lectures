@@ -24,6 +24,9 @@ scikit-learn: machine learning in Python
     The content of the :ref:`statistics` chapter may also be of interest
     for readers looking into machine learning.
 
+    The `documentation of scikit-learn <http://scikit-learn.org>`_ is
+    very complete and didactic.
+
 .. contents:: Chapters contents
    :local:
    :depth: 2
@@ -34,6 +37,8 @@ scikit-learn: machine learning in Python
    >>> # For doctest on headless environments
    >>> from matplotlib import pyplot as plt
    >>> plt.switch_backend('Agg')
+
+.. currentmodule:: sklearn
 
 Introduction: problem settings
 ===============================
@@ -189,6 +194,10 @@ function to load it into numpy arrays::
     >>> from sklearn.datasets import load_iris
     >>> iris = load_iris()
 
+.. note::
+   
+   **Import sklearn** Note that scikit-learn is imported as :mod:`sklearn`
+
 The features of each sample flower are stored in the ``data`` attribute
 of the dataset::
 
@@ -244,7 +253,7 @@ Introducing the scikit-learn estimator object
 ----------------------------------------------
 
 Every algorithm is exposed in scikit-learn via an ''Estimator'' object.
-For instance a linear regression is::
+For instance a linear regression is: :class:`sklearn.linear_model.LinearRegression` ::
 
     >>> from sklearn.linear_model import LinearRegression
 
@@ -526,17 +535,23 @@ it's faster for large ``N``::
 Gaussian Naive Bayes Classification
 -----------------------------------
 
-For most classification problems, it's nice to have a simple, fast,
-go-to method to provide a quick baseline classification. If the simple
+For most classification problems, it's nice to have a simple, fast
+method to provide a quick baseline classification. If the simple
 and fast method is sufficient, then we don't have to waste CPU cycles on
 more complex models. If not, we can use the results of the simple method
 to give us clues about our data.
 
-One good method to keep in mind is Gaussian Naive Bayes. It fits a
-Gaussian distribution to each training label independantly on each
-feature, and uses this to quickly give a rough classification. It is
-generally not sufficiently accurate for real-world data, but can perform
-surprisingly well, for instance on text data::
+One good method to keep in mind is Gaussian Naive Bayes
+(:class:`sklearn.naive_bayes.GaussianNB`). 
+
+.. tip::
+
+   Gaussian Naive Bayes fits a Gaussian distribution to each training label
+   independantly on each feature, and uses this to quickly give a rough
+   classification. It is generally not sufficiently accurate for real-world
+   data, but can perform surprisingly well, for instance on text data.
+   
+::
 
     from sklearn.naive_bayes import GaussianNB
     from sklearn.cross_validation import train_test_split
@@ -552,12 +567,13 @@ surprisingly well, for instance on text data::
     predicted = clf.predict(X_test)
     expected = y_test
 
-.. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_002.png
-   :align: center 
+As above, we can plot the digits with the predicted labels to get an idea of
+how well the classification is working.
+
+.. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_003.png
+   :align: center
    :target: auto_examples/plot_digits_simple_classif.html
 
-As above, we can plot the digits with the predicted labels to get an idea of
-how well the classification is working:
 
 .. topic:: **Question**
 
@@ -830,10 +846,10 @@ We can plot the error, expected as a function of predicted::
     **Use the GradientBoostingRegressor class to fit the housing data**.
 
     **hint** You can copy and paste some of the above code, replacing
-    ``LinearRegression`` with ``GradientBoostingRegressor``::²
+    LinearRegression`` with ``GradientBoostingRegressor``::
 
-    from sklearn.ensemble import GradientBoostingRegressor
-    # Instantiate the model, fit the results, and scatter in vs. out
+        from sklearn.ensemble import GradientBoostingRegressor
+        # Instantiate the model, fit the results, and scatter in vs. out
 
     **Solution** The solution is found in :ref:`the code of this chapter <sphx_glr_packages_scikit-learn_auto_examples_plot_boston_prediction.py>`
 
