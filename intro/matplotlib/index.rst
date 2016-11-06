@@ -110,9 +110,9 @@ This brings us to the IPython prompt: ::
 .. tip::
 
     You can also download each of the examples and run it using regular
-    python, but you will loose interactive data manipulation::
+    python, but you will lose interactive data manipulation::
 
-        $ python plot_exercice_1.py
+        $ python plot_exercise_1.py
 
     You can get source for each step by clicking on the corresponding figure.
 
@@ -120,10 +120,10 @@ This brings us to the IPython prompt: ::
 Plotting with default settings
 -------------------------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_1_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_1_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_1.html
+   :target: auto_examples/exercises/plot_exercise_1.html
 
 .. hint:: Documentation
 
@@ -155,10 +155,10 @@ Plotting with default settings
 Instantiating defaults
 ----------------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_2_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_2_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_2.html
+   :target: auto_examples/exercises/plot_exercise_2.html
 
 .. hint:: Documentation
 
@@ -206,7 +206,7 @@ that influence the appearance of the plot.
    plt.yticks(np.linspace(-1, 1, 5, endpoint=True))
 
    # Save figure using 72 dots per inch
-   # plt.savefig("exercice_2.png", dpi=72)
+   # plt.savefig("exercise_2.png", dpi=72)
 
    # Show result on screen
    plt.show()
@@ -215,10 +215,10 @@ that influence the appearance of the plot.
 Changing colors and line widths
 --------------------------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_3_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_3_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_3.html
+   :target: auto_examples/exercises/plot_exercise_3.html
 
 .. hint:: Documentation
 
@@ -243,10 +243,10 @@ Changing colors and line widths
 Setting limits
 --------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_4_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_4_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_4.html
+   :target: auto_examples/exercises/plot_exercise_4.html
 
 .. hint:: Documentation
 
@@ -270,10 +270,10 @@ Setting limits
 Setting ticks
 -------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_5_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_5_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_5.html
+   :target: auto_examples/exercises/plot_exercise_5.html
 
 .. hint:: Documentation
 
@@ -300,10 +300,10 @@ Setting ticks
 Setting tick labels
 -------------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_6_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_6_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_6.html
+   :target: auto_examples/exercises/plot_exercise_6.html
 
 
 .. hint:: Documentation
@@ -338,10 +338,10 @@ Setting tick labels
 Moving spines
 -------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_7_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_7_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_7.html
+   :target: auto_examples/exercises/plot_exercise_7.html
 
 
 .. hint:: Documentation
@@ -377,10 +377,10 @@ Moving spines
 Adding a legend
 ---------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_8_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_8_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_8.html
+   :target: auto_examples/exercises/plot_exercise_8.html
 
 
 .. hint:: Documentation
@@ -409,10 +409,10 @@ Adding a legend
 Annotate some points
 --------------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_9_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_9_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_9.html
+   :target: auto_examples/exercises/plot_exercise_9.html
 
 
 .. hint:: Documentation
@@ -455,10 +455,10 @@ Annotate some points
 Devil is in the details
 ------------------------
 
-.. image:: auto_examples/exercices/images/sphx_glr_plot_exercice_10_001.png
+.. image:: auto_examples/exercises/images/sphx_glr_plot_exercise_10_001.png
    :align: right
    :scale: 35
-   :target: auto_examples/exercices/plot_exercice_10.html
+   :target: auto_examples/exercises/plot_exercise_10.html
 
 .. hint:: Documentation
 
