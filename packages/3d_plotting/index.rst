@@ -416,7 +416,7 @@ Different sources: scatters and fields
     :scale: 90
 
 ================================================= ==========================================
-|structured|                                      |unstructured|                
+|unstructured|                                    |structured|                
 ================================================= ==========================================
 Unstructured and unconnected data: a **scatter**  Structured and connected data: a **field**
 
