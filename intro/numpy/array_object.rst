@@ -748,7 +748,7 @@ Using boolean masks
 .. sourcecode:: pycon
 
     >>> np.random.seed(3)
-    >>> a = np.random.random_integers(0, 20, 15)
+    >>> a = np.random.randint(0, 21, 15)
     >>> a
     array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
     >>> (a % 3 == 0)

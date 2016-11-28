@@ -115,7 +115,7 @@ For large data, use ``np.memmap`` for memory mapping::
 Working on a list of image files ::
 
     >>> for i in range(10):
-    ...     im = np.random.random_integers(0, 255, 10000).reshape((100, 100))
+    ...     im = np.random.randint(0, 256, 10000).reshape((100, 100))
     ...     misc.imsave('random_%02d.png' % i, im)
     >>> from glob import glob
     >>> filelist = glob('random*.png')

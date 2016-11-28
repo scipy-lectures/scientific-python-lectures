@@ -7,7 +7,7 @@ t_max = 200      # time during which we follow the walker
 # We randomly choose all the steps 1 or -1 of the walk
 
 t = np.arange(t_max)
-steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
+steps = 2 * np.random.randint(0, 2, (n_stories, t_max)) - 1
 print np.unique(steps) # Verification: all steps are 1 or -1
 # [-1,  1]
 
