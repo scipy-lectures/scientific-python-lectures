@@ -404,7 +404,7 @@ Other reductions
   .. sourcecode:: pycon
 
    >>> t = np.arange(t_max)
-   >>> steps = 2 * np.random.random_integers(0, 1, (n_stories, t_max)) - 1
+   >>> steps = 2 * np.random.randint(0, 1 + 1, (n_stories, t_max)) - 1 # +1 because the high value is exclusive
    >>> np.unique(steps) # Verification: all steps are 1 or -1
    array([-1,  1])
 

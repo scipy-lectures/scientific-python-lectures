@@ -1,5 +1,5 @@
 
 
-Code for the chapter's exercices
+Code for the chapter's exercises
 --------------------------------
 
