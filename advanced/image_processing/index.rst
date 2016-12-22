@@ -13,6 +13,11 @@ Image manipulation and processing using Numpy and Scipy
 
 **Authors**: *Emmanuelle Gouillart, Gaël Varoquaux*
 
+Warning: The file handling in this tutorial is valid only for Python 2.7 series scipy stacks.
+The issue arises with the reliance on the Python Imaging Library, which of writing does not have a Python3 release.
+As an alternate, use SciKit Image file import routines instead. It is recommended that new code be written in Python3,
+or at the very least be made compatible from the onset, since Python2 is now maintenance-only technology.
+
 
 This section addresses basic image manipulation and processing using the
 core scientific modules NumPy and SciPy. Some of the operations covered
