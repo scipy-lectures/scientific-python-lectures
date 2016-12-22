@@ -512,7 +512,7 @@ For multidimensional arrays, indexes are tuples of integers:
            [0, 0, 2]])
     >>> a[1, 1]
     1
-    >>> a[2, 1] = 10 # third line, second column
+    >>> a[2, 1] = 0 # third line, second column
     >>> a
     array([[ 0,  0,  0],
            [ 0,  1,  0],
