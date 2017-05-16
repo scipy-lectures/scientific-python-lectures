@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 face = scipy.misc.face(gray=True)
 lx, ly = face.shape
 # Cropping
-crop_face = face[lx/4:-lx/4, ly/4:-ly/4]
+crop_face = face[lx//4:-lx//4, ly//4:-ly//4]
 # up <-> down flip
 flip_ud_face = np.flipud(face)
 # rotation
