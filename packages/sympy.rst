@@ -324,7 +324,7 @@ SymPy is able to solve algebraic equations, in one and several
 variables::
 
     In [7]: solve(x**4 - 1, x)
-    Out[7]: [I, 1, -1, -I]
+    Out[7]: [-1, 1, -I, I]
 
 As you can see it takes as first argument an expression that is
 supposed to be equaled to 0. It is able to solve a large part of
@@ -333,12 +333,12 @@ equations with respect to multiple variables giving a tuple as second
 argument::
 
     In [8]: solve([x + 5*y - 2, -3*x + 6*y - 15], [x, y])
-    Out[8]: {y: 1, x: -3}
+    Out[8]: {x: -3, y: 1}
 
 It also has (limited) support for trascendental equations::
 
    In [9]: solve(exp(x) + 1, x)
-   Out[9]: [pi*I]
+   Out[9]: [I*pi]
 
 Another alternative in the case of polynomial equations is
 `factor`. `factor` returns the polynomial factorized into irreducible
@@ -347,10 +347,10 @@ domains::
 
    In [10]: f = x**4 - 3*x**2 + 1
    In [11]: factor(f)
-   Out[11]: (1 + x - x**2)*(1 - x - x**2)
+   Out[11]: (x**2 - x - 1)*(x**2 + x - 1)
 
    In [12]: factor(f, modulus=5)
-   Out[12]: (2 + x)**2*(2 - x)**2
+   Out[12]: (x - 2)**2*(x + 2)**2
 
 
 
@@ -449,17 +449,18 @@ that it is a separable equations, you can use keyword hint='separable'
 to force dsolve to resolve it as a separable equation::
 
    >>> dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
-                 /     _____________\                  /     _____________\
-                 |    /    C1       |                  |    /    C1       |
-   [f(x) = - asin|   /  ------- + 1 | + pi, f(x) = asin|   /  ------- + 1 | + pi,
-                 |  /      2        |                  |  /      2        |
-                 \\/    cos (x)     /                  \\/    cos (x)     /
    <BLANKLINE>
-                /     _____________\             /     _____________\
-                |    /    C1       |             |    /    C1       |
-    f(x) = -asin|   /  ------- + 1 |, f(x) = asin|   /  ------- + 1 |]
-                |  /      2        |             |  /      2        |
-                \\/    cos (x)     /             \\/    cos (x)     /
+                 /     _________________\                  /     _________________\
+                 |    /      C1         |                  |    /      C1         |
+   [f(x) = - asin|   /  ----------- + 1 | + pi, f(x) = asin|   /  ----------- + 1 | + pi,
+                 |  /      2            |                  |  /      2            |
+                 \\/    sin (x) - 1     /                  \\/    sin (x) - 1     /
+   <BLANKLINE>
+                 /     _________________\             /     _________________\
+                 |    /      C1         |             |    /      C1         |
+    f(x) = - asin|   /  ----------- + 1 |, f(x) = asin|   /  ----------- + 1 |]
+                 |  /      2            |             |  /      2            |
+                 \\/    sin (x) -1      /             \\/    sin (x) - 1     /
 
    
 .. topic:: **Exercises**
