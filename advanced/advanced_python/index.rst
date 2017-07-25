@@ -411,8 +411,8 @@ Decorators
 .. >>> print(A)
 .. None
 
-Since a function or a class are objects, they can be passed
-around. Since they are mutable objects, they can be modified.  The act
+Since functions and classes are objects, they can be passed
+around. Since they are mutable objects, they can be modified. The act
 of altering a function or class object after it has been constructed
 but before is is bound to its name is called decorating.
 
