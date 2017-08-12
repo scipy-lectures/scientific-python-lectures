@@ -549,7 +549,7 @@ useless. For this we turn to the gnu debugger,
 `gdb <http://www.gnu.org/s/gdb/>`_, available on Linux.
 
 Before we start with gdb, let us add a few Python-specific tools to it.
-For this we add a few macros to our ``~/.gbdinit``. The optimal choice of
+For this we add a few macros to our ``~/.gdbinit``. The optimal choice of
 macro depends on your Python version and your gdb version. I have added a
 simplified version in :download:`gdbinit`, but feel free to read
 `DebuggingWithGdb <http://wiki.python.org/moin/DebuggingWithGdb>`_.
