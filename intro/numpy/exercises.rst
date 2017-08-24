@@ -233,7 +233,7 @@ Markov chain
 .. image:: images/markov-chain.png
 
 Markov chain transition matrix ``P``, and probability distribution on
-the states ``p``::
+the states ``p``:
 
 1. ``0 <= P[i,j] <= 1``: probability to go from state ``i`` to state ``j``
 

@@ -15,7 +15,7 @@
 
 .. tip::
    
-    `Mayavi <http://docs.enthought.com/mayavi/mayavi>`_ is an interactive
+    `Mayavi <http://docs.enthought.com/mayavi/mayavi>`__ is an interactive
     3D plotting package. :ref:`matplotlib <matplotlib>` can also do
     simple 3D plotting, but Mayavi relies on a more powerful engine (
     `VTK <http://www.vtk.org/>`_ ) and is more suited to displaying large
@@ -517,7 +517,7 @@ new values to the ``mlab_source`` attributes
 .. seealso::
 
    More details in the `Mayavi documentation
-   <http://docs.enthought.com/mayavi/mayavi/mlab.html#animating-the-data>`_
+   <http://docs.enthought.com/mayavi/mayavi/mlab.html#animating-the-data>`__
 
 .. topic:: **Event loops**
 
@@ -560,7 +560,7 @@ A simple dialog
 
    There are a few things to be aware of when doing dialogs with Mayavi.
    Please read the `Mayavi documentation
-   <http://docs.enthought.com/mayavi/mayavi/building_applications.html#custom-interactive-dialogs>`_
+   <http://docs.enthought.com/mayavi/mayavi/building_applications.html#custom-interactive-dialogs>`__
 
 Making it interactive
 ----------------------

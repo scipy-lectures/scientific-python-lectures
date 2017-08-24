@@ -22,11 +22,11 @@ Statistics in Python
 
    * Standard scientific Python environment (numpy, scipy, matplotlib)
 
-   * `Pandas <http://pandas.pydata.org/>`_
+   * `Pandas <http://pandas.pydata.org/>`__
 
-   * `Statsmodels <http://statsmodels.sourceforge.net/>`_
+   * `Statsmodels <http://www.statsmodels.org/>`__
 
-   * `Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_
+   * `Seaborn <http://seaborn.pydata.org>`__
 
    To install Python and these dependencies, we recommend that you
    download `Anaconda Python <http://continuum.io/downloads>`_ or
@@ -97,7 +97,7 @@ The pandas data-frame
 
     We will store and manipulate this data in a
     :class:`pandas.DataFrame`, from the `pandas
-    <http://pandas.pydata.org>`_ module. It is the Python equivalent of
+    <http://pandas.pydata.org>`__ module. It is the Python equivalent of
     the spreadsheet table. It is different from a 2D ``numpy`` array as it
     has named columns, can contain a mixture of different data types by
     column, and has elaborate selection and pivotal mechanisms.
@@ -158,9 +158,9 @@ We can expose them as a :class:`pandas.DataFrame`::
 
 |
 
-**Other inputs**: `pandas <http://pandas.pydata.org>`_ can input data from
+**Other inputs**: `pandas <http://pandas.pydata.org>`__ can input data from
 SQL, excel files, or other formats. See the `pandas documentation
-<http://pandas.pydata.org>`_.
+<http://pandas.pydata.org>`__.
 
 |
 

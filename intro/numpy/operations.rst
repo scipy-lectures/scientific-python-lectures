@@ -639,6 +639,10 @@ and y of the previous example, with two "significant dimensions":
 .. EXE: multiply matrix from the right with a diagonal array
 .. CHA: constructing grids -- meshgrid using only newaxis
 
+.. seealso::
+   
+   :ref:`broadcasting_advanced`: discussion of broadcasting in
+   the :ref:`advanced_numpy` chapter.
 
 
 Array shape manipulation

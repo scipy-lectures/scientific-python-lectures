@@ -623,22 +623,22 @@ Other Types of Plots: examples and exercises
 
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_plot_ext_001.png
    :scale: 39                         
-   :target: `Regular Plot             s`_
+   :target: `Regular Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_scatter_ext_001.png
    :scale: 39                         
-   :target: `Scatter Plot             s`_
+   :target: `Scatter Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_bar_ext_001.png
    :scale: 39                         
    :target: `Bar Plots`_              
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_contour_ext_001.png
    :scale: 39                         
-   :target: `Contour Plot             s`_
+   :target: `Contour Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_imshow_ext_001.png
    :scale: 39                         
    :target: `Imshow`_                 
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_quiver_ext_001.png
    :scale: 39                         
-   :target: `Quiver Plots             `_
+   :target: `Quiver Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_pie_ext_001.png
    :scale: 39                         
    :target: `Pie Charts`_             
