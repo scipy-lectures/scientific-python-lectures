@@ -119,6 +119,7 @@ File input/output: :mod:`scipy.io`
     * Fast and efficient, but numpy-specific, binary format:
       :func:`numpy.save`/:func:`numpy.load`
 
+    * More advanced input/output of images in scikit-image: :mod:`skimage.io`
 
 Special functions: :mod:`scipy.special`
 ---------------------------------------
