@@ -216,92 +216,82 @@ LAPACK).
 Fast Fourier transforms: :mod:`scipy.fftpack`
 ---------------------------------------------
 
-The :mod:`scipy.fftpack` module allows to compute fast Fourier transforms.
-As an illustration, a (noisy) input signal may look like::
+The :mod:`scipy.fftpack` module computes fast Fourier transforms (FFTs)
+and offers utilities to handle them. The main functions are:
 
-    >>> time_step = 0.02
-    >>> period = 5.
-    >>> time_vec = np.arange(0, 20, time_step)
-    >>> sig = np.sin(2 * np.pi / period * time_vec) + \
-    ...       0.5 * np.random.randn(time_vec.size)
+* :func:`scipy.fftpack.fft` to compute the FFT
 
-The observer doesn't know the signal frequency, only
-the sampling time step of the signal ``sig``. The signal
-is supposed to come from a real function so the Fourier transform
-will be symmetric.
-The :func:`scipy.fftpack.fftfreq` function will generate the sampling frequencies and
-:func:`scipy.fftpack.fft` will compute the fast Fourier transform::
+* :func:`scipy.fftpack.fftfreq` to generate the sampling frequencies
+
+* :func:`scipy.fftpack.ifft` computes the inverse FFT, from frequency
+  space to signal space
+
+|
+
+As an illustration, a (noisy) input signal (``sig``), and its FFT::
 
     >>> from scipy import fftpack
-    >>> sample_freq = fftpack.fftfreq(sig.size, d=time_step)
-    >>> sig_fft = fftpack.fft(sig)
+    >>> sig_fft = fftpack.fft(sig) # doctest:+SKIP
+    >>> freqs = fftpack.fftfreq(sig.size, d=time_step) # doctest:+SKIP
 
-Because the resulting power is symmetric, only the positive part of the
-spectrum needs to be used for finding the frequency::
 
-    >>> pidxs = np.where(sample_freq > 0)
-    >>> freqs = sample_freq[pidxs]
-    >>> power = np.abs(sig_fft)[pidxs]
+.. |signal_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_001.png
+    :target: scipy/auto_examples/images/plot_fftpack.html
+    :scale: 60
 
-.. plot:: pyplots/fftpack_frequency.py
-    :scale: 70
+.. |fft_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_002.png
+    :target: scipy/auto_examples/images/plot_fftpack.html
+    :scale: 60
 
-The signal frequency can be found by::
+===================== =====================
+|signal_fig|          |fft_fig|
+===================== =====================
+**Signal**            **FFT**
+===================== =====================
 
-    >>> freq = freqs[power.argmax()]
-    >>> np.allclose(freq, 1./period)  # check that correct freq is found
-    True
+As the signal comes from a real function, the Fourier transform is
+symmetric.
 
-Now the high-frequency noise will be removed from the Fourier transformed
-signal::
+The peak signal frequency can be found with ``freqs[power.argmax()]``
 
-    >>> sig_fft[np.abs(sample_freq) > freq] = 0
+.. image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_003.png
+    :target: scipy/auto_examples/images/plot_fftpack.html
+    :scale: 60
+    :align: right
 
-The resulting filtered signal can be computed by the
-:func:`scipy.fftpack.ifft` function::
 
-    >>> main_sig = fftpack.ifft(sig_fft)
+Setting the Fourrier component above this frequency to zero and inverting
+the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
 
-The result can be viewed with::
+.. note::
 
-    >>> import pylab as plt
-    >>> plt.figure()    # doctest: +ELLIPSIS
-    <matplotlib.figure.Figure object at 0x...>
-    >>> plt.plot(time_vec, sig)    # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at 0x...>]
-    >>> plt.plot(time_vec, main_sig, linewidth=3)    # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at 0x...>]
-    >>> plt.xlabel('Time [s]')    # doctest: +ELLIPSIS
-    <matplotlib.text.Text object at 0x...>
-    >>> plt.ylabel('Amplitude')    # doctest: +ELLIPSIS
-    <matplotlib.text.Text object at 0x...>
-
-.. plot:: pyplots/fftpack_signals.py
-    :scale: 70
+   The code of this example can be found :ref:`here <sphx_glr_intro_scipy_auto_examples_plot_fftpack.py>`
 
 .. topic:: `numpy.fft`
 
    Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
-   in general the scipy one
+   the scipy one
    should be preferred, as it uses more efficient underlying implementations.
 
-.. topic:: Worked example: Crude periodicity finding
+|
 
-    .. plot:: intro/solutions/periodicity_finder.py
+**Fully worked examples:**
 
-.. topic:: Worked example: Gaussian image blur
+.. |periodicity_finding| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_periodicity_finder_001.png
+    :scale: 50
+    :target: sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py 
 
-    Convolution:
+.. |image_blur| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_image_blur_001.png
+    :scale: 50
+    :target: sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py
 
-    .. math::
+=================================================================================================================== ===================================================================================================================
+Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py>`)   Gaussian image blur (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py>`)
+=================================================================================================================== ===================================================================================================================
+|periodicity_finding|                                                                                               |image_blur|
+=================================================================================================================== ===================================================================================================================
 
-        f_1(t) = \int dt'\, K(t-t') f_0(t')
-
-    .. math::
-
-        \tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
-
-    .. plot:: intro/solutions/image_blur.py
+|
 
 .. topic:: Exercise: Denoise moon landing image
    :class: green
@@ -325,6 +315,7 @@ The result can be viewed with::
 
    5. Apply the inverse Fourier transform to see the resulting image.
 
+   :ref:`Solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_fft_image_denoise.py>`
 
 Optimization and fit: :mod:`scipy.optimize`
 -------------------------------------------
@@ -893,3 +884,12 @@ invited to try these exercises.
       :maxdepth: 1
 
       summary-exercises/answers_image_processing.rst
+
+Full code examples for the figures
+----------------------------------
+
+.. toctree::
+
+    scipy/auto_examples/index.rst
+
+

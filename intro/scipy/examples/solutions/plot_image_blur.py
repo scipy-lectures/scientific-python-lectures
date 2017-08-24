@@ -1,5 +1,8 @@
 """
+=======================================================
 Simple image blur by convolution with a Gaussian kernel
+=======================================================
+
 """
 
 import numpy as np
@@ -7,7 +10,7 @@ from scipy import fftpack
 import matplotlib.pyplot as plt
 
 # read image
-img = plt.imread('../../data/elephant.png')
+img = plt.imread('../../../../data/elephant.png')
 
 # prepare an 1-D Gaussian convolution kernel
 t = np.linspace(-10, 10, 30)

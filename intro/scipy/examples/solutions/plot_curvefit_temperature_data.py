@@ -1,3 +1,10 @@
+"""
+==============================================================
+Curve fitting: temperature as a function of month of the year
+==============================================================
+
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import optimize

@@ -1,10 +1,14 @@
 """
+==========================
+Crude periodicity finding
+==========================
+
 Discover the periods in ../../data/populations.txt
 """
 import numpy as np
 import matplotlib.pyplot as plt
 
-data = np.loadtxt('../../data/populations.txt')
+data = np.loadtxt('../../../../data/populations.txt')
 years = data[:, 0]
 populations = data[:, 1:]
 

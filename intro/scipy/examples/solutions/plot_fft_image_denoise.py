@@ -1,3 +1,22 @@
+r"""
+======================
+Image denoising by FFT
+======================
+
+Image denoising by implementing a blur with an FFT.
+
+Implements, via FFT, the following convolution:
+
+.. math::
+
+    f_1(t) = \int dt'\, K(t-t') f_0(t')
+
+.. math::
+
+    \tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
+
+"""
+
 import numpy as np
 from scipy import fftpack
 import matplotlib.pyplot as plt
@@ -8,7 +27,7 @@ def plot_spectrum(F):
 
 
 # read image
-im = plt.imread('../../data/moonlanding.png').astype(float)
+im = plt.imread('../../../../data/moonlanding.png').astype(float)
 
 # Compute the 2d FFT of the input image
 F = fftpack.fft2(im)
