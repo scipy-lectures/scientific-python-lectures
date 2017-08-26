@@ -317,20 +317,28 @@ Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_soluti
 
    :ref:`Solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_fft_image_denoise.py>`
 
+|
+
 Optimization and fit: :mod:`scipy.optimize`
 -------------------------------------------
 
 Optimization is the problem of finding a numerical solution to a
 minimization or equality.
 
-The :mod:`scipy.optimize` module provides useful algorithms for function
+The :mod:`scipy.optimize` module provides algorithms for function
 minimization (scalar or multi-dimensional), curve fitting and root
 finding. ::
 
     >>> from scipy import optimize
 
 
-**Finding the minimum of a scalar function**
+Finding the minimum of a scalar function
+........................................
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_optimize_example1_001.png
+   :target: scipy/auto_examples/plot_optimize_example1.html
+   :align: right
+   :scale: 50
 
 Let's define the following function: ::
 
@@ -345,41 +353,72 @@ and plot it:
     >>> plt.plot(x, f(x)) # doctest:+SKIP
     >>> plt.show() # doctest:+SKIP
 
-.. plot:: pyplots/scipy_optimize_example1.py
+This function has a global minimum around -1.3 and a local minimum around
+3.8.
 
-This function has a global minimum around -1.3 and a local minimum around 3.8.
+Searching for minimum can be done with
+:func:`scipy.optimize.minimize`, given a starting point x0, it returns
+the location of the minimum that it has found::
 
-The general and efficient way to find a minimum for this function is to
-conduct a gradient descent starting from a given initial point. The BFGS
-algorithm is a good way of doing this::
+    >>> optimize.minimize(f, x0=0)
+          fun: -7.94582337561528
+     hess_inv: array([[ 0.08585641]])
+          jac: array([ -1.19209290e-07])
+      message: 'Optimization terminated successfully.'
+         nfev: 24
+          nit: 5
+         njev: 8
+       status: 0
+      success: True
+            x: array([-1.30644003])
 
-    >>> optimize.fmin_bfgs(f, 0)
-    Optimization terminated successfully.
-	     Current function value: -7.945823
-	     Iterations: 5
-	     Function evaluations: 24
-	     Gradient evaluations: 8
-    array([-1.30644003])
+|
 
-A possible issue with this approach is that, if the function has local minima
+**Methods**:
+As the function is a smooth function, gradient-descent based methods are
+good options. The `lBFGS algorithm
+<https://en.wikipedia.org/wiki/Limited-memory_BFGS>`__ is a good choice
+in general::
+
+
+    >>> optimize.minimize(f, x0=0, method="L-BFGS-B")
+          fun: array([-7.94582338])
+     hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
+          jac: array([ -1.42108547e-06])
+      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+         nfev: 12
+          nit: 5
+       status: 0
+      success: True
+            x: array([-1.30644013])
+
+Note how it cost only 12 functions evaluation above to find a good value
+for the minimum.
+
+|
+
+**Global minimum**:
+A possible issue with this approach is that, if the function has local minima,
 the algorithm may find these local minima instead of the
-global minimum depending on the initial point: ::
+global minimum depending on the initial point x0:
 
-    >>> optimize.fmin_bfgs(f, 3, disp=0)
+.. sidebar:: disp=0
+
+    Turns off display of extra information
+
+::
+
+    >>> optimize.fmin_bfgs(f, x0=3, disp=0)
     array([ 3.83746663])
-
-If we don't know the neighborhood of the global minimum to choose the initial
-point, we need to resort to costlier global optimization.  To find the global
-minimum, we use :func:`scipy.optimize.basinhopping` (which combines a local
-optimizer with stochastic sampling of starting points for the local optimizer):
-
 
 .. Comment to make doctest pass
    >>> np.random.seed(42)
 
-.. versionadded:: 0.12.0 basinhopping was added in version 0.12.0 of Scipy
-
-::
+If we don't know the neighborhood of the global minimum to choose the
+initial point, we need to resort to costlier global optimization.  To
+find the global minimum, we use :func:`scipy.optimize.basinhopping`
+(added in version 0.12.0 of Scipy). It combines a local optimizer with
+sampling of starting points::
 
    >>> optimize.basinhopping(f, 0)  # doctest: +SKIP
                      nfev: 1725
@@ -390,40 +429,55 @@ optimizer with stochastic sampling of starting points for the local optimizer):
                      njev: 575
                       nit: 100
 
-Another available (but much less efficient) global optimizer is
-:func:`scipy.optimize.brute` (brute force optimization on a grid).
-More efficient algorithms
-for different classes of global optimization problems exist, but this is out of
-the scope of ``scipy``.  Some useful packages for global optimization are
-OpenOpt, IPOPT_, PyGMO_ and PyEvolve_.
+.. seealso:
+
+    Another available (but much less efficient) global optimizer is
+    :func:`scipy.optimize.brute` (brute force optimization on a grid).
+
+    More algorithms for different classes of global optimization problems
+    exist, but this is out of the scope of ``scipy``.  Some useful
+    packages for global optimization are OpenOpt, IPOPT_, PyGMO_ and
+    PyEvolve_.
 
 .. note::
 
-   ``scipy`` used to contain the routine `anneal`, it has been deprecated since
-   SciPy 0.14.0 and removed in SciPy 0.16.0.
+   ``scipy`` used to contain the routine `anneal`, it has been removed in
+   SciPy 0.16.0.
 
 .. _IPOPT: https://github.com/xuy/pyipopt
 .. _PyGMO: http://esa.github.io/pygmo/
 .. _PyEvolve: http://pyevolve.sourceforge.net/
 
-To find the local minimum, let's constraint the variable to the interval
+|
+
+**Constraints**:
+We can constrain the variable to the interval
 ``(0, 10)`` using :func:`scipy.optimize.fminbound`: ::
 
     >>> xmin_local = optimize.fminbound(f, 0, 10)
     >>> xmin_local    # doctest: +ELLIPSIS
     3.8374671...
 
+
+.. TODO: explain how to minimize functions of multiple variables
+
 .. note::
+
+   :func:`scipy.optimize.minimize_scalar` is a dedicated function that
+   can only minimize functions of one variable.
+
+.. seealso::
 
    Finding minima of function is discussed in more details in the
    advanced chapter: :ref:`mathematical_optimization`.
 
-**Finding the roots of a scalar function**
+Finding the roots of a scalar function
+........................................
 
 To find a root, i.e. a point where :math:`f(x) = 0`, of the function :math:`f` above
-we can use for example :func:`scipy.optimize.fsolve`: ::
+we can use :func:`scipy.optimize.fsolve`: ::
 
-    >>> root = optimize.fsolve(f, 1)  # our initial guess is 1
+    >>> root = optimize.fsolve(f, x0=1)  # our initial guess is 1
     >>> root
     array([ 0.])
 
@@ -431,11 +485,17 @@ Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
 there is a second root around -2.5. We find the exact value of it by adjusting
 our initial guess: ::
 
-    >>> root2 = optimize.fsolve(f, -2.5)
+    >>> root2 = optimize.fsolve(f, x0=-2.5)
     >>> root2
     array([-2.47948183])
 
-**Curve fitting**
+.. note::
+   
+   :func:`scipy.optimize.root` also comes with a variety of algorithms,
+   set via the "method" argument.
+
+Curve fitting
+..............
 
 .. Comment to make doctest pass
     >>> np.random.seed(42)
@@ -465,14 +525,6 @@ Now we have found the minima and roots of ``f`` and used curve fitting on it,
 we put all those resuls together in a single plot:
 
 .. plot:: pyplots/scipy_optimize_example2.py
-
-.. note::
-
-   In Scipy >= 0.11 unified interfaces to all minimization and root
-   finding algorithms are available: :func:`scipy.optimize.minimize`,
-   :func:`scipy.optimize.minimize_scalar` and
-   :func:`scipy.optimize.root`.  They allow comparing various algorithms
-   easily through the ``method`` keyword.
 
 You can find algorithms with the same functionalities for multi-dimensional
 problems in :mod:`scipy.optimize`.
@@ -512,8 +564,8 @@ problems in :mod:`scipy.optimize`.
         - Variables can be restricted to :math:`-2 < x < 2` and :math:`-1 < y < 1`.
         - Use :func:`numpy.meshgrid` and :func:`pylab.imshow` to find visually the
           regions.
-        - Use :func:`scipy.optimize.fmin_bfgs` or another multi-dimensional
-          minimizer.
+        - Use :func:`scipy.optimize.minimize`, optionally trying out
+          several of its `methods'.
 
     How many global minima are there, and what is the function value at those
     points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
