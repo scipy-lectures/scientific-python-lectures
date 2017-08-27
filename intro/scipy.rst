@@ -238,11 +238,11 @@ As an illustration, a (noisy) input signal (``sig``), and its FFT::
 
 
 .. |signal_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_001.png
-    :target: scipy/auto_examples/images/plot_fftpack.html
+    :target: scipy/auto_examples/plot_fftpack.html
     :scale: 60
 
 .. |fft_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_002.png
-    :target: scipy/auto_examples/images/plot_fftpack.html
+    :target: scipy/auto_examples/plot_fftpack.html
     :scale: 60
 
 ===================== =====================
@@ -257,7 +257,7 @@ symmetric.
 The peak signal frequency can be found with ``freqs[power.argmax()]``
 
 .. image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_003.png
-    :target: scipy/auto_examples/images/plot_fftpack.html
+    :target: scipy/auto_examples/plot_fftpack.html
     :scale: 60
     :align: right
 
@@ -642,37 +642,44 @@ The module :mod:`scipy.stats` contains statistical tools and probabilistic
 descriptions of random processes. Random number generators for various
 random process can be found in :mod:`numpy.random`.
 
-Histogram and probability density function
-..........................................
+Distributions: histogram and probability density function
+..........................................................
 
 Given observations of a random process, their histogram is an estimator of
 the random process's PDF (probability density function): ::
 
-    >>> a = np.random.normal(size=1000)
+    >>> samples = np.random.normal(size=1000)
     >>> bins = np.arange(-4, 5)
     >>> bins
     array([-4, -3, -2, -1,  0,  1,  2,  3,  4])
-    >>> histogram = np.histogram(a, bins=bins, normed=True)[0]
+    >>> histogram = np.histogram(samples, bins=bins, normed=True)[0]
     >>> bins = 0.5*(bins[1:] + bins[:-1])
     >>> bins
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
     >>> from scipy import stats
-    >>> b = stats.norm.pdf(bins)  # norm is a distribution
+    >>> pdf = stats.norm.pdf(bins)  # norm is a distribution object
     
     >>> plt.plot(bins, histogram) # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(bins, b) # doctest: +ELLIPSIS
+    >>> plt.plot(bins, pdf) # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
 
-.. plot:: pyplots/normal_distribution.py
+.. image:: scipy/auto_examples/images/sphx_glr_plot_normal_distribution_001.png
+    :target: scipy/auto_examples/plot_normal_distribution.html
     :scale: 70
+
+.. sidebar:: **The distribution objects**
+
+   :class:`scipy.stats.norm` is a distribution object: each distribution
+   in :mod:`scipy.stats` is represented as an object. Here it's the
+   normal distribution, and it comes with a PDF, a CDF, and much more.
 
 If we know that the random process belongs to a given family of random
 processes, such as normal processes, we can do a maximum-likelihood fit
 of the observations to estimate the parameters of the underlying
 distribution. Here we fit a normal process to the observed data::
 
-    >>> loc, std = stats.norm.fit(a)
+    >>> loc, std = stats.norm.fit(samples)
     >>> loc     # doctest: +ELLIPSIS
     -0.045256707...
     >>> std     # doctest: +ELLIPSIS
@@ -691,24 +698,26 @@ distribution. Here we fit a normal process to the observed data::
    variates?
 
 
-Percentiles
-...........
+Mean, median and percentiles
+.............................
+
+The mean is an estimator of the center of the distribution
 
 The median is the value with half of the observations below, and half
 above::
 
-    >>> np.median(a)     # doctest: +ELLIPSIS
+    >>> np.median(samples)     # doctest: +ELLIPSIS
     -0.0580280347...
 
 It is also called the percentile 50, because 50% of the observation are
 below it::
 
-    >>> stats.scoreatpercentile(a, 50)     # doctest: +ELLIPSIS
+    >>> stats.scoreatpercentile(samples, 50)     # doctest: +ELLIPSIS
     -0.0580280347...
 
 Similarly, we can calculate the percentile 90::
 
-    >>> stats.scoreatpercentile(a, 90)     # doctest: +ELLIPSIS
+    >>> stats.scoreatpercentile(samples, 90)     # doctest: +ELLIPSIS
     1.2315935511...
 
 The percentile is an estimator of the CDF: cumulative distribution
