@@ -691,24 +691,40 @@ distribution. Here we fit a normal process to the observed data::
    parameter of 1, then plot a histogram from those samples.  Can you plot the
    pdf on top (it should match)?
 
-   Extra: the distributions have a number of useful methods. Explore them by
-   reading the docstring or by using IPython tab completion.  Can you find the
-   shape parameter of 1 back by using the ``fit`` method on your random
+   Extra: the distributions have many useful methods. Explore them by
+   reading the docstring or by using tab completion.  Can you recover
+   the shape parameter 1 by using the ``fit`` method on your random
    variates?
 
 
 Mean, median and percentiles
 .............................
 
-The mean is an estimator of the center of the distribution
+The mean is an estimator of the center of the distribution::
 
-The median is the value with half of the observations below, and half
-above::
+    >>> np.mean(samples)     # doctest: +ELLIPSIS
+    -0.0452567074...
+
+The median another estimator of the center. It is the value with half of
+the observations below, and half above::
 
     >>> np.median(samples)     # doctest: +ELLIPSIS
     -0.0580280347...
 
-It is also called the percentile 50, because 50% of the observation are
+.. tip::
+
+   Unlike the mean, the median is not sensitive to the tails of the
+   distribution. It is `"robust"
+   <https://en.wikipedia.org/wiki/Robust_statistics>`_.
+
+.. topic:: Exercise: Compare mean and median on samples of a Gamma distribution
+   :class: green
+
+    Which one seems to be the best estimator of the center for the Gamma
+    distribution?
+
+
+The median is also the percentile 50, because 50% of the observation are
 below it::
 
     >>> stats.scoreatpercentile(samples, 50)     # doctest: +ELLIPSIS
@@ -719,17 +735,24 @@ Similarly, we can calculate the percentile 90::
     >>> stats.scoreatpercentile(samples, 90)     # doctest: +ELLIPSIS
     1.2315935511...
 
-The percentile is an estimator of the CDF: cumulative distribution
-function.
+.. tip::
+
+    The percentile is an estimator of the CDF: cumulative distribution
+    function.
 
 Statistical tests
 .................
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_t_test_001.png
+    :target: scipy/auto_examples/plot_t_test.html
+    :scale: 60
+    :align: right
 
 A statistical test is a decision indicator. For instance, if we have two
 sets of observations, that we assume are generated from Gaussian
 processes, we can use a
 `T-test <https://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide
-whether the two sets of observations are significantly different::
+whether the means of two sets of observations are significantly different::
 
     >>> a = np.random.normal(0, 1, size=100)
     >>> b = np.random.normal(1, 1, size=10)

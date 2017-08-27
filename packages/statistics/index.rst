@@ -33,12 +33,19 @@ Statistics in Python
    `Enthought Canopy <https://store.enthought.com/>`_, or preferably use
    the package manager if you are under Ubuntu or other linux.
 
-.. seealso:: **Bayesian statistics in Python**
-
+.. seealso::
+   
+ * **Bayesian statistics in Python**
    This chapter does not cover tools for Bayesian statistics. Of
    particular interest for Bayesian modelling is `PyMC
    <http://pymc-devs.github.io/pymc>`_, which implements a probabilistic
    programming language in Python.
+
+ * **Read a statistics book**
+   The `Think stats <http://greenteapress.com/thinkstats/>`_ book is
+   available as free PDF or in print and is a great introduction to
+   statistiques.
+
 
 |
 
