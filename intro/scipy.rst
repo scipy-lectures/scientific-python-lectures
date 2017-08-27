@@ -9,8 +9,7 @@
 Scipy : high-level scientific computing
 =======================================
 
-**Authors**: *Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
-Varoquaux, Ralf Gommers*
+**Authors**: *Gaël Varoquaux, Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Ralf Gommers*
 
 
 .. topic:: Scipy
