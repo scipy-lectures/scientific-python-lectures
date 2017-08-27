@@ -370,6 +370,25 @@ We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
     [ 3.05931973  1.45754553]
 
 
+.. topic:: Exercise: Curve fitting of temperature data
+   :class: green
+
+    The temperature extremes in Alaska for each month, starting in January, are
+    given by (in degrees Celcius)::
+
+        max:  17,  19,  21,  28,  33,  38, 37,  37,  31,  23,  19,  18
+        min: -62, -59, -56, -46, -32, -18, -9, -13, -25, -46, -52, -58
+
+    1. Plot these temperature extremes.
+    2. Define a function that can describe min and max temperatures.
+       Hint: this function has to have a period of 1 year.
+       Hint: include a time offset.
+    3. Fit this function to the data with :func:`scipy.optimize.curve_fit`.
+    4. Plot the result.  Is the fit reasonable?  If not, why?
+    5. Is the time offset for min and max temperatures the same within the fit
+       accuracy?
+
+
 Finding the minimum of a scalar function
 ........................................
 
@@ -525,6 +544,35 @@ We can constrain the variable to the interval
    Finding minima of function is discussed in more details in the
    advanced chapter: :ref:`mathematical_optimization`.
 
+.. topic:: Exercise: 2-D minimization
+   :class: green
+
+    .. image:: scipy/auto_examples/images/sphx_glr_plot_2d_minimization_002.png
+        :target: scipy/auto_examples/plot_2d_minimization.html
+        :align: right
+        :scale: 50
+
+    The six-hump camelback function
+
+    .. math:: f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
+
+    has multiple global and local minima. Find the global minima of this
+    function.
+
+    Hints:
+
+        - Variables can be restricted to :math:`-2 < x < 2` and :math:`-1 < y < 1`.
+        - Use :func:`numpy.meshgrid` and :func:`pylab.imshow` to find visually the
+          regions.
+        - Use :func:`scipy.optimize.minimize`, optionally trying out
+          several of its `methods'.
+
+    How many global minima are there, and what is the function value at those
+    points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
+
+    :ref:`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
+
+
 Finding the roots of a scalar function
 ........................................
 
@@ -578,52 +626,6 @@ ____
    
     You can find all algorithms and functions with similar functionalities
     in the documentation of :mod:`scipy.optimize`.
-
-.. topic:: Exercise: Curve fitting of temperature data
-   :class: green
-
-    The temperature extremes in Alaska for each month, starting in January, are
-    given by (in degrees Celcius)::
-
-        max:  17,  19,  21,  28,  33,  38, 37,  37,  31,  23,  19,  18
-        min: -62, -59, -56, -46, -32, -18, -9, -13, -25, -46, -52, -58
-
-    1. Plot these temperature extremes.
-    2. Define a function that can describe min and max temperatures.
-       Hint: this function has to have a period of 1 year.
-       Hint: include a time offset.
-    3. Fit this function to the data with :func:`scipy.optimize.curve_fit`.
-    4. Plot the result.  Is the fit reasonable?  If not, why?
-    5. Is the time offset for min and max temperatures the same within the fit
-       accuracy?
-
-.. topic:: Exercise: 2-D minimization
-   :class: green
-
-    .. image:: scipy/auto_examples/images/sphx_glr_plot_2d_minimization_002.png
-        :target: scipy/auto_examples/plot_2d_minimization.html
-        :align: right
-        :scale: 50
-
-    The six-hump camelback function
-
-    .. math:: f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
-
-    has multiple global and local minima. Find the global minima of this
-    function.
-
-    Hints:
-
-        - Variables can be restricted to :math:`-2 < x < 2` and :math:`-1 < y < 1`.
-        - Use :func:`numpy.meshgrid` and :func:`pylab.imshow` to find visually the
-          regions.
-        - Use :func:`scipy.optimize.minimize`, optionally trying out
-          several of its `methods'.
-
-    How many global minima are there, and what is the function value at those
-    points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
-
-    :ref:`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
 
 See the summary exercise on :ref:`summary_exercise_optimize` for another, more
 advanced example.
