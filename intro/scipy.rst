@@ -15,12 +15,14 @@ Varoquaux, Ralf Gommers*
 
 .. topic:: Scipy
 
-    The ``scipy`` package contains various toolboxes dedicated to common
+    The :mod:`scipy` package contains various toolboxes dedicated to common
     issues in scientific computing. Its different submodules correspond
     to different applications, such as interpolation, integration,
     optimization, image processing, statistics, special functions, etc.
 
-    ``scipy`` can be compared to other standard scientific-computing
+.. tip::
+
+    :mod:`scipy` can be compared to other standard scientific-computing
     libraries, such as the GSL (GNU Scientific  Library for C and C++),
     or Matlab's toolboxes. ``scipy`` is the core package for scientific
     routines in Python; it is meant to operate efficiently on ``numpy``
@@ -331,9 +333,48 @@ finding. ::
 
     >>> from scipy import optimize
 
+Curve fitting
+..............
+
+.. Comment to make doctest pass
+    >>> np.random.seed(0)
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_curve_fit_001.png
+   :target: scipy/auto_examples/plot_curve_fit.html
+   :align: right
+   :scale: 50
+
+Suppose we have data on a sine wave, with some noise: ::
+
+    >>> x_data = np.linspace(-5, 5, num=50)
+    >>> y_data = 2.9 * np.sin(1.5 * x_data) + np.random.normal(size=50)
+
+
+Now if we know that the data lies on a sine wave, but not the amplitudes
+or the period, we can find those by least squares curve fitting. First we
+have to define the test function to fit, here a sine with unknown
+amplitude and period::
+
+    >>> def test_func(x, a, b):
+    ...     return a * np.sin(b * x)
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_curve_fit_002.png
+   :target: scipy/auto_examples/plot_curve_fit.html
+   :align: right
+   :scale: 50
+
+We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
+
+    >>> params, params_covariance = optimize.curve_fit(test_func, x_data, y_data, p0=[2, 2])
+    >>> print(params)
+    [ 3.05931973  1.45754553]
+
 
 Finding the minimum of a scalar function
 ........................................
+
+.. Comment to make doctest pass
+    >>> np.random.seed(0)
 
 .. image:: scipy/auto_examples/images/sphx_glr_plot_optimize_example1_001.png
    :target: scipy/auto_examples/plot_optimize_example1.html
@@ -358,9 +399,16 @@ This function has a global minimum around -1.3 and a local minimum around
 
 Searching for minimum can be done with
 :func:`scipy.optimize.minimize`, given a starting point x0, it returns
-the location of the minimum that it has found::
+the location of the minimum that it has found:
 
-    >>> optimize.minimize(f, x0=0)
+.. sidebar:: result type
+
+    The result of :func:`scipy.optimize.minimize` is a compound object
+    comprising all information on the convergence
+::
+
+    >>> result = optimize.minimize(f, x0=0)
+    >>> result
           fun: -7.94582337561528
      hess_inv: array([[ 0.08585641]])
           jac: array([ -1.19209290e-07])
@@ -371,6 +419,8 @@ the location of the minimum that it has found::
        status: 0
       success: True
             x: array([-1.30644003])
+    >>> result.x # The coordinate of the minimum
+    array([-1.30644003])
 
 |
 
@@ -404,7 +454,7 @@ global minimum depending on the initial point x0:
 
 .. sidebar:: disp=0
 
-    Turns off display of extra information
+    Turns off return of extra information
 
 ::
 
@@ -435,13 +485,13 @@ sampling of starting points::
     :func:`scipy.optimize.brute` (brute force optimization on a grid).
 
     More algorithms for different classes of global optimization problems
-    exist, but this is out of the scope of ``scipy``.  Some useful
+    exist, but this is out of the scope of :mod:`scipy`.  Some useful
     packages for global optimization are OpenOpt, IPOPT_, PyGMO_ and
     PyEvolve_.
 
 .. note::
 
-   ``scipy`` used to contain the routine `anneal`, it has been removed in
+   :mod:`scipy` used to contain the routine `anneal`, it has been removed in
    SciPy 0.16.0.
 
 .. _IPOPT: https://github.com/xuy/pyipopt
@@ -459,12 +509,16 @@ We can constrain the variable to the interval
     3.8374671...
 
 
-.. TODO: explain how to minimize functions of multiple variables
+.. topic:: **Minimizing functions of several variables**
+
+   To minimize over several variables, the trick is to turn them into a
+   function of a multi-dimensional variable (a vector). See for instance
+   the exercise on 2D minimization below.
 
 .. note::
 
-   :func:`scipy.optimize.minimize_scalar` is a dedicated function that
-   can only minimize functions of one variable.
+   :func:`scipy.optimize.minimize_scalar` is a function with dedicated
+   methods to minimize functions of only one variable.
 
 .. seealso::
 
@@ -475,18 +529,30 @@ Finding the roots of a scalar function
 ........................................
 
 To find a root, i.e. a point where :math:`f(x) = 0`, of the function :math:`f` above
-we can use :func:`scipy.optimize.fsolve`: ::
+we can use :func:`scipy.optimize.root`:
 
-    >>> root = optimize.fsolve(f, x0=1)  # our initial guess is 1
-    >>> root
+::
+
+    >>> root = optimize.root(f, x0=1)  # our initial guess is 1
+    >>> root    # The full result
+        fjac: array([[-1.]])
+         fun: array([ 0.])
+     message: 'The solution converged.'
+        nfev: 10
+         qtf: array([  1.33310463e-32])
+           r: array([-10.])
+      status: 1
+     success: True
+           x: array([ 0.])
+    >>> root.x  # Only the root found
     array([ 0.])
 
 Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
 there is a second root around -2.5. We find the exact value of it by adjusting
 our initial guess: ::
 
-    >>> root2 = optimize.fsolve(f, x0=-2.5)
-    >>> root2
+    >>> root2 = optimize.root(f, x0=-2.5)
+    >>> root2.x
     array([-2.47948183])
 
 .. note::
@@ -494,40 +560,24 @@ our initial guess: ::
    :func:`scipy.optimize.root` also comes with a variety of algorithms,
    set via the "method" argument.
 
-Curve fitting
-..............
+.. image:: scipy/auto_examples/images/sphx_glr_plot_optimize_example2_001.png
+   :target: scipy/auto_examples/plot_optimize_example2.html
+   :align: right
+   :scale: 70
 
-.. Comment to make doctest pass
-    >>> np.random.seed(42)
+|
 
-Suppose we have data sampled from :math:`f` with some noise: ::
-
-
-    >>> xdata = np.linspace(-10, 10, num=20)
-    >>> ydata = f(xdata) + np.random.randn(xdata.size)
-
-Now if we know the functional form of the function from which the samples were
-drawn (:math:`x^2 + \sin(x)` in this case) but not the amplitudes of the terms, we
-can find those by least squares curve fitting. First we have to define the
-function to fit::
-
-    >>> def f2(x, a, b):
-    ...     return a*x**2 + b*np.sin(x)
-
-Then we can use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`: ::
-
-    >>> guess = [2, 2]
-    >>> params, params_covariance = optimize.curve_fit(f2, xdata, ydata, guess)
-    >>> params
-    array([  0.99667386,  10.17808313])
 
 Now we have found the minima and roots of ``f`` and used curve fitting on it,
-we put all those resuls together in a single plot:
+we put all those results together in a single plot:
 
-.. plot:: pyplots/scipy_optimize_example2.py
+____
 
-You can find algorithms with the same functionalities for multi-dimensional
-problems in :mod:`scipy.optimize`.
+
+.. seealso::
+   
+    You can find all algorithms and functions with similar functionalities
+    in the documentation of :mod:`scipy.optimize`.
 
 .. topic:: Exercise: Curve fitting of temperature data
    :class: green
@@ -550,7 +600,10 @@ problems in :mod:`scipy.optimize`.
 .. topic:: Exercise: 2-D minimization
    :class: green
 
-    .. plot:: pyplots/scipy_optimize_sixhump.py
+    .. image:: scipy/auto_examples/images/sphx_glr_plot_2d_minimization_002.png
+        :target: scipy/auto_examples/plot_2d_minimization.html
+        :align: right
+        :scale: 50
 
     The six-hump camelback function
 
@@ -570,12 +623,18 @@ problems in :mod:`scipy.optimize`.
     How many global minima are there, and what is the function value at those
     points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
 
+    :ref:`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
+
 See the summary exercise on :ref:`summary_exercise_optimize` for another, more
 advanced example.
 
 
 Statistics and random numbers: :mod:`scipy.stats`
 -------------------------------------------------
+
+.. Comment to make doctest pass
+    >>> np.random.seed(0)
+
 
 The module :mod:`scipy.stats` contains statistical tools and probabilistic
 descriptions of random processes. Random number generators for various
@@ -613,9 +672,9 @@ distribution. Here we fit a normal process to the observed data::
 
     >>> loc, std = stats.norm.fit(a)
     >>> loc     # doctest: +ELLIPSIS
-    0.0314345570...
+    -0.045256707...
     >>> std     # doctest: +ELLIPSIS
-    0.9778613090...
+    0.9870331586...
 
 .. topic:: Exercise: Probability distributions
    :class: green
@@ -637,18 +696,18 @@ The median is the value with half of the observations below, and half
 above::
 
     >>> np.median(a)     # doctest: +ELLIPSIS
-    0.04041769593...
+    -0.0580280347...
 
 It is also called the percentile 50, because 50% of the observation are
 below it::
 
     >>> stats.scoreatpercentile(a, 50)     # doctest: +ELLIPSIS
-    0.0404176959...
+    -0.0580280347...
 
 Similarly, we can calculate the percentile 90::
 
     >>> stats.scoreatpercentile(a, 90)     # doctest: +ELLIPSIS
-    1.3185699120...
+    1.2315935511...
 
 The percentile is an estimator of the CDF: cumulative distribution
 function.
