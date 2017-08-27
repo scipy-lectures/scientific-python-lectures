@@ -782,7 +782,7 @@ Interpolation: :mod:`scipy.interpolate`
 
 The :mod:`scipy.interpolate` is useful for fitting a function from experimental
 data and thus evaluating points where no measure exists. The module is based
-on the `FITPACK Fortran subroutines`_ from the netlib_ project.
+on the `FITPACK Fortran subroutines`_.
 
 .. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
 .. _netlib : http://www.netlib.org
