@@ -368,6 +368,10 @@ We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
     >>> print(params)
     [ 3.05931973  1.45754553]
 
+.. raw:: html
+
+   <div style="clear: both"></div>
+
 
 .. topic:: Exercise: Curve fitting of temperature data
    :class: green
