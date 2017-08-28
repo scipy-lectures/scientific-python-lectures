@@ -1,3 +1,5 @@
+:orphan:
+
 .. for doctests
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend("Agg")
@@ -22,9 +24,11 @@ Changing orientation, resolution, .. ::
     >>> zoomed_face.shape
     (1536, 2048)
 
-.. figure:: image_processing/face_transforms.png
-   :align: center
-   :scale: 70
+.. image:: scipy/auto_examples/images/sphx_glr_plot_image_transform_001.png
+    :target: scipy/auto_examples/plot_image_transform.html
+    :scale: 70
+    :align: center
+
 
 ::
 
@@ -56,9 +60,10 @@ Image filtering
     >>> from scipy import signal
     >>> wiener_face = signal.wiener(noisy_face, (5, 5))
 
-.. figure:: image_processing/filtered_face.png
-   :align: center
-   :scale: 80
+.. image:: scipy/auto_examples/images/sphx_glr_plot_image_filters_001.png
+    :target: scipy/auto_examples/plot_image_filters.html
+    :scale: 70
+    :align: center
 
 
 Many other filters in :mod:`scipy.ndimage.filters` and :mod:`scipy.signal`
@@ -187,9 +192,11 @@ image. ::
     >>> opened_mask = ndimage.binary_opening(mask)
     >>> closed_mask = ndimage.binary_closing(opened_mask)
 
-.. figure:: image_processing/morpho.png
-   :align: center
-   :scale: 75
+.. image:: scipy/auto_examples/images/sphx_glr_plot_mathematical_morpho_001.png
+    :target: scipy/auto_examples/plot_mathematical_morpho.html
+    :scale: 70
+    :align: center
+
 
 .. topic:: Exercise
    :class: green
@@ -223,8 +230,8 @@ structuring element centered on the pixel of interest. ::
            [0, 0, 0, 0, 0, 0, 0]])
 
 
-Measurements on images
-........................
+Connect components and measurements on images
+..............................................
 
 Let us first generate a nice synthetic binary image. ::
 
@@ -232,29 +239,53 @@ Let us first generate a nice synthetic binary image. ::
     >>> sig = np.sin(2*np.pi*x/50.) * np.sin(2*np.pi*y/50.) * (1+x*y/50.**2)**2
     >>> mask = sig > 1
 
-Now we look for various information about the objects in the image::
+.. image:: scipy/auto_examples/images/sphx_glr_plot_connect_measurements_001.png
+    :target: scipy/auto_examples/plot_connect_measurements.html
+    :scale: 60
+    :align: center
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_connect_measurements_002.png
+    :target: scipy/auto_examples/plot_connect_measurements.html
+    :scale: 60
+    :align: right
+
+:func:`scipy.ndimage.label` assigns a different label to each connect
+component::
 
     >>> labels, nb = ndimage.label(mask)
     >>> nb
     8
+
+.. raw:: html
+
+   <div style="clear: both"></div>
+
+
+Now compute measurements on each connect component::
+
     >>> areas = ndimage.sum(mask, labels, range(1, labels.max()+1))
-    >>> areas
+    >>> areas   # The number of pixels in each connect component
     array([ 190.,   45.,  424.,  278.,  459.,  190.,  549.,  424.])
     >>> maxima = ndimage.maximum(sig, labels, range(1, labels.max()+1))
-    >>> maxima
+    >>> maxima  # The maximum signal in each connect component
     array([  1.80238238,   1.13527605,   5.51954079,   2.49611818,
              6.71673619,   1.80238238,  16.76547217,   5.51954079])
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_connect_measurements_003.png
+    :target: scipy/auto_examples/plot_connect_measurements.html
+    :scale: 60
+    :align: right
+
+
+Extract the 4th connect component, and crop the array around it::
+
     >>> ndimage.find_objects(labels==4) # doctest: +SKIP
     [(slice(30L, 48L, None), slice(30L, 48L, None))]
     >>> sl = ndimage.find_objects(labels==4)
-    >>> import pylab as pl
-    >>> pl.imshow(sig[sl[0]])   # doctest: +ELLIPSIS
+    >>> from matplotlib import pyplot as plt
+    >>> plt.imshow(sig[sl[0]])   # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at ...>
 
-
-.. figure:: image_processing/measures.png
-   :align: center
-   :scale: 80
 
 
 See the summary exercise on :ref:`summary_exercise_image_processing` for a more

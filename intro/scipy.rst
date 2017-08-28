@@ -1038,6 +1038,7 @@ Image manipulation: :mod:`scipy.ndimage`
 -----------------------------------------
 
 .. include:: image_processing/image_processing.rst
+    :start-line: 1
 
 
 Summary exercises on scientific computing
