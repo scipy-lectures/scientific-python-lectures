@@ -42,7 +42,7 @@ Statistics in Python
    programming language in Python.
 
  * **Read a statistics book**:
-   The `Think stats <http://greenteapress.com/thinkstats/>`_ book is
+   The `Think stats <http://greenteapress.com/wp/think-stats-2e>`_ book is
    available as free PDF or in print and is a great introduction to
    statistics.
 

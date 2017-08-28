@@ -951,34 +951,14 @@ Signal processing: :mod:`scipy.signal`
    :mod:`scipy.signal` is for typical signal processing: 1D,
    regularly-sampled signals.
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_detrend_001.png
-    :target: scipy/auto_examples/plot_detrend.html
-    :scale: 65
-    :align: right
-
-:func:`scipy.signal.detrend`: remove linear trend from signal::
-
-  >>> t = np.linspace(0, 5, 100)
-  >>> x = t + np.random.normal(size=100)
-
-  >>> from scipy import signal
-  >>> x_detrended = signal.detrend(x)
-
-  >>> plt.plot(t, x) # doctest: +ELLIPSIS
-  [<matplotlib.lines.Line2D object at ...>]
-  >>> plt.plot(t, x_detrended) # doctest: +ELLIPSIS
-  [<matplotlib.lines.Line2D object at ...>]
-
-.. raw:: html
-
-   <div style="clear: both"></div>
-
 .. image:: scipy/auto_examples/images/sphx_glr_plot_resample_001.png
     :target: scipy/auto_examples/plot_resample.html
     :scale: 65
     :align: right
 
-:func:`scipy.signal.resample`: resample a signal to `n` points using FFT. ::
+
+**Resampling** :func:`scipy.signal.resample`: resample a signal to `n`
+points using FFT. ::
 
   >>> t = np.linspace(0, 5, 100)
   >>> x = np.sin(t)
@@ -997,16 +977,62 @@ Signal processing: :mod:`scipy.signal`
     and has a rippling effect.
 
     This resampling is different from the :ref:`interpolation
-    <intro_scipy_interpolate` provided by :mod:`scipy.interpolate` as it
+    <intro_scipy_interpolate>` provided by :mod:`scipy.interpolate` as it
     only applies to regularly sampled data.
 
-:mod:`scipy.signal` has many window functions: :func:`scipy.signal.hamming`,
-:func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...
 
-:mod:`scipy.signal` has filtering (median filter :func:`scipy.signal.medfilt`,
-Wiener :func:`scipy.signal.wiener`), but we will
-discuss this in the image section.
+.. image:: scipy/auto_examples/images/sphx_glr_plot_detrend_001.png
+    :target: scipy/auto_examples/plot_detrend.html
+    :scale: 65
+    :align: right
 
+**Detrending** :func:`scipy.signal.detrend`: remove linear trend from signal::
+
+  >>> t = np.linspace(0, 5, 100)
+  >>> x = t + np.random.normal(size=100)
+
+  >>> from scipy import signal
+  >>> x_detrended = signal.detrend(x)
+
+  >>> plt.plot(t, x) # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+  >>> plt.plot(t, x_detrended) # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+
+.. raw:: html
+
+   <div style="clear: both"></div>
+
+**Filtering**:
+For non-linear filtering, :mod:`scipy.signal` has filtering (median
+filter :func:`scipy.signal.medfilt`, Wiener :func:`scipy.signal.wiener`),
+but we will discuss this in the image section.
+
+.. tip::
+
+    :mod:`scipy.signal` also has a full-blown set of tools for the design
+    of linear filter (finite and infinite response filters), but this is
+    out of the scope of this tutorial.
+
+
+**Spectral analysis**:
+:func:`scipy.signal.spectrogram` compute a spectrogram --frequency
+spectrums over consecutive time windows--, while
+:func:`scipy.signal.welch` comptes a power spectrum density (PSD).
+
+.. |chirp_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_001.png
+    :target: scipy/auto_examples/plot_spectrogram.html
+    :scale: 45
+
+.. |spectrogram_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_002.png
+    :target: scipy/auto_examples/plot_spectrogram.html
+    :scale: 45
+
+.. |psd_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_003.png
+    :target: scipy/auto_examples/plot_spectrogram.html
+    :scale: 45
+
+|chirp_fig| |spectrogram_fig| |psd_fig|
 
 Image processing: :mod:`scipy.ndimage`
 --------------------------------------
@@ -1055,4 +1081,14 @@ invited to try these exercises.
 
 .. include:: scipy/auto_examples/index.rst
     :start-line: 1
+
+
+.. seealso:: **References to go further**
+
+   * Some chapters of the `advanced <advanced_topics_part>`__ and the
+     `packages and applications <applications_part>`__ parts of the scipy
+     lectures
+
+   * The `scipy cookbook <http://scipy-cookbook.readthedocs.io>`__
+
 

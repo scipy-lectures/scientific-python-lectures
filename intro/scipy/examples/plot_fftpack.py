@@ -1,15 +1,16 @@
 """
-================================
-Plotting and manipulating FFTs
-================================
+=============================================
+Plotting and manipulating FFTs for filtering
+=============================================
 
 Plot the power of the FFT of a signal and inverse FFT back to reconstruct
 a signal.
 
-This example is to demonstrate :func:`scipy.fftpack.fft`,
+This example demonstrate :func:`scipy.fftpack.fft`,
 :func:`scipy.fftpack.fftfreq` and :func:`scipy.fftpack.ifft`. It
 implements a basic filter that is very suboptimal, and should not be
 used.
+
 """
 
 import numpy as np
@@ -67,6 +68,8 @@ plt.title('Peak frequency')
 plt.plot(freqs[:8], power[:8])
 plt.setp(axes, yticks=[])
 
+# scipy.signal.find_peaks_cwt can also be used for more advanced
+# peak detection
 
 ############################################################
 # Remove all the high frequencies
@@ -75,8 +78,9 @@ plt.setp(axes, yticks=[])
 # We now remove all the high frequencies and transform back from
 # frequencies to signal.
 
-sig_fft[np.abs(sample_freq) > peak_freq] = 0
-filtered_sig = fftpack.ifft(sig_fft)
+high_freq_fft = sig_fft.copy()
+high_freq_fft[np.abs(sample_freq) > peak_freq] = 0
+filtered_sig = fftpack.ifft(high_freq_fft)
 
 plt.figure(figsize=(6, 5))
 plt.plot(time_vec, sig, label='Original signal')
@@ -86,14 +90,12 @@ plt.ylabel('Amplitude')
 
 plt.legend(loc='best')
 
-
 ############################################################
 #
 # **Note** This is actually a bad way of creating a filter: such brutal
-# cut-off in frequency space creates artifacts. Do not use this, see
-# :mod:`scipy.signal` and the corresponding documentation to create
-# filters.
-
+# cut-off in frequency space does not control distorsion on the signal.
+#
+# Filters should be created using the scipy filter design code
 plt.show()
 
 
