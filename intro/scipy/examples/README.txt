@@ -1,3 +1,3 @@
-Examples for scipy
-===================
+Full code examples for the scipy chapter
+-----------------------------------------
 

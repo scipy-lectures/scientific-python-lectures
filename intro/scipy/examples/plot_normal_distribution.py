@@ -26,6 +26,6 @@ from matplotlib import pyplot as plt
 plt.figure(figsize=(6, 4))
 plt.plot(bin_centers, histogram, label="Histogram of samples")
 plt.plot(bin_centers, pdf, label="PDF")
-plt.legend(loc='best')
+plt.legend()
 plt.show()
 

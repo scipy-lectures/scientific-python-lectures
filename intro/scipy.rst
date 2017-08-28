@@ -847,9 +847,10 @@ Other integration schemes are available:
 Integrating differential equations
 ...................................
 
-:mod:`scipy.integrate` also features routines for integrating Ordinary
-Differential Equations (ODE). In particular,
-:func:`scipy.integrate.odeint` solves ODE of the form::
+:mod:`scipy.integrate` also features routines for integrating `Ordinary
+Differential Equations (ODE)
+<https://en.wikipedia.org/wiki/Ordinary_differential_equation>`__. In
+particular, :func:`scipy.integrate.odeint` solves ODE of the form::
 
     dy/dt = rhs(y1, y2, .., t0,...)
 
@@ -876,8 +877,9 @@ Then, to compute ``y`` as a function of time::
 
    <div style="clear: both"></div>
 
-Let us integrate a more complex ODE: a damped
-spring-mass oscillator.
+Let us integrate a more complex ODE: a `damped
+spring-mass oscillator
+<https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator>`__.
 The position of a mass attached to a spring obeys the 2nd order *ODE*
 :math:`y'' + 2 \varepsilon \omega_0  y' + \omega_0^2 y = 0` with 
 :math:`\omega_0^2 = k/m` with :math:`k` the spring constant, :math:`m` the mass
@@ -943,47 +945,62 @@ Integration of the system follows::
 Signal processing: :mod:`scipy.signal`
 --------------------------------------
 
-::
+.. tip::
 
-    >>> from scipy import signal
+   :mod:`scipy.signal` is for typical signal processing: 1D,
+   regularly-sampled signals.
 
-* :func:`scipy.signal.detrend`: remove linear trend from signal::
+.. image:: scipy/auto_examples/images/sphx_glr_plot_detrend_001.png
+    :target: scipy/auto_examples/plot_detrend.html
+    :scale: 65
+    :align: right
 
-    >>> t = np.linspace(0, 5, 100)
-    >>> x = t + np.random.normal(size=100)
+:func:`scipy.signal.detrend`: remove linear trend from signal::
 
-    >>> plt.plot(t, x, linewidth=3) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(t, signal.detrend(x), linewidth=3) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
+  >>> t = np.linspace(0, 5, 100)
+  >>> x = t + np.random.normal(size=100)
 
-  .. plot:: pyplots/demo_detrend.py
-    :scale: 70
+  >>> from scipy import signal
+  >>> x_detrended = signal.detrend(x)
 
-* :func:`scipy.signal.resample`: resample a signal to `n` points using FFT. ::
+  >>> plt.plot(t, x) # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+  >>> plt.plot(t, x_detrended) # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
 
-    >>> t = np.linspace(0, 5, 100)
-    >>> x = np.sin(t)
+.. raw:: html
 
-    >>> plt.plot(t, x, linewidth=3) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(t[::2], signal.resample(x, 50), 'ko') # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
+   <div style="clear: both"></div>
 
-  .. plot:: pyplots/demo_resample.py
-    :scale: 70
+.. image:: scipy/auto_examples/images/sphx_glr_plot_resample_001.png
+    :target: scipy/auto_examples/plot_resample.html
+    :scale: 65
+    :align: right
 
-  .. only:: latex
+:func:`scipy.signal.resample`: resample a signal to `n` points using FFT. ::
+
+  >>> t = np.linspace(0, 5, 100)
+  >>> x = np.sin(t)
+
+  >>> from scipy import signal
+  >>> x_resampled = signal.resample(x, 25)
+
+  >>> plt.plot(t, x) # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+  >>> plt.plot(t[::4], x_resampled, 'ko') # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+
+.. tip:: 
 
      Notice how on the side of the window the resampling is less accurate
      and has a rippling effect.
 
-* :mod:`scipy.signal` has many window functions: :func:`scipy.signal.hamming`,
-  :func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...
+:mod:`scipy.signal` has many window functions: :func:`scipy.signal.hamming`,
+:func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...
 
-* :mod:`scipy.signal` has filtering (median filter :func:`scipy.signal.medfilt`,
-  Wiener :func:`scipy.signal.wiener`), but we will
-  discuss this in the image section.
+:mod:`scipy.signal` has filtering (median filter :func:`scipy.signal.medfilt`,
+Wiener :func:`scipy.signal.wiener`), but we will
+discuss this in the image section.
 
 
 Image processing: :mod:`scipy.ndimage`
@@ -1028,11 +1045,9 @@ invited to try these exercises.
 
       summary-exercises/answers_image_processing.rst
 
-Full code examples for the figures
-----------------------------------
+.. include the gallery. Skip the first line to avoid the "orphan"
+   declaration
 
-.. toctree::
-
-    scipy/auto_examples/index.rst
-
+.. include:: scipy/auto_examples/index.rst
+    :start-line: 1
 
