@@ -827,25 +827,29 @@ interpolation example.
 Numerical integration: :mod:`scipy.integrate`
 ---------------------------------------------
 
-**Function integrals**:
-The most generic integration routine is :func:`scipy.integrate.quad`::
+Function integrals
+...................
+
+The most generic integration routine is :func:`scipy.integrate.quad`. To
+compute :math:`\int_0^{\pi / 2} sin(t) dt`::
 
     >>> from scipy.integrate import quad
     >>> res, err = quad(np.sin, 0, np.pi/2)
-    >>> np.allclose(res, 1)
+    >>> np.allclose(res, 1)   # res is the result, is should be close to 1
     True
-    >>> np.allclose(err, 1 - res)
+    >>> np.allclose(err, 1 - res)  # err is an estimate of the err
     True
 
 Other integration schemes are available:
 :func:`scipy.integrate.fixed_quad`, :func:`scipy.integrate.quadrature`,
 :func:`scipy.integrate.romberg`...
 
-|
+Integrating differential equations
+...................................
 
-**Integrating differential equations**: :mod:`scipy.integrate` also
-features routines for integrating Ordinary Differential Equations (ODE).
-In particular, :func:`scipy.integrate.odeint` solves ODE of the form::
+:mod:`scipy.integrate` also features routines for integrating Ordinary
+Differential Equations (ODE). In particular,
+:func:`scipy.integrate.odeint` solves ODE of the form::
 
     dy/dt = rhs(y1, y2, .., t0,...)
 
@@ -888,15 +892,15 @@ Hence::
     >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
     >>> omega = np.sqrt(kspring / mass)
 
-The system is underdamped, because::
+The system is underdamped, as::
 
     >>> eps < 1
     True
 
-For the :func:`scipy.integrate.odeint` solver, the 2nd order equation
+For :func:`~scipy.integrate.odeint`, the 2nd order equation
 needs to be transformed in a system of two first-order equations for the
-vector :math:`Y = (y, y')`.  Thus the function will calculate the
-velocity and acceleration by::
+vector :math:`Y = (y, y')`: the function computes the
+velocity and acceleration::
     
     >>> def calc_deri(yvec, time, eps, omega):
     ...     return (yvec[1], -eps * omega * yvec[1] - omega **2 * yvec[0])
@@ -906,7 +910,7 @@ velocity and acceleration by::
     :scale: 70
     :align: right
 
-::
+Integration of the system follows::
 
     >>> time_vec = np.linspace(0, 10, 100)
     >>> yinit = (1, 0)
