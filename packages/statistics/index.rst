@@ -44,7 +44,7 @@ Statistics in Python
  * **Read a statistics book**:
    The `Think stats <http://greenteapress.com/thinkstats/>`_ book is
    available as free PDF or in print and is a great introduction to
-   statistiques.
+   statistics.
 
 
 |
@@ -768,15 +768,19 @@ Categorical variables can be plotted as the hue::
 lmplot: plotting a univariate regression
 -----------------------------------------
 
+.. image:: auto_examples/images/sphx_glr_plot_wage_data_005.png
+   :target: auto_examples/plot_wage_data.html
+   :align: right
+   :scale: 60
+
 A regression capturing the relation between one variable and another, eg
 wage and eduction, can be plotted using :func:`seaborn.lmplot`::
 
     >>> seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)  # doctest: +SKIP
 
-.. image:: auto_examples/images/sphx_glr_plot_wage_data_005.png
-   :target: auto_examples/plot_wage_data.html
-   :align: center
-   :scale: 60
+.. raw:: html
+
+   <div style="clear: both"></div>
 
 .. topic:: **Robust regression**
 
@@ -801,7 +805,7 @@ Testing for interactions
 .. image:: auto_examples/images/sphx_glr_plot_wage_education_gender_001.png
    :target: auto_examples/plot_wage_education_gender.html
    :align: center
-   :scale: 60
+   :scale: 70
 
 Do wages increase more with education for males than females?
 
@@ -848,11 +852,11 @@ Can we conclude that education benefits males more than females?
 
 |
 
-Full code examples
-===================
+.. include the gallery. Skip the first line to avoid the "orphan"
+   declaration
 
-.. toctree::
+.. include:: auto_examples/index.rst
+    :start-line: 1
 
-    auto_examples/index.rst
 
 

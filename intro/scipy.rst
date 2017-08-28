@@ -776,6 +776,7 @@ whether the means of two sets of observations are significantly different::
    elaborate tools for statistical testing and statistical data
    loading and visualization outside of scipy.
 
+.. _intro_scipy_interpolate:
 
 Interpolation: :mod:`scipy.interpolate`
 ---------------------------------------
@@ -992,8 +993,12 @@ Signal processing: :mod:`scipy.signal`
 
 .. tip:: 
 
-     Notice how on the side of the window the resampling is less accurate
-     and has a rippling effect.
+    Notice how on the side of the window the resampling is less accurate
+    and has a rippling effect.
+
+    This resampling is different from the :ref:`interpolation
+    <intro_scipy_interpolate` provided by :mod:`scipy.interpolate` as it
+    only applies to regularly sampled data.
 
 :mod:`scipy.signal` has many window functions: :func:`scipy.signal.hamming`,
 :func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...

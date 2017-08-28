@@ -1,5 +1,5 @@
-Code behind the figures
-------------------------
+Full code for the figures
+==========================
 
 Code examples for the statistics chapter.
 
