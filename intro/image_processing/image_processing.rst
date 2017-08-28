@@ -2,21 +2,18 @@
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend("Agg")
 
-The submodule dedicated to image processing in scipy is :mod:`scipy.ndimage`. ::
-
-    >>> from scipy import ndimage
-
-Image processing routines may be sorted according to the category of
-processing they perform.
-
+:mod:`scipy.ndimage` provides manipulation of n-dimensional arrays as
+images.
 
 Geometrical transformations on images
 .......................................
 
 Changing orientation, resolution, .. ::
 
-    >>> from scipy import misc
+    >>> from scipy import misc  # Load an image
     >>> face = misc.face(gray=True)
+
+    >>> from scipy import ndimage # Shift, roate and zoom it
     >>> shifted_face = ndimage.shift(face, (50, 50))
     >>> shifted_face2 = ndimage.shift(face, (50, 50), mode='nearest')
     >>> rotated_face = ndimage.rotate(face, 30)

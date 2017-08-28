@@ -1034,8 +1034,8 @@ spectrums over consecutive time windows--, while
 
 |chirp_fig| |spectrogram_fig| |psd_fig|
 
-Image processing: :mod:`scipy.ndimage`
---------------------------------------
+Image manipulation: :mod:`scipy.ndimage`
+-----------------------------------------
 
 .. include:: image_processing/image_processing.rst
 
