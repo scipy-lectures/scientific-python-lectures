@@ -35,13 +35,13 @@ Statistics in Python
 
 .. seealso::
    
- * **Bayesian statistics in Python**
+ * **Bayesian statistics in Python**:
    This chapter does not cover tools for Bayesian statistics. Of
    particular interest for Bayesian modelling is `PyMC
    <http://pymc-devs.github.io/pymc>`_, which implements a probabilistic
    programming language in Python.
 
- * **Read a statistics book**
+ * **Read a statistics book**:
    The `Think stats <http://greenteapress.com/thinkstats/>`_ book is
    available as free PDF or in print and is a great introduction to
    statistiques.

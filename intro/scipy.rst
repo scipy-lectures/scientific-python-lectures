@@ -780,7 +780,7 @@ whether the means of two sets of observations are significantly different::
 Interpolation: :mod:`scipy.interpolate`
 ---------------------------------------
 
-The :mod:`scipy.interpolate` is useful for fitting a function from experimental
+:mod:`scipy.interpolate` is useful for fitting a function from experimental
 data and thus evaluating points where no measure exists. The module is based
 on the `FITPACK Fortran subroutines`_.
 
@@ -793,39 +793,41 @@ By imagining experimental data close to a sine function::
     >>> noise = (np.random.random(10)*2 - 1) * 1e-1
     >>> measures = np.sin(2 * np.pi * measured_time) + noise
 
-The :class:`scipy.interpolate.interp1d` class can build a linear
-interpolation function::
+:class:`scipy.interpolate.interp1d` can build a linear interpolation
+function::
 
     >>> from scipy.interpolate import interp1d
     >>> linear_interp = interp1d(measured_time, measures)
 
-Then the :obj:`scipy.interpolate.linear_interp` instance needs to be
-evaluated at the time of interest::
+.. image:: scipy/auto_examples/images/sphx_glr_plot_interpolation_001.png
+    :target: scipy/auto_examples/plot_interpolation.html
+    :scale: 60
+    :align: right
 
-    >>> computed_time = np.linspace(0, 1, 50)
-    >>> linear_results = linear_interp(computed_time)
+Then the result can be evaluated at the time of interest::
+
+    >>> interpolation_time = np.linspace(0, 1, 50)
+    >>> linear_results = linear_interp(interpolation_time)
 
 A cubic interpolation can also be selected by providing the ``kind`` optional
 keyword argument::
 
     >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
-    >>> cubic_results = cubic_interp(computed_time)
+    >>> cubic_results = cubic_interp(interpolation_time)
 
-The results are now gathered on the following Matplotlib figure:
-
-.. plot:: pyplots/scipy_interpolation.py
 
 :class:`scipy.interpolate.interp2d` is similar to
 :class:`scipy.interpolate.interp1d`, but for 2-D arrays. Note that for
-the `interp` family, the computed time must stay within the measured
-time range. See the summary exercise on
-:ref:`summary_exercise_stat_interp` for a more advance spline
+the `interp` family, the interpolation points must stay within the range
+of given data points. See the summary exercise on
+:ref:`summary_exercise_stat_interp` for a more advanced spline
 interpolation example.
 
 
 Numerical integration: :mod:`scipy.integrate`
 ---------------------------------------------
 
+**Function integrals**:
 The most generic integration routine is :func:`scipy.integrate.quad`::
 
     >>> from scipy.integrate import quad
@@ -835,19 +837,15 @@ The most generic integration routine is :func:`scipy.integrate.quad`::
     >>> np.allclose(err, 1 - res)
     True
 
-Others integration schemes are available with ``fixed_quad``,
-``quadrature``, ``romberg``.
+Other integration schemes are available:
+:func:`scipy.integrate.fixed_quad`, :func:`scipy.integrate.quadrature`,
+:func:`scipy.integrate.romberg`...
 
-:mod:`scipy.integrate` also features routines for integrating Ordinary
-Differential Equations (ODE). In particular, :func:`scipy.integrate.odeint`
-is a general-purpose integrator using LSODA (Livermore Solver for
-Ordinary Differential equations with Automatic method switching
-for stiff and non-stiff problems), see the `ODEPACK Fortran library`_
-for more details.
+|
 
-.. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
-
-``odeint`` solves first-order ODE systems of the form::
+**Integrating differential equations**: :mod:`scipy.integrate` also
+features routines for integrating Ordinary Differential Equations (ODE).
+In particular, :func:`scipy.integrate.odeint` solves ODE of the form::
 
     dy/dt = rhs(y1, y2, .., t0,...)
 
@@ -855,87 +853,84 @@ As an introduction, let us solve the ODE :math:`\frac{dy}{dt} = -2 y` between
 :math:`t = 0 \dots 4`, with the  initial condition :math:`y(t=0) = 1`.
 First the function computing the derivative of the position needs to be defined::
 
-    >>> def calc_derivative(ypos, time, counter_arr):
-    ...     counter_arr += 1
+    >>> def calc_derivative(ypos, time):
     ...     return -2 * ypos
-    ...
 
-An extra argument ``counter_arr`` has been added to illustrate that the
-function may be called several times for a single time step, until solver
-convergence. The counter array is defined as::
+.. image:: scipy/auto_examples/images/sphx_glr_plot_odeint_simple_001.png
+    :target: scipy/auto_examples/plot_odeint_simple.html
+    :scale: 70
+    :align: right
 
-    >>> counter = np.zeros((1,), dtype=np.uint16)
 
-The trajectory will now be computed::
+Then, to compute ``y`` as a function of time::
 
     >>> from scipy.integrate import odeint
     >>> time_vec = np.linspace(0, 4, 40)
-    >>> yvec, info = odeint(calc_derivative, 1, time_vec,
-    ...                     args=(counter,), full_output=True)
+    >>> y = odeint(calc_derivative, y0=1, t=time_vec)
 
-Thus the derivative function has been called more than 40 times
-(which was the number of time steps)::
+.. raw:: html
 
-    >>> counter
-    array([129], dtype=uint16)
+   <div style="clear: both"></div>
 
-and the cumulative number of iterations for each of the 10 first time steps
-can be obtained by::
-
-    >>> info['nfe'][:10]
-    array([31, 35, 43, 49, 53, 57, 59, 63, 65, 69], dtype=int32)
-
-Note that the solver requires more iterations for the first time step.
-The solution ``yvec`` for the trajectory can now be plotted:
-
-  .. plot:: pyplots/odeint_introduction.py
-    :scale: 70
-
-
-Another example with :func:`scipy.integrate.odeint` will be a damped
-spring-mass oscillator (2nd order oscillator).
-The position of a mass attached to a spring obeys the 2nd order **ODE**
+Let us integrate a more complex ODE: a damped
+spring-mass oscillator.
+The position of a mass attached to a spring obeys the 2nd order *ODE*
 :math:`y'' + 2 \varepsilon \omega_0  y' + \omega_0^2 y = 0` with 
 :math:`\omega_0^2 = k/m` with :math:`k` the spring constant, :math:`m` the mass
-and :math:`\varepsilon = c/(2 m \omega_0)` with :math:`c` the damping coefficient.
-For this example, we choose the parameters as::
+and :math:`\varepsilon = c/(2 m \omega_0)` with :math:`c` the damping coefficient. We set::
 
     >>> mass = 0.5  # kg
     >>> kspring = 4  # N/m
     >>> cviscous = 0.4  # N s/m
 
-so the system will be underdamped, because::
+Hence::
 
     >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
+    >>> omega = np.sqrt(kspring / mass)
+
+The system is underdamped, because::
+
     >>> eps < 1
     True
 
-For the :func:`scipy.integrate.odeint` solver the 2nd order equation 
-needs to be transformed in a system of two first-order equations for 
-the vector :math:`Y = (y, y')`.  It will be convenient to define 
-:math:`\nu = 2 \varepsilon * \omega_0 = c / m` and :math:`\Omega = \omega_0^2 = k/m`::
+For the :func:`scipy.integrate.odeint` solver, the 2nd order equation
+needs to be transformed in a system of two first-order equations for the
+vector :math:`Y = (y, y')`.  Thus the function will calculate the
+velocity and acceleration by::
+    
+    >>> def calc_deri(yvec, time, eps, omega):
+    ...     return (yvec[1], -eps * omega * yvec[1] - omega **2 * yvec[0])
 
-    >>> nu_coef = cviscous / mass  # nu
-    >>> om_coef = kspring / mass  # Omega
+.. image:: scipy/auto_examples/images/sphx_glr_plot_odeint_damped_spring_mass_001.png
+    :target: scipy/auto_examples/plot_odeint_damped_spring_mass.html
+    :scale: 70
+    :align: right
 
-Thus the function will calculate the velocity and acceleration by::
+::
 
-    >>> def calc_deri(yvec, time, nu, om):
-    ...     return (yvec[1], -nu * yvec[1] - om * yvec[0])
-    ...
     >>> time_vec = np.linspace(0, 10, 100)
     >>> yinit = (1, 0)
-    >>> yarr = odeint(calc_deri, yinit, time_vec, args=(nu_coef, om_coef))
+    >>> yarr = odeint(calc_deri, yinit, time_vec, args=(eps, omega))
 
-The final position and velocity are shown on the following Matplotlib figure:
+.. raw:: html
 
-.. plot:: pyplots/odeint_damped_spring_mass.py
-    :scale: 70
+   <div style="clear: both"></div>
 
 
-These two examples were only Ordinary Differential Equations (ODE).
-However, there is no Partial Differential Equations (PDE) solver in Scipy.
-Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
+.. tip::
+
+    :func:`scipy.integrate.odeint` uses the LSODA (Livermore Solver for
+    Ordinary Differential equations with Automatic method switching for stiff
+    and non-stiff problems), see the `ODEPACK Fortran library`_ for more
+    details.
+
+.. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
+
+.. seealso:: **Partial Differental Equations**
+
+    There is no Partial Differential Equations (PDE) solver in Scipy.
+    Some Python packages for solving PDE's are available, such as fipy_
+    or SfePy_.
 
 .. _fipy: http://www.ctcms.nist.gov/fipy/
 .. _SfePy: http://sfepy.org/doc/
