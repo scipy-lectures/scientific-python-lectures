@@ -214,111 +214,55 @@ LAPACK).
   for linear systems, are available in :mod:`scipy.linalg`.
 
 
-Fast Fourier transforms: :mod:`scipy.fftpack`
----------------------------------------------
+.. _intro_scipy_interpolate:
 
-The :mod:`scipy.fftpack` module computes fast Fourier transforms (FFTs)
-and offers utilities to handle them. The main functions are:
+Interpolation: :mod:`scipy.interpolate`
+---------------------------------------
 
-* :func:`scipy.fftpack.fft` to compute the FFT
+:mod:`scipy.interpolate` is useful for fitting a function from experimental
+data and thus evaluating points where no measure exists. The module is based
+on the `FITPACK Fortran subroutines`_.
 
-* :func:`scipy.fftpack.fftfreq` to generate the sampling frequencies
+.. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
+.. _netlib : http://www.netlib.org
 
-* :func:`scipy.fftpack.ifft` computes the inverse FFT, from frequency
-  space to signal space
+By imagining experimental data close to a sine function::
 
-|
+    >>> measured_time = np.linspace(0, 1, 10)
+    >>> noise = (np.random.random(10)*2 - 1) * 1e-1
+    >>> measures = np.sin(2 * np.pi * measured_time) + noise
 
-As an illustration, a (noisy) input signal (``sig``), and its FFT::
+:class:`scipy.interpolate.interp1d` can build a linear interpolation
+function::
 
-    >>> from scipy import fftpack
-    >>> sig_fft = fftpack.fft(sig) # doctest:+SKIP
-    >>> freqs = fftpack.fftfreq(sig.size, d=time_step) # doctest:+SKIP
+    >>> from scipy.interpolate import interp1d
+    >>> linear_interp = interp1d(measured_time, measures)
 
-
-.. |signal_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_001.png
-    :target: scipy/auto_examples/plot_fftpack.html
-    :scale: 60
-
-.. |fft_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_002.png
-    :target: scipy/auto_examples/plot_fftpack.html
-    :scale: 60
-
-===================== =====================
-|signal_fig|          |fft_fig|
-===================== =====================
-**Signal**            **FFT**
-===================== =====================
-
-As the signal comes from a real function, the Fourier transform is
-symmetric.
-
-The peak signal frequency can be found with ``freqs[power.argmax()]``
-
-.. image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_003.png
-    :target: scipy/auto_examples/plot_fftpack.html
+.. image:: scipy/auto_examples/images/sphx_glr_plot_interpolation_001.png
+    :target: scipy/auto_examples/plot_interpolation.html
     :scale: 60
     :align: right
 
+Then the result can be evaluated at the time of interest::
 
-Setting the Fourrier component above this frequency to zero and inverting
-the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
+    >>> interpolation_time = np.linspace(0, 1, 50)
+    >>> linear_results = linear_interp(interpolation_time)
 
-.. note::
+A cubic interpolation can also be selected by providing the ``kind`` optional
+keyword argument::
 
-   The code of this example can be found :ref:`here <sphx_glr_intro_scipy_auto_examples_plot_fftpack.py>`
+    >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
+    >>> cubic_results = cubic_interp(interpolation_time)
 
-.. topic:: `numpy.fft`
 
-   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
-   the scipy one
-   should be preferred, as it uses more efficient underlying implementations.
+:class:`scipy.interpolate.interp2d` is similar to
+:class:`scipy.interpolate.interp1d`, but for 2-D arrays. Note that for
+the `interp` family, the interpolation points must stay within the range
+of given data points. See the summary exercise on
+:ref:`summary_exercise_stat_interp` for a more advanced spline
+interpolation example.
 
-|
 
-**Fully worked examples:**
-
-.. |periodicity_finding| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_periodicity_finder_001.png
-    :scale: 50
-    :target: sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py 
-
-.. |image_blur| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_image_blur_001.png
-    :scale: 50
-    :target: sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py
-
-=================================================================================================================== ===================================================================================================================
-Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py>`)   Gaussian image blur (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py>`)
-=================================================================================================================== ===================================================================================================================
-|periodicity_finding|                                                                                               |image_blur|
-=================================================================================================================== ===================================================================================================================
-
-|
-
-.. topic:: Exercise: Denoise moon landing image
-   :class: green
-
-   .. image:: ../data/moonlanding.png
-     :scale: 70
-
-   1. Examine the provided image moonlanding.png, which is heavily
-      contaminated with periodic noise. In this exercise, we aim to clean up
-      the noise using the Fast Fourier Transform.
-
-   2. Load the image using :func:`pylab.imread`.
-
-   3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
-      spectrum (Fourier transform of) the image. Do you have any trouble
-      visualising the spectrum? If so, why?
-
-   4. The spectrum consists of high and low frequency components. The noise is
-      contained in the high-frequency part of the spectrum, so set some of
-      those components to zero (use array slicing).
-
-   5. Apply the inverse Fourier transform to see the resulting image.
-
-   :ref:`Solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_fft_image_denoise.py>`
-
-|
 
 Optimization and fit: :mod:`scipy.optimize`
 -------------------------------------------
@@ -619,10 +563,12 @@ our initial guess: ::
 |
 
 
-Now we have found the minima and roots of ``f`` and used curve fitting on it,
+Now that we have found the minima and roots of ``f`` and used curve fitting on it,
 we put all those results together in a single plot:
 
-____
+.. raw:: html
+
+   <div style="clear: both"></div>
 
 
 .. seealso::
@@ -780,55 +726,6 @@ whether the means of two sets of observations are significantly different::
    elaborate tools for statistical testing and statistical data
    loading and visualization outside of scipy.
 
-.. _intro_scipy_interpolate:
-
-Interpolation: :mod:`scipy.interpolate`
----------------------------------------
-
-:mod:`scipy.interpolate` is useful for fitting a function from experimental
-data and thus evaluating points where no measure exists. The module is based
-on the `FITPACK Fortran subroutines`_.
-
-.. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
-.. _netlib : http://www.netlib.org
-
-By imagining experimental data close to a sine function::
-
-    >>> measured_time = np.linspace(0, 1, 10)
-    >>> noise = (np.random.random(10)*2 - 1) * 1e-1
-    >>> measures = np.sin(2 * np.pi * measured_time) + noise
-
-:class:`scipy.interpolate.interp1d` can build a linear interpolation
-function::
-
-    >>> from scipy.interpolate import interp1d
-    >>> linear_interp = interp1d(measured_time, measures)
-
-.. image:: scipy/auto_examples/images/sphx_glr_plot_interpolation_001.png
-    :target: scipy/auto_examples/plot_interpolation.html
-    :scale: 60
-    :align: right
-
-Then the result can be evaluated at the time of interest::
-
-    >>> interpolation_time = np.linspace(0, 1, 50)
-    >>> linear_results = linear_interp(interpolation_time)
-
-A cubic interpolation can also be selected by providing the ``kind`` optional
-keyword argument::
-
-    >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
-    >>> cubic_results = cubic_interp(interpolation_time)
-
-
-:class:`scipy.interpolate.interp2d` is similar to
-:class:`scipy.interpolate.interp1d`, but for 2-D arrays. Note that for
-the `interp` family, the interpolation points must stay within the range
-of given data points. See the summary exercise on
-:ref:`summary_exercise_stat_interp` for a more advanced spline
-interpolation example.
-
-
 Numerical integration: :mod:`scipy.integrate`
 ---------------------------------------------
 
@@ -945,6 +842,112 @@ Integration of the system follows::
 
 .. _fipy: http://www.ctcms.nist.gov/fipy/
 .. _SfePy: http://sfepy.org/doc/
+
+Fast Fourier transforms: :mod:`scipy.fftpack`
+---------------------------------------------
+
+The :mod:`scipy.fftpack` module computes fast Fourier transforms (FFTs)
+and offers utilities to handle them. The main functions are:
+
+* :func:`scipy.fftpack.fft` to compute the FFT
+
+* :func:`scipy.fftpack.fftfreq` to generate the sampling frequencies
+
+* :func:`scipy.fftpack.ifft` computes the inverse FFT, from frequency
+  space to signal space
+
+|
+
+As an illustration, a (noisy) input signal (``sig``), and its FFT::
+
+    >>> from scipy import fftpack
+    >>> sig_fft = fftpack.fft(sig) # doctest:+SKIP
+    >>> freqs = fftpack.fftfreq(sig.size, d=time_step) # doctest:+SKIP
+
+
+.. |signal_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_001.png
+    :target: scipy/auto_examples/plot_fftpack.html
+    :scale: 60
+
+.. |fft_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_002.png
+    :target: scipy/auto_examples/plot_fftpack.html
+    :scale: 60
+
+===================== =====================
+|signal_fig|          |fft_fig|
+===================== =====================
+**Signal**            **FFT**
+===================== =====================
+
+As the signal comes from a real function, the Fourier transform is
+symmetric.
+
+The peak signal frequency can be found with ``freqs[power.argmax()]``
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_003.png
+    :target: scipy/auto_examples/plot_fftpack.html
+    :scale: 60
+    :align: right
+
+
+Setting the Fourrier component above this frequency to zero and inverting
+the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
+
+.. note::
+
+   The code of this example can be found :ref:`here <sphx_glr_intro_scipy_auto_examples_plot_fftpack.py>`
+
+.. topic:: `numpy.fft`
+
+   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
+   the scipy one
+   should be preferred, as it uses more efficient underlying implementations.
+
+|
+
+**Fully worked examples:**
+
+.. |periodicity_finding| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_periodicity_finder_001.png
+    :scale: 50
+    :target: sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py 
+
+.. |image_blur| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_image_blur_001.png
+    :scale: 50
+    :target: sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py
+
+=================================================================================================================== ===================================================================================================================
+Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py>`)   Gaussian image blur (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py>`)
+=================================================================================================================== ===================================================================================================================
+|periodicity_finding|                                                                                               |image_blur|
+=================================================================================================================== ===================================================================================================================
+
+|
+
+.. topic:: Exercise: Denoise moon landing image
+   :class: green
+
+   .. image:: ../data/moonlanding.png
+     :scale: 70
+
+   1. Examine the provided image moonlanding.png, which is heavily
+      contaminated with periodic noise. In this exercise, we aim to clean up
+      the noise using the Fast Fourier Transform.
+
+   2. Load the image using :func:`pylab.imread`.
+
+   3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
+      spectrum (Fourier transform of) the image. Do you have any trouble
+      visualising the spectrum? If so, why?
+
+   4. The spectrum consists of high and low frequency components. The noise is
+      contained in the high-frequency part of the spectrum, so set some of
+      those components to zero (use array slicing).
+
+   5. Apply the inverse Fourier transform to see the resulting image.
+
+   :ref:`Solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_fft_image_denoise.py>`
+
+|
 
 
 Signal processing: :mod:`scipy.signal`

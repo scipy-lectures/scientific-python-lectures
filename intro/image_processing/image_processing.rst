@@ -47,7 +47,7 @@ Changing orientation, resolution, .. ::
 Image filtering
 ...................
 
-::
+Generate a noisy face::
 
     >>> from scipy import misc
     >>> face = misc.face(gray=True)
@@ -55,6 +55,9 @@ Image filtering
     >>> import numpy as np
     >>> noisy_face = np.copy(face).astype(np.float)
     >>> noisy_face += face.std() * 0.5 * np.random.standard_normal(face.shape)
+
+Apply a variety of filters on it::
+
     >>> blurred_face = ndimage.gaussian_filter(noisy_face, sigma=3)
     >>> median_face = ndimage.median_filter(noisy_face, size=5)
     >>> from scipy import signal
@@ -66,7 +69,7 @@ Image filtering
     :align: center
 
 
-Many other filters in :mod:`scipy.ndimage.filters` and :mod:`scipy.signal`
+Other filters in :mod:`scipy.ndimage.filters` and :mod:`scipy.signal`
 can be applied to images.
 
 .. topic:: Exercise
@@ -77,19 +80,23 @@ can be applied to images.
 Mathematical morphology
 ........................
 
-Mathematical morphology is a mathematical theory that stems from set
-theory. It characterizes and transforms geometrical structures. Binary
-(black and white) images, in particular, can be transformed using this
-theory: the sets to be transformed are the sets of neighboring
-non-zero-valued pixels. The theory was also extended to gray-valued images.
+.. tip::
+
+    `Mathematical morphology
+    <https://en.wikipedia.org/wiki/Mathematical_morphology>`_ stems from set
+    theory. It characterizes and transforms geometrical structures. Binary
+    (black and white) images, in particular, can be transformed using this
+    theory: the sets to be transformed are the sets of neighboring
+    non-zero-valued pixels. The theory was also extended to gray-valued
+    images.
 
 .. image:: image_processing/morpho_mat.png
    :align: center
 
-Elementary mathematical-morphology operations use a *structuring element*
-in order to modify other geometrical structures.
+Mathematical-morphology operations use a *structuring element*
+in order to modify geometrical structures.
 
-Let us first generate a structuring element ::
+Let us first generate a structuring element::
 
     >>> el = ndimage.generate_binary_structure(2, 1)
     >>> el # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
@@ -101,7 +108,7 @@ Let us first generate a structuring element ::
            [1, 1, 1],
            [0, 1, 0]])
 
-* **Erosion** ::
+* **Erosion** :func:`scipy.ndimage.binary_erosion` ::
 
     >>> a = np.zeros((7, 7), dtype=np.int)
     >>> a[1:6, 2:5] = 1
@@ -131,7 +138,7 @@ Let us first generate a structuring element ::
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]])
 
-* **Dilation** ::
+* **Dilation** :func:`scipy.ndimage.binary_dilation`  ::
 
     >>> a = np.zeros((5, 5))
     >>> a[2, 2] = 1
@@ -148,7 +155,7 @@ Let us first generate a structuring element ::
            [ 0.,  0.,  1.,  0.,  0.],
            [ 0.,  0.,  0.,  0.,  0.]])
 
-* **Opening** ::
+* **Opening** :func:`scipy.ndimage.binary_opening` ::
 
     >>> a = np.zeros((5, 5), dtype=np.int)
     >>> a[1:4, 1:4] = 1
@@ -174,7 +181,7 @@ Let us first generate a structuring element ::
            [0, 0, 1, 0, 0],
            [0, 0, 0, 0, 0]])
 
-* **Closing:** ``ndimage.binary_closing``
+* **Closing:** :func:`scipy.ndimage.binary_closing`
 
 .. topic:: Exercise
    :class: green
