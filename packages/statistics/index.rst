@@ -681,7 +681,7 @@ test ``"name[T.versicolor] - name[T.virginica]"``, with an `F-test
 <https://en.wikipedia.org/wiki/F-test>`_::
 
     >>> print(model.f_test([0, 1, -1, 0]))  # doctest: +ELLIPSIS
-    <F test: F=array([[ 3.24533535]]), p=0.07369..., df_denom=146, df_num=1>
+    <F test: F=array([[ 3.24533535]]), p=[[ 0.07369...]], df_denom=146, df_num=1>
 
 Is this difference significant?
 

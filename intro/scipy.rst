@@ -395,7 +395,7 @@ the location of the minimum that it has found:
 ::
 
     >>> result = optimize.minimize(f, x0=0)
-    >>> result
+    >>> print(result)
           fun: -7.94582337561528
      hess_inv: array([[ 0.08585641]])
           jac: array([ -1.19209290e-07])
