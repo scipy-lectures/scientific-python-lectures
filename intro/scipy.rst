@@ -354,6 +354,8 @@ We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
     5. Is the time offset for min and max temperatures the same within the fit
        accuracy?
 
+    :ref:`solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_curvefit_temperature_data.py>`
+
 
 Finding the minimum of a scalar function
 ........................................
