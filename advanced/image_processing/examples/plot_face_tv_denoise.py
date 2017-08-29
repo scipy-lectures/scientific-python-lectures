@@ -9,7 +9,11 @@ import numpy as np
 import scipy
 import scipy.misc
 import matplotlib.pyplot as plt
-from skimage.filter import denoise_tv_chambolle
+try:
+    from skimage.restoration import denoise_tv_chambolle
+except ImportError:
+    # skimage < 0.12
+    from skimage.filters import denoise_tv_chambolle
 
 f = scipy.misc.face(gray=True)
 f = f[230:290, 220:320]
