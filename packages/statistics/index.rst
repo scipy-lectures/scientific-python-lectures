@@ -326,7 +326,7 @@ and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
 function's help)::
 
     >>> stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
-    (...30.088099970..., 1.32891964...e-28)
+    Ttest_1sampResult(statistic=30.088099970..., pvalue=1.32891964...e-28)
 
 .. tip::
    
@@ -343,7 +343,7 @@ with :func:`scipy.stats.ttest_ind`::
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
     >>> stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
-    (...-0.77261617232..., 0.4445287677858...)
+    Ttest_indResult(statistic=-0.77261617232..., pvalue=0.4445287677858...)
 
 Paired tests: repeated measurements on the same indivuals
 ----------------------------------------------------------
@@ -357,7 +357,7 @@ PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
 significantly different. We can use a 2 sample test::
 
     >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-    (...0.46563759638..., 0.64277250...)
+    Ttest_indResult(statistic=0.46563759638..., pvalue=0.64277250...)
 
 The problem with this approach is that it forgets that there are links
 between observations: FSIQ and PIQ are measured on the same individuals.
@@ -366,7 +366,7 @@ can be removed, using a "paired test", or `"repeated measures test"
 <https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
     >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-    (...1.784201940..., 0.082172638183...)
+    Ttest_relResult(statistic=1.784201940..., pvalue=0.082172638183...)
 
 .. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_002.png
    :target: auto_examples/plot_pandas.html
@@ -376,7 +376,7 @@ can be removed, using a "paired test", or `"repeated measures test"
 This is equivalent to a 1-sample test on the difference::
 
     >>> stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
-    (...1.784201940..., 0.082172638...)
+    Ttest_1sampResult(statistic=1.784201940..., pvalue=0.082172638...)
 
 |
 
@@ -386,7 +386,7 @@ can use a `Wilcoxon signed-rank test
 this assumption::
 
     >>> stats.wilcoxon(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-    (274.5, 0.106594927...)
+    WilcoxonResult(statistic=274.5, pvalue=0.106594927...)
 
 .. note::
 
@@ -600,7 +600,7 @@ model::
     previous t-test::
 
      >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-     (...0.46563759638..., 0.64277250...)
+     Ttest_indResult(statistic=0.46563759638..., pvalue=0.64277250...)
 
 
 Multiple Regression: including multiple factors
@@ -680,8 +680,8 @@ write a **vector of 'contrast'** on the parameters estimated: we want to
 test ``"name[T.versicolor] - name[T.virginica]"``, with an `F-test
 <https://en.wikipedia.org/wiki/F-test>`_::
 
-    >>> print(model.f_test([0, 1, -1, 0]))
-    <F test: F=array([[ 3.24533535]]), p=[[ 0.07369059]], df_denom=146, df_num=1>
+    >>> print(model.f_test([0, 1, -1, 0]))  # doctest: +ELLIPSIS
+    <F test: F=array([[ 3.24533535]]), p=0.07369..., df_denom=146, df_num=1>
 
 Is this difference significant?
 
