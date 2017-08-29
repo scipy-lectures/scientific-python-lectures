@@ -3,7 +3,8 @@ r"""
 Image denoising by FFT
 ======================
 
-Image denoising by implementing a blur with an FFT.
+Denoise an image (:download:`../../../../data/moonlanding.png`) by
+implementing a blur with an FFT.
 
 Implements, via FFT, the following convolution:
 
@@ -17,20 +18,37 @@ Implements, via FFT, the following convolution:
 
 """
 
+############################################################
+# Read and plot the image
+############################################################
 import numpy as np
-from scipy import fftpack
 import matplotlib.pyplot as plt
 
-
-def plot_spectrum(F):
-    plt.imshow(np.log(5 + np.abs(F)))
-
-
-# read image
 im = plt.imread('../../../../data/moonlanding.png').astype(float)
 
+plt.figure()
+plt.imshow(im, plt.cm.gray)
+plt.title('Original image')
+
+
+############################################################
 # Compute the 2d FFT of the input image
-F = fftpack.fft2(im)
+############################################################
+from scipy import fftpack
+im_fft = fftpack.fft2(im)
+
+# Show the results
+
+def plot_spectrum(im_fft):
+    plt.imshow(np.log(5 + np.abs(im_fft)))
+
+plt.figure()
+plot_spectrum(im_fft)
+plt.title('Fourier transform')
+
+############################################################
+# Filter in FFT
+############################################################
 
 # In the lines following, we'll make a copy of the original spectrum and
 # truncate coefficients.
@@ -40,37 +58,48 @@ keep_fraction = 0.1
 
 # Call ff a copy of the original transform. Numpy arrays have a copy
 # method for this purpose.
-ff = F.copy()
+im_fft2 = im_fft.copy()
 
 # Set r and c to be the number of rows and columns of the array.
-r, c = ff.shape
+r, c = im_fft2.shape
 
-# Set to zero all rows with indices between r*keep_fraction and # r*(1-keep_fraction):
-ff[r*keep_fraction:r*(1-keep_fraction)] = 0
+# Set to zero all rows with indices between r*keep_fraction and
+# r*(1-keep_fraction):
+im_fft2[r*keep_fraction:r*(1-keep_fraction)] = 0
 
 # Similarly with the columns:
-ff[:, c*keep_fraction:c*(1-keep_fraction)] = 0
+im_fft2[:, c*keep_fraction:c*(1-keep_fraction)] = 0
+
+plt.figure()
+plot_spectrum(im_fft2)
+plt.title('Filtered Spectrum')
+
+
+############################################################
+# Reconstruct the final image
+############################################################
 
 # Reconstruct the denoised image from the filtered spectrum, keep only the
 # real part for display.
-im_new = fftpack.ifft2(ff).real
+im_new = fftpack.ifft2(im_fft2).real
 
-# Show the results
-plt.figure(figsize=(12,8))
-plt.subplot(221)
-plt.title('Original image')
-plt.imshow(im, plt.cm.gray)
-plt.subplot(222)
-plt.title('Fourier transform')
-plot_spectrum(F)
-plt.subplot(224)
-plt.title('Filtered Spectrum')
-plot_spectrum(ff)
-plt.subplot(223)
-plt.title('Reconstructed Image')
+plt.figure()
 plt.imshow(im_new, plt.cm.gray)
+plt.title('Reconstructed Image')
 
-# Adjust the spacing between subplots for readability
-plt.subplots_adjust(hspace=0.4)
+
+############################################################
+# Easier and better: :func:`scipy.ndimage.gaussian_filter`
+############################################################
+#
+# Implementing filtering directly with FFTs is tricky and time consuming.
+# We can use the Gaussian filter from :mod:`scipy.ndimage`
+
+from scipy import ndimage
+im_blur = ndimage.gaussian_filter(im, 4)
+
+plt.figure()
+plt.imshow(im_blur, plt.cm.gray)
+plt.title('Blurred image')
 
 plt.show()

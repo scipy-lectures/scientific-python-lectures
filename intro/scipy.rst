@@ -948,9 +948,10 @@ Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_soluti
    .. image:: ../data/moonlanding.png
      :scale: 70
 
-   1. Examine the provided image moonlanding.png, which is heavily
-      contaminated with periodic noise. In this exercise, we aim to clean up
-      the noise using the Fast Fourier Transform.
+   1. Examine the provided image :download:`moonlanding.png
+      <../data/moonlanding.png>`, which is heavily contaminated with periodic
+      noise. In this exercise, we aim to clean up the noise using the
+      Fast Fourier Transform.
 
    2. Load the image using :func:`pylab.imread`.
 
