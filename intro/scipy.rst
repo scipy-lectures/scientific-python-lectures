@@ -76,31 +76,46 @@ Scipy : high-level scientific computing
     >>> import numpy as np
     >>> from scipy import stats  # same for other sub-modules
 
-   The main ``scipy`` namespace mostly contains functions that are really
+   The main :mod:`scipy` namespace mostly contains functions that are really
    numpy functions (try ``scipy.cos is np.cos``). Those are exposed for
-   historical reasons only; there's usually no reason to use ``import
+   historical reasons; there's no reason to use ``import
    scipy`` in your code.
 
 
 File input/output: :mod:`scipy.io`
 ----------------------------------
 
-* Loading and saving matlab files::
+**Matlab files**: Loading and saving::
 
     >>> from scipy import io as spio
     >>> a = np.ones((3, 3))
     >>> spio.savemat('file.mat', {'a': a}) # savemat expects a dictionary
-    >>> data = spio.loadmat('file.mat', struct_as_record=True)
+    >>> data = spio.loadmat('file.mat')
     >>> data['a']
     array([[ 1.,  1.,  1.],
            [ 1.,  1.,  1.],
            [ 1.,  1.,  1.]])
 
+.. warning:: **Python / Matlab mismatches**, *eg* matlab does not represent 1D arrays
+   
+   ::
+
+      >>> a = np.ones(3)
+      >>> a
+      array([ 1.,  1.,  1.])
+      >>> spio.savemat('file.mat', {'a': a})
+      >>> spio.loadmat('file.mat')['a']
+      array([[ 1.,  1.,  1.]])
+
+   Notice the difference?
+
+|
+
 .. Comments to make doctests pass which require an image
     >>> from matplotlib import pyplot as plt
     >>> plt.imsave('fname.png', np.array([[0]]))
 
-* Reading images::
+**Image files**: Reading images::
 
     >>> from scipy import misc
     >>> misc.imread('fname.png')    # doctest: +ELLIPSIS
@@ -147,9 +162,11 @@ functions here. Frequently used ones are:
 Linear algebra operations: :mod:`scipy.linalg`
 ----------------------------------------------
 
-The :mod:`scipy.linalg` module provides standard linear algebra
-operations, relying on an underlying efficient implementation (BLAS,
-LAPACK).
+.. tip::
+
+    The :mod:`scipy.linalg` module provides standard linear algebra
+    operations, relying on an underlying efficient implementation (BLAS,
+    LAPACK).
 
 * The :func:`scipy.linalg.det` function computes the determinant of a
   square matrix::
@@ -270,11 +287,13 @@ Optimization and fit: :mod:`scipy.optimize`
 Optimization is the problem of finding a numerical solution to a
 minimization or equality.
 
-The :mod:`scipy.optimize` module provides algorithms for function
-minimization (scalar or multi-dimensional), curve fitting and root
-finding. ::
+.. tip::
 
-    >>> from scipy import optimize
+    The :mod:`scipy.optimize` module provides algorithms for function
+    minimization (scalar or multi-dimensional), curve fitting and root
+    finding. ::
+
+        >>> from scipy import optimize
 
 Curve fitting
 ..............
@@ -293,7 +312,7 @@ Suppose we have data on a sine wave, with some noise: ::
     >>> y_data = 2.9 * np.sin(1.5 * x_data) + np.random.normal(size=50)
 
 
-Now if we know that the data lies on a sine wave, but not the amplitudes
+If we know that the data lies on a sine wave, but not the amplitudes
 or the period, we can find those by least squares curve fitting. First we
 have to define the test function to fit, here a sine with unknown
 amplitude and period::
@@ -909,11 +928,11 @@ the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
 
 .. |periodicity_finding| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_periodicity_finder_001.png
     :scale: 50
-    :target: sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py 
+    :target: scipy/auto_examples/solutions/plot_periodicity_finder.html
 
-.. |image_blur| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_image_blur_001.png
+.. |image_blur| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_image_blur_002.png
     :scale: 50
-    :target: sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py
+    :target: scipy/auto_examples/solutions/plot_image_blur.html
 
 =================================================================================================================== ===================================================================================================================
 Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py>`)   Gaussian image blur (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py>`)
