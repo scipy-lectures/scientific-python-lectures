@@ -710,25 +710,25 @@ Practical guide to optimization with scipy
 Choosing a method
 ------------------
 
+All methods are exposed as the ``method`` argument of
+:func:`scipy.optimize.minimize`.
+
 .. image:: auto_examples/images/sphx_glr_plot_compare_optimizers_001.png
    :align: center
    :width: 95%
 
 :Without knowledge of the gradient:
 
- * In general, prefer BFGS (:func:`scipy.optimize.fmin_bfgs`) or L-BFGS
-   (:func:`scipy.optimize.fmin_l_bfgs_b`), even if you have to approximate
+ * In general, prefer **BFGS** or **L-BFGS**, even if you have to approximate
    numerically gradients
  
- * On well-conditioned problems, Powell
-   (:func:`scipy.optimize.fmin_powell`) and Nelder-Mead
-   (:func:`scipy.optimize.fmin`), both gradient-free methods, work well in
+ * On well-conditioned problems, **Powell**
+   and **Nelder-Mead**, both gradient-free methods, work well in
    high dimension, but they collapse for ill-conditioned problems.
 
 :With knowledge of the gradient:
 
- * BFGS (:func:`scipy.optimize.fmin_bfgs`) or L-BFGS
-   (:func:`scipy.optimize.fmin_l_bfgs_b`).
+ * **BFGS** or **L-BFGS**.
  
  * Computational overhead of BFGS is larger than that L-BFGS, itself
    larger than that of conjugate gradient. On the other side, BFGS usually
@@ -738,12 +738,11 @@ Choosing a method
 :With the Hessian:
 
  * If you can compute the Hessian, prefer the Newton method
-   (:func:`scipy.optimize.fmin_ncg`).
+   (**Newton-CG** or **TCG**).
 
 :If you have noisy measurements:
 
- * Use Nelder-Mead (:func:`scipy.optimize.fmin`) or Powell
-   (:func:`scipy.optimize.fmin_powell`).
+ * Use **Nelder-Mead** or **Powell**.
 
 Making your optimizer faster
 -----------------------------

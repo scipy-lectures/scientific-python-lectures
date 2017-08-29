@@ -437,16 +437,11 @@ for the minimum.
 **Global minimum**:
 A possible issue with this approach is that, if the function has local minima,
 the algorithm may find these local minima instead of the
-global minimum depending on the initial point x0:
+global minimum depending on the initial point x0::
 
-.. sidebar:: disp=0
-
-    Turns off return of extra information
-
-::
-
-    >>> optimize.fmin_bfgs(f, x0=3, disp=0)
-    array([ 3.83746663])
+    >>> res = optimize.minimize(f, x0=3, method="L-BFGS-B")
+    >>> res.x
+    array([ 3.83746709])
 
 .. Comment to make doctest pass
    >>> np.random.seed(42)
@@ -489,11 +484,25 @@ sampling of starting points::
 
 **Constraints**:
 We can constrain the variable to the interval
-``(0, 10)`` using :func:`scipy.optimize.fminbound`: ::
+``(0, 10)`` using the "bounds" argument:
 
-    >>> xmin_local = optimize.fminbound(f, 0, 10)
-    >>> xmin_local    # doctest: +ELLIPSIS
-    3.8374671...
+.. sidebar:: A list of bounds
+
+   As :func:`~scipy.optimize.minimize` works in general with x
+   multidimensionsal, the "bounds" argument is a list of bound on each
+   dimension.
+
+::
+
+    >>> res = optimize.minimize(f, x0=1,
+    ...                         bounds=((0, 10), ))
+    >>> res.x    # doctest: +ELLIPSIS
+    array([ 0.])
+
+.. tip::
+
+   What has happened? Why are we finding 0, which is not a mimimum of our
+   function.
 
 
 .. topic:: **Minimizing functions of several variables**
