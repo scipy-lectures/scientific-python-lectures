@@ -449,19 +449,24 @@ that it is a separable equations, you can use keyword hint='separable'
 to force dsolve to resolve it as a separable equation::
 
    >>> dsolve(sin(x)*cos(f(x)) + cos(x)*sin(f(x))*f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
-                 /     _____________\                  /     _____________\
-                 |    /    C1       |                  |    /    C1       |
-   [f(x) = - asin|   /  ------- + 1 | + pi, f(x) = asin|   /  ------- + 1 | + pi,
-                 |  /      2        |                  |  /      2        |
-                 \\/    cos (x)     /                  \\/    cos (x)     /
+                 /     _________________\                  /     ________________
+                 |    /      C1         |                  |    /      C1        
+   [f(x) = - asin|   /  ----------- + 1 | + pi, f(x) = asin|   /  ----------- + 1
+                 |  /      2            |                  |  /      2           
+                 \\/    sin (x) - 1     /                  \\/    sin (x) - 1    
    <BLANKLINE>
-                /     _____________\             /     _____________\
-                |    /    C1       |             |    /    C1       |
-    f(x) = -asin|   /  ------- + 1 |, f(x) = asin|   /  ------- + 1 |]
-                |  /      2        |             |  /      2        |
-                \\/    cos (x)     /             \\/    cos (x)     /
+   _\                   /     _________________\             /     ______________
+    |                   |    /      C1         |             |    /      C1      
+    | + pi, f(x) = -asin|   /  ----------- + 1 |, f(x) = asin|   /  ----------- +
+    |                   |  /      2            |             |  /      2         
+    /                   \\/    sin (x) - 1     /             \\/    sin (x) - 1  
+   <BLANKLINE>
+    ___\
+       |
+     1 |]
+       |
+       /
 
-   
 .. topic:: **Exercises**
    :class: green
 
