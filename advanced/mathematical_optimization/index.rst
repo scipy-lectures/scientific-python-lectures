@@ -368,7 +368,7 @@ simple conjugate gradient method to minimize a function is
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.fmin_cg(f, [2, 2])    # doctest: +NORMALIZE_WHITESPACE
+    >>> optimize.fmin_cg(f, [2, 1])    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
             Current function value: 0.000000
             Iterations: 13
@@ -558,10 +558,10 @@ each step an approximation of the Hessian.
     >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)
     Optimization terminated successfully.
              Current function value: 0.000000
-             Iterations: 16
-             Function evaluations: 24
-             Gradient evaluations: 24
-    array([ 1.00000017,  1.00000026])
+             Iterations: 8
+             Function evaluations: 9
+             Gradient evaluations: 9
+    array([ 1.00000582,  1.00001285])
 
 
 **L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:

@@ -395,17 +395,17 @@ the location of the minimum that it has found:
 ::
 
     >>> result = optimize.minimize(f, x0=0)
-    >>> print(result)
-          fun: -7.94582337561528
-     hess_inv: array([[ 0.08585641]])
-          jac: array([ -1.19209290e-07])
-      message: 'Optimization terminated successfully.'
-         nfev: 24
-          nit: 5
-         njev: 8
+    >>> result
        status: 0
       success: True
+         njev: 8
+         nfev: 24
+     hess_inv: array([[ 0.08585641]])
+          fun: -7.94582337561528
             x: array([-1.30644003])
+      message: 'Optimization terminated successfully.'
+          jac: array([ -1.19209290e-07])
+          nit: 5
     >>> result.x # The coordinate of the minimum
     array([-1.30644003])
 
@@ -419,15 +419,15 @@ in general::
 
 
     >>> optimize.minimize(f, x0=0, method="L-BFGS-B")
-          fun: array([-7.94582338])
-     hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
-          jac: array([ -1.42108547e-06])
-      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
-         nfev: 12
-          nit: 5
        status: 0
       success: True
+         nfev: 12
+     hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
+          fun: array([-7.94582338])
             x: array([-1.30644013])
+      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+          jac: array([ -1.42108547e-06])
+          nit: 5
 
 Note how it cost only 12 functions evaluation above to find a good value
 for the minimum.
@@ -560,15 +560,15 @@ we can use :func:`scipy.optimize.root`:
 
     >>> root = optimize.root(f, x0=1)  # our initial guess is 1
     >>> root    # The full result
-        fjac: array([[-1.]])
-         fun: array([ 0.])
-     message: 'The solution converged.'
-        nfev: 10
-         qtf: array([  1.33310463e-32])
-           r: array([-10.])
       status: 1
      success: True
+         qtf: array([  1.33310463e-32])
+        nfev: 10
+           r: array([-10.])
+         fun: array([ 0.])
            x: array([ 0.])
+     message: 'The solution converged.'
+        fjac: array([[-1.]])
     >>> root.x  # Only the root found
     array([ 0.])
 
