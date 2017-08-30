@@ -124,11 +124,11 @@ data are a mixture of numerical and categorical values::
     >>> data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
     >>> data  # doctest: +ELLIPSIS
         Unnamed: 0  Gender  FSIQ  VIQ  PIQ  Weight  Height  MRI_Count
-    0            1  Female   133  132  124     118    64.5     816932
+    0            1  Female   133  132  124   118.0    64.5     816932
     1            2    Male   140  150  124     NaN    72.5    1001121
-    2            3    Male   139  123  150     143    73.3    1038437
-    3            4    Male   133  129  128     172    68.8     965353
-    4            5  Female   137  132  134     147    65.0     951545
+    2            3    Male   139  123  150   143.0    73.3    1038437
+    3            4    Male   133  129  128   172.0    68.8     965353
+    4            5  Female   137  132  134   147.0    65.0     951545
     ...
 
 .. warning:: **Missing values**
@@ -681,7 +681,7 @@ test ``"name[T.versicolor] - name[T.virginica]"``, with an `F-test
 <https://en.wikipedia.org/wiki/F-test>`_::
 
     >>> print(model.f_test([0, 1, -1, 0]))  # doctest: +ELLIPSIS
-    <F test: F=array([[ 3.24533535]]), p=[[ 0.07369...]], df_denom=146, df_num=1>
+    <F test: F=array([[ 3.24533535]]), p=0.07369..., df_denom=146, df_num=1>
 
 Is this difference significant?
 
