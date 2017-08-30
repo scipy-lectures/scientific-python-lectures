@@ -14,7 +14,7 @@ env:
       SCIKIT_LEARN_VERSION="0.18" MATPLOTLIB_VERSION="1.5"
       SCIKIT_IMAGE_VERSION="0.12" SYMPY_VERSION="0.7.5"
       STATSMODELS_VERSION="0.6" SEABORN_VERSION="0.7"
-      PANDAS_VERSION="0.17"
+      PANDAS_VERSION="0.18"
 
 before_install:
     - sudo apt-get install texlive texlive-latex-extra
