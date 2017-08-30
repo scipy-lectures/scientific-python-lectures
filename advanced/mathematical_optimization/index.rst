@@ -368,13 +368,13 @@ simple conjugate gradient method to minimize a function is
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.fmin_cg(f, [2, 1])    # doctest: +NORMALIZE_WHITESPACE
+    >>> optimize.fmin_cg(f, [2, 1])    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     Optimization terminated successfully.
-            Current function value: 0.000000
-            Iterations: 13
-            Function evaluations: 120
-            Gradient evaluations: 30
-    array([ 0.99998968,  0.99997855])
+             Current function value: 0.000000
+             Iterations: 14
+             Function evaluations: 124
+             Gradient evaluations: 31
+    array([ 0.9999...,  0.9999...])
 
 These methods need the gradient of the function. They can compute it, but
 will perform better if you can pass them the gradient::
@@ -555,13 +555,13 @@ each step an approximation of the Hessian.
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)
+    >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE
     Optimization terminated successfully.
              Current function value: 0.000000
-             Iterations: 8
-             Function evaluations: 9
-             Gradient evaluations: 9
-    array([ 1.00000582,  1.00001285])
+             Iterations: 16
+             Function evaluations: 24
+             Gradient evaluations: 24
+    array([ 1.00000...,  1.0000...])
 
 
 **L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:

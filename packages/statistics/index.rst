@@ -472,6 +472,7 @@ We can inspect the various statistics derived from the fit::
     No. Observations:                  20   AIC:                             120.0
     Df Residuals:                      18   BIC:                             122.0
     Df Model:                           1                                         
+    Covariance Type:            nonrobust
     ==========================...
                      coef    std err          t      P>|t|      [95.0% Conf. Int.]
     ------------------------------------------...
@@ -483,6 +484,9 @@ We can inspect the various statistics derived from the fit::
     Skew:                          -0.058   Prob(JB):                        0.851
     Kurtosis:                       2.390   Cond. No.                         3.03
     ==========================...
+    <BLANKLINE>
+    Warnings:
+    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified
 
 
 .. topic:: Terminology:
@@ -527,6 +531,7 @@ model::
      No. Observations:                  40   AIC:                             368.8
      Df Residuals:                      38   BIC:                             372.2
      Df Model:                           1                                      
+     Covariance Type:            nonrobust
      ==========================...
                        coef    std err        t      P>|t|      [95.0% Conf. Int.]
      -----------------------------------------------------------------------...
@@ -538,6 +543,9 @@ model::
      Skew:                           0.010   Prob(JB):                        0.157
      Kurtosis:                       1.510   Cond. No.                         2.62
      ==========================...
+     <BLANKLINE>
+     Warnings:
+     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified
 
 .. topic:: **Tips on specifying model**
  
@@ -651,6 +659,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     No. Observations:                 150   AIC:                             84.37
     Df Residuals:                     146   BIC:                             96.41
     Df Model:                           3                                     
+    Covariance Type:            nonrobust
     ==========================...
                              coef    std err          t     P>|t|  [95.0% Conf. Int.]
     ------------------------------------------...
@@ -664,7 +673,9 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Skew:                          -0.082   Prob(JB):                        0.236
     Kurtosis:                       3.659   Cond. No.                         54.0
     ==========================...
-
+    <BLANKLINE>
+    Warnings:
+    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified
 |
 
 Post-hoc hypothesis testing: analysis of variance (ANOVA)
