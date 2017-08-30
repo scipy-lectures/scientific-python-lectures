@@ -237,8 +237,8 @@ structuring element centered on the pixel of interest. ::
            [0, 0, 0, 0, 0, 0, 0]])
 
 
-Connect components and measurements on images
-..............................................
+Connected components and measurements on images
+................................................
 
 Let us first generate a nice synthetic binary image. ::
 
