@@ -676,6 +676,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     <BLANKLINE>
     Warnings:
     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified
+
 |
 
 Post-hoc hypothesis testing: analysis of variance (ANOVA)
