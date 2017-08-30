@@ -16,9 +16,6 @@ env:
       STATSMODELS_VERSION="0.6" SEABORN_VERSION="0.7"
       PANDAS_VERSION="0.18"
 
-before_install:
-    - sudo apt-get install texlive texlive-latex-extra
-
 install:
     - source continuous_integration/install.sh
 
