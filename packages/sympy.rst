@@ -113,7 +113,7 @@ Then you can manipulate them::
     (x + y) 
 
 Symbols can now be manipulated using some of python operators: +, -, \*, \*\* 
-(arithmetic), &, |, ~ , >>, << (boolean).
+(arithmetic), &, `|`, ~ , >>, << (boolean).
 
 
 .. topic:: **Printing**

@@ -109,7 +109,7 @@ File input/output: :mod:`scipy.io`
     >>> plt.imread('fname.png')    # doctest: +ELLIPSIS
     array(...)
 
-See also:
+.. seealso::
 
     * Load text files: :func:`numpy.loadtxt`/:func:`numpy.savetxt`
 

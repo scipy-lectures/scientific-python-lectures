@@ -10,8 +10,10 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys, os
+import sys
+import os
 import subprocess
+import sphinx
 
 # If your extensions are in another directory, add it here. If the directory
 # is relative to the documentation root, use os.path.abspath to make it
@@ -35,7 +37,9 @@ extensions = [
         'only_directives',
         'ipython_console_highlighting',
         #'matplotlib.sphinxext.only_directives',
-        'sphinx.ext.pngmath',
+        ('sphinx.ext.imgmath'  # only available for sphinx >= 1.4
+            if sphinx.version_info[:2] >= (1, 4)
+            else 'sphinx.ext.pngmath'),
         'sphinx.ext.intersphinx',
         'sphinx.ext.extlinks',
         'sphinx_gallery.gen_gallery',
@@ -67,12 +71,12 @@ sphinx_gallery_conf = {
         'numpy': 'http://docs.scipy.org/doc/numpy',
         'scipy': 'http://docs.scipy.org/doc/scipy/reference',
         'pandas': 'http://pandas.pydata.org/pandas-docs/stable/',
-        'seaborn': 'http://stanford.edu/~mwaskom/software/seaborn/',
-        'matplotlib': 'http://matplotlib.org',
+        'seaborn': 'http://seaborn.pydata.org/',
+        'matplotlib': 'http://matplotlib.org/',
         'scikit-learn': 'http://scikit-learn.org/stable',
         'scikit-image': 'http://scikit-image.org/docs/stable/',
         'mayavi': 'http://docs.enthought.com/mayavi/mayavi/',
-        'statsmodels': 'http://statsmodels.sourceforge.net/',
+        'statsmodels': 'http://www.statsmodels.org/stable/',
         }
     }
 
@@ -378,15 +382,15 @@ _python_doc_base = 'https://docs.python.org/2.7'
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     _python_doc_base: None,
-    'http://docs.scipy.org/doc/numpy': None,
-    'http://docs.scipy.org/doc/scipy/reference': None,
+    'https://docs.scipy.org/doc/numpy': None,
+    'https://docs.scipy.org/doc/scipy/reference': None,
     'http://matplotlib.org/': None,
     'http://scikit-learn.org/stable': None,
     'http://scikit-image.org/docs/stable/': None,
     'http://docs.enthought.com/mayavi/mayavi/': None,
-    'http://statsmodels.sourceforge.net/': None,
+    'http://www.statsmodels.org/stable/': None,
     'http://pandas.pydata.org/pandas-docs/stable/': None,
-    'http://stanford.edu/~mwaskom/software/seaborn/': None,
+    'http://seaborn.pydata.org/': None,
 }
 
 extlinks = {
@@ -394,11 +398,13 @@ extlinks = {
     'compound': (_python_doc_base + '/reference/compound_stmts.html#%s', ''),
 }
 
-# -- Options for pngmath ------------------------------------------------
+# -- Options for imgmath ------------------------------------------------
+
+imgmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
+immath_use_preview = True
 
 pngmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
 pngmath_use_preview = True
-
 
 
 # Add the 'copybutton' javascript, to hide/show the prompt in code
