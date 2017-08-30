@@ -486,7 +486,7 @@ We can inspect the various statistics derived from the fit::
     ==========================...
     <BLANKLINE>
     Warnings:
-    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified
+    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 
 .. topic:: Terminology:
@@ -545,7 +545,7 @@ model::
      ==========================...
      <BLANKLINE>
      Warnings:
-     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified
+     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 .. topic:: **Tips on specifying model**
  
@@ -675,7 +675,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     ==========================...
     <BLANKLINE>
     Warnings:
-    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified
+    [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 |
 
