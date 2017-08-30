@@ -256,7 +256,7 @@ Let us first generate a nice synthetic binary image. ::
     :scale: 60
     :align: right
 
-:func:`scipy.ndimage.label` assigns a different label to each connect
+:func:`scipy.ndimage.label` assigns a different label to each connected
 component::
 
     >>> labels, nb = ndimage.label(mask)
@@ -268,13 +268,13 @@ component::
    <div style="clear: both"></div>
 
 
-Now compute measurements on each connect component::
+Now compute measurements on each connected component::
 
     >>> areas = ndimage.sum(mask, labels, range(1, labels.max()+1))
-    >>> areas   # The number of pixels in each connect component
+    >>> areas   # The number of pixels in each connected component
     array([ 190.,   45.,  424.,  278.,  459.,  190.,  549.,  424.])
     >>> maxima = ndimage.maximum(sig, labels, range(1, labels.max()+1))
-    >>> maxima  # The maximum signal in each connect component
+    >>> maxima  # The maximum signal in each connected component
     array([  1.80238238,   1.13527605,   5.51954079,   2.49611818,
              6.71673619,   1.80238238,  16.76547217,   5.51954079])
 
@@ -284,7 +284,7 @@ Now compute measurements on each connect component::
     :align: right
 
 
-Extract the 4th connect component, and crop the array around it::
+Extract the 4th connected component, and crop the array around it::
 
     >>> ndimage.find_objects(labels==4) # doctest: +SKIP
     [(slice(30L, 48L, None), slice(30L, 48L, None))]
