@@ -100,7 +100,7 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
     >>> camera.shape
     (512, 512)
     >>> from skimage import restoration
-    >>> filtered_camera = restoration.denoise_bilateral(camera)
+    >>> filtered_camera = restoration.denoise_bilateral(camera, multichannel=False)
     >>> type(filtered_camera)   # doctest: +SKIP
     <type 'numpy.ndarray'>
 

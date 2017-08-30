@@ -555,7 +555,7 @@ each step an approximation of the Hessian.
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE
+    >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     Optimization terminated successfully.
              Current function value: 0.000000
              Iterations: 16
