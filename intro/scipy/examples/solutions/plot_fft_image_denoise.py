@@ -40,7 +40,10 @@ im_fft = fftpack.fft2(im)
 # Show the results
 
 def plot_spectrum(im_fft):
-    plt.imshow(np.log(5 + np.abs(im_fft)))
+    from matplotlib.colors import LogNorm
+    # A logarithmic colormap
+    plt.imshow(np.abs(im_fft), norm=LogNorm(vmin=5))
+    plt.colorbar()
 
 plt.figure()
 plot_spectrum(im_fft)
@@ -65,10 +68,10 @@ r, c = im_fft2.shape
 
 # Set to zero all rows with indices between r*keep_fraction and
 # r*(1-keep_fraction):
-im_fft2[r*keep_fraction:r*(1-keep_fraction)] = 0
+im_fft2[int(r*keep_fraction):int(r*(1-keep_fraction))] = 0
 
 # Similarly with the columns:
-im_fft2[:, c*keep_fraction:c*(1-keep_fraction)] = 0
+im_fft2[:, int(c*keep_fraction):int(c*(1-keep_fraction))] = 0
 
 plt.figure()
 plot_spectrum(im_fft2)
