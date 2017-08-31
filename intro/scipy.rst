@@ -407,7 +407,7 @@ the location of the minimum that it has found:
       success: True
             x: array([-1.30644...])
     >>> result.x # The coordinate of the minimum  # doctest: +ELLIPSIS
-    array([-1.30644003])
+    array([-1.30644...])
 
 |
 

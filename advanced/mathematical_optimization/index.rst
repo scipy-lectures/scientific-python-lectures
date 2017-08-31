@@ -384,10 +384,10 @@ will perform better if you can pass them the gradient::
     >>> optimize.fmin_cg(f, [2, 1], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     Optimization terminated successfully.
             Current function value: 0.000000
-            Iterations: 13
-            Function evaluations: 30
-            Gradient evaluations: 30
-    array([ 0.99999199,  0.99998336])
+            Iterations: 8
+            Function evaluations: 16
+            Gradient evaluations: 16
+    array([ 1.00000012,  1.00000009])
 
 Note that the function has only been evaluated 30 times, compared to 120
 without the gradient.
