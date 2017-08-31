@@ -394,8 +394,8 @@ the location of the minimum that it has found:
     comprising all information on the convergence
 ::
 
-    >>> result = optimize.minimize(f, x0=0)  # doctest: +ELLIPSIS
-    >>> result
+    >>> result = optimize.minimize(f, x0=0) 
+    >>> result # doctest: +ELLIPSIS
           fun: -7.9458233756...
      hess_inv: array([[ 0.0858...]])
           jac: array([ -1.19209...e-06])
