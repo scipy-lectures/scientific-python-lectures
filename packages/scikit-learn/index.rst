@@ -427,7 +427,8 @@ on a subspace.
     >>> from sklearn import decomposition
     >>> pca = decomposition.PCA(n_components=2)
     >>> pca.fit(iris.data)
-    PCA(copy=True, n_components=2, whiten=False)
+    PCA(copy=True, iterated_power='auto', n_components=2, random_state=None,
+        svd_solver='auto', tol=0.0, whiten=False)
     >>> X = pca.transform(iris.data)
 
 Now we can visualize the (transformed) iris dataset::
