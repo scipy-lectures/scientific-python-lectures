@@ -50,6 +50,7 @@ doctest_test_doctest_blocks = 'true'
 sphinx_gallery_conf = {
     'examples_dirs': ['intro/summary-exercises/examples',
                       'intro/matplotlib/examples',
+                      'intro/scipy/examples',
                       'advanced/image_processing/examples',
                       'advanced/mathematical_optimization/examples',
                       'packages/scikit-image/examples',
@@ -59,6 +60,7 @@ sphinx_gallery_conf = {
                      ],
     'gallery_dirs': ['intro/summary-exercises/auto_examples',
                      'intro/matplotlib/auto_examples',
+                     'intro/scipy/auto_examples',
                      'advanced/image_processing/auto_examples',
                      'advanced/mathematical_optimization/auto_examples',
                      'packages/scikit-image/auto_examples',
@@ -77,7 +79,8 @@ sphinx_gallery_conf = {
         'scikit-image': 'http://scikit-image.org/docs/stable/',
         'mayavi': 'http://docs.enthought.com/mayavi/mayavi/',
         'statsmodels': 'http://www.statsmodels.org/stable/',
-        }
+        },
+    'backreferences_dir': False,
     }
 
 # Add any paths that contain templates here, relative to this directory.

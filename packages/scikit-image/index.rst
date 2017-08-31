@@ -100,7 +100,7 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
     >>> camera.shape
     (512, 512)
     >>> from skimage import restoration
-    >>> filtered_camera = restoration.denoise_bilateral(camera)
+    >>> filtered_camera = restoration.denoise_bilateral(camera, multichannel=False)
     >>> type(filtered_camera)   # doctest: +SKIP
     <type 'numpy.ndarray'>
 
@@ -612,7 +612,7 @@ Example: compute the size and perimeter of the two segmented regions::
 
     >>> properties = measure.regionprops(labels_rw)
     >>> [prop.area for prop in properties]
-    [770.0, 1168.0]
+    [770, 1168]
     >>> [prop.perimeter for prop in properties] # doctest: +ELLIPSIS
     [100.91..., 126.81...]
 

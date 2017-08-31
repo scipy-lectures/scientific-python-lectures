@@ -1,4 +1,9 @@
-"""Script to read in a column of numbers and calculate the min, max and sum.
+"""
+===================
+I/O script example
+===================
+
+Script to read in a column of numbers and calculate the min, max and sum.
 
 Data is stored in data.txt.
 """

@@ -22,7 +22,7 @@ mask = im > im.mean()
 
 label_im, nb_labels = ndimage.label(mask)
 
-# Find the largest connect component
+# Find the largest connected component
 sizes = ndimage.sum(mask, label_im, range(nb_labels + 1))
 mask_size = sizes < 1000
 remove_pixel = mask_size[label_im]
@@ -30,7 +30,7 @@ label_im[remove_pixel] = 0
 labels = np.unique(label_im)
 label_im = np.searchsorted(labels, label_im)
 
-# Now that we have only one connect component, extract it's bounding box
+# Now that we have only one connected component, extract it's bounding box
 slice_x, slice_y = ndimage.find_objects(label_im==4)[0]
 roi = im[slice_x, slice_y]
 

@@ -368,13 +368,13 @@ simple conjugate gradient method to minimize a function is
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.fmin_cg(f, [2, 2])    # doctest: +NORMALIZE_WHITESPACE
+    >>> optimize.fmin_cg(f, [2, 1])    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     Optimization terminated successfully.
-            Current function value: 0.000000
-            Iterations: 13
-            Function evaluations: 120
-            Gradient evaluations: 30
-    array([ 0.99998968,  0.99997855])
+             Current function value: 0.000000
+             Iterations: 14
+             Function evaluations: 124
+             Gradient evaluations: 31
+    array([ 0.9999...,  0.9999...])
 
 These methods need the gradient of the function. They can compute it, but
 will perform better if you can pass them the gradient::
@@ -555,13 +555,13 @@ each step an approximation of the Hessian.
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)
+    >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     Optimization terminated successfully.
              Current function value: 0.000000
              Iterations: 16
              Function evaluations: 24
              Gradient evaluations: 24
-    array([ 1.00000017,  1.00000026])
+    array([ 1.00000...,  1.0000...])
 
 
 **L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:
@@ -710,25 +710,25 @@ Practical guide to optimization with scipy
 Choosing a method
 ------------------
 
+All methods are exposed as the ``method`` argument of
+:func:`scipy.optimize.minimize`.
+
 .. image:: auto_examples/images/sphx_glr_plot_compare_optimizers_001.png
    :align: center
    :width: 95%
 
 :Without knowledge of the gradient:
 
- * In general, prefer BFGS (:func:`scipy.optimize.fmin_bfgs`) or L-BFGS
-   (:func:`scipy.optimize.fmin_l_bfgs_b`), even if you have to approximate
+ * In general, prefer **BFGS** or **L-BFGS**, even if you have to approximate
    numerically gradients
  
- * On well-conditioned problems, Powell
-   (:func:`scipy.optimize.fmin_powell`) and Nelder-Mead
-   (:func:`scipy.optimize.fmin`), both gradient-free methods, work well in
+ * On well-conditioned problems, **Powell**
+   and **Nelder-Mead**, both gradient-free methods, work well in
    high dimension, but they collapse for ill-conditioned problems.
 
 :With knowledge of the gradient:
 
- * BFGS (:func:`scipy.optimize.fmin_bfgs`) or L-BFGS
-   (:func:`scipy.optimize.fmin_l_bfgs_b`).
+ * **BFGS** or **L-BFGS**.
  
  * Computational overhead of BFGS is larger than that L-BFGS, itself
    larger than that of conjugate gradient. On the other side, BFGS usually
@@ -738,12 +738,11 @@ Choosing a method
 :With the Hessian:
 
  * If you can compute the Hessian, prefer the Newton method
-   (:func:`scipy.optimize.fmin_ncg`).
+   (**Newton-CG** or **TCG**).
 
 :If you have noisy measurements:
 
- * Use Nelder-Mead (:func:`scipy.optimize.fmin`) or Powell
-   (:func:`scipy.optimize.fmin_powell`).
+ * Use **Nelder-Mead** or **Powell**.
 
 Making your optimizer faster
 -----------------------------

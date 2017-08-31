@@ -489,6 +489,16 @@ div.body pre {
 	    hyphens: auto;
 }
 
+div.highlight-default {
+    /* Useful when a float overlays part of the code block */
+    display: flow-root;
+}
+
+div.highlight {
+    /* To anchor the copybutton */
+    position: relative;
+}
+
 div.highlight pre a {
     color: #111;
     text-decoration:underline;    
@@ -636,6 +646,7 @@ table.field-list {
 /* Boxes */
 div.topic, div.admonition {
     border-radius: 4px 4px 4px 4px;
+    display: flow-root;
 }
 
 div.sidebar {
@@ -777,7 +788,7 @@ div.tip .first {
 
 
 div.tip {
-    font-size: 95% ;
+    font-size: 90% ;
     margin: 0px;
     padding: 0px;
     margin-left: -2ex;

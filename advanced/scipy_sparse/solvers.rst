@@ -158,7 +158,7 @@ LinearOperator Class
     ...
     >>> A = LinearOperator((2, 2), matvec=mv)
     >>> A
-    <2x2 LinearOperator with unspecified dtype>
+    <2x2 _CustomLinearOperator with dtype=float64>
     >>> A.matvec(np.ones(2))
     array([ 2.,  3.])
     >>> A * np.ones(2)

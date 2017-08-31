@@ -9,18 +9,19 @@
 Scipy : high-level scientific computing
 =======================================
 
-**Authors**: *Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Gaël
-Varoquaux, Ralf Gommers*
+**Authors**: *Gaël Varoquaux, Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Ralf Gommers*
 
 
 .. topic:: Scipy
 
-    The ``scipy`` package contains various toolboxes dedicated to common
+    The :mod:`scipy` package contains various toolboxes dedicated to common
     issues in scientific computing. Its different submodules correspond
     to different applications, such as interpolation, integration,
     optimization, image processing, statistics, special functions, etc.
 
-    ``scipy`` can be compared to other standard scientific-computing
+.. tip::
+
+    :mod:`scipy` can be compared to other standard scientific-computing
     libraries, such as the GSL (GNU Scientific  Library for C and C++),
     or Matlab's toolboxes. ``scipy`` is the core package for scientific
     routines in Python; it is meant to operate efficiently on ``numpy``
@@ -75,31 +76,46 @@ Varoquaux, Ralf Gommers*
     >>> import numpy as np
     >>> from scipy import stats  # same for other sub-modules
 
-   The main ``scipy`` namespace mostly contains functions that are really
+   The main :mod:`scipy` namespace mostly contains functions that are really
    numpy functions (try ``scipy.cos is np.cos``). Those are exposed for
-   historical reasons only; there's usually no reason to use ``import
+   historical reasons; there's no reason to use ``import
    scipy`` in your code.
 
 
 File input/output: :mod:`scipy.io`
 ----------------------------------
 
-* Loading and saving matlab files::
+**Matlab files**: Loading and saving::
 
     >>> from scipy import io as spio
     >>> a = np.ones((3, 3))
     >>> spio.savemat('file.mat', {'a': a}) # savemat expects a dictionary
-    >>> data = spio.loadmat('file.mat', struct_as_record=True)
+    >>> data = spio.loadmat('file.mat')
     >>> data['a']
     array([[ 1.,  1.,  1.],
            [ 1.,  1.,  1.],
            [ 1.,  1.,  1.]])
 
+.. warning:: **Python / Matlab mismatches**, *eg* matlab does not represent 1D arrays
+   
+   ::
+
+      >>> a = np.ones(3)
+      >>> a
+      array([ 1.,  1.,  1.])
+      >>> spio.savemat('file.mat', {'a': a})
+      >>> spio.loadmat('file.mat')['a']
+      array([[ 1.,  1.,  1.]])
+
+   Notice the difference?
+
+|
+
 .. Comments to make doctests pass which require an image
     >>> from matplotlib import pyplot as plt
     >>> plt.imsave('fname.png', np.array([[0]]))
 
-* Reading images::
+**Image files**: Reading images::
 
     >>> from scipy import misc
     >>> misc.imread('fname.png')    # doctest: +ELLIPSIS
@@ -119,6 +135,7 @@ File input/output: :mod:`scipy.io`
     * Fast and efficient, but numpy-specific, binary format:
       :func:`numpy.save`/:func:`numpy.load`
 
+    * More advanced input/output of images in scikit-image: :mod:`skimage.io`
 
 Special functions: :mod:`scipy.special`
 ---------------------------------------
@@ -145,9 +162,11 @@ functions here. Frequently used ones are:
 Linear algebra operations: :mod:`scipy.linalg`
 ----------------------------------------------
 
-The :mod:`scipy.linalg` module provides standard linear algebra
-operations, relying on an underlying efficient implementation (BLAS,
-LAPACK).
+.. tip::
+
+    The :mod:`scipy.linalg` module provides standard linear algebra
+    operations, relying on an underlying efficient implementation (BLAS,
+    LAPACK).
 
 * The :func:`scipy.linalg.det` function computes the determinant of a
   square matrix::
@@ -212,117 +231,54 @@ LAPACK).
   for linear systems, are available in :mod:`scipy.linalg`.
 
 
-Fast Fourier transforms: :mod:`scipy.fftpack`
----------------------------------------------
+.. _intro_scipy_interpolate:
 
-The :mod:`scipy.fftpack` module allows to compute fast Fourier transforms.
-As an illustration, a (noisy) input signal may look like::
+Interpolation: :mod:`scipy.interpolate`
+---------------------------------------
 
-    >>> time_step = 0.02
-    >>> period = 5.
-    >>> time_vec = np.arange(0, 20, time_step)
-    >>> sig = np.sin(2 * np.pi / period * time_vec) + \
-    ...       0.5 * np.random.randn(time_vec.size)
+:mod:`scipy.interpolate` is useful for fitting a function from experimental
+data and thus evaluating points where no measure exists. The module is based
+on the `FITPACK Fortran subroutines`_.
 
-The observer doesn't know the signal frequency, only
-the sampling time step of the signal ``sig``. The signal
-is supposed to come from a real function so the Fourier transform
-will be symmetric.
-The :func:`scipy.fftpack.fftfreq` function will generate the sampling frequencies and
-:func:`scipy.fftpack.fft` will compute the fast Fourier transform::
+.. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
+.. _netlib : http://www.netlib.org
 
-    >>> from scipy import fftpack
-    >>> sample_freq = fftpack.fftfreq(sig.size, d=time_step)
-    >>> sig_fft = fftpack.fft(sig)
+By imagining experimental data close to a sine function::
 
-Because the resulting power is symmetric, only the positive part of the
-spectrum needs to be used for finding the frequency::
+    >>> measured_time = np.linspace(0, 1, 10)
+    >>> noise = (np.random.random(10)*2 - 1) * 1e-1
+    >>> measures = np.sin(2 * np.pi * measured_time) + noise
 
-    >>> pidxs = np.where(sample_freq > 0)
-    >>> freqs = sample_freq[pidxs]
-    >>> power = np.abs(sig_fft)[pidxs]
+:class:`scipy.interpolate.interp1d` can build a linear interpolation
+function::
 
-.. plot:: pyplots/fftpack_frequency.py
-    :scale: 70
+    >>> from scipy.interpolate import interp1d
+    >>> linear_interp = interp1d(measured_time, measures)
 
-The signal frequency can be found by::
+.. image:: scipy/auto_examples/images/sphx_glr_plot_interpolation_001.png
+    :target: scipy/auto_examples/plot_interpolation.html
+    :scale: 60
+    :align: right
 
-    >>> freq = freqs[power.argmax()]
-    >>> np.allclose(freq, 1./period)  # check that correct freq is found
-    True
+Then the result can be evaluated at the time of interest::
 
-Now the high-frequency noise will be removed from the Fourier transformed
-signal::
+    >>> interpolation_time = np.linspace(0, 1, 50)
+    >>> linear_results = linear_interp(interpolation_time)
 
-    >>> sig_fft[np.abs(sample_freq) > freq] = 0
+A cubic interpolation can also be selected by providing the ``kind`` optional
+keyword argument::
 
-The resulting filtered signal can be computed by the
-:func:`scipy.fftpack.ifft` function::
+    >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
+    >>> cubic_results = cubic_interp(interpolation_time)
 
-    >>> main_sig = fftpack.ifft(sig_fft)
 
-The result can be viewed with::
+:class:`scipy.interpolate.interp2d` is similar to
+:class:`scipy.interpolate.interp1d`, but for 2-D arrays. Note that for
+the `interp` family, the interpolation points must stay within the range
+of given data points. See the summary exercise on
+:ref:`summary_exercise_stat_interp` for a more advanced spline
+interpolation example.
 
-    >>> import pylab as plt
-    >>> plt.figure()    # doctest: +ELLIPSIS
-    <matplotlib.figure.Figure object at 0x...>
-    >>> plt.plot(time_vec, sig)    # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at 0x...>]
-    >>> plt.plot(time_vec, main_sig, linewidth=3)    # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at 0x...>]
-    >>> plt.xlabel('Time [s]')    # doctest: +ELLIPSIS
-    <matplotlib.text.Text object at 0x...>
-    >>> plt.ylabel('Amplitude')    # doctest: +ELLIPSIS
-    <matplotlib.text.Text object at 0x...>
-
-.. plot:: pyplots/fftpack_signals.py
-    :scale: 70
-
-.. topic:: `numpy.fft`
-
-   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
-   in general the scipy one
-   should be preferred, as it uses more efficient underlying implementations.
-
-.. topic:: Worked example: Crude periodicity finding
-
-    .. plot:: intro/solutions/periodicity_finder.py
-
-.. topic:: Worked example: Gaussian image blur
-
-    Convolution:
-
-    .. math::
-
-        f_1(t) = \int dt'\, K(t-t') f_0(t')
-
-    .. math::
-
-        \tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
-
-    .. plot:: intro/solutions/image_blur.py
-
-.. topic:: Exercise: Denoise moon landing image
-   :class: green
-
-   .. image:: ../data/moonlanding.png
-     :scale: 70
-
-   1. Examine the provided image moonlanding.png, which is heavily
-      contaminated with periodic noise. In this exercise, we aim to clean up
-      the noise using the Fast Fourier Transform.
-
-   2. Load the image using :func:`pylab.imread`.
-
-   3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
-      spectrum (Fourier transform of) the image. Do you have any trouble
-      visualising the spectrum? If so, why?
-
-   4. The spectrum consists of high and low frequency components. The noise is
-      contained in the high-frequency part of the spectrum, so set some of
-      those components to zero (use array slicing).
-
-   5. Apply the inverse Fourier transform to see the resulting image.
 
 
 Optimization and fit: :mod:`scipy.optimize`
@@ -331,159 +287,54 @@ Optimization and fit: :mod:`scipy.optimize`
 Optimization is the problem of finding a numerical solution to a
 minimization or equality.
 
-The :mod:`scipy.optimize` module provides useful algorithms for function
-minimization (scalar or multi-dimensional), curve fitting and root
-finding. ::
+.. tip::
 
-    >>> from scipy import optimize
+    The :mod:`scipy.optimize` module provides algorithms for function
+    minimization (scalar or multi-dimensional), curve fitting and root
+    finding. ::
 
+        >>> from scipy import optimize
 
-**Finding the minimum of a scalar function**
-
-Let's define the following function: ::
-
-    >>> def f(x):
-    ...     return x**2 + 10*np.sin(x)
-
-and plot it:
-
-.. doctest::
-
-    >>> x = np.arange(-10, 10, 0.1)
-    >>> plt.plot(x, f(x)) # doctest:+SKIP
-    >>> plt.show() # doctest:+SKIP
-
-.. plot:: pyplots/scipy_optimize_example1.py
-
-This function has a global minimum around -1.3 and a local minimum around 3.8.
-
-The general and efficient way to find a minimum for this function is to
-conduct a gradient descent starting from a given initial point. The BFGS
-algorithm is a good way of doing this::
-
-    >>> optimize.fmin_bfgs(f, 0)
-    Optimization terminated successfully.
-	     Current function value: -7.945823
-	     Iterations: 5
-	     Function evaluations: 24
-	     Gradient evaluations: 8
-    array([-1.30644003])
-
-A possible issue with this approach is that, if the function has local minima
-the algorithm may find these local minima instead of the
-global minimum depending on the initial point: ::
-
-    >>> optimize.fmin_bfgs(f, 3, disp=0)
-    array([ 3.83746663])
-
-If we don't know the neighborhood of the global minimum to choose the initial
-point, we need to resort to costlier global optimization.  To find the global
-minimum, we use :func:`scipy.optimize.basinhopping` (which combines a local
-optimizer with stochastic sampling of starting points for the local optimizer):
-
+Curve fitting
+..............
 
 .. Comment to make doctest pass
-   >>> np.random.seed(42)
+    >>> np.random.seed(0)
 
-.. versionadded:: 0.12.0 basinhopping was added in version 0.12.0 of Scipy
+.. image:: scipy/auto_examples/images/sphx_glr_plot_curve_fit_001.png
+   :target: scipy/auto_examples/plot_curve_fit.html
+   :align: right
+   :scale: 50
 
-::
+Suppose we have data on a sine wave, with some noise: ::
 
-   >>> optimize.basinhopping(f, 0)  # doctest: +SKIP
-                     nfev: 1725
-    minimization_failures: 0
-                      fun: -7.9458233756152845
-                        x: array([-1.30644001])
-                  message: ['requested number of basinhopping iterations completed successfully']
-                     njev: 575
-                      nit: 100
-
-Another available (but much less efficient) global optimizer is
-:func:`scipy.optimize.brute` (brute force optimization on a grid).
-More efficient algorithms
-for different classes of global optimization problems exist, but this is out of
-the scope of ``scipy``.  Some useful packages for global optimization are
-OpenOpt, IPOPT_, PyGMO_ and PyEvolve_.
-
-.. note::
-
-   ``scipy`` used to contain the routine `anneal`, it has been deprecated since
-   SciPy 0.14.0 and removed in SciPy 0.16.0.
-
-.. _IPOPT: https://github.com/xuy/pyipopt
-.. _PyGMO: http://esa.github.io/pygmo/
-.. _PyEvolve: http://pyevolve.sourceforge.net/
-
-To find the local minimum, let's constraint the variable to the interval
-``(0, 10)`` using :func:`scipy.optimize.fminbound`: ::
-
-    >>> xmin_local = optimize.fminbound(f, 0, 10)
-    >>> xmin_local    # doctest: +ELLIPSIS
-    3.8374671...
-
-.. note::
-
-   Finding minima of function is discussed in more details in the
-   advanced chapter: :ref:`mathematical_optimization`.
-
-**Finding the roots of a scalar function**
-
-To find a root, i.e. a point where :math:`f(x) = 0`, of the function :math:`f` above
-we can use for example :func:`scipy.optimize.fsolve`: ::
-
-    >>> root = optimize.fsolve(f, 1)  # our initial guess is 1
-    >>> root
-    array([ 0.])
-
-Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
-there is a second root around -2.5. We find the exact value of it by adjusting
-our initial guess: ::
-
-    >>> root2 = optimize.fsolve(f, -2.5)
-    >>> root2
-    array([-2.47948183])
-
-**Curve fitting**
-
-.. Comment to make doctest pass
-    >>> np.random.seed(42)
-
-Suppose we have data sampled from :math:`f` with some noise: ::
+    >>> x_data = np.linspace(-5, 5, num=50)
+    >>> y_data = 2.9 * np.sin(1.5 * x_data) + np.random.normal(size=50)
 
 
-    >>> xdata = np.linspace(-10, 10, num=20)
-    >>> ydata = f(xdata) + np.random.randn(xdata.size)
+If we know that the data lies on a sine wave, but not the amplitudes
+or the period, we can find those by least squares curve fitting. First we
+have to define the test function to fit, here a sine with unknown
+amplitude and period::
 
-Now if we know the functional form of the function from which the samples were
-drawn (:math:`x^2 + \sin(x)` in this case) but not the amplitudes of the terms, we
-can find those by least squares curve fitting. First we have to define the
-function to fit::
+    >>> def test_func(x, a, b):
+    ...     return a * np.sin(b * x)
 
-    >>> def f2(x, a, b):
-    ...     return a*x**2 + b*np.sin(x)
+.. image:: scipy/auto_examples/images/sphx_glr_plot_curve_fit_002.png
+   :target: scipy/auto_examples/plot_curve_fit.html
+   :align: right
+   :scale: 50
 
-Then we can use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`: ::
+We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
 
-    >>> guess = [2, 2]
-    >>> params, params_covariance = optimize.curve_fit(f2, xdata, ydata, guess)
-    >>> params
-    array([  0.99667386,  10.17808313])
+    >>> params, params_covariance = optimize.curve_fit(test_func, x_data, y_data, p0=[2, 2])
+    >>> print(params)
+    [ 3.05931973  1.45754553]
 
-Now we have found the minima and roots of ``f`` and used curve fitting on it,
-we put all those resuls together in a single plot:
+.. raw:: html
 
-.. plot:: pyplots/scipy_optimize_example2.py
+   <div style="clear: both"></div>
 
-.. note::
-
-   In Scipy >= 0.11 unified interfaces to all minimization and root
-   finding algorithms are available: :func:`scipy.optimize.minimize`,
-   :func:`scipy.optimize.minimize_scalar` and
-   :func:`scipy.optimize.root`.  They allow comparing various algorithms
-   easily through the ``method`` keyword.
-
-You can find algorithms with the same functionalities for multi-dimensional
-problems in :mod:`scipy.optimize`.
 
 .. topic:: Exercise: Curve fitting of temperature data
    :class: green
@@ -503,10 +354,180 @@ problems in :mod:`scipy.optimize`.
     5. Is the time offset for min and max temperatures the same within the fit
        accuracy?
 
+    :ref:`solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_curvefit_temperature_data.py>`
+
+
+Finding the minimum of a scalar function
+........................................
+
+.. Comment to make doctest pass
+    >>> np.random.seed(0)
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_optimize_example1_001.png
+   :target: scipy/auto_examples/plot_optimize_example1.html
+   :align: right
+   :scale: 50
+
+Let's define the following function: ::
+
+    >>> def f(x):
+    ...     return x**2 + 10*np.sin(x)
+
+and plot it:
+
+.. doctest::
+
+    >>> x = np.arange(-10, 10, 0.1)
+    >>> plt.plot(x, f(x)) # doctest:+SKIP
+    >>> plt.show() # doctest:+SKIP
+
+This function has a global minimum around -1.3 and a local minimum around
+3.8.
+
+Searching for minimum can be done with
+:func:`scipy.optimize.minimize`, given a starting point x0, it returns
+the location of the minimum that it has found:
+
+.. sidebar:: result type
+
+    The result of :func:`scipy.optimize.minimize` is a compound object
+    comprising all information on the convergence
+::
+
+    >>> result = optimize.minimize(f, x0=0)
+    >>> result
+       status: 0
+      success: True
+         njev: 8
+         nfev: 24
+     hess_inv: array([[ 0.08585641]])
+          fun: -7.94582337561528
+            x: array([-1.30644003])
+      message: 'Optimization terminated successfully.'
+          jac: array([ -1.19209290e-07])
+          nit: 5
+    >>> result.x # The coordinate of the minimum
+    array([-1.30644003])
+
+|
+
+**Methods**:
+As the function is a smooth function, gradient-descent based methods are
+good options. The `lBFGS algorithm
+<https://en.wikipedia.org/wiki/Limited-memory_BFGS>`__ is a good choice
+in general::
+
+
+    >>> optimize.minimize(f, x0=0, method="L-BFGS-B")
+       status: 0
+      success: True
+         nfev: 12
+     hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
+          fun: array([-7.94582338])
+            x: array([-1.30644013])
+      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+          jac: array([ -1.42108547e-06])
+          nit: 5
+
+Note how it cost only 12 functions evaluation above to find a good value
+for the minimum.
+
+|
+
+**Global minimum**:
+A possible issue with this approach is that, if the function has local minima,
+the algorithm may find these local minima instead of the
+global minimum depending on the initial point x0::
+
+    >>> res = optimize.minimize(f, x0=3, method="L-BFGS-B")
+    >>> res.x
+    array([ 3.83746709])
+
+.. Comment to make doctest pass
+   >>> np.random.seed(42)
+
+If we don't know the neighborhood of the global minimum to choose the
+initial point, we need to resort to costlier global optimization.  To
+find the global minimum, we use :func:`scipy.optimize.basinhopping`
+(added in version 0.12.0 of Scipy). It combines a local optimizer with
+sampling of starting points::
+
+   >>> optimize.basinhopping(f, 0)  # doctest: +SKIP
+                     nfev: 1725
+    minimization_failures: 0
+                      fun: -7.9458233756152845
+                        x: array([-1.30644001])
+                  message: ['requested number of basinhopping iterations completed successfully']
+                     njev: 575
+                      nit: 100
+
+.. seealso:
+
+    Another available (but much less efficient) global optimizer is
+    :func:`scipy.optimize.brute` (brute force optimization on a grid).
+
+    More algorithms for different classes of global optimization problems
+    exist, but this is out of the scope of :mod:`scipy`.  Some useful
+    packages for global optimization are OpenOpt, IPOPT_, PyGMO_ and
+    PyEvolve_.
+
+.. note::
+
+   :mod:`scipy` used to contain the routine `anneal`, it has been removed in
+   SciPy 0.16.0.
+
+.. _IPOPT: https://github.com/xuy/pyipopt
+.. _PyGMO: http://esa.github.io/pygmo/
+.. _PyEvolve: http://pyevolve.sourceforge.net/
+
+|
+
+**Constraints**:
+We can constrain the variable to the interval
+``(0, 10)`` using the "bounds" argument:
+
+.. sidebar:: A list of bounds
+
+   As :func:`~scipy.optimize.minimize` works in general with x
+   multidimensionsal, the "bounds" argument is a list of bound on each
+   dimension.
+
+::
+
+    >>> res = optimize.minimize(f, x0=1,
+    ...                         bounds=((0, 10), ))
+    >>> res.x    # doctest: +ELLIPSIS
+    array([ 0.])
+
+.. tip::
+
+   What has happened? Why are we finding 0, which is not a mimimum of our
+   function.
+
+
+.. topic:: **Minimizing functions of several variables**
+
+   To minimize over several variables, the trick is to turn them into a
+   function of a multi-dimensional variable (a vector). See for instance
+   the exercise on 2D minimization below.
+
+.. note::
+
+   :func:`scipy.optimize.minimize_scalar` is a function with dedicated
+   methods to minimize functions of only one variable.
+
+.. seealso::
+
+   Finding minima of function is discussed in more details in the
+   advanced chapter: :ref:`mathematical_optimization`.
+
 .. topic:: Exercise: 2-D minimization
    :class: green
 
-    .. plot:: pyplots/scipy_optimize_sixhump.py
+    .. image:: scipy/auto_examples/images/sphx_glr_plot_2d_minimization_002.png
+        :target: scipy/auto_examples/plot_2d_minimization.html
+        :align: right
+        :scale: 50
 
     The six-hump camelback function
 
@@ -520,11 +541,70 @@ problems in :mod:`scipy.optimize`.
         - Variables can be restricted to :math:`-2 < x < 2` and :math:`-1 < y < 1`.
         - Use :func:`numpy.meshgrid` and :func:`pylab.imshow` to find visually the
           regions.
-        - Use :func:`scipy.optimize.fmin_bfgs` or another multi-dimensional
-          minimizer.
+        - Use :func:`scipy.optimize.minimize`, optionally trying out
+          several of its `methods'.
 
     How many global minima are there, and what is the function value at those
     points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
+
+    :ref:`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
+
+
+Finding the roots of a scalar function
+........................................
+
+To find a root, i.e. a point where :math:`f(x) = 0`, of the function :math:`f` above
+we can use :func:`scipy.optimize.root`:
+
+::
+
+    >>> root = optimize.root(f, x0=1)  # our initial guess is 1
+    >>> root    # The full result
+      status: 1
+     success: True
+         qtf: array([  1.33310463e-32])
+        nfev: 10
+           r: array([-10.])
+         fun: array([ 0.])
+           x: array([ 0.])
+     message: 'The solution converged.'
+        fjac: array([[-1.]])
+    >>> root.x  # Only the root found
+    array([ 0.])
+
+Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
+there is a second root around -2.5. We find the exact value of it by adjusting
+our initial guess: ::
+
+    >>> root2 = optimize.root(f, x0=-2.5)
+    >>> root2.x
+    array([-2.47948183])
+
+.. note::
+   
+   :func:`scipy.optimize.root` also comes with a variety of algorithms,
+   set via the "method" argument.
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_optimize_example2_001.png
+   :target: scipy/auto_examples/plot_optimize_example2.html
+   :align: right
+   :scale: 70
+
+|
+
+
+Now that we have found the minima and roots of ``f`` and used curve fitting on it,
+we put all those results together in a single plot:
+
+.. raw:: html
+
+   <div style="clear: both"></div>
+
+
+.. seealso::
+   
+    You can find all algorithms and functions with similar functionalities
+    in the documentation of :mod:`scipy.optimize`.
 
 See the summary exercise on :ref:`summary_exercise_optimize` for another, more
 advanced example.
@@ -533,45 +613,56 @@ advanced example.
 Statistics and random numbers: :mod:`scipy.stats`
 -------------------------------------------------
 
+.. Comment to make doctest pass
+    >>> np.random.seed(0)
+
+
 The module :mod:`scipy.stats` contains statistical tools and probabilistic
 descriptions of random processes. Random number generators for various
 random process can be found in :mod:`numpy.random`.
 
-Histogram and probability density function
-..........................................
+Distributions: histogram and probability density function
+..........................................................
 
 Given observations of a random process, their histogram is an estimator of
 the random process's PDF (probability density function): ::
 
-    >>> a = np.random.normal(size=1000)
+    >>> samples = np.random.normal(size=1000)
     >>> bins = np.arange(-4, 5)
     >>> bins
     array([-4, -3, -2, -1,  0,  1,  2,  3,  4])
-    >>> histogram = np.histogram(a, bins=bins, normed=True)[0]
+    >>> histogram = np.histogram(samples, bins=bins, normed=True)[0]
     >>> bins = 0.5*(bins[1:] + bins[:-1])
     >>> bins
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
     >>> from scipy import stats
-    >>> b = stats.norm.pdf(bins)  # norm is a distribution
+    >>> pdf = stats.norm.pdf(bins)  # norm is a distribution object
     
     >>> plt.plot(bins, histogram) # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(bins, b) # doctest: +ELLIPSIS
+    >>> plt.plot(bins, pdf) # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
 
-.. plot:: pyplots/normal_distribution.py
+.. image:: scipy/auto_examples/images/sphx_glr_plot_normal_distribution_001.png
+    :target: scipy/auto_examples/plot_normal_distribution.html
     :scale: 70
+
+.. sidebar:: **The distribution objects**
+
+   :class:`scipy.stats.norm` is a distribution object: each distribution
+   in :mod:`scipy.stats` is represented as an object. Here it's the
+   normal distribution, and it comes with a PDF, a CDF, and much more.
 
 If we know that the random process belongs to a given family of random
 processes, such as normal processes, we can do a maximum-likelihood fit
 of the observations to estimate the parameters of the underlying
 distribution. Here we fit a normal process to the observed data::
 
-    >>> loc, std = stats.norm.fit(a)
+    >>> loc, std = stats.norm.fit(samples)
     >>> loc     # doctest: +ELLIPSIS
-    0.0314345570...
+    -0.045256707...
     >>> std     # doctest: +ELLIPSIS
-    0.9778613090...
+    0.9870331586...
 
 .. topic:: Exercise: Probability distributions
    :class: green
@@ -580,43 +671,68 @@ distribution. Here we fit a normal process to the observed data::
    parameter of 1, then plot a histogram from those samples.  Can you plot the
    pdf on top (it should match)?
 
-   Extra: the distributions have a number of useful methods. Explore them by
-   reading the docstring or by using IPython tab completion.  Can you find the
-   shape parameter of 1 back by using the ``fit`` method on your random
+   Extra: the distributions have many useful methods. Explore them by
+   reading the docstring or by using tab completion.  Can you recover
+   the shape parameter 1 by using the ``fit`` method on your random
    variates?
 
 
-Percentiles
-...........
+Mean, median and percentiles
+.............................
 
-The median is the value with half of the observations below, and half
-above::
+The mean is an estimator of the center of the distribution::
 
-    >>> np.median(a)     # doctest: +ELLIPSIS
-    0.04041769593...
+    >>> np.mean(samples)     # doctest: +ELLIPSIS
+    -0.0452567074...
 
-It is also called the percentile 50, because 50% of the observation are
+The median another estimator of the center. It is the value with half of
+the observations below, and half above::
+
+    >>> np.median(samples)     # doctest: +ELLIPSIS
+    -0.0580280347...
+
+.. tip::
+
+   Unlike the mean, the median is not sensitive to the tails of the
+   distribution. It is `"robust"
+   <https://en.wikipedia.org/wiki/Robust_statistics>`_.
+
+.. topic:: Exercise: Compare mean and median on samples of a Gamma distribution
+   :class: green
+
+    Which one seems to be the best estimator of the center for the Gamma
+    distribution?
+
+
+The median is also the percentile 50, because 50% of the observation are
 below it::
 
-    >>> stats.scoreatpercentile(a, 50)     # doctest: +ELLIPSIS
-    0.0404176959...
+    >>> stats.scoreatpercentile(samples, 50)     # doctest: +ELLIPSIS
+    -0.0580280347...
 
 Similarly, we can calculate the percentile 90::
 
-    >>> stats.scoreatpercentile(a, 90)     # doctest: +ELLIPSIS
-    1.3185699120...
+    >>> stats.scoreatpercentile(samples, 90)     # doctest: +ELLIPSIS
+    1.2315935511...
 
-The percentile is an estimator of the CDF: cumulative distribution
-function.
+.. tip::
+
+    The percentile is an estimator of the CDF: cumulative distribution
+    function.
 
 Statistical tests
 .................
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_t_test_001.png
+    :target: scipy/auto_examples/plot_t_test.html
+    :scale: 60
+    :align: right
 
 A statistical test is a decision indicator. For instance, if we have two
 sets of observations, that we assume are generated from Gaussian
 processes, we can use a
 `T-test <https://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide
-whether the two sets of observations are significantly different::
+whether the means of two sets of observations are significantly different::
 
     >>> a = np.random.normal(0, 1, size=100)
     >>> b = np.random.normal(1, 1, size=10)
@@ -640,78 +756,33 @@ whether the two sets of observations are significantly different::
    elaborate tools for statistical testing and statistical data
    loading and visualization outside of scipy.
 
-
-Interpolation: :mod:`scipy.interpolate`
----------------------------------------
-
-The :mod:`scipy.interpolate` is useful for fitting a function from experimental
-data and thus evaluating points where no measure exists. The module is based
-on the `FITPACK Fortran subroutines`_ from the netlib_ project.
-
-.. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
-.. _netlib : http://www.netlib.org
-
-By imagining experimental data close to a sine function::
-
-    >>> measured_time = np.linspace(0, 1, 10)
-    >>> noise = (np.random.random(10)*2 - 1) * 1e-1
-    >>> measures = np.sin(2 * np.pi * measured_time) + noise
-
-The :class:`scipy.interpolate.interp1d` class can build a linear
-interpolation function::
-
-    >>> from scipy.interpolate import interp1d
-    >>> linear_interp = interp1d(measured_time, measures)
-
-Then the :obj:`scipy.interpolate.linear_interp` instance needs to be
-evaluated at the time of interest::
-
-    >>> computed_time = np.linspace(0, 1, 50)
-    >>> linear_results = linear_interp(computed_time)
-
-A cubic interpolation can also be selected by providing the ``kind`` optional
-keyword argument::
-
-    >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
-    >>> cubic_results = cubic_interp(computed_time)
-
-The results are now gathered on the following Matplotlib figure:
-
-.. plot:: pyplots/scipy_interpolation.py
-
-:class:`scipy.interpolate.interp2d` is similar to
-:class:`scipy.interpolate.interp1d`, but for 2-D arrays. Note that for
-the `interp` family, the computed time must stay within the measured
-time range. See the summary exercise on
-:ref:`summary_exercise_stat_interp` for a more advance spline
-interpolation example.
-
-
 Numerical integration: :mod:`scipy.integrate`
 ---------------------------------------------
 
-The most generic integration routine is :func:`scipy.integrate.quad`::
+Function integrals
+...................
+
+The most generic integration routine is :func:`scipy.integrate.quad`. To
+compute :math:`\int_0^{\pi / 2} sin(t) dt`::
 
     >>> from scipy.integrate import quad
     >>> res, err = quad(np.sin, 0, np.pi/2)
-    >>> np.allclose(res, 1)
+    >>> np.allclose(res, 1)   # res is the result, is should be close to 1
     True
-    >>> np.allclose(err, 1 - res)
+    >>> np.allclose(err, 1 - res)  # err is an estimate of the err
     True
 
-Others integration schemes are available with ``fixed_quad``,
-``quadrature``, ``romberg``.
+Other integration schemes are available:
+:func:`scipy.integrate.fixed_quad`, :func:`scipy.integrate.quadrature`,
+:func:`scipy.integrate.romberg`...
 
-:mod:`scipy.integrate` also features routines for integrating Ordinary
-Differential Equations (ODE). In particular, :func:`scipy.integrate.odeint`
-is a general-purpose integrator using LSODA (Livermore Solver for
-Ordinary Differential equations with Automatic method switching
-for stiff and non-stiff problems), see the `ODEPACK Fortran library`_
-for more details.
+Integrating differential equations
+...................................
 
-.. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
-
-``odeint`` solves first-order ODE systems of the form::
+:mod:`scipy.integrate` also features routines for integrating `Ordinary
+Differential Equations (ODE)
+<https://en.wikipedia.org/wiki/Ordinary_differential_equation>`__. In
+particular, :func:`scipy.integrate.odeint` solves ODE of the form::
 
     dy/dt = rhs(y1, y2, .., t0,...)
 
@@ -719,142 +790,293 @@ As an introduction, let us solve the ODE :math:`\frac{dy}{dt} = -2 y` between
 :math:`t = 0 \dots 4`, with the  initial condition :math:`y(t=0) = 1`.
 First the function computing the derivative of the position needs to be defined::
 
-    >>> def calc_derivative(ypos, time, counter_arr):
-    ...     counter_arr += 1
+    >>> def calc_derivative(ypos, time):
     ...     return -2 * ypos
-    ...
 
-An extra argument ``counter_arr`` has been added to illustrate that the
-function may be called several times for a single time step, until solver
-convergence. The counter array is defined as::
+.. image:: scipy/auto_examples/images/sphx_glr_plot_odeint_simple_001.png
+    :target: scipy/auto_examples/plot_odeint_simple.html
+    :scale: 70
+    :align: right
 
-    >>> counter = np.zeros((1,), dtype=np.uint16)
 
-The trajectory will now be computed::
+Then, to compute ``y`` as a function of time::
 
     >>> from scipy.integrate import odeint
     >>> time_vec = np.linspace(0, 4, 40)
-    >>> yvec, info = odeint(calc_derivative, 1, time_vec,
-    ...                     args=(counter,), full_output=True)
+    >>> y = odeint(calc_derivative, y0=1, t=time_vec)
 
-Thus the derivative function has been called more than 40 times
-(which was the number of time steps)::
+.. raw:: html
 
-    >>> counter
-    array([129], dtype=uint16)
+   <div style="clear: both"></div>
 
-and the cumulative number of iterations for each of the 10 first time steps
-can be obtained by::
-
-    >>> info['nfe'][:10]
-    array([31, 35, 43, 49, 53, 57, 59, 63, 65, 69], dtype=int32)
-
-Note that the solver requires more iterations for the first time step.
-The solution ``yvec`` for the trajectory can now be plotted:
-
-  .. plot:: pyplots/odeint_introduction.py
-    :scale: 70
-
-
-Another example with :func:`scipy.integrate.odeint` will be a damped
-spring-mass oscillator (2nd order oscillator).
-The position of a mass attached to a spring obeys the 2nd order **ODE**
+Let us integrate a more complex ODE: a `damped
+spring-mass oscillator
+<https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator>`__.
+The position of a mass attached to a spring obeys the 2nd order *ODE*
 :math:`y'' + 2 \varepsilon \omega_0  y' + \omega_0^2 y = 0` with 
 :math:`\omega_0^2 = k/m` with :math:`k` the spring constant, :math:`m` the mass
-and :math:`\varepsilon = c/(2 m \omega_0)` with :math:`c` the damping coefficient.
-For this example, we choose the parameters as::
+and :math:`\varepsilon = c/(2 m \omega_0)` with :math:`c` the damping coefficient. We set::
 
     >>> mass = 0.5  # kg
     >>> kspring = 4  # N/m
     >>> cviscous = 0.4  # N s/m
 
-so the system will be underdamped, because::
+Hence::
 
     >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
+    >>> omega = np.sqrt(kspring / mass)
+
+The system is underdamped, as::
+
     >>> eps < 1
     True
 
-For the :func:`scipy.integrate.odeint` solver the 2nd order equation 
-needs to be transformed in a system of two first-order equations for 
-the vector :math:`Y = (y, y')`.  It will be convenient to define 
-:math:`\nu = 2 \varepsilon * \omega_0 = c / m` and :math:`\Omega = \omega_0^2 = k/m`::
+For :func:`~scipy.integrate.odeint`, the 2nd order equation
+needs to be transformed in a system of two first-order equations for the
+vector :math:`Y = (y, y')`: the function computes the
+velocity and acceleration::
+    
+    >>> def calc_deri(yvec, time, eps, omega):
+    ...     return (yvec[1], -eps * omega * yvec[1] - omega **2 * yvec[0])
 
-    >>> nu_coef = cviscous / mass  # nu
-    >>> om_coef = kspring / mass  # Omega
+.. image:: scipy/auto_examples/images/sphx_glr_plot_odeint_damped_spring_mass_001.png
+    :target: scipy/auto_examples/plot_odeint_damped_spring_mass.html
+    :scale: 70
+    :align: right
 
-Thus the function will calculate the velocity and acceleration by::
+Integration of the system follows::
 
-    >>> def calc_deri(yvec, time, nu, om):
-    ...     return (yvec[1], -nu * yvec[1] - om * yvec[0])
-    ...
     >>> time_vec = np.linspace(0, 10, 100)
     >>> yinit = (1, 0)
-    >>> yarr = odeint(calc_deri, yinit, time_vec, args=(nu_coef, om_coef))
+    >>> yarr = odeint(calc_deri, yinit, time_vec, args=(eps, omega))
 
-The final position and velocity are shown on the following Matplotlib figure:
+.. raw:: html
 
-.. plot:: pyplots/odeint_damped_spring_mass.py
-    :scale: 70
+   <div style="clear: both"></div>
 
 
-These two examples were only Ordinary Differential Equations (ODE).
-However, there is no Partial Differential Equations (PDE) solver in Scipy.
-Some Python packages for solving PDE's are available, such as fipy_ or SfePy_.
+.. tip::
+
+    :func:`scipy.integrate.odeint` uses the LSODA (Livermore Solver for
+    Ordinary Differential equations with Automatic method switching for stiff
+    and non-stiff problems), see the `ODEPACK Fortran library`_ for more
+    details.
+
+.. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
+
+.. seealso:: **Partial Differental Equations**
+
+    There is no Partial Differential Equations (PDE) solver in Scipy.
+    Some Python packages for solving PDE's are available, such as fipy_
+    or SfePy_.
 
 .. _fipy: http://www.ctcms.nist.gov/fipy/
 .. _SfePy: http://sfepy.org/doc/
+
+Fast Fourier transforms: :mod:`scipy.fftpack`
+---------------------------------------------
+
+The :mod:`scipy.fftpack` module computes fast Fourier transforms (FFTs)
+and offers utilities to handle them. The main functions are:
+
+* :func:`scipy.fftpack.fft` to compute the FFT
+
+* :func:`scipy.fftpack.fftfreq` to generate the sampling frequencies
+
+* :func:`scipy.fftpack.ifft` computes the inverse FFT, from frequency
+  space to signal space
+
+|
+
+As an illustration, a (noisy) input signal (``sig``), and its FFT::
+
+    >>> from scipy import fftpack
+    >>> sig_fft = fftpack.fft(sig) # doctest:+SKIP
+    >>> freqs = fftpack.fftfreq(sig.size, d=time_step) # doctest:+SKIP
+
+
+.. |signal_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_001.png
+    :target: scipy/auto_examples/plot_fftpack.html
+    :scale: 60
+
+.. |fft_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_002.png
+    :target: scipy/auto_examples/plot_fftpack.html
+    :scale: 60
+
+===================== =====================
+|signal_fig|          |fft_fig|
+===================== =====================
+**Signal**            **FFT**
+===================== =====================
+
+As the signal comes from a real function, the Fourier transform is
+symmetric.
+
+The peak signal frequency can be found with ``freqs[power.argmax()]``
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_003.png
+    :target: scipy/auto_examples/plot_fftpack.html
+    :scale: 60
+    :align: right
+
+
+Setting the Fourrier component above this frequency to zero and inverting
+the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
+
+.. note::
+
+   The code of this example can be found :ref:`here <sphx_glr_intro_scipy_auto_examples_plot_fftpack.py>`
+
+.. topic:: `numpy.fft`
+
+   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
+   the scipy one
+   should be preferred, as it uses more efficient underlying implementations.
+
+|
+
+**Fully worked examples:**
+
+.. |periodicity_finding| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_periodicity_finder_001.png
+    :scale: 50
+    :target: scipy/auto_examples/solutions/plot_periodicity_finder.html
+
+.. |image_blur| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_image_blur_002.png
+    :scale: 50
+    :target: scipy/auto_examples/solutions/plot_image_blur.html
+
+=================================================================================================================== ===================================================================================================================
+Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py>`)   Gaussian image blur (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py>`)
+=================================================================================================================== ===================================================================================================================
+|periodicity_finding|                                                                                               |image_blur|
+=================================================================================================================== ===================================================================================================================
+
+|
+
+.. topic:: Exercise: Denoise moon landing image
+   :class: green
+
+   .. image:: ../data/moonlanding.png
+     :scale: 70
+
+   1. Examine the provided image :download:`moonlanding.png
+      <../data/moonlanding.png>`, which is heavily contaminated with periodic
+      noise. In this exercise, we aim to clean up the noise using the
+      Fast Fourier Transform.
+
+   2. Load the image using :func:`pylab.imread`.
+
+   3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
+      spectrum (Fourier transform of) the image. Do you have any trouble
+      visualising the spectrum? If so, why?
+
+   4. The spectrum consists of high and low frequency components. The noise is
+      contained in the high-frequency part of the spectrum, so set some of
+      those components to zero (use array slicing).
+
+   5. Apply the inverse Fourier transform to see the resulting image.
+
+   :ref:`Solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_fft_image_denoise.py>`
+
+|
 
 
 Signal processing: :mod:`scipy.signal`
 --------------------------------------
 
-::
+.. tip::
 
-    >>> from scipy import signal
+   :mod:`scipy.signal` is for typical signal processing: 1D,
+   regularly-sampled signals.
 
-* :func:`scipy.signal.detrend`: remove linear trend from signal::
-
-    >>> t = np.linspace(0, 5, 100)
-    >>> x = t + np.random.normal(size=100)
-
-    >>> plt.plot(t, x, linewidth=3) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(t, signal.detrend(x), linewidth=3) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-
-  .. plot:: pyplots/demo_detrend.py
-    :scale: 70
-
-* :func:`scipy.signal.resample`: resample a signal to `n` points using FFT. ::
-
-    >>> t = np.linspace(0, 5, 100)
-    >>> x = np.sin(t)
-
-    >>> plt.plot(t, x, linewidth=3) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(t[::2], signal.resample(x, 50), 'ko') # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-
-  .. plot:: pyplots/demo_resample.py
-    :scale: 70
-
-  .. only:: latex
-
-     Notice how on the side of the window the resampling is less accurate
-     and has a rippling effect.
-
-* :mod:`scipy.signal` has many window functions: :func:`scipy.signal.hamming`,
-  :func:`scipy.signal.bartlett`, :func:`scipy.signal.blackman`...
-
-* :mod:`scipy.signal` has filtering (median filter :func:`scipy.signal.medfilt`,
-  Wiener :func:`scipy.signal.wiener`), but we will
-  discuss this in the image section.
+.. image:: scipy/auto_examples/images/sphx_glr_plot_resample_001.png
+    :target: scipy/auto_examples/plot_resample.html
+    :scale: 65
+    :align: right
 
 
-Image processing: :mod:`scipy.ndimage`
---------------------------------------
+**Resampling** :func:`scipy.signal.resample`: resample a signal to `n`
+points using FFT. ::
+
+  >>> t = np.linspace(0, 5, 100)
+  >>> x = np.sin(t)
+
+  >>> from scipy import signal
+  >>> x_resampled = signal.resample(x, 25)
+
+  >>> plt.plot(t, x) # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+  >>> plt.plot(t[::4], x_resampled, 'ko') # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+
+.. tip:: 
+
+    Notice how on the side of the window the resampling is less accurate
+    and has a rippling effect.
+
+    This resampling is different from the :ref:`interpolation
+    <intro_scipy_interpolate>` provided by :mod:`scipy.interpolate` as it
+    only applies to regularly sampled data.
+
+
+.. image:: scipy/auto_examples/images/sphx_glr_plot_detrend_001.png
+    :target: scipy/auto_examples/plot_detrend.html
+    :scale: 65
+    :align: right
+
+**Detrending** :func:`scipy.signal.detrend`: remove linear trend from signal::
+
+  >>> t = np.linspace(0, 5, 100)
+  >>> x = t + np.random.normal(size=100)
+
+  >>> from scipy import signal
+  >>> x_detrended = signal.detrend(x)
+
+  >>> plt.plot(t, x) # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+  >>> plt.plot(t, x_detrended) # doctest: +ELLIPSIS
+  [<matplotlib.lines.Line2D object at ...>]
+
+.. raw:: html
+
+   <div style="clear: both"></div>
+
+**Filtering**:
+For non-linear filtering, :mod:`scipy.signal` has filtering (median
+filter :func:`scipy.signal.medfilt`, Wiener :func:`scipy.signal.wiener`),
+but we will discuss this in the image section.
+
+.. tip::
+
+    :mod:`scipy.signal` also has a full-blown set of tools for the design
+    of linear filter (finite and infinite response filters), but this is
+    out of the scope of this tutorial.
+
+
+**Spectral analysis**:
+:func:`scipy.signal.spectrogram` compute a spectrogram --frequency
+spectrums over consecutive time windows--, while
+:func:`scipy.signal.welch` comptes a power spectrum density (PSD).
+
+.. |chirp_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_001.png
+    :target: scipy/auto_examples/plot_spectrogram.html
+    :scale: 45
+
+.. |spectrogram_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_002.png
+    :target: scipy/auto_examples/plot_spectrogram.html
+    :scale: 45
+
+.. |psd_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_003.png
+    :target: scipy/auto_examples/plot_spectrogram.html
+    :scale: 45
+
+|chirp_fig| |spectrogram_fig| |psd_fig|
+
+Image manipulation: :mod:`scipy.ndimage`
+-----------------------------------------
 
 .. include:: image_processing/image_processing.rst
+    :start-line: 1
 
 
 Summary exercises on scientific computing
@@ -892,3 +1114,20 @@ invited to try these exercises.
       :maxdepth: 1
 
       summary-exercises/answers_image_processing.rst
+
+.. include the gallery. Skip the first line to avoid the "orphan"
+   declaration
+
+.. include:: scipy/auto_examples/index.rst
+    :start-line: 1
+
+
+.. seealso:: **References to go further**
+
+   * Some chapters of the `advanced <advanced_topics_part>`__ and the
+     `packages and applications <applications_part>`__ parts of the scipy
+     lectures
+
+   * The `scipy cookbook <http://scipy-cookbook.readthedocs.io>`__
+
+
