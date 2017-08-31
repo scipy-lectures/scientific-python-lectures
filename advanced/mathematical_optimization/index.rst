@@ -952,9 +952,9 @@ and `g(x)< 0`.
     >>> def constraint(x):
     ...     return np.atleast_1d(1.5 - np.sum(np.abs(x)))
 
-    >>> optimize.fmin_slsqp(f, np.array([0, 0]), ieqcons=[constraint, ])
+    >>> optimize.fmin_slsqp(f, np.array([0, 0]), ieqcons=[constraint, ]) #doctest: +ELLIPSIS
     Optimization terminated successfully.    (Exit mode 0)
-                Current function value: 2.47487373504
+                Current function value: 2.4748737350...
                 Iterations: 5
                 Function evaluations: 20
                 Gradient evaluations: 5

@@ -422,7 +422,7 @@ in general::
           fun: array([-7.94582338])
      hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
           jac: array([ -1.42108547e-06])
-      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+      message: ...'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 12
           nit: 5
        status: 0
