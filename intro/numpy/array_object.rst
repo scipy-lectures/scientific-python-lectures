@@ -110,7 +110,7 @@ NumPy Reference documentation
      Help on built-in function array in module numpy.core.multiarray:
      <BLANKLINE>
      array(...)
-         array(object, dtype=None, copy=True, order=None, subok=False, ...
+         array(object, dtype=None, ...
 
 
 - Looking for something:
