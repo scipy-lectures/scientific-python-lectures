@@ -316,7 +316,7 @@ Equation solving
 ================
 
 SymPy is able to solve algebraic equations, in one and several
-variables::
+variables using :func:`~sympy.solveset`::
 
     >>> sym.solveset(x ** 4 - 1, x)
     {-1, 1, -I, I}
@@ -328,10 +328,10 @@ equations::
    >>> sym.solveset(sym.exp(x) + 1, x)
    {I*(2*n*pi + pi) | n in Integers()}
 
-It is able to solve a large part of
+Sympy is able to solve a large part of
 polynomial equations, and is also capable of solving multiple
 equations with respect to multiple variables giving a tuple as second
-argument. To do this you use the ``solve`` command::
+argument. To do this you use the :func:`~sympy.solve` command::
 
     >>> solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
     >>> solution[x], solution[y]
