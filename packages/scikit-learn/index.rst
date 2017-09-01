@@ -19,12 +19,12 @@ scikit-learn: machine learning in Python
     * :ref:`matplotlib (optional) <matplotlib>`
     * :ref:`ipython (the enhancements come handy) <interactive_work>`
 
-.. seealso:: **Statistics in Python**
+.. seealso:: **Data science in Python**
 
-    The content of the :ref:`statistics` chapter may also be of interest
+  * The content of the :ref:`statistics` chapter may also be of interest
     for readers looking into machine learning.
 
-    The `documentation of scikit-learn <http://scikit-learn.org>`_ is
+  * The `documentation of scikit-learn <http://scikit-learn.org>`_ is
     very complete and didactic.
 
 .. contents:: Chapters contents
@@ -520,8 +520,10 @@ it's faster for large ``N``::
     >>> from sklearn.decomposition import RandomizedPCA
     >>> pca = RandomizedPCA(n_components=2)
     >>> proj = pca.fit_transform(digits.data)
-    >>> plt.scatter(proj[:, 0], proj[:, 1], c=digits.target)
-    >>> plt.colorbar() # doctest: +SKIP
+    >>> plt.scatter(proj[:, 0], proj[:, 1], c=digits.target) # doctest: +ELLIPSIS
+    <matplotlib.collections.PathCollection object at ...>
+    >>> plt.colorbar() # doctest: +ELLIPSIS
+    <matplotlib.colorbar.Colorbar object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_002.png
    :align: center 
@@ -553,19 +555,24 @@ One good method to keep in mind is Gaussian Naive Bayes
    
 ::
 
-    from sklearn.naive_bayes import GaussianNB
-    from sklearn.cross_validation import train_test_split
+    >>> from sklearn.naive_bayes import GaussianNB
+    >>> from sklearn.cross_validation import train_test_split
 
-    # split the data into training and validation sets
-    X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target)
+    >>> # split the data into training and validation sets
+    >>> X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target)
     
-    # train the model
-    clf = GaussianNB()
-    clf.fit(X_train, y_train)
+    >>> # train the model
+    >>> clf = GaussianNB()
+    >>> clf.fit(X_train, y_train)
+    GaussianNB(priors=None)
     
-    # use the model to predict the labels of the test data
-    predicted = clf.predict(X_test)
-    expected = y_test
+    >>> # use the model to predict the labels of the test data
+    >>> predicted = clf.predict(X_test)
+    >>> expected = y_test
+    >>> print(predicted) # doctest: +ELLIPSIS
+    [1 7 7 7 8 2 8 0 4 8 7 7 0 8 2 3 5 8 5 3 7 9 6 2 8 2 2 7 3 5...]
+    >>> print(expected) # doctest: +ELLIPSIS
+    [1 0 4 7 8 2 2 0 4 3 7 7 0 8 2 3 4 8 5 3 7 9 6 3 8 2 2 9 3 5...]
 
 As above, we can plot the digits with the predicted labels to get an idea of
 how well the classification is working.
@@ -588,15 +595,13 @@ the number of matches::
 
     >>> matches = (predicted == expected)
     >>> print(matches.sum())
-    397
+    367
     >>> print(len(matches))
     450
     >>> matches.sum() / float(len(matches))
-    0.88222222222222224
+    0.81555555555555559
 
-
-
-We see that nearly 1500 of the 1800 predictions match the input. But
+We see that more than 80% of the 450 predictions match the input. But
 there are other more sophisticated metrics that can be used to judge the
 performance of a classifier: several are available in the
 ``sklearn.metrics`` submodule.
@@ -607,20 +612,20 @@ combines several measures and prints a table with the results::
     >>> from sklearn import metrics
     >>> print(metrics.classification_report(expected, predicted))
                  precision    recall  f1-score   support
-    
-              0       1.00      0.98      0.99        44
-              1       0.84      0.82      0.83        39
-              2       0.93      0.84      0.88        45
-              3       0.91      0.83      0.87        48
-              4       0.93      0.89      0.91        47
-              5       0.94      0.88      0.91        51
-              6       0.95      1.00      0.98        40
-              7       0.78      1.00      0.88        46
-              8       0.68      0.92      0.78        39
-              9       0.95      0.69      0.80        51
-    
-    avg / total       0.89      0.88      0.88       450
-    
+    <BLANKLINE>
+              0       1.00      0.91      0.95        46
+              1       0.76      0.64      0.69        44
+              2       0.85      0.62      0.72        47
+              3       0.98      0.82      0.89        49
+              4       0.89      0.86      0.88        37
+              5       0.97      0.93      0.95        41
+              6       1.00      0.98      0.99        44
+              7       0.73      1.00      0.84        45
+              8       0.50      0.90      0.64        49
+              9       0.93      0.54      0.68        48
+    <BLANKLINE>
+    avg / total       0.86      0.82      0.82       450
+    <BLANKLINE>
 
 
 Another enlightening metric for this sort of multi-label classification
@@ -628,17 +633,16 @@ is a *confusion matrix*: it helps us visualize which labels are being
 interchanged in the classification errors::
 
     >>> print(metrics.confusion_matrix(expected, predicted))
-    [[43  0  0  0  0  0  0  1  0  0]
-     [ 0 32  2  0  0  0  1  1  2  1]
-     [ 0  1 38  0  1  0  0  0  5  0]
-     [ 0  0  1 40  0  2  0  1  3  1]
-     [ 0  0  0  0 42  1  1  3  0  0]
-     [ 0  0  0  2  1 45  0  2  1  0]
-     [ 0  0  0  0  0  0 40  0  0  0]
-     [ 0  0  0  0  0  0  0 46  0  0]
-     [ 0  2  0  0  0  0  0  1 36  0]
-     [ 0  3  0  2  1  0  0  4  6 35]]
-
+    [[42  0  0  0  3  0  0  1  0  0]
+     [ 0 28  0  0  0  0  0  1 13  2]
+     [ 0  3 29  0  0  0  0  0 15  0]
+     [ 0  0  2 40  0  0  0  2  5  0]
+     [ 0  0  1  0 32  1  0  3  0  0]
+     [ 0  0  0  0  0 38  0  2  1  0]
+     [ 0  0  1  0  0  0 43  0  0  0]
+     [ 0  0  0  0  0  0  0 45  0  0]
+     [ 0  3  1  0  0  0  0  1 44  0]
+     [ 0  3  0  1  1  0  0  7 10 26]]
 
 We see here that in particular, the numbers 1, 2, 3, and 9 are often
 being labeled 8.
@@ -676,20 +680,20 @@ We can see that there are just over 500 data points.
 
 The ``DESCR`` variable has a long description of the dataset::
 
-    >>> print(data.DESCR)
+    >>> print(data.DESCR) # doctest: +ELLIPSIS
     Boston House Prices dataset
     ===========================
-    
+    <BLANKLINE>
     Notes
     ------
     Data Set Characteristics:  
-    
+    <BLANKLINE>
         :Number of Instances: 506 
-    
+    <BLANKLINE>
         :Number of Attributes: 13 numeric/categorical predictive
-        
+    <BLANKLINE>
         :Median Value (attribute 14) is usually the target
-    
+    <BLANKLINE>
         :Attribute Information (in order):
             - CRIM     per capita crime rate by town
             - ZN       proportion of residential land zoned for lots over 25,000 sq.ft.
@@ -705,51 +709,29 @@ The ``DESCR`` variable has a long description of the dataset::
             - B        1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
             - LSTAT    % lower status of the population
             - MEDV     Median value of owner-occupied homes in $1000's
-    
-        :Missing Attribute Values: None
-    
-        :Creator: Harrison, D. and Rubinfeld, D.L.
-    
-    This is a copy of UCI ML housing dataset.
-    http://archive.ics.uci.edu/ml/datasets/Housing
-    
-    
-    This dataset was taken from the StatLib library which is maintained at Carnegie Mellon University.
-    
-    The Boston house-price data of Harrison, D. and Rubinfeld, D.L. 'Hedonic
-    prices and the demand for clean air', J. Environ. Economics & Management,
-    vol.5, 81-102, 1978.   Used in Belsley, Kuh & Welsch, 'Regression diagnostics
-    ...', Wiley, 1980.   N.B. Various transformations are used in the table on
-    pages 244-261 of the latter.
-    
-    The Boston house-price data has been used in many machine learning papers that address regression
-    problems.   
-         
-    **References**
-    
-       - Belsley, Kuh & Welsch, 'Regression diagnostics: Identifying Influential Data and Sources of Collinearity', Wiley, 1980. 244-261.
-       - Quinlan,R. (1993). Combining Instance-Based and Model-Based Learning. In Proceedings on the Tenth International Conference of Machine Learning, 236-243, University of Massachusetts, Amherst. Morgan Kaufmann.
-       - many more! (see http://archive.ics.uci.edu/ml/datasets/Housing)
-    
-
+    ...
 
 It often helps to quickly visualize pieces of the data using histograms,
-scatter plots, or other plot types. Here we'll load pylab and show a
+scatter plots, or other plot types. With pylab, let us show a
 histogram of the target values: the median price in each neighborhood::
 
-    plt.hist(data.target)
+    >>> plt.hist(data.target)  # doctest: +ELLIPSIS
+    (array([...
 
 .. image:: auto_examples/images/sphx_glr_plot_boston_prediction_001.png
-   :align: center 
+   :align: center
    :target: auto_examples/plot_boston_prediction.html
+   :scale: 70
+
 
 
 Let's have a quick look to see if some features are more relevant than
 others for our problem::
 
-    for index, feature_name in enumerate(data.feature_names):
-        plt.figure()
-        plt.scatter(data.data[:, index], data.target)
+    >>> for index, feature_name in enumerate(data.feature_names):
+    ...     plt.figure()
+    ...     plt.scatter(data.data[:, index], data.target)  # doctest: +ELLIPSIS
+    <matplotlib.figure.Figure object...
 
 .. image:: auto_examples/images/sphx_glr_plot_boston_prediction_002.png
    :width: 32%  
@@ -818,16 +800,17 @@ wrapper around an ordinary least squares calculation. ::
     LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
     >>> predicted = clf.predict(X_test)
     >>> expected = y_test
-    >>> print("RMS:", np.sqrt(np.mean((predicted - expected) ** 2)))
-    RMS: 5.20842494538
+    >>> print("RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2))) # doctest: +ELLIPSIS
+    RMS: 5.0059...
 
 .. image:: auto_examples/images/sphx_glr_plot_boston_prediction_015.png
    :align: right
    :target: auto_examples/plot_boston_prediction.html
 
-We can plot the error, expected as a function of predicted::
+We can plot the error: expected as a function of predicted::
 
-    plt.scatter(expected, predicted)
+    >>> plt.scatter(expected, predicted) # doctest: +ELLIPSIS
+    <matplotlib.collections.PathCollection object at ...>
 
 .. tip::
 
@@ -852,6 +835,306 @@ We can plot the error, expected as a function of predicted::
         # Instantiate the model, fit the results, and scatter in vs. out
 
     **Solution** The solution is found in :ref:`the code of this chapter <sphx_glr_packages_scikit-learn_auto_examples_plot_boston_prediction.py>`
+
+
+
+Measuring prediction performance
+=================================
+
+A quick test on the K-neighbors classifier
+------------------------------------------
+
+Here we'll continue to look at the digits data, but we'll switch to the
+K-Neighbors classifier.  The K-neighbors classifier is an instance-based
+classifier.  The K-neighbors classifier predicts the label of
+an unknown point based on the labels of the *K* nearest points in the
+parameter space. ::
+
+    >>> # Get the data
+    >>> from sklearn.datasets import load_digits
+    >>> digits = load_digits()
+    >>> X = digits.data
+    >>> y = digits.target
+    
+    >>> # Instantiate and train the classifier
+    >>> from sklearn.neighbors import KNeighborsClassifier
+    >>> clf = KNeighborsClassifier(n_neighbors=1)
+    >>> clf.fit(X, y) # doctest: +ELLIPSIS
+    KNeighborsClassifier(...)
+
+    >>> # Check the results using metrics
+    >>> from sklearn import metrics
+    >>> y_pred = clf.predict(X)
+    
+    >>> print(metrics.confusion_matrix(y_pred, y))
+    [[178   0   0   0   0   0   0   0   0   0]
+     [  0 182   0   0   0   0   0   0   0   0]
+     [  0   0 177   0   0   0   0   0   0   0]
+     [  0   0   0 183   0   0   0   0   0   0]
+     [  0   0   0   0 181   0   0   0   0   0]
+     [  0   0   0   0   0 182   0   0   0   0]
+     [  0   0   0   0   0   0 181   0   0   0]
+     [  0   0   0   0   0   0   0 179   0   0]
+     [  0   0   0   0   0   0   0   0 174   0]
+     [  0   0   0   0   0   0   0   0   0 180]]
+
+Apparently, we've found a perfect classifier!  But this is misleading for
+the reasons we saw before: the classifier essentially "memorizes" all the
+samples it has already seen.  To really test how well this algorithm
+does, we need to try some samples it *hasn't* yet seen.
+
+This problem also occurs with regression models. In the following we
+fit an other instance-based model named "decision tree" to the Boston
+Housing price dataset we introduced previously::
+
+    from sklearn.datasets import load_boston
+    from sklearn.tree import DecisionTreeRegressor
+
+    data = load_boston()
+    clf = DecisionTreeRegressor().fit(data.data, data.target)
+    predicted = clf.predict(data.data)
+    expected = data.target
+
+    plt.scatter(expected, predicted)
+    plt.plot([0, 50], [0, 50], '--k')
+
+.. figure:: auto_examples/images/sphx_glr_plot_measuring_performance_001.png
+   :align: right
+   :target: auto_examples/plot_measuring_performance.html
+   :width: 350
+
+Here again the predictions are seemingly perfect as the model was able to
+perfectly memorize the training set.
+
+A correct approach: Using a validation set
+-------------------------------------------
+
+Learning the parameters of a prediction function and testing it on the
+same data is a methodological mistake: a model that would just repeat the
+labels of the samples that it has just seen would have a perfect score
+but would fail to predict anything useful on yet-unseen data.
+
+To avoid over-fitting, we have to define two different sets:
+
+* a training set X_train, y_train which is used for learning the
+  parameters of a predictive model
+
+* a testing set X_test, y_test which is used for evaluating the fitted
+  predictive model
+
+In scikit-learn such a random split can be quickly computed with the
+:func:`sklearn.cross_validation.train_test_split` function::
+
+    from sklearn import cross_validation
+    X = digits.data
+    y = digits.target
+
+    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
+                                            test_size=0.25, random_state=0)
+
+    print("%r, %r, %r" % (X.shape, X_train.shape, X_test.shape))
+
+Now we train on the training data, and test on the testing data::
+
+    clf = KNeighborsClassifier(n_neighbors=1).fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+
+    print(metrics.confusion_matrix(y_test, y_pred))
+
+    print(metrics.classification_report(y_test, y_pred))
+
+The averaged f1-score is often used as a convenient measure of the
+overall performance of an algorithm.  It appears in the bottom row
+of the classification report; it can also be accessed directly::
+
+    metrics.f1_score(y_test, y_pred, average="macro")
+
+The over-fitting we saw previously can be quantified by computing the
+f1-score on the training data itself::
+
+    metrics.f1_score(y_train, clf.predict(X_train), average="macro")
+
+.. note::
+   
+   **Regression metrics** In the case of regression models, we
+   need to use different metrics, such as explained variance.
+
+Model Selection via Validation
+--------------------------------
+
+We have applied Gaussian Naives, support vectors machines, and K-nearest
+neighbors classifiers to the digits dataset. Now that we have these
+validation tools in place, we can ask quantitatively which of the three
+estimators works best for this dataset.
+
+* With the default hyper-parameters for each estimator, which gives the
+  best f1 score on the **validation set**?  Recall that hyperparameters
+  are the parameters set when you instantiate the classifier: for
+  example, the ``n_neighbors`` in ``clf =
+  KNeighborsClassifier(n_neighbors=1)``
+
+* For each classifier, which value for the hyperparameters gives the best
+   results for the digits data?  For ``LinearSVC``, use ``loss='l2'`` and
+   ``loss='l1'``.  For ``KNeighborsClassifier`` we use ``n_neighbors``
+   between 1 and 10.  Note that ``GaussianNB`` does not have any
+   adjustable hyperparameters.
+
+::
+
+    from sklearn.svm import LinearSVC
+    from sklearn.naive_bayes import GaussianNB
+    from sklearn.neighbors import KNeighborsClassifier
+
+    X = digits.data
+    y = digits.target
+    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
+                                test_size=0.25, random_state=0)
+
+    for Model in [LinearSVC, GaussianNB, KNeighborsClassifier]:
+        clf = Model().fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        print(Model.__name__,
+            metrics.f1_score(y_test, y_pred, average="macro"))
+
+    print('------------------')
+
+    # test SVC loss
+    for loss in ['l1', 'l2']:
+        clf = LinearSVC(loss=loss).fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        print("LinearSVC(loss='{0}')".format(loss),
+            metrics.f1_score(y_test, y_pred, average="macro"))
+
+    print('-------------------')
+
+    # test K-neighbors
+    for n_neighbors in range(1, 11):
+        clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X_train, y_train)
+        y_pred = clf.predict(X_test)
+        print("KNeighbors(n_neighbors={0})".format(n_neighbors),
+            metrics.f1_score(y_test, y_pred, average="macro"))
+
+
+Cross-validation
+-----------------
+
+Cross-validation consists in repetively splitting the data in pairs of
+train and test sets, called 'folds'. Scikit-learn comes with a function
+to automatically compute score on all these folds. Here we do 'K-fold'
+with k=5. ::
+
+    clf = KNeighborsClassifier()
+    from sklearn.cross_validation import cross_val_score
+    cross_val_score(clf, X, y, cv=5)
+
+We can use different splitting strategies, such as random splitting::
+
+    from sklearn.cross_validation import ShuffleSplit
+    cv = ShuffleSplit(n=len(X), n_iter=5)
+    cross_val_score(clf, X, y, cv=cv)
+
+There exists many different cross-validation strategies in scikit-learn.
+They are often useful to take in account non iid datasets.
+
+Hyperparameter optimization with cross-validation
+--------------------------------------------------
+
+Consider regularized linear models, such as *Ridge Regression*, which
+uses l2 regularlization, and *Lasso Regression*, which uses l1
+regularization. Choosing their regularization parameter is important.
+
+Let us set these paramaters on the Diabetes dataset, a simple regression
+problem. The diabetes data consists of 10 physiological variables (age,
+sex, weight, blood pressure) measure on 442 patients, and an indication
+of disease progression after one year::
+
+    from sklearn.datasets import load_diabetes
+    data = load_diabetes()
+    X, y = data.data, data.target
+    print(X.shape)
+
+
+With the default hyper-parameters: we use the cross-validation score to
+determine goodness-of-fit::
+
+    from sklearn.linear_model import Ridge, Lasso
+
+    for Model in [Ridge, Lasso]:
+        model = Model()
+        print(Model.__name__, cross_val_score(model, X, y).mean())
+
+
+Basic Hyperparameter Optimization
+..................................
+
+We compute the cross-validation score as a function of alpha, the
+strength of the regularization for Lasso and Ridge. We choose 20 values
+of alpha between 0.0001 and 1::
+
+    alphas = np.logspace(-3, -1, 30)
+
+    for Model in [Lasso, Ridge]:
+        scores = [cross_val_score(Model(alpha), X, y, cv=3).mean()
+                for alpha in alphas]
+        plt.plot(alphas, scores, label=Model.__name__)
+    plt.legend(loc='lower left')
+
+.. note:: Can we trust our results to be actually useful?
+
+Automatically Performing Grid Search
+.....................................
+
+:class:`sklearn.grid_search.GridSearchCV` is constructed with an
+estimator, as well as a dictionary of parameter values to be searched.
+We can find the optimal parameters this way::
+
+    from sklearn.grid_search import GridSearchCV
+    for Model in [Ridge, Lasso]:
+        gscv = GridSearchCV(Model(), dict(alpha=alphas), cv=3).fit(X, y)
+        print(Model.__name__, gscv.best_params_)
+
+Built-in Hyperparameter Search
+...............................
+
+For some models within scikit-learn, cross-validation can be performed
+more efficiently on large datasets.  In this case, a cross-validated
+version of the particular model is included.  The cross-validated
+versions of :class:`~sklearn.linear_model.Ridge` and
+:class:`~sklearn.linear_model.Lasso` are
+:class:`~sklearn.linear_model.RidgeCV` and
+:class:`~sklearn.linear_model.LassoCV`, respectively.  Parameter search
+on these estimators can be performed as follows::
+
+    from sklearn.linear_model import RidgeCV, LassoCV
+    for Model in [RidgeCV, LassoCV]:
+        model = Model(alphas=alphas, cv=3).fit(X, y)
+        print(Model.__name__, model.alpha_)
+
+
+We see that the results match those returned by GridSearchCV
+
+Nested cross-validation
+........................
+
+How do we measure the performance of these estimators? We have used data
+to set the hyperparameters, so we need to test on actually new data. We
+can do this by running :class:`~sklearn.cross_validation.cross_val_score`
+on our CV objects. Here there are 2 cross-validation loops going on, this
+is called *'nested cross validation'*::
+
+    for Model in [RidgeCV, LassoCV]:
+        scores = cross_val_score(Model(alphas=alphas, cv=3), X, y, cv=3)
+        print(Model.__name__, np.mean(scores))
+
+
+.. note::
+
+    Note that these results do not match the best results of our curves
+    above, and :class:`~sklearn.linear_model.LassoCV` seems to
+    under-perform :class:`~sklearn.linear_model.RidgeCV`. The reason is
+    that setting the hyper-parameter is harder for Lasso, thus the
+    estimation error on this hyper-parameter is larger.
+
 
 |
 

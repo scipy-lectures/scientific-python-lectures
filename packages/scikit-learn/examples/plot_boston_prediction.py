@@ -13,9 +13,11 @@ data = load_boston()
 ##############################################################################
 # Print a histogram of the quantity to predict: price
 import matplotlib.pyplot as plt
+plt.figure(figsize=(4, 3))
 plt.hist(data.target)
 plt.xlabel('price ($1000s)')
 plt.ylabel('count')
+plt.tight_layout()
 
 ##############################################################################
 # Print the join histogram for each feature
