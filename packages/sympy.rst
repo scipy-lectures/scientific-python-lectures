@@ -82,11 +82,11 @@ There is also a class representing mathematical infinity, called
     oo
 
 
-Exercises
----------
+.. topic:: **Exercises**
+   :class: green
 
-1. Calculate :math:`\sqrt{2}` with 100 decimals.
-2. Calculate :math:`1/2 + 1/3` in rational arithmetic.
+   1. Calculate :math:`\sqrt{2}` with 100 decimals.
+   2. Calculate :math:`1/2 + 1/3` in rational arithmetic.
 
 
 Symbols
@@ -113,7 +113,7 @@ Symbols can now be manipulated using some of python operators: ``+``, ``-`,
 .. topic:: **Printing**
 
    Sympy allows for control of the display of the output. From here we use the 
-   following setting for printing
+   following setting for printing::
 
    >>> sym.init_printing(use_unicode=False, wrap_line=True)
 
@@ -307,11 +307,6 @@ Also improper integrals are supported as well::
 .. index:: equations; algebraic, solve
 
 
-Exercises
----------
-
-  
-
 Equation solving
 ================
 
@@ -328,14 +323,16 @@ equations::
    >>> sym.solveset(sym.exp(x) + 1, x)
    {I*(2*n*pi + pi) | n in Integers()}
 
-Sympy is able to solve a large part of
-polynomial equations, and is also capable of solving multiple
-equations with respect to multiple variables giving a tuple as second
-argument. To do this you use the :func:`~sympy.solve` command::
+.. topic:: **Systems of linear equations**
 
-    >>> solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
-    >>> solution[x], solution[y]
-    (-3, 1)
+   Sympy is able to solve a large part of
+   polynomial equations, and is also capable of solving multiple
+   equations with respect to multiple variables giving a tuple as second
+   argument. To do this you use the :func:`~sympy.solve` command::
+
+   >>> solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
+   >>> solution[x], solution[y]
+   (-3, 1)
 
 Another alternative in the case of polynomial equations is
 `factor`. `factor` returns the polynomial factorized into irreducible
@@ -350,8 +347,6 @@ domains::
    >>> sym.factor(f, modulus=5)
           2        2
    (x - 2) *(x + 2) 
-
-
 
 SymPy is also able to solve boolean equations, that is, to decide if a
 certain boolean expression is satisfiable or not. For this, we use the
@@ -368,18 +363,12 @@ the expression True, it will return False::
    False
 
 
-Exercises
----------
 
-1. Solve the system of equations :math:`x + y = 2`, :math:`2\cdot x + y = 0`
-2. Are there boolean values ``x``, ``y`` that make ``(~x | y) & (~y | x)`` true?
+.. topic:: **Exercises**
+   :class: green
 
-
-.. Polynomial computations
-.. =======================
-
-.. SymPy has a rich module of efficient polynomial routines. Some of the
-.. most commonly used methods are factor, gcd
+   1. Solve the system of equations :math:`x + y = 2`, :math:`2\cdot x + y = 0`
+   2. Are there boolean values ``x``, ``y`` that make ``(~x | y) & (~y | x)`` true?
 
 
 Linear Algebra
