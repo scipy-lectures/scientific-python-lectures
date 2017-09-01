@@ -371,9 +371,9 @@ simple conjugate gradient method to minimize a function is
     >>> optimize.fmin_cg(f, [2, 1])    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     Optimization terminated successfully.
              Current function value: 0.000000
-             Iterations: 14
-             Function evaluations: 124
-             Gradient evaluations: 31
+             Iterations: 8
+             Function evaluations: 64
+             Gradient evaluations: 16
     array([ 0.9999...,  0.9999...])
 
 These methods need the gradient of the function. They can compute it, but
@@ -381,13 +381,13 @@ will perform better if you can pass them the gradient::
 
     >>> def fprime(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_cg(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE
+    >>> optimize.fmin_cg(f, [2, 1], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     Optimization terminated successfully.
             Current function value: 0.000000
-            Iterations: 13
-            Function evaluations: 30
-            Gradient evaluations: 30
-    array([ 0.99999199,  0.99998336])
+            Iterations: 8
+            Function evaluations: 16
+            Gradient evaluations: 16
+    array([ 1.00000012,  1.00000009])
 
 Note that the function has only been evaluated 30 times, compared to 120
 without the gradient.
@@ -558,9 +558,9 @@ each step an approximation of the Hessian.
     >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     Optimization terminated successfully.
              Current function value: 0.000000
-             Iterations: 16
-             Function evaluations: 24
-             Gradient evaluations: 24
+             Iterations: 8
+             Function evaluations: 9
+             Gradient evaluations: 9
     array([ 1.00000...,  1.0000...])
 
 
@@ -852,7 +852,7 @@ if we compute the norm ourselves and use a good generic optimizer
              Iterations: 11
              Function evaluations: 144
              Gradient evaluations: 12
-    array([ -7.4...-09,   1.1...e-01,   2.2...e-01,
+    array([ -7.38...-09,   1.1...e-01,   2.2...e-01,
              3.3...e-01,   4.4...e-01,   5.5...e-01,
              6.6...e-01,   7.7...e-01,   8.8...e-01,
              1.0...e+00])
@@ -952,9 +952,9 @@ and `g(x)< 0`.
     >>> def constraint(x):
     ...     return np.atleast_1d(1.5 - np.sum(np.abs(x)))
 
-    >>> optimize.fmin_slsqp(f, np.array([0, 0]), ieqcons=[constraint, ])
+    >>> optimize.fmin_slsqp(f, np.array([0, 0]), ieqcons=[constraint, ]) #doctest: +ELLIPSIS
     Optimization terminated successfully.    (Exit mode 0)
-                Current function value: 2.47487373504
+                Current function value: 2.4748737350...
                 Iterations: 5
                 Function evaluations: 20
                 Gradient evaluations: 5
