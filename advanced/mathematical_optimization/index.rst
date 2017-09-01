@@ -929,7 +929,7 @@ scipy provides a helper function for this purpose:
     >>> x = np.linspace(0, 3, 50)
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
-    >>> optimize.curve_fit(f, x, y)
+    >>> optimize.curve_fit(f, x, y)   # doctest: +ELLIPSIS
     (array([ 1.5185...,  0.92665...]), array([[ 0.00037..., -0.00056...],
            [-0.0005...,  0.00123...]]))
 
