@@ -299,7 +299,7 @@ Neighbourhood: square (choose size), disk, or more complicated
 Example : horizontal Sobel filter ::
 
     >>> text = data.text()
-    >>> hsobel_text = filters.hsobel(text)
+    >>> hsobel_text = filters.sobel_h(text)
 
 
 Uses the following linear kernel for computing horizontal gradients::

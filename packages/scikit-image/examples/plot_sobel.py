@@ -15,7 +15,7 @@ except ImportError:
 import matplotlib.pyplot as plt
 
 text = data.text()
-hsobel_text = filters.hsobel(text)
+hsobel_text = filters.sobel_h(text)
 
 plt.figure(figsize=(12, 3))
 
