@@ -414,27 +414,17 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 
 * **1D plotting**:
 
-  .. sourcecode:: pycon
+.. literalinclude:: examples/plot_basic1dplot.py
+   :language: python
 
-    >>> x = np.linspace(0, 3, 20)
-    >>> y = np.linspace(0, 9, 20)
-    >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +SKIP
-    [<matplotlib.lines.Line2D object at ...>]
-
-  .. plot:: pyplots/numpy_intro_1.py
+.. image:: /intro/numpy/auto_examples/images/sphx_glr_plot_basic1dplot_001.png
 
 * **2D arrays** (such as images):
 
-  .. sourcecode:: pycon
+.. literalinclude:: examples/plot_basic2dplot.py
+   :language: python
 
-    >>> image = np.random.rand(30, 30)
-    >>> plt.imshow(image, cmap=plt.cm.hot)    # doctest: +SKIP
-    >>> plt.colorbar()    # doctest: +SKIP
-    <matplotlib.colorbar.Colorbar instance at ...>
-
-  .. plot:: pyplots/numpy_intro_2.py
+.. image:: /intro/numpy/auto_examples/images/sphx_glr_plot_basic2dplot_001.png
 
 .. seealso:: More in the: :ref:`matplotlib chapter <matplotlib>`
 

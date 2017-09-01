@@ -61,6 +61,7 @@ sphinx_gallery_conf = {
                      ],
     'gallery_dirs': ['intro/summary-exercises/auto_examples',
                      'intro/matplotlib/auto_examples',
+                     'intro/numpy/auto_examples',
                      'intro/scipy/auto_examples',
                      'advanced/image_processing/auto_examples',
                      'advanced/mathematical_optimization/auto_examples',
