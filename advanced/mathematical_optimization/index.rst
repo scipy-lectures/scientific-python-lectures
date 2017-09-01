@@ -167,10 +167,10 @@ Brent's method to find the minimum of a function:
 ::
 
     >>> import numpy as np
-    >>> from scipy.optimize import minimize_scalar
+    >>> from scipy import optimize
     >>> def f(x):
     ...     return -np.exp(-(x - 0.7)**2)
-    >>> result = minimize_scalar(f)
+    >>> result = optimize.minimize_scalar(f)
     >>> result.success # check if solver was successful
     >>> True
     >>> x_min = result.x
