@@ -446,7 +446,7 @@ skeletonization, etc.
         >>> median_coins = filters.rank.median(coins_zoom, disk(1))
         >>> from skimage import restoration
         >>> tv_coins = restoration.denoise_tv_chambolle(coins_zoom, weight=0.1)
-        >>> gaussian_coins = filters.gaussian_filter(coins, sigma=2)
+        >>> gaussian_coins = filters.gaussian(coins, sigma=2)
 
     .. image:: auto_examples/images/sphx_glr_plot_filter_coins_001.png
         :width: 99%
@@ -505,7 +505,7 @@ Synthetic data::
     >>> im = np.zeros((l, l))
     >>> points = l * np.random.random((2, n ** 2))
     >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
-    >>> im = filters.gaussian_filter(im, sigma=l / (4. * n))
+    >>> im = filters.gaussian(im, sigma=l / (4. * n))
     >>> blobs = im > im.mean()
 
 Label all connected components::
