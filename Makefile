@@ -31,7 +31,7 @@ help:
 
 clean:
 	-rm -rf build/*
-	-rm -rf intro/scipy/auto_examples/ intro/matplotlib/auto_examples/ advanced/mathematical_optimization/auto_examples/ advanced/advanced_numpy/auto_examples/ packages/statistics/auto_examples/ packages/scikit-image/auto_examples/
+	-rm -rf intro/scipy/auto_examples/ intro/matplotlib/auto_examples/ intro/summary-exercises/auto_examples advanced/mathematical_optimization/auto_examples/ advanced/advanced_numpy/auto_examples/ advanced/image_processing/auto_examples advanced/scipy_sparse/auto_examples packages/3d_plotting/auto_examples packages/statistics/auto_examples/ packages/scikit-image/auto_examples/ packages/scikit-learn/auto_examples
 
 test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst testing.py $(shell find intro advanced packages -name \*.rst -print)
