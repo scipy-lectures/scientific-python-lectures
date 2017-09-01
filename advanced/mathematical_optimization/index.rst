@@ -166,7 +166,6 @@ Brent's method to find the minimum of a function:
 
 ::
 
-    >>> import numpy as np
     >>> from scipy import optimize
     >>> def f(x):
     ...     return -np.exp(-(x - 0.7)**2)
