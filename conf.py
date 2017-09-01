@@ -52,6 +52,8 @@ sphinx_gallery_conf = {
                       'intro/matplotlib/examples',
                       'intro/numpy/examples',
                       'intro/scipy/examples',
+                      # the following entry contains an extra level because
+                      # execution of the other python files causes errors
                       'advanced/advanced_numpy/examples/plots',
                       'advanced/image_processing/examples',
                       'advanced/mathematical_optimization/examples',
