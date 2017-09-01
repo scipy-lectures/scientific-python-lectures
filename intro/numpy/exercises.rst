@@ -132,7 +132,10 @@ northern Canada during 20 years:
  >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
  <matplotlib.legend.Legend object at ...>
 
-.. plot:: pyplots/numpy_intro_7.py
+.. image:: auto_examples/images/sphx_glr_plot_populations_001.png
+   :width: 50%
+   :target: auto_examples/plot_populations.html
+   :align: center
 
 Computes and print, based on the data in ``populations.txt``...
 
@@ -187,7 +190,10 @@ Solution: :download:`Python source file <solutions/2_3_crude_integration.py>`
 Mandelbrot set
 ---------------
 
-.. plot:: intro/numpy/solutions/2_4_mandelbrot.py
+.. image:: auto_examples/images/sphx_glr_plot_mandelbrot_001.png
+   :width: 50%
+   :target: auto_examples/plot_mandelbrot.html
+   :align: center
 
 Write a script that computes the Mandelbrot fractal. The Mandelbrot
 iteration::
