@@ -47,18 +47,7 @@ create_new_conda_env() {
     source activate testenv
 }
 
-if [[ "$DISTRIB" == "neurodebian" ]]; then
-    create_new_venv
-    bash <(wget -q -O- http://neuro.debian.net/_files/neurodebian-travis.sh)
-    sudo apt-get install -qq python-scipy python-nose python-nibabel python-sklearn
-
-elif [[ "$DISTRIB" == "conda" ]]; then
-    create_new_conda_env
-
-else
-    echo "Unrecognized distribution ($DISTRIB); cannot setup travis environment."
-    exit 1
-fi
+create_new_conda_env
 
 if [[ "$COVERAGE" == "true" ]]; then
     pip install coverage coveralls
