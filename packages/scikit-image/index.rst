@@ -733,3 +733,12 @@ Points of interest such as corners can then be used to match objects in
 different images, as described in the `plot_matching 
 <http://scikit-image.org/docs/stable/auto_examples/plot_matching.html>`_
 example of scikit-image.
+
+Full code examples
+==================
+
+.. include the gallery. Skip the first line to avoid the "orphan"
+   declaration
+
+.. include:: auto_examples/index.rst
+    :start-line: 1

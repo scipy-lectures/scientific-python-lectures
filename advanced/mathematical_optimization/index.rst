@@ -519,6 +519,16 @@ each step an approximation of the Hessian.
    :scale: 90%
 
 .. |bfgs_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_112.png
+
+Full code examples
+==================
+
+.. include the gallery. Skip the first line to avoid the "orphan"
+   declaration
+
+.. include:: auto_examples/index.rst
+    :start-line: 1
+
    :scale: 75%
 
 .. |bfgs_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_013.png
@@ -988,3 +998,11 @@ and `g(x)< 0`.
    using a mathematical trick known as `Lagrange multipliers
    <https://en.wikipedia.org/wiki/Lagrange_multiplier>`_.
    
+Full code examples
+==================
+
+.. include the gallery. Skip the first line to avoid the "orphan"
+   declaration
+
+.. include:: auto_examples/index.rst
+    :start-line: 1
