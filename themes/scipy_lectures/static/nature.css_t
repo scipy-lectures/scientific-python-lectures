@@ -22,7 +22,7 @@
 
 
 body {
-  font-size: 110%;
+  font-size: .9em;
   line-height: 1.45;
   color: #333332;
   background-color: white;
@@ -33,6 +33,51 @@ body {
   margin: 0 0;
   font-family: sans-serif;
 }
+
+/**** For mobile device: increase font size on small devices ****/
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (-o-min-device-pixel-ratio: 15/10),
+	only screen and (min-resolution: 140dpi)
+{
+  /* High DPI devices */
+  body {
+    font-size: 150%;
+  }
+}
+
+@media	only screen and (-webkit-min-device-pixel-ratio: 1.9),
+	only screen and (-o-min-device-pixel-ratio: 17/10),
+	only screen and (min-resolution: 160dpi)
+{
+  /* Even higher DPI devices */
+  body {
+    font-size: 180%;
+  }
+}
+
+@media	only screen and (-webkit-min-device-pixel-ratio: 2),
+	only screen and (-o-min-device-pixel-ratio: 18/10),
+	only screen and (min-resolution: 170dpi)
+{
+  /* Even higher DPI devices */
+  body {
+    font-size: 210%;
+  }
+}
+
+
+@media	only screen and (-webkit-min-device-pixel-ratio: 2.2),
+	only screen and (-o-min-device-pixel-ratio: 20/10),
+	only screen and (min-resolution: 190dpi)
+{
+  /* Even higher DPI devices */
+  body {
+    font-size: 240%;
+  }
+}
+
+
+/**** End font sizes ****/
 
 div.body {
   color: #333332;
@@ -152,6 +197,11 @@ div.related li.edit_on_github:hover span.tooltip {
     font-size: 120%;
     padding-top: 1pt;
     padding-bottom: 1pt;
+    line-height: 1.3;
+  }
+
+  li.edit_on_github a {
+      display: none;
   }
 }
 
@@ -910,11 +960,13 @@ ul.horizontal img {
     max-width: 100% ;
 }
 
-div.max-height pre {
+/* Disable as it prevents "font boosting", used by chrome to set font
+ * size on small devices such as phones */
+/*div.max-height pre {
     overflow-y: scroll;
     overflow-x: scroll;
     max-height: 30em;
-}
+}*/
 
 /************* For sphinx-gallery ************/
 p.sphx-glr-script-out {
