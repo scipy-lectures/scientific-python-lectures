@@ -50,6 +50,7 @@ doctest_test_doctest_blocks = 'true'
 sphinx_gallery_conf = {
     'examples_dirs': ['intro/summary-exercises/examples',
                       'intro/matplotlib/examples',
+                      'intro/numpy/examples',
                       'intro/scipy/examples',
                       'advanced/image_processing/examples',
                       'advanced/mathematical_optimization/examples',
