@@ -142,7 +142,7 @@ Using Matplotlib::
     <matplotlib.image.AxesImage object at ...>
     >>> plt.savefig('plot.png')
 
-    >>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
+    >>> plt.imsave('red_elephant.png', img[:,:,0], cmap=plt.cm.gray)
 
 .. image:: auto_examples/images/sphx_glr_plot_elephant_001.png
     :width: 50%
