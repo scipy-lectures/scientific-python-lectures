@@ -693,17 +693,21 @@ methods on smooth, non-noisy functions.
  
    - |nm_rosen_icond_conv|
 
-In scipy, :func:`scipy.optimize.fmin` implements the Nelder-Mead
-approach::
+Using the Nelder-Mead solver in :func:`scipy.optimize.minimize`::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.fmin(f, [2, 2])
-    Optimization terminated successfully.
-             Current function value: 0.000000
-             Iterations: 46
-             Function evaluations: 91
-    array([ 0.99998568,  0.99996682])
+    >>> optimize.minimize(f, [2, -1], method="Nelder-Mead")
+     final_simplex: (array([[ 1.00001481,  1.00002828],
+           [ 0.9999825 ,  0.9999643 ],
+           [ 1.00001465,  1.0000095 ]]), array([  1.11527916e-10,   1.53677305e-10,   4.98835768e-10]))
+               fun: 1.1152791599374399e-10
+           message: 'Optimization terminated successfully.'
+              nfev: 111
+               nit: 58
+            status: 0
+           success: True
+                 x: array([ 1.00001481,  1.00002828])
 
 
 Global optimizers
