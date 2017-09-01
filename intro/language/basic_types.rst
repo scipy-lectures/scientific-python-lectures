@@ -295,7 +295,7 @@ Different string syntaxes (simple, double or triple quotes)::
     s = 'Hello, how are you?'
     s = "Hi, what's up"
     s = '''Hello,                 # tripling the quotes allows the
-           how are you'''         # the string to span more than one line
+           how are you'''         # string to span more than one line
     s = """Hi,
     what's up?"""
 
