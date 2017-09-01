@@ -414,17 +414,35 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 
 * **1D plotting**:
 
-.. literalinclude:: examples/plot_basic1dplot.py
-   :language: python
+.. sourcecode:: pycon
 
-.. image:: /intro/numpy/auto_examples/images/sphx_glr_plot_basic1dplot_001.png
+  >>> x = np.linspace(0, 3, 20)
+  >>> y = np.linspace(0, 9, 20)
+  >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
+  [<matplotlib.lines.Line2D object at ...>]
+  >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +SKIP
+  [<matplotlib.lines.Line2D object at ...>]
+
+.. image:: auto_examples/images/sphx_glr_plot_basic1dplot_001.png
+    :width: 40%
+    :target: auto_examples/plot_basic1dplot.html
+    :align: center
 
 * **2D arrays** (such as images):
 
-.. literalinclude:: examples/plot_basic2dplot.py
-   :language: python
+.. sourcecode:: pycon
 
-.. image:: /intro/numpy/auto_examples/images/sphx_glr_plot_basic2dplot_001.png
+  >>> x = np.linspace(0, 3, 20)
+  >>> y = np.linspace(0, 9, 20)
+  >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
+  [<matplotlib.lines.Line2D object at ...>]
+  >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +SKIP
+  [<matplotlib.lines.Line2D object at ...>]
+
+.. image:: auto_examples/images/sphx_glr_plot_basic2dplot_001.png
+    :width: 50%
+    :target: auto_examples/plot_basic2dplot.html
+    :align: center
 
 .. seealso:: More in the: :ref:`matplotlib chapter <matplotlib>`
 
