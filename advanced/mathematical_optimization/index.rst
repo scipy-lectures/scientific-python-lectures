@@ -989,21 +989,27 @@ Box bounds
 
 Box bounds correspond to limiting each of the individual parameters of
 the optimization. Note that some problems that are not originally written
-as box bounds can be rewritten as such via change of variables.
+as box bounds can be rewritten as such via change of variables. Both
+:func:`scipy.optimize.minimize_scalar` and :func:`scipy.optimize.minimize`
+support bound constraints with the parameter ``bounds``::
+
+    >>> def f(x):
+    ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+    >>> optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))   # doctest: +ELLIPSIS
+          fun: 1.5811388300841898
+     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+          jac: array([-0.94868331, -0.31622778])
+      message: b'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+         nfev: 9
+          nit: 2
+       status: 0
+      success: True
+            x: array([ 1.5,  1.5])
 
 .. image:: auto_examples/images/sphx_glr_plot_constraints_002.png
     :target: auto_examples/plot_constraints.html
     :align: right
     :scale: 75%
-
-* :func:`scipy.optimize.fminbound` for 1D-optimization
-* :func:`scipy.optimize.fmin_l_bfgs_b` a 
-  :ref:`quasi-Newton <quasi_newton>` method with bound constraints::
-
-    >>> def f(x):
-    ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
-    >>> optimize.fmin_l_bfgs_b(f, np.array([0, 0]), approx_grad=1, bounds=((-1.5, 1.5), (-1.5, 1.5)))   # doctest: +ELLIPSIS
-    (array([ 1.5,  1.5]), 1.5811388300841898, {...})
 
 
 General constraints
