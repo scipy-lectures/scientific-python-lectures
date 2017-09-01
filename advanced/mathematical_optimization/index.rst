@@ -212,6 +212,10 @@ Brent's method to find the minimum of a function:
    
    You can use different solvers using the parameter method.
 
+.. note::
+
+    :func:`scipy.optimize.minimize_scalar` can also be used for optimization
+    constrained to an interval using the parameter bounds.
 
 Gradient based methods
 -----------------------
