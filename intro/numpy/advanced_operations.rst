@@ -42,7 +42,10 @@ For example, :math:`3x^2 + 2x - 1`::
     >>> plt.plot(x, y, 'o', t, p(t), '-')   # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
 
-.. plot:: pyplots/numpy_intro_9.py
+.. image:: auto_examples/images/sphx_glr_plot_polyfit_001.png
+    :width: 50%
+    :target: auto_examples/plot_polyfit.html
+    :align: center
 
 See http://docs.scipy.org/doc/numpy/reference/routines.polynomials.poly1d.html
 for more.
@@ -76,7 +79,10 @@ range ``[-1, 1]``::
     >>> plt.plot(t, p(t), 'k-', lw=3)   # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
 
-.. plot:: pyplots/numpy_intro_10.py
+.. image:: auto_examples/images/sphx_glr_plot_chebyfit_001.png
+    :width: 50%
+    :target: auto_examples/plot_chebyfit.html
+    :align: center
 
 The Chebyshev polynomials have some advantages in interpolation.
 
@@ -136,12 +142,22 @@ Using Matplotlib::
     <matplotlib.image.AxesImage object at ...>
     >>> plt.savefig('plot.png')
 
-    >>> plt.imsave('red_elephant', img[:,:,0], cmap=plt.cm.gray)
+    >>> plt.imsave('red_elephant.png', img[:,:,0], cmap=plt.cm.gray)
+
+.. image:: auto_examples/images/sphx_glr_plot_elephant_001.png
+    :width: 50%
+    :target: auto_examples/plot_elephant.html
+    :align: center
 
 This saved only one channel (of RGB)::
 
     >>> plt.imshow(plt.imread('red_elephant.png'))  # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at ...>
+
+.. image:: auto_examples/images/sphx_glr_plot_elephant_002.png
+    :width: 50%
+    :target: auto_examples/plot_elephant.html
+    :align: center
 
 Other libraries::
 
@@ -150,7 +166,10 @@ Other libraries::
     >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')  # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at ...>
 
-.. plot:: pyplots/numpy_intro_3.py
+.. image:: auto_examples/images/sphx_glr_plot_elephant_003.png
+    :width: 50%
+    :target: auto_examples/plot_elephant.html
+    :align: center
 
 
 NumPy's own format

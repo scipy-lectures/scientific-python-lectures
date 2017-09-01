@@ -342,7 +342,10 @@ Other reductions
      >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +SKIP
      >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +SKIP
 
-   .. plot:: pyplots/numpy_intro_4.py
+   .. image:: auto_examples/images/sphx_glr_plot_populations_001.png
+      :width: 50%
+      :target: auto_examples/plot_populations.html
+      :align: center
 
    The mean populations over time:
 
@@ -433,8 +436,12 @@ Other reductions
    <matplotlib.text.Text object at ...>
    >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
    <matplotlib.text.Text object at ...>
+   >>> plt.tight_layout() # provide sufficient space for labels
 
-  .. plot:: pyplots/numpy_intro_5.py
+  .. image:: auto_examples/images/sphx_glr_plot_randomwalk_001.png
+     :width: 50%
+     :target: auto_examples/plot_randomwalk.html
+     :align: center
 
   We find a well-known result in physics: the RMS distance grows as the
   square root of the time!
@@ -588,10 +595,13 @@ Or in color:
     >>> plt.pcolor(distance)    # doctest: +SKIP
     >>> plt.colorbar()    # doctest: +SKIP
 
-.. plot:: pyplots/numpy_intro_6.py
+.. image:: auto_examples/images/sphx_glr_plot_distances_001.png
+   :width: 50%
+   :target: auto_examples/plot_distances.html
+   :align: center
 
 
-**Remark** : the ``numpy.ogrid`` function allows to directly create vectors x
+**Remark** : the :func:`numpy.ogrid` function allows to directly create vectors x
 and y of the previous example, with two "significant dimensions":
 
 .. sourcecode:: pycon

@@ -50,7 +50,11 @@ doctest_test_doctest_blocks = 'true'
 sphinx_gallery_conf = {
     'examples_dirs': ['intro/summary-exercises/examples',
                       'intro/matplotlib/examples',
+                      'intro/numpy/examples',
                       'intro/scipy/examples',
+                      # the following entry contains an extra level because
+                      # execution of the other python files causes errors
+                      'advanced/advanced_numpy/examples/plots',
                       'advanced/image_processing/examples',
                       'advanced/mathematical_optimization/examples',
                       'packages/scikit-image/examples',
@@ -60,7 +64,9 @@ sphinx_gallery_conf = {
                      ],
     'gallery_dirs': ['intro/summary-exercises/auto_examples',
                      'intro/matplotlib/auto_examples',
+                     'intro/numpy/auto_examples',
                      'intro/scipy/auto_examples',
+                     'advanced/advanced_numpy/auto_examples',
                      'advanced/image_processing/auto_examples',
                      'advanced/mathematical_optimization/auto_examples',
                      'packages/scikit-image/auto_examples',
