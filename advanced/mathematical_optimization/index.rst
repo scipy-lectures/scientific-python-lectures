@@ -748,7 +748,8 @@ All methods are exposed as the ``method`` argument of
 :Without knowledge of the gradient:
 
  * In general, prefer **BFGS** or **L-BFGS**, even if you have to approximate
-   numerically gradients
+   numerically gradients. These are also the default if you omit the parameter
+   ``method`` - depending if the problem has constraints or bounds
  
  * On well-conditioned problems, **Powell**
    and **Nelder-Mead**, both gradient-free methods, work well in
@@ -785,7 +786,7 @@ Making your optimizer faster
   running many similar optimizations, warm-restart one with the results of
   another.
 
-* Relax the tolerance if you don't need precision
+* Relax the tolerance if you don't need precision using the parameter ``tol``.
 
 Computing gradients
 -------------------
