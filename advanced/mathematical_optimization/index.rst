@@ -568,33 +568,42 @@ each step an approximation of the Hessian.
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> def fprime(x):
+    >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_bfgs(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-    Optimization terminated successfully.
-             Current function value: 0.000000
-             Iterations: 8
-             Function evaluations: 9
-             Gradient evaluations: 9
-    array([ 1.00000...,  1.0000...])
+    >>> optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+          fun: 2.630637192365927e-16
+     hess_inv: array([[ 0.99986623,  2.00004547],
+           [ 2.00004547,  4.49857739]])
+          jac: array([  6.70894997e-08,  -3.22220060e-08])
+      message: 'Optimization terminated successfully.'
+         nfev: 10
+          nit: 8
+         njev: 10
+       status: 0
+      success: True
+            x: array([ 1.        ,  0.99999999])
 
 
 **L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:
 in very high dimensions (> 250) the Hessian matrix is too costly to
-compute and invert. L-BFGS keeps a low-rank version. In addition, the
-scipy version, :func:`scipy.optimize.fmin_l_bfgs_b`, includes box bounds::
+compute and invert. L-BFGS keeps a low-rank version. In addition, box bounds
+are also supported by L-BFGS-B::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> def fprime(x):
+    >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_l_bfgs_b(f, [2, 2], fprime=fprime)    # doctest: +ELLIPSIS
-    (array([ 1.00000005,  1.00000009]), 1.4417677473011859e-15, {...})
+    >>> optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)    # doctest: +ELLIPSIS
+          fun: 1.4417677473011859e-15
+     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+          jac: array([  1.02331202e-07,  -2.59299369e-08])
+      message: b'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+         nfev: 17
+          nit: 16
+       status: 0
+      success: True
+            x: array([ 1.00000005,  1.00000009]
 
-.. note:: 
-   
-   If you do not specify the gradient to the L-BFGS solver, you
-   need to add `approx_grad=1`
 
 Gradient-less methods
 ----------------------
