@@ -374,15 +374,15 @@ be used by setting the parameter ``method`` to CG ::
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> optimize.minimize(f, [2, -1], method="CG")    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-         fun: 1.6503729082243953e-11
-         jac: array([ -6.15347610e-06,   2.53804028e-07])
+         fun: 1.6503...e-11
+         jac: array([ -6.1534...e-06,   2.5380...e-07])
      message: 'Optimization terminated successfully.'
         nfev: 108
          nit: 13
         njev: 27
       status: 0
      success: True
-           x: array([ 0.99999426,  0.99998863])
+           x: array([ 0.99999...,  0.99998...])
 
 Gradient methods need the Jacobian (gradient) of the function. They can compute it
 numerically, but will perform better if you can pass them the gradient::
@@ -390,15 +390,15 @@ numerically, but will perform better if you can pass them the gradient::
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.fmin_cg(f, [2, 1], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-         fun: 1.0912121775174348e-11
-         jac: array([ -5.25283405e-06,   2.92893689e-07])
+         fun: 1.0912...-11
+         jac: array([ -5.2528...e-06,   2.9289...e-07])
      message: 'Optimization terminated successfully.'
         nfev: 27
          nit: 13
         njev: 27
       status: 0
      success: True
-           x: array([ 0.99999533,  0.99999081])
+           x: array([ 0.99999...,  0.99999...])
 
 Note that the function has only been evaluated 27 times, compared to 108
 without the gradient.
@@ -470,9 +470,9 @@ inversion of the Hessian is performed by conjugate gradient ::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE
-         fun: 1.5601357400786612e-15
-         jac: array([  1.05753092e-07,  -7.48325277e-08])
+    >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+         fun: 1.5601...e-15
+         jac: array([  1.0575...e-07,  -7.4832...e-08])
      message: 'Optimization terminated successfully.'
         nfev: 11
         nhev: 0
@@ -480,7 +480,7 @@ inversion of the Hessian is performed by conjugate gradient ::
         njev: 52
       status: 0
      success: True
-           x: array([ 0.99999995,  0.99999988])
+           x: array([ 0.99999...,  0.99999...])
 
 Note that compared to a conjugate gradient (above), Newton's method has
 required less function evaluations, but more gradient evaluations, as it
@@ -489,9 +489,9 @@ to the algorithm::
 
     >>> def hessian(x): # Computed with sympy
     ...     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
-    >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=fprime, hess=hessian)    # doctest: +NORMALIZE_WHITESPACE
-         fun: 1.6277298383706738e-15
-         jac: array([  1.11044158e-07,  -7.78093352e-08])
+    >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=fprime, hess=hessian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+         fun: 1.6277...e-15
+         jac: array([  1.1104...e-07,  -7.7809...e-08])
      message: 'Optimization terminated successfully.'
         nfev: 11
         nhev: 10
@@ -499,7 +499,7 @@ to the algorithm::
         njev: 20
       status: 0
      success: True
-           x: array([ 0.99999994,  0.99999988])
+           x: array([ 0.99999...,  0.99999...])
 
 .. note:: 
    
@@ -571,17 +571,17 @@ each step an approximation of the Hessian.
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-          fun: 2.630637192365927e-16
-     hess_inv: array([[ 0.99986623,  2.00004547],
-           [ 2.00004547,  4.49857739]])
-          jac: array([  6.70894997e-08,  -3.22220060e-08])
+          fun: 2.6306...e-16
+     hess_inv: array([[ 0.99986...,  2.0000...],
+           [ 2.0000...,  4.498...]])
+          jac: array([  6.7089...e-08,  -3.2222...e-08])
       message: 'Optimization terminated successfully.'
          nfev: 10
           nit: 8
          njev: 10
        status: 0
       success: True
-            x: array([ 1.        ,  0.99999999])
+            x: array([ 1.        ,  0.99999...])
 
 
 **L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:
@@ -594,15 +594,15 @@ are also supported by L-BFGS-B::
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)    # doctest: +ELLIPSIS
-          fun: 1.4417677473011859e-15
-     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
-          jac: array([  1.02331202e-07,  -2.59299369e-08])
+          fun: 1.4417...e-15
+     hess_inv: ...
+          jac: array([  1.0233...e-07,  -2.5929...e-08])
       message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 17
           nit: 16
        status: 0
       success: True
-            x: array([ 1.00000005,  1.00000009]
+            x: array([ 1.0000...,  1.0000...]
 
 
 Gradient-less methods
@@ -697,17 +697,17 @@ Using the Nelder-Mead solver in :func:`scipy.optimize.minimize`::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.minimize(f, [2, -1], method="Nelder-Mead")
-     final_simplex: (array([[ 1.00001481,  1.00002828],
-           [ 0.9999825 ,  0.9999643 ],
-           [ 1.00001465,  1.0000095 ]]), array([  1.11527916e-10,   1.53677305e-10,   4.98835768e-10]))
-               fun: 1.1152791599374399e-10
+    >>> optimize.minimize(f, [2, -1], method="Nelder-Mead") # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+     final_simplex: (array([[ 1.0000...,  1.0000...],
+           [ 0.99998... ,  0.99996... ],
+           [ 1.0000...,  1.0000... ]]), array([  1.1152...e-10,   1.5367...e-10,   4.9883...e-10]))
+               fun: 1.1152...e-10
            message: 'Optimization terminated successfully.'
               nfev: 111
                nit: 58
             status: 0
            success: True
-                 x: array([ 1.00001481,  1.00002828])
+                 x: array([ 1.0000...,  1.0000...])
 
 
 Global optimizers
@@ -728,8 +728,8 @@ value. The parameters are specified with ranges given to
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.brute(f, ((-1, 2), (-1, 2)))
-    array([ 1.00001462,  1.00001547])
+    >>> optimize.brute(f, ((-1, 2), (-1, 2))) # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    array([ 1.0000...,  1.0000...])
 
 
 Practical guide to optimization with scipy
@@ -877,60 +877,18 @@ if we compute the norm ourselves and use a good generic optimizer
     ...     return np.sum(f(x)**2)
     >>> optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS
       fun: 2.694080799585467e-11
-     hess_inv: array([[  1.00000000e+00,   1.51476408e-06,  -9.52938670e-07,
-              8.10490662e-07,  -8.70993707e-07,  -2.38913624e-07,
-              7.65780553e-08,  -1.22683371e-07,  -2.78964621e-07,
-              3.30633449e-07],
-           [  1.51476408e-06,   5.22614112e-01,   4.31229250e-03,
-             -2.77309751e-03,  -2.20157452e-03,  -2.43622788e-03,
-             -5.48382372e-03,  -6.66807125e-04,  -6.81069303e-04,
-             -6.35640269e-03],
-           [ -9.52938670e-07,   4.31229250e-03,   5.64454479e-01,
-              3.44358934e-03,   7.50394924e-03,  -1.94770150e-02,
-             -8.05017298e-03,  -7.92117664e-03,  -9.80726517e-03,
-              3.50617008e-03],
-           [  8.10490662e-07,  -2.77309751e-03,   3.44358934e-03,
-              6.24376041e-01,  -5.23908085e-03,   2.09245073e-02,
-             -9.17188532e-03,   2.33290841e-03,  -1.94598387e-03,
-             -9.59957032e-03],
-           [ -8.70993707e-07,  -2.20157452e-03,   7.50394924e-03,
-             -5.23908085e-03,   7.06384458e-01,  -2.96921332e-02,
-             -7.30974882e-03,  -1.98820791e-02,   4.53601387e-02,
-              3.35150772e-03],
-           [ -2.38913624e-07,  -2.43622788e-03,  -1.94770150e-02,
-              2.09245073e-02,  -2.96921332e-02,   9.82326555e-01,
-             -2.74635570e-02,  -7.74369589e-03,   4.05006906e-02,
-             -1.09859805e-02],
-           [  7.65780553e-08,  -5.48382372e-03,  -8.05017298e-03,
-             -9.17188532e-03,  -7.30974882e-03,  -2.74635570e-02,
-              9.86851228e-01,   6.99212582e-03,   1.86241008e-02,
-              7.19597367e-03],
-           [ -1.22683371e-07,  -6.66807125e-04,  -7.92117664e-03,
-              2.33290841e-03,  -1.98820791e-02,  -7.74369589e-03,
-              6.99212582e-03,   1.05286148e+00,   1.25196160e-01,
-             -4.02652002e-02],
-           [ -2.78964621e-07,  -6.81069303e-04,  -9.80726517e-03,
-             -1.94598387e-03,   4.53601387e-02,   4.05006906e-02,
-              1.86241008e-02,   1.25196160e-01,   1.34158407e+00,
-             -7.03041201e-02],
-           [  3.30633449e-07,  -6.35640269e-03,   3.50617008e-03,
-             -9.59957032e-03,   3.35150772e-03,  -1.09859805e-02,
-              7.19597367e-03,  -4.02652002e-02,  -7.03041201e-02,
-              1.92714740e+00]])
-          jac: array([  1.32042630e-10,  -1.57256739e-07,   1.23570681e-06,
-            -5.33389992e-07,  -1.53039156e-06,  -3.48637009e-06,
-            -4.53222592e-07,  -3.17692260e-06,   4.09300091e-06,
-             5.73595621e-07])
+     hess_inv: ...
+          jac: ...
       message: 'Optimization terminated successfully.'
          nfev: 144
           nit: 11
          njev: 12
        status: 0
       success: True
-            x: array([ -7.38455928e-09,   1.11111023e-01,   2.22222895e-01,
-             3.33332997e-01,   4.44443340e-01,   5.55552563e-01,
-             6.66666186e-01,   7.77773679e-01,   8.88895440e-01,
-             1.00000114e+00])
+            x: array([ -7.3845...e-09,   1.1111...e-01,   2.2222...e-01,
+             3.3333...e-01,   4.4444...e-01,   5.5555...e-01,
+             6.6666...e-01,   7.7777...e-01,   8.8889...e-01,
+             1.0000...e+00])
 
 
 BFGS needs more function calls, and gives a less precise result.
@@ -972,8 +930,8 @@ scipy provides a helper function for this purpose:
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
     >>> optimize.curve_fit(f, x, y)
-    (array([ 1.51854577,  0.92665541]), array([[ 0.00037994, -0.00056796],
-           [-0.00056796,  0.00123978]]))
+    (array([ 1.5185...,  0.92665...]), array([[ 0.00037..., -0.00056...],
+           [-0.0005...,  0.00123...]]))
 
 
 .. topic:: **Exercise**
@@ -996,9 +954,9 @@ support bound constraints with the parameter ``bounds``::
     >>> def f(x):
     ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
     >>> optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))   # doctest: +ELLIPSIS
-          fun: 1.5811388300841898
+          fun: 1.5811...
      hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
-          jac: array([-0.94868331, -0.31622778])
+          jac: array([-0.94868..., -0.31622...])
       message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 9
           nit: 2
@@ -1036,15 +994,15 @@ and :math:`g(x) < 0`.
 
     >>> x0 = np.array([0, 0])
     >>> optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"}) #doctest: +ELLIPSIS
-         fun: 2.4748737350439685
-         jac: array([-0.70708779, -0.70712575])
+         fun: 2.4748...
+         jac: array([-0.70708..., -0.70712...])
      message: 'Optimization terminated successfully.'
         nfev: 20
          nit: 5
         njev: 5
       status: 0
      success: True
-           x: array([ 1.25004696,  0.24995304])
+           x: array([ 1.2500...,  0.2499...])
 
 
 .. warning:: 
