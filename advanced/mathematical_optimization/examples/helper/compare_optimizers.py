@@ -36,7 +36,7 @@ methods = {
     'L-BFGS':               my_partial(optimize.fmin_l_bfgs_b,
                                         approx_grad=1, factr=10.0,
                                         pgtol=1e-8, maxfun=1e7),
-    "L-BFGS w f'":               my_partial(optimize.fmin_l_bfgs_b,
+    "L-BFGS w f'":          my_partial(optimize.fmin_l_bfgs_b,
                                         factr=10.0,
                                         pgtol=1e-8, maxfun=1e7),
 }
@@ -94,20 +94,20 @@ def mk_costs(ndim=2):
 # Compare methods without gradient
 mem = Memory('.', verbose=3)
 
-if 1:
+if True:
     gradient_less_benchs = dict()
 
     for ndim in (2, 8, 32, 128):
         this_dim_benchs = dict()
         costs, starting_points = mk_costs(ndim)
-        for cost_name, cost_function in costs.iteritems():
+        for cost_name, cost_function in costs.items():
             # We don't need the derivative or the hessian
             cost_function = cost_function[0]
             function_bench = dict()
             for x0 in starting_points:
                 all_bench = list()
                 # Bench gradient-less
-                for method_name, method in methods.iteritems():
+                for method_name, method in methods.items():
                     if method_name in ('Newton', "L-BFGS w f'"):
                         continue
                     this_bench = function_bench.get(method_name, list())
@@ -124,7 +124,7 @@ if 1:
                     function_bench[method_name] = this_bench
 
                 # Bench with gradients
-                for method_name, method in methods.iteritems():
+                for method_name, method in methods.items():
                     if method_name in ('Newton', 'Powell', 'Nelder-mead',
                                        "L-BFGS"):
                         continue
@@ -151,11 +151,11 @@ if 1:
                 this_bench = function_bench.get(method_name, list())
                 this_costs = mem.cache(bencher_hessian)(cost_name, ndim,
                                                 method_name, x0)
-                if np.all(this_costs > .25*ndim**2*1e-9):
+                if np.all(this_costs[0] > .25*ndim**2*1e-9):
                     convergence = 2*len(this_costs)
                 else:
                     convergence = np.where(
-                                    np.diff(this_costs > .25*ndim**2*1e-9)
+                                    np.diff(this_costs[0] > .25*ndim**2*1e-9)
                                 )[0].max() + 1
                 this_bench.append(convergence)
                 all_bench.append(convergence)
@@ -167,10 +167,8 @@ if 1:
                     function_bench[method_name][-1] /= x0_mean
             this_dim_benchs[cost_name] = function_bench
         gradient_less_benchs[ndim] = this_dim_benchs
-        print 80*'_'
-        print 'Done cost %s, ndim %s' % (cost_name, ndim)
-        print 80*'_'
+        print(80*'_')
+        print('Done cost %s, ndim %s' % (cost_name, ndim))
+        print(80*'_')
 
     pickle.dump(gradient_less_benchs, file('compare_optimizers.pkl', 'w'))
-
-
