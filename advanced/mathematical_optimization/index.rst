@@ -597,7 +597,7 @@ are also supported by L-BFGS-B::
           fun: 1.4417677473011859e-15
      hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
           jac: array([  1.02331202e-07,  -2.59299369e-08])
-      message: b'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 17
           nit: 16
        status: 0
@@ -999,7 +999,7 @@ support bound constraints with the parameter ``bounds``::
           fun: 1.5811388300841898
      hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
           jac: array([-0.94868331, -0.31622778])
-      message: b'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 9
           nit: 2
        status: 0
