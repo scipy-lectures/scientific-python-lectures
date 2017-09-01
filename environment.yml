@@ -1,0 +1,15 @@
+name: scipy-lectures
+
+dependencies:
+- python=2.7
+- cython
+- sphinx
+- matplotlib
+- pandas
+- scikit-learn
+- scikit-image
+- seaborn
+- pip
+- pip:
+    - sphinx-gallery
+
