@@ -17,11 +17,11 @@ env:
       PANDAS_VERSION="0.18"
 
 install:
-    - source continuous_integration/install.sh
+    - source build_tools/install.sh
 
 before_script:
     - make clean
 
 script:
-    - python continuous_integration/show-python-packages-versions.py
+    - python build_tools/show-python-packages-versions.py
     - make test

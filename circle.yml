@@ -16,28 +16,14 @@ dependencies:
 
   override:
     - cd ~/scipy-lecture-notes
-    - source continuous_integration/install.sh:
-        environment:
-            DISTRIB: "conda"
-            PYTHON_VERSION: "2.7"
-            NUMPY_VERSION: "1.9"
-            SCIPY_VERSION: "0.17.1"
-            SCIKIT_LEARN_VERSION: "0.16.1"
-            MATPLOTLIB_VERSION: "1.4.0"
-            SCIKIT_IMAGE_VERSION: "0.10.1"
-            SYMPY_VERSION: "0.7.5"
-            STATSMODELS_VERSION: "0.5"
-            SEABORN_VERSION: "0.6"
-            PANDAS_VERSION: "0.15"
-    - conda install sphinx coverage pillow -y -n testenv --quiet
-    - source activate testenv && pip install sphinx-gallery
-    - source activate testenv && python continuous_integration/show-python-packages-versions.py
+    - source build_tools/install.sh:
+    - python build_tools/show-python-packages-versions.py
 
 test:
   override:
     # Tests are disabled for now because they trigger errors that are not understood
     # - make clean test
-    - source continuous_integration/circle_ci_test_doc.sh
+    - source build_tools/circle_ci_test_doc.sh
     # workaround - make html returns 0 even if examples fail to build
     - cat ~/log.txt && if grep -q "Traceback (most recent call last):" ~/log.txt; then false; else true; fi
 
