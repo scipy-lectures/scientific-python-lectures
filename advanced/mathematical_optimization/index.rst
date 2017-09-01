@@ -160,8 +160,25 @@ A review of the different optimizers
 Getting started: 1D optimization
 ---------------------------------
 
-Use :func:`scipy.optimize.brent` to minimize 1D functions.
-It combines a bracketing strategy with a parabolic approximation.
+Let's get started by finding the minimum of the scalar function
+:math:`f(x)=\exp[(x-0.7)^2]`. :func:`scipy.optimize.minimize_scalar` uses
+Brent's method to find the minimum of a function:
+
+::
+
+    >>> import numpy as np
+    >>> from scipy.optimize import minimize_scalar
+    >>> def f(x):
+    ...     return -np.exp(-(x - 0.7)**2)
+    >>> result = minimize_scalar(f)
+    >>> result.success # check if solver was successful
+    >>> True
+    >>> x_min = result.x
+    >>> x_min #doctest: +ELLIPSIS
+    0.699999999...
+    >>> x_min - 0.7 #doctest: +ELLIPSIS
+    -2.160590595323697e-10
+
 
 .. |1d_optim_1| image:: auto_examples/images/sphx_glr_plot_1d_optim_001.png
    :scale: 90%
@@ -191,26 +208,11 @@ It combines a bracketing strategy with a parabolic approximation.
 
    - |1d_optim_4|
 
-::
-
-    >>> from scipy import optimize
-    >>> def f(x):
-    ...     return -np.exp(-(x - .7)**2)
-    >>> x_min = optimize.brent(f)  # It actually converges in 9 iterations!
-    >>> x_min #doctest: +ELLIPSIS
-    0.699999999...
-    >>> x_min - .7 #doctest: +ELLIPSIS
-    -2.1605...e-10
 
 .. note:: 
    
-   Brent's method can also be used for optimization *constrained to an
-   interval* using :func:`scipy.optimize.fminbound`
+   You can use different solvers using the parameter method.
 
-.. note::
-   
-   In scipy 0.11, :func:`scipy.optimize.minimize_scalar` gives a generic
-   interface to 1D scalar minimization
 
 Gradient based methods
 -----------------------
