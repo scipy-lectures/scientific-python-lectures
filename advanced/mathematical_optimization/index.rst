@@ -875,10 +875,10 @@ if we compute the norm ourselves and use a good generic optimizer
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
-    >>> optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS
+    >>> optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
       fun: 2.694080799585467e-11
-     hess_inv: ...
-          jac: ...
+     hess_inv: array([[ ... ]])
+          jac: array([[ ... ]])
       message: 'Optimization terminated successfully.'
          nfev: 144
           nit: 11
