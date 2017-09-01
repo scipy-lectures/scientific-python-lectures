@@ -318,34 +318,38 @@ Equation solving
 SymPy is able to solve algebraic equations, in one and several
 variables::
 
-    In [7]: sym.solve(x**4 - 1, x)
-    Out[7]: [I, 1, -1, -I]
+    >>> sym.solveset(x ** 4 - 1, x)
+    {-1, 1, -I, I}
 
 As you can see it takes as first argument an expression that is
-supposed to be equaled to 0. It is able to solve a large part of
+supposed to be equaled to 0. It also has (limited) support for transcendental 
+equations::
+
+   >>> sym.solveset(sym.exp(x) + 1, x)
+   {I*(2*n*pi + pi) | n in Integers()}
+
+It is able to solve a large part of
 polynomial equations, and is also capable of solving multiple
 equations with respect to multiple variables giving a tuple as second
-argument::
+argument. To do this you use the ``solve`` command::
 
-    In [8]: sym.solve([x + 5 * y - 2, -3 * x + 6 * y - 15], [x, y])
-    Out[8]: {y: 1, x: -3}
-
-It also has (limited) support for transcendental equations::
-
-   In [9]: sym.solve(sym.exp(x) + 1, x)
-   Out[9]: [pi*I]
+    >>> solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
+    >>> solution[x], solution[y]
+    (-3, 1)
 
 Another alternative in the case of polynomial equations is
 `factor`. `factor` returns the polynomial factorized into irreducible
 terms, and is capable of computing the factorization over various
 domains::
 
-   In [10]: f = x ** 4 - 3 * x ** 2 + 1
-   In [11]: sym.factor(f)
-   Out[11]: (1 + x - x ** 2) * (1 - x - x ** 2)
+   >>> f = x ** 4 - 3 * x ** 2 + 1
+   >>> sym.factor(f)
+   / 2        \ / 2        \
+   \x  - x - 1/*\x  + x - 1/
 
-   In [12]: sym.factor(f, modulus=5)
-   Out[12]: (2 + x)**2*(2 - x)**2
+   >>> sym.factor(f, modulus=5)
+          2        2
+   (x - 2) *(x + 2) 
 
 
 
@@ -353,15 +357,15 @@ SymPy is also able to solve boolean equations, that is, to decide if a
 certain boolean expression is satisfiable or not. For this, we use the
 function satisfiable::
 
-   In [13]: sym.satisfiable(x & y)
-   Out[13]: {x: True, y: True}
+   >>> sym.satisfiable(x & y)
+   {x: True, y: True}
 
 This tells us that ``(x & y)`` is True whenever ``x`` and ``y`` are both True. 
 If an expression cannot be true, i.e. no values of its arguments can make
 the expression True, it will return False::
 
-   In [14]: sym.satisfiable(x & ~x)
-   Out[14]: False
+   >>> sym.satisfiable(x & ~x)
+   False
 
 
 Exercises
