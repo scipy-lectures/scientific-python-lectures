@@ -1468,7 +1468,11 @@ The masked array package also contains domain-aware functions::
     >>> plt.plot(year, populations, 'o-')   # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>, ...]
 
-   .. plot:: pyplots/numpy_intro_8.py
+.. image:: auto_examples/images/sphx_glr_plot_maskedstats_001.png
+   :width: 50%
+   :target: auto_examples/plot_maskedstats.html
+   :align: center
+
 
 :class:`recarray`: purely convenience
 ---------------------------------------
