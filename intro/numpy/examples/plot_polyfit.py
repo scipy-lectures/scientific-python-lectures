@@ -8,7 +8,7 @@ Plot noisy data and their polynomial fit
 import numpy as np
 import matplotlib.pyplot as plt
 
-np.random.seed(0)
+np.random.seed(12)
 
 x = np.linspace(0, 1, 20)
 y = np.cos(x) + 0.3*np.random.rand(20)
