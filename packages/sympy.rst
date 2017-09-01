@@ -44,11 +44,11 @@ Using SymPy as a calculator
 SymPy defines three numerical types: ``Real``, ``Rational`` and ``Integer``.
 
 The Rational class represents a rational number as a pair of two
-Integers: the numerator and the denominator, so ``Rational(1,2)``
-represents 1/2, ``Rational(5,2)`` 5/2 and so on::
+Integers: the numerator and the denominator, so ``Rational(1, 2)``
+represents 1/2, ``Rational(5, 2)`` 5/2 and so on::
 
     >>> import sympy as sym
-    >>> a = sym.Rational(1,2)
+    >>> a = sym.Rational(1, 2)
 
     >>> a
     1/2
@@ -103,7 +103,7 @@ Then you can manipulate them::
     >>> x + y + x - y
     2*x
 
-    >>> (x + y)**2
+    >>> (x + y) ** 2
     (x + y)**2
 
 Symbols can now be manipulated using some of python operators: ``+``, ``-`, 
@@ -131,10 +131,10 @@ Expand
 Use this to expand an algebraic expression. It will try to denest
 powers and multiplications::
 
-    >>> sym.expand((x + y)**3)
+    >>> sym.expand((x + y) ** 3)
      3      2          2    3
     x  + 3*x *y + 3*x*y  + y 
-    >>> 3*x*y**2 + 3*y*x**2 + x**3 + y**3
+    >>> 3 * x * y ** 2 + 3 * y * x ** 2 + x ** 3 + y ** 3
      3      2          2    3
     x  + 3*x *y + 3*x*y  + y 
 
@@ -143,12 +143,12 @@ Further options can be given in form on keywords::
 
     >>> sym.expand(x + y, complex=True)
     re(x) + re(y) + I*im(x) + I*im(y)
-    >>> sym.I*sym.im(x) + sym.I*sym.im(y) + sym.re(x) + sym.re(y)
+    >>> sym.I * sym.im(x) + sym.I * sym.im(y) + sym.re(x) + sym.re(y)
     re(x) + re(y) + I*im(x) + I*im(y)
 
     >>> sym.expand(sym.cos(x + y), trig=True)
     -sin(x)*sin(y) + cos(x)*cos(y)
-    >>> sym.cos(x)*sym.cos(y) - sym.sin(x)*sym.sin(y)
+    >>> sym.cos(x) * sym.cos(y) - sym.sin(x) * sym.sin(y)
     -sin(x)*sin(y) + cos(x)*cos(y)
 
 Simplify
@@ -157,7 +157,7 @@ Simplify
 Use simplify if you would like to transform an expression into a
 simpler form::
 
-    >>> sym.simplify((x + x*y) / x)
+    >>> sym.simplify((x + x * y) / x)
     y + 1
 
 
@@ -183,7 +183,7 @@ Limits are easy to use in SymPy, they follow the syntax ``limit(function,
 variable, point)``, so to compute the limit of :math:`f(x)` as 
 :math:`x \rightarrow 0`, you would issue ``limit(f, x, 0)``::
 
-   >>> sym.limit(sym.sin(x)/x, x, 0)
+   >>> sym.limit(sym.sin(x) / x, x, 0)
    1
 
 you can also calculate the limit at infinity::
@@ -191,10 +191,10 @@ you can also calculate the limit at infinity::
    >>> sym.limit(x, x, sym.oo)
    oo
 
-   >>> sym.limit(1/x, x, sym.oo)
+   >>> sym.limit(1 / x, x, sym.oo)
    0
 
-   >>> sym.limit(x**x, x, 0)
+   >>> sym.limit(x ** x, x, 0)
    1
 
 
@@ -208,7 +208,7 @@ var)``. Examples::
 
     >>> sym.diff(sym.sin(x), x)
     cos(x)
-    >>> sym.diff(sym.sin(2*x), x)
+    >>> sym.diff(sym.sin(2 * x), x)
     2*cos(2*x)
 
     >>> sym.diff(sym.tan(x), x)
@@ -217,19 +217,19 @@ var)``. Examples::
 
 You can check, that it is correct by::
 
-    >>> sym.limit((sym.tan(x+y) - sym.tan(x))/y, y, 0)
+    >>> sym.limit((sym.tan(x + y) - sym.tan(x)) / y, y, 0)
        2       
     tan (x) + 1
 
 Higher derivatives can be calculated using the ``diff(func, var, n)`` method::
 
-    >>> sym.diff(sym.sin(2*x), x, 1)
+    >>> sym.diff(sym.sin(2 * x), x, 1)
     2*cos(2*x)
 
-    >>> sym.diff(sym.sin(2*x), x, 2)
+    >>> sym.diff(sym.sin(2 * x), x, 2)
     -4*sin(2*x)
 
-    >>> sym.diff(sym.sin(2*x), x, 3)
+    >>> sym.diff(sym.sin(2 * x), x, 3)
     -8*cos(2*x)
 
 
@@ -267,20 +267,20 @@ elementary and special functions via ``integrate()`` facility, which uses
 the powerful extended Risch-Norman algorithm and some heuristics and pattern
 matching. You can integrate elementary functions::
 
-    >>> sym.integrate(6*x**5, x)
+    >>> sym.integrate(6 * x ** 5, x)
      6
     x 
     >>> sym.integrate(sym.sin(x), x)
     -cos(x)
     >>> sym.integrate(sym.log(x), x)
     x*log(x) - x
-    >>> sym.integrate(2*x + sym.sinh(x), x)
+    >>> sym.integrate(2 * x + sym.sinh(x), x)
      2          
     x  + cosh(x)
 
 Also special functions are handled easily::
 
-    >>> sym.integrate(sym.exp(-x**2)*sym.erf(x), x)
+    >>> sym.integrate(sym.exp(-x ** 2) * sym.erf(x), x)
       ____    2   
     \/ pi *erf (x)
     --------------
@@ -290,16 +290,16 @@ It is possible to compute definite integral::
 
     >>> sym.integrate(x**3, (x, -1, 1))
     0
-    >>> sym.integrate(sym.sin(x), (x, 0, sym.pi/2))
+    >>> sym.integrate(sym.sin(x), (x, 0, sym.pi / 2))
     1
-    >>> sym.integrate(sym.cos(x), (x, -sym.pi/2, sym.pi/2))
+    >>> sym.integrate(sym.cos(x), (x, -sym.pi / 2, sym.pi / 2))
     2
 
 Also improper integrals are supported as well::
 
     >>> sym.integrate(sym.exp(-x), (x, 0, sym.oo))
     1
-    >>> sym.integrate(sym.exp(-x**2), (x, -sym.oo, sym.oo))
+    >>> sym.integrate(sym.exp(-x ** 2), (x, -sym.oo, sym.oo))
       ____
     \/ pi 
 
@@ -327,7 +327,7 @@ polynomial equations, and is also capable of solving multiple
 equations with respect to multiple variables giving a tuple as second
 argument::
 
-    In [8]: sym.solve([x + 5*y - 2, -3*x + 6*y - 15], [x, y])
+    In [8]: sym.solve([x + 5 * y - 2, -3 * x + 6 * y - 15], [x, y])
     Out[8]: {y: 1, x: -3}
 
 It also has (limited) support for transcendental equations::
@@ -340,9 +340,9 @@ Another alternative in the case of polynomial equations is
 terms, and is capable of computing the factorization over various
 domains::
 
-   In [10]: f = x**4 - 3*x**2 + 1
+   In [10]: f = x ** 4 - 3 * x ** 2 + 1
    In [11]: sym.factor(f)
-   Out[11]: (1 + x - x**2)*(1 - x - x**2)
+   Out[11]: (1 + x - x ** 2) * (1 - x - x ** 2)
 
    In [12]: sym.factor(f, modulus=5)
    Out[12]: (2 + x)**2*(2 - x)**2
@@ -388,7 +388,7 @@ Matrices
 
 Matrices are created as instances from the Matrix class::
 
-    >>> sym.Matrix([[1,0], [0,1]])
+    >>> sym.Matrix([[1, 0], [0, 1]])
     [1  0]
     [    ]
     [0  1]
@@ -396,7 +396,7 @@ Matrices are created as instances from the Matrix class::
 unlike a NumPy array, you can also put Symbols in it::
 
     >>> x, y = sym.symbols('x, y')
-    >>> A = sym.Matrix([[1,x], [y,1]])
+    >>> A = sym.Matrix([[1, x], [y, 1]])
     >>> A
     [1  x]
     [    ]
@@ -441,7 +441,7 @@ find the best possible resolution system. For example, if you know
 that it is a separable equations, you can use keyword ``hint='separable'``
 to force dsolve to resolve it as a separable equation::
 
-   >>> sym.dsolve(sym.sin(x)*sym.cos(f(x)) + sym.cos(x)*sym.sin(f(x))*f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
+   >>> sym.dsolve(sym.sin(x) * sym.cos(f(x)) + sym.cos(x) * sym.sin(f(x)) * f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
                  /     _________________\                  /     ________________
                  |    /      C1         |                  |    /      C1        
    [f(x) = - asin|   /  ----------- + 1 | + pi, f(x) = asin|   /  ----------- + 1
