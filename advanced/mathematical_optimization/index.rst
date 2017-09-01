@@ -171,7 +171,7 @@ Brent's method to find the minimum of a function:
     ...     return -np.exp(-(x - 0.7)**2)
     >>> result = optimize.minimize_scalar(f)
     >>> result.success # check if solver was successful
-    >>> True
+    True
     >>> x_min = result.x
     >>> x_min #doctest: +ELLIPSIS
     0.699999999...
