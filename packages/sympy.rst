@@ -1,10 +1,6 @@
 
 .. TODO: bench and fit in 1:30
 
-.. TODO: plotting <- broken in OSX
-   >>> import sympy
-   >>> sympy.init_printing(use_unicode=False, wrap_line=True, no_global=False)
-
 .. _sympy:
 
 ======================================
@@ -67,8 +63,7 @@ are treated as
 symbols and can be evaluated with arbitrary precision::
 
     >>> sym.pi**2
-      2
-    pi 
+    pi**2
 
     >>> sym.pi.evalf()
     3.14159265358979
@@ -109,8 +104,7 @@ Then you can manipulate them::
     2*x
 
     >>> (x + y)**2
-           2
-    (x + y) 
+    (x + y)**2
 
 Symbols can now be manipulated using some of python operators: ``+``, ``-`, 
 ``*``, ``**`` (arithmetic), &, `|`, ~ , >>, << (boolean).
@@ -118,9 +112,10 @@ Symbols can now be manipulated using some of python operators: ``+``, ``-`,
 
 .. topic:: **Printing**
 
-   Here we use the following setting for printing
+   Sympy allows for control of the display of the output. From here we use the 
+   following setting for printing
 
-    >>> sym.init_printing(use_unicode=False, wrap_line=True)
+   >>> sym.init_printing(use_unicode=False, wrap_line=True)
 
 
 
