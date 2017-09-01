@@ -1015,8 +1015,8 @@ support bound constraints with the parameter ``bounds``::
 General constraints
 --------------------
 
-Equality and inequality constraints specified as functions: `f(x) = 0`
-and `g(x)< 0`.
+Equality and inequality constraints specified as functions: :math:`f(x) = 0`
+and :math:`g(x) < 0`.
 
 * :func:`scipy.optimize.fmin_slsqp` Sequential least square programming:
   equality and inequality constraints:
@@ -1034,27 +1034,24 @@ and `g(x)< 0`.
     >>> def constraint(x):
     ...     return np.atleast_1d(1.5 - np.sum(np.abs(x)))
 
-    >>> optimize.fmin_slsqp(f, np.array([0, 0]), ieqcons=[constraint, ]) #doctest: +ELLIPSIS
-    Optimization terminated successfully.    (Exit mode 0)
-                Current function value: 2.4748737350...
-                Iterations: 5
-                Function evaluations: 20
-                Gradient evaluations: 5
-    array([ 1.25004696,  0.24995304])
+    >>> x0 = np.array([0, 0])
+    >>> optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"}) #doctest: +ELLIPSIS
+         fun: 2.4748737350439685
+         jac: array([-0.70708779, -0.70712575])
+     message: 'Optimization terminated successfully.'
+        nfev: 20
+         nit: 5
+        njev: 5
+      status: 0
+     success: True
+           x: array([ 1.25004696,  0.24995304])
 
-
-
-* :func:`scipy.optimize.fmin_cobyla` Constraints optimization by linear 
-  approximation: inequality constraints only::
-
-    >>> optimize.fmin_cobyla(f, np.array([0, 0]), cons=constraint)
-    array([ 1.25009622,  0.24990378])
 
 .. warning:: 
    
    The above problem is known as the `Lasso
    <http://en.wikipedia.org/wiki/Lasso_(statistics)#LASSO_method>`_
-   problem in statistics, and there exists very efficient solvers for it
+   problem in statistics, and there exist very efficient solvers for it
    (for instance in `scikit-learn <http://scikit-learn.org>`_). In
    general do not use generic solvers when specific ones exist.
 
@@ -1064,4 +1061,3 @@ and `g(x)< 0`.
    problems can be converted to non-constrained optimization problems
    using a mathematical trick known as `Lagrange multipliers
    <https://en.wikipedia.org/wiki/Lagrange_multiplier>`_.
-   
