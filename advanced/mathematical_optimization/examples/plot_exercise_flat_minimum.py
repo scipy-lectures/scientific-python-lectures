@@ -31,7 +31,8 @@ def g_prime(x):
     r = np.sqrt(x[0]**2 + x[1]**2)
     return 2/r**3*g(x)*x/r
 
-x_min = optimize.fmin_powell(g, [1, 1], xtol=1e-10)
+result = optimize.minimize(g, [1, 1], method="Powell", tol=1e-10)
+x_min = result.x
 
 ###############################################################################
 # Some pretty plotting
@@ -58,4 +59,3 @@ pl.quiver(X[::5, ::5], Y[::5, ::5], dX, dY, color='.5')
 pl.plot(x_min[0], x_min[1], 'r+', markersize=15)
 
 pl.show()
-

@@ -47,39 +47,38 @@ pl.contour(X, Y, Z, cmap=pl.cm.gnuplot)
 
 # A reference but slow solution:
 t0 = time.time()
-x_ref = optimize.fmin_powell(f, K[0], xtol=1e-10, ftol=1e-6, disp=0)
+x_ref = optimize.minimize(f, K[0], method="Powell").x
 print('     Powell: time %.2fs' % (time.time() - t0))
 f_ref = f(x_ref)
 
 # Compare different approaches
 t0 = time.time()
-x_bfgs = optimize.fmin_bfgs(f, K[0], disp=0)[0]
+x_bfgs = optimize.minimize(f, K[0], method="BFGS").x
 print('       BFGS: time %.2fs, x error %.2f, f error %.2f' % (time.time() - t0,
     np.sqrt(np.sum((x_bfgs - x_ref)**2)), f(x_bfgs) - f_ref))
 
 t0 = time.time()
-x_l_bfgs = optimize.fmin_l_bfgs_b(f, K[0], approx_grad=1, disp=0)[0]
+x_l_bfgs = optimize.minimize(f, K[0], method="L-BFGS-B").x
 print('     L-BFGS: time %.2fs, x error %.2f, f error %.2f' % (time.time() - t0,
     np.sqrt(np.sum((x_l_bfgs - x_ref)**2)), f(x_l_bfgs) - f_ref))
 
 
 t0 = time.time()
-x_bfgs = optimize.fmin_bfgs(f, K[0], f_prime, disp=0)[0]
+x_bfgs = optimize.minimize(f, K[0], jac=f_prime, method="BFGS").x
 print("  BFGS w f': time %.2fs, x error %.2f, f error %.2f" % (
     time.time() - t0, np.sqrt(np.sum((x_bfgs - x_ref)**2)),
     f(x_bfgs) - f_ref))
 
 t0 = time.time()
-x_l_bfgs = optimize.fmin_l_bfgs_b(f, K[0], f_prime, disp=0)[0]
+x_l_bfgs = optimize.minimize(f, K[0], jac=f_prime, method="L-BFGS-B").x
 print("L-BFGS w f': time %.2fs, x error %.2f, f error %.2f" % (
     time.time() - t0, np.sqrt(np.sum((x_l_bfgs - x_ref)**2)),
     f(x_l_bfgs) - f_ref))
 
 t0 = time.time()
-x_newton = optimize.fmin_ncg(f, K[0], f_prime, fhess=hessian, disp=0)[0]
+x_newton = optimize.minimize(f, K[0], jac=f_prime, hess=hessian, method="Newton-CG").x
 print("     Newton: time %.2fs, x error %.2f, f error %.2f" % (
     time.time() - t0, np.sqrt(np.sum((x_newton - x_ref)**2)),
     f(x_newton) - f_ref))
 
 pl.show()
-
