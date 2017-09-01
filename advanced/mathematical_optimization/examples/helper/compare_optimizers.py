@@ -149,13 +149,13 @@ if True:
                 # Bench Newton with Hessian
                 method_name = 'Newton'
                 this_bench = function_bench.get(method_name, list())
-                this_costs = mem.cache(bencher_hessian)(cost_name, ndim,
+                this_costs, this_counts = mem.cache(bencher_hessian)(cost_name, ndim,
                                                 method_name, x0)
-                if np.all(this_costs[0] > .25*ndim**2*1e-9):
+                if np.all(this_costs > .25*ndim**2*1e-9):
                     convergence = 2*len(this_costs)
                 else:
                     convergence = np.where(
-                                    np.diff(this_costs[0] > .25*ndim**2*1e-9)
+                                    np.diff(this_costs > .25*ndim**2*1e-9)
                                 )[0].max() + 1
                 this_bench.append(convergence)
                 all_bench.append(convergence)
