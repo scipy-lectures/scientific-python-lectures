@@ -462,24 +462,25 @@ purpose, they rely on the 2 first derivative of the function: the
  
    - |ncg_rosen_icond_conv|
 
-In scipy, the Newton method for optimization is implemented in
-:func:`scipy.optimize.fmin_ncg` (cg here refers to that fact that an
-inner operation, the inversion of the Hessian, is performed by conjugate
-gradient). :func:`scipy.optimize.fmin_tnc` can be use for constraint
-problems, although it is less versatile::
+In scipy, you can use the Newton method by setting ``method`` to Newton-CG in
+:func:`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
+inversion of the Hessian is performed by conjugate gradient ::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> def fprime(x):
+    >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE
-    Optimization terminated successfully.
-            Current function value: 0.000000
-            Iterations: 9
-            Function evaluations: 11
-            Gradient evaluations: 51
-            Hessian evaluations: 0
-    array([ 1.,  1.])
+    >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE
+         fun: 1.5601357400786612e-15
+         jac: array([  1.05753092e-07,  -7.48325277e-08])
+     message: 'Optimization terminated successfully.'
+        nfev: 11
+        nhev: 0
+         nit: 10
+        njev: 52
+      status: 0
+     success: True
+           x: array([ 0.99999995,  0.99999988])
 
 Note that compared to a conjugate gradient (above), Newton's method has
 required less function evaluations, but more gradient evaluations, as it
@@ -488,14 +489,17 @@ to the algorithm::
 
     >>> def hessian(x): # Computed with sympy
     ...     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
-    >>> optimize.fmin_ncg(f, [2, 2], fprime=fprime, fhess=hessian)    # doctest: +NORMALIZE_WHITESPACE
-    Optimization terminated successfully.
-            Current function value: 0.000000
-            Iterations: 9
-            Function evaluations: 11
-            Gradient evaluations: 19
-            Hessian evaluations: 9
-    array([ 1.,  1.])
+    >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=fprime, hess=hessian)    # doctest: +NORMALIZE_WHITESPACE
+         fun: 1.6277298383706738e-15
+         jac: array([  1.11044158e-07,  -7.78093352e-08])
+     message: 'Optimization terminated successfully.'
+        nfev: 11
+        nhev: 10
+         nit: 10
+        njev: 20
+      status: 0
+     success: True
+           x: array([ 0.99999994,  0.99999988])
 
 .. note:: 
    
