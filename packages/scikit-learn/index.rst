@@ -887,16 +887,18 @@ This problem also occurs with regression models. In the following we
 fit an other instance-based model named "decision tree" to the Boston
 Housing price dataset we introduced previously::
 
-    from sklearn.datasets import load_boston
-    from sklearn.tree import DecisionTreeRegressor
+    >>> from sklearn.datasets import load_boston
+    >>> from sklearn.tree import DecisionTreeRegressor
 
-    data = load_boston()
-    clf = DecisionTreeRegressor().fit(data.data, data.target)
-    predicted = clf.predict(data.data)
-    expected = data.target
+    >>> data = load_boston()
+    >>> clf = DecisionTreeRegressor().fit(data.data, data.target)
+    >>> predicted = clf.predict(data.data)
+    >>> expected = data.target
 
-    plt.scatter(expected, predicted)
-    plt.plot([0, 50], [0, 50], '--k')
+    >>> plt.scatter(expected, predicted) # doctest: +ELLIPSIS
+    <matplotlib.collections.PathCollection object at ...>
+    >>> plt.plot([0, 50], [0, 50], '--k') # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...]
 
 .. figure:: auto_examples/images/sphx_glr_plot_measuring_performance_001.png
    :align: right
