@@ -367,34 +367,40 @@ gradient and sharp turns are reduced.
  
    - |cg_rosen_icond_conv|
 
-Methods based on conjugate gradient are named with *'cg'* in scipy. The
-simple conjugate gradient method to minimize a function is
-:func:`scipy.optimize.fmin_cg`::
+scipy provides :func:`scipy.optimize.minimize` to find the minimum of scalar
+functions of one or more variables. The simple conjugate gradient method can
+be used by setting the parameter ``method`` to CG ::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.fmin_cg(f, [2, 1])    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-    Optimization terminated successfully.
-             Current function value: 0.000000
-             Iterations: 8
-             Function evaluations: 64
-             Gradient evaluations: 16
-    array([ 0.9999...,  0.9999...])
+    >>> optimize.minimize(f, [2, -1], method="CG")    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+         fun: 1.6503729082243953e-11
+         jac: array([ -6.15347610e-06,   2.53804028e-07])
+     message: 'Optimization terminated successfully.'
+        nfev: 108
+         nit: 13
+        njev: 27
+      status: 0
+     success: True
+           x: array([ 0.99999426,  0.99998863])
 
-These methods need the gradient of the function. They can compute it, but
-will perform better if you can pass them the gradient::
+Gradient methods need the Jacobian (gradient) of the function. They can compute it
+numerically, but will perform better if you can pass them the gradient::
 
-    >>> def fprime(x):
+    >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.fmin_cg(f, [2, 1], fprime=fprime)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-    Optimization terminated successfully.
-            Current function value: 0.000000
-            Iterations: 8
-            Function evaluations: 16
-            Gradient evaluations: 16
-    array([ 1.00000012,  1.00000009])
+         fun: 1.0912121775174348e-11
+         jac: array([ -5.25283405e-06,   2.92893689e-07])
+     message: 'Optimization terminated successfully.'
+        nfev: 27
+         nit: 13
+        njev: 27
+      status: 0
+     success: True
+           x: array([ 0.99999533,  0.99999081])
 
-Note that the function has only been evaluated 30 times, compared to 120
+Note that the function has only been evaluated 27 times, compared to 108
 without the gradient.
 
 Newton and quasi-newton methods
