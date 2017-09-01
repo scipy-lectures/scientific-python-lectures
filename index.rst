@@ -45,6 +45,12 @@ Scipy Lecture Notes
         color: #555;
     }
 
+    @media only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2), (max-width: 70ex)  {
+        div.sidebar ul {
+            text-indent: 0ex;
+        }
+    }
+
     div.sidebar li {
         margin-top: .5ex;
     }
@@ -57,7 +63,7 @@ Scipy Lecture Notes
 
 .. nice layout in the toc
 
-.. include:: tune_toc.rst 
+.. include:: tune_toc.rst
 
 .. |pdf| unicode:: U+f1c1 .. PDF file
 
