@@ -854,7 +854,7 @@ div.tip .first {
 
 
 div.tip {
-    font-size: 90% ;
+    font-size: 95%;
     margin: 0px;
     padding: 0px;
     margin-left: -2ex;

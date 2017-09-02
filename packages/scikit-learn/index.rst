@@ -1183,6 +1183,146 @@ is called *'nested cross validation'*::
     that setting the hyper-parameter is harder for Lasso, thus the
     estimation error on this hyper-parameter is larger.
 
+Unsupervised Learning: Dimensionality Reduction and Visualization
+=================================================================
+
+Unsupervised learning is interested in situations in which X is
+available, but not y: data without labels. A typical use case is to find
+hiden structure in the data.
+
+Dimensionality Reduction: PCA
+-----------------------------
+
+Dimensionality reduction is the task of deriving a set of new artificial
+features that is smaller than the original feature set while retaining
+most of the variance of the original data. Here we'll use a common but
+powerful dimensionality reduction technique called Principal Component
+Analysis (PCA). We'll perform PCA on the iris dataset that we saw
+before::
+
+    >>> X = iris.data
+    >>> y = iris.target
+
+PCA is performed using linear combinations of the original features
+using a truncated Singular Value Decomposition of the matrix X so as to
+project the data onto a base of the top singular vectors. If the number
+of retained components is 2 or 3, PCA can be used to visualize the
+dataset::
+
+    >>> from sklearn.decomposition import PCA
+    >>> pca = PCA(n_components=2, whiten=True)
+    >>> pca.fit(X) # doctest: +ELLIPSIS
+    PCA(..., n_components=2, ...)
+
+Once fitted, the pca model exposes the singular vectors in the
+``components_`` attribute::
+
+    >>> pca.components_     # doctest: +ELLIPSIS
+    array([[ 0.36158..., -0.08226...,  0.85657...,  0.35884...],
+           [ 0.65653...,  0.72971..., -0.17576..., -0.07470...]])
+
+Other attributes are available as well::
+
+    >>> pca.explained_variance_ratio_    # doctest: +ELLIPSIS
+    array([ 0.92461...,  0.05301...])
+
+Let us project the iris dataset along those first two dimensions:::
+
+    >>> X_pca = pca.transform(X)
+
+PCA ``normalizes`` and ``whitens`` the data, which means that the data
+is now centered on both components with unit variance::
+
+    >>> X_pca.mean(axis=0)
+    array([ -1.51508435e-15,  -1.75859327e-15])
+    >>> X_pca.std(axis=0)
+    array([ 0.99666109,  0.99666109])
+
+Furthermore, the samples components do no longer carry any linear
+correlation::
+
+    >>> np.corrcoef(X_pca.T)
+    array([[  1.00000000e+00,   6.41562355e-16],
+           [  6.41562355e-16,   1.00000000e+00]])
+
+We can visualize the projection using matplotlib::
+
+    >>> target_ids = range(len(iris.target_names))
+    >>> for i, c, label in zip(target_ids, 'rgbcmykw', iris.target_names):
+    ...     plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1],
+    ...                 c=c, label=label) # doctest: +ELLIPSIS
+    <matplotlib.collections.PathCollection ...
+
+.. image:: auto_examples/images/sphx_glr_plot_pca_001.png
+   :align: left
+   :target: auto_examples/plot_pca.html
+   :scale: 70
+
+.. tip::
+
+    Note that this projection was determined *without* any information
+    about the labels (represented by the colors): this is the sense in
+    which the learning is **unsupervised**. Nevertheless, we see that the
+    projection gives us insight into the distribution of the different
+    flowers in parameter space: notably, *iris setosa* is much more
+    distinct than the other two species.
+
+
+Visualization with a non-linear embedding: tSNE
+------------------------------------------------
+
+For visualization, more complex embeddings can be useful (for statistical
+analysis, they are harder to control). :class:`sklearn.manifold.TSNE` is
+such a powerful manifold learning method. We apply it to the *digits*
+dataset, as the digits are vectors of dimension 8*8 = 64. Embedding them
+in 2D enables visualization::
+
+    >>> # Take the first 500 data points: it's hard to see 1500 points
+    >>> X = digits.data[:500]
+    >>> y = digits.target[:500]
+
+    >>> # Fit and transform with a TSNE
+    >>> from sklearn.manifold import TSNE
+    >>> tsne = TSNE(n_components=2, random_state=0)
+    >>> X_2d = tsne.fit_transform(X)
+
+    >>> # Visualize the data
+    >>> plt.scatter(X_2d[:, 0], X_2d[:, 1], c=y) # doctest: +ELLIPSIS
+    <matplotlib.collections.PathCollection object at ...>
+
+
+.. image:: auto_examples/images/sphx_glr_plot_tsne_001.png
+   :align: left
+   :target: auto_examples/plot_tsne.html
+   :scale: 70
+
+
+.. topic:: fit_transform
+
+    As tSNE cannot be applied to new data, we need to use its
+    `fit_transform` method.
+
+|
+
+:class:`sklearn.manifold.TSNE` separates quite well the different classes
+of digits eventhough it had no access to the class information.
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+
+
+.. topic:: Exercise: Other dimension reduction of digits
+    :class: green
+
+    :mod:`sklearn.manifold` has many other non-linear embeddings. Try
+    them out on the digits dataset. Could you judge their quality without
+    knowing the labels ``y``? ::
+
+        >>> from sklearn.datasets import load_digits
+        >>> digits = load_digits()
+        >>> # ...
+
 
 |
 
