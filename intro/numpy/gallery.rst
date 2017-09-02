@@ -1,4 +1,4 @@
-Gallery of figures
+Full code examples
 ==================
 
 .. include the gallery. Skip the first line to avoid the "orphan"
