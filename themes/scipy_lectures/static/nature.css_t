@@ -461,6 +461,21 @@ h6 {
     padding: 3px 0px 3px 5px;
 }
 
+/* When the margins disappear */
+@media (max-width: 110ex) {
+    div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body
+    h6 {
+	padding-left: 8px;
+    }
+}
+
+@media (max-width: 100ex) {
+    div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body
+    h6 {
+	padding-left: 13px;
+    }
+}
+
 div.body h2 {
     margin-top: 55px;
 }

@@ -28,14 +28,14 @@ x_test = np.linspace(-1, 1, 100)
 
 ###########################################################################
 # The data
-plt.figure()
+plt.figure(figsize=(6, 4))
 plt.scatter(x, y, s=4)
 
 ###########################################################################
 # Fitting 4th and 9th order polynomials
 #
 # For this we need to engineer features: the n_th powers of x:
-plt.figure()
+plt.figure(figsize=(6, 4))
 plt.scatter(x, y, s=4)
 
 X = np.array([x**i for i in range(5)]).T
@@ -56,7 +56,7 @@ plt.title('Fitting a 4th and a 9th order polynomial')
 
 ###########################################################################
 # Ground truth
-plt.figure()
+plt.figure(figsize=(6, 4))
 plt.scatter(x, y, s=4)
 plt.plot(x_test, f(x_test), label="truth")
 plt.axis('tight')
