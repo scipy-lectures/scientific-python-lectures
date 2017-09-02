@@ -1,7 +1,8 @@
 """
 Measuring Decision Tree performance
-==================================
+====================================
 
+Demonstrates overfit when testing on train set.
 """
 
 ############################################################
