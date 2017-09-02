@@ -7,10 +7,7 @@ This example illustrates automatic Otsu thresholding.
 
 import matplotlib.pyplot as plt
 from skimage import data
-try:
-    from skimage import filters
-except ImportError:
-    from skimage import filter as filters
+from skimage import filters
 from skimage import exposure
 
 camera = data.camera()
