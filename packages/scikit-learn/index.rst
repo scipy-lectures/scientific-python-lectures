@@ -29,7 +29,7 @@ scikit-learn: machine learning in Python
 
 .. contents:: Chapters contents
    :local:
-   :depth: 2
+   :depth: 1
 
 .. For doctests
    >>> import numpy as np
@@ -151,6 +151,7 @@ Setosa Iris           Versicolor Iris       Virginica Iris
 
 
 .. topic:: **Quick Question:**
+   :class: green
 
     **If we want to design an algorithm to recognize iris species, what
     might the data be?**
@@ -188,7 +189,7 @@ species. The data consist of the following:
     * Versicolour
     * Virginica
 
-``scikit-learn`` embeds a copy of the iris CSV file along with a helper
+:mod:`scikit-learn` embeds a copy of the iris CSV file along with a
 function to load it into numpy arrays::
 
     >>> from sklearn.datasets import load_iris
@@ -233,7 +234,7 @@ This data is four-dimensional, but we can visualize two of the
 dimensions at a time using a scatter plot: 
 
 .. image:: auto_examples/images/sphx_glr_plot_iris_scatter_001.png
-   :align: center
+   :align: left
    :target: auto_examples/plot_iris_scatter.html
 
 .. topic:: **Excercise**:
@@ -514,11 +515,10 @@ straightforward one, `Principal Component Analysis (PCA)
 
 PCA seeks orthogonal linear combinations of the features which show the
 greatest variance, and as such, can help give you a good idea of the
-structure of the data set. Here we'll use ``RandomizedPCA``, because
-it's faster for large ``N``::
+structure of the data set. ::
 
-    >>> from sklearn.decomposition import RandomizedPCA
-    >>> pca = RandomizedPCA(n_components=2)
+    >>> from sklearn.decomposition import PCA
+    >>> pca = PCA(n_components=2)
     >>> proj = pca.fit_transform(digits.data)
     >>> plt.scatter(proj[:, 0], proj[:, 1], c=digits.target) # doctest: +ELLIPSIS
     <matplotlib.collections.PathCollection object at ...>
@@ -530,7 +530,8 @@ it's faster for large ``N``::
    :target: auto_examples/plot_digits_simple_classif.html
 
 .. topic:: **Question**
-   
+    :class: green
+
     Given these projections of the data, which numbers do you think a
     classifier might have trouble distinguishing?
 
@@ -583,6 +584,7 @@ how well the classification is working.
 
 
 .. topic:: **Question**
+    :class: green
 
     Why did we split the data into training and validation sets?
 
@@ -829,7 +831,8 @@ We can plot the error: expected as a function of predicted::
     **Use the GradientBoostingRegressor class to fit the housing data**.
 
     **hint** You can copy and paste some of the above code, replacing
-    LinearRegression`` with ``GradientBoostingRegressor``::
+    :class:`~sklearn.linear_model.LinearRegression` with
+    :class:`~sklearn.ensemble.GradientBoostingRegressor`::
 
         from sklearn.ensemble import GradientBoostingRegressor
         # Instantiate the model, fit the results, and scatter in vs. out
@@ -907,6 +910,10 @@ Housing price dataset we introduced previously::
 
 Here again the predictions are seemingly perfect as the model was able to
 perfectly memorize the training set.
+
+.. warning:: **Performance on test set**
+
+   Performance on test set does not measure overfit (as described above)
 
 A correct approach: Using a validation set
 -------------------------------------------
@@ -1186,36 +1193,38 @@ is called *'nested cross validation'*::
 Unsupervised Learning: Dimensionality Reduction and Visualization
 =================================================================
 
-Unsupervised learning is interested in situations in which X is
-available, but not y: data without labels. A typical use case is to find
-hiden structure in the data.
+Unsupervised learning is used with X, but not y: data without labels. A
+typical use case is to find hiden structure in the data.
 
 Dimensionality Reduction: PCA
 -----------------------------
 
-Dimensionality reduction is the task of deriving a set of new artificial
-features that is smaller than the original feature set while retaining
-most of the variance of the original data. Here we'll use a common but
-powerful dimensionality reduction technique called Principal Component
-Analysis (PCA). We'll perform PCA on the iris dataset that we saw
-before::
+Dimensionality reduction derives a set of new artificial features smaller
+than the original feature set. Here we'll use `Principal Component
+Analysis (PCA)
+<https://en.wikipedia.org/wiki/Principal_component_analysis>`__, a
+dimensionality reduction that strives to retain most of the variance of
+the original data. We'll use :class:`sklearn.decomposition.PCA` on the
+iris dataset::
 
     >>> X = iris.data
     >>> y = iris.target
 
-PCA is performed using linear combinations of the original features
-using a truncated Singular Value Decomposition of the matrix X so as to
-project the data onto a base of the top singular vectors. If the number
-of retained components is 2 or 3, PCA can be used to visualize the
-dataset::
+.. tip::
+
+    PCA computes linear combinations of the original features
+    using a truncated Singular Value Decomposition of the matrix X, to
+    project the data onto a base of the top singular vectors.
+
+::
 
     >>> from sklearn.decomposition import PCA
     >>> pca = PCA(n_components=2, whiten=True)
     >>> pca.fit(X) # doctest: +ELLIPSIS
     PCA(..., n_components=2, ...)
 
-Once fitted, the pca model exposes the singular vectors in the
-``components_`` attribute::
+Once fitted, :class:`~sklearn.decomposition.PCA` exposes the singular
+vectors in the ``components_`` attribute::
 
     >>> pca.components_     # doctest: +ELLIPSIS
     array([[ 0.36158..., -0.08226...,  0.85657...,  0.35884...],
@@ -1229,6 +1238,8 @@ Other attributes are available as well::
 Let us project the iris dataset along those first two dimensions:::
 
     >>> X_pca = pca.transform(X)
+    >>> X_pca.shape
+    (150, 2)
 
 PCA ``normalizes`` and ``whitens`` the data, which means that the data
 is now centered on both components with unit variance::
@@ -1245,7 +1256,8 @@ correlation::
     array([[  1.00000000e+00,   6.41562355e-16],
            [  6.41562355e-16,   1.00000000e+00]])
 
-We can visualize the projection using matplotlib::
+With a number of retained components 2 or 3, PCA is useful to visualize
+the dataset::
 
     >>> target_ids = range(len(iris.target_names))
     >>> for i, c, label in zip(target_ids, 'rgbcmykw', iris.target_names):
@@ -1323,6 +1335,20 @@ of digits eventhough it had no access to the class information.
         >>> digits = load_digits()
         >>> # ...
 
+
+The eigenfaces example: chaining PCA and SVMs
+=============================================
+
+.. sidebar:: Code and notebook
+
+   Python code and Jupyter notebook for this section are found
+   :ref:`here
+   <sphx_glr_packages_scikit-learn_auto_examples_plot_eigenfaces.py>`
+
+
+.. include:: auto_examples/plot_eigenfaces.rst
+    :start-line: 7
+    :end-line: -21
 
 |
 
