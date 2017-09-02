@@ -99,8 +99,8 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
     dtype('uint8')
     >>> camera.shape
     (512, 512)
-    >>> from skimage import restoration
-    >>> filtered_camera = restoration.denoise_bilateral(camera, multichannel=False)
+    >>> from skimage import filters
+    >>> filtered_camera = filters.gaussian(camera)
     >>> type(filtered_camera)   # doctest: +SKIP
     <type 'numpy.ndarray'>
 
@@ -129,9 +129,7 @@ What's to be found in scikit-image
 
 * Website: http://scikit-image.org/
 
-* Gallery of examples (as in
-  `matplotlib <http://matplotlib.org/gallery.html>`_ or
-  `scikit-learn <http://scikit-learn.org>`_):
+* Gallery of examples:
   http://scikit-image.org/docs/stable/auto_examples/
 
 Different kinds of functions, from boilerplate utility functions to
@@ -221,19 +219,11 @@ Some image processing routines need to work with float arrays, and may
 hence output an array with a different type and the data range from the
 input array ::
 
-    >>> try:
-    ...     from skimage import filters
-    ... except ImportError:
-    ...     from skimage import filter as filters
+    >>> from skimage import filters
     >>> camera_sobel = filters.sobel(camera)
     >>> camera_sobel.max() # doctest: +SKIP 
     0.591502...
 
-.. warning:: 
-
-    In the example above, we use the ``filters`` submodule of scikit-image,
-    that has been renamed from ``filter`` to ``filters`` between versions 0.10
-    and 0.11, in order to avoid a collision with Python's built-in name ``filter``. 
 
 Utility functions are provided in :mod:`skimage` to convert both the
 dtype and the data range, following skimage's conventions:
@@ -355,7 +345,7 @@ Default structuring element: 4-connectivity of a pixel ::
 
 **Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.::
 
-    >>> a = np.zeros((7,7), dtype=np.int)
+    >>> a = np.zeros((7,7), dtype=np.uint8)
     >>> a[1:6, 2:5] = 1
     >>> a
     array([[0, 0, 0, 0, 0, 0, 0],
@@ -443,7 +433,7 @@ skeletonization, etc.
         >>> from skimage.morphology import disk
         >>> coins = data.coins()
         >>> coins_zoom = coins[10:80, 300:370]
-        >>> median_coins = filters.rank.median(coins_zoom, disk(1))
+        >>> median_coins = filters.median(coins_zoom, disk(1))
         >>> from skimage import restoration
         >>> tv_coins = restoration.denoise_tv_chambolle(coins_zoom, weight=0.1)
         >>> gaussian_coins = filters.gaussian(coins, sigma=2)

@@ -6,11 +6,7 @@ Visualize segmentation contours on original grayscale image.
 """
 
 from skimage import data, segmentation
-# scikit-image has changed its API
-try:
-    from skimage import filters
-except ImportError:
-    from skimage import filter as filters
+from skimage import filters
 import matplotlib.pyplot as plt
 import numpy as np
 
