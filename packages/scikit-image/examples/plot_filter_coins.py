@@ -13,7 +13,7 @@ from skimage import filters
 from skimage import restoration
 
 coins = data.coins()
-gaussian_filter_coins = filters.gaussian_filter(coins, sigma=2)
+gaussian_filter_coins = filters.gaussian(coins, sigma=2)
 med_filter_coins = filters.median(coins, np.ones((3, 3)))
 tv_filter_coins = restoration.denoise_tv_chambolle(coins, weight=0.1)
 

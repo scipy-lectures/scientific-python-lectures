@@ -100,7 +100,7 @@ Most ``scikit-image`` functions take NumPy ``ndarrays`` as arguments ::
     >>> camera.shape
     (512, 512)
     >>> from skimage import filters
-    >>> filtered_camera = filters.gaussian(camera)
+    >>> filtered_camera = filters.gaussian(camera, 1)
     >>> type(filtered_camera)   # doctest: +SKIP
     <type 'numpy.ndarray'>
 
