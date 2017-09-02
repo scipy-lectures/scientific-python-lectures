@@ -991,10 +991,12 @@ f1-score on the training data itself::
 Model Selection via Validation
 --------------------------------
 
-We have applied Gaussian Naives, support vectors machines, and K-nearest
-neighbors classifiers to the digits dataset. Now that we have these
-validation tools in place, we can ask quantitatively which of the three
-estimators works best for this dataset.
+.. tip::
+
+    We have applied Gaussian Naives, support vectors machines, and
+    K-nearest neighbors classifiers to the digits dataset. Now that we
+    have these validation tools in place, we can ask quantitatively which
+    of the three estimators works best for this dataset.
 
 * With the default hyper-parameters for each estimator, which gives the
   best f1 score on the **validation set**?  Recall that hyperparameters
@@ -1016,21 +1018,17 @@ estimators works best for this dataset.
     ...     y_pred = clf.predict(X_test)
     ...     print('%s: %s' %
     ...           (Model.__name__, metrics.f1_score(y_test, y_pred, average="macro")))  # doctest: +ELLIPSIS
-    LinearSVC: 0.933762221384
-    GaussianNB: 0.833274168101
-    KNeighborsClassifier: 0.980456280495
+    GaussianNB: 0.8332741681...
+    KNeighborsClassifier: 0.9804562804...
+    LinearSVC: 0.93...
 
 * For each classifier, which value for the hyperparameters gives the best
-  results for the digits data?  For ``LinearSVC``, use ``loss='l2'`` and
-  ``loss='l1'``.  For ``KNeighborsClassifier`` we use ``n_neighbors``
-  between 1 and 10. Note that ``GaussianNB`` does not have any adjustable
-  hyperparameters. 
-  
-.. sidebar:: Solution
-
-    :ref:`Code source <sphx_glr_packages_scikit-learn_auto_examples_plot_compare_classifiers.py>`
-
-::
+  results for the digits data?  For :class:`~sklearn.svm.LinearSVC`, use
+  ``loss='l2'`` and ``loss='l1'``.  For
+  :class:`~sklearn.neighbors.KNeighborsClassifier` we use
+  ``n_neighbors`` between 1 and 10. Note that
+  :class:`~sklearn.naive_bayes.GaussianNB` does not have any adjustable
+  hyperparameters. ::
 
     LinearSVC(loss='l1'): 0.930570687535
     LinearSVC(loss='l2'): 0.933068826918
@@ -1046,6 +1044,9 @@ estimators works best for this dataset.
     KNeighbors(n_neighbors=9): 0.978064579214
     KNeighbors(n_neighbors=10): 0.975555089773
 
+  **Solution:** :ref:`code source <sphx_glr_packages_scikit-learn_auto_examples_plot_compare_classifiers.py>`
+
+
 Cross-validation
 -----------------
 
@@ -1054,18 +1055,24 @@ train and test sets, called 'folds'. Scikit-learn comes with a function
 to automatically compute score on all these folds. Here we do 'K-fold'
 with k=5. ::
 
-    clf = KNeighborsClassifier()
-    from sklearn.cross_validation import cross_val_score
-    cross_val_score(clf, X, y, cv=5)
+    >>> clf = KNeighborsClassifier()
+    >>> from sklearn.cross_validation import cross_val_score
+    >>> cross_val_score(clf, X, y, cv=5)
+    array([ 0.9478022 ,  0.9558011 ,  0.96657382,  0.98039216,  0.96338028])
 
 We can use different splitting strategies, such as random splitting::
 
-    from sklearn.cross_validation import ShuffleSplit
-    cv = ShuffleSplit(n=len(X), n_iter=5)
-    cross_val_score(clf, X, y, cv=cv)
+    >>> from sklearn.cross_validation import ShuffleSplit
+    >>> cv = ShuffleSplit(n=len(X), n_iter=5)
+    >>> cross_val_score(clf, X, y, cv=cv)  # doctest: +ELLIPSIS
+    array([...])
 
-There exists many different cross-validation strategies in scikit-learn.
-They are often useful to take in account non iid datasets.
+.. tip::
+
+    There exists `many different cross-validation strategies
+    <http://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators>`_
+    in scikit-learn. They are often useful to take in account non iid
+    datasets.
 
 Hyperparameter optimization with cross-validation
 --------------------------------------------------
@@ -1079,53 +1086,62 @@ problem. The diabetes data consists of 10 physiological variables (age,
 sex, weight, blood pressure) measure on 442 patients, and an indication
 of disease progression after one year::
 
-    from sklearn.datasets import load_diabetes
-    data = load_diabetes()
-    X, y = data.data, data.target
-    print(X.shape)
+    >>> from sklearn.datasets import load_diabetes
+    >>> data = load_diabetes()
+    >>> X, y = data.data, data.target
+    >>> print(X.shape)
+    (442, 10)
 
+With the default hyper-parameters: we compute the cross-validation score::
 
-With the default hyper-parameters: we use the cross-validation score to
-determine goodness-of-fit::
+    >>> from sklearn.linear_model import Ridge, Lasso
 
-    from sklearn.linear_model import Ridge, Lasso
-
-    for Model in [Ridge, Lasso]:
-        model = Model()
-        print(Model.__name__, cross_val_score(model, X, y).mean())
-
+    >>> for Model in [Ridge, Lasso]:
+    ...     model = Model()
+    ...     print('%s: %s' % (Model.__name__, cross_val_score(model, X, y).mean()))
+    Ridge: 0.409427438303
+    Lasso: 0.353800083299
 
 Basic Hyperparameter Optimization
-..................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We compute the cross-validation score as a function of alpha, the
 strength of the regularization for Lasso and Ridge. We choose 20 values
 of alpha between 0.0001 and 1::
 
-    alphas = np.logspace(-3, -1, 30)
+    >>> alphas = np.logspace(-3, -1, 30)
 
-    for Model in [Lasso, Ridge]:
-        scores = [cross_val_score(Model(alpha), X, y, cv=3).mean()
-                for alpha in alphas]
-        plt.plot(alphas, scores, label=Model.__name__)
-    plt.legend(loc='lower left')
+    >>> for Model in [Lasso, Ridge]:
+    ...     scores = [cross_val_score(Model(alpha), X, y, cv=3).mean()
+    ...               for alpha in alphas]
+    ...     plt.plot(alphas, scores, label=Model.__name__) # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    [<matplotlib.lines.Line2D object at ...>]
+
+.. image:: auto_examples/images/sphx_glr_plot_linear_model_cv_001.png
+   :align: left
+   :target: auto_examples/plot_linear_model_cv.html
+   :scale: 70
+
 
 .. note:: Can we trust our results to be actually useful?
 
 Automatically Performing Grid Search
-.....................................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :class:`sklearn.grid_search.GridSearchCV` is constructed with an
 estimator, as well as a dictionary of parameter values to be searched.
 We can find the optimal parameters this way::
 
-    from sklearn.grid_search import GridSearchCV
-    for Model in [Ridge, Lasso]:
-        gscv = GridSearchCV(Model(), dict(alpha=alphas), cv=3).fit(X, y)
-        print(Model.__name__, gscv.best_params_)
+    >>> from sklearn.grid_search import GridSearchCV
+    >>> for Model in [Ridge, Lasso]:
+    ...     gscv = GridSearchCV(Model(), dict(alpha=alphas), cv=3).fit(X, y)
+    ...     print('%s: %s' % (Model.__name__, gscv.best_params_))
+    Ridge: {'alpha': 0.062101694189156162}
+    Lasso: {'alpha': 0.01268961003167922}
 
 Built-in Hyperparameter Search
-...............................
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For some models within scikit-learn, cross-validation can be performed
 more efficiently on large datasets.  In this case, a cross-validated
@@ -1136,16 +1152,17 @@ versions of :class:`~sklearn.linear_model.Ridge` and
 :class:`~sklearn.linear_model.LassoCV`, respectively.  Parameter search
 on these estimators can be performed as follows::
 
-    from sklearn.linear_model import RidgeCV, LassoCV
-    for Model in [RidgeCV, LassoCV]:
-        model = Model(alphas=alphas, cv=3).fit(X, y)
-        print(Model.__name__, model.alpha_)
-
+    >>> from sklearn.linear_model import RidgeCV, LassoCV
+    >>> for Model in [RidgeCV, LassoCV]:
+    ...     model = Model(alphas=alphas, cv=3).fit(X, y)
+    ...     print('%s: %s' % (Model.__name__, model.alpha_))
+    RidgeCV: 0.0621016941892
+    LassoCV: 0.0126896100317
 
 We see that the results match those returned by GridSearchCV
 
 Nested cross-validation
-........................
+~~~~~~~~~~~~~~~~~~~~~~~
 
 How do we measure the performance of these estimators? We have used data
 to set the hyperparameters, so we need to test on actually new data. We
