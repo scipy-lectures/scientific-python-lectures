@@ -24,5 +24,5 @@ ____
    elaborate_arrays.rst
    advanced_operations.rst
    exercises.rst
-
+   gallery.rst
 
