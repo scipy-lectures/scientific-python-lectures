@@ -30,4 +30,3 @@ pl.ylim(ymin=-.2)
 pl.axis('off')
 pl.tight_layout()
 pl.show()
-

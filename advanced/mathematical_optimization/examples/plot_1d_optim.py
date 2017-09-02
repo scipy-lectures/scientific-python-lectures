@@ -27,13 +27,13 @@ for epsilon in (0, 1):
     all_x = list()
     all_y = list()
     for iter in range(30):
-        out = optimize.brent(f, brack=(-5, 2.9, 4.5), maxiter=iter,
-                             full_output=True,
-                             tol=np.finfo(1.).eps)
-        if iter != out[-2]:
+        result = optimize.minimize_scalar(f, bracket=(-5, 2.9, 4.5), method="Brent",
+                    options={"maxiter": iter}, tol=np.finfo(1.).eps)
+        if result.success:
             print('Converged at ', iter)
             break
-        this_x = out[0]
+
+        this_x = result.x
         all_x.append(this_x)
         all_y.append(f(this_x))
         if iter < 6:
