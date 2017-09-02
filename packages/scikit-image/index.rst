@@ -354,7 +354,7 @@ Default structuring element: 4-connectivity of a pixel ::
            [0, 0, 1, 1, 1, 0, 0],
            [0, 0, 1, 1, 1, 0, 0],
            [0, 0, 1, 1, 1, 0, 0],
-           [0, 0, 0, 0, 0, 0, 0]])
+           [0, 0, 0, 0, 0, 0, 0]], dtype=uint8)
     >>> morphology.binary_erosion(a, morphology.diamond(1)).astype(np.uint8)
     array([[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
