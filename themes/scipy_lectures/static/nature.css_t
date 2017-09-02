@@ -715,6 +715,8 @@ div.topic, div.admonition {
 
 div.sidebar {
     padding-top: 2px;
+    width: initial;
+    max-width: 40%;
 }
 
 div.topic {

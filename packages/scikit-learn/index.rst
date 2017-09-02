@@ -927,34 +927,61 @@ To avoid over-fitting, we have to define two different sets:
 In scikit-learn such a random split can be quickly computed with the
 :func:`sklearn.cross_validation.train_test_split` function::
 
-    from sklearn import cross_validation
-    X = digits.data
-    y = digits.target
+    >>> from sklearn import cross_validation
+    >>> X = digits.data
+    >>> y = digits.target
 
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
-                                            test_size=0.25, random_state=0)
+    >>> X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
+    ...                                         test_size=0.25, random_state=0)
 
-    print("%r, %r, %r" % (X.shape, X_train.shape, X_test.shape))
+    >>> print("%r, %r, %r" % (X.shape, X_train.shape, X_test.shape))
+    (1797, 64), (1347, 64), (450, 64)
 
 Now we train on the training data, and test on the testing data::
 
-    clf = KNeighborsClassifier(n_neighbors=1).fit(X_train, y_train)
-    y_pred = clf.predict(X_test)
+    >>> clf = KNeighborsClassifier(n_neighbors=1).fit(X_train, y_train)
+    >>> y_pred = clf.predict(X_test)
 
-    print(metrics.confusion_matrix(y_test, y_pred))
-
-    print(metrics.classification_report(y_test, y_pred))
+    >>> print(metrics.confusion_matrix(y_test, y_pred))
+    [[37  0  0  0  0  0  0  0  0  0]
+     [ 0 43  0  0  0  0  0  0  0  0]
+     [ 0  0 43  1  0  0  0  0  0  0]
+     [ 0  0  0 45  0  0  0  0  0  0]
+     [ 0  0  0  0 38  0  0  0  0  0]
+     [ 0  0  0  0  0 47  0  0  0  1]
+     [ 0  0  0  0  0  0 52  0  0  0]
+     [ 0  0  0  0  0  0  0 48  0  0]
+     [ 0  0  0  0  0  0  0  0 48  0]
+     [ 0  0  0  1  0  1  0  0  0 45]]
+    >>> print(metrics.classification_report(y_test, y_pred))
+                 precision    recall  f1-score   support
+    <BLANKLINE>
+              0       1.00      1.00      1.00        37
+              1       1.00      1.00      1.00        43
+              2       1.00      0.98      0.99        44
+              3       0.96      1.00      0.98        45
+              4       1.00      1.00      1.00        38
+              5       0.98      0.98      0.98        48
+              6       1.00      1.00      1.00        52
+              7       1.00      1.00      1.00        48
+              8       1.00      1.00      1.00        48
+              9       0.98      0.96      0.97        47
+    <BLANKLINE>
+    avg / total       0.99      0.99      0.99       450
+    <BLANKLINE>
 
 The averaged f1-score is often used as a convenient measure of the
 overall performance of an algorithm.  It appears in the bottom row
 of the classification report; it can also be accessed directly::
 
-    metrics.f1_score(y_test, y_pred, average="macro")
+    >>> metrics.f1_score(y_test, y_pred, average="macro") # doctest: +ELLIPSIS
+    0.991367...
 
 The over-fitting we saw previously can be quantified by computing the
 f1-score on the training data itself::
 
-    metrics.f1_score(y_train, clf.predict(X_train), average="macro")
+    >>> metrics.f1_score(y_train, clf.predict(X_train), average="macro")
+    1.0
 
 .. note::
    
@@ -973,49 +1000,51 @@ estimators works best for this dataset.
   best f1 score on the **validation set**?  Recall that hyperparameters
   are the parameters set when you instantiate the classifier: for
   example, the ``n_neighbors`` in ``clf =
-  KNeighborsClassifier(n_neighbors=1)``
+  KNeighborsClassifier(n_neighbors=1)`` ::
+
+    >>> from sklearn.naive_bayes import GaussianNB
+    >>> from sklearn.neighbors import KNeighborsClassifier
+    >>> from sklearn.svm import LinearSVC
+
+    >>> X = digits.data
+    >>> y = digits.target
+    >>> X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
+    ...                             test_size=0.25, random_state=0)
+
+    >>> for Model in [GaussianNB, KNeighborsClassifier, LinearSVC]:
+    ...     clf = Model().fit(X_train, y_train)
+    ...     y_pred = clf.predict(X_test)
+    ...     print('%s: %s' %
+    ...           (Model.__name__, metrics.f1_score(y_test, y_pred, average="macro")))  # doctest: +ELLIPSIS
+    LinearSVC: 0.933762221384
+    GaussianNB: 0.833274168101
+    KNeighborsClassifier: 0.980456280495
 
 * For each classifier, which value for the hyperparameters gives the best
-   results for the digits data?  For ``LinearSVC``, use ``loss='l2'`` and
-   ``loss='l1'``.  For ``KNeighborsClassifier`` we use ``n_neighbors``
-   between 1 and 10.  Note that ``GaussianNB`` does not have any
-   adjustable hyperparameters.
+  results for the digits data?  For ``LinearSVC``, use ``loss='l2'`` and
+  ``loss='l1'``.  For ``KNeighborsClassifier`` we use ``n_neighbors``
+  between 1 and 10. Note that ``GaussianNB`` does not have any adjustable
+  hyperparameters. 
+  
+.. sidebar:: Solution
+
+    :ref:`Code source <sphx_glr_packages_scikit-learn_auto_examples_plot_compare_classifiers.py>`
 
 ::
 
-    from sklearn.svm import LinearSVC
-    from sklearn.naive_bayes import GaussianNB
-    from sklearn.neighbors import KNeighborsClassifier
-
-    X = digits.data
-    y = digits.target
-    X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
-                                test_size=0.25, random_state=0)
-
-    for Model in [LinearSVC, GaussianNB, KNeighborsClassifier]:
-        clf = Model().fit(X_train, y_train)
-        y_pred = clf.predict(X_test)
-        print(Model.__name__,
-            metrics.f1_score(y_test, y_pred, average="macro"))
-
-    print('------------------')
-
-    # test SVC loss
-    for loss in ['l1', 'l2']:
-        clf = LinearSVC(loss=loss).fit(X_train, y_train)
-        y_pred = clf.predict(X_test)
-        print("LinearSVC(loss='{0}')".format(loss),
-            metrics.f1_score(y_test, y_pred, average="macro"))
-
-    print('-------------------')
-
-    # test K-neighbors
-    for n_neighbors in range(1, 11):
-        clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X_train, y_train)
-        y_pred = clf.predict(X_test)
-        print("KNeighbors(n_neighbors={0})".format(n_neighbors),
-            metrics.f1_score(y_test, y_pred, average="macro"))
-
+    LinearSVC(loss='l1'): 0.930570687535
+    LinearSVC(loss='l2'): 0.933068826918
+    -------------------
+    KNeighbors(n_neighbors=1): 0.991367521884
+    KNeighbors(n_neighbors=2): 0.984844206884
+    KNeighbors(n_neighbors=3): 0.986775344954
+    KNeighbors(n_neighbors=4): 0.980371905382
+    KNeighbors(n_neighbors=5): 0.980456280495
+    KNeighbors(n_neighbors=6): 0.975792419414
+    KNeighbors(n_neighbors=7): 0.978064579214
+    KNeighbors(n_neighbors=8): 0.978064579214
+    KNeighbors(n_neighbors=9): 0.978064579214
+    KNeighbors(n_neighbors=10): 0.975555089773
 
 Cross-validation
 -----------------
@@ -1140,11 +1169,6 @@ is called *'nested cross validation'*::
 
 |
 
-Full code examples
-===================
-
-.. toctree::
-
-    auto_examples/index.rst
-
+.. include:: auto_examples/index.rst
+    :start-line: 1
 
