@@ -45,7 +45,7 @@ for i in range(15):
 # We'll perform a Support Vector classification of the images. We'll do a
 # typical train-test split on the images:
 
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(faces.data,
         faces.target, random_state=0)
 
@@ -173,6 +173,7 @@ clf.fit(X_train, y_train)
 
 y_pred = clf.predict(X_test)
 print(metrics.confusion_matrix(y_pred, y_test))
+plt.show()
 
 ############################################################
 # A Note on Facial Recognition
