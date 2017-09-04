@@ -31,8 +31,8 @@ for i in range(64):
 
 plt.figure()
 
-from sklearn.decomposition import RandomizedPCA
-pca = RandomizedPCA(n_components=2)
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
 proj = pca.fit_transform(digits.data)
 plt.scatter(proj[:, 0], proj[:, 1], c=digits.target)
 plt.colorbar()
@@ -43,7 +43,7 @@ plt.colorbar()
 # ----------------------------------
 
 from sklearn.naive_bayes import GaussianNB
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 # split the data into training and validation sets
 X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target)

@@ -6,7 +6,7 @@ Compare the performance of a variety of classifiers on a test set for the
 digits data.
 """
 
-from sklearn import cross_validation, datasets, metrics
+from sklearn import model_selection, datasets, metrics
 from sklearn.svm import LinearSVC
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
@@ -14,7 +14,7 @@ from sklearn.neighbors import KNeighborsClassifier
 digits = datasets.load_digits()
 X = digits.data
 y = digits.target
-X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
                             test_size=0.25, random_state=0)
 
 for Model in [LinearSVC, GaussianNB, KNeighborsClassifier]:

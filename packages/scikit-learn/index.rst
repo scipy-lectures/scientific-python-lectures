@@ -19,9 +19,15 @@ scikit-learn: machine learning in Python
     * :ref:`matplotlib (optional) <matplotlib>`
     * :ref:`ipython (the enhancements come handy) <interactive_work>`
 
+.. sidebar:: **Acknowledgements**
+
+   This chapter is adapted from `a tutorial
+   <https://www.youtube.com/watch?v=r4bRUvvlaBw>`__ given by Gaël
+   Varoquaux, Jake Vanderplas, Olivier Grisel.
+
 .. seealso:: **Data science in Python**
 
-  * The content of the :ref:`statistics` chapter may also be of interest
+  * The :ref:`statistics` chapter may also be of interest
     for readers looking into machine learning.
 
   * The `documentation of scikit-learn <http://scikit-learn.org>`_ is
@@ -351,7 +357,7 @@ regression one:
 
 .. literalinclude:: examples/plot_linear_regression.py
     :start-after: import matplotlib.pyplot as plt
-    :end-before: # plot the results
+    :end-before: **Total running time of the script:**
 
 .. figure:: auto_examples/images/sphx_glr_plot_linear_regression_001.png
    :align: center
@@ -366,14 +372,15 @@ Scikit-learn strives to have a uniform interface across all methods, and
 we’ll see examples of these below. Given a scikit-learn *estimator*
 object named ``model``, the following methods are available:
 
-* Available in **all Estimators**
+:In **all Estimators**:
 
   - ``model.fit()`` : fit training data. For supervised learning
     applications, this accepts two arguments: the data ``X`` and the
     labels ``y`` (e.g. ``model.fit(X, y)``). For unsupervised learning
     applications, this accepts only a single argument, the data ``X``
     (e.g. ``model.fit(X)``).
-* Available in **supervised estimators**
+
+:In **supervised estimators**:
 
   - ``model.predict()`` : given a trained model, predict the label of a
     new set of data. This method accepts one argument, the new data
@@ -387,7 +394,8 @@ object named ``model``, the following methods are available:
   - ``model.score()`` : for classification or regression problems, most
     (all?) estimators implement a score method. Scores are between 0 and
     1, with a larger score indicating a better fit.
-* Available in **unsupervised estimators**
+
+:In **unsupervised estimators**:
 
   - ``model.transform()`` : given an unsupervised model, transform new
     data into the new basis. This also accepts one argument ``X_new``,
@@ -545,7 +553,12 @@ more complex models. If not, we can use the results of the simple method
 to give us clues about our data.
 
 One good method to keep in mind is Gaussian Naive Bayes
-(:class:`sklearn.naive_bayes.GaussianNB`). 
+(:class:`sklearn.naive_bayes.GaussianNB`).
+
+.. sidebar:: Old scikit-learn versions
+
+   :func:`~sklearn.model_selection.train_test_split` is imported from
+   ``sklearn.cross_validation``
 
 .. tip::
 
@@ -553,11 +566,11 @@ One good method to keep in mind is Gaussian Naive Bayes
    independantly on each feature, and uses this to quickly give a rough
    classification. It is generally not sufficiently accurate for real-world
    data, but can perform surprisingly well, for instance on text data.
-   
+
 ::
 
     >>> from sklearn.naive_bayes import GaussianNB
-    >>> from sklearn.cross_validation import train_test_split
+    >>> from sklearn.model_selection import train_test_split
 
     >>> # split the data into training and validation sets
     >>> X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target)
@@ -575,7 +588,7 @@ One good method to keep in mind is Gaussian Naive Bayes
     >>> print(expected) # doctest: +ELLIPSIS
     [1 0 4 7 8 2 2 0 4 3 7 7 0 8 2 3 4 8 5 3 7 9 6 3 8 2 2 9 3 5...]
 
-As above, we can plot the digits with the predicted labels to get an idea of
+As above, we plot the digits with the predicted labels to get an idea of
 how well the classification is working.
 
 .. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_003.png
@@ -606,7 +619,7 @@ the number of matches::
 We see that more than 80% of the 450 predictions match the input. But
 there are other more sophisticated metrics that can be used to judge the
 performance of a classifier: several are available in the
-``sklearn.metrics`` submodule.
+:mod:`sklearn.metrics` submodule.
 
 One of the most useful metrics is the ``classification_report``, which
 combines several measures and prints a table with the results::
@@ -794,7 +807,7 @@ the housing data. There are many possibilities of regressors to use. A
 particularly simple one is ``LinearRegression``: this is basically a
 wrapper around an ordinary least squares calculation. ::
 
-    >>> from sklearn.cross_validation import train_test_split
+    >>> from sklearn.model_selection import train_test_split
     >>> X_train, X_test, y_train, y_test = train_test_split(data.data, data.target)
     >>> from sklearn.linear_model import LinearRegression
     >>> clf = LinearRegression()
@@ -932,13 +945,13 @@ To avoid over-fitting, we have to define two different sets:
   predictive model
 
 In scikit-learn such a random split can be quickly computed with the
-:func:`sklearn.cross_validation.train_test_split` function::
+:func:`~sklearn.model_selection.train_test_split` function::
 
-    >>> from sklearn import cross_validation
+    >>> from sklearn import model_selection
     >>> X = digits.data
     >>> y = digits.target
 
-    >>> X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
+    >>> X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
     ...                                         test_size=0.25, random_state=0)
 
     >>> print("%r, %r, %r" % (X.shape, X_train.shape, X_test.shape))
@@ -1017,7 +1030,7 @@ Model Selection via Validation
 
     >>> X = digits.data
     >>> y = digits.target
-    >>> X_train, X_test, y_train, y_test = cross_validation.train_test_split(X, y,
+    >>> X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
     ...                             test_size=0.25, random_state=0)
 
     >>> for Model in [GaussianNB, KNeighborsClassifier, LinearSVC]:
@@ -1059,18 +1072,18 @@ Cross-validation
 
 Cross-validation consists in repetively splitting the data in pairs of
 train and test sets, called 'folds'. Scikit-learn comes with a function
-to automatically compute score on all these folds. Here we do 'K-fold'
-with k=5. ::
+to automatically compute score on all these folds. Here we do
+:class:`~sklearn.model_selection.KFold` with k=5. ::
 
     >>> clf = KNeighborsClassifier()
-    >>> from sklearn.cross_validation import cross_val_score
+    >>> from sklearn.model_selection import cross_val_score
     >>> cross_val_score(clf, X, y, cv=5)
     array([ 0.9478022 ,  0.9558011 ,  0.96657382,  0.98039216,  0.96338028])
 
 We can use different splitting strategies, such as random splitting::
 
-    >>> from sklearn.cross_validation import ShuffleSplit
-    >>> cv = ShuffleSplit(n=len(X), n_iter=5)
+    >>> from sklearn.model_selection import ShuffleSplit
+    >>> cv = ShuffleSplit(n_splits=5)
     >>> cross_val_score(clf, X, y, cv=cv)  # doctest: +ELLIPSIS
     array([...])
 
@@ -1113,8 +1126,9 @@ Basic Hyperparameter Optimization
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We compute the cross-validation score as a function of alpha, the
-strength of the regularization for Lasso and Ridge. We choose 20 values
-of alpha between 0.0001 and 1::
+strength of the regularization for :class:`~sklearn.linear_model.Lasso`
+and :class:`~sklearn.linear_model.Ridge`. We choose 20 values of alpha
+between 0.0001 and 1::
 
     >>> alphas = np.logspace(-3, -1, 30)
 
@@ -1122,8 +1136,7 @@ of alpha between 0.0001 and 1::
     ...     scores = [cross_val_score(Model(alpha), X, y, cv=3).mean()
     ...               for alpha in alphas]
     ...     plt.plot(alphas, scores, label=Model.__name__) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    [<matplotlib.lines.Line2D object at ...>]
+    [<matplotlib.lines.Line2D object at ...
 
 .. image:: auto_examples/images/sphx_glr_plot_linear_model_cv_001.png
    :align: left
@@ -1173,7 +1186,7 @@ Nested cross-validation
 
 How do we measure the performance of these estimators? We have used data
 to set the hyperparameters, so we need to test on actually new data. We
-can do this by running :class:`~sklearn.cross_validation.cross_val_score`
+can do this by running :func:`~sklearn.model_selection.cross_val_score`
 on our CV objects. Here there are 2 cross-validation loops going on, this
 is called *'nested cross validation'*::
 
@@ -1212,9 +1225,10 @@ iris dataset::
 
 .. tip::
 
-    PCA computes linear combinations of the original features
-    using a truncated Singular Value Decomposition of the matrix X, to
-    project the data onto a base of the top singular vectors.
+    :class:`~sklearn.decomposition.PCA` computes linear combinations of
+    the original features using a truncated Singular Value Decomposition
+    of the matrix X, to project the data onto a base of the top singular
+    vectors.
 
 ::
 
@@ -1241,7 +1255,7 @@ Let us project the iris dataset along those first two dimensions:::
     >>> X_pca.shape
     (150, 2)
 
-PCA ``normalizes`` and ``whitens`` the data, which means that the data
+:class:`~sklearn.decomposition.PCA` ``normalizes`` and ``whitens`` the data, which means that the data
 is now centered on both components with unit variance::
 
     >>> X_pca.mean(axis=0)
@@ -1348,10 +1362,419 @@ The eigenfaces example: chaining PCA and SVMs
 
 .. include:: auto_examples/plot_eigenfaces.rst
     :start-line: 7
-    :end-line: -21
+    :end-before: plt.show()
+
+
+
+Parameter selection, Validation, and Testing
+=============================================
+
+Hyperparameters, Over-fitting, and Under-fitting
+------------------------------------------------
+
+.. seealso::
+
+    This section is adapted from `Andrew Ng's excellent
+    Coursera course <https://www.coursera.org/course/ml>`__
+
+The issues associated with validation and cross-validation are some of
+the most important aspects of the practice of machine learning.
+Selecting the optimal model for your data is vital, and is a piece of
+the problem that is not often appreciated by machine learning
+practitioners.
+
+The central question is: **If our estimator is underperforming, how
+should we move forward?**
+
+-  Use simpler or more complicated model?
+-  Add more features to each observed data point?
+-  Add more training samples?
+
+The answer is often counter-intuitive. In particular, **Sometimes using
+a more complicated model will give worse results.** Also, **Sometimes
+adding training data will not improve your results.** The ability to
+determine what steps will improve your model is what separates the
+successful machine learning practitioners from the unsuccessful.
+
+Bias-variance trade-off: illustration on a simple regression problem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. sidebar:: Code and notebook
+
+   Python code and Jupyter notebook for this section are found
+   :ref:`here
+   <sphx_glr_packages_scikit-learn_auto_examples_plot_variance_linear_regr.py>`
+
+
+Let us start with a simple 1D regression problem. This
+will help us to easily visualize the data and the model, and the results
+generalize easily to higher-dimensional datasets. We'll explore a simple
+**linear regression** problem, with :mod:`sklearn.linear_model`.
+
+
+.. include:: auto_examples/plot_variance_linear_regr.rst
+    :start-after: We consider the situation where we have only 2 data point
+    :end-before: **Total running time of the script:**
+
+
+As we can see, the estimator displays much less variance. However it
+systematically under-estimates the coefficient. It displays a biased
+behavior.
+
+This is a typical example of **bias/variance tradeof**: non-regularized
+estimator are not biased, but they can display a lot of bias.
+Highly-regularized models have little variance, but high bias. This bias
+is not necessarily a bad thing: what matters is choosing the
+tradeoff between bias and variance that leads to the best prediction
+performance. For a specific dataset there is a sweet spot corresponding
+to the highest complexity that the data can support, depending on the
+amount of noise and of observations available.
+
+Learning Curves and the Bias/Variance Tradeoff
+----------------------------------------------
+
+One way to address this issue is to use **Learning Curves**. Given a
+particular dataset and a model we'd like to fit (e.g. a polynomial), we'd
+like to tune our value of the *hyperparameter* ``d`` to give us the best
+fit.
+
+Consider a simple regression problem: given the size of a
+house, we'd like to predict how much it's worth. We'll fit it with our
+polynomial regression model.
+
+.. image:: auto_examples/images/sphx_glr_plot_bias_variance_001.png
+   :align: center
+   :target: auto_examples/plot_bias_variance.html
+
+
+.. tip::
+
+    In the above figure, we see fits for three different values of ``d``.
+    For ``d = 1``, the data is under-fit. This means that the model is too
+    simplistic: no straight line will ever be a good fit to this data. In
+    this case, we say that the model suffers from high bias. The model
+    itself is biased, and this will be reflected in the fact that the data
+    is poorly fit. At the other extreme, for ``d = 6`` the data is over-fit.
+    This means that the model has too many free parameters (6 in this case)
+    which can be adjusted to perfectly fit the training data. If we add a
+    new point to this plot, though, chances are it will be very far from the
+    curve representing the degree-6 fit. In this case, we say that the model
+    suffers from high variance. The reason for the term "high variance" is
+    that if any of the input points are varied slightly, it could result in
+    a very different model.
+
+    In the middle, for ``d = 2``, we have found a good mid-point. It fits
+    the data fairly well, and does not suffer from the bias and variance
+    problems seen in the figures on either side. What we would like is a way
+    to quantitatively identify bias and variance, and optimize the
+    metaparameters (in this case, the polynomial degree d) in order to
+    determine the best algorithm. This can be done through a process called
+    *validation*.
+
+Validation Curves
+~~~~~~~~~~~~~~~~~
+
+We'll create a dataset like in the example above, and use this to test
+our validation scheme. First we'll define some utility routines::
+
+    >>> def test_func(x, err=0.5):
+    ...     return np.random.normal(10 - 1. / (x + 0.1), err)
+
+    >>> def compute_error(x, y, p):
+    ...     yfit = np.polyval(p, x)
+    ...     return np.sqrt(np.mean((y - yfit) ** 2))
+
+Then we generate more data as above::
+
+    >>> # randomly sample the data
+    >>> np.random.seed(1)
+    >>> x = np.random.random(size=200)
+    >>> y = test_func(x, err=1.)
+
+.. image:: auto_examples/images/sphx_glr_plot_bias_variance_002.png
+   :align: right
+   :target: auto_examples/plot_bias_variance.html
+   :scale: 60
+
+To quantify the effects of bias and variance and construct the best
+possible estimator, we split our training data into a *training set* and
+a *validation set*, with a training set containing 60% of the samples::
+
+    >>> xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.4)
+
+
+.. raw:: html
+
+    <div style="clear: both"></div>
+
+**Validation curve** The model parameters (here, the coefficients of the
+polynomials) are learned using the training set as above. The error is
+evaluated on the validation set, and the meta-parameters (in our case,
+the degree of the polynomial) are adjusted so that this validation error
+is minimized. Finally, the labels are predicted for the test set. These
+labels are used to evaluate how well the algorithm can be expected to
+perform on unlabeled data.
+
+The validation error of our polynomial model is visualized by
+plotting the error as a function of the polynomial degree d::
+
+    >>> degrees = np.arange(21)
+    >>> train_err = np.zeros(len(degrees))
+    >>> validation_err = np.zeros(len(degrees))
+    >>>
+    >>> for i, d in enumerate(degrees):
+    ...     p = np.polyfit(xtrain, ytrain, d)
+    ...     train_err[i] = compute_error(xtrain, ytrain, p)
+    ...     validation_err[i] = compute_error(xtest, ytest, p)
+
+    >>> plt.plot(degrees, validation_err, lw=2, label = 'cross-validation error')  # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot(degrees, train_err, lw=2, label = 'training error')  # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.plot([0, 20], [1., 1.], '--k', label='intrinsic error')  # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.legend()  # doctest: +ELLIPSIS
+    <matplotlib.legend.Legend object at ...>
+
+.. image:: auto_examples/images/sphx_glr_plot_bias_variance_003.png
+   :align: left
+   :target: auto_examples/plot_bias_variance.html
+   :scale: 60
+
+
+This figure shows why validation is important. On the left side of the
+plot, we have very low-degree polynomial, which under-fit the data. This
+leads to a very high error for both the training set and the validation
+set. On the far right side of the plot, we have a very high degree
+polynomial, which over-fits the data. This can be seen in the fact that
+the training error is very low, while the validation error is very high.
+Plotted for comparison is the intrinsic error (this is the scatter
+artificially added to the data). For this toy dataset, error = 1.0 is the
+best we can hope to attain. Choosing ``d=6`` in this case gets us very
+close to the optimal error.
+
+.. tip::
+
+    The astute reader will realize that something is amiss here: in the
+    above plot, ``d = 6`` gives the best results. But in the previous plot,
+    we found that ``d = 6`` vastly over-fits the data. What’s going on here?
+    The difference is the **number of training points** used. In the
+    previous example, there were only eight training points. In this
+    example, we have 100. As a general rule of thumb, the more training
+    points used, the more complicated model can be used. But how can you
+    determine for a given model whether more training points will be
+    helpful? A useful diagnostic for this are learning curves.
+
+Learning Curves
+~~~~~~~~~~~~~~~
+
+A learning curve is a plot of the training and validation error as a
+function of the number of training points. Note that when we train on a
+small subset of the training data, the training error is computed using
+this subset, not the full training set. These plots can give a
+quantitative view into how beneficial it will be to add training
+samples::
+
+    >>> def plot_learning_curve(d, N=200):
+    ...     n_sizes = 50
+    ...     n_runs = 10
+    ...     sizes = np.linspace(2, N, n_sizes).astype(int)
+    ...     train_err = np.zeros((n_runs, n_sizes))
+    ...     validation_err = np.zeros((n_runs, n_sizes))
+    ...     for i in range(n_runs):
+    ...         for j, size in enumerate(sizes):
+    ...             xtrain, xtest, ytrain, ytest = train_test_split(
+    ...                 x, y, test_size=test_size, random_state=j)
+    ...             # Train on only the first `size` points
+    ...             p = np.polyfit(xtrain[:size], ytrain[:size], d)
+    ...
+    ...             # Validation error is on the *entire* validation set
+    ...             validation_err[i, j] = compute_error(xtest, ytest, p)
+    ...
+    ...             # Training error is on only the points used for training
+    ...             train_err[i, j] = compute_error(xtrain[:size], ytrain[:size], p)
+    ...
+    ...     fig, ax = plt.subplots()
+    ...     ax.plot(sizes, validation_err.mean(axis=0), lw=2, label='mean validation error')
+    ...     ax.plot(sizes, train_err.mean(axis=0), lw=2, label='mean training error')
+    ...     ax.plot([0, N], [error, error], '--k', label='intrinsic error')
+    ...
+    ...     ax.set_xlabel('traning set size')
+    ...     ax.set_ylabel('rms error')
+
+    ...     ax.legend(loc=0)
+
+    ...     ax.set_xlim(0, N-1)
+
+    ...     ax.set_title('d = %i' % d)
+
+Now that we've defined this function, we can plot the learning curve.
+But first, take a moment to think about what we're going to see:
+
+.. topic:: **Questions:**
+   :class: green
+
+   - As the number of training samples are increased, what do you expect
+     to see for the training error? For the validation error?
+   - Would you expect the training error to be higher or lower than the
+     validation error? Would you ever expect this to change?
+
+We can run the following code to plot the learning curve for a ``d=1``
+model::
+
+    >>> plot_learning_curve(d=1)
+
+Notice that the validation error *generally decreases* with a growing
+training set, while the training error *generally increases* with a
+growing training set. From this we can infer that as the training size
+increases, they will converge to a single value.
+
+From the above discussion, we know that ``d = 1`` is a high-bias
+estimator which under-fits the data. This is indicated by the fact that
+both the training and validation errors are very high. When confronted
+with this type of learning curve, we can expect that adding more
+training data will not help matters: both lines will converge to a
+relatively high error.
+
+**When the learning curves have converged to a high error, we have a
+high bias model.**
+
+A high-bias model can be improved by:
+
+-  Using a more sophisticated model (i.e. in this case, increase ``d``)
+-  Gather more features for each sample.
+-  Decrease regularlization in a regularized model.
+
+Increasing the number of samples, however, does not improve a high-bias
+model (do you see why?)
+
+Now let's look at a high-variance (i.e. over-fit) model::
+
+    >>> plot_learning_curve(d=20, N=100)
+    >>> plt.ylim(0, 15)
+    (0, 15)
+
+Here we show the learning curve for ``d = 20``. From the above
+discussion, we know that ``d = 20`` is a **high-variance** estimator
+which **over-fits** the data. This is indicated by the fact that the
+training error is much less than the validation error. As we add more
+samples to this training set, the training error will continue to climb,
+while the cross-validation error will continue to decrease, until they
+meet in the middle. In this case, our intrinsic error was set to 1.0,
+and we can infer that adding more data will allow the estimator to very
+closely match the best possible cross-validation error.
+
+**When the learning curves have not yet converged with our full training
+set, it indicates a high-variance, over-fit model.**
+
+A high-variance model can be improved by:
+
+-  Gathering more training samples.
+-  Using a less-sophisticated model (i.e. in this case, make ``d``
+   smaller)
+-  Increasing regularization.
+
+In particular, gathering more features for each sample will not help the
+results.
+
+Summary on model selection
+---------------------------
+
+We’ve seen above that an under-performing algorithm can be due to two
+possible situations: high bias (under-fitting) and high variance
+(over-fitting). In order to evaluate our algorithm, we set aside a
+portion of our training data for cross-validation. Using the technique
+of learning curves, we can train on progressively larger subsets of the
+data, evaluating the training error and cross-validation error to
+determine whether our algorithm has high variance or high bias. But what
+do we do with this information?
+
+High Bias
+~~~~~~~~~
+
+If our algorithm shows high **bias**, the following actions might help:
+
+-  **Add more features**. In our example of predicting home prices, it
+   may be helpful to make use of information such as the neighborhood
+   the house is in, the year the house was built, the size of the lot,
+   etc. Adding these features to the training and test sets can improve
+   a high-bias estimator
+-  **Use a more sophisticated model**. Adding complexity to the model
+   can help improve on bias. For a polynomial fit, this can be
+   accomplished by increasing the degree d. Each learning technique has
+   its own methods of adding complexity.
+-  **Use fewer samples**. Though this will not improve the
+   classification, a high-bias algorithm can attain nearly the same
+   error with a smaller training sample. For algorithms which are
+   computationally expensive, reducing the training sample size can lead
+   to very large improvements in speed.
+-  **Decrease regularization**. Regularization is a technique used to
+   impose simplicity in some machine learning models, by adding a
+   penalty term that depends on the characteristics of the parameters.
+   If a model has high bias, decreasing the effect of regularization can
+   lead to better results.
+
+High Variance
+~~~~~~~~~~~~~
+
+If our algorithm shows **high variance**, the following actions might
+help:
+
+-  **Use fewer features**. Using a feature selection technique may be
+   useful, and decrease the over-fitting of the estimator.
+-  **Use a simpler model**. Model complexity and over-fitting go
+   hand-in-hand.
+-  **Use more training samples**. Adding training samples can reduce the
+   effect of over-fitting, and lead to improvements in a high variance
+   estimator.
+-  **Increase Regularization**. Regularization is designed to prevent
+   over-fitting. In a high-variance model, increasing regularization can
+   lead to better results.
+
+These choices become very important in real-world situations. For
+example, due to limited telescope time, astronomers must seek a balance
+between observing a large number of objects, and observing a large
+number of features for each object. Determining which is more important
+for a particular learning task can inform the observing strategy that
+the astronomer employs. In a later exercise, we will explore the use of
+learning curves for the photometric redshift problem.
+
+One last word of caution
+-------------------------
+
+Using validation schemes to determine hyper-parameters means that we are
+fitting the hyper-parameters to the particular validation set. In the
+same way that parameters can be over-fit to the training set,
+hyperparameters can be over-fit to the validation set. Because of this,
+the validation error tends to under-predict the classification error of
+new data.
+
+For this reason, it is recommended to split the data into three sets:
+
+-  The **training set**, used to train the model (usually ~60% of the
+   data)
+-  The **validation set**, used to validate the model (usually ~20% of
+   the data)
+-  The **test set**, used to evaluate the expected error of the
+   validated model (usually ~20% of the data)
+
+Many machine learning practitioners do not separate test set and
+validation set. But if your goal is to gauge the error of a model on
+unknown data, using an independent test set is vital.
 
 |
 
 .. include:: auto_examples/index.rst
     :start-line: 1
+
+.. seealso:: **Going further**
+
+   * The `documentation of scikit-learn <http://scikit-learn.org>`__ is
+     very complete and didactic.
+
+   * `Introduction to Machine Learning with Python
+     <http://shop.oreilly.com/product/0636920030515.do>`_,
+     by Sarah Guido, Andreas Müller
+    (`notebooks available here <https://github.com/amueller/introduction_to_ml_with_python>`_).
+
 
