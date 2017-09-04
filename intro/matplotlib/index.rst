@@ -1129,17 +1129,19 @@ Tutorials
 Matplotlib documentation
 ------------------------
 
-* `User guide <http://matplotlib.org/users/index.html>`_
+.. hlist::
 
-* `FAQ <http://matplotlib.org/faq/index.html>`_
+  * `User guide <http://matplotlib.org/users/index.html>`_
 
-  - Installation
-  - Usage
-  - How-To
-  - Troubleshooting
-  - Environment Variables
+  * `FAQ <http://matplotlib.org/faq/index.html>`_
 
-* `Screenshots <http://matplotlib.org/users/screenshots.html>`_
+    - Installation
+    - Usage
+    - How-To
+    - Troubleshooting
+    - Environment Variables
+
+  * `Screenshots <http://matplotlib.org/users/screenshots.html>`_
 
 
 Code documentation
