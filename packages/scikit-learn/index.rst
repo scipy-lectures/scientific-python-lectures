@@ -1258,17 +1258,17 @@ Let us project the iris dataset along those first two dimensions:::
 :class:`~sklearn.decomposition.PCA` ``normalizes`` and ``whitens`` the data, which means that the data
 is now centered on both components with unit variance::
 
-    >>> X_pca.mean(axis=0)
-    array([ -1.51508435e-15,  -1.75859327e-15])
+    >>> X_pca.mean(axis=0) # doctest: +ELLIPSIS
+    array([ ...e-15,  ...e-15])
     >>> X_pca.std(axis=0)
-    array([ 0.99666109,  0.99666109])
+    array([ 1.,  1.])
 
 Furthermore, the samples components do no longer carry any linear
 correlation::
 
-    >>> np.corrcoef(X_pca.T)
-    array([[  1.00000000e+00,   6.41562355e-16],
-           [  6.41562355e-16,   1.00000000e+00]])
+    >>> np.corrcoef(X_pca.T)  # doctest: +ELLIPSIS
+    array([[  1.00000000e+00,   ...e-16],
+           [  ...e-16,   1.00000000e+00]])
 
 With a number of retained components 2 or 3, PCA is useful to visualize
 the dataset::
@@ -1595,7 +1595,9 @@ samples.
 
     >>> # Plot the mean train score and validation score across folds
     >>> plt.plot(train_sizes, validation_scores.mean(axis=1), label='cross-validation')
-    >>> plt.plot(train_sizes, train_scores.mean(axis=1), label='training')
+    [<matplotlib.lines.Line2D object at ...>] # doctest: +ELLIPSIS
+    >>> plt.plot(train_sizes, train_scores.mean(axis=1), label='training') # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
 
 
 .. figure:: auto_examples/images/sphx_glr_plot_bias_variance_004.png
