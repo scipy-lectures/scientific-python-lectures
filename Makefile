@@ -37,7 +37,7 @@ test:
 	nosetests -v --with-doctest --doctest-tests --doctest-extension=rst testing.py $(shell find intro advanced packages -name \*.rst -print)
 
 pytest:
-	python -m pytest --doctest-glob '*.rst' --ignore advanced
+	python -m pytest --doctest-glob '*.rst' --ignore advanced/advanced_numpy/examples/myobject_test.py --ignore advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py --ignore advanced/interfacing_with_c/ctypes/cos_module.py --ignore advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py
 
 test-stop-when-failing:
 	nosetests -vx --with-doctest --doctest-tests --doctest-extension=rst testing.py $(shell find intro advanced packages -name \*.rst -print)
