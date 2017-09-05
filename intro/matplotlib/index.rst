@@ -136,10 +136,7 @@ Plotting with default settings
     color and style, axes, axis and grid properties, text and font
     properties and so on.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
-
+|clear-floats|
 
 ::
 
@@ -176,11 +173,7 @@ that influence the appearance of the plot.
     now you can interactively play with the values to explore their
     affect (see `Line properties`_ and `Line styles`_ below).
 
-.. raw:: html
-
-    <div style="clear: both"></div>
-
-
+|clear-floats|
 
 ::
 
@@ -240,9 +233,7 @@ Changing colors and line widths
     slighty thicker line for both of them. We'll also slightly alter the figure
     size to make it more horizontal.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
+|clear-floats|
 
 ::
 
@@ -271,9 +262,7 @@ Setting limits
     Current limits of the figure are a bit too tight and we want to make
     some space in order to clearly see all data points.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
+|clear-floats|
 
 ::
 
@@ -305,9 +294,7 @@ Setting ticks
     (+/-π,+/-π/2) for sine and cosine. We'll change them such that they show
     only these values.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
+|clear-floats|
 
 ::
 
@@ -344,9 +331,7 @@ Setting tick labels
     corresponding label in the second argument list. Note that we'll use
     latex to allow for nice rendering of the label.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
+|clear-floats|
 
 ::
 
@@ -385,9 +370,7 @@ Moving spines
     by setting their color to none and we'll move the bottom and left
     ones to coordinate 0 in data space coordinates.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
+|clear-floats|
 
 ::
 
@@ -424,9 +407,7 @@ Adding a legend
     adding the keyword argument label (that will be used in the legend
     box) to the plot commands.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
+|clear-floats|
 
 ::
 
@@ -461,10 +442,7 @@ Annotate some points
     dotted line. Then, we'll use the annotate command to display some
     text with an arrow.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
-
+|clear-floats|
 
 ::
 
@@ -510,10 +488,7 @@ Devil is in the details
     properties such that they'll be rendered on a semi-transparent white
     background. This will allow us to see both the data and the labels.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
-
+|clear-floats|
 
 ::
 
@@ -774,10 +749,7 @@ adding labels for red bars.
 
    You need to take care of text alignment.
 
-.. raw:: html
-
-    <div style="clear: both"></div>
-
+|clear-floats|
 
 ::
 
