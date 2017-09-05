@@ -1594,8 +1594,8 @@ samples.
     ...     model, x[:, np.newaxis], y, train_sizes=np.logspace(-1, 0, 20))
 
     >>> # Plot the mean train score and validation score across folds
-    >>> plt.plot(train_sizes, validation_scores.mean(axis=1), label='cross-validation')
-    [<matplotlib.lines.Line2D object at ...>] # doctest: +ELLIPSIS
+    >>> plt.plot(train_sizes, validation_scores.mean(axis=1), label='cross-validation') # doctest: +ELLIPSIS
+    [<matplotlib.lines.Line2D object at ...>]
     >>> plt.plot(train_sizes, train_scores.mean(axis=1), label='training') # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
 
