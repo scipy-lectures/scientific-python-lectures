@@ -172,6 +172,8 @@ div.related {
     background-image: linear-gradient(#555, #333);
     color: #777;
     padding: 2px 0;
+    border: #777 solid;
+    border-width: 1px 0px 2px 0px;
 }
 
 div.related li.edit_on_github a {
@@ -235,6 +237,9 @@ div.related li.edit_on_github:hover span.tooltip {
       display: none;
   }
 
+  div.related li.left {
+	display: none;
+    }
 }
 
 
@@ -442,11 +447,8 @@ div.sphinxsidebarwrapper ul ul li.active ul ul {
 
 
 div.document {
-    /*background-color: #edf7fb;*/
     background-color: white;
-    border: solid;
-    border-color: #777;
-    border-width: 2px 0;
+    border: none;
 }
  
 /* bold section titles */
