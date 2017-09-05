@@ -25,3 +25,4 @@ before_script:
 script:
     - python build_tools/show-python-packages-versions.py
     - make test
+    - make pytest
