@@ -479,10 +479,19 @@ h6 {
 }
 
 div.body h2 {
+    margin-top: 65px;
+}
+
+div.body h1 div.section:first-of-kind h2 {
+    /* Less vertical space for an h2 right after an h1 */
     margin-top: 55px;
 }
 
-div.body h3, div.body hr {
+div.body h3 {
+    margin-top: 45px;
+}
+
+div.body h2 div.section:first-of-kind h3, div.body hr {
     margin-top: 39px;
 }
 
