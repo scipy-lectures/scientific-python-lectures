@@ -1651,8 +1651,8 @@ meet in the middle.
 
 |clear-floats|
 
-**When the learning curves have not yet converged with our full training
-set, it indicates a high-variance, over-fit model.**
+**Learning curves that have not yet converged with the full training
+set indicate a high-variance, over-fit model.**
 
 A high-variance model can be improved by:
 
@@ -1679,7 +1679,7 @@ do we do with this information?
 High Bias
 ~~~~~~~~~
 
-If our algorithm shows high **bias**, the following actions might help:
+If a model shows high **bias**, the following actions might help:
 
 -  **Add more features**. In our example of predicting home prices, it
    may be helpful to make use of information such as the neighborhood
@@ -1704,7 +1704,7 @@ If our algorithm shows high **bias**, the following actions might help:
 High Variance
 ~~~~~~~~~~~~~
 
-If our algorithm shows **high variance**, the following actions might
+If a model shows **high variance**, the following actions might
 help:
 
 -  **Use fewer features**. Using a feature selection technique may be
@@ -1726,8 +1726,8 @@ for a particular learning task can inform the observing strategy that
 the astronomer employs. In a later exercise, we will explore the use of
 learning curves for the photometric redshift problem.
 
-One last word of caution
--------------------------
+A last word of caution: separate validation and test set
+---------------------------------------------------------
 
 Using validation schemes to determine hyper-parameters means that we are
 fitting the hyper-parameters to the particular validation set. In the
