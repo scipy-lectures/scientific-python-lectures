@@ -1325,8 +1325,8 @@ in 2D enables visualization::
 
 .. topic:: fit_transform
 
-    As tSNE cannot be applied to new data, we need to use its
-    `fit_transform` method.
+    As :class:`~sklearn.manifold.TSNE` cannot be applied to new data, we
+    need to use its `fit_transform` method.
 
 |
 
@@ -1430,22 +1430,22 @@ performance. For a specific dataset there is a sweet spot corresponding
 to the highest complexity that the data can support, depending on the
 amount of noise and of observations available.
 
-Learning Curves and the Bias/Variance Tradeoff
-----------------------------------------------
+Visualizing the Bias/Variance Tradeoff
+---------------------------------------
 
-One way to address this issue is to use **Learning Curves**. Given a
-particular dataset and a model we'd like to fit (e.g. a polynomial), we'd
-like to tune our value of the *hyperparameter* ``d`` to give us the best
-fit.
+.. tip::
 
-Consider a simple regression problem: given the size of a
-house, we'd like to predict how much it's worth. We'll fit it with our
-polynomial regression model.
+    Given a particular dataset and a model (e.g. a polynomial), we'd like to
+    understand whether bias (underfit) or variance limits prediction, and how
+    to tune the *hyperparameter* (here ``d``, the degree of the polynomial)
+    to give the best fit.
+
+On a given data, let us fit a simple polynomial regression model with
+varying degrees:
 
 .. image:: auto_examples/images/sphx_glr_plot_bias_variance_001.png
    :align: center
    :target: auto_examples/plot_bias_variance.html
-
 
 .. tip::
 
@@ -1468,37 +1468,41 @@ polynomial regression model.
     problems seen in the figures on either side. What we would like is a way
     to quantitatively identify bias and variance, and optimize the
     metaparameters (in this case, the polynomial degree d) in order to
-    determine the best algorithm. This can be done through a process called
-    *validation*.
+    determine the best algorithm.
+
+.. topic:: Polynomial regression with scikit-learn
+
+   A polynomial regression is built by pipelining
+   :class:`~sklearn.preprocessing.PolynomialFeatures`
+   and a :class:`~sklearn.linear_model.LinearRegression`::
+
+    >>> from sklearn.pipeline import make_pipeline
+    >>> from sklearn.preprocessing import PolynomialFeatures
+    >>> from sklearn.linear_model import LinearRegression
+    >>> model = make_pipeline(PolynomialFeatures(degree=2), LinearRegression())
+
 
 Validation Curves
 ~~~~~~~~~~~~~~~~~
 
-We'll create a dataset like in the example above, and use this to test
-our validation scheme. First we'll define some utility routines::
+Let us create a dataset like in the example above::
 
-    >>> def test_func(x, err=0.5):
+    >>> def generating_func(x, err=0.5):
     ...     return np.random.normal(10 - 1. / (x + 0.1), err)
 
-    >>> def compute_error(x, y, p):
-    ...     yfit = np.polyval(p, x)
-    ...     return np.sqrt(np.mean((y - yfit) ** 2))
-
-Then we generate more data as above::
-
-    >>> # randomly sample the data
+    >>> # randomly sample more data
     >>> np.random.seed(1)
     >>> x = np.random.random(size=200)
-    >>> y = test_func(x, err=1.)
+    >>> y = generating_func(x, err=1.)
 
 .. image:: auto_examples/images/sphx_glr_plot_bias_variance_002.png
    :align: right
    :target: auto_examples/plot_bias_variance.html
    :scale: 60
 
-To quantify the effects of bias and variance and construct the best
-possible estimator, we split our training data into a *training set* and
-a *validation set*, with a training set containing 60% of the samples::
+Central to quantify bias and variance of a model is to apply it on *test
+data*, sampled from the same distribution as the train, but that will
+capture independent noise::
 
     >>> xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.4)
 
@@ -1507,33 +1511,33 @@ a *validation set*, with a training set containing 60% of the samples::
 
     <div style="clear: both"></div>
 
-**Validation curve** The model parameters (here, the coefficients of the
-polynomials) are learned using the training set as above. The error is
-evaluated on the validation set, and the meta-parameters (in our case,
-the degree of the polynomial) are adjusted so that this validation error
-is minimized. Finally, the labels are predicted for the test set. These
-labels are used to evaluate how well the algorithm can be expected to
-perform on unlabeled data.
+**Validation curve** A validation curve consists in varying a model parameter
+that controls its complexity (here the degree of the
+polynomial) and measures both error of the model on training data, and on
+test data (*eg* with cross-validation). The model parameter is then
+adjusted so that the test error is minimized:
 
-The validation error of our polynomial model is visualized by
-plotting the error as a function of the polynomial degree d::
+We use :func:`sklearn.model_selection.validation_curve` to compute train
+and test error, and plot it::
 
-    >>> degrees = np.arange(21)
-    >>> train_err = np.zeros(len(degrees))
-    >>> validation_err = np.zeros(len(degrees))
-    >>>
-    >>> for i, d in enumerate(degrees):
-    ...     p = np.polyfit(xtrain, ytrain, d)
-    ...     train_err[i] = compute_error(xtrain, ytrain, p)
-    ...     validation_err[i] = compute_error(xtest, ytest, p)
+    >>> from sklearn.model_selection import validation_curve
 
-    >>> plt.plot(degrees, validation_err, lw=2, label = 'cross-validation error')  # doctest: +ELLIPSIS
+    >>> degrees = np.arange(1, 21)
+
+    >>> model = make_pipeline(PolynomialFeatures(), LinearRegression())
+
+    >>> # Vary the "degrees" on the pipeline step "polynomialfeatures"
+    >>> train_scores, validation_scores = validation_curve(
+    ...                 model, x[:, np.newaxis], y,
+    ...                 param_name='polynomialfeatures__degree',
+    ...                 param_range=degrees)
+
+    >>> # Plot the mean train score and validation score across folds
+    >>> plt.plot(degrees, validation_scores.mean(axis=1), label='cross-validation')  # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(degrees, train_err, lw=2, label = 'training error')  # doctest: +ELLIPSIS
+    >>> plt.plot(degrees, train_scores.mean(axis=1), label='training')  # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot([0, 20], [1., 1.], '--k', label='intrinsic error')  # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.legend()  # doctest: +ELLIPSIS
+    >>> plt.legend(loc='best')  # doctest: +ELLIPSIS
     <matplotlib.legend.Legend object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_bias_variance_003.png
@@ -1544,19 +1548,17 @@ plotting the error as a function of the polynomial degree d::
 
 This figure shows why validation is important. On the left side of the
 plot, we have very low-degree polynomial, which under-fit the data. This
-leads to a very high error for both the training set and the validation
-set. On the far right side of the plot, we have a very high degree
-polynomial, which over-fits the data. This can be seen in the fact that
-the training error is very low, while the validation error is very high.
-Plotted for comparison is the intrinsic error (this is the scatter
-artificially added to the data). For this toy dataset, error = 1.0 is the
-best we can hope to attain. Choosing ``d=6`` in this case gets us very
-close to the optimal error.
+leads to a low explained variance for both the training set and the
+validation set. On the far right side of the plot, we have a very high
+degree polynomial, which over-fits the data. This can be seen in the fact
+that the training explained variance is very high, while on the
+validation set, it is low. Choosing ``d`` around 4 or 5 gets us the best
+tradeoff.
 
 .. tip::
 
     The astute reader will realize that something is amiss here: in the
-    above plot, ``d = 6`` gives the best results. But in the previous plot,
+    above plot, ``d = 4`` gives the best results. But in the previous plot,
     we found that ``d = 6`` vastly over-fits the data. What’s going on here?
     The difference is the **number of training points** used. In the
     previous example, there were only eight training points. In this
@@ -1568,101 +1570,86 @@ close to the optimal error.
 Learning Curves
 ~~~~~~~~~~~~~~~
 
-A learning curve is a plot of the training and validation error as a
+A learning curve shows the training and validation score as a
 function of the number of training points. Note that when we train on a
-small subset of the training data, the training error is computed using
-this subset, not the full training set. These plots can give a
+subset of the training data, the training score is computed using
+this subset, not the full training set. This curve gives a
 quantitative view into how beneficial it will be to add training
-samples::
-
-    >>> def plot_learning_curve(d, N=200):
-    ...     n_sizes = 50
-    ...     n_runs = 10
-    ...     sizes = np.linspace(2, N, n_sizes).astype(int)
-    ...     train_err = np.zeros((n_runs, n_sizes))
-    ...     validation_err = np.zeros((n_runs, n_sizes))
-    ...     for i in range(n_runs):
-    ...         for j, size in enumerate(sizes):
-    ...             xtrain, xtest, ytrain, ytest = train_test_split(
-    ...                 x, y, test_size=test_size, random_state=j)
-    ...             # Train on only the first `size` points
-    ...             p = np.polyfit(xtrain[:size], ytrain[:size], d)
-    ...
-    ...             # Validation error is on the *entire* validation set
-    ...             validation_err[i, j] = compute_error(xtest, ytest, p)
-    ...
-    ...             # Training error is on only the points used for training
-    ...             train_err[i, j] = compute_error(xtrain[:size], ytrain[:size], p)
-    ...
-    ...     fig, ax = plt.subplots()
-    ...     ax.plot(sizes, validation_err.mean(axis=0), lw=2, label='mean validation error')
-    ...     ax.plot(sizes, train_err.mean(axis=0), lw=2, label='mean training error')
-    ...     ax.plot([0, N], [error, error], '--k', label='intrinsic error')
-    ...
-    ...     ax.set_xlabel('traning set size')
-    ...     ax.set_ylabel('rms error')
-
-    ...     ax.legend(loc=0)
-
-    ...     ax.set_xlim(0, N-1)
-
-    ...     ax.set_title('d = %i' % d)
-
-Now that we've defined this function, we can plot the learning curve.
-But first, take a moment to think about what we're going to see:
+samples.
 
 .. topic:: **Questions:**
    :class: green
 
    - As the number of training samples are increased, what do you expect
-     to see for the training error? For the validation error?
-   - Would you expect the training error to be higher or lower than the
-     validation error? Would you ever expect this to change?
+     to see for the training score? For the validation score?
+   - Would you expect the training score to be higher or lower than the
+     validation score? Would you ever expect this to change?
 
-We can run the following code to plot the learning curve for a ``d=1``
-model::
 
-    >>> plot_learning_curve(d=1)
+:mod:`scikit-learn` provides
+:func:`sklearn.model_selection.learning_curve`::
 
-Notice that the validation error *generally decreases* with a growing
-training set, while the training error *generally increases* with a
-growing training set. From this we can infer that as the training size
+    >>> from sklearn.model_selection import learning_curve
+    >>> train_sizes, train_scores, validation_scores = learning_curve(
+    ...     model, x[:, np.newaxis], y, train_sizes=np.logspace(-1, 0, 20))
+
+    >>> # Plot the mean train score and validation score across folds
+    >>> plt.plot(train_sizes, validation_scores.mean(axis=1), label='cross-validation')
+    >>> plt.plot(train_sizes, train_scores.mean(axis=1), label='training')
+
+
+.. figure:: auto_examples/images/sphx_glr_plot_bias_variance_004.png
+   :align: left
+   :target: auto_examples/plot_bias_variance.html
+   :scale: 60
+
+   For a ``degree=1`` model
+
+Note that the validation score *generally increases* with a growing
+training set, while the training score *generally decreases* with a
+growing training set. As the training size
 increases, they will converge to a single value.
 
 From the above discussion, we know that ``d = 1`` is a high-bias
 estimator which under-fits the data. This is indicated by the fact that
-both the training and validation errors are very high. When confronted
+both the training and validation scores are low. When confronted
 with this type of learning curve, we can expect that adding more
-training data will not help matters: both lines will converge to a
-relatively high error.
+training data will not help: both lines converge to a
+relatively low score.
 
-**When the learning curves have converged to a high error, we have a
+|clear-floats|
+
+**When the learning curves have converged to a low score, we have a
 high bias model.**
 
 A high-bias model can be improved by:
 
 -  Using a more sophisticated model (i.e. in this case, increase ``d``)
 -  Gather more features for each sample.
--  Decrease regularlization in a regularized model.
+-  Decrease regularization in a regularized model.
 
 Increasing the number of samples, however, does not improve a high-bias
-model (do you see why?)
+model.
 
-Now let's look at a high-variance (i.e. over-fit) model::
+Now let's look at a high-variance (i.e. over-fit) model:
 
-    >>> plot_learning_curve(d=20, N=100)
-    >>> plt.ylim(0, 15)
-    (0, 15)
+.. image:: auto_examples/images/sphx_glr_plot_bias_variance_006.png
+   :align: left
+   :target: auto_examples/plot_bias_variance.html
+   :scale: 60
 
-Here we show the learning curve for ``d = 20``. From the above
-discussion, we know that ``d = 20`` is a **high-variance** estimator
+   For a ``degree=15`` model
+
+
+Here we show the learning curve for ``d = 15``. From the above
+discussion, we know that ``d = 15`` is a **high-variance** estimator
 which **over-fits** the data. This is indicated by the fact that the
-training error is much less than the validation error. As we add more
-samples to this training set, the training error will continue to climb,
-while the cross-validation error will continue to decrease, until they
-meet in the middle. In this case, our intrinsic error was set to 1.0,
-and we can infer that adding more data will allow the estimator to very
-closely match the best possible cross-validation error.
+training score is much higher than the validation score. As we add more
+samples to this training set, the training score will continue to
+decrease, while the cross-validation error will continue to increase, until they
+meet in the middle.
+
+|clear-floats|
 
 **When the learning curves have not yet converged with our full training
 set, it indicates a high-variance, over-fit model.**
