@@ -49,6 +49,8 @@ create_new_conda_env() {
 
 create_new_conda_env
 
+pip install pytest
+
 if [[ "$COVERAGE" == "true" ]]; then
     pip install coverage coveralls
 fi
