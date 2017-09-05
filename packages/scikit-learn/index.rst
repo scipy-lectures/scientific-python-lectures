@@ -139,8 +139,9 @@ A Simple Example: the Iris Dataset
 The application problem
 ........................
 
-As an example of a simple dataset, we are going to take a look at the
-iris data stored by scikit-learn. The data consists of measurements of
+As an example of a simple dataset, let us a look at the
+iris data stored by scikit-learn. Suppose we want to recognize species of
+irises. The data consists of measurements of
 three different species of irises:
 
 .. |setosa_picture| image:: images/iris_setosa.jpg
@@ -795,7 +796,7 @@ This is a manual version of a technique called **feature selection**.
 .. tip::
 
     Sometimes, in Machine Learning it is useful to use feature selection to
-    decide which features are most useful for a particular problem.
+    decide which features are the most useful for a particular problem.
     Automated methods exist which quantify this sort of exercise of choosing
     the most informative features.
 
@@ -1101,7 +1102,7 @@ Consider regularized linear models, such as *Ridge Regression*, which
 uses l2 regularlization, and *Lasso Regression*, which uses l1
 regularization. Choosing their regularization parameter is important.
 
-Let us set these paramaters on the Diabetes dataset, a simple regression
+Let us set these parameters on the Diabetes dataset, a simple regression
 problem. The diabetes data consists of 10 physiological variables (age,
 sex, weight, blood pressure) measure on 442 patients, and an indication
 of disease progression after one year::
@@ -1144,7 +1145,10 @@ between 0.0001 and 1::
    :scale: 70
 
 
-.. note:: Can we trust our results to be actually useful?
+.. topic:: Question
+   :class: green
+
+   Can we trust our results to be actually useful?
 
 Automatically Performing Grid Search
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1206,8 +1210,8 @@ is called *'nested cross validation'*::
 Unsupervised Learning: Dimensionality Reduction and Visualization
 =================================================================
 
-Unsupervised learning is used with X, but not y: data without labels. A
-typical use case is to find hiden structure in the data.
+Unsupervised learning is applied on X without y: data without labels. A
+typical use case is to find hidden structure in the data.
 
 Dimensionality Reduction: PCA
 -----------------------------
@@ -1635,7 +1639,7 @@ model.
 
 Now let's look at a high-variance (i.e. over-fit) model:
 
-.. image:: auto_examples/images/sphx_glr_plot_bias_variance_006.png
+.. figure:: auto_examples/images/sphx_glr_plot_bias_variance_006.png
    :align: left
    :target: auto_examples/plot_bias_variance.html
    :scale: 60
@@ -1725,8 +1729,7 @@ example, due to limited telescope time, astronomers must seek a balance
 between observing a large number of objects, and observing a large
 number of features for each object. Determining which is more important
 for a particular learning task can inform the observing strategy that
-the astronomer employs. In a later exercise, we will explore the use of
-learning curves for the photometric redshift problem.
+the astronomer employs.
 
 A last word of caution: separate validation and test set
 ---------------------------------------------------------
