@@ -271,21 +271,9 @@ Concatenate and repeat lists::
     .. sourcecode:: ipython
 
         In [28]: rcolors.<TAB>
-        rcolors.__add__           rcolors.__iadd__          rcolors.__setattr__
-        rcolors.__class__         rcolors.__imul__          rcolors.__setitem__
-        rcolors.__contains__      rcolors.__init__          rcolors.__setslice__
-        rcolors.__delattr__       rcolors.__iter__          rcolors.__sizeof__
-        rcolors.__delitem__       rcolors.__le__            rcolors.__str__
-        rcolors.__delslice__      rcolors.__len__           rcolors.__subclasshook__
-        rcolors.__doc__           rcolors.__lt__            rcolors.append
-        rcolors.__eq__            rcolors.__mul__           rcolors.count
-        rcolors.__format__        rcolors.__ne__            rcolors.extend
-        rcolors.__ge__            rcolors.__new__           rcolors.index
-        rcolors.__getattribute__  rcolors.__reduce__        rcolors.insert
-        rcolors.__getitem__       rcolors.__reduce_ex__     rcolors.pop
-        rcolors.__getslice__      rcolors.__repr__          rcolors.remove
-        rcolors.__gt__            rcolors.__reversed__      rcolors.reverse
-        rcolors.__hash__          rcolors.__rmul__          rcolors.sort
+        rcolors.append   rcolors.index    rcolors.remove   
+        rcolors.count    rcolors.insert   rcolors.reverse  
+        rcolors.extend   rcolors.pop      rcolors.sort    
 
 Strings
 ~~~~~~~
