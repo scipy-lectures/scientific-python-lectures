@@ -4,7 +4,7 @@ What's new
 * Rework of intro chapter (Gaël Varoquaux)
 
 * Integrate sphinx-gallery: examples are now Jupyter notebooks (Gaël
-  Varoquaux, Gerg-Ludwig Ingold, Óscar Nájera)
+  Varoquaux, Gert-Ludwig Ingold, Óscar Nájera)
 
 * Better Python 3 tests and support (Gert-Ludwig Ingold)
 
