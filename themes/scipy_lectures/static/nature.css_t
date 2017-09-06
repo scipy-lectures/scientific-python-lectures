@@ -487,6 +487,14 @@ div.body h1 div.section:first-of-kind h2 {
     margin-top: 55px;
 }
 
+/* "div.body > div.section" selects the div.section that is an immediate
+ * child of div.body */
+div.body > div.section, div.body > div.section > div.section {
+    /* Necessary to add vertical space after float */
+    display: inline-block;
+}
+
+
 div.body h3 {
     margin-top: 45px;
 }
