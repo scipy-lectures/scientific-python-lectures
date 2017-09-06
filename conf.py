@@ -299,7 +299,7 @@ latex_documents = [
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
-latex_logo = 'images/cover-v2.pdf'
+latex_logo = 'images/cover.pdf'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
@@ -371,7 +371,7 @@ latex_elements = {
     'babel': '\usepackage[english]{babel}',
     'releasename': 'Edition',
     'maketitle':
-    r'''\includepdf[noautoscale]{cover-v2}
+    r'''\includepdf[noautoscale]{cover.pdf}
 \makeatletter%
 \hypersetup{
     pdfinfo={
