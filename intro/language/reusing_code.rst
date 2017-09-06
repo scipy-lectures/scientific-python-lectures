@@ -87,7 +87,7 @@ directory as the test.py file, we can execute this in a console:
     .. warning::
 
         Don't implement option parsing yourself. Use modules such as
-        ``optparse``, ``argparse`` or ``docopt``.
+        :mod:`optparse`, :mod:`argparse` or :mod`docopt`.
 
 
 Importing objects from modules
@@ -244,15 +244,8 @@ Introspection
 
 
     In [8]: demo.
-    demo.__builtins__      demo.__init__          demo.__str__
-    demo.__class__         demo.__name__          demo.__subclasshook__
-    demo.__delattr__       demo.__new__           demo.c
-    demo.__dict__          demo.__package__       demo.d
-    demo.__doc__           demo.__reduce__        demo.print_a
-    demo.__file__          demo.__reduce_ex__     demo.print_b
-    demo.__format__        demo.__repr__          demo.py
-    demo.__getattribute__  demo.__setattr__       demo.pyc
-    demo.__hash__          demo.__sizeof__
+    demo.c        demo.print_a  demo.py       
+    demo.d        demo.print_b  demo.pyc      
 
 
 Importing objects from modules into the main namespace
