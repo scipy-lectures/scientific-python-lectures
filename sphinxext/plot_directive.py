@@ -355,7 +355,7 @@ def mark_plot_labels(app, document):
     the "htmlonly" (or "latexonly") node to the actual figure node
     itself.
     """
-    for name, explicit in document.nametypes.iteritems():
+    for name, explicit in document.nametypes.items():
         if not explicit:
             continue
         labelid = document.nameids[name]
