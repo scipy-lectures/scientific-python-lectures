@@ -6,6 +6,7 @@ Comparison of optimizers on various problems.
 """
 import functools
 import pickle
+import sys
 
 import numpy as np
 from scipy import optimize
@@ -171,4 +172,5 @@ if True:
         print('Done cost %s, ndim %s' % (cost_name, ndim))
         print(80*'_')
 
-    pickle.dump(gradient_less_benchs, file('compare_optimizers.pkl', 'w'))
+    pickle.dump(gradient_less_benchs,
+                open('compare_optimizers_py%s.pkl' % sys.version_info[0], 'wb'))
