@@ -61,9 +61,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.74689113"
+     inkscape:zoom="1.25"
      inkscape:cx="372.04724"
-     inkscape:cy="526.1811"
+     inkscape:cy="151.2938"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="mm"
@@ -88,7 +88,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1345,44 +1345,49 @@
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:18px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial Bold';letter-spacing:0.34999999px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
        x="371.55225"
-       y="925.51917"
+       y="919.51917"
        id="text3210"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          x="372.17725"
-         y="925.51917"
+         y="919.51917"
          id="tspan3236"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:18px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1">Gaël  Varoquaux  •  Emmanuelle  Gouillart  •  Olav  Vahtras</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1">Gaël  Varoquaux  •  Emmanuelle  Gouillart  •  Olav  Vahtras</tspan><tspan
          sodipodi:role="line"
          x="372.17725"
-         y="948.01917"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:18px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
-         id="tspan3255">Christopher  Burns  •  Adrian Chauve  •  Robert Cimrman</tspan><tspan
+         y="938.26917"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
+         id="tspan3583">Christopher  Burns  •  Adrian Chauve  •  Robert Cimrman  •  Christophe Combelles</tspan><tspan
          sodipodi:role="line"
          x="372.17725"
-         y="970.51917"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:18px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
-         id="tspan3583">Christophe Combelles  •  Ralf  Gommers  •  André  Espaze</tspan><tspan
+         y="957.01917"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
+         id="tspan3581">  Ralf  Gommers  •  André  Espaze   •  Zbigniew Jędrzejewski-Szmek</tspan><tspan
          sodipodi:role="line"
          x="372.17725"
-         y="993.01917"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:18px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
-         id="tspan3581">Zbigniew Jędrzejewski-Szmek  •  Valentin  Haenel</tspan><tspan
+         y="975.76917"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
+         id="tspan3269">  Valentin  Haenel  •  Gert-Ludwig Ingold  •  Fabian Pedregosa</tspan><tspan
          sodipodi:role="line"
          x="372.17725"
-         y="1015.5192"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:18px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
-         id="tspan3269">  Gert-Ludwig Ingold  •  Fabian Pedregosa</tspan><tspan
+         y="994.51917"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
+         id="tspan3617">Didrik Pinte  •  Nicolas  P.  Rougier  •  Pauli Virtanen</tspan><tspan
          sodipodi:role="line"
-         x="374.59521"
-         y="1038.0192"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:18px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
-         id="tspan3617">Didrik Pinte  •  Nicolas  P.  Rougier  •  Pauli Virtanen </tspan><tspan
+         x="373.54932"
+         y="1005.9302"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
+         id="tspan3590"> </tspan><tspan
+         sodipodi:role="line"
+         x="372.17725"
+         y="1020.1979"
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
+         id="tspan3592">and many others...</tspan><tspan
          sodipodi:role="line"
          x="371.55225"
-         y="1060.5192"
+         y="1035.8229"
          id="tspan3238"
-         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:18px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Light';text-align:center;letter-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1" /></text>
+         style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1" /></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot3300"
@@ -1413,6 +1418,6 @@
          sodipodi:role="line"
          id="tspan3579"
          x="348.55447"
-         y="951.06146"> </tspan></text>
+         y="951.06146" /></text>
   </g>
 </svg>
