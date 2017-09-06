@@ -16,8 +16,8 @@ that we will employ are tailored to its needs.
 
     * Numpy
     * IPython
-    * nosetests (http://readthedocs.org/docs/nose/en/latest/)
-    * pyflakes (http://pypi.python.org/pypi/pyflakes)
+    * `nosetests <http://readthedocs.org/docs/nose/en/latest/>`__
+    * `pyflakes <http://pypi.python.org/pypi/pyflakes>`__
     * gdb for the C-debugging part.
 
 .. contents:: Chapter contents

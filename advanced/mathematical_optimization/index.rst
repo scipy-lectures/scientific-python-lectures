@@ -19,8 +19,11 @@ used for more efficient, non black-box, optimization.
 
 .. topic:: Prerequisites
 
-    * Numpy, Scipy
-    * matplotlib
+   .. rst-class:: horizontal
+
+    * :ref:`Numpy <numpy>`
+    * :ref:`Scipy <scipy>`
+    * :ref:`Matplotlib <matplotlib>`
 
 .. seealso::  **References**
 
@@ -529,6 +532,7 @@ each step an approximation of the Hessian.
    :scale: 90%
 
 .. |bfgs_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_112.png
+   :scale: 75%
 
 Full code examples
 ==================
@@ -539,7 +543,6 @@ Full code examples
 .. include:: auto_examples/index.rst
     :start-line: 1
 
-   :scale: 75%
 
 .. |bfgs_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_013.png
    :scale: 90%

@@ -101,7 +101,7 @@ Scipy Lecture Notes
 .. rst-class:: tune
 
   .. toctree::
-    :numbered:
+    :numbered: 4
 
     intro/index.rst
     advanced/index.rst

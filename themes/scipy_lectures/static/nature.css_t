@@ -14,8 +14,8 @@
 /* For FontAwesome */
 @font-face {
   font-family: 'FontAwesome';
-  src: url('http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.eot?v=4.4.0');
-  src: url('http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.eot?#iefix&v=4.4.0') format('embedded-opentype'), url('http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'), url('http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype'), url('http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular') format('svg');
+  src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.eot?v=4.4.0');
+  src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.eot?#iefix&v=4.4.0') format('embedded-opentype'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -88,6 +88,20 @@ div.body li {
    line-height: 1.45;
 }
 
+li.horizontal {
+    display: inline-block;
+}
+
+ul.horizontal li {
+    display: inline-block;
+}
+
+ul.horizontal li:before {
+    content: "\2022";
+    margin-right: .5ex;
+    margin-left: 1.5ex;
+}
+
 div.body p {
    line-height: 1.45;
 }
@@ -158,6 +172,8 @@ div.related {
     background-image: linear-gradient(#555, #333);
     color: #777;
     padding: 2px 0;
+    border: #777 solid;
+    border-width: 1px 0px 2px 0px;
 }
 
 div.related li.edit_on_github a {
@@ -221,6 +237,9 @@ div.related li.edit_on_github:hover span.tooltip {
       display: none;
   }
 
+  div.related li.left {
+	display: none;
+    }
 }
 
 
@@ -428,11 +447,8 @@ div.sphinxsidebarwrapper ul ul li.active ul ul {
 
 
 div.document {
-    /*background-color: #edf7fb;*/
     background-color: white;
-    border: solid;
-    border-color: #777;
-    border-width: 2px 0;
+    border: none;
 }
  
 /* bold section titles */
@@ -447,11 +463,43 @@ h6 {
     padding: 3px 0px 3px 5px;
 }
 
+/* When the margins disappear */
+@media (max-width: 110ex) {
+    div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body
+    h6 {
+	padding-left: 8px;
+    }
+}
+
+@media (max-width: 100ex) {
+    div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body
+    h6 {
+	padding-left: 13px;
+    }
+}
+
 div.body h2 {
+    margin-top: 65px;
+}
+
+div.body h1 div.section:first-of-kind h2 {
+    /* Less vertical space for an h2 right after an h1 */
     margin-top: 55px;
 }
 
-div.body h3, div.body hr {
+/* "div.body > div.section" selects the div.section that is an immediate
+ * child of div.body */
+div.body > div.section, div.body > div.section > div.section {
+    /* Necessary to add vertical space after float */
+    display: flow-root;
+}
+
+
+div.body h3 {
+    margin-top: 45px;
+}
+
+div.body h2 div.section:first-of-kind h3, div.body hr {
     margin-top: 39px;
 }
 
@@ -701,6 +749,8 @@ div.topic, div.admonition {
 
 div.sidebar {
     padding-top: 2px;
+    width: initial;
+    max-width: 40%;
 }
 
 div.topic {
@@ -838,7 +888,7 @@ div.tip .first {
 
 
 div.tip {
-    font-size: 90% ;
+    font-size: 95%;
     margin: 0px;
     padding: 0px;
     margin-left: -2ex;
@@ -969,8 +1019,9 @@ ul.horizontal img {
 }*/
 
 /************* For sphinx-gallery ************/
-p.sphx-glr-script-out {
+p.sphx-glr-script-out, div.body p.sphx-glr-script-out {
     margin-left: -2.3em;
+    margin-top: -1em;
 }
 
 div.sphx-glr-script-out div.highlight {

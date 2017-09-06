@@ -258,8 +258,7 @@ packaged, and it is recommended to use your package manager.
 
 There are several fully-featured Scientific Python distributions:
 
-.. hlist::
-  :columns: 3
+.. rst-class:: horizontal
 
   * `Anaconda <https://www.continuum.io/downloads>`_
   * `EPD <https://store.enthought.com/downloads>`_
@@ -285,6 +284,8 @@ environment to work in, and not only one way of using it. Although
 this makes it harder for beginners to find their way, it makes it
 possible for Python to be used for programs, in web servers, or
 embedded devices.
+
+.. _interactive_work:
 
 Interactive work
 .................
