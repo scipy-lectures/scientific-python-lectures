@@ -6,7 +6,7 @@ sets of instructions we need to change track and write the code in text
 files (using a text editor), that we will call either *scripts* or
 *modules*. Use your favorite text editor (provided it offers syntax
 highlighting for Python), or the editor that comes with the Scientific
-Python Suite you may be using (e.g., Scite with Python(x,y)).
+Python Suite you may be using.
 
 Scripts
 -------
@@ -131,7 +131,7 @@ Importing shorthands:
 
         from os import *
 
-    This is called the *star import* and please, **Use it with caution**
+    This is called the *star import* and please, **Do not use it**
 
     * Makes the code harder to read and understand: where do symbols come
       from?
@@ -157,16 +157,6 @@ Importing shorthands:
     >>> np.linspace(0, 10, 6)
     array([  0.,   2.,   4.,   6.,   8.,  10.])
     >>> import scipy # scientific computing
-
-
-In Python(x,y), Ipython(x,y) executes the following imports at startup::
-
-    >>> import numpy
-    >>> import numpy as np
-    >>> from pylab import *
-    >>> import scipy
-
-and it is not necessary to re-import these modules.
 
 
 Creating modules
@@ -506,8 +496,7 @@ Good practices
   indent with any positive number of spaces (1, 2, 3, 4, ...). However,
   it is considered good practice to **indent with 4 spaces**. You may
   configure your editor to map the ``Tab`` key to a 4-space
-  indentation. In Python(x,y), the editor is already
-  configured this way.
+  indentation. 
 
 * **Style guidelines**
 
