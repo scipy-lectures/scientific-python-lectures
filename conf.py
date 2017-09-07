@@ -361,6 +361,7 @@ latex_preamble = r"""
 """
 
 latex_elements = {
+    'preamble': latex_preamble,
     'fontpkg': '\\usepackage{lmodern}',
     'fncychap': r'''%
     \usepackage[Sonny]{fncychap}%
