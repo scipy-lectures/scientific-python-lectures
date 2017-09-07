@@ -22,7 +22,6 @@ create_new_venv() {
     deactivate
     virtualenv --system-site-packages testvenv
     source testvenv/bin/activate
-    pip install nose
 }
 
 
@@ -48,8 +47,6 @@ create_new_conda_env() {
 }
 
 create_new_conda_env
-
-pip install pytest
 
 if [[ "$COVERAGE" == "true" ]]; then
     pip install coverage coveralls
