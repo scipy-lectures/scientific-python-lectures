@@ -24,4 +24,4 @@ before_script:
 
 script:
     - python build_tools/show-python-packages-versions.py
-    - MATPLOTLIBRC=build_tools make test
+    - make test
