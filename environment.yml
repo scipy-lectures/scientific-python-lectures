@@ -12,7 +12,7 @@ dependencies:
 - statsmodels=0.6
 - seaborn=0.7
 - pandas=0.18
-- nose=1.3.7
+- pytest>=3.2.1
 - sphinx=1.6.3
 - coverage=4.4.1
 - pillow=3.3.1

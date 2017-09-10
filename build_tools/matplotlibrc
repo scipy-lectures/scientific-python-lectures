@@ -1,0 +1,8 @@
+# This matplotlibrc file allows the tests to run without trying to access a
+# graphical environment
+#
+# The file is taken in account by matplotlib by setting the environment
+# variable MATPLOTLIBRC to this directory, see
+# http://matplotlib.org/users/customizing.html#the-matplotlibrc-file
+
+backend      : Agg
