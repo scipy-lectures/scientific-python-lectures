@@ -1,6 +1,8 @@
 """
 Build environment.yml from requirements.txt
 """
+import os
+
 requirements = []
 with open("requirements.txt", "r") as f:
     requirements = f.readlines()
@@ -10,7 +12,9 @@ preamble = """# Do not manually modify this file.
 # `./build_tools/requirements_to_environment.py`
 name: testenv
 dependencies:
-"""
+- python={PYTHON_VERSION}
+""".format(PYTHON_VERSION=os.environ['PYTHON_VERSION'])
+
 with open("environment.yml", "w") as f:
     f.write(preamble)
     pip = False

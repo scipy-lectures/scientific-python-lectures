@@ -42,6 +42,7 @@ create_new_conda_env() {
     conda update --yes conda
 
     # Create a conda environment
+    python build_tools/requirements_to_environment.py
     conda env create -f environment.yml
     source activate testenv
 }

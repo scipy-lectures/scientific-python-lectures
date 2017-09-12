@@ -1,6 +1,7 @@
 machine:
   environment:
     PATH: /home/ubuntu/miniconda/bin:$PATH
+    PYTHON_VERSION: 2.7
 
 dependencies:
   pre:
