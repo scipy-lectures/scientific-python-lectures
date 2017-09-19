@@ -1,6 +1,14 @@
 """
 Build environment.yml from requirements.txt
+
+If the environment variable PYTHON_VERSION is defined, a "python" line with
+that variable is added to the dependencies to trigger the appropriate conda
+installation.
 """
+import os
+
+PYTHON_VERSION = os.environ.get('PYTHON_VERSION')
+
 requirements = []
 with open("requirements.txt", "r") as f:
     requirements = f.readlines()
@@ -11,6 +19,11 @@ preamble = """# Do not manually modify this file.
 name: testenv
 dependencies:
 """
+
+if PYTHON_VERSION is not None:
+    preamble = preamble + """- python={PYTHON_VERSION}
+""".format(PYTHON_VERSION=PYTHON_VERSION)
+
 with open("environment.yml", "w") as f:
     f.write(preamble)
     pip = False
