@@ -19,11 +19,11 @@ def linear_model(rseed=42, n_samples=30):
     np.random.seed(rseed)
 
     data = np.random.normal(0, 10, (n_samples, 2))
-    data[:n_samples / 2] -= 15
-    data[n_samples / 2:] += 15
+    data[:n_samples // 2] -= 15
+    data[n_samples // 2:] += 15
 
     labels = np.ones(n_samples)
-    labels[:n_samples / 2] = -1
+    labels[:n_samples // 2] = -1
 
     return data, labels
 
