@@ -162,6 +162,12 @@ This can be compiled:
 
 The file ``cos_module.so`` contains the compiled extension, which we can now load in the IPython interpreter:
 
+.. note::
+
+   In Python 3, the filename for compiled modules includes metadata on the Python
+   interpreter (see `PEP 3149 <https://www.python.org/dev/peps/pep-3149/>`_) and is thus
+   longer. The import statement is not affected by this.
+
 .. sourcecode:: ipython
 
     In [1]: import cos_module
