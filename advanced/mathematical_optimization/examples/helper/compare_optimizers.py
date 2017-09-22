@@ -22,22 +22,22 @@ def my_partial(**kwargs):
     return f
 
 methods = {
-    'Nelder-mead':          my_partial(method="Nelder-Mead", options = {
+    'Nelder-mead':          my_partial(method = "Nelder-Mead", options = {
                                         "fatol": 1e-12, "maxiter": 5e3,
                                         "xatol": 1e-7, "maxfev": 1e6 }),
-    'Powell':               my_partial(method="Powell", options = {
+    'Powell':               my_partial(method = "Powell", options = {
                                         "ftol": 1e-9, "maxiter": 5e3,
                                         "maxfev": 1e7 }),
-    'BFGS':                 my_partial(method="BFGS", options = {
+    'BFGS':                 my_partial(method = "BFGS", options = {
                                         "gtol": 1e-9, "maxiter": 5e3 }),
-    'Newton':               my_partial(method="Newton-CG", options = {
+    'Newton':               my_partial(method = "Newton-CG", options = {
                                         "xtol": 1e-7, "maxiter": 5e3 }),
-    'Conjugate gradient':   my_partial(method="CG", options = {
+    'Conjugate gradient':   my_partial(method = "CG", options = {
                                         "gtol": 1e-7, "maxiter": 5e3 }),
-    'L-BFGS':               my_partial(method="L-BFGS-B", options = {
+    'L-BFGS':               my_partial(method = "L-BFGS-B", options = {
                                         "factr": 10.0,
                                         "gtol": 1e-8, "maxfun": 1e7 }),
-    "L-BFGS w f'":          my_partial(method="L-BFGS-B", options = {
+    "L-BFGS w f'":          my_partial(method = "L-BFGS-B", options = {
                                         "factr": 10.0,
                                         "gtol": 1e-8, "maxfun": 1e7 }),
 }
