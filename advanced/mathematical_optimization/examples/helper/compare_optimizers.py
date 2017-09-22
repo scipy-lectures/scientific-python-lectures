@@ -35,10 +35,10 @@ methods = {
     'Conjugate gradient':   my_partial(method = "CG", options = {
                                         "gtol": 1e-7, "maxiter": 5e3 }),
     'L-BFGS':               my_partial(method = "L-BFGS-B", options = {
-                                        "factr": 10.0,
+                                        "ftol": 10.0,
                                         "gtol": 1e-8, "maxfun": 1e7 }),
     "L-BFGS w f'":          my_partial(method = "L-BFGS-B", options = {
-                                        "factr": 10.0,
+                                        "ftol": 10.0,
                                         "gtol": 1e-8, "maxfun": 1e7 }),
 }
 
