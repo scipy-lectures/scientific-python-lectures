@@ -82,7 +82,7 @@ def conjugate_gradient(x0, f, f_prime, hessian=None):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.fmin_cg(f, x0, f_prime, callback=store, gtol=1e-12)
+    optimize.minimize(f, x0, jac=f_prime, method="CG", callback=store, options={"gtol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 
@@ -95,8 +95,7 @@ def newton_cg(x0, f, f_prime, hessian):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.fmin_ncg(f, x0, f_prime, fhess=hessian, callback=store,
-                avextol=1e-12)
+    optimize.minimize(f, x0, method="Newton-CG", jac=f_prime, hess=hessian, callback=store, options={"xtol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 
@@ -109,7 +108,7 @@ def bfgs(x0, f, f_prime, hessian=None):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.fmin_bfgs(f, x0, f_prime, callback=store, gtol=1e-12)
+    optimize.minimize(f, x0, method="BFGS", jac=f_prime, callback=store, options={"gtol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 
@@ -122,7 +121,7 @@ def powell(x0, f, f_prime, hessian=None):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.fmin_powell(f, x0, callback=store, ftol=1e-12)
+    optimize.minimize(f, x0, method="Powell", callback=store, options={"ftol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 
@@ -135,7 +134,7 @@ def nelder_mead(x0, f, f_prime, hessian=None):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.fmin(f, x0, callback=store, ftol=1e-12)
+    optimize.minimize(f, x0, method="Nelder-Mead", callback=store, options={"ftol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 

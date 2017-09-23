@@ -15,30 +15,31 @@ from cost_functions import mk_quad, mk_gauss, rosenbrock,\
     rosenbrock_prime, rosenbrock_hessian, LoggingFunction, \
     CountingFunction
 
-def my_partial(function, **kwargs):
+def my_partial(**kwargs):
+    function = optimize.minimize
     f = functools.partial(function, **kwargs)
     functools.update_wrapper(f, function)
     return f
 
 methods = {
-    'Nelder-mead':          my_partial(optimize.fmin,
-                                        ftol=1e-12, maxiter=5e3,
-                                        xtol=1e-7, maxfun=1e6),
-    'Powell':               my_partial(optimize.fmin_powell,
-                                        ftol=1e-9, maxiter=5e3,
-                                        maxfun=1e7),
-    'BFGS':                 my_partial(optimize.fmin_bfgs,
-                                        gtol=1e-9, maxiter=5e3),
-    'Newton':               my_partial(optimize.fmin_ncg,
-                                        avextol=1e-7, maxiter=5e3),
-    'Conjugate gradient':   my_partial(optimize.fmin_cg,
-                                        gtol=1e-7, maxiter=5e3),
-    'L-BFGS':               my_partial(optimize.fmin_l_bfgs_b,
-                                        approx_grad=1, factr=10.0,
-                                        pgtol=1e-8, maxfun=1e7),
-    "L-BFGS w f'":          my_partial(optimize.fmin_l_bfgs_b,
-                                        factr=10.0,
-                                        pgtol=1e-8, maxfun=1e7),
+    'Nelder-mead':          my_partial(method = "Nelder-Mead", options = {
+                                        "fatol": 1e-12, "maxiter": 5e3,
+                                        "xatol": 1e-7, "maxfev": 1e6 }),
+    'Powell':               my_partial(method = "Powell", options = {
+                                        "ftol": 1e-9, "maxiter": 5e3,
+                                        "maxfev": 1e7 }),
+    'BFGS':                 my_partial(method = "BFGS", options = {
+                                        "gtol": 1e-9, "maxiter": 5e3 }),
+    'Newton':               my_partial(method = "Newton-CG", options = {
+                                        "xtol": 1e-7, "maxiter": 5e3 }),
+    'Conjugate gradient':   my_partial(method = "CG", options = {
+                                        "gtol": 1e-7, "maxiter": 5e3 }),
+    'L-BFGS':               my_partial(method = "L-BFGS-B", options = {
+                                        "ftol": 10.0,
+                                        "gtol": 1e-8, "maxfun": 1e7 }),
+    "L-BFGS w f'":          my_partial(method = "L-BFGS-B", options = {
+                                        "ftol": 10.0,
+                                        "gtol": 1e-8, "maxfun": 1e7 }),
 }
 
 ###############################################################################
@@ -58,7 +59,7 @@ def bencher_gradient(cost_name, ndim, method_name, x0):
     method = methods[method_name]
     f_prime = CountingFunction(cost_function_prime)
     f = LoggingFunction(cost_function, counter=f_prime.counter)
-    method(f, x0, f_prime)
+    method(f, x0, jac=f_prime)
     this_costs = np.array(f.all_f_i)
     return this_costs, np.array(f.counts)
 
@@ -70,7 +71,7 @@ def bencher_hessian(cost_name, ndim, method_name, x0):
     f_prime = CountingFunction(cost_function_prime)
     hessian = CountingFunction(hessian, counter=f_prime.counter)
     f = LoggingFunction(cost_function, counter=f_prime.counter)
-    method(f, x0, f_prime, fhess=hessian)
+    method(f, x0, jac=f_prime, hess=hessian)
     this_costs = np.array(f.all_f_i)
     return this_costs, np.array(f.counts)
 
