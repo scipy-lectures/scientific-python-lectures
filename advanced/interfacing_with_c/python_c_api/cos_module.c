@@ -30,10 +30,31 @@ static PyMethodDef CosMethods[] =
      {NULL, NULL, 0, NULL}
 };
 
+#if PY_MAJOR_VERSION >= 3
 /* module initialization */
-PyMODINIT_FUNC
+/* Python version 3*/
+static struct PyModuleDef cModPyDem =
+{
+    PyModuleDef_HEAD_INIT,
+    "cos_module", "Some documentation",
+    -1,
+    CosMethods
+};
 
+PyMODINIT_FUNC
+PyInit_cos_module(void)
+{
+    return PyModule_Create(&cModPyDem);
+}
+
+#else
+
+/* module initialization */
+/* Python version 2 */
+PyMODINIT_FUNC
 initcos_module(void)
 {
-     (void) Py_InitModule("cos_module", CosMethods);
+    (void) Py_InitModule("cos_module", CosMethods);
 }
+
+#endif
