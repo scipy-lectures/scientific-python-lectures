@@ -32,8 +32,6 @@ needs_sphinx = '1.0'
 extensions = [
         'sphinx.ext.autodoc',
         'sphinx.ext.doctest',
-        #'matplotlib.sphinxext.plot_directive',
-        'plot_directive',
         'only_directives',
         'ipython_console_highlighting',
         #'matplotlib.sphinxext.only_directives',
