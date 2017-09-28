@@ -7,13 +7,15 @@ Plots the results from the comparison of optimizers.
 """
 
 import pickle
+import sys
 
 import numpy as np
 import pylab as pl
 
-results = pickle.load(file('helper/compare_optimizers.pkl'))
-#results = pickle.load(file('compare_optimizers_gradients.pkl'))
-n_methods = len(results.values()[0]['Rosenbrock  '])
+results = pickle.load(open(
+    'helper/compare_optimizers_py%s.pkl' % sys.version_info[0],
+    'rb'))
+n_methods = len(list(results.values())[0]['Rosenbrock  '])
 n_dims = len(results)
 
 symbols = 'o>*Ds'
@@ -23,7 +25,7 @@ pl.clf()
 
 colors = pl.cm.Spectral(np.linspace(0, 1, n_dims))[:, :3]
 
-method_names = results.values()[0]['Rosenbrock  '].keys()
+method_names = list(list(results.values())[0]['Rosenbrock  '].keys())
 method_names.sort(key=lambda x: x[::-1], reverse=True)
 
 for n_dim_index, ((n_dim, n_dim_bench), color) in enumerate(
