@@ -116,7 +116,7 @@ p = subprocess.Popen(['git', 'describe', '--tags'],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE)
 p.wait()
-version = p.stdout.read().strip()
+version = p.stdout.read().strip().decode()
 
 # The full version, including alpha/beta/rc tags.
 release = '2016.1'
