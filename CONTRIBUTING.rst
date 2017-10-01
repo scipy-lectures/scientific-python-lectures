@@ -67,7 +67,7 @@ Requirements
 
 .. topic:: **Building on Debian/Ubuntu**
 
-    The environment needed to create an HTML version of the SciPy lecture notes
+    The environment needed to create an html version of the SciPy lecture notes
     can be based on miniconda. We first download the latest version of miniconda
     and rename it to ``miniconda.sh`` for simplicity::
 
@@ -109,6 +109,6 @@ Requirements
 
         source deactivate
 
-    With an activated environment, you are now able to produce the HTML version of the
-    SciPy as explained above. Generating a PDF version requires the system packages
+    With an activated environment, you are now able to produce the html version of the
+    SciPy as explained above. Generating a pdf version requires the system packages
     ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``.
