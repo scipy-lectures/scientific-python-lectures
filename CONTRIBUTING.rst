@@ -54,7 +54,7 @@ Requirements
 |
 |
 
-.. topic:: **Building on Fedora**
+.. topic:: Building on Fedora
 
     As root::
 
@@ -65,7 +65,7 @@ Requirements
         pip install scikit-learn
         pip install scikit-image
 
-.. topic:: Building on Debian/Ubuntu
+.. topic:: **Building on Debian/Ubuntu**
 
     The environment needed to create an HTML version of the SciPy lecture notes
     can be based on miniconda. We first download the latest version of miniconda
