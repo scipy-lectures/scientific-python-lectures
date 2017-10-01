@@ -65,3 +65,60 @@ Requirements
         pip install scikit-learn
         pip install scikit-image
 
+.. topic:: Building on Debian/Ubuntu
+
+    The environment needed to create an HTML version of the SciPy lecture notes
+    can be based on miniconda. We first download the latest version of miniconda
+    and rename it to `miniconda.sh` for simplicity::
+
+       wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+
+    To ensure that the file has been downloaded correctly, one can compare the
+    MD5 sum obtained by means of::
+
+        md5sum miniconda.sh
+
+    with the value listed on https://repo.continuum.io/miniconda/ . Miniconda can
+    now be installed::
+
+        bash miniconda.sh
+        
+    Review the license agreement and choose a target directory (here we assume it
+    to be `$HOME/miniconda2`). Unless you intend to work more extensively with
+    miniconda, you do not want to modify `.bashrc`. In this case, you need::
+
+        export PATH=$HOME/miniconda2/bin:$PATH
+
+    to find the correct binaries. Note that the path depends on the target directory
+    chosen above.
+
+    Now, we use `environment.yml` from the main directory of the scipy-lecture-notes
+    repository to install the required dependencies. Note that `environment.yml` yields
+    an environment named `testenv`. If you prefer a more telling name, make a copy of
+    `environment.yml`, replace `testenv` in line 4 by a more appropriate name and use
+    this name in the following instead of `testenv`. The conda environment is created
+    by::
+
+        conda env create -f environment.yml
+
+    Now, the environment can be activated::
+
+        source activate testenv
+
+    and deactivated::
+
+        source deactivate
+
+    With an activated environment, you are now able to produce the HTML version of the
+    SciPy lecture notes by running::
+
+        make html
+
+    in the main directory of the repository.
+
+    A PDF version can be obtained by means of::
+
+        make pdf
+
+    Required system packages are `texlive`, `texlive-latex-extra`, `texlive-fonts-extra`,
+    and `latexmk`.
