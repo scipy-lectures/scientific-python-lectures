@@ -2,10 +2,10 @@
 #
 
 # You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-PAPER         = a4
 PYTHON        = python
+SPHINXOPTS    =
+SPHINXBUILD   = $(PYTHON) -m sphinx
+PAPER         = a4
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -34,10 +34,10 @@ clean:
 	-rm -rf intro/scipy/auto_examples/ intro/matplotlib/auto_examples/ intro/summary-exercises/auto_examples advanced/mathematical_optimization/auto_examples/ advanced/advanced_numpy/auto_examples/ advanced/image_processing/auto_examples advanced/scipy_sparse/auto_examples packages/3d_plotting/auto_examples packages/statistics/auto_examples/ packages/scikit-image/auto_examples/ packages/scikit-learn/auto_examples
 
 test:
-	MATPLOTLIBRC=build_tools python -m pytest --doctest-glob '*.rst' --ignore advanced/advanced_numpy/examples/myobject_test.py --ignore advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py --ignore advanced/interfacing_with_c/ctypes/cos_module.py --ignore advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py
+	MATPLOTLIBRC=build_tools $(PYTHON) -m pytest --doctest-glob '*.rst' --ignore advanced/advanced_numpy/examples/myobject_test.py --ignore advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py --ignore advanced/interfacing_with_c/ctypes/cos_module.py --ignore advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py
 
 test-stop-when-failing:
-	MATPLOTLIBRC=build_tools python -m pytest -x --doctest-glob '*.rst' --ignore advanced/advanced_numpy/examples/myobject_test.py --ignore advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py --ignore advanced/interfacing_with_c/ctypes/cos_module.py --ignore advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py
+	MATPLOTLIBRC=build_tools $(PYTHON) -m pytest -x --doctest-glob '*.rst' --ignore advanced/advanced_numpy/examples/myobject_test.py --ignore advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py --ignore advanced/interfacing_with_c/ctypes/cos_module.py --ignore advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py
 
 html-noplot:
 	$(SPHINXBUILD) -D plot_gallery=0 -b html $(ALLSPHINXOPTS) build/html

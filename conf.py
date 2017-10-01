@@ -32,8 +32,6 @@ needs_sphinx = '1.0'
 extensions = [
         'sphinx.ext.autodoc',
         'sphinx.ext.doctest',
-        #'matplotlib.sphinxext.plot_directive',
-        'plot_directive',
         'only_directives',
         'ipython_console_highlighting',
         #'matplotlib.sphinxext.only_directives',
@@ -116,7 +114,7 @@ p = subprocess.Popen(['git', 'describe', '--tags'],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE)
 p.wait()
-version = p.stdout.read().strip()
+version = p.stdout.read().strip().decode()
 
 # The full version, including alpha/beta/rc tags.
 release = '2016.1'
@@ -229,7 +227,7 @@ html_title = "Scipy lecture notes"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['themes/scipy_lectures/static', "_static"]
+html_static_path = ['themes/scipy_lectures/static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.

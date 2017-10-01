@@ -1271,8 +1271,8 @@ Furthermore, the samples components do no longer carry any linear
 correlation::
 
     >>> np.corrcoef(X_pca.T)  # doctest: +ELLIPSIS
-    array([[  1.00000000e+00,   ...e-16],
-           [  ...e-16,   1.00000000e+00]])
+    array([[  1.00000000e+00,   ...],
+           [  ...,   1.00000000e+00]])
 
 With a number of retained components 2 or 3, PCA is useful to visualize
 the dataset::
