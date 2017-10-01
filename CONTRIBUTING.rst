@@ -110,15 +110,5 @@ Requirements
         source deactivate
 
     With an activated environment, you are now able to produce the HTML version of the
-    SciPy lecture notes by running::
-
-        make html
-
-    in the main directory of the repository.
-
-    A PDF version can be obtained by means of::
-
-        make pdf
-
-    Required system packages are ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``,
-    and ``latexmk``.
+    SciPy as explained above. Generating a PDF version requires the system packages
+    ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``.
