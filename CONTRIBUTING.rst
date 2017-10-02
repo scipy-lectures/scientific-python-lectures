@@ -49,7 +49,7 @@ Requirements
 * pandas
 * seaborn
 
-For a complete list of requirements with the versions presently used
+For a complete list of requirements with information on the versions presently used
 to build the SciPy lecture notes, see ``requirements.txt``.
 
 |
