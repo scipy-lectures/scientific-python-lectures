@@ -50,7 +50,7 @@ Requirements
 * seaborn
 
 For a complete list of requirements with information on the versions presently used
-to build the SciPy lecture notes, see ``requirements.txt``.
+to build the SciPy lecture notes, see :download:`the requirements file <requirements.txt>`.
 
 |
 |
