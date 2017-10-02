@@ -54,17 +54,6 @@ Requirements
 |
 |
 
-.. topic:: Building on Fedora
-
-    As root::
-
-        yum install python make python-matplotlib texlive-pdfjam texlive scipy \ 
-        texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
-        pip install Sphinx
-        pip install Cython
-        pip install scikit-learn
-        pip install scikit-image
-
 .. topic:: **Building on Debian/Ubuntu**
 
     The environment needed to create an html version of the SciPy lecture notes
@@ -112,3 +101,14 @@ Requirements
     With an activated environment, you are now able to produce the html version of the
     SciPy as explained above. Generating a pdf version requires the system packages
     ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``.
+
+.. topic:: Building on Fedora
+
+    As root::
+
+        yum install python make python-matplotlib texlive-pdfjam texlive scipy \ 
+        texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
+        pip install Sphinx
+        pip install Cython
+        pip install scikit-learn
+        pip install scikit-image
