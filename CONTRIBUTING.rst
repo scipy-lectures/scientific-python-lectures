@@ -103,7 +103,7 @@ to build the SciPy lecture notes, see ``requirements.txt``.
     SciPy as explained above. Generating a pdf version requires the system packages
     ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``.
 
-.. topic:: Building on Fedora
+.. topic:: **Building on Fedora**
 
     As root::
 
