@@ -39,21 +39,11 @@ around these problems.
 Requirements
 ............
 
-* make
-* sphinx (>= 1.0)
-* pdflatex
-* pdfjam
-* matplotlib
-* scikit-learn (>= 0.8)
-* scikit-image
-* pandas
-* seaborn
+A complete list of requirements with information on the versions presently used
+to build the SciPy lecture notes, can be inferred from the
+:download:`requirements file <requirements.txt>`.
 
-For a complete list of requirements with information on the versions presently used
-to build the SciPy lecture notes, see :download:`the requirements file <requirements.txt>`.
-
-|
-|
+.. literalinclude:: requirements.txt
 
 .. topic:: **Building on Debian/Ubuntu**
 
