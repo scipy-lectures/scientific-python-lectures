@@ -41,7 +41,7 @@ Requirements
 
 A complete list of requirements with information on the versions presently used
 to build the SciPy lecture notes, can be inferred from the
-:download:`requirements file <requirements.txt>`.
+:download:`requirements file <requirements.txt>`:
 
 .. literalinclude:: requirements.txt
 
