@@ -71,7 +71,7 @@ Requirements
     can be based on miniconda. We first download the latest version of miniconda
     and rename it to ``miniconda.sh`` for simplicity::
 
-       wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+       wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
 
     To ensure that the file has been downloaded correctly, one can compare the
     MD5 sum obtained by means of::
@@ -84,10 +84,10 @@ Requirements
         bash miniconda.sh
         
     Review the license agreement and choose a target directory (here we assume it
-    to be ``$HOME/miniconda2``). Unless you intend to work more extensively with
+    to be ``$HOME/miniconda3``). Unless you intend to work more extensively with
     miniconda, you do not want to modify ``.bashrc``. In this case, you need::
 
-        export PATH=$HOME/miniconda2/bin:$PATH
+        export PATH=$HOME/miniconda3/bin:$PATH
 
     to find the correct binaries. Note that the path depends on the target directory
     chosen above.
