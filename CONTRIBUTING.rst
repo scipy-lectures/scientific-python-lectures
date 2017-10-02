@@ -44,6 +44,7 @@ to build the SciPy lecture notes, can be inferred from the
 :download:`requirements file <requirements.txt>`:
 
 .. literalinclude:: requirements.txt
+    :start-after: # libraries before the special comment marked
 
 .. topic:: **Building on Debian/Ubuntu**
 
