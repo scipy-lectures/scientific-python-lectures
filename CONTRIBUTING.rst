@@ -39,31 +39,11 @@ around these problems.
 Requirements
 ............
 
-*probably incomplete*
+A complete list of requirements with information on the versions presently used
+to build the SciPy lecture notes, can be inferred from the
+:download:`requirements file <requirements.txt>`:
 
-* make
-* sphinx (>= 1.0)
-* pdflatex
-* pdfjam
-* matplotlib
-* scikit-learn (>= 0.8)
-* scikit-image
-* pandas
-* seaborn
-
-|
-|
-
-.. topic:: Building on Fedora
-
-    As root::
-
-        yum install python make python-matplotlib texlive-pdfjam texlive scipy \ 
-        texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
-        pip install Sphinx
-        pip install Cython
-        pip install scikit-learn
-        pip install scikit-image
+.. literalinclude:: requirements.txt
 
 .. topic:: **Building on Debian/Ubuntu**
 
@@ -112,3 +92,14 @@ Requirements
     With an activated environment, you are now able to produce the html version of the
     SciPy as explained above. Generating a pdf version requires the system packages
     ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``.
+
+.. topic:: **Building on Fedora**
+
+    As root::
+
+        yum install python make python-matplotlib texlive-pdfjam texlive scipy \ 
+        texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
+        pip install Sphinx
+        pip install Cython
+        pip install scikit-learn
+        pip install scikit-image
