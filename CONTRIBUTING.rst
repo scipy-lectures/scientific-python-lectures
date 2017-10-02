@@ -39,8 +39,6 @@ around these problems.
 Requirements
 ............
 
-*probably incomplete*
-
 * make
 * sphinx (>= 1.0)
 * pdflatex
@@ -50,6 +48,9 @@ Requirements
 * scikit-image
 * pandas
 * seaborn
+
+For a complete list of requirements with the versions presently used
+to build the SciPy lecture notes, see ``requirements.txt``.
 
 |
 |
