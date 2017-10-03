@@ -4,7 +4,29 @@ What's new
 Release 2017.1 (September 2017)
 -------------------------------------
 
+* Improved support for Python 3 integer divisions and calls to print (Loïc
+  Estève, Gert-Ludwig Ingold, Pierre de Buyl, Gaël Varoquaux)
 
+* Change test runner to pytest (Pierre de Buyl)
+
+* Set up Circle CI (Loïc Estève)
+
+* Replace the plot directive by sphinx-gallery (Gert-Ludwig Ingold)
+
+* Use common package requirements for pip and conda and improve the build
+  instructions (Gert-Ludwig Ingold, Pierre de Buyl)
+
+* Make '>>>' in the prompts unselectable (Pierre de Buyl)
+
+* Update SymPy chapter (Vince Knight)
+
+* Update optimization chapter (Michael Hartmann, Gaël Varoquaux)
+
+* Update scikit-learn chapter (Gaël Varoquaux)
+
+* Update SciPy chapter (Gaël Varoquaux)
+
+* Update advanced NumPy (Bartosz Teleńczuk)
 
 Release 2016.1 (September 2016)
 -------------------------------------
