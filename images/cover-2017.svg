@@ -62,8 +62,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.25"
-     inkscape:cx="372.04724"
-     inkscape:cy="151.2938"
+     inkscape:cx="276.04724"
+     inkscape:cy="887.2938"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="mm"
@@ -1362,7 +1362,7 @@
          x="372.17725"
          y="957.01917"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
-         id="tspan3581">  Ralf  Gommers  •  André  Espaze   •  Zbigniew Jędrzejewski-Szmek</tspan><tspan
+         id="tspan3581">  Pierre de Buyl • Ralf  Gommers  •  André  Espaze   •  Zbigniew Jędrzejewski-Szmek</tspan><tspan
          sodipodi:role="line"
          x="372.17725"
          y="975.76917"
@@ -1374,18 +1374,18 @@
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
          id="tspan3617">Didrik Pinte  •  Nicolas  P.  Rougier  •  Pauli Virtanen</tspan><tspan
          sodipodi:role="line"
-         x="373.54932"
-         y="1005.9302"
+         x="371.55225"
+         y="1013.2692"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:7.5px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
-         id="tspan3590"> </tspan><tspan
+         id="tspan3590" /><tspan
          sodipodi:role="line"
          x="372.17725"
-         y="1020.1979"
+         y="1029.5729"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:12.5px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:1.25px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1"
          id="tspan3592">and many others...</tspan><tspan
          sodipodi:role="line"
          x="371.55225"
-         y="1035.8229"
+         y="1045.1979"
          id="tspan3238"
          style="font-style:normal;font-variant:normal;font-weight:300;font-stretch:normal;font-size:15px;line-height:125%;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro, Light';text-align:center;letter-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#20435c;fill-opacity:1" /></text>
     <flowRoot
