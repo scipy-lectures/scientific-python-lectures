@@ -7,7 +7,7 @@ dependencies:
 - scipy=0.19
 - scikit-learn=0.18
 - matplotlib=1.5
-- scikit-image=0.12
+- scikit-image=0.13
 - sympy=1.0
 - statsmodels=0.6
 - seaborn=0.7
