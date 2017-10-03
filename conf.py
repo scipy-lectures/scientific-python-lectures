@@ -278,12 +278,6 @@ epub_tocdup = False
 # Options for LaTeX output
 # ------------------------
 
-# The paper size ('letter' or 'a4').
-#latex_paper_size = 'letter'
-
-# The font size ('10pt', '11pt' or '12pt').
-#latex_font_size = '10pt'
-
 # Latex references with page numbers (only Sphinx 1.0)
 latex_show_pagerefs = False
 
@@ -299,19 +293,12 @@ latex_documents = [
 # the title page.
 latex_logo = 'images/cover.pdf'
 
-# For "manual" documents, if this is true, then toplevel headings are parts,
-# not chapters.
-latex_use_parts = True
-
-# Documents to append as an appendix to all manuals.
-#latex_appendices = []
-
-# If false, no module index is generated.
-latex_use_modindex = False
-
+# Latex settings
+latex_toplevel_sectioning = 'part'
+latex_domain_indices = False
 
 # Additional stuff for the LaTeX preamble.
-latex_preamble = r"""
+preamble = r"""
 \definecolor{VerbatimColor}{rgb}{0.961, .98, 1.}
 \definecolor{VerbatimBorderColor}{rgb}{0.6,0.6,0.6}
 \usepackage{graphics}
@@ -359,7 +346,7 @@ latex_preamble = r"""
 """
 
 latex_elements = {
-    'preamble': latex_preamble,
+    'preamble': preamble,
     'fontpkg': '\\usepackage{lmodern}',
     'fncychap': r'''%
     \usepackage[Sonny]{fncychap}%
