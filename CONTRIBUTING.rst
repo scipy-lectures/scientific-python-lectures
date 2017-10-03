@@ -46,6 +46,9 @@ to build the SciPy lecture notes, can be inferred from the
 .. literalinclude:: requirements.txt
     :start-after: # libraries before the special comment marked
 
+The installation instructions below cover (i) Debian/Ubuntu with miniconda as this is the
+method we use to test and build the material and (ii) generic instructions using pip.
+
 .. topic:: **Building on Debian/Ubuntu**
 
     The environment needed to create an html version of the SciPy lecture notes
@@ -94,13 +97,19 @@ to build the SciPy lecture notes, can be inferred from the
     SciPy as explained above. Generating a pdf version requires the system packages
     ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``.
 
-.. topic:: **Building on Fedora**
+.. topic:: **Installing the Python packages with pip**
 
-    As root::
+    `pip <https://pip.pypa.io/>`_ is the recommended tool to install Python
+    packages. However, a number of packages must be installed from the system. Install
+    Python, the Python "headers" (the `python3-dev` package on Debian, for instance), a C
+    development environment, `GNU Make <https://www.gnu.org/software/make/>`_, a full LaTeX
+    distribution (e.g. `TeX Live <https://www.tug.org/texlive/>`_ with extra fonts and
+    utilities) and `git <https://git-scm.com/>`_.
 
-        yum install python make python-matplotlib texlive-pdfjam texlive scipy \ 
-        texlive-framed texlive-threeparttable texlive-wrapfig texlive-multirow
-        pip install Sphinx
-        pip install Cython
-        pip install scikit-learn
-        pip install scikit-image
+    The remaining software can be installed with `pip`. Depending on the configuration, the
+    probably most convenient and safe way to proceed is with::
+
+        pip install --user -r requirements.txt
+
+    This will install the software in a local directory belonging to the user and will not
+    interfere with system-wide Python packages.
