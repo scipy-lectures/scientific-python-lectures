@@ -1,6 +1,14 @@
 What's new
 ==========
 
+Release 2017.1 (September 2017)
+-------------------------------------
+
+
+
+Release 2016.1 (September 2016)
+-------------------------------------
+
 * Rework of intro chapter (Gaël Varoquaux)
 
 * Integrate sphinx-gallery: examples are now Jupyter notebooks (Gaël
