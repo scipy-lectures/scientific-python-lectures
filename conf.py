@@ -346,6 +346,7 @@ preamble = r"""
 """
 
 latex_elements = {
+    'papersize': 'a4paper',
     'preamble': preamble,
     'fontpkg': '\\usepackage{lmodern}',
     'fncychap': r'''%
