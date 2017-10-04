@@ -337,6 +337,8 @@ preamble = r"""
 
 \makeatother
 
+\renewenvironment{wrapfigure}[2]{\begin{figure}[H]}{\end{figure}}
+
 \def\shadowbox#1{\rule{\linewidth}{1pt}\nopagebreak
 
 \nopagebreak\hspace*{.02\linewidth}#1\nopagebreak
