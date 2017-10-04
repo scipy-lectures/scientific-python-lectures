@@ -1,7 +1,7 @@
 What's new
 ==========
 
-Release 2017.1 (September 2017)
+Release 2017.1 (October 2017)
 -------------------------------------
 
 * Update optimization chapter (Michael Hartmann, Gaël Varoquaux)
