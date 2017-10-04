@@ -1,6 +1,36 @@
 What's new
 ==========
 
+Release 2017.1 (October 2017)
+-------------------------------------
+
+* Update optimization chapter (Michael Hartmann, Gaël Varoquaux)
+
+* Update SymPy chapter (Vince Knight)
+
+* Update advanced NumPy (Bartosz Teleńczuk)
+
+* Update scikit-learn chapter (Gaël Varoquaux)
+
+* Update SciPy chapter (Gaël Varoquaux)
+
+* Make '>>>' in the prompts unselectable (Pierre de Buyl)
+
+* Use common package requirements for pip and conda and improve the build
+  instructions (Gert-Ludwig Ingold, Vince Knight, Pierre de Buyl)
+
+* Set up Circle CI (Loïc Estève)
+
+* Improved support for Python 3 integer divisions and calls to print (Loïc
+  Estève, Gert-Ludwig Ingold, Pierre de Buyl, Gaël Varoquaux)
+
+* Change test runner to pytest (Pierre de Buyl)
+
+* Replace the plot directive by sphinx-gallery (Gert-Ludwig Ingold)
+
+Release 2016.1 (September 2016)
+-------------------------------------
+
 * Rework of intro chapter (Gaël Varoquaux)
 
 * Integrate sphinx-gallery: examples are now Jupyter notebooks (Gaël
