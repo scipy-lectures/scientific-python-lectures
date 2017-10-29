@@ -804,7 +804,7 @@ New values can be assigned with this kind of indexing:
 .. tip::
 
   When a new array is created by indexing with an array of integers, the
-  new array has the same shape than the array of integers:
+  new array has the same shape of the array of integers:
 
   .. sourcecode:: pycon
 
