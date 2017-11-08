@@ -471,6 +471,17 @@ sampling of starting points::
     packages for global optimization are OpenOpt, IPOPT_, PyGMO_ and
     PyEvolve_.
 
+.. warning::
+
+   :mod:`optimize.basinhopping` may not return the global minimum
+   Try multiple starting points to find the global minimum. 
+   For example, in this case:
+
+::
+
+   >>> min([optimize.basinhopping(f, x0=x[i]).x for i in range(0,len(x),50)])
+   array([-1.30644001])
+
 .. note::
 
    :mod:`scipy` used to contain the routine `anneal`, it has been removed in
