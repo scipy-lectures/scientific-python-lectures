@@ -477,10 +477,10 @@ sampling of starting points::
    Try multiple starting points to find the global minimum. 
    For example, in this case:
 
-::
+   ::
 
-   >>> min([optimize.basinhopping(f, x0=x[i]).x for i in range(0,len(x),50)])
-   array([-1.30644001])
+       >>> min([optimize.basinhopping(f, x0=x[i]).x for i in range(0,len(x),50)])
+       array([-1.30644001])
 
 .. note::
 
