@@ -266,6 +266,8 @@ dataframes:
 
     >>> from pandas.tools import plotting
     >>> plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])   # doctest: +SKIP
+    >>> import matplotlib.pyplot as plt
+    >>> plt.show()
 
 .. image:: auto_examples/images/sphx_glr_plot_pandas_002.png
    :target: auto_examples/plot_pandas.html
