@@ -424,7 +424,7 @@ A simple linear regression
 Given two set of observations, `x` and `y`, we want to test the
 hypothesis that `y` is a linear function of `x`. In other terms:
 
-    :math:`y = x * coef + intercept + e`
+    :math:`y = x * \textit{coef} + \textit{intercept} + e`
 
 where `e` is observation noise. We will use the `statsmodels
 <http://statsmodels.sourceforge.net/>`_ module to:
@@ -824,8 +824,8 @@ Do wages increase more with education for males than females?
 .. tip::
 
     The plot above is made of two different fits. We need to formulate a
-    single model that tests for a variance of slope across the to
-    population. This is done via an `"interaction"
+    single model that tests for a variance of slope across the two
+    populations. This is done via an `"interaction"
     <http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions>`_.
 
 
@@ -850,16 +850,17 @@ Can we conclude that education benefits males more than females?
 
 .. topic:: **Take home messages**
 
-   * Hypothesis testing and p-value give you the **significance** of an
-     effect / difference
+   * Hypothesis testing and p-values give you the **significance** of an
+     effect / difference.
 
    * **Formulas** (with categorical variables) enable you to express rich
-     links in your data
+     links in your data.
 
-   * **Visualizing** your data and simple model fits matters!
+   * **Visualizing** your data and fitting simple models give insight into the 
+     data.
 
    * **Conditionning** (adding factors that can explain all or part of
-     the variation) is important modeling aspect that changes the
+     the variation) is an important modeling aspect that changes the
      interpretation.
 
 |
