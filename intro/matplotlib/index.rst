@@ -1255,8 +1255,7 @@ Colormaps
 All colormaps can be reversed by appending ``_r``. For instance, ``gray_r`` is
 the reverse of ``gray``.
 
-If you want to know more about colormaps, checks `Documenting the matplotlib
-colormaps <intro/matplotlib/matplotlib.rst>`_.
+If you want to know more about colormaps, check the `documentation on Colormaps in matplotlib <https://matplotlib.org/tutorials/colors/colormaps.html>`_.
 
 .. image:: auto_examples/options/images/sphx_glr_plot_colormaps_001.png
    :scale: 80
