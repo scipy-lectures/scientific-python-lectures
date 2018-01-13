@@ -432,12 +432,11 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 
 .. sourcecode:: pycon
 
-  >>> x = np.linspace(0, 3, 20)
-  >>> y = np.linspace(0, 9, 20)
-  >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
-  [<matplotlib.lines.Line2D object at ...>]
-  >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +SKIP
-  [<matplotlib.lines.Line2D object at ...>]
+  >>> image = np.random.rand(30, 30)
+  >>> plt.imshow(image, cmap=plt.cm.hot)    # doctest: +ELLIPSIS
+  <matplotlib.image.AxesImage object at ...>
+  >>> plt.colorbar()    # doctest: +ELLIPSIS
+  <matplotlib.colorbar.Colorbar object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_basic2dplot_001.png
     :width: 50%
