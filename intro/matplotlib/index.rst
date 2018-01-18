@@ -179,7 +179,7 @@ that influence the appearance of the plot.
 
    import numpy as np
    import matplotlib.pyplot as plt
-   
+
    # Create a figure of size 8x6 inches, 80 dots per inch
    plt.figure(figsize=(8, 6), dpi=80)
 
@@ -640,38 +640,38 @@ Other Types of Plots: examples and exercises
 =============================================
 
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_plot_ext_001.png
-   :scale: 39                         
+   :scale: 39
    :target: `Regular Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_scatter_ext_001.png
-   :scale: 39                         
+   :scale: 39
    :target: `Scatter Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_bar_ext_001.png
-   :scale: 39                         
-   :target: `Bar Plots`_              
+   :scale: 39
+   :target: `Bar Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_contour_ext_001.png
-   :scale: 39                         
+   :scale: 39
    :target: `Contour Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_imshow_ext_001.png
-   :scale: 39                         
-   :target: `Imshow`_                 
+   :scale: 39
+   :target: `Imshow`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_quiver_ext_001.png
-   :scale: 39                         
+   :scale: 39
    :target: `Quiver Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_pie_ext_001.png
-   :scale: 39                         
-   :target: `Pie Charts`_             
+   :scale: 39
+   :target: `Pie Charts`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_grid_ext_001.png
-   :scale: 39                         
-   :target: `Grids`_                  
+   :scale: 39
+   :target: `Grids`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_multiplot_ext_001.png
-   :scale: 39                         
+   :scale: 39
    :target: `Multi Plots`             _
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_polar_ext_001.png
-   :scale: 39                         
-   :target: `Polar Axis`_             
+   :scale: 39
+   :target: `Polar Axis`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_plot3d_ext_001.png
-   :scale: 39                         
-   :target: `3D Plots`_               
+   :scale: 39
+   :target: `3D Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_text_ext_001.png
    :scale: 39
    :target: `Text`_
@@ -871,7 +871,7 @@ Quiver Plots
    :target: auto_examples/plot_quiver.html
 
 
-Starting from the code above, try to reproduce the graphic taking
+Starting from the code below, try to reproduce the graphic taking
 care of colors and orientations.
 
 .. hint::
@@ -1255,8 +1255,7 @@ Colormaps
 All colormaps can be reversed by appending ``_r``. For instance, ``gray_r`` is
 the reverse of ``gray``.
 
-If you want to know more about colormaps, checks `Documenting the matplotlib
-colormaps <intro/matplotlib/matplotlib.rst>`_.
+If you want to know more about colormaps, check the `documentation on Colormaps in matplotlib <https://matplotlib.org/tutorials/colors/colormaps.html>`_.
 
 .. image:: auto_examples/options/images/sphx_glr_plot_colormaps_001.png
    :scale: 80
