@@ -96,7 +96,7 @@ Block of memory
 >>> x = np.array([1, 2, 3], dtype=np.int32)
 >>> x.data      # doctest: +ELLIPSIS
 <... at ...>
->>> str(x.data)  # doctest: +SKIP
+>>> bytes(x.data)  # doctest: +SKIP
 '\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
 
 Memory address of the data:
