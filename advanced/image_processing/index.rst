@@ -154,10 +154,10 @@ Draw contour lines::
 
     [:ref:`Python source code <example_plot_display_face.py>`]
 
-For fine inspection of intensity variations, use
+For smooth intensity variations, use ``interpolation='bilinear'``. For fine inspection of intensity variations, use
 ``interpolation='nearest'``::
 
-    >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray)        # doctest: +ELLIPSIS
+    >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='bilinear')        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
     >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='nearest')        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
@@ -169,6 +169,12 @@ For fine inspection of intensity variations, use
 .. only:: html
 
     [:ref:`Python source code <example_plot_interpolation_face.py>`]
+
+
+.. seealso::
+
+    More interpolation methods are in  `Matplotlib's examples <https://matplotlib.org/examples/images_contours_and_fields/interpolation_methods.html>`_.
+
 
 
 .. seealso:: 3-D visualization: Mayavi
