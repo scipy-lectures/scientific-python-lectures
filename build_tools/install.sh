@@ -27,7 +27,7 @@ create_new_venv() {
 
 create_new_conda_env() {
     # Skip Travis related code on circle ci.
-    if [ -z $CIRCLECI ]; then
+    if [  "$TRAVIS" == true ]; then
         # Deactivate the travis-provided virtual environment and setup a
         # conda-based environment instead
         deactivate
