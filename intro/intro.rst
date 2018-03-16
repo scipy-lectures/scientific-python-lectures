@@ -163,13 +163,13 @@ that can be combined to obtain a scientific computing environment:
 * Development tools (automatic testing, documentation generation)
 
 .. seealso::
-   
+
    :ref:`chapter on Python language <python_language_chapter>`
 
 |
 
 .. image:: random_c.jpg
-      :scale: 40
+      :scale: 50
       :align: right
 
 **Core numeric libraries**
@@ -178,21 +178,21 @@ that can be combined to obtain a scientific computing environment:
   objects, and routines to manipulate them. http://www.numpy.org/
 
   .. seealso::
-     
+
      :ref:`chapter on numpy <numpy>`
 
 * **Scipy** : high-level numerical routines.
   Optimization, regression, interpolation, etc http://www.scipy.org/
 
   .. seealso::
-     
+
     :ref:`chapter on scipy <scipy>`
 
 * **Matplotlib** : 2-D visualization, "publication-ready" plots
   http://matplotlib.org/
 
   .. seealso::
-     
+
     :ref:`chapter on matplotlib <matplotlib>`
 
 |
@@ -231,7 +231,7 @@ that can be combined to obtain a scientific computing environment:
 and much more packages not documented in the scipy lectures.
 
 .. seealso::
-   
+
    :ref:`chapters on advanced topics <advanced_topics_part>`
 
    :ref:`chapters on packages and applications <applications_part>`
@@ -324,7 +324,7 @@ Getting help by using the **?** operator after an object:
 	sep:  string inserted between values, default a space.
 	end:  string appended after the last value, default a newline.
 
-.. seealso:: 
+.. seealso::
 
     * IPython user manual: http://ipython.org/ipython-doc/dev/index.html
 
@@ -417,8 +417,8 @@ completion also works on file and directory names.*
     In [1]: x = 10
 
     In [2]: x.<TAB>
-    x.bit_length   x.denominator  x.imag         x.real         
-    x.conjugate    x.from_bytes   x.numerator    x.to_bytes     
+    x.bit_length   x.denominator  x.imag         x.real
+    x.conjugate    x.from_bytes   x.numerator    x.to_bytes
 
 
 |
@@ -505,4 +505,3 @@ remove files (a full list of aliases is shown when typing ``alias``).
     * A list of all available magic functions is shown when typing ``%magic``.
 
 .. :vim:spell:
-
