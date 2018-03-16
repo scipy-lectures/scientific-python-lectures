@@ -962,7 +962,7 @@ Starting from the code below, try to reproduce the graphic.
    bars = plt.bar(theta, radii, width=width, bottom=0.0)
 
    for r, bar in zip(radii, bars):
-       bar.set_facecolor(cm.jet(r / 10.))
+       bar.set_facecolor(plt.cm.jet(r / 10.))
        bar.set_alpha(0.5)
 
 Click on figure for solution.
