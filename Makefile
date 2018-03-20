@@ -8,8 +8,11 @@ SPHINXBUILD   = $(PYTHON) -m sphinx
 
 ALLSPHINXOPTS   = -d build/doctrees $(SPHINXOPTS) .
 
+SSH_HOST=
+SSH_USER=
+SSH_TARGET_DIR=
 
-.PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip
+.PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip check-rsync-env
 
 all: html-noplot
 
@@ -114,7 +117,19 @@ install: cleandoctrees html pdf
 	git add * && \
 	git commit -a -m 'Make install' && \
 	git push
- 
+
+rsync_upload: check-rsync-env cleandoctrees html pdf
+	cp ScipyLectures-simple.pdf ScipyLectures.pdf build/html/_downloads/
+	rsync -P -auvz --delete build/html/ $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)/
+
+check-rsync-env:
+ifndef SSH_TARGET_DIR
+	$(error SSH_TARGET_DIR is undefined)
+endif
+ifndef SSH_HOST
+	$(error SSH_HOST is undefined)
+endif
+
 epub:
 	$(SPHINXBUILD) -b epub $(ALLSPHINXOPTS) build/epub
 	@echo
