@@ -128,5 +128,5 @@ The release process is managed by the core contributors to the lecture notes.
 4. Add an annotated tag: ``git tag -a NAME_OF_THE_RELEASE HEAD``
 5. Push the repository with the new tag.
 6. Execute ``make install``. This will clean up the build, rebuild everything and upload the
-   full website to <https://github.com/scipy-lectures/scipy-lectures.github.com>. It takes a
+   full website to https://github.com/scipy-lectures/scipy-lectures.github.com . It takes a
    moment for the changes to appear online due to caching.
