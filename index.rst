@@ -75,13 +75,13 @@ Scipy Lecture Notes
 
     .. sidebar::  Download 
        
-       * |pdf| `PDF, 2 pages per side <./_downloads/ScipyLectures.pdf>`_
+       |pdf| `PDF, 2 pages per side <./_downloads/ScipyLectures.pdf>`_
 
-       * |pdf| `PDF, 1 page per side <./_downloads/ScipyLectures-simple.pdf>`_
+       |pdf| `PDF, 1 page per side <./_downloads/ScipyLectures-simple.pdf>`_
    
-       * |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
+       |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
      
-       * |github| `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
+       |github| `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
 
     Tutorials on the scientific Python ecosystem: a quick introduction to
