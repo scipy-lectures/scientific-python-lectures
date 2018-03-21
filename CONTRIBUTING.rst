@@ -153,3 +153,22 @@ The release process is managed by the core contributors to the lecture notes.
 6. Execute ``make install``. This will clean up the build, rebuild everything and upload the
    full website to https://github.com/scipy-lectures/scipy-lectures.github.com . It takes a
    moment for the changes to appear online due to caching.
+
+Testcases
+---------
+
+The ``test`` target of the makefile runs so-called doctests. Doctests are a `Python feature
+<https://docs.python.org/3/library/doctest.html>`_ by which code examples can be executed
+and compared to a reference output.
+
+We use pytest's `doctest integration for modules and test files
+<https://docs.pytest.org/en/latest/doctest.html>`_ to execute the code samples.
+
+Testing via doctests allows to avoid, for instance, syntax mistakes, but remains fragile as
+it compares the text output of the code. To mitigate this issue, we skip some tests by
+adding ``# doctest: +SKIP`` to the corresponding example or allow for slight variations via
+the ``#doctest: +ELLIPSIS`` comment. Have a look at the files to check this feature.
+
+To run the tests, execute::
+
+    make test
