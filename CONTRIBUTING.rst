@@ -16,6 +16,10 @@ The directory ``guide`` contains instructions on how to contribute:
 
    guide/index.rst
 
+Building the lecture notes
+==========================
+
+
 Building instructions
 ----------------------
 
