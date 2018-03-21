@@ -95,7 +95,8 @@ method we use to test and build the material and (ii) generic instructions using
 
     With an activated environment, you are now able to produce the html version of the
     SciPy as explained above. Generating a pdf version requires the system packages
-    ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``.
+    ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, ``texlive-extra-utils``,
+    and ``latexmk``.
 
 .. topic:: **Installing the Python packages with pip**
 
