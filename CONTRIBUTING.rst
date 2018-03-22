@@ -95,7 +95,8 @@ method we use to test and build the material and (ii) generic instructions using
 
     With an activated environment, you are now able to produce the html version of the
     SciPy as explained above. Generating a pdf version requires the system packages
-    ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``.
+    ``texlive``, ``texlive-latex-extra``, ``texlive-fonts-extra``, ``texlive-extra-utils``,
+    and ``latexmk``.
 
 .. topic:: **Installing the Python packages with pip**
 
@@ -113,3 +114,19 @@ method we use to test and build the material and (ii) generic instructions using
 
     This will install the software in a local directory belonging to the user and will not
     interfere with system-wide Python packages.
+
+
+Release process
+---------------
+
+The release process is managed by the core contributors to the lecture notes.
+
+1. Build and verify the html and pdf versions of the notes, run the automated tests.
+2. Write the changelog in ``CHANGES.rst`` to indicate what has been modified since the
+   previous release.
+3. Edit the version and copyright years in ``conf.py`` and commit the change.
+4. Add an annotated tag: ``git tag -a NAME_OF_THE_RELEASE HEAD``
+5. Push the repository with the new tag.
+6. Execute ``make install``. This will clean up the build, rebuild everything and upload the
+   full website to https://github.com/scipy-lectures/scipy-lectures.github.com . It takes a
+   moment for the changes to appear online due to caching.
