@@ -54,6 +54,20 @@ you want to contribute to reference material, we suggest that you
 contribute to the documentation of the specific packages that you are
 interested in.
 
+Style of the lecture notes
+==========================
+
+Apart from the technical guidelines, we do have the following recommendations for the style:
+
+- Limit the amount of material in every chapter so that it can be read or taught in 1.5
+  hours to 2 hours max.
+- Use links, either internal, to others projects, or to Wikipedia, to build a consistent
+  knowledge base from the notes.
+- Avoid jargon at all cost.
+- Use restructured text directives (topic, note, seealso, tip, sidebar, etc).
+- Have a look at the existing material to preserve the consistent tone of the notes.
+
+
 Using GitHub
 ============
 
