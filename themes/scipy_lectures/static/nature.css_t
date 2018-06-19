@@ -45,38 +45,6 @@ body {
   }
 }
 
-@media	only screen and (-webkit-min-device-pixel-ratio: 1.9),
-	only screen and (-o-min-device-pixel-ratio: 17/10),
-	only screen and (min-resolution: 160dpi)
-{
-  /* Even higher DPI devices */
-  body {
-    font-size: 180%;
-  }
-}
-
-@media	only screen and (-webkit-min-device-pixel-ratio: 2),
-	only screen and (-o-min-device-pixel-ratio: 18/10),
-	only screen and (min-resolution: 170dpi)
-{
-  /* Even higher DPI devices */
-  body {
-    font-size: 210%;
-  }
-}
-
-
-@media	only screen and (-webkit-min-device-pixel-ratio: 2.2),
-	only screen and (-o-min-device-pixel-ratio: 20/10),
-	only screen and (min-resolution: 190dpi)
-{
-  /* Even higher DPI devices */
-  body {
-    font-size: 240%;
-  }
-}
-
-
 /**** End font sizes ****/
 
 div.body {
