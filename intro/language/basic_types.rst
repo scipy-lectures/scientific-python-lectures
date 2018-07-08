@@ -282,8 +282,9 @@ Different string syntaxes (simple, double or triple quotes)::
 
     s = 'Hello, how are you?'
     s = "Hi, what's up"
-    s = '''Hello,                 # tripling the quotes allows the
-           how are you'''         # string to span more than one line
+    s = '''Hello,
+           how are you'''         # tripling the quotes allows the
+                                  # string to span more than one line
     s = """Hi,
     what's up?"""
 
@@ -296,9 +297,10 @@ Different string syntaxes (simple, double or triple quotes)::
                ^
     SyntaxError: invalid syntax
 
-
-The newline character is ``\n``, and the tab character is
-``\t``.
+This syntax error can be avoided by enclosing the string in double quotes
+instead of single quotes. Alternatively, one can prepend a backslash to the
+second single quote. Other uses of the backslash are, e.g., the newline character
+``\n`` and the tab character ``\t``.
 
 .. tip::
 
