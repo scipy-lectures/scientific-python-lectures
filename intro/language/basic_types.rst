@@ -297,9 +297,10 @@ Different string syntaxes (simple, double or triple quotes)::
                ^
     SyntaxError: invalid syntax
 
-
-The newline character is ``\n``, and the tab character is
-``\t``.
+This syntax error can be avoided by enclosing the string in double quotes
+instead of single quotes. Alternatively, one can prepend a backslash to the
+second single quote. Other uses of the backslash are, e.g., the newline character
+``\n`` and the tab character ``\t``.
 
 .. tip::
 
