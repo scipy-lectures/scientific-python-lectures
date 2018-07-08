@@ -224,7 +224,7 @@ Use **items**::
 
 .. note::
 
-   The ordering of a dictionary in random, thus we use :func:`sorted`
+   The ordering of a dictionary is random, thus we use :func:`sorted`
    which will sort on the keys.
 
 List Comprehensions
