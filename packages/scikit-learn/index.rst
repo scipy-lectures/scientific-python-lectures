@@ -479,7 +479,7 @@ A linear separation        A non-linear separation
    For classification models, the decision boundary, that separates the
    class expresses the complexity of the model. For instance, a linear
    model, that makes a decision based on a linear combination of
-   features, is more complex than a non-linear one.
+   features, is more simple than a non-linear one.
 
 
 Supervised Learning: Classification of Handwritten Digits
