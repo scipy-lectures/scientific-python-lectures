@@ -264,12 +264,16 @@ There are several fully-featured Scientific Python distributions:
   * `EPD <https://store.enthought.com/downloads>`_
   * `WinPython <https://winpython.github.io>`_
 
-.. topic:: **Python 3 or Python 2?**
 
-   In 2008, Python 3 was released. It is a major evolution of the
-   language that made a few changes. Some old scientific code does not
-   yet run under Python 3. However, this is infrequent and Python 3 comes
-   with many benefits. We advise that you install Python 3.
+.. warning:: **Python 3 or Python 2?**
+
+  **We strongly recommand that you install Python 3.**
+
+  Python 2.7 will not receive any bugfix support past January 1, 2020.
+
+  * `Official announcement <https://www.python.org/dev/peps/pep-0373/>`_
+  * `The end is nigh <https://pythonclock.org/>`_
+  
 
 
 
