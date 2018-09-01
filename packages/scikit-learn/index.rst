@@ -1426,7 +1426,7 @@ systematically under-estimates the coefficient. It displays a biased
 behavior.
 
 This is a typical example of **bias/variance tradeof**: non-regularized
-estimator are not biased, but they can display a lot of bias.
+estimator are not biased, but they can display a lot of variance.
 Highly-regularized models have little variance, but high bias. This bias
 is not necessarily a bad thing: what matters is choosing the
 tradeoff between bias and variance that leads to the best prediction
