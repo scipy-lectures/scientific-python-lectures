@@ -822,12 +822,12 @@ The image below illustrates various fancy indexing applications
 
 .. only:: latex
 
-    .. image:: images/numpy_fancy_indexing.png
+    .. image:: ../../pyximages/numpy_fancy_indexing.pdf
         :align: center
 
 .. only:: html
 
-    .. image:: images/numpy_fancy_indexing.png
+    .. image:: ../../pyximages/numpy_fancy_indexing.png
         :align: center
         :width: 80%
 
