@@ -73,17 +73,6 @@ sphinx_gallery_conf = {
                      'guide/auto_examples',
                      ],
     'doc_module': 'scipy-lecture-notes',
-    'reference_url': {
-        'numpy': 'http://docs.scipy.org/doc/numpy',
-        'scipy': 'http://docs.scipy.org/doc/scipy/reference',
-        'pandas': 'http://pandas.pydata.org/pandas-docs/stable/',
-        'seaborn': 'http://seaborn.pydata.org/',
-        'matplotlib': 'http://matplotlib.org/',
-        'scikit-learn': 'http://scikit-learn.org/stable',
-        'scikit-image': 'http://scikit-image.org/docs/stable/',
-        'mayavi': 'http://docs.enthought.com/mayavi/mayavi/',
-        'statsmodels': 'http://www.statsmodels.org/stable/',
-        },
     'backreferences_dir': False,
     }
 
@@ -375,21 +364,23 @@ latex_elements = {
     #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 }
 
-_python_doc_base = 'https://docs.python.org/2.7'
+_python_doc_base = 'https://docs.python.org/{.major}'.format(sys.version_info)
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
-    _python_doc_base: None,
-    'https://docs.scipy.org/doc/numpy': None,
-    'https://docs.scipy.org/doc/scipy/reference': None,
-    'http://matplotlib.org/': None,
-    'http://scikit-learn.org/stable': None,
-    'http://scikit-image.org/docs/stable/': None,
-    'http://docs.enthought.com/mayavi/mayavi/': None,
-    'http://www.statsmodels.org/stable/': None,
-    'http://pandas.pydata.org/pandas-docs/stable/': None,
-    'http://seaborn.pydata.org/': None,
+    'python': (_python_doc_base, None),
+    'numpy': ('https://docs.scipy.org/doc/numpy', None),
+    'scipy': ('https://docs.scipy.org/doc/scipy/reference', None),
+    'matplotlib': ('https://matplotlib.org/', None),
+    'mayavi': ('http://docs.enthought.com/mayavi/mayavi', None),
+    'sklearn': ('http://scikit-learn.org/stable', None),
+    'sphinx': ('http://www.sphinx-doc.org/en/stable', None),
+    'pandas': ('http://pandas.pydata.org/pandas-docs/stable/', None),
+    'seaborn': ('http://seaborn.pydata.org/', None),
+    'skimage': ('http://scikit-image.org/docs/stable/', None),
+    'statsmodels': ('http://www.statsmodels.org/stable/', None),
 }
+
 
 extlinks = {
     'simple': (_python_doc_base + '/reference/simple_stmts.html#%s', ''),

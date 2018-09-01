@@ -712,7 +712,7 @@ Is this difference significant?
 More visualization: seaborn for statistical exploration
 =======================================================
 
-`Seaborn <http://stanford.edu/~mwaskom/software/seaborn/>`_ combines
+`Seaborn <https://seaborn.pydata.org>`_ combines
 simple statistical fits with plotting on pandas dataframes.
 
 Let us consider a data giving wages and many other personal information
@@ -774,7 +774,7 @@ Categorical variables can be plotted as the hue::
 
      To switch back to seaborn settings, or understand better styling in
      seaborn, see the `relevent section of the seaborn documentation
-     <http://stanford.edu/~mwaskom/software/seaborn/tutorial/aesthetics.html>`_.
+     <https://seaborn.pydata.org/tutorial/aesthetics.html>`_.
 
 
 lmplot: plotting a univariate regression

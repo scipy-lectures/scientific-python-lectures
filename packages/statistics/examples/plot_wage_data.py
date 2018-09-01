@@ -5,9 +5,8 @@ Visualizing factors influencing wages
 This example uses seaborn to quickly plot various factors relating wages,
 experience and eduction.
 
-Seaborn (http://stanford.edu/~mwaskom/software/seaborn/) is a library
-that combines visualization and statistical fits to show trends in
-data.
+Seaborn (https://seaborn.pydata.org) is a library that combines
+visualization and statistical fits to show trends in data.
 
 Note that importing seaborn changes the matplotlib style to have an
 "excel-like" feeling. This changes affect other matplotlib figures. To
