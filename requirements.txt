@@ -8,7 +8,7 @@ scikit-image==0.13
 sympy==1.0
 statsmodels==0.6
 seaborn==0.7
-pandas==0.18
+pandas==0.20
 pytest>=3.2.1
 sphinx==1.6.3
 coverage==4.4.1
