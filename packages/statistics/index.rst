@@ -474,7 +474,7 @@ We can inspect the various statistics derived from the fit::
     Df Model:                           1                                         
     Covariance Type:            nonrobust
     ==========================...
-                     coef    std err          t      P>|t|      [95.0% Conf. Int.]
+                     coef    std err          t      P>|t|      [0.025      0.975]
     ------------------------------------------...
     Intercept     -5.5335      1.036     -5.342      0.000        -7.710    -3.357
     x              2.9369      0.341      8.604      0.000         2.220     3.654
@@ -533,7 +533,7 @@ model::
      Df Model:                           1                                      
      Covariance Type:            nonrobust
      ==========================...
-                       coef    std err        t      P>|t|      [95.0% Conf. Int.]
+                       coef    std err        t      P>|t|      [0.025      0.975]
      -----------------------------------------------------------------------...
      Intercept        109.4500     5.308     20.619     0.000      98.704   120.196
      Gender[T.Male]     5.8000     7.507      0.773     0.445      -9.397    20.997
@@ -597,7 +597,7 @@ model::
                                  OLS Regression Results  
      ...
      ==========================...
-                      coef    std err          t      P>|t|      [95.0% Conf. Int.]
+                      coef    std err          t      P>|t|      [0.025      0.975]
      ------------------------------------------...
      Intercept     113.4500      3.683     30.807      0.000       106.119   120.781
      type[T.piq]    -2.4250      5.208     -0.466      0.643       -12.793     7.943
@@ -661,7 +661,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Df Model:                           3                                     
     Covariance Type:            nonrobust
     ==========================...
-                             coef    std err          t     P>|t|  [95.0% Conf. Int.]
+                             coef    std err          t     P>|t|  [0.025      0.975]
     ------------------------------------------...
     Intercept              2.9813      0.099     29.989     0.000      2.785     3.178
     name[T.versicolor]    -1.4821      0.181     -8.190     0.000     -1.840    -1.124
@@ -835,7 +835,7 @@ Do wages increase more with education for males than females?
     ...                 data=data).fit()    # doctest: +SKIP
     >>> print(result.summary())    # doctest: +SKIP
     ...
-                                coef    std err    t     P>|t|  [95.0% Conf. Int.]
+                                coef    std err    t     P>|t|  [0.025      0.975]
     ------------------------------------------------------------------------------
     Intercept                   0.2998   0.072    4.173   0.000     0.159   0.441
     gender[T.male]              0.2750   0.093    2.972   0.003     0.093   0.457

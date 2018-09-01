@@ -6,12 +6,12 @@ scikit-learn==0.18
 matplotlib==1.5
 scikit-image==0.13
 sympy==1.0
-statsmodels==0.6
+statsmodels==0.8
 seaborn==0.7
-pandas==0.18
+pandas==0.20
 pytest>=3.2.1
 sphinx==1.6.3
 coverage==4.4.1
-pillow==3.3.1
+pillow
 # For conda, pip installable
 sphinx-gallery==0.1.12

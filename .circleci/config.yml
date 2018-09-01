@@ -1,0 +1,45 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6
+    environment:
+      DISTRIB: "conda"
+      PYTHON_VERSION: "3.6"
+      NUMPY_VERSION: "*"
+      SCIPY_VERSION: "*"
+      SCIKIT_LEARN_VERSION: "*"
+      MATPLOTLIB_VERSION: "*"
+
+    steps:
+      - checkout
+        # Get rid of existing virtualenvs on circle ci as they conflict with conda.
+        # Trick found here:
+        # https://discuss.circleci.com/t/disable-autodetection-of-project-or-application-of-python-venv/235/10
+      - run: cd && rm -rf ~/.pyenv && rm -rf ~/virtualenvs
+        # We need to remove conflicting texlive packages.
+      - run: sudo -E apt-get -yq remove texlive-binaries --purge
+        # Installing required packages for `make -C doc check command` to work.
+      - run: sudo -E apt-get -yq update
+      - run: sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install dvipng texlive-latex-base texlive-latex-extra
+      - run: ./build_tools/install.sh
+      - run:
+          name: Setup conda path in env variables
+          command: |
+            echo 'export PATH="$HOME/miniconda/bin:$PATH"'  >> $BASH_ENV
+      - run: python build_tools/show-python-packages-versions.py
+      - run: ./build_tools/circle_ci_test_doc.sh
+        # workaround - make html returns 0 even if examples fail to build
+      - run: cat ~/log.txt && if grep -q "Traceback (most recent call last):" ~/log.txt; then false; else true; fi
+
+      - store_artifacts:
+          path: log.txt
+          destination: log.txt
+      - store-artifacts:
+          path: build/html
+          destination: build
+
+
+
+
