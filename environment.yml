@@ -15,6 +15,6 @@ dependencies:
 - pytest>=3.2.1
 - sphinx=1.6.3
 - coverage=4.4.1
-- pillow=3.3.1
+- pillow
 - pip:
   - sphinx-gallery==0.1.12

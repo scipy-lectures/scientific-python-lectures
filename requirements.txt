@@ -12,6 +12,6 @@ pandas==0.18
 pytest>=3.2.1
 sphinx==1.6.3
 coverage==4.4.1
-pillow==5.2.0
+pillow
 # For conda, pip installable
 sphinx-gallery==0.1.12
