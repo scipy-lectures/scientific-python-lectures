@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 # on circle ci, each command run with it's own execution context so we have to
 # activate the conda testenv on a per command basis. That's why we put calls to
