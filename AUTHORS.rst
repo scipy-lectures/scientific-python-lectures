@@ -95,6 +95,8 @@ Listed by alphabetical order
 
 - Valentin Haenel
 
+- Bruno Hanzen
+
 - Pierre Haessig
 
 - Michael Hartmann
@@ -112,6 +114,8 @@ Listed by alphabetical order
 - jorgeprietoarranz
 
 - kikocorreoso
+
+- Greg Kiar
 
 - Vince Knight
 
@@ -149,6 +153,8 @@ Listed by alphabetical order
 
 - Maximilien Riehl
 
+- Kristian Rother
+
 - Nicolas P. Rougier
 
 - Nicolas Rougier
@@ -158,6 +164,8 @@ Listed by alphabetical order
 - João Felipe Santos
 
 - Helen Sherwood-Taylor
+
+- Scott Staniewicz
 
 - Shoeboxam
 
@@ -169,7 +177,7 @@ Listed by alphabetical order
 
 - strpeter
 
-- Bartosz T
+- Bartosz Telenczuk
 
 - Wes Turner
 

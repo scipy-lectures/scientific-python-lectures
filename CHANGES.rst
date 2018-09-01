@@ -1,6 +1,26 @@
 What's new
 ==========
 
+Release 2018.1 (September 2017)
+-------------------------------------
+
+* Fix wordings, typos, colours (Pierre de Buyl, Greg Kiar, Olav Vahtras
+  Kristian Rother)
+
+* Fix interpolation example code (Scott Staniewicz)
+
+* Fix CSS for high density displays (Gaël Varoquaux)
+
+* Generate indexing figures with PyX (Gert Ingold)
+
+* Warn clearly against the use of Python 2 (Bruno Hanzen)
+
+* Update external links (Bruno Hanzen)
+
+* Update versions of dependencies: sphinx-gallery, pandas, statsmodels
+  (Gaël Varoquaux)
+
+
 Release 2017.1 (October 2017)
 -------------------------------------
 
