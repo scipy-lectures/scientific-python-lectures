@@ -893,7 +893,7 @@ if we compute the norm ourselves and use a good generic optimizer
      hess_inv: array([[...
      ...
                ...]])
-          jac: array([
+          jac: array([...
      ...
                ...])
       message: ...'Optimization terminated successfully.'
@@ -902,7 +902,7 @@ if we compute the norm ourselves and use a good generic optimizer
          njev: 12
        status: 0
       success: True
-            x: array([ -7.3845...e-09,   1.1111...e-01,   2.2222...e-01,
+            x: array([ -7.384...e-09,   1.1111...e-01,   2.2222...e-01,
              3.3333...e-01,   4.4444...e-01,   5.5555...e-01,
              6.6666...e-01,   7.7777...e-01,   8.8889...e-01,
              1.0000...e+00])
