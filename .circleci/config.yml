@@ -24,6 +24,10 @@ jobs:
       - run: sudo -E apt-get -yq update
       - run: sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install dvipng texlive-latex-base texlive-latex-extra
       - run: ./build_tools/install.sh
+      - run:
+          name: Setup conda path in env variables
+          command: |
+            echo 'export PATH="$HOME/miniconda/bin:$PATH"'  >> $BASH_ENV
       - run: python build_tools/show-python-packages-versions.py
       - run: ./build_tools/circle_ci_test_doc.sh
         # workaround - make html returns 0 even if examples fail to build
