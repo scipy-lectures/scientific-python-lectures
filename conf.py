@@ -73,7 +73,6 @@ sphinx_gallery_conf = {
                      'guide/auto_examples',
                      ],
     'doc_module': 'scipy-lecture-notes',
-    'backreferences_dir': False,
     }
 
 # Add any paths that contain templates here, relative to this directory.
