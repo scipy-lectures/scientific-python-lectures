@@ -926,9 +926,9 @@ Curve fitting
 
 .. np.random.seed(0)
 
-.. image:: auto_examples/images/sphx_glr_plot_curve_fit_001.png
+.. image:: auto_examples/images/sphx_glr_plot_curve_fitting_001.png
     :scale: 48%
-    :target: auto_examples/plot_curve_fit.html
+    :target: auto_examples/plot_curve_fitting.html
     :align: right
 
 .. Comment to make doctest pass

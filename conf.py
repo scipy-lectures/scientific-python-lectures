@@ -73,6 +73,9 @@ sphinx_gallery_conf = {
                      'guide/auto_examples',
                      ],
     'doc_module': 'scipy-lecture-notes',
+    # The following is necessary to get the links in the code of the
+    # examples
+    'backreferences_dir': 'tmp',
     }
 
 # Add any paths that contain templates here, relative to this directory.
