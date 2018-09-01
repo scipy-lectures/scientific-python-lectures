@@ -4,10 +4,12 @@
    Requirement: PyX>=0.14  (pip installable)
 
 '''
-   
-import sys, os
+
+import os
+import sys
 from math import cos, radians, sin
 from pyx import canvas, color, path, text, unit
+
 
 def markbox(x, y, boxcolor, linewidthfactor=0.1, boxsize=1):
     '''mark box by a colored line
@@ -20,6 +22,7 @@ def markbox(x, y, boxcolor, linewidthfactor=0.1, boxsize=1):
                      boxsize-2*linewidth, boxsize-2*linewidth).reversed()
          )
     c.fill(p, [boxcolor])
+
 
 ncols = 6
 nrows = ncols
@@ -37,7 +40,7 @@ text.preamble(r'''\usepackage[T1]{fontenc}
                   \definecolor{ex3}{rgb}{0.7, 0, 0}''')
 unit.set(xscale=1.2)
 
-c= canvas.canvas()
+c = canvas.canvas()
 
 ex1color = color.rgb(0, 0, 0.7)
 linewidth = 0.1*boxsize
@@ -101,5 +104,5 @@ s = r'''\noindent\textcolor{ex3}{\bfseries>{}>{}> mask = np.array([1,0,1,0,0,1],
 c.text(-parwidth-0.5, ncols*boxsize-4, s, [text.valign.top, text.parbox(parwidth)])
 
 basename = os.path.splitext(sys.argv[0])[0]
-c.writeGSfile(basename+'.png', resolution=150)                  
+c.writeGSfile(basename+'.png', resolution=150)
 c.writePDFfile(basename)
