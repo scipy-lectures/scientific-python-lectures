@@ -856,7 +856,7 @@ Memory layout can affect performance:
 
 .. seealso::
 
-   `numexpr <http://code.google.com/p/numexpr/>`_ is designed to mitigate
+   `numexpr <https://code.google.com/archive/p/numexpr>`_ is designed to mitigate
    cache effects in array computing.
 
 
@@ -1063,8 +1063,7 @@ Solution: building an ufunc from scratch
 
    Most of the boilerplate could be automated by these Cython modules:
 
-   http://wiki.cython.org/MarkLodato/CreatingUfuncs
-
+   https://github.com/cython/cython/wiki/MarkLodato-CreatingUfuncs
 
 .. rubric:: Several accepted input types
 
@@ -1531,9 +1530,9 @@ Reporting bugs
 
 - Bug tracker (prefer **this**)
 
-  - http://projects.scipy.org/numpy
+  - https://github.com/numpy/numpy/issues
 
-  - http://projects.scipy.org/scipy
+  - https://github.com/scipy/scipy/issues
 
   - Click the "Register" link to get an account
 
@@ -1647,39 +1646,7 @@ Contributing to documentation
 Contributing features
 ---------------------
 
-0. Ask on mailing list, if unsure where it should go
-
-1. Write a patch, add an enhancement ticket on the bug tracket
-
-2. OR, create a Git branch implementing the feature + add enhancement ticket.
-
-   - Especially for big/invasive additions
-   - http://projects.scipy.org/numpy/wiki/GitMirror
-   - http://www.spheredev.org/wiki/Git_for_the_lazy
-
-   ::
-
-      # Clone numpy repository
-      git clone --origin svn http://projects.scipy.org/git/numpy.git numpy
-      cd numpy
-
-      # Create a feature branch
-      git checkout -b name-of-my-feature-branch  svn/trunk
-
-      <edit stuff>
-
-      git commit -a
-
-   - Create account on https://github.com  (or anywhere)
-
-   - Create a new repository @ Github
-
-   - Push your work to github
-
-   ::
-
-       git remote add github git@github:USERNAME/REPOSITORYNAME.git
-       git push github name-of-my-feature-branch
+  The contribution of features is documented on https://docs.scipy.org/doc/numpy/dev/
 
 How to help, in general
 -----------------------
