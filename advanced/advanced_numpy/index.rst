@@ -856,9 +856,11 @@ Memory layout can affect performance:
 
 .. seealso::
 
-   `numexpr <https://code.google.com/archive/p/numexpr>`_ is designed to mitigate
-   cache effects in array computing.
+   * `numexpr <https://numexpr.readthedocs.io>`_ is designed to mitigate
+     cache effects when evaluating array expressions.
 
+   * `numba <https://numba.pydata.org/>`_ is a compiler for Python code,
+     that is aware of numpy arrays.
 
 Example: inplace operations (caveat emptor)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
