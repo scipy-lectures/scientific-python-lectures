@@ -568,12 +568,12 @@ A small illustrated summary of NumPy indexing and slicing...
 
 .. only:: latex
 
-    .. image:: images/numpy_indexing.png
+    .. image:: ../../pyximages/numpy_indexing.pdf
         :align: center
 
 .. only:: html
 
-    .. image:: images/numpy_indexing.png
+    .. image:: ../../pyximages/numpy_indexing.png
         :align: center
         :width: 70%
 
