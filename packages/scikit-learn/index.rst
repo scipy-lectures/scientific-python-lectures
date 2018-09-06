@@ -728,7 +728,7 @@ The ``DESCR`` variable has a long description of the dataset::
     ...
 
 It often helps to quickly visualize pieces of the data using histograms,
-scatter plots, or other plot types. With pylab, let us show a
+scatter plots, or other plot types. With matplotlib, let us show a
 histogram of the target values: the median price in each neighborhood::
 
     >>> plt.hist(data.target)  # doctest: +ELLIPSIS

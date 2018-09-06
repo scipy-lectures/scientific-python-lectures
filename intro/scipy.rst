@@ -539,8 +539,8 @@ We can constrain the variable to the interval
     Hints:
 
         - Variables can be restricted to :math:`-2 < x < 2` and :math:`-1 < y < 1`.
-        - Use :func:`numpy.meshgrid` and :func:`pylab.imshow` to find visually the
-          regions.
+        - Use :func:`numpy.meshgrid` and :func:`matplotlib.pyplot.imshow` to
+          find visually the regions.
         - Use :func:`scipy.optimize.minimize`, optionally trying out
           several of its `methods'.
 
@@ -964,7 +964,7 @@ Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_soluti
       noise. In this exercise, we aim to clean up the noise using the
       Fast Fourier Transform.
 
-   2. Load the image using :func:`pylab.imread`.
+   2. Load the image using :func:`matplotlib.pyplot.imread`.
 
    3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
       spectrum (Fourier transform of) the image. Do you have any trouble

@@ -58,11 +58,11 @@ use different colormaps, crop the image, change some parts of the image.
 .. image:: images/faces.png
     :align: center
 
-* Let's use the imshow function of pylab to display the image.
+* Let's use the imshow function of matplotlib to display the image.
 
     .. sourcecode:: pycon
 
-        >>> import pylab as plt
+        >>> import matplotlib.pyplot as plt
         >>> face = misc.face(gray=True)
         >>> plt.imshow(face)    # doctest: +ELLIPSIS
         <matplotlib.image.AxesImage object at 0x...>

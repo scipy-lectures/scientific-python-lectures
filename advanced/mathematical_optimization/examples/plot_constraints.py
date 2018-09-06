@@ -5,7 +5,7 @@ Constraint optimization: visualizing the geometry
 A small figure explaining optimization with constraints
 """
 import numpy as np
-import pylab as pl
+import matplotlib.pyplot as plt
 from scipy import optimize
 
 x, y = np.mgrid[-2.9:5.8:.05, -2.5:5:.05]
@@ -15,30 +15,30 @@ y = y.T
 for i in (1, 2):
     # Create 2 figure: only the second one will have the optimization
     # path
-    pl.figure(i, figsize=(3, 2.5))
-    pl.clf()
-    pl.axes([0, 0, 1, 1])
+    plt.figure(i, figsize=(3, 2.5))
+    plt.clf()
+    plt.axes([0, 0, 1, 1])
 
-    contours = pl.contour(np.sqrt((x - 3)**2 + (y - 2)**2),
+    contours = plt.contour(np.sqrt((x - 3)**2 + (y - 2)**2),
                         extent=[-3, 6, -2.5, 5],
-                        cmap=pl.cm.gnuplot)
-    pl.clabel(contours,
+                        cmap=plt.cm.gnuplot)
+    plt.clabel(contours,
             inline=1,
             fmt='%1.1f',
             fontsize=14)
-    pl.plot([-1.5, -1.5,  1.5,  1.5, -1.5],
+    plt.plot([-1.5, -1.5,  1.5,  1.5, -1.5],
             [-1.5,  1.5,  1.5, -1.5, -1.5], 'k', linewidth=2)
-    pl.fill_between([ -1.5,  1.5],
+    plt.fill_between([ -1.5,  1.5],
                     [ -1.5, -1.5],
                     [  1.5,  1.5],
                     color='.8')
-    pl.axvline(0, color='k')
-    pl.axhline(0, color='k')
+    plt.axvline(0, color='k')
+    plt.axhline(0, color='k')
 
-    pl.text(-.9, 4.4, '$x_2$', size=20)
-    pl.text(5.6, -.6, '$x_1$', size=20)
-    pl.axis('equal')
-    pl.axis('off')
+    plt.text(-.9, 4.4, '$x_2$', size=20)
+    plt.text(5.6, -.6, '$x_1$', size=20)
+    plt.axis('equal')
+    plt.axis('off')
 
 # And now plot the optimization path
 accumulator = list()
@@ -59,6 +59,6 @@ optimize.minimize(f, np.array([0, 0]), method="L-BFGS-B",
                      bounds=((-1.5, 1.5), (-1.5, 1.5)))
 
 accumulated = np.array(accumulator)
-pl.plot(accumulated[:, 0], accumulated[:, 1])
+plt.plot(accumulated[:, 0], accumulated[:, 1])
 
-pl.show()
+plt.show()

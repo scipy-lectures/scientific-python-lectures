@@ -2,7 +2,7 @@
 .. only:: html
 
     >>> import numpy as np
-    >>> import pylab as pl
+    >>> import matplotlib.pyplot as plt
     >>> from scipy import ndimage
 
 .. _image-answers:
@@ -19,7 +19,7 @@ Example of solution for the image processing exercise: unmolten grains in glass
    with the "right" orientation (origin in the bottom left corner, and not
    the upper left corner as for standard arrays). ::
 
-    >>> dat = pl.imread('data/MV_HFV_012.jpg')
+    >>> dat = plt.imread('data/MV_HFV_012.jpg')
 
 2. Crop the image to remove the lower panel with measure information. ::
 

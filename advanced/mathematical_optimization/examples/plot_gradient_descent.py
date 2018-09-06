@@ -6,7 +6,7 @@ An example demoing gradient descent by creating figures that trace the
 evolution of the optimizer.
 """
 import numpy as np
-import pylab as pl
+import matplotlib.pyplot as plt
 from scipy import optimize
 
 import sys, os
@@ -191,49 +191,49 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate((
     x = x.T
     y = y.T
 
-    pl.figure(index, figsize=(3, 2.5))
-    pl.clf()
-    pl.axes([0, 0, 1, 1])
+    plt.figure(index, figsize=(3, 2.5))
+    plt.clf()
+    plt.axes([0, 0, 1, 1])
 
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + .01)
-    pl.imshow(log_z,
+    plt.imshow(log_z,
             extent=[x_min, x_max, y_min, y_max],
-            cmap=pl.cm.gray_r, origin='lower',
+            cmap=plt.cm.gray_r, origin='lower',
             vmax=log_z.min() + 1.5*log_z.ptp())
-    contours = pl.contour(log_z,
+    contours = plt.contour(log_z,
                         levels=levels.get(f, None),
                         extent=[x_min, x_max, y_min, y_max],
-                        cmap=pl.cm.gnuplot, origin='lower')
+                        cmap=plt.cm.gnuplot, origin='lower')
     levels[f] = contours.levels
-    pl.clabel(contours, inline=1,
+    plt.clabel(contours, inline=1,
                 fmt=super_fmt, fontsize=14)
 
-    pl.plot(all_x_i, all_y_i, 'b-', linewidth=2)
-    pl.plot(all_x_i, all_y_i, 'k+')
+    plt.plot(all_x_i, all_y_i, 'b-', linewidth=2)
+    plt.plot(all_x_i, all_y_i, 'k+')
 
-    pl.plot(logging_f.all_x_i, logging_f.all_y_i, 'k.', markersize=2)
+    plt.plot(logging_f.all_x_i, logging_f.all_y_i, 'k.', markersize=2)
 
-    pl.plot([0], [0], 'rx', markersize=12)
+    plt.plot([0], [0], 'rx', markersize=12)
 
 
-    pl.xticks(())
-    pl.yticks(())
-    pl.xlim(x_min, x_max)
-    pl.ylim(y_min, y_max)
-    pl.draw()
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+    plt.draw()
 
-    pl.figure(index + 100, figsize=(4, 3))
-    pl.clf()
-    pl.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2,
+    plt.figure(index + 100, figsize=(4, 3))
+    plt.clf()
+    plt.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2,
                 label='# iterations')
-    pl.ylabel('Error on f(x)')
-    pl.semilogy(logging_f.counts,
+    plt.ylabel('Error on f(x)')
+    plt.semilogy(logging_f.counts,
                 np.maximum(np.abs(logging_f.all_f_i), 1e-30),
                 linewidth=2, color='g', label='# function calls')
-    pl.legend(loc='upper right', frameon=True, prop=dict(size=11),
+    plt.legend(loc='upper right', frameon=True, prop=dict(size=11),
               borderaxespad=0, handlelength=1.5, handletextpad=.5)
-    pl.tight_layout()
-    pl.draw()
+    plt.tight_layout()
+    plt.draw()
 

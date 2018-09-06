@@ -92,7 +92,7 @@ values).
 
 To run the example, you can type them in an IPython interactive session::
 
-    $ ipython --pylab
+    $ ipython --matplotlib
 
 This brings us to the IPython prompt: ::
 
@@ -101,9 +101,6 @@ This brings us to the IPython prompt: ::
     %magic  -> Information about IPython's 'magic' % functions.
     help    -> Python's own help system.
     object? -> Details about 'object'. ?object also works, ?? prints more.
-
-    Welcome to pylab, a matplotlib-based Python environment.
-    For more information, type 'help(pylab)'.
 
 .. tip::
 
