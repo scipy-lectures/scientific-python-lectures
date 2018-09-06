@@ -5,7 +5,7 @@ Noisy optimization problem
 Draws a figure explaining noisy vs non-noisy optimization
 """
 import numpy as np
-import pylab as pl
+import matplotlib.pyplot as plt
 
 np.random.seed(0)
 
@@ -16,14 +16,14 @@ def f(x):
     return -np.exp(-x**2)
 
 # A smooth function
-pl.figure(1, figsize=(3, 2.5))
-pl.clf()
+plt.figure(1, figsize=(3, 2.5))
+plt.clf()
 
-pl.plot(x_, f(x_) + .2*np.random.normal(size=31), linewidth=2)
-pl.plot(x, f(x), linewidth=2)
+plt.plot(x_, f(x_) + .2*np.random.normal(size=31), linewidth=2)
+plt.plot(x, f(x), linewidth=2)
 
-pl.ylim(ymin=-1.3)
-pl.axis('off')
-pl.tight_layout()
-pl.show()
+plt.ylim(ymin=-1.3)
+plt.axis('off')
+plt.tight_layout()
+plt.show()
 

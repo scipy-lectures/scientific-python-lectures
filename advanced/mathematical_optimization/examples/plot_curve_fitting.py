@@ -7,7 +7,7 @@ A curve fitting example
 
 import numpy as np
 from scipy import optimize
-import pylab as pl
+import matplotlib.pyplot as plt
 
 np.random.seed(0)
 
@@ -26,9 +26,9 @@ params, params_cov = optimize.curve_fit(f, x, y)
 # plot the data and the fitted curve
 t = np.linspace(0, 3, 1000)
 
-pl.figure(1)
-pl.clf()
-pl.plot(x, y, 'bx')
-pl.plot(t, f(t, *params), 'r-')
-pl.show()
+plt.figure(1)
+plt.clf()
+plt.plot(x, y, 'bx')
+plt.plot(t, f(t, *params), 'r-')
+plt.show()
 

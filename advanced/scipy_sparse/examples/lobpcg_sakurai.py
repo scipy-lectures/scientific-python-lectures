@@ -9,7 +9,7 @@ from scipy import array, arange, ones, sort, cos, pi, rand, \
      set_printoptions, r_
 from scipy.sparse.linalg import lobpcg
 from scipy import sparse
-from pylab import loglog, show, xlabel, ylabel, title
+import matplotlib.pyplot as plt
 set_printoptions(precision=8,linewidth=90)
 import time
 
@@ -51,8 +51,8 @@ print
 print w_ex[:m]
 print
 print 'Elapsed time',data[0]
-loglog(arange(1,n+1),w_ex,'b.')
-xlabel(r'Number $i$')
-ylabel(r'$\lambda_i$')
-title('Eigenvalue distribution')
-show()
+plt.loglog(arange(1,n+1),w_ex,'b.')
+plt.xlabel(r'Number $i$')
+plt.ylabel(r'$\lambda_i$')
+plt.title('Eigenvalue distribution')
+plt.show()

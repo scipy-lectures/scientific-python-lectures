@@ -17,7 +17,7 @@ solution.
 
 import numpy as np
 from scipy import optimize
-import pylab as pl
+import matplotlib.pyplot as plt
 
 def f(x):
     return np.exp(-1/(.01*x[0]**2 + x[1]**2))
@@ -37,25 +37,25 @@ x_min = result.x
 ###############################################################################
 # Some pretty plotting
 
-pl.figure(0)
-pl.clf()
+plt.figure(0)
+plt.clf()
 t = np.linspace(-1.1, 1.1, 100)
-pl.plot(t, f([0, t]))
+plt.plot(t, f([0, t]))
 
-pl.figure(1)
-pl.clf()
+plt.figure(1)
+plt.clf()
 X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]
-pl.imshow(f([X, Y]).T, cmap=pl.cm.gray_r, extent=[-1.5, 1.5, -1.1, 1.1],
+plt.imshow(f([X, Y]).T, cmap=plt.cm.gray_r, extent=[-1.5, 1.5, -1.1, 1.1],
           origin='lower')
-pl.contour(X, Y, f([X, Y]), cmap=pl.cm.gnuplot)
+plt.contour(X, Y, f([X, Y]), cmap=plt.cm.gnuplot)
 
 # Plot the gradient
 dX, dY = g_prime([.1*X[::5, ::5], Y[::5, ::5]])
 # Adjust for our preconditioning
 dX *= .1
-pl.quiver(X[::5, ::5], Y[::5, ::5], dX, dY, color='.5')
+plt.quiver(X[::5, ::5], Y[::5, ::5], dX, dY, color='.5')
 
 # Plot our solution
-pl.plot(x_min[0], x_min[1], 'r+', markersize=15)
+plt.plot(x_min[0], x_min[1], 'r+', markersize=15)
 
-pl.show()
+plt.show()
