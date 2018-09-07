@@ -280,7 +280,7 @@ Here we debug the file :download:`index_error.py`. When running it, an
 
     ipdb> len(lst)
     6
-    ipdb> print lst[len(lst)-1]
+    ipdb> print(lst[len(lst)-1])
     r
     ipdb> quit
 
@@ -312,7 +312,7 @@ Here we debug the file :download:`index_error.py`. When running it, an
     Uncaught exception. Entering post mortem debugging
     Running 'cont' or 'step' will restart the program
     > /home/varoquau/dev/scipy-lecture-notes/advanced/optimizing/index_error.py(5)index_error()
-    -> print lst[len(lst)]
+    -> print(lst[len(lst)])
     (Pdb)
 
 Step-by-step execution
@@ -387,7 +387,7 @@ Indeed the code runs, but the filtering does not work well.
          36     l_var = local_var(noisy_img, size=size)
     ---> 37     for i in range(3):
          38         res = noisy_img - denoised_img
-    ipdb> print l_var
+    ipdb> print(l_var)
     [[5868 5379 5316 ..., 5071 4799 5149]
      [5013  363  437 ...,  346  262 4355]
      [5379  410  344 ...,  392  604 3377]
@@ -395,7 +395,7 @@ Indeed the code runs, but the filtering does not work well.
      [ 435  362  308 ...,  275  198 1632]
      [ 548  392  290 ...,  248  263 1653]
      [ 466  789  736 ..., 1835 1725 1940]]
-    ipdb> print l_var.min()
+    ipdb> print(l_var.min())
     0
 
 Oh dear, nothing but integers, and 0 variation. Here is our bug, we are

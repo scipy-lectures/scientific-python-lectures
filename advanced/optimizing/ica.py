@@ -158,7 +158,7 @@ def fastica(X, n_comp=None,
     >>> w_init = np.array([[1,4],[7,2]])
     >>> n_comp = 2
     >>> k, W, S = fastica(X, n_comp, algorithm='parallel', w_init=w_init)
-    >>> print S
+    >>> print(S)
     [[-0.02387286 -1.41401205]
      [ 1.23650679  0.68633152]
      [-1.21263393  0.72768053]]

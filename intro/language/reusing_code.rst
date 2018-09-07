@@ -23,7 +23,7 @@ following lines in a file called ``test.py`` ::
 
     message = "Hello how are you?"
     for word in message.split():
-        print word
+        print(word)
 
 .. tip::
 
@@ -77,7 +77,7 @@ directory as the test.py file, we can execute this in a console:
     In ``file.py``::
 
         import sys
-        print sys.argv
+        print(sys.argv)
 
     .. sourcecode:: bash
 

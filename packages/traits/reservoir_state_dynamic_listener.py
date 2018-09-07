@@ -3,7 +3,7 @@ from reservoir_state_property import ReservoirState
 
 def wake_up_watchman_if_spillage(new_value):
     if new_value > 0:
-        print 'Wake up watchman! Spilling {} hm3'.format(new_value)
+        print('Wake up watchman! Spilling {} hm3'.format(new_value))
 
 if __name__ == '__main__':
     projectA = Reservoir(
@@ -23,8 +23,8 @@ if __name__ == '__main__':
     state.inflows = 0
     state.print_state()
 
-    print 'Forcing spillage'
+    print('Forcing spillage')
     state.inflows = 100
     state.release = 0
 
-    print 'Why do we have two executions of the callback ?'
+    print('Why do we have two executions of the callback ?')

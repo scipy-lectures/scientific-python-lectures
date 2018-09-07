@@ -21,7 +21,7 @@ for k in range(n_steps):
     p = P.T.dot(p)
 
 p_50 = p
-print p_50
+print(p_50)
 
 # Compute stationary state
 w, v = np.linalg.eig(P.T)
@@ -29,11 +29,11 @@ w, v = np.linalg.eig(P.T)
 j_stationary = np.argmin(abs(w - 1.0))
 p_stationary = v[:,j_stationary].real
 p_stationary /= p_stationary.sum()
-print p_stationary
+print(p_stationary)
 
 # Compare
 if all(abs(p_50 - p_stationary) < tolerance):
-    print "Tolerance satisfied in infty-norm"
+    print("Tolerance satisfied in infty-norm")
 
 if np.linalg.norm(p_50 - p_stationary) < tolerance:
-    print "Tolerance satisfied in 2-norm"
+    print("Tolerance satisfied in 2-norm")

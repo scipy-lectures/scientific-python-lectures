@@ -10,5 +10,5 @@ def some_function(input):
     output = fortran_module.some_function(input.ravel())
     return output.reshape(input.shape)
 
-print some_function(np.array([1, 2, 3]))
-print some_function(np.array([[1, 2], [3, 4]]))
+print(some_function(np.array([1, 2, 3])))
+print(some_function(np.array([[1, 2], [3, 4]])))
