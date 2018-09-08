@@ -3,7 +3,7 @@
 
 import numpy as np
 import scipy as sp
-import pylab as pl
+import matplotlib.pyplot as plt
 from scipy import signal
 
 
@@ -51,11 +51,11 @@ np.random.seed(7)
 face = sp.misc.face(gray=True)
 noisy_face = face + 20*np.random.randint(3, size=face.shape) - 30
 
-pl.matshow(face[cut], cmap=pl.cm.gray)
-pl.matshow(noisy_face[cut], cmap=pl.cm.gray)
+plt.matshow(face[cut], cmap=plt.cm.gray)
+plt.matshow(noisy_face[cut], cmap=plt.cm.gray)
 
 denoised_face = iterated_wiener(noisy_face)
-pl.matshow(denoised_face[cut], cmap=pl.cm.gray)
+plt.matshow(denoised_face[cut], cmap=plt.cm.gray)
 
-pl.show()
+plt.show()
 

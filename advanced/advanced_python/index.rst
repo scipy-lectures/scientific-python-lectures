@@ -715,7 +715,7 @@ which really form a part of the language:
             data = numpy.load(file)
             return cls(data)
 
-  This is cleaner then using a multitude of flags to ``__init__``.
+  This is cleaner than using a multitude of flags to ``__init__``.
 
 - `staticmethod` is applied to methods to make them "static",
   i.e. basically a normal function, but accessible through the class

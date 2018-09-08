@@ -11,7 +11,7 @@ import time
 
 import numpy as np
 from scipy import optimize
-import pylab as pl
+import matplotlib.pyplot as plt
 
 np.random.seed(0)
 
@@ -33,17 +33,17 @@ def hessian(x):
 ###############################################################################
 # Some pretty plotting
 
-pl.figure(1)
-pl.clf()
+plt.figure(1)
+plt.clf()
 Z = X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]
 # Complete in the additional dimensions with zeros
 Z = np.reshape(Z, (2, -1)).copy()
 Z.resize((100, Z.shape[-1]))
 Z = np.apply_along_axis(f, 0, Z)
 Z = np.reshape(Z, X.shape)
-pl.imshow(Z.T, cmap=pl.cm.gray_r, extent=[-1.5, 1.5, -1.1, 1.1],
+plt.imshow(Z.T, cmap=plt.cm.gray_r, extent=[-1.5, 1.5, -1.1, 1.1],
           origin='lower')
-pl.contour(X, Y, Z, cmap=pl.cm.gnuplot)
+plt.contour(X, Y, Z, cmap=plt.cm.gnuplot)
 
 # A reference but slow solution:
 t0 = time.time()
@@ -81,4 +81,4 @@ print("     Newton: time %.2fs, x error %.2f, f error %.2f" % (
     time.time() - t0, np.sqrt(np.sum((x_newton - x_ref)**2)),
     f(x_newton) - f_ref))
 
-pl.show()
+plt.show()

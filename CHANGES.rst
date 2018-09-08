@@ -1,7 +1,7 @@
 What's new
 ==========
 
-Release 2018.1 (September 2017)
+Release 2018.1 (September 2018)
 -------------------------------------
 
 * Fix wordings, typos, colours (Pierre de Buyl, Greg Kiar, Olav Vahtras

@@ -6,15 +6,15 @@ This script plots the flow-charts used in the scikit-learn tutorials.
 """
 
 import numpy as np
-import pylab as pl
+import matplotlib.pyplot as plt
 from matplotlib.patches import Circle, Rectangle, Polygon, Arrow, FancyArrow
 
 def create_base(box_bg = '#CCCCCC',
                 arrow1 = '#88CCFF',
                 arrow2 = '#88FF88',
                 supervised=True):
-    fig = pl.figure(figsize=(9, 6), facecolor='w')
-    ax = pl.axes((0, 0, 1, 1),
+    fig = plt.figure(figsize=(9, 6), facecolor='w')
+    ax = plt.axes((0, 0, 1, 1),
                  xticks=[], yticks=[], frameon=False)
     ax.set_xlim(0, 9)
     ax.set_ylim(0, 6)
@@ -69,38 +69,38 @@ def create_base(box_bg = '#CCCCCC',
     for p in patches:
         ax.add_patch(p)
         
-    pl.text(1.45, 4.9, "Training\nText,\nDocuments,\nImages,\netc.",
+    plt.text(1.45, 4.9, "Training\nText,\nDocuments,\nImages,\netc.",
             ha='center', va='center', fontsize=14)
     
-    pl.text(3.6, 4.9, "Feature\nVectors", 
+    plt.text(3.6, 4.9, "Feature\nVectors", 
             ha='left', va='center', fontsize=14)
     
-    pl.text(5.5, 3.5, "Machine\nLearning\nAlgorithm",
+    plt.text(5.5, 3.5, "Machine\nLearning\nAlgorithm",
             ha='center', va='center', fontsize=14)
     
-    pl.text(1.05, 1.1, "New Text,\nDocument,\nImage,\netc.",
+    plt.text(1.05, 1.1, "New Text,\nDocument,\nImage,\netc.",
             ha='center', va='center', fontsize=14)
     
-    pl.text(3.3, 1.7, "Feature\nVector", 
+    plt.text(3.3, 1.7, "Feature\nVector", 
             ha='left', va='center', fontsize=14)
     
-    pl.text(5.5, 1.1, "Predictive\nModel", 
+    plt.text(5.5, 1.1, "Predictive\nModel", 
             ha='center', va='center', fontsize=12)
 
     if supervised:
-        pl.text(1.45, 3.05, "Labels",
+        plt.text(1.45, 3.05, "Labels",
                 ha='center', va='center', fontsize=14)
     
-        pl.text(8.05, 1.1, "Expected\nLabel",
+        plt.text(8.05, 1.1, "Expected\nLabel",
                 ha='center', va='center', fontsize=14)
-        pl.text(8.8, 5.8, "Supervised Learning Model",
+        plt.text(8.8, 5.8, "Supervised Learning Model",
                 ha='right', va='top', fontsize=18)
 
     else:
-        pl.text(8.05, 1.1,
+        plt.text(8.05, 1.1,
                 "Likelihood\nor Cluster ID\nor Better\nRepresentation",
                 ha='center', va='center', fontsize=12)
-        pl.text(8.8, 5.8, "Unsupervised Learning Model",
+        plt.text(8.8, 5.8, "Unsupervised Learning Model",
                 ha='right', va='top', fontsize=18)
         
         
@@ -109,16 +109,16 @@ def plot_supervised_chart(annotate=False):
     create_base(supervised=True)
     if annotate:
         fontdict = dict(color='r', weight='bold', size=14)
-        pl.text(1.9, 4.55, 'X = vec.fit_transform(input)',
+        plt.text(1.9, 4.55, 'X = vec.fit_transform(input)',
                 fontdict=fontdict,
                 rotation=20, ha='left', va='bottom')
-        pl.text(3.7, 3.2, 'clf.fit(X, y)',
+        plt.text(3.7, 3.2, 'clf.fit(X, y)',
                 fontdict=fontdict,
                 rotation=20, ha='left', va='bottom')
-        pl.text(1.7, 1.5, 'X_new = vec.transform(input)',
+        plt.text(1.7, 1.5, 'X_new = vec.transform(input)',
                 fontdict=fontdict,
                 rotation=20, ha='left', va='bottom')
-        pl.text(6.1, 1.5, 'y_new = clf.predict(X_new)',
+        plt.text(6.1, 1.5, 'y_new = clf.predict(X_new)',
                 fontdict=fontdict,
                 rotation=20, ha='left', va='bottom')
 
@@ -130,6 +130,6 @@ if __name__ == '__main__':
     plot_supervised_chart(False)
     plot_supervised_chart(True)
     plot_unsupervised_chart()
-    pl.show()
+    plt.show()
 
 

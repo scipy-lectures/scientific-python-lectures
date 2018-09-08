@@ -5,28 +5,28 @@ Smooth vs non-smooth
 Draws a figure to explain smooth versus non smooth optimization.
 """
 import numpy as np
-import pylab as pl
+import matplotlib.pyplot as plt
 
 x = np.linspace(-1.5, 1.5, 101)
 
 # A smooth function
-pl.figure(1, figsize=(3, 2.5))
-pl.clf()
+plt.figure(1, figsize=(3, 2.5))
+plt.clf()
 
-pl.plot(x, np.sqrt(.2 + x**2), linewidth=2)
-pl.text(-1, 0, '$f$', size=20)
+plt.plot(x, np.sqrt(.2 + x**2), linewidth=2)
+plt.text(-1, 0, '$f$', size=20)
 
-pl.ylim(ymin=-.2)
-pl.axis('off')
-pl.tight_layout()
+plt.ylim(ymin=-.2)
+plt.axis('off')
+plt.tight_layout()
 
 # A non-smooth function
-pl.figure(2, figsize=(3, 2.5))
-pl.clf()
-pl.plot(x, np.abs(x), linewidth=2)
-pl.text(-1, 0, '$f$', size=20)
+plt.figure(2, figsize=(3, 2.5))
+plt.clf()
+plt.plot(x, np.abs(x), linewidth=2)
+plt.text(-1, 0, '$f$', size=20)
 
-pl.ylim(ymin=-.2)
-pl.axis('off')
-pl.tight_layout()
-pl.show()
+plt.ylim(ymin=-.2)
+plt.axis('off')
+plt.tight_layout()
+plt.show()

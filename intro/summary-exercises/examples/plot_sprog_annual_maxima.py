@@ -6,7 +6,7 @@ Generate the exercise results on the Gumbell distribution
 """
 import numpy as np
 from scipy.interpolate import UnivariateSpline
-import pylab as pl
+import matplotlib.pyplot as plt
 
 
 def gumbell_dist(arr):
@@ -26,8 +26,8 @@ fitted_max_speeds = speed_spline(nprob)
 fifty_prob = gumbell_dist(49./50.)
 fifty_wind = speed_spline(fifty_prob)
 
-pl.figure()
-pl.bar(np.arange(years_nb) + 1, max_speeds)
-pl.axis('tight')
-pl.xlabel('Year')
-pl.ylabel('Annual wind speed maxima [$m/s$]')
+plt.figure()
+plt.bar(np.arange(years_nb) + 1, max_speeds)
+plt.axis('tight')
+plt.xlabel('Year')
+plt.ylabel('Annual wind speed maxima [$m/s$]')
