@@ -114,7 +114,7 @@ Keyword arguments allow you to specify *default values*.
        In [2]: def add_to_dict(args={'a': 1, 'b': 2}):
           ...:     for i in args.keys():
           ...:         args[i] += 1
-          ...:     print args
+          ...:     print(args)
           ...:
 
        In [3]: add_to_dict
@@ -283,8 +283,8 @@ Special forms of parameters:
 .. sourcecode:: ipython
 
     In [35]: def variable_args(*args, **kwargs):
-       ....:     print 'args is', args
-       ....:     print 'kwargs is', kwargs
+       ....:     print('args is', args)
+       ....:     print('kwargs is', kwargs)
        ....:
 
     In [36]: variable_args('one', 'two', x=1, y=2, z=3)

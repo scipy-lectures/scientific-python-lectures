@@ -19,5 +19,5 @@ samples = f(a[:,newaxis,newaxis],
 
 integral = samples.mean()
 
-print "Approximation:", integral
-print "Exact:", np.log(2) - 0.5
+print("Approximation:", integral)
+print("Exact:", np.log(2) - 0.5)

@@ -861,7 +861,7 @@ to modify the function, we can use a decorator::
       def _wrapper(self, *args, **kwargs):
 	  self.count += 1
 	  if self.count == 1:
-	      print self.func.__name__, 'is deprecated'
+	      print(self.func.__name__, 'is deprecated')
 	  return self.func(*args, **kwargs)
 
 .. TODO: use update_wrapper here
@@ -881,7 +881,7 @@ It can also be implemented as a function::
       def wrapper(*args, **kwargs):
           count[0] += 1
           if count[0] == 1:
-              print func.__name__, 'is deprecated'
+              print(func.__name__, 'is deprecated')
           return func(*args, **kwargs)
       return wrapper
 

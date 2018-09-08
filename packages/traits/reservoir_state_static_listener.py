@@ -20,11 +20,11 @@ class ReservoirState(HasTraits):
     spillage = Float(desc='Spillage [hm3]')
 
     def print_state(self):
-        print 'Storage\tRelease\tInflows\tSpillage'
+        print('Storage\tRelease\tInflows\tSpillage')
         str_format = '\t'.join(['{:7.2f}'for i in range(4)])
-        print str_format.format(self.storage, self.release, self.inflows,
-                self.spillage)
-        print '-' * 79
+        print(str_format.format(self.storage, self.release, self.inflows,
+                self.spillage))
+        print('-' * 79)
 
     ### Traits listeners ###########
     def _release_changed(self, new):
@@ -33,7 +33,7 @@ class ReservoirState(HasTraits):
         """
 
         if new > 0:
-            print 'Warning, we are releasing {} hm3 of water'.format(new)
+            print('Warning, we are releasing {} hm3 of water'.format(new))
 
 
 if __name__ == '__main__':

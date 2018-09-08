@@ -28,17 +28,17 @@ if __name__ == '__main__':
             turbine = turbine,
         )
 
-    print 'installed capacity is initialised with turbine.power'
-    print reservoir.installed_capacity
+    print('installed capacity is initialised with turbine.power')
+    print(reservoir.installed_capacity)
 
-    print '-' * 15
-    print 'updating the turbine power updates the installed capacity'
+    print('-' * 15)
+    print('updating the turbine power updates the installed capacity')
     turbine.power = 10
-    print reservoir.installed_capacity
+    print(reservoir.installed_capacity)
 
-    print '-' * 15
-    print 'setting the installed capacity breaks the link between turbine.power'
-    print 'and the installed_capacity trait'
+    print('-' * 15)
+    print('setting the installed capacity breaks the link between turbine.power')
+    print('and the installed_capacity trait')
 
     reservoir.installed_capacity = 8
-    print turbine.power, reservoir.installed_capacity
+    print(turbine.power, reservoir.installed_capacity)

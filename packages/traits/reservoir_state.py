@@ -20,11 +20,11 @@ class ReservoirState(HasTraits):
     spillage = Float(desc='Spillage [hm3]')
 
     def print_state(self):
-        print 'Storage\tRelease\tInflows\tSpillage'
+        print('Storage\tRelease\tInflows\tSpillage')
         str_format = '\t'.join(['{:7.2f}'for i in range(4)])
-        print str_format.format(self.storage, self.release, self.inflows,
-                self.spillage)
-        print '-' * 79
+        print(str_format.format(self.storage, self.release, self.inflows,
+                self.spillage))
+        print('-' * 79)
 
 
 if __name__ == '__main__':
@@ -41,4 +41,4 @@ if __name__ == '__main__':
     state.inflows = 0
     state.print_state()
 
-    print 'How do we update the current storage ?'
+    print('How do we update the current storage ?')

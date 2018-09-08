@@ -41,11 +41,11 @@ class ReservoirState(HasTraits):
         return max(overflow, 0)
 
     def print_state(self):
-        print 'Storage\tRelease\tInflows\tSpillage'
+        print('Storage\tRelease\tInflows\tSpillage')
         str_format = '\t'.join(['{:7.2f}'for i in range(4)])
-        print str_format.format(self.storage, self.release, self.inflows,
-                self.spillage)
-        print '-' * 79
+        print(str_format.format(self.storage, self.release, self.inflows,
+                self.spillage))
+        print('-' * 79)
 
 if __name__ == '__main__':
     projectA = Reservoir(

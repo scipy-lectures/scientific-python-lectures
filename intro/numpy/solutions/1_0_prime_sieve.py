@@ -29,4 +29,4 @@ else:
             mask[j*j::j] = False
 
 # print indices where mask is True
-print np.nonzero(mask)[0]
+print(np.nonzero(mask)[0])

@@ -147,13 +147,13 @@ Running an external command
         In [20]: import sh
         In [20]: com = sh.ls()
 
-        In [21]: print com
+        In [21]: print(com)
         basic_types.rst   exceptions.rst   oop.rst              standard_library.rst
         control_flow.rst  first_steps.rst  python_language.rst
         demo2.py          functions.rst    python-logo.png
         demo.py           io.rst           reusing_code.rst
 
-        In [22]: print com.exit_code
+        In [22]: print(com.exit_code)
         0
         In [23]: type(com)
         Out[23]: sh.RunningCommand
@@ -168,7 +168,7 @@ Walking a directory
 
     In [10]: for dirpath, dirnames, filenames in os.walk(os.curdir):
        ....:     for fp in filenames:
-       ....:         print os.path.abspath(fp)
+       ....:         print(os.path.abspath(fp))
        ....:
        ....:
     /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/.index.rst.swo

@@ -726,7 +726,7 @@ Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
 
 ::
 
-   >>> print data  # doctest: +SKIP
+   >>> print(data)  # doctest: +SKIP
         EDUCATION  SOUTH  SEX  EXPERIENCE  UNION      WAGE  AGE  RACE  \
    0            8      0    1          21      0  0.707570   35     2   
    1            9      0    1          42      0  0.694605   57     3   
