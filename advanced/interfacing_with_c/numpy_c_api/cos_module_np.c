@@ -72,11 +72,36 @@ static PyMethodDef CosMethods[] =
      {NULL, NULL, 0, NULL}
 };
 
+
+#if PY_MAJOR_VERSION >= 3
 /* module initialization */
-PyMODINIT_FUNC
-initcos_module_np(void)
-{
-     (void) Py_InitModule("cos_module_np", CosMethods);
-     /* IMPORTANT: this must be called */
-     import_array();
+/* Python version 3*/
+static struct PyModuleDef cModPyDem = {
+    PyModuleDef_HEAD_INIT,
+    "cos_module", "Some documentation",
+    -1,
+    CosMethods
+};
+PyMODINIT_FUNC PyInit_cos_module_np(void) {
+    PyObject *module;
+    module = PyModule_Create(&cModPyDem);
+    if(module==NULL) return NULL;
+    /* IMPORTANT: this must be called */
+    import_array();
+    if (PyErr_Occurred()) return NULL;
+    return module;
 }
+
+#else
+/* module initialization */
+/* Python version 2 */
+PyMODINIT_FUNC initcos_module_np(void) {
+    PyObject *module;
+    module = Py_InitModule("cos_module_np", CosMethods);
+    if(module==NULL) return;
+    /* IMPORTANT: this must be called */
+    import_array();
+    return;
+}
+
+#endif
