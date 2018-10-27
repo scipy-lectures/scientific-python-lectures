@@ -23,7 +23,7 @@ symbols = 'o>*Ds'
 plt.figure(1, figsize=(10, 4))
 plt.clf()
 
-colors = plt.cm.Spectral(np.linspace(0, 1, n_dims))[:, :3]
+colors = plt.cm.nipy_spectral(np.linspace(0, 1, n_dims))[:, :3]
 
 method_names = list(list(results.values())[0]['Rosenbrock  '].keys())
 method_names.sort(key=lambda x: x[::-1], reverse=True)

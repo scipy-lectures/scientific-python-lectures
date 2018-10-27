@@ -33,10 +33,10 @@ label_clean = np.searchsorted(labels, label_im)
 plt.figure(figsize=(6 ,3))
 
 plt.subplot(121)
-plt.imshow(label_im, cmap=plt.cm.spectral)
+plt.imshow(label_im, cmap=plt.cm.nipy_spectral)
 plt.axis('off')
 plt.subplot(122)
-plt.imshow(label_clean, vmax=nb_labels, cmap=plt.cm.spectral)
+plt.imshow(label_clean, vmax=nb_labels, cmap=plt.cm.nipy_spectral)
 plt.axis('off')
 
 plt.subplots_adjust(wspace=0.01, hspace=0.01, top=1, bottom=0, left=0, right=1)

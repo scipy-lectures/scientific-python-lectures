@@ -51,10 +51,10 @@ label_im[mask] = labels
 
 plt.figure(figsize=(6, 3))
 plt.subplot(121)
-plt.imshow(img, cmap=plt.cm.spectral, interpolation='nearest')
+plt.imshow(img, cmap=plt.cm.nipy_spectral, interpolation='nearest')
 plt.axis('off')
 plt.subplot(122)
-plt.imshow(label_im, cmap=plt.cm.spectral, interpolation='nearest')
+plt.imshow(label_im, cmap=plt.cm.nipy_spectral, interpolation='nearest')
 plt.axis('off')
 
 plt.subplots_adjust(wspace=0, hspace=0., top=0.99, bottom=0.01, left=0.01, right=0.99)
