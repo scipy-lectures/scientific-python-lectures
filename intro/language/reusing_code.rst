@@ -294,13 +294,11 @@ Importing it:
     In [11]: import demo2
     b
 
-    In [12]: import demo2
-
 Running it:
 
 .. sourcecode:: ipython
 
-    In [13]: %run demo2
+    In [12]: %run demo2
     b
     a
 
