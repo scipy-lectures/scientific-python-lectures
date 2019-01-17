@@ -443,7 +443,7 @@ the 9th order one?
 
 Let's look at the ground truth:
 
-.. figure:: auto_examples/images/sphx_glr_plot_polynomial_regression_002.png
+.. figure:: auto_examples/images/sphx_glr_plot_polynomial_regression_003.png
    :align: center
    :scale: 90
    :target: auto_examples/plot_polynomial_regression.html
