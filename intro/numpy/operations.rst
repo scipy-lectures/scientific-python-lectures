@@ -172,7 +172,7 @@ Other operations
 
 .. warning:: **The transposition is a view**
 
-    As a results, the following code **is wrong** and will **not make a
+    As a result, the following code **is wrong** and will **not make a
     matrix symmetric**::
 
         >>> a += a.T
@@ -516,7 +516,7 @@ We have already used broadcasting without knowing it!:
            [ 1.,  1.,  1.,  1.,  1.],
            [ 1.,  1.,  1.,  1.,  1.]])
 
-An useful trick:
+A useful trick:
 
 .. sourcecode:: pycon
 
