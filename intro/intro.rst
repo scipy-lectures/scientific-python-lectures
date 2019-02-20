@@ -264,12 +264,26 @@ that comes readily with optimized versions of scientific modules.
 If you have a recent distribution, most of the tools are probably
 packaged, and it is recommended to use your package manager.
 
-**Other systems**
+Under Debian-based distributions (like Ubuntu, Elementary OS,..) you will be fine by executing:
 
-There are several fully-featured Scientific Python distributions:
+.. sourcecode:: console
+
+    sudo apt install python3-numpy python3-scipy python3-matplotlib python3-ipython jupyter
+
+Or under Fedora-based distributions (like RHEL):
+
+.. sourcecode:: console
+
+    sudo dnf install python3-numpy python3-scipy python3-matplotlib python3-ipython notebook
+
+Additional packages can be usually installed with the same  "sudo apt/dnf install python3-*packagename*" syntax.
+
+**Other systems (Windows, macOS)**
+
+It is recommended to install one of the following scientific Python distributions:
 
 
-  
+
 
 .. rst-class:: horizontal
 
