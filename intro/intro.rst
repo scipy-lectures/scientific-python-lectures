@@ -132,7 +132,8 @@ Python
     `IPython <http://ipython.readthedocs.io/en/stable/>`__,
     `Spyder <https://pythonhosted.org/spyder>`__,
     `Jupyter notebooks <http://jupyter.org/>`__,
-    `Pycharm <https://www.jetbrains.com/pycharm>`__
+    `Pycharm <https://www.jetbrains.com/pycharm>`__,
+    `Visual Studio Code <https://code.visualstudio.com/>`__
 
 :Cons:
 
