@@ -133,7 +133,7 @@ Python
     `Spyder <https://pythonhosted.org/spyder>`__,
     `Jupyter notebooks <http://jupyter.org/>`__,
     `Pycharm <https://www.jetbrains.com/pycharm>`__,
-    `Visual Studio Code <https://code.visualstudio.com/>`__
+    `Visual Studio Code <https://code.visualstudio.com/docs/languages/python>`__
 
 :Cons:
 
