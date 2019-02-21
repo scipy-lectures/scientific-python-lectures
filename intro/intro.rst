@@ -259,7 +259,7 @@ that comes readily with optimized versions of scientific modules.
   * `Official announcement <https://www.python.org/dev/peps/pep-0373/>`_
   * `The end is nigh <https://pythonclock.org/>`_
 
-**Under Linux**
+**Internal package manager (Linux)**
 
 If you have a recent distribution, most of the tools are probably
 packaged, and it is recommended to use your package manager.
@@ -278,20 +278,22 @@ Or under Fedora-based distributions (like RHEL):
 
 Additional packages can be usually installed with the same  "sudo apt/dnf install python3-*packagename*" syntax.
 
-**Other systems (Windows, macOS)**
+**Scientific Python distributions (Linux, Windows, macOS)**
 
-It is recommended to install one of the following scientific Python distributions:
-
-
+The necessary Python packages can be installed with one of the following scientific Python distributions:
 
 
-.. rst-class:: horizontal
+.. rst-class:: vertical
 
   * `Anaconda <https://www.anaconda.com/download/>`_
   * `EPD <https://store.enthought.com/downloads>`_
-  * `WinPython <https://winpython.github.io>`_
+  * `WinPython (Windows only) <https://winpython.github.io>`_
 
+.. note::
 
+    It can be useful to use Anaconda under Linux, because in contrast to the internal package manager *conda* offers
+    deterministic and consistent developing environments over different working stations through its virtual environments.
+    Also the packages are usually more up-to-date.
 
 
 
