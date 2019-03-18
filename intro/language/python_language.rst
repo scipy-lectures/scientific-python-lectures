@@ -12,7 +12,8 @@ Gaël Varoquaux*
     necessary for getting started with Numpy and Scipy is addressed here.
     To learn more about the language, consider going through the
     excellent tutorial https://docs.python.org/tutorial. Dedicated books
-    are also available, such as http://www.diveintopython.net/.
+    are also available, such as `Dive into Python 3<https://www.diveinto.org/python3>`__.
+    
 
 .. image:: python-logo.png
    :align: right
