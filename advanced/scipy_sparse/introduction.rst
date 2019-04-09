@@ -54,7 +54,7 @@ Typical Applications
 * graph theory
     * nonzero at `(i, j)` means that node `i` is connected to node `j`
 * natural language processing
-    * nonzero at `(i, j)` means that the document `i` contents word `j`
+    * nonzero at `(i, j)` means that the document `i` contents the word `j`
 
 Prerequisites
 -------------
