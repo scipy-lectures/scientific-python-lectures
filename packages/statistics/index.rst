@@ -345,7 +345,7 @@ with :func:`scipy.stats.ttest_ind`::
     >>> stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
     Ttest_indResult(statistic=-0.77261617232..., pvalue=0.4445287677858...)
 
-Paired tests: repeated measurements on the same indivuals
+Paired tests: repeated measurements on the same individuals
 ----------------------------------------------------------
 
 .. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_001.png
