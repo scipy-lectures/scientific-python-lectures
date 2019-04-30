@@ -333,8 +333,7 @@ convention:
     for documenting scientific functions, that you may want to follow for
     your own functions, with a ``Parameters`` section, an ``Examples``
     section, etc. See
-    http://projects.scipy.org/numpy/wiki/CodingStyleGuidelines#docstring-standard
-    and http://projects.scipy.org/numpy/browser/trunk/doc/example.py#L37
+    https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard
 
 Functions are objects
 ---------------------
