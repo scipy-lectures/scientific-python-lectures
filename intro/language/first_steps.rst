@@ -8,7 +8,7 @@ Start the **Ipython** shell (an enhanced interactive Python shell):
 * **or** by starting the program from a menu, e.g. in the `Python(x,y)`_ or
   `EPD`_ menu if you have installed one of these scientific-Python suites.
 
-.. _`Python(x,y)`: http://www.pythonxy.com/
+.. _`Python(x,y)`: https://python-xy.github.io/
 .. _`EPD`: http://store.enthought.com/
 
 .. tip::
