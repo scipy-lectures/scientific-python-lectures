@@ -94,7 +94,7 @@ Easier to ask for forgiveness than for permission
        ....:     try:
        ....:         collection.sort()
        ....:     except AttributeError:
-       ....:         pass
+       ....:         pass # The pass statement does nothing
        ....:     print(collection)
        ....:
        ....:
