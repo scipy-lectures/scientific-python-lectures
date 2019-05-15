@@ -9,6 +9,12 @@ Start the **Ipython** shell (an enhanced interactive Python shell):
   `EPD`_ menu if you have installed one of these scientific-Python suites.
 
 .. _`Python(x,y)`: https://python-xy.github.io/
+* **or** by starting the program from a menu, e.g. the `Anaconda Navigator`_,
+  the `Python(x,y)`_ menu or the `EPD`_ menu if you have installed one of these
+  scientific-Python suites.
+
+.. _`Anaconda Navigator`: https://anaconda.org/anaconda/anaconda-navigator
+.. _`Python(x,y)`: http://www.pythonxy.com/
 .. _`EPD`: http://store.enthought.com/
 
 .. tip::

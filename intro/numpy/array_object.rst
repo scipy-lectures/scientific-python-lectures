@@ -370,13 +370,13 @@ Start by launching IPython:
 
 .. sourcecode:: bash
 
-    $ ipython
+    $ ipython # or ipython3 depending on your install
 
 Or the notebook:
 
 .. sourcecode:: bash
 
-   $ ipython notebook
+   $ jupyter notebook
 
 Once IPython has started, enable interactive plots:
 
