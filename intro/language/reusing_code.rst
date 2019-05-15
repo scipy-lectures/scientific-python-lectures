@@ -233,7 +233,7 @@ Introspection
     'print_b']
 
 
-    In [8]: demo.
+    In [8]: demo.<TAB>
     demo.c        demo.print_a  demo.py       
     demo.d        demo.print_b  demo.pyc      
 
