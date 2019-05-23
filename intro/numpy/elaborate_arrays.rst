@@ -193,9 +193,9 @@ Field access works by indexing with field names::
 
 Multiple fields at once::
 
-    >>> samples[['position', 'value']]
-    array([(1.0, 0.37), (1.0, 0.11), (1.0, 0.13), (1.5, 0.37), (3.0, 0.11),
-           (1.2, 0.13)], 
+    >>> samples[['position', 'value']] # doctest: +NORMALIZE_WHITESPACE
+    array([( 1. ,  0.37), ( 1. ,  0.11), ( 1. ,  0.13), ( 1.5,  0.37),
+           ( 3. ,  0.11), ( 1.2,  0.13)],
           dtype=[('position', '<f8'), ('value', '<f8')])
 
 Fancy indexing works, as usual::

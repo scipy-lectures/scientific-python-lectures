@@ -321,7 +321,7 @@ supposed to be equaled to 0. It also has (limited) support for transcendental
 equations::
 
    >>> sym.solveset(sym.exp(x) + 1, x)
-   {I*(2*n*pi + pi) | n in Integers()}
+   {I*(2*n*pi + pi) | n in Integers}
 
 .. topic:: **Systems of linear equations**
 

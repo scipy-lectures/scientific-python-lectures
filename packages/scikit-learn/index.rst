@@ -747,7 +747,7 @@ others for our problem::
     >>> for index, feature_name in enumerate(data.feature_names):
     ...     plt.figure()
     ...     plt.scatter(data.data[:, index], data.target)  # doctest: +ELLIPSIS
-    <matplotlib.figure.Figure object...
+    <Figure size...
 
 .. image:: auto_examples/images/sphx_glr_plot_boston_prediction_002.png
    :width: 32%  
