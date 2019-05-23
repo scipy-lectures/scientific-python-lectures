@@ -1126,19 +1126,12 @@ from within a python session:
    Help on function plot in module matplotlib.pyplot:
    <BLANKLINE>
    plot(*args, **kwargs)
-      Plot lines and/or markers to the
-      :class:`~matplotlib.axes.Axes`.  *args* is a variable length
-      argument, allowing for multiple *x*, *y* pairs with an
-      optional format string.  For example, each of the following is
-      legal::
+       Plot y versus x as lines and/or markers.
    <BLANKLINE>
-          plot(x, y)         # plot x and y using default line style and color
-          plot(x, y, 'bo')   # plot x and y using blue circle markers
-          plot(y)            # plot y using x as index array 0..N-1
-          plot(y, 'r+')      # ditto, but with red plusses
+       Call signatures::
    <BLANKLINE>
-      If *x* and/or *y* is 2-dimensional, then the corresponding columns
-      will be plotted.
+	   plot([x], y, [fmt], data=None, **kwargs)
+	   plot([x], y, [fmt], [x2], y2, [fmt2], ..., **kwargs)
    ...
 
 
