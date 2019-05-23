@@ -1,6 +1,6 @@
 # This file is structured in a specific way please include all conda installable
 # libraries before the special comment marked `# For conda, pip installable:`
-numpy==1.14
+numpy==1.13
 scipy==0.19
 scikit-learn==0.19
 matplotlib==2.2
