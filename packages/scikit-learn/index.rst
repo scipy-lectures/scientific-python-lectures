@@ -1264,13 +1264,13 @@ is now centered on both components with unit variance::
 
     >>> X_pca.mean(axis=0) # doctest: +ELLIPSIS
     array([ ...e-15,  ...e-15])
-    >>> X_pca.std(axis=0)
+    >>> X_pca.std(axis=0, ddof=1)
     array([ 1.,  1.])
 
 Furthermore, the samples components do no longer carry any linear
 correlation::
 
-    >>> np.corrcoef(X_pca.T)  # doctest: +ELLIPSIS
+    >>> np.corrcoef(X_pca.T)  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
     array([[  1.00000000e+00,   ...],
            [  ...,   1.00000000e+00]])
 
