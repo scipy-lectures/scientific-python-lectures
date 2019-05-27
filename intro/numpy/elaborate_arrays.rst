@@ -200,8 +200,8 @@ Multiple fields at once::
 
 Fancy indexing works, as usual::
 
-    >>> samples[samples['sensor_code'] == 'ALFA']    # doctest: +SKIP
-    array([('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11)], 
+    >>> samples[samples['sensor_code'] == b'ALFA']    # doctest: +SKIP
+    array([(b'ALFA', 1.5, 0.37), (b'ALFA', 3. , 0.11)],
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 .. note:: There are a bunch of other syntaxes for constructing structured
