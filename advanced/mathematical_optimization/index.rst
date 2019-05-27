@@ -179,7 +179,7 @@ Brent's method to find the minimum of a function:
     >>> x_min #doctest: +ELLIPSIS
     0.699999999...
     >>> x_min - 0.7 #doctest: +ELLIPSIS
-    -2.160590595323697e-10
+    -2.16...e-10
 
 
 .. |1d_optim_1| image:: auto_examples/images/sphx_glr_plot_1d_optim_001.png

@@ -429,13 +429,13 @@ Other reductions
   .. sourcecode:: pycon
 
    >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
-   <matplotlib.figure.Figure object at ...>
+   <Figure size ... with 0 Axes>
    >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
    >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
-   <matplotlib.text.Text object at ...>
+   Text(...,'$t$')
    >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
-   <matplotlib.text.Text object at ...>
+   Text(...,'$\\sqrt{\\langle (\\delta x)^2 \\rangle}$')
    >>> plt.tight_layout() # provide sufficient space for labels
 
   .. image:: auto_examples/images/sphx_glr_plot_randomwalk_001.png

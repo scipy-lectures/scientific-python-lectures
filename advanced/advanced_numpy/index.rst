@@ -1332,10 +1332,10 @@ Array siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
 --------------------------------------------------
 
 >>> x = np.array(['a', '  bbb', '  ccc']).view(np.chararray)
->>> x.lstrip(' ')       # doctest: +ELLIPSIS
+>>> x.lstrip(' ')       # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
 chararray(['a', 'bbb', 'ccc'], 
       dtype='...')
->>> x.upper()       # doctest: +ELLIPSIS
+>>> x.upper()       # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
 chararray(['A', '  BBB', '  CCC'], 
       dtype='...')
 

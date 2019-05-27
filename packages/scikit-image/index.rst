@@ -638,14 +638,14 @@ Some image processing operations::
 Visualize binary result::
 
     >>> plt.figure() # doctest: +ELLIPSIS
-    <matplotlib.figure.Figure object at 0x...>
+    <Figure size ... with 0 Axes>
     >>> plt.imshow(clean_border, cmap='gray') # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
 
 Visualize contour ::
 
     >>> plt.figure() # doctest: +ELLIPSIS
-    <matplotlib.figure.Figure object at 0x...>
+    <Figure size ... with 0 Axes>
     >>> plt.imshow(coins, cmap='gray') # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
     >>> plt.contour(clean_border, [0.5]) # doctest: +ELLIPSIS

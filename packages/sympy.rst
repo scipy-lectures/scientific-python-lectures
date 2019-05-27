@@ -321,7 +321,7 @@ supposed to be equaled to 0. It also has (limited) support for transcendental
 equations::
 
    >>> sym.solveset(sym.exp(x) + 1, x)
-   {I*(2*n*pi + pi) | n in Integers()}
+   {I*(2*n*pi + pi) | n in Integers}
 
 .. topic:: **Systems of linear equations**
 
@@ -435,23 +435,11 @@ that it is a separable equations, you can use keyword ``hint='separable'``
 to force dsolve to resolve it as a separable equation::
 
    >>> sym.dsolve(sym.sin(x) * sym.cos(f(x)) + sym.cos(x) * sym.sin(f(x)) * f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
-                 /     _________________\                  /     ________________
-                 |    /      C1         |                  |    /      C1        
-   [f(x) = - asin|   /  ----------- + 1 | + pi, f(x) = asin|   /  ----------- + 1
-                 |  /      2            |                  |  /      2           
-                 \\/    sin (x) - 1     /                  \\/    sin (x) - 1    
-   <BLANKLINE>
-   _\                   /     _________________\             /     ______________
-    |                   |    /      C1         |             |    /      C1      
-    | + pi, f(x) = -asin|   /  ----------- + 1 |, f(x) = asin|   /  ----------- +
-    |                   |  /      2            |             |  /      2         
-    /                   \\/    sin (x) - 1     /             \\/    sin (x) - 1  
-   <BLANKLINE>
-    ___\
-       |
-     1 |]
-       |
-       /
+                  /  C1  \                    /  C1  \ 
+    [f(x) = - acos|------| + 2*pi, f(x) = acos|------|]
+                  \cos(x)/                    \cos(x)/ 
+
+
 
 .. topic:: **Exercises**
    :class: green
