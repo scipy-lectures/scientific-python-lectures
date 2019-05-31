@@ -572,16 +572,16 @@ Subplots
 |clear-floats|
 
 .. image:: auto_examples/images/sphx_glr_plot_subplot-horizontal_001.png
-   :scale: 28
+   :scale: 25
    :target: auto_examples/plot_subplot-horizontal.html
 .. image:: auto_examples/images/sphx_glr_plot_subplot-vertical_001.png
-   :scale: 28
+   :scale: 25
    :target: auto_examples/plot_subplot-vertical.html
 .. image:: auto_examples/images/sphx_glr_plot_subplot-grid_001.png
-   :scale: 28
+   :scale: 25
    :target: auto_examples/plot_subplot-grid.html
 .. image:: auto_examples/images/sphx_glr_plot_gridspec_001.png
-   :scale: 28
+   :scale: 25
    :target: auto_examples/plot_gridspec.html
 
 
@@ -622,10 +622,17 @@ follows::
 
 There are several locators for different kind of requirements:
 
+.. raw:: latex
+
+    ~
+
 .. image:: auto_examples/options/images/sphx_glr_plot_ticks_001.png
     :scale: 60
     :target: auto_examples/options/plot_ticks.html
 
+.. raw:: latex
+
+    ~
 
 All of these locators derive from the base class :class:`matplotlib.ticker.Locator`.
 You can make your own locator deriving from it. Handling dates as ticks can be
