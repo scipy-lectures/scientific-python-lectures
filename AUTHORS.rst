@@ -11,6 +11,8 @@ Editors
 
 - Olav Vahtras
 
+- Pierre de Buyl
+
 Chapter authors 
 ----------------
 
@@ -53,6 +55,12 @@ Listed by alphabetical order
 
 - Lilian Besson
 
+- Matthieu Boileau
+
+- Joris Van den Bossche
+
+- Michael Boyle
+
 - Matthew Brett
 
 - Lars Buitinck
@@ -69,15 +77,21 @@ Listed by alphabetical order
 
 - David Cournapeau
 
+- dogacan dugmeci
+
 - Török Edwin
 
 - egens
+
+- Andre Espaze
 
 - André Espaze
 
 - Loïc Estève
 
 - Corey Farwell
+
+- Stuart Geiger
 
 - Olivier Georg
 
@@ -93,15 +107,21 @@ Listed by alphabetical order
 
 - Julia Gustavsen
 
+- Omar Gutiérrez
+
 - Valentin Haenel
 
-- Bruno Hanzen
-
 - Pierre Haessig
+
+- Bruno Hanzen
 
 - Michael Hartmann
 
 - Jonathan Helmus
+
+- Himanshu
+
+- Julian Hofer
 
 - Tarek Hoteit
 
@@ -113,19 +133,29 @@ Listed by alphabetical order
 
 - jorgeprietoarranz
 
-- kikocorreoso
+- josephsalmon
 
 - Greg Kiar
+
+- kikocorreoso
 
 - Vince Knight
 
 - LFP6
 
+- Manuel López-Ibáñez
+
+- Nicola Masarone
+
 - John McLaughlin
 
 - mhemantha
 
+- michelemaroni89
+
 - Mohammad
+
+- Mike Mueller
 
 - negm
 
@@ -149,6 +179,8 @@ Listed by alphabetical order
 
 - Didrik Pinte
 
+- Evgeny Pogrebnyak
+
 - reverland
 
 - Maximilien Riehl
@@ -165,8 +197,6 @@ Listed by alphabetical order
 
 - Helen Sherwood-Taylor
 
-- Scott Staniewicz
-
 - Shoeboxam
 
 - Simon
@@ -175,9 +205,15 @@ Listed by alphabetical order
 
 - ssmiller
 
+- Scott Staniewicz
+
 - strpeter
 
+- surfer190
+
 - Bartosz Telenczuk
+
+- tommyod
 
 - Wes Turner
 

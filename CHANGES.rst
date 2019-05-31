@@ -1,6 +1,19 @@
 What's new
 ==========
 
+Release 2019.1 (May 2019)
+-------------------------
+
+* Update matplotlib compatibility to version 2.2 (Mike Mueller, Joris Van den
+  Bossche, Pierre de Buyl)
+
+* Make C-API example cos_module_np Python 2/3 compatible (Michael Boyle)
+
+* Fix typos and outdated URLs (Dogacan Dugmeci, Matthieu Boileau, Stuart Geiger, Omar
+  Gutiérrez, Himanshu, Julian Hofer, Joseph Salmon, Manuel López-Ibáñez,
+  Nicola Masarone, michelemaroni89, Evgeny Pogrebnyak, tommyod)
+
+
 Release 2018.1 (September 2018)
 -------------------------------------
 
