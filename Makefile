@@ -112,6 +112,7 @@ zip: html pdf
 
 install: cleandoctrees html pdf
 	rm -rf build/scipy-lectures.github.com
+	cp ScipyLectures.pdf ScipyLectures-simple.pdf build/html/_downloads/
 	cd build/ && \
 	git clone  --no-checkout --depth 1 git@github.com:scipy-lectures/scipy-lectures.github.com.git && \
 	cp -r html/* scipy-lectures.github.com && \
