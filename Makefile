@@ -75,6 +75,8 @@ htmlhelp:
 latex: cleandoctrees
 	mkdir -p build/latex build/doctrees
 	$(SPHINXBUILD) -b $@ $(ALLSPHINXOPTS) build/latex
+	sed -i -e 's/\\sphinxincludegraphics/\
+\\sphinxincludegraphics/g' build/latex/ScipyLectures.tex
 	@echo
 	@echo "Build finished; the LaTeX files are in build/latex."
 	@echo "Run \`make all-pdf' or \`make all-ps' in that directory to" \
