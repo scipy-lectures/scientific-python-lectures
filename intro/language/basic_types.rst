@@ -228,10 +228,10 @@ Reverse::
     >>> rcolors = colors[::-1]
     >>> rcolors
     ['white', 'black', 'green', 'blue', 'red']
-    >>> rcolors2 = list(colors)
+    >>> rcolors2 = list(colors) # new object that is a copy of colors in a different memory area
     >>> rcolors2
     ['red', 'blue', 'green', 'black', 'white']
-    >>> rcolors2.reverse() # in-place
+    >>> rcolors2.reverse() # in-place; reversing rcolors2 does not affect colors
     >>> rcolors2
     ['white', 'black', 'green', 'blue', 'red']
 
@@ -372,11 +372,11 @@ contents. One may however create new strings from the original one.
 
 String formatting::
 
-    >>> 'An integer: %i; a float: %f; another string: %s' % (1, 0.1, 'string')
+    >>> 'An integer: %i; a float: %f; another string: %s' % (1, 0.1, 'string') # with more values use tuple after %
     'An integer: 1; a float: 0.100000; another string: string'
 
     >>> i = 102
-    >>> filename = 'processing_of_dataset_%d.txt' % i
+    >>> filename = 'processing_of_dataset_%d.txt' % i   # no need for tuples with just one value after %
     >>> filename
     'processing_of_dataset_102.txt'
 
