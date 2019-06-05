@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 plt.axes([.1, .1, .5, .5])
 plt.xticks(())
 plt.yticks(())
-plt.text(0.1, 0.1, 'axes([0.1, 0.1, .8, .8])', ha='left', va='center',
+plt.text(0.1, 0.1, 'axes([0.1, 0.1, .5, .5])', ha='left', va='center',
         size=16, alpha=.5)
 
 plt.axes([.2, .2, .5, .5])
