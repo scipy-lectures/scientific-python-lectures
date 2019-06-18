@@ -837,7 +837,7 @@ vector :math:`Y = (y, y')`: the function computes the
 velocity and acceleration::
     
     >>> def calc_deri(yvec, time, eps, omega):
-    ...     return (yvec[1], -eps * omega * yvec[1] - omega **2 * yvec[0])
+    ...     return (yvec[1], -2.0 * eps * omega * yvec[1] - omega **2 * yvec[0])
 
 .. image:: scipy/auto_examples/images/sphx_glr_plot_odeint_damped_spring_mass_001.png
     :target: scipy/auto_examples/plot_odeint_damped_spring_mass.html
