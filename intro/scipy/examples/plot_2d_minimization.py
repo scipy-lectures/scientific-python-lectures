@@ -24,7 +24,7 @@ xg, yg = np.meshgrid(x, y)
 # Simple visualization in 2D
 import matplotlib.pyplot as plt
 plt.figure()
-plt.imshow(sixhump([xg, yg]), extent=[-2, 2, -1, 1])
+plt.imshow(sixhump([xg, yg]), extent=[-2, 2, -1, 1], origin="lower")
 plt.colorbar()
 
 ############################################################
@@ -50,7 +50,7 @@ x_min = optimize.minimize(sixhump, x0=[0, 0])
 
 plt.figure()
 # Show the function in 2D
-plt.imshow(sixhump([xg, yg]), extent=[-2, 2, -1, 1])
+plt.imshow(sixhump([xg, yg]), extent=[-2, 2, -1, 1], origin="lower")
 plt.colorbar()
 # And the minimum that we've found:
 plt.scatter(x_min.x[0], x_min.x[1])
