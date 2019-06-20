@@ -14,8 +14,8 @@ samples2 = np.random.normal(1, size=1000)
 
 # Compute a histogram of the sample
 bins = np.linspace(-4, 4, 30)
-histogram1, bins = np.histogram(samples1, bins=bins, normed=True)
-histogram2, bins = np.histogram(samples2, bins=bins, normed=True)
+histogram1, bins = np.histogram(samples1, bins=bins, density=True)
+histogram2, bins = np.histogram(samples2, bins=bins, density=True)
 
 plt.figure(figsize=(6, 4))
 plt.hist(samples1, bins=bins, normed=True, label="Samples 1")
