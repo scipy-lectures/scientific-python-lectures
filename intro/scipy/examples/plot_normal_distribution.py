@@ -14,7 +14,7 @@ samples = np.random.normal(size=10000)
 
 # Compute a histogram of the sample
 bins = np.linspace(-5, 5, 30)
-histogram, bins = np.histogram(samples, bins=bins, normed=True)
+histogram, bins = np.histogram(samples, bins=bins, density=True)
 
 bin_centers = 0.5*(bins[1:] + bins[:-1])
 
