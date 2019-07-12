@@ -38,7 +38,7 @@ For example, :math:`3x^2 + 2x - 1`::
     >>> y = np.cos(x) + 0.3*np.random.rand(20)
     >>> p = np.poly1d(np.polyfit(x, y, 3))
 
-    >>> t = np.linspace(0, 1, 200)
+    >>> t = np.linspace(0, 1, 200) # use a larger number of points for smoother plotting
     >>> plt.plot(x, y, 'o', t, p(t), '-')   # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
 
@@ -73,10 +73,9 @@ range ``[-1, 1]``::
     >>> y = np.cos(x) + 0.3*np.random.rand(2000)
     >>> p = np.polynomial.Chebyshev.fit(x, y, 90)
 
-    >>> t = np.linspace(-1, 1, 200)
     >>> plt.plot(x, y, 'r.')   # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(t, p(t), 'k-', lw=3)   # doctest: +ELLIPSIS
+    >>> plt.plot(x, p(x), 'k-', lw=3)   # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
 
 .. image:: auto_examples/images/sphx_glr_plot_chebyfit_001.png
