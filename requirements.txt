@@ -7,11 +7,11 @@ matplotlib==2.2
 scikit-image==0.13
 sympy==1.2
 statsmodels==0.8
-seaborn==0.7
+seaborn==0.8
 pandas==0.20
 pytest>=3.2.1
 sphinx==1.6.3
-coverage==4.4.1
+coverage==4.4.2
 pillow
 # For conda, pip installable
 sphinx-gallery==0.2.0
