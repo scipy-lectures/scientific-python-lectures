@@ -575,7 +575,7 @@ A useful trick:
 
 A lot of grid-based or network-based problems can also use
 broadcasting. For instance, if we want to compute the distance from
-the origin of points on a 10x10 grid, we can do
+the origin of points on a 5x5 grid, we can do
 
 .. sourcecode:: pycon
 
