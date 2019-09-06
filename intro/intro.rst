@@ -347,7 +347,7 @@ As you move forward, it will be important to not only work interactively,
 but also to create and reuse Python files. For this, a powerful code editor
 will get you far. Here are several good easy-to-use editors:
 
-  * `Spyder <https://pythonhosted.org/spyder/>`_: integrates an IPython
+  * `Spyder <https://www.spyder-ide.org/>`_: integrates an IPython
     console, a debugger, a profiler...
   * `PyCharm <https://www.jetbrains.com/pycharm>`_: integrates an IPython
     console, notebooks, a debugger... (freely available,
