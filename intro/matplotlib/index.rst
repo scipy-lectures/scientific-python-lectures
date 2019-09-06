@@ -316,8 +316,8 @@ Setting tick labels
    * `Working with text <http://matplotlib.org/users/index_text.html>`_
    * `xticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
    * `yticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
-   * `set_xticklabels() <http://matplotlib.org/api/axes_api.html?#matplotlib.axes.Axes.set_xticklabels>`_
-   * `set_yticklabels() <http://matplotlib.org/api/axes_api.html?#matplotlib.axes.Axes.set_yticklabels>`_
+   * `set_xticklabels() <https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html>`_
+   * `set_yticklabels() <https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_yticklabels.html>`_
 
 
 .. tip::
