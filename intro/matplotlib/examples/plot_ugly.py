@@ -18,7 +18,7 @@ X = np.linspace(0, 2, 40, endpoint=True)
 Y = np.sin(2 * np.pi * X)
 plt.plot(X, Y, lw=.05, c='b', antialiased=False)
 
-plt.xticks(())
+plt.xticks([])
 plt.yticks(np.arange(-1., 1., 0.2))
 plt.grid()
 ax = plt.gca()

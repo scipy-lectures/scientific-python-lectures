@@ -17,8 +17,8 @@ y = np.linspace(-3, 3, 6 * n)
 X, Y = np.meshgrid(x, y)
 Z = f(X, Y)
 plt.imshow(Z, interpolation='nearest', cmap='bone', origin='lower')
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 
 # Add a title and a box around it

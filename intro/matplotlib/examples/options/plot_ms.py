@@ -19,7 +19,7 @@ for i in range(1, 11):
          markeredgewidth=.5, markeredgecolor='k')
 
 plt.xlim(0, 11)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 plt.show()

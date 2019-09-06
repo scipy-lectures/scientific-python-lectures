@@ -29,7 +29,7 @@ for i, ls in enumerate(linestyles):
     linestyle(ls, i)
 
 plt.xlim(-.2, .2 + .5*n_lines)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 plt.show()

@@ -20,9 +20,9 @@ Z = np.sin(R)
 ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap=plt.cm.hot)
 ax.contourf(X, Y, Z, zdir='z', offset=-2, cmap=plt.cm.hot)
 ax.set_zlim(-2, 2)
-plt.xticks(())
-plt.yticks(())
-ax.set_zticks(())
+plt.xticks([])
+plt.yticks([])
+ax.set_zticks([])
 
 ax.text2D(0.05, .93, " 3D plots             \n",
           horizontalalignment='left',

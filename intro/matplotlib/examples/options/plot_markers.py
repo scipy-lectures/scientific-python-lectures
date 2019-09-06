@@ -32,7 +32,7 @@ for i, m in enumerate(markers):
     marker(m, i)
 
 plt.xlim(-.2, .2 + .5 * n_markers)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 plt.show()

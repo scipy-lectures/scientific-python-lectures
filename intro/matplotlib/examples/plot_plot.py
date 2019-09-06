@@ -22,8 +22,8 @@ plt.fill_between(X, -1, Y - 1, (Y - 1) > -1, color='blue', alpha=.25)
 plt.fill_between(X, -1, Y - 1, (Y - 1) < -1, color='red',  alpha=.25)
 
 plt.xlim(-np.pi, np.pi)
-plt.xticks(())
+plt.xticks([])
 plt.ylim(-2.5, 2.5)
-plt.yticks(())
+plt.yticks([])
 
 plt.show()

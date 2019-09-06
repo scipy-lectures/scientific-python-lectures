@@ -19,8 +19,8 @@ r = h / float(w)
 
 plt.xlim(-1.5, 1.5)
 plt.ylim(-1.5 * r, 1.5 * r)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 
 # Add a title and a box around it
