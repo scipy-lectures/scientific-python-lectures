@@ -367,7 +367,7 @@ contents. One may however create new strings from the original one.
     Python offers advanced possibilities for manipulating strings,
     looking for patterns or formatting. The interested reader is referred to
     https://docs.python.org/library/stdtypes.html#string-methods and
-    https://docs.python.org/library/string.html#new-string-formatting
+    https://docs.python.org/3/library/string.html#format-string-syntax
 
 String formatting::
 
