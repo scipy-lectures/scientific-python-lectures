@@ -346,7 +346,7 @@ with :func:`scipy.stats.ttest_ind`::
     Ttest_indResult(statistic=-0.77261617232..., pvalue=0.4445287677858...)
 
 Paired tests: repeated measurements on the same individuals
-----------------------------------------------------------
+-----------------------------------------------------------
 
 .. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_001.png
    :target: auto_examples/plot_pandas.html
