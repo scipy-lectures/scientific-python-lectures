@@ -222,7 +222,7 @@ Changing colors and line widths
 .. hint:: Documentation
 
    * `Controlling line properties <http://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties>`_
-   * `Line API <http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D>`_
+   * `Line API <https://matplotlib.org/api/_as_gen/matplotlib.lines.Line2D.html>`_
 
 .. tip::
 
