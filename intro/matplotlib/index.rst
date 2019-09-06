@@ -353,7 +353,7 @@ Moving spines
 
 .. hint:: Documentation
 
-   * `Spines <http://matplotlib.org/api/spines_api.html#matplotlib.spines>`_
+   * `Spines <https://matplotlib.org/api/spines_api.html>`_
    * `Axis container <http://matplotlib.org/users/artists.html#axis-container>`_
    * `Transformations tutorial <http://matplotlib.org/users/transforms_tutorial.html>`_
 
@@ -476,7 +476,7 @@ Devil is in the details
 .. hint:: Documentation
 
    * `Artists <http://matplotlib.org/api/artist_api.html>`_
-   * `BBox <http://matplotlib.org/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
+   * `BBox <https://matplotlib.org/api/text_api.html#matplotlib.text.Text.set_bbox>`_
 
 .. tip::
 
