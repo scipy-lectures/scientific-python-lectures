@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 n = 256
-X = np.linspace(-np.pi, np.pi, n, endpoint=True)
+X = np.linspace(-np.pi, np.pi, n)
 Y = np.sin(2 * X)
 
 plt.axes([0.025, 0.025, 0.95, 0.95])
