@@ -3,10 +3,29 @@ Contributing
 
 The SciPy lecture notes are a community-based effort and require constant
 maintenance and improvements. New contributions such as wording
-improvements or inclusion of new topics are welcome.
+improvements or inclusion of new topics are welcome. 
 
 Contributing guide
 ------------------
+
+Contributors should keep the following objectives and design choices of
+the SciPy lecture notes in mind.
+
+Objectives:
+
+* The SciPy lecture notes provide a self-contained introduction to Python
+  and its primary computational packages, the ”SciPy stack“.
+* They provide an introduction to a selection of computational libraries.
+  Currently, pandas, statmodels, seaborn, scikit-image, scikit-learn,
+  sympy, and mayavi are discussed.
+* Wherever possible, automated testing is applied to the code examples.
+
+Design choices:
+
+* Each chapter should provide a useful basis for a 1‒2 h tutorial.
+* The code should be readable.
+* An idomatic style should be followed, e.g. ``import numpy as np``,
+  preference for array operations.
 
 The directory ``guide`` contains instructions on how to contribute:
 
