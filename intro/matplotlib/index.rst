@@ -82,7 +82,7 @@ Simple plot
 
    import numpy as np
 
-   X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+   X = np.linspace(-np.pi, np.pi, 256)
    C, S = np.cos(X), np.sin(X)
 
 
@@ -140,7 +140,7 @@ Plotting with default settings
    import numpy as np
    import matplotlib.pyplot as plt
 
-   X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+   X = np.linspace(-np.pi, np.pi, 256)
    C, S = np.cos(X), np.sin(X)
 
    plt.plot(X, C)
@@ -183,7 +183,7 @@ that influence the appearance of the plot.
    # Create a new subplot from a grid of 1x1
    plt.subplot(1, 1, 1)
 
-   X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+   X = np.linspace(-np.pi, np.pi, 256)
    C, S = np.cos(X), np.sin(X)
 
    # Plot cosine with a blue continuous line of width 1 (pixels)
@@ -196,13 +196,13 @@ that influence the appearance of the plot.
    plt.xlim(-4.0, 4.0)
 
    # Set x ticks
-   plt.xticks(np.linspace(-4, 4, 9, endpoint=True))
+   plt.xticks(np.linspace(-4, 4, 9))
 
    # Set y limits
    plt.ylim(-1.0, 1.0)
 
    # Set y ticks
-   plt.yticks(np.linspace(-1, 1, 5, endpoint=True))
+   plt.yticks(np.linspace(-1, 1, 5))
 
    # Save figure using 72 dots per inch
    # plt.savefig("exercise_2.png", dpi=72)
@@ -702,7 +702,7 @@ care of filled areas:
 ::
 
    n = 256
-   X = np.linspace(-np.pi, np.pi, n, endpoint=True)
+   X = np.linspace(-np.pi, np.pi, n)
    Y = np.sin(2 * X)
 
    plt.plot(X, Y + 1, color='blue', alpha=1.00)
