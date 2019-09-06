@@ -1011,7 +1011,7 @@ leaving only the interesting ``do_something`` block.
    returned by ``__enter__`` is simply ignored.
 2. The block of code underneath ``with`` is executed.  Just like with
    ``try`` clauses, it can either execute successfully to the end, or
-   it can :simple:`break`, :simple:`continue`` or :simple:`return`, or
+   it can :simple:`break`, :simple:`continue` or :simple:`return`, or
    it can throw an exception. Either way, after the block is finished,
    the `__exit__ <object.__exit__>` method is called.
    If an exception was thrown, the information about the exception is
