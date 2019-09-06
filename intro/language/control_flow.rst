@@ -230,6 +230,9 @@ Use **items**::
 List Comprehensions
 -------------------
 
+Instead of creating a list by means of a loop, one can make use
+of a list comprehension with a rather self-explaining syntax.
+
 ::
 
     >>> [i**2 for i in range(4)]
