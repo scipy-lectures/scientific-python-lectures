@@ -130,7 +130,7 @@ Python
 
   * A variety of powerful environments to work in, such as
     `IPython <http://ipython.readthedocs.io/en/stable/>`__,
-    `Spyder <https://pythonhosted.org/spyder>`__,
+    `Spyder <https://www.spyder-ide.org/>`__,
     `Jupyter notebooks <http://jupyter.org/>`__,
     `Pycharm <https://www.jetbrains.com/pycharm>`__,
     `Visual Studio Code <https://code.visualstudio.com/docs/languages/python>`__
