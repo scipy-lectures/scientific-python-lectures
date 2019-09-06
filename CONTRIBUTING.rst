@@ -18,14 +18,14 @@ Objectives:
 * They provide an introduction to a selection of computational libraries.
   Currently, pandas, statmodels, seaborn, scikit-image, scikit-learn,
   sympy, and mayavi are discussed.
-* Wherever possible, automated testing is applied to the code examples.
+* Automated testing is applied to the code examples as much as possible.
 
 Design choices:
 
 * Each chapter should provide a useful basis for a 1‒2 h tutorial.
 * The code should be readable.
 * An idomatic style should be followed, e.g. ``import numpy as np``,
-  preference for array operations.
+  preference for array operations, PEP8 coding conventions.
 
 The directory ``guide`` contains instructions on how to contribute:
 
