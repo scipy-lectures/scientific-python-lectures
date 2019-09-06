@@ -755,8 +755,8 @@ the Numpy array type to your Cython code. I.e. like specifying that variable
 bounds checking are supported. Look at the corresponding section in the `Cython
 documentation <http://docs.cython.org/src/tutorial/numpy.html>`_. In case you
 want to pass Numpy arrays as C arrays to your Cython wrapped C functions, there
-is a section about this in the `Cython wiki
-<http://wiki.cython.org/tutorials/NumpyPointerToC>`_.
+is a section about this in the `Cython documentation
+<http://docs.cython.org/src/userguide/memoryviews.html#pass-data-from-a-c-function-via-pointer>`_.
 
 In the following example, we will show how to wrap the familiar ``cos_doubles``
 function using Cython.
@@ -835,7 +835,7 @@ Further Reading and References
 ==============================
 
 * `Gaël Varoquaux's blog post about avoiding data copies
-  <http://gael-varoquaux.info/blog/?p=157>`_ provides some insight on how to
+  <http://gael-varoquaux.info/programming/cython-example-of-exposing-c-computed-arrays-in-python-without-data-copies.html>`_ provides some insight on how to
   handle memory management cleverly. If you ever run into issues with large
   datasets, this is a reference to come back to for some inspiration.
 

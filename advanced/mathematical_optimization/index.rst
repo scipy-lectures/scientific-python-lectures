@@ -1025,7 +1025,7 @@ and :math:`g(x) < 0`.
 .. warning:: 
    
    The above problem is known as the `Lasso
-   <http://en.wikipedia.org/wiki/Lasso_(statistics)#LASSO_method>`_
+   <http://en.wikipedia.org/wiki/Lasso_(statistics)>`_
    problem in statistics, and there exist very efficient solvers for it
    (for instance in `scikit-learn <http://scikit-learn.org>`_). In
    general do not use generic solvers when specific ones exist.

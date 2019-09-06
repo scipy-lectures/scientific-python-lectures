@@ -57,7 +57,7 @@ just to display help and docstrings...
 
   |clear-floats|
 
-* Scipy central http://central.scipy.org/ gives recipes on many
+* The SciPy Cookbook https://scipy-cookbook.readthedocs.io gives recipes on many
   common problems frequently encountered, such as fitting data points,
   solving ODE, etc. 
 

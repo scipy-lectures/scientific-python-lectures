@@ -222,7 +222,7 @@ Changing colors and line widths
 .. hint:: Documentation
 
    * `Controlling line properties <http://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties>`_
-   * `Line API <http://matplotlib.org/api/artist_api.html#matplotlib.lines.Line2D>`_
+   * `Line API <https://matplotlib.org/api/_as_gen/matplotlib.lines.Line2D.html>`_
 
 .. tip::
 
@@ -316,8 +316,8 @@ Setting tick labels
    * `Working with text <http://matplotlib.org/users/index_text.html>`_
    * `xticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
    * `yticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
-   * `set_xticklabels() <http://matplotlib.org/api/axes_api.html?#matplotlib.axes.Axes.set_xticklabels>`_
-   * `set_yticklabels() <http://matplotlib.org/api/axes_api.html?#matplotlib.axes.Axes.set_yticklabels>`_
+   * `set_xticklabels() <https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html>`_
+   * `set_yticklabels() <https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_yticklabels.html>`_
 
 
 .. tip::
@@ -353,7 +353,7 @@ Moving spines
 
 .. hint:: Documentation
 
-   * `Spines <http://matplotlib.org/api/spines_api.html#matplotlib.spines>`_
+   * `Spines <https://matplotlib.org/api/spines_api.html>`_
    * `Axis container <http://matplotlib.org/users/artists.html#axis-container>`_
    * `Transformations tutorial <http://matplotlib.org/users/transforms_tutorial.html>`_
 
@@ -476,7 +476,7 @@ Devil is in the details
 .. hint:: Documentation
 
    * `Artists <http://matplotlib.org/api/artist_api.html>`_
-   * `BBox <http://matplotlib.org/api/artist_api.html#matplotlib.text.Text.set_bbox>`_
+   * `BBox <https://matplotlib.org/api/text_api.html#matplotlib.text.Text.set_bbox>`_
 
 .. tip::
 

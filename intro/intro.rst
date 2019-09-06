@@ -130,7 +130,7 @@ Python
 
   * A variety of powerful environments to work in, such as
     `IPython <http://ipython.readthedocs.io/en/stable/>`__,
-    `Spyder <https://pythonhosted.org/spyder>`__,
+    `Spyder <https://www.spyder-ide.org/>`__,
     `Jupyter notebooks <http://jupyter.org/>`__,
     `Pycharm <https://www.jetbrains.com/pycharm>`__,
     `Visual Studio Code <https://code.visualstudio.com/docs/languages/python>`__
@@ -347,7 +347,7 @@ As you move forward, it will be important to not only work interactively,
 but also to create and reuse Python files. For this, a powerful code editor
 will get you far. Here are several good easy-to-use editors:
 
-  * `Spyder <https://pythonhosted.org/spyder/>`_: integrates an IPython
+  * `Spyder <https://www.spyder-ide.org/>`_: integrates an IPython
     console, a debugger, a profiler...
   * `PyCharm <https://www.jetbrains.com/pycharm>`_: integrates an IPython
     console, notebooks, a debugger... (freely available,

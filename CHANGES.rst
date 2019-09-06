@@ -1,6 +1,8 @@
 What's new
 ==========
 
+* Fix outdated URLs (Gert-Ludwig Ingold)
+
 Release 2019.1 (May 2019)
 -------------------------
 

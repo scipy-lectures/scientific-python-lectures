@@ -1619,7 +1619,7 @@ Contributing to documentation
 
        - "change your subscription options", at the bottom of 
 
-         http://mail.scipy.org/mailman/listinfo/scipy-dev
+         http://mail.python.org/mailman/listinfo/scipy-dev
 
      - Send a mail @ ``scipy-dev`` mailing list; ask for activation::
 
