@@ -28,7 +28,7 @@ The Traits project allows you to simply add validation, initialization, delegati
       `PyQt <https://riverbankcomputing.com/software/pyqt/intro>`_ or
       `PySide <https://pyside.github.io/docs/pyside/>`_
     * Numpy and Scipy
-    * `Enthought Tool Suite <http://code.enthought.com/projects>`_
+    * `Enthought Tool Suite <http://code.enthought.com/ets>`_
     * All required software can be obtained by installing the `EPD Free
       <https://store.enthought.com/>`_
 
