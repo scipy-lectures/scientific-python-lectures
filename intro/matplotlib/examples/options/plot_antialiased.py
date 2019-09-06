@@ -19,7 +19,7 @@ plt.text(0.5, 0.5, "Anti-aliased", ha='center', va='center')
 
 plt.xlim(0, 1)
 plt.ylim(0, 1)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 plt.show()

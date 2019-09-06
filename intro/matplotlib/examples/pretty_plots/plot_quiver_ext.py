@@ -18,9 +18,9 @@ plt.quiver(X, Y, U, V, R, alpha=.5)
 plt.quiver(X, Y, U, V, edgecolor='k', facecolor='None', linewidth=.5)
 
 plt.xlim(-1, n)
-plt.xticks(())
+plt.xticks([])
 plt.ylim(-1, n)
-plt.yticks(())
+plt.yticks([])
 
 
 # Add a title and a box around it

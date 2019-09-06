@@ -15,9 +15,9 @@ Y2 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
 plt.bar(X, Y1, facecolor='#9999ff', edgecolor='white')
 plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
 plt.xlim(-.5, n)
-plt.xticks(())
+plt.xticks([])
 plt.ylim(-1, 1)
-plt.yticks(())
+plt.yticks([])
 
 
 # Add a title and a box around it

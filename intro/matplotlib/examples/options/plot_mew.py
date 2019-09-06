@@ -18,7 +18,7 @@ for i in range(1,11):
     plt.plot([i, ], [1, ], 's', markersize=5,
          markeredgewidth=1 + i/10., markeredgecolor='k', markerfacecolor='w')
 plt.xlim(0, 11)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 plt.show()

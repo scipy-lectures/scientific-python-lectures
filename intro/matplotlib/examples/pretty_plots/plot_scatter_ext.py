@@ -16,9 +16,9 @@ T = np.arctan2(Y,X)
 
 plt.scatter(X, Y, s=75, c=T, alpha=.5)
 plt.xlim(-1.5, 1.5)
-plt.xticks(())
+plt.xticks([])
 plt.ylim(-1.5, 1.5)
-plt.yticks(())
+plt.yticks([])
 
 
 # Add a title and a box around it

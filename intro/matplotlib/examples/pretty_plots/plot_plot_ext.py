@@ -14,9 +14,9 @@ Y = np.sin(2 * np.pi * X)
 
 plt.plot (X, Y, lw=2, color='violet')
 plt.xlim(-0.2, 2.2)
-plt.xticks(())
+plt.xticks([])
 plt.ylim(-1.2, 1.2)
-plt.yticks(())
+plt.yticks([])
 
 
 # Add a title and a box around it

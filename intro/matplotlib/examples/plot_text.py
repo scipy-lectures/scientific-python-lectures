@@ -26,7 +26,7 @@ for i in range(24):
     alpha = np.random.uniform(0.25, .75)
     plt.text(x, y, eq, ha='center', va='center', color="#11557c", alpha=alpha,
          transform=plt.gca().transAxes, fontsize=size, clip_on=True)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 plt.show()

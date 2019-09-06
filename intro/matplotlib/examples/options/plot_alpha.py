@@ -18,6 +18,6 @@ for i in range(1, 11):
     plt.axvline(i, linewidth=1, color='blue', alpha= .25 + .75 * i / 10.)
 
 plt.xlim(0, 11)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 plt.show()

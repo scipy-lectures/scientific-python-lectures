@@ -24,7 +24,7 @@ plt.plot(8 + np.arange(3), [0, 1, 0], color="blue", linewidth=8,
 
 plt.xlim(0, 12)
 plt.ylim(-1, 2)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 plt.show()

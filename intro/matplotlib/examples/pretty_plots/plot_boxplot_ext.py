@@ -19,8 +19,8 @@ X = np.linspace(0, 2, n)
 Y = np.random.random((n, 4))
 plt.boxplot(Y)
 
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 
 # Add a title and a box around it

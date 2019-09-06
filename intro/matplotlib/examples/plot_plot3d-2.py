@@ -13,9 +13,9 @@ X, Y, Z = axes3d.get_test_data(0.05)
 cset = ax.contourf(X, Y, Z)
 ax.clabel(cset, fontsize=9, inline=1)
 
-plt.xticks(())
-plt.yticks(())
-ax.set_zticks(())
+plt.xticks([])
+plt.yticks([])
+ax.set_zticks([])
 
 
 ax.text2D(-0.05, 1.05, " 3D plots             \n",

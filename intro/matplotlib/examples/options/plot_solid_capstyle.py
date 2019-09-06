@@ -25,7 +25,7 @@ plt.plot(10 + np.arange(4), np.ones(4), color="blue", linewidth=8,
         solid_capstyle='projecting')
 
 plt.xlim(0, 14)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 plt.show()

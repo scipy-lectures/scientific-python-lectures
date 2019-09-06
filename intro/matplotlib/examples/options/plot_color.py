@@ -18,6 +18,6 @@ for i in range(1,11):
     plt.plot([i, i], [0, 1], lw=1.5)
 
 plt.xlim(0, 11)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 plt.show()

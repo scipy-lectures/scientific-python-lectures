@@ -21,8 +21,8 @@ X, Y = np.meshgrid(x, y)
 plt.contourf(X, Y, f(X, Y), 8, alpha=.75, cmap=plt.cm.hot)
 C = plt.contour(X, Y, f(X,Y), 8, colors='black', linewidth=.5)
 plt.clabel(C, inline=1, fontsize=10)
-plt.xticks(())
-plt.yticks(())
+plt.xticks([])
+plt.yticks([])
 
 
 # Add a title and a box around it
