@@ -39,8 +39,8 @@ for i in range(15):
 #    gathering a sufficient amount of training data for the algorithm to work.
 #    Fortunately, this piece is common enough that it has been done. One good
 #    resource is
-#    `OpenCV <http://opencv.willowgarage.com/wiki/FaceRecognition>`__, the
-#    *Open Computer Vision Library*.
+#    `OpenCV <https://docs.opencv.org/2.4/modules/contrib/doc/facerec/facerec_tutorial.html>`__,
+#    the *Open Computer Vision Library*.
 #
 # We'll perform a Support Vector classification of the images. We'll do a
 # typical train-test split on the images:
