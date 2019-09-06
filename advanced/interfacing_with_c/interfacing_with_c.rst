@@ -835,7 +835,7 @@ Further Reading and References
 ==============================
 
 * `Gaël Varoquaux's blog post about avoiding data copies
-  <http://gael-varoquaux.info/blog/?p=157>`_ provides some insight on how to
+  <http://gael-varoquaux.info/programming/cython-example-of-exposing-c-computed-arrays-in-python-without-data-copies.html>`_ provides some insight on how to
   handle memory management cleverly. If you ever run into issues with large
   datasets, this is a reference to come back to for some inspiration.
 
