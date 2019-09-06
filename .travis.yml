@@ -6,7 +6,6 @@ notifications:
 env:
   matrix:
     # Ubuntu 14.04 versions
-    - PYTHON_VERSION="2.7"
     - PYTHON_VERSION="3.5"
   global:
     - DISTRIB="conda"
