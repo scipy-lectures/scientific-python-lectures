@@ -335,9 +335,8 @@ Slicing::
 
 .. tip::
    
-    Accents and special characters can also be handled in Unicode strings
-    (see
-    https://docs.python.org/tutorial/introduction.html#unicode-strings).
+    Accents and special characters can also be handled as in Python 3
+    strings consist of Unicode characters.
 
 
 A string is an **immutable object** and it is not possible to modify its
