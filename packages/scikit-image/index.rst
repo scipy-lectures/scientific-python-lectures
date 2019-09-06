@@ -716,12 +716,12 @@ Example: detecting corners using Harris detector ::
     :align: center
 
 (this example is taken from the `plot_corner
-<http://scikit-image.org/docs/stable/auto_examples/plot_corner.html>`_
+<http://scikit-image.org/docs/stable/auto_examples/features_detection/plot_corner.html>`_
 example in scikit-image)
 
 Points of interest such as corners can then be used to match objects in
 different images, as described in the `plot_matching 
-<http://scikit-image.org/docs/stable/auto_examples/plot_matching.html>`_
+<http://scikit-image.org/docs/stable/auto_examples/transform/plot_matching.html>`_
 example of scikit-image.
 
 Full code examples
