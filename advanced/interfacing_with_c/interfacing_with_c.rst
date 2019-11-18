@@ -108,7 +108,7 @@ return type.
 
 .. note::
 
-   Since refernce counting bugs are easy to create and hard to track down,
+   Since reference counting bugs are easy to create and hard to track down,
    anyone really needing to use the Python C-API should read the `section
    about objects, types and reference counts
    <https://docs.python.org/2/c-api/intro.html#objects-types-and-reference-counts>`_
