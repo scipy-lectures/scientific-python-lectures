@@ -862,36 +862,6 @@ Memory layout can affect performance:
    * `numba <https://numba.pydata.org/>`_ is a compiler for Python code,
      that is aware of numpy arrays.
 
-Example: inplace operations (caveat emptor)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-- Sometimes,
-
-  >>> a -= b    # doctest: +SKIP
-
-  is not the same as
-
-  >>> a -= b.copy()    # doctest: +SKIP
-
->>> x = np.array([[1, 2], [3, 4]])
->>> x -= x.transpose()
->>> x   # doctest: +SKIP
-array([[ 0, -1],
-       [ 4,  0]])
-
->>> y = np.array([[1, 2], [3, 4]])
->>> y -= y.T.copy()
->>> y
-array([[ 0, -1],
-       [ 1,  0]])
-
-- ``x`` and ``x.transpose()`` share data
-
-- ``x -= x.transpose()`` modifies the data element-by-element...
-
-- because ``x`` and ``x.transpose()`` have different striding,
-  modified data re-appears on the RHS
-
 Findings in dissection
 ----------------------
 
