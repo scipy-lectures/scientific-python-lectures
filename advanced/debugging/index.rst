@@ -155,23 +155,15 @@ A type-as-go spell-checker like integration
     .. image:: vim_syntastic.png
 
 * **In emacs**
+
   Use the flymake mode with pyflakes, documented on
-  http://www.plope.com/Members/chrism/flymake-mode : add the following to
-  your .emacs file::
+  https://www.emacswiki.org/emacs/FlyMake and included in Emacs 26 and
+  more recent. To activate it, use ``M-x`` (meta-key then x) and enter
+  `flymake-mode` at the prompt. To enable it automatically when
+  opening a Python file, add the following line to your .emacs file::
 
-    (when (load "flymake" t)
-            (defun flymake-pyflakes-init ()
-            (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                                'flymake-create-temp-inplace))
-                (local-file (file-relative-name
-                            temp-file
-                            (file-name-directory buffer-file-name))))
-                (list "pyflakes" (list local-file))))
+    (add-hook 'python-mode-hook '(lambda () (flymake-mode)))
 
-            (add-to-list 'flymake-allowed-file-name-masks
-                    '("\\.py\\'" flymake-pyflakes-init)))
-
-    (add-hook 'find-file-hook 'flymake-find-file-hook)
 
 Debugging workflow
 ===================
