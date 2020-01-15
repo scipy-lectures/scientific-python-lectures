@@ -888,7 +888,7 @@ if we compute the norm ourselves and use a good generic optimizer
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
-    >>> optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    >>> optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +NUMBER
       fun: 2.6940...e-11
      hess_inv: array([[...
      ...
