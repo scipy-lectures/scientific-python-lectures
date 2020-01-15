@@ -9,7 +9,7 @@ sympy==1.2
 statsmodels==0.8
 seaborn==0.8
 pandas==0.20
-pytest>=3.2.1
+pytest>=5.1
 sphinx==1.6.3
 coverage==4.4.2
 pillow
