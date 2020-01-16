@@ -102,7 +102,7 @@ Let us first generate a structuring element::
     >>> el # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     array([[False, True, False],
            [...True, True, True],
-           [False, True, False]], dtype=bool)
+           [False, True, False]])
     >>> el.astype(np.int)
     array([[0, 1, 0],
            [1, 1, 1],
@@ -143,17 +143,17 @@ Let us first generate a structuring element::
     >>> a = np.zeros((5, 5))
     >>> a[2, 2] = 1
     >>> a
-    array([[ 0.,  0.,  0.,  0.,  0.],
-           [ 0.,  0.,  0.,  0.,  0.],
-           [ 0.,  0.,  1.,  0.,  0.],
-           [ 0.,  0.,  0.,  0.,  0.],
-           [ 0.,  0.,  0.,  0.,  0.]])
+    array([[0.,  0.,  0.,  0.,  0.],
+           [0.,  0.,  0.,  0.,  0.],
+           [0.,  0.,  1.,  0.,  0.],
+           [0.,  0.,  0.,  0.,  0.],
+           [0.,  0.,  0.,  0.,  0.]])
     >>> ndimage.binary_dilation(a).astype(a.dtype)
-    array([[ 0.,  0.,  0.,  0.,  0.],
-           [ 0.,  0.,  1.,  0.,  0.],
-           [ 0.,  1.,  1.,  1.,  0.],
-           [ 0.,  0.,  1.,  0.,  0.],
-           [ 0.,  0.,  0.,  0.,  0.]])
+    array([[0.,  0.,  0.,  0.,  0.],
+           [0.,  0.,  1.,  0.,  0.],
+           [0.,  1.,  1.,  1.,  0.],
+           [0.,  0.,  1.,  0.,  0.],
+           [0.,  0.,  0.,  0.,  0.]])
 
 * **Opening** :func:`scipy.ndimage.binary_opening` ::
 
@@ -272,11 +272,11 @@ Now compute measurements on each connected component::
 
     >>> areas = ndimage.sum(mask, labels, range(1, labels.max()+1))
     >>> areas   # The number of pixels in each connected component
-    array([ 190.,   45.,  424.,  278.,  459.,  190.,  549.,  424.])
+    array([190.,   45.,  424.,  278.,  459.,  190.,  549.,  424.])
     >>> maxima = ndimage.maximum(sig, labels, range(1, labels.max()+1))
     >>> maxima  # The maximum signal in each connected component
-    array([  1.80238238,   1.13527605,   5.51954079,   2.49611818,
-             6.71673619,   1.80238238,  16.76547217,   5.51954079])
+    array([ 1.80238238,   1.13527605,   5.51954079,   2.49611818, 6.71673619,
+            1.80238238,  16.76547217,   5.51954079])
 
 .. image:: scipy/auto_examples/images/sphx_glr_plot_connect_measurements_003.png
     :target: scipy/auto_examples/plot_connect_measurements.html

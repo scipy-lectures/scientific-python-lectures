@@ -38,11 +38,11 @@ Examples
     <5x5 sparse matrix of type '<... 'numpy.float64'>'
             with 20 stored elements in Dictionary Of Keys format>
     >>> mtx.todense()
-    matrix([[ 0.,  1.,  1.,  1.,  1.],
-            [ 1.,  0.,  1.,  1.,  1.],
-            [ 1.,  1.,  0.,  1.,  1.],
-            [ 1.,  1.,  1.,  0.,  1.],
-            [ 1.,  1.,  1.,  1.,  0.]])
+    matrix([[0.,  1.,  1.,  1.,  1.],
+            [1.,  0.,  1.,  1.,  1.],
+            [1.,  1.,  0.,  1.,  1.],
+            [1.,  1.,  1.,  0.,  1.],
+            [1.,  1.,  1.,  1.,  0.]])
 
 * slicing and indexing::
 
@@ -52,7 +52,7 @@ Examples
     <1x2 sparse matrix of type '<... 'numpy.float64'>'
           with 1 stored elements in Dictionary Of Keys format>
     >>> mtx[1, 1:3].todense()
-    matrix([[ 0.,  1.]])
+    matrix([[0.,  1.]])
     >>> mtx[[2,1], 1:3].todense() 
-    matrix([[ 1.,  0.],
-            [ 0.,  1.]])
+    matrix([[1.,  0.],
+            [0.,  1.]])

@@ -378,11 +378,11 @@ Default structuring element: 4-connectivity of a pixel ::
     >>> a = np.zeros((5, 5))
     >>> a[2, 2] = 1
     >>> a
-    array([[ 0.,  0.,  0.,  0.,  0.],
-           [ 0.,  0.,  0.,  0.,  0.],
-           [ 0.,  0.,  1.,  0.,  0.],
-           [ 0.,  0.,  0.,  0.,  0.],
-           [ 0.,  0.,  0.,  0.,  0.]])
+    array([[0.,  0.,  0.,  0.,  0.],
+           [0.,  0.,  0.,  0.,  0.],
+           [0.,  0.,  1.,  0.,  0.],
+           [0.,  0.,  0.,  0.,  0.],
+           [0.,  0.,  0.,  0.,  0.]])
     >>> morphology.binary_dilation(a, morphology.diamond(1)).astype(np.uint8)
     array([[0, 0, 0, 0, 0],
            [0, 0, 1, 0, 0],

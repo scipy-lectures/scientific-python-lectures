@@ -3,17 +3,17 @@
 # `./build_tools/requirements_to_environment.py`
 name: testenv
 dependencies:
-- numpy=1.13
-- scipy=0.19
+- numpy>=1.13,<1.17
+- scipy=0.19.1
 - scikit-learn=0.19
-- matplotlib=2.2
-- scikit-image=0.13
-- sympy=1.2
+- matplotlib>=2.0,<3.0
+- scikit-image>=0.14,<0.15
+- sympy>=1.2
 - statsmodels=0.8
 - seaborn=0.8
-- pandas=0.20
+- pandas=0.23
 - pytest>=5.1
-- sphinx=1.6.3
+- sphinx>=1.6.3,<1.8
 - coverage=4.4.2
 - pillow
 - pip:
