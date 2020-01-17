@@ -3,6 +3,8 @@
     >>> plt.switch_backend("Agg")
     >>> import numpy as np
     >>> np.random.seed(0)
+    >>> import pandas
+    >>> pandas.options.display.width = 0
 
 .. also switch current directory from the root directory (where the tests
    are run) to be able to load the data
@@ -151,16 +153,16 @@ as a dictionary of 1D 'series', eg arrays or lists. If we have 3
 We can expose them as a :class:`pandas.DataFrame`::
 
     >>> pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
-             cos       sin         t
-    0   0.960170  0.279415 -6.000000
-    1   0.609977  0.792419 -5.368421
-    2   0.024451  0.999701 -4.736842
-    3  -0.570509  0.821291 -4.105263
-    4  -0.945363  0.326021 -3.473684
-    5  -0.955488 -0.295030 -2.842105
-    6  -0.596979 -0.802257 -2.210526
-    7  -0.008151 -0.999967 -1.578947
-    8   0.583822 -0.811882 -0.947368
+               t       sin       cos
+    0  -6.000000  0.279415  0.960170
+    1  -5.368421  0.792419  0.609977
+    2  -4.736842  0.999701  0.024451
+    3  -4.105263  0.821291 -0.570509
+    4  -3.473684  0.326021 -0.945363
+    5  -2.842105 -0.295030 -0.955488
+    6  -2.210526 -0.802257 -0.596979
+    7  -1.578947 -0.999967 -0.008151
+    8  -0.947368 -0.811882  0.583822
     ...
 
 |
@@ -216,6 +218,7 @@ operations on the resulting group of dataframes::
     Gender                                                                     
     Female       19.65  111.9  109.45  110.45  137.200000  65.765000   862654.6
     Male         21.35  115.0  115.25  111.60  166.444444  71.431579   954855.4
+
 
 .. tip::
 
@@ -693,7 +696,7 @@ test ``"name[T.versicolor] - name[T.virginica]"``, with an `F-test
 <https://en.wikipedia.org/wiki/F-test>`_::
 
     >>> print(model.f_test([0, 1, -1, 0]))  # doctest: +ELLIPSIS
-    <F test: F=array([[ 3.24533535]]), p=0.07369..., df_denom=146, df_num=1>
+    <F test: F=array([[3.24533535]]), p=0.07369..., df_denom=146, df_num=1>
 
 Is this difference significant?
 
