@@ -1270,8 +1270,8 @@ is now centered on both components with unit variance::
 Furthermore, the samples components do no longer carry any linear
 correlation::
 
-    >>> np.corrcoef(X_pca.T)  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-    array([[ 1.00000000e+00,   0.0],
+    >>> np.corrcoef(X_pca.T)  # doctest: +SKIP
+    array([[1.00000000e+00,   0.0],
            [0.0,   1.00000000e+00]])
 
 With a number of retained components 2 or 3, PCA is useful to visualize
