@@ -16,5 +16,6 @@ dependencies:
 - sphinx>=1.6.3,<1.8
 - coverage=4.4.2
 - pillow
+- pip
 - pip:
   - sphinx-gallery==0.2.0
