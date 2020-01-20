@@ -128,8 +128,7 @@ for i in range(15):
               cmap=plt.cm.bone)
     y_pred = clf.predict(X_test_pca[i, np.newaxis])[0]
     color = ('black' if y_pred == y_test[i] else 'red')
-    ax.set_title(faces.target[y_pred],
-                 fontsize='small', color=color)
+    ax.set_title(y_pred, fontsize='small', color=color)
 
 ############################################################
 # The classifier is correct on an impressive number of images given the
