@@ -152,7 +152,7 @@ Draw contour lines::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_display_face.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_display_face.py>`]
 
 For smooth intensity variations, use ``interpolation='bilinear'``. For fine inspection of intensity variations, use
 ``interpolation='nearest'``::
@@ -168,7 +168,7 @@ For smooth intensity variations, use ``interpolation='bilinear'``. For fine insp
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_interpolation_face.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_interpolation_face.py>`]
 
 
 .. seealso::
@@ -227,7 +227,7 @@ Images are arrays: use the whole ``numpy`` machinery.
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_numpy_array.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_numpy_array.py>`]
 
 
 Statistical information
@@ -291,7 +291,7 @@ Geometrical transformations
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_geom_face.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_geom_face.py>`]
 
 Image filtering
 ===============
@@ -326,7 +326,7 @@ Blurring/smoothing
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_blur.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_blur.py>`]
 
 Sharpening
 ----------
@@ -350,7 +350,7 @@ Laplacian::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_sharpen.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_sharpen.py>`]
 
 
 Denoising
@@ -379,7 +379,7 @@ A **median filter** preserves better the edges::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_face_denoise.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_face_denoise.py>`]
 
 
 Median filter: better result for straight boundaries (**low curvature**)::
@@ -396,7 +396,7 @@ Median filter: better result for straight boundaries (**low curvature**)::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_denoising.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_denoising.py>`]
 
 
 Other rank filter: ``ndimage.maximum_filter``,
@@ -528,7 +528,7 @@ Also works for grey-valued images::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_greyscale_dilation.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_greyscale_dilation.py>`]
 
 **Opening**: erosion + dilation::
 
@@ -574,7 +574,7 @@ Also works for grey-valued images::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_propagation.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_propagation.py>`]
 
 **Closing**: dilation + erosion
 
@@ -607,7 +607,7 @@ Use a **gradient operator** (**Sobel**) to find high intensity variations::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_find_edges.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_find_edges.py>`]
 
 
 Segmentation
@@ -640,7 +640,7 @@ Segmentation
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_histo_segmentation.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_histo_segmentation.py>`]
 
 Use mathematical morphology to clean up the result::
 
@@ -655,7 +655,7 @@ Use mathematical morphology to clean up the result::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_clean_morpho.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_clean_morpho.py>`]
 
 .. topic:: **Exercise**
     :class: green
@@ -765,7 +765,7 @@ Label connected components: ``ndimage.label``::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_synthetic_data.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_synthetic_data.py>`]
 
 Compute size, mean_value, etc. of each region::
 
@@ -793,7 +793,7 @@ Now reassign labels with ``np.searchsorted``::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_measure_data.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_measure_data.py>`]
 
 Find region of interest enclosing object::
 
@@ -808,7 +808,7 @@ Find region of interest enclosing object::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_find_object.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_find_object.py>`]
 
 Other spatial measures: ``ndimage.center_of_mass``,
 ``ndimage.maximum_position``, etc.
@@ -832,7 +832,7 @@ Example: block mean::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_block_mean.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_block_mean.py>`]
 
 When regions are regular blocks, it is more efficient to use stride
 tricks (:ref:`stride-manipulation-label`).
@@ -851,7 +851,7 @@ Non-regularly-spaced blocks: radial mean::
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_radial_mean.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_radial_mean.py>`]
 
 
 * **Other measures**
@@ -899,7 +899,7 @@ One example with mathematical morphology: `granulometry
 
 .. only:: html
 
-    [:ref:`Python source code <example_plot_granulo.py>`]
+    [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_granulo.py>`]
 
 
 Full code examples
