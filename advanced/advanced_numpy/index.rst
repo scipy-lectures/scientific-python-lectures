@@ -141,6 +141,7 @@ array of ints::
       OWNDATA : False
       WRITEABLE : False
       ALIGNED : True
+      WRITEBACKIFCOPY : False
       UPDATEIFCOPY : False
 
 The ``owndata`` and ``writeable`` flags indicate status of the memory
@@ -310,7 +311,7 @@ Casting
 
     >>> x = np.array([1, 2, 3, 4], dtype=np.float)
     >>> x
-    array([ 1.,  2.,  3.,  4.])
+    array([1.,  2.,  3.,  4.])
     >>> y = x.astype(np.int8)
     >>> y
     array([1, 2, 3, 4], dtype=int8)
@@ -319,7 +320,7 @@ Casting
     >>> y + 256
     array([257, 258, 259, 260], dtype=int16)
     >>> y + 256.0
-    array([ 257.,  258.,  259.,  260.])
+    array([257.,  258.,  259.,  260.])
     >>> y + np.array([256], dtype=np.int32)
     array([257, 258, 259, 260], dtype=int32)
 
@@ -1327,10 +1328,9 @@ One way to describe this is to create a masked array::
 
     >>> mx = np.ma.masked_array(x, mask=[0, 0, 0, 1, 0])
     >>> mx
-    masked_array(data = [1 2 3 -- 5],
-                 mask = [False False False  True False],
-           fill_value = 999999)
-    <BLANKLINE>
+    masked_array(data=[1, 2, 3, --, 5],
+                 mask=[False, False, False,  True, False],
+           fill_value=999999)
 
 Masked mean ignores masked data::
 
@@ -1355,24 +1355,24 @@ You can modify the mask by assigning::
 
     >>> mx[1] = np.ma.masked
     >>> mx
-    masked_array(data = [1 -- 3 -- 5],
-                 mask = [False  True False  True False],
-           fill_value = 999999)
+    masked_array(data=[1, --, 3, --, 5],
+                 mask=[False,  True, False,  True, False],
+           fill_value=999999)
     <BLANKLINE>
 
 The mask is cleared on assignment::
 
     >>> mx[1] = 9
     >>> mx
-    masked_array(data = [1 9 3 -- 5],
-                 mask = [False False False  True False],
-           fill_value = 999999)
+    masked_array(data=[1, 9, 3, --, 5],
+                 mask=[False, False, False,  True, False],
+           fill_value=999999)
     <BLANKLINE>
 
 The mask is also available directly::
 
     >>> mx.mask
-    array([False, False, False,  True, False], dtype=bool)
+    array([False, False, False,  True, False])
 
 The masked entries can be filled with a given value to get an usual
 array back::
@@ -1385,9 +1385,9 @@ The mask can also be cleared::
 
     >>> mx.mask = np.ma.nomask
     >>> mx
-    masked_array(data = [1 9 3 -99 5],
-                 mask = [False False False False False],
-           fill_value = 999999)
+    masked_array(data=[1, 9, 3, -99, 5],
+                 mask=[False, False, False, False, False],
+           fill_value=999999)
     <BLANKLINE>
 
 Domain-aware functions
@@ -1396,9 +1396,9 @@ Domain-aware functions
 The masked array package also contains domain-aware functions::
 
     >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
-    masked_array(data = [0.0 0.6931471805599453 -- -- 1.0986122886681098 --],
-                 mask = [False False  True  True False  True],
-           fill_value = 1e+20)
+    masked_array(data=[0.0, 0.6931471805599453, --, --, 1.0986122886681098, --],
+                 mask=[False, False,  True,  True, False,  True],
+           fill_value=1e+20)
     <BLANKLINE>
 
 .. note::
@@ -1424,14 +1424,14 @@ The masked array package also contains domain-aware functions::
     >>> populations[bad_years, 1] = np.ma.masked
 
     >>> populations.mean(axis=0)
-    masked_array(data = [40472.72727272727 18627.272727272728 42400.0],
-                 mask = [False False False],
-           fill_value = 1e+20)
+    masked_array(data=[40472.72727272727, 18627.272727272728, 42400.0],
+                 mask=[False, False, False],
+           fill_value=1e+20)
     <BLANKLINE>
     >>> populations.std(axis=0)
-    masked_array(data = [21087.656489006717 15625.799814240254 3322.5062255844787],
-                 mask = [False False False],
-           fill_value = 1e+20)
+    masked_array(data=[21087.656489006717, 15625.799814240254, 3322.5062255844787],
+                 mask=[False, False, False],
+           fill_value=1e+20)
     <BLANKLINE>
 
    Note that Matplotlib knows about masked arrays::
@@ -1529,7 +1529,7 @@ Good bug report
 
         >>> np.random.permutation(12)
         array([11,  5,  8,  4,  6,  1,  9,  3,  7,  2, 10,  0])
-        >>> np.random.permutation(12.)
+        >>> np.random.permutation(12.) #doctest: +SKIP
         Traceback (most recent call last):
           File "<stdin>", line 1, in <module>
           File "mtrand.pyx", line 3311, in mtrand.RandomState.permutation

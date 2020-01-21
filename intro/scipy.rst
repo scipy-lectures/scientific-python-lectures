@@ -92,9 +92,9 @@ File input/output: :mod:`scipy.io`
     >>> spio.savemat('file.mat', {'a': a}) # savemat expects a dictionary
     >>> data = spio.loadmat('file.mat')
     >>> data['a']
-    array([[ 1.,  1.,  1.],
-           [ 1.,  1.,  1.],
-           [ 1.,  1.,  1.]])
+    array([[1.,  1.,  1.],
+           [1.,  1.,  1.],
+           [1.,  1.,  1.]])
 
 .. warning:: **Python / Matlab mismatches**, *eg* matlab does not represent 1D arrays
    
@@ -102,10 +102,10 @@ File input/output: :mod:`scipy.io`
 
       >>> a = np.ones(3)
       >>> a
-      array([ 1.,  1.,  1.])
+      array([1.,  1.,  1.])
       >>> spio.savemat('file.mat', {'a': a})
       >>> spio.loadmat('file.mat')['a']
-      array([[ 1.,  1.,  1.]])
+      array([[1.,  1.,  1.]])
 
    Notice the difference?
 
@@ -216,7 +216,7 @@ Linear algebra operations: :mod:`scipy.linalg`
   The resulting array spectrum is::
 
     >>> spec    # doctest: +ELLIPSIS
-    array([ 14.88982544,   0.45294236,   0.29654967])
+    array([14.88982544,   0.45294236,   0.29654967])
 
   The original matrix can be re-composed by matrix multiplication of the outputs of
   ``svd`` with ``np.dot``::
@@ -329,7 +329,7 @@ We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
 
     >>> params, params_covariance = optimize.curve_fit(test_func, x_data, y_data, p0=[2, 2])
     >>> print(params)
-    [ 3.05931973  1.45754553]
+    [3.05931973  1.45754553]
 
 .. raw:: html
 
@@ -397,8 +397,8 @@ the location of the minimum that it has found:
     >>> result = optimize.minimize(f, x0=0) 
     >>> result # doctest: +ELLIPSIS
           fun: -7.9458233756...
-     hess_inv: array([[ 0.0858...]])
-          jac: array([ -1.19209...e-06])
+     hess_inv: array([[0.0858...]])
+          jac: array([-1.19209...e-06])
       message: 'Optimization terminated successfully.'
          nfev: 18
           nit: 5
@@ -421,7 +421,7 @@ in general::
     >>> optimize.minimize(f, x0=0, method="L-BFGS-B")  # doctest: +ELLIPSIS
           fun: array([-7.94582338])
      hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
-          jac: array([ -1.42108547e-06])
+          jac: array([-1.42108547e-06])
       message: ...'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 12
           nit: 5
@@ -441,7 +441,7 @@ global minimum depending on the initial point x0::
 
     >>> res = optimize.minimize(f, x0=3, method="L-BFGS-B")
     >>> res.x
-    array([ 3.83746709])
+    array([3.83746709])
 
 .. Comment to make doctest pass
    >>> np.random.seed(42)
@@ -497,7 +497,7 @@ We can constrain the variable to the interval
     >>> res = optimize.minimize(f, x0=1,
     ...                         bounds=((0, 10), ))
     >>> res.x    # doctest: +ELLIPSIS
-    array([ 0.])
+    array([0.])
 
 .. tip::
 
@@ -561,16 +561,16 @@ we can use :func:`scipy.optimize.root`:
     >>> root = optimize.root(f, x0=1)  # our initial guess is 1
     >>> root    # The full result
         fjac: array([[-1.]])
-         fun: array([ 0.])
+         fun: array([0.])
      message: 'The solution converged.'
         nfev: 10
-         qtf: array([  1.33310463e-32])
+         qtf: array([1.33310463e-32])
            r: array([-10.])
       status: 1
      success: True
-           x: array([ 0.])
+           x: array([0.])
     >>> root.x  # Only the root found
-    array([ 0.])
+    array([0.])
 
 Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
 there is a second root around -2.5. We find the exact value of it by adjusting

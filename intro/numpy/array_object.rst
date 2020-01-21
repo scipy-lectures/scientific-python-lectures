@@ -222,10 +222,10 @@ Functions for creating arrays
 
     >>> c = np.linspace(0, 1, 6)   # start, end, num-points
     >>> c
-    array([ 0. ,  0.2,  0.4,  0.6,  0.8,  1. ])
+    array([0. ,  0.2,  0.4,  0.6,  0.8,  1. ])
     >>> d = np.linspace(0, 1, 5, endpoint=False)
     >>> d
-    array([ 0. ,  0.2,  0.4,  0.6,  0.8])
+    array([0. ,  0.2,  0.4,  0.6,  0.8])
 
 * Common arrays:
 
@@ -233,18 +233,18 @@ Functions for creating arrays
 
     >>> a = np.ones((3, 3))  # reminder: (3, 3) is a tuple
     >>> a
-    array([[ 1.,  1.,  1.],
-           [ 1.,  1.,  1.],
-           [ 1.,  1.,  1.]])
+    array([[1.,  1.,  1.],
+           [1.,  1.,  1.],
+           [1.,  1.,  1.]])
     >>> b = np.zeros((2, 2))
     >>> b
-    array([[ 0.,  0.],
-           [ 0.,  0.]])
+    array([[0.,  0.],
+           [0.,  0.]])
     >>> c = np.eye(3)
     >>> c
-    array([[ 1.,  0.,  0.],
-           [ 0.,  1.,  0.],
-           [ 0.,  0.,  1.]])
+    array([[1.,  0.,  0.],
+           [0.,  1.,  0.],
+           [0.,  0.,  1.]])
     >>> d = np.diag(np.array([1, 2, 3, 4]))
     >>> d
     array([[1, 0, 0, 0],
@@ -760,7 +760,7 @@ Using boolean masks
     array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
     >>> (a % 3 == 0)
     array([False,  True, False,  True, False, False, False,  True, False,
-            True,  True, False,  True, False, False], dtype=bool)
+            True,  True, False,  True, False, False])
     >>> mask = (a % 3 == 0)
     >>> extract_from_a = a[mask] # or,  a[a%3==0]
     >>> extract_from_a           # extract a sub-array with the mask

@@ -378,14 +378,14 @@ be used by setting the parameter ``method`` to CG ::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> optimize.minimize(f, [2, -1], method="CG")    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
          fun: 1.6503...e-11
-         jac: array([ -6.1534...e-06,   2.5380...e-07])
+         jac: array([-6.1534...e-06,   2.5380...e-07])
      message: ...'Optimization terminated successfully.'
         nfev: 108
          nit: 13
         njev: 27
       status: 0
      success: True
-           x: array([ 0.99999...,  0.99998...])
+           x: array([0.99999...,  0.99998...])
 
 Gradient methods need the Jacobian (gradient) of the function. They can compute it
 numerically, but will perform better if you can pass them the gradient::
@@ -394,14 +394,14 @@ numerically, but will perform better if you can pass them the gradient::
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.minimize(f, [2, 1], method="CG", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
          fun: 2.957...e-14
-         jac: array([  7.1825...e-07,  -2.9903...e-07])
+         jac: array([ 7.1825...e-07,  -2.9903...e-07])
      message: 'Optimization terminated successfully.'
         nfev: 16
          nit: 8
         njev: 16
       status: 0
      success: True
-           x: array([ 1.0000...,  1.0000...])
+           x: array([1.0000...,  1.0000...])
 
 Note that the function has only been evaluated 27 times, compared to 108
 without the gradient.
@@ -483,7 +483,7 @@ inversion of the Hessian is performed by conjugate gradient ::
         njev: 52
       status: 0
      success: True
-           x: array([ 0.99999...,  0.99999...])
+           x: array([0.99999...,  0.99999...])
 
 Note that compared to a conjugate gradient (above), Newton's method has
 required less function evaluations, but more gradient evaluations, as it
@@ -502,7 +502,7 @@ to the algorithm::
         njev: 20
       status: 0
      success: True
-           x: array([ 0.99999...,  0.99999...])
+           x: array([0.99999...,  0.99999...])
 
 .. note:: 
    
@@ -585,8 +585,8 @@ Full code examples
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
           fun: 2.6306...e-16
-     hess_inv: array([[ 0.99986...,  2.0000...],
-           [ 2.0000...,  4.498...]])
+     hess_inv: array([[0.99986...,  2.0000...],
+           [2.0000...,  4.498...]])
           jac: array([  6.7089...e-08,  -3.2222...e-08])
       message: ...'Optimization terminated successfully.'
          nfev: 10
@@ -594,7 +594,7 @@ Full code examples
          njev: 10
        status: 0
       success: True
-            x: array([ 1.        ,  0.99999...])
+            x: array([1.        ,  0.99999...])
 
 
 **L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:
@@ -615,7 +615,7 @@ are also supported by L-BFGS-B::
           nit: 16
        status: 0
       success: True
-            x: array([ 1.0000...,  1.0000...])
+            x: array([1.0000...,  1.0000...])
 
 
 Gradient-less methods
@@ -711,16 +711,16 @@ Using the Nelder-Mead solver in :func:`scipy.optimize.minimize`::
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> optimize.minimize(f, [2, -1], method="Nelder-Mead") # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-     final_simplex: (array([[ 1.0000...,  1.0000...],
-           [ 0.99998... ,  0.99996... ],
-           [ 1.0000...,  1.0000... ]]), array([  1.1152...e-10,   1.5367...e-10,   4.9883...e-10]))
+     final_simplex: (array([[1.0000...,  1.0000...],
+           [0.99998... ,  0.99996... ],
+           [1.0000...,  1.0000... ]]), array([1.1152...e-10,   1.5367...e-10,   4.9883...e-10]))
                fun: 1.1152...e-10
            message: ...'Optimization terminated successfully.'
               nfev: 111
                nit: 58
             status: 0
            success: True
-                 x: array([ 1.0000...,  1.0000...])
+                 x: array([1.0000...,  1.0000...])
 
 
 Global optimizers
@@ -742,7 +742,7 @@ value. The parameters are specified with ranges given to
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> optimize.brute(f, ((-1, 2), (-1, 2))) # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-    array([ 1.0000...,  1.0000...])
+    array([1.0000...,  1.0000...])
 
 
 Practical guide to optimization with scipy
@@ -879,7 +879,7 @@ Lets try to minimize the norm of the following vectorial function::
 
     >>> x0 = np.zeros(10)
     >>> optimize.leastsq(f, x0)
-    (array([ 0.        ,  0.11111111,  0.22222222,  0.33333333,  0.44444444,
+    (array([0.        ,  0.11111111,  0.22222222,  0.33333333,  0.44444444,
             0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ]), 2)
 
 This took 67 function evaluations (check it with 'full_output=1'). What
@@ -888,7 +888,7 @@ if we compute the norm ourselves and use a good generic optimizer
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
-    >>> optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    >>> optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +NUMBER
       fun: 2.6940...e-11
      hess_inv: array([[...
      ...
@@ -902,10 +902,9 @@ if we compute the norm ourselves and use a good generic optimizer
          njev: 12
        status: 0
       success: True
-            x: array([ -7.384...e-09,   1.1111...e-01,   2.2222...e-01,
-             3.3333...e-01,   4.4444...e-01,   5.5555...e-01,
-             6.6666...e-01,   7.7777...e-01,   8.8889...e-01,
-             1.0000...e+00])
+            x: array([-7.3...e-09,   1.1111...e-01,   2.2222...e-01, 3.3333...e-01,
+            4.4444...e-01,   5.5555...e-01, 6.6666...e-01,   7.7777...e-01,
+            8.8889...e-01, 1.0000...e+00])
 
 
 BFGS needs more function calls, and gives a less precise result.
@@ -947,7 +946,7 @@ scipy provides a helper function for this purpose:
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
     >>> optimize.curve_fit(f, x, y)   # doctest: +ELLIPSIS
-    (array([ 1.5185...,  0.92665...]), array([[ 0.00037..., -0.00056...],
+    (array([1.5185...,  0.92665...]), array([[ 0.00037..., -0.00056...],
            [-0.0005...,  0.00123...]]))
 
 
@@ -979,7 +978,7 @@ support bound constraints with the parameter ``bounds``::
           nit: 2
        status: 0
       success: True
-            x: array([ 1.5,  1.5])
+            x: array([1.5,  1.5])
 
 .. image:: auto_examples/images/sphx_glr_plot_constraints_002.png
     :target: auto_examples/plot_constraints.html
@@ -1019,7 +1018,7 @@ and :math:`g(x) < 0`.
         njev: 5
       status: 0
      success: True
-           x: array([ 1.2500...,  0.2499...])
+           x: array([1.2500...,  0.2499...])
 
 
 .. warning:: 

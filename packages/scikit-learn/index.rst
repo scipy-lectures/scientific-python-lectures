@@ -217,7 +217,7 @@ of the dataset::
     >>> print(n_features)
     4
     >>> print(iris.data[0])
-    [ 5.1  3.5  1.4  0.2]
+    [5.1  3.5  1.4  0.2]
 
 The information about the class of each sample is stored in the
 ``target`` attribute of the dataset::
@@ -298,7 +298,7 @@ parameters are attributes of the estimator object ending by an
 underscore::
 
     >>> model.coef_
-    array([ 1.])
+    array([1.])
 
 Supervised Learning: Classification and regression
 ---------------------------------------------------
@@ -1079,7 +1079,7 @@ to automatically compute score on all these folds. Here we do
     >>> clf = KNeighborsClassifier()
     >>> from sklearn.model_selection import cross_val_score
     >>> cross_val_score(clf, X, y, cv=5)
-    array([ 0.9478022 ,  0.9558011 ,  0.96657382,  0.98039216,  0.96338028])
+    array([0.9478022 ,  0.9558011 ,  0.96657382,  0.98039216,  0.96338028])
 
 We can use different splitting strategies, such as random splitting::
 
@@ -1251,7 +1251,7 @@ vectors in the ``components_`` attribute::
 Other attributes are available as well::
 
     >>> pca.explained_variance_ratio_    # doctest: +ELLIPSIS
-    array([ 0.92461...,  0.05301...])
+    array([0.92461...,  0.05301...])
 
 Let us project the iris dataset along those first two dimensions:::
 
@@ -1263,16 +1263,16 @@ Let us project the iris dataset along those first two dimensions:::
 is now centered on both components with unit variance::
 
     >>> X_pca.mean(axis=0) # doctest: +ELLIPSIS
-    array([ ...e-15,  ...e-15])
+    array([...e-15,  ...e-15])
     >>> X_pca.std(axis=0, ddof=1)
-    array([ 1.,  1.])
+    array([1.,  1.])
 
 Furthermore, the samples components do no longer carry any linear
 correlation::
 
-    >>> np.corrcoef(X_pca.T)  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-    array([[  1.00000000e+00,   ...],
-           [  ...,   1.00000000e+00]])
+    >>> np.corrcoef(X_pca.T)  # doctest: +SKIP
+    array([[1.00000000e+00,   0.0],
+           [0.0,   1.00000000e+00]])
 
 With a number of retained components 2 or 3, PCA is useful to visualize
 the dataset::

@@ -41,7 +41,7 @@ All arithmetic operates elementwise:
     >>> a - b
     array([-1.,  0.,  1.,  2.])
     >>> a * b
-    array([ 2.,  4.,  6.,  8.])
+    array([2.,  4.,  6.,  8.])
 
     >>> j = np.arange(5)
     >>> 2**(j + 1) - j
@@ -65,18 +65,18 @@ These operations are of course much faster than if you did them in pure python:
 
         >>> c = np.ones((3, 3))
         >>> c * c                   # NOT matrix multiplication!
-        array([[ 1.,  1.,  1.],
-               [ 1.,  1.,  1.],
-               [ 1.,  1.,  1.]])
+        array([[1.,  1.,  1.],
+               [1.,  1.,  1.],
+               [1.,  1.,  1.]])
 
 .. note:: **Matrix multiplication:**
 
     .. sourcecode:: pycon
 
         >>> c.dot(c)
-        array([[ 3.,  3.,  3.],
-               [ 3.,  3.,  3.],
-               [ 3.,  3.,  3.]])
+        array([[3.,  3.,  3.],
+               [3.,  3.,  3.],
+               [3.,  3.,  3.]])
 
 .. topic:: **Exercise: Elementwise operations**
    :class: green
@@ -100,9 +100,9 @@ Other operations
     >>> a = np.array([1, 2, 3, 4])
     >>> b = np.array([4, 2, 2, 4])
     >>> a == b
-    array([False,  True, False,  True], dtype=bool)
+    array([False,  True, False,  True])
     >>> a > b
-    array([False, False,  True, False], dtype=bool)
+    array([False, False,  True, False])
 
 .. tip::
 
@@ -126,9 +126,9 @@ Other operations
     >>> a = np.array([1, 1, 0, 0], dtype=bool)
     >>> b = np.array([1, 0, 1, 0], dtype=bool)
     >>> np.logical_or(a, b)
-    array([ True,  True,  True, False], dtype=bool)
+    array([ True,  True,  True, False])
     >>> np.logical_and(a, b)
-    array([ True, False, False, False], dtype=bool)
+    array([ True, False, False, False])
 
 **Transcendental functions:**
 
@@ -161,13 +161,13 @@ Other operations
 
     >>> a = np.triu(np.ones((3, 3)), 1)   # see help(np.triu)
     >>> a
-    array([[ 0.,  1.,  1.],
-           [ 0.,  0.,  1.],
-           [ 0.,  0.,  0.]])
+    array([[0.,  1.,  1.],
+           [0.,  0.,  1.],
+           [0.,  0.,  0.]])
     >>> a.T
-    array([[ 0.,  0.,  0.],
-           [ 1.,  0.,  0.],
-           [ 1.,  1.,  0.]])
+    array([[0.,  0.,  0.],
+           [1.,  0.,  0.],
+           [1.,  1.,  0.]])
 
 
 .. warning:: **The transposition is a view**
@@ -299,7 +299,7 @@ Other reductions
   >>> np.median(x)
   1.5
   >>> np.median(y, axis=-1) # last axis
-  array([ 2.,  5.])
+  array([2.,  5.])
 
   >>> x.std()          # full population standard dev.
   0.82915619758884995
@@ -353,14 +353,14 @@ Other reductions
 
      >>> populations = data[:, 1:]
      >>> populations.mean(axis=0)
-     array([ 34080.95238095,  20166.66666667,  42400.        ])
+     array([34080.95238095,  20166.66666667,  42400.        ])
 
    The sample standard deviations:
 
    .. sourcecode:: pycon
 
      >>> populations.std(axis=0)
-     array([ 20897.90645809,  16254.59153691,   3322.50622558])
+     array([20897.90645809,  16254.59153691,   3322.50622558])
 
    Which species has the highest population each year?:
 
@@ -511,10 +511,10 @@ We have already used broadcasting without knowing it!:
     >>> a = np.ones((4, 5))
     >>> a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
     >>> a
-    array([[ 2.,  2.,  2.,  2.,  2.],
-           [ 1.,  1.,  1.,  1.,  1.],
-           [ 1.,  1.,  1.,  1.,  1.],
-           [ 1.,  1.,  1.,  1.,  1.]])
+    array([[2.,  2.,  2.,  2.,  2.],
+           [1.,  1.,  1.,  1.,  1.],
+           [1.,  1.,  1.,  1.,  1.],
+           [1.,  1.,  1.,  1.,  1.]])
 
 A useful trick:
 
@@ -582,11 +582,11 @@ the origin of points on a 5x5 grid, we can do
     >>> x, y = np.arange(5), np.arange(5)[:, np.newaxis]
     >>> distance = np.sqrt(x ** 2 + y ** 2)
     >>> distance
-    array([[ 0.        ,  1.        ,  2.        ,  3.        ,  4.        ],
-           [ 1.        ,  1.41421356,  2.23606798,  3.16227766,  4.12310563],
-           [ 2.        ,  2.23606798,  2.82842712,  3.60555128,  4.47213595],
-           [ 3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
-           [ 4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
+    array([[0.        ,  1.        ,  2.        ,  3.        ,  4.        ],
+           [1.        ,  1.41421356,  2.23606798,  3.16227766,  4.12310563],
+           [2.        ,  2.23606798,  2.82842712,  3.60555128,  4.47213595],
+           [3.        ,  3.16227766,  3.60555128,  4.24264069,  5.        ],
+           [4.        ,  4.12310563,  4.47213595,  5.        ,  5.65685425]])
 
 Or in color:
 
@@ -720,9 +720,9 @@ Or,
      >>> b = a.T.reshape(3*2)
      >>> b[0] = 9
      >>> a
-     array([[ 0.,  0.],
-            [ 0.,  0.],
-            [ 0.,  0.]])
+     array([[0.,  0.],
+            [0.,  0.],
+            [0.,  0.]])
 
    To understand this you need to learn more about the memory layout of a numpy array.
 

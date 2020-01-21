@@ -60,36 +60,36 @@ Examples
         >>> mtx1 = mtx.astype(np.float32)
         >>> x = dsolve.spsolve(mtx1, rhs, use_umfpack=False)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
-        [ 106.   -21.     5.5   -1.5    1. ]
+        [106.   -21.     5.5   -1.5    1. ]
         >>> print("Error: %s" % (mtx1 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
-        Error:  [ 0.  0.  0.  0.  0.]
+        Error:  [0.  0.  0.  0.  0.]
 
     * solve as double precision real::
 
         >>> mtx2 = mtx.astype(np.float64)
         >>> x = dsolve.spsolve(mtx2, rhs, use_umfpack=True)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
-        [ 106.   -21.     5.5   -1.5    1. ]
+        [106.   -21.     5.5   -1.5    1. ]
         >>> print("Error: %s" % (mtx2 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
-        Error:  [ 0.  0.  0.  0.  0.]
+        Error:  [0.  0.  0.  0.  0.]
 
     * solve as single precision complex::
 
         >>> mtx1 = mtx.astype(np.complex64)
         >>> x = dsolve.spsolve(mtx1, rhs, use_umfpack=False)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
-        [ 106.0+0.j  -21.0+0.j    5.5+0.j   -1.5+0.j    1.0+0.j]
+        [106. +0.j  -21. +0.j    5.5+0.j   -1.5+0.j    1. +0.j]
         >>> print("Error: %s" % (mtx1 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
-        Error:  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]
+        Error:  [0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]
 
     * solve as double precision complex::
 
         >>> mtx2 = mtx.astype(np.complex128)
         >>> x = dsolve.spsolve(mtx2, rhs, use_umfpack=True)
         >>> print(x)
-        [ 106.0+0.j  -21.0+0.j    5.5+0.j   -1.5+0.j    1.0+0.j]
+        [106. +0.j  -21. +0.j    5.5+0.j   -1.5+0.j    1. +0.j]
         >>> print("Error: %s" % (mtx2 * x - rhs))   # doctest: +NORMALIZE_WHITESPACE
-        Error:  [ 0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]
+        Error:  [0.+0.j  0.+0.j  0.+0.j  0.+0.j  0.+0.j]
 
 .. literalinclude:: examples/direct_solve.py
 
@@ -160,9 +160,9 @@ LinearOperator Class
     >>> A
     <2x2 _CustomLinearOperator with dtype=float64>
     >>> A.matvec(np.ones(2))
-    array([ 2.,  3.])
+    array([2.,  3.])
     >>> A * np.ones(2)
-    array([ 2.,  3.])
+    array([2.,  3.])
 
 A Few Notes on Preconditioning
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
