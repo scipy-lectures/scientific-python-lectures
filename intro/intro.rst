@@ -335,7 +335,7 @@ Getting help by using the **?** operator after an object:
 
 .. seealso::
 
-    * IPython user manual: http://ipython.org/ipython-doc/dev/index.html
+    * IPython user manual: https://ipython.readthedocs.io/en/stable/
 
     * Jupyter Notebook QuickStart:
       http://jupyter.readthedocs.io/en/latest/content-quickstart.html
