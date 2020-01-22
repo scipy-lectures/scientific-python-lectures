@@ -1127,12 +1127,12 @@ from within a python session:
    >>> help(plt.plot)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
    Help on function plot in module matplotlib.pyplot:
    <BLANKLINE>
-   plot(*args, **kwargs)
+   plot(*args,...)
        Plot y versus x as lines and/or markers.
    <BLANKLINE>
        Call signatures::
    <BLANKLINE>
-	   plot([x], y, [fmt], data=None, **kwargs)
+	   plot([x], y, [fmt],...data=None, **kwargs)
 	   plot([x], y, [fmt], [x2], y2, [fmt2], ..., **kwargs)
    ...
 

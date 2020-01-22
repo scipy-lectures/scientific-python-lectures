@@ -32,9 +32,9 @@ Why Sparse Matrices?
     >>> plt.plot(x, 8.0 * (x**2) / 1e6, lw=5)    # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
     >>> plt.xlabel('size n')    # doctest: +ELLIPSIS
-    Text(...,'size n')
+    Text(...'size n')
     >>> plt.ylabel('memory [MB]')    # doctest: +ELLIPSIS
-    Text(...,'memory [MB]')
+    Text(...'memory [MB]')
 
 Sparse Matrices vs. Sparse Matrix Storage Schemes
 -------------------------------------------------

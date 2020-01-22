@@ -433,9 +433,9 @@ Other reductions
    >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
    >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
-   Text(...,'$t$')
+   Text(...'$t$')
    >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
-   Text(...,'$\\sqrt{\\langle (\\delta x)^2 \\rangle}$')
+   Text(...'$\\sqrt{\\langle (\\delta x)^2 \\rangle}$')
    >>> plt.tight_layout() # provide sufficient space for labels
 
   .. image:: auto_examples/images/sphx_glr_plot_randomwalk_001.png
