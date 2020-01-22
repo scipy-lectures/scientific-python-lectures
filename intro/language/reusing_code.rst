@@ -86,8 +86,8 @@ directory as the test.py file, we can execute this in a console:
 
     .. warning::
 
-        Don't implement option parsing yourself. Use modules such as
-        :mod:`optparse`, :mod:`argparse` or :mod`docopt`.
+        Don't implement option parsing yourself. Use a dedicated module such as
+        :mod:`argparse`.
 
 
 Importing objects from modules
