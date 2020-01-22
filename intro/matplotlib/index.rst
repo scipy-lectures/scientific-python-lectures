@@ -1,6 +1,8 @@
 
 .. _matplotlib:
 
+.. currentmodule:: matplotlib.pyplot
+
 ====================
 Matplotlib: plotting
 ====================
@@ -123,7 +125,7 @@ Plotting with default settings
 .. hint:: Documentation
 
    * `plot tutorial <http://matplotlib.org/users/pyplot_tutorial.html>`_
-   * `plot() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.plot>`_
+   * :func:`~plot()` command
 
 .. tip::
 
@@ -222,7 +224,7 @@ Changing colors and line widths
 .. hint:: Documentation
 
    * `Controlling line properties <http://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties>`_
-   * `Line API <https://matplotlib.org/api/_as_gen/matplotlib.lines.Line2D.html>`_
+   * :class:`~matplotlib.lines.Line2D` API
 
 .. tip::
 
@@ -251,8 +253,8 @@ Setting limits
 
 .. hint:: Documentation
 
-   * `xlim() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xlim>`_
-   * `ylim() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.ylim>`_
+   * :func:`xlim()` command
+   * :func:`ylim()` command
 
 .. tip::
 
@@ -280,8 +282,8 @@ Setting ticks
 
 .. hint:: Documentation
 
-   * `xticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
-   * `yticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
+   * :func:`xticks()` command
+   * :func:`yticks()` command
    * `Tick container <http://matplotlib.org/users/artists.html#axis-container>`_
    * `Tick locating and formatting <http://matplotlib.org/api/ticker_api.html>`_
 
@@ -314,10 +316,10 @@ Setting tick labels
 .. hint:: Documentation
 
    * `Working with text <http://matplotlib.org/users/index_text.html>`_
-   * `xticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.xticks>`_
-   * `yticks() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.yticks>`_
-   * `set_xticklabels() <https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html>`_
-   * `set_yticklabels() <https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_yticklabels.html>`_
+   * :func:`~xticks()` command
+   * :func:`~yticks()` command
+   * :meth:`~matplotlib.axes.Axes.set_xticklabels()`
+   * :meth:`~matplotlib.axes.Axes.set_yticklabels()`
 
 
 .. tip::
@@ -353,7 +355,7 @@ Moving spines
 
 .. hint:: Documentation
 
-   * `Spines <https://matplotlib.org/api/spines_api.html>`_
+   * :mod:`~matplotlib.spines` API
    * `Axis container <http://matplotlib.org/users/artists.html#axis-container>`_
    * `Transformations tutorial <http://matplotlib.org/users/transforms_tutorial.html>`_
 
@@ -395,8 +397,8 @@ Adding a legend
 .. hint:: Documentation
 
    * `Legend guide <http://matplotlib.org/users/legend_guide.html>`_
-   * `legend() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.legend>`_
-   * `Legend API <http://matplotlib.org/api/legend_api.html#matplotlib.legend.Legend>`_
+   * :func:`legend()` command
+   * :mod:`~matplotlib.legend` API
 
 .. tip::
 
@@ -429,7 +431,7 @@ Annotate some points
 .. hint:: Documentation
 
    * `Annotating axis <http://matplotlib.org/users/annotations_guide.html>`_
-   * `annotate() command <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.annotate>`_
+   * :func:`annotate()` command
 
 .. tip::
 
@@ -475,8 +477,8 @@ Devil is in the details
 
 .. hint:: Documentation
 
-   * `Artists <http://matplotlib.org/api/artist_api.html>`_
-   * `BBox <https://matplotlib.org/api/text_api.html#matplotlib.text.Text.set_bbox>`_
+   * :mod:`~matplotlib.artist` API
+   * :meth:`~matplotlib.text.Text.set_bbox()` method
 
 .. tip::
 
@@ -512,8 +514,8 @@ Within this figure there can be **"subplots"**.
     regular grid, axes allows free placement within the figure. Both can be
     useful depending on your intention. We've already worked with figures and
     subplots without explicitly calling them.  When we call plot, matplotlib
-    calls :func:`~matplotlib.pyplot.gca` to get the current axes and gca in turn calls :func:`~matplotlib.pyplot.gcf` to
-    get the current figure. If there is none it calls :func:`~matplotlib.pyplot.figure` to make one,
+    calls :func:`gca` to get the current axes and gca in turn calls :func:`gcf` to
+    get the current figure. If there is none it calls :func:`figure` to make one,
     strictly speaking, to make a ``subplot(111)``. Let's look at the details.
 
 Figures
@@ -694,9 +696,7 @@ care of filled areas:
 
 .. hint::
 
-   You need to use the `fill_between
-   <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.fill_between>`_
-   command.
+   You need to use the :func:`fill_between()` command.
 
 
 ::
@@ -787,9 +787,7 @@ care of the colormap (see `Colormaps`_ below).
 
 .. hint::
 
-   You need to use the `clabel
-   <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.clabel>`_
-   command.
+   You need to use the :func:`clabel()` command.
 
 ::
 
@@ -823,8 +821,7 @@ care of colormap, image interpolation and origin.
 .. hint::
 
    You need to take care of the ``origin`` of the image in the imshow command and
-   use a `colorbar
-   <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.colorbar>`_
+   use a :func:`colorbar()`
 
 
 ::
@@ -984,9 +981,7 @@ Starting from the code below, try to reproduce the graphic.
 
 .. hint::
 
-   You need to use `contourf
-   <http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.contourf>`_
-
+   You need to use :func:`contourf()`
 
 
 ::
