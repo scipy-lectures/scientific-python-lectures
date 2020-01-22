@@ -1,7 +1,28 @@
 What's new
 ==========
 
+Release 2020.1 (January 2020)
+-----------------------------
+
 * Fix outdated URLs (Gert-Ludwig Ingold)
+
+* Update packages (Pierre de Buyl)
+
+* Remove Python 2 continous integration (Olav Vahtras - EuroSciPy 2019 sprint)
+
+* Fix chessboard size (Mark Setchell)
+
+* Add objectives and design choices (Gert-Ludwig Ingold and Pierre de Buyl)
+
+* Make the numpy advanced iterator example more elaborate (Sebastian Berg)
+
+* Use empty list instead of empty tuple to deactivate ticks (Tim Hoffmann)
+
+* Fix typos (Sander van Rijn, cydave, Michel Corne) and off by 2 errors
+  (Andreas Hilboll)
+
+* Improve readability of Polynomials example code (Michel Corne)
+
 
 Release 2019.1 (May 2019)
 -------------------------
