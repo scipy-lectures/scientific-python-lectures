@@ -303,31 +303,6 @@ preamble = r"""
 \DeclareUnicodeCharacter{2462}{\ding{184}}
 \DeclareUnicodeCharacter{2794}{\ding{229}}
 
-\definecolor{Admonition}{RGB}{249,249,249}
-
-\usepackage{ifthen}
-\usepackage{xcolor}
-\usepackage{fourier}
-
-\makeatletter
-  \renewenvironment{notice}[2]{%
-    \def\thishead{}%
-    \ifthenelse{\equal{#1}{tip}}%
-	{\colorlet{thiscolor}{white}}%
-	{\ifthenelse{\equal{#1}{warning}}
-	 {\colorlet{thiscolor}{red!10!white}%
-	  \def\thishead{\llap{\smash{\raisebox{-1em}{\small\danger~\,~}}}}}%
-	 {\colorlet{thiscolor}{Admonition}}%
-	}%
-    \begin{lrbox}{\@tempboxa}\begin{minipage}{\columnwidth}%
-    \thishead%
-  }{%
-    \end{minipage}\end{lrbox}%
-    \colorbox{thiscolor}{\usebox{\@tempboxa}}%
-  }
-
-\makeatother
-
 \renewenvironment{wrapfigure}[2]{\begin{figure}[H]}{\end{figure}}
 
 \def\shadowbox#1{\rule{\linewidth}{1pt}\nopagebreak
@@ -350,6 +325,7 @@ latex_elements = {
     'classoptions': ',oneside,openany',
     'babel': '\usepackage[english]{babel}',
     'releasename': 'Edition',
+    'sphinxsetup': 'warningBgColor={RGB}{255,204,204}',
     'maketitle':
     r'''\includepdf[noautoscale]{cover.pdf}
 \makeatletter%
