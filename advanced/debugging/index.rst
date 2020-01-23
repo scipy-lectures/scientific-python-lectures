@@ -473,15 +473,14 @@ Other ways of starting a debugger
 
 .. topic:: Graphical debuggers and alternatives
 
-    * For stepping through code and inspecting variables, you might find it
-      more convenient to use a graphical debugger such as
-      `winpdb <http://winpdb.org/>`_.
+    * `pudb <http://pypi.python.org/pypi/pudb>`_ is a good semi-graphical
+      debugger with a text user interface in the console.
 
-    * Alternatively, `pudb <http://pypi.python.org/pypi/pudb>`_ is a good
-      semi-graphical debugger with a text user interface in the console.
+    * The `Visual Studio Code <https://code.visualstudio.com/>`_ integrated
+      development environment includes a debugging mode.
 
-    * Also, the `pydbgr <http://code.google.com/p/pydbgr/>`_ project is probably
-      worth looking at.
+    * The `Mu editor <https://codewith.mu/>`_ is a simple Python editor that
+      includes a debugging mode.
 
 
 Debugger commands and interaction
