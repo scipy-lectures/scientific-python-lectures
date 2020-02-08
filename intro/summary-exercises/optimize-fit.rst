@@ -56,8 +56,12 @@ and visualize it::
 
     >>> import matplotlib.pyplot as plt
     >>> t = np.arange(len(waveform_1))
-    >>> plt.plot(t, waveform_1) #doctest: +ELLIPSIS
+
+    >>> fig, ax = plt.subplots(figsize=(8, 6))
+    >>> ax.plot(t, waveform_1, #doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
+    >>> ax.set_xlabel('Time [ns]')
+    >>> ax.set_ylabel('Intensity [bins]')
     >>> plt.show()
 
 .. image:: waveform_1.png
@@ -134,9 +138,12 @@ following arguments:
 
 And visualize the solution::
 
-    >>> plt.plot(t, waveform_1, t, model(t, x)) #doctest: +ELLIPSIS
+    >>> fig, ax = plt.subplots(figsize=(8, 6))
+    >>> ax.plot(t, waveform_1, t, model(t, x)) #doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
-    >>> plt.legend(['waveform', 'model']) #doctest: +ELLIPSIS
+    >>> ax.set_xlabel('Time [ns]')
+    >>> ax.set_ylabel('Intensity [bins]')
+    >>> plt.legend(['Waveform', 'Model']) #doctest: +ELLIPSIS
     <matplotlib.legend.Legend object at ...>
     >>> plt.show()
 
