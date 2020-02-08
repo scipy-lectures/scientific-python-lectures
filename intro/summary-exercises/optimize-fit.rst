@@ -140,6 +140,9 @@ And visualize the solution::
     <matplotlib.legend.Legend object at ...>
     >>> plt.show()
 
+.. image:: waveform_1_soln.png
+   :align: center
+
 *Remark:* from scipy v0.8 and above, you should rather use :func:`scipy.optimize.curve_fit` which takes the model and the data as arguments, so you don't need to define the residuals any more.
 
 
@@ -168,7 +171,10 @@ Going further
 
     >>> x0 = np.array([3, 50, 20, 1], dtype=float)
 
-  compare the result of :func:`scipy.optimize.leastsq` and what you can get with
+.. image:: waveform_2_soln.png
+   :align: center
+
+  Compare the result of :func:`scipy.optimize.leastsq` and what you can get with
   :func:`scipy.optimize.fmin_slsqp` when adding boundary constraints.
 
 
