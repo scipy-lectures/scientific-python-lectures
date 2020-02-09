@@ -141,7 +141,8 @@ And visualize the solution::
     >>> fig, ax = plt.subplots(figsize=(8, 6))
     >>> ax.plot(t, waveform_1, t, model(t, x)) #doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
-    >>> ax.set_xlabel('Time [ns]')
+    >>> ax.set_xlabel('Time [ns]') #doctest: +ELLIPSIS
+    Text(0.5,0,'Time [ns]')
     >>> ax.set_ylabel('Intensity [bins]')
     >>> plt.legend(['Waveform', 'Model']) #doctest: +ELLIPSIS
     <matplotlib.legend.Legend object at ...>
