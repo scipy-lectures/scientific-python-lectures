@@ -1,7 +1,7 @@
 What's new
 ==========
 
-Release 2020.1 (January 2020)
+Release 2020.1 (March 2020)
 -----------------------------
 
 * Fix outdated URLs (Gert-Ludwig Ingold)
@@ -22,6 +22,10 @@ Release 2020.1 (January 2020)
   (Andreas Hilboll)
 
 * Improve readability of Polynomials example code (Michel Corne)
+
+* Replace suggestions for debugging environments (Gert-Ludwig Ingold)
+
+* Add section on Python 2 vs Python 3 (Pierre de Buyl)
 
 
 Release 2019.1 (May 2019)
