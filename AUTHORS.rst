@@ -53,6 +53,8 @@ Listed by alphabetical order
 
 - arunpersaud
 
+- Sebastian Berg
+
 - Lilian Besson
 
 - Matthieu Boileau
@@ -76,6 +78,8 @@ Listed by alphabetical order
 - Christophe Combelles
 
 - David Cournapeau
+
+- Dave
 
 - dogacan dugmeci
 
@@ -119,9 +123,13 @@ Listed by alphabetical order
 
 - Jonathan Helmus
 
+- Andreas Hilboll
+
 - Himanshu
 
 - Julian Hofer
+
+- Tim Hoffmann
 
 - Tarek Hoteit
 
@@ -193,7 +201,11 @@ Listed by alphabetical order
 
 - Rutzmoser
 
+- Sander
+
 - João Felipe Santos
+
+- Mark Setchell
 
 - Helen Sherwood-Taylor
 
