@@ -8,8 +8,8 @@ About the scipy lecture notes
 
 .. Hack to have multi-column layout in authors list
 
-.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.31521.svg
-    :target: http://dx.doi.org/10.5281/zenodo.31521
+.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.594102.svg
+    :target: http://dx.doi.org/10.5281/zenodo.594102
 
 
 .. raw:: html

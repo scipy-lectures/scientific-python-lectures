@@ -1,5 +1,5 @@
-.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.31521.svg
-    :target: http://dx.doi.org/10.5281/zenodo.31521
+.. image:: https://zenodo.org/badge/doi/10.5281/zenodo.594102.svg
+    :target: http://dx.doi.org/10.5281/zenodo.594102
 
 .. image:: https://travis-ci.org/scipy-lectures/scipy-lecture-notes.svg?branch=master
     :target: https://travis-ci.org/scipy-lectures/scipy-lecture-notes
