@@ -298,6 +298,7 @@ preamble = r"""
 \setcounter{tocdepth}{1}
 \usepackage{amssymb}
 \usepackage{pifont}
+\usepackage{multicol}
 \DeclareUnicodeCharacter{2460}{\ding{182}}
 \DeclareUnicodeCharacter{2461}{\ding{183}}
 \DeclareUnicodeCharacter{2462}{\ding{184}}

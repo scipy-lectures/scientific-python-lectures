@@ -89,6 +89,8 @@ Scipy Lecture Notes
     to a 1 to 2 hours course with increasing level of expertise, from
     beginner to expert.
 
+    Release: |release|
+
     .. rst-class:: preface
 
         .. toctree::
@@ -106,6 +108,7 @@ Scipy Lecture Notes
     intro/index.rst
     advanced/index.rst
     packages/index.rst
+    about.rst
 
 |
 
