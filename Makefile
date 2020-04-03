@@ -119,7 +119,9 @@ install: cleandoctrees html pdf
 	git clone  --no-checkout --depth 1 git@github.com:scipy-lectures/scipy-lectures.github.com.git && \
 	cp -r html/* scipy-lectures.github.com && \
 	cd scipy-lectures.github.com && \
-	git add * && \
+	echo -n 'scipy-lectures.org' > CNAME && \
+	touch .nojekyll && \
+	git add * .nojekyll && \
 	git commit -a -m 'Make install' && \
 	git push
 
