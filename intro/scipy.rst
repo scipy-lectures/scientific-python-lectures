@@ -117,9 +117,9 @@ File input/output: :mod:`scipy.io`
 
 **Image files**: Reading images::
 
-    >>> from scipy import misc
-    >>> misc.imread('fname.png')    # doctest: +ELLIPSIS
-    array(...)
+    >>> import imageio
+    >>> imageio.imread('fname.png')    # doctest: +ELLIPSIS
+    Array(...)
     >>> # Matplotlib also has a similar function
     >>> import matplotlib.pyplot as plt
     >>> plt.imread('fname.png')    # doctest: +ELLIPSIS

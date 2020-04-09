@@ -160,8 +160,8 @@ This saved only one channel (of RGB)::
 
 Other libraries::
 
-    >>> from scipy.misc import imsave
-    >>> imsave('tiny_elephant.png', img[::6,::6])
+    >>> import imageio
+    >>> imageio.imsave('tiny_elephant.png', img[::6,::6])
     >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')  # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at ...>
 
