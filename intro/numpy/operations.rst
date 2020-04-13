@@ -313,61 +313,6 @@ Other reductions
     * Given there is a ``sum``, what other function might you expect to see?
     * What is the difference between ``sum`` and ``cumsum``?
 
-.. topic:: Worked Example: data statistics
-   :class: green
-
-   Data in :download:`populations.txt <../../data/populations.txt>`
-   describes the populations of hares and lynxes (and carrots) in northern
-   Canada during 20 years.
-
-   You can view the data in an editor, or alternatively in IPython (both shell and notebook):
-
-   .. sourcecode:: ipython
-
-     In [1]: !cat data/populations.txt
-
-   First, load the data into a NumPy array:
-
-   .. sourcecode:: pycon
-
-     >>> data = np.loadtxt('data/populations.txt')
-     >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
-
-   Then plot it:
-
-   .. sourcecode:: pycon
-
-     >>> from matplotlib import pyplot as plt
-     >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +SKIP
-     >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +SKIP
-     >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +SKIP
-
-   .. image:: auto_examples/images/sphx_glr_plot_populations_001.png
-      :width: 50%
-      :target: auto_examples/plot_populations.html
-      :align: center
-
-   The mean populations over time:
-
-   .. sourcecode:: pycon
-
-     >>> populations = data[:, 1:]
-     >>> populations.mean(axis=0)
-     array([34080.95238095,  20166.66666667,  42400.        ])
-
-   The sample standard deviations:
-
-   .. sourcecode:: pycon
-
-     >>> populations.std(axis=0)
-     array([20897.90645809,  16254.59153691,   3322.50622558])
-
-   Which species has the highest population each year?:
-
-   .. sourcecode:: pycon
-
-     >>> np.argmax(populations, axis=1)
-     array([2, 2, 0, 0, 1, 1, 2, 2, 2, 2, 2, 2, 0, 0, 0, 1, 2, 2, 2, 2, 2])
 
 .. topic:: Worked Example: diffusion using a random walk algorithm
 
