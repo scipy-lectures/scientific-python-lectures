@@ -20,7 +20,7 @@ def compute_mandelbrot(N_max, some_threshold, nx, ny):
 
     z = c
 
-    # The code below overflows in many region of the x-y grid, suppress
+    # The code below overflows in many regions of the x-y grid, suppress
     # warnings temporarily
     with np.warnings.catch_warnings():
         np.warnings.simplefilter("ignore")
