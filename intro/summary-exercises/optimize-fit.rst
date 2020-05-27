@@ -96,6 +96,7 @@ Initial solution
 
 As determined above, an initial solution that we conclude by inspection is::
 
+    >>> import numpy as np
     >>> x0 = np.array([3, 30, 15, 1], dtype=float)
 
 Fit

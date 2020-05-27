@@ -1,6 +1,6 @@
 """
 The lidar system, data (2 of 2 datasets)
-=================================
+========================================
 
 Generate a chart of more complex data recorded by the lidar system
 """
@@ -8,7 +8,7 @@ Generate a chart of more complex data recorded by the lidar system
 import numpy as np
 import matplotlib.pyplot as plt
 
-waveform_2 = np.load('data/waveform_2.npy')
+waveform_2 = np.load('waveform_2.npy')
 
 t = np.arange(len(waveform_2))
 

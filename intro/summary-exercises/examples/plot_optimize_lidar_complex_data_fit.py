@@ -1,6 +1,6 @@
 """
 The lidar system, data and fit (2 of 2 datasets)
-=================================
+================================================
 
 Generate a chart of the data fitted by Gaussian curve
 """
@@ -21,7 +21,7 @@ def residuals(coeffs, y, t):
     return y - model(t, coeffs)
 
 
-waveform_2 = np.load('data/waveform_2.npy')
+waveform_2 = np.load('waveform_2.npy')
 t = np.arange(len(waveform_2))
 
 x0 = np.array([3, 30, 20, 1, 12, 25, 1, 8, 28, 1], dtype=float)
