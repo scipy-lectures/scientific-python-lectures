@@ -47,23 +47,16 @@ or a sum of Gaussian functions.
 Loading and visualization
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Load the first waveform using::
+The waveform is firstly loaded and visualized which allows us to make some initial
+guesses. As shown below, this waveform is a 80-bin-length signal with a single peak.
 
-    >>> import numpy as np
-    >>> waveform_1 = np.load('data/waveform_1.npy')
+.. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_data_001.png
+    :align: center
 
-and visualize it::
+    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_data.py>`
 
-    >>> import matplotlib.pyplot as plt
-    >>> t = np.arange(len(waveform_1))
-    >>> plt.plot(t, waveform_1) #doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.show()
 
-.. image:: waveform_1.png
-   :align: center
 
-As you can notice, this waveform is a 80-bin-length signal with a single peak.
 
 
 
@@ -134,11 +127,19 @@ following arguments:
 
 And visualize the solution::
 
-    >>> plt.plot(t, waveform_1, t, model(t, x)) #doctest: +ELLIPSIS
+    >>> fig, ax = plt.subplots(figsize=(8, 6))
+    >>> ax.plot(t, waveform_1, t, model(t, x)) #doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
-    >>> plt.legend(['waveform', 'model']) #doctest: +ELLIPSIS
+    >>> ax.set_xlabel('Time [ns]') #doctest: +ELLIPSIS
+    Text(0.5,0,'Time [ns]')
+    >>> ax.set_ylabel('Intensity [bins]') #doctest: +ELLIPSIS
+    Text(0,0.5,'Intensity [bins]')
+    >>> plt.legend(['Waveform', 'Model']) #doctest: +ELLIPSIS
     <matplotlib.legend.Legend object at ...>
     >>> plt.show()
+
+.. image:: waveform_1_soln.png
+   :align: center
 
 *Remark:* from scipy v0.8 and above, you should rather use :func:`scipy.optimize.curve_fit` which takes the model and the data as arguments, so you don't need to define the residuals any more.
 
@@ -168,7 +169,10 @@ Going further
 
     >>> x0 = np.array([3, 50, 20, 1], dtype=float)
 
-  compare the result of :func:`scipy.optimize.leastsq` and what you can get with
+.. image:: waveform_2_soln.png
+   :align: center
+
+  Compare the result of :func:`scipy.optimize.leastsq` and what you can get with
   :func:`scipy.optimize.fmin_slsqp` when adding boundary constraints.
 
 
