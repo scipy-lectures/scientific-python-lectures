@@ -48,7 +48,12 @@ Loading and visualization
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The waveform is firstly loaded and visualized which allows us to make some initial
-guesses. As shown below, this waveform is a 80-bin-length signal with a single peak
+guesses.
+
+    >>> import numpy as np
+    >>> waveform_1 = np.load('waveform_1.npy')
+
+As shown below, this waveform is a 80-bin-length signal with a single peak
 with an amplitude of approximately 30 in the 15 nanosecond bin. Additionally, the
 base level of noise is approximately 3. These values can be used in the initial solution.
 
@@ -96,7 +101,6 @@ Initial solution
 
 As determined above, an initial solution that we conclude by inspection is::
 
-    >>> import numpy as np
     >>> x0 = np.array([3, 30, 15, 1], dtype=float)
 
 Fit
@@ -119,6 +123,7 @@ following arguments:
 ::
 
     >>> from scipy.optimize import leastsq
+    >>> t = np.arange(len(waveform_1))
     >>> x, flag = leastsq(residuals, x0, args=(waveform_1, t))
     >>> print(x)
     [  2.70363341  27.82020742  15.47924562   3.05636228]
@@ -138,7 +143,7 @@ And visualize the solution:
 Going further
 ~~~~~~~~~~~~~
 
-* Try with a more complex waveform (for instance ``data/waveform_2.npy``)
+* Try with a more complex waveform (for instance ``waveform_2.npy``)
   that contains three significant peaks. You must adapt the model which is
   now a sum of Gaussian functions instead of only one Gaussian peak.
 
