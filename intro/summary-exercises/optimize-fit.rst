@@ -51,7 +51,7 @@ The waveform is firstly loaded and visualized which allows us to make some initi
 guesses.
 
     >>> import numpy as np
-    >>> waveform_1 = np.load('waveform_1.npy')
+    >>> waveform_1 = np.load('intro/summary-exercises/examples/waveform_1.npy')
 
 As shown below, this waveform is a 80-bin-length signal with a single peak
 with an amplitude of approximately 30 in the 15 nanosecond bin. Additionally, the
