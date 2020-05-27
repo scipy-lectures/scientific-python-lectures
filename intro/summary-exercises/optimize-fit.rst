@@ -48,16 +48,14 @@ Loading and visualization
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The waveform is firstly loaded and visualized which allows us to make some initial
-guesses. As shown below, this waveform is a 80-bin-length signal with a single peak.
+guesses. As shown below, this waveform is a 80-bin-length signal with a single peak
+with an amplitude of approximately 30 in the 15 nanosecond bin. Additionally, the
+base level of noise is approximately 3. These values can be used in the initial solution.
 
 .. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_data_001.png
     :align: center
 
-    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_data.py>`
-
-
-
-
+    :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_data.py>`
 
 
 Fitting a waveform with a simple Gaussian model
@@ -96,8 +94,7 @@ where
 Initial solution
 ^^^^^^^^^^^^^^^^
 
-An approximative initial solution that we can find from looking at the graph is
-for instance::
+As determined above, an initial solution that we conclude by inspection is::
 
     >>> x0 = np.array([3, 30, 15, 1], dtype=float)
 
@@ -127,19 +124,11 @@ following arguments:
 
 And visualize the solution::
 
-    >>> fig, ax = plt.subplots(figsize=(8, 6))
-    >>> ax.plot(t, waveform_1, t, model(t, x)) #doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
-    >>> ax.set_xlabel('Time [ns]') #doctest: +ELLIPSIS
-    Text(0.5,0,'Time [ns]')
-    >>> ax.set_ylabel('Intensity [bins]') #doctest: +ELLIPSIS
-    Text(0,0.5,'Intensity [bins]')
-    >>> plt.legend(['Waveform', 'Model']) #doctest: +ELLIPSIS
-    <matplotlib.legend.Legend object at ...>
-    >>> plt.show()
+.. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_data_fit_001.png
+    :align: center
 
-.. image:: waveform_1_soln.png
-   :align: center
+    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_data_fit.py>`
+
 
 *Remark:* from scipy v0.8 and above, you should rather use :func:`scipy.optimize.curve_fit` which takes the model and the data as arguments, so you don't need to define the residuals any more.
 
@@ -152,8 +141,11 @@ Going further
   that contains three significant peaks. You must adapt the model which is
   now a sum of Gaussian functions instead of only one Gaussian peak.
 
-  .. image:: waveform_2.png
-     :align: center
+ .. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_complex_data_001.png
+    :align: center
+
+    :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_complex_data.py>`
+
 
 * In some cases, writing an explicit function to compute the Jacobian is faster
   than letting ``leastsq`` estimate it numerically. Create a function to compute
@@ -165,12 +157,13 @@ Going further
   enables to overcome such limitations. An example of *a priori* knowledge we can
   add is the sign of our variables (which are all positive).
 
-  With the following initial solution::
+* Putting this all together, we get::
 
-    >>> x0 = np.array([3, 50, 20, 1], dtype=float)
+.. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_complex_data_fit_001.png
+    :align: center
 
-.. image:: waveform_2_soln.png
-   :align: center
+    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_complex_data_fit.py>`
+
 
   Compare the result of :func:`scipy.optimize.leastsq` and what you can get with
   :func:`scipy.optimize.fmin_slsqp` when adding boundary constraints.
