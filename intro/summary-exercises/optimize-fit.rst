@@ -55,7 +55,7 @@ base level of noise is approximately 3. These values can be used in the initial 
 .. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_data_001.png
     :align: center
 
-    :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_data.py>`
+    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_data.py>`
 
 
 Fitting a waveform with a simple Gaussian model
@@ -122,7 +122,7 @@ following arguments:
     >>> print(x)
     [  2.70363341  27.82020742  15.47924562   3.05636228]
 
-And visualize the solution::
+And visualize the solution:
 
 .. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_data_fit_001.png
     :align: center
@@ -141,10 +141,10 @@ Going further
   that contains three significant peaks. You must adapt the model which is
   now a sum of Gaussian functions instead of only one Gaussian peak.
 
- .. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_complex_data_001.png
+.. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_complex_data_001.png
     :align: center
 
-    :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_complex_data.py>`
+    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_complex_data.py>`
 
 
 * In some cases, writing an explicit function to compute the Jacobian is faster
@@ -157,7 +157,7 @@ Going further
   enables to overcome such limitations. An example of *a priori* knowledge we can
   add is the sign of our variables (which are all positive).
 
-* Putting this all together, we get::
+* Putting this all together, we get:
 
 .. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_complex_data_fit_001.png
     :align: center
@@ -165,8 +165,9 @@ Going further
     Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_complex_data_fit.py>`
 
 
-  Compare the result of :func:`scipy.optimize.leastsq` and what you can get with
+* Compare the result of :func:`scipy.optimize.leastsq` and what you can get with
   :func:`scipy.optimize.fmin_slsqp` when adding boundary constraints.
+
 
 
 .. [#data] The data used for this tutorial are part of the demonstration data available for the `FullAnalyze software <http://fullanalyze.sourceforge.net>`_ and were kindly provided by the GIS DRAIX.
