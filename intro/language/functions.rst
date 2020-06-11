@@ -289,7 +289,7 @@ Special forms of parameters:
 
     In [36]: variable_args('one', 'two', x=1, y=2, z=3)
     args is ('one', 'two')
-    kwargs is {'y': 2, 'x': 1, 'z': 3}
+    kwargs is {'x': 1, 'y': 2, 'z': 3}
 
 
 Docstrings
@@ -348,7 +348,7 @@ Functions are first-class objects, which means they can be:
 
     In [39]: va('three', x=1, y=2)
     args is ('three',)
-    kwargs is {'y': 2, 'x': 1}
+    kwargs is {'x': 1, 'y': 2}
 
 
 Methods
