@@ -91,7 +91,7 @@ operations.
 NumPy Reference documentation
 ..............................
 
-- On the web: http://docs.scipy.org/
+- On the web: https://numpy.org/doc/
 
 - Interactive help:
 
