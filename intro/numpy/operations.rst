@@ -170,15 +170,22 @@ Other operations
            [1.,  1.,  0.]])
 
 
-.. warning:: **The transposition is a view**
+.. warning:: **In-place operations with views**
 
-    As a result, the following code **is wrong** and will **not make a
-    matrix symmetric**::
+    The transpose returns a view of the original array. What happens when
+    attempting to perform an *in-place* operation on a *view*? For example::
 
         >>> a += a.T
 
-    It will work for small arrays (because of buffering) but fail for
-    large one, in unpredictable ways.
+    Prior to NumPy version 1.13, in-place operations with views could result in
+    **incorrect** results for large arrays.
+    Since :doc:`version 1.13 <numpy:release/1.13.0-notes>`,
+    NumPy includes checks for *memory overlap* to 
+    guarantee that results for cases like the above are consistent with the
+    non in-place version (e.g. ``a = a + a.T``).
+    Note however that this may require the data to be copied, 
+    resulting in more memory being used than might otherwise be expected for
+    in-place operations!
 
 .. note:: **Linear algebra**
 
