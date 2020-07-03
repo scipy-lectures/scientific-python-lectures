@@ -33,7 +33,7 @@ just to display help and docstrings...
 * Numpy's and Scipy's documentations can be browsed online on
   http://docs.scipy.org/doc. The ``search`` button is quite useful inside
   the reference documentation of the two packages
-  (http://docs.scipy.org/doc/numpy/reference/ and
+  (http://numpy.org/doc/stable/reference/ and
   http://docs.scipy.org/doc/scipy/reference/). 
 
   Tutorials on various topics as well as the complete API with all
@@ -43,11 +43,11 @@ just to display help and docstrings...
 
   .. image:: docwiki.png
      :align: right
-     :target: http://docs.scipy.org/doc/numpy/
+     :target: http://numpy.org/doc/stable/
      :width: 45%
 
 * Numpy's and Scipy's documentation is enriched and updated on a regular
-  basis by users on a wiki http://docs.scipy.org/doc/numpy/. As a result,
+  basis by users on a wiki http://numpy.org/doc/stable/. As a result,
   some docstrings are clearer or more detailed on the wiki, and you may
   want to read directly the documentation on the wiki instead of the
   official documentation website. Note that anyone can create an account on

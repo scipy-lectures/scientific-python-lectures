@@ -207,16 +207,16 @@ Numpy Support
 
 Analog to the Python-C-API, Numpy, which is itself implemented as a
 C-extension, comes with the `Numpy-C-API
-<http://docs.scipy.org/doc/numpy/reference/c-api.html>`_. This API can be used
+<http://numpy.org/doc/stable/reference/c-api>`_. This API can be used
 to create and manipulate Numpy arrays from C, when writing a custom
 C-extension. See also: :ref:`advanced_numpy`.
 
 .. note::
 
     If you do ever need to use the Numpy C-API refer to the documentation about
-    `Arrays <http://docs.scipy.org/doc/numpy/reference/c-api.array.html>`_ and
+    `Arrays <http://numpy.org/doc/stable/reference/c-api/array.html>`_ and
     `Iterators
-    <http://docs.scipy.org/doc/numpy/reference/c-api.iterator.html>`_.
+    <http://numpy.org/doc/stable/reference/c-api/iterator.html>`_.
 
 The following example shows how to pass Numpy arrays as arguments to functions
 and how to iterate over Numpy arrays using the (old) Numpy-C-API. It simply
@@ -342,8 +342,8 @@ and there are functions to convert from C arrays to Numpy arrays and back.
 
 For more information, consult the corresponding section in the `Numpy Cookbook
 <http://www.scipy.org/Cookbook/Ctypes>`_ and the API documentation for
-`numpy.ndarray.ctypes <http://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.ctypes.html>`_
-and `numpy.ctypeslib <http://docs.scipy.org/doc/numpy/reference/routines.ctypeslib.html>`_.
+`numpy.ndarray.ctypes <http://numpy.org/doc/stable/reference/generated/numpy.ndarray.ctypes.html>`_
+and `numpy.ctypeslib <http://numpy.org/doc/stable/reference/routines.ctypeslib.html>`_.
 
 For the following example, let's consider a C function in a library that takes
 an input and an output array, computes the cosine of the input array and
@@ -545,7 +545,7 @@ Numpy Support
 -------------
 
 Numpy provides `support for SWIG
-<http://docs.scipy.org/doc/numpy/reference/swig.html>`_ with the ``numpy.i``
+<http://numpy.org/doc/stable/reference/swig.html>`_ with the ``numpy.i``
 file. This interface file defines various so-called *typemaps* which support
 conversion between Numpy arrays and C-Arrays. In the following example we will
 take a quick look at how such typemaps work in practice.
@@ -873,7 +873,7 @@ Python-C-API
 #. Modify the example such that the function only takes a single input array
    and modifies this in place.
 #. Try to fix the example to use the new `Numpy iterator protocol
-   <http://docs.scipy.org/doc/numpy/reference/c-api.iterator.html>`_. If you
+   <http://numpy.org/doc/stable/reference/c-api/iterator.html>`_. If you
    manage to obtain a working solution, please submit a pull-request on github.
 #. You may have noticed, that the Numpy-C-API example is the only Numpy example
    that does not wrap ``cos_doubles`` but instead applies the ``cos`` function

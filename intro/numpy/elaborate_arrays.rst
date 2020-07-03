@@ -205,8 +205,8 @@ Fancy indexing works, as usual::
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 .. note:: There are a bunch of other syntaxes for constructing structured
-   arrays, see `here <http://docs.scipy.org/doc/numpy/user/basics.rec.html>`__
-   and `here <http://docs.scipy.org/doc/numpy/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
+   arrays, see `here <http://numpy.org/doc/stable/user/basics.rec.html>`__
+   and `here <http://numpy.org/doc/stable/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
 
 
 :class:`maskedarray`: dealing with (propagation of) missing data

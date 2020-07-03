@@ -147,7 +147,7 @@ array of ints::
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
 
-.. seealso::: `array interface <http://docs.scipy.org/doc/numpy/reference/arrays.interface.html>`_
+.. seealso::: `array interface <http://numpy.org/doc/stable/reference/arrays.interface.html>`_
 
 Data types
 ----------
@@ -333,7 +333,7 @@ Casting
 .. note::
 
    Exact rules: see `numpy documentation
-   <http://docs.scipy.org/doc/numpy/reference/ufuncs.html#casting-rules>`_
+   <http://numpy.org/doc/stable/reference/ufuncs.html#casting-rules>`_
 
 
 Re-interpretation / viewing
@@ -1254,7 +1254,7 @@ Array interface protocol
 .. seealso::
 
    Documentation:
-   http://docs.scipy.org/doc/numpy/reference/arrays.interface.html
+   http://numpy.org/doc/stable/reference/arrays.interface.html
 
 ::
 
