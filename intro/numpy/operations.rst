@@ -183,9 +183,9 @@ Other operations
     NumPy includes checks for *memory overlap* to 
     guarantee that results for cases like the above are consistent with the
     non in-place version (e.g. ``a = a + a.T``).
-    Note however that this may require the data to be copied, 
-    resulting in more memory being used than might otherwise be expected for
-    in-place operations!
+    Note however that this may result in the data being copied (as if using
+    ``a += a.T.copy()``), ultimately resulting in more memory being used than
+    might otherwise be expected for in-place operations!
 
 .. note:: **Linear algebra**
 
