@@ -66,8 +66,7 @@ base level of noise is approximately 3. These values can be used in the initial 
 
 .. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_data_001.png
     :align: center
-
-Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_data.py>`
+    :target: auto_examples/plot_optimize_lidar_data.html
 
 
 Fitting a waveform with a simple Gaussian model
@@ -137,10 +136,12 @@ following arguments:
 
 And visualize the solution:
 
-.. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_data_fit_001.png
-    :align: center
+.. literalinclude:: examples/plot_optimize_lidar_data_fit.py
+   :lines: 29-
 
-Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_data_fit.py>`
+.. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_data_fit_001.png
+   :align: center
+   :target: auto_examples/plot_optimize_lidar_data_fit.html
 
 
 *Remark:* from scipy v0.8 and above, you should rather use :func:`scipy.optimize.curve_fit` which takes the model and the data as arguments, so you don't need to define the residuals any more.
@@ -156,8 +157,7 @@ Going further
 
 .. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_complex_data_001.png
     :align: center
-
-Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_complex_data.py>`
+    :target: auto_examples/plot_optimize_lidar_complex_data.html
 
 
 * In some cases, writing an explicit function to compute the Jacobian is faster
@@ -170,17 +170,10 @@ Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_exampl
   enables to overcome such limitations. An example of *a priori* knowledge we can
   add is the sign of our variables (which are all positive).
 
-* Putting this all together, we get:
+* See the `solution <auto_examples/plot_optimize_lidar_complex_data_fit.html>`_.
 
-.. figure:: auto_examples/images/sphx_glr_plot_optimize_lidar_complex_data_fit_001.png
-    :align: center
-
-Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_optimize_lidar_complex_data_fit.py>`
-
-
-* Compare the result of :func:`scipy.optimize.leastsq` and what you can get with
-  :func:`scipy.optimize.fmin_slsqp` when adding boundary constraints.
-
+* Further exercise: compare the result of :func:`scipy.optimize.leastsq` and what you can
+  get with :func:`scipy.optimize.fmin_slsqp` when adding boundary constraints.
 
 
 .. [#data] The data used for this tutorial are part of the demonstration data available for the `FullAnalyze software <http://fullanalyze.sourceforge.net>`_ and were kindly provided by the GIS DRAIX.
