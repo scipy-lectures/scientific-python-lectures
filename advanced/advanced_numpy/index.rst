@@ -147,7 +147,7 @@ array of ints::
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
 
-.. seealso::: `array interface <http://numpy.org/doc/stable/reference/arrays.interface.html>`_
+.. seealso:: `array interface <http://numpy.org/doc/stable/reference/arrays.interface.html>`_
 
 Data types
 ----------
