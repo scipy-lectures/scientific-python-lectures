@@ -474,7 +474,7 @@ Main point
   >>> x = np.array([[1, 2, 3], 
   ...	            [4, 5, 6], 
   ...	            [7, 8, 9]], dtype=np.int8)
-  >>> bytes(x.data)  # doctest: +SKIP
+  >>> x.tobytes('A')
   b'\x01\x02\x03\x04\x05\x06\x07\x08\t'
 
   At which byte in ``x.data`` does the item ``x[1, 2]`` begin?
@@ -506,7 +506,7 @@ C and Fortran order
     ...               [4, 5, 6]], dtype=np.int16, order='C')
     >>> x.strides
     (6, 2)
-    >>> bytes(x.data)  # doctest: +SKIP
+    >>> x.tobytes('A')
     b'\x01\x00\x02\x00\x03\x00\x04\x00\x05\x00\x06\x00'
 
 * Need to jump 6 bytes to find the next row
@@ -517,7 +517,7 @@ C and Fortran order
     >>> y = np.array(x, order='F')
     >>> y.strides
     (2, 4)
-    >>> bytes(y.data)  # doctest: +SKIP
+    >>> y.tobytes('A')
     b'\x01\x00\x04\x00\x02\x00\x05\x00\x03\x00\x06\x00'
 
 * Need to jump 2 bytes to find the next row
@@ -554,9 +554,9 @@ C and Fortran order
    >>> y.strides
    (1, 2)
 
-   >>> bytes(x.data)  # doctest: +SKIP
+   >>> x.tobytes('A')
    b'\x01\x02\x03\x04'
-   >>> bytes(y.data)  # doctest: +SKIP
+   >>> y.tobytes('A')
    b'\x01\x03\x02\x04'
 
    - the results are different when interpreted as 2 of int16
@@ -607,7 +607,7 @@ strides::
 
 So far, so good. However::
 
-    >>> bytes(a.data)  # doctest: +SKIP
+    >>> bytes(a.data)
     b'\x00\x01\x02\x03\x04\x05'
     >>> b
     array([[0, 2, 4],
