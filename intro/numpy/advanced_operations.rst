@@ -47,7 +47,7 @@ For example, :math:`3x^2 + 2x - 1`::
     :target: auto_examples/plot_polyfit.html
     :align: center
 
-See http://docs.scipy.org/doc/numpy/reference/routines.polynomials.poly1d.html
+See http://numpy.org/doc/stable/reference/routines.polynomials.poly1d.html
 for more.
 
 More polynomials (with more bases)
