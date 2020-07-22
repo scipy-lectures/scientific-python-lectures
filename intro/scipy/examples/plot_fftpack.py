@@ -42,7 +42,7 @@ plt.plot(time_vec, sig, label='Original signal')
 sig_fft = fftpack.fft(sig)
 
 # And the power (sig_fft is of complex dtype)
-power = np.abs(sig_fft)
+power = np.abs(sig_fft)**2
 
 # The corresponding frequencies
 sample_freq = fftpack.fftfreq(sig.size, d=time_step)
