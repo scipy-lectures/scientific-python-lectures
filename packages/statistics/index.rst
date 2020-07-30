@@ -40,7 +40,7 @@ Statistics in Python
  * **Bayesian statistics in Python**:
    This chapter does not cover tools for Bayesian statistics. Of
    particular interest for Bayesian modelling is `PyMC
-   <http://pymc-devs.github.io/pymc>`_, which implements a probabilistic
+   <https://docs.pymc.io/>`_, which implements a probabilistic
    programming language in Python.
 
  * **Read a statistics book**:
