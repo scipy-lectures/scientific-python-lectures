@@ -562,6 +562,18 @@ C and Fortran order
    - the results are different when interpreted as 2 of int16
    - ``.copy()`` creates new arrays in the C order (by default)
 
+.. note:: **In-place operations with views**
+
+    Prior to NumPy version 1.13, in-place operations with views could result in
+    **incorrect** results for large arrays.
+    Since :doc:`version 1.13 <numpy:release/1.13.0-notes>`,
+    NumPy includes checks for *memory overlap* to
+    guarantee that results are consistent with the non in-place version
+    (e.g. ``a = a + a.T`` produces the same result as ``a += a.T``).
+    Note however that this may result in the data being copied (as if using
+    ``a += a.T.copy()``), ultimately resulting in more memory being used than
+    might otherwise be expected for in-place operations!
+
 
 Slicing with integers
 .......................

@@ -170,15 +170,20 @@ Other operations
            [1.,  1.,  0.]])
 
 
-.. warning:: **The transposition is a view**
+.. note:: **The transposition is a view**
 
-    As a result, the following code **is wrong** and will **not make a
-    matrix symmetric**::
+    The transpose returns a *view* of the original array::
 
-        >>> a += a.T
-
-    It will work for small arrays (because of buffering) but fail for
-    large one, in unpredictable ways.
+        >>> a = np.arange(9).reshape(3, 3)
+        >>> a.T[0, 2] = 999
+        >>> a.T
+        array([[  0,   3, 999],
+               [  1,   4,   7],
+               [  2,   5,   8]])
+        >>> a
+        array([[  0,   1,   2],
+               [  3,   4,   5],
+               [999,   7,   8]])
 
 .. note:: **Linear algebra**
 
