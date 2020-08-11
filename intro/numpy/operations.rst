@@ -170,22 +170,20 @@ Other operations
            [1.,  1.,  0.]])
 
 
-.. warning:: **In-place operations with views**
+.. note:: **The transposition is a view**
 
-    The transpose returns a view of the original array. What happens when
-    attempting to perform an *in-place* operation on a *view*? For example::
+    The transpose returns a *view* of the original array::
 
-        >>> a += a.T
-
-    Prior to NumPy version 1.13, in-place operations with views could result in
-    **incorrect** results for large arrays.
-    Since :doc:`version 1.13 <numpy:release/1.13.0-notes>`,
-    NumPy includes checks for *memory overlap* to 
-    guarantee that results for cases like the above are consistent with the
-    non in-place version (e.g. ``a = a + a.T``).
-    Note however that this may result in the data being copied (as if using
-    ``a += a.T.copy()``), ultimately resulting in more memory being used than
-    might otherwise be expected for in-place operations!
+        >>> a = np.arange(9).reshape(3, 3)
+        >>> a.T[0, 2] = 999
+        >>> a.T
+        array([[  0,   3, 999],
+               [  1,   4,   7],
+               [  2,   5,   8]])
+        >>> a
+        array([[  0,   1,   2],
+               [  3,   4,   5],
+               [999,   7,   8]])
 
 .. note:: **Linear algebra**
 
