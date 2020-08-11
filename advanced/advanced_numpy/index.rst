@@ -500,6 +500,12 @@ Main point
 C and Fortran order
 .....................
 
+.. note::
+   The Python built-in :py:class:`bytes` returns bytes in C-order by default
+   which can cause confusion when trying to inspect memory layout. We use
+   :meth:`numpy.ndarray.tobytes` with ``order=A`` instead, which preserves
+   the C or F ordering of the bytes in memory.
+
 ::
 
     >>> x = np.array([[1, 2, 3], 
