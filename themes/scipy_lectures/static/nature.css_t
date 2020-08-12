@@ -278,7 +278,7 @@ div.sphinxsidebar {
     margin-top: 10px;
 }
 
-div.sidebartoc {
+div.sphinxsidebarwrapper {
     background-color: #F7F7F7;
     border: solid 1px #EEE;
     padding: 10px 3px 3px 10px;
