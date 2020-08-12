@@ -136,9 +136,9 @@ Complex floating-point numbers:
 
      .. sourcecode:: ipython
 
-        In [1]: a = np.zeros((1e6,), dtype=np.float64)
+        In [1]: a = np.zeros((int(1e6),), dtype=np.float64)
 
-        In [2]: b = np.zeros((1e6,), dtype=np.float32)
+        In [2]: b = np.zeros((int(1e6),), dtype=np.float32)
 
         In [3]: %timeit a*a
         1000 loops, best of 3: 1.78 ms per loop

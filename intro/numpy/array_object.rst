@@ -91,7 +91,7 @@ operations.
 NumPy Reference documentation
 ..............................
 
-- On the web: http://docs.scipy.org/
+- On the web: https://numpy.org/doc/
 
 - Interactive help:
 
@@ -508,7 +508,7 @@ The usual python idiom for reversing a sequence is supported:
    >>> a[::-1]
    array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
 
-For multidimensional arrays, indexes are tuples of integers:
+For multidimensional arrays, indices are tuples of integers:
 
 .. sourcecode:: pycon
 
