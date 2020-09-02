@@ -4,7 +4,7 @@ Crude periodicity finding
 ==========================
 
 Discover the periods in evolution of animal populations
-(:download:`../../data/populations.txt`)
+(:download:`../../../../data/populations.txt`)
 """
 
 ############################################################
