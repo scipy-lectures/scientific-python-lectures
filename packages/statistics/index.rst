@@ -251,8 +251,8 @@ operations on the resulting group of dataframes::
 
 .. note:: 
    
-   `groupby_gender.boxplot` is used for the plots above (see :ref:`this
-   example <example_plot_pandas.py>`).
+   `groupby_gender.boxplot` is used for the plots above (see `this
+   example <auto_examples/plot_pandas.html>`_).
 
 |
 
@@ -725,7 +725,7 @@ Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
 .. tip::
 
    The full code loading and plotting of the wages data is found in 
-   :ref:`corresponding example <example_plot_wage_data.py>`.
+   `corresponding example <auto_examples/plot_wage_data.html>`_.
 
 ::
 
