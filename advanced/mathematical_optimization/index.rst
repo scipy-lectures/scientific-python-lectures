@@ -377,8 +377,8 @@ be used by setting the parameter ``method`` to CG ::
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> optimize.minimize(f, [2, -1], method="CG")    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-         fun: 1.6503...e-11
-         jac: array([-6.1534...e-06,   2.5380...e-07])
+         fun: 1.6...e-11
+         jac: array([-6.15...e-06,   2.53...e-07])
      message: ...'Optimization terminated successfully.'
         nfev: 108
          nit: 13
@@ -474,7 +474,7 @@ inversion of the Hessian is performed by conjugate gradient ::
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-         fun: 1.5601...e-15
+         fun: 1.5...e-15
          jac: array([  1.0575...e-07,  -7.4832...e-08])
      message: ...'Optimization terminated successfully.'
         nfev: 11
