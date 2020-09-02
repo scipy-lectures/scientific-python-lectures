@@ -392,6 +392,7 @@ the location of the minimum that it has found:
 
     The result of :func:`scipy.optimize.minimize` is a compound object
     comprising all information on the convergence
+
 ::
 
     >>> result = optimize.minimize(f, x0=0) 
@@ -542,7 +543,7 @@ We can constrain the variable to the interval
         - Use :func:`numpy.meshgrid` and :func:`matplotlib.pyplot.imshow` to
           find visually the regions.
         - Use :func:`scipy.optimize.minimize`, optionally trying out
-          several of its `methods'.
+          several of its methods.
 
     How many global minima are there, and what is the function value at those
     points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
