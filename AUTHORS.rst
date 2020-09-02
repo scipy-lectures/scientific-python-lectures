@@ -53,6 +53,8 @@ Listed by alphabetical order
 
 - arunpersaud
 
+- Ross Barnowski
+
 - Sebastian Berg
 
 - Lilian Besson
@@ -65,11 +67,15 @@ Listed by alphabetical order
 
 - Matthew Brett
 
+- BSGalvan
+
 - Lars Buitinck
 
 - Pierre de Buyl
 
 - Ozan Çağlayan
+
+- Lawrence Chan
 
 - Adrien Chauve
 
@@ -130,6 +136,8 @@ Listed by alphabetical order
 - Julian Hofer
 
 - Tim Hoffmann
+
+- B. Hohl
 
 - Tarek Hoteit
 

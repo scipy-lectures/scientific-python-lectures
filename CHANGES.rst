@@ -1,6 +1,29 @@
 What's new
 ==========
 
+Release 2020.2 (September 2020)
+-----------------------------
+
+* Replace image i/o from scipy.misc by imageio (Pierre de Buyl)
+
+* Update information on dict ordering (Bharath Saiguhan)
+
+* Suppress warnings for mandelbrot example (Pierre de Buyl)
+
+* Update NumPy introduction and advanced usage for changes to NumPy: wording, bytes
+  representation, floating point argument to np.zeros (Ross Barnowski)
+
+* Fix links to NumPy documentation to use numpy.org (Ross Barnowski)
+
+* Update note on transposed arrays (Ross Barnowski with Eric Wieser)
+
+* Use generated figure file for lidar data processing (Lawrence Chan)
+
+* Update link from PyMC2 to PyMC3 (B. Hohl)
+
+* Fix transparent popup menu to have a background (Pierre de Buyl)
+
+
 Release 2020.1 (March 2020)
 -----------------------------
 
