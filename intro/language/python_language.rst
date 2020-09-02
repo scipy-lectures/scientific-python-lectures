@@ -62,7 +62,6 @@ _____
 
     first_steps.rst
     basic_types.rst
-    assignment.rst
     control_flow.rst
     functions.rst
     reusing_code.rst
