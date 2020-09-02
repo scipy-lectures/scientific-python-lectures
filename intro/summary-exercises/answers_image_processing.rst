@@ -19,18 +19,18 @@ Example of solution for the image processing exercise: unmolten grains in glass
    with the "right" orientation (origin in the bottom left corner, and not
    the upper left corner as for standard arrays). ::
 
-    >>> dat = plt.imread('data/MV_HFV_012.jpg')
+     >>> dat = plt.imread('data/MV_HFV_012.jpg')
 
 2. Crop the image to remove the lower panel with measure information. ::
 
-    >>> dat = dat[:-60]
+     >>> dat = dat[:-60]
 
 3. Slightly filter the image with a median filter in order to refine its
    histogram. Check how the histogram changes. ::
 
-    >>> filtdat = ndimage.median_filter(dat, size=(7,7))
-    >>> hi_dat = np.histogram(dat, bins=np.arange(256))
-    >>> hi_filtdat = np.histogram(filtdat, bins=np.arange(256))
+     >>> filtdat = ndimage.median_filter(dat, size=(7,7))
+     >>> hi_dat = np.histogram(dat, bins=np.arange(256))
+     >>> hi_filtdat = np.histogram(filtdat, bins=np.arange(256))
 
    .. image:: ../image_processing/exo_histos.png
       :align: center
