@@ -358,7 +358,7 @@ regression one:
 
 .. literalinclude:: examples/plot_linear_regression.py
     :start-after: import matplotlib.pyplot as plt
-    :end-before: **Total running time of the script:**
+    :end-before: plot the results
 
 .. figure:: auto_examples/images/sphx_glr_plot_linear_regression_001.png
    :align: center
@@ -1767,6 +1767,6 @@ unknown data, using an independent test set is vital.
    * `Introduction to Machine Learning with Python
      <http://shop.oreilly.com/product/0636920030515.do>`_,
      by Sarah Guido, Andreas Müller
-    (`notebooks available here <https://github.com/amueller/introduction_to_ml_with_python>`_).
+     (`notebooks available here <https://github.com/amueller/introduction_to_ml_with_python>`_).
 
 
