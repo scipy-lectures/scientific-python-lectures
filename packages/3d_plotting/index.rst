@@ -351,7 +351,7 @@ direction of the field (Bx, By, Bz), and the second axis the index number
 of the point. Arrays `X`, `Y` and `Z` give the positions of these data
 points.
 
-.. topic:: **Excercise**
+.. topic:: **Exercise**
     :class: green
 
     Visualize this field. Your goal is to make sure that the simulation

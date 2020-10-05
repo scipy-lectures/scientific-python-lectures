@@ -244,7 +244,7 @@ dimensions at a time using a scatter plot:
    :align: left
    :target: auto_examples/plot_iris_scatter.html
 
-.. topic:: **Excercise**:
+.. topic:: **Exercise**:
     :class: green
    
     Can you choose 2 features to find a plot where it is easier to
