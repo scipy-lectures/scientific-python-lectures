@@ -1,8 +1,8 @@
 """
-Excercise 1
+Exercise 1
 ===========
 
-Solution of the excercise 1 with matplotlib.
+Solution of the exercise 1 with matplotlib.
 """
 
 import numpy as np
