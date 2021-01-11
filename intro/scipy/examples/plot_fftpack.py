@@ -65,7 +65,7 @@ np.allclose(peak_freq, 1./period)
 # An inner plot to show the peak frequency
 axes = plt.axes([0.55, 0.3, 0.3, 0.5])
 plt.title('Peak frequency')
-plt.plot(freqs[:8], power[:8])
+plt.plot(freqs[:8], power[pos_mask][:8])
 plt.setp(axes, yticks=[])
 
 # scipy.signal.find_peaks_cwt can also be used for more advanced
