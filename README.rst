@@ -13,7 +13,7 @@ ecosystem that can be used for a full course of scientific computing with
 Python.
 
 These documents are written with the rest markup language (``.rst``
-extension) and built using Sphinx: https://www.sphinx-doc.org.
+extension) and built using `Sphinx <https://www.sphinx-doc.org>`_.
 
 You can view the online version at: https://scipy-lectures.org
 
