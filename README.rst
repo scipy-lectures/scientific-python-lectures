@@ -1,5 +1,5 @@
 .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.594102.svg
-    :target: http://dx.doi.org/10.5281/zenodo.594102
+    :target: https://dx.doi.org/10.5281/zenodo.594102
 
 .. image:: https://travis-ci.org/scipy-lectures/scipy-lecture-notes.svg?branch=master
     :target: https://travis-ci.org/scipy-lectures/scipy-lecture-notes
@@ -13,9 +13,9 @@ ecosystem that can be used for a full course of scientific computing with
 Python.
 
 These documents are written with the rest markup language (``.rst``
-extension) and built using Sphinx: http://sphinx.pocoo.org/.
+extension) and built using `Sphinx <https://www.sphinx-doc.org>`_.
 
-You can view the online version at: http://scipy-lectures.org
+You can view the online version at: https://scipy-lectures.org
 
 Reusing and distributing
 -------------------------
@@ -30,6 +30,6 @@ reviewed and edited by the original authors and the editors.
 Building and contributing 
 --------------------------
 
-The file `CONTRIBUTING.rst` contains instructions to build from source
+The file ``CONTRIBUTING.rst`` contains instructions to build from source
 and to contribute.
 
