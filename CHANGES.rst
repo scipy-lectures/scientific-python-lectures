@@ -2,7 +2,7 @@ What's new
 ==========
 
 Release 2020.2 (September 2020)
------------------------------
+-------------------------------
 
 * Replace image i/o from scipy.misc by imageio (Pierre de Buyl)
 
