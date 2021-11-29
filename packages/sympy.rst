@@ -330,9 +330,9 @@ equations::
    equations with respect to multiple variables giving a tuple as second
    argument. To do this you use the :func:`~sympy.solve` command::
 
-   >>> solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
-   >>> solution[x], solution[y]
-   (-3, 1)
+     >>> solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
+     >>> solution[x], solution[y]
+     (-3, 1)
 
 Another alternative in the case of polynomial equations is
 `factor`. `factor` returns the polynomial factorized into irreducible
