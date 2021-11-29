@@ -602,6 +602,6 @@ Putting it together
 
     direction = Array(float, value=(0, 0, 1), cols=3, shape=(3,))
 
-You can look at the :ref:`example_coil_application.py` to see a
-full-blown application for coil design in 270 lines of code.
+You can look at the `example coil application <auto_examples/example_coil_application.py>`_
+to see a full-blown application for coil design in 270 lines of code.
 
