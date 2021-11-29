@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 #################################
 
 plt.figure()
-img = plt.imread('../data/elephant.png')
+img = plt.imread('../../../data/elephant.png')
 plt.imshow(img)
 
 #################################
