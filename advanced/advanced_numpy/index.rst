@@ -1060,7 +1060,7 @@ Solution: building an ufunc from scratch
 
 E.g. supporting both single- and double-precision versions
 
-.. sourcecode:: c
+.. sourcecode:: cython
 
    cdef void mandel_single_point(double complex *z_in, 
                                  double complex *c_in,
