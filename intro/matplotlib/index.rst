@@ -88,7 +88,7 @@ Simple plot
    C, S = np.cos(X), np.sin(X)
 
 
-``X`` is now a numpy array with 256 values ranging from -π to +π
+``X`` is now a numpy array with 256 values ranging from :math:`-\pi` to :math:`+\pi`
 (included). ``C`` is the cosine (256 values) and ``S`` is the sine (256
 values).
 
@@ -290,7 +290,7 @@ Setting ticks
 .. tip::
 
     Current ticks are not ideal because they do not show the interesting values
-    (+/-π,+/-π/2) for sine and cosine. We'll change them such that they show
+    (:math:`\pm \pi`,:math:`\pm \pi`/2) for sine and cosine. We'll change them such that they show
     only these values.
 
 |clear-floats|
@@ -325,7 +325,7 @@ Setting tick labels
 .. tip::
 
     Ticks are now properly placed but their label is not very explicit.
-    We could guess that 3.142 is π but it would be better to make it
+    We could guess that 3.142 is :math:`\pi` but it would be better to make it
     explicit. When we set tick values, we can also provide a
     corresponding label in the second argument list. Note that we'll use
     latex to allow for nice rendering of the label.
@@ -436,7 +436,7 @@ Annotate some points
 .. tip::
 
     Let's annotate some interesting points using the annotate command. We
-    chose the 2π/3 value and we want to annotate both the sine and the
+    chose the :math:`2\pi / 3` value and we want to annotate both the sine and the
     cosine. We'll first draw a marker on the curve as well as a straight
     dotted line. Then, we'll use the annotate command to display some
     text with an arrow.
@@ -671,7 +671,7 @@ Other Types of Plots: examples and exercises
    :target: `Grids`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_multiplot_ext_001.png
    :scale: 39
-   :target: `Multi Plots`             _
+   :target: `Multi Plots`_
 .. image:: auto_examples/pretty_plots/images/sphx_glr_plot_polar_ext_001.png
    :scale: 39
    :target: `Polar Axis`_
