@@ -676,55 +676,72 @@ A quick look at the data
 .. sidebar:: Code and notebook
 
    Python code and Jupyter notebook for this section are found 
-   :ref:`here <sphx_glr_packages_scikit-learn_auto_examples_plot_boston_prediction.py>`
+   :ref:`here <sphx_glr_packages_scikit-learn_auto_examples_plot_california_prediction.py>`
 
 
 
-We'll use the simple Boston house prices set, available in scikit-learn.
-This records measurements of 13 attributes of housing markets around
-Boston, as well as the median price. The question is: can you predict
+We'll use the California house prices set, available in scikit-learn.
+This records measurements of 8 attributes of housing markets in 
+California, as well as the median price. The question is: can you predict
 the price of a new market given its attributes?::
 
-    >>> from sklearn.datasets import load_boston
-    >>> data = load_boston()
+    >>> from sklearn.datasets import fetch_california_housing
+    >>> data = fetch_california_housing(as_frame=True)
     >>> print(data.data.shape)
-    (506, 13)
+    (20640, 8)
     >>> print(data.target.shape)
-    (506,)
+    (20640,)
 
-We can see that there are just over 500 data points.
+We can see that there are just over 20000 data points.
 
 The ``DESCR`` variable has a long description of the dataset::
 
     >>> print(data.DESCR) # doctest: +ELLIPSIS
-    Boston House Prices dataset
-    ===========================
+    California Housing dataset
+    --------------------------
     <BLANKLINE>
-    Notes
-    ------
-    Data Set Characteristics:  
+    **Data Set Characteristics:**
     <BLANKLINE>
-        :Number of Instances: 506 
+        :Number of Instances: 20640
     <BLANKLINE>
-        :Number of Attributes: 13 numeric/categorical predictive
+        :Number of Attributes: 8 numeric, predictive attributes and the target
     <BLANKLINE>
-        :Median Value (attribute 14) is usually the target
+        :Attribute Information:
+            - MedInc        median income in block group
+            - HouseAge      median house age in block group
+            - AveRooms      average number of rooms per household
+            - AveBedrms     average number of bedrooms per household
+            - Population    block group population
+            - AveOccup      average number of household members
+            - Latitude      block group latitude
+            - Longitude     block group longitude
+    ...
     <BLANKLINE>
-        :Attribute Information (in order):
-            - CRIM     per capita crime rate by town
-            - ZN       proportion of residential land zoned for lots over 25,000 sq.ft.
-            - INDUS    proportion of non-retail business acres per town
-            - CHAS     Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)
-            - NOX      nitric oxides concentration (parts per 10 million)
-            - RM       average number of rooms per dwelling
-            - AGE      proportion of owner-occupied units built prior to 1940
-            - DIS      weighted distances to five Boston employment centres
-            - RAD      index of accessibility to radial highways
-            - TAX      full-value property-tax rate per $10,000
-            - PTRATIO  pupil-teacher ratio by town
-            - B        1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
-            - LSTAT    % lower status of the population
-            - MEDV     Median value of owner-occupied homes in $1000's
+    The target variable is the median house value for California districts,
+    expressed in hundreds of thousands of dollars ($100,000).
+This dataset was obtained from the StatLib repository.
+https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html
+    <BLANKLINE>
+The target variable is the median house value for California districts,
+expressed in hundreds of thousands of dollars ($100,000).
+    <BLANKLINE>
+This dataset was derived from the 1990 U.S. census, using one row per census
+block group. A block group is the smallest geographical unit for which the U.S.
+Census Bureau publishes sample data (a block group typically has a population
+of 600 to 3,000 people).
+    <BLANKLINE>
+An household is a group of people residing within a home. Since the average
+number of rooms and bedrooms in this dataset are provided per household, these
+columns may take surpinsingly large values for block groups with few households
+and many empty houses, such as vacation resorts.
+    <BLANKLINE>
+It can be downloaded/loaded using the
+:func:`sklearn.datasets.fetch_california_housing` function.
+    <BLANKLINE>
+.. topic:: References
+    <BLANKLINE>
+    - Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,
+      Statistics and Probability Letters, 33 (1997) 291-297
     ...
 
 It often helps to quickly visualize pieces of the data using histograms,
@@ -734,9 +751,9 @@ histogram of the target values: the median price in each neighborhood::
     >>> plt.hist(data.target)  # doctest: +ELLIPSIS
     (array([...
 
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_001.png
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_001.png
    :align: center
-   :target: auto_examples/plot_boston_prediction.html
+   :target: auto_examples/plot_california_prediction.html
    :scale: 70
 
 
@@ -749,46 +766,30 @@ others for our problem::
     ...     plt.scatter(data.data[:, index], data.target)  # doctest: +ELLIPSIS
     <Figure size...
 
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_002.png
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_002.png
    :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_003.png
+   :target: auto_examples/plot_california_prediction.html
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_003.png
    :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_004.png
+   :target: auto_examples/plot_california_prediction.html
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_004.png
    :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_005.png
+   :target: auto_examples/plot_california_prediction.html
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_005.png
    :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_006.png
+   :target: auto_examples/plot_california_prediction.html
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_006.png
    :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_007.png
+   :target: auto_examples/plot_california_prediction.html
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_007.png
    :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_008.png
+   :target: auto_examples/plot_california_prediction.html
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_008.png
    :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_009.png
+   :target: auto_examples/plot_california_prediction.html
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_009.png
    :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_010.png
-   :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_011.png
-   :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_012.png
-   :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_013.png
-   :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_014.png
-   :width: 32%  
-   :target: auto_examples/plot_boston_prediction.html
-
+   :target: auto_examples/plot_california_prediction.html
 
 
 This is a manual version of a technique called **feature selection**.
@@ -819,9 +820,9 @@ wrapper around an ordinary least squares calculation. ::
     >>> print("RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2))) # doctest: +ELLIPSIS
     RMS: 5.0059...
 
-.. image:: auto_examples/images/sphx_glr_plot_boston_prediction_015.png
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_015.png
    :align: right
-   :target: auto_examples/plot_boston_prediction.html
+   :target: auto_examples/plot_california_prediction.html
 
 We can plot the error: expected as a function of predicted::
 
@@ -851,7 +852,7 @@ We can plot the error: expected as a function of predicted::
         from sklearn.ensemble import GradientBoostingRegressor
         # Instantiate the model, fit the results, and scatter in vs. out
 
-    **Solution** The solution is found in :ref:`the code of this chapter <sphx_glr_packages_scikit-learn_auto_examples_plot_boston_prediction.py>`
+    **Solution** The solution is found in :ref:`the code of this chapter <sphx_glr_packages_scikit-learn_auto_examples_plot_california_prediction.py>`
 
 
 
@@ -901,13 +902,13 @@ samples it has already seen.  To really test how well this algorithm
 does, we need to try some samples it *hasn't* yet seen.
 
 This problem also occurs with regression models. In the following we
-fit an other instance-based model named "decision tree" to the Boston
+fit an other instance-based model named "decision tree" to the California 
 Housing price dataset we introduced previously::
 
-    >>> from sklearn.datasets import load_boston
+    >>> from sklearn.datasets import fetch_california_housing 
     >>> from sklearn.tree import DecisionTreeRegressor
 
-    >>> data = load_boston()
+    >>> data = fetch_california_housing(as_frame=True)
     >>> clf = DecisionTreeRegressor().fit(data.data, data.target)
     >>> predicted = clf.predict(data.data)
     >>> expected = data.target
