@@ -268,11 +268,11 @@ For instance a linear regression is: :class:`sklearn.linear_model.LinearRegressi
 **Estimator parameters**: All the parameters of an estimator can be set
 when it is instantiated::
 
-    >>> model = LinearRegression(normalize=True)
+    >>> model = LinearRegression(n_jobs=1, normalize=True)
     >>> print(model.normalize)
     True
     >>> print(model)
-    LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=True)
+    LinearRegression(n_jobs=1, normalize=True)
 
 Fitting on data
 ~~~~~~~~~~~~~~~
@@ -290,7 +290,7 @@ Let's create some simple data with :ref:`numpy <numpy>`::
            [2]])
 
     >>> model.fit(X, y)
-    LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=True)
+    LinearRegression(n_jobs=1, normalize=True)
 
 **Estimated parameters**: When data is fitted with an estimator,
 parameters are estimated from the data at hand. All the estimated
@@ -579,7 +579,7 @@ One good method to keep in mind is Gaussian Naive Bayes
     >>> # train the model
     >>> clf = GaussianNB()
     >>> clf.fit(X_train, y_train)
-    GaussianNB(priors=None)
+    GaussianNB()
     
     >>> # use the model to predict the labels of the test data
     >>> predicted = clf.predict(X_test)
@@ -627,20 +627,22 @@ combines several measures and prints a table with the results::
 
     >>> from sklearn import metrics
     >>> print(metrics.classification_report(expected, predicted))
-                 precision    recall  f1-score   support
+                precision    recall  f1-score   support
     <BLANKLINE>
-              0       1.00      0.91      0.95        46
-              1       0.76      0.64      0.69        44
-              2       0.85      0.62      0.72        47
-              3       0.98      0.82      0.89        49
-              4       0.89      0.86      0.88        37
-              5       0.97      0.93      0.95        41
-              6       1.00      0.98      0.99        44
-              7       0.73      1.00      0.84        45
-              8       0.50      0.90      0.64        49
-              9       0.93      0.54      0.68        48
+             0       1.00      0.91      0.95        46
+             1       0.76      0.64      0.69        44
+             2       0.85      0.62      0.72        47
+             3       0.98      0.82      0.89        49
+             4       0.89      0.86      0.88        37
+             5       0.97      0.93      0.95        41
+             6       1.00      0.98      0.99        44
+             7       0.73      1.00      0.84        45
+             8       0.50      0.90      0.64        49
+             9       0.93      0.54      0.68        48
     <BLANKLINE>
-    avg / total       0.86      0.82      0.82       450
+        accuracy                           0.82       450
+       macro avg       0.86      0.82      0.82       450
+    weighted avg       0.86      0.82      0.82       450
     <BLANKLINE>
 
 
@@ -696,53 +698,48 @@ We can see that there are just over 20000 data points.
 
 The ``DESCR`` variable has a long description of the dataset::
 
-    >>> print(data.DESCR) # doctest: +ELLIPSIS
+    >>> print(data.DESCR) # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    .. _california_housing_dataset:
+    <BLANKLINE>
     California Housing dataset
     --------------------------
     <BLANKLINE>
     **Data Set Characteristics:**
     <BLANKLINE>
-        :Number of Instances: 20640
+	:Number of Instances: 20640
     <BLANKLINE>
-        :Number of Attributes: 8 numeric, predictive attributes and the target
+	:Number of Attributes: 8 numeric, predictive attributes and the target
     <BLANKLINE>
-        :Attribute Information:
-            - MedInc        median income in block group
-            - HouseAge      median house age in block group
-            - AveRooms      average number of rooms per household
-            - AveBedrms     average number of bedrooms per household
-            - Population    block group population
-            - AveOccup      average number of household members
-            - Latitude      block group latitude
-            - Longitude     block group longitude
-    ...
+	:Attribute Information:
+	    - MedInc        median income in block
+	    - HouseAge      median house age in block
+	    - AveRooms      average number of rooms
+	    - AveBedrms     average number of bedrooms
+	    - Population    block population
+	    - AveOccup      average house occupancy
+	    - Latitude      house block latitude
+	    - Longitude     house block longitude
     <BLANKLINE>
-    The target variable is the median house value for California districts,
-    expressed in hundreds of thousands of dollars ($100,000).
-This dataset was obtained from the StatLib repository.
-https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html
+	:Missing Attribute Values: None
     <BLANKLINE>
-The target variable is the median house value for California districts,
-expressed in hundreds of thousands of dollars ($100,000).
+    This dataset was obtained from the StatLib repository.
+    http://lib.stat.cmu.edu/datasets/
     <BLANKLINE>
-This dataset was derived from the 1990 U.S. census, using one row per census
-block group. A block group is the smallest geographical unit for which the U.S.
-Census Bureau publishes sample data (a block group typically has a population
-of 600 to 3,000 people).
+    The target variable is the median house value for California districts.
     <BLANKLINE>
-An household is a group of people residing within a home. Since the average
-number of rooms and bedrooms in this dataset are provided per household, these
-columns may take surpinsingly large values for block groups with few households
-and many empty houses, such as vacation resorts.
+    This dataset was derived from the 1990 U.S. census, using one row per census
+    block group. A block group is the smallest geographical unit for which the U.S.
+    Census Bureau publishes sample data (a block group typically has a population
+    of 600 to 3,000 people).
     <BLANKLINE>
-It can be downloaded/loaded using the
-:func:`sklearn.datasets.fetch_california_housing` function.
+    It can be downloaded/loaded using the
+    :func:`sklearn.datasets.fetch_california_housing` function.
     <BLANKLINE>
-.. topic:: References
+    .. topic:: References
     <BLANKLINE>
-    - Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,
-      Statistics and Probability Letters, 33 (1997) 291-297
-    ...
+	- Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,
+	  Statistics and Probability Letters, 33 (1997) 291-297
+
 
 It often helps to quickly visualize pieces of the data using histograms,
 scatter plots, or other plot types. With matplotlib, let us show a
@@ -763,7 +760,7 @@ others for our problem::
 
     >>> for index, feature_name in enumerate(data.feature_names):
     ...     plt.figure()
-    ...     plt.scatter(data.data[:, index], data.target)  # doctest: +ELLIPSIS
+    ...     plt.scatter(data.data[feature_name], data.target)  # doctest: +ELLIPSIS
     <Figure size...
 
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_002.png
@@ -814,11 +811,11 @@ wrapper around an ordinary least squares calculation. ::
     >>> from sklearn.linear_model import LinearRegression
     >>> clf = LinearRegression()
     >>> clf.fit(X_train, y_train)
-    LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)
+    LinearRegression()
     >>> predicted = clf.predict(X_test)
     >>> expected = y_test
     >>> print("RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2))) # doctest: +ELLIPSIS
-    RMS: 5.0059...
+    RMS: 0.7...
 
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_015.png
    :align: right
@@ -976,20 +973,22 @@ Now we train on the training data, and test on the testing data::
      [ 0  0  0  0  0  0  0  0 48  0]
      [ 0  0  0  1  0  1  0  0  0 45]]
     >>> print(metrics.classification_report(y_test, y_pred))
-                 precision    recall  f1-score   support
+                  precision    recall  f1-score   support
     <BLANKLINE>
-              0       1.00      1.00      1.00        37
-              1       1.00      1.00      1.00        43
-              2       1.00      0.98      0.99        44
-              3       0.96      1.00      0.98        45
-              4       1.00      1.00      1.00        38
-              5       0.98      0.98      0.98        48
-              6       1.00      1.00      1.00        52
-              7       1.00      1.00      1.00        48
-              8       1.00      1.00      1.00        48
-              9       0.98      0.96      0.97        47
+	       0       1.00      1.00      1.00        37
+	       1       1.00      1.00      1.00        43
+	       2       1.00      0.98      0.99        44
+	       3       0.96      1.00      0.98        45
+	       4       1.00      1.00      1.00        38
+	       5       0.98      0.98      0.98        48
+	       6       1.00      1.00      1.00        52
+	       7       1.00      1.00      1.00        48
+	       8       1.00      1.00      1.00        48
+	       9       0.98      0.96      0.97        47
     <BLANKLINE>
-    avg / total       0.99      0.99      0.99       450
+        accuracy                           0.99       450
+       macro avg       0.99      0.99      0.99       450
+    weighted avg       0.99      0.99      0.99       450
     <BLANKLINE>
 
 The averaged f1-score is often used as a convenient measure of the
@@ -1040,9 +1039,9 @@ Model Selection via Validation
     ...     y_pred = clf.predict(X_test)
     ...     print('%s: %s' %
     ...           (Model.__name__, metrics.f1_score(y_test, y_pred, average="macro")))  # doctest: +ELLIPSIS
-    GaussianNB: 0.8332741681...
-    KNeighborsClassifier: 0.9804562804...
-    LinearSVC: 0.93...
+    GaussianNB: 0.8...
+    KNeighborsClassifier: 0.9...
+    LinearSVC: 0.9...
 
 * For each classifier, which value for the hyperparameters gives the best
   results for the digits data?  For :class:`~sklearn.svm.LinearSVC`, use
@@ -1079,8 +1078,8 @@ to automatically compute score on all these folds. Here we do
 
     >>> clf = KNeighborsClassifier()
     >>> from sklearn.model_selection import cross_val_score
-    >>> cross_val_score(clf, X, y, cv=5)
-    array([0.9478022 ,  0.9558011 ,  0.96657382,  0.98039216,  0.96338028])
+    >>> cross_val_score(clf, X, y, cv=5) #doctest: +ELLIPSIS
+    array([0.947...,  0.955...,  0.966...,  0.980...,  0.963... ])
 
 We can use different splitting strategies, such as random splitting::
 
@@ -1121,8 +1120,8 @@ With the default hyper-parameters: we compute the cross-validation score::
     >>> for Model in [Ridge, Lasso]:
     ...     model = Model()
     ...     print('%s: %s' % (Model.__name__, cross_val_score(model, X, y).mean()))
-    Ridge: 0.409427438303
-    Lasso: 0.353800083299
+    Ridge: 0.4...
+    Lasso: 0.3...
 
 Basic Hyperparameter Optimization
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1158,7 +1157,7 @@ Automatically Performing Grid Search
 estimator, as well as a dictionary of parameter values to be searched.
 We can find the optimal parameters this way::
 
-    >>> from sklearn.grid_search import GridSearchCV
+    >>> from sklearn.model_selection import GridSearchCV
     >>> for Model in [Ridge, Lasso]:
     ...     gscv = GridSearchCV(Model(), dict(alpha=alphas), cv=3).fit(X, y)
     ...     print('%s: %s' % (Model.__name__, gscv.best_params_))
@@ -1240,19 +1239,19 @@ iris dataset::
     >>> from sklearn.decomposition import PCA
     >>> pca = PCA(n_components=2, whiten=True)
     >>> pca.fit(X) # doctest: +ELLIPSIS
-    PCA(..., n_components=2, ...)
+    PCA(n_components=2, ...)
 
 Once fitted, :class:`~sklearn.decomposition.PCA` exposes the singular
 vectors in the ``components_`` attribute::
 
     >>> pca.components_     # doctest: +ELLIPSIS
-    array([[ 0.36158..., -0.08226...,  0.85657...,  0.35884...],
-           [ 0.65653...,  0.72971..., -0.17576..., -0.07470...]])
+    array([[ 0.3..., -0.08...,  0.85...,  0.3...],
+           [ 0.6...,  0.7..., -0.1..., -0.07...]])
 
 Other attributes are available as well::
 
     >>> pca.explained_variance_ratio_    # doctest: +ELLIPSIS
-    array([0.92461...,  0.05301...])
+    array([0.92...,  0.053...])
 
 Let us project the iris dataset along those first two dimensions:::
 

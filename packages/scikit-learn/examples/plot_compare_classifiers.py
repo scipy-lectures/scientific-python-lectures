@@ -26,7 +26,7 @@ for Model in [LinearSVC, GaussianNB, KNeighborsClassifier]:
 print('------------------')
 
 # test SVC loss
-for loss in ['l1', 'l2']:
+for loss in ['hinge', 'squared_hinge']:
     clf = LinearSVC(loss=loss).fit(X_train, y_train)
     y_pred = clf.predict(X_test)
     print("LinearSVC(loss='{0}'): {1}".format(loss,

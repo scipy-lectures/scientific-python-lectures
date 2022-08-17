@@ -24,7 +24,7 @@ plt.tight_layout()
 
 for index, feature_name in enumerate(data.feature_names):
     plt.figure(figsize=(4, 3))
-    plt.scatter(data.data[:, index], data.target)
+    plt.scatter(data.data[feature_name], data.target)
     plt.ylabel('Price', size=15)
     plt.xlabel(feature_name, size=15)
     plt.tight_layout()
