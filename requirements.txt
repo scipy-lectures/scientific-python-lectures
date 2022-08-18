@@ -17,3 +17,4 @@ imageio>=2.8
 pip
 # For conda, pip installable
 sphinx-gallery==0.2.0
+pdfnup3
