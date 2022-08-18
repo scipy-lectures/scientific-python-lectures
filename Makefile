@@ -8,6 +8,8 @@ SPHINXBUILD   = $(PYTHON) -m sphinx
 
 ALLSPHINXOPTS   = -d build/doctrees $(SPHINXOPTS) .
 
+TAG ?= HEAD
+
 SSH_HOST=
 SSH_USER=
 SSH_TARGET_DIR=
@@ -99,18 +101,17 @@ linkcheck:
 	      "or in build/linkcheck/output.txt."
 
 pdf: latex
-	cd build/latex ; make all-pdf ; pdfnup ScipyLectures.pdf
+	cd build/latex ; make all-pdf ; pdfnup -o ScipyLectures-nup.pdf -n 2 ScipyLectures.pdf
 	cp build/latex/ScipyLectures.pdf ScipyLectures-simple.pdf
 	cp build/latex/ScipyLectures-nup.pdf ScipyLectures.pdf
 
 zip: clean html pdf
 	mkdir -p build/scipy_lecture_notes ;
 	cp ScipyLectures.pdf ScipyLectures-simple.pdf build/html/_downloads/
-	cp -r build/html build/scipy_lecture_notes ;
-	cp -r data build/scipy_lecture_notes ;
+	cp -r data build/html/
+	cd build/html ; zip -r ../scipy-lecture-notes-html-$(TAG).zip .
 	cp ScipyLectures.pdf build/ ;
-	zip -r build/scipy_lecture_notes.zip build/scipy_lecture_notes  
-	git archive -o build/scipy_lecture_notes-source.zip --prefix scipy_lecture_notes-source/ HEAD
+	git archive -o build/scipy-lecture-notes-source-$(TAG).zip --prefix scipy-lecture-notes-$(TAG)/ $(TAG)
 
 install: cleandoctrees html pdf
 	rm -rf build/scipy-lectures.github.com
