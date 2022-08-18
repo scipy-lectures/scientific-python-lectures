@@ -20,4 +20,5 @@ dependencies:
 - pip
 - pip:
   - sphinx-gallery==0.2.0
+  - PyPDF2==1.28.5
   - pdfnup3
