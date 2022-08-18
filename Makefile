@@ -101,7 +101,7 @@ linkcheck:
 	      "or in build/linkcheck/output.txt."
 
 pdf: latex
-	cd build/latex ; make all-pdf ; pdfnup -o ScipyLectures-nup.pdf -n 2 ScipyLectures.pdf
+	cd build/latex ; make all-pdf ; pdfjam --outfile ScipyLectures-nup.pdf --nup 2x1 --landscape ScipyLectures.pdf
 	cp build/latex/ScipyLectures.pdf ScipyLectures-simple.pdf
 	cp build/latex/ScipyLectures-nup.pdf ScipyLectures.pdf
 
