@@ -1,6 +1,17 @@
 What's new
 ==========
 
+Release 2022.1 (August 2022)
+----------------------------
+
+* Replace scikit-learn housing example with California data (Marco Mangan)
+
+* Fix links and typos (Zachary Moon, Tim Gates, Marco Mangan, Gert-Ludwig Ingold)
+
+* Fix fftpack figure (Osayd Abdu)
+
+* Update software version (Pierre de Buyl)
+
 Release 2020.2 (September 2020)
 -------------------------------
 

@@ -51,6 +51,8 @@ Additional Contributions
 
 Listed by alphabetical order
 
+- Osayd Abdu
+
 - arunpersaud
 
 - Ross Barnowski
@@ -100,6 +102,8 @@ Listed by alphabetical order
 - Loïc Estève
 
 - Corey Farwell
+
+- Tim Gates
 
 - Stuart Geiger
 
@@ -161,6 +165,8 @@ Listed by alphabetical order
 
 - Manuel López-Ibáñez
 
+- Marco Mangan
+
 - Nicola Masarone
 
 - John McLaughlin
@@ -170,6 +176,8 @@ Listed by alphabetical order
 - michelemaroni89
 
 - Mohammad
+
+- Zachary Moon
 
 - Mike Mueller
 
