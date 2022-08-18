@@ -817,7 +817,7 @@ wrapper around an ordinary least squares calculation. ::
     >>> print("RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2))) # doctest: +ELLIPSIS
     RMS: 0.7...
 
-.. image:: auto_examples/images/sphx_glr_plot_california_prediction_015.png
+.. image:: auto_examples/images/sphx_glr_plot_california_prediction_010.png
    :align: right
    :target: auto_examples/plot_california_prediction.html
 
