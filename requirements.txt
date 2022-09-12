@@ -9,9 +9,9 @@ sympy>=1.2
 statsmodels==0.8
 seaborn==0.8
 pandas==0.23
-pytest>=5.1
+pytest>=7
 sphinx>=1.7,<1.8
-coverage==4.4.2
+coverage>=6.2
 pillow
 imageio==2.13.5
 pip
