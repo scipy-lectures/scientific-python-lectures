@@ -26,7 +26,7 @@ Objectives:
 * Provide tutorials for a selection of widely-used and stable computational
   libraries.
   Currently, we cover pandas, statmodels, seaborn, scikit-image,
-  scikit-learn, sympy, and mayavi.
+  scikit-learn, and sympy.
 * Automated testing is applied to the code examples as much as possible.
 
 Design choices:

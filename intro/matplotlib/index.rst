@@ -1000,8 +1000,6 @@ Starting from the code below, try to reproduce the graphic.
 
 Click on figure for solution.
 
-.. seealso:: :ref:`mayavi-label`
-
 Text
 ----
 

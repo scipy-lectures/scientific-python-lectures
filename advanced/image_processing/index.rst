@@ -178,20 +178,6 @@ For smooth intensity variations, use ``interpolation='bilinear'``. For fine insp
 
 
 
-.. seealso:: 3-D visualization: Mayavi
-
-    See :ref:`mayavi-label`.
-
-	* Image plane widgets
-
-	* Isosurfaces
-
-	* ...
-
-.. image:: ../../packages/3d_plotting/decorations.png
-    :align: center
-    :scale: 65
-
 
 Basic manipulations
 ===================
