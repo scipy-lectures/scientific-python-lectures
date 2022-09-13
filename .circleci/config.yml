@@ -1,45 +1,45 @@
-version: 2
+version: 2.1
 
 jobs:
   build:
     docker:
       - image: cimg/python:3.7
-    environment:
-      DISTRIB: "conda"
-      PYTHON_VERSION: "3.7"
-      NUMPY_VERSION: "*"
-      SCIPY_VERSION: "*"
-      SCIKIT_LEARN_VERSION: "*"
-      MATPLOTLIB_VERSION: "*"
 
     steps:
       - checkout
-        # Get rid of existing virtualenvs on circle ci as they conflict with conda.
-        # Trick found here:
-        # https://discuss.circleci.com/t/disable-autodetection-of-project-or-application-of-python-venv/235/10
-      - run: cd && rm -rf ~/.pyenv && rm -rf ~/virtualenvs
-        # We need to remove conflicting texlive packages.
-      - run: sudo -E apt-get -yq remove texlive-binaries --purge
-        # Installing required packages for `make -C doc check command` to work.
-      - run: sudo -E apt-get -yq update
-      - run: sudo -E apt-get -yq --no-install-suggests --no-install-recommends --force-yes install dvipng texlive-latex-base texlive-latex-extra
-      - run: ./build_tools/install.sh
+
       - run:
-          name: Setup conda path in env variables
+          name: Update apt-get
+          command: sudo apt-get update
+
+      - run:
+           name: Install TeX
+           command: sudo apt-get install dvipng texlive-latex-base texlive-latex-extra
+
+      - restore_cache:
+          keys:
+            - pip-cache-v1
+
+      - run:
+          name: Install Python dependencies
           command: |
-            echo 'export PATH="$HOME/miniconda/bin:$PATH"'  >> $BASH_ENV
-      - run: python build_tools/show-python-packages-versions.py
-      - run: ./build_tools/circle_ci_test_doc.sh
-        # workaround - make html returns 0 even if examples fail to build
-      - run: cat ~/log.txt && if grep -q "Traceback (most recent call last):" ~/log.txt; then false; else true; fi
+            python3 -m venv venv
+            source venv/bin/activate
+            pip install -r requirements.txt
+            pip list
+
+      - save_cache:
+          key: pip-cache-v1
+          paths:
+            - ~/.cache/pip
+
+      - run:
+          name: Build docs
+          command: |
+            # NOTE: bad interaction w/ blas multithreading on circleci
+            export OMP_NUM_THREADS=1
+            source venv/bin/activate
+            make html  # FIX: check that failing examples produce failure
 
       - store_artifacts:
-          path: log.txt
-          destination: log.txt
-      - store-artifacts:
           path: build/html
-          destination: build
-
-
-
-
