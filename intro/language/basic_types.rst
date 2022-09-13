@@ -62,47 +62,6 @@ Type conversion (casting)::
     >>> float(1)
     1.0
 
-.. warning:: Integer division
-
-    In Python 2::
-
-        >>> 3 / 2   # doctest: +SKIP
-        1
-
-    In Python 3::
-
-        >>> 3 / 2   # doctest: +SKIP
-        1.5
-
-    **To be safe**: use floats::
-
-        >>> 3 / 2.
-        1.5
-
-        >>> a = 3
-        >>> b = 2
-        >>> a / b # In Python 2  # doctest: +SKIP
-        1
-        >>> a / float(b)
-        1.5
-
-    **Future behavior**: to always get the behavior of Python3
-
-        >>> from __future__ import division  # doctest: +SKIP
-        >>> 3 / 2  # doctest: +SKIP
-        1.5
-
-    .. tip::
-
-      If you explicitly want integer division use ``//``::
-
-        >>> 3.0 // 2
-        1.0
-
-      .. note::
-
-        The behaviour of the division operator has changed in `Python 3
-        <http://python3porting.com/preparing.html#use-instead-of-when-dividing-integers>`_.
 
 Containers
 ------------

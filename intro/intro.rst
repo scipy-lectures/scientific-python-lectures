@@ -250,15 +250,6 @@ Python comes in many flavors, and there are many ways to install it.
 However, we recommend to install a scientific-computing distribution,
 that comes readily with optimized versions of scientific modules.
 
-.. warning:: **You should install Python 3**
-
-  Python 2.7 is end of life, and will not be maintained past January 1, 2020.
-
-  **Working with Python 2.7 is at your own risk. Do not expect much support.**
-
-  * `Official announcement <https://www.python.org/dev/peps/pep-0373/>`_
-  * `The end is nigh <https://pythonclock.org/>`_
-
 **Under Linux**
 
 If you have a recent distribution, most of the tools are probably

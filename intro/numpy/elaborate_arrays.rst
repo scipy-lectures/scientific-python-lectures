@@ -84,15 +84,6 @@ Unsigned integers:
     >>> np.iinfo(np.uint32).max, 2**32 - 1
     (4294967295, 4294967295)
 
-.. sidebar:: Long integers
-
-    Python 2 has a specific type for 'long' integers, that cannot
-    overflow, represented with an 'L' at the end. In Python 3, all
-    integers are long, and thus cannot overflow.
-
-     >>> np.iinfo(np.int64).max, 2**63 - 1  # doctest: +SKIP
-     (9223372036854775807, 9223372036854775807L)
-
 
 Floating-point numbers:
 
