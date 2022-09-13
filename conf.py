@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # sphinx-quickstart on Fri Nov 28 22:10:09 2008.
 #
@@ -91,8 +90,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u"Scipy lecture notes"
-copyright = u'2012,2013,2015,2016,2017,2018,2019,2020,2021,2022'
+project = "Scipy lecture notes"
+copyright = '2012,2013,2015,2016,2017,2018,2019,2020,2021,2022'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -282,8 +281,8 @@ latex_show_pagerefs = False
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'ScipyLectures.tex', ur'Scipy lecture notes',
-   ur"""Scipy lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
+  ('index', 'ScipyLectures.tex', r'Scipy lecture notes',
+   r"""Scipy lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
    'manual'),
 ]
 
@@ -326,27 +325,28 @@ latex_elements = {
     'preamble': preamble,
     'fontpkg': '\\usepackage{lmodern}',
     'fncychap': r'''%
-    \usepackage[Sonny]{fncychap}%
-    \ChRuleWidth{1.5pt}%
-    \ChNumVar{\fontsize{76}{80}\sffamily\slshape}
-    \ChTitleVar{\raggedleft\Huge\sffamily\bfseries}''',
+        \usepackage[Sonny]{fncychap}%
+        \ChRuleWidth{1.5pt}%
+        \ChNumVar{\fontsize{76}{80}\sffamily\slshape}
+        \ChTitleVar{\raggedleft\Huge\sffamily\bfseries}
+    ''',
     'classoptions': ',oneside,openany',
-    'babel': '\usepackage[english]{babel}',
+    'babel': r'\usepackage[english]{babel}',
     'releasename': 'Edition',
     'sphinxsetup': 'warningBgColor={RGB}{255,204,204}',
-    'maketitle':
-    r'''\includepdf[noautoscale]{cover.pdf}
-\makeatletter%
-\hypersetup{
-    pdfinfo={
-        Title={\@title},
-        Author={\@author},
-        License={CC-BY},
-    }
-}%
-\makeatother%
-\newpage\newpage
-'''
+    'maketitle': r'''
+        \includepdf[noautoscale]{cover.pdf}
+        \makeatletter%
+        \hypersetup{
+            pdfinfo={
+                Title={\@title},
+                Author={\@author},
+                License={CC-BY},
+            }
+        }%
+        \makeatother%
+        \newpage\newpage
+    '''
     #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 }
 
@@ -384,4 +384,4 @@ pngmath_use_preview = True
 # Add the 'copybutton' javascript, to hide/show the prompt in code
 # examples
 def setup(app):
-    app.add_javascript('copybutton.js')
+    app.add_js_file('copybutton.js')
