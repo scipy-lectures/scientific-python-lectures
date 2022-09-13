@@ -79,7 +79,7 @@ Scipy Lecture Notes
 
        |pdf| `PDF, 1 page per side <./_downloads/ScipyLectures-simple.pdf>`_
    
-       |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/master>`_
+       |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/main>`_
      
        |github| `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
