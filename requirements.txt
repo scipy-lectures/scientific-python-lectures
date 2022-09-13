@@ -15,5 +15,6 @@ coverage>=6.2
 pillow
 imageio==2.13.5
 pip
+ipython
 # For conda, pip installable
 sphinx-gallery==0.10.0

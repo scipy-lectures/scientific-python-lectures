@@ -14,29 +14,18 @@ import os
 import subprocess
 import sphinx
 
-# If your extensions are in another directory, add it here. If the directory
-# is relative to the documentation root, use os.path.abspath to make it
-# absolute, like shown here.
-sys.path.append(os.path.abspath('sphinxext'))
-
 import sphinx_gallery
 
 # General configuration
 # ---------------------
-
-needs_sphinx = '1.0'
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
         'sphinx.ext.autodoc',
         'sphinx.ext.doctest',
-        'only_directives',
-        'ipython_console_highlighting',
-        #'matplotlib.sphinxext.only_directives',
-        ('sphinx.ext.imgmath'  # only available for sphinx >= 1.4
-            if sphinx.version_info[:2] >= (1, 4)
-            else 'sphinx.ext.pngmath'),
+        'IPython.sphinxext.ipython_console_highlighting',
+        'sphinx.ext.imgmath',
         'sphinx.ext.intersphinx',
         'sphinx.ext.extlinks',
         'sphinx_gallery.gen_gallery',
