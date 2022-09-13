@@ -73,7 +73,7 @@ plt.tight_layout()
 ##############################################################################
 # Print the error rate
 import numpy as np
-print("RMS: %r " % np.sqrt(np.mean((predicted - expected) ** 2)))
+print(f"RMS: {np.sqrt(np.mean((predicted - expected) ** 2))!r} ")
 
 plt.show()
 

@@ -223,7 +223,7 @@ def fastica(X, n_comp=None,
         n_comp = min(n, p)
     if (n_comp > min(n, p)):
         n_comp = min(n, p)
-        print("n_comp is too large: it will be set to %s" % n_comp)
+        print(f"n_comp is too large: it will be set to {n_comp}")
 
 
     if whiten:
@@ -247,8 +247,7 @@ def fastica(X, n_comp=None,
     else:
         w_init = np.asarray(w_init)
         if w_init.shape != (n_comp,n_comp):
-            raise ValueError("w_init has invalid shape -- should be %(shape)s"
-                             % {'shape': (n_comp,n_comp)})
+            raise ValueError(f"w_init has invalid shape -- should be {n_comp, n_comp}")
 
     kwargs = {'tol': tol,
               'g': g,

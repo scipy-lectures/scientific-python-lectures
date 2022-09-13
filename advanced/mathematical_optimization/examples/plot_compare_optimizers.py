@@ -13,7 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 results = pickle.load(open(
-    'helper/compare_optimizers_py%s.pkl' % sys.version_info[0],
+    f'helper/compare_optimizers_py{sys.version_info[0]}.pkl',
     'rb'))
 n_methods = len(list(results.values())[0]['Rosenbrock  '])
 n_dims = len(results)

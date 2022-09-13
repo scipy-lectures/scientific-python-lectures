@@ -20,8 +20,7 @@ X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
 for Model in [LinearSVC, GaussianNB, KNeighborsClassifier]:
     clf = Model().fit(X_train, y_train)
     y_pred = clf.predict(X_test)
-    print('%s: %s' %
-          (Model.__name__, metrics.f1_score(y_test, y_pred, average="macro")))
+    print(f"{Model.__name__}: {metrics.f1_score(y_test, y_pred, average='macro')}")
 
 print('------------------')
 
@@ -29,8 +28,7 @@ print('------------------')
 for loss in ['hinge', 'squared_hinge']:
     clf = LinearSVC(loss=loss).fit(X_train, y_train)
     y_pred = clf.predict(X_test)
-    print("LinearSVC(loss='{0}'): {1}".format(loss,
-          metrics.f1_score(y_test, y_pred, average="macro")))
+    print(f"LinearSVC(loss='{loss}'): {metrics.f1_score(y_test, y_pred, average='macro')}")
 
 print('-------------------')
 
@@ -38,7 +36,6 @@ print('-------------------')
 for n_neighbors in range(1, 11):
     clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X_train, y_train)
     y_pred = clf.predict(X_test)
-    print("KNeighbors(n_neighbors={0}): {1}".format(n_neighbors,
-        metrics.f1_score(y_test, y_pred, average="macro")))
+    print(f"KNeighbors(n_neighbors={n_neighbors}): {metrics.f1_score(y_test, y_pred, average='macro')}")
 
 

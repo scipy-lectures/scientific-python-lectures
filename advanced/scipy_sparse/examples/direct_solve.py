@@ -27,4 +27,4 @@ rhs = rand(1000)
 
 x = linsolve.spsolve(mtx, rhs)
 
-print('rezidual: %r' % np.linalg.norm(mtx * x - rhs))
+print(f'rezidual: {np.linalg.norm(mtx * x - rhs)!r}')

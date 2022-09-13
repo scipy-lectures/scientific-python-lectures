@@ -339,7 +339,7 @@ latex_elements = {
     #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 }
 
-_python_doc_base = 'https://docs.python.org/{.major}'.format(sys.version_info)
+_python_doc_base = f'https://docs.python.org/{sys.version_info.major}'
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {

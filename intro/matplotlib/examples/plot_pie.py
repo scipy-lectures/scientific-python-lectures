@@ -14,7 +14,7 @@ Z[-1] *= 2
 
 plt.axes([0.025, 0.025, 0.95, 0.95])
 
-plt.pie(Z, explode=Z*.05, colors = ['%f' % (i/float(n)) for i in range(n)])
+plt.pie(Z, explode=Z*.05, colors = [f'{i / float(n):f}' for i in range(n)])
 plt.axis('equal')
 plt.xticks([])
 plt.yticks()

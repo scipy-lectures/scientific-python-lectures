@@ -17,5 +17,5 @@ def load_data(filename):
 
 if __name__ == '__main__':
     data = load_data('exercises/data.txt')
-    print('min: %f' % min(data)) # 10.20
-    print('max: %f' % max(data)) # 61.30
+    print(f'min: {min(data):f}') # 10.20
+    print(f'max: {max(data):f}') # 61.30
