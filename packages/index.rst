@@ -21,7 +21,5 @@ packages useful for extended needs.
    statistics/index.rst
    sympy.rst
    scikit-image/index.rst
-   traits/index.rst
-   3d_plotting/index.rst
    scikit-learn/index.rst
 

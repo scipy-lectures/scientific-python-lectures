@@ -358,7 +358,6 @@ intersphinx_mapping = {
     'numpy': ('https://numpy.org/doc/stable', None),
     'scipy': ('https://docs.scipy.org/doc/scipy/reference', None),
     'matplotlib': ('https://matplotlib.org/', None),
-    'mayavi': ('http://docs.enthought.com/mayavi/mayavi', None),
     'sklearn': ('http://scikit-learn.org/stable', None),
     'sphinx': ('http://www.sphinx-doc.org/en/stable', None),
     'pandas': ('http://pandas.pydata.org/pandas-docs/stable/', None),

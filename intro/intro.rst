@@ -219,8 +219,6 @@ that can be combined to obtain a scientific computing environment:
 
 **Domain-specific packages**,
 
-* **Mayavi** for :ref:`3-D visualization <mayavi-label>`
-
 * **pandas, statsmodels, seaborn** for :ref:`statistics <statistics>`
 
 * **sympy** for :ref:`symbolic computing <sympy>`
