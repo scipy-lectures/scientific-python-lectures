@@ -40,6 +40,8 @@ create_new_conda_env() {
     bash miniconda.sh -b -p $HOME/miniconda
     export PATH=$HOME/miniconda/bin:$PATH
     conda update --yes conda
+    conda config --add channels conda-forge
+    conda config --set channel_priority strict
 
     # Create a conda environment
     python build_tools/requirements_to_environment.py

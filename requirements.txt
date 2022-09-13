@@ -13,7 +13,7 @@ pytest>=5.1
 sphinx>=1.7,<1.8
 coverage==4.4.2
 pillow
-imageio>=2.8
+imageio==2.13.5
 pip
 # For conda, pip installable
 sphinx-gallery==0.2.0
