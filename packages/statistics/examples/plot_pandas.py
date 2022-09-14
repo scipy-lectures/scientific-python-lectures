@@ -18,7 +18,7 @@ data = pandas.read_csv('brain_size.csv', sep=';', na_values='.')
 groupby_gender = data.groupby('Gender')
 groupby_gender.boxplot(column=['FSIQ', 'VIQ', 'PIQ'])
 
-from pandas.tools import plotting
+from pandas import plotting
 
 # Scatter matrices for different columns
 plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])

@@ -9,7 +9,7 @@ separating hyperplane on them.
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import SGDClassifier
-from sklearn.datasets.samples_generator import make_blobs
+from sklearn.datasets import make_blobs
 
 # we create 50 separable synthetic points
 X, Y = make_blobs(n_samples=50, centers=2,

@@ -107,7 +107,7 @@ NumPy Reference documentation
    .. sourcecode:: pycon
 
      >>> help(np.array) # doctest: +ELLIPSIS
-     Help on built-in function array in module numpy.core.multiarray:
+     Help on built-in function array in module numpy:
      <BLANKLINE>
      array(...)
          array(object, dtype=None, ...

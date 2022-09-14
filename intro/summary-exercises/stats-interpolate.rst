@@ -77,7 +77,7 @@ used because a spline of degree 3 seems to correctly fit the data::
 The quantile function is now going to be evaluated from the full range
 of probabilities::
 
-    >>> nprob = np.linspace(0, 1, 1e2)
+    >>> nprob = np.linspace(0, 1, 100)
     >>> fitted_max_speeds = quantile_func(nprob)
 
 In the current model, the maximum wind speed occurring every 50 years is

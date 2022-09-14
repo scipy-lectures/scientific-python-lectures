@@ -142,7 +142,7 @@ array of ints::
       WRITEABLE : False
       ALIGNED : True
       WRITEBACKIFCOPY : False
-      UPDATEIFCOPY : False
+
 
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
@@ -309,7 +309,7 @@ Casting
 
 - Casting in general copies data::
 
-    >>> x = np.array([1, 2, 3, 4], dtype=np.float)
+    >>> x = np.array([1, 2, 3, 4], dtype=float)
     >>> x
     array([1.,  2.,  3.,  4.])
     >>> y = x.astype(np.int8)
@@ -453,7 +453,7 @@ without copying data? ::
           [1027]], dtype=int16)
    >>> 0x0201, 0x0403
    (513, 1027)
-   >>> y.view(np.int16)
+   >>> y.view(np.int16)  # doctest: +SKIP
    array([[ 769, 1026]], dtype=int16)
 
    - What happened?
@@ -601,7 +601,7 @@ Slicing with integers
     >>> y.__array_interface__['data'][0] - x.__array_interface__['data'][0]
     8
 
-    >>> x = np.zeros((10, 10, 10), dtype=np.float)
+    >>> x = np.zeros((10, 10, 10), dtype=float)
     >>> x.strides
     (800, 80, 8)
     >>> x[::2,::3,::4].strides
@@ -609,7 +609,7 @@ Slicing with integers
 
 - Similarly, transposes never make copies (it just swaps strides)::
 
-    >>> x = np.zeros((10, 10, 10), dtype=np.float)
+    >>> x = np.zeros((10, 10, 10), dtype=float)
     >>> x.strides
     (800, 80, 8)
     >>> x.T.strides
@@ -1413,8 +1413,8 @@ Domain-aware functions
 
 The masked array package also contains domain-aware functions::
 
-    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
-    masked_array(data=[0.0, 0.6931471805599453, --, --, 1.0986122886681098, --],
+    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    masked_array(data=[0.0, 0.693147180559..., --, --, 1.098612288668..., --],
                  mask=[False, False,  True,  True, False,  True],
            fill_value=1e+20)
     <BLANKLINE>

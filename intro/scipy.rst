@@ -401,7 +401,7 @@ the location of the minimum that it has found:
      hess_inv: array([[0.0858...]])
           jac: array([-1.19209...e-06])
       message: 'Optimization terminated successfully.'
-         nfev: 18
+         nfev: 12
           nit: 5
          njev: 6
        status: 0
@@ -420,15 +420,16 @@ in general::
 
 
     >>> optimize.minimize(f, x0=0, method="L-BFGS-B")  # doctest: +ELLIPSIS
-          fun: array([-7.94582338])
+          fun: -7.94582338...
      hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
-          jac: array([-1.42108547e-06])
-      message: ...'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+          jac: array([-1.59872117e-06])
+      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 12
           nit: 5
+         njev: 6
        status: 0
       success: True
-            x: array([-1.30644013])
+            x: array([-1.30644...])
 
 Note how it cost only 12 functions evaluation above to find a good value
 for the minimum.
@@ -442,7 +443,7 @@ global minimum depending on the initial point x0::
 
     >>> res = optimize.minimize(f, x0=3, method="L-BFGS-B")
     >>> res.x
-    array([3.83746709])
+    array([3.83746...])
 
 .. Comment to make doctest pass
    >>> np.random.seed(42)

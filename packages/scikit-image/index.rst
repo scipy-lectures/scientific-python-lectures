@@ -527,10 +527,10 @@ the regions.
 *Watershed* segmentation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Watershed (:func:`skimage.morphology.watershed`) is a region-growing
+The Watershed (:func:`skimage.segmentation.watershed`) is a region-growing
 approach that fills "basins" in the image ::
 
-    >>> from skimage.morphology import watershed
+    >>> from skimage.segmentation import watershed
     >>> from skimage.feature import peak_local_max
     >>>
     >>> # Generate an initial image with two overlapping circles

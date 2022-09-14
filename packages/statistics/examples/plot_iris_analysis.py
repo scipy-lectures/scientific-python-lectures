@@ -13,7 +13,7 @@ Ilustrate an analysis on a real dataset:
 import matplotlib.pyplot as plt
 
 import pandas
-from pandas.tools import plotting
+from pandas import plotting
 
 from statsmodels.formula.api import ols
 
