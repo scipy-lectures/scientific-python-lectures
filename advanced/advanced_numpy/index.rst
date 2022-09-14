@@ -371,7 +371,7 @@ Re-interpretation / viewing
    .. note:: little-endian: least significant byte is on the *left* in memory
 
 
-2. Create a new view:
+2. Create a new view of type ``uint32``, shorthand ``i4``:
 
    >>> y = x.view("<i4")
    >>> y
@@ -438,29 +438,53 @@ without copying data? ::
 
 .. warning::
 
-   Another array taking exactly 4 bytes of memory:
+   Another two arrays, each occupying exactly 4 bytes of memory:
 
-   >>> y = np.array([[1, 3], [2, 4]], dtype=np.uint8).transpose()
-   >>> x = y.copy()
+   >>> x = np.array([[1, 3], [2, 4]], dtype=np.uint8)
    >>> x
-   array([[1, 2],
-          [3, 4]], dtype=uint8)
+   array([[1, 3],
+          [2, 4]], dtype=uint8)
+   >>> y = x.transpose()
    >>> y
    array([[1, 2],
           [3, 4]], dtype=uint8)
+
+   We view the elements of ``x`` (1 byte each) as ``int16`` (2 bytes each):
+
    >>> x.view(np.int16)
+   array([[ 769],
+          [1026]], dtype=int16)
+
+   What is happening here? Take a look at the bytes stored in memory
+   by ``x``:
+
+   >>> x.tobytes()
+   b'\x01\x03\x02\x04'
+
+   The ``\x`` stands for heXadecimal, so what we are seeing is::
+
+     0x01 0x03 0x02 0x04
+
+   We ask NumPy to interpret these bytes as elements of dtype
+   ``int16``—each of which occupies *two* bytes in memory.  Therefore,
+   ``0x01 0x03`` becomes the first ``uint16`` and ``0x02 0x04`` the
+   second.
+
+   You may then expect to see ``0x0103`` (259, when converting from
+   hexadecimal to decimal) as the first result. But your computer
+   likely stores most significant bytes first, and as such reads the
+   number as ``0x0301`` or 769 (go on and type `0x0301` into your Python
+   terminal to verify).
+
+   We can do the same on a copy of ``y`` (why doesn't it work on ``y``
+   directly?):
+
+   >>> y.copy().view(np.int16)
    array([[ 513],
           [1027]], dtype=int16)
-   >>> 0x0201, 0x0403
-   (513, 1027)
-   >>> y.view(np.int16)  # doctest: +SKIP
-   array([[ 769, 1026]], dtype=int16)
 
-   - What happened?
-   - ... we need to look into what ``x[0,1]`` actually means
-
-   >>> 0x0301, 0x0402
-   (769, 1026)
+   Can you explain these numbers, 513 and 1027, as well as the output
+   shape of the resulting array?
 
 
 Indexing scheme: strides
