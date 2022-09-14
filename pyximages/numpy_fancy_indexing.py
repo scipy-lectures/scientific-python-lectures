@@ -93,7 +93,7 @@ for nx in range(ncols):
     x = (nx+0.5)*boxsize
     for ny in range(nrows):
         y = (ncols-ny-0.5)*boxsize
-        c.text(x, y, r'\textbf{{{}}}'.format(ny*10+nx),
+        c.text(x, y, fr'\textbf{{{ny*10+nx}}}',
                [text.halign.center, text.valign.middle])
 
 parwidth = 10.6

@@ -124,7 +124,7 @@ def rosenbrock_hessian(x):
 ###############################################################################
 # Helpers to wrap the functions
 
-class LoggingFunction(object):
+class LoggingFunction:
 
     def __init__(self, function, counter=None):
         self.function = function
@@ -146,7 +146,7 @@ class LoggingFunction(object):
         self.counts.append(len(self.counter))
         return f_i
 
-class CountingFunction(object):
+class CountingFunction:
 
     def __init__(self, function, counter=None):
         self.function = function

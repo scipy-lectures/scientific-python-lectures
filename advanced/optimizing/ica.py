@@ -61,7 +61,7 @@ def _sym_decorrelation(W):
     s, u = np.linalg.eigh(K) 
     # u (resp. s) contains the eigenvectors (resp. square roots of 
     # the eigenvalues) of W * W.T 
-    u, W = [np.asmatrix(e) for e in (u, W)]
+    u, W = (np.asmatrix(e) for e in (u, W))
     W = (u * np.diag(1.0/np.sqrt(s)) * u.T) * W  # W = (W * W.T) ^{-1/2} * W
     return W
 

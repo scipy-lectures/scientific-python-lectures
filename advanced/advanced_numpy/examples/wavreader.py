@@ -39,7 +39,7 @@ print(wav_header_dtype.fields)
 #  ))
 
 
-f = open(sys.argv[1], 'r')
+f = open(sys.argv[1])
 wav_header = np.fromfile(f, dtype=wav_header_dtype, count=1)
 f.close()
 
