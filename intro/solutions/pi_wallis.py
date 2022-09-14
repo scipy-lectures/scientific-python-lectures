@@ -1,7 +1,6 @@
 """
 The correction for the calculation of pi using the Wallis formula.
 """
-from __future__ import division
 
 pi = 3.14159265358979312
 
@@ -35,5 +34,5 @@ print(abs(my_pi - better_pi))
 # Solution in a single line using more adcanved constructs (reduce, lambda,
 # list comprehensions
 print(2 * reduce(lambda x, y: x * y,
-                 [float((4 * (i ** 2))) / ((4 * (i ** 2)) - 1)
+                 [float(4 * (i ** 2)) / ((4 * (i ** 2)) - 1)
                  for i in range(1, 100000)]))

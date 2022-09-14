@@ -170,8 +170,8 @@ if True:
             this_dim_benchs[cost_name] = function_bench
         gradient_less_benchs[ndim] = this_dim_benchs
         print(80*'_')
-        print('Done cost %s, ndim %s' % (cost_name, ndim))
+        print(f'Done cost {cost_name}, ndim {ndim}')
         print(80*'_')
 
     pickle.dump(gradient_less_benchs,
-                open('compare_optimizers_py%s.pkl' % sys.version_info[0], 'wb'))
+                open(f'compare_optimizers_py{sys.version_info[0]}.pkl', 'wb'))

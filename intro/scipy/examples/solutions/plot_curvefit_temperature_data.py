@@ -50,6 +50,6 @@ plt.plot(days, yearly_temps(days, *res_max), 'r-')
 plt.plot(months, temp_min, 'bo')
 plt.plot(days, yearly_temps(days, *res_min), 'b-')
 plt.xlabel('Month')
-plt.ylabel('Temperature ($^\circ$C)')
+plt.ylabel(r'Temperature ($^\circ$C)')
 
 plt.show()

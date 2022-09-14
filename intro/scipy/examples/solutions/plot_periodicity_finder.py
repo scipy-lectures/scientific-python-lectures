@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 plt.figure()
 plt.plot(years, populations * 1e-3)
 plt.xlabel('Year')
-plt.ylabel('Population number ($\cdot10^3$)')
+plt.ylabel(r'Population number ($\cdot10^3$)')
 plt.legend(['hare', 'lynx', 'carrot'], loc=1)
 
 ############################################################
@@ -40,7 +40,7 @@ plt.figure()
 plt.plot(periods, abs(ft_populations) * 1e-3, 'o')
 plt.xlim(0, 22)
 plt.xlabel('Period')
-plt.ylabel('Power ($\cdot10^3$)')
+plt.ylabel(r'Power ($\cdot10^3$)')
 
 plt.show()
 

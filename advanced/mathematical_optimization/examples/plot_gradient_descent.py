@@ -29,11 +29,11 @@ def super_fmt(value):
     else:
         value = np.exp(value - .01)
         if value > .1:
-            out = '%1.1f' % value
+            out = f'{value:1.1f}'
         elif value > .01:
-            out = '%.2f' % value
+            out = f'{value:.2f}'
         else:
-            out = '%.2e' % value
+            out = f'{value:.2e}'
     return out
 
 ###############################################################################

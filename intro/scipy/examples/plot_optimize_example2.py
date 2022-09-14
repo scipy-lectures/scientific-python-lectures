@@ -26,20 +26,20 @@ from scipy import optimize
 # Global optimization
 grid = (-10, 10, 0.1)
 xmin_global = optimize.brute(f, (grid, ))
-print("Global minima found %s" % xmin_global)
+print(f"Global minima found {xmin_global}")
 
 # Constrain optimization
 xmin_local = optimize.fminbound(f, 0, 10)
-print("Local minimum found %s" % xmin_local)
+print(f"Local minimum found {xmin_local}")
 
 ############################################################
 # Root finding
 ############################################################
 
 root = optimize.root(f, 1)  # our initial guess is 1
-print("First root found %s" % root.x)
+print(f"First root found {root.x}")
 root2 = optimize.root(f, -2.5)
-print("Second root found %s" % root2.x)
+print(f"Second root found {root2.x}")
 
 ############################################################
 # Plot function, minima, and roots

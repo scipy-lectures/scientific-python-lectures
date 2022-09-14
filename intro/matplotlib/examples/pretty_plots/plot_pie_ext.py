@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 n = 20
 X = np.ones(n)
 X[-1] *= 2
-plt.pie(X, explode=X*.05, colors = ['%f' % (i/float(n)) for i in range(n)])
+plt.pie(X, explode=X*.05, colors = [f'{i / float(n):f}' for i in range(n)])
 
 fig = plt.gcf()
 w, h = fig.get_figwidth(), fig.get_figheight()
