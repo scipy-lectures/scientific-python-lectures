@@ -45,7 +45,7 @@ This section covers:
    :depth: 2
 
 .. tip::
-   
+
    In this section, numpy will be imported as follows::
 
     >>> import numpy as np
@@ -70,23 +70,23 @@ It's...
 .. code-block:: c
 
    typedef struct PyArrayObject {
-	   PyObject_HEAD
+           PyObject_HEAD
 
            /* Block of memory */
-	   char *data;
+           char *data;
 
            /* Data type descriptor */
-	   PyArray_Descr *descr;
+           PyArray_Descr *descr;
 
            /* Indexing scheme */
-	   int nd;
-	   npy_intp *dimensions;
-	   npy_intp *strides;
+           int nd;
+           npy_intp *dimensions;
+           npy_intp *strides;
 
            /* Other stuff */
-	   PyObject *base;
-	   int flags;
-	   PyObject *weakreflist;
+           PyObject *base;
+           int flags;
+           PyObject *weakreflist;
    } PyArrayObject;
 
 
@@ -142,7 +142,7 @@ array of ints::
       WRITEABLE : False
       ALIGNED : True
       WRITEBACKIFCOPY : False
-      UPDATEIFCOPY : False
+
 
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
@@ -265,14 +265,14 @@ Let's try accessing the sub-array:
 
 >>> wav_header['data_id']  # doctest: +SKIP
 array([[['d', 'a'],
-        ['t', 'a']]], 
+        ['t', 'a']]],
       dtype='|S1')
 >>> wav_header.shape
 (1,)
 >>> wav_header['data_id'].shape
 (1, 2, 2)
 
-When accessing sub-arrays, the dimensions get added to the end! 
+When accessing sub-arrays, the dimensions get added to the end!
 
 .. note::
 
@@ -309,7 +309,7 @@ Casting
 
 - Casting in general copies data::
 
-    >>> x = np.array([1, 2, 3, 4], dtype=np.float)
+    >>> x = np.array([1, 2, 3, 4], dtype=float)
     >>> x
     array([1.,  2.,  3.,  4.])
     >>> y = x.astype(np.int8)
@@ -371,7 +371,7 @@ Re-interpretation / viewing
    .. note:: little-endian: least significant byte is on the *left* in memory
 
 
-2. Create a new view:
+2. Create a new view of type ``uint32``, shorthand ``i4``:
 
    >>> y = x.view("<i4")
    >>> y
@@ -382,7 +382,6 @@ Re-interpretation / viewing
   ==========  ==========  ==========  ==========
    ``0x01``    ``0x02``    ``0x03``    ``0x04``
   ==========  ==========  ==========  ==========
-
 
 .. note::
 
@@ -426,9 +425,9 @@ without copying data? ::
        <a onclick="$('#hidden-item-0').toggle(100)">...</a>
        <div id="hidden-item-0" style="display: none;">
 
-    >>> y = x.view([('r', 'i1'), 
-    ...             ('g', 'i1'), 
-    ...             ('b', 'i1'), 
+    >>> y = x.view([('r', 'i1'),
+    ...             ('g', 'i1'),
+    ...             ('b', 'i1'),
     ...             ('a', 'i1')]
     ...              )[:, :, 0]
 
@@ -438,29 +437,53 @@ without copying data? ::
 
 .. warning::
 
-   Another array taking exactly 4 bytes of memory:
+   Another two arrays, each occupying exactly 4 bytes of memory:
 
-   >>> y = np.array([[1, 3], [2, 4]], dtype=np.uint8).transpose()
-   >>> x = y.copy()
+   >>> x = np.array([[1, 3], [2, 4]], dtype=np.uint8)
    >>> x
-   array([[1, 2],
-          [3, 4]], dtype=uint8)
+   array([[1, 3],
+          [2, 4]], dtype=uint8)
+   >>> y = x.transpose()
    >>> y
    array([[1, 2],
           [3, 4]], dtype=uint8)
+
+   We view the elements of ``x`` (1 byte each) as ``int16`` (2 bytes each):
+
    >>> x.view(np.int16)
+   array([[ 769],
+          [1026]], dtype=int16)
+
+   What is happening here? Take a look at the bytes stored in memory
+   by ``x``:
+
+   >>> x.tobytes()
+   b'\x01\x03\x02\x04'
+
+   The ``\x`` stands for heXadecimal, so what we are seeing is::
+
+     0x01 0x03 0x02 0x04
+
+   We ask NumPy to interpret these bytes as elements of dtype
+   ``int16``—each of which occupies *two* bytes in memory.  Therefore,
+   ``0x01 0x03`` becomes the first ``uint16`` and ``0x02 0x04`` the
+   second.
+
+   You may then expect to see ``0x0103`` (259, when converting from
+   hexadecimal to decimal) as the first result. But your computer
+   likely stores most significant bytes first, and as such reads the
+   number as ``0x0301`` or 769 (go on and type `0x0301` into your Python
+   terminal to verify).
+
+   We can do the same on a copy of ``y`` (why doesn't it work on ``y``
+   directly?):
+
+   >>> y.copy().view(np.int16)
    array([[ 513],
           [1027]], dtype=int16)
-   >>> 0x0201, 0x0403
-   (513, 1027)
-   >>> y.view(np.int16)
-   array([[ 769, 1026]], dtype=int16)
 
-   - What happened?
-   - ... we need to look into what ``x[0,1]`` actually means
-
-   >>> 0x0301, 0x0402
-   (769, 1026)
+   Can you explain these numbers, 513 and 1027, as well as the output
+   shape of the resulting array?
 
 
 Indexing scheme: strides
@@ -471,9 +494,9 @@ Main point
 
 **The question**::
 
-  >>> x = np.array([[1, 2, 3], 
-  ...	            [4, 5, 6], 
-  ...	            [7, 8, 9]], dtype=np.int8)
+  >>> x = np.array([[1, 2, 3],
+  ...               [4, 5, 6],
+  ...               [7, 8, 9]], dtype=np.int8)
   >>> x.tobytes('A')
   b'\x01\x02\x03\x04\x05\x06\x07\x08\t'
 
@@ -489,7 +512,7 @@ Main point
     >>> x.strides
     (3, 1)
     >>> byte_offset = 3*1 + 1*2   # to find x[1, 2]
-    >>> x.flat[byte_offset] 
+    >>> x.flat[byte_offset]
     6
     >>> x[1, 2]
     6
@@ -508,7 +531,7 @@ C and Fortran order
 
 ::
 
-    >>> x = np.array([[1, 2, 3], 
+    >>> x = np.array([[1, 2, 3],
     ...               [4, 5, 6]], dtype=np.int16, order='C')
     >>> x.strides
     (6, 2)
@@ -516,7 +539,7 @@ C and Fortran order
     b'\x01\x00\x02\x00\x03\x00\x04\x00\x05\x00\x06\x00'
 
 * Need to jump 6 bytes to find the next row
-* Need to jump 2 bytes to find the next column 
+* Need to jump 2 bytes to find the next column
 
 ::
 
@@ -527,7 +550,7 @@ C and Fortran order
     b'\x01\x00\x04\x00\x02\x00\x05\x00\x03\x00\x06\x00'
 
 * Need to jump 2 bytes to find the next row
-* Need to jump 4 bytes to find the next column 
+* Need to jump 4 bytes to find the next column
 
 
 - Similarly to higher dimensions:
@@ -542,14 +565,14 @@ C and Fortran order
      \mathrm{strides} &= (s_1, s_2, ..., s_n)
      \\
      s_j^C &= d_{j+1} d_{j+2} ... d_{n} \times \mathrm{itemsize}
-     \\ 
+     \\
      s_j^F &= d_{1} d_{2} ... d_{j-1} \times \mathrm{itemsize}
 
 
 .. note::
 
    Now we can understand the behavior of ``.view()``:
-   
+
    >>> y = np.array([[1, 3], [2, 4]], dtype=np.uint8).transpose()
    >>> x = y.copy()
 
@@ -584,7 +607,7 @@ C and Fortran order
 Slicing with integers
 .......................
 
-- *Everything* can be represented by changing only ``shape``, ``strides``, 
+- *Everything* can be represented by changing only ``shape``, ``strides``,
   and possibly adjusting the ``data`` pointer!
 - Never makes copies of the data
 
@@ -601,7 +624,7 @@ Slicing with integers
     >>> y.__array_interface__['data'][0] - x.__array_interface__['data'][0]
     8
 
-    >>> x = np.zeros((10, 10, 10), dtype=np.float)
+    >>> x = np.zeros((10, 10, 10), dtype=float)
     >>> x.strides
     (800, 80, 8)
     >>> x[::2,::3,::4].strides
@@ -609,7 +632,7 @@ Slicing with integers
 
 - Similarly, transposes never make copies (it just swaps strides)::
 
-    >>> x = np.zeros((10, 10, 10), dtype=np.float)
+    >>> x = np.zeros((10, 10, 10), dtype=float)
     >>> x.strides
     (800, 80, 8)
     >>> x.T.strides
@@ -652,8 +675,8 @@ as_strided(x, shape=None, strides=None)
 
 .. warning::
 
-   ``as_strided`` does **not** check that you stay inside the memory 
-   block bounds... 
+   ``as_strided`` does **not** check that you stay inside the memory
+   block bounds...
 
 >>> x = np.array([1, 2, 3, 4], dtype=np.int16)
 >>> as_strided(x, strides=(2*2, ), shape=(2, ))
@@ -779,7 +802,7 @@ More tricks: diagonals
 
       >>> as_strided(x[0, 1:], shape=(2, ), strides=((3+1)*x.itemsize, ))
       array([2, 6], dtype=int32)
-        
+
       >>> as_strided(x[1:, 0], shape=(2, ), strides=((3+1)*x.itemsize, ))
       array([4, 8], dtype=int32)
 
@@ -925,9 +948,9 @@ Parts of an Ufunc
 
        void ufunc_loop(void **args, int *dimensions, int *steps, void *data)
        {
-           /* 
+           /*
             * int8 output = elementwise_function(int8 input_1, int8 input_2)
-	    * 
+            *
             * This function must compute the ufunc for many values at once,
             * in the way shown below.
             */
@@ -937,7 +960,7 @@ Parts of an Ufunc
            int i;
 
            for (i = 0; i < dimensions[0]; ++i) {
-	       *output = elementwise_function(*input_1, *input_2);
+               *output = elementwise_function(*input_1, *input_2);
                input_1 += steps[0];
                input_2 += steps[1];
                output += steps[2];
@@ -957,16 +980,16 @@ Parts of an Ufunc
       PyObject *python_ufunc = PyUFunc_FromFuncAndData(
           ufunc_loop,
           NULL,
-          types, 
+          types,
           1, /* ntypes */
-          2, /* num_inputs */ 
+          2, /* num_inputs */
           1, /* num_outputs */
           identity_element,
-          name, 
-          docstring, 
+          name,
+          docstring,
           unused)
 
-   - A ufunc can also support multiple different input-output type 
+   - A ufunc can also support multiple different input-output type
      combinations.
 
 Making it easier
@@ -1062,12 +1085,12 @@ E.g. supporting both single- and double-precision versions
 
 .. sourcecode:: cython
 
-   cdef void mandel_single_point(double complex *z_in, 
+   cdef void mandel_single_point(double complex *z_in,
                                  double complex *c_in,
                                  double complex *z_out) nogil:
       ...
 
-   cdef void mandel_single_point_singleprec(float complex *z_in, 
+   cdef void mandel_single_point_singleprec(float complex *z_in,
                                             float complex *c_in,
                                             float complex *z_out) nogil:
       ...
@@ -1132,7 +1155,7 @@ Generalized ufuncs
         (m, n), (n, p) -> (m, p)
 
     * This is called the *"signature"* of the generalized ufunc
-    * The dimensions on which the g-ufunc acts, are *"core dimensions"* 
+    * The dimensions on which the g-ufunc acts, are *"core dimensions"*
 
 .. rubric:: Status in NumPy
 
@@ -1152,7 +1175,7 @@ Generalized ufuncs
     >>> import numpy.core.umath_tests as ut
     >>> ut.matrix_multiply.signature
     '(m,n),(n,p)->(m,p)'
-    
+
     >>> x = np.ones((10, 2, 4))
     >>> y = np.ones((10, 4, 5))
     >>> ut.matrix_multiply(x, y).shape
@@ -1173,31 +1196,31 @@ Matrix multiplication ``(m,n),(n,p) -> (m,p)``
 
     void gufunc_loop(void **args, int *dimensions, int *steps, void *data)
     {
-	char *input_1 = (char*)args[0];  /* these are as previously */
-	char *input_2 = (char*)args[1];   
-	char *output = (char*)args[2];   
+        char *input_1 = (char*)args[0];  /* these are as previously */
+        char *input_2 = (char*)args[1];
+        char *output = (char*)args[2];
 
-	int input_1_stride_m = steps[3];  /* strides for the core dimensions */
-	int input_1_stride_n = steps[4];  /* are added after the non-core */
-	int input_2_strides_n = steps[5]; /* steps */
-	int input_2_strides_p = steps[6];
-	int output_strides_n = steps[7];
-	int output_strides_p = steps[8];
+        int input_1_stride_m = steps[3];  /* strides for the core dimensions */
+        int input_1_stride_n = steps[4];  /* are added after the non-core */
+        int input_2_strides_n = steps[5]; /* steps */
+        int input_2_strides_p = steps[6];
+        int output_strides_n = steps[7];
+        int output_strides_p = steps[8];
 
-	int m = dimension[1]; /* core dimensions are added after */
-	int n = dimension[2]; /* the main dimension; order as in */
-	int p = dimension[3]; /* signature */
-    
-	int i;
+        int m = dimension[1]; /* core dimensions are added after */
+        int n = dimension[2]; /* the main dimension; order as in */
+        int p = dimension[3]; /* signature */
 
-	for (i = 0; i < dimensions[0]; ++i) {
-            matmul_for_strided_matrices(input_1, input_2, output, 
+        int i;
+
+        for (i = 0; i < dimensions[0]; ++i) {
+            matmul_for_strided_matrices(input_1, input_2, output,
                                         strides for each array...);
 
-	    input_1 += steps[0];
-	    input_2 += steps[1];
-	    output += steps[2];
-	}
+            input_1 += steps[0];
+            input_2 += steps[1];
+            output += steps[2];
+        }
     }
 
 
@@ -1231,7 +1254,7 @@ The old buffer protocol
 - Only 1-D buffers
 - No data type information
 - C-level interface; ``PyBufferProcs tp_as_buffer`` in the type object
-- But it's integrated into Python  (e.g. strings support it) 
+- But it's integrated into Python  (e.g. strings support it)
 
 Mini-exercise using `Pillow <https://python-pillow.github.io/>`_ (Python
 Imaging Library):
@@ -1296,7 +1319,7 @@ Array interface protocol
    >>> plt.imsave('data/test.png', data)
 
 
-:: 
+::
     >>> from PIL import Image
     >>> img = Image.open('data/test.png')
     >>> img.__array_interface__     # doctest: +SKIP
@@ -1322,10 +1345,10 @@ Array siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
 
 >>> x = np.array(['a', '  bbb', '  ccc']).view(np.chararray)
 >>> x.lstrip(' ')       # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-chararray(['a', 'bbb', 'ccc'], 
+chararray(['a', 'bbb', 'ccc'],
       dtype='...')
 >>> x.upper()       # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-chararray(['A', '  BBB', '  CCC'], 
+chararray(['A', '  BBB', '  CCC'],
       dtype='...')
 
 .. note::
@@ -1413,8 +1436,8 @@ Domain-aware functions
 
 The masked array package also contains domain-aware functions::
 
-    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
-    masked_array(data=[0.0, 0.6931471805599453, --, --, 1.0986122886681098, --],
+    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    masked_array(data=[0.0, 0.693147180559..., --, --, 1.098612288668..., --],
                  mask=[False, False,  True,  True, False,  True],
            fill_value=1e+20)
     <BLANKLINE>
@@ -1469,7 +1492,7 @@ The masked array package also contains domain-aware functions::
 >>> arr = np.array([('a', 1), ('b', 2)], dtype=[('x', 'S1'), ('y', int)])
 >>> arr2 = arr.view(np.recarray)
 >>> arr2.x       # doctest: +SKIP
-chararray(['a', 'b'], 
+chararray(['a', 'b'],
       dtype='|S1')
 >>> arr2.y
 array([1, 2])
@@ -1542,7 +1565,7 @@ Good bug report
 
     I'm trying to generate random permutations, using numpy.random.permutations
 
-    When calling numpy.random.permutation with non-integer arguments 
+    When calling numpy.random.permutation with non-integer arguments
     it fails with a cryptic error message::
 
         >>> np.random.permutation(12)
@@ -1605,7 +1628,7 @@ Contributing to documentation
 
        - But: **you can turn mail delivery off**
 
-       - "change your subscription options", at the bottom of 
+       - "change your subscription options", at the bottom of
 
          http://mail.python.org/mailman/listinfo/scipy-dev
 
@@ -1617,8 +1640,8 @@ Contributing to documentation
 
           I'd like to edit NumPy/Scipy docstrings. My account is XXXXX
 
-	  Cheers,
-	  N. N.
+          Cheers,
+          N. N.
 
     - Check the style guide:
 
@@ -1630,7 +1653,7 @@ Contributing to documentation
 
 2. Edit sources and send patches (as for bugs)
 
-3. Complain on the mailing list 
+3. Complain on the mailing list
 
 
 Contributing features
@@ -1641,7 +1664,7 @@ Contributing features
 How to help, in general
 -----------------------
 
-- Bug fixes always welcome! 
+- Bug fixes always welcome!
 
   - What irks you most
   - Browse the tracker
@@ -1664,4 +1687,3 @@ How to help, in general
 
   - ``numpy-discussion`` list
   - ``scipy-dev`` list
-

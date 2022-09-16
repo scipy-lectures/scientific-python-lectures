@@ -176,9 +176,9 @@ Brent's method to find the minimum of a function:
     >>> result.success # check if solver was successful
     True
     >>> x_min = result.x
-    >>> x_min #doctest: +ELLIPSIS
+    >>> x_min # doctest: +SKIP
     0.699999999...
-    >>> x_min - 0.7 #doctest: +ELLIPSIS
+    >>> x_min - 0.7 # doctest: +SKIP
     -2.16...e-10
 
 
@@ -380,7 +380,7 @@ be used by setting the parameter ``method`` to CG ::
          fun: 1.6...e-11
          jac: array([-6.15...e-06,   2.53...e-07])
      message: ...'Optimization terminated successfully.'
-        nfev: 108
+        nfev: 81
          nit: 13
         njev: 27
       status: 0
@@ -480,7 +480,7 @@ inversion of the Hessian is performed by conjugate gradient ::
         nfev: 11
         nhev: 0
          nit: 10
-        njev: 52
+        njev: 33
       status: 0
      success: True
            x: array([0.99999...,  0.99999...])
@@ -499,7 +499,7 @@ to the algorithm::
         nfev: 11
         nhev: 10
          nit: 10
-        njev: 20
+        njev: 11
       status: 0
      success: True
            x: array([0.99999...,  0.99999...])
@@ -588,7 +588,7 @@ Full code examples
      hess_inv: array([[0.99986...,  2.0000...],
            [2.0000...,  4.498...]])
           jac: array([  6.7089...e-08,  -3.2222...e-08])
-      message: ...'Optimization terminated successfully.'
+      message: 'Optimization terminated successfully.'
          nfev: 10
           nit: 8
          njev: 10
@@ -610,9 +610,10 @@ are also supported by L-BFGS-B::
           fun: 1.4417...e-15
      hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
           jac: array([  1.0233...e-07,  -2.5929...e-08])
-      message: ...'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
+      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 17
           nit: 16
+         njev: 17
        status: 0
       success: True
             x: array([1.0000...,  1.0000...])
@@ -896,13 +897,13 @@ if we compute the norm ourselves and use a good generic optimizer
           jac: array([...
      ...
                ...])
-      message: ...'Optimization terminated successfully.'
-         nfev: 144
+      message: 'Optimization terminated successfully.'
+         nfev: 132
           nit: 11
          njev: 12
        status: 0
       success: True
-            x: array([-7.3...e-09,   1.1111...e-01,   2.2222...e-01, 3.3333...e-01,
+            x: array([-7...e-09,   1.1111...e-01,   2.2222...e-01, 3.3333...e-01,
             4.4444...e-01,   5.5555...e-01, 6.6666...e-01,   7.7777...e-01,
             8.8889...e-01, 1.0000...e+00])
 
@@ -976,6 +977,7 @@ support bound constraints with the parameter ``bounds``::
       message: ...'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
          nfev: 9
           nit: 2
+         njev: 3
        status: 0
       success: True
             x: array([1.5,  1.5])
@@ -1012,13 +1014,13 @@ and :math:`g(x) < 0`.
     >>> optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"}) #doctest: +ELLIPSIS
          fun: 2.4748...
          jac: array([-0.70708..., -0.70712...])
-     message: ...'Optimization terminated successfully.'
-        nfev: 20
+     message: 'Optimization terminated successfully'
+        nfev: 15
          nit: 5
         njev: 5
       status: 0
      success: True
-           x: array([1.2500...,  0.2499...])
+           x: array([1.2500..., 0.2499...])
 
 
 .. warning:: 

@@ -259,15 +259,15 @@ operations on the resulting group of dataframes::
 Plotting data
 ..............
 
-.. currentmodule:: pandas.tools
+.. currentmodule:: pandas
 
-Pandas comes with some plotting tools (:mod:`pandas.tools.plotting`, using
+Pandas comes with some plotting tools (:mod:`pandas.plotting`, using
 matplotlib behind the scene) to display statistics of the data in
 dataframes:
 
 **Scatter matrices**::
 
-    >>> from pandas.tools import plotting
+    >>> from pandas import plotting
     >>> plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])   # doctest: +SKIP
 
 .. image:: auto_examples/images/sphx_glr_plot_pandas_002.png
@@ -488,7 +488,7 @@ We can inspect the various statistics derived from the fit::
     Kurtosis:                       2.390   Cond. No.                         3.03
     ==========================...
     <BLANKLINE>
-    Warnings:
+    Notes:
     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 
@@ -547,7 +547,7 @@ model::
      Kurtosis:                       1.510   Cond. No.                         2.62
      ==========================...
      <BLANKLINE>
-     Warnings:
+     Notes:
      [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 .. topic:: **Tips on specifying model**
@@ -585,15 +585,20 @@ model::
      >>> data_piq = pandas.DataFrame({'iq': data['PIQ'], 'type': 'piq'})
      >>> data_long = pandas.concat((data_fisq, data_piq))
      >>> print(data_long)  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
-              iq  type
-         0   133  fsiq
-         1   140  fsiq
-         2   139  fsiq
-         ...
-         31  137   piq
-         32  110   piq
-         33   86   piq
-         ...
+          iq  type
+     0   133  fsiq
+     1   140  fsiq
+     2   139  fsiq
+     3   133  fsiq
+     4   137  fsiq
+     ...  ...   ...
+     35  128   piq
+     36  124   piq
+     37   94   piq
+     38   74   piq
+     39   89   piq
+     <BLANKLINE>
+     [80 rows x 2 columns]
     
      >>> model = ols("iq ~ type", data_long).fit()
      >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
@@ -677,7 +682,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Kurtosis:                       3.659   Cond. No.                         54.0
     ==========================...
     <BLANKLINE>
-    Warnings:
+    Notes:
     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 |
@@ -696,7 +701,7 @@ test ``"name[T.versicolor] - name[T.virginica]"``, with an `F-test
 <https://en.wikipedia.org/wiki/F-test>`_::
 
     >>> print(model.f_test([0, 1, -1, 0]))  # doctest: +ELLIPSIS
-    <F test: F=array([[3.24533535]]), p=0.07369..., df_denom=146, df_num=1>
+    <F test: F=3.24533535..., p=0.07369..., df_denom=146, df_num=1>
 
 Is this difference significant?
 

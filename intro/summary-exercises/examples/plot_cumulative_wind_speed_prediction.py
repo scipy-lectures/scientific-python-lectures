@@ -16,7 +16,7 @@ years_nb = max_speeds.shape[0]
 cprob = (np.arange(years_nb, dtype=np.float32) + 1)/(years_nb + 1)
 sorted_max_speeds = np.sort(max_speeds)
 speed_spline = UnivariateSpline(cprob, sorted_max_speeds)
-nprob = np.linspace(0, 1, 1e2)
+nprob = np.linspace(0, 1, 100)
 fitted_max_speeds = speed_spline(nprob)
 
 fifty_prob = 1. - 0.02

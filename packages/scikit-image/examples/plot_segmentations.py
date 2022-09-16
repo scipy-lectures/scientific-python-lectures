@@ -11,7 +11,7 @@ background are used as seeds.
 """
 
 import numpy as np
-from skimage.morphology import watershed
+from skimage.segmentation import watershed
 from skimage.feature import peak_local_max
 from skimage import measure
 from skimage.segmentation import random_walker

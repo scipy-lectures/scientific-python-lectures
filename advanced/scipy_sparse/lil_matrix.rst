@@ -41,7 +41,7 @@ Examples
     >>> mtx[:2, [1, 2, 3]] = data
     >>> mtx  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     <4x5 sparse matrix of type '<... 'numpy.float64'>'
-            with 5 stored elements in LInked List format>
+            with 5 stored elements in List of Lists format>
     >>> print(mtx)   # doctest: +NORMALIZE_WHITESPACE
       (0, 1)  1.0
       (0, 2)  1.0
@@ -75,7 +75,7 @@ Examples
       (2, 3)    1
     >>> mtx[:2, :]  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     <2x4 sparse matrix of type '<... 'numpy.int64'>'
-      with 4 stored elements in LInked List format>
+      with 4 stored elements in List of Lists format>
     >>> mtx[:2, :].todense()    # doctest: +ELLIPSIS
     matrix([[0, 1, 2, 0],
             [3, 0, 1, 0]]...)
