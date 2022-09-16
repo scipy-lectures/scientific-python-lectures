@@ -33,7 +33,7 @@ Changing orientation, resolution, .. ::
 ::
 
     >>> plt.subplot(151)    # doctest: +ELLIPSIS
-    <AxesSubplot:>
+    <AxesSubplot: >
 
     >>> plt.imshow(shifted_face, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
