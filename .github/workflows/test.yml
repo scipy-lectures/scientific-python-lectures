@@ -22,5 +22,5 @@ jobs:
           python -m pip install -r requirements.txt
           python -m pip list
 
-      - name: Test NetworkX
-        run: make test-to-remove  # FIXME: make test
+      - name: Test lecture notes
+        run: make test
