@@ -18,7 +18,7 @@ p /= p.sum()
 
 # Take steps
 for k in range(n_steps):
-    p = P.T.dot(p)
+    p = P.T @ p
 
 p_50 = p
 print(p_50)

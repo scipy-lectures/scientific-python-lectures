@@ -847,7 +847,7 @@ Synthetic exercices
         K = np.random.normal(size=(100, 100))
 
         def f(x):
-            return np.sum((np.dot(K, x - 1))**2) + np.sum(x**2)**2
+            return np.sum((K @ (x - 1))**2) + np.sum(x**2)**2
 
     Time your approach. Find the fastest approach. Why is BFGS not
     working well?

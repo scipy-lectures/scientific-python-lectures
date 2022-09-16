@@ -4,7 +4,7 @@ Alternating optimization
 
 The challenge here is that Hessian of the problem is a very
 ill-conditioned matrix. This can easily be seen, as the Hessian of the
-first term in simply 2*np.dot(K.T, K). Thus the conditioning of the
+first term in simply 2 * K.T @ K. Thus the conditioning of the
 problem can be judged from looking at the conditioning of K.
 """
 import time
@@ -18,15 +18,15 @@ np.random.seed(0)
 K = np.random.normal(size=(100, 100))
 
 def f(x):
-    return np.sum((np.dot(K, x - 1))**2) + np.sum(x**2)**2
+    return np.sum((K @ (x - 1))**2) + np.sum(x**2)**2
 
 
 def f_prime(x):
-    return 2*np.dot(np.dot(K.T, K), x - 1) + 4*np.sum(x**2)*x
+    return 2 * K.T @ K @ (x - 1) + 4*np.sum(x**2)*x
 
 
 def hessian(x):
-    H = 2*np.dot(K.T, K) + 4*2*x*x[:, np.newaxis]
+    H = 2 * K.T @ K + 4*2*x*x[:, np.newaxis]
     return H + 4*np.eye(H.shape[0])*np.sum(x**2)
 
 

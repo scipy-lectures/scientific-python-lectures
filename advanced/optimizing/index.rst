@@ -183,7 +183,7 @@ source file, we decorate a few functions that we want to inspect with
     def test():
         data = np.random.random((5000, 100))
         u, s, v = linalg.svd(data)
-        pca = np.dot(u[:, :10], data)
+        pca = u[:, :10] @ data
         results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
@@ -206,7 +206,7 @@ Then we run the script using the `kernprof.py
         6                                           def test():
         7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))
         8         1     14242163 14242163.0   99.7      u, s, v = linalg.svd(data)
-        9         1        10282  10282.0      0.1      pca = np.dot(u[:10, :], data)
+        9         1        10282  10282.0      0.1      pca = u[:10, :] @ data
        10         1         7799   7799.0      0.1      results = fastica(pca.T, whiten=False)
 
 **The SVD is taking all the time.** We need to optimise this line.
@@ -381,12 +381,12 @@ discuss only some commonly encountered tricks to make code faster.
 
     In [6]: b = np.random.rand(20, 2**18)
 
-    In [7]: %timeit np.dot(b, a.T)
+    In [7]: %timeit b @ a.T
     1 loops, best of 3: 194 ms per loop
 
     In [8]: c = np.ascontiguousarray(a.T)
 
-    In [9]: %timeit np.dot(b, c)
+    In [9]: %timeit b @ c
     10 loops, best of 3: 84.2 ms per loop
 
   Note that copying the data to work around this effect may not be worth it:

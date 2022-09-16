@@ -194,7 +194,7 @@ Linear algebra operations: :mod:`scipy.linalg`
     >>> iarr
     array([[-2. ,  1. ],
            [ 1.5, -0.5]])
-    >>> np.allclose(np.dot(arr, iarr), np.eye(2))
+    >>> np.allclose(arr @ iarr, np.eye(2))
     True
 
   Finally computing the inverse of a singular matrix (its determinant is zero)
@@ -219,10 +219,10 @@ Linear algebra operations: :mod:`scipy.linalg`
     array([14.88982544,   0.45294236,   0.29654967])
 
   The original matrix can be re-composed by matrix multiplication of the outputs of
-  ``svd`` with ``np.dot``::
+  ``svd`` with ``@``::
 
     >>> sarr = np.diag(spec)
-    >>> svd_mat = uarr.dot(sarr).dot(vharr)
+    >>> svd_mat = uarr @ sarr @ vharr
     >>> np.allclose(svd_mat, arr)
     True
 

@@ -73,7 +73,7 @@ These operations are of course much faster than if you did them in pure python:
 
     .. sourcecode:: pycon
 
-        >>> c.dot(c)
+        >>> c @ c
         array([[3.,  3.,  3.],
                [3.,  3.,  3.],
                [3.,  3.,  3.]])
@@ -820,7 +820,7 @@ Finding minima and maxima:
 .. XXX: need a frame for summaries
 
     * Arithmetic etc. are elementwise operations
-    * Basic linear algebra, ``.dot()``
+    * Basic linear algebra, ``@``
     * Reductions: ``sum(axis=1)``, ``std()``, ``all()``, ``any()``
     * Broadcasting: ``a = np.arange(4); a[:,np.newaxis] + a[np.newaxis,:]``
     * Shape manipulation: ``a.ravel()``, ``a.reshape(2, 2)``
