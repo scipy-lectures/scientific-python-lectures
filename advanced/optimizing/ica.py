@@ -14,7 +14,7 @@ def _gs_decorrelation(w, W, j):
     """ Gram-Schmidt-like decorrelation. """
     t = np.zeros_like(w)
     for u in range(j):
-        t = t + np.dot(w, W[u]) * W[u]
+        t = t + (w @ W[u]) * W[u]
         w -= t
     return w
 
@@ -37,7 +37,7 @@ def _ica_def(X, tol, g, gprime, fun_args, maxit, w_init):
         # we set lim to tol+1 to be sure to enter at least once in next while
         lim = tol + 1 
         while ((lim > tol) & (n_iterations < (maxit-1))):
-            wtx = np.dot(w.T, X)
+            wtx = w.T @ X
             gwtx = g(wtx, fun_args)
             g_wtx = gprime(wtx, fun_args)
             w1 = (X * gwtx).mean(axis=1) - g_wtx.mean() * w
@@ -57,7 +57,7 @@ def _ica_def(X, tol, g, gprime, fun_args, maxit, w_init):
 
 def _sym_decorrelation(W):
     """ Symmetric decorrelation """
-    K = np.dot(W, W.T)
+    K = W @ W.T
     s, u = np.linalg.eigh(K) 
     # u (resp. s) contains the eigenvectors (resp. square roots of 
     # the eigenvalues) of W * W.T 
@@ -80,14 +80,14 @@ def _ica_par(X, tol, g, gprime, fun_args, maxit, w_init):
     lim = tol + 1 
     it = 0
     while ((lim > tol) and (it < (maxit-1))):
-        wtx = np.dot(W, X).A  # .A transforms to array type
+        wtx = (W @ X).A  # .A transforms to array type
         gwtx = g(wtx, fun_args)
         g_wtx = gprime(wtx, fun_args)
-        W1 = np.dot(gwtx, X.T)/float(p) - np.dot(np.diag(g_wtx.mean(axis=1)), W)
+        W1 = (gwtx @ X.T) / float(p) - np.diag(g_wtx.mean(axis=1)) @ W
  
         W1 = _sym_decorrelation(W1)
         
-        lim = max(abs(abs(np.diag(np.dot(W1, W.T))) - 1))
+        lim = max(abs(abs(np.diag(W1 @ W.T)) - 1))
         W = W1
         it = it + 1
 
@@ -238,7 +238,7 @@ def fastica(X, n_comp=None,
         # before calling fastica ???
         K = (v*(np.sqrt(n)/d)[:, np.newaxis])[:n_comp]  # see (6.33) p.140
         del v, d
-        X1 = np.dot(K, X.T) # see (13.6) p.267 Here X1 is white and data in X has been projected onto a subspace by PCA
+        X1 = K @ X.T # see (13.6) p.267 Here X1 is white and data in X has been projected onto a subspace by PCA
     else:
         X1 = X.T
 
@@ -262,10 +262,10 @@ def fastica(X, n_comp=None,
     del X1
 
     if whiten:
-        S = np.dot(np.asmatrix(W) * K, X.T)
+        S = (np.asmatrix(W) * K) @ X.T
         return [np.asarray(e.T) for e in (K, W, S)]
     else:
-        S = np.dot(W, X.T)
+        S = W @ X.T
         return [np.asarray(e.T) for e in (W, S)]
 
 
