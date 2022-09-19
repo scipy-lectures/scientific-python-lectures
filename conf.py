@@ -9,7 +9,7 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import subprocess
+from subprocess import PIPE, Popen
 
 import sphinx_gallery
 from pygments import formatters
@@ -82,11 +82,9 @@ copyright = '2012,2013,2015,2016,2017,2018,2019,2020,2021,2022'
 # The short X.Y version.
 # we get this from git
 # this WILL break if we are not in a git-repository
-p = subprocess.Popen(['git', 'describe', '--tags'],
-                     stdout=subprocess.PIPE,
-                     stderr=subprocess.PIPE)
-p.wait()
-version = p.stdout.read().strip().decode()
+with Popen(['git', 'describe', '--tags'], stdout=PIPE, stderr=PIPE) as p:
+    p.wait()
+    version = p.stdout.read().strip().decode()
 
 # The full version, including alpha/beta/rc tags.
 release = '2022.1'
