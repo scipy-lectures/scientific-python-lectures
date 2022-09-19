@@ -9,12 +9,14 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
 import os
 import subprocess
-import sphinx
+import sys
 
+import sphinx
 import sphinx_gallery
+from pygments import formatters
+from sphinx import highlighting
 
 # General configuration
 # ---------------------
@@ -22,13 +24,13 @@ import sphinx_gallery
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-        'sphinx.ext.autodoc',
-        'sphinx.ext.doctest',
-        'IPython.sphinxext.ipython_console_highlighting',
-        'sphinx.ext.imgmath',
-        'sphinx.ext.intersphinx',
-        'sphinx.ext.extlinks',
-        'sphinx_gallery.gen_gallery',
+    'sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
+    'IPython.sphinxext.ipython_console_highlighting',
+    'sphinx.ext.imgmath',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.extlinks',
+    'sphinx_gallery.gen_gallery',
 ]
 
 doctest_test_doctest_blocks = 'true'
@@ -47,7 +49,7 @@ sphinx_gallery_conf = {
                       'packages/scikit-learn/examples',
                       'packages/statistics/examples',
                       'guide/examples',
-                     ],
+                      ],
     'gallery_dirs': ['intro/summary-exercises/auto_examples',
                      'intro/matplotlib/auto_examples',
                      'intro/numpy/auto_examples',
@@ -64,7 +66,7 @@ sphinx_gallery_conf = {
     # The following is necessary to get the links in the code of the
     # examples
     'backreferences_dir': 'tmp',
-    }
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -84,8 +86,8 @@ copyright = '2012,2013,2015,2016,2017,2018,2019,2020,2021,2022'
 # we get this from git
 # this WILL break if we are not in a git-repository
 p = subprocess.Popen(['git', 'describe', '--tags'],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE)
+                     stdout=subprocess.PIPE,
+                     stderr=subprocess.PIPE)
 p.wait()
 version = p.stdout.read().strip().decode()
 
@@ -131,14 +133,14 @@ pygments_style = 'sphinx'
 
 # Monkey-patch sphinx to set the lineseparator option of pygment, to
 # have indented line wrapping
-from pygments import formatters
+
 
 class MyHtmlFormatter(formatters.HtmlFormatter):
     def __init__(self, **options):
         options['lineseparator'] = '\n<div class="newline"></div>'
         formatters.HtmlFormatter.__init__(self, **options)
 
-from sphinx import highlighting
+
 highlighting.PygmentsBridge.html_formatter = MyHtmlFormatter
 
 # Our substitutions
@@ -182,10 +184,10 @@ html_theme_path = ['themes']
 #html_style = 'default.css'
 
 html_theme_options = {
-                #'nosidebar': 'true',
-                'footerbgcolor': '#000000',
-                'relbarbgcolor': '#000000',
-                }
+    # 'nosidebar': 'true',
+    'footerbgcolor': '#000000',
+    'relbarbgcolor': '#000000',
+}
 
 
 # The name for this set of Sphinx documents.  If None, it defaults to
@@ -264,9 +266,9 @@ latex_show_pagerefs = False
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'ScipyLectures.tex', r'Scipy lecture notes',
-   r"""Scipy lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
-   'manual'),
+    ('index', 'ScipyLectures.tex', r'Scipy lecture notes',
+     r"""Scipy lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
+     'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -330,7 +332,7 @@ latex_elements = {
         \makeatother%
         \newpage\newpage
     '''
-    #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
+    # 'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 }
 
 _python_doc_base = 'https://docs.python.org/3/'
@@ -362,5 +364,7 @@ immath_use_preview = True
 
 # Add the 'copybutton' javascript, to hide/show the prompt in code
 # examples
+
+
 def setup(app):
     app.add_js_file('copybutton.js')
