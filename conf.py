@@ -336,10 +336,10 @@ _python_doc_base = 'https://docs.python.org/3/'
 intersphinx_mapping = {
     'python': (_python_doc_base, None),
     'numpy': ('https://numpy.org/doc/stable/', None),
-    'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
+    'scipy': ('https://docs.scipy.org/doc/scipy/', None),
     'matplotlib': ('https://matplotlib.org/stable/', None),
     'sklearn': ('https://scikit-learn.org/stable/', None),
-    'sphinx': ('https://www.sphinx-doc.org/en/stable/', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/master/', None),
     'pandas': ('https://pandas.pydata.org/pandas-docs/stable/', None),
     'seaborn': ('https://seaborn.pydata.org/', None),
     'skimage': ('https://scikit-image.org/docs/stable/', None),
@@ -348,8 +348,8 @@ intersphinx_mapping = {
 
 
 extlinks = {
-    'simple': (_python_doc_base + '/reference/simple_stmts.html#%s', ''),
-    'compound': (_python_doc_base + '/reference/compound_stmts.html#%s', ''),
+    'simple': (_python_doc_base + '/reference/simple_stmts.html#%s', '%s'),
+    'compound': (_python_doc_base + '/reference/compound_stmts.html#%s', '%s'),
 }
 
 # -- Options for imgmath ------------------------------------------------
