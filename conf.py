@@ -9,11 +9,8 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import os
 import subprocess
-import sys
 
-import sphinx
 import sphinx_gallery
 from pygments import formatters
 from sphinx import highlighting
