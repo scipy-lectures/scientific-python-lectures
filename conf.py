@@ -339,20 +339,20 @@ latex_elements = {
     #'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 }
 
-_python_doc_base = f'https://docs.python.org/{sys.version_info.major}'
+_python_doc_base = 'https://docs.python.org/3/'
 
 # Example configuration for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {
     'python': (_python_doc_base, None),
-    'numpy': ('https://numpy.org/doc/stable', None),
-    'scipy': ('https://docs.scipy.org/doc/scipy/reference', None),
-    'matplotlib': ('https://matplotlib.org/', None),
-    'sklearn': ('http://scikit-learn.org/stable', None),
-    'sphinx': ('http://www.sphinx-doc.org/en/stable', None),
-    'pandas': ('http://pandas.pydata.org/pandas-docs/stable/', None),
-    'seaborn': ('http://seaborn.pydata.org/', None),
-    'skimage': ('http://scikit-image.org/docs/stable/', None),
-    'statsmodels': ('http://www.statsmodels.org/stable/', None),
+    'numpy': ('https://numpy.org/doc/stable/', None),
+    'scipy': ('https://docs.scipy.org/doc/scipy/reference/', None),
+    'matplotlib': ('https://matplotlib.org/stable/', None),
+    'sklearn': ('https://scikit-learn.org/stable/', None),
+    'sphinx': ('https://www.sphinx-doc.org/en/stable/', None),
+    'pandas': ('https://pandas.pydata.org/pandas-docs/stable/', None),
+    'seaborn': ('https://seaborn.pydata.org/', None),
+    'skimage': ('https://scikit-image.org/docs/stable/', None),
+    'statsmodels': ('https://www.statsmodels.org/stable/', None),
 }
 
 
