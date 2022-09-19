@@ -72,12 +72,6 @@ templates_path = ['_templates']
 # The suffix of source filenames.
 source_suffix = '.rst'
 
-# The encoding of source files.
-#source_encoding = 'utf-8'
-
-# The master toctree document.
-master_doc = 'index'
-
 # General information about the project.
 project = "Scipy lecture notes"
 copyright = '2012,2013,2015,2016,2017,2018,2019,2020,2021,2022'
@@ -365,10 +359,6 @@ extlinks = {
 
 imgmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
 immath_use_preview = True
-
-pngmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
-pngmath_use_preview = True
-
 
 # Add the 'copybutton' javascript, to hide/show the prompt in code
 # examples
