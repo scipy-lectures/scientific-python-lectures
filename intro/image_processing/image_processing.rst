@@ -53,7 +53,7 @@ Generate a noisy face::
     >>> face = misc.face(gray=True)
     >>> face = face[:512, -512:]  # crop out square on right
     >>> import numpy as np
-    >>> noisy_face = np.copy(face).astype(np.float)
+    >>> noisy_face = np.copy(face).astype(float)
     >>> noisy_face += face.std() * 0.5 * np.random.standard_normal(face.shape)
 
 Apply a variety of filters on it::
