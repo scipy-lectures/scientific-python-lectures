@@ -103,14 +103,14 @@ Let us first generate a structuring element::
     array([[False, True, False],
            [...True, True, True],
            [False, True, False]])
-    >>> el.astype(np.int)
+    >>> el.astype(int)
     array([[0, 1, 0],
            [1, 1, 1],
            [0, 1, 0]])
 
 * **Erosion** :func:`scipy.ndimage.binary_erosion` ::
 
-    >>> a = np.zeros((7, 7), dtype=np.int)
+    >>> a = np.zeros((7, 7), dtype=int)
     >>> a[1:6, 2:5] = 1
     >>> a
     array([[0, 0, 0, 0, 0, 0, 0],
@@ -157,7 +157,7 @@ Let us first generate a structuring element::
 
 * **Opening** :func:`scipy.ndimage.binary_opening` ::
 
-    >>> a = np.zeros((5, 5), dtype=np.int)
+    >>> a = np.zeros((5, 5), dtype=int)
     >>> a[1:4, 1:4] = 1
     >>> a[4, 4] = 1
     >>> a
@@ -167,14 +167,14 @@ Let us first generate a structuring element::
            [0, 1, 1, 1, 0],
            [0, 0, 0, 0, 1]])
     >>> # Opening removes small objects
-    >>> ndimage.binary_opening(a, structure=np.ones((3, 3))).astype(np.int)
+    >>> ndimage.binary_opening(a, structure=np.ones((3, 3))).astype(int)
     array([[0, 0, 0, 0, 0],
            [0, 1, 1, 1, 0],
            [0, 1, 1, 1, 0],
            [0, 1, 1, 1, 0],
            [0, 0, 0, 0, 0]])
     >>> # Opening can also smooth corners
-    >>> ndimage.binary_opening(a).astype(np.int)
+    >>> ndimage.binary_opening(a).astype(int)
     array([[0, 0, 0, 0, 0],
            [0, 0, 1, 0, 0],
            [0, 1, 1, 1, 0],
@@ -216,7 +216,7 @@ For *gray-valued* images, eroding (resp. dilating) amounts to replacing
 a pixel by the minimal (resp. maximal) value among pixels covered by the
 structuring element centered on the pixel of interest. ::
 
-    >>> a = np.zeros((7, 7), dtype=np.int)
+    >>> a = np.zeros((7, 7), dtype=int)
     >>> a[1:6, 1:6] = 3
     >>> a[4, 4] = 2; a[2, 3] = 1
     >>> a
