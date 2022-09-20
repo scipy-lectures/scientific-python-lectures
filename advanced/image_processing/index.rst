@@ -855,7 +855,7 @@ One example with mathematical morphology: `granulometry
     ...     x, y = np.indices((2 * n + 1, 2 * n + 1))
     ...     mask = (x - n)**2 + (y - n)**2 <= n**2
     ...     struct[mask] = 1
-    ...     return struct.astype(np.bool)
+    ...     return struct.astype(bool)
     ...
     >>>
     >>> def granulometry(data, sizes=None):
