@@ -235,13 +235,13 @@ gradient, that is the direction of the *steepest descent*.
 .. |gradient_quad_cond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_000.png
    :scale: 90%
 
-.. |gradient_quad_cond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_100.png
+.. |gradient_quad_cond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_020.png
    :scale: 75%
 
 .. |gradient_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_002.png
    :scale: 90%
 
-.. |gradient_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_102.png
+.. |gradient_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_022.png
    :scale: 75%
 
 .. list-table:: **Fixed step gradient descent**
@@ -279,25 +279,25 @@ is done in gradient descent code using a
 .. |agradient_quad_cond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_001.png
    :scale: 90%
 
-.. |agradient_quad_cond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_101.png
+.. |agradient_quad_cond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_021.png
    :scale: 75%
 
 .. |agradient_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_003.png
    :scale: 90%
 
-.. |agradient_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_103.png
+.. |agradient_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_023.png
    :scale: 75%
 
 .. |agradient_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_004.png
    :scale: 90%
 
-.. |agradient_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_104.png
+.. |agradient_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_024.png
    :scale: 75%
 
 .. |agradient_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_005.png
    :scale: 90%
 
-.. |agradient_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_105.png
+.. |agradient_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_025.png
    :scale: 75%
 
 
@@ -346,13 +346,13 @@ gradient and sharp turns are reduced.
 .. |cg_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_006.png
    :scale: 90%
 
-.. |cg_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_106.png
+.. |cg_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_026.png
    :scale: 75%
 
 .. |cg_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_007.png
    :scale: 90%
 
-.. |cg_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_107.png
+.. |cg_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_027.png
    :scale: 75%
 
 
@@ -422,19 +422,19 @@ purpose, they rely on the 2 first derivative of the function: the
 .. |ncg_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_008.png
    :scale: 90%
 
-.. |ncg_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_108.png
+.. |ncg_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_028.png
    :scale: 75%
 
 .. |ncg_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_009.png
    :scale: 90%
 
-.. |ncg_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_109.png
+.. |ncg_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_029.png
    :scale: 75%
 
 .. |ncg_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_010.png
    :scale: 90%
 
-.. |ncg_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_110.png
+.. |ncg_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_030.png
    :scale: 75%
 
 
@@ -525,13 +525,13 @@ each step an approximation of the Hessian.
 .. |bfgs_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_011.png
    :scale: 90%
 
-.. |bfgs_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_111.png
+.. |bfgs_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_031.png
    :scale: 75%
 
 .. |bfgs_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_012.png
    :scale: 90%
 
-.. |bfgs_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_112.png
+.. |bfgs_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_032.png
    :scale: 75%
 
 Full code examples
@@ -547,7 +547,7 @@ Full code examples
 .. |bfgs_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_013.png
    :scale: 90%
 
-.. |bfgs_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_113.png
+.. |bfgs_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_033.png
    :scale: 75%
 
 
@@ -630,20 +630,20 @@ Almost a gradient approach
 .. |powell_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_014.png
    :scale: 90%
 
-.. |powell_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_114.png
+.. |powell_quad_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_034.png
    :scale: 75%
 
 .. |powell_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_015.png
    :scale: 90%
 
-.. |powell_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_115.png
+.. |powell_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_035.png
    :scale: 75%
 
 
 .. |powell_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_016.png
    :scale: 90%
 
-.. |powell_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_116.png
+.. |powell_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_036.png
    :scale: 75%
 
 
@@ -682,14 +682,14 @@ methods on smooth, non-noisy functions.
 .. |nm_gauss_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_017.png
    :scale: 90%
 
-.. |nm_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_117.png
+.. |nm_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_037.png
    :scale: 75%
 
 
 .. |nm_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_018.png
    :scale: 90%
 
-.. |nm_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_118.png
+.. |nm_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_038.png
    :scale: 75%
 
 
