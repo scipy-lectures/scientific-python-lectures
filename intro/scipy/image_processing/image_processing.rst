@@ -24,8 +24,8 @@ Changing orientation, resolution, .. ::
     >>> zoomed_face.shape
     (1536, 2048)
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_image_transform_001.png
-    :target: scipy/auto_examples/plot_image_transform.html
+.. image:: /intro/scipy/auto_examples/images/sphx_glr_plot_image_transform_001.png
+    :target: auto_examples/plot_image_transform.html
     :scale: 70
     :align: center
 
@@ -63,8 +63,8 @@ Apply a variety of filters on it::
     >>> from scipy import signal
     >>> wiener_face = signal.wiener(noisy_face, (5, 5))
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_image_filters_001.png
-    :target: scipy/auto_examples/plot_image_filters.html
+.. image:: /intro/scipy/auto_examples/images/sphx_glr_plot_image_filters_001.png
+    :target: auto_examples/plot_image_filters.html
     :scale: 70
     :align: center
 
@@ -90,7 +90,7 @@ Mathematical morphology
     non-zero-valued pixels. The theory was also extended to gray-valued
     images.
 
-.. image:: image_processing/morpho_mat.png
+.. image:: /intro/scipy/image_processing/morpho_mat.png
    :align: center
 
 Mathematical-morphology operations use a *structuring element*
@@ -199,8 +199,8 @@ image. ::
     >>> opened_mask = ndimage.binary_opening(mask)
     >>> closed_mask = ndimage.binary_closing(opened_mask)
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_mathematical_morpho_001.png
-    :target: scipy/auto_examples/plot_mathematical_morpho.html
+.. image:: /intro/scipy/auto_examples/images/sphx_glr_plot_mathematical_morpho_001.png
+    :target: auto_examples/plot_mathematical_morpho.html
     :scale: 70
     :align: center
 
@@ -246,13 +246,13 @@ Let us first generate a nice synthetic binary image. ::
     >>> sig = np.sin(2*np.pi*x/50.) * np.sin(2*np.pi*y/50.) * (1+x*y/50.**2)**2
     >>> mask = sig > 1
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_connect_measurements_001.png
-    :target: scipy/auto_examples/plot_connect_measurements.html
+.. image:: /intro/scipy/auto_examples/images/sphx_glr_plot_connect_measurements_001.png
+    :target: auto_examples/plot_connect_measurements.html
     :scale: 60
     :align: center
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_connect_measurements_002.png
-    :target: scipy/auto_examples/plot_connect_measurements.html
+.. image:: /intro/scipy/auto_examples/images/sphx_glr_plot_connect_measurements_002.png
+    :target: auto_examples/plot_connect_measurements.html
     :scale: 60
     :align: right
 
@@ -278,8 +278,8 @@ Now compute measurements on each connected component::
     array([ 1.80238238,   1.13527605,   5.51954079,   2.49611818, 6.71673619,
             1.80238238,  16.76547217,   5.51954079])
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_connect_measurements_003.png
-    :target: scipy/auto_examples/plot_connect_measurements.html
+.. image:: /intro/scipy/auto_examples/images/sphx_glr_plot_connect_measurements_003.png
+    :target: auto_examples/plot_connect_measurements.html
     :scale: 60
     :align: right
 

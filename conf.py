@@ -33,7 +33,7 @@ extensions = [
 doctest_test_doctest_blocks = 'true'
 
 sphinx_gallery_conf = {
-    'examples_dirs': ['intro/summary-exercises/examples',
+    'examples_dirs': ['intro/scipy/summary-exercises/examples',
                       'intro/matplotlib/examples',
                       'intro/numpy/examples',
                       'intro/scipy/examples',
@@ -46,8 +46,8 @@ sphinx_gallery_conf = {
                       'packages/scikit-learn/examples',
                       'packages/statistics/examples',
                       'guide/examples',
-                      ],
-    'gallery_dirs': ['intro/summary-exercises/auto_examples',
+                     ],
+    'gallery_dirs': ['intro/scipy/summary-exercises/auto_examples',
                      'intro/matplotlib/auto_examples',
                      'intro/numpy/auto_examples',
                      'intro/scipy/auto_examples',

@@ -98,7 +98,7 @@ The results are now gathered on a Matplotlib figure:
 .. figure:: auto_examples/images/sphx_glr_plot_cumulative_wind_speed_prediction_001.png
     :align: center
 
-    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_cumulative_wind_speed_prediction.py>`
+    Solution: :download:`Python source file <examples/plot_gumbell_wind_speed_prediction.py>`
 
 
 Exercise with the Gumbell distribution
@@ -117,7 +117,7 @@ until you have completed the exercise.
 .. figure:: auto_examples/images/sphx_glr_plot_sprog_annual_maxima_001.png
     :align: center
 
-    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_sprog_annual_maxima.py>`
+    Solution: :download:`Python source file <examples/plot_sprog_annual_maxima.py>`
 
 
 
@@ -130,7 +130,7 @@ until you have completed the exercise.
 .. figure:: auto_examples/images/sphx_glr_plot_gumbell_wind_speed_prediction_001.png
     :align: center
 
-    Solution: :ref:`Python source file <sphx_glr_intro_summary-exercises_auto_examples_plot_gumbell_wind_speed_prediction.py>`
+    Solution: :download:`Python source file <examples/plot_gumbell_wind_speed_prediction.py>`
 
 
 
