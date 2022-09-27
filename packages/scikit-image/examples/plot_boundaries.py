@@ -12,7 +12,7 @@ import numpy as np
 
 coins = data.coins()
 mask = coins > filters.threshold_otsu(coins)
-clean_border = segmentation.clear_border(mask).astype(np.int)
+clean_border = segmentation.clear_border(mask).astype(int)
 
 coins_edges = segmentation.mark_boundaries(coins, clean_border)
 

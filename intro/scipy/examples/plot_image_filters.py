@@ -17,7 +17,7 @@ from scipy import signal
 from matplotlib import pyplot as plt
 
 import numpy as np
-noisy_face = np.copy(face).astype(np.float)
+noisy_face = np.copy(face).astype(float)
 noisy_face += face.std() * 0.5 * np.random.standard_normal(face.shape)
 blurred_face = ndimage.gaussian_filter(noisy_face, sigma=3)
 median_face = ndimage.median_filter(noisy_face, size=5)

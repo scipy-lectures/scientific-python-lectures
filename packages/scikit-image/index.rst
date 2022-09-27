@@ -392,7 +392,7 @@ Default structuring element: 4-connectivity of a pixel ::
 
 **Opening**: erosion + dilation::
 
-    >>> a = np.zeros((5,5), dtype=np.int)
+    >>> a = np.zeros((5,5), dtype=int)
     >>> a[1:4, 1:4] = 1; a[4, 4] = 1
     >>> a
     array([[0, 0, 0, 0, 0],
@@ -494,7 +494,7 @@ Synthetic data::
     >>> l = 256
     >>> im = np.zeros((l, l))
     >>> points = l * np.random.random((2, n ** 2))
-    >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
+    >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = filters.gaussian(im, sigma=l / (4. * n))
     >>> blobs = im > im.mean()
 
@@ -653,7 +653,7 @@ Visualize contour ::
 
 Use ``skimage`` dedicated utility function::
 
-    >>> coins_edges = segmentation.mark_boundaries(coins, clean_border.astype(np.int))
+    >>> coins_edges = segmentation.mark_boundaries(coins, clean_border.astype(int))
 
 .. image:: auto_examples/images/sphx_glr_plot_boundaries_001.png
     :width: 90%

@@ -432,7 +432,7 @@ image.
     array([[False,  True, False],
            [ True,  True,  True],
            [False,  True, False]])
-    >>> el.astype(np.int)
+    >>> el.astype(int)
     array([[0, 1, 0],
            [1, 1, 1],
            [0, 1, 0]])
@@ -442,7 +442,7 @@ image.
 
 **Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.::
 
-    >>> a = np.zeros((7,7), dtype=np.int)
+    >>> a = np.zeros((7,7), dtype=int)
     >>> a[1:6, 2:5] = 1
     >>> a
     array([[0, 0, 0, 0, 0, 0, 0],
@@ -497,7 +497,7 @@ Also works for grey-valued images::
 
     >>> np.random.seed(2)
     >>> im = np.zeros((64, 64))
-    >>> x, y = (63*np.random.random((2, 8))).astype(np.int)
+    >>> x, y = (63*np.random.random((2, 8))).astype(int)
     >>> im[x, y] = np.arange(8)
 
     >>> bigger_points = ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
@@ -519,7 +519,7 @@ Also works for grey-valued images::
 
 **Opening**: erosion + dilation::
 
-    >>> a = np.zeros((5,5), dtype=np.int)
+    >>> a = np.zeros((5,5), dtype=int)
     >>> a[1:4, 1:4] = 1; a[4, 4] = 1
     >>> a
     array([[0, 0, 0, 0, 0],
@@ -528,14 +528,14 @@ Also works for grey-valued images::
            [0, 1, 1, 1, 0],
            [0, 0, 0, 0, 1]])
     >>> # Opening removes small objects
-    >>> ndimage.binary_opening(a, structure=np.ones((3,3))).astype(np.int)
+    >>> ndimage.binary_opening(a, structure=np.ones((3,3))).astype(int)
     array([[0, 0, 0, 0, 0],
            [0, 1, 1, 1, 0],
            [0, 1, 1, 1, 0],
            [0, 1, 1, 1, 0],
            [0, 0, 0, 0, 0]])
     >>> # Opening can also smooth corners
-    >>> ndimage.binary_opening(a).astype(np.int)
+    >>> ndimage.binary_opening(a).astype(int)
     array([[0, 0, 0, 0, 0],
            [0, 0, 1, 0, 0],
            [0, 1, 1, 1, 0],
@@ -547,7 +547,7 @@ Also works for grey-valued images::
     >>> square = np.zeros((32, 32))
     >>> square[10:-10, 10:-10] = 1
     >>> np.random.seed(2)
-    >>> x, y = (32*np.random.random((2, 20))).astype(np.int)
+    >>> x, y = (32*np.random.random((2, 20))).astype(int)
     >>> square[x, y] = 1
 
     >>> open_square = ndimage.binary_opening(square)
@@ -609,10 +609,10 @@ Segmentation
     >>> im = np.zeros((l, l))
     >>> np.random.seed(1)
     >>> points = l*np.random.random((2, n**2))
-    >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
+    >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
 
-    >>> mask = (im > im.mean()).astype(np.float)
+    >>> mask = (im > im.mean()).astype(float)
     >>> mask += 0.1 * im
     >>> img = mask + 0.2*np.random.randn(*mask.shape)
 
@@ -732,7 +732,7 @@ Synthetic data::
     >>> l = 256
     >>> im = np.zeros((l, l))
     >>> points = l*np.random.random((2, n**2))
-    >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
+    >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>> mask = im > im.mean()
 
@@ -829,7 +829,7 @@ Non-regularly-spaced blocks: radial mean::
     >>> sx, sy = f.shape
     >>> X, Y = np.ogrid[0:sx, 0:sy]
     >>> r = np.hypot(X - sx/2, Y - sy/2)
-    >>> rbin = (20* r/r.max()).astype(np.int)
+    >>> rbin = (20* r/r.max()).astype(int)
     >>> radial_mean = ndimage.mean(f, labels=rbin, index=np.arange(1, rbin.max() +1))
 
 .. figure:: auto_examples/images/sphx_glr_plot_radial_mean_001.png
@@ -855,7 +855,7 @@ One example with mathematical morphology: `granulometry
     ...     x, y = np.indices((2 * n + 1, 2 * n + 1))
     ...     mask = (x - n)**2 + (y - n)**2 <= n**2
     ...     struct[mask] = 1
-    ...     return struct.astype(np.bool)
+    ...     return struct.astype(bool)
     ...
     >>>
     >>> def granulometry(data, sizes=None):
@@ -872,7 +872,7 @@ One example with mathematical morphology: `granulometry
     >>> l = 256
     >>> im = np.zeros((l, l))
     >>> points = l*np.random.random((2, n**2))
-    >>> im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
+    >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>>
     >>> mask = im > im.mean()

@@ -14,7 +14,7 @@ def disk_structure(n):
     x, y = np.indices((2 * n + 1, 2 * n + 1))
     mask = (x - n)**2 + (y - n)**2 <= n**2
     struct[mask] = 1
-    return struct.astype(np.bool)
+    return struct.astype(bool)
 
 
 def granulometry(data, sizes=None):
@@ -31,7 +31,7 @@ n = 10
 l = 256
 im = np.zeros((l, l))
 points = l*np.random.random((2, n**2))
-im[(points[0]).astype(np.int), (points[1]).astype(np.int)] = 1
+im[(points[0]).astype(int), (points[1]).astype(int)] = 1
 im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
 
 mask = im > im.mean()

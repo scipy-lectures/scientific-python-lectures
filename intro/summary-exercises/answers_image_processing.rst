@@ -47,7 +47,7 @@ Example of solution for the image processing exercise: unmolten grains in glass
 5. Display an image in which the three phases are colored with three
    different colors. ::
 
-    >>> phases = void.astype(np.int) + 2*glass.astype(np.int) + 3*sand.astype(np.int)
+    >>> phases = void.astype(int) + 2*glass.astype(int) + 3*sand.astype(int)
 
    .. image:: ../image_processing/three_phases.png
      :align: center
