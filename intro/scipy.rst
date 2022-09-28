@@ -784,28 +784,33 @@ Integrating differential equations
 :mod:`scipy.integrate` also features routines for integrating `Ordinary
 Differential Equations (ODE)
 <https://en.wikipedia.org/wiki/Ordinary_differential_equation>`__. In
-particular, :func:`scipy.integrate.odeint` solves ODE of the form::
+particular, :func:`scipy.integrate.solve_ivp` solves ODE of the form::
 
-    dy/dt = rhs(y1, y2, .., t0,...)
+    dy/dt = rhs(t, y)
+
+.. note::
+
+   For a long time, the go-to method for solving an ODE was
+   :func:`scipy.integrate.odeint`. The SciPy project recommends using
+   :func:`scipy.integrate.solve_ivp` instead.
 
 As an introduction, let us solve the ODE :math:`\frac{dy}{dt} = -2 y` between 
 :math:`t = 0 \dots 4`, with the  initial condition :math:`y(t=0) = 1`.
 First the function computing the derivative of the position needs to be defined::
 
-    >>> def calc_derivative(ypos, time):
+    >>> def calc_derivative(time, ypos):
     ...     return -2 * ypos
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_odeint_simple_001.png
-    :target: scipy/auto_examples/plot_odeint_simple.html
+.. image:: scipy/auto_examples/images/sphx_glr_plot_solve_ivp_simple_001.png
+    :target: scipy/auto_examples/plot_solve_ivp_simple.html
     :scale: 70
     :align: right
 
 
 Then, to compute ``y`` as a function of time::
 
-    >>> from scipy.integrate import odeint
-    >>> time_vec = np.linspace(0, 4, 40)
-    >>> y = odeint(calc_derivative, y0=1, t=time_vec)
+    >>> from scipy.integrate import solve_ivp
+    >>> solution = solve_ivp(calc_derivative, (0, 4), y0=(1,))
 
 .. raw:: html
 
@@ -833,16 +838,16 @@ The system is underdamped, as::
     >>> eps < 1
     True
 
-For :func:`~scipy.integrate.odeint`, the 2nd order equation
+For :func:`~scipy.integrate.solve_ivp`, the 2nd order equation
 needs to be transformed in a system of two first-order equations for the
 vector :math:`Y = (y, y')`: the function computes the
 velocity and acceleration::
     
-    >>> def calc_deri(yvec, time, eps, omega):
+    >>> def calc_deri(time, yvec, eps, omega):
     ...     return (yvec[1], -2.0 * eps * omega * yvec[1] - omega **2 * yvec[0])
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_odeint_damped_spring_mass_001.png
-    :target: scipy/auto_examples/plot_odeint_damped_spring_mass.html
+.. image:: scipy/auto_examples/images/sphx_glr_plot_solve_ivp_damped_spring_mass_001.png
+    :target: scipy/auto_examples/plot_solve_ivp_damped_spring_mass.html
     :scale: 70
     :align: right
 
@@ -850,7 +855,7 @@ Integration of the system follows::
 
     >>> time_vec = np.linspace(0, 10, 100)
     >>> yinit = (1, 0)
-    >>> yarr = odeint(calc_deri, yinit, time_vec, args=(eps, omega))
+    >>> solution = solve_ivp(calc_deri, (0, 10), yinit, args=(eps, omega), method='LSODA')
 
 .. raw:: html
 
@@ -859,10 +864,9 @@ Integration of the system follows::
 
 .. tip::
 
-    :func:`scipy.integrate.odeint` uses the LSODA (Livermore Solver for
-    Ordinary Differential equations with Automatic method switching for stiff
-    and non-stiff problems), see the `ODEPACK Fortran library`_ for more
-    details.
+    With the option `method='LSODA'`, :func:`scipy.integrate.solve_ivp` uses the LSODA
+    (Livermore Solver for Ordinary Differential equations with Automatic method switching
+    for stiff and non-stiff problems), see the `ODEPACK Fortran library`_ for more details.
 
 .. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
 

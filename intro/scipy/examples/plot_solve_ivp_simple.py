@@ -8,17 +8,17 @@ y(t=0) = 1.
 """
 
 import numpy as np
-from scipy.integrate import odeint
+from scipy.integrate import solve_ivp
 from matplotlib import pyplot as plt
 
-def calc_derivative(ypos, time):
+def calc_derivative(time, ypos):
     return -2*ypos
 
-time_vec = np.linspace(0, 4, 40)
-yvec = odeint(calc_derivative, 1, time_vec)
+t_span = (0, 4)
+solution = solve_ivp(calc_derivative, t_span, (1,))
 
 plt.figure(figsize=(4, 3))
-plt.plot(time_vec, yvec)
+plt.plot(solution.t, solution.y[0,:])
 plt.xlabel('t: Time')
 plt.ylabel('y: Position')
 plt.tight_layout()
