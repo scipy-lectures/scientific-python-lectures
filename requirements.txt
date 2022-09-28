@@ -13,7 +13,7 @@ pytest>=7.1
 sphinx>=5.1
 coverage>=6.4
 pillow
-imageio==2.13.5
+imageio>=2.22
 pip
 ipython
 # For conda, pip installable
