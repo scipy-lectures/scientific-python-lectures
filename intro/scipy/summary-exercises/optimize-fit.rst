@@ -50,7 +50,7 @@ Loading and visualization
 Load the first waveform using::
 
     >>> import numpy as np
-    >>> waveform_1 = np.load('intro/summary-exercises/examples/waveform_1.npy')
+    >>> waveform_1 = np.load('intro/scipy/summary-exercises/examples/waveform_1.npy')
 
 and visualize it::
 

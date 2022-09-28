@@ -255,8 +255,8 @@ function::
     >>> from scipy.interpolate import interp1d
     >>> linear_interp = interp1d(measured_time, measures)
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_interpolation_001.png
-    :target: scipy/auto_examples/plot_interpolation.html
+.. image:: auto_examples/images/sphx_glr_plot_interpolation_001.png
+    :target: auto_examples/plot_interpolation.html
     :scale: 60
     :align: right
 
@@ -301,8 +301,8 @@ Curve fitting
 .. Comment to make doctest pass
     >>> np.random.seed(0)
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_curve_fit_001.png
-   :target: scipy/auto_examples/plot_curve_fit.html
+.. image:: auto_examples/images/sphx_glr_plot_curve_fit_001.png
+   :target: auto_examples/plot_curve_fit.html
    :align: right
    :scale: 50
 
@@ -320,8 +320,8 @@ amplitude and period::
     >>> def test_func(x, a, b):
     ...     return a * np.sin(b * x)
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_curve_fit_002.png
-   :target: scipy/auto_examples/plot_curve_fit.html
+.. image:: auto_examples/images/sphx_glr_plot_curve_fit_002.png
+   :target: auto_examples/plot_curve_fit.html
    :align: right
    :scale: 50
 
@@ -363,8 +363,8 @@ Finding the minimum of a scalar function
 .. Comment to make doctest pass
     >>> np.random.seed(0)
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_optimize_example1_001.png
-   :target: scipy/auto_examples/plot_optimize_example1.html
+.. image:: auto_examples/images/sphx_glr_plot_optimize_example1_001.png
+   :target: auto_examples/plot_optimize_example1.html
    :align: right
    :scale: 50
 
@@ -526,8 +526,8 @@ We can constrain the variable to the interval
 .. topic:: Exercise: 2-D minimization
    :class: green
 
-    .. image:: scipy/auto_examples/images/sphx_glr_plot_2d_minimization_002.png
-        :target: scipy/auto_examples/plot_2d_minimization.html
+    .. image:: auto_examples/images/sphx_glr_plot_2d_minimization_002.png
+        :target: auto_examples/plot_2d_minimization.html
         :align: right
         :scale: 50
 
@@ -587,8 +587,8 @@ our initial guess: ::
    :func:`scipy.optimize.root` also comes with a variety of algorithms,
    set via the "method" argument.
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_optimize_example2_001.png
-   :target: scipy/auto_examples/plot_optimize_example2.html
+.. image:: auto_examples/images/sphx_glr_plot_optimize_example2_001.png
+   :target: auto_examples/plot_optimize_example2.html
    :align: right
    :scale: 70
 
@@ -645,8 +645,8 @@ the random process's PDF (probability density function): ::
     >>> plt.plot(bins, pdf) # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_normal_distribution_001.png
-    :target: scipy/auto_examples/plot_normal_distribution.html
+.. image:: auto_examples/images/sphx_glr_plot_normal_distribution_001.png
+    :target: auto_examples/plot_normal_distribution.html
     :scale: 70
 
 .. sidebar:: **The distribution objects**
@@ -725,8 +725,8 @@ Similarly, we can calculate the percentile 90::
 Statistical tests
 .................
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_t_test_001.png
-    :target: scipy/auto_examples/plot_t_test.html
+.. image:: auto_examples/images/sphx_glr_plot_t_test_001.png
+    :target: auto_examples/plot_t_test.html
     :scale: 60
     :align: right
 
@@ -801,8 +801,8 @@ First the function computing the derivative of the position needs to be defined:
     >>> def calc_derivative(time, ypos):
     ...     return -2 * ypos
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_solve_ivp_simple_001.png
-    :target: scipy/auto_examples/plot_solve_ivp_simple.html
+.. image:: auto_examples/images/sphx_glr_plot_solve_ivp_simple_001.png
+    :target: auto_examples/plot_solve_ivp_simple.html
     :scale: 70
     :align: right
 
@@ -846,8 +846,8 @@ velocity and acceleration::
     >>> def calc_deri(time, yvec, eps, omega):
     ...     return (yvec[1], -2.0 * eps * omega * yvec[1] - omega **2 * yvec[0])
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_solve_ivp_damped_spring_mass_001.png
-    :target: scipy/auto_examples/plot_solve_ivp_damped_spring_mass.html
+.. image:: auto_examples/images/sphx_glr_plot_solve_ivp_damped_spring_mass_001.png
+    :target: auto_examples/plot_solve_ivp_damped_spring_mass.html
     :scale: 70
     :align: right
 
@@ -901,12 +901,12 @@ As an illustration, a (noisy) input signal (``sig``), and its FFT::
     >>> freqs = fftpack.fftfreq(sig.size, d=time_step) # doctest:+SKIP
 
 
-.. |signal_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_001.png
-    :target: scipy/auto_examples/plot_fftpack.html
+.. |signal_fig| image:: auto_examples/images/sphx_glr_plot_fftpack_001.png
+    :target: auto_examples/plot_fftpack.html
     :scale: 60
 
-.. |fft_fig| image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_002.png
-    :target: scipy/auto_examples/plot_fftpack.html
+.. |fft_fig| image:: auto_examples/images/sphx_glr_plot_fftpack_002.png
+    :target: auto_examples/plot_fftpack.html
     :scale: 60
 
 ===================== =====================
@@ -920,8 +920,8 @@ symmetric.
 
 The peak signal frequency can be found with ``freqs[power.argmax()]``
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_fftpack_003.png
-    :target: scipy/auto_examples/plot_fftpack.html
+.. image:: auto_examples/images/sphx_glr_plot_fftpack_003.png
+    :target: auto_examples/plot_fftpack.html
     :scale: 60
     :align: right
 
@@ -943,13 +943,13 @@ the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
 
 **Fully worked examples:**
 
-.. |periodicity_finding| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_periodicity_finder_001.png
+.. |periodicity_finding| image:: auto_examples/solutions/images/sphx_glr_plot_periodicity_finder_001.png
     :scale: 50
-    :target: scipy/auto_examples/solutions/plot_periodicity_finder.html
+    :target: auto_examples/solutions/plot_periodicity_finder.html
 
-.. |image_blur| image:: scipy/auto_examples/solutions/images/sphx_glr_plot_image_blur_002.png
+.. |image_blur| image:: auto_examples/solutions/images/sphx_glr_plot_image_blur_002.png
     :scale: 50
-    :target: scipy/auto_examples/solutions/plot_image_blur.html
+    :target: auto_examples/solutions/plot_image_blur.html
 
 =================================================================================================================== ===================================================================================================================
 Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py>`)   Gaussian image blur (:ref:`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py>`)
@@ -962,11 +962,11 @@ Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_soluti
 .. topic:: Exercise: Denoise moon landing image
    :class: green
 
-   .. image:: ../data/moonlanding.png
+   .. image:: ../../data/moonlanding.png
      :scale: 70
 
    1. Examine the provided image :download:`moonlanding.png
-      <../data/moonlanding.png>`, which is heavily contaminated with periodic
+      <../../data/moonlanding.png>`, which is heavily contaminated with periodic
       noise. In this exercise, we aim to clean up the noise using the
       Fast Fourier Transform.
 
@@ -995,8 +995,8 @@ Signal processing: :mod:`scipy.signal`
    :mod:`scipy.signal` is for typical signal processing: 1D,
    regularly-sampled signals.
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_resample_001.png
-    :target: scipy/auto_examples/plot_resample.html
+.. image:: auto_examples/images/sphx_glr_plot_resample_001.png
+    :target: auto_examples/plot_resample.html
     :scale: 65
     :align: right
 
@@ -1025,8 +1025,8 @@ points using FFT. ::
     only applies to regularly sampled data.
 
 
-.. image:: scipy/auto_examples/images/sphx_glr_plot_detrend_001.png
-    :target: scipy/auto_examples/plot_detrend.html
+.. image:: auto_examples/images/sphx_glr_plot_detrend_001.png
+    :target: auto_examples/plot_detrend.html
     :scale: 65
     :align: right
 
@@ -1064,16 +1064,16 @@ but we will discuss this in the image section.
 spectrums over consecutive time windows--, while
 :func:`scipy.signal.welch` comptes a power spectrum density (PSD).
 
-.. |chirp_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_001.png
-    :target: scipy/auto_examples/plot_spectrogram.html
+.. |chirp_fig| image:: auto_examples/images/sphx_glr_plot_spectrogram_001.png
+    :target: auto_examples/plot_spectrogram.html
     :scale: 45
 
-.. |spectrogram_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_002.png
-    :target: scipy/auto_examples/plot_spectrogram.html
+.. |spectrogram_fig| image:: auto_examples/images/sphx_glr_plot_spectrogram_002.png
+    :target: auto_examples/plot_spectrogram.html
     :scale: 45
 
-.. |psd_fig| image:: scipy/auto_examples/images/sphx_glr_plot_spectrogram_003.png
-    :target: scipy/auto_examples/plot_spectrogram.html
+.. |psd_fig| image:: auto_examples/images/sphx_glr_plot_spectrogram_003.png
+    :target: auto_examples/plot_spectrogram.html
     :scale: 45
 
 |chirp_fig| |spectrogram_fig| |psd_fig|
@@ -1124,7 +1124,7 @@ invited to try these exercises.
 .. include the gallery. Skip the first line to avoid the "orphan"
    declaration
 
-.. include:: scipy/auto_examples/index.rst
+.. include:: auto_examples/index.rst
     :start-line: 1
 
 

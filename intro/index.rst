@@ -20,7 +20,7 @@ itself, to numerical computing or plotting.
    language/python_language.rst
    numpy/index.rst 
    matplotlib/index.rst 
-   scipy.rst
+   scipy/index.rst
    help/help.rst
 
 
