@@ -76,7 +76,6 @@ to build the SciPy lecture notes, can be inferred from the
 :download:`requirements file <requirements.txt>`:
 
 .. literalinclude:: requirements.txt
-    :start-after: # libraries before the special comment marked
 
 The installation instructions below cover (i) Debian/Ubuntu with miniconda as this is the
 method we use to test and build the material and (ii) generic instructions using pip.
