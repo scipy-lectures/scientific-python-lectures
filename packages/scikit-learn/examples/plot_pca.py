@@ -33,4 +33,3 @@ for i, c, label in zip(target_ids, 'rgbcmykw', iris.target_names):
                c=c, label=label)
 plt.legend()
 plt.show()
-

@@ -29,7 +29,7 @@ Coordinate Format (COO)
     * when converting to other format (usually CSR or CSC), duplicate
       entries are summed together
 
-        * facilitates efficient construction of finite element 
+        * facilitates efficient construction of finite element
           matrices
 
 Examples
@@ -76,4 +76,3 @@ Examples
     Traceback (most recent call last):
     ...
     TypeError: 'coo_matrix' object ...
-

@@ -121,4 +121,3 @@ data['fare_difference'] = data['fare_2001'] - data['fare_2000']
 seaborn.lmplot(x='dist', y='fare_difference', data=data)
 
 plt.show()
-

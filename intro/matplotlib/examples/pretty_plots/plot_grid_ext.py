@@ -45,4 +45,3 @@ plt.text(-0.05, 1.01, "\n\n    Draw ticks and grid ",
           verticalalignment='top',
           size='large',
           transform=axes.transAxes)
-

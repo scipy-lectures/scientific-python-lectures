@@ -13,8 +13,8 @@ jobs:
           command: sudo apt-get update
 
       - run:
-           name: Install TeX
-           command: sudo apt-get install dvipng texlive-latex-base texlive-latex-extra
+          name: Install TeX
+          command: sudo apt-get install dvipng texlive-latex-base texlive-latex-extra
 
       - restore_cache:
           keys:

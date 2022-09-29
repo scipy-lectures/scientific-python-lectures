@@ -58,7 +58,7 @@ try/except
        ....:         break
        ....:     except ValueError:
        ....:         print('That was no valid number.  Try again...')
-       ....: 
+       ....:
     Please enter a number: a
     That was no valid number.  Try again...
     Please enter a number: 1
@@ -163,5 +163,3 @@ Raising exceptions
 
 Use exceptions to notify certain conditions are met (e.g.
 StopIteration) or not (e.g. custom error raising)
-
-

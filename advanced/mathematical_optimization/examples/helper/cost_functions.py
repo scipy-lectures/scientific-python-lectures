@@ -157,6 +157,3 @@ class CountingFunction:
     def __call__(self, x0):
         self.counter.append('f_prime')
         return self.function(x0)
-
-
-

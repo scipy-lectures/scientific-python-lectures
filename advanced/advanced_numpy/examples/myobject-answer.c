@@ -29,7 +29,7 @@ myobject_getbuffer(PyObject *obj, Py_buffer *view, int flags)
 {
     PyMyObjectObject *self = (PyMyObjectObject*)obj;
 
-    /* Called when something requests that a MyObject-type object 
+    /* Called when something requests that a MyObject-type object
        provides a buffer interface */
 
     view->buf = self->buffer;
@@ -47,11 +47,11 @@ myobject_getbuffer(PyObject *obj, Py_buffer *view, int flags)
     view->suboffsets = NULL;
 
     /* Note: if correct interpretation *requires* strides or shape,
-       you need to check flags for what was requested, and raise 
-       appropriate errors. 
-          
-       The same if the buffer is not readable. 
-    */ 
+       you need to check flags for what was requested, and raise
+       appropriate errors.
+
+       The same if the buffer is not readable.
+    */
 
     view->obj = (PyObject*)self;
     Py_INCREF(self);
@@ -63,11 +63,11 @@ static void
 myobject_releasebuffer(PyMemoryViewObject *self, Py_buffer *view)
 {
     if (view->shape) {
-        free(view->shape); 
+        free(view->shape);
         view->shape = NULL;
     }
     if (view->strides) {
-        free(view->strides); 
+        free(view->strides);
         view->strides = NULL;
     }
 }
@@ -171,13 +171,13 @@ PyObject *PyInit_myobject(void) {
     if (PyType_Ready(&PyMyObject_Type) < 0) {
         return NULL;
     }
-    
+
     m = PyModule_Create(&moduledef);
 
     d = PyModule_GetDict(m);
-    
+
     Py_INCREF(&PyMyObject_Type);
     PyDict_SetItemString(d, "MyObject", (PyObject *)&PyMyObject_Type);
-    
+
     return m;
 }

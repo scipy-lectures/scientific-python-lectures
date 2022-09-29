@@ -97,4 +97,3 @@ print(metrics.classification_report(expected, predicted))
 print(metrics.confusion_matrix(expected, predicted))
 
 plt.show()
-

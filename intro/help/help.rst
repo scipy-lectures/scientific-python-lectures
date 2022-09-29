@@ -14,13 +14,13 @@ help. Here are some ways to get information:
   display the matching functions.
 
   .. sourcecode:: ipython
-  
+
       In [204]: help np.v
       np.vander     np.vdot       np.version    np.void0      np.vstack
-      np.var        np.vectorize  np.void       np.vsplit     
-      
+      np.var        np.vectorize  np.void       np.vsplit
+
       In [204]: help np.vander
-	
+
 In Ipython it is not possible to open a separated window for help and
 documentation; however one can always open a second ``Ipython`` shell
 just to display help and docstrings...
@@ -34,7 +34,7 @@ just to display help and docstrings...
   https://docs.scipy.org/doc. The ``search`` button is quite useful inside
   the reference documentation of the two packages
   (https://numpy.org/doc/stable/reference/ and
-  https://docs.scipy.org/doc/scipy/reference/). 
+  https://docs.scipy.org/doc/scipy/reference/).
 
   Tutorials on various topics as well as the complete API with all
   docstrings are found on this website.
@@ -59,7 +59,7 @@ just to display help and docstrings...
 
 * The SciPy Cookbook https://scipy-cookbook.readthedocs.io gives recipes on many
   common problems frequently encountered, such as fitting data points,
-  solving ODE, etc. 
+  solving ODE, etc.
 
   .. image:: matplotlib.png
      :align: right
@@ -69,7 +69,7 @@ just to display help and docstrings...
 * Matplotlib's website https://matplotlib.org/ features a very
   nice **gallery** with a large number of plots, each of them shows both
   the source code and the resulting plot. This is very useful for
-  learning by example. More standard documentation is also available. 
+  learning by example. More standard documentation is also available.
 
   |clear-floats|
 
@@ -82,7 +82,7 @@ Finally, two more "technical" possibilities are useful as well:
 
 
   .. sourcecode:: ipython
-  
+
       In [3]: import numpy as np
       In [4]: %psearch np.diag*
       np.diag
@@ -92,7 +92,7 @@ Finally, two more "technical" possibilities are useful as well:
 * numpy.lookfor looks for keywords inside the docstrings of specified modules.
 
   .. sourcecode:: ipython
-  
+
       In [45]: numpy.lookfor('convolution')
       Search results for 'convolution'
       --------------------------------
@@ -134,5 +134,4 @@ Finally, two more "technical" possibilities are useful as well:
       scipy package.
 
     * matplotlib-users@lists.sourceforge.net for plotting with
-      matplotlib.                               
-                                             
+      matplotlib.

@@ -7,7 +7,7 @@ data, exploring two types of regressors.
 
 """
 
-from sklearn.datasets import fetch_california_housing 
+from sklearn.datasets import fetch_california_housing
 data = fetch_california_housing(as_frame=True)
 
 ##############################################################################
@@ -76,5 +76,3 @@ import numpy as np
 print(f"RMS: {np.sqrt(np.mean((predicted - expected) ** 2))!r} ")
 
 plt.show()
-
-

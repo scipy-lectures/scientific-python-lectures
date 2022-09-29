@@ -165,13 +165,13 @@ Structured data types
     ...               ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
     >>> samples     # doctest: +SKIP
     array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13),
-           ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)], 
+           ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)],
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 Field access works by indexing with field names::
 
     >>> samples['sensor_code']    # doctest: +SKIP
-    array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'], 
+    array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'],
           dtype='|S4')
     >>> samples['value']
     array([0.37,  0.11,  0.13,  0.37,  0.11,  0.13])
@@ -253,5 +253,3 @@ recall good coding practice, which really do pay off in the long run:
       manage help strings).
 
     * Except some rare cases, variable names and comments in English.
-
-

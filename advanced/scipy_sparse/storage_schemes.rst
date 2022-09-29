@@ -12,7 +12,7 @@ Storage Schemes
 * each suitable for some tasks
 * many employ sparsetools C++ module by Nathan Bell
 * assume the following is imported::
-    
+
   >>> import numpy as np
   >>> import scipy.sparse as sps
   >>> import matplotlib.pyplot as plt

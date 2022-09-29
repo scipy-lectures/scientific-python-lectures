@@ -41,9 +41,9 @@ To get yourself started, type the following stack of instructions ::
     <type 'int'>
     >>> print(b)
     6
-    >>> a*b 
+    >>> a*b
     18
-    >>> b = 'hello' 
+    >>> b = 'hello'
     >>> type(b)    # doctest: +SKIP
     <type 'str'>
     >>> b + b

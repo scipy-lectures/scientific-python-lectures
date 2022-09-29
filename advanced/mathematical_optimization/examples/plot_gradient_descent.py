@@ -236,4 +236,3 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate((
               borderaxespad=0, handlelength=1.5, handletextpad=.5)
     plt.tight_layout()
     plt.draw()
-

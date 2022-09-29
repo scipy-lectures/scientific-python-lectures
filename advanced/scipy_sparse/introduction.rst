@@ -61,7 +61,7 @@ Prerequisites
 -------------
 
 .. rst-class:: horizontal
-  
+
     * :ref:`numpy <numpy>`
     * :ref:`scipy <scipy>`
     * :ref:`matplotlib (optional) <matplotlib>`

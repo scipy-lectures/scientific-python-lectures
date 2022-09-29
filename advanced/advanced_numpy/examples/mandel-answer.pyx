@@ -1,7 +1,7 @@
 # The elementwise function
 # ------------------------
 
-cdef void mandel_single_point(double complex *z_in, 
+cdef void mandel_single_point(double complex *z_in,
                               double complex *c_in,
                               double complex *z_out) nogil:
     #
@@ -42,7 +42,7 @@ cdef void mandel_single_point(double complex *z_in,
 # Pulls definitions from the Numpy C headers.
 # -------------------------------------------
 
-from numpy cimport import_array, import_ufunc 
+from numpy cimport import_array, import_ufunc
 from numpy cimport (PyUFunc_FromFuncAndData,
                     PyUFuncGenericFunction)
 from numpy cimport NPY_CDOUBLE

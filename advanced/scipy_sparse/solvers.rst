@@ -43,7 +43,7 @@ Examples
   follows:
 
     * prepare a linear system::
-  
+
         >>> import numpy as np
         >>> from scipy import sparse
         >>> mtx = sparse.spdiags([[1, 2, 3, 4, 5], [6, 5, 8, 9, 10]], [0, 1], 5, 5)
@@ -196,7 +196,7 @@ The :mod:`eigen` module
 
 * output::
 
-    $ python examples/lobpcg_sakurai.py 
+    $ python examples/lobpcg_sakurai.py
     Results by LOBPCG for n=2500
 
     [ 0.06250083  0.06250028  0.06250007]

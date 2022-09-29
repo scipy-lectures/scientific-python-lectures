@@ -29,9 +29,9 @@ mean_sq_distance = np.mean(sq_distance, axis=0)
 # Plot the distance d from the origin as a function of time and
 # compare with the theoretically expected result where d(t)
 # grows as a square root of time t.
-plt.figure(figsize=(4, 3)) 
-plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') 
-plt.xlabel(r"$t$") 
-plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") 
+plt.figure(figsize=(4, 3))
+plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-')
+plt.xlabel(r"$t$")
+plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
 plt.tight_layout()
 plt.show()

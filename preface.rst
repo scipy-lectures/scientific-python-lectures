@@ -15,7 +15,7 @@ About the scipy lecture notes
 
 
 .. raw:: html
-    
+
   <style type="text/css">
     div.section#authors ul.simple li,
     div.section#requirements ul.simple li{
@@ -52,10 +52,9 @@ About the scipy lecture notes
 
 
 .. include:: AUTHORS.rst
-   
+
 .. include:: CHANGES.rst
 
 .. include:: LICENSE.rst
 
 .. include:: CONTRIBUTING.rst
-

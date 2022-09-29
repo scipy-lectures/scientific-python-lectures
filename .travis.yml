@@ -16,11 +16,11 @@ env:
       PANDAS_VERSION="0.20"
 
 install:
-    - source build_tools/install.sh
+  - source build_tools/install.sh
 
 before_script:
-    - make clean
+  - make clean
 
 script:
-    - python build_tools/show-python-packages-versions.py
-    - make test
+  - python build_tools/show-python-packages-versions.py
+  - make test

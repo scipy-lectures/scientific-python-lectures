@@ -68,7 +68,7 @@ Scipy : high-level scientific computing
 =========================== ==========================================
 
 .. tip::
-   
+
    They all depend on :mod:`numpy`, but are mostly independent of each
    other. The standard way of importing Numpy and these Scipy modules
    is::
@@ -97,7 +97,7 @@ File input/output: :mod:`scipy.io`
            [1.,  1.,  1.]])
 
 .. warning:: **Python / Matlab mismatches**, *eg* matlab does not represent 1D arrays
-   
+
    ::
 
       >>> a = np.ones(3)
@@ -395,7 +395,7 @@ the location of the minimum that it has found:
 
 ::
 
-    >>> result = optimize.minimize(f, x0=0) 
+    >>> result = optimize.minimize(f, x0=0)
     >>> result # doctest: +ELLIPSIS
           fun: -7.9458233756...
      hess_inv: array([[0.0858...]])
@@ -583,7 +583,7 @@ our initial guess: ::
     array([-2.47948183])
 
 .. note::
-   
+
    :func:`scipy.optimize.root` also comes with a variety of algorithms,
    set via the "method" argument.
 
@@ -604,7 +604,7 @@ we put all those results together in a single plot:
 
 
 .. seealso::
-   
+
     You can find all algorithms and functions with similar functionalities
     in the documentation of :mod:`scipy.optimize`.
 
@@ -639,7 +639,7 @@ the random process's PDF (probability density function): ::
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
     >>> from scipy import stats
     >>> pdf = stats.norm.pdf(bins)  # norm is a distribution object
-    
+
     >>> plt.plot(bins, histogram) # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
     >>> plt.plot(bins, pdf) # doctest: +ELLIPSIS
@@ -794,7 +794,7 @@ particular, :func:`scipy.integrate.solve_ivp` solves ODE of the form::
    :func:`scipy.integrate.odeint`. The SciPy project recommends using
    :func:`scipy.integrate.solve_ivp` instead.
 
-As an introduction, let us solve the ODE :math:`\frac{dy}{dt} = -2 y` between 
+As an introduction, let us solve the ODE :math:`\frac{dy}{dt} = -2 y` between
 :math:`t = 0 \dots 4`, with the  initial condition :math:`y(t=0) = 1`.
 First the function computing the derivative of the position needs to be defined::
 
@@ -820,7 +820,7 @@ Let us integrate a more complex ODE: a `damped
 spring-mass oscillator
 <https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator>`__.
 The position of a mass attached to a spring obeys the 2nd order *ODE*
-:math:`y'' + 2 \varepsilon \omega_0  y' + \omega_0^2 y = 0` with 
+:math:`y'' + 2 \varepsilon \omega_0  y' + \omega_0^2 y = 0` with
 :math:`\omega_0^2 = k/m` with :math:`k` the spring constant, :math:`m` the mass
 and :math:`\varepsilon = c/(2 m \omega_0)` with :math:`c` the damping coefficient. We set::
 
@@ -842,7 +842,7 @@ For :func:`~scipy.integrate.solve_ivp`, the 2nd order equation
 needs to be transformed in a system of two first-order equations for the
 vector :math:`Y = (y, y')`: the function computes the
 velocity and acceleration::
-    
+
     >>> def calc_deri(time, yvec, eps, omega):
     ...     return (yvec[1], -2.0 * eps * omega * yvec[1] - omega **2 * yvec[0])
 
@@ -1015,7 +1015,7 @@ points using FFT. ::
   >>> plt.plot(t[::4], x_resampled, 'ko') # doctest: +ELLIPSIS
   [<matplotlib.lines.Line2D object at ...>]
 
-.. tip:: 
+.. tip::
 
     Notice how on the side of the window the resampling is less accurate
     and has a rippling effect.
@@ -1135,5 +1135,3 @@ invited to try these exercises.
      lectures
 
    * The `scipy cookbook <https://scipy-cookbook.readthedocs.io>`__
-
-

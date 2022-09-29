@@ -64,7 +64,7 @@ Images are NumPy's arrays ``np.ndarray``
 
 
 ::
-    
+
     >>> import numpy as np
     >>> check = np.zeros((8, 8))
     >>> check[::2, 1::2] = 1
@@ -221,7 +221,7 @@ input array ::
 
     >>> from skimage import filters
     >>> camera_sobel = filters.sobel(camera)
-    >>> camera_sobel.max() # doctest: +SKIP 
+    >>> camera_sobel.max() # doctest: +SKIP
     0.591502...
 
 
@@ -720,7 +720,7 @@ Example: detecting corners using Harris detector ::
 example in scikit-image)
 
 Points of interest such as corners can then be used to match objects in
-different images, as described in the `plot_matching 
+different images, as described in the `plot_matching
 <https://scikit-image.org/docs/stable/auto_examples/transform/plot_matching.html>`_
 example of scikit-image.
 

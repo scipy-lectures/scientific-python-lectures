@@ -22,4 +22,3 @@ plt.plot(solution.t, solution.y[0,:])
 plt.xlabel('t: Time')
 plt.ylabel('y: Position')
 plt.tight_layout()
-

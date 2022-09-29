@@ -36,7 +36,7 @@ Statistics in Python
    the package manager if you are under Ubuntu or other linux.
 
 .. seealso::
-   
+
  * **Bayesian statistics in Python**:
    This chapter does not cover tools for Bayesian statistics. Of
    particular interest for Bayesian modelling is `PyMC
@@ -70,15 +70,15 @@ Statistics in Python
 .. tip::
 
     In this document, the Python inputs are represented with the sign
-    ">>>". 
+    ">>>".
 
     |
 
     **Disclaimer: Gender questions**
 
-    Some of the examples of this tutorial are chosen around gender 
+    Some of the examples of this tutorial are chosen around gender
     questions. The reason is that on such questions controlling the truth
-    of a claim actually matters to many people. 
+    of a claim actually matters to many people.
 
 
 Data representation and interaction
@@ -117,7 +117,7 @@ Creating dataframes: reading data files or converting arrays
 .. sidebar:: **Separator**
 
    It is a CSV file, but the separator is ";"
- 
+
 **Reading from a CSV file:** Using the above CSV file that gives
 observations of brain size and weight and IQ (Willerman et al. 1991), the
 data are a mixture of numerical and categorical values::
@@ -152,7 +152,7 @@ as a dictionary of 1D 'series', eg arrays or lists. If we have 3
 
 We can expose them as a :class:`pandas.DataFrame`::
 
-    >>> pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+    >>> pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
                t       sin       cos
     0  -6.000000  0.279415  0.960170
     1  -5.368421  0.792419  0.609977
@@ -215,7 +215,7 @@ operations on the resulting group of dataframes::
 
     >>> groupby_gender.mean()
             Unnamed: 0   FSIQ     VIQ     PIQ      Weight     Height  MRI_Count
-    Gender                                                                     
+    Gender
     Female       19.65  111.9  109.45  110.45  137.200000  65.765000   862654.6
     Male         21.35  115.0  115.25  111.60  166.444444  71.431579   954855.4
 
@@ -249,8 +249,8 @@ operations on the resulting group of dataframes::
     * What is the average value of MRI counts expressed in log units, for
       males and females?
 
-.. note:: 
-   
+.. note::
+
    `groupby_gender.boxplot` is used for the plots above (see `this
    example <auto_examples/plot_pandas.html>`_).
 
@@ -332,7 +332,7 @@ function's help)::
     Ttest_1sampResult(statistic=30.088099970..., pvalue=1.32891964...e-28)
 
 .. tip::
-   
+
     With a p-value of 10^-28 we can claim that the population mean for
     the IQ (VIQ measure) is not 0.
 
@@ -465,7 +465,7 @@ Then we specify an OLS model and fit it::
 We can inspect the various statistics derived from the fit::
 
     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
-                                OLS Regression Results                            
+                                OLS Regression Results
     ==========================...
     Dep. Variable:                      y   R-squared:                       0.804
     Model:                            OLS   Adj. R-squared:                  0.794
@@ -474,7 +474,7 @@ We can inspect the various statistics derived from the fit::
     Time:                        ...        Log-Likelihood:                -57.988
     No. Observations:                  20   AIC:                             120.0
     Df Residuals:                      18   BIC:                             122.0
-    Df Model:                           1                                         
+    Df Model:                           1
     Covariance Type:            nonrobust
     ==========================...
                      coef    std err          t      P>|t|      [0.025      0.975]
@@ -496,14 +496,14 @@ We can inspect the various statistics derived from the fit::
 
     Statsmodels uses a statistical terminology: the `y` variable in
     statsmodels is called 'endogenous' while the `x` variable is called
-    exogenous.  This is discussed in more detail `here 
+    exogenous.  This is discussed in more detail `here
     <https://www.statsmodels.org/devel/endog_exog.html>`_.
 
     To simplify, `y` (endogenous) is the value you are trying to predict,
     while `x` (exogenous) represents the features you are using to make
     the prediction.
 
- 
+
 .. topic:: **Exercise**
    :class: green
 
@@ -521,10 +521,10 @@ Let us go back the data on brain size::
 
 We can write a comparison between IQ of male and female using a linear
 model::
-     
+
      >>> model = ols("VIQ ~ Gender + 1", data).fit()
      >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
-                                 OLS Regression Results                            
+                                 OLS Regression Results
      ==========================...
      Dep. Variable:                    VIQ   R-squared:                       0.015
      Model:                            OLS   Adj. R-squared:                 -0.010
@@ -533,7 +533,7 @@ model::
      Time:                        ...        Log-Likelihood:                -182.42
      No. Observations:                  40   AIC:                             368.8
      Df Residuals:                      38   BIC:                             372.2
-     Df Model:                           1                                      
+     Df Model:                           1
      Covariance Type:            nonrobust
      ==========================...
                        coef    std err        t      P>|t|      [0.025      0.975]
@@ -551,7 +551,7 @@ model::
      [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
 
 .. topic:: **Tips on specifying model**
- 
+
    **Forcing categorical**: the 'Gender' is automatically detected as a
    categorical variable, and thus each of its different values are
    treated as different entities.
@@ -584,7 +584,7 @@ model::
      >>> data_fisq = pandas.DataFrame({'iq': data['FSIQ'], 'type': 'fsiq'})
      >>> data_piq = pandas.DataFrame({'iq': data['PIQ'], 'type': 'piq'})
      >>> data_long = pandas.concat((data_fisq, data_piq))
-     >>> print(data_long)  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE 
+     >>> print(data_long)  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
           iq  type
      0   133  fsiq
      1   140  fsiq
@@ -599,10 +599,10 @@ model::
      39   89   piq
      <BLANKLINE>
      [80 rows x 2 columns]
-    
+
      >>> model = ols("iq ~ type", data_long).fit()
      >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
-                                 OLS Regression Results  
+                                 OLS Regression Results
      ...
      ==========================...
                       coef    std err          t      P>|t|      [0.025      0.975]
@@ -657,7 +657,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     >>> data = pandas.read_csv('examples/iris.csv')
     >>> model = ols('sepal_width ~ name + petal_length', data).fit()
     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
-                                OLS Regression Results                            
+                                OLS Regression Results
     ==========================...
     Dep. Variable:            sepal_width   R-squared:                       0.478
     Model:                            OLS   Adj. R-squared:                  0.468
@@ -666,7 +666,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Time:                        ...        Log-Likelihood:                -38.185
     No. Observations:                 150   AIC:                             84.37
     Df Residuals:                     146   BIC:                             96.41
-    Df Model:                           3                                     
+    Df Model:                           3
     Covariance Type:            nonrobust
     ==========================...
                              coef    std err          t     P>|t|  [0.025      0.975]
@@ -729,17 +729,17 @@ Addison-Wesley <https://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
 
 .. tip::
 
-   The full code loading and plotting of the wages data is found in 
+   The full code loading and plotting of the wages data is found in
    `corresponding example <auto_examples/plot_wage_data.html>`_.
 
 ::
 
    >>> print(data)  # doctest: +SKIP
         EDUCATION  SOUTH  SEX  EXPERIENCE  UNION      WAGE  AGE  RACE  \
-   0            8      0    1          21      0  0.707570   35     2   
-   1            9      0    1          42      0  0.694605   57     3   
-   2           12      0    0           1      0  0.824126   19     3   
-   3           12      0    0           4      0  0.602060   22     3 
+   0            8      0    1          21      0  0.707570   35     2
+   1            9      0    1          42      0  0.694605   57     3
+   2           12      0    0           1      0  0.824126   19     3
+   3           12      0    0           4      0  0.602060   22     3
    ...
 
 Pairplot: scatter matrices
@@ -864,7 +864,7 @@ Can we conclude that education benefits males more than females?
    * **Formulas** (with categorical variables) enable you to express rich
      links in your data.
 
-   * **Visualizing** your data and fitting simple models give insight into the 
+   * **Visualizing** your data and fitting simple models give insight into the
      data.
 
    * **Conditionning** (adding factors that can explain all or part of
@@ -878,6 +878,3 @@ Can we conclude that education benefits males more than females?
 
 .. include:: auto_examples/index.rst
     :start-line: 1
-
-
-

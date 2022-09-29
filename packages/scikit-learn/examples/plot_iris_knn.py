@@ -62,4 +62,3 @@ plt.ylabel('sepal width (cm)')
 plt.axis('tight')
 
 plt.show()
-

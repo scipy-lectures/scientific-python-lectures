@@ -31,4 +31,3 @@ plt.plot(solution.t, solution.y[0,:], label='y')
 plt.plot(solution.t, solution.y[1,:], label="y'")
 plt.legend(loc='best')
 plt.show()
-

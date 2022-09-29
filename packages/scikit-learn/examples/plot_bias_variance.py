@@ -143,4 +143,3 @@ for d in [1, 5, 15]:
 
 
 plt.show()
-

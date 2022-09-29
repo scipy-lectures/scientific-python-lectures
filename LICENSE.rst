@@ -1,7 +1,7 @@
 License
 ========
 
-All code and material is licensed under a 
+All code and material is licensed under a
 
 Creative Commons Attribution 4.0 International License (CC-by)
 

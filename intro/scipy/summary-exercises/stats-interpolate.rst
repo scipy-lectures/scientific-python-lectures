@@ -83,7 +83,7 @@ of probabilities::
 In the current model, the maximum wind speed occurring every 50 years is
 defined as the upper 2% quantile. As a result, the cumulative probability
 value will be::
-    
+
     >>> fifty_prob = 1. - 0.02
 
 
@@ -107,7 +107,7 @@ The interested readers are now invited to make an exercise by using the wind
 speeds measured over 21 years. The measurement period is around 90 minutes (the
 original period was around 10 minutes but the file size has been reduced for
 making the exercise setup easier). The data are stored in numpy format inside
-the file :download:`examples/sprog-windspeeds.npy`. Do not look at 
+the file :download:`examples/sprog-windspeeds.npy`. Do not look at
 the source code for the plots
 until you have completed the exercise.
 
@@ -136,4 +136,3 @@ until you have completed the exercise.
 
 * The last step will be to find 34.23 m/s for the maximum wind speed
   occurring every 50 years.
-

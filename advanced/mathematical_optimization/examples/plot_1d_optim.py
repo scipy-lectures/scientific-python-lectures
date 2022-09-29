@@ -54,4 +54,3 @@ for epsilon in (0, 1):
     plt.tight_layout()
 
 plt.show()
-

@@ -501,7 +501,7 @@ For multidimensional arrays, indices are tuples of integers:
 
 .. note::
 
-  * In 2D, the first dimension corresponds to **rows**, the second 
+  * In 2D, the first dimension corresponds to **rows**, the second
     to **columns**.
   * for multidimensional ``a``, ``a[0]`` is interpreted by
     taking all elements in the unspecified dimensions.
@@ -824,5 +824,3 @@ The image below illustrates various fancy indexing applications
 ..     >>> a[i, 2] # same as a[i, 2*np.ones((2, 2), dtype=int)]
 ..     array([[ 2,  6],
 ..            [ 6, 10]])
-
-

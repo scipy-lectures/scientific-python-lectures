@@ -25,4 +25,3 @@ plt.imshow(block_mean, cmap=plt.cm.gray)
 plt.axis('off')
 
 plt.show()
-

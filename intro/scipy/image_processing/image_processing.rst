@@ -297,5 +297,3 @@ Extract the 4th connected component, and crop the array around it::
 
 See the summary exercise on :ref:`summary_exercise_image_processing` for a more
 advanced example.
-
-

@@ -53,5 +53,3 @@ plt.axis('off')
 plt.subplots_adjust(wspace=.05, left=.01, bottom=.01, right=.99, top=.9)
 
 plt.show()
-
-

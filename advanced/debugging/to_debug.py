@@ -29,7 +29,7 @@ OPTIMIZERS = (optimize.brenth, optimize.brentq, optimize.ridder,
 
 
 def apply_optimizer(optimizer, func, a, b):
-    """ Return the number of function calls given an root-finding optimizer, 
+    """ Return the number of function calls given an root-finding optimizer,
         a function and upper and lower bounds.
     """
     return optimizer(func, a, b, full_output=True)[1].function_calls,
@@ -54,7 +54,7 @@ def compare_optimizers(optimizers):
     print("Benching 1D root-finder optimizers from scipy.optimize:")
     for optimizer in OPTIMIZERS:
         print('% 20s: % 8i total function calls' % (
-                    optimizer.__name__, 
+                    optimizer.__name__,
                     bench_optimizer(optimizer, param_grid)
                 ))
 

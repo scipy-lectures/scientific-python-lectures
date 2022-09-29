@@ -56,4 +56,3 @@ plt.colorbar()
 plt.scatter(x_min.x[0], x_min.x[1])
 
 plt.show()
-

@@ -35,21 +35,21 @@ def _ica_def(X, tol, g, gprime, fun_args, maxit, w_init):
 
         n_iterations = 0
         # we set lim to tol+1 to be sure to enter at least once in next while
-        lim = tol + 1 
+        lim = tol + 1
         while ((lim > tol) & (n_iterations < (maxit-1))):
             wtx = w.T @ X
             gwtx = g(wtx, fun_args)
             g_wtx = gprime(wtx, fun_args)
             w1 = (X * gwtx).mean(axis=1) - g_wtx.mean() * w
-            
+
             _gs_decorrelation(w1, W, j)
-            
+
             w1 /= np.sqrt((w1**2).sum())
 
             lim = np.abs(np.abs((w1 * w).sum()) - 1)
             w = w1
             n_iterations = n_iterations + 1
-            
+
         W[j, :] = w
 
     return W
@@ -58,9 +58,9 @@ def _ica_def(X, tol, g, gprime, fun_args, maxit, w_init):
 def _sym_decorrelation(W):
     """ Symmetric decorrelation """
     K = W @ W.T
-    s, u = np.linalg.eigh(K) 
-    # u (resp. s) contains the eigenvectors (resp. square roots of 
-    # the eigenvalues) of W * W.T 
+    s, u = np.linalg.eigh(K)
+    # u (resp. s) contains the eigenvectors (resp. square roots of
+    # the eigenvalues) of W * W.T
     u, W = (np.asmatrix(e) for e in (u, W))
     W = (u * np.diag(1.0/np.sqrt(s)) * u.T) * W  # W = (W * W.T) ^{-1/2} * W
     return W
@@ -73,20 +73,20 @@ def _ica_par(X, tol, g, gprime, fun_args, maxit, w_init):
 
     """
     n,p = X.shape
-    
+
     W = _sym_decorrelation(w_init)
 
     # we set lim to tol+1 to be sure to enter at least once in next while
-    lim = tol + 1 
+    lim = tol + 1
     it = 0
     while ((lim > tol) and (it < (maxit-1))):
         wtx = (W @ X).A  # .A transforms to array type
         gwtx = g(wtx, fun_args)
         g_wtx = gprime(wtx, fun_args)
         W1 = (gwtx @ X.T) / float(p) - np.diag(g_wtx.mean(axis=1)) @ W
- 
+
         W1 = _sym_decorrelation(W1)
-        
+
         lim = max(abs(abs(np.diag(W1 @ W.T)) - 1))
         W = W1
         it = it + 1
@@ -95,7 +95,7 @@ def _ica_par(X, tol, g, gprime, fun_args, maxit, w_init):
 
 
 def fastica(X, n_comp=None,
-            algorithm="parallel", whiten=True, fun="logcosh", fun_prime='', 
+            algorithm="parallel", whiten=True, fun="logcosh", fun_prime='',
             fun_args={}, maxit=200, tol=1e-04, w_init=None):
     """Perform Fast Independent Component Analysis.
 
@@ -109,21 +109,21 @@ def fastica(X, n_comp=None,
     algorithm : {'parallel','deflation'}
         Apply an parallel or deflational FASTICA algorithm.
     whiten: boolean, optional
-        If true perform an initial whitening of the data. Do not set to 
-        false unless the data is already white, as you will get incorrect 
+        If true perform an initial whitening of the data. Do not set to
+        false unless the data is already white, as you will get incorrect
         results.
         If whiten is true, the data is assumed to have already been
         preprocessed: it should be centered, normed and white.
     fun : String or Function
           The functional form of the G function used in the
-          approximation to neg-entropy. Could be either 'logcosh', 'exp', 
+          approximation to neg-entropy. Could be either 'logcosh', 'exp',
           or 'cube'.
-          You can also provide your own function but in this case, its 
+          You can also provide your own function but in this case, its
           derivative should be provided via argument fun_prime
     fun_prime : Empty string ('') or Function
                 See fun.
     fun_args : Optional dictionnary
-               If empty and if fun='logcosh', fun_args will take value 
+               If empty and if fun='logcosh', fun_args will take value
                {'alpha' : 1.0}
     maxit : int
             Maximum number of iterations to perform
@@ -210,7 +210,7 @@ def fastica(X, n_comp=None,
                         'fun argument should be one of logcosh, exp or cube')
     elif type(fun) is not types.FunctionType:
         raise ValueError('fun argument should be either a string '
-                         '(one of logcosh, exp or cube) or a function') 
+                         '(one of logcosh, exp or cube) or a function')
     else:
         def g(x, fun_args):
             return fun(x, **fun_args)
@@ -233,8 +233,8 @@ def fastica(X, n_comp=None,
         # Whitening and preprocessing by PCA
         _, d, v = np.linalg.svd(X, full_matrices=False)
         del _
-        # XXX: Maybe we could provide a mean to estimate n_comp if it has not 
-        # been provided ??? So that we do not have to perform another PCA 
+        # XXX: Maybe we could provide a mean to estimate n_comp if it has not
+        # been provided ??? So that we do not have to perform another PCA
         # before calling fastica ???
         K = (v*(np.sqrt(n)/d)[:, np.newaxis])[:n_comp]  # see (6.33) p.140
         del v, d
@@ -267,5 +267,3 @@ def fastica(X, n_comp=None,
     else:
         S = W @ X.T
         return [np.asarray(e.T) for e in (W, S)]
-
-

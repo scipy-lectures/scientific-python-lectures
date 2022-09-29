@@ -1,6 +1,6 @@
 
 ..  For doctests
-    
+
     >>> import numpy as np
     >>> np.random.seed(0)
     >>> # For doctest on headless environments
@@ -600,7 +600,7 @@ and y of the previous example, with two "significant dimensions":
 .. CHA: constructing grids -- meshgrid using only newaxis
 
 .. seealso::
-   
+
    :ref:`broadcasting_advanced`: discussion of broadcasting in
    the :ref:`advanced_numpy` chapter.
 
@@ -650,7 +650,7 @@ Or,
 
 .. warning::
 
-   ``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)), 
+   ``ndarray.reshape`` **may** return a view (cf ``help(np.reshape)``)),
    or copy
 
 .. tip::

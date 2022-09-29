@@ -58,7 +58,7 @@ represents 1/2, ``Rational(5, 2)`` 5/2 and so on::
 
 SymPy uses mpmath in the background, which makes it possible to
 perform computations using arbitrary-precision arithmetic. That
-way, some special constants, like :math:`e`, :math:`pi`, :math:`oo` (Infinity), 
+way, some special constants, like :math:`e`, :math:`pi`, :math:`oo` (Infinity),
 are treated as
 symbols and can be evaluated with arbitrary precision::
 
@@ -106,13 +106,13 @@ Then you can manipulate them::
     >>> (x + y) ** 2
     (x + y)**2
 
-Symbols can now be manipulated using some of python operators: ``+``, ``-`, 
+Symbols can now be manipulated using some of python operators: ``+``, ``-`,
 ``*``, ``**`` (arithmetic), &, `|`, ~ , >>, << (boolean).
 
 
 .. topic:: **Printing**
 
-   Sympy allows for control of the display of the output. From here we use the 
+   Sympy allows for control of the display of the output. From here we use the
    following setting for printing::
 
    >>> sym.init_printing(use_unicode=False, wrap_line=True)
@@ -133,10 +133,10 @@ powers and multiplications::
 
     >>> sym.expand((x + y) ** 3)
      3      2          2    3
-    x  + 3*x *y + 3*x*y  + y 
+    x  + 3*x *y + 3*x*y  + y
     >>> 3 * x * y ** 2 + 3 * y * x ** 2 + x ** 3 + y ** 3
      3      2          2    3
-    x  + 3*x *y + 3*x*y  + y 
+    x  + 3*x *y + 3*x*y  + y
 
 
 Further options can be given in form on keywords::
@@ -172,7 +172,7 @@ exponents), ``trigsimp`` (for trigonometric expressions) , ``logcombine``,
    1. Calculate the expanded form of :math:`(x+y)^6`.
    2. Simplify the trigonometric expression :math:`\sin(x) / \cos(x)`
 
-  
+
 Calculus
 ========
 
@@ -180,7 +180,7 @@ Limits
 ------
 
 Limits are easy to use in SymPy, they follow the syntax ``limit(function,
-variable, point)``, so to compute the limit of :math:`f(x)` as 
+variable, point)``, so to compute the limit of :math:`f(x)` as
 :math:`x \rightarrow 0`, you would issue ``limit(f, x, 0)``::
 
    >>> sym.limit(sym.sin(x) / x, x, 0)
@@ -212,13 +212,13 @@ var)``. Examples::
     2*cos(2*x)
 
     >>> sym.diff(sym.tan(x), x)
-       2       
+       2
     tan (x) + 1
 
 You can check, that it is correct by::
 
     >>> sym.limit((sym.tan(x + y) - sym.tan(x)) / y, y, 0)
-       2       
+       2
     tan (x) + 1
 
 Higher derivatives can be calculated using the ``diff(func, var, n)`` method::
@@ -240,15 +240,15 @@ SymPy also knows how to compute the Taylor series of an expression at
 a point. Use ``series(expr, var)``::
 
     >>> sym.series(sym.cos(x), x)
-         2    4        
+         2    4
         x    x     / 6\
     1 - -- + -- + O\x /
-        2    24        
+        2    24
     >>> sym.series(1/sym.cos(x), x)
-         2      4        
+         2      4
         x    5*x     / 6\
     1 + -- + ---- + O\x /
-        2     24         
+        2     24
 
 
 .. topic:: **Exercises**
@@ -269,22 +269,22 @@ matching. You can integrate elementary functions::
 
     >>> sym.integrate(6 * x ** 5, x)
      6
-    x 
+    x
     >>> sym.integrate(sym.sin(x), x)
     -cos(x)
     >>> sym.integrate(sym.log(x), x)
     x*log(x) - x
     >>> sym.integrate(2 * x + sym.sinh(x), x)
-     2          
+     2
     x  + cosh(x)
 
 Also special functions are handled easily::
 
     >>> sym.integrate(sym.exp(-x ** 2) * sym.erf(x), x)
-      ____    2   
+      ____    2
     \/ pi *erf (x)
     --------------
-          4       
+          4
 
 It is possible to compute definite integral::
 
@@ -301,7 +301,7 @@ Also improper integrals are supported as well::
     1
     >>> sym.integrate(sym.exp(-x ** 2), (x, -sym.oo, sym.oo))
       ____
-    \/ pi 
+    \/ pi
 
 
 .. index:: equations; algebraic, solve
@@ -317,7 +317,7 @@ variables using :func:`~sympy.solveset`::
     {-1, 1, -I, I}
 
 As you can see it takes as first argument an expression that is
-supposed to be equaled to 0. It also has (limited) support for transcendental 
+supposed to be equaled to 0. It also has (limited) support for transcendental
 equations::
 
    >>> sym.solveset(sym.exp(x) + 1, x)
@@ -346,7 +346,7 @@ domains::
 
    >>> sym.factor(f, modulus=5)
           2        2
-   (x - 2) *(x + 2) 
+   (x - 2) *(x + 2)
 
 SymPy is also able to solve boolean equations, that is, to decide if a
 certain boolean expression is satisfiable or not. For this, we use the
@@ -355,7 +355,7 @@ function satisfiable::
    >>> sym.satisfiable(x & y)
    {x: True, y: True}
 
-This tells us that ``(x & y)`` is True whenever ``x`` and ``y`` are both True. 
+This tells us that ``(x & y)`` is True whenever ``x`` and ``y`` are both True.
 If an expression cannot be true, i.e. no values of its arguments can make
 the expression True, it will return False::
 
@@ -406,24 +406,24 @@ unlike a NumPy array, you can also put Symbols in it::
 Differential Equations
 ----------------------
 
-SymPy is capable of solving (some) Ordinary Differential. 
+SymPy is capable of solving (some) Ordinary Differential.
 To solve differential equations, use dsolve. First, create
 an undefined function by passing cls=Function to the symbols function::
 
     >>> f, g = sym.symbols('f g', cls=sym.Function)
-    
+
 f and g are now undefined functions. We can call f(x), and it will represent
 an unknown function::
 
     >>> f(x)
     f(x)
-    
+
     >>> f(x).diff(x, x) + f(x)
-             2      
-            d       
+             2
+            d
     f(x) + ---(f(x))
-             2      
-           dx       
+             2
+           dx
 
     >>> sym.dsolve(f(x).diff(x, x) + f(x), f(x))
     f(x) = C1*sin(x) + C2*cos(x)
@@ -435,9 +435,9 @@ that it is a separable equations, you can use keyword ``hint='separable'``
 to force dsolve to resolve it as a separable equation::
 
    >>> sym.dsolve(sym.sin(x) * sym.cos(f(x)) + sym.cos(x) * sym.sin(f(x)) * f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
-                  /  C1  \                    /  C1  \ 
+                  /  C1  \                    /  C1  \
     [f(x) = - acos|------| + 2*pi, f(x) = acos|------|]
-                  \cos(x)/                    \cos(x)/ 
+                  \cos(x)/                    \cos(x)/
 
 
 

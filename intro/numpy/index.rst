@@ -25,4 +25,3 @@ ____
    advanced_operations.rst
    exercises.rst
    gallery.rst
-
