@@ -23,8 +23,8 @@ jobs:
       - run:
           name: Install Python dependencies
           command: |
-            python3 -m venv venv
-            source venv/bin/activate
+            python3 -m venv ~/venv
+            source ~/venv/bin/activate
             pip install -U pip
             pip install -r requirements.txt
             pip list
@@ -39,7 +39,7 @@ jobs:
           command: |
             # NOTE: bad interaction w/ blas multithreading on circleci
             export OMP_NUM_THREADS=1
-            source venv/bin/activate
+            source ~/venv/bin/activate
             make html  # FIX: check that failing examples produce failure
 
       - store_artifacts:
