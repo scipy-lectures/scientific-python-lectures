@@ -39,7 +39,7 @@ plt.text(-0.05, 1.02, " Imshow:       plt.imshow(...)\n",
 plt.text(-0.05, 1.01, "\n\n   Display an image to current axes ",
         horizontalalignment='left',
         verticalalignment='top',
-        family='Lint McCree Intl BB',
+        family='DejaVu Sans',
         size='large',
         transform=plt.gca().transAxes)
 
