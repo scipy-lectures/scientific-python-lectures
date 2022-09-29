@@ -7,4 +7,4 @@ Other Interesting Packages
 * Pysparse
     * own sparse matrix classes
     * matrix and eigenvalue problem solvers
-    * http://pysparse.sourceforge.net/
+    * https://pysparse.sourceforge.net/

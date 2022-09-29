@@ -13,7 +13,7 @@ Start the **Ipython** shell (an enhanced interactive Python shell):
 
 .. _`Python(x,y)`: https://python-xy.github.io/
 .. _`Anaconda Navigator`: https://anaconda.org/anaconda/anaconda-navigator
-.. _`EPD`: http://store.enthought.com/
+.. _`EPD`: https://store.enthought.com/
 
 .. tip::
 

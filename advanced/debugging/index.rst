@@ -16,8 +16,8 @@ that we will employ are tailored to its needs.
 
     * Numpy
     * IPython
-    * `nosetests <http://readthedocs.org/docs/nose/en/latest/>`__
-    * `pyflakes <http://pypi.python.org/pypi/pyflakes>`__
+    * `nosetests <https://nose.readthedocs.io/en/latest/>`__
+    * `pyflakes <https://pypi.org/project/pyflakes>`__
     * gdb for the C-debugging part.
 
 .. contents:: Chapter contents
@@ -58,10 +58,10 @@ pyflakes: fast static analysis
 
 They are several static analysis tools in Python; to name a few:
 
-* `pylint <http://www.logilab.org/857>`_
-* `pychecker <http://pychecker.sourceforge.net/>`_
-* `pyflakes <http://pypi.python.org/pypi/pyflakes>`_
-* `flake8 <http://pypi.python.org/pypi/flake8>`_
+* `pylint <https://pylint.pycqa.org/en/latest/>`_
+* `pychecker <https://pychecker.sourceforge.net/>`_
+* `pyflakes <https://pypi.org/project/pyflakes>`_
+* `flake8 <https://pypi.org/project/flake8>`_
 
 Here we focus on `pyflakes`, which is the simplest tool.
 
@@ -72,7 +72,7 @@ Here we focus on `pyflakes`, which is the simplest tool.
 Another good recommendation is the `flake8` tool which is a combination of
 pyflakes and pep8. Thus, in addition to the types of errors that pyflakes
 catches, flake8 detects violations of the recommendation in `PEP8
-<https://www.python.org/dev/peps/pep-0008/>`_ style guide.
+<https://peps.python.org/pep-0008/>`_ style guide.
 
 Integrating pyflakes (or flake8) in your editor or IDE is highly
 recommended, it **does yield productivity gains**.
@@ -139,7 +139,7 @@ A type-as-go spell-checker like integration
   * Use the pyflakes.vim plugin:
 
     #. download the zip file from
-       http://www.vim.org/scripts/script.php?script_id=2441
+       https://www.vim.org/scripts/script.php?script_id=2441
 
     #. extract the files in ``~/.vim/ftplugin/python``
 
@@ -148,7 +148,7 @@ A type-as-go spell-checker like integration
     .. image:: vim_pyflakes.png
 
   * Alternatively: use the `syntastic
-    <https://github.com/scrooloose/syntastic>`_
+    <https://github.com/vim-syntastic/syntastic>`_
     plugin. This can be configured to use ``flake8`` too and also handles
     on-the-fly checking for many other languages.
 
@@ -199,7 +199,7 @@ in. There is no silver bullet. Yet, strategies help:
 Using the Python debugger
 =========================
 
-The python debugger, ``pdb``: https://docs.python.org/library/pdb.html,
+The python debugger, ``pdb``: https://docs.python.org/3/library/pdb.html,
 allows you to inspect your code interactively.
 
 Specifically it allows you to:
@@ -455,7 +455,7 @@ Other ways of starting a debugger
 
   In addition, you can use the IPython interface for the debugger in nose
   by installing the nose plugin
-  `ipdbplugin <http://pypi.python.org/pypi/ipdbplugin>`_. You can than
+  `ipdbplugin <https://pypi.org/project/ipdbplugin>`_. You can than
   pass ``--ipdb`` and ``--ipdb-failure`` options to nosetests.
 
 * **Calling the debugger explicitly**
@@ -473,7 +473,7 @@ Other ways of starting a debugger
 
 .. topic:: Graphical debuggers and alternatives
 
-    * `pudb <http://pypi.python.org/pypi/pudb>`_ is a good semi-graphical
+    * `pudb <https://pypi.org/project/pudb>`_ is a good semi-graphical
       debugger with a text user interface in the console.
 
     * The `Visual Studio Code <https://code.visualstudio.com/>`_ integrated
@@ -537,13 +537,13 @@ If you have a segmentation fault, you cannot debug it with pdb, as it
 crashes the Python interpreter before it can drop in the debugger.
 Similarly, if you have a bug in C code embedded in Python, pdb is
 useless. For this we turn to the gnu debugger,
-`gdb <http://www.gnu.org/s/gdb/>`_, available on Linux.
+`gdb <https://www.gnu.org/software/gdb/>`_, available on Linux.
 
 Before we start with gdb, let us add a few Python-specific tools to it.
 For this we add a few macros to our ``~/.gdbinit``. The optimal choice of
 macro depends on your Python version and your gdb version. I have added a
 simplified version in :download:`gdbinit`, but feel free to read
-`DebuggingWithGdb <http://wiki.python.org/moin/DebuggingWithGdb>`_.
+`DebuggingWithGdb <https://wiki.python.org/moin/DebuggingWithGdb>`_.
 
 To debug with gdb the Python script :download:`segfault.py`, we can run the
 script in gdb as follows

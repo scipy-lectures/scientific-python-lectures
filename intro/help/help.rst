@@ -27,14 +27,14 @@ just to display help and docstrings...
 
 .. image:: scipy_doc.png
      :align: right
-     :target: http://docs.scipy.org/doc/scipy/reference/
+     :target: https://docs.scipy.org/doc/scipy/reference/
      :width: 45%
 
 * Numpy's and Scipy's documentations can be browsed online on
-  http://docs.scipy.org/doc. The ``search`` button is quite useful inside
+  https://docs.scipy.org/doc. The ``search`` button is quite useful inside
   the reference documentation of the two packages
-  (http://numpy.org/doc/stable/reference/ and
-  http://docs.scipy.org/doc/scipy/reference/). 
+  (https://numpy.org/doc/stable/reference/ and
+  https://docs.scipy.org/doc/scipy/reference/). 
 
   Tutorials on various topics as well as the complete API with all
   docstrings are found on this website.
@@ -43,11 +43,11 @@ just to display help and docstrings...
 
   .. image:: docwiki.png
      :align: right
-     :target: http://numpy.org/doc/stable/
+     :target: https://numpy.org/doc/stable/
      :width: 45%
 
 * Numpy's and Scipy's documentation is enriched and updated on a regular
-  basis by users on a wiki http://numpy.org/doc/stable/. As a result,
+  basis by users on a wiki https://numpy.org/doc/stable/. As a result,
   some docstrings are clearer or more detailed on the wiki, and you may
   want to read directly the documentation on the wiki instead of the
   official documentation website. Note that anyone can create an account on
@@ -63,10 +63,10 @@ just to display help and docstrings...
 
   .. image:: matplotlib.png
      :align: right
-     :target: http://matplotlib.org/
+     :target: https://matplotlib.org/
      :width: 45%
 
-* Matplotlib's website http://matplotlib.org/ features a very
+* Matplotlib's website https://matplotlib.org/ features a very
   nice **gallery** with a large number of plots, each of them shows both
   the source code and the resulting plot. This is very useful for
   learning by example. More standard documentation is also available. 

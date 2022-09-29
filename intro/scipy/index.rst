@@ -240,8 +240,8 @@ Interpolation: :mod:`scipy.interpolate`
 data and thus evaluating points where no measure exists. The module is based
 on the `FITPACK Fortran subroutines`_.
 
-.. _`FITPACK Fortran subroutines` : http://www.netlib.org/dierckx/index.html
-.. _netlib : http://www.netlib.org
+.. _`FITPACK Fortran subroutines` : https://netlib.org/dierckx/index.html
+.. _netlib : https://netlib.org
 
 By imagining experimental data close to a sine function::
 
@@ -479,8 +479,8 @@ sampling of starting points::
    SciPy 0.16.0.
 
 .. _IPOPT: https://github.com/xuy/pyipopt
-.. _PyGMO: http://esa.github.io/pygmo/
-.. _PyEvolve: http://pyevolve.sourceforge.net/
+.. _PyGMO: https://esa.github.io/pygmo/
+.. _PyEvolve: https://pyevolve.sourceforge.net/
 
 |
 
@@ -868,7 +868,7 @@ Integration of the system follows::
     (Livermore Solver for Ordinary Differential equations with Automatic method switching
     for stiff and non-stiff problems), see the `ODEPACK Fortran library`_ for more details.
 
-.. _`ODEPACK Fortran library` : http://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
+.. _`ODEPACK Fortran library` : https://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
 
 .. seealso:: **Partial Differental Equations**
 
@@ -876,8 +876,8 @@ Integration of the system follows::
     Some Python packages for solving PDE's are available, such as fipy_
     or SfePy_.
 
-.. _fipy: http://www.ctcms.nist.gov/fipy/
-.. _SfePy: http://sfepy.org/doc/
+.. _fipy: https://www.ctcms.nist.gov/fipy/
+.. _SfePy: https://sfepy.org/doc/
 
 Fast Fourier transforms: :mod:`scipy.fftpack`
 ---------------------------------------------
@@ -1134,6 +1134,6 @@ invited to try these exercises.
      `packages and applications <applications_part>`__ parts of the scipy
      lectures
 
-   * The `scipy cookbook <http://scipy-cookbook.readthedocs.io>`__
+   * The `scipy cookbook <https://scipy-cookbook.readthedocs.io>`__
 
 

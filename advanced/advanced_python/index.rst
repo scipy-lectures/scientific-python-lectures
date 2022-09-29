@@ -26,7 +26,7 @@ Proposals* --- PEPs_. As a result, features described in this chapter
 were added after it was shown that they indeed solve real problems and
 that their use is as simple as possible.
 
-.. _PEPs: https://www.python.org/dev/peps/
+.. _PEPs: https://peps.python.org/
 
 .. contents:: Chapter contents
    :local:
@@ -49,7 +49,7 @@ Iterators
                  *Guido van Rossum* --- `Adding Optional Static Typing to Python`_
 
 .. _`Adding Optional Static Typing to Python`:
-   http://www.artima.com/weblogs/viewpost.jsp?thread=86641
+   https://www.artima.com/weblogs/viewpost.jsp?thread=86641
 
 
 An iterator is an object adhering to the `iterator protocol`_
@@ -159,7 +159,7 @@ Generators
           *David Beazley* --- `A Curious Course on Coroutines and Concurrency`_
 
 .. _`A Curious Course on Coroutines and Concurrency`:
-   http://www.dabeaz.com/coroutines/
+   https://www.dabeaz.com/coroutines/
 
 A third way to create iterator objects is to call a generator function.
 A **generator** is a function containing the keyword :simple:`yield`. It must be
@@ -967,18 +967,18 @@ the source of a program.
 
     * :pep:`318` (function and method decorator syntax)
     * :pep:`3129` (class decorator syntax)
-    * http://wiki.python.org/moin/PythonDecoratorLibrary
+    * https://wiki.python.org/moin/PythonDecoratorLibrary
     * https://docs.python.org/dev/library/functools.html
-    * http://pypi.python.org/pypi/decorator
+    * https://pypi.org/project/decorator
     * Bruce Eckel
 
       - `Decorators I`_: Introduction to Python Decorators
       - `Python Decorators II`_: Decorator Arguments
       - `Python Decorators III`_: A Decorator-Based Build System
      
-      .. _`Decorators I`: http://www.artima.com/weblogs/viewpost.jsp?thread=240808
-      .. _`Python Decorators II`: http://www.artima.com/weblogs/viewpost.jsp?thread=240845
-      .. _`Python Decorators III`: http://www.artima.com/weblogs/viewpost.jsp?thread=241209
+      .. _`Decorators I`: https://www.artima.com/weblogs/viewpost.jsp?thread=240808
+      .. _`Python Decorators II`: https://www.artima.com/weblogs/viewpost.jsp?thread=240845
+      .. _`Python Decorators III`: https://www.artima.com/weblogs/viewpost.jsp?thread=241209
 
 
 Context managers

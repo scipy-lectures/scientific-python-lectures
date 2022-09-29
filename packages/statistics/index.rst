@@ -24,11 +24,11 @@ Statistics in Python
 
    * Standard scientific Python environment (numpy, scipy, matplotlib)
 
-   * `Pandas <http://pandas.pydata.org/>`__
+   * `Pandas <https://pandas.pydata.org/>`__
 
-   * `Statsmodels <http://www.statsmodels.org/>`__
+   * `Statsmodels <https://www.statsmodels.org/>`__
 
-   * `Seaborn <http://seaborn.pydata.org>`__
+   * `Seaborn <https://seaborn.pydata.org>`__
 
    To install Python and these dependencies, we recommend that you
    download `Anaconda Python <https://www.anaconda.com/distribution/>`_ or
@@ -44,7 +44,7 @@ Statistics in Python
    programming language in Python.
 
  * **Read a statistics book**:
-   The `Think stats <http://greenteapress.com/wp/think-stats-2e>`_ book is
+   The `Think stats <https://greenteapress.com/wp/think-stats-2e>`_ book is
    available as free PDF or in print and is a great introduction to
    statistics.
 
@@ -106,7 +106,7 @@ The pandas data-frame
 
     We will store and manipulate this data in a
     :class:`pandas.DataFrame`, from the `pandas
-    <http://pandas.pydata.org>`__ module. It is the Python equivalent of
+    <https://pandas.pydata.org>`__ module. It is the Python equivalent of
     the spreadsheet table. It is different from a 2D ``numpy`` array as it
     has named columns, can contain a mixture of different data types by
     column, and has elaborate selection and pivotal mechanisms.
@@ -167,9 +167,9 @@ We can expose them as a :class:`pandas.DataFrame`::
 
 |
 
-**Other inputs**: `pandas <http://pandas.pydata.org>`__ can input data from
+**Other inputs**: `pandas <https://pandas.pydata.org>`__ can input data from
 SQL, excel files, or other formats. See the `pandas documentation
-<http://pandas.pydata.org>`__.
+<https://pandas.pydata.org>`__.
 
 |
 
@@ -301,7 +301,7 @@ Hypothesis testing: comparing two groups
 For simple `statistical tests
 <https://en.wikipedia.org/wiki/Statistical_hypothesis_testing>`_, we will
 use the :mod:`scipy.stats` sub-module of `scipy
-<http://docs.scipy.org/doc/>`_::
+<https://docs.scipy.org/doc/>`_::
 
     >>> from scipy import stats
 
@@ -430,7 +430,7 @@ hypothesis that `y` is a linear function of `x`. In other terms:
     :math:`y = x * \textit{coef} + \textit{intercept} + e`
 
 where `e` is observation noise. We will use the `statsmodels
-<http://statsmodels.sourceforge.net/>`_ module to:
+<https://www.statsmodels.org/>`_ module to:
 
 #. Fit a linear model. We will use the simplest strategy, `ordinary least
    squares <https://en.wikipedia.org/wiki/Ordinary_least_squares>`_ (OLS).
@@ -453,7 +453,7 @@ First, we generate simulated data according to the model::
 .. sidebar:: **"formulas" for statistics in Python**
 
    `See the statsmodels documentation
-   <http://statsmodels.sourceforge.net/stable/example_formulas.html>`_
+   <https://www.statsmodels.org/stable/example_formulas.html>`_
 
 |
 
@@ -497,7 +497,7 @@ We can inspect the various statistics derived from the fit::
     Statsmodels uses a statistical terminology: the `y` variable in
     statsmodels is called 'endogenous' while the `x` variable is called
     exogenous.  This is discussed in more detail `here 
-    <http://statsmodels.sourceforge.net/devel/endog_exog.html>`_.
+    <https://www.statsmodels.org/devel/endog_exog.html>`_.
 
     To simplify, `y` (endogenous) is the value you are trying to predict,
     while `x` (exogenous) represents the features you are using to make
@@ -570,7 +570,7 @@ model::
      absorbed into the intercept term).  This is almost always a good
      default choice - however, it is possible to specify different
      encodings for categorical variables
-     (http://statsmodels.sourceforge.net/devel/contrasts.html).
+     (https://www.statsmodels.org/devel/contrasts.html).
 
 
 |
@@ -725,7 +725,7 @@ simple statistical fits with plotting on pandas dataframes.
 
 Let us consider a data giving wages and many other personal information
 on 500 individuals (`Berndt, ER. The Practice of Econometrics. 1991. NY:
-Addison-Wesley <http://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
+Addison-Wesley <https://lib.stat.cmu.edu/datasets/CPS_85_Wages>`_).
 
 .. tip::
 
@@ -834,7 +834,7 @@ Do wages increase more with education for males than females?
     The plot above is made of two different fits. We need to formulate a
     single model that tests for a variance of slope across the two
     populations. This is done via an `"interaction"
-    <http://statsmodels.sourceforge.net/devel/example_formulas.html#multiplicative-interactions>`_.
+    <https://www.statsmodels.org/devel/example_formulas.html#multiplicative-interactions>`_.
 
 
 ::

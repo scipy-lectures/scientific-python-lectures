@@ -176,4 +176,4 @@ Going further
   get with :func:`scipy.optimize.fmin_slsqp` when adding boundary constraints.
 
 
-.. [#data] The data used for this tutorial are part of the demonstration data available for the `FullAnalyze software <http://fullanalyze.sourceforge.net>`_ and were kindly provided by the GIS DRAIX.
+.. [#data] The data used for this tutorial are part of the demonstration data available for the `FullAnalyze software <https://fullanalyze.sourceforge.net>`_ and were kindly provided by the GIS DRAIX.

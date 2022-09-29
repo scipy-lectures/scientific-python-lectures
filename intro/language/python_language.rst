@@ -11,7 +11,7 @@ Gaël Varoquaux*
     We introduce here the Python language. Only the bare minimum
     necessary for getting started with Numpy and Scipy is addressed here.
     To learn more about the language, consider going through the
-    excellent tutorial https://docs.python.org/tutorial. Dedicated books
+    excellent tutorial https://docs.python.org/3/tutorial. Dedicated books
     are also available, such as `Dive into Python 3 <https://diveintopython3.net/>`__.
     
 
