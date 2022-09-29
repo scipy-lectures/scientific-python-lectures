@@ -147,7 +147,7 @@ array of ints::
 The ``owndata`` and ``writeable`` flags indicate status of the memory
 block.
 
-.. seealso:: `array interface <http://numpy.org/doc/stable/reference/arrays.interface.html>`_
+.. seealso:: `array interface <https://numpy.org/doc/stable/reference/arrays.interface.html>`_
 
 Data types
 ----------
@@ -333,7 +333,7 @@ Casting
 .. note::
 
    Exact rules: see `numpy documentation
-   <http://numpy.org/doc/stable/reference/ufuncs.html#casting-rules>`_
+   <https://numpy.org/doc/stable/reference/ufuncs.html#casting-rules>`_
 
 
 Re-interpretation / viewing
@@ -898,7 +898,7 @@ Memory layout can affect performance:
 
 .. seealso::
 
-   * `numexpr <https://numexpr.readthedocs.io>`_ is designed to mitigate
+   * `numexpr <https://numexpr.readthedocs.io/projects/NumExpr3/en/latest/>`_ is designed to mitigate
      cache effects when evaluating array expressions.
 
    * `numba <https://numba.pydata.org/>`_ is a compiler for Python code,
@@ -1256,7 +1256,7 @@ The old buffer protocol
 - C-level interface; ``PyBufferProcs tp_as_buffer`` in the type object
 - But it's integrated into Python  (e.g. strings support it)
 
-Mini-exercise using `Pillow <https://python-pillow.github.io/>`_ (Python
+Mini-exercise using `Pillow <https://python-pillow.org/>`_ (Python
 Imaging Library):
 
 .. seealso:: pilbuffer.py
@@ -1295,7 +1295,7 @@ Array interface protocol
 .. seealso::
 
    Documentation:
-   http://numpy.org/doc/stable/reference/arrays.interface.html
+   https://numpy.org/doc/stable/reference/arrays.interface.html
 
 ::
 
@@ -1525,7 +1525,7 @@ Summary
 Contributing to NumPy/Scipy
 ===========================
 
-    Get this tutorial: http://www.euroscipy.org/talk/882
+    Get this tutorial: https://www.euroscipy.org/talk/882
 
 Why
 ---
@@ -1616,7 +1616,7 @@ Contributing to documentation
 
 1. Documentation editor
 
-   - http://docs.scipy.org/doc/numpy
+   - https://docs.scipy.org/doc/numpy
 
    - Registration
 
@@ -1630,7 +1630,7 @@ Contributing to documentation
 
        - "change your subscription options", at the bottom of
 
-         http://mail.python.org/mailman/listinfo/scipy-dev
+         https://mail.python.org/mailman3/lists/scipy-dev.python.org/
 
      - Send a mail @ ``scipy-dev`` mailing list; ask for activation::
 
@@ -1645,7 +1645,7 @@ Contributing to documentation
 
     - Check the style guide:
 
-      - http://docs.scipy.org/doc/numpy/
+      - https://docs.scipy.org/doc/numpy/
 
       - Don't be intimidated; to fix a small thing, just fix it
 
@@ -1659,7 +1659,7 @@ Contributing to documentation
 Contributing features
 ---------------------
 
-  The contribution of features is documented on https://docs.scipy.org/doc/numpy/dev/
+  The contribution of features is documented on https://numpy.org/doc/stable/dev/
 
 How to help, in general
 -----------------------
@@ -1681,7 +1681,7 @@ How to help, in general
 
     - Want to think? Come up with a Table of Contents
 
-      http://scipy.org/Developer_Zone/UG_Toc
+      https://scipy.org/Developer_Zone/UG_Toc
 
 - Ask on communication channels:
 

@@ -183,7 +183,7 @@ The :mod:`eigen` module
 
 * ``lobpcg`` (Locally Optimal Block Preconditioned Conjugate
   Gradient Method)
-  * works very well in combination with `PyAMG <http://code.google.com/p/pyamg/>`_
+  * works very well in combination with `PyAMG <https://github.com/pyamg/pyamg>`_
   * example by Nathan Bell:
 
   .. literalinclude:: examples/pyamg_with_lobpcg.py

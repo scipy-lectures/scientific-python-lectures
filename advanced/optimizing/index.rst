@@ -14,7 +14,7 @@ This chapter deals with strategies to make Python code go faster.
 
 .. topic:: Prerequisites
 
-    * `line_profiler <http://packages.python.org/line_profiler/>`_
+    * `line_profiler <https://pypi.org/project/line-profiler/>`_
 
 .. contents:: Chapters contents
    :local:
@@ -52,7 +52,7 @@ Profiling Python code
 Timeit
 ---------
 
-In IPython, use ``timeit`` (https://docs.python.org/library/timeit.html) to time elementary operations:
+In IPython, use ``timeit`` (https://docs.python.org/3/library/timeit.html) to time elementary operations:
 
 .. sourcecode:: ipython
 
@@ -96,7 +96,7 @@ Useful when you have a large program to profile, for example the
     separation technique, for example to unmix multiple signals that have been
     recorded through multiple sensors. Doing a PCA first and then an ICA can be
     useful if you have more sensors than signals. For more information see:
-    `the FastICA example from scikits-learn <http://scikit-learn.org/stable/auto_examples/decomposition/plot_ica_blind_source_separation.html>`_.
+    `the FastICA example from scikits-learn <https://scikit-learn.org/stable/auto_examples/decomposition/plot_ica_blind_source_separation.html>`_.
 
 To run it, you also need to download the :download:`ica module <ica.py>`.
 In IPython we can time the script:
@@ -154,7 +154,7 @@ useless.
 
     Similar profiling can be done outside of IPython, simply calling the
     built-in `Python profilers
-    <https://docs.python.org/2/library/profile.html>`_ ``cProfile`` and
+    <https://docs.python.org/3/library/profile.html>`_ ``cProfile`` and
     ``profile``.
 
     .. sourcecode:: console
@@ -173,7 +173,7 @@ The profiler tells us which function takes most of the time, but not
 where it is called.
 
 For this, we use the
-`line_profiler <http://packages.python.org/line_profiler/>`_: in the
+`line_profiler <https://pypi.org/project/line-profiler/>`_: in the
 source file, we decorate a few functions that we want to inspect with
 ``@profile`` (no need to import it)
 
@@ -187,7 +187,7 @@ source file, we decorate a few functions that we want to inspect with
         results = fastica(pca.T, whiten=False)
 
 Then we run the script using the `kernprof.py
-<http://packages.python.org/line_profiler>`_ program, with switches ``-l, --line-by-line`` and ``-v, --view`` to use the line-by-line profiler and view the results in addition to saving them:
+<https://pypi.org/project/line-profiler/>`_ program, with switches ``-l, --line-by-line`` and ``-v, --view`` to use the line-by-line profiler and view the results in addition to saving them:
 
 .. sourcecode:: console
 
@@ -396,7 +396,7 @@ discuss only some commonly encountered tricks to make code faster.
     In [10]: %timeit c = np.ascontiguousarray(a.T)
     10 loops, best of 3: 106 ms per loop
 
-  Using `numexpr <http://code.google.com/p/numexpr/>`_ can be useful to
+  Using `numexpr <https://github.com/pydata/numexpr>`_ can be useful to
   automatically optimize code for such effects.
 
 * **Use compiled code**
@@ -405,9 +405,9 @@ discuss only some commonly encountered tricks to make code faster.
   optimizations have been explored, is to transfer the hot spots, i.e.
   the few lines or functions in which most of the time is spent, to
   compiled code. For compiled code, the preferred option is to use
-  `Cython <http://www.cython.org>`_: it is easy to transform exiting
+  `Cython <https://www.cython.org>`_: it is easy to transform exiting
   Python code in compiled code, and with a good use of the
-  `numpy support <http://docs.cython.org/src/tutorial/numpy.html>`_
+  `numpy support <https://docs.cython.org/en/latest/src/tutorial/numpy.html>`_
   yields efficient code on numpy arrays, for instance by unrolling loops.
 
 .. warning::
@@ -419,16 +419,16 @@ Additional Links
 ----------------
 
 * If you need to profile memory usage, you could try the `memory_profiler
-  <https://pypi.python.org/pypi/memory_profiler>`_
+  <https://pypi.org/project/memory-profiler>`_
 
 * If you need to profile down into C extensions, you could try using
   `gperftools <https://github.com/gperftools/gperftools>`_
   from Python with
-  `yep <https://pypi.python.org/pypi/yep>`_.
+  `yep <https://pypi.org/project/yep>`_.
 
 * If you would like to track performace of your code across time, i.e. as you
   make new commits to your repository, you could try:
-  `asv <https://asv.readthedocs.io/>`_
+  `asv <https://asv.readthedocs.io/en/stable/>`_
 
 * If you need some interactive visualization why not try `RunSnakeRun
-  <http://www.vrplumber.com/programming/runsnakerun/>`_
+  <https://www.vrplumber.com/programming/runsnakerun/>`_

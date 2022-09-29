@@ -107,7 +107,7 @@ if version:
 
 # List of directories, relative to source directory, that shouldn't be searched
 # for source files.
-exclude_trees = ['intro/image_processing']
+# exclude_trees = ['']
 
 # The reST default role (used for this markup: `text`) to use for all documents.
 #default_role = None
@@ -159,7 +159,7 @@ rst_epilog = """
 # https://github.com/sphinx-doc/sphinx/issues/8895 This will be deprecated and
 # the impacted list formatting (i.e. prerequisite boxes or other with
 # "rst-class:: horizontal" should be reformatted)
-html4_writer = True
+#html4_writer = True
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.

@@ -196,8 +196,8 @@ Fancy indexing works, as usual::
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 .. note:: There are a bunch of other syntaxes for constructing structured
-   arrays, see `here <http://numpy.org/doc/stable/user/basics.rec.html>`__
-   and `here <http://numpy.org/doc/stable/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
+   arrays, see `here <https://numpy.org/doc/stable/user/basics.rec.html>`__
+   and `here <https://numpy.org/doc/stable/reference/arrays.dtypes.html#specifying-and-constructing-data-types>`__.
 
 
 :class:`maskedarray`: dealing with (propagation of) missing data
@@ -248,8 +248,8 @@ recall good coding practice, which really do pay off in the long run:
       A certain number of rules for writing "beautiful" code (and, more
       importantly, using the same conventions as everybody else!) are
       given in the `Style Guide for Python Code
-      <https://www.python.org/dev/peps/pep-0008>`_ and the `Docstring
-      Conventions <https://www.python.org/dev/peps/pep-0257>`_ page (to
+      <https://peps.python.org/pep-0008>`_ and the `Docstring
+      Conventions <https://peps.python.org/pep-0257>`_ page (to
       manage help strings).
 
     * Except some rare cases, variable names and comments in English.

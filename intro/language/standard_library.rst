@@ -4,7 +4,7 @@ Standard Library
 .. note:: Reference document for this section:
 
  * The Python Standard Library documentation:
-   https://docs.python.org/library/index.html
+   https://docs.python.org/3/library/index.html
 
  * Python Essential Reference, David Beazley, Addison-Wesley Professional
 
@@ -139,7 +139,7 @@ Running an external command
 .. note:: Alternative to ``os.system``
 
     A noteworthy alternative to ``os.system`` is the `sh module
-    <http://amoffat.github.com/sh/>`_. Which provides much more convenient ways to
+    <https://amoffat.github.com/sh/>`_. Which provides much more convenient ways to
     obtain the output, error stream and exit code of the external command.
 
     .. sourcecode:: ipython

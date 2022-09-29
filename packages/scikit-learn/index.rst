@@ -30,7 +30,7 @@ scikit-learn: machine learning in Python
   * The :ref:`statistics` chapter may also be of interest
     for readers looking into machine learning.
 
-  * The `documentation of scikit-learn <http://scikit-learn.org>`_ is
+  * The `documentation of scikit-learn <https://scikit-learn.org>`_ is
     very complete and didactic.
 
 .. contents:: Chapters contents
@@ -316,7 +316,7 @@ more complicated examples are:
 -  given a list of movies a person has watched and their personal rating
    of the movie, recommend a list of movies they would like (So-called
    *recommender systems*: a famous example is the `Netflix
-   Prize <http://en.wikipedia.org/wiki/Netflix_prize>`__).
+   Prize <https://en.wikipedia.org/wiki/Netflix_prize>`__).
 
 .. tip::
 
@@ -1097,7 +1097,7 @@ We can use different splitting strategies, such as random splitting::
 .. tip::
 
     There exists `many different cross-validation strategies
-    <http://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators>`_
+    <https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators>`_
     in scikit-learn. They are often useful to take in account non iid
     datasets.
 
@@ -1767,11 +1767,11 @@ unknown data, using an independent test set is vital.
 
 .. seealso:: **Going further**
 
-   * The `documentation of scikit-learn <http://scikit-learn.org>`__ is
+   * The `documentation of scikit-learn <https://scikit-learn.org>`__ is
      very complete and didactic.
 
    * `Introduction to Machine Learning with Python
-     <http://shop.oreilly.com/product/0636920030515.do>`_,
+     <https://shop.oreilly.com/product/0636920030515.do>`_,
      by Sarah Guido, Andreas Müller
      (`notebooks available here <https://github.com/amueller/introduction_to_ml_with_python>`_).
 

@@ -8,7 +8,7 @@ statsmodels>=0.13
 seaborn>=0.12
 pandas>=1.5
 pytest>=7.1
-sphinx>=5.1
+sphinx>=5.2
 coverage>=6.4
 pillow
 imageio>=2.22

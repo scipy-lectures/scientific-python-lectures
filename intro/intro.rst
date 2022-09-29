@@ -129,9 +129,9 @@ Python
   * Free and open-source software, widely spread, with a vibrant community.
 
   * A variety of powerful environments to work in, such as
-    `IPython <http://ipython.readthedocs.io/en/stable/>`__,
+    `IPython <https://ipython.readthedocs.io/en/stable/>`__,
     `Spyder <https://www.spyder-ide.org/>`__,
-    `Jupyter notebooks <http://jupyter.org/>`__,
+    `Jupyter notebooks <https://jupyter.org/>`__,
     `Pycharm <https://www.jetbrains.com/pycharm>`__,
     `Visual Studio Code <https://code.visualstudio.com/docs/languages/python>`__
 
@@ -176,21 +176,21 @@ that can be combined to obtain a scientific computing environment:
 **Core numeric libraries**
 
 * **Numpy**: numerical computing with powerful **numerical arrays**
-  objects, and routines to manipulate them. http://www.numpy.org/
+  objects, and routines to manipulate them. https://numpy.org/
 
   .. seealso::
 
      :ref:`chapter on numpy <numpy>`
 
 * **Scipy** : high-level numerical routines.
-  Optimization, regression, interpolation, etc http://www.scipy.org/
+  Optimization, regression, interpolation, etc https://scipy.org/
 
   .. seealso::
 
     :ref:`chapter on scipy <scipy>`
 
 * **Matplotlib** : 2-D visualization, "publication-ready" plots
-  http://matplotlib.org/
+  https://matplotlib.org/
 
   .. seealso::
 
@@ -205,9 +205,9 @@ that can be combined to obtain a scientific computing environment:
 
 **Advanced interactive environments**:
 
-* **IPython**, an advanced **Python console** http://ipython.org/
+* **IPython**, an advanced **Python console** https://ipython.org/
 
-* **Jupyter**, **notebooks** in the browser http://jupyter.org/
+* **Jupyter**, **notebooks** in the browser https://jupyter.org/
 
 |clear-floats|
 
@@ -289,8 +289,8 @@ Interactive work
 .................
 
 We recommend an interactive work with the `IPython
-<http://ipython.org>`__ console, or its offspring, the `Jupyter notebook
-<http://jupyter.readthedocs.io/en/latest/content-quickstart.html>`_. They
+<https://ipython.org>`__ console, or its offspring, the `Jupyter notebook
+<https://docs.jupyter.org/en/latest/content-quickstart.html>`_. They
 are handy to explore and understand algorithms.
 
 .. sidebar:: Under the notebook
@@ -327,7 +327,7 @@ Getting help by using the **?** operator after an object:
     * IPython user manual: https://ipython.readthedocs.io/en/stable/
 
     * Jupyter Notebook QuickStart:
-      http://jupyter.readthedocs.io/en/latest/content-quickstart.html
+      https://jupyter.readthedocs.io/en/latest/content-quickstart.html
 
 Elaboration of the work in an editor
 ..........................................

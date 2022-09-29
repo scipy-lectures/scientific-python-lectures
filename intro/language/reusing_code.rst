@@ -363,7 +363,7 @@ Modules must be located in the search path, therefore you can:
 
       export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
 
-    On Windows, http://support.microsoft.com/kb/310519 explains how to
+    On Windows, https://support.microsoft.com/kb/310519 explains how to
     handle environment variables.
 
 * or modify the ``sys.path`` variable itself within a Python script.
@@ -384,7 +384,7 @@ Modules must be located in the search path, therefore you can:
 
 .. seealso::
 
-    See https://docs.python.org/tutorial/modules.html for more information
+    See https://docs.python.org/3/tutorial/modules.html for more information
     about modules.
 
 Packages
@@ -518,7 +518,7 @@ Good practices
   A certain number of rules
   for writing "beautiful" code (and more importantly using the same
   conventions as anybody else!) are given in the `Style Guide for Python
-  Code <https://www.python.org/dev/peps/pep-0008>`_.
+  Code <https://peps.python.org/pep-0008>`_.
 
 
 ____

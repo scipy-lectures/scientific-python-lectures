@@ -16,7 +16,7 @@ Scikit-image: image processing
 
 **Author**: *Emmanuelle Gouillart*
 
-`scikit-image <http://scikit-image.org/>`_ is a Python package dedicated
+`scikit-image <https://scikit-image.org/>`_ is a Python package dedicated
 to image processing, and using natively NumPy arrays as image objects.
 This chapter describes how to use ``scikit-image`` on various image
 processing tasks, and insists on the link with other scientific Python
@@ -110,14 +110,14 @@ NumPy arrays:
  * :mod:`scipy.ndimage` : for nd-arrays. Basic
    filtering, mathematical morphology, regions properties
 
- * `Mahotas <http://luispedro.org/software/mahotas>`_
+ * `Mahotas <https://luispedro.org/software/mahotas>`_
 
 Also, powerful image processing libraries have Python bindings:
 
- * `OpenCV <https://opencv-python-tutroals.readthedocs.org/en/latest/>`_
+ * `OpenCV <https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html>`_
    (computer vision)
 
- * `ITK <http://www.itk.org/itkindex.html>`_ (3D images and registration)
+ * `ITK <https://www.itk.org/itkindex.html>`_ (3D images and registration)
 
  * and many others
 
@@ -127,10 +127,10 @@ Also, powerful image processing libraries have Python bindings:
 What's to be found in scikit-image
 -----------------------------------
 
-* Website: http://scikit-image.org/
+* Website: https://scikit-image.org/
 
 * Gallery of examples:
-  http://scikit-image.org/docs/stable/auto_examples/
+  https://scikit-image.org/docs/stable/auto_examples/
 
 Different kinds of functions, from boilerplate utility functions to
 high-level recent algorithms.
@@ -171,7 +171,7 @@ keyword argument).
 
 Also works with URL image paths::
 
-    >>> logo = io.imread('http://scikit-image.org/_static/img/logo.png')
+    >>> logo = io.imread('https://scikit-image.org/_static/img/logo.png')
 
 Saving to files::
 
@@ -230,7 +230,7 @@ dtype and the data range, following skimage's conventions:
 ``util.img_as_float``, ``util.img_as_ubyte``, etc.
 
 See the `user guide
-<http://scikit-image.org/docs/stable/user_guide/data_types.html>`_ for
+<https://scikit-image.org/docs/stable/user_guide/data_types.html>`_ for
 more details.
 
 Colorspaces
@@ -716,12 +716,12 @@ Example: detecting corners using Harris detector ::
     :align: center
 
 (this example is taken from the `plot_corner
-<http://scikit-image.org/docs/stable/auto_examples/features_detection/plot_corner.html>`_
+<https://scikit-image.org/docs/stable/auto_examples/features_detection/plot_corner.html>`_
 example in scikit-image)
 
 Points of interest such as corners can then be used to match objects in
 different images, as described in the `plot_matching 
-<http://scikit-image.org/docs/stable/auto_examples/transform/plot_matching.html>`_
+<https://scikit-image.org/docs/stable/auto_examples/transform/plot_matching.html>`_
 example of scikit-image.
 
 Full code examples

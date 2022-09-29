@@ -29,10 +29,10 @@ Introduction
 
 This chapter covers the following techniques:
 
-* `Python-C-Api <https://docs.python.org/2/c-api/>`_
-* `Ctypes <https://docs.python.org/2/library/ctypes.html>`_
-* `SWIG (Simplified Wrapper and Interface Generator) <http://www.swig.org/>`_
-* `Cython <http://cython.org/>`_
+* `Python-C-Api <https://docs.python.org/3/c-api/>`_
+* `Ctypes <https://docs.python.org/3/library/ctypes.html>`_
+* `SWIG (Simplified Wrapper and Interface Generator) <https://www.swig.org/>`_
+* `Cython <https://cython.org/>`_
 
 These four techniques are perhaps the most well known ones, of which Cython is
 probably the most advanced one and the one you should consider using first. The
@@ -74,7 +74,7 @@ Last but not least, two small warnings:
 Python-C-Api
 ============
 
-The `Python-C-API <https://docs.python.org/2/c-api/>`_ is the backbone of the
+The `Python-C-API <https://docs.python.org/3/c-api/>`_ is the backbone of the
 standard Python interpreter (a.k.a *CPython*). Using this API it is possible to
 write Python extension module in C and C++. Obviously, these extension modules
 can, by virtue of language compatibility, call any function written in C or
@@ -111,10 +111,10 @@ return type.
    Since reference counting bugs are easy to create and hard to track down,
    anyone really needing to use the Python C-API should read the `section
    about objects, types and reference counts
-   <https://docs.python.org/2/c-api/intro.html#objects-types-and-reference-counts>`_
+   <https://docs.python.org/3/c-api/intro.html#objects-types-and-reference-counts>`_
    from the official python documentation. Additionally, there is a tool by the
    name of `cpychecker
-   <https://gcc-python-plugin.readthedocs.org/en/latest/cpychecker.html>`_
+   <https://gcc-python-plugin.readthedocs.io/en/latest/cpychecker.html>`_
    which can help discover common errors with reference counting.
 
 Example
@@ -165,7 +165,7 @@ The file ``cos_module.so`` contains the compiled extension, which we can now loa
 .. note::
 
    In Python 3, the filename for compiled modules includes metadata on the Python
-   interpreter (see `PEP 3149 <https://www.python.org/dev/peps/pep-3149/>`_) and is thus
+   interpreter (see `PEP 3149 <https://peps.python.org/pep-3149/>`_) and is thus
    longer. The import statement is not affected by this.
 
 .. sourcecode:: ipython
@@ -207,16 +207,16 @@ Numpy Support
 
 Analog to the Python-C-API, Numpy, which is itself implemented as a
 C-extension, comes with the `Numpy-C-API
-<http://numpy.org/doc/stable/reference/c-api>`_. This API can be used
+<https://numpy.org/doc/stable/reference/c-api>`_. This API can be used
 to create and manipulate Numpy arrays from C, when writing a custom
 C-extension. See also: :ref:`advanced_numpy`.
 
 .. note::
 
     If you do ever need to use the Numpy C-API refer to the documentation about
-    `Arrays <http://numpy.org/doc/stable/reference/c-api/array.html>`_ and
+    `Arrays <https://numpy.org/doc/stable/reference/c-api/array.html>`_ and
     `Iterators
-    <http://numpy.org/doc/stable/reference/c-api/iterator.html>`_.
+    <https://numpy.org/doc/stable/reference/c-api/iterator.html>`_.
 
 The following example shows how to pass Numpy arrays as arguments to functions
 and how to iterate over Numpy arrays using the (old) Numpy-C-API. It simply
@@ -247,7 +247,7 @@ And this should result in the following figure:
 Ctypes
 ======
 
-`Ctypes <https://docs.python.org/2/library/ctypes.html>`_ is a *foreign
+`Ctypes <https://docs.python.org/3/library/ctypes.html>`_ is a *foreign
 function library* for Python. It provides C compatible data types, and allows
 calling functions in DLLs or shared libraries. It can be used to wrap these
 libraries in pure Python.
@@ -274,7 +274,7 @@ As advertised, the wrapper code is in pure Python.
 
 * Finding and loading the library may vary depending on your operating system,
   check `the documentation
-  <https://docs.python.org/2/library/ctypes.html#loading-dynamic-link-libraries>`_
+  <https://docs.python.org/3/library/ctypes.html#loading-dynamic-link-libraries>`_
   for details
 * This may be somewhat deceptive, since the math library exists in compiled
   form on the system already. If you were to wrap a in-house library, you would
@@ -341,9 +341,9 @@ and there are functions to convert from C arrays to Numpy arrays and back.
 .. XXX Should use :mod: and :class:
 
 For more information, consult the corresponding section in the `Numpy Cookbook
-<http://www.scipy.org/Cookbook/Ctypes>`_ and the API documentation for
-`numpy.ndarray.ctypes <http://numpy.org/doc/stable/reference/generated/numpy.ndarray.ctypes.html>`_
-and `numpy.ctypeslib <http://numpy.org/doc/stable/reference/routines.ctypeslib.html>`_.
+<https://www.scipy.org/Cookbook/Ctypes>`_ and the API documentation for
+`numpy.ndarray.ctypes <https://numpy.org/doc/stable/reference/generated/numpy.ndarray.ctypes.html>`_
+and `numpy.ctypeslib <https://numpy.org/doc/stable/reference/routines.ctypeslib.html>`_.
 
 For the following example, let's consider a C function in a library that takes
 an input and an output array, computes the cosine of the input array and
@@ -405,7 +405,7 @@ And, as before, we convince ourselves that it worked:
 SWIG
 ====
 
-`SWIG <http://www.swig.org/>`_, the Simplified Wrapper Interface Generator,
+`SWIG <https://www.swig.org/>`_, the Simplified Wrapper Interface Generator,
 is a software development tool that connects programs written in C and C++
 with a variety of high-level programming languages, including Python. The
 important thing with SWIG is, that it can autogenerate the wrapper code for you.
@@ -545,7 +545,7 @@ Numpy Support
 -------------
 
 Numpy provides `support for SWIG
-<http://numpy.org/doc/stable/reference/swig.html>`_ with the ``numpy.i``
+<https://numpy.org/doc/stable/reference/swig.html>`_ with the ``numpy.i``
 file. This interface file defines various so-called *typemaps* which support
 conversion between Numpy arrays and C-Arrays. In the following example we will
 take a quick look at how such typemaps work in practice.
@@ -619,7 +619,7 @@ And, as before, we convince ourselves that it worked:
 Cython
 ======
 
-`Cython <http://cython.org/>`_ is both a Python-like language for writing
+`Cython <https://cython.org/>`_ is both a Python-like language for writing
 C-extensions and an advanced compiler for this language. The Cython *language*
 is a superset of Python, which comes with additional constructs that allow you
 call C functions and annotate variables and class attributes with c types. In
@@ -753,10 +753,10 @@ the Numpy array type to your Cython code. I.e. like specifying that variable
 ``i`` is of type ``int``, you can specify that variable ``a`` is of type
 ``numpy.ndarray`` with a given ``dtype``. Also, certain optimizations such as
 bounds checking are supported. Look at the corresponding section in the `Cython
-documentation <http://docs.cython.org/src/tutorial/numpy.html>`_. In case you
+documentation <https://docs.cython.org/en/latest/src/tutorial/numpy.html>`_. In case you
 want to pass Numpy arrays as C arrays to your Cython wrapped C functions, there
 is a section about this in the `Cython documentation
-<http://docs.cython.org/src/userguide/memoryviews.html#pass-data-from-a-c-function-via-pointer>`_.
+<https://docs.cython.org/en/latest/src/userguide/memoryviews.html#pass-data-from-a-c-function-via-pointer>`_.
 
 In the following example, we will show how to wrap the familiar ``cos_doubles``
 function using Cython.
@@ -835,7 +835,7 @@ Further Reading and References
 ==============================
 
 * `Gaël Varoquaux's blog post about avoiding data copies
-  <http://gael-varoquaux.info/programming/cython-example-of-exposing-c-computed-arrays-in-python-without-data-copies.html>`_ provides some insight on how to
+  <https://gael-varoquaux.info/programming/cython-example-of-exposing-c-computed-arrays-in-python-without-data-copies.html>`_ provides some insight on how to
   handle memory management cleverly. If you ever run into issues with large
   datasets, this is a reference to come back to for some inspiration.
 
@@ -873,7 +873,7 @@ Python-C-API
 #. Modify the example such that the function only takes a single input array
    and modifies this in place.
 #. Try to fix the example to use the new `Numpy iterator protocol
-   <http://numpy.org/doc/stable/reference/c-api/iterator.html>`_. If you
+   <https://numpy.org/doc/stable/reference/c-api/iterator.html>`_. If you
    manage to obtain a working solution, please submit a pull-request on github.
 #. You may have noticed, that the Numpy-C-API example is the only Numpy example
    that does not wrap ``cos_doubles`` but instead applies the ``cos`` function
@@ -908,7 +908,7 @@ Cython
 #. Look at the code that Cython autogenerates. Take a closer look at some of the
    comments that Cython inserts. What do you see?
 #. Look at the section `Working with Numpy
-   <http://docs.cython.org/src/tutorial/numpy.html>`_ from the Cython
+   <https://docs.cython.org/en/latest/src/tutorial/numpy.html>`_ from the Cython
    documentation  to learn how to incrementally optimize a pure python script that uses Numpy.
 #. Modify the Numpy example such that ``cos_doubles_func`` handles the preallocation for
    you, thus making it more like the Numpy-C-API example.

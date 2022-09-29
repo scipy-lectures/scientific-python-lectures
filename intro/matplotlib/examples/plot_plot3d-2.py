@@ -22,14 +22,14 @@ ax.text2D(-0.05, 1.05, " 3D plots             \n",
           horizontalalignment='left',
           verticalalignment='top',
           bbox=dict(facecolor='white', alpha=1.0),
-          family='Lint McCree Intl BB',
+          family='DejaVu Sans',
           size='x-large',
           transform=plt.gca().transAxes)
 
 ax.text2D(-0.05, .975, " Plot 2D or 3D data",
           horizontalalignment='left',
           verticalalignment='top',
-          family='Lint McCree Intl BB',
+          family='DejaVu Sans',
           size='medium',
           transform=plt.gca().transAxes)
 

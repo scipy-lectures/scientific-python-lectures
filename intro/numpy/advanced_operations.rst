@@ -47,7 +47,7 @@ For example, :math:`3x^2 + 2x - 1`::
     :target: auto_examples/plot_polyfit.html
     :align: center
 
-See http://numpy.org/doc/stable/reference/routines.polynomials.poly1d.html
+See https://numpy.org/doc/stable/reference/routines.polynomials.poly1d.html
 for more.
 
 More polynomials (with more bases)
@@ -183,8 +183,8 @@ NumPy has its own binary format, not portable but with efficient I/O::
 Well-known (& more obscure) file formats
 .........................................
 
-* HDF5: `h5py <http://www.h5py.org/>`__, `PyTables <http://www.pytables.org>`__
-* NetCDF: ``scipy.io.netcdf_file``, `netcdf4-python <http://code.google.com/p/netcdf4-python/>`__, ...
+* HDF5: `h5py <https://www.h5py.org/>`__, `PyTables <https://www.pytables.org>`__
+* NetCDF: ``scipy.io.netcdf_file``, `netcdf4-python <https://code.google.com/archive/p/netcdf4-python>`__, ...
 * Matlab: ``scipy.io.loadmat``, ``scipy.io.savemat``
 * MatrixMarket: ``scipy.io.mmread``, ``scipy.io.mmwrite``
 * IDL: ``scipy.io.readsav``

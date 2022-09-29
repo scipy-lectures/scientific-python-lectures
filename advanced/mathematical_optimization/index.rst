@@ -30,15 +30,15 @@ used for more efficient, non black-box, optimization.
    Mathematical optimization is very ... mathematical. If you want
    performance, it really pays to read the books:
 
-   * `Convex Optimization <http://www.stanford.edu/~boyd/cvxbook/>`_ 
+   * `Convex Optimization <https://web.stanford.edu/~boyd/cvxbook/>`_ 
      by Boyd and Vandenberghe (pdf available free online).
 
    * `Numerical Optimization
-     <http://users.eecs.northwestern.edu/~nocedal/book/num-opt.html>`_, 
+     <https://users.eecs.northwestern.edu/~nocedal/book/num-opt.html>`_, 
      by Nocedal and Wright. Detailed reference on gradient descent methods.
 
    * `Practical Methods of Optimization
-     <http://www.amazon.com/gp/product/0471494631/ref=ox_sc_act_title_1?ie=UTF8&smid=ATVPDKIKX0DER>`_ by Fletcher: good at hand-waving explanations.
+     <https://www.amazon.com/gp/product/0471494631/ref=ox_sc_act_title_1?ie=UTF8&smid=ATVPDKIKX0DER>`_ by Fletcher: good at hand-waving explanations.
 
 .. include:: ../../includes/big_toc_css.rst
 
@@ -113,7 +113,7 @@ Smooth and non-smooth problems
 
 **Optimizing smooth functions is easier**
 (true in the context of *black-box* optimization, otherwise
-`Linear Programming <http://en.wikipedia.org/wiki/Linear_programming>`_
+`Linear Programming <https://en.wikipedia.org/wiki/Linear_programming>`_
 is an example of methods which deal very efficiently with
 piece-wise linear functions).
 
@@ -228,7 +228,7 @@ Some intuitions about gradient descent
 
 Here we focus on **intuitions**, not code. Code will follow.
 
-`Gradient descent <http://en.wikipedia.org/wiki/Gradient_descent>`_
+`Gradient descent <https://en.wikipedia.org/wiki/Gradient_descent>`_
 basically consists in taking small steps in the direction of the
 gradient, that is the direction of the *steepest descent*.
 
@@ -263,7 +263,7 @@ gradient, that is the direction of the *steepest descent*.
    - |gradient_quad_icond_conv|
 
 We can see that very anisotropic (`ill-conditioned
-<http://en.wikipedia.org/wiki/Condition_number>`_) functions are harder
+<https://en.wikipedia.org/wiki/Condition_number>`_) functions are harder
 to optimize.
 
 .. topic:: **Take home message: conditioning number and preconditioning**
@@ -413,11 +413,11 @@ Newton methods: using the Hessian (2nd differential)
 .....................................................
 
 `Newton methods
-<http://en.wikipedia.org/wiki/Newton%27s_method_in_optimization>`_ use a
+<https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization>`_ use a
 local quadratic approximation to compute the jump direction. For this
 purpose, they rely on the 2 first derivative of the function: the
 *gradient* and the `Hessian
-<http://en.wikipedia.org/wiki/Hessian_matrix>`_.
+<https://en.wikipedia.org/wiki/Hessian_matrix>`_.
 
 .. |ncg_quad_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_008.png
    :scale: 90%
@@ -670,7 +670,7 @@ Simplex method: the Nelder-Mead
 
 The Nelder-Mead algorithms is a generalization of dichotomy approaches to
 high-dimensional spaces. The algorithm works by refining a `simplex
-<http://en.wikipedia.org/wiki/Simplex>`_, the generalization of intervals
+<https://en.wikipedia.org/wiki/Simplex>`_, the generalization of intervals
 and triangles to high-dimensional spaces, to bracket the minimum. 
 
 **Strong points**: it is robust to noise, as it does not rely on
@@ -793,7 +793,7 @@ Making your optimizer faster
 * Choose the right method (see above), do compute analytically the
   gradient and Hessian, if you can.
 
-* Use `preconditionning <http://en.wikipedia.org/wiki/Preconditioner>`_
+* Use `preconditionning <https://en.wikipedia.org/wiki/Preconditioner>`_
   when possible.
 
 * Choose your initialization points wisely. For instance, if you are
@@ -1026,9 +1026,9 @@ and :math:`g(x) < 0`.
 .. warning:: 
    
    The above problem is known as the `Lasso
-   <http://en.wikipedia.org/wiki/Lasso_(statistics)>`_
+   <https://en.wikipedia.org/wiki/Lasso_(statistics)>`_
    problem in statistics, and there exist very efficient solvers for it
-   (for instance in `scikit-learn <http://scikit-learn.org>`_). In
+   (for instance in `scikit-learn <https://scikit-learn.org>`_). In
    general do not use generic solvers when specific ones exist.
 
 .. topic:: **Lagrange multipliers**

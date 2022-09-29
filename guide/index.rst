@@ -126,7 +126,7 @@ directive.
 
     The transformation of Python scripts into figures and galleries of
     examples is provided by the `sphinx-gallery
-    <http://sphinx-gallery.readthedocs.io/>`_ package.
+    <https://sphinx-gallery.readthedocs.io/>`_ package.
 
 Using Markup
 ============
@@ -154,7 +154,7 @@ documentation of the various packages. You should link as much as
 possible to the original documentation.
 
 For cross-referencing API documentation we prefer to use the `intersphinx
-extension <http://www.sphinx-doc.org/en/master/usage/extensions/index.html#built-in-extensions>`_. This provides
+extension <https://www.sphinx-doc.org/en/master/usage/extensions/index.html#built-in-extensions>`_. This provides
 the directives `:mod:`, `:class:` and `:func:` to cross-link to modules,
 classes and functions respectively. For example the ``:func:`numpy.var``` will
 create a link like :func:`numpy.var`.
@@ -208,5 +208,5 @@ References
 
 .. target-notes::
 
-.. _`Documentation style guide`: http://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html
-.. _`tips, tricks`: http://docness.readthedocs.org/en/latest/index.html
+.. _`Documentation style guide`: https://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html
+.. _`tips, tricks`: https://docness.readthedocs.org/en/latest/index.html

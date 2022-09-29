@@ -23,7 +23,7 @@ Introduction
 
 .. tip::
 
-    `Matplotlib <http://matplotlib.org/>`__ is probably the most
+    `Matplotlib <https://matplotlib.org/>`__ is probably the most
     used Python package for 2D-graphics. It provides both a quick
     way to visualize data from Python and publication-quality figures in
     many formats.  We are going to explore matplotlib in interactive mode
@@ -34,8 +34,8 @@ IPython, Jupyter, and matplotlib modes
 
 .. tip::
 
-    The `Jupyter <http://jupyter.org>`_ notebook and the
-    `IPython <http://ipython.org/>`_ enhanced interactive Python, are
+    The `Jupyter <https://jupyter.org>`_ notebook and the
+    `IPython <https://ipython.org/>`_ enhanced interactive Python, are
     tuned for the scientific-computing workflow in Python,
     in combination with Matplotlib:
 
@@ -51,7 +51,7 @@ For interactive matplotlib sessions, turn on the **matplotlib mode**
 
   In the notebook, insert, **at the beginning of the
   notebook** the following `magic
-  <http://ipython.readthedocs.org/en/stable/interactive/magics.html>`_::
+  <https://ipython.readthedocs.io/en/stable/interactive/magics.html>`_::
 
     %matplotlib inline
 
@@ -124,7 +124,7 @@ Plotting with default settings
 
 .. hint:: Documentation
 
-   * `plot tutorial <http://matplotlib.org/users/pyplot_tutorial.html>`_
+   * `plot tutorial <https://matplotlib.org/users/pyplot_tutorial.html>`_
    * :func:`~plot()` command
 
 .. tip::
@@ -161,7 +161,7 @@ Instantiating defaults
 
 .. hint:: Documentation
 
-   *  `Customizing matplotlib <http://matplotlib.org/users/customizing.html>`_
+   *  `Customizing matplotlib <https://matplotlib.org/users/customizing.html>`_
 
 In the script below, we've instantiated (and commented) all the figure settings
 that influence the appearance of the plot.
@@ -223,7 +223,7 @@ Changing colors and line widths
 
 .. hint:: Documentation
 
-   * `Controlling line properties <http://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties>`_
+   * `Controlling line properties <https://matplotlib.org/users/pyplot_tutorial.html#controlling-line-properties>`_
    * :class:`~matplotlib.lines.Line2D` API
 
 .. tip::
@@ -284,8 +284,8 @@ Setting ticks
 
    * :func:`xticks()` command
    * :func:`yticks()` command
-   * `Tick container <http://matplotlib.org/users/artists.html#axis-container>`_
-   * `Tick locating and formatting <http://matplotlib.org/api/ticker_api.html>`_
+   * `Tick container <https://matplotlib.org/users/artists.html#axis-container>`_
+   * `Tick locating and formatting <https://matplotlib.org/api/ticker_api.html>`_
 
 .. tip::
 
@@ -315,7 +315,7 @@ Setting tick labels
 
 .. hint:: Documentation
 
-   * `Working with text <http://matplotlib.org/users/index_text.html>`_
+   * `Working with text <https://matplotlib.org/users/index_text.html>`_
    * :func:`~xticks()` command
    * :func:`~yticks()` command
    * :meth:`~matplotlib.axes.Axes.set_xticklabels()`
@@ -356,8 +356,8 @@ Moving spines
 .. hint:: Documentation
 
    * :mod:`~matplotlib.spines` API
-   * `Axis container <http://matplotlib.org/users/artists.html#axis-container>`_
-   * `Transformations tutorial <http://matplotlib.org/users/transforms_tutorial.html>`_
+   * `Axis container <https://matplotlib.org/users/artists.html#axis-container>`_
+   * `Transformations tutorial <https://matplotlib.org/users/transforms_tutorial.html>`_
 
 .. tip::
 
@@ -396,7 +396,7 @@ Adding a legend
 
 .. hint:: Documentation
 
-   * `Legend guide <http://matplotlib.org/users/legend_guide.html>`_
+   * `Legend guide <https://matplotlib.org/users/legend_guide.html>`_
    * :func:`legend()` command
    * :mod:`~matplotlib.legend` API
 
@@ -430,7 +430,7 @@ Annotate some points
 
 .. hint:: Documentation
 
-   * `Annotating axis <http://matplotlib.org/users/annotations_guide.html>`_
+   * `Annotating axis <https://matplotlib.org/users/annotations_guide.html>`_
    * :func:`annotate()` command
 
 .. tip::
@@ -565,7 +565,7 @@ Subplots
 
     With subplot you can arrange plots in a regular grid. You need to specify
     the number of rows and columns and the number of the plot.  Note that the
-    `gridspec <http://matplotlib.org/users/gridspec.html>`_ command
+    `gridspec <https://matplotlib.org/users/gridspec.html>`_ command
     is a more powerful alternative.
 
 .. avoid an ugly interplay between 'tip' and the images below: we want a
@@ -1015,7 +1015,7 @@ Try to do the same from scratch !
 .. hint::
 
    Have a look at the `matplotlib logo
-   <http://matplotlib.org/examples/api/logo2.html>`_.
+   <https://matplotlib.org/examples/api/logo2.html>`_.
 
 
 Click on figure for solution.
@@ -1046,20 +1046,20 @@ Tutorials
 
 .. hlist::
 
-  * `Pyplot tutorial <http://matplotlib.org/users/pyplot_tutorial.html>`_
+  * `Pyplot tutorial <https://matplotlib.org/users/pyplot_tutorial.html>`_
 
     - Introduction
     - Controlling line properties
     - Working with multiple figures and axes
     - Working with text
 
-  * `Image tutorial <http://matplotlib.org/users/image_tutorial.html>`_
+  * `Image tutorial <https://matplotlib.org/users/image_tutorial.html>`_
 
     - Startup commands
     - Importing image data into Numpy arrays
     - Plotting numpy arrays as images
 
-  * `Text tutorial <http://matplotlib.org/users/index_text.html>`_
+  * `Text tutorial <https://matplotlib.org/users/index_text.html>`_
 
     - Text introduction
     - Basic text commands
@@ -1068,7 +1068,7 @@ Tutorials
     - Text rendering With LaTeX
     - Annotating text
 
-  * `Artist tutorial <http://matplotlib.org/users/artists.html>`_
+  * `Artist tutorial <https://matplotlib.org/users/artists.html>`_
 
     - Introduction
     - Customizing your objects
@@ -1078,13 +1078,13 @@ Tutorials
     - Axis containers
     - Tick containers
 
-  * `Path tutorial <http://matplotlib.org/users/path_tutorial.html>`_
+  * `Path tutorial <https://matplotlib.org/users/path_tutorial.html>`_
 
     - Introduction
     - Bézier example
     - Compound paths
 
-  * `Transforms tutorial <http://matplotlib.org/users/transforms_tutorial.html>`_
+  * `Transforms tutorial <https://matplotlib.org/users/transforms_tutorial.html>`_
 
     - Introduction
     - Data coordinates
@@ -1100,9 +1100,9 @@ Matplotlib documentation
 
 .. hlist::
 
-  * `User guide <http://matplotlib.org/users/index.html>`_
+  * `User guide <https://matplotlib.org/users/index.html>`_
 
-  * `FAQ <http://matplotlib.org/faq/index.html>`_
+  * `FAQ <https://matplotlib.org/faq/index.html>`_
 
     - Installation
     - Usage
@@ -1110,7 +1110,7 @@ Matplotlib documentation
     - Troubleshooting
     - Environment Variables
 
-  * `Screenshots <http://matplotlib.org/users/screenshots.html>`_
+  * `Screenshots <https://matplotlib.org/users/screenshots.html>`_
 
 
 Code documentation
@@ -1138,7 +1138,7 @@ from within a python session:
 Galleries
 ---------
 
-The `matplotlib gallery <http://matplotlib.org/gallery.html>`_ is
+The `matplotlib gallery <https://matplotlib.org/gallery.html>`_ is
 also incredibly useful when you search how to render a given graphic. Each
 example comes with its source.
 

@@ -39,7 +39,7 @@ arrays.
 
 * ``scipy``: ``scipy.ndimage`` submodule dedicated to image processing
   (n-dimensional images). See the `documentation
-  <http://docs.scipy.org/doc/scipy/reference/tutorial/ndimage.html>`_::
+  <https://docs.scipy.org/doc/scipy/tutorial/ndimage.html>`_::
 
     >>> from scipy import ndimage
 
@@ -236,7 +236,7 @@ Statistical information
     
 
     * Open as an array the ``scikit-image`` logo
-      (http://scikit-image.org/_static/img/logo.png), or an
+      (https://scikit-image.org/_static/img/logo.png), or an
       image that you have on your computer.
 
     * Crop a meaningful part of the image, for example the python circle
@@ -907,8 +907,8 @@ Full code examples
    
    * Other, more powerful and complete modules: `OpenCV
      <https://opencv-python-tutroals.readthedocs.org/en/latest>`_
-     (Python bindings), `CellProfiler <http://www.cellprofiler.org>`_,
-     `ITK <http://www.itk.org/>`_ with Python bindings
+     (Python bindings), `CellProfiler <https://www.cellprofiler.org>`_,
+     `ITK <https://itk.org/>`_ with Python bindings
 
 
 
