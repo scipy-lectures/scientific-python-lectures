@@ -1,3 +1,2 @@
 Solutions of the exercises for scipy
 .....................................
-

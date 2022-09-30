@@ -6,4 +6,3 @@ def index_error():
 
 if __name__ == '__main__':
     index_error()
-

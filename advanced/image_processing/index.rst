@@ -87,7 +87,7 @@ Creating a numpy array from an image file::
     >>> import imageio
     >>> face = misc.face()
     >>> imageio.imsave('face.png', face) # First we need to create the PNG file
-    
+
     >>> face = imageio.imread('face.png')
     >>> type(face)      # doctest: +ELLIPSIS
     <class 'imageio.core.util.Array'>
@@ -233,7 +233,7 @@ Statistical information
 
 .. topic:: **Exercise**
     :class: green
-    
+
 
     * Open as an array the ``scikit-image`` logo
       (https://scikit-image.org/_static/img/logo.png), or an
@@ -395,7 +395,7 @@ Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 
 .. topic:: **Exercise: denoising**
     :class: green
-    
+
     * Create a binary image (of 0s and 1s) with several objects (circles,
       ellipses, squares, or random shapes).
 
@@ -676,7 +676,7 @@ Use mathematical morphology to clean up the result::
 .. seealso::
 
     Other Scientific Packages provide algorithms that can be useful for
-    image processing. In this example, we use the spectral clustering 
+    image processing. In this example, we use the spectral clustering
     function of the ``scikit-learn`` in order to segment glued objects.
 
 
@@ -904,12 +904,8 @@ Full code examples
 .. seealso:: More on image-processing:
 
    * The chapter on :ref:`Scikit-image <scikit_image>`
-   
+
    * Other, more powerful and complete modules: `OpenCV
      <https://opencv-python-tutroals.readthedocs.org/en/latest>`_
      (Python bindings), `CellProfiler <https://www.cellprofiler.org>`_,
      `ITK <https://itk.org/>`_ with Python bindings
-
-
-
-

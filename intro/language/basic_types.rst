@@ -230,9 +230,9 @@ Concatenate and repeat lists::
     .. sourcecode:: ipython
 
         In [28]: rcolors.<TAB>
-        rcolors.append   rcolors.index    rcolors.remove   
-        rcolors.count    rcolors.insert   rcolors.reverse  
-        rcolors.extend   rcolors.pop      rcolors.sort    
+        rcolors.append   rcolors.index    rcolors.remove
+        rcolors.count    rcolors.insert   rcolors.reverse
+        rcolors.extend   rcolors.pop      rcolors.sort
 
 Strings
 ~~~~~~~
@@ -293,7 +293,7 @@ Slicing::
     'hl r!'
 
 .. tip::
-   
+
     Accents and special characters can also be handled as in Python 3
     strings consist of Unicode characters.
 

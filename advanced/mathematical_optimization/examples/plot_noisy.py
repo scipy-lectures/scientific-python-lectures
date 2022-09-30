@@ -26,4 +26,3 @@ plt.ylim(ymin=-1.3)
 plt.axis('off')
 plt.tight_layout()
 plt.show()
-

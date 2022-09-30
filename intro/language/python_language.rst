@@ -13,7 +13,7 @@ Gaël Varoquaux*
     To learn more about the language, consider going through the
     excellent tutorial https://docs.python.org/3/tutorial. Dedicated books
     are also available, such as `Dive into Python 3 <https://diveintopython3.net/>`__.
-    
+
 
 .. image:: python-logo.png
    :align: right
@@ -69,4 +69,3 @@ _____
     standard_library.rst
     exceptions.rst
     oop.rst
-

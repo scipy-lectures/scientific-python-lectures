@@ -3,7 +3,7 @@ Contributing
 
 The SciPy lecture notes are a community-based effort and require constant
 maintenance and improvements. New contributions such as wording
-improvements or inclusion of new topics are welcome. 
+improvements or inclusion of new topics are welcome.
 
 To propose bugfixes or straightforward improvements to the notes, see the
 contribution guide below.
@@ -97,7 +97,7 @@ method we use to test and build the material and (ii) generic instructions using
     now be installed::
 
         bash miniconda.sh
-        
+
     Review the license agreement and choose a target directory (here we assume it
     to be ``$HOME/miniconda3``). Unless you intend to work more extensively with
     miniconda, you do not want to modify ``.bashrc``. In this case, you need::

@@ -97,5 +97,3 @@ plt.legend(loc='best')
 #
 # Filters should be created using the scipy filter design code
 plt.show()
-
-

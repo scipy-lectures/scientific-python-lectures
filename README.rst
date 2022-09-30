@@ -27,9 +27,8 @@ However, we would like this reference material to be improved over time,
 thus we encourage people to contribute back changes. These will be
 reviewed and edited by the original authors and the editors.
 
-Building and contributing 
+Building and contributing
 --------------------------
 
 The file ``CONTRIBUTING.rst`` contains instructions to build from source
 and to contribute.
-

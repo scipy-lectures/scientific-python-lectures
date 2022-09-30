@@ -19,4 +19,3 @@ def test_filter_and_sort():
 
 if __name__ == '__main__':
     test_filter_and_sort()
-

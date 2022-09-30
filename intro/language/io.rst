@@ -9,9 +9,9 @@ We write or read **strings** to/from files (other types must be converted to
 strings). To write in a file::
 
     >>> f = open('workfile', 'w') # opens the workfile file
-    >>> type(f)    # doctest: +SKIP 
+    >>> type(f)    # doctest: +SKIP
     <type 'file'>
-    >>> f.write('This is a test \nand another test')   # doctest: +SKIP 
+    >>> f.write('This is a test \nand another test')   # doctest: +SKIP
     >>> f.close()
 
 To read from a file
@@ -23,14 +23,14 @@ To read from a file
     In [2]: s = f.read()
 
     In [3]: print(s)
-    This is a test 
+    This is a test
     and another test
 
     In [4]: f.close()
 
 
 .. seealso::
-   
+
    For more details: https://docs.python.org/3/tutorial/inputoutput.html
 
 Iterating over a file
@@ -43,7 +43,7 @@ Iterating over a file
     In [7]: for line in f:
        ...:     print(line)
        ...:
-    This is a test 
+    This is a test
 
     and another test
 
@@ -62,4 +62,3 @@ File modes
 * Binary mode: ``b``
 
   * Note: Use for binary files, especially on Windows.
-

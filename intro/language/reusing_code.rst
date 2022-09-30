@@ -234,8 +234,8 @@ Introspection
 
 
     In [8]: demo.<TAB>
-    demo.c        demo.print_a  demo.py       
-    demo.d        demo.print_b  demo.pyc      
+    demo.c        demo.print_a  demo.py
+    demo.d        demo.print_b  demo.pyc
 
 
 Importing objects from modules into the main namespace
@@ -268,7 +268,7 @@ Importing objects from modules into the main namespace
         In [10]: reload(demo)
 
     In Python3 instead ``reload`` is not builtin, so you have to import the ``importlib`` module first and then do:
-    
+
      .. sourcecode :: ipython
 
         In [10]: importlib.reload(demo)
@@ -336,7 +336,7 @@ variable
     In [1]: import sys
 
     In [2]: sys.path
-    Out[2]: 
+    Out[2]:
     ['',
      '/home/varoquau/.local/bin',
      '/usr/lib/python2.7',
@@ -496,7 +496,7 @@ Good practices
   indent with any positive number of spaces (1, 2, 3, 4, ...). However,
   it is considered good practice to **indent with 4 spaces**. You may
   configure your editor to map the ``Tab`` key to a 4-space
-  indentation. 
+  indentation.
 
 * **Style guidelines**
 

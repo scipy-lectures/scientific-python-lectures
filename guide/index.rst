@@ -27,7 +27,7 @@ How to contribute ?
   help to improve them. Simple text editing can be done by `editing files
   in your GitHub fork
   <https://help.github.com/articles/editing-files-in-your-repository/>`_ of
-  the lecture notes. On every html page of the lecture notes, an **edit** 
+  the lecture notes. On every html page of the lecture notes, an **edit**
   button on the top right links to the editable source of the page (you still
   need to create a fork of the project). Edit the source and choose
   "Create a new branch for this commit and start a pull request".
@@ -36,9 +36,9 @@ How to contribute ?
 
   First create a new issue on GitHub to explain the topic which you would
   like to cover, in order to discuss with editors and contributors about
-  the scope of the future tutorial. 
-  
-  Then create a new directory inside one of the chapters directories 
+  the scope of the future tutorial.
+
+  Then create a new directory inside one of the chapters directories
   (``intro``, ``advanced``, or ``packages``) and create a file ``index.rst``
   for the new tutorial. Add the new file in the table of contents of the
   corresponding chapter (in its ``index.rst``).
@@ -188,8 +188,8 @@ difficult to read:
 Admonitions
 ============
 
-.. note:: 
-   
+.. note::
+
    This is a note
 
 .. warning::

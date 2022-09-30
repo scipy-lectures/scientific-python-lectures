@@ -1,4 +1,4 @@
-..  
+..
     File to ..include in a document with a big table of content, to give
     it 'style'
 
@@ -37,8 +37,5 @@
         list-style-type: circle;
 	font-weight: normal;
         }
- 
+
   </style>
-
-
-

@@ -65,5 +65,3 @@ plt.yticks(())
 
 plt.tight_layout()
 plt.show()
-
-

@@ -39,4 +39,3 @@ Statement of the problem
    compute the grain sizes.
 
 8. Compute the mean size of bubbles.
-

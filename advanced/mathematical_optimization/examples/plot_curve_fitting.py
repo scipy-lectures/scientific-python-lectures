@@ -31,4 +31,3 @@ plt.clf()
 plt.plot(x, y, 'bx')
 plt.plot(t, f(t, *params), 'r-')
 plt.show()
-

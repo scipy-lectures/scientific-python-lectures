@@ -58,4 +58,3 @@ denoised_face = iterated_wiener(noisy_face)
 plt.matshow(denoised_face[cut], cmap=plt.cm.gray)
 
 plt.show()
-

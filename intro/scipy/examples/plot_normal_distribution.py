@@ -28,4 +28,3 @@ plt.plot(bin_centers, histogram, label="Histogram of samples")
 plt.plot(bin_centers, pdf, label="PDF")
 plt.legend()
 plt.show()
-

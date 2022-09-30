@@ -649,7 +649,7 @@ automatically by using `functools.update_wrapper`.
    "Update a wrapper function to look like the wrapped function."
 
    ::
-   
+
     >>> import functools
     >>> def replacing_decorator_with_args(arg):
     ...   print("defining the decorator")
@@ -975,7 +975,7 @@ the source of a program.
       - `Decorators I`_: Introduction to Python Decorators
       - `Python Decorators II`_: Decorator Arguments
       - `Python Decorators III`_: A Decorator-Based Build System
-     
+
       .. _`Decorators I`: https://www.artima.com/weblogs/viewpost.jsp?thread=240808
       .. _`Python Decorators II`: https://www.artima.com/weblogs/viewpost.jsp?thread=240845
       .. _`Python Decorators III`: https://www.artima.com/weblogs/viewpost.jsp?thread=241209

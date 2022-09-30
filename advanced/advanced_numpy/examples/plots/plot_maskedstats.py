@@ -17,5 +17,5 @@ bad_years = (((year >= 1903) & (year <= 1910))
 populations[bad_years, 0] = np.ma.masked
 populations[bad_years, 1] = np.ma.masked
 
-plt.plot(year, populations, 'o-') 
+plt.plot(year, populations, 'o-')
 plt.show()

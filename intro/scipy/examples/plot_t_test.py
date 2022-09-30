@@ -22,5 +22,3 @@ plt.hist(samples1, bins=bins, density=True, label="Samples 1")
 plt.hist(samples2, bins=bins, density=True, label="Samples 2")
 plt.legend(loc='best')
 plt.show()
-
-

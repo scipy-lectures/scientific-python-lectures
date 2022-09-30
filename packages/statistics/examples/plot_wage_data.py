@@ -81,4 +81,3 @@ plt.suptitle('Effect of union: 1=Union member, 0=Not union member')
 seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)
 
 plt.show()
-

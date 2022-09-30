@@ -418,7 +418,7 @@ div.document {
     background-color: white;
     border: none;
 }
- 
+
 /* bold section titles */
 div.body h1, div.body h2 {
     font-weight: bold;
@@ -492,7 +492,7 @@ a.headerlink:after {
     font-family: FontAwesome;
 }
 
-h1:hover a.headerlink, h2:hover a.headerlink, 
+h1:hover a.headerlink, h2:hover a.headerlink,
 h3:hover a.headerlink, h4:hover a.headerlink {
     visibility: hidden;
     display: inline-block;
@@ -502,7 +502,7 @@ a.headerlink {
     display: inline-block;
 }
 
-h1:hover a.headerlink:after, h2:hover a.headerlink:after, 
+h1:hover a.headerlink:after, h2:hover a.headerlink:after,
 h3:hover a.headerlink:after, h4:hover a.headerlink:after {
     visibility: visible;
 }
@@ -567,7 +567,7 @@ div.highlight {
 
 div.highlight pre a {
     color: #111;
-    text-decoration:underline;    
+    text-decoration:underline;
 }
 
 div.highlight pre {
@@ -610,7 +610,7 @@ div.body pre span {
     word-break: normal;
 }
 
-/* Line wrap after "()[]" (that are set in a span.p by pygment) and 
+/* Line wrap after "()[]" (that are set in a span.p by pygment) and
  * '.,=' (that are set in a span.o by pygment) */
 div.body pre span.o:after, div.body pre span.p:after{
  -ms-word-break: break-all;
@@ -807,7 +807,7 @@ li.toctree-l3 {
     list-style-type: circle;
     font-weight: normal;
     }
- 
+
 table.hlist td {
     width: 50%;
     vertical-align: top;
@@ -841,7 +841,7 @@ div.hint {
     padding:          3px 5px;
     width:            260px;
     border:     1px solid #cccccc;
-    background-color: #FFD;	
+    background-color: #FFD;
 }
 
 /* tip */
@@ -887,8 +887,8 @@ div.collapsed p.summary img {
     opacity: .5;
 }
 
-div.collapsed p.admonition-title + p, div.collapsed p.admonition-title, 
-div.collapsed p, div.collapsed img, div.collapsed div, div.collapsed ul, 
+div.collapsed p.admonition-title + p, div.collapsed p.admonition-title,
+div.collapsed p, div.collapsed img, div.collapsed div, div.collapsed ul,
 div.collapsed ol {
     display: none;
 }
@@ -1010,4 +1010,4 @@ div.sphx-glr-script-out div.highlight pre {
     -moz-user-select: none; /* Firefox 2+ */
     -ms-user-select: none; /* IE 10+ */
     user-select: none; /* Standard syntax */
-} 
+}

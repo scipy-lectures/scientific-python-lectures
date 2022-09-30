@@ -69,4 +69,3 @@ define printframe
         frame
     end
 end
-

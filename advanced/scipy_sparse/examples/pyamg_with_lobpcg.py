@@ -22,7 +22,7 @@ A = poisson((N,N), format='csr')
 ml = smoothed_aggregation_solver(A)
 
 # initial approximation to the K eigenvectors
-X = scipy.rand(A.shape[0], K) 
+X = scipy.rand(A.shape[0], K)
 
 # preconditioner based on ml
 M = ml.aspreconditioner()
@@ -40,4 +40,4 @@ for i in range(K):
     plt.pcolor(V[:,i].reshape(N,N))
     plt.axis('equal')
     plt.axis('off')
-plt.show()    
+plt.show()

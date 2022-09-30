@@ -422,10 +422,10 @@ doing integer arithmetic.
 
         /home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in <module>()
              55 pl.matshow(noisy_face[cut], cmap=pl.cm.gray)
-             56 
+             56
         ---> 57 denoised_face = iterated_wiener(noisy_face)
              58 pl.matshow(denoised_face[cut], cmap=pl.cm.gray)
-             59 
+             59
 
         /home/esc/physique-cuso-python-2013/scipy-lecture-notes/advanced/debugging/wiener_filtering.py in iterated_wiener(noisy_img, size)
              38         res = noisy_img - denoised_img
@@ -651,4 +651,3 @@ ____
     .. only:: html
 
         .. literalinclude:: to_debug.py
-

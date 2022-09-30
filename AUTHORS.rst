@@ -13,7 +13,7 @@ Editors
 
 - Pierre de Buyl
 
-Chapter authors 
+Chapter authors
 ----------------
 
 Listed by alphabetical order.

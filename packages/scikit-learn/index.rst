@@ -145,9 +145,9 @@ irises. The data consists of measurements of
 three different species of irises:
 
 .. |setosa_picture| image:: images/iris_setosa.jpg
-    
+
 .. |versicolor_picture| image:: images/iris_versicolor.jpg
-    
+
 .. |virginica_picture| image:: images/iris_virginica.jpg
 
 ===================== ===================== =====================
@@ -203,7 +203,7 @@ function to load it into numpy arrays::
     >>> iris = load_iris()
 
 .. note::
-   
+
    **Import sklearn** Note that scikit-learn is imported as :mod:`sklearn`
 
 The features of each sample flower are stored in the ``data`` attribute
@@ -238,7 +238,7 @@ The names of the classes are stored in the last attribute, namely
     ['setosa' 'versicolor' 'virginica']
 
 This data is four-dimensional, but we can visualize two of the
-dimensions at a time using a scatter plot: 
+dimensions at a time using a scatter plot:
 
 .. image:: auto_examples/images/sphx_glr_plot_iris_scatter_001.png
    :align: left
@@ -246,7 +246,7 @@ dimensions at a time using a scatter plot:
 
 .. topic:: **Exercise**:
     :class: green
-   
+
     Can you choose 2 features to find a plot where it is easier to
     seperate the different classes of irises?
 
@@ -490,7 +490,7 @@ The nature of the data
 
 .. sidebar:: Code and notebook
 
-   Python code and Jupyter notebook for this section are found 
+   Python code and Jupyter notebook for this section are found
    :ref:`here <sphx_glr_packages_scikit-learn_auto_examples_plot_digits_simple_classif.py>`
 
 
@@ -535,7 +535,7 @@ structure of the data set. ::
     <matplotlib.colorbar.Colorbar object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_002.png
-   :align: center 
+   :align: center
    :target: auto_examples/plot_digits_simple_classif.html
 
 .. topic:: **Question**
@@ -575,12 +575,12 @@ One good method to keep in mind is Gaussian Naive Bayes
 
     >>> # split the data into training and validation sets
     >>> X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target)
-    
+
     >>> # train the model
     >>> clf = GaussianNB()
     >>> clf.fit(X_train, y_train)
     GaussianNB()
-    
+
     >>> # use the model to predict the labels of the test data
     >>> predicted = clf.predict(X_test)
     >>> expected = y_test
@@ -677,13 +677,13 @@ A quick look at the data
 
 .. sidebar:: Code and notebook
 
-   Python code and Jupyter notebook for this section are found 
+   Python code and Jupyter notebook for this section are found
    :ref:`here <sphx_glr_packages_scikit-learn_auto_examples_plot_california_prediction.py>`
 
 
 
 We'll use the California house prices set, available in scikit-learn.
-This records measurements of 8 attributes of housing markets in 
+This records measurements of 8 attributes of housing markets in
 California, as well as the median price. The question is: can you predict
 the price of a new market given its attributes?::
 
@@ -770,28 +770,28 @@ others for our problem::
     <Figure size...
 
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_002.png
-   :width: 32%  
+   :width: 32%
    :target: auto_examples/plot_california_prediction.html
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_003.png
-   :width: 32%  
+   :width: 32%
    :target: auto_examples/plot_california_prediction.html
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_004.png
-   :width: 32%  
+   :width: 32%
    :target: auto_examples/plot_california_prediction.html
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_005.png
-   :width: 32%  
+   :width: 32%
    :target: auto_examples/plot_california_prediction.html
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_006.png
-   :width: 32%  
+   :width: 32%
    :target: auto_examples/plot_california_prediction.html
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_007.png
-   :width: 32%  
+   :width: 32%
    :target: auto_examples/plot_california_prediction.html
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_008.png
-   :width: 32%  
+   :width: 32%
    :target: auto_examples/plot_california_prediction.html
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_009.png
-   :width: 32%  
+   :width: 32%
    :target: auto_examples/plot_california_prediction.html
 
 
@@ -876,7 +876,7 @@ parameter space. ::
     >>> digits = load_digits()
     >>> X = digits.data
     >>> y = digits.target
-    
+
     >>> # Instantiate and train the classifier
     >>> from sklearn.neighbors import KNeighborsClassifier
     >>> clf = KNeighborsClassifier(n_neighbors=1)
@@ -886,7 +886,7 @@ parameter space. ::
     >>> # Check the results using metrics
     >>> from sklearn import metrics
     >>> y_pred = clf.predict(X)
-    
+
     >>> print(metrics.confusion_matrix(y_pred, y))
     [[178   0   0   0   0   0   0   0   0   0]
      [  0 182   0   0   0   0   0   0   0   0]
@@ -905,10 +905,10 @@ samples it has already seen.  To really test how well this algorithm
 does, we need to try some samples it *hasn't* yet seen.
 
 This problem also occurs with regression models. In the following we
-fit an other instance-based model named "decision tree" to the California 
+fit an other instance-based model named "decision tree" to the California
 Housing price dataset we introduced previously::
 
-    >>> from sklearn.datasets import fetch_california_housing 
+    >>> from sklearn.datasets import fetch_california_housing
     >>> from sklearn.tree import DecisionTreeRegressor
 
     >>> data = fetch_california_housing(as_frame=True)
@@ -1011,7 +1011,7 @@ f1-score on the training data itself::
     1.0
 
 .. note::
-   
+
    **Regression metrics** In the case of regression models, we
    need to use different metrics, such as explained variance.
 
@@ -1774,5 +1774,3 @@ unknown data, using an independent test set is vital.
      <https://shop.oreilly.com/product/0636920030515.do>`_,
      by Sarah Guido, Andreas Müller
      (`notebooks available here <https://github.com/amueller/introduction_to_ml_with_python>`_).
-
-

@@ -217,4 +217,3 @@ Well-known (& more obscure) file formats
 
     If you are interested in the NumPy internals, there is a good discussion in
     :ref:`advanced_numpy`.
-

@@ -1,4 +1,4 @@
-Scipy Lecture Notes 
+Scipy Lecture Notes
 ===========================
 
 .. only:: html
@@ -73,14 +73,14 @@ Scipy Lecture Notes
 
 .. only:: html
 
-    .. sidebar::  Download 
-       
+    .. sidebar::  Download
+
        |pdf| `PDF, 2 pages per side <./_downloads/ScipyLectures.pdf>`_
 
        |pdf| `PDF, 1 page per side <./_downloads/ScipyLectures-simple.pdf>`_
-   
+
        |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/main>`_
-     
+
        |github| `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
 
 
@@ -112,24 +112,24 @@ Scipy Lecture Notes
 
 |
 
-..  
+..
  FIXME: I need the link below to make sure the banner gets copied to the
  target directory.
 
 .. only:: html
 
  .. raw:: html
- 
+
    <div style='display: none; height=0px;'>
 
  :download:`ScipyLectures.pdf` :download:`ScipyLectures-simple.pdf`
- 
+
  .. image:: themes/plusBox.png
 
  .. image:: images/logo.svg
 
  .. raw:: html
- 
+
    </div>
    </small>
 
@@ -138,7 +138,3 @@ Scipy Lecture Notes
     >>> # For doctest on headless environments (needs to happen early)
     >>> import matplotlib
     >>> matplotlib.use('Agg')
-
-
-
-

@@ -55,4 +55,3 @@ methods and attributes. Then we can use inheritance to consider
 variations around a base class and **re-use** code. Ex : from a Flow
 base class, we can create derived StokesFlow, TurbulentFlow,
 PotentialFlow, etc.
-

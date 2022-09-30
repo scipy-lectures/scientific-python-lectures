@@ -23,8 +23,8 @@ Implement the quicksort algorithm, as defined by wikipedia:
 
 	function quicksort(array)
 	    var list less, greater
-	    if length(array) ≤ 1  
-		return array  
+	    if length(array) ≤ 1
+		return array
 	    select and remove a pivot value pivot from array
 	    for each x in array
 		if x ≤ pivot then append x to less
@@ -46,7 +46,7 @@ sequence, defined by:
 
 ::
 
-    >>> def fib(n):    
+    >>> def fib(n):
     ...     """Display the n first terms of Fibonacci sequence"""
     ...     a, b = 0, 1
     ...     i = 0
@@ -103,4 +103,3 @@ The PYTHONPATH Search Solution
 Write a program to search your PYTHONPATH for the module ``site.py``.
 
 .. literalinclude:: solutions/path_site.py
-

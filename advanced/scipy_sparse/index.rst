@@ -12,4 +12,3 @@ Sparse Matrices in SciPy
    storage_schemes
    solvers
    other_packages
-

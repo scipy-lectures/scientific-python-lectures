@@ -22,4 +22,3 @@ packages useful for extended needs.
    sympy.rst
    scikit-image/index.rst
    scikit-learn/index.rst
-

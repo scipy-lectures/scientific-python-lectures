@@ -27,4 +27,3 @@
    .. raw:: latex
 
       \end{multicols}
-

@@ -80,4 +80,3 @@ print(result.summary())
 
 import matplotlib.pyplot as plt
 plt.show()
-

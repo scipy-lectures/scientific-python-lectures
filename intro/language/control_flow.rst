@@ -17,7 +17,7 @@ if/elif/else
 **Blocks are delimited by indentation**
 
 .. tip::
-   
+
     Type the following lines in your Python interpreter, and be careful
     to **respect the indentation depth**. The Ipython shell automatically
     increases the indentation depth after a colon ``:`` sign; to

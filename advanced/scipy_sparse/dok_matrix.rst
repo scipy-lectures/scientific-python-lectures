@@ -53,6 +53,6 @@ Examples
           with 1 stored elements in Dictionary Of Keys format>
     >>> mtx[1, 1:3].todense()
     matrix([[0.,  1.]])
-    >>> mtx[[2,1], 1:3].todense() 
+    >>> mtx[[2,1], 1:3].todense()
     matrix([[1.,  0.],
             [0.,  1.]])

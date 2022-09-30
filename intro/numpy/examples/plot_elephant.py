@@ -30,6 +30,6 @@ plt.imshow(img_red, cmap=plt.cm.gray)
 
 plt.figure()
 img_tiny = img[::6, ::6]
-plt.imshow(img_tiny, interpolation='nearest') 
+plt.imshow(img_tiny, interpolation='nearest')
 
 plt.show()

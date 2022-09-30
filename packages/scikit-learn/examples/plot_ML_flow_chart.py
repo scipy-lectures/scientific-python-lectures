@@ -22,37 +22,37 @@ def create_base(box_bg = '#CCCCCC',
     patches = [Rectangle((0.3, 3.6), 1.5, 1.8, zorder=1, fc=box_bg),
                Rectangle((0.5, 3.8), 1.5, 1.8, zorder=2, fc=box_bg),
                Rectangle((0.7, 4.0), 1.5, 1.8, zorder=3, fc=box_bg),
-               
+
                Rectangle((2.9, 3.6), 0.2, 1.8, fc=box_bg),
                Rectangle((3.1, 3.8), 0.2, 1.8, fc=box_bg),
                Rectangle((3.3, 4.0), 0.2, 1.8, fc=box_bg),
-               
+
                Rectangle((0.3, 0.2), 1.5, 1.8, fc=box_bg),
-               
+
                Rectangle((2.9, 0.2), 0.2, 1.8, fc=box_bg),
-               
+
                Circle((5.5, 3.5), 1.0, fc=box_bg),
-               
+
                Polygon([[5.5, 1.7],
                         [6.1, 1.1],
                         [5.5, 0.5],
                         [4.9, 1.1]], fc=box_bg),
-               
+
                FancyArrow(2.3, 4.6, 0.35, 0, fc=arrow1,
                           width=0.25, head_width=0.5, head_length=0.2),
-               
+
                FancyArrow(3.75, 4.2, 0.5, -0.2, fc=arrow1,
                           width=0.25, head_width=0.5, head_length=0.2),
-               
+
                FancyArrow(5.5, 2.4, 0, -0.4, fc=arrow1,
                           width=0.25, head_width=0.5, head_length=0.2),
-               
+
                FancyArrow(2.0, 1.1, 0.5, 0, fc=arrow2,
                           width=0.25, head_width=0.5, head_length=0.2),
-               
+
                FancyArrow(3.3, 1.1, 1.3, 0, fc=arrow2,
                           width=0.25, head_width=0.5, head_length=0.2),
-               
+
                FancyArrow(6.2, 1.1, 0.8, 0, fc=arrow2,
                           width=0.25, head_width=0.5, head_length=0.2)]
 
@@ -65,32 +65,32 @@ def create_base(box_bg = '#CCCCCC',
                     Rectangle((7.3, 0.85), 1.5, 0.5, fc=box_bg)]
     else:
         patches += [Rectangle((7.3, 0.2), 1.5, 1.8, fc=box_bg)]
-    
+
     for p in patches:
         ax.add_patch(p)
-        
+
     plt.text(1.45, 4.9, "Training\nText,\nDocuments,\nImages,\netc.",
             ha='center', va='center', fontsize=14)
-    
-    plt.text(3.6, 4.9, "Feature\nVectors", 
+
+    plt.text(3.6, 4.9, "Feature\nVectors",
             ha='left', va='center', fontsize=14)
-    
+
     plt.text(5.5, 3.5, "Machine\nLearning\nAlgorithm",
             ha='center', va='center', fontsize=14)
-    
+
     plt.text(1.05, 1.1, "New Text,\nDocument,\nImage,\netc.",
             ha='center', va='center', fontsize=14)
-    
-    plt.text(3.3, 1.7, "Feature\nVector", 
+
+    plt.text(3.3, 1.7, "Feature\nVector",
             ha='left', va='center', fontsize=14)
-    
-    plt.text(5.5, 1.1, "Predictive\nModel", 
+
+    plt.text(5.5, 1.1, "Predictive\nModel",
             ha='center', va='center', fontsize=12)
 
     if supervised:
         plt.text(1.45, 3.05, "Labels",
                 ha='center', va='center', fontsize=14)
-    
+
         plt.text(8.05, 1.1, "Expected\nLabel",
                 ha='center', va='center', fontsize=14)
         plt.text(8.8, 5.8, "Supervised Learning Model",
@@ -102,8 +102,8 @@ def create_base(box_bg = '#CCCCCC',
                 ha='center', va='center', fontsize=12)
         plt.text(8.8, 5.8, "Unsupervised Learning Model",
                 ha='right', va='top', fontsize=18)
-        
-        
+
+
 
 def plot_supervised_chart(annotate=False):
     create_base(supervised=True)
@@ -131,5 +131,3 @@ if __name__ == '__main__':
     plot_supervised_chart(True)
     plot_unsupervised_chart()
     plt.show()
-
-

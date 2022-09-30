@@ -258,7 +258,7 @@ packaged, and it is recommended to use your package manager.
 There are several fully-featured Scientific Python distributions:
 
 
-  
+
 
 .. rst-class:: horizontal
 

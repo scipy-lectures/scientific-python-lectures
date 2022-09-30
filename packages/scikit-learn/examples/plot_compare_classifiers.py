@@ -37,5 +37,3 @@ for n_neighbors in range(1, 11):
     clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X_train, y_train)
     y_pred = clf.predict(X_test)
     print(f"KNeighbors(n_neighbors={n_neighbors}): {metrics.f1_score(y_test, y_pred, average='macro')}")
-
-
