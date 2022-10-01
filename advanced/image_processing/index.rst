@@ -84,13 +84,13 @@ Writing an array to a file:
 Creating a numpy array from an image file::
 
     >>> from scipy import misc
-    >>> import imageio
+    >>> import imageio.v3 as iio
     >>> face = misc.face()
-    >>> imageio.imsave('face.png', face) # First we need to create the PNG file
+    >>> iio.imwrite('face.png', face)  # First we need to create the PNG file
 
-    >>> face = imageio.imread('face.png')
-    >>> type(face)      # doctest: +ELLIPSIS
-    <class 'imageio.core.util.Array'>
+    >>> face = iio.imread('face.png')
+    >>> type(face)
+    <class 'numpy.ndarray'>
     >>> face.shape, face.dtype
     ((768, 1024, 3), dtype('uint8'))
 
@@ -116,8 +116,8 @@ For large data, use ``np.memmap`` for memory mapping::
 Working on a list of image files ::
 
     >>> for i in range(10):
-    ...     im = np.random.randint(0, 256, 10000).reshape((100, 100))
-    ...     imageio.imsave('random_%02d.png' % i, im)
+    ...     im = np.random.randint(0, 256, 10000, dtype=np.uint8).reshape((100, 100))
+    ...     iio.imwrite(f'random_{i:02d}.png', im)
     >>> from glob import glob
     >>> filelist = glob('random*.png')
     >>> filelist.sort()

@@ -11,12 +11,12 @@ Linear System Solvers
 
     >>> import scipy.sparse.linalg as spla
     >>> spla.__all__    # doctest: +SKIP
-    ['LinearOperator', 'Tester', 'arpack', 'aslinearoperator', 'bicg',
-    'bicgstab', 'cg', 'cgs', 'csc_matrix', 'csr_matrix', 'dsolve',
-    'eigen', 'eigen_symmetric', 'factorized', 'gmres', 'interface',
-    'isolve', 'iterative', 'lgmres', 'linsolve', 'lobpcg', 'lsqr',
-    'minres', 'np', 'qmr', 'speigs', 'spilu', 'splu', 'spsolve', 'svd',
-    'test', 'umfpack', 'use_solver', 'utils', 'warnings']
+    ['ArpackError', 'ArpackNoConvergence', 'LinearOperator', 'MatrixRankWarning',
+     'SuperLU', 'aslinearoperator', 'bicg', 'bicgstab', 'cg', 'cgs', 'dsolve',
+     'eigen', 'eigs', 'eigsh', 'expm', 'expm_multiply', 'factorized', 'gcrotmk',
+     'gmres', 'interface', 'inv', 'isolve', 'lgmres', 'lobpcg', 'lsmr', 'lsqr',
+     'matfuncs', 'minres', 'norm', 'onenormest', 'qmr', 'spilu', 'splu', 'spsolve',
+     'spsolve_triangular', 'svds', 'tfqmr', 'use_solver']
 
 Sparse Direct Solvers
 ---------------------
@@ -36,8 +36,8 @@ Examples
 ^^^^^^^^
 * import the whole module, and see its docstring::
 
-    >>> from scipy.sparse.linalg import dsolve
-    >>> help(dsolve) # doctest: +SKIP
+    >>> from scipy.sparse.linalg import spsolve
+    >>> help(spsolve) # doctest: +SKIP
 
 * both superlu and umfpack can be used (if the latter is installed) as
   follows:
@@ -58,7 +58,7 @@ Examples
     * solve as single precision real::
 
         >>> mtx1 = mtx.astype(np.float32)
-        >>> x = dsolve.spsolve(mtx1, rhs, use_umfpack=False)
+        >>> x = spsolve(mtx1, rhs, use_umfpack=False)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
         [106.   -21.     5.5   -1.5    1. ]
         >>> print("Error: %s" % (mtx1 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
@@ -67,7 +67,7 @@ Examples
     * solve as double precision real::
 
         >>> mtx2 = mtx.astype(np.float64)
-        >>> x = dsolve.spsolve(mtx2, rhs, use_umfpack=True)
+        >>> x = spsolve(mtx2, rhs, use_umfpack=True)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
         [106.   -21.     5.5   -1.5    1. ]
         >>> print("Error: %s" % (mtx2 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
@@ -76,7 +76,7 @@ Examples
     * solve as single precision complex::
 
         >>> mtx1 = mtx.astype(np.complex64)
-        >>> x = dsolve.spsolve(mtx1, rhs, use_umfpack=False)
+        >>> x = spsolve(mtx1, rhs, use_umfpack=False)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
         [106. +0.j  -21. +0.j    5.5+0.j   -1.5+0.j    1. +0.j]
         >>> print("Error: %s" % (mtx1 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
@@ -85,7 +85,7 @@ Examples
     * solve as double precision complex::
 
         >>> mtx2 = mtx.astype(np.complex128)
-        >>> x = dsolve.spsolve(mtx2, rhs, use_umfpack=True)
+        >>> x = spsolve(mtx2, rhs, use_umfpack=True)
         >>> print(x)
         [106. +0.j  -21. +0.j    5.5+0.j   -1.5+0.j    1. +0.j]
         >>> print("Error: %s" % (mtx2 * x - rhs))   # doctest: +NORMALIZE_WHITESPACE
@@ -170,7 +170,7 @@ A Few Notes on Preconditioning
 * problem specific
 * often hard to develop
 * if not sure, try ILU
-    * available in :mod:`dsolve` as :func:`spilu()`
+    * available in :mod:`scipy.sparse.linalg` as :func:`spilu()`
 
 Eigenvalue Problem Solvers
 --------------------------

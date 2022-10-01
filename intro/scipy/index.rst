@@ -117,13 +117,13 @@ File input/output: :mod:`scipy.io`
 
 **Image files**: Reading images::
 
-    >>> import imageio
-    >>> imageio.imread('fname.png')    # doctest: +ELLIPSIS
-    Array(...)
+    >>> import imageio.v3 as iio
+    >>> iio.imread('fname.png')
+    array([[[ 0,   0,  0, 255]]], dtype=uint8)
     >>> # Matplotlib also has a similar function
     >>> import matplotlib.pyplot as plt
-    >>> plt.imread('fname.png')    # doctest: +ELLIPSIS
-    array(...)
+    >>> plt.imread('fname.png')
+    array([[[0., 0., 0., 1.]]], dtype=float32)
 
 .. seealso::
 

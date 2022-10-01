@@ -1337,8 +1337,8 @@ Array interface protocol
 
 .. _array_siblings:
 
-Array siblings: :class:`chararray`, :class:`maskedarray`, :class:`matrix`
-==========================================================================
+Array siblings: :class:`chararray`, :class:`maskedarray`
+========================================================
 
 :class:`chararray`: vectorized string operations
 --------------------------------------------------
@@ -1496,16 +1496,6 @@ chararray(['a', 'b'],
       dtype='|S1')
 >>> arr2.y
 array([1, 2])
-
-:class:`matrix`: convenience?
-------------------------------
-
-- always 2-D
-- ``*`` is the matrix product, not the elementwise one
-
->>> np.matrix([[1, 0], [0, 1]]) * np.matrix([[1, 2], [3, 4]])
-matrix([[1, 2],
-        [3, 4]])
 
 
 Summary
