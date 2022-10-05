@@ -388,7 +388,7 @@ can use a `Wilcoxon signed-rank test
 <https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, that relaxes
 this assumption::
 
-    >>> stats.wilcoxon(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+    >>> stats.wilcoxon(data['FSIQ'], data['PIQ'], method="approx")  # doctest: +ELLIPSIS
     WilcoxonResult(statistic=274.5, pvalue=0.106594927...)
 
 .. note::

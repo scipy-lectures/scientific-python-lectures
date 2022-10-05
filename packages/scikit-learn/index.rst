@@ -268,11 +268,9 @@ For instance a linear regression is: :class:`sklearn.linear_model.LinearRegressi
 **Estimator parameters**: All the parameters of an estimator can be set
 when it is instantiated::
 
-    >>> model = LinearRegression(n_jobs=1, normalize=True)
-    >>> print(model.normalize)
-    True
+    >>> model = LinearRegression(n_jobs=1)
     >>> print(model)
-    LinearRegression(n_jobs=1, normalize=True)
+    LinearRegression(n_jobs=1)
 
 Fitting on data
 ~~~~~~~~~~~~~~~
@@ -290,7 +288,7 @@ Let's create some simple data with :ref:`numpy <numpy>`::
            [2]])
 
     >>> model.fit(X, y)
-    LinearRegression(n_jobs=1, normalize=True)
+    LinearRegression(n_jobs=1)
 
 **Estimated parameters**: When data is fitted with an estimator,
 parameters are estimated from the data at hand. All the estimated
@@ -1319,7 +1317,7 @@ in 2D enables visualization::
 
     >>> # Fit and transform with a TSNE
     >>> from sklearn.manifold import TSNE
-    >>> tsne = TSNE(n_components=2, random_state=0)
+    >>> tsne = TSNE(n_components=2, learning_rate='auto', init='random', random_state=0)
     >>> X_2d = tsne.fit_transform(X)
 
     >>> # Visualize the data
