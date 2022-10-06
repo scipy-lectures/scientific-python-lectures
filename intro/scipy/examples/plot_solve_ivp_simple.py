@@ -9,7 +9,7 @@ y(t=0) = 1.
 
 import numpy as np
 import scipy as sp
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 def calc_derivative(time, ypos):
     return -2*ypos

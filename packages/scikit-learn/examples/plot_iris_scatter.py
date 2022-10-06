@@ -12,7 +12,7 @@ in the :ref:`statistics` chapter.
 from sklearn.datasets import load_iris
 iris = load_iris()
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 # The indices of the features that we are plotting
 x_index = 0

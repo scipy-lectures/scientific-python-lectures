@@ -7,7 +7,7 @@ of the support vector machine GUI.
 """
 
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 from sklearn import svm
 

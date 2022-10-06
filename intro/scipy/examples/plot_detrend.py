@@ -19,7 +19,7 @@ x_detrended = sp.signal.detrend(x)
 
 ############################################################
 # Plot
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 plt.figure(figsize=(5, 4))
 plt.plot(t, x, label="x")
 plt.plot(t, x_detrended, label="x_detrended")

@@ -21,7 +21,7 @@ cubic_interp = sp.interpolate.interp1d(measured_time, measures, kind='cubic')
 cubic_results = cubic_interp(interpolation_time)
 
 # Plot the data and the interpolation
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 plt.figure(figsize=(6, 4))
 plt.plot(measured_time, measures, 'o', ms=6, label='measures')
 plt.plot(interpolation_time, linear_results, label='linear interp')

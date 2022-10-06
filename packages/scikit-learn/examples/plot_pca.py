@@ -26,7 +26,7 @@ X_pca = pca.transform(X)
 # Visualize the data
 target_ids = range(len(iris.target_names))
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 plt.figure(figsize=(6, 5))
 for i, c, label in zip(target_ids, 'rgbcmykw', iris.target_names):
     plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1],

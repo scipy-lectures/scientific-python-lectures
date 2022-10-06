@@ -26,7 +26,7 @@ for Model in [Ridge, Lasso]:
 # We compute the cross-validation score as a function of alpha, the
 # strength of the regularization for Lasso and Ridge
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 alphas = np.logspace(-3, -1, 30)
 

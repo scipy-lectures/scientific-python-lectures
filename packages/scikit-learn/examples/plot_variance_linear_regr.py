@@ -9,7 +9,7 @@ Plot variance and regularization in linear models
 import numpy as np
 
 # Smaller figures
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (3, 2)
 
 ############################################################

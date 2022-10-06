@@ -775,7 +775,7 @@ Categorical variables can be plotted as the hue::
    "modern", "excel-like" look. It does that upon import. You can reset
    the default using::
 
-    >>> from matplotlib import pyplot as plt
+    >>> import matplotlib.pyplot as plt
     >>> plt.rcdefaults()
 
    .. tip::

@@ -7,7 +7,7 @@ Extracting and labeling connected components in a 2D array
 """
 
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 ############################################################
 # Generate some binary data

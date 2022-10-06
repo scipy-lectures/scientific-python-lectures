@@ -67,7 +67,7 @@ pyplot
 
 ::
 
-    from matplotlib import pyplot as plt
+    import matplotlib.pyplot as plt
 
 Simple plot
 ===========

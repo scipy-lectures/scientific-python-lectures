@@ -2,7 +2,7 @@
 
    >>> import numpy as np
    >>> np.random.seed(0)
-   >>> from matplotlib import pyplot as plt
+   >>> import matplotlib.pyplot as plt
 
 .. currentmodule:: numpy
 

@@ -22,7 +22,7 @@ faces.data.shape
 ############################################################
 # Let's visualize these faces to see what we're working with
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 fig = plt.figure(figsize=(8, 6))
 # plot several images
 for i in range(15):

@@ -5,7 +5,7 @@ Affine transform
 Warping and affine transforms of images.
 """
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 from skimage import data
 from skimage.feature import corner_harris, corner_subpix, corner_peaks

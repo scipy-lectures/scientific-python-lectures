@@ -290,7 +290,7 @@ Extract the 4th connected component, and crop the array around it::
     >>> sp.ndimage.find_objects(labels==4) # doctest: +SKIP
     [(slice(30L, 48L, None), slice(30L, 48L, None))]
     >>> sl = sp.ndimage.find_objects(labels==4)
-    >>> from matplotlib import pyplot as plt
+    >>> import matplotlib.pyplot as plt
     >>> plt.imshow(sig[sl[0]])   # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at ...>
 

@@ -20,7 +20,7 @@ opened_mask = sp.ndimage.binary_opening(mask)
 closed_mask = sp.ndimage.binary_closing(opened_mask)
 
 # Plot
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 plt.figure(figsize=(12, 3.5))
 plt.subplot(141)
