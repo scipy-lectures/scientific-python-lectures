@@ -6,17 +6,17 @@ The Sobel filter is one of the simplest way of finding edges.
 """
 
 import numpy as np
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
 im = np.zeros((256, 256))
 im[64:-64, 64:-64] = 1
 
-im = ndimage.rotate(im, 15, mode='constant')
-im = ndimage.gaussian_filter(im, 8)
+im = sp.ndimage.rotate(im, 15, mode='constant')
+im = sp.ndimage.gaussian_filter(im, 8)
 
-sx = ndimage.sobel(im, axis=0, mode='constant')
-sy = ndimage.sobel(im, axis=1, mode='constant')
+sx = sp.ndimage.sobel(im, axis=0, mode='constant')
+sy = sp.ndimage.sobel(im, axis=1, mode='constant')
 sob = np.hypot(sx, sy)
 
 plt.figure(figsize=(16, 5))
@@ -35,8 +35,8 @@ plt.title('Sobel filter', fontsize=20)
 
 im += 0.07*np.random.random(im.shape)
 
-sx = ndimage.sobel(im, axis=0, mode='constant')
-sy = ndimage.sobel(im, axis=1, mode='constant')
+sx = sp.ndimage.sobel(im, axis=0, mode='constant')
+sy = sp.ndimage.sobel(im, axis=1, mode='constant')
 sob = np.hypot(sx, sy)
 
 plt.subplot(144)

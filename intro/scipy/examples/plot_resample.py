@@ -13,8 +13,8 @@ x = np.sin(t)
 
 ############################################################
 # Downsample it by a factor of 4
-from scipy import signal
-x_resampled = signal.resample(x, 25)
+import scipy as sp
+x_resampled = sp.signal.resample(x, 25)
 
 ############################################################
 # Plot

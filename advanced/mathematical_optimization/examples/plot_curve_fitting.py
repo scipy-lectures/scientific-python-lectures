@@ -6,7 +6,7 @@ A curve fitting example
 """
 
 import numpy as np
-from scipy import optimize
+import scipy as sp
 import matplotlib.pyplot as plt
 
 np.random.seed(0)
@@ -21,7 +21,7 @@ y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
 # Fit the model: the parameters omega and phi can be found in the
 # `params` vector
-params, params_cov = optimize.curve_fit(f, x, y)
+params, params_cov = sp.optimize.curve_fit(f, x, y)
 
 # plot the data and the fitted curve
 t = np.linspace(0, 3, 1000)

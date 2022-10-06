@@ -1,7 +1,7 @@
 .. For doctests
-   >>> from scipy import sparse
    >>> import numpy as np
    >>> np.random.seed(0)
+   >>> import scipy as sp
 
 
 Dictionary of Keys Format (DOK)
@@ -27,7 +27,7 @@ Examples
 
 * create a DOK matrix element by element::
 
-    >>> mtx = sparse.dok_matrix((5, 5), dtype=np.float64)
+    >>> mtx = sp.sparse.dok_matrix((5, 5), dtype=np.float64)
     >>> mtx     # doctest: +NORMALIZE_WHITESPACE    +ELLIPSIS
     <5x5 sparse matrix of type '<... 'numpy.float64'>'
             with 0 stored elements in Dictionary Of Keys format>

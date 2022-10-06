@@ -15,9 +15,9 @@ a += 0.25 * np.random.standard_normal(a.shape)
 mask = a>=0.5
 
 # Apply mathematical morphology
-from scipy import ndimage
-opened_mask = ndimage.binary_opening(mask)
-closed_mask = ndimage.binary_closing(opened_mask)
+import scipy as sp
+opened_mask = sp.ndimage.binary_opening(mask)
+closed_mask = sp.ndimage.binary_closing(opened_mask)
 
 # Plot
 from matplotlib import pyplot as plt

@@ -71,8 +71,8 @@ are also provided for simpler use (see ``interp1d``, ``interp2d``,
 For the Sprogø maxima wind speeds, the ``UnivariateSpline`` will be
 used because a spline of degree 3 seems to correctly fit the data::
 
-    >>> from scipy.interpolate import UnivariateSpline
-    >>> quantile_func = UnivariateSpline(cprob, sorted_max_speeds)
+    >>> import scipy as sp
+    >>> quantile_func = sp.interpolate.UnivariateSpline(cprob, sorted_max_speeds)
 
 The quantile function is now going to be evaluated from the full range
 of probabilities::

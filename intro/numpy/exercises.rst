@@ -49,8 +49,8 @@ of a racoon.  ``scipy`` provides a 2D array of this image with the
 ``scipy.misc.face`` function::
 
 
-    >>> from scipy import misc
-    >>> face = misc.face(gray=True)  # 2D grayscale image
+    >>> import scipy as sp
+    >>> face = sp.misc.face(gray=True)  # 2D grayscale image
 
 Here are a few images we will be able to obtain with our manipulations:
 use different colormaps, crop the image, change some parts of the image.
@@ -63,7 +63,7 @@ use different colormaps, crop the image, change some parts of the image.
     .. sourcecode:: pycon
 
         >>> import matplotlib.pyplot as plt
-        >>> face = misc.face(gray=True)
+        >>> face = sp.misc.face(gray=True)
         >>> plt.imshow(face)    # doctest: +ELLIPSIS
         <matplotlib.image.AxesImage object at 0x...>
 

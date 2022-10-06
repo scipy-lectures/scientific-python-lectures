@@ -10,7 +10,7 @@ problem can be judged from looking at the conditioning of K.
 import time
 
 import numpy as np
-from scipy import optimize
+import scipy as sp
 import matplotlib.pyplot as plt
 
 np.random.seed(0)
@@ -47,30 +47,30 @@ plt.contour(X, Y, Z, cmap=plt.cm.gnuplot)
 
 # A reference but slow solution:
 t0 = time.time()
-x_ref = optimize.minimize(f, K[0], method="Powell").x
+x_ref = sp.optimize.minimize(f, K[0], method="Powell").x
 print(f'     Powell: time {time.time() - t0:.2f}s')
 f_ref = f(x_ref)
 
 # Compare different approaches
 t0 = time.time()
-x_bfgs = optimize.minimize(f, K[0], method="BFGS").x
+x_bfgs = sp.optimize.minimize(f, K[0], method="BFGS").x
 print(f'       BFGS: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_bfgs - x_ref) ** 2)):.2f}, f error {f(x_bfgs) - f_ref:.2f}')
 
 t0 = time.time()
-x_l_bfgs = optimize.minimize(f, K[0], method="L-BFGS-B").x
+x_l_bfgs = sp.optimize.minimize(f, K[0], method="L-BFGS-B").x
 print(f'     L-BFGS: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_l_bfgs - x_ref) ** 2)):.2f}, f error {f(x_l_bfgs) - f_ref:.2f}')
 
 
 t0 = time.time()
-x_bfgs = optimize.minimize(f, K[0], jac=f_prime, method="BFGS").x
+x_bfgs = sp.optimize.minimize(f, K[0], jac=f_prime, method="BFGS").x
 print(f"  BFGS w f': time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_bfgs - x_ref) ** 2)):.2f}, f error {f(x_bfgs) - f_ref:.2f}")
 
 t0 = time.time()
-x_l_bfgs = optimize.minimize(f, K[0], jac=f_prime, method="L-BFGS-B").x
+x_l_bfgs = sp.optimize.minimize(f, K[0], jac=f_prime, method="L-BFGS-B").x
 print(f"L-BFGS w f': time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_l_bfgs - x_ref) ** 2)):.2f}, f error {f(x_l_bfgs) - f_ref:.2f}")
 
 t0 = time.time()
-x_newton = optimize.minimize(f, K[0], jac=f_prime, hess=hessian, method="Newton-CG").x
+x_newton = sp.optimize.minimize(f, K[0], jac=f_prime, hess=hessian, method="Newton-CG").x
 print(f"     Newton: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_newton - x_ref) ** 2)):.2f}, f error {f(x_newton) - f_ref:.2f}")
 
 plt.show()

@@ -6,7 +6,7 @@ A small figure explaining optimization with constraints
 """
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import optimize
+import scipy as sp
 
 x, y = np.mgrid[-2.9:5.8:.05, -2.5:5:.05]
 x = x.T
@@ -55,7 +55,7 @@ def f_prime(x):
     r = np.sqrt((x[0] - 3)**2 + (x[0] - 2)**2)
     return np.array(((x[0] - 3)/r, (x[0] - 2)/r))
 
-optimize.minimize(f, np.array([0, 0]), method="L-BFGS-B",
+sp.optimize.minimize(f, np.array([0, 0]), method="L-BFGS-B",
                      bounds=((-1.5, 1.5), (-1.5, 1.5)))
 
 accumulated = np.array(accumulator)

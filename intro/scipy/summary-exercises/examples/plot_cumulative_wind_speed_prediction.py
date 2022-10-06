@@ -7,7 +7,7 @@ for the interpolate section of scipy.rst.
 """
 
 import numpy as np
-from scipy.interpolate import UnivariateSpline
+import scipy as sp
 import matplotlib.pyplot as plt
 
 max_speeds = np.load('max-speeds.npy')
@@ -15,7 +15,7 @@ years_nb = max_speeds.shape[0]
 
 cprob = (np.arange(years_nb, dtype=np.float32) + 1)/(years_nb + 1)
 sorted_max_speeds = np.sort(max_speeds)
-speed_spline = UnivariateSpline(cprob, sorted_max_speeds)
+speed_spline = sp.interpolate.UnivariateSpline(cprob, sorted_max_speeds)
 nprob = np.linspace(0, 1, 100)
 fitted_max_speeds = speed_spline(nprob)
 

@@ -6,18 +6,16 @@ This example demoes image denoising on a Racoon face.
 """
 
 import numpy as np
-import scipy
-import scipy.misc
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
-f = scipy.misc.face(gray=True)
+f = sp.misc.face(gray=True)
 f = f[230:290, 220:320]
 
 noisy = f + 0.4*f.std()*np.random.random(f.shape)
 
-gauss_denoised = ndimage.gaussian_filter(noisy, 2)
-med_denoised = ndimage.median_filter(noisy, 3)
+gauss_denoised = sp.ndimage.gaussian_filter(noisy, 2)
+med_denoised = sp.ndimage.median_filter(noisy, 3)
 
 
 plt.figure(figsize=(12,2.8))

@@ -74,12 +74,7 @@ Scipy : high-level scientific computing
    is::
 
     >>> import numpy as np
-    >>> from scipy import stats  # same for other sub-modules
-
-   The main :mod:`scipy` namespace mostly contains functions that are really
-   numpy functions (try ``scipy.cos is np.cos``). Those are exposed for
-   historical reasons; there's no reason to use ``import
-   scipy`` in your code.
+    >>> import scipy as sp
 
 
 File input/output: :mod:`scipy.io`
@@ -87,10 +82,10 @@ File input/output: :mod:`scipy.io`
 
 **Matlab files**: Loading and saving::
 
-    >>> from scipy import io as spio
+    >>> import scipy as sp
     >>> a = np.ones((3, 3))
-    >>> spio.savemat('file.mat', {'a': a}) # savemat expects a dictionary
-    >>> data = spio.loadmat('file.mat')
+    >>> sp.io.savemat('file.mat', {'a': a}) # savemat expects a dictionary
+    >>> data = sp.io.loadmat('file.mat')
     >>> data['a']
     array([[1.,  1.,  1.],
            [1.,  1.,  1.],
@@ -103,8 +98,8 @@ File input/output: :mod:`scipy.io`
       >>> a = np.ones(3)
       >>> a
       array([1.,  1.,  1.])
-      >>> spio.savemat('file.mat', {'a': a})
-      >>> spio.loadmat('file.mat')['a']
+      >>> sp.io.savemat('file.mat', {'a': a})
+      >>> sp.io.loadmat('file.mat')['a']
       array([[1.,  1.,  1.]])
 
    Notice the difference?
@@ -112,7 +107,7 @@ File input/output: :mod:`scipy.io`
 |
 
 .. Comments to make doctests pass which require an image
-    >>> from matplotlib import pyplot as plt
+    >>> import matplotlib.pyplot as plt
     >>> plt.imsave('fname.png', np.array([[0]]))
 
 **Image files**: Reading images::
@@ -171,16 +166,16 @@ Linear algebra operations: :mod:`scipy.linalg`
 * The :func:`scipy.linalg.det` function computes the determinant of a
   square matrix::
 
-    >>> from scipy import linalg
+    >>> import scipy as sp
     >>> arr = np.array([[1, 2],
     ...                 [3, 4]])
-    >>> linalg.det(arr)
+    >>> sp.linalg.det(arr)
     -2.0
     >>> arr = np.array([[3, 2],
     ...                 [6, 4]])
-    >>> linalg.det(arr) # doctest: +SKIP
+    >>> sp.linalg.det(arr)
     0.0
-    >>> linalg.det(np.ones((3, 4)))
+    >>> sp.linalg.det(np.ones((3, 4)))
     Traceback (most recent call last):
     ...
     ValueError: expected square matrix
@@ -190,7 +185,7 @@ Linear algebra operations: :mod:`scipy.linalg`
 
     >>> arr = np.array([[1, 2],
     ...                 [3, 4]])
-    >>> iarr = linalg.inv(arr)
+    >>> iarr = sp.linalg.inv(arr)
     >>> iarr
     array([[-2. ,  1. ],
            [ 1.5, -0.5]])
@@ -202,7 +197,7 @@ Linear algebra operations: :mod:`scipy.linalg`
 
     >>> arr = np.array([[3, 2],
     ...                 [6, 4]])
-    >>> linalg.inv(arr)  # doctest: +SKIP
+    >>> sp.linalg.inv(arr)  # doctest: +SKIP
     Traceback (most recent call last):
     ...
     ...LinAlgError: singular matrix
@@ -211,7 +206,7 @@ Linear algebra operations: :mod:`scipy.linalg`
   decomposition (SVD)::
 
     >>> arr = np.arange(9).reshape((3, 3)) + np.diag([1, 0, 1])
-    >>> uarr, spec, vharr = linalg.svd(arr)
+    >>> uarr, spec, vharr = sp.linalg.svd(arr)
 
   The resulting array spectrum is::
 
@@ -252,8 +247,7 @@ By imagining experimental data close to a sine function::
 :class:`scipy.interpolate.interp1d` can build a linear interpolation
 function::
 
-    >>> from scipy.interpolate import interp1d
-    >>> linear_interp = interp1d(measured_time, measures)
+    >>> linear_interp = sp.interpolate.interp1d(measured_time, measures)
 
 .. image:: auto_examples/images/sphx_glr_plot_interpolation_001.png
     :target: auto_examples/plot_interpolation.html
@@ -268,7 +262,7 @@ Then the result can be evaluated at the time of interest::
 A cubic interpolation can also be selected by providing the ``kind`` optional
 keyword argument::
 
-    >>> cubic_interp = interp1d(measured_time, measures, kind='cubic')
+    >>> cubic_interp = sp.interpolate.interp1d(measured_time, measures, kind='cubic')
     >>> cubic_results = cubic_interp(interpolation_time)
 
 
@@ -291,9 +285,8 @@ minimization or equality.
 
     The :mod:`scipy.optimize` module provides algorithms for function
     minimization (scalar or multi-dimensional), curve fitting and root
-    finding. ::
+    finding.
 
-        >>> from scipy import optimize
 
 Curve fitting
 ..............
@@ -327,7 +320,7 @@ amplitude and period::
 
 We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
 
-    >>> params, params_covariance = optimize.curve_fit(test_func, x_data, y_data, p0=[2, 2])
+    >>> params, params_covariance = sp.optimize.curve_fit(test_func, x_data, y_data, p0=[2, 2])
     >>> print(params)
     [3.05931973  1.45754553]
 
@@ -395,7 +388,7 @@ the location of the minimum that it has found:
 
 ::
 
-    >>> result = optimize.minimize(f, x0=0)
+    >>> result = sp.optimize.minimize(f, x0=0)
     >>> result # doctest: +ELLIPSIS
           fun: -7.9458233756...
      hess_inv: array([[0.0858...]])
@@ -419,7 +412,7 @@ good options. The `lBFGS algorithm
 in general::
 
 
-    >>> optimize.minimize(f, x0=0, method="L-BFGS-B")  # doctest: +ELLIPSIS
+    >>> sp.optimize.minimize(f, x0=0, method="L-BFGS-B")  # doctest: +ELLIPSIS
           fun: -7.94582338...
      hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
           jac: array([-1.59872117e-06])
@@ -441,7 +434,7 @@ A possible issue with this approach is that, if the function has local minima,
 the algorithm may find these local minima instead of the
 global minimum depending on the initial point x0::
 
-    >>> res = optimize.minimize(f, x0=3, method="L-BFGS-B")
+    >>> res = sp.optimize.minimize(f, x0=3, method="L-BFGS-B")
     >>> res.x
     array([3.83746...])
 
@@ -454,7 +447,7 @@ find the global minimum, we use :func:`scipy.optimize.basinhopping`
 (added in version 0.12.0 of Scipy). It combines a local optimizer with
 sampling of starting points::
 
-   >>> optimize.basinhopping(f, 0)  # doctest: +SKIP
+   >>> sp.optimize.basinhopping(f, 0)  # doctest: +SKIP
                      nfev: 1725
     minimization_failures: 0
                       fun: -7.9458233756152845
@@ -496,7 +489,7 @@ We can constrain the variable to the interval
 
 ::
 
-    >>> res = optimize.minimize(f, x0=1,
+    >>> res = sp.optimize.minimize(f, x0=1,
     ...                         bounds=((0, 10), ))
     >>> res.x    # doctest: +ELLIPSIS
     array([0.])
@@ -560,7 +553,7 @@ we can use :func:`scipy.optimize.root`:
 
 ::
 
-    >>> root = optimize.root(f, x0=1)  # our initial guess is 1
+    >>> root = sp.optimize.root(f, x0=1)  # our initial guess is 1
     >>> root    # The full result
         fjac: array([[-1.]])
          fun: array([0.])
@@ -578,7 +571,7 @@ Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
 there is a second root around -2.5. We find the exact value of it by adjusting
 our initial guess: ::
 
-    >>> root2 = optimize.root(f, x0=-2.5)
+    >>> root2 = sp.optimize.root(f, x0=-2.5)
     >>> root2.x
     array([-2.47948183])
 
@@ -637,8 +630,7 @@ the random process's PDF (probability density function): ::
     >>> bins = 0.5*(bins[1:] + bins[:-1])
     >>> bins
     array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
-    >>> from scipy import stats
-    >>> pdf = stats.norm.pdf(bins)  # norm is a distribution object
+    >>> pdf = sp.stats.norm.pdf(bins)  # norm is a distribution object
 
     >>> plt.plot(bins, histogram) # doctest: +ELLIPSIS
     [<matplotlib.lines.Line2D object at ...>]
@@ -660,7 +652,7 @@ processes, such as normal processes, we can do a maximum-likelihood fit
 of the observations to estimate the parameters of the underlying
 distribution. Here we fit a normal process to the observed data::
 
-    >>> loc, std = stats.norm.fit(samples)
+    >>> loc, std = sp.stats.norm.fit(samples)
     >>> loc     # doctest: +ELLIPSIS
     -0.045256707...
     >>> std     # doctest: +ELLIPSIS
@@ -709,12 +701,12 @@ the observations below, and half above::
 The median is also the percentile 50, because 50% of the observation are
 below it::
 
-    >>> stats.scoreatpercentile(samples, 50)     # doctest: +ELLIPSIS
+    >>> sp.stats.scoreatpercentile(samples, 50)     # doctest: +ELLIPSIS
     -0.0580280347...
 
 Similarly, we can calculate the percentile 90::
 
-    >>> stats.scoreatpercentile(samples, 90)     # doctest: +ELLIPSIS
+    >>> sp.stats.scoreatpercentile(samples, 90)     # doctest: +ELLIPSIS
     1.2315935511...
 
 .. tip::
@@ -738,7 +730,7 @@ whether the means of two sets of observations are significantly different::
 
     >>> a = np.random.normal(0, 1, size=100)
     >>> b = np.random.normal(1, 1, size=10)
-    >>> stats.ttest_ind(a, b)   # doctest: +SKIP
+    >>> sp.stats.ttest_ind(a, b)   # doctest: +SKIP
     (array(-3.177574054...), 0.0019370639...)
 
 .. tip:: The resulting output is composed of:
@@ -767,8 +759,7 @@ Function integrals
 The most generic integration routine is :func:`scipy.integrate.quad`. To
 compute :math:`\int_0^{\pi / 2} sin(t) dt`::
 
-    >>> from scipy.integrate import quad
-    >>> res, err = quad(np.sin, 0, np.pi/2)
+    >>> res, err = sp.integrate.quad(np.sin, 0, np.pi/2)
     >>> np.allclose(res, 1)   # res is the result, is should be close to 1
     True
     >>> np.allclose(err, 1 - res)  # err is an estimate of the err
@@ -809,8 +800,7 @@ First the function computing the derivative of the position needs to be defined:
 
 Then, to compute ``y`` as a function of time::
 
-    >>> from scipy.integrate import solve_ivp
-    >>> solution = solve_ivp(calc_derivative, (0, 4), y0=(1,))
+    >>> solution = sp.integrate.solve_ivp(calc_derivative, (0, 4), y0=(1,))
 
 .. raw:: html
 
@@ -855,7 +845,7 @@ Integration of the system follows::
 
     >>> time_vec = np.linspace(0, 10, 100)
     >>> yinit = (1, 0)
-    >>> solution = solve_ivp(calc_deri, (0, 10), yinit, args=(eps, omega), method='LSODA')
+    >>> solution = sp.integrate.solve_ivp(calc_deri, (0, 10), yinit, args=(eps, omega), method='LSODA')
 
 .. raw:: html
 
@@ -896,9 +886,8 @@ and offers utilities to handle them. The main functions are:
 
 As an illustration, a (noisy) input signal (``sig``), and its FFT::
 
-    >>> from scipy import fftpack
-    >>> sig_fft = fftpack.fft(sig) # doctest:+SKIP
-    >>> freqs = fftpack.fftfreq(sig.size, d=time_step) # doctest:+SKIP
+    >>> sig_fft = sp.fftpack.fft(sig) # doctest:+SKIP
+    >>> freqs = sp.fftpack.fftfreq(sig.size, d=time_step) # doctest:+SKIP
 
 
 .. |signal_fig| image:: auto_examples/images/sphx_glr_plot_fftpack_001.png
@@ -1007,8 +996,7 @@ points using FFT. ::
   >>> t = np.linspace(0, 5, 100)
   >>> x = np.sin(t)
 
-  >>> from scipy import signal
-  >>> x_resampled = signal.resample(x, 25)
+  >>> x_resampled = sp.signal.resample(x, 25)
 
   >>> plt.plot(t, x) # doctest: +ELLIPSIS
   [<matplotlib.lines.Line2D object at ...>]
@@ -1035,8 +1023,7 @@ points using FFT. ::
   >>> t = np.linspace(0, 5, 100)
   >>> x = t + np.random.normal(size=100)
 
-  >>> from scipy import signal
-  >>> x_detrended = signal.detrend(x)
+  >>> x_detrended = sp.signal.detrend(x)
 
   >>> plt.plot(t, x) # doctest: +ELLIPSIS
   [<matplotlib.lines.Line2D object at ...>]

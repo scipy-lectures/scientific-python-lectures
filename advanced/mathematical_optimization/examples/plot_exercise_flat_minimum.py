@@ -16,7 +16,7 @@ solution.
 """
 
 import numpy as np
-from scipy import optimize
+import scipy as sp
 import matplotlib.pyplot as plt
 
 def f(x):
@@ -31,7 +31,7 @@ def g_prime(x):
     r = np.sqrt(x[0]**2 + x[1]**2)
     return 2/r**3*g(x)*x/r
 
-result = optimize.minimize(g, [1, 1], method="Powell", tol=1e-10)
+result = sp.optimize.minimize(g, [1, 1], method="Powell", tol=1e-10)
 x_min = result.x
 
 ###############################################################################

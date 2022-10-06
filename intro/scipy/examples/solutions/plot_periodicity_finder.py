@@ -30,10 +30,10 @@ plt.legend(['hare', 'lynx', 'carrot'], loc=1)
 ############################################################
 # Plot its periods
 ############################################################
-from scipy import fftpack
+import scipy as sp
 
-ft_populations = fftpack.fft(populations, axis=0)
-frequencies = fftpack.fftfreq(populations.shape[0], years[1] - years[0])
+ft_populations = sp.fftpack.fft(populations, axis=0)
+frequencies = sp.fftpack.fftfreq(populations.shape[0], years[1] - years[0])
 periods = 1 / frequencies
 
 plt.figure()

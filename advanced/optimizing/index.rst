@@ -249,12 +249,12 @@ scipy are richer then those in numpy and should be preferred.
     In [3]: %timeit np.linalg.svd(data)
     1 loops, best of 3: 14.5 s per loop
 
-    In [4]: from scipy import linalg
+    In [4]: import scipy as sp
 
-    In [5]: %timeit linalg.svd(data)
+    In [5]: %timeit sp.linalg.svd(data)
     1 loops, best of 3: 14.2 s per loop
 
-    In [6]: %timeit linalg.svd(data, full_matrices=False)
+    In [6]: %timeit sp.linalg.svd(data, full_matrices=False)
     1 loops, best of 3: 295 ms per loop
 
     In [7]: %timeit np.linalg.svd(data, full_matrices=False)

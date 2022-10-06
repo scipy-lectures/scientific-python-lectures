@@ -6,7 +6,7 @@ The example generates and displays simple synthetic data.
 """
 
 import numpy as np
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
 np.random.seed(1)
@@ -15,11 +15,11 @@ l = 256
 im = np.zeros((l, l))
 points = l*np.random.random((2, n**2))
 im[(points[0]).astype(int), (points[1]).astype(int)] = 1
-im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
+im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
 
 mask = im > im.mean()
 
-label_im, nb_labels = ndimage.label(mask)
+label_im, nb_labels = sp.ndimage.label(mask)
 
 plt.figure(figsize=(9,3))
 

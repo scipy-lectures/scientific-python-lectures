@@ -44,9 +44,9 @@ ax.set_title('Six-hump Camelback function')
 ############################################################
 # Find the minima
 ############################################################
-from scipy import optimize
+import scipy as sp
 
-x_min = optimize.minimize(sixhump, x0=[0, 0])
+x_min = sp.optimize.minimize(sixhump, x0=[0, 0])
 
 plt.figure()
 # Show the function in 2D

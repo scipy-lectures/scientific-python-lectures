@@ -14,7 +14,7 @@ used.
 """
 
 import numpy as np
-from scipy import fftpack
+import scipy as sp
 from matplotlib import pyplot as plt
 
 ############################################################
@@ -39,13 +39,13 @@ plt.plot(time_vec, sig, label='Original signal')
 ############################################################
 
 # The FFT of the signal
-sig_fft = fftpack.fft(sig)
+sig_fft = sp.fftpack.fft(sig)
 
 # And the power (sig_fft is of complex dtype)
 power = np.abs(sig_fft)**2
 
 # The corresponding frequencies
-sample_freq = fftpack.fftfreq(sig.size, d=time_step)
+sample_freq = sp.fftpack.fftfreq(sig.size, d=time_step)
 
 # Plot the FFT power
 plt.figure(figsize=(6, 5))
@@ -80,7 +80,7 @@ plt.setp(axes, yticks=[])
 
 high_freq_fft = sig_fft.copy()
 high_freq_fft[np.abs(sample_freq) > peak_freq] = 0
-filtered_sig = fftpack.ifft(high_freq_fft)
+filtered_sig = sp.fftpack.ifft(high_freq_fft)
 
 plt.figure(figsize=(6, 5))
 plt.plot(time_vec, sig, label='Original signal')

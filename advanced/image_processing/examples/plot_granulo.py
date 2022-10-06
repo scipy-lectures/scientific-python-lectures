@@ -6,7 +6,7 @@ This example performs a simple granulometry analysis.
 """
 
 import numpy as np
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
 def disk_structure(n):
@@ -21,7 +21,7 @@ def granulometry(data, sizes=None):
     s = max(data.shape)
     if sizes is None:
         sizes = range(1, s/2, 2)
-    granulo = [ndimage.binary_opening(data, \
+    granulo = [sp.ndimage.binary_opening(data, \
             structure=disk_structure(n)).sum() for n in sizes]
     return granulo
 
@@ -32,7 +32,7 @@ l = 256
 im = np.zeros((l, l))
 points = l*np.random.random((2, n**2))
 im[(points[0]).astype(int), (points[1]).astype(int)] = 1
-im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
+im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
 
 mask = im > im.mean()
 
@@ -42,8 +42,8 @@ plt.figure(figsize=(6, 2.2))
 
 plt.subplot(121)
 plt.imshow(mask, cmap=plt.cm.gray)
-opened = ndimage.binary_opening(mask, structure=disk_structure(10))
-opened_more = ndimage.binary_opening(mask, structure=disk_structure(14))
+opened = sp.ndimage.binary_opening(mask, structure=disk_structure(10))
+opened_more = sp.ndimage.binary_opening(mask, structure=disk_structure(14))
 plt.contour(opened, [0.5], colors='b', linewidths=2)
 plt.contour(opened_more, [0.5], colors='r', linewidths=2)
 plt.axis('off')

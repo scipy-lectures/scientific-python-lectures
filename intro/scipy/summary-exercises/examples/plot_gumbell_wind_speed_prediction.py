@@ -5,7 +5,7 @@ The Gumbell distribution
 Generate the exercise results on the Gumbell distribution
 """
 import numpy as np
-from scipy.interpolate import UnivariateSpline
+import scipy as sp
 import matplotlib.pyplot as plt
 
 
@@ -19,7 +19,7 @@ sorted_max_speeds = np.sort(max_speeds)
 
 cprob = (np.arange(years_nb, dtype=np.float32) + 1)/(years_nb + 1)
 gprob = gumbell_dist(cprob)
-speed_spline = UnivariateSpline(gprob, sorted_max_speeds, k=1)
+speed_spline = sp.interpolate.UnivariateSpline(gprob, sorted_max_speeds, k=1)
 nprob = gumbell_dist(np.linspace(1e-3, 1-1e-3, 100))
 fitted_max_speeds = speed_spline(nprob)
 

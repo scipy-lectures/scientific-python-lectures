@@ -6,19 +6,18 @@ This examples demos some simple geometrical transformations on a Racoon face.
 """
 
 import numpy as np
-import scipy.misc
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
-face = scipy.misc.face(gray=True)
+face = sp.misc.face(gray=True)
 lx, ly = face.shape
 # Cropping
 crop_face = face[lx//4:-lx//4, ly//4:-ly//4]
 # up <-> down flip
 flip_ud_face = np.flipud(face)
 # rotation
-rotate_face = ndimage.rotate(face, 45)
-rotate_face_noreshape = ndimage.rotate(face, 45, reshape=False)
+rotate_face = sp.ndimage.rotate(face, 45)
+rotate_face_noreshape = sp.ndimage.rotate(face, 45, reshape=False)
 
 plt.figure(figsize=(12.5, 2.5))
 

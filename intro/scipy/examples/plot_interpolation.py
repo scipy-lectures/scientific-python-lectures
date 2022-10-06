@@ -13,11 +13,11 @@ noise = 1e-1 * (np.random.random(10)*2 - 1)
 measures = np.sin(2 * np.pi * measured_time) + noise
 
 # Interpolate it to new time points
-from scipy.interpolate import interp1d
-linear_interp = interp1d(measured_time, measures)
+import scipy as sp
+linear_interp = sp.interpolate.interp1d(measured_time, measures)
 interpolation_time = np.linspace(0, 1, 50)
 linear_results = linear_interp(interpolation_time)
-cubic_interp = interp1d(measured_time, measures, kind='cubic')
+cubic_interp = sp.interpolate.interp1d(measured_time, measures, kind='cubic')
 cubic_results = cubic_interp(interpolation_time)
 
 # Plot the data and the interpolation

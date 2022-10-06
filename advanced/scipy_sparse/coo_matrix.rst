@@ -1,7 +1,7 @@
 .. for doctests
    >>> import numpy as np
    >>> np.random.seed(0)
-   >>> from scipy import sparse
+   >>> import scipy as sp
 
 
 Coordinate Format (COO)
@@ -37,7 +37,7 @@ Examples
 
 * create empty COO matrix::
 
-    >>> mtx = sparse.coo_matrix((3, 4), dtype=np.int8)
+    >>> mtx = sp.sparse.coo_matrix((3, 4), dtype=np.int8)
     >>> mtx.todense()
     matrix([[0, 0, 0, 0],
             [0, 0, 0, 0],
@@ -48,7 +48,7 @@ Examples
     >>> row = np.array([0, 3, 1, 0])
     >>> col = np.array([0, 3, 1, 2])
     >>> data = np.array([4, 5, 7, 9])
-    >>> mtx = sparse.coo_matrix((data, (row, col)), shape=(4, 4))
+    >>> mtx = sp.sparse.coo_matrix((data, (row, col)), shape=(4, 4))
     >>> mtx     # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     <4x4 sparse matrix of type '<... 'numpy.int64'>'
             with 4 stored elements in COOrdinate format>
@@ -63,7 +63,7 @@ Examples
     >>> row = np.array([0, 0, 1, 3, 1, 0, 0])
     >>> col = np.array([0, 2, 1, 3, 1, 0, 0])
     >>> data = np.array([1, 1, 1, 1, 1, 1, 1])
-    >>> mtx = sparse.coo_matrix((data, (row, col)), shape=(4, 4))
+    >>> mtx = sp.sparse.coo_matrix((data, (row, col)), shape=(4, 4))
     >>> mtx.todense()
     matrix([[3, 0, 1, 0],
             [0, 2, 0, 0],

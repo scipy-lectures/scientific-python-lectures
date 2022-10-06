@@ -1,3 +1,7 @@
+..
+  For doctesting
+  >>> import numpy as np
+
 .. _mathematical_optimization:
 
 =======================================================
@@ -49,9 +53,6 @@ used for more efficient, non black-box, optimization.
 
 .. XXX: should I discuss root finding?
 
-..
-  For doctesting
-  >>> import numpy as np
 
 Knowing your problem
 ======================
@@ -169,10 +170,11 @@ Brent's method to find the minimum of a function:
 
 ::
 
-    >>> from scipy import optimize
+    >>> import numpy as np
+    >>> import scipy as sp
     >>> def f(x):
     ...     return -np.exp(-(x - 0.7)**2)
-    >>> result = optimize.minimize_scalar(f)
+    >>> result = sp.optimize.minimize_scalar(f)
     >>> result.success # check if solver was successful
     True
     >>> x_min = result.x
@@ -376,7 +378,7 @@ be used by setting the parameter ``method`` to CG ::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.minimize(f, [2, -1], method="CG")    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> sp.optimize.minimize(f, [2, -1], method="CG")    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
          fun: 1.6...e-11
          jac: array([-6.15...e-06,   2.53...e-07])
      message: ...'Optimization terminated successfully.'
@@ -392,7 +394,7 @@ numerically, but will perform better if you can pass them the gradient::
 
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.minimize(f, [2, 1], method="CG", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> sp.optimize.minimize(f, [2, 1], method="CG", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
          fun: 2.957...e-14
          jac: array([ 7.1825...e-07,  -2.9903...e-07])
      message: 'Optimization terminated successfully.'
@@ -473,10 +475,10 @@ inversion of the Hessian is performed by conjugate gradient ::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    >>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
          fun: 1.5...e-15
-         jac: array([  1.0575...e-07,  -7.4832...e-08])
-     message: ...'Optimization terminated successfully.'
+         jac: array([ 1.0575...e-07, -7.4832...e-08])
+     message: 'Optimization terminated successfully.'
         nfev: 11
         nhev: 0
          nit: 10
@@ -492,7 +494,7 @@ to the algorithm::
 
     >>> def hessian(x): # Computed with sympy
     ...     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
-    >>> optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    >>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
          fun: 1.6277...e-15
          jac: array([  1.1104...e-07,  -7.7809...e-08])
      message: ...'Optimization terminated successfully.'
@@ -583,7 +585,7 @@ Full code examples
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> sp.optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
           fun: 2.6306...e-16
      hess_inv: array([[0.99986...,  2.0000...],
            [2.0000...,  4.498...]])
@@ -606,7 +608,7 @@ are also supported by L-BFGS-B::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    >>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
           fun: 1.4417...e-15
      hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
           jac: array([  1.0233...e-07,  -2.5929...e-08])
@@ -711,7 +713,7 @@ Using the Nelder-Mead solver in :func:`scipy.optimize.minimize`::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.minimize(f, [2, -1], method="Nelder-Mead") # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> sp.optimize.minimize(f, [2, -1], method="Nelder-Mead") # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
      final_simplex: (array([[1.0000...,  1.0000...],
            [0.99998... ,  0.99996... ],
            [1.0000...,  1.0000... ]]), array([1.1152...e-10,   1.5367...e-10,   4.9883...e-10]))
@@ -742,7 +744,7 @@ value. The parameters are specified with ranges given to
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> optimize.brute(f, ((-1, 2), (-1, 2))) # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> sp.optimize.brute(f, ((-1, 2), (-1, 2))) # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     array([1.0000...,  1.0000...])
 
 
@@ -817,7 +819,7 @@ handy.
    correct. It returns the norm of the different between the gradient
    given, and a gradient computed numerically:
 
-    >>> optimize.check_grad(f, jacobian, [2, -1])
+    >>> sp.optimize.check_grad(f, jacobian, [2, -1])
     2.384185791015625e-07
 
    See also :func:`scipy.optimize.approx_fprime` to find your errors.
@@ -879,7 +881,7 @@ Lets try to minimize the norm of the following vectorial function::
     ...     return np.arctan(x) - np.arctan(np.linspace(0, 1, len(x)))
 
     >>> x0 = np.zeros(10)
-    >>> optimize.leastsq(f, x0)
+    >>> sp.optimize.leastsq(f, x0)
     (array([0.        ,  0.11111111,  0.22222222,  0.33333333,  0.44444444,
             0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ]), 2)
 
@@ -889,7 +891,7 @@ if we compute the norm ourselves and use a good generic optimizer
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
-    >>> optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +NUMBER
+    >>> sp.optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +NUMBER
       fun: 2.6940...e-11
      hess_inv: array([[...
      ...
@@ -946,7 +948,7 @@ scipy provides a helper function for this purpose:
     >>> x = np.linspace(0, 3, 50)
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
-    >>> optimize.curve_fit(f, x, y)   # doctest: +ELLIPSIS
+    >>> sp.optimize.curve_fit(f, x, y)   # doctest: +ELLIPSIS
     (array([1.5185...,  0.92665...]), array([[ 0.00037..., -0.00056...],
            [-0.0005...,  0.00123...]]))
 
@@ -970,7 +972,7 @@ support bound constraints with the parameter ``bounds``::
 
     >>> def f(x):
     ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
-    >>> optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))   # doctest: +ELLIPSIS
+    >>> sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))   # doctest: +ELLIPSIS
           fun: 1.5811...
      hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
           jac: array([-0.94868..., -0.31622...])
@@ -1011,7 +1013,7 @@ and :math:`g(x) < 0`.
     ...     return np.atleast_1d(1.5 - np.sum(np.abs(x)))
 
     >>> x0 = np.array([0, 0])
-    >>> optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"}) #doctest: +ELLIPSIS
+    >>> sp.optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"}) #doctest: +ELLIPSIS
          fun: 2.4748...
          jac: array([-0.70708..., -0.70712...])
      message: 'Optimization terminated successfully'

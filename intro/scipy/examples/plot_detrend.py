@@ -14,8 +14,8 @@ x = t + np.random.normal(size=100)
 
 ############################################################
 # Detrend
-from scipy import signal
-x_detrended = signal.detrend(x)
+import scipy as sp
+x_detrended = sp.signal.detrend(x)
 
 ############################################################
 # Plot

@@ -21,24 +21,24 @@ def f(x):
 # Find minima
 ############################################################
 
-from scipy import optimize
+import scipy as sp
 
 # Global optimization
 grid = (-10, 10, 0.1)
-xmin_global = optimize.brute(f, (grid, ))
+xmin_global = sp.optimize.brute(f, (grid, ))
 print(f"Global minima found {xmin_global}")
 
 # Constrain optimization
-xmin_local = optimize.fminbound(f, 0, 10)
+xmin_local = sp.optimize.fminbound(f, 0, 10)
 print(f"Local minimum found {xmin_local}")
 
 ############################################################
 # Root finding
 ############################################################
 
-root = optimize.root(f, 1)  # our initial guess is 1
+root = sp.optimize.root(f, 1)  # our initial guess is 1
 print(f"First root found {root.x}")
-root2 = optimize.root(f, -2.5)
+root2 = sp.optimize.root(f, -2.5)
 print(f"Second root found {root2.x}")
 
 ############################################################

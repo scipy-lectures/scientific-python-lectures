@@ -15,7 +15,7 @@ The output of the script sould look like:
 from itertools import product
 
 import numpy as np
-from scipy import optimize
+import scipy as sp
 
 FUNCTIONS = (np.tan,  # Dilating map
              np.tanh, # Contracting map
@@ -24,8 +24,8 @@ FUNCTIONS = (np.tan,  # Dilating map
              lambda x: 1.1*x+np.sin(4*x), # Fonction with several local maxima
             )
 
-OPTIMIZERS = (optimize.brenth, optimize.brentq, optimize.ridder,
-              optimize.bisect)
+OPTIMIZERS = (sp.optimize.brenth, sp.optimize.brentq, sp.optimize.ridder,
+              sp.optimize.bisect)
 
 
 def apply_optimizer(optimizer, func, a, b):

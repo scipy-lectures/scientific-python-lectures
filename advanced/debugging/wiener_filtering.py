@@ -4,14 +4,13 @@
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
-from scipy import signal
 
 
 def local_mean(img, size=3):
     """ Compute a image of the local average
     """
     structure_element = np.ones((size, size), dtype=img.dtype)
-    l_mean = signal.correlate(img, structure_element, mode='same')
+    l_mean = sp.signal.correlate(img, structure_element, mode='same')
     l_mean /= size**2
     return l_mean
 
@@ -20,7 +19,7 @@ def local_var(img, size=3):
     """ Compute a image of the local variance
     """
     structure_element = np.ones((size, size), dtype=img.dtype)
-    l_var = signal.correlate(img**2, structure_element, mode='same')
+    l_var = sp.signal.correlate(img**2, structure_element, mode='same')
     l_var /= size**2
     l_var -= local_mean(img, size=size)**2
     return l_var

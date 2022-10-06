@@ -303,7 +303,7 @@ For simple `statistical tests
 use the :mod:`scipy.stats` sub-module of `scipy
 <https://docs.scipy.org/doc/>`_::
 
-    >>> from scipy import stats
+    >>> import scipy as sp
 
 .. seealso::
 
@@ -328,7 +328,7 @@ the `T statistic <https://en.wikipedia.org/wiki/Student%27s_t-test>`_,
 and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
 function's help)::
 
-    >>> stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
     Ttest_1sampResult(statistic=30.088099970..., pvalue=1.32891964...e-28)
 
 .. tip::
@@ -345,7 +345,7 @@ with :func:`scipy.stats.ttest_ind`::
 
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
-    >>> stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
     Ttest_indResult(statistic=-0.77261617232..., pvalue=0.4445287677858...)
 
 Paired tests: repeated measurements on the same individuals
@@ -359,7 +359,7 @@ Paired tests: repeated measurements on the same individuals
 PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
 significantly different. We can use a 2 sample test::
 
-    >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     Ttest_indResult(statistic=0.46563759638..., pvalue=0.64277250...)
 
 The problem with this approach is that it forgets that there are links
@@ -368,7 +368,7 @@ Thus the variance due to inter-subject variability is confounding, and
 can be removed, using a "paired test", or `"repeated measures test"
 <https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
-    >>> stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     Ttest_relResult(statistic=1.784201940..., pvalue=0.082172638183...)
 
 .. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_002.png
@@ -378,7 +378,7 @@ can be removed, using a "paired test", or `"repeated measures test"
 
 This is equivalent to a 1-sample test on the difference::
 
-    >>> stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
     Ttest_1sampResult(statistic=1.784201940..., pvalue=0.082172638...)
 
 |
@@ -388,7 +388,7 @@ can use a `Wilcoxon signed-rank test
 <https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, that relaxes
 this assumption::
 
-    >>> stats.wilcoxon(data['FSIQ'], data['PIQ'], method="approx")  # doctest: +ELLIPSIS
+    >>> sp.stats.wilcoxon(data['FSIQ'], data['PIQ'], method="approx")  # doctest: +ELLIPSIS
     WilcoxonResult(statistic=274.5, pvalue=0.106594927...)
 
 .. note::
@@ -615,7 +615,7 @@ model::
     corresponding p-values for the effect of the type of iq than the
     previous t-test::
 
-     >>> stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+     >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
      Ttest_indResult(statistic=0.46563759638..., pvalue=0.64277250...)
 
 

@@ -9,7 +9,7 @@ import pickle
 import sys
 
 import numpy as np
-from scipy import optimize
+import scipy as sp
 from joblib import Memory
 
 from cost_functions import mk_quad, mk_gauss, rosenbrock,\
@@ -17,7 +17,7 @@ from cost_functions import mk_quad, mk_gauss, rosenbrock,\
     CountingFunction
 
 def my_partial(**kwargs):
-    function = optimize.minimize
+    function = sp.optimize.minimize
     f = functools.partial(function, **kwargs)
     functools.update_wrapper(f, function)
     return f

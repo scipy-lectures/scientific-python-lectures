@@ -7,15 +7,15 @@ one (with the median filter) and the difference between the two.
 """
 
 import numpy as np
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
 im = np.zeros((20, 20))
 im[5:-5, 5:-5] = 1
-im = ndimage.distance_transform_bf(im)
+im = sp.ndimage.distance_transform_bf(im)
 im_noise = im + 0.2*np.random.randn(*im.shape)
 
-im_med = ndimage.median_filter(im_noise, 3)
+im_med = sp.ndimage.median_filter(im_noise, 3)
 
 plt.figure(figsize=(16, 5))
 

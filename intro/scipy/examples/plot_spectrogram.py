@@ -31,8 +31,8 @@ plt.plot(time_vec, sig)
 #
 # The spectrum of the signal on consecutive time windows
 
-from scipy import signal
-freqs, times, spectrogram = signal.spectrogram(sig)
+import scipy as sp
+freqs, times, spectrogram = sp.signal.spectrogram(sig)
 
 plt.figure(figsize=(5, 4))
 plt.imshow(spectrogram, aspect='auto', cmap='hot_r', origin='lower')
@@ -48,7 +48,7 @@ plt.tight_layout()
 #
 # The power of the signal per frequency band
 
-freqs, psd = signal.welch(sig)
+freqs, psd = sp.signal.welch(sig)
 
 plt.figure(figsize=(5, 4))
 plt.semilogx(freqs, psd)

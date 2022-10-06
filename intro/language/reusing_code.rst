@@ -98,7 +98,7 @@ Importing objects from modules
     In [1]: import os
 
     In [2]: os
-    Out[2]: <module 'os' from '/usr/lib/python2.6/os.pyc'>
+    Out[2]: <module 'os' from '/usr/lib64/python3.10/os.py'>
 
     In [3]: os.listdir('.')
     Out[3]:
@@ -156,7 +156,7 @@ Importing shorthands:
     >>> import numpy as np # data arrays
     >>> np.linspace(0, 10, 6)
     array([  0.,   2.,   4.,   6.,   8.,  10.])
-    >>> import scipy # scientific computing
+    >>> import scipy as sp  # scientific computing
 
 
 Creating modules
@@ -399,67 +399,48 @@ imported.
 .. sourcecode:: bash
 
     $ ls
-    cluster/        io/          README.txt@     stsci/
-    __config__.py@  LATEST.txt@  setup.py@       __svn_version__.py@
-    __config__.pyc  lib/         setup.pyc       __svn_version__.pyc
-    constants/      linalg/      setupscons.py@  THANKS.txt@
-    fftpack/        linsolve/    setupscons.pyc  TOCHANGE.txt@
-    __init__.py@    maxentropy/  signal/         version.py@
-    __init__.pyc    misc/        sparse/         version.pyc
-    INSTALL.txt@    ndimage/     spatial/        weave/
-    integrate/      odr/         special/
-    interpolate/    optimize/    stats/
+    _build_utils/         fft/          _lib/        odr/          spatial/
+    cluster/              fftpack/      linalg/      optimize/     special/
+    conftest.py           __init__.py   linalg.pxd   optimize.pxd  special.pxd
+    constants/            integrate/    meson.build  setup.py      stats/
+    datasets/             interpolate/  misc/        signal/
+    _distributor_init.py  io/           ndimage/     sparse/
     $ cd ndimage
     $ ls
-    doccer.py@   fourier.pyc   interpolation.py@  morphology.pyc   setup.pyc
-    doccer.pyc   info.py@      interpolation.pyc  _nd_image.so
-    setupscons.py@
-    filters.py@  info.pyc      measurements.py@   _ni_support.py@
-    setupscons.pyc
-    filters.pyc  __init__.py@  measurements.pyc   _ni_support.pyc  tests/
-    fourier.py@  __init__.pyc  morphology.py@     setup.py@
+    _filters.py  __init__.py        _measurements.py  morphology.py      src/
+    filters.py   _interpolation.py  measurements.py   _ni_docstrings.py  tests/
+    _fourier.py  interpolation.py   meson.build       _ni_support.py     utils/
+    fourier.py   LICENSE.txt        _morphology.py    setup.py
 
 
 From Ipython:
 
 .. sourcecode:: ipython
 
-    In [1]: import scipy
+    In [1]: import scipy as sp
 
     In [2]: scipy.__file__
-    Out[2]: '/usr/lib/python2.6/dist-packages/scipy/__init__.pyc'
+    Out[2]: '/usr/lib64/python3.10/site-packages/scipy/__init__.py'
 
-    In [3]: import scipy.version
+    In [3]: sp.version.version
+    Out[3]: '1.9.1'
 
-    In [4]: scipy.version.version
-    Out[4]: '0.7.0'
-
-    In [5]: import scipy.ndimage.morphology
-
-    In [6]: from scipy.ndimage import morphology
-
-    In [17]: morphology.binary_dilation?
-    Type:           function
-    Base Class:     <type 'function'>
-    String Form:    <function binary_dilation at 0x9bedd84>
-    Namespace:      Interactive
-    File:           /usr/lib/python2.6/dist-packages/scipy/ndimage/morphology.py
-    Definition:     morphology.binary_dilation(input, structure=None,
-    iterations=1, mask=None, output=None, border_value=0, origin=0,
-    brute_force=False)
+    In [4]: sp.ndimage.morphology.binary_dilation?
+    Signature:
+    sp.ndimage.morphology.binary_dilation(
+        input,
+        structure=None,
+        iterations=1,
+        mask=None,
+        output=None,
+        border_value=0,
+        origin=0,
+        brute_force=False,
+    )
     Docstring:
-        Multi-dimensional binary dilation with the given structure.
+    Multidimensional binary dilation with the given structuring element.
 
-        An output array can optionally be provided. The origin parameter
-        controls the placement of the filter. If no structuring element is
-        provided an element is generated with a squared connectivity equal
-        to one. The dilation operation is repeated iterations times.  If
-        iterations is less than 1, the dilation is repeated until the
-        result does not change anymore.  If a mask is given, only those
-        elements with a true value at the corresponding mask element are
-        modified at each iteration.
-
-
+    ...
 
 
 Good practices

@@ -9,8 +9,8 @@ Linear System Solvers
 
 * all solvers are accessible from::
 
-    >>> import scipy.sparse.linalg as spla
-    >>> spla.__all__    # doctest: +SKIP
+    >>> import scipy as sp
+    >>> sp.sparse.linalg.__all__    # doctest: +SKIP
     ['ArpackError', 'ArpackNoConvergence', 'LinearOperator', 'MatrixRankWarning',
      'SuperLU', 'aslinearoperator', 'bicg', 'bicgstab', 'cg', 'cgs', 'dsolve',
      'eigen', 'eigs', 'eigsh', 'expm', 'expm_multiply', 'factorized', 'gcrotmk',
@@ -36,8 +36,7 @@ Examples
 ^^^^^^^^
 * import the whole module, and see its docstring::
 
-    >>> from scipy.sparse.linalg import spsolve
-    >>> help(spsolve) # doctest: +SKIP
+    >>> help(sp.sparse.linalg.spsolve) # doctest: +SKIP
 
 * both superlu and umfpack can be used (if the latter is installed) as
   follows:
@@ -45,8 +44,7 @@ Examples
     * prepare a linear system::
 
         >>> import numpy as np
-        >>> from scipy import sparse
-        >>> mtx = sparse.spdiags([[1, 2, 3, 4, 5], [6, 5, 8, 9, 10]], [0, 1], 5, 5)
+        >>> mtx = sp.sparse.spdiags([[1, 2, 3, 4, 5], [6, 5, 8, 9, 10]], [0, 1], 5, 5)
         >>> mtx.todense()
         matrix([[ 1,  5,  0,  0,  0],
                 [ 0,  2,  8,  0,  0],
@@ -58,7 +56,7 @@ Examples
     * solve as single precision real::
 
         >>> mtx1 = mtx.astype(np.float32)
-        >>> x = spsolve(mtx1, rhs, use_umfpack=False)
+        >>> x = sp.sparse.linalg.spsolve(mtx1, rhs, use_umfpack=False)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
         [106.   -21.     5.5   -1.5    1. ]
         >>> print("Error: %s" % (mtx1 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
@@ -67,7 +65,7 @@ Examples
     * solve as double precision real::
 
         >>> mtx2 = mtx.astype(np.float64)
-        >>> x = spsolve(mtx2, rhs, use_umfpack=True)
+        >>> x = sp.sparse.linalg.spsolve(mtx2, rhs, use_umfpack=True)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
         [106.   -21.     5.5   -1.5    1. ]
         >>> print("Error: %s" % (mtx2 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
@@ -76,7 +74,7 @@ Examples
     * solve as single precision complex::
 
         >>> mtx1 = mtx.astype(np.complex64)
-        >>> x = spsolve(mtx1, rhs, use_umfpack=False)
+        >>> x = sp.sparse.linalg.spsolve(mtx1, rhs, use_umfpack=False)
         >>> print(x)  # doctest: +NORMALIZE_WHITESPACE
         [106. +0.j  -21. +0.j    5.5+0.j   -1.5+0.j    1. +0.j]
         >>> print("Error: %s" % (mtx1 * x - rhs))  # doctest: +NORMALIZE_WHITESPACE
@@ -85,7 +83,7 @@ Examples
     * solve as double precision complex::
 
         >>> mtx2 = mtx.astype(np.complex128)
-        >>> x = spsolve(mtx2, rhs, use_umfpack=True)
+        >>> x = sp.sparse.linalg.spsolve(mtx2, rhs, use_umfpack=True)
         >>> print(x)
         [106. +0.j  -21. +0.j    5.5+0.j   -1.5+0.j    1. +0.j]
         >>> print("Error: %s" % (mtx2 * x - rhs))   # doctest: +NORMALIZE_WHITESPACE
@@ -139,10 +137,6 @@ Common Parameters
 LinearOperator Class
 ^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: python
-
-    from scipy.sparse.linalg.interface import LinearOperator
-
 * common interface for performing matrix vector products
 * useful abstraction that enables using dense and sparse matrices within
   the solvers, as well as *matrix-free* solutions
@@ -152,11 +146,11 @@ LinearOperator Class
 .. code-block:: python
 
     >>> import numpy as np
-    >>> from scipy.sparse.linalg import LinearOperator
+    >>> import scipy as sp
     >>> def mv(v):
     ...     return np.array([2*v[0], 3*v[1]])
     ...
-    >>> A = LinearOperator((2, 2), matvec=mv)
+    >>> A = sp.sparse.linalg.LinearOperator((2, 2), matvec=mv)
     >>> A
     <2x2 _CustomLinearOperator with dtype=float64>
     >>> A.matvec(np.ones(2))

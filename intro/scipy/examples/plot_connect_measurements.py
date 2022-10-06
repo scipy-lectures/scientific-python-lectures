@@ -31,8 +31,8 @@ plt.subplots_adjust(wspace=.05, left=.01, bottom=.01, right=.99, top=.9)
 
 ############################################################
 # Label connected components
-from scipy import ndimage
-labels, nb = ndimage.label(mask)
+import scipy as sp
+labels, nb = sp.ndimage.label(mask)
 
 plt.figure(figsize=(3.5, 3.5))
 plt.imshow(labels)
@@ -44,7 +44,7 @@ plt.subplots_adjust(wspace=.05, left=.01, bottom=.01, right=.99, top=.9)
 
 ############################################################
 # Extract the 4th connected component, and crop the array around it
-sl = ndimage.find_objects(labels==4)
+sl = sp.ndimage.find_objects(labels==4)
 plt.figure(figsize=(3.5, 3.5))
 plt.imshow(sig[sl[0]])
 plt.title('Cropped connected component')

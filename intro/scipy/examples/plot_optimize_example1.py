@@ -18,13 +18,13 @@ plt.plot(x, f(x))
 
 ############################################################
 # Now find the minimum with a few methods
-from scipy import optimize
+import scipy as sp
 
 # The default (Nelder Mead)
-print(optimize.minimize(f, x0=0))
+print(sp.optimize.minimize(f, x0=0))
 
 ############################################################
-print(optimize.minimize(f, x0=0, method="L-BFGS-B"))
+print(sp.optimize.minimize(f, x0=0, method="L-BFGS-B"))
 
 ############################################################
 
