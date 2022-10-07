@@ -603,7 +603,7 @@ Measuring regions' properties
 Example: compute the size and perimeter of the two segmented regions::
 
     >>> properties = measure.regionprops(labels_rw)
-    >>> [prop.area for prop in properties]
+    >>> [float(prop.area) for prop in properties]
     [770.0, 1168.0]
     >>> [prop.perimeter for prop in properties] # doctest: +ELLIPSIS
     [100.91..., 126.81...]
