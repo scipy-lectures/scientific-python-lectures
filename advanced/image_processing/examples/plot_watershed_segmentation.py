@@ -26,7 +26,7 @@ peak_idx = peak_local_max(
     distance, footprint=np.ones((3, 3)), labels=image
 )
 peak_mask = np.zeros_like(distance, dtype=bool)
-peak_mask[peak_idx] = True
+peak_mask[tuple(peak_idx.T)] = True
 markers = sp.ndimage.label(peak_mask)[0]
 labels = watershed(-distance, markers, mask=image)
 
