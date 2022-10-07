@@ -6,7 +6,7 @@ This example illustrates greyscale mathematical morphology.
 """
 
 import numpy as np
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
 im = np.zeros((64, 64))
@@ -14,12 +14,12 @@ np.random.seed(2)
 x, y = (63*np.random.random((2, 8))).astype(int)
 im[x, y] = np.arange(8)
 
-bigger_points = ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
+bigger_points = sp.ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
 
 square = np.zeros((16, 16))
 square[4:-4, 4:-4] = 1
-dist = ndimage.distance_transform_bf(square)
-dilate_dist = ndimage.grey_dilation(dist, size=(3, 3), \
+dist = sp.ndimage.distance_transform_bf(square)
+dilate_dist = sp.ndimage.grey_dilation(dist, size=(3, 3), \
         structure=np.ones((3, 3)))
 
 plt.figure(figsize=(12.5, 3))

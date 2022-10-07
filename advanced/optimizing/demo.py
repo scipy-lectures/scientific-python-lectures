@@ -1,14 +1,14 @@
 # For this example to run, you also need the 'ica.py' file
 
 import numpy as np
-from scipy import linalg
+import scipy as sp
 
 from ica import fastica
 
 
 def test():
     data = np.random.random((5000, 100))
-    u, s, v = linalg.svd(data)
+    u, s, v = sp.linalg.svd(data)
     pca = u[:, :10].T @ data
     results = fastica(pca.T, whiten=False)
 

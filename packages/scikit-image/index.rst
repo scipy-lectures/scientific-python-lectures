@@ -1,6 +1,6 @@
 .. for doctests
    >>> import numpy as np
-   >>> import scipy.misc
+   >>> import scipy as sp
    >>> np.random.seed(0)
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend("Agg")
@@ -239,7 +239,7 @@ Colorspaces
 Color images are of shape (N, M, 3) or (N, M, 4) (when an alpha channel
 encodes transparency) ::
 
-    >>> face = scipy.misc.face()
+    >>> face = sp.misc.face()
     >>> face.shape
     (768, 1024, 3)
 
@@ -543,8 +543,8 @@ approach that fills "basins" in the image ::
     >>> # Now we want to separate the two objects in image
     >>> # Generate the markers as local maxima of the distance
     >>> # to the background
-    >>> from scipy import ndimage
-    >>> distance = ndimage.distance_transform_edt(image)
+    >>> import scipy as sp
+    >>> distance = sp.ndimage.distance_transform_edt(image)
     >>> local_maxi = peak_local_max(distance, indices=False, footprint=np.ones((3, 3)), labels=image)
     >>> markers = morphology.label(local_maxi)
     >>> labels_ws = watershed(-distance, markers, mask=image)

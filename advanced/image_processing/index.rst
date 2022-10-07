@@ -41,7 +41,7 @@ arrays.
   (n-dimensional images). See the `documentation
   <https://docs.scipy.org/doc/scipy/tutorial/ndimage.html>`_::
 
-    >>> from scipy import ndimage
+    >>> import scipy as sp
 
 
 **Common tasks in image processing**:
@@ -83,9 +83,8 @@ Writing an array to a file:
 
 Creating a numpy array from an image file::
 
-    >>> from scipy import misc
     >>> import imageio.v3 as iio
-    >>> face = misc.face()
+    >>> face = sp.misc.face()
     >>> iio.imwrite('face.png', face)  # First we need to create the PNG file
 
     >>> face = iio.imread('face.png')
@@ -128,7 +127,7 @@ Displaying images
 Use ``matplotlib`` and ``imshow`` to display an image inside a
 ``matplotlib figure``::
 
-    >>> f = misc.face(gray=True)  # retrieve a grayscale image
+    >>> f = sp.misc.face(gray=True)  # retrieve a grayscale image
     >>> import matplotlib.pyplot as plt
     >>> plt.imshow(f, cmap=plt.cm.gray)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
@@ -190,7 +189,7 @@ Images are arrays: use the whole ``numpy`` machinery.
 
 ::
 
-    >>> face = misc.face(gray=True)
+    >>> face = sp.misc.face(gray=True)
     >>> face[0, 40]
     127
     >>> # Slicing
@@ -222,7 +221,7 @@ Statistical information
 
 ::
 
-    >>> face = misc.face(gray=True)
+    >>> face = sp.misc.face(gray=True)
     >>> face.mean()
     113.48026784261067
     >>> face.max(), face.min()
@@ -262,15 +261,15 @@ Geometrical transformations
 ---------------------------
 ::
 
-    >>> face = misc.face(gray=True)
+    >>> face = sp.misc.face(gray=True)
     >>> lx, ly = face.shape
     >>> # Cropping
     >>> crop_face = face[lx // 4: - lx // 4, ly // 4: - ly // 4]
     >>> # up <-> down flip
     >>> flip_ud_face = np.flipud(face)
     >>> # rotation
-    >>> rotate_face = ndimage.rotate(face, 45)
-    >>> rotate_face_noreshape = ndimage.rotate(face, 45, reshape=False)
+    >>> rotate_face = sp.ndimage.rotate(face, 45)
+    >>> rotate_face_noreshape = sp.ndimage.rotate(face, 45, reshape=False)
 
 .. figure:: auto_examples/images/sphx_glr_plot_geom_face_001.png
     :scale: 65
@@ -298,14 +297,13 @@ Blurring/smoothing
 
 **Gaussian filter** from ``scipy.ndimage``::
 
-    >>> from scipy import misc
-    >>> face = misc.face(gray=True)
-    >>> blurred_face = ndimage.gaussian_filter(face, sigma=3)
-    >>> very_blurred = ndimage.gaussian_filter(face, sigma=5)
+    >>> face = sp.misc.face(gray=True)
+    >>> blurred_face = sp.ndimage.gaussian_filter(face, sigma=3)
+    >>> very_blurred = sp.ndimage.gaussian_filter(face, sigma=5)
 
 **Uniform filter** ::
 
-    >>> local_mean = ndimage.uniform_filter(face, size=11)
+    >>> local_mean = sp.ndimage.uniform_filter(face, size=11)
 
 .. figure:: auto_examples/images/sphx_glr_plot_blur_001.png
     :scale: 90
@@ -320,14 +318,13 @@ Sharpening
 
 Sharpen a blurred image::
 
-    >>> from scipy import misc
-    >>> face = misc.face(gray=True).astype(float)
-    >>> blurred_f = ndimage.gaussian_filter(face, 3)
+    >>> face = sp.misc.face(gray=True).astype(float)
+    >>> blurred_f = sp.ndimage.gaussian_filter(face, 3)
 
 increase the weight of edges by adding an approximation of the
 Laplacian::
 
-    >>> filter_blurred_f = ndimage.gaussian_filter(blurred_f, 1)
+    >>> filter_blurred_f = sp.ndimage.gaussian_filter(blurred_f, 1)
     >>> alpha = 30
     >>> sharpened = blurred_f + alpha * (blurred_f - filter_blurred_f)
 
@@ -345,20 +342,19 @@ Denoising
 
 Noisy face::
 
-    >>> from scipy import misc
-    >>> f = misc.face(gray=True)
+    >>> f = sp.misc.face(gray=True)
     >>> f = f[230:290, 220:320]
     >>> noisy = f + 0.4 * f.std() * np.random.random(f.shape)
 
 A **Gaussian filter** smoothes the noise out... and the edges as well::
 
-    >>> gauss_denoised = ndimage.gaussian_filter(noisy, 2)
+    >>> gauss_denoised = sp.ndimage.gaussian_filter(noisy, 2)
 
-Most local linear isotropic filters blur the image (``ndimage.uniform_filter``)
+Most local linear isotropic filters blur the image (``scipy.ndimage.uniform_filter``)
 
 A **median filter** preserves better the edges::
 
-    >>> med_denoised = ndimage.median_filter(noisy, 3)
+    >>> med_denoised = sp.ndimage.median_filter(noisy, 3)
 
 .. figure:: auto_examples/images/sphx_glr_plot_face_denoise_001.png
     :scale: 60
@@ -373,9 +369,9 @@ Median filter: better result for straight boundaries (**low curvature**)::
 
     >>> im = np.zeros((20, 20))
     >>> im[5:-5, 5:-5] = 1
-    >>> im = ndimage.distance_transform_bf(im)
+    >>> im = sp.ndimage.distance_transform_bf(im)
     >>> im_noise = im + 0.2 * np.random.randn(*im.shape)
-    >>> im_med = ndimage.median_filter(im_noise, 3)
+    >>> im_med = sp.ndimage.median_filter(im_noise, 3)
 
 .. figure:: auto_examples/images/sphx_glr_plot_denoising_001.png
     :scale: 50
@@ -386,8 +382,8 @@ Median filter: better result for straight boundaries (**low curvature**)::
     [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_denoising.py>`]
 
 
-Other rank filter: ``ndimage.maximum_filter``,
-``ndimage.percentile_filter``
+Other rank filter: ``scipy.ndimage.maximum_filter``,
+``scipy.ndimage.percentile_filter``
 
 Other local non-linear filters: Wiener (``scipy.signal.wiener``), etc.
 
@@ -427,7 +423,7 @@ image.
 
 **Structuring element**::
 
-    >>> el = ndimage.generate_binary_structure(2, 1)
+    >>> el = sp.ndimage.generate_binary_structure(2, 1)
     >>> el
     array([[False,  True, False],
            [ True,  True,  True],
@@ -452,7 +448,7 @@ image.
            [0, 0, 1, 1, 1, 0, 0],
            [0, 0, 1, 1, 1, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]])
-    >>> ndimage.binary_erosion(a).astype(a.dtype)
+    >>> sp.ndimage.binary_erosion(a).astype(a.dtype)
     array([[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 1, 0, 0, 0],
@@ -460,8 +456,8 @@ image.
            [0, 0, 0, 1, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]])
-    >>> #Erosion removes objects smaller than the structure
-    >>> ndimage.binary_erosion(a, structure=np.ones((5,5))).astype(a.dtype)
+    >>> # Erosion removes objects smaller than the structure
+    >>> sp.ndimage.binary_erosion(a, structure=np.ones((5,5))).astype(a.dtype)
     array([[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
@@ -485,7 +481,7 @@ image.
            [0.,  0.,  1.,  0.,  0.],
            [0.,  0.,  0.,  0.,  0.],
            [0.,  0.,  0.,  0.,  0.]])
-    >>> ndimage.binary_dilation(a).astype(a.dtype)
+    >>> sp.ndimage.binary_dilation(a).astype(a.dtype)
     array([[0.,  0.,  0.,  0.,  0.],
            [0.,  0.,  1.,  0.,  0.],
            [0.,  1.,  1.,  1.,  0.],
@@ -500,12 +496,12 @@ Also works for grey-valued images::
     >>> x, y = (63*np.random.random((2, 8))).astype(int)
     >>> im[x, y] = np.arange(8)
 
-    >>> bigger_points = ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
+    >>> bigger_points = sp.ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
 
     >>> square = np.zeros((16, 16))
     >>> square[4:-4, 4:-4] = 1
-    >>> dist = ndimage.distance_transform_bf(square)
-    >>> dilate_dist = ndimage.grey_dilation(dist, size=(3, 3), \
+    >>> dist = sp.ndimage.distance_transform_bf(square)
+    >>> dilate_dist = sp.ndimage.grey_dilation(dist, size=(3, 3), \
     ...         structure=np.ones((3, 3)))
 
 
@@ -528,14 +524,14 @@ Also works for grey-valued images::
            [0, 1, 1, 1, 0],
            [0, 0, 0, 0, 1]])
     >>> # Opening removes small objects
-    >>> ndimage.binary_opening(a, structure=np.ones((3,3))).astype(int)
+    >>> sp.ndimage.binary_opening(a, structure=np.ones((3,3))).astype(int)
     array([[0, 0, 0, 0, 0],
            [0, 1, 1, 1, 0],
            [0, 1, 1, 1, 0],
            [0, 1, 1, 1, 0],
            [0, 0, 0, 0, 0]])
     >>> # Opening can also smooth corners
-    >>> ndimage.binary_opening(a).astype(int)
+    >>> sp.ndimage.binary_opening(a).astype(int)
     array([[0, 0, 0, 0, 0],
            [0, 0, 1, 0, 0],
            [0, 1, 1, 1, 0],
@@ -550,10 +546,10 @@ Also works for grey-valued images::
     >>> x, y = (32*np.random.random((2, 20))).astype(int)
     >>> square[x, y] = 1
 
-    >>> open_square = ndimage.binary_opening(square)
+    >>> open_square = sp.ndimage.binary_opening(square)
 
-    >>> eroded_square = ndimage.binary_erosion(square)
-    >>> reconstruction = ndimage.binary_propagation(eroded_square, mask=square)
+    >>> eroded_square = sp.ndimage.binary_erosion(square)
+    >>> reconstruction = sp.ndimage.binary_propagation(eroded_square, mask=square)
 
 .. figure:: auto_examples/images/sphx_glr_plot_propagation_001.png
     :scale: 40
@@ -579,13 +575,13 @@ Synthetic data::
     >>> im = np.zeros((256, 256))
     >>> im[64:-64, 64:-64] = 1
     >>>
-    >>> im = ndimage.rotate(im, 15, mode='constant')
-    >>> im = ndimage.gaussian_filter(im, 8)
+    >>> im = sp.ndimage.rotate(im, 15, mode='constant')
+    >>> im = sp.ndimage.gaussian_filter(im, 8)
 
 Use a **gradient operator** (**Sobel**) to find high intensity variations::
 
-    >>> sx = ndimage.sobel(im, axis=0, mode='constant')
-    >>> sy = ndimage.sobel(im, axis=1, mode='constant')
+    >>> sx = sp.ndimage.sobel(im, axis=0, mode='constant')
+    >>> sy = sp.ndimage.sobel(im, axis=1, mode='constant')
     >>> sob = np.hypot(sx, sy)
 
 .. figure:: auto_examples/images/sphx_glr_plot_find_edges_001.png
@@ -610,7 +606,7 @@ Segmentation
     >>> np.random.seed(1)
     >>> points = l*np.random.random((2, n**2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
-    >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
+    >>> im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
 
     >>> mask = (im > im.mean()).astype(float)
     >>> mask += 0.1 * im
@@ -632,9 +628,9 @@ Segmentation
 Use mathematical morphology to clean up the result::
 
     >>> # Remove small white regions
-    >>> open_img = ndimage.binary_opening(binary_img)
+    >>> open_img = sp.ndimage.binary_opening(binary_img)
     >>> # Remove small black hole
-    >>> close_img = ndimage.binary_closing(open_img)
+    >>> close_img = sp.ndimage.binary_closing(open_img)
 
 .. figure:: auto_examples/images/sphx_glr_plot_clean_morpho_001.png
     :scale: 65
@@ -650,11 +646,11 @@ Use mathematical morphology to clean up the result::
     Check that reconstruction operations (erosion + propagation) produce a
     better result than opening/closing::
 
-	>>> eroded_img = ndimage.binary_erosion(binary_img)
-	>>> reconstruct_img = ndimage.binary_propagation(eroded_img, mask=binary_img)
+	>>> eroded_img = sp.ndimage.binary_erosion(binary_img)
+	>>> reconstruct_img = sp.ndimage.binary_propagation(eroded_img, mask=binary_img)
 	>>> tmp = np.logical_not(reconstruct_img)
-	>>> eroded_tmp = ndimage.binary_erosion(tmp)
-	>>> reconstruct_final = np.logical_not(ndimage.binary_propagation(eroded_tmp, mask=tmp))
+	>>> eroded_tmp = sp.ndimage.binary_erosion(tmp)
+	>>> reconstruct_final = np.logical_not(sp.ndimage.binary_propagation(eroded_tmp, mask=tmp))
 	>>> np.abs(mask - close_img).mean() # doctest: +ELLIPSIS
 	0.00727836...
 	>>> np.abs(mask - reconstruct_final).mean() # doctest: +ELLIPSIS
@@ -723,8 +719,8 @@ Use mathematical morphology to clean up the result::
 
 
 
-Measuring objects properties: ``ndimage.measurements``
-========================================================
+Measuring objects properties: ``scipy.ndimage.measurements``
+============================================================
 
 Synthetic data::
 
@@ -733,14 +729,14 @@ Synthetic data::
     >>> im = np.zeros((l, l))
     >>> points = l*np.random.random((2, n**2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
-    >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
+    >>> im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>> mask = im > im.mean()
 
 * **Analysis of connected components**
 
-Label connected components: ``ndimage.label``::
+Label connected components: ``scipy.dimage.label``::
 
-    >>> label_im, nb_labels = ndimage.label(mask)
+    >>> label_im, nb_labels = sp.ndimage.label(mask)
     >>> nb_labels # how many regions?
     28
     >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
@@ -756,8 +752,8 @@ Label connected components: ``ndimage.label``::
 
 Compute size, mean_value, etc. of each region::
 
-    >>> sizes = ndimage.sum(mask, label_im, range(nb_labels + 1))
-    >>> mean_vals = ndimage.sum(im, label_im, range(1, nb_labels + 1))
+    >>> sizes = sp.ndimage.sum(mask, label_im, range(nb_labels + 1))
+    >>> mean_vals = sp.ndimage.sum(im, label_im, range(1, nb_labels + 1))
 
 Clean up small connect components::
 
@@ -784,7 +780,7 @@ Now reassign labels with ``np.searchsorted``::
 
 Find region of interest enclosing object::
 
-    >>> slice_x, slice_y = ndimage.find_objects(label_im==4)[0]
+    >>> slice_x, slice_y = sp.ndimage.find_objects(label_im==4)[0]
     >>> roi = im[slice_x, slice_y]
     >>> plt.imshow(roi)     # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
@@ -797,19 +793,18 @@ Find region of interest enclosing object::
 
     [:ref:`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_find_object.py>`]
 
-Other spatial measures: ``ndimage.center_of_mass``,
-``ndimage.maximum_position``, etc.
+Other spatial measures: ``scipy.ndimage.center_of_mass``,
+``scipy.ndimage.maximum_position``, etc.
 
 Can be used outside the limited scope of segmentation applications.
 
 Example: block mean::
 
-    >>> from scipy import misc
-    >>> f = misc.face(gray=True)
+    >>> f = sp.misc.face(gray=True)
     >>> sx, sy = f.shape
     >>> X, Y = np.ogrid[0:sx, 0:sy]
     >>> regions = (sy//6) * (X//4) + (Y//6)  # note that we use broadcasting
-    >>> block_mean = ndimage.mean(f, labels=regions, index=np.arange(1,
+    >>> block_mean = sp.ndimage.mean(f, labels=regions, index=np.arange(1,
     ...     regions.max() +1))
     >>> block_mean.shape = (sx // 4, sy // 6)
 
@@ -830,7 +825,7 @@ Non-regularly-spaced blocks: radial mean::
     >>> X, Y = np.ogrid[0:sx, 0:sy]
     >>> r = np.hypot(X - sx/2, Y - sy/2)
     >>> rbin = (20* r/r.max()).astype(int)
-    >>> radial_mean = ndimage.mean(f, labels=rbin, index=np.arange(1, rbin.max() +1))
+    >>> radial_mean = sp.ndimage.mean(f, labels=rbin, index=np.arange(1, rbin.max() +1))
 
 .. figure:: auto_examples/images/sphx_glr_plot_radial_mean_001.png
     :scale: 70
@@ -862,7 +857,7 @@ One example with mathematical morphology: `granulometry
     ...     s = max(data.shape)
     ...     if sizes is None:
     ...         sizes = range(1, s/2, 2)
-    ...     granulo = [ndimage.binary_opening(data, \
+    ...     granulo = [sp.ndimage.binary_opening(data, \
     ...         structure=disk_structure(n)).sum() for n in sizes]
     ...     return granulo
     ...
@@ -873,7 +868,7 @@ One example with mathematical morphology: `granulometry
     >>> im = np.zeros((l, l))
     >>> points = l*np.random.random((2, n**2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
-    >>> im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
+    >>> im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>>
     >>> mask = im > im.mean()
     >>>

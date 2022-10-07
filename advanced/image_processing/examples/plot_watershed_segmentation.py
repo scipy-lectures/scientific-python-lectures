@@ -9,7 +9,7 @@ import numpy as np
 from skimage.segmentation import watershed
 from skimage.feature import peak_local_max
 import matplotlib.pyplot as plt
-from scipy import ndimage
+import scipy as sp
 
 # Generate an initial image with two overlapping circles
 x, y = np.indices((80, 80))
@@ -21,13 +21,13 @@ image = np.logical_or(mask_circle1, mask_circle2)
 # Now we want to separate the two objects in image
 # Generate the markers as local maxima of the distance
 # to the background
-distance = ndimage.distance_transform_edt(image)
+distance = sp.ndimage.distance_transform_edt(image)
 peak_idx = peak_local_max(
     distance, footprint=np.ones((3, 3)), labels=image
 )
 peak_mask = np.zeros_like(distance, dtype=bool)
 peak_mask[peak_idx] = True
-markers = ndimage.label(peak_mask)[0]
+markers = sp.ndimage.label(peak_mask)[0]
 labels = watershed(-distance, markers, mask=image)
 
 plt.figure(figsize=(9, 3.5))

@@ -23,12 +23,12 @@ plt.scatter(x_data, y_data)
 
 ############################################################
 # Now fit a simple sine function to the data
-from scipy import optimize
+import scipy as sp
 
 def test_func(x, a, b):
     return a * np.sin(b * x)
 
-params, params_covariance = optimize.curve_fit(test_func, x_data, y_data,
+params, params_covariance = sp.optimize.curve_fit(test_func, x_data, y_data,
                                                p0=[2, 2])
 
 print(params)

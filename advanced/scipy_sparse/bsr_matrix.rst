@@ -1,7 +1,7 @@
 .. For doctests
    >>> import numpy as np
    >>> np.random.seed(0)
-   >>> from scipy import sparse
+   >>> import scipy as sp
 
 
 Block Compressed Row Format (BSR)
@@ -37,7 +37,7 @@ Examples
 
 * create empty BSR matrix with (1, 1) block size (like CSR...)::
 
-    >>> mtx = sparse.bsr_matrix((3, 4), dtype=np.int8)
+    >>> mtx = sp.sparse.bsr_matrix((3, 4), dtype=np.int8)
     >>> mtx  # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
     <3x4 sparse matrix of type '<... 'numpy.int8'>'
             with 0 stored elements (blocksize = 1x1) in Block Sparse Row format>
@@ -48,7 +48,7 @@ Examples
 
 * create empty BSR matrix with (3, 2) block size::
 
-    >>> mtx = sparse.bsr_matrix((3, 4), blocksize=(3, 2), dtype=np.int8)
+    >>> mtx = sp.sparse.bsr_matrix((3, 4), blocksize=(3, 2), dtype=np.int8)
     >>> mtx  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     <3x4 sparse matrix of type '<... 'numpy.int8'>'
             with 0 stored elements (blocksize = 3x2) in Block Sparse Row format>
@@ -64,7 +64,7 @@ Examples
     >>> row = np.array([0, 0, 1, 2, 2, 2])
     >>> col = np.array([0, 2, 2, 0, 1, 2])
     >>> data = np.array([1, 2, 3, 4, 5, 6])
-    >>> mtx = sparse.bsr_matrix((data, (row, col)), shape=(3, 3))
+    >>> mtx = sp.sparse.bsr_matrix((data, (row, col)), shape=(3, 3))
     >>> mtx  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     <3x3 sparse matrix of type '<... 'numpy.int64'>'
             with 6 stored elements (blocksize = 1x1) in Block Sparse Row format>
@@ -94,7 +94,7 @@ Examples
     >>> indptr = np.array([0, 2, 3, 6])
     >>> indices = np.array([0, 2, 2, 0, 1, 2])
     >>> data = np.array([1, 2, 3, 4, 5, 6]).repeat(4).reshape(6, 2, 2)
-    >>> mtx = sparse.bsr_matrix((data, indices, indptr), shape=(6, 6))
+    >>> mtx = sp.sparse.bsr_matrix((data, indices, indptr), shape=(6, 6))
     >>> mtx.todense()
     matrix([[1, 1, 0, 0, 2, 2],
             [1, 1, 0, 0, 2, 2],

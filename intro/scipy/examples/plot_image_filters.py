@@ -7,21 +7,19 @@ Demo filtering for denoising of images.
 """
 
 # Load some data
-from scipy import misc
-face = misc.face(gray=True)
+import scipy as sp
+face = sp.misc.face(gray=True)
 face = face[:512, -512:]  # crop out square on right
 
 # Apply a variety of filters
-from scipy import ndimage
-from scipy import signal
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 import numpy as np
 noisy_face = np.copy(face).astype(float)
 noisy_face += face.std() * 0.5 * np.random.standard_normal(face.shape)
-blurred_face = ndimage.gaussian_filter(noisy_face, sigma=3)
-median_face = ndimage.median_filter(noisy_face, size=5)
-wiener_face = signal.wiener(noisy_face, (5, 5))
+blurred_face = sp.ndimage.gaussian_filter(noisy_face, sigma=3)
+median_face = sp.ndimage.median_filter(noisy_face, size=5)
+wiener_face = sp.signal.wiener(noisy_face, (5, 5))
 
 plt.figure(figsize=(12, 3.5))
 plt.subplot(141)

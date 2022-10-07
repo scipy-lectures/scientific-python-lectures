@@ -2,9 +2,8 @@
    >>> import numpy as np
    >>> np.random.seed(0)
    >>> # For doctest on headless environments
-   >>> from matplotlib import pyplot as plt
-  >>> import matplotlib.pyplot as plt
-  >>> plt.switch_backend("Agg")
+   >>> import matplotlib.pyplot as plt
+   >>> plt.switch_backend("Agg")
 
 Introduction
 ============

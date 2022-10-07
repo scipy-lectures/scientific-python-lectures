@@ -22,7 +22,7 @@ expected = data.target
 ############################################################
 # Plot predicted as a function of expected
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 plt.figure(figsize=(4, 3))
 plt.scatter(expected, predicted)
 plt.plot([0, 50], [0, 50], '--k')

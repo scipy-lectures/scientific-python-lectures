@@ -7,7 +7,7 @@ evolution of the optimizer.
 """
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import optimize
+import scipy as sp
 
 import sys, os
 sys.path.append(os.path.abspath('helper'))
@@ -54,7 +54,7 @@ def gradient_descent(x0, f, f_prime, hessian=None, adaptative=False):
         if adaptative:
             # Compute a step size using a line_search to satisfy the Wolf
             # conditions
-            step = optimize.line_search(f, f_prime,
+            step = sp.optimize.line_search(f, f_prime,
                                 np.r_[x_i, y_i], -np.r_[dx_i, dy_i],
                                 np.r_[dx_i, dy_i], c2=.05)
             step = step[0]
@@ -82,7 +82,7 @@ def conjugate_gradient(x0, f, f_prime, hessian=None):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.minimize(f, x0, jac=f_prime, method="CG", callback=store, options={"gtol": 1e-12})
+    sp.optimize.minimize(f, x0, jac=f_prime, method="CG", callback=store, options={"gtol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 
@@ -95,7 +95,7 @@ def newton_cg(x0, f, f_prime, hessian):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.minimize(f, x0, method="Newton-CG", jac=f_prime, hess=hessian, callback=store, options={"xtol": 1e-12})
+    sp.optimize.minimize(f, x0, method="Newton-CG", jac=f_prime, hess=hessian, callback=store, options={"xtol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 
@@ -108,7 +108,7 @@ def bfgs(x0, f, f_prime, hessian=None):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.minimize(f, x0, method="BFGS", jac=f_prime, callback=store, options={"gtol": 1e-12})
+    sp.optimize.minimize(f, x0, method="BFGS", jac=f_prime, callback=store, options={"gtol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 
@@ -121,7 +121,7 @@ def powell(x0, f, f_prime, hessian=None):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.minimize(f, x0, method="Powell", callback=store, options={"ftol": 1e-12})
+    sp.optimize.minimize(f, x0, method="Powell", callback=store, options={"ftol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 
@@ -134,7 +134,7 @@ def nelder_mead(x0, f, f_prime, hessian=None):
         all_x_i.append(x)
         all_y_i.append(y)
         all_f_i.append(f(X))
-    optimize.minimize(f, x0, method="Nelder-Mead", callback=store, options={"ftol": 1e-12})
+    sp.optimize.minimize(f, x0, method="Nelder-Mead", callback=store, options={"ftol": 1e-12})
     return all_x_i, all_y_i, all_f_i
 
 

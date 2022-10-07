@@ -3,7 +3,7 @@
 
     >>> import numpy as np
     >>> import matplotlib.pyplot as plt
-    >>> from scipy import ndimage
+    >>> import scipy as sp
 
 .. _image-answers:
 
@@ -28,7 +28,7 @@ Example of solution for the image processing exercise: unmolten grains in glass
 3. Slightly filter the image with a median filter in order to refine its
    histogram. Check how the histogram changes. ::
 
-     >>> filtdat = ndimage.median_filter(dat, size=(7,7))
+     >>> filtdat = sp.ndimage.median_filter(dat, size=(7,7))
      >>> hi_dat = np.histogram(dat, bins=np.arange(256))
      >>> hi_filtdat = np.histogram(filtdat, bins=np.arange(256))
 
@@ -54,14 +54,14 @@ Example of solution for the image processing exercise: unmolten grains in glass
 
 6. Use mathematical morphology to clean the different phases. ::
 
-    >>> sand_op = ndimage.binary_opening(sand, iterations=2)
+    >>> sand_op = sp.ndimage.binary_opening(sand, iterations=2)
 
 7. Attribute labels to all bubbles and sand grains, and remove from the
    sand mask grains that are smaller than 10 pixels. To do so, use
-   ``ndimage.sum`` or ``np.bincount`` to compute the grain sizes. ::
+   ``sp.ndimage.sum`` or ``np.bincount`` to compute the grain sizes. ::
 
-    >>> sand_labels, sand_nb = ndimage.label(sand_op)
-    >>> sand_areas = np.array(ndimage.sum(sand_op, sand_labels, np.arange(sand_labels.max()+1)))
+    >>> sand_labels, sand_nb = sp.ndimage.label(sand_op)
+    >>> sand_areas = np.array(sp.ndimage.sum(sand_op, sand_labels, np.arange(sand_labels.max()+1)))
     >>> mask = sand_areas > 100
     >>> remove_small_sand = mask[sand_labels.ravel()].reshape(sand_labels.shape)
 
@@ -71,7 +71,7 @@ Example of solution for the image processing exercise: unmolten grains in glass
 
 8. Compute the mean size of bubbles. ::
 
-    >>> bubbles_labels, bubbles_nb = ndimage.label(void)
+    >>> bubbles_labels, bubbles_nb = sp.ndimage.label(void)
     >>> bubbles_areas = np.bincount(bubbles_labels.ravel())[1:]
     >>> mean_bubble_size = bubbles_areas.mean()
     >>> median_bubble_size = np.median(bubbles_areas)

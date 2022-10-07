@@ -7,16 +7,15 @@ blocks of an image.
 """
 
 import numpy as np
-import scipy.misc
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
-f = scipy.misc.face(gray=True)
+f = sp.misc.face(gray=True)
 sx, sy = f.shape
 X, Y = np.ogrid[0:sx, 0:sy]
 
 regions = sy//6 * (X//4) + Y//6
-block_mean = ndimage.mean(f, labels=regions,
+block_mean = sp.ndimage.mean(f, labels=regions,
                           index=np.arange(1, regions.max() +1))
 block_mean.shape = (sx//4, sy//6)
 

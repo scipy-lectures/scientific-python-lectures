@@ -6,7 +6,7 @@ This example shows simple operations of mathematical morphology.
 """
 
 import numpy as np
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
 square = np.zeros((32, 32))
@@ -15,10 +15,10 @@ np.random.seed(2)
 x, y = (32*np.random.random((2, 20))).astype(int)
 square[x, y] = 1
 
-open_square = ndimage.binary_opening(square)
+open_square = sp.ndimage.binary_opening(square)
 
-eroded_square = ndimage.binary_erosion(square)
-reconstruction = ndimage.binary_propagation(eroded_square, mask=square)
+eroded_square = sp.ndimage.binary_erosion(square)
+reconstruction = sp.ndimage.binary_propagation(eroded_square, mask=square)
 
 plt.figure(figsize=(9.5, 3))
 plt.subplot(131)

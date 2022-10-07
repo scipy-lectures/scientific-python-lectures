@@ -14,12 +14,12 @@ x = t + np.random.normal(size=100)
 
 ############################################################
 # Detrend
-from scipy import signal
-x_detrended = signal.detrend(x)
+import scipy as sp
+x_detrended = sp.signal.detrend(x)
 
 ############################################################
 # Plot
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 plt.figure(figsize=(5, 4))
 plt.plot(t, x, label="x")
 plt.plot(t, x_detrended, label="x_detrended")

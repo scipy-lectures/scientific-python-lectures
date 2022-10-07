@@ -6,7 +6,7 @@ Comparing 2 sets of samples from Gaussians
 """
 
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 
 # Generates 2 sets of observations
 samples1 = np.random.normal(0, size=1000)

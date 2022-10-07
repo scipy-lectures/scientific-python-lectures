@@ -32,7 +32,7 @@ X_2d = tsne.fit_transform(X)
 # Visualize the data
 target_ids = range(len(digits.target_names))
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 plt.figure(figsize=(6, 5))
 colors = 'r', 'g', 'b', 'c', 'm', 'y', 'k', 'w', 'orange', 'purple'
 for i, c, label in zip(target_ids, colors, digits.target_names):

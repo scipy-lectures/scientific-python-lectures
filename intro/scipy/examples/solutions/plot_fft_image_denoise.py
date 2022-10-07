@@ -34,8 +34,8 @@ plt.title('Original image')
 ############################################################
 # Compute the 2d FFT of the input image
 ############################################################
-from scipy import fftpack
-im_fft = fftpack.fft2(im)
+import scipy as sp
+im_fft = sp.fftpack.fft2(im)
 
 # Show the results
 
@@ -84,7 +84,7 @@ plt.title('Filtered Spectrum')
 
 # Reconstruct the denoised image from the filtered spectrum, keep only the
 # real part for display.
-im_new = fftpack.ifft2(im_fft2).real
+im_new = sp.fftpack.ifft2(im_fft2).real
 
 plt.figure()
 plt.imshow(im_new, plt.cm.gray)
@@ -98,8 +98,7 @@ plt.title('Reconstructed Image')
 # Implementing filtering directly with FFTs is tricky and time consuming.
 # We can use the Gaussian filter from :mod:`scipy.ndimage`
 
-from scipy import ndimage
-im_blur = ndimage.gaussian_filter(im, 4)
+im_blur = sp.ndimage.gaussian_filter(im, 4)
 
 plt.figure()
 plt.imshow(im_blur, plt.cm.gray)

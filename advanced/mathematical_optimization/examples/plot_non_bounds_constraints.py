@@ -7,7 +7,7 @@ SLSQP and cobyla.
 """
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import optimize
+import scipy as sp
 
 x, y = np.mgrid[-2.03:4.2:.04, -1.6:3.2:.04]
 x = x.T
@@ -50,7 +50,7 @@ def f(x):
 def constraint(x):
     return np.atleast_1d(1.5 - np.sum(np.abs(x)))
 
-optimize.minimize(f, np.array([0, 0]), method="SLSQP",
+sp.optimize.minimize(f, np.array([0, 0]), method="SLSQP",
                      constraints={"fun": constraint, "type": "ineq"})
 
 accumulated = np.array(accumulator)

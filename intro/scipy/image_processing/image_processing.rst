@@ -12,15 +12,17 @@ Geometrical transformations on images
 
 Changing orientation, resolution, .. ::
 
-    >>> from scipy import misc  # Load an image
-    >>> face = misc.face(gray=True)
+    >>> import scipy as sp
 
-    >>> from scipy import ndimage # Shift, roate and zoom it
-    >>> shifted_face = ndimage.shift(face, (50, 50))
-    >>> shifted_face2 = ndimage.shift(face, (50, 50), mode='nearest')
-    >>> rotated_face = ndimage.rotate(face, 30)
+    >>> # Load an image
+    >>> face = sp.misc.face(gray=True)
+
+    >>> # Shift, roate and zoom it
+    >>> shifted_face = sp.ndimage.shift(face, (50, 50))
+    >>> shifted_face2 = sp.ndimage.shift(face, (50, 50), mode='nearest')
+    >>> rotated_face = sp.ndimage.rotate(face, 30)
     >>> cropped_face = face[50:-50, 50:-50]
-    >>> zoomed_face = ndimage.zoom(face, 2)
+    >>> zoomed_face = sp.ndimage.zoom(face, 2)
     >>> zoomed_face.shape
     (1536, 2048)
 
@@ -49,8 +51,8 @@ Image filtering
 
 Generate a noisy face::
 
-    >>> from scipy import misc
-    >>> face = misc.face(gray=True)
+    >>> import scipy as sp
+    >>> face = sp.misc.face(gray=True)
     >>> face = face[:512, -512:]  # crop out square on right
     >>> import numpy as np
     >>> noisy_face = np.copy(face).astype(float)
@@ -58,10 +60,9 @@ Generate a noisy face::
 
 Apply a variety of filters on it::
 
-    >>> blurred_face = ndimage.gaussian_filter(noisy_face, sigma=3)
-    >>> median_face = ndimage.median_filter(noisy_face, size=5)
-    >>> from scipy import signal
-    >>> wiener_face = signal.wiener(noisy_face, (5, 5))
+    >>> blurred_face = sp.ndimage.gaussian_filter(noisy_face, sigma=3)
+    >>> median_face = sp.ndimage.median_filter(noisy_face, size=5)
+    >>> wiener_face = sp.signal.wiener(noisy_face, (5, 5))
 
 .. image:: /intro/scipy/auto_examples/images/sphx_glr_plot_image_filters_001.png
     :target: auto_examples/plot_image_filters.html
@@ -98,7 +99,7 @@ in order to modify geometrical structures.
 
 Let us first generate a structuring element::
 
-    >>> el = ndimage.generate_binary_structure(2, 1)
+    >>> el = sp.ndimage.generate_binary_structure(2, 1)
     >>> el # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
     array([[False, True, False],
            [...True, True, True],
@@ -120,7 +121,7 @@ Let us first generate a structuring element::
            [0, 0, 1, 1, 1, 0, 0],
            [0, 0, 1, 1, 1, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]])
-    >>> ndimage.binary_erosion(a).astype(a.dtype)
+    >>> sp.ndimage.binary_erosion(a).astype(a.dtype)
     array([[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 1, 0, 0, 0],
@@ -128,8 +129,8 @@ Let us first generate a structuring element::
            [0, 0, 0, 1, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0]])
-    >>> #Erosion removes objects smaller than the structure
-    >>> ndimage.binary_erosion(a, structure=np.ones((5,5))).astype(a.dtype)
+    >>> # Erosion removes objects smaller than the structure
+    >>> sp.ndimage.binary_erosion(a, structure=np.ones((5,5))).astype(a.dtype)
     array([[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
@@ -148,7 +149,7 @@ Let us first generate a structuring element::
            [0.,  0.,  1.,  0.,  0.],
            [0.,  0.,  0.,  0.,  0.],
            [0.,  0.,  0.,  0.,  0.]])
-    >>> ndimage.binary_dilation(a).astype(a.dtype)
+    >>> sp.ndimage.binary_dilation(a).astype(a.dtype)
     array([[0.,  0.,  0.,  0.,  0.],
            [0.,  0.,  1.,  0.,  0.],
            [0.,  1.,  1.,  1.,  0.],
@@ -167,14 +168,14 @@ Let us first generate a structuring element::
            [0, 1, 1, 1, 0],
            [0, 0, 0, 0, 1]])
     >>> # Opening removes small objects
-    >>> ndimage.binary_opening(a, structure=np.ones((3, 3))).astype(int)
+    >>> sp.ndimage.binary_opening(a, structure=np.ones((3, 3))).astype(int)
     array([[0, 0, 0, 0, 0],
            [0, 1, 1, 1, 0],
            [0, 1, 1, 1, 0],
            [0, 1, 1, 1, 0],
            [0, 0, 0, 0, 0]])
     >>> # Opening can also smooth corners
-    >>> ndimage.binary_opening(a).astype(int)
+    >>> sp.ndimage.binary_opening(a).astype(int)
     array([[0, 0, 0, 0, 0],
            [0, 0, 1, 0, 0],
            [0, 1, 1, 1, 0],
@@ -196,8 +197,8 @@ image. ::
     >>> a[10:-10, 10:-10] = 1
     >>> a += 0.25 * np.random.standard_normal(a.shape)
     >>> mask = a>=0.5
-    >>> opened_mask = ndimage.binary_opening(mask)
-    >>> closed_mask = ndimage.binary_closing(opened_mask)
+    >>> opened_mask = sp.ndimage.binary_opening(mask)
+    >>> closed_mask = sp.ndimage.binary_closing(opened_mask)
 
 .. image:: /intro/scipy/auto_examples/images/sphx_glr_plot_mathematical_morpho_001.png
     :target: auto_examples/plot_mathematical_morpho.html
@@ -227,7 +228,7 @@ structuring element centered on the pixel of interest. ::
            [0, 3, 3, 3, 2, 3, 0],
            [0, 3, 3, 3, 3, 3, 0],
            [0, 0, 0, 0, 0, 0, 0]])
-    >>> ndimage.grey_erosion(a, size=(3, 3))
+    >>> sp.ndimage.grey_erosion(a, size=(3, 3))
     array([[0, 0, 0, 0, 0, 0, 0],
            [0, 0, 0, 0, 0, 0, 0],
            [0, 0, 1, 1, 1, 0, 0],
@@ -259,7 +260,7 @@ Let us first generate a nice synthetic binary image. ::
 :func:`scipy.ndimage.label` assigns a different label to each connected
 component::
 
-    >>> labels, nb = ndimage.label(mask)
+    >>> labels, nb = sp.ndimage.label(mask)
     >>> nb
     8
 
@@ -270,10 +271,10 @@ component::
 
 Now compute measurements on each connected component::
 
-    >>> areas = ndimage.sum(mask, labels, range(1, labels.max()+1))
+    >>> areas = sp.ndimage.sum(mask, labels, range(1, labels.max()+1))
     >>> areas   # The number of pixels in each connected component
     array([190.,   45.,  424.,  278.,  459.,  190.,  549.,  424.])
-    >>> maxima = ndimage.maximum(sig, labels, range(1, labels.max()+1))
+    >>> maxima = sp.ndimage.maximum(sig, labels, range(1, labels.max()+1))
     >>> maxima  # The maximum signal in each connected component
     array([ 1.80238238,   1.13527605,   5.51954079,   2.49611818, 6.71673619,
             1.80238238,  16.76547217,   5.51954079])
@@ -286,10 +287,10 @@ Now compute measurements on each connected component::
 
 Extract the 4th connected component, and crop the array around it::
 
-    >>> ndimage.find_objects(labels==4) # doctest: +SKIP
+    >>> sp.ndimage.find_objects(labels==4) # doctest: +SKIP
     [(slice(30L, 48L, None), slice(30L, 48L, None))]
-    >>> sl = ndimage.find_objects(labels==4)
-    >>> from matplotlib import pyplot as plt
+    >>> sl = sp.ndimage.find_objects(labels==4)
+    >>> import matplotlib.pyplot as plt
     >>> plt.imshow(sig[sl[0]])   # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at ...>
 

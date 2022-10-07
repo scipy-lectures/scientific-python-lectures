@@ -7,7 +7,7 @@ Illustration of 1D optimization: Brent's method
 
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import optimize
+import scipy as sp
 
 x = np.linspace(-1, 3, 100)
 x_0 = np.exp(-1)
@@ -27,7 +27,7 @@ for epsilon in (0, 1):
     all_x = list()
     all_y = list()
     for iter in range(30):
-        result = optimize.minimize_scalar(f, bracket=(-5, 2.9, 4.5), method="Brent",
+        result = sp.optimize.minimize_scalar(f, bracket=(-5, 2.9, 4.5), method="Brent",
                     options={"maxiter": iter}, tol=np.finfo(1.).eps)
         if result.success:
             print('Converged at ', iter)

@@ -28,14 +28,14 @@ plt.ylabel('Min and max temperature')
 # Fitting it to a periodic function
 ############################################################
 
-from scipy import optimize
+import scipy as sp
 def yearly_temps(times, avg, ampl, time_offset):
     return (avg
             + ampl * np.cos((times + time_offset) * 2 * np.pi / times.max()))
 
-res_max, cov_max = optimize.curve_fit(yearly_temps, months,
+res_max, cov_max = sp.optimize.curve_fit(yearly_temps, months,
                                       temp_max, [20, 10, 0])
-res_min, cov_min = optimize.curve_fit(yearly_temps, months,
+res_min, cov_min = sp.optimize.curve_fit(yearly_temps, months,
                                       temp_min, [-40, 20, 0])
 
 ############################################################

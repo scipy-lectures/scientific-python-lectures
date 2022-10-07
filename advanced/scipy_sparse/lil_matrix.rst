@@ -1,7 +1,7 @@
 ..
    >>> import numpy as np
    >>> np.random.seed(0)
-   >>> from scipy import sparse
+   >>> import scipy as sp
 
 List of Lists Format (LIL)
 ==========================
@@ -26,7 +26,7 @@ Examples
 
 * create an empty LIL matrix::
 
-    >>> mtx = sparse.lil_matrix((4, 5))
+    >>> mtx = sp.sparse.lil_matrix((4, 5))
 
 * prepare random data::
 
@@ -61,7 +61,7 @@ Examples
 
 * more slicing and indexing::
 
-    >>> mtx = sparse.lil_matrix([[0, 1, 2, 0], [3, 0, 1, 0], [1, 0, 0, 1]])
+    >>> mtx = sp.sparse.lil_matrix([[0, 1, 2, 0], [3, 0, 1, 0], [1, 0, 0, 1]])
     >>> mtx.todense()    # doctest: +ELLIPSIS
     matrix([[0, 1, 2, 0],
             [3, 0, 1, 0],

@@ -7,17 +7,16 @@ Demo geometrical transformations of images.
 """
 
 # Load some data
-from scipy import misc
-face = misc.face(gray=True)
+import scipy as sp
+face = sp.misc.face(gray=True)
 
 # Apply a variety of transformations
-from scipy import ndimage
-from matplotlib import pyplot as plt
-shifted_face = ndimage.shift(face, (50, 50))
-shifted_face2 = ndimage.shift(face, (50, 50), mode='nearest')
-rotated_face = ndimage.rotate(face, 30)
+import matplotlib.pyplot as plt
+shifted_face = sp.ndimage.shift(face, (50, 50))
+shifted_face2 = sp.ndimage.shift(face, (50, 50), mode='nearest')
+rotated_face = sp.ndimage.rotate(face, 30)
 cropped_face = face[50:-50, 50:-50]
-zoomed_face = ndimage.zoom(face, 2)
+zoomed_face = sp.ndimage.zoom(face, 2)
 zoomed_face.shape
 
 plt.figure(figsize=(15, 3))

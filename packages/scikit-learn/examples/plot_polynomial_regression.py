@@ -8,7 +8,7 @@ to be prefered
 """
 
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
 from sklearn import linear_model

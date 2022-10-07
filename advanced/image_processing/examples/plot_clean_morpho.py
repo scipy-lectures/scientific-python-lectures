@@ -8,7 +8,7 @@ morphology: removing small regions and holes.
 """
 
 import numpy as np
-from scipy import ndimage
+import scipy as sp
 import matplotlib.pyplot as plt
 
 np.random.seed(1)
@@ -17,7 +17,7 @@ l = 256
 im = np.zeros((l, l))
 points = l*np.random.random((2, n**2))
 im[(points[0]).astype(int), (points[1]).astype(int)] = 1
-im = ndimage.gaussian_filter(im, sigma=l/(4.*n))
+im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
 
 mask = (im > im.mean()).astype(float)
 
@@ -27,9 +27,9 @@ img = mask + 0.3*np.random.randn(*mask.shape)
 binary_img = img > 0.5
 
 # Remove small white regions
-open_img = ndimage.binary_opening(binary_img)
+open_img = sp.ndimage.binary_opening(binary_img)
 # Remove small black hole
-close_img = ndimage.binary_closing(open_img)
+close_img = sp.ndimage.binary_closing(open_img)
 
 plt.figure(figsize=(12, 3))
 

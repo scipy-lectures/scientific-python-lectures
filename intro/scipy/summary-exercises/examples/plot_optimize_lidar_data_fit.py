@@ -6,8 +6,7 @@ Generate a chart of the data fitted by Gaussian curve
 """
 import numpy as np
 import matplotlib.pyplot as plt
-
-from scipy.optimize import leastsq
+import scipy as sp
 
 
 def model(t, coeffs):
@@ -22,7 +21,7 @@ waveform_1 = np.load('waveform_1.npy')
 t = np.arange(len(waveform_1))
 
 x0 = np.array([3, 30, 15, 1], dtype=float)
-x, flag = leastsq(residuals, x0, args=(waveform_1, t))
+x, flag = sp.optimize.leastsq(residuals, x0, args=(waveform_1, t))
 
 print(x)
 

@@ -7,7 +7,7 @@ with a single nearest neighbor, and then using 3 nearest neighbors.
 """
 
 import numpy as np
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from sklearn import neighbors, datasets
 from matplotlib.colors import ListedColormap
 
