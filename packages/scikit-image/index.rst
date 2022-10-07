@@ -545,8 +545,10 @@ approach that fills "basins" in the image ::
     >>> # to the background
     >>> import scipy as sp
     >>> distance = sp.ndimage.distance_transform_edt(image)
-    >>> local_maxi = peak_local_max(distance, indices=False, footprint=np.ones((3, 3)), labels=image)
-    >>> markers = morphology.label(local_maxi)
+    >>> peak_idx = peak_local_max(distance, footprint=np.ones((3, 3)), labels=image)
+    >>> peak_mask = np.zeros_like(distance, dtype=bool)
+    >>> peak_mask[tuple(peak_idx.T)] = True
+    >>> markers = morphology.label(peak_mask)
     >>> labels_ws = watershed(-distance, markers, mask=image)
 
 *Random walker* segmentation
@@ -602,7 +604,7 @@ Example: compute the size and perimeter of the two segmented regions::
 
     >>> properties = measure.regionprops(labels_rw)
     >>> [prop.area for prop in properties]
-    [770, 1168]
+    [770.0, 1168.0]
     >>> [prop.perimeter for prop in properties] # doctest: +ELLIPSIS
     [100.91..., 126.81...]
 
@@ -658,27 +660,6 @@ Use ``skimage`` dedicated utility function::
 .. image:: auto_examples/images/sphx_glr_plot_boundaries_001.png
     :width: 90%
     :target: auto_examples/plot_boundaries.html
-    :align: center
-
-**The (experimental) scikit-image viewer**
-
-``skimage.viewer`` = matplotlib-based canvas for displaying images +
-experimental Qt-based GUI-toolkit ::
-
-    >>> from skimage import viewer
-    >>> new_viewer = viewer.ImageViewer(coins) # doctest: +SKIP
-    >>> new_viewer.show() # doctest: +SKIP
-
-Useful for displaying pixel values.
-
-For more interaction, plugins can be added to the viewer::
-
-    >>> new_viewer = viewer.ImageViewer(coins) # doctest: +SKIP
-    >>> from skimage.viewer.plugins import lineprofile
-    >>> new_viewer += lineprofile.LineProfile() # doctest: +SKIP
-    >>> new_viewer.show() # doctest: +SKIP
-
-.. image:: viewer.png
     :align: center
 
 Feature extraction for computer vision

@@ -33,7 +33,7 @@ peak_idx = peak_local_max(
     distance, footprint=np.ones((3, 3)), labels=image
 )
 peak_mask = np.zeros_like(distance, dtype=bool)
-peak_mask[peak_idx] = True
+peak_mask[tuple(peak_idx.T)] = True
 markers = measure.label(peak_mask)
 labels_ws = watershed(-distance, markers, mask=image)
 
