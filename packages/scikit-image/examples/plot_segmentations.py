@@ -29,9 +29,12 @@ image = np.logical_or(mask_circle1, mask_circle2)
 # Generate the markers as local maxima of the distance
 # to the background
 distance = ndimage.distance_transform_edt(image)
-local_maxi = peak_local_max(
-    distance, indices=False, footprint=np.ones((3, 3)), labels=image)
-markers = measure.label(local_maxi)
+peak_idx = peak_local_max(
+    distance, footprint=np.ones((3, 3)), labels=image
+)
+peak_mask = np.zeros_like(distance, dtype=bool)
+peak_mask[peak_idx] = True
+markers = measure.label(peak_mask)
 labels_ws = watershed(-distance, markers, mask=image)
 
 markers[~image] = -1
