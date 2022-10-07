@@ -32,7 +32,7 @@ This chapter covers the following techniques:
 * `Python-C-Api <https://docs.python.org/3/c-api/>`_
 * `Ctypes <https://docs.python.org/3/library/ctypes.html>`_
 * `SWIG (Simplified Wrapper and Interface Generator) <https://www.swig.org/>`_
-* `Cython <https://cython.org/>`_
+* `Cython <https://cython.org/>`__
 
 These four techniques are perhaps the most well known ones, of which Cython is
 probably the most advanced one and the one you should consider using first. The
@@ -619,7 +619,7 @@ And, as before, we convince ourselves that it worked:
 Cython
 ======
 
-`Cython <https://cython.org/>`_ is both a Python-like language for writing
+`Cython <https://cython.org/>`__ is both a Python-like language for writing
 C-extensions and an advanced compiler for this language. The Cython *language*
 is a superset of Python, which comes with additional constructs that allow you
 call C functions and annotate variables and class attributes with c types. In
@@ -755,8 +755,8 @@ the Numpy array type to your Cython code. I.e. like specifying that variable
 bounds checking are supported. Look at the corresponding section in the `Cython
 documentation <https://docs.cython.org/en/latest/src/tutorial/numpy.html>`_. In case you
 want to pass Numpy arrays as C arrays to your Cython wrapped C functions, there
-is a section about this in the `Cython documentation
-<https://docs.cython.org/en/latest/src/userguide/memoryviews.html#pass-data-from-a-c-function-via-pointer>`_.
+is a `section about this in the Cython documentation
+<https://docs.cython.org/en/latest/src/userguide/memoryviews.html#pass-data-from-a-c-function-via-pointer>`__.
 
 In the following example, we will show how to wrap the familiar ``cos_doubles``
 function using Cython.
