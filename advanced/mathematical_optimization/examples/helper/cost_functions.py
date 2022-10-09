@@ -129,12 +129,12 @@ class LoggingFunction:
     def __init__(self, function, counter=None):
         self.function = function
         if counter is None:
-            counter = list()
+            counter = []
         self.counter = counter
-        self.all_x_i = list()
-        self.all_y_i = list()
-        self.all_f_i = list()
-        self.counts = list()
+        self.all_x_i = []
+        self.all_y_i = []
+        self.all_f_i = []
+        self.counts = []
 
     def __call__(self, x0):
         x_i, y_i = x0[:2]
@@ -151,7 +151,7 @@ class CountingFunction:
     def __init__(self, function, counter=None):
         self.function = function
         if counter is None:
-            counter = list()
+            counter = []
         self.counter = counter
 
     def __call__(self, x0):

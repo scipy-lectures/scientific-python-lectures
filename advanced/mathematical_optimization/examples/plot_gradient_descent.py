@@ -42,9 +42,9 @@ def super_fmt(value):
 
 def gradient_descent(x0, f, f_prime, hessian=None, adaptative=False):
     x_i, y_i = x0
-    all_x_i = list()
-    all_y_i = list()
-    all_f_i = list()
+    all_x_i = []
+    all_y_i = []
+    all_f_i = []
 
     for i in range(1, 100):
         all_x_i.append(x_i)
@@ -142,7 +142,7 @@ def nelder_mead(x0, f, f_prime, hessian=None):
 
 ###############################################################################
 # Run different optimizers on these problems
-levels = dict()
+levels = {}
 
 for index, ((f, f_prime, hessian), optimizer) in enumerate((
                 (mk_quad(.7), gradient_descent),
