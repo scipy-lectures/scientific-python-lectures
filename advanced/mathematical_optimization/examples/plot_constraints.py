@@ -41,7 +41,7 @@ for i in (1, 2):
     plt.axis('off')
 
 # And now plot the optimization path
-accumulator = list()
+accumulator = []
 
 def f(x):
     # Store the list of function calls

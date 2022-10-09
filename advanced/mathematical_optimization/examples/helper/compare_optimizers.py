@@ -97,22 +97,22 @@ def mk_costs(ndim=2):
 mem = Memory('.', verbose=3)
 
 if True:
-    gradient_less_benchs = dict()
+    gradient_less_benchs = {}
 
     for ndim in (2, 8, 32, 128):
-        this_dim_benchs = dict()
+        this_dim_benchs = {}
         costs, starting_points = mk_costs(ndim)
         for cost_name, cost_function in costs.items():
             # We don't need the derivative or the hessian
             cost_function = cost_function[0]
-            function_bench = dict()
+            function_bench = {}
             for x0 in starting_points:
-                all_bench = list()
+                all_bench = []
                 # Bench gradient-less
                 for method_name, method in methods.items():
                     if method_name in ('Newton', "L-BFGS w f'"):
                         continue
-                    this_bench = function_bench.get(method_name, list())
+                    this_bench = function_bench.get(method_name, [])
                     this_costs = mem.cache(bencher)(cost_name, ndim,
                                                     method_name, x0)
                     if np.all(this_costs > .25*ndim**2*1e-9):
@@ -134,7 +134,7 @@ if True:
                     if method_name.endswith(" w f'"):
                         this_method_name = method_name[:-4]
                     this_method_name = this_method_name + "\nw f'"
-                    this_bench = function_bench.get(this_method_name, list())
+                    this_bench = function_bench.get(this_method_name, [])
                     this_costs, this_counts = mem.cache(bencher_gradient)(
                                         cost_name, ndim, method_name, x0)
                     if np.all(this_costs > .25*ndim**2*1e-9):
@@ -150,7 +150,7 @@ if True:
 
                 # Bench Newton with Hessian
                 method_name = 'Newton'
-                this_bench = function_bench.get(method_name, list())
+                this_bench = function_bench.get(method_name, [])
                 this_costs, this_counts = mem.cache(bencher_hessian)(cost_name, ndim,
                                                 method_name, x0)
                 if np.all(this_costs > .25*ndim**2*1e-9):

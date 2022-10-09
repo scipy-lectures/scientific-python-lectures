@@ -16,7 +16,7 @@ def print_big_array(small_array):
     return big_array
 
 
-l = list()
+l = []
 for i in range(10):
     a = np.arange(8)
     l.append(print_big_array(a))
