@@ -1,7 +1,7 @@
 numpy>=1.23
 scipy>=1.9
 scikit-learn>=1.1
-matplotlib==3.6.0
+matplotlib>=3.6
 scikit-image>=0.19
 sympy>=1.11
 statsmodels>=0.13
