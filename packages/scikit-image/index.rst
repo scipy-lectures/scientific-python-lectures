@@ -530,6 +530,7 @@ the regions.
 The Watershed (:func:`skimage.segmentation.watershed`) is a region-growing
 approach that fills "basins" in the image ::
 
+    >>> from skimage import morphology
     >>> from skimage.segmentation import watershed
     >>> from skimage.feature import peak_local_max
     >>>
