@@ -16,22 +16,26 @@ significantly non-zero: the air fares have decreased between 2000 and
 """
 
 # Standard library imports
-import urllib
 import os
 
 ##############################################################################
 # Load the data
 import pandas
+import requests
 
 if not os.path.exists('airfares.txt'):
     # Download the file if it is not present
-    urllib.urlretrieve(
-        'http://www.stat.ufl.edu/~winner/data/airq4.dat',
-                       'airfares.txt')
+    r = requests.get(
+        'https://users.stat.ufl.edu/~winner/data/airq4.dat',
+        verify=False  # Wouldn't normally do this, but this site's certificate
+                      # is not yet distributed
+    )
+    with open('airfares.txt', 'wb') as f:
+        f.write(r.content)
 
 # As a seperator, ' +' is a regular expression that means 'one of more
 # space'
-data = pandas.read_csv('airfares.txt', sep=' +', header=0,
+data = pandas.read_csv('airfares.txt', delim_whitespace=True, header=0,
                        names=['city1', 'city2', 'pop1', 'pop2',
                               'dist', 'fare_2000', 'nb_passengers_2000',
                               'fare_2001', 'nb_passengers_2001'])
@@ -56,7 +60,7 @@ data_2000 = data_flat[['city1', 'city2', 'pop1', 'pop2',
 data_2000.columns = ['city1', 'city2', 'pop1', 'pop2', 'dist', 'fare',
                      'nb_passengers']
 # Add a column with the year
-data_2000['year'] = 2000
+data_2000.insert(0, 'year', 2000)
 
 data_2001 = data_flat[['city1', 'city2', 'pop1', 'pop2',
                        'dist', 'fare_2001', 'nb_passengers_2001']]
@@ -64,7 +68,7 @@ data_2001 = data_flat[['city1', 'city2', 'pop1', 'pop2',
 data_2001.columns = ['city1', 'city2', 'pop1', 'pop2', 'dist', 'fare',
                      'nb_passengers']
 # Add a column with the year
-data_2001['year'] = 2001
+data_2001.insert(0, 'year', 2001)
 
 data_flat = pandas.concat([data_2000, data_2001])
 
