@@ -63,6 +63,7 @@ sphinx_gallery_conf = {
     # The following is necessary to get the links in the code of the
     # examples
     'backreferences_dir': 'tmp',
+    'plot_gallery': '1',
 }
 
 # Add any paths that contain templates here, relative to this directory.
