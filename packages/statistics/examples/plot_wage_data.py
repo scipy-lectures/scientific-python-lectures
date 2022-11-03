@@ -15,7 +15,6 @@ plt.rcdefaults().
 """
 
 # Standard library imports
-import urllib
 import os
 
 import matplotlib.pyplot as plt
@@ -23,11 +22,13 @@ import matplotlib.pyplot as plt
 ##############################################################################
 # Load the data
 import pandas
+import requests
 
 if not os.path.exists('wages.txt'):
     # Download the file if it is not present
-    urllib.urlretrieve('http://lib.stat.cmu.edu/datasets/CPS_85_Wages',
-                       'wages.txt')
+    r = requests.get('http://lib.stat.cmu.edu/datasets/CPS_85_Wages')
+    with open('wages.txt', 'wb') as f:
+        f.write(r.content)
 
 # Give names to the columns
 names = [
@@ -47,7 +48,7 @@ names = [
 short_names = [n.split(':')[0] for n in names]
 
 data = pandas.read_csv('wages.txt', skiprows=27, skipfooter=6, sep=None,
-                       header=None)
+                       header=None, engine='python')
 data.columns = short_names
 
 # Log-transform the wages, because they typically are increased with
