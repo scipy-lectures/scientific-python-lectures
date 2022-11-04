@@ -1122,3 +1122,9 @@ invited to try these exercises.
      lectures
 
    * The `scipy cookbook <https://scipy-cookbook.readthedocs.io>`__
+
+.. compile solutions, but don't list them explicitly
+.. toctree::
+   :hidden:
+
+   solutions.rst
