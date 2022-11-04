@@ -10,7 +10,7 @@ pandas>=1.5
 pytest>=7.1
 sphinx>=5.2
 coverage>=6.4
-pillow
+Pillow
 imageio>=2.22
 pip
 ipython
