@@ -91,5 +91,5 @@ Note that you will also need the following system packages:
    <https://www.tug.org/texlive/>`__ (``texlive``,
    ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``
    on Debian/Ubuntu),
- - `dvipng <http://savannah.nongnu.org/projects/dvipng/>`__, and
+ - `dvisvgm <https://dvisvgm.de/>`__, and
  - `git <https://git-scm.com/>`__.

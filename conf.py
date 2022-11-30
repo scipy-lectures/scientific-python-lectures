@@ -357,7 +357,8 @@ extlinks = {
 
 # -- Options for imgmath ------------------------------------------------
 
-imgmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
+imgmath_image_format = 'svg'
+imgmath_dvisvgm_args = ['--no-fonts', '--zoom=1.1']
 immath_use_preview = True
 
 # Add the 'copybutton' javascript, to hide/show the prompt in code
