@@ -70,6 +70,12 @@ ul.horizontal li:before {
     margin-left: 1.5ex;
 }
 
+/* On a horizontal table, if the list item has only one paragraph
+   child, render that child inline instead of as a paragraph */
+ul.horizontal li p:first-child:nth-last-child(1) {
+    display: inline-block;
+}
+
 div.body p {
    line-height: 1.45;
 }
