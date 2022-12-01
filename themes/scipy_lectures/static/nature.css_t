@@ -716,7 +716,7 @@ table.field-list {
 }
 
 /* Boxes */
-div.topic, div.admonition {
+aside.topic, div.admonition {
     border-radius: 4px 4px 4px 4px;
     display: flow-root;
 }
@@ -727,7 +727,7 @@ div.sidebar {
     max-width: 40%;
 }
 
-div.topic {
+aside.topic {
     background-color: #F9F9F9;
     margin-top: 15px;
     padding-top: 3px;
