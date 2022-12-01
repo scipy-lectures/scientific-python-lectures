@@ -715,6 +715,33 @@ table.field-list {
     width: 100%;
 }
 
+/* Replicate coloring for definition lists */
+/* Sphinx now uses these instead of tables for field lists */
+/* https://www.sphinx-doc.org/en/master/usage/restructuredtext/field-lists.html */
+dl.field-list {
+    border-top: solid 1px #AAAAAA;
+}
+dt.field-odd {
+    border-bottom: solid 1px #AAAAAA;
+    padding: 0.3em;
+}
+dt.field-even {
+    border-bottom: solid 1px #AAAAAA;
+    padding: 0.3em;
+}
+dd.field-odd {
+    background-color: #FFFFEE;
+    border-bottom: solid 1px #AAAAAA;
+    padding-right: 0.75em;
+    padding-bottom: 0.3em;
+}
+dd.field-even {
+    background-color: #F3F3FF;
+    border-bottom: solid 1px #AAAAAA;
+    padding-right: 0.75em;
+    padding-bottom: 0.3em;
+}
+
 /* Boxes */
 aside.topic, div.admonition {
     border-radius: 4px 4px 4px 4px;
