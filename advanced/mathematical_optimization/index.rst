@@ -197,22 +197,21 @@ Brent's method to find the minimum of a function:
 .. |1d_optim_4| image:: auto_examples/images/sphx_glr_plot_1d_optim_004.png
    :scale: 75%
 
-.. list-table::
+.. list-table:: **Brent's method on a quadratic function**: it
+                converges in 3 iterations, as the quadratic
+                approximation is then exact.
 
- * - **Brent's method on a quadratic function**: it converges in 3 iterations,
-     as the quadratic approximation is then exact.
+   * - |1d_optim_1|
 
-   - |1d_optim_1|
+     - |1d_optim_2|
 
-   - |1d_optim_2|
+.. list-table:: **Brent's method on a non-convex function**: note that
+                the fact that the optimizer avoided the local minimum
+                is a matter of luck.
 
- * - **Brent's method on a non-convex function**: note that the fact that the
-     optimizer avoided the local minimum is a matter of luck.
+   * - |1d_optim_3|
 
-   - |1d_optim_3|
-
-   - |1d_optim_4|
-
+     - |1d_optim_4|
 
 .. note::
 
@@ -248,22 +247,23 @@ gradient, that is the direction of the *steepest descent*.
    :scale: 75%
 
 .. list-table:: **Fixed step gradient descent**
+   :widths: 1 1 1
 
- * - **A well-conditioned quadratic function.**
+   * - **A well-conditioned quadratic function.**
 
-   - |gradient_quad_cond|
+     - |gradient_quad_cond|
 
-   - |gradient_quad_cond_conv|
+     - |gradient_quad_cond_conv|
 
- * - **An ill-conditioned quadratic function.**
+   * - **An ill-conditioned quadratic function.**
 
-     The core problem of gradient-methods on ill-conditioned problems is
-     that the gradient tends not to point in the direction of the
-     minimum.
+       The core problem of gradient-methods on ill-conditioned problems is
+       that the gradient tends not to point in the direction of the
+       minimum.
 
-   - |gradient_quad_icond|
+     - |gradient_quad_icond|
 
-   - |gradient_quad_icond_conv|
+     - |gradient_quad_icond_conv|
 
 We can see that very anisotropic (`ill-conditioned
 <https://en.wikipedia.org/wiki/Condition_number>`_) functions are harder
@@ -305,30 +305,31 @@ is done in gradient descent code using a
 
 
 .. list-table:: **Adaptive step gradient descent**
+   :widths: 1 1 1
 
- * - A well-conditioned quadratic function.
+   * - A well-conditioned quadratic function.
 
-   - |agradient_quad_cond|
+     - |agradient_quad_cond|
 
-   - |agradient_quad_cond_conv|
+     - |agradient_quad_cond_conv|
 
- * - An ill-conditioned quadratic function.
+   * - An ill-conditioned quadratic function.
 
-   - |agradient_quad_icond|
+     - |agradient_quad_icond|
 
-   - |agradient_quad_icond_conv|
+     - |agradient_quad_icond_conv|
 
- * - An ill-conditioned non-quadratic function.
+   * - An ill-conditioned non-quadratic function.
 
-   - |agradient_gauss_icond|
+     - |agradient_gauss_icond|
 
-   - |agradient_gauss_icond_conv|
+     - |agradient_gauss_icond_conv|
 
- * - An ill-conditioned very non-quadratic function.
+   * - An ill-conditioned very non-quadratic function.
 
-   - |agradient_rosen_icond|
+     - |agradient_rosen_icond|
 
-   - |agradient_rosen_icond_conv|
+     - |agradient_rosen_icond_conv|
 
 The more a function looks like a quadratic function (elliptic
 iso-curves), the easier it is to optimize.
@@ -360,18 +361,19 @@ gradient and sharp turns are reduced.
 
 
 .. list-table:: **Conjugate gradient descent**
+   :widths: 1 1 1
 
- * - An ill-conditioned non-quadratic function.
+   * - An ill-conditioned non-quadratic function.
 
-   - |cg_gauss_icond|
+     - |cg_gauss_icond|
 
-   - |cg_gauss_icond_conv|
+     - |cg_gauss_icond_conv|
 
- * - An ill-conditioned very non-quadratic function.
+   * - An ill-conditioned very non-quadratic function.
 
-   - |cg_rosen_icond|
+     - |cg_rosen_icond|
 
-   - |cg_rosen_icond_conv|
+     - |cg_rosen_icond_conv|
 
 scipy provides :func:`scipy.optimize.minimize` to find the minimum of scalar
 functions of one or more variables. The simple conjugate gradient method can
@@ -442,31 +444,32 @@ purpose, they rely on the 2 first derivative of the function: the
 
 
 .. list-table::
+   :widths: 1 1 1
 
- * - **An ill-conditioned quadratic function:**
+   * - **An ill-conditioned quadratic function:**
 
-     Note that, as the quadratic approximation is exact, the Newton
-     method is blazing fast
+       Note that, as the quadratic approximation is exact, the Newton
+       method is blazing fast
 
-   - |ncg_quad_icond|
+     - |ncg_quad_icond|
 
-   - |ncg_quad_icond_conv|
+     - |ncg_quad_icond_conv|
 
- * - **An ill-conditioned non-quadratic function:**
+   * - **An ill-conditioned non-quadratic function:**
 
-     Here we are optimizing a Gaussian, which is always below its
-     quadratic approximation. As a result, the Newton method overshoots
-     and leads to oscillations.
+       Here we are optimizing a Gaussian, which is always below its
+       quadratic approximation. As a result, the Newton method overshoots
+       and leads to oscillations.
 
-   - |ncg_gauss_icond|
+     - |ncg_gauss_icond|
 
-   - |ncg_gauss_icond_conv|
+     - |ncg_gauss_icond_conv|
 
- * - **An ill-conditioned very non-quadratic function:**
+   * - **An ill-conditioned very non-quadratic function:**
 
-   - |ncg_rosen_icond|
+     - |ncg_rosen_icond|
 
-   - |ncg_rosen_icond_conv|
+     - |ncg_rosen_icond_conv|
 
 In scipy, you can use the Newton method by setting ``method`` to Newton-CG in
 :func:`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
@@ -555,30 +558,31 @@ Full code examples
 
 
 .. list-table::
+   :widths: 1 1 1
 
- * - **An ill-conditioned quadratic function:**
+   * - **An ill-conditioned quadratic function:**
 
-     On a exactly quadratic function, BFGS is not as fast as Newton's
-     method, but still very fast.
+       On a exactly quadratic function, BFGS is not as fast as Newton's
+       method, but still very fast.
 
-   - |bfgs_quad_icond|
+     - |bfgs_quad_icond|
 
-   - |bfgs_quad_icond_conv|
+     - |bfgs_quad_icond_conv|
 
- * - **An ill-conditioned non-quadratic function:**
+   * - **An ill-conditioned non-quadratic function:**
 
-     Here BFGS does better than Newton, as its empirical estimate of the
-     curvature is better than that given by the Hessian.
+       Here BFGS does better than Newton, as its empirical estimate of the
+       curvature is better than that given by the Hessian.
 
-   - |bfgs_gauss_icond|
+     - |bfgs_gauss_icond|
 
-   - |bfgs_gauss_icond_conv|
+     - |bfgs_gauss_icond_conv|
 
- * - **An ill-conditioned very non-quadratic function:**
+   * - **An ill-conditioned very non-quadratic function:**
 
-   - |bfgs_rosen_icond|
+     - |bfgs_rosen_icond|
 
-   - |bfgs_rosen_icond_conv|
+     - |bfgs_rosen_icond_conv|
 
 ::
 
@@ -651,21 +655,22 @@ Almost a gradient approach
 
 
 .. list-table::
+   :widths: 1 1 1
 
- * - **An ill-conditioned quadratic function:**
+   * - **An ill-conditioned quadratic function:**
 
-     Powell's method isn't too sensitive to local ill-conditionning in
-     low dimensions
+       Powell's method isn't too sensitive to local ill-conditionning in
+       low dimensions
 
-   - |powell_quad_icond|
+     - |powell_quad_icond|
 
-   - |powell_quad_icond_conv|
+     - |powell_quad_icond_conv|
 
- * - **An ill-conditioned very non-quadratic function:**
+   * - **An ill-conditioned very non-quadratic function:**
 
-   - |powell_rosen_icond|
+     - |powell_rosen_icond|
 
-   - |powell_rosen_icond_conv|
+     - |powell_rosen_icond_conv|
 
 
 Simplex method: the Nelder-Mead
@@ -697,18 +702,19 @@ methods on smooth, non-noisy functions.
 
 
 .. list-table::
+   :widths: 1 1 1
 
- * - **An ill-conditioned non-quadratic function:**
+   * - **An ill-conditioned non-quadratic function:**
 
-   - |nm_gauss_icond|
+     - |nm_gauss_icond|
 
-   - |nm_gauss_icond_conv|
+     - |nm_gauss_icond_conv|
 
- * - **An ill-conditioned very non-quadratic function:**
+   * - **An ill-conditioned very non-quadratic function:**
 
-   - |nm_rosen_icond|
+     - |nm_rosen_icond|
 
-   - |nm_rosen_icond_conv|
+     - |nm_rosen_icond_conv|
 
 Using the Nelder-Mead solver in :func:`scipy.optimize.minimize`::
 
