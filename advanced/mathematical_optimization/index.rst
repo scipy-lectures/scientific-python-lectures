@@ -45,6 +45,7 @@ used for more efficient, non black-box, optimization.
      <https://www.amazon.com/gp/product/0471494631/ref=ox_sc_act_title_1?ie=UTF8&smid=ATVPDKIKX0DER>`_ by Fletcher: good at hand-waving explanations.
 
 .. include:: ../../includes/big_toc_css.rst
+   :start-line: 1
 
 
 .. contents:: Chapters contents
@@ -543,7 +544,7 @@ Full code examples
    declaration
 
 .. include:: auto_examples/index.rst
-    :start-line: 1
+   :start-line: 1
 
 
 .. |bfgs_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_014.png

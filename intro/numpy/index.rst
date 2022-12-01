@@ -17,6 +17,7 @@ numerical computing with Python.
 ____
 
 .. include:: ../../includes/big_toc_css.rst
+   :start-line: 1
 
 .. toctree::
    array_object.rst
