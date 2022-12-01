@@ -746,44 +746,43 @@ div.green {
 
 
 /* Content div */
-div.contents {
+nav.contents {
     background-color: #FFFFF6;
     border-color: #c0ac5c;
 }
 
-div.contents li {
+nav.contents li {
       list-style-type: none;
       font-size: 110% ;
       font-weight: bold;
 }
 
 @media (max-width: 70ex) {
-    div.contents ul {
-	padding-left: 2.5ex;
+    nav.contents ul {
+        padding-left: 2.5ex;
     }
 }
 
-div.contents p {
+nav.contents p {
     margin-bottom : 0px;
     margin-top : 0px;
 }
 
-div.body p.topic-title, div.body p.sidebar-title {
-    margin-bottom: 3px;
-}
-
-div.contents ul {
+nav.contents ul {
     margin-bottom : 4px;
     margin-top : 0px;
 }
 
-div.contents li li {
+nav.contents li li {
       list-style-type: none;
       list-style-type: square;
       font-size: 90% ;
       font-weight: normal;
 }
 
+div.body p.topic-title, div.body p.sidebar-title {
+    margin-bottom: 3px;
+}
 
 /* toctree */
 div.toctree-wrapper ul {
