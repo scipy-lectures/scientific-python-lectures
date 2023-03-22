@@ -17,7 +17,7 @@ extension) and built using `Sphinx <https://www.sphinx-doc.org>`_.
 
 You can view the online version at: https://scipy-lectures.org
 
-Reusing and distributing
+Reuse and Distribute
 -------------------------
 
 As stated in the ``LICENSE.txt`` file, this material comes with no strings
