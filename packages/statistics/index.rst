@@ -329,7 +329,7 @@ and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
 function's help)::
 
     >>> sp.stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
-    Ttest_1sampResult(statistic=30.088099970..., pvalue=1.32891964...e-28)
+    TtestResult(statistic=30.088099970..., pvalue=1.32891964...e-28, df=39)
 
 .. tip::
 
@@ -369,7 +369,7 @@ can be removed, using a "paired test", or `"repeated measures test"
 <https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
     >>> sp.stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-    Ttest_relResult(statistic=1.784201940..., pvalue=0.082172638183...)
+    TtestResult(statistic=1.784201940..., pvalue=0.082172638183..., df=39)
 
 .. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_002.png
    :target: auto_examples/plot_pandas.html
@@ -379,7 +379,7 @@ can be removed, using a "paired test", or `"repeated measures test"
 This is equivalent to a 1-sample test on the difference::
 
     >>> sp.stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
-    Ttest_1sampResult(statistic=1.784201940..., pvalue=0.082172638...)
+    TtestResult(statistic=1.784201940..., pvalue=0.082172638..., df=39)
 
 |
 

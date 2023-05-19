@@ -381,32 +381,32 @@ be used by setting the parameter ``method`` to CG ::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> sp.optimize.minimize(f, [2, -1], method="CG")    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-         fun: 1.6...e-11
-         jac: array([-6.15...e-06,   2.53...e-07])
-     message: ...'Optimization terminated successfully.'
-        nfev: 81
-         nit: 13
-        njev: 27
-      status: 0
+    >>> sp.optimize.minimize(f, [2, -1], method="CG") # doctest: +ELLIPSIS
+     message: Optimization terminated successfully.
      success: True
-           x: array([0.99999...,  0.99998...])
+      status: 0
+         fun: 1.650...e-11
+           x: [ 1.000e+00  1.000e+00]
+         nit: 13
+         jac: [-6.15...e-06  2.53...e-07]
+        nfev: 81
+        njev: 27
 
 Gradient methods need the Jacobian (gradient) of the function. They can compute it
 numerically, but will perform better if you can pass them the gradient::
 
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> sp.optimize.minimize(f, [2, 1], method="CG", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-         fun: 2.957...e-14
-         jac: array([ 7.1825...e-07,  -2.9903...e-07])
-     message: 'Optimization terminated successfully.'
-        nfev: 16
-         nit: 8
-        njev: 16
-      status: 0
+    >>> sp.optimize.minimize(f, [2, 1], method="CG", jac=jacobian) # doctest: +ELLIPSIS
+     message: Optimization terminated successfully.
      success: True
-           x: array([1.0000...,  1.0000...])
+      status: 0
+         fun: 2.95786...e-14
+           x: [ 1.000e+00  1.000e+00]
+         nit: 8
+         jac: [ 7.183e-07 -2.990e-07]
+        nfev: 16
+        njev: 16
 
 Note that the function has only been evaluated 27 times, compared to 108
 without the gradient.
@@ -480,16 +480,16 @@ inversion of the Hessian is performed by conjugate gradient ::
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-         fun: 1.5...e-15
-         jac: array([ 1.0575...e-07, -7.4832...e-08])
-     message: 'Optimization terminated successfully.'
-        nfev: 11
-        nhev: 0
-         nit: 10
-        njev: 33
-      status: 0
+     message: Optimization terminated successfully.
      success: True
-           x: array([0.99999...,  0.99999...])
+      status: 0
+         fun: 1.5601357400786612e-15
+           x: [ 1.000e+00  1.000e+00]
+         nit: 10
+         jac: [ 1.058e-07 -7.483e-08]
+        nfev: 11
+        njev: 33
+        nhev: 0
 
 Note that compared to a conjugate gradient (above), Newton's method has
 required less function evaluations, but more gradient evaluations, as it
@@ -498,17 +498,17 @@ to the algorithm::
 
     >>> def hessian(x): # Computed with sympy
     ...     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
-    >>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
-         fun: 1.6277...e-15
-         jac: array([  1.1104...e-07,  -7.7809...e-08])
-     message: ...'Optimization terminated successfully.'
-        nfev: 11
-        nhev: 10
-         nit: 10
-        njev: 11
-      status: 0
+    >>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)
+     message: Optimization terminated successfully.
      success: True
-           x: array([0.99999...,  0.99999...])
+      status: 0
+         fun: 1.6277298383706738e-15
+           x: [ 1.000e+00  1.000e+00]
+         nit: 10
+         jac: [ 1.110e-07 -7.781e-08]
+        nfev: 11
+        njev: 11
+        nhev: 10
 
 .. note::
 
@@ -590,19 +590,18 @@ Full code examples
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> sp.optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-          fun: 2.6306...e-16
-     hess_inv: array([[0.99986...,  2.0000...],
-           [2.0000...,  4.498...]])
-          jac: array([  6.7089...e-08,  -3.2222...e-08])
-      message: 'Optimization terminated successfully.'
-         nfev: 10
-          nit: 8
-         njev: 10
-       status: 0
-      success: True
-            x: array([1.        ,  0.99999...])
-
+    >>> sp.optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)
+     message: Optimization terminated successfully.
+     success: True
+      status: 0
+         fun: 2.630637192365927e-16
+           x: [ 1.000e+00  1.000e+00]
+         nit: 8
+         jac: [ 6.709e-08 -3.222e-08]
+    hess_inv: [[ 9.999e-01  2.000e+00]
+               [ 2.000e+00  4.499e+00]]
+        nfev: 10
+        njev: 10
 
 **L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:
 in very high dimensions (> 250) the Hessian matrix is too costly to
@@ -613,18 +612,17 @@ are also supported by L-BFGS-B::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)    # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
-          fun: 1.4417...e-15
-     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
-          jac: array([  1.0233...e-07,  -2.5929...e-08])
-      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
-         nfev: 17
-          nit: 16
-         njev: 17
-       status: 0
-      success: True
-            x: array([1.0000...,  1.0000...])
-
+    >>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
+     message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
+     success: True
+      status: 0
+         fun: 1.4417677473011861e-15
+           x: [ 1.000e+00  1.000e+00]
+         nit: 16
+         jac: [ 1.023e-07 -2.593e-08]
+        nfev: 17
+        njev: 17
+    hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
 
 Gradient-less methods
 ----------------------
@@ -720,18 +718,17 @@ Using the Nelder-Mead solver in :func:`scipy.optimize.minimize`::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> sp.optimize.minimize(f, [2, -1], method="Nelder-Mead") # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
-     final_simplex: (array([[1.0000...,  1.0000...],
-           [0.99998... ,  0.99996... ],
-           [1.0000...,  1.0000... ]]), array([1.1152...e-10,   1.5367...e-10,   4.9883...e-10]))
-               fun: 1.1152...e-10
-           message: ...'Optimization terminated successfully.'
-              nfev: 111
-               nit: 58
-            status: 0
+    >>> sp.optimize.minimize(f, [2, -1], method="Nelder-Mead")
+           message: Optimization terminated successfully.
            success: True
-                 x: array([1.0000...,  1.0000...])
-
+            status: 0
+               fun: 1.11527915993744e-10
+                 x: [ 1.000e+00  1.000e+00]
+               nit: 58
+              nfev: 111
+     final_simplex: (array([[ 1.000e+00,  1.000e+00],
+                           [ 1.000e+00,  1.000e+00],
+                           [ 1.000e+00,  1.000e+00]]), array([ 1.115e-10,  1.537e-10,  4.988e-10]))
 
 Global optimizers
 ------------------
@@ -898,24 +895,9 @@ if we compute the norm ourselves and use a good generic optimizer
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
-    >>> sp.optimize.minimize(g, x0, method="BFGS")   #doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +NUMBER
-      fun: 2.6940...e-11
-     hess_inv: array([[...
-     ...
-               ...]])
-          jac: array([...
-     ...
-               ...])
-      message: 'Optimization terminated successfully.'
-         nfev: 132
-          nit: 11
-         njev: 12
-       status: 0
-      success: True
-            x: array([-7...e-09,   1.1111...e-01,   2.2222...e-01, 3.3333...e-01,
-            4.4444...e-01,   5.5555...e-01, 6.6666...e-01,   7.7777...e-01,
-            8.8889...e-01, 1.0000...e+00])
-
+    >>> result = sp.optimize.minimize(g, x0, method="BFGS")
+    >>> result.fun # doctest: +ELLIPSIS
+    2.6940...e-11
 
 BFGS needs more function calls, and gives a less precise result.
 
@@ -979,17 +961,17 @@ support bound constraints with the parameter ``bounds``::
 
     >>> def f(x):
     ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
-    >>> sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))   # doctest: +ELLIPSIS
-          fun: 1.5811...
-     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
-          jac: array([-0.94868..., -0.31622...])
-      message: ...'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
-         nfev: 9
-          nit: 2
-         njev: 3
-       status: 0
+    >>> sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
+      message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
       success: True
-            x: array([1.5,  1.5])
+       status: 0
+          fun: 1.5811388300841898
+            x: [ 1.500e+00  1.500e+00]
+          nit: 2
+          jac: [-9.487e-01 -3.162e-01]
+         nfev: 9
+         njev: 3
+         hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
 
 .. image:: auto_examples/images/sphx_glr_plot_constraints_002.png
     :target: auto_examples/plot_constraints.html
@@ -1020,17 +1002,16 @@ and :math:`g(x) < 0`.
     ...     return np.atleast_1d(1.5 - np.sum(np.abs(x)))
 
     >>> x0 = np.array([0, 0])
-    >>> sp.optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"}) #doctest: +ELLIPSIS
-         fun: 2.4748...
-         jac: array([-0.70708..., -0.70712...])
-     message: 'Optimization terminated successfully'
-        nfev: 15
-         nit: 5
-        njev: 5
-      status: 0
+    >>> sp.optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"})
+     message: Optimization terminated successfully
      success: True
-           x: array([1.2500..., 0.2499...])
-
+      status: 0
+         fun: 2.4748737350439685
+           x: [ 1.250e+00  2.500e-01]
+         nit: 5
+         jac: [-7.071e-01 -7.071e-01]
+        nfev: 15
+        njev: 5
 
 .. warning::
 
