@@ -215,11 +215,25 @@ var)``. Examples::
        2
     tan (x) + 1
 
-You can check, that it is correct by::
+You can check that it is correct by::
 
     >>> sym.limit((sym.tan(x + y) - sym.tan(x)) / y, y, 0)
+       1
+    -------
        2
-    tan (x) + 1
+    cos (x)
+
+Which is equivalent since
+
+.. math:: \sec(x) = \frac{1}{\cos(x)} and \sec^2(x) = \tan^2(x) + 1.
+
+You can check this as well::
+
+    >>> sym.trigsimp(sym.diff(sym.tan(x), x))
+       1
+    -------
+       2
+    cos (x)
 
 Higher derivatives can be calculated using the ``diff(func, var, n)`` method::
 

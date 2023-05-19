@@ -390,16 +390,16 @@ the location of the minimum that it has found:
 
     >>> result = sp.optimize.minimize(f, x0=0)
     >>> result # doctest: +ELLIPSIS
-          fun: -7.9458233756...
-     hess_inv: array([[0.0858...]])
-          jac: array([-1.19209...e-06])
-      message: 'Optimization terminated successfully.'
-         nfev: 12
-          nit: 5
-         njev: 6
-       status: 0
+      message: Optimization terminated successfully.
       success: True
-            x: array([-1.30644...])
+       status: 0
+          fun: -7.9458233...
+            x: [-1.306e+00]
+          nit: 5
+          jac: [-1.192e-06]
+     hess_inv: [[ 8.589e-02]]
+         nfev: 12
+         njev: 6
     >>> result.x # The coordinate of the minimum  # doctest: +ELLIPSIS
     array([-1.30644...])
 
@@ -412,17 +412,17 @@ good options. The `lBFGS algorithm
 in general::
 
 
-    >>> sp.optimize.minimize(f, x0=0, method="L-BFGS-B")  # doctest: +ELLIPSIS
-          fun: -7.94582338...
-     hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
-          jac: array([-1.59872117e-06])
-      message: 'CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL'
-         nfev: 12
-          nit: 5
-         njev: 6
-       status: 0
+    >>> sp.optimize.minimize(f, x0=0, method="L-BFGS-B") # doctest: +ELLIPSIS
+      message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
       success: True
-            x: array([-1.30644...])
+       status: 0
+          fun: -7.9458233756...
+            x: [-1.306e+00]
+          nit: 5
+          jac: [-1.599e-06]
+         nfev: 12
+         njev: 6
+     hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
 
 Note how it cost only 12 functions evaluation above to find a good value
 for the minimum.
@@ -555,17 +555,15 @@ we can use :func:`scipy.optimize.root`:
 
     >>> root = sp.optimize.root(f, x0=1)  # our initial guess is 1
     >>> root    # The full result
-        fjac: array([[-1.]])
-         fun: array([0.])
-     message: 'The solution converged.'
-        nfev: 10
-         qtf: array([1.33310463e-32])
-           r: array([-10.])
-      status: 1
+     message: The solution converged.
      success: True
-           x: array([0.])
-    >>> root.x  # Only the root found
-    array([0.])
+      status: 1
+         fun: [ 0.000e+00]
+           x: [ 0.000e+00]
+        nfev: 10
+        fjac: [[-1.000e+00]]
+           r: [-1.000e+01]
+         qtf: [ 1.333e-32]
 
 Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
 there is a second root around -2.5. We find the exact value of it by adjusting
