@@ -15,5 +15,5 @@ imageio>=2.22
 pip
 ipython
 sphinx-gallery>=0.13
-pre-commit>=2.20
+pre-commit>=3.3
 requests
