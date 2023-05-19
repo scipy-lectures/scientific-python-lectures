@@ -218,8 +218,17 @@ var)``. Examples::
 You can check, that it is correct by::
 
     >>> sym.limit((sym.tan(x + y) - sym.tan(x)) / y, y, 0)
+       1
+    -------
        2
-    tan (x) + 1
+    cos (x)
+
+Which is equivalent since
+
+.. math: \sec(x) = \frac{1}{\cos(x)} and \sec^2(x) = \tan^2(x) + 1.
+
+.. TODO: Should we apply some transforms to ensure that the above two results
+   have the same form or should we continue to point out they are equivalent.
 
 Higher derivatives can be calculated using the ``diff(func, var, n)`` method::
 
