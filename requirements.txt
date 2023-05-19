@@ -8,12 +8,12 @@ statsmodels>=0.14
 seaborn>=0.12
 pandas>=2.0
 pytest>=7.1
-sphinx==5.2.3
+sphinx>=7
 coverage>=6.4
 Pillow
 imageio>=2.22
 pip
 ipython
-sphinx-gallery>=0.11
+sphinx-gallery>=0.13
 pre-commit>=2.20
 requests

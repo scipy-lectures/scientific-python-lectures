@@ -8,6 +8,7 @@ Compute the Mandelbrot fractal and plot it
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy import newaxis
+import warnings
 
 def compute_mandelbrot(N_max, some_threshold, nx, ny):
     # A grid of c-values
@@ -22,8 +23,8 @@ def compute_mandelbrot(N_max, some_threshold, nx, ny):
 
     # The code below overflows in many regions of the x-y grid, suppress
     # warnings temporarily
-    with np.warnings.catch_warnings():
-        np.warnings.simplefilter("ignore")
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
         for j in range(N_max):
             z = z**2 + c
         mandelbrot_set = (abs(z) < some_threshold)
