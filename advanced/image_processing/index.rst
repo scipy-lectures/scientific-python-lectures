@@ -84,7 +84,7 @@ Writing an array to a file:
 Creating a numpy array from an image file::
 
     >>> import imageio.v3 as iio
-    >>> face = sp.misc.face()
+    >>> face = sp.datasets.face()
     >>> iio.imwrite('face.png', face)  # First we need to create the PNG file
 
     >>> face = iio.imread('face.png')
@@ -127,7 +127,7 @@ Displaying images
 Use ``matplotlib`` and ``imshow`` to display an image inside a
 ``matplotlib figure``::
 
-    >>> f = sp.misc.face(gray=True)  # retrieve a grayscale image
+    >>> f = sp.datasets.face(gray=True)  # retrieve a grayscale image
     >>> import matplotlib.pyplot as plt
     >>> plt.imshow(f, cmap=plt.cm.gray)        # doctest: +ELLIPSIS
     <matplotlib.image.AxesImage object at 0x...>
@@ -189,7 +189,7 @@ Images are arrays: use the whole ``numpy`` machinery.
 
 ::
 
-    >>> face = sp.misc.face(gray=True)
+    >>> face = sp.datasets.face(gray=True)
     >>> face[0, 40]
     127
     >>> # Slicing
@@ -221,7 +221,7 @@ Statistical information
 
 ::
 
-    >>> face = sp.misc.face(gray=True)
+    >>> face = sp.datasets.face(gray=True)
     >>> face.mean()
     113.48026784261067
     >>> face.max(), face.min()
@@ -261,7 +261,7 @@ Geometrical transformations
 ---------------------------
 ::
 
-    >>> face = sp.misc.face(gray=True)
+    >>> face = sp.datasets.face(gray=True)
     >>> lx, ly = face.shape
     >>> # Cropping
     >>> crop_face = face[lx // 4: - lx // 4, ly // 4: - ly // 4]
@@ -297,7 +297,7 @@ Blurring/smoothing
 
 **Gaussian filter** from ``scipy.ndimage``::
 
-    >>> face = sp.misc.face(gray=True)
+    >>> face = sp.datasets.face(gray=True)
     >>> blurred_face = sp.ndimage.gaussian_filter(face, sigma=3)
     >>> very_blurred = sp.ndimage.gaussian_filter(face, sigma=5)
 
@@ -318,7 +318,7 @@ Sharpening
 
 Sharpen a blurred image::
 
-    >>> face = sp.misc.face(gray=True).astype(float)
+    >>> face = sp.datasets.face(gray=True).astype(float)
     >>> blurred_f = sp.ndimage.gaussian_filter(face, 3)
 
 increase the weight of edges by adding an approximation of the
@@ -342,7 +342,7 @@ Denoising
 
 Noisy face::
 
-    >>> f = sp.misc.face(gray=True)
+    >>> f = sp.datasets.face(gray=True)
     >>> f = f[230:290, 220:320]
     >>> noisy = f + 0.4 * f.std() * np.random.random(f.shape)
 
@@ -800,7 +800,7 @@ Can be used outside the limited scope of segmentation applications.
 
 Example: block mean::
 
-    >>> f = sp.misc.face(gray=True)
+    >>> f = sp.datasets.face(gray=True)
     >>> sx, sy = f.shape
     >>> X, Y = np.ogrid[0:sx, 0:sy]
     >>> regions = (sy//6) * (X//4) + (Y//6)  # note that we use broadcasting

@@ -9,7 +9,7 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
-f = sp.misc.face(gray=True)
+f = sp.datasets.face(gray=True)
 f = f[230:290, 220:320]
 
 noisy = f + 0.4*f.std()*np.random.random(f.shape)

@@ -239,7 +239,7 @@ Colorspaces
 Color images are of shape (N, M, 3) or (N, M, 4) (when an alpha channel
 encodes transparency) ::
 
-    >>> face = sp.misc.face()
+    >>> face = sp.datasets.face()
     >>> face.shape
     (768, 1024, 3)
 

@@ -1,12 +1,12 @@
 numpy>=1.24
 scipy>=1.10
-scikit-learn>=1.2
 matplotlib>=3.7
+pandas>=2.0
+scikit-learn>=1.2
 scikit-image==0.21.0rc1
 sympy>=1.12
 statsmodels>=0.14
 seaborn>=0.12
-pandas>=2.0
 pytest>=7.1
 sphinx>=7
 coverage>=6.4

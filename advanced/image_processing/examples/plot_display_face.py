@@ -4,10 +4,10 @@ Display a Racoon Face
 
 An example that displays a racoon face with matplotlib.
 """
-import scipy.misc
+import scipy as sp
 import matplotlib.pyplot as plt
 
-f = scipy.misc.face(gray=True)
+f = sp.datasets.face(gray=True)
 
 plt.figure(figsize=(10, 3.6))
 

@@ -8,7 +8,7 @@ Demo filtering for denoising of images.
 
 # Load some data
 import scipy as sp
-face = sp.misc.face(gray=True)
+face = sp.datasets.face(gray=True)
 face = face[:512, -512:]  # crop out square on right
 
 # Apply a variety of filters

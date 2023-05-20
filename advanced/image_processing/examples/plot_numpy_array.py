@@ -8,11 +8,10 @@ tricks.
 """
 
 import numpy as np
-import scipy
-import scipy.misc
+import scipy as sp
 import matplotlib.pyplot as plt
 
-face = scipy.misc.face(gray=True)
+face = sp.datasets.face(gray=True)
 face[10:13, 20:23]
 face[100:120] = 255
 
