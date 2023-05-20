@@ -8,7 +8,7 @@ Demo geometrical transformations of images.
 
 # Load some data
 import scipy as sp
-face = sp.misc.face(gray=True)
+face = sp.datasets.face(gray=True)
 
 # Apply a variety of transformations
 import matplotlib.pyplot as plt

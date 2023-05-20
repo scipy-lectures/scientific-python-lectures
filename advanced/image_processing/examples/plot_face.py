@@ -7,7 +7,7 @@ Small example to plot a racoon face.
 
 import scipy as sp
 import imageio.v3 as iio
-f = sp.misc.face()
+f = sp.datasets.face()
 iio.imwrite('face.png', f) # uses the Image module (PIL)
 
 import matplotlib.pyplot as plt

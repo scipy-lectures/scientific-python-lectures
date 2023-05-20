@@ -10,7 +10,7 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
-f = sp.misc.face(gray=True)
+f = sp.datasets.face(gray=True)
 sx, sy = f.shape
 X, Y = np.ogrid[0:sx, 0:sy]
 

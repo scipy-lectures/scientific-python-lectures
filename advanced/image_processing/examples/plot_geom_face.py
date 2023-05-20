@@ -9,7 +9,7 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
-face = sp.misc.face(gray=True)
+face = sp.datasets.face(gray=True)
 lx, ly = face.shape
 # Cropping
 crop_face = face[lx//4:-lx//4, ly//4:-ly//4]

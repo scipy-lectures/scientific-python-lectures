@@ -15,7 +15,7 @@ Changing orientation, resolution, .. ::
     >>> import scipy as sp
 
     >>> # Load an image
-    >>> face = sp.misc.face(gray=True)
+    >>> face = sp.datasets.face(gray=True)
 
     >>> # Shift, roate and zoom it
     >>> shifted_face = sp.ndimage.shift(face, (50, 50))
@@ -52,7 +52,7 @@ Image filtering
 Generate a noisy face::
 
     >>> import scipy as sp
-    >>> face = sp.misc.face(gray=True)
+    >>> face = sp.datasets.face(gray=True)
     >>> face = face[:512, -512:]  # crop out square on right
     >>> import numpy as np
     >>> noisy_face = np.copy(face).astype(float)

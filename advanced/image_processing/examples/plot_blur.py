@@ -8,7 +8,7 @@ An example showing various processes that blur an image.
 import scipy as sp
 import matplotlib.pyplot as plt
 
-face = sp.misc.face(gray=True)
+face = sp.datasets.face(gray=True)
 blurred_face = sp.ndimage.gaussian_filter(face, sigma=3)
 very_blurred = sp.ndimage.gaussian_filter(face, sigma=5)
 local_mean = sp.ndimage.uniform_filter(face, size=11)
