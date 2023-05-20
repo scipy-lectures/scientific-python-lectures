@@ -14,7 +14,7 @@ Storage Schemes
 * assume the following is imported::
 
   >>> import numpy as np
-  >>> import scipy.sparse as sps
+  >>> import scipy as sp
   >>> import matplotlib.pyplot as plt
 
 * **warning** for NumPy users:
