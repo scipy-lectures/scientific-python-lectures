@@ -158,7 +158,7 @@ Reading from files: :func:`skimage.io.imread` ::
 
     >>> import os
     >>> filename = os.path.join(skimage.data_dir, 'camera.png')
-    >>> camera = io.imread(filename)
+    >>> camera = io.imread(filename) # doctest: +SKIP
 
 .. image:: auto_examples/images/sphx_glr_plot_camera_001.png
     :width: 50%

@@ -12,7 +12,7 @@ sphinx>=7
 coverage>=6.4
 Pillow
 imageio>=2.22
-pip
+pooch
 ipython
 sphinx-gallery>=0.13
 pre-commit>=3.3
