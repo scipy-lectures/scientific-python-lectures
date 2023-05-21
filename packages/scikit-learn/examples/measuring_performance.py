@@ -5,13 +5,11 @@ Measuring Decision Tree performance
 Demonstrates overfit when testing on train set.
 """
 
-## TODO: `load_boston` has been removed from scikit-learn since version 1.2.
-
 ############################################################
 # Get the data
 
-from sklearn.datasets import load_boston
-data = load_boston()
+from sklearn.datasets import fetch_california_housing
+data = fetch_california_housing(as_frame=True)
 
 ############################################################
 # Train and test a model
