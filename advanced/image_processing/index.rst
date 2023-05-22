@@ -8,7 +8,7 @@
 .. _basic_image:
 
 =======================================================
-Image manipulation and processing using Numpy and Scipy
+Image manipulation and processing using Numpy and SciPy
 =======================================================
 
 **Authors**: *Emmanuelle Gouillart, Gaël Varoquaux*

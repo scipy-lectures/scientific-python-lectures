@@ -182,7 +182,7 @@ that can be combined to obtain a scientific computing environment:
 
      :ref:`chapter on numpy <numpy>`
 
-* **Scipy** : high-level numerical routines.
+* **SciPy** : high-level numerical routines.
   Optimization, regression, interpolation, etc https://scipy.org/
 
   .. seealso::

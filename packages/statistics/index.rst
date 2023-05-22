@@ -307,7 +307,7 @@ use the :mod:`scipy.stats` sub-module of `scipy
 
 .. seealso::
 
-   Scipy is a vast library. For a quick summary to the whole library, see
+   SciPy is a vast library. For a quick summary to the whole library, see
    the :ref:`scipy <scipy>` chapter.
 
 
