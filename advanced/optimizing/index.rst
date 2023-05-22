@@ -240,9 +240,9 @@ roughly :math:`n^3` in the size of the input matrix.
 
 However, in both of these example, we are not using all the output of
 the SVD, but only the first few rows of its first return argument. If
-we use the ``svd`` implementation of scipy, we can ask for an incomplete
+we use the ``svd`` implementation of SciPy, we can ask for an incomplete
 version of the SVD. Note that implementations of linear algebra in
-scipy are richer then those in NumPy and should be preferred.
+SciPy are richer then those in NumPy and should be preferred.
 
 .. sourcecode:: ipython
 

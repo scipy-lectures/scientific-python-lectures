@@ -131,7 +131,7 @@ Finally, two more "technical" possibilities are useful as well:
 
     * **SciPy Users List** (scipy-user@scipy.org): scientific computing
       with Python, high-level data processing, in particular with the
-      scipy package.
+      SciPy package.
 
     * matplotlib-users@lists.sourceforge.net for plotting with
       matplotlib.

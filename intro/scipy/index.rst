@@ -923,7 +923,7 @@ the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
 .. topic:: `numpy.fft`
 
    NumPy also has an implementation of FFT (:mod:`numpy.fft`). However,
-   the scipy one
+   the SciPy one
    should be preferred, as it uses more efficient underlying implementations.
 
 |
@@ -1116,10 +1116,10 @@ invited to try these exercises.
 .. seealso:: **References to go further**
 
    * Some chapters of the `advanced <advanced_topics_part>`__ and the
-     `packages and applications <applications_part>`__ parts of the scipy
+     `packages and applications <applications_part>`__ parts of the SciPy
      lectures
 
-   * The `scipy cookbook <https://scipy-cookbook.readthedocs.io>`__
+   * The `SciPy cookbook <https://scipy-cookbook.readthedocs.io>`__
 
 .. compile solutions, but don't list them explicitly
 .. toctree::

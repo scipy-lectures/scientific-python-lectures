@@ -187,7 +187,7 @@ that can be combined to obtain a scientific computing environment:
 
   .. seealso::
 
-    :ref:`chapter on scipy <scipy>`
+    :ref:`chapter on SciPy <scipy>`
 
 * **Matplotlib** : 2-D visualization, "publication-ready" plots
   https://matplotlib.org/

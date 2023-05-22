@@ -300,7 +300,7 @@ Hypothesis testing: comparing two groups
 
 For simple `statistical tests
 <https://en.wikipedia.org/wiki/Statistical_hypothesis_testing>`_, we will
-use the :mod:`scipy.stats` sub-module of `scipy
+use the :mod:`scipy.stats` sub-module of `SciPy
 <https://docs.scipy.org/doc/>`_::
 
     >>> import scipy as sp

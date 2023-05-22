@@ -95,5 +95,5 @@ plt.legend(loc='best')
 # **Note** This is actually a bad way of creating a filter: such brutal
 # cut-off in frequency space does not control distorsion on the signal.
 #
-# Filters should be created using the scipy filter design code
+# Filters should be created using the SciPy filter design code
 plt.show()

@@ -18,7 +18,7 @@ histogram, bins = np.histogram(samples, bins=bins, density=True)
 
 bin_centers = 0.5*(bins[1:] + bins[:-1])
 
-# Compute the PDF on the bin centers from scipy distribution object
+# Compute the PDF on the bin centers from SciPy distribution object
 import scipy as sp
 pdf = sp.stats.norm.pdf(bin_centers)
 
