@@ -131,7 +131,7 @@ size of the array is expected to be ``[n_samples, n_features]``
     very high dimensional (e.g. millions of features) with most of them
     being zeros for a given sample. This is a case where ``scipy.sparse``
     matrices can be useful, in that they are much more memory-efficient
-    than numpy arrays.
+    than NumPy arrays.
 
 A Simple Example: the Iris Dataset
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -197,7 +197,7 @@ species. The data consist of the following:
     * Virginica
 
 :mod:`scikit-learn` embeds a copy of the iris CSV file along with a
-function to load it into numpy arrays::
+function to load it into NumPy arrays::
 
     >>> from sklearn.datasets import load_iris
     >>> iris = load_iris()

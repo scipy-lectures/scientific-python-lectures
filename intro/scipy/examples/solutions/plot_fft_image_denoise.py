@@ -59,7 +59,7 @@ plt.title('Fourier transform')
 # Define the fraction of coefficients (in each direction) we keep
 keep_fraction = 0.1
 
-# Call ff a copy of the original transform. Numpy arrays have a copy
+# Call ff a copy of the original transform. NumPy arrays have a copy
 # method for this purpose.
 im_fft2 = im_fft.copy()
 

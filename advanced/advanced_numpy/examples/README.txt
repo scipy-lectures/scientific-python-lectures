@@ -1,2 +1,2 @@
-Examples for the advanced numpy chapter
-========================================
+Examples for the advanced NumPy chapter
+=======================================

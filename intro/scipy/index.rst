@@ -922,7 +922,7 @@ the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
 
 .. topic:: `numpy.fft`
 
-   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
+   NumPy also has an implementation of FFT (:mod:`numpy.fft`). However,
    the scipy one
    should be preferred, as it uses more efficient underlying implementations.
 

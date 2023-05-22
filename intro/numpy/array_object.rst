@@ -107,7 +107,7 @@ NumPy Reference documentation
    .. sourcecode:: pycon
 
      >>> help(np.array) # doctest: +ELLIPSIS
-     Help on built-in function array in module numpy:
+     Help on built-in function array in module NumPy:
      <BLANKLINE>
      array(...)
          array(object, dtype=None, ...
@@ -136,7 +136,7 @@ NumPy Reference documentation
 Import conventions
 ..................
 
-The recommended convention to import numpy is:
+The recommended convention to import NumPy is:
 
 .. sourcecode:: pycon
 

@@ -25,8 +25,8 @@ used for more efficient, non black-box, optimization.
 
    .. rst-class:: horizontal
 
-    * :ref:`Numpy <numpy>`
-    * :ref:`Scipy <scipy>`
+    * :ref:`NumPy <numpy>`
+    * :ref:`SciPy <scipy>`
     * :ref:`Matplotlib <matplotlib>`
 
 .. seealso::  **References**

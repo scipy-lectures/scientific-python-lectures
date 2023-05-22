@@ -22,7 +22,7 @@ Statistics in Python
 
 .. topic:: **Requirements**
 
-   * Standard scientific Python environment (numpy, scipy, matplotlib)
+   * Standard scientific Python environment (NumPy, SciPy, matplotlib)
 
    * `Pandas <https://pandas.pydata.org/>`__
 

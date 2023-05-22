@@ -1,4 +1,4 @@
-/*  Example of wrapping the cos function from math.h using the Numpy-C-API. */
+/*  Example of wrapping the cos function from math.h using the NumPy-C-API. */
 
 #include <Python.h>
 #include <numpy/arrayobject.h>
@@ -17,7 +17,7 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
 
     NpyIter_IterNextFunc *iternext;
 
-    /*  parse single numpy array argument */
+    /*  parse single NumPy array argument */
     if (!PyArg_ParseTuple(args, "O!", &PyArray_Type, &arrays[0])) {
         return NULL;
     }
@@ -55,7 +55,7 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
     op_dtypes[0] = PyArray_DescrFromType(NPY_DOUBLE);
     op_dtypes[1] = op_dtypes[0];
 
-    /* Create the numpy iterator object: */
+    /* Create the NumPy iterator object: */
     iter = NpyIter_MultiNew(2, arrays, iterator_flags,
                             /* Use input order for output and iteration */
                             NPY_KEEPORDER,
@@ -124,7 +124,7 @@ static PyObject* cos_func_np(PyObject* self, PyObject* args)
 static PyMethodDef CosMethods[] =
 {
      {"cos_func_np", cos_func_np, METH_VARARGS,
-         "evaluate the cosine on a numpy array"},
+         "evaluate the cosine on a NumPy array"},
      {NULL, NULL, 0, NULL}
 };
 

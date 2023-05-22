@@ -674,7 +674,7 @@ Or,
             [0.,  0.],
             [0.,  0.]])
 
-   To understand this you need to learn more about the memory layout of a numpy array.
+   To understand this you need to learn more about the memory layout of a NumPy array.
 
 Adding a dimension
 ..................

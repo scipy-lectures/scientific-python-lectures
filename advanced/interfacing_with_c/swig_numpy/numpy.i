@@ -14,7 +14,7 @@
 /* The following code originally appeared in
  * enthought/kiva/agg/src/numeric.i written by Eric Jones.  It was
  * translated from C++ to C by John Hunter.  Bill Spotz has modified
- * it to fix some minor bugs, upgrade from Numeric to numpy (all
+ * it to fix some minor bugs, upgrade from Numeric to NumPy (all
  * versions), add some comments and functionality, and convert from
  * direct code insertion to SWIG fragments.
  */
@@ -74,7 +74,7 @@
     return typecode < 24 ? type_names[typecode] : type_names[24];
   }
 
-  /* Make sure input has correct numpy type.  Allow character and byte
+  /* Make sure input has correct NumPy type.  Allow character and byte
    * to match.  Also allow int and long to match.  This is deprecated.
    * You should use PyArray_EquivTypenums() instead.
    */
@@ -277,7 +277,7 @@
     return contiguous;
   }
 
-  /* Require that a numpy array is not byte-swapped.  If the array is
+  /* Require that a NumPy array is not byte-swapped.  If the array is
    * not byte-swapped, return 1.  Otherwise, set the python error string
    * and return 0.
    */
@@ -489,10 +489,10 @@
  * that the "FARRAY" typemaps expect FORTRAN ordering of
  * multidimensional arrays.  In python, the dimensions will not need
  * to be specified (except for the "DATA_TYPE* ARGOUT_ARRAY1"
- * typemaps).  The IN_ARRAYs can be a numpy array or any sequence that
- * can be converted to a numpy array of the specified type.  The
- * INPLACE_ARRAYs must be numpy arrays of the appropriate type.  The
- * ARGOUT_ARRAYs will be returned as new numpy arrays of the
+ * typemaps).  The IN_ARRAYs can be a NumPy array or any sequence that
+ * can be converted to a NumPy array of the specified type.  The
+ * INPLACE_ARRAYs must be NumPy arrays of the appropriate type.  The
+ * ARGOUT_ARRAYs will be returned as new NumPy arrays of the
  * appropriate type.
  *
  * These typemaps can be applied to existing functions using the

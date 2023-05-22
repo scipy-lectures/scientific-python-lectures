@@ -24,7 +24,7 @@ img.save('test.png')
 #
 # Modify the original data, and save again.
 #
-# It turns out that PIL, which knows next to nothing about Numpy,
+# It turns out that PIL, which knows next to nothing about NumPy,
 # happily shares the same data.
 #
 

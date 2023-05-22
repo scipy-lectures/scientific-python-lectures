@@ -176,7 +176,7 @@ Release 2015.1 (September 2015)
 Release 2013.2 (21 August 2013)
 -------------------------------------
 
-* Numpy chapter simplified (Valentin Haenel)
+* NumPy chapter simplified (Valentin Haenel)
 
 * New layout for the HTML rendering (Gaël Varoquaux)
 

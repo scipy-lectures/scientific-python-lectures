@@ -1056,8 +1056,8 @@ Tutorials
   * `Image tutorial <https://matplotlib.org/users/image_tutorial.html>`_
 
     - Startup commands
-    - Importing image data into Numpy arrays
-    - Plotting numpy arrays as images
+    - Importing image data into NumPy arrays
+    - Plotting NumPy arrays as images
 
   * `Text tutorial <https://matplotlib.org/users/index_text.html>`_
 

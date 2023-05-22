@@ -9,7 +9,7 @@ PDF (probability density function).
 
 import numpy as np
 
-# Sample from a normal distribution using numpy's random number generator
+# Sample from a normal distribution using NumPy's random number generator
 samples = np.random.normal(size=10000)
 
 # Compute a histogram of the sample

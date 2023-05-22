@@ -175,7 +175,7 @@ that can be combined to obtain a scientific computing environment:
 
 **Core numeric libraries**
 
-* **Numpy**: numerical computing with powerful **numerical arrays**
+* **NumPy**: numerical computing with powerful **numerical arrays**
   objects, and routines to manipulate them. https://numpy.org/
 
   .. seealso::

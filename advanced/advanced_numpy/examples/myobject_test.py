@@ -24,7 +24,7 @@ print("format", view.format)
 
 
 #
-# If you also have Numpy for Python 3 ...
+# If you also have NumPy for Python 3 ...
 #
 
 import numpy as np
