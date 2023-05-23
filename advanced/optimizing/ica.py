@@ -194,7 +194,7 @@ def fastica(
     if (alpha < 1) or (alpha > 2):
         raise ValueError("alpha must be in [1,2]")
 
-    if type(fun) is types.StringType:
+    if isinstance(fun, str):
         # Some standard nonlinear functions
         if fun == "logcosh":
 
@@ -264,7 +264,8 @@ def fastica(
         X1 = X.T
 
     if w_init is None:
-        w_init = np.random.normal(size=(n_comp, n_comp))
+        rng = np.random.default_rng()
+        w_init = rng.normal(size=(n_comp, n_comp))
     else:
         w_init = np.asarray(w_init)
         if w_init.shape != (n_comp, n_comp):

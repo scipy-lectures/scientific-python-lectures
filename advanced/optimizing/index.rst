@@ -181,33 +181,35 @@ source file, we decorate a few functions that we want to inspect with
 
     @profile
     def test():
-        data = np.random.random((5000, 100))
+        rng = np.random.default_rng()
+        data = rng.random((5000, 100))
         u, s, v = linalg.svd(data)
         pca = u[:, :10] @ data
         results = fastica(pca.T, whiten=False)
 
-Then we run the script using the `kernprof.py
-<https://pypi.org/project/line-profiler/>`_ program, with switches ``-l, --line-by-line`` and ``-v, --view`` to use the line-by-line profiler and view the results in addition to saving them:
+Then we run the script using the `kernprof
+<https://pypi.org/project/line-profiler/>`_ command, with switches ``-l, --line-by-line`` and ``-v, --view`` to use the line-by-line profiler and view the results in addition to saving them:
 
 .. sourcecode:: console
 
-    $ kernprof.py -l -v demo.py
+    $ kernprof -l -v demo.py
 
     Wrote profile results to demo.py.lprof
     Timer unit: 1e-06 s
 
+    Total time: 1.27874 s
     File: demo.py
-    Function: test at line 5
-    Total time: 14.2793 s
+    Function: test at line 9
 
     Line #      Hits         Time  Per Hit   % Time  Line Contents
-    =========== ============ ===== ========= ======= ==== ========
-        5                                           @profile
-        6                                           def test():
-        7         1        19015  19015.0      0.1      data = np.random.random((5000, 100))
-        8         1     14242163 14242163.0   99.7      u, s, v = linalg.svd(data)
-        9         1        10282  10282.0      0.1      pca = u[:10, :] @ data
-       10         1         7799   7799.0      0.1      results = fastica(pca.T, whiten=False)
+    ==============================================================
+         9                                           @profile
+        10                                           def test():
+        11         1         69.0     69.0      0.0      rng = np.random.default_rng()
+        12         1       2453.0   2453.0      0.2      data = rng.random((5000, 100))
+        13         1    1274715.0 1274715.0     99.7      u, s, v = sp.linalg.svd(data)
+        14         1        413.0    413.0      0.0      pca = u[:, :10].T @ data
+        15         1       1094.0   1094.0      0.1      results = fastica(pca.T, whiten=False)
 
 **The SVD is taking all the time.** We need to optimise this line.
 
@@ -377,23 +379,25 @@ discuss only some commonly encountered tricks to make code faster.
 
   .. sourcecode:: ipython
 
-    In [5]: a = np.random.rand(20, 2**18)
+    In [5]: rng = np.random.default_rng()
 
-    In [6]: b = np.random.rand(20, 2**18)
+    In [6]: a = rng.random((20, 2**18))
 
-    In [7]: %timeit b @ a.T
+    In [7]: b = rng.random((20, 2**18))
+
+    In [8]: %timeit b @ a.T
     1 loops, best of 3: 194 ms per loop
 
-    In [8]: c = np.ascontiguousarray(a.T)
+    In [9]: c = np.ascontiguousarray(a.T)
 
-    In [9]: %timeit b @ c
+    In [10]: %timeit b @ c
     10 loops, best of 3: 84.2 ms per loop
 
   Note that copying the data to work around this effect may not be worth it:
 
   .. sourcecode:: ipython
 
-    In [10]: %timeit c = np.ascontiguousarray(a.T)
+    In [11]: %timeit c = np.ascontiguousarray(a.T)
     10 loops, best of 3: 106 ms per loop
 
   Using `numexpr <https://github.com/pydata/numexpr>`_ can be useful to
