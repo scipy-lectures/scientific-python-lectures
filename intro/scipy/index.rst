@@ -135,22 +135,64 @@ File input/output: :mod:`scipy.io`
 Special functions: :mod:`scipy.special`
 ---------------------------------------
 
-Special functions are transcendental functions. The docstring of the
-:mod:`scipy.special` module is well-written, so we won't list all
-functions here. Frequently used ones are:
+"Special" functions are functions commonly used in science and mathematics that
+are not considered to be "elementary" functions, including
 
- * Bessel function, such as :func:`scipy.special.jn` (nth integer order Bessel
-   function)
+ * the gamma function, :func:`scipy.special.gamma`,
+ * the error function, :func:`scipy.special.erf`,
+ * Bessel functions, such as :func:`scipy.special.jv`
+   (Bessel functions of the first kind), and
+ * elliptic functions, such as :func:`scipy.special.ellipj`
+   (Jacobian elliptic functions).
 
- * Elliptic function (:func:`scipy.special.ellipj` for the Jacobian elliptic
-   function, ...)
+Most of these function are computed elementwise and follow standard
+NumPy broadcasting rules when the input arrays have different shapes.
+For example, :func:`scipy.special.xlog1py` is mathematically equivalent
+to :math:`x log(1 + y)`.
 
- * Gamma function: :func:`scipy.special.gamma`, also note
-   :func:`scipy.special.gammaln` which
-   will give the log of Gamma to a higher numerical precision.
+    >>> import scipy as sp
+    >>> x = np.asarray([1, 2])
+    >>> y = np.asarray([[3], [4], [5]])
+    >>> res = sp.special.xlog1py(x, y)
+    >>> res.shape
+    (2, 3)
+    >>> ref = x * np.log(1 + y)
+    >>> np.allclose(res, ref)
+    True
 
- * Erf, the area under a Gaussian curve: :func:`scipy.special.erf`
+However, it is numerically favorable for small :math:`y`, when explicit addition
+of ``1`` would lead to loss of precision due to floating point truncation error.
 
+    >>> x = 2.5
+    >>> y = 1e-18
+    >>> x * np.log(1 + y)
+    0.0
+    >>> sp.special.xlog1py(x, y)
+    2.5e-18
+
+Many special functions also have "logarithmized" variants. For instance,
+the gamma function is related to the factorial function, but it extends
+the domain from the positive integers to the complex plane.
+
+   >>> x = np.arange(10)
+   >>> np.allclose(sp.special.gamma(x + 1), sp.special.factorial(x))
+   True
+   >>> sp.special.gamma(5) < sp.special.gamma(5.5) < sp.special.gamma(6)
+   True
+
+The factorial function grows quickly, and so the gamma function overflows
+for moderate values of the argument. However, sometimes only the logarithm
+of the gamma function is needed. In such cases, we can compute the logarithm
+of the gamma function directly using :func:`scipy.special.gammaln`.
+
+   >>> x = [5, 50, 500]
+   >>> np.log(sp.special.gamma(c))
+   array([  3.17805383, 144.56574395,          inf])
+   >>> sp.special.gammaln(x)
+   array([   3.17805383,  144.56574395, 2605.11585036])
+
+For more information about these and many other special functions, see
+the documentation of :mod:`scipy.special`.
 
 .. _scipy_linalg:
 
