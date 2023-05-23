@@ -136,7 +136,7 @@ Special functions: :mod:`scipy.special`
 ---------------------------------------
 
 "Special" functions are functions commonly used in science and mathematics that
-are not considered to be "elementary" functions, including
+are not considered to be "elementary" functions. Examples include
 
  * the gamma function, :func:`scipy.special.gamma`,
  * the error function, :func:`scipy.special.erf`,
@@ -155,7 +155,7 @@ to :math:`x log(1 + y)`.
     >>> y = np.asarray([[3], [4], [5]])
     >>> res = sp.special.xlog1py(x, y)
     >>> res.shape
-    (2, 3)
+    (3, 2)
     >>> ref = x * np.log(1 + y)
     >>> np.allclose(res, ref)
     True
