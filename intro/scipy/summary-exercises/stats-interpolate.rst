@@ -65,8 +65,7 @@ for 1D and 2D splines use the FITPACK Fortran subroutines, that's why a
 lower library access is available through the ``splrep`` and ``splev``
 functions for respectively representing and evaluating a spline.
 Moreover interpolation functions without the use of FITPACK parameters
-are also provided for simpler use (see ``interp1d``, ``interp2d``,
-``barycentric_interpolate`` and so on).
+are also provided for simpler use.
 
 For the Sprogø maxima wind speeds, the ``UnivariateSpline`` will be
 used because a spline of degree 3 seems to correctly fit the data::
