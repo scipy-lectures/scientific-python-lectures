@@ -22,8 +22,10 @@ eqs.append(r"$F_G = G\frac{m_1m_2}{r^2}$")
 
 plt.axes([0.025, 0.025, 0.95, 0.95])
 
+rng = np.random.default_rng()
+
 for i in range(24):
-    index = np.random.randint(0, len(eqs))
+    index = rng.integers(0, len(eqs))
     eq = eqs[index]
     size = np.random.uniform(12, 32)
     x, y = np.random.uniform(0, 1, 2)

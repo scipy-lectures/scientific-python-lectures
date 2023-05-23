@@ -1,6 +1,6 @@
 .. For doctests
    >>> import numpy as np
-   >>> np.random.seed(0)
+   >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
    >>> # For doctest on headless environments
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend('Agg')
@@ -1165,7 +1165,8 @@ Generalized ufuncs
   with stacked arrays::
 
     >>> import numpy as np
-    >>> np.linalg.det(np.random.rand(3, 5, 5))
+    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> np.linalg.det(rng.random((3, 5, 5)))
     array([ 0.00965823, -0.13344729,  0.04583961])
     >>> np.linalg._umath_linalg.det.signature
     '(m,m)->()'

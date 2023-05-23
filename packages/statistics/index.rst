@@ -2,7 +2,6 @@
     >>> import matplotlib.pyplot as plt
     >>> plt.switch_backend("Agg")
     >>> import numpy as np
-    >>> np.random.seed(0)
     >>> import pandas
     >>> pandas.options.display.width = 0
 
@@ -457,9 +456,9 @@ First, we generate simulated data according to the model::
 
     >>> import numpy as np
     >>> x = np.linspace(-5, 5, 20)
-    >>> np.random.seed(1)
+    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
     >>> # normal distributed noise
-    >>> y = -5 + 3*x + 4 * np.random.normal(size=x.shape)
+    >>> y = -5 + 3*x + 4 * rng.normal(size=x.shape)
     >>> # Create a data frame containing all the relevant variables
     >>> data = pandas.DataFrame({'x': x, 'y': y})
 

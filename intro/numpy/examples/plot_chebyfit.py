@@ -8,7 +8,7 @@ Plot noisy data and their polynomial fit in a Chebyshev basis
 import numpy as np
 import matplotlib.pyplot as plt
 
-np.random.seed(0)
+rng = np.random.default_rng(274469680215486569245740648368861359183)
 
 x = np.linspace(-1, 1, 2000)
 y = np.cos(x) + 0.3 * np.random.rand(2000)

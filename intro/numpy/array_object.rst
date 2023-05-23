@@ -1,6 +1,5 @@
 ..
     >>> import numpy as np
-    >>> np.random.seed(0)
     >>> import matplotlib.pyplot as plt
     >>> plt.switch_backend("Agg")
 
@@ -256,15 +255,14 @@ Functions for creating arrays
 
   .. sourcecode:: pycon
 
-    >>> a = np.random.rand(4)       # uniform in [0, 1]
+    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> a = rng.random(4)       # uniform in [0, 1]
     >>> a  # doctest: +SKIP
     array([ 0.95799151,  0.14222247,  0.08777354,  0.51887998])
 
-    >>> b = np.random.randn(4)      # Gaussian
+    >>> b = rng.standard_normal(4)      # Gaussian
     >>> b  # doctest: +SKIP
     array([ 0.37544699, -0.11425369, -0.47616538,  1.79664113])
-
-    >>> np.random.seed(1234)        # Setting the random seed
 
 .. topic:: **Exercise: Creating arrays using functions**
    :class: green
@@ -725,8 +723,8 @@ Using boolean masks
 
 .. sourcecode:: pycon
 
-    >>> np.random.seed(3)
-    >>> a = np.random.randint(0, 21, 15)
+    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> a = rng.integers(0, 21, 15)
     >>> a
     array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
     >>> (a % 3 == 0)

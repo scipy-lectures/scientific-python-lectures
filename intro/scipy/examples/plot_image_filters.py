@@ -18,7 +18,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 noisy_face = np.copy(face).astype(float)
-noisy_face += face.std() * 0.5 * np.random.standard_normal(face.shape)
+rng = np.random.default_rng()
+noisy_face += face.std() * 0.5 * rng.standard_normal(face.shape)
 blurred_face = sp.ndimage.gaussian_filter(noisy_face, sigma=3)
 median_face = sp.ndimage.median_filter(noisy_face, size=5)
 wiener_face = sp.signal.wiener(noisy_face, (5, 5))

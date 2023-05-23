@@ -11,7 +11,8 @@ Detrending a signal
 import numpy as np
 
 t = np.linspace(0, 5, 100)
-x = t + np.random.normal(size=100)
+rng = np.random.default_rng()
+x = t + rng.normal(size=100)
 
 ############################################################
 # Detrend

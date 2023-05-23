@@ -15,6 +15,8 @@ fig = plt.figure(figsize=figsize, dpi=dpi)
 fig.patch.set_alpha(0)
 plt.axes([0, 0, 1, 1], frameon=False)
 
+rng = np.random.default_rng()
+
 for i in range(1, 11):
     r, g, b = np.random.uniform(0, 1, 3)
     plt.plot(

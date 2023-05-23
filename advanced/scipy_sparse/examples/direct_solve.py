@@ -10,19 +10,19 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
-rand = np.random.rand
+rng = np.random.default_rng(274469680215486569245740648368861359183)
 
 mtx = sp.sparse.lil_matrix((1000, 1000), dtype=np.float64)
-mtx[0, :100] = rand(100)
+mtx[0, :100] = rng.random(100)
 mtx[1, 100:200] = mtx[0, :100]
-mtx.setdiag(rand(1000))
+mtx.setdiag(rng.random(1000))
 
 plt.clf()
 plt.spy(mtx, marker=".", markersize=2)
 plt.show()
 
 mtx = mtx.tocsr()
-rhs = rand(1000)
+rhs = rng.random(1000)
 
 x = sp.sparse.linalg.spsolve(mtx, rhs)
 

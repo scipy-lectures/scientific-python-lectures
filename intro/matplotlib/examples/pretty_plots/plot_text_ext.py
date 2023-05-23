@@ -23,6 +23,8 @@ eqs.append(r"$\int_{-\infty}^\infty e^{-x^2}dx=\sqrt{\pi}$")
 eqs.append(r"$E = mc^2 = \sqrt{{m_0}^2c^4 + p^2c^2}$")
 eqs.append(r"$F_G = G\frac{m_1m_2}{r^2}$")
 
+rng = np.random.default_rng()
+
 for i in range(24):
     index = np.random.randint(0, len(eqs))
     eq = eqs[index]

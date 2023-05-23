@@ -1,7 +1,6 @@
 .. for doctests
    >>> import numpy as np
    >>> import scipy as sp
-   >>> np.random.seed(0)
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend("Agg")
 
@@ -562,7 +561,8 @@ Synthetic data::
     >>> n = 20
     >>> l = 256
     >>> im = np.zeros((l, l))
-    >>> points = l * np.random.random((2, n ** 2))
+    >>> rng = np.random.default_rng()
+    >>> points = l * rng.random((2, n ** 2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = ski.filters.gaussian(im, sigma=l / (4. * n))
     >>> blobs = im > im.mean()

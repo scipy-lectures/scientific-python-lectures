@@ -1,6 +1,5 @@
 ..
    >>> import numpy as np
-   >>> np.random.seed(0)
    >>> import scipy as sp
 
 List of Lists Format (LIL)

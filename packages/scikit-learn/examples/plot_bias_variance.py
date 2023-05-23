@@ -30,9 +30,9 @@ from sklearn.preprocessing import PolynomialFeatures
 
 n_samples = 8
 
-np.random.seed(0)
+rng = np.random.default_rng(274469680215486569245740648368861359183)
 x = 10 ** np.linspace(-2, 0, n_samples)
-y = generating_func(x)
+y = generating_func(x, rng)
 
 x_test = np.linspace(-0.2, 1.2, 1000)
 
@@ -68,9 +68,8 @@ test_size = 0.4
 error = 1.0
 
 # randomly sample the data
-np.random.seed(1)
-x = np.random.random(n_samples)
-y = generating_func(x, error)
+x = rng.random(n_samples)
+y = generating_func(x, rng, error)
 
 # split into training, validation, and testing sets.
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=test_size)

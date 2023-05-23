@@ -39,7 +39,6 @@ scikit-learn: machine learning in Python
 
 .. For doctests
    >>> import numpy as np
-   >>> np.random.seed(0)
    >>> # For doctest on headless environments
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend('Agg')
@@ -1478,13 +1477,13 @@ Validation Curves
 
 Let us create a dataset like in the example above::
 
-    >>> def generating_func(x, err=0.5):
-    ...     return np.random.normal(10 - 1. / (x + 0.1), err)
+    >>> def generating_func(x, rng, err=0.5):
+    ...     return rng.normal(10 - 1. / (x + 0.1), err)
 
     >>> # randomly sample more data
-    >>> np.random.seed(1)
-    >>> x = np.random.random(size=200)
-    >>> y = generating_func(x, err=1.)
+    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> x = rng.random(size=200)
+    >>> y = generating_func(x, err=1., rng=rng)
 
 .. image:: auto_examples/images/sphx_glr_plot_bias_variance_002.png
    :align: right
