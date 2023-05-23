@@ -81,7 +81,7 @@ Images are NumPy's arrays ``np.ndarray``
 ``scikit-image`` and the ``SciPy`` ecosystem
 ---------------------------------------------
 
-Recent versions of ``scikit-image`` is packaged in most Scientific Python
+Recent versions of ``scikit-image`` is packaged in most scientific Python
 distributions, such as Anaconda or Enthought Canopy. It is also packaged
 for Ubuntu/Debian.
 

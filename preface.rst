@@ -1,5 +1,5 @@
 =========================================
-About the Scientific Python lecture notes
+About the Scientific Python Lecture Notes
 =========================================
 
 .. contents::

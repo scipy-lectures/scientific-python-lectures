@@ -75,7 +75,7 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # General information about the project.
-project = "Scientific Python lecture notes"
+project = "Scientific Python Lecture Notes"
 copyright = f'{date.today().year}'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -190,7 +190,7 @@ html_theme_options = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "Scientific Python lecture notes"
+html_title = "Scientific Python Lecture Notes"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = ""
@@ -264,7 +264,7 @@ latex_show_pagerefs = False
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-    ('index', 'ScientificPythonLectures.tex', r'Scientific Python lecture notes',
+    ('index', 'ScientificPythonLectures.tex', r'Scientific Python Lecture Notes',
      r"""Scientific Python lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
      'manual'),
 ]

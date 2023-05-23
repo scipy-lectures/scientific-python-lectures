@@ -149,7 +149,7 @@ In restructured-text markup this is::
 Linking to package documentations
 ==================================
 
-The goal of the Scientific Python lecture notes is not to duplicate or replace
+The goal of the Scientific Python Lecture Notes is not to duplicate or replace
 the documentation of the various packages. You should link as much as
 possible to the original documentation.
 

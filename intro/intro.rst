@@ -140,8 +140,8 @@ Python
   * Not all the algorithms that can be found in more specialized
     software or toolboxes.
 
-The Scientific Python ecosystem
---------------------------------
+The scientific Python ecosystem
+-------------------------------
 
 Unlike Matlab, or R, Python does not come with a pre-bundled set
 of modules for scientific computing. Below are the basic building blocks
@@ -255,7 +255,7 @@ packaged, and it is recommended to use your package manager.
 
 **Other systems**
 
-There are several fully-featured Scientific Python distributions:
+There are several fully-featured scientific Python distributions:
 
 
 

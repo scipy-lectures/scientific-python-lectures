@@ -8,7 +8,7 @@
 Scientific-Python-Lecture-Notes
 ===============================
 
-This repository gathers some lecture notes on the Scientific Python
+This repository gathers some lecture notes on the scientific Python
 ecosystem that can be used for a full course of scientific computing with
 Python.
 

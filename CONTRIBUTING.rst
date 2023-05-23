@@ -1,7 +1,7 @@
 Contributing
 =============
 
-The Scientific Python lecture notes are a community-based effort and require
+The Scientific Python Lecture Notes are a community-based effort and require
 constant maintenance and improvements. New contributions such as wording
 improvements or inclusion of new topics are welcome.
 
@@ -17,7 +17,7 @@ Objectives and design choices for the lecture notes
 ---------------------------------------------------
 
 Contributors should keep the following objectives and design choices of
-the Scientific Python lecture notes in mind.
+the Scientific Python Lecture Notes in mind.
 
 Objectives:
 

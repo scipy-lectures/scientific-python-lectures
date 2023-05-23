@@ -3,7 +3,7 @@
 Packages and applications
 ==========================
 
-This part of the *Scientific Python lecture notes* is dedicated to various
+This part of the *Scientific Python Lecture Notes* is dedicated to various
 scientific packages useful for extended needs.
 
 |
