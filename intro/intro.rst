@@ -78,7 +78,7 @@ Matlab scripting language
 
   * Base language is quite poor and can become restrictive for advanced users.
 
-  * Not free.
+  * Not free and not everything is open sourced.
 
 Julia
 ~~~~~~~
