@@ -128,7 +128,7 @@ Harwell-Boeing.
     * Basic input/output of images in Matplotlib:
       :func:`matplotlib.pyplot.imread`/:func:`matplotlib.pyplot.imsave`
 
-    * More advanced input/output of images in scikit-image: :mod:`skimage.io`
+    * More advanced input/output of images in scikit-image: :mod:`imagio`
 
 Special functions: :mod:`scipy.special`
 ---------------------------------------
