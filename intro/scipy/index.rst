@@ -79,58 +79,56 @@ Scipy : high-level scientific computing
 
 File input/output: :mod:`scipy.io`
 ----------------------------------
+:mod:`scipy.io` contains functions for loading and saving data in
+several common formats including Matlab, IDL, Matrix Market, and
+Harwell-Boeing.
 
 **Matlab files**: Loading and saving::
 
     >>> import scipy as sp
     >>> a = np.ones((3, 3))
-    >>> sp.io.savemat('file.mat', {'a': a}) # savemat expects a dictionary
+    >>> sp.io.savemat('file.mat', {'a': a})  # savemat expects a dictionary
     >>> data = sp.io.loadmat('file.mat')
     >>> data['a']
     array([[1.,  1.,  1.],
            [1.,  1.,  1.],
            [1.,  1.,  1.]])
 
-.. warning:: **Python / Matlab mismatches**, *eg* matlab does not represent 1D arrays
+.. warning:: **Python / Matlab mismatch**: The Matlab file format does not support 1D arrays.
 
    ::
 
       >>> a = np.ones(3)
       >>> a
       array([1.,  1.,  1.])
+      >>> a.shape
+      (3,)
       >>> sp.io.savemat('file.mat', {'a': a})
-      >>> sp.io.loadmat('file.mat')['a']
+      >>> a2 = sp.io.loadmat('file.mat')['a']
+      >>> a2
       array([[1.,  1.,  1.]])
+      >>> a2.shape
+      (1, 3)
 
-   Notice the difference?
+   Notice that the original array was a one-dimensional array, whereas the
+   saved and reloaded array is a two-dimensional array with a single row.
 
-|
-
-.. Comments to make doctests pass which require an image
-    >>> import matplotlib.pyplot as plt
-    >>> plt.imsave('fname.png', np.array([[0]]))
-
-**Image files**: Reading images::
-
-    >>> import imageio.v3 as iio
-    >>> iio.imread('fname.png')
-    array([[[ 0,   0,  0, 255]]], dtype=uint8)
-    >>> # Matplotlib also has a similar function
-    >>> import matplotlib.pyplot as plt
-    >>> plt.imread('fname.png')
-    array([[[0., 0., 0., 1.]]], dtype=float32)
+   For other formats, see the :mod:`scipy.io` documentation.
 
 .. seealso::
 
     * Load text files: :func:`numpy.loadtxt`/:func:`numpy.savetxt`
 
     * Clever loading of text/csv files:
-      :func:`numpy.genfromtxt`/:func:`numpy.recfromcsv`
+      :func:`numpy.genfromtxt`
 
-    * Fast and efficient, but numpy-specific, binary format:
+    * Fast and efficient, but NumPy-specific, binary format:
       :func:`numpy.save`/:func:`numpy.load`
 
-    * More advanced input/output of images in scikit-image: :mod:`skimage.io`
+    * Basic input/output of images in Matplotlib:
+      :func:`matplotlib.pyplot.imread`/:func:`matplotlib.pyplot.imsave`
+
+    * More advanced input/output of images: :mod:`imageio`
 
 Special functions: :mod:`scipy.special`
 ---------------------------------------
