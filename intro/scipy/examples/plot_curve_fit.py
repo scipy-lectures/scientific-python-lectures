@@ -16,7 +16,7 @@ np.random.seed(0)
 x_data = np.linspace(-5, 5, num=50)
 noise = 0.01 * np.cos(100 * x_data)
 a, b = 2.9, 1.5
-y_data = a * np.sin(b * x_data) + noise
+y_data = a * np.cos(b * x_data) + noise
 
 # And plot it
 import matplotlib.pyplot as plt

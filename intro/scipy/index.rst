@@ -294,11 +294,11 @@ recognizes failure.
     ...     return (x-1)*(x-2)
     >>> res = sp.optimize.root_scalar(f, x0=0)  # x0 is the guess
     >>> res
-      converged: True
-           flag: converged
- function_calls: 12
-     iterations: 6
-           root: [ 1.000e+00]
+         converged: True
+              flag: converged
+    function_calls: 12
+        iterations: 6
+              root: [ 1.000e+00]
 
 Note that only one the root at ``1.0`` is found. By inspection, we can tell
 that there is a second root at ``2.0``. We can direct the function toward a
