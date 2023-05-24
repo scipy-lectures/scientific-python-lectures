@@ -347,7 +347,7 @@ intersphinx_mapping = {
     'seaborn': ('https://seaborn.pydata.org/', None),
     'skimage': ('https://scikit-image.org/docs/stable/', None),
     'statsmodels': ('https://www.statsmodels.org/stable/', None),
-    'imagio':('https://imageio.readthedocs.io/en/stable/', None),
+    'imageio':('https://imageio.readthedocs.io/en/stable/', None),
 }
 
 
