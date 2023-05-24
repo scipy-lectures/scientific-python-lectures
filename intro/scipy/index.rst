@@ -370,8 +370,8 @@ variable :math:`f(x) = x^2  + 10 \sin(x)`::
     >>> plt.plot(x, f(x))  # doctest:+SKIP
     >>> plt.show()  # doctest:+SKIP
 
-We can see that the function has a global minimizer near
-:math:`x = -1.3` and a local minimizer around :math:`x = 3.8`, but
+We can see that the function has a local minimizer near :math:`x = 3.8`
+and a global minimizer near :math:`x = -1.3`, but
 the precise values cannot be determined from the plot.
 
 The most appropriate function for this purpose is
@@ -380,12 +380,12 @@ Since we know the approximate locations of the minima, we will provide
 bounds that restrict the search to the vicinity of the global minimum.
 
     >>> res = sp.optimize.minimize_scalar(f, bounds=(-2, -1))
-    >>> res
+    >>> res  # doctest: +ELLIPSIS
      message: Solution found.
      success: True
       status: 0
-         fun: -7.9458233756095895
-           x: -1.3064409970312618
+         fun: -7.9458233756...
+           x: -1.306440997...
          nit: 8
         nfev: 8
     >>> res.fun == f(res.x)
@@ -394,22 +394,22 @@ bounds that restrict the search to the vicinity of the global minimum.
 If we did not already know the approximate location of the global minimum,
 we could use one of SciPy's global minimizers, such as
 :func:`scipy.optimize.differential_evolution`. We are required to pass
-``bounds``, but they need not contain only the global minimum.
+``bounds``, but they do not need to be tight.
 
     >>> bounds=[(-5, 5)]  # list of lower, upper bound for each variable
     >>> res = sp.optimize.differential_evolution(f, bounds=bounds)
     >>> res
      message: Optimization terminated successfully.
      success: True
-         fun: -7.945823375611111
+         fun: -7.9458233756...  # doctest: +ELLIPSIS
            x: [-1.306e+00]
          nit: 6
         nfev: 111
          jac: [ 9.948e-06]
 
-For multivariate optimization, a typical starting point is
+For multivariate optimization, a good choice for many problems is
 :func:`scipy.optimize.minimize`.
-Suppose we wish to find the minimizer of a quadratic function of two
+Suppose we wish to find the minimum of a quadratic function of two
 variables, :math:`f(x_0, x_1) = (x_0-1)**2 + (x_1-2)**2`.
 
     >>> def f(x):
@@ -425,7 +425,7 @@ label :math:`x_0`.)
       message: Optimization terminated successfully.
       success: True
        status: 0
-          fun: 1.705780445775116e-16
+          fun: 1.70578...e-16
             x: [ 1.000e+00  2.000e+00]
           nit: 2
           jac: [ 3.219e-09 -8.462e-09]
