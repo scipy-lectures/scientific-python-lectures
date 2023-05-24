@@ -398,10 +398,10 @@ we could use one of SciPy's global minimizers, such as
 
     >>> bounds=[(-5, 5)]  # list of lower, upper bound for each variable
     >>> res = sp.optimize.differential_evolution(f, bounds=bounds)
-    >>> res
+    >>> res  # doctest: +skip
      message: Optimization terminated successfully.
      success: True
-         fun: -7.9458233756...  # doctest: +ELLIPSIS
+         fun: -7.9458233756...
            x: [-1.306e+00]
          nit: 6
         nfev: 111
