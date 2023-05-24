@@ -1,12 +1,12 @@
 .. only:: latex
 
-   =============================
-   About the SciPy lecture notes
-   =============================
+   =========================================
+   About the Scientific Python Lecture Notes
+   =========================================
 
 
-   About the SciPy lecture notes
-   =============================
+   About the Scientific Python Lecture Notes
+   =========================================
 
    Release: |release|
 

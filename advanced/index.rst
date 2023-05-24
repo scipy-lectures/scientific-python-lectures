@@ -3,8 +3,8 @@
 Advanced topics
 ================
 
-This part of the *Scipy lecture notes* is dedicated to advanced usage. It
-strives to educate the proficient Python coder to be an expert and
+This part of the *Scientific Python Lecture Notes* is dedicated to advanced
+usage. It strives to educate the proficient Python coder to be an expert and
 tackles various specific topics.
 
 |

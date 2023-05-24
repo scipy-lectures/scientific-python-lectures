@@ -149,8 +149,8 @@ In restructured-text markup this is::
 Linking to package documentations
 ==================================
 
-The goal of the scipy lecture notes is not to duplicate or replace the
-documentation of the various packages. You should link as much as
+The goal of the Scientific Python Lecture Notes is not to duplicate or replace
+the documentation of the various packages. You should link as much as
 possible to the original documentation.
 
 For cross-referencing API documentation we prefer to use the `intersphinx

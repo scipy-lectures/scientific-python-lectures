@@ -122,7 +122,7 @@ Finally, two more "technical" possibilities are useful as well:
 * If everything listed above fails (and Google doesn't have the
   answer)... don't despair! Write to the mailing-list suited to your
   problem: you should have a quick answer if you describe your problem
-  well. Experts on scientific python often give very enlightening
+  well. Experts on scientific Python often give very enlightening
   explanations on the mailing-list.
 
     * **Numpy discussion** (numpy-discussion@scipy.org): all about numpy

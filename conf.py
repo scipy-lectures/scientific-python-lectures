@@ -8,7 +8,7 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-
+from datetime import date
 from subprocess import PIPE, Popen
 
 import sphinx_gallery
@@ -75,8 +75,8 @@ templates_path = ['_templates']
 source_suffix = '.rst'
 
 # General information about the project.
-project = "Scipy lecture notes"
-copyright = '2012,2013,2015,2016,2017,2018,2019,2020,2021,2022'
+project = "Scientific Python Lecture Notes"
+copyright = f'{date.today().year}'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -190,10 +190,10 @@ html_theme_options = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "Scipy lecture notes"
+html_title = "Scientific Python Lecture Notes"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-#html_short_title = "Scipy"
+#html_short_title = ""
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -245,7 +245,7 @@ html_use_index = False
 #html_file_suffix = ''
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ScipyLectures'
+htmlhelp_basename = 'ScientificPythonLectures'
 
 # Options for epub output
 # ------------------------
@@ -264,8 +264,8 @@ latex_show_pagerefs = False
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-    ('index', 'ScipyLectures.tex', r'Scipy lecture notes',
-     r"""Scipy lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
+    ('index', 'ScientificPythonLectures.tex', r'Scientific Python Lecture Notes',
+     r"""Scientific Python lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
      'manual'),
 ]
 
