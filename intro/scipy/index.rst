@@ -755,9 +755,9 @@ Quadrature
 ..........
 
 Suppose we wish to compute the definite integral
-:math:`\int_0^{\pi / 2} sin(t) dt` numerically. :func:`scipy.integrate.quad`
+:math:`\int_0^{\pi / 2} \sin(t) dt` numerically. :func:`scipy.integrate.quad`
 chooses one of several adaptive techniques depending on the parameters, and
-therefore is a reasonable first choice for integration of a single variable::
+is therefore the recommended first choice for integration of function of a single variable::
 
     >>> integral, error_estimate = sp.integrate.quad(np.sin, 0, np.pi/2)
     >>> np.allclose(integral, 1)  # numerical result ~ analytical result
@@ -787,7 +787,7 @@ time :math:`t_f` or until an event occurs (e.g. a specified state is reached).
 As an introduction, consider the initial value problem given by
 :math:`\frac{dy}{dt} = -2 y` and the initial condition :math:`y(t=0) = 1` on
 the interval :math:`t = 0 \dots 4`. We begin by defining a callable that
-computes the :math:`f(t, y(t))` given the current time and state.
+computes :math:`f(t, y(t))` given the current time and state.
 
     >>> def f(t, y):
     ...     return -2 * y
@@ -860,7 +860,7 @@ We set::
 and define the function that computes :math:`\dot{z} = f(t, z(t))`::
 
     >>> def f(t, z, zeta, omega):
-    ...     return (z[1], -2.0 * zeta * omega * z[1] - omega **2 * z[0])
+    ...     return (z[1], -2.0 * zeta * omega * z[1] - omega**2 * z[0])
 
 .. image:: auto_examples/images/sphx_glr_plot_solve_ivp_damped_spring_mass_001.png
     :target: auto_examples/plot_solve_ivp_damped_spring_mass.html
@@ -872,8 +872,8 @@ Integration of the system follows::
     >>> t_span = (0, 10)
     >>> t_eval = np.linspace(*t_span, 100)
     >>> z0 = [1, 0]
-    >>> res = sp.integrate.solve_ivp(f, t_span, z0, args=(zeta, omega),
-    ...                              method='LSODA')
+    >>> res = sp.integrate.solve_ivp(f, t_span, z0, t_eval=t_eval,
+    ...                              args=(zeta, omega), method='LSODA')
 
 .. tip::
 
