@@ -668,84 +668,47 @@ sample was drawn, we are not surprised that these estimates are similar.
    using tab completion. Plot the cumulative density function of the
    distribution, and compute the variance.
 
-Mean, median and percentiles
-.............................
+Sample Statistics and Hypothesis Tests
+......................................
 
-The mean is an estimator of the center of the distribution::
+The sample mean is an estimator of the mean of the distribution from which
+the sample was drawn::
 
     >>> np.mean(sample)     # doctest: +ELLIPSIS
     0.001576700508...
 
-The median another estimator of the center. It is the value with half of
-the observations below, and half above::
+NumPy includes some of the most fundamental sample statistics (e.g.
+:func:`numpy.mean`, :func:`numpy.var`, :func:`numpy.percentile`);
+:mod:`scipy.stats` includes many more. For instance, the geometric mean
+is a common measure of central tendency for data that tends to be
+distributed over many orders of magnitude.
 
-    >>> np.median(sample)     # doctest: +ELLIPSIS
-    0.001720222...
+    >>> sp.stats.gmean(2**sample)     # doctest: +ELLIPSIS
+    1.0010934829...
 
-.. tip::
+SciPy also includes a variety of hypothesis tests that produce a
+sample statistic and a p-value. For instance, suppose we wish to
+test the null hypothesis that ``sample`` was drawn from a normal
+distribution::
 
-   Unlike the mean, the median is not sensitive to the tails of the
-   distribution. It is `"robust"
-   <https://en.wikipedia.org/wiki/Robust_statistics>`_.
+    >>> res = sp.stats.normaltest(sample)
+    >>> res.statistic  # doctest: +ELLIPSIS
+    5.20841759...
+    >>> res.pvalue  # doctest: +ELLIPSIS
+    0.07396163283...
 
-.. topic:: Exercise: Compare mean and median on samples of a Gamma distribution
-   :class: green
+Here, ``statistic`` is a sample statistic that tends to be high for
+samples that are drawn from non-normal distributions. ``pvalue`` is
+the probability of observing such a high value of the statistic for
+a sample that *has* been drawn from a normal distribution. If the
+p-value is unusually small, this may be taken as evidence that
+``sample`` was *not* drawn from the normal distribution. Our statistic
+and p-value are moderate, so the test is inconclusive.
 
-    Which one seems to be the best estimator of the center for the Gamma
-    distribution?
-
-
-The median is also the percentile 50, because 50% of the observation are
-below it::
-
-    >>> sp.stats.scoreatpercentile(sample, 50)     # doctest: +ELLIPSIS
-    0.001720222...
-
-Similarly, we can calculate the percentile 90::
-
-    >>> sp.stats.scoreatpercentile(sample, 90)     # doctest: +ELLIPSIS
-    1.273927591...
-
-.. tip::
-
-    The percentile is an estimator of the CDF: cumulative distribution
-    function.
-
-Statistical tests
-.................
-
-.. image:: auto_examples/images/sphx_glr_plot_t_test_001.png
-    :target: auto_examples/plot_t_test.html
-    :scale: 60
-    :align: right
-
-A statistical test is a decision indicator. For instance, if we have two
-sets of observations, that we assume are generated from Gaussian
-processes, we can use a
-`T-test <https://en.wikipedia.org/wiki/Student%27s_t-test>`__ to decide
-whether the means of two sets of observations are significantly different::
-
-    >>> a = np.random.normal(0, 1, size=100)
-    >>> b = np.random.normal(1, 1, size=10)
-    >>> sp.stats.ttest_ind(a, b)   # doctest: +SKIP
-    (array(-3.177574054...), 0.0019370639...)
-
-.. tip:: The resulting output is composed of:
-
-    * The T statistic value: it is a number the sign of which is
-      proportional to the difference between the two random processes and
-      the magnitude is related to the significance of this difference.
-
-    * the *p value*: the probability of both processes being identical. If it
-      is close to 1, the two process are almost certainly identical.
-      The closer it is to zero, the more likely it is that the processes
-      have different means.
-
-.. seealso::
-
-   The chapter on :ref:`statistics <statistics>` introduces much more
-   elaborate tools for statistical testing and statistical data
-   loading and visualization outside of scipy.
+There are many other features of :mod:`scipy.stats`, including circular
+statistics, quasi-Monte Carlo methods, and resampling methods.
+For much more information, see the documentation of :mod:`scipy.stats`
+and the advanced chapter :ref:`statistics <statistics>`.
 
 Numerical integration: :mod:`scipy.integrate`
 ---------------------------------------------
