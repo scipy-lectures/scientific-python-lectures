@@ -217,7 +217,8 @@ factors::
     >>> np.allclose(A2, A)
     True
     >>> A3 = (U * s) @ Vh  # more efficient: use array math broadcasting rules!
-    np.allclose(A3, A)
+    >>> np.allclose(A3, A)
+    True
 
 Many other decompositions (e.g. LU, Cholesky, QR), solvers for structured
 linear systems (e.g. triangular, circulant), eigenvalue problem algorithms,
