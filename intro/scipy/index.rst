@@ -288,17 +288,21 @@ Root Finding
 scalar-valued function (i.e., an argument at which the function value is zero).
 Like many :mod:`scipy.optimize` functions, the function needs an initial
 guess of the solution, which the algorithm will refine until it converges or
-recognizes failure.
+recognizes failure. We also provide the derivative to improve the rate of
+convergence.
 
     >>> def f(x):
     ...     return (x-1)*(x-2)
-    >>> res = sp.optimize.root_scalar(f, x0=0)  # x0 is the guess
+    >>> def df(x):
+    ...     return 2*x - 3
+    >>> x0 = 0  # guess
+    >>> res = sp.optimize.root_scalar(f, x0=x0, fprime=df)
     >>> res
          converged: True
-              flag: converged
+              flag: 'converged'
     function_calls: 12
         iterations: 6
-              root: [ 1.000e+00]
+              root: 1.0
 
 Note that only one the root at ``1.0`` is found. By inspection, we can tell
 that there is a second root at ``2.0``. We can direct the function toward a
@@ -330,7 +334,7 @@ sense using :func:`scipy.optimize.root` with ``method='lm'``
     ...     return [x[0]**2 + x[1]**2 - 1,
     ...             x[1] - x[0],
     ...             x[1] - x[0]**2]
-    >>> res = sp.optimize.root(f, x0=[0, 0])
+    >>> res = sp.optimize.root(f, x0=[1, 1], method='lm')
     >>> res.success
     True
     >>> res.x
