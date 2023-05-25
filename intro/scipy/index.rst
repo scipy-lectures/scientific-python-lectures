@@ -610,78 +610,77 @@ Statistics and random numbers: :mod:`scipy.stats`
     >>> np.random.seed(0)
 
 
-The module :mod:`scipy.stats` contains statistical tools and probabilistic
-descriptions of random processes. Random number generators for various
-random process can be found in :mod:`numpy.random`.
+:mod:`scipy.stats` contains fundamental tools for statistics in Python.
 
-Distributions: histogram and probability density function
-..........................................................
+Statistical Distributions
+.........................
 
-Given observations of a random process, their histogram is an estimator of
-the random process's PDF (probability density function): ::
+Consider a random variable distributed according to the standard normal.
+We draw a sample consisting of 100000 observations from the random variable.
+The normalized histogram of the sample is an estimator of the random
+variable's probability density function (PDF)::
 
-    >>> samples = np.random.normal(size=1000)
-    >>> bins = np.arange(-4, 5)
-    >>> bins
-    array([-4, -3, -2, -1,  0,  1,  2,  3,  4])
-    >>> histogram = np.histogram(samples, bins=bins, density=True)[0]
-    >>> bins = 0.5*(bins[1:] + bins[:-1])
-    >>> bins
-    array([-3.5, -2.5, -1.5, -0.5,  0.5,  1.5,  2.5,  3.5])
-    >>> pdf = sp.stats.norm.pdf(bins)  # norm is a distribution object
-
-    >>> plt.plot(bins, histogram) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(bins, pdf) # doctest: +ELLIPSIS
-    [<matplotlib.lines.Line2D object at ...>]
+    >>> dist = sp.stats.norm(loc=0, scale=1)  # standard normal distribution
+    >>> sample = dist.rvs(size=100000)  # "random variate sample"
+    >>> plt.hist(sample, bins=50, density=True, label='normalized histogram')  # doctest: +SKIP
+    >>> x = np.linspace(-5, 5)
+    >>> plt.plot(x, dist.pdf(x), label='PDF')  # doctest: +SKIP
+    >>> plt.legend()  # doctest: +SKIP
 
 .. image:: auto_examples/images/sphx_glr_plot_normal_distribution_001.png
     :target: auto_examples/plot_normal_distribution.html
     :scale: 70
 
-.. sidebar:: **The distribution objects**
+.. sidebar:: **Distribution objects and frozen distributions**
 
-   :class:`scipy.stats.norm` is a distribution object: each distribution
-   in :mod:`scipy.stats` is represented as an object. Here it's the
-   normal distribution, and it comes with a PDF, a CDF, and much more.
+   Each of the 100+ :mod:`scipy.stats` distribution families is represented by an
+   *object* with a `__call__` method. Here, we call the :class:`scipy.stats.norm`
+   object to specify its location and scale, and it returns a *frozen*
+   distribution: a particular element of a distribution family with all
+   parameters fixed. The frozen distribution object has methods to compute
+   essential functions of the particular distribution.
 
-If we know that the random process belongs to a given family of random
-processes, such as normal processes, we can do a maximum-likelihood fit
-of the observations to estimate the parameters of the underlying
-distribution. Here we fit a normal process to the observed data::
+Suppose we knew that the sample had been drawn from a distribution belonging
+to the family of normal distributions, but we did not know the particular
+distribution's location (mean) and scale (standard deviation). We perform
+maximum likelihood estimation of the unknown parameters using the
+distribution family's ``fit`` method::
 
-    >>> loc, std = sp.stats.norm.fit(samples)
-    >>> loc     # doctest: +ELLIPSIS
-    -0.045256707...
-    >>> std     # doctest: +ELLIPSIS
-    0.9870331586...
+    >>> loc, scale = sp.stats.norm.fit(sample)
+    >>> loc  # doctest: +ELLIPSIS
+    0.0015767005...
+    >>> scale  # doctest: +ELLIPSIS
+    0.9973396878...
+
+Since we know the true parameters of the distribution from which the
+sample was drawn, we are not surprised that these estimates are similar.
 
 .. topic:: Exercise: Probability distributions
    :class: green
 
    Generate 1000 random variates from a gamma distribution with a shape
-   parameter of 1, then plot a histogram from those samples.  Can you plot the
-   pdf on top (it should match)?
+   parameter of 1. *Hint: the shape parameter is passed as the first
+   argument when freezing the distribution*. Plot the histogram of the
+   sample, and overlay the distribution's PDF. Estimate the shape parameter
+   from the sample using the ``fit`` method.
 
-   Extra: the distributions have many useful methods. Explore them by
-   reading the docstring or by using tab completion.  Can you recover
-   the shape parameter 1 by using the ``fit`` method on your random
-   variates?
-
+   Extra: the distributions have many useful methods. Explore them
+   using tab completion. Plot the cumulative density function of the
+   distribution, and compute the variance.
 
 Mean, median and percentiles
 .............................
 
 The mean is an estimator of the center of the distribution::
 
-    >>> np.mean(samples)     # doctest: +ELLIPSIS
-    -0.0452567074...
+    >>> np.mean(sample)     # doctest: +ELLIPSIS
+    0.001576700508...
 
 The median another estimator of the center. It is the value with half of
 the observations below, and half above::
 
-    >>> np.median(samples)     # doctest: +ELLIPSIS
-    -0.0580280347...
+    >>> np.median(sample)     # doctest: +ELLIPSIS
+    0.001720222...
 
 .. tip::
 
@@ -699,13 +698,13 @@ the observations below, and half above::
 The median is also the percentile 50, because 50% of the observation are
 below it::
 
-    >>> sp.stats.scoreatpercentile(samples, 50)     # doctest: +ELLIPSIS
-    -0.0580280347...
+    >>> sp.stats.scoreatpercentile(sample, 50)     # doctest: +ELLIPSIS
+    0.001720222...
 
 Similarly, we can calculate the percentile 90::
 
-    >>> sp.stats.scoreatpercentile(samples, 90)     # doctest: +ELLIPSIS
-    1.2315935511...
+    >>> sp.stats.scoreatpercentile(sample, 90)     # doctest: +ELLIPSIS
+    1.273927591...
 
 .. tip::
 
