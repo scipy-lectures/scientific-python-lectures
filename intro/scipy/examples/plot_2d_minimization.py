@@ -63,7 +63,7 @@ plt.imshow(sixhump([xg, yg]),
            extent=xlim+ylim,
            origin="lower")
 plt.colorbar()
-# And the minimum that we've found:
+# Mark the minima
 plt.scatter(res_local.x[0], res_local.x[1], label='local minimizer')
 plt.scatter(res_global.x[0], res_global.x[1], label='global minimizer')
 plt.legend()

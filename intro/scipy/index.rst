@@ -410,7 +410,7 @@ we could use one of SciPy's global minimizers, such as
 For multivariate optimization, a good choice for many problems is
 :func:`scipy.optimize.minimize`.
 Suppose we wish to find the minimum of a quadratic function of two
-variables, :math:`f(x_0, x_1) = (x_0-1)**2 + (x_1-2)**2`.
+variables, :math:`f(x_0, x_1) = (x_0-1)^2 + (x_1-2)^2`.
 
     >>> def f(x):
     ...     return (x[0] - 1)**2 + (x[1] - 2)**2
@@ -458,8 +458,9 @@ documentation of :mod:`scipy.optimize` and the advanced chapter
 
     .. math:: f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
 
-    has multiple global and local minima. Find the global minima of this
-    function.
+    has multiple local minima. Find a global minimum (there is more than one,
+    each with the same value of the objective function) and at least one other
+    local minimum.
 
     Hints:
 
