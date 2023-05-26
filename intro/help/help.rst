@@ -5,7 +5,7 @@ Getting help and finding documentation
 
 **Author**: *Emmanuelle Gouillart*
 
-Rather than knowing all functions in Numpy and Scipy, it is important to
+Rather than knowing all functions in NumPy and SciPy, it is important to
 find rapidly information throughout the documentation and the available
 help. Here are some ways to get information:
 
@@ -101,6 +101,7 @@ Finally, two more "technical" possibilities are useful as well:
   answer)... don't despair! There is a vibrant Scientific Python community.
   Scientific Python is present on various platform.
   https://scientific-python.org/community/
+
 
   Packages like SciPy and NumPy also have their own channels. Have a look at
   their respective websites to find out how to engage with users and

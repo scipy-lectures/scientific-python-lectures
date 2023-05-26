@@ -140,8 +140,8 @@ Python
   * Not all the algorithms that can be found in more specialized
     software or toolboxes.
 
-The Scientific Python ecosystem
---------------------------------
+The scientific Python ecosystem
+-------------------------------
 
 Unlike Matlab, or R, Python does not come with a pre-bundled set
 of modules for scientific computing. Below are the basic building blocks
@@ -175,19 +175,19 @@ that can be combined to obtain a scientific computing environment:
 
 **Core numeric libraries**
 
-* **Numpy**: numerical computing with powerful **numerical arrays**
+* **NumPy**: numerical computing with powerful **numerical arrays**
   objects, and routines to manipulate them. https://numpy.org/
 
   .. seealso::
 
      :ref:`chapter on numpy <numpy>`
 
-* **Scipy** : high-level numerical routines.
+* **SciPy** : high-level numerical routines.
   Optimization, regression, interpolation, etc https://scipy.org/
 
   .. seealso::
 
-    :ref:`chapter on scipy <scipy>`
+    :ref:`chapter on SciPy <scipy>`
 
 * **Matplotlib** : 2-D visualization, "publication-ready" plots
   https://matplotlib.org/
@@ -255,7 +255,7 @@ packaged, and it is recommended to use your package manager.
 
 **Other systems**
 
-There are several fully-featured Scientific Python distributions:
+There are several fully-featured scientific Python distributions:
 
 
 

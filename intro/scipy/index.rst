@@ -6,7 +6,7 @@
 
 .. _scipy:
 
-Scipy : high-level scientific computing
+SciPy : high-level scientific computing
 =======================================
 
 **Authors**: *Gaël Varoquaux, Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Ralf Gommers*
@@ -25,13 +25,13 @@ Scipy : high-level scientific computing
     libraries, such as the GSL (GNU Scientific  Library for C and C++),
     or Matlab's toolboxes. ``scipy`` is the core package for scientific
     routines in Python; it is meant to operate efficiently on ``numpy``
-    arrays, so that numpy and scipy work hand in hand.
+    arrays, so that NumPy and SciPy work hand in hand.
 
     Before implementing a routine, it is worth checking if the desired
-    data processing is not already implemented in Scipy. As
+    data processing is not already implemented in SciPy. As
     non-professional programmers, scientists often tend to **re-invent the
     wheel**, which leads to buggy, non-optimal, difficult-to-share and
-    unmaintainable code. By contrast, ``Scipy``'s routines are optimized
+    unmaintainable code. By contrast, ``SciPy``'s routines are optimized
     and tested, and should therefore be used when possible.
 
 
@@ -43,7 +43,7 @@ Scipy : high-level scientific computing
 .. warning::
 
     This tutorial is far from an introduction to numerical computing.
-    As enumerating the different submodules and functions in scipy would
+    As enumerating the different submodules and functions in SciPy would
     be very boring, we concentrate instead on a few examples to give a
     general idea of how to use ``scipy`` for scientific computing.
 
@@ -70,7 +70,7 @@ Scipy : high-level scientific computing
 .. tip::
 
    They all depend on :mod:`numpy`, but are mostly independent of each
-   other. The standard way of importing Numpy and these Scipy modules
+   other. The standard way of importing NumPy and these SciPy modules
    is::
 
     >>> import numpy as np
@@ -79,58 +79,56 @@ Scipy : high-level scientific computing
 
 File input/output: :mod:`scipy.io`
 ----------------------------------
+:mod:`scipy.io` contains functions for loading and saving data in
+several common formats including Matlab, IDL, Matrix Market, and
+Harwell-Boeing.
 
 **Matlab files**: Loading and saving::
 
     >>> import scipy as sp
     >>> a = np.ones((3, 3))
-    >>> sp.io.savemat('file.mat', {'a': a}) # savemat expects a dictionary
+    >>> sp.io.savemat('file.mat', {'a': a})  # savemat expects a dictionary
     >>> data = sp.io.loadmat('file.mat')
     >>> data['a']
     array([[1.,  1.,  1.],
            [1.,  1.,  1.],
            [1.,  1.,  1.]])
 
-.. warning:: **Python / Matlab mismatches**, *eg* matlab does not represent 1D arrays
+.. warning:: **Python / Matlab mismatch**: The Matlab file format does not support 1D arrays.
 
    ::
 
       >>> a = np.ones(3)
       >>> a
       array([1.,  1.,  1.])
+      >>> a.shape
+      (3,)
       >>> sp.io.savemat('file.mat', {'a': a})
-      >>> sp.io.loadmat('file.mat')['a']
+      >>> a2 = sp.io.loadmat('file.mat')['a']
+      >>> a2
       array([[1.,  1.,  1.]])
+      >>> a2.shape
+      (1, 3)
 
-   Notice the difference?
+   Notice that the original array was a one-dimensional array, whereas the
+   saved and reloaded array is a two-dimensional array with a single row.
 
-|
-
-.. Comments to make doctests pass which require an image
-    >>> import matplotlib.pyplot as plt
-    >>> plt.imsave('fname.png', np.array([[0]]))
-
-**Image files**: Reading images::
-
-    >>> import imageio.v3 as iio
-    >>> iio.imread('fname.png')
-    array([[[ 0,   0,  0, 255]]], dtype=uint8)
-    >>> # Matplotlib also has a similar function
-    >>> import matplotlib.pyplot as plt
-    >>> plt.imread('fname.png')
-    array([[[0., 0., 0., 1.]]], dtype=float32)
+   For other formats, see the :mod:`scipy.io` documentation.
 
 .. seealso::
 
     * Load text files: :func:`numpy.loadtxt`/:func:`numpy.savetxt`
 
     * Clever loading of text/csv files:
-      :func:`numpy.genfromtxt`/:func:`numpy.recfromcsv`
+      :func:`numpy.genfromtxt`
 
-    * Fast and efficient, but numpy-specific, binary format:
+    * Fast and efficient, but NumPy-specific, binary format:
       :func:`numpy.save`/:func:`numpy.load`
 
-    * More advanced input/output of images in scikit-image: :mod:`skimage.io`
+    * Basic input/output of images in Matplotlib:
+      :func:`matplotlib.pyplot.imread`/:func:`matplotlib.pyplot.imsave`
+
+    * More advanced input/output of images: :mod:`imageio`
 
 Special functions: :mod:`scipy.special`
 ---------------------------------------
@@ -444,7 +442,7 @@ global minimum depending on the initial point x0::
 If we don't know the neighborhood of the global minimum to choose the
 initial point, we need to resort to costlier global optimization.  To
 find the global minimum, we use :func:`scipy.optimize.basinhopping`
-(added in version 0.12.0 of Scipy). It combines a local optimizer with
+(added in version 0.12.0 of SciPy). It combines a local optimizer with
 sampling of starting points::
 
    >>> sp.optimize.basinhopping(f, 0)  # doctest: +SKIP
@@ -860,7 +858,7 @@ Integration of the system follows::
 
 .. seealso:: **Partial Differental Equations**
 
-    There is no Partial Differential Equations (PDE) solver in Scipy.
+    There is no Partial Differential Equations (PDE) solver in SciPy.
     Some Python packages for solving PDE's are available, such as fipy_
     or SfePy_.
 
@@ -922,8 +920,8 @@ the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
 
 .. topic:: `numpy.fft`
 
-   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
-   the scipy one
+   NumPy also has an implementation of FFT (:mod:`numpy.fft`). However,
+   the SciPy one
    should be preferred, as it uses more efficient underlying implementations.
 
 |
@@ -1073,9 +1071,9 @@ Image manipulation: :mod:`scipy.ndimage`
 Summary exercises on scientific computing
 -----------------------------------------
 
-The summary exercises use mainly Numpy, Scipy and Matplotlib. They provide some
+The summary exercises use mainly NumPy, SciPy and Matplotlib. They provide some
 real-life examples of scientific computing with Python. Now that the basics of
-working with Numpy and Scipy have been introduced, the interested user is
+working with NumPy and SciPy have been introduced, the interested user is
 invited to try these exercises.
 
 .. only:: latex
@@ -1116,10 +1114,10 @@ invited to try these exercises.
 .. seealso:: **References to go further**
 
    * Some chapters of the `advanced <advanced_topics_part>`__ and the
-     `packages and applications <applications_part>`__ parts of the scipy
+     `packages and applications <applications_part>`__ parts of the SciPy
      lectures
 
-   * The `scipy cookbook <https://scipy-cookbook.readthedocs.io>`__
+   * The `SciPy cookbook <https://scipy-cookbook.readthedocs.io>`__
 
 .. compile solutions, but don't list them explicitly
 .. toctree::

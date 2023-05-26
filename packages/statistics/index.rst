@@ -22,7 +22,7 @@ Statistics in Python
 
 .. topic:: **Requirements**
 
-   * Standard scientific Python environment (numpy, scipy, matplotlib)
+   * Standard scientific Python environment (NumPy, SciPy, matplotlib)
 
    * `Pandas <https://pandas.pydata.org/>`__
 
@@ -300,14 +300,14 @@ Hypothesis testing: comparing two groups
 
 For simple `statistical tests
 <https://en.wikipedia.org/wiki/Statistical_hypothesis_testing>`_, we will
-use the :mod:`scipy.stats` sub-module of `scipy
+use the :mod:`scipy.stats` sub-module of `SciPy
 <https://docs.scipy.org/doc/>`_::
 
     >>> import scipy as sp
 
 .. seealso::
 
-   Scipy is a vast library. For a quick summary to the whole library, see
+   SciPy is a vast library. For a quick summary to the whole library, see
    the :ref:`scipy <scipy>` chapter.
 
 

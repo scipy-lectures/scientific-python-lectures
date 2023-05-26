@@ -79,7 +79,7 @@ latex: cleandoctrees
 	mkdir -p build/latex build/doctrees
 	$(SPHINXBUILD) -b $@ $(ALLSPHINXOPTS) build/latex
 	sed -i -e 's/\\sphinxincludegraphics/\
-\\sphinxincludegraphics/g' build/latex/ScipyLectures.tex
+\\sphinxincludegraphics/g' build/latex/ScientificPythonLectures.tex
 	@echo
 	@echo "Build finished; the LaTeX files are in build/latex."
 	@echo "Run \`make all-pdf' or \`make all-ps' in that directory to" \
@@ -102,21 +102,21 @@ linkcheck:
 	      "or in build/linkcheck/output.txt."
 
 pdf: latex
-	cd build/latex ; make all-pdf ; pdfjam --outfile ScipyLectures-nup.pdf --nup 2x1 --landscape ScipyLectures.pdf
-	cp build/latex/ScipyLectures.pdf ScipyLectures-simple.pdf
-	cp build/latex/ScipyLectures-nup.pdf ScipyLectures.pdf
+	cd build/latex ; make all-pdf ; pdfjam --outfile ScientificPythonLectures-nup.pdf --nup 2x1 --landscape ScientificPythonLectures.pdf
+	cp build/latex/ScientificPythonLectures.pdf ScientificPythonLectures-simple.pdf
+	cp build/latex/ScientificPythonLectures-nup.pdf ScientificPythonLectures.pdf
 
 zip: clean html pdf
 	mkdir -p build/scipy_lecture_notes ;
-	cp ScipyLectures.pdf ScipyLectures-simple.pdf build/html/_downloads/
+	cp ScientificPythonLectures.pdf ScientificPythonLectures-simple.pdf build/html/_downloads/
 	cp -r data build/html/
 	cd build/html ; zip -r ../scipy-lecture-notes-html-$(TAG).zip .
-	cp ScipyLectures.pdf build/ ;
+	cp ScientificPythonLectures.pdf build/ ;
 	git archive -o build/scipy-lecture-notes-source-$(TAG).zip --prefix scipy-lecture-notes-$(TAG)/ $(TAG)
 
 install: cleandoctrees html pdf
 	rm -rf build/scipy-lectures.github.com
-	cp ScipyLectures.pdf ScipyLectures-simple.pdf build/html/_downloads/
+	cp ScientificPythonLectures.pdf ScientificPythonLectures-simple.pdf build/html/_downloads/
 	cd build/ && \
 	git clone  --no-checkout --depth 1 git@github.com:scipy-lectures/scipy-lectures.github.com.git && \
 	cp -r html/* scipy-lectures.github.com && \
@@ -128,7 +128,7 @@ install: cleandoctrees html pdf
 	git push
 
 rsync_upload: check-rsync-env cleandoctrees html pdf
-	cp ScipyLectures-simple.pdf ScipyLectures.pdf build/html/_downloads/
+	cp ScientificPythonLectures-simple.pdf ScientificPythonLectures.pdf build/html/_downloads/
 	rsync -P -auvz --delete build/html/ $(SSH_USER)@$(SSH_HOST):$(SSH_TARGET_DIR)/
 
 check-rsync-env:

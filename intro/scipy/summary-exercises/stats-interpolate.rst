@@ -35,8 +35,8 @@ of the 2% quantile.
 Computing the cumulative probabilities
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The annual wind speeds maxima have already been computed and saved in
-the numpy format in the file :download:`examples/max-speeds.npy`, thus they will be loaded
-by using numpy::
+the NumPy format in the file :download:`examples/max-speeds.npy`, thus they will be loaded
+by using NumPy::
 
     >>> import numpy as np
     >>> max_speeds = np.load('intro/scipy/summary-exercises/examples/max-speeds.npy')
@@ -106,12 +106,12 @@ Exercise with the Gumbell distribution
 The interested readers are now invited to make an exercise by using the wind
 speeds measured over 21 years. The measurement period is around 90 minutes (the
 original period was around 10 minutes but the file size has been reduced for
-making the exercise setup easier). The data are stored in numpy format inside
+making the exercise setup easier). The data are stored in NumPy format inside
 the file :download:`examples/sprog-windspeeds.npy`. Do not look at
 the source code for the plots
 until you have completed the exercise.
 
-* The first step will be to find the annual maxima by using numpy
+* The first step will be to find the annual maxima by using NumPy
   and plot them as a matplotlib bar figure.
 
 .. figure:: auto_examples/images/sphx_glr_plot_sprog_annual_maxima_001.png

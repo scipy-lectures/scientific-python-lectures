@@ -136,7 +136,7 @@ NumPy Reference documentation
 Import conventions
 ..................
 
-The recommended convention to import numpy is:
+The recommended convention to import NumPy is:
 
 .. sourcecode:: pycon
 

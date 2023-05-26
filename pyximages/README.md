@@ -1,6 +1,7 @@
 # Content of directory pyximages
 
-This directory contains files related to schematic drawings in the Scipy
+This directory contains files related to schematic drawings in the
+Scientific Python
 Lecture Notes which cannot be produced by means of matplotlib in a simple way
 and for which no source exists in the repository so far. For each image, a
 Python source using PyX, a bitmap image for the HTML version, and a PDF

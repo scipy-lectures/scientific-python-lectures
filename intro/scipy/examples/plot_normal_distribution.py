@@ -9,7 +9,7 @@ PDF (probability density function).
 
 import numpy as np
 
-# Sample from a normal distribution using numpy's random number generator
+# Sample from a normal distribution using NumPy's random number generator
 samples = np.random.normal(size=10000)
 
 # Compute a histogram of the sample
@@ -18,7 +18,7 @@ histogram, bins = np.histogram(samples, bins=bins, density=True)
 
 bin_centers = 0.5*(bins[1:] + bins[:-1])
 
-# Compute the PDF on the bin centers from scipy distribution object
+# Compute the PDF on the bin centers from SciPy distribution object
 import scipy as sp
 pdf = sp.stats.norm.pdf(bin_centers)
 
