@@ -178,8 +178,9 @@ of a square matrix::
     ...
     ValueError: expected square matrix
 
-The :func:`scipy.linalg.solve` function solves linear systems of the
-form :math:`Ax = b`.
+Mathematically, the solution of a linear system :math:`Ax = b` is :math:`x = A^{-1}b`,
+but explicit inversion of a matrix is numerically unstable and should be avoided.
+Instead, use :func:`scipy.linalg.solve`::
 
     >>> A = np.array([[1, 2],
     ...               [2, 3]])
