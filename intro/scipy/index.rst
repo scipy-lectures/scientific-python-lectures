@@ -195,7 +195,7 @@ of the gamma function directly using :func:`scipy.special.gammaln`.
    >>> sp.special.gammaln(x)
    array([   3.17805383,  144.56574395, 2605.11585036])
 
-Such functions are often used in combination with 
+Such functions are often used in combination with
 :func:`scipy.special.logsumexp([x, y])`, which computes
 :math:`\log(\exp(x) + \exp(y))` but it is preferable when
 the exponential of ``x`` or ``y`` would overflow or underflow.
