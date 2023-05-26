@@ -738,7 +738,7 @@ Initial Value Problems
 :mod:`scipy.integrate` also features routines for integrating `Ordinary
 Differential Equations (ODE)
 <https://en.wikipedia.org/wiki/Ordinary_differential_equation>`__.
-For example, :func:`scipy.integrate.solve_ivp` integrates ODEs of the form::
+For example, :func:`scipy.integrate.solve_ivp` integrates ODEs of the form:
 
 .. math::
 
@@ -787,18 +787,14 @@ needs to be transformed into a system of first-order ODEs. Note that
 
 .. math::
 
-    \begin{eqnarray}
-    \frac{dy}{dt} &=& \dot{y} \\
-    \frac{d\dot{y}}{dt} &=& \ddot{y} = -(2 \zeta \omega_0  \dot{y} + \omega_0^2 y)
-    \end{eqnarray}
+    \frac{dy}{dt} = \dot{y}
+    \frac{d\dot{y}}{dt} = \ddot{y} = -(2 \zeta \omega_0  \dot{y} + \omega_0^2 y)
 
 If we define :math:`z = [z_0, z_1]` where :math:`z_0 = y` and :math:`z_1 = \dot{y}`,
 then the first order equation:
 
 .. math::
 
-    \usepackage{amsmath}
-    \begin{eqnarray}
     \frac{dz}{dt} =
     \begin{bmatrix}
         \frac{dz_0}{dt} \\
@@ -808,7 +804,6 @@ then the first order equation:
         z_1  \\
         -(2 \zeta \omega_0  z_1 + \omega_0^2 z_0)
     \end{bmatrix}
-    \end{eqnarray}
 
 is equivalent to the original second order equation.
 
