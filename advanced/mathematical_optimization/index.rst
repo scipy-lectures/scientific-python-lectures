@@ -25,8 +25,8 @@ used for more efficient, non black-box, optimization.
 
    .. rst-class:: horizontal
 
-    * :ref:`Numpy <numpy>`
-    * :ref:`Scipy <scipy>`
+    * :ref:`NumPy <numpy>`
+    * :ref:`SciPy <scipy>`
     * :ref:`Matplotlib <matplotlib>`
 
 .. seealso::  **References**
@@ -375,7 +375,7 @@ gradient and sharp turns are reduced.
 
      - |cg_rosen_icond_conv|
 
-scipy provides :func:`scipy.optimize.minimize` to find the minimum of scalar
+SciPy provides :func:`scipy.optimize.minimize` to find the minimum of scalar
 functions of one or more variables. The simple conjugate gradient method can
 be used by setting the parameter ``method`` to CG ::
 
@@ -471,7 +471,7 @@ purpose, they rely on the 2 first derivative of the function: the
 
      - |ncg_rosen_icond_conv|
 
-In scipy, you can use the Newton method by setting ``method`` to Newton-CG in
+In SciPy, you can use the Newton method by setting ``method`` to Newton-CG in
 :func:`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
 inversion of the Hessian is performed by conjugate gradient ::
 
@@ -752,8 +752,8 @@ value. The parameters are specified with ranges given to
     array([1.0000...,  1.0000...])
 
 
-Practical guide to optimization with scipy
-===========================================
+Practical guide to optimization with SciPy
+==========================================
 
 Choosing a method
 ------------------
@@ -927,7 +927,7 @@ Curve fitting
 
 Least square problems occur often when fitting a non-linear to data.
 While it is possible to construct our optimization problem ourselves,
-scipy provides a helper function for this purpose:
+SciPy provides a helper function for this purpose:
 :func:`scipy.optimize.curve_fit`::
 
 

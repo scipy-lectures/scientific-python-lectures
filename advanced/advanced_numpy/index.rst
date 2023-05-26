@@ -46,7 +46,7 @@ This section covers:
 
 .. tip::
 
-   In this section, numpy will be imported as follows::
+   In this section, NumPy will be imported as follows::
 
     >>> import numpy as np
 
@@ -332,7 +332,7 @@ Casting
 
 .. note::
 
-   Exact rules: see `numpy documentation
+   Exact rules: see `NumPy documentation
    <https://numpy.org/doc/stable/reference/ufuncs.html#casting-rules>`_
 
 
@@ -817,7 +817,7 @@ More tricks: diagonals
        >>> y.flags.owndata  # doctest: +SKIP
        False
 
-       **Note** This behavior has changed: before numpy 1.9, np.diag
+       **Note** This behavior has changed: before NumPy 1.9, np.diag
        would make a copy.
 
     .. raw:: html
@@ -1512,7 +1512,7 @@ Summary
 * Recent additions: PEP 3118, generalized ufuncs
 
 
-Contributing to NumPy/Scipy
+Contributing to NumPy/SciPy
 ===========================
 
     Get this tutorial: https://www.euroscipy.org/talk/882
@@ -1587,7 +1587,7 @@ Good bug report
 
 2. Platform (Windows / Linux / OSX, 32/64 bits, x86/PPC, ...)
 
-3. Version of NumPy/Scipy
+3. Version of NumPy/SciPy
 
    >>> print(np.__version__) # doctest: +ELLIPSIS
    1...
@@ -1628,7 +1628,7 @@ Contributing to documentation
 
           Hi,
 
-          I'd like to edit NumPy/Scipy docstrings. My account is XXXXX
+          I'd like to edit NumPy/SciPy docstrings. My account is XXXXX
 
           Cheers,
           N. N.
@@ -1663,7 +1663,7 @@ How to help, in general
 
   - API docs: improvements to docstrings
 
-    - Know some Scipy module well?
+    - Know some SciPy module well?
 
   - *User guide*
 

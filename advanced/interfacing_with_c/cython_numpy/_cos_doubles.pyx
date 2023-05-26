@@ -1,10 +1,10 @@
 """ Example of wrapping a C function that takes C double arrays as input using
-    the Numpy declarations from Cython """
+    the NumPy declarations from Cython """
 
-# cimport the Cython declarations for numpy
+# cimport the Cython declarations for NumPy
 cimport numpy as np
 
-# if you want to use the Numpy-C-API from Cython
+# if you want to use the NumPy-C-API from Cython
 # (not strictly necessary for this example, but good practice)
 np.import_array()
 
@@ -12,7 +12,7 @@ np.import_array()
 cdef extern from "cos_doubles.h":
     void cos_doubles (double * in_array, double * out_array, int size)
 
-# create the wrapper code, with numpy type annotations
+# create the wrapper code, with NumPy type annotations
 def cos_doubles_func(np.ndarray[double, ndim=1, mode="c"] in_array not None,
                      np.ndarray[double, ndim=1, mode="c"] out_array not None):
     cos_doubles(<double*> np.PyArray_DATA(in_array),

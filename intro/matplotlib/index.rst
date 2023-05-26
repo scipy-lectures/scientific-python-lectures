@@ -1028,8 +1028,8 @@ ____
 
 .. topic:: **Quick read**
 
-   If you want to do a first quick pass through the Scipy lectures to
-   learn the ecosystem, you can directly skip to the next chapter:
+   If you want to do a first quick pass through the Scientific Python Lecture
+   Notes to learn the ecosystem, you can directly skip to the next chapter:
    :ref:`scipy`.
 
    The remainder of this chapter is not necessary to follow the rest of
@@ -1056,8 +1056,8 @@ Tutorials
   * `Image tutorial <https://matplotlib.org/users/image_tutorial.html>`_
 
     - Startup commands
-    - Importing image data into Numpy arrays
-    - Plotting numpy arrays as images
+    - Importing image data into NumPy arrays
+    - Plotting NumPy arrays as images
 
   * `Text tutorial <https://matplotlib.org/users/index_text.html>`_
 

@@ -1,8 +1,8 @@
 """
-Image manipulation and numpy arrays
+Image manipulation and NumPy arrays
 ====================================
 
-This example shows how to do image manipulation using common numpy arrays
+This example shows how to do image manipulation using common NumPy arrays
 tricks.
 
 """

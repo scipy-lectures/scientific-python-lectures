@@ -10,24 +10,24 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
-mass = 0.5  # kg
-kspring = 4  # N/m
-cviscous = 0.4  # N s/m
+m = 0.5  # kg
+k = 4  # N/m
+c = 0.4  # N s/m
 
+zeta = c / (2 * m * np.sqrt(k/m))
+omega = np.sqrt(k / m)
 
-eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
-omega = np.sqrt(kspring / mass)
+def f(t, z, zeta, omega):
+    return (z[1], -zeta * omega * z[1] - omega**2 * z[0])
 
-
-def calc_deri(time, yvec, eps, omega):
-    return (yvec[1], -eps * omega * yvec[1] - omega **2 * yvec[0])
-
-time_span = (0, 10)
-yinit = (1, 0)
-solution = sp.integrate.solve_ivp(calc_deri, time_span, yinit, args=(eps, omega), method='LSODA')
+t_span = (0, 10)
+t_eval = np.linspace(*t_span, 100)
+z0 = [1, 0]
+res = sp.integrate.solve_ivp(f, t_span, z0, t_eval=t_eval,
+                             args=(zeta, omega), method = 'LSODA')
 
 plt.figure(figsize=(4, 3))
-plt.plot(solution.t, solution.y[0,:], label='y')
-plt.plot(solution.t, solution.y[1,:], label="y'")
+plt.plot(res.t, res.y[0], label='y')
+plt.plot(res.t, res.y[1], label="dy/dt")
 plt.legend(loc='best')
 plt.show()

@@ -4,9 +4,9 @@
 .. image:: https://github.com/scipy-lectures/scipy-lecture-notes/workflows/test/badge.svg?branch=main
   :target: https://github.com/scipy-lectures/scipy-lecture-notes/actions?query=workflow%3A%22test%22
 
-===================
-Scipy-Lecture-Notes
-===================
+===============================
+Scientific-Python-Lecture-Notes
+===============================
 
 This repository gathers some lecture notes on the scientific Python
 ecosystem that can be used for a full course of scientific computing with
