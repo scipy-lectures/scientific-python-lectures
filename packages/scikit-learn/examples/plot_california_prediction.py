@@ -15,7 +15,7 @@ data = fetch_california_housing(as_frame=True)
 import matplotlib.pyplot as plt
 plt.figure(figsize=(4, 3))
 plt.hist(data.target)
-plt.xlabel('price ($1000s)')
+plt.xlabel('price ($100k)')
 plt.ylabel('count')
 plt.tight_layout()
 
@@ -44,10 +44,10 @@ expected = y_test
 
 plt.figure(figsize=(4, 3))
 plt.scatter(expected, predicted)
-plt.plot([0, 50], [0, 50], '--k')
+plt.plot([0, 8], [0, 8], '--k')
 plt.axis('tight')
-plt.xlabel('True price ($1000s)')
-plt.ylabel('Predicted price ($1000s)')
+plt.xlabel('True price ($100k)')
+plt.ylabel('Predicted price ($100k)')
 plt.tight_layout()
 
 
@@ -64,10 +64,10 @@ expected = y_test
 
 plt.figure(figsize=(4, 3))
 plt.scatter(expected, predicted)
-plt.plot([0, 50], [0, 50], '--k')
+plt.plot([0, 5], [0, 5], '--k')
 plt.axis('tight')
-plt.xlabel('True price ($1000s)')
-plt.ylabel('Predicted price ($1000s)')
+plt.xlabel('True price ($100k)')
+plt.ylabel('Predicted price ($100k)')
 plt.tight_layout()
 
 ##############################################################################

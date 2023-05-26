@@ -1,8 +1,8 @@
 Contributing
 =============
 
-The SciPy lecture notes are a community-based effort and require constant
-maintenance and improvements. New contributions such as wording
+The Scientific Python Lecture Notes are a community-based effort and require
+constant maintenance and improvements. New contributions such as wording
 improvements or inclusion of new topics are welcome.
 
 To propose bugfixes or straightforward improvements to the notes, see the
@@ -17,7 +17,7 @@ Objectives and design choices for the lecture notes
 ---------------------------------------------------
 
 Contributors should keep the following objectives and design choices of
-the SciPy lecture notes in mind.
+the Scientific Python Lecture Notes in mind.
 
 Objectives:
 

@@ -240,9 +240,9 @@ roughly :math:`n^3` in the size of the input matrix.
 
 However, in both of these example, we are not using all the output of
 the SVD, but only the first few rows of its first return argument. If
-we use the ``svd`` implementation of scipy, we can ask for an incomplete
+we use the ``svd`` implementation of SciPy, we can ask for an incomplete
 version of the SVD. Note that implementations of linear algebra in
-scipy are richer then those in numpy and should be preferred.
+SciPy are richer then those in NumPy and should be preferred.
 
 .. sourcecode:: ipython
 
@@ -302,7 +302,7 @@ be computed with arpack, available in ``scipy.sparse.linalg.eigsh``.
 Writing faster numerical code
 ===============================
 
-A complete discussion on advanced use of numpy is found in chapter
+A complete discussion on advanced use of NumPy is found in chapter
 :ref:`advanced_numpy`, or in the article `The NumPy array: a structure
 for efficient numerical computation
 <https://hal.inria.fr/inria-00564007/en>`_
@@ -311,7 +311,7 @@ discuss only some commonly encountered tricks to make code faster.
 
 * **Vectorizing for loops**
 
-  Find tricks to avoid for loops using numpy arrays. For this, masks and
+  Find tricks to avoid for loops using NumPy arrays. For this, masks and
   indices arrays can be useful.
 
 * **Broadcasting**
@@ -319,7 +319,7 @@ discuss only some commonly encountered tricks to make code faster.
   Use :ref:`broadcasting <broadcasting>` to do operations on arrays as
   small as possible before combining them.
 
-.. XXX: complement broadcasting in the numpy chapter with the example of
+.. XXX: complement broadcasting in the NumPy chapter with the example of
    the 3D grid
 
 * **In place operations**
@@ -407,8 +407,8 @@ discuss only some commonly encountered tricks to make code faster.
   compiled code. For compiled code, the preferred option is to use
   `Cython <https://www.cython.org>`_: it is easy to transform exiting
   Python code in compiled code, and with a good use of the
-  `numpy support <https://docs.cython.org/en/latest/src/tutorial/numpy.html>`_
-  yields efficient code on numpy arrays, for instance by unrolling loops.
+  `NumPy support <https://docs.cython.org/en/latest/src/tutorial/numpy.html>`_
+  yields efficient code on NumPy arrays, for instance by unrolling loops.
 
 .. warning::
 

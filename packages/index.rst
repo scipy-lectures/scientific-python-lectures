@@ -3,8 +3,8 @@
 Packages and applications
 ==========================
 
-This part of the *Scipy lecture notes* is dedicated to various scientific
-packages useful for extended needs.
+This part of the *Scientific Python Lecture Notes* is dedicated to various
+scientific packages useful for extended needs.
 
 |
 

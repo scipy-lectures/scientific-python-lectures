@@ -6,7 +6,7 @@
 
 .. _scipy:
 
-Scipy : high-level scientific computing
+SciPy : high-level scientific computing
 =======================================
 
 **Authors**: *Gaël Varoquaux, Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Ralf Gommers*
@@ -25,13 +25,13 @@ Scipy : high-level scientific computing
     libraries, such as the GSL (GNU Scientific  Library for C and C++),
     or Matlab's toolboxes. ``scipy`` is the core package for scientific
     routines in Python; it is meant to operate efficiently on ``numpy``
-    arrays, so that numpy and scipy work hand in hand.
+    arrays, so that NumPy and SciPy work hand in hand.
 
     Before implementing a routine, it is worth checking if the desired
-    data processing is not already implemented in Scipy. As
+    data processing is not already implemented in SciPy. As
     non-professional programmers, scientists often tend to **re-invent the
     wheel**, which leads to buggy, non-optimal, difficult-to-share and
-    unmaintainable code. By contrast, ``Scipy``'s routines are optimized
+    unmaintainable code. By contrast, ``SciPy``'s routines are optimized
     and tested, and should therefore be used when possible.
 
 
@@ -43,7 +43,7 @@ Scipy : high-level scientific computing
 .. warning::
 
     This tutorial is far from an introduction to numerical computing.
-    As enumerating the different submodules and functions in scipy would
+    As enumerating the different submodules and functions in SciPy would
     be very boring, we concentrate instead on a few examples to give a
     general idea of how to use ``scipy`` for scientific computing.
 
@@ -70,7 +70,7 @@ Scipy : high-level scientific computing
 .. tip::
 
    They all depend on :mod:`numpy`, but are mostly independent of each
-   other. The standard way of importing Numpy and these Scipy modules
+   other. The standard way of importing NumPy and these SciPy modules
    is::
 
     >>> import numpy as np
@@ -79,58 +79,56 @@ Scipy : high-level scientific computing
 
 File input/output: :mod:`scipy.io`
 ----------------------------------
+:mod:`scipy.io` contains functions for loading and saving data in
+several common formats including Matlab, IDL, Matrix Market, and
+Harwell-Boeing.
 
 **Matlab files**: Loading and saving::
 
     >>> import scipy as sp
     >>> a = np.ones((3, 3))
-    >>> sp.io.savemat('file.mat', {'a': a}) # savemat expects a dictionary
+    >>> sp.io.savemat('file.mat', {'a': a})  # savemat expects a dictionary
     >>> data = sp.io.loadmat('file.mat')
     >>> data['a']
     array([[1.,  1.,  1.],
            [1.,  1.,  1.],
            [1.,  1.,  1.]])
 
-.. warning:: **Python / Matlab mismatches**, *eg* matlab does not represent 1D arrays
+.. warning:: **Python / Matlab mismatch**: The Matlab file format does not support 1D arrays.
 
    ::
 
       >>> a = np.ones(3)
       >>> a
       array([1.,  1.,  1.])
+      >>> a.shape
+      (3,)
       >>> sp.io.savemat('file.mat', {'a': a})
-      >>> sp.io.loadmat('file.mat')['a']
+      >>> a2 = sp.io.loadmat('file.mat')['a']
+      >>> a2
       array([[1.,  1.,  1.]])
+      >>> a2.shape
+      (1, 3)
 
-   Notice the difference?
+   Notice that the original array was a one-dimensional array, whereas the
+   saved and reloaded array is a two-dimensional array with a single row.
 
-|
-
-.. Comments to make doctests pass which require an image
-    >>> import matplotlib.pyplot as plt
-    >>> plt.imsave('fname.png', np.array([[0]]))
-
-**Image files**: Reading images::
-
-    >>> import imageio.v3 as iio
-    >>> iio.imread('fname.png')
-    array([[[ 0,   0,  0, 255]]], dtype=uint8)
-    >>> # Matplotlib also has a similar function
-    >>> import matplotlib.pyplot as plt
-    >>> plt.imread('fname.png')
-    array([[[0., 0., 0., 1.]]], dtype=float32)
+   For other formats, see the :mod:`scipy.io` documentation.
 
 .. seealso::
 
     * Load text files: :func:`numpy.loadtxt`/:func:`numpy.savetxt`
 
     * Clever loading of text/csv files:
-      :func:`numpy.genfromtxt`/:func:`numpy.recfromcsv`
+      :func:`numpy.genfromtxt`
 
-    * Fast and efficient, but numpy-specific, binary format:
+    * Fast and efficient, but NumPy-specific, binary format:
       :func:`numpy.save`/:func:`numpy.load`
 
-    * More advanced input/output of images in scikit-image: :mod:`skimage.io`
+    * Basic input/output of images in Matplotlib:
+      :func:`matplotlib.pyplot.imread`/:func:`matplotlib.pyplot.imsave`
+
+    * More advanced input/output of images: :mod:`imageio`
 
 Special functions: :mod:`scipy.special`
 ---------------------------------------
@@ -157,22 +155,20 @@ functions here. Frequently used ones are:
 Linear algebra operations: :mod:`scipy.linalg`
 ----------------------------------------------
 
-.. tip::
+:mod:`scipy.linalg` provides a Python interface to efficient, compiled
+implementations of standard linear algebra operations: the BLAS (Basic
+Linear Algebra Subroutines) and LAPACK (Linear Algebra PACKage) libraries.
 
-    The :mod:`scipy.linalg` module provides standard linear algebra
-    operations, relying on an underlying efficient implementation (BLAS,
-    LAPACK).
-
-* The :func:`scipy.linalg.det` function computes the determinant of a
-  square matrix::
+For example, the :func:`scipy.linalg.det` function computes the determinant
+of a square matrix::
 
     >>> import scipy as sp
     >>> arr = np.array([[1, 2],
     ...                 [3, 4]])
     >>> sp.linalg.det(arr)
     -2.0
-    >>> arr = np.array([[3, 2],
-    ...                 [6, 4]])
+    >>> arr = np.array([[1, 1],
+    ...                 [1, 1]])
     >>> sp.linalg.det(arr)
     0.0
     >>> sp.linalg.det(np.ones((3, 4)))
@@ -180,50 +176,53 @@ Linear algebra operations: :mod:`scipy.linalg`
     ...
     ValueError: expected square matrix
 
-* The :func:`scipy.linalg.inv` function computes the inverse of a square
-  matrix::
+Mathematically, the solution of a linear system :math:`Ax = b` is :math:`x = A^{-1}b`,
+but explicit inversion of a matrix is numerically unstable and should be avoided.
+Instead, use :func:`scipy.linalg.solve`::
 
-    >>> arr = np.array([[1, 2],
-    ...                 [3, 4]])
-    >>> iarr = sp.linalg.inv(arr)
-    >>> iarr
-    array([[-2. ,  1. ],
-           [ 1.5, -0.5]])
-    >>> np.allclose(arr @ iarr, np.eye(2))
+    >>> A = np.array([[1, 2],
+    ...               [2, 3]])
+    >>> b = np.array([14, 23])
+    >>> x = sp.linalg.solve(A, b)
+    >>> x
+    array([4., 5.])
+    >>> np.allclose(A @ x, b)
     True
 
-  Finally computing the inverse of a singular matrix (its determinant is zero)
-  will raise ``LinAlgError``::
+Attempting to solve a linear system involving a singular matrix
+(i.e. one with a determinant of zero) will raise a ``LinAlgError``::
 
-    >>> arr = np.array([[3, 2],
-    ...                 [6, 4]])
-    >>> sp.linalg.inv(arr)  # doctest: +SKIP
+    >>> A = np.array([[1, 1],
+    ...               [1, 1]])
+    >>> sp.linalg.solve(A, b)  # doctest: +SKIP
     Traceback (most recent call last):
     ...
-    ...LinAlgError: singular matrix
+    ...LinAlgError: Matrix is singular
 
-* More advanced operations are available, for example singular-value
-  decomposition (SVD)::
+:mod:`scipy.linalg` also features matrix factorizations/decompositions
+such as the singular value decomposition.
 
-    >>> arr = np.arange(9).reshape((3, 3)) + np.diag([1, 0, 1])
-    >>> uarr, spec, vharr = sp.linalg.svd(arr)
+    >>> A = np.array([[1, 2],
+    ...               [2, 3]])
+    >>> U, s, Vh = sp.linalg.svd(A)
+    >>> s  # singular values
+    array([4.23606798, 0.23606798])
 
-  The resulting array spectrum is::
+The original matrix can be recovered by matrix multiplication of the
+factors::
 
-    >>> spec    # doctest: +ELLIPSIS
-    array([14.88982544,   0.45294236,   0.29654967])
-
-  The original matrix can be re-composed by matrix multiplication of the outputs of
-  ``svd`` with ``@``::
-
-    >>> sarr = np.diag(spec)
-    >>> svd_mat = uarr @ sarr @ vharr
-    >>> np.allclose(svd_mat, arr)
+    >>> S = np.diag(s)  # convert to diagonal matrix before matrix multiplication
+    >>> A2 = U @ S @ Vh
+    >>> np.allclose(A2, A)
+    True
+    >>> A3 = (U * s) @ Vh  # more efficient: use array math broadcasting rules!
+    >>> np.allclose(A3, A)
     True
 
-  SVD is commonly used in statistics and signal processing.  Many other
-  standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
-  for linear systems, are available in :mod:`scipy.linalg`.
+Many other decompositions (e.g. LU, Cholesky, QR), solvers for structured
+linear systems (e.g. triangular, circulant), eigenvalue problem algorithms,
+matrix functions (e.g. matrix exponential), and routines for special matrix
+creation (e.g. block diagonal, toeplitz) are available in :mod:`scipy.linalg`.
 
 
 .. _intro_scipy_interpolate:
@@ -232,8 +231,8 @@ Interpolation: :mod:`scipy.interpolate`
 ---------------------------------------
 
 :mod:`scipy.interpolate` is useful for fitting a function from experimental
-data and thus evaluating points where no measure exists. The module is based
-on the `FITPACK Fortran subroutines`_.
+data and thus evaluating points where no reference value exists. The module
+includes, but not limited to `FITPACK Fortran subroutines`_.
 
 .. _`FITPACK Fortran subroutines` : https://netlib.org/dierckx/index.html
 .. _netlib : https://netlib.org
@@ -244,10 +243,12 @@ By imagining experimental data close to a sine function::
     >>> noise = (np.random.random(10)*2 - 1) * 1e-1
     >>> measures = np.sin(2 * np.pi * measured_time) + noise
 
-:class:`scipy.interpolate.interp1d` can build a linear interpolation
-function::
+:mod:`scipy.interpolate` has many interpolation methods which need to be
+chosen based on the data. See the
+`tutorial <https://scipy.github.io/devdocs/tutorial/interpolate.html>`__
+for some guidelines::
 
-    >>> linear_interp = sp.interpolate.interp1d(measured_time, measures)
+    >>> spline = sp.interpolate.CubicSpline(measured_time, measures)
 
 .. image:: auto_examples/images/sphx_glr_plot_interpolation_001.png
     :target: auto_examples/plot_interpolation.html
@@ -257,19 +258,11 @@ function::
 Then the result can be evaluated at the time of interest::
 
     >>> interpolation_time = np.linspace(0, 1, 50)
-    >>> linear_results = linear_interp(interpolation_time)
+    >>> linear_results = spline(interpolation_time)
 
-A cubic interpolation can also be selected by providing the ``kind`` optional
-keyword argument::
-
-    >>> cubic_interp = sp.interpolate.interp1d(measured_time, measures, kind='cubic')
-    >>> cubic_results = cubic_interp(interpolation_time)
-
-
-:class:`scipy.interpolate.interp2d` is similar to
-:class:`scipy.interpolate.interp1d`, but for 2-D arrays. Note that for
-the `interp` family, the interpolation points must stay within the range
-of given data points. See the summary exercise on
+:class:`scipy.interpolate.CloughTocher2DInterpolator` is similar to
+:class:`scipy.interpolate.CubicSpline`, but for 2-D arrays.
+See the summary exercise on
 :ref:`summary_exercise_stat_interp` for a more advanced spline
 interpolation example.
 
@@ -278,18 +271,74 @@ interpolation example.
 Optimization and fit: :mod:`scipy.optimize`
 -------------------------------------------
 
-Optimization is the problem of finding a numerical solution to a
-minimization or equality.
+:mod:`scipy.optimize` provides algorithms for root finding, curve fitting,
+and more general optimization.
 
-.. tip::
+Root Finding
+............
 
-    The :mod:`scipy.optimize` module provides algorithms for function
-    minimization (scalar or multi-dimensional), curve fitting and root
-    finding.
+:func:`scipy.optimize.root_scalar` attempts to find a root of a specified
+scalar-valued function (i.e., an argument at which the function value is zero).
+Like many :mod:`scipy.optimize` functions, the function needs an initial
+guess of the solution, which the algorithm will refine until it converges or
+recognizes failure. We also provide the derivative to improve the rate of
+convergence.
 
+    >>> def f(x):
+    ...     return (x-1)*(x-2)
+    >>> def df(x):
+    ...     return 2*x - 3
+    >>> x0 = 0  # guess
+    >>> res = sp.optimize.root_scalar(f, x0=x0, fprime=df)
+    >>> res
+         converged: True
+              flag: 'converged'
+    function_calls: 12
+        iterations: 6
+              root: 1.0
+
+Note that only one the root at ``1.0`` is found. By inspection, we can tell
+that there is a second root at ``2.0``. We can direct the function toward a
+particular root by changing the guess or by passing a bracket that contains
+only the root we seek.
+
+    >>> res = sp.optimize.root_scalar(f, bracket=(1.5, 10))
+    >>> res.root
+    2.0
+
+For multivariate problems, use :func:`scipy.optimize.root`.
+
+    >>> def f(x):
+    ...     # intersection of unit circle and line from origin
+    ...     return [x[0]**2 + x[1]**2 - 1,
+    ...             x[1] - x[0]]
+    >>> res = sp.optimize.root(f, x0=[0, 0])
+    >>> np.allclose(f(res.x), 0, atol=1e-10)
+    True
+    >>> np.allclose(res.x, np.sqrt(2)/2)
+    True
+
+Over-constrained problems can be solved in the least-squares
+sense using :func:`scipy.optimize.root` with ``method='lm'``
+(Levenberg-Marquardt).
+
+    >>> def f(x):
+    ...     # intersection of unit circle, line from origin, and parabola
+    ...     return [x[0]**2 + x[1]**2 - 1,
+    ...             x[1] - x[0],
+    ...             x[1] - x[0]**2]
+    >>> res = sp.optimize.root(f, x0=[1, 1], method='lm')
+    >>> res.success
+    True
+    >>> res.x
+    array([0.76096066, 0.66017736])
+
+See the documentation of :func:`scipy.optimize.root_scalar`
+and :func:`scipy.optimize.root` for a variety of other solution
+algorithms and options.
 
 Curve fitting
-..............
+.............
 
 .. Comment to make doctest pass
     >>> np.random.seed(0)
@@ -299,19 +348,20 @@ Curve fitting
    :align: right
    :scale: 50
 
-Suppose we have data on a sine wave, with some noise: ::
+Suppose we have data that is sinusoidal but noisy::
 
-    >>> x_data = np.linspace(-5, 5, num=50)
-    >>> y_data = 2.9 * np.sin(1.5 * x_data) + np.random.normal(size=50)
+    >>> x = np.linspace(-5, 5, num=50)  # 50 values between -5 and 5
+    >>> noise = 0.01 * np.cos(100 * x)
+    >>> a, b = 2.9, 1.5
+    >>> y = a * np.cos(b * x) + noise
 
+We can approximate the underlying amplitude, frequency, and phase
+from the data by least squares curve fitting. To begin, we write
+a function that accepts the independent variable as the first
+argument and all parameters to fit as separate arguments::
 
-If we know that the data lies on a sine wave, but not the amplitudes
-or the period, we can find those by least squares curve fitting. First we
-have to define the test function to fit, here a sine with unknown
-amplitude and period::
-
-    >>> def test_func(x, a, b):
-    ...     return a * np.sin(b * x)
+    >>> def f(x, a, b, c):
+    ...     return a * np.sin(b * x + c)
 
 .. image:: auto_examples/images/sphx_glr_plot_curve_fit_002.png
    :target: auto_examples/plot_curve_fit.html
@@ -320,20 +370,22 @@ amplitude and period::
 
 We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
 
-    >>> params, params_covariance = sp.optimize.curve_fit(test_func, x_data, y_data, p0=[2, 2])
-    >>> print(params)
-    [3.05931973  1.45754553]
+    >>> params, _ = sp.optimize.curve_fit(f, x, y, p0=[2, 1, 3])
+    >>> params
+    array([2.900026  , 1.50012043, 1.57079633])
+    >>> ref = [a, b, np.pi/2]  # what we'd expect
+    >>> np.allclose(params, ref, rtol=1e-3)
+    True
 
 .. raw:: html
 
    <div style="clear: both"></div>
 
-
 .. topic:: Exercise: Curve fitting of temperature data
    :class: green
 
     The temperature extremes in Alaska for each month, starting in January, are
-    given by (in degrees Celcius)::
+    given by (in degrees Celsius)::
 
         max:  17,  19,  21,  28,  33,  38, 37,  37,  31,  23,  19,  18
         min: -62, -59, -56, -46, -32, -18, -9, -13, -25, -46, -52, -58
@@ -350,8 +402,8 @@ We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
     :ref:`solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_curvefit_temperature_data.py>`
 
 
-Finding the minimum of a scalar function
-........................................
+Optimization
+............
 
 .. Comment to make doctest pass
     >>> np.random.seed(0)
@@ -361,160 +413,90 @@ Finding the minimum of a scalar function
    :align: right
    :scale: 50
 
-Let's define the following function: ::
+Suppose we wish to minimize the scalar-valued function of a single
+variable :math:`f(x) = x^2  + 10 \sin(x)`::
 
     >>> def f(x):
     ...     return x**2 + 10*np.sin(x)
+    >>> x = np.arange(-5, 5, 0.1)
+    >>> plt.plot(x, f(x))  # doctest:+SKIP
+    >>> plt.show()  # doctest:+SKIP
 
-and plot it:
+We can see that the function has a local minimizer near :math:`x = 3.8`
+and a global minimizer near :math:`x = -1.3`, but
+the precise values cannot be determined from the plot.
 
-.. doctest::
+The most appropriate function for this purpose is
+:func:`scipy.optimize.minimize_scalar`.
+Since we know the approximate locations of the minima, we will provide
+bounds that restrict the search to the vicinity of the global minimum.
 
-    >>> x = np.arange(-10, 10, 0.1)
-    >>> plt.plot(x, f(x)) # doctest:+SKIP
-    >>> plt.show() # doctest:+SKIP
+    >>> res = sp.optimize.minimize_scalar(f, bounds=(-2, -1))
+    >>> res  # doctest: +ELLIPSIS
+     message: Solution found.
+     success: True
+      status: 0
+         fun: -7.9458233756...
+           x: -1.306440997...
+         nit: 8
+        nfev: 8
+    >>> res.fun == f(res.x)
+    True
 
-This function has a global minimum around -1.3 and a local minimum around
-3.8.
+If we did not already know the approximate location of the global minimum,
+we could use one of SciPy's global minimizers, such as
+:func:`scipy.optimize.differential_evolution`. We are required to pass
+``bounds``, but they do not need to be tight.
 
-Searching for minimum can be done with
-:func:`scipy.optimize.minimize`, given a starting point x0, it returns
-the location of the minimum that it has found:
+    >>> bounds=[(-5, 5)]  # list of lower, upper bound for each variable
+    >>> res = sp.optimize.differential_evolution(f, bounds=bounds)
+    >>> res  # doctest:+SKIP
+     message: Optimization terminated successfully.
+     success: True
+         fun: -7.9458233756...
+           x: [-1.306e+00]
+         nit: 6
+        nfev: 111
+         jac: [ 9.948e-06]
 
-.. sidebar:: result type
+For multivariate optimization, a good choice for many problems is
+:func:`scipy.optimize.minimize`.
+Suppose we wish to find the minimum of a quadratic function of two
+variables, :math:`f(x_0, x_1) = (x_0-1)^2 + (x_1-2)^2`.
 
-    The result of :func:`scipy.optimize.minimize` is a compound object
-    comprising all information on the convergence
+    >>> def f(x):
+    ...     return (x[0] - 1)**2 + (x[1] - 2)**2
 
-::
+Like :func:`scipy.optimize.root`, :func:`scipy.optimize.minimize`
+requires a guess ``x0``. (Note that this is the initial value of
+*both* variables rather than the value of the variable we happened to
+label :math:`x_0`.)
 
-    >>> result = sp.optimize.minimize(f, x0=0)
-    >>> result # doctest: +ELLIPSIS
+    >>> res = sp.optimize.minimize(f, x0=[0, 0])
+    >>> res  # doctest: +ELLIPSIS
       message: Optimization terminated successfully.
       success: True
        status: 0
-          fun: -7.9458233...
-            x: [-1.306e+00]
-          nit: 5
-          jac: [-1.192e-06]
-     hess_inv: [[ 8.589e-02]]
-         nfev: 12
-         njev: 6
-    >>> result.x # The coordinate of the minimum  # doctest: +ELLIPSIS
-    array([-1.30644...])
+          fun: 1.70578...e-16
+            x: [ 1.000e+00  2.000e+00]
+          nit: 2
+          jac: [ 3.219e-09 -8.462e-09]
+     hess_inv: [[ 9.000e-01 -2.000e-01]
+                [-2.000e-01  6.000e-01]]
+         nfev: 9
+         njev: 3
 
-|
+.. sidebar:: **Maximization?**
 
-**Methods**:
-As the function is a smooth function, gradient-descent based methods are
-good options. The `lBFGS algorithm
-<https://en.wikipedia.org/wiki/Limited-memory_BFGS>`__ is a good choice
-in general::
+   Is :func:`scipy.optimize.minimize` restricted to the solution of
+   minimization problems? Nope! To solve a maximization problem,
+   simply minimize the *negative* of the original objective function.
 
-
-    >>> sp.optimize.minimize(f, x0=0, method="L-BFGS-B") # doctest: +ELLIPSIS
-      message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
-      success: True
-       status: 0
-          fun: -7.9458233756...
-            x: [-1.306e+00]
-          nit: 5
-          jac: [-1.599e-06]
-         nfev: 12
-         njev: 6
-     hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
-
-Note how it cost only 12 functions evaluation above to find a good value
-for the minimum.
-
-|
-
-**Global minimum**:
-A possible issue with this approach is that, if the function has local minima,
-the algorithm may find these local minima instead of the
-global minimum depending on the initial point x0::
-
-    >>> res = sp.optimize.minimize(f, x0=3, method="L-BFGS-B")
-    >>> res.x
-    array([3.83746...])
-
-.. Comment to make doctest pass
-   >>> np.random.seed(42)
-
-If we don't know the neighborhood of the global minimum to choose the
-initial point, we need to resort to costlier global optimization.  To
-find the global minimum, we use :func:`scipy.optimize.basinhopping`
-(added in version 0.12.0 of Scipy). It combines a local optimizer with
-sampling of starting points::
-
-   >>> sp.optimize.basinhopping(f, 0)  # doctest: +SKIP
-                     nfev: 1725
-    minimization_failures: 0
-                      fun: -7.9458233756152845
-                        x: array([-1.30644001])
-                  message: ['requested number of basinhopping iterations completed successfully']
-                     njev: 575
-                      nit: 100
-
-.. seealso:
-
-    Another available (but much less efficient) global optimizer is
-    :func:`scipy.optimize.brute` (brute force optimization on a grid).
-
-    More algorithms for different classes of global optimization problems
-    exist, but this is out of the scope of :mod:`scipy`.  Some useful
-    packages for global optimization are OpenOpt, IPOPT_, PyGMO_ and
-    PyEvolve_.
-
-.. note::
-
-   :mod:`scipy` used to contain the routine `anneal`, it has been removed in
-   SciPy 0.16.0.
-
-.. _IPOPT: https://github.com/xuy/pyipopt
-.. _PyGMO: https://esa.github.io/pygmo/
-.. _PyEvolve: https://pyevolve.sourceforge.net/
-
-|
-
-**Constraints**:
-We can constrain the variable to the interval
-``(0, 10)`` using the "bounds" argument:
-
-.. sidebar:: A list of bounds
-
-   As :func:`~scipy.optimize.minimize` works in general with x
-   multidimensionsal, the "bounds" argument is a list of bound on each
-   dimension.
-
-::
-
-    >>> res = sp.optimize.minimize(f, x0=1,
-    ...                         bounds=((0, 10), ))
-    >>> res.x    # doctest: +ELLIPSIS
-    array([0.])
-
-.. tip::
-
-   What has happened? Why are we finding 0, which is not a mimimum of our
-   function.
-
-
-.. topic:: **Minimizing functions of several variables**
-
-   To minimize over several variables, the trick is to turn them into a
-   function of a multi-dimensional variable (a vector). See for instance
-   the exercise on 2D minimization below.
-
-.. note::
-
-   :func:`scipy.optimize.minimize_scalar` is a function with dedicated
-   methods to minimize functions of only one variable.
-
-.. seealso::
-
-   Finding minima of function is discussed in more details in the
-   advanced chapter: :ref:`mathematical_optimization`.
+This barely scratches the surface of SciPy's optimization features, which
+include mixed integer linear programming, constrained nonlinear programming,
+and the solution of assignment problems. For much more information, see the
+documentation of :mod:`scipy.optimize` and the advanced chapter
+:ref:`mathematical_optimization`.
 
 .. topic:: Exercise: 2-D minimization
    :class: green
@@ -528,76 +510,21 @@ We can constrain the variable to the interval
 
     .. math:: f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
 
-    has multiple global and local minima. Find the global minima of this
-    function.
+    has multiple local minima. Find a global minimum (there is more than one,
+    each with the same value of the objective function) and at least one other
+    local minimum.
 
     Hints:
 
         - Variables can be restricted to :math:`-2 < x < 2` and :math:`-1 < y < 1`.
-        - Use :func:`numpy.meshgrid` and :func:`matplotlib.pyplot.imshow` to
-          find visually the regions.
-        - Use :func:`scipy.optimize.minimize`, optionally trying out
-          several of its methods.
-
-    How many global minima are there, and what is the function value at those
-    points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
+        - :func:`numpy.meshgrid` and :func:`matplotlib.pyplot.imshow` can help
+          with visualization.
+        - Try minimizing with :func:`scipy.optimize.minimize` with an initial
+          guess of :math:`(x, y) = (0, 0)`. Does it find the global minimum, or
+          converge to a local minimum? What about other initial guesses?
+        - Try minimizing with :func:`scipy.optimize.differential_evolution`.
 
     :ref:`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
-
-
-Finding the roots of a scalar function
-........................................
-
-To find a root, i.e. a point where :math:`f(x) = 0`, of the function :math:`f` above
-we can use :func:`scipy.optimize.root`:
-
-::
-
-    >>> root = sp.optimize.root(f, x0=1)  # our initial guess is 1
-    >>> root    # The full result
-     message: The solution converged.
-     success: True
-      status: 1
-         fun: [ 0.000e+00]
-           x: [ 0.000e+00]
-        nfev: 10
-        fjac: [[-1.000e+00]]
-           r: [-1.000e+01]
-         qtf: [ 1.333e-32]
-
-Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
-there is a second root around -2.5. We find the exact value of it by adjusting
-our initial guess: ::
-
-    >>> root2 = sp.optimize.root(f, x0=-2.5)
-    >>> root2.x
-    array([-2.47948183])
-
-.. note::
-
-   :func:`scipy.optimize.root` also comes with a variety of algorithms,
-   set via the "method" argument.
-
-.. image:: auto_examples/images/sphx_glr_plot_optimize_example2_001.png
-   :target: auto_examples/plot_optimize_example2.html
-   :align: right
-   :scale: 70
-
-|
-
-
-Now that we have found the minima and roots of ``f`` and used curve fitting on it,
-we put all those results together in a single plot:
-
-.. raw:: html
-
-   <div style="clear: both"></div>
-
-
-.. seealso::
-
-    You can find all algorithms and functions with similar functionalities
-    in the documentation of :mod:`scipy.optimize`.
 
 See the summary exercise on :ref:`summary_exercise_optimize` for another, more
 advanced example.
@@ -713,88 +640,116 @@ and the advanced chapter :ref:`statistics <statistics>`.
 Numerical integration: :mod:`scipy.integrate`
 ---------------------------------------------
 
-Function integrals
-...................
+Quadrature
+..........
 
-The most generic integration routine is :func:`scipy.integrate.quad`. To
-compute :math:`\int_0^{\pi / 2} sin(t) dt`::
+Suppose we wish to compute the definite integral
+:math:`\int_0^{\pi / 2} \sin(t) dt` numerically. :func:`scipy.integrate.quad`
+chooses one of several adaptive techniques depending on the parameters, and
+is therefore the recommended first choice for integration of function of a single variable::
 
-    >>> res, err = sp.integrate.quad(np.sin, 0, np.pi/2)
-    >>> np.allclose(res, 1)   # res is the result, is should be close to 1
+    >>> integral, error_estimate = sp.integrate.quad(np.sin, 0, np.pi/2)
+    >>> np.allclose(integral, 1)  # numerical result ~ analytical result
     True
-    >>> np.allclose(err, 1 - res)  # err is an estimate of the err
+    >>> abs(integral - 1) < error_estimate  #  actual error < estimated error
     True
 
-Other integration schemes are available:
-:func:`scipy.integrate.fixed_quad`, :func:`scipy.integrate.quadrature`,
-:func:`scipy.integrate.romberg`...
+Other functions for *numerical quadrature*, including integration of
+multivariate functions and approximating integrals from samples, are available
+in :mod:`scipy.integrate`.
 
-Integrating differential equations
-...................................
+Initial Value Problems
+......................
 
 :mod:`scipy.integrate` also features routines for integrating `Ordinary
 Differential Equations (ODE)
-<https://en.wikipedia.org/wiki/Ordinary_differential_equation>`__. In
-particular, :func:`scipy.integrate.solve_ivp` solves ODE of the form::
+<https://en.wikipedia.org/wiki/Ordinary_differential_equation>`__.
+For example, :func:`scipy.integrate.solve_ivp` integrates ODEs of the form::
 
-    dy/dt = rhs(t, y)
+.. math::
 
-.. note::
+    \frac{dy}{dt} = f(t, y(t))
 
-   For a long time, the go-to method for solving an ODE was
-   :func:`scipy.integrate.odeint`. The SciPy project recommends using
-   :func:`scipy.integrate.solve_ivp` instead.
+from an initial time :math:`t_0` and initial state :math:`y(t=t_0)=t_0` to a final
+time :math:`t_f` or until an event occurs (e.g. a specified state is reached).
 
-As an introduction, let us solve the ODE :math:`\frac{dy}{dt} = -2 y` between
-:math:`t = 0 \dots 4`, with the  initial condition :math:`y(t=0) = 1`.
-First the function computing the derivative of the position needs to be defined::
+As an introduction, consider the initial value problem given by
+:math:`\frac{dy}{dt} = -2 y` and the initial condition :math:`y(t=0) = 1` on
+the interval :math:`t = 0 \dots 4`. We begin by defining a callable that
+computes :math:`f(t, y(t))` given the current time and state.
 
-    >>> def calc_derivative(time, ypos):
-    ...     return -2 * ypos
+    >>> def f(t, y):
+    ...     return -2 * y
+
+Then, to compute ``y`` as a function of time::
+
+    >>> t_span = (0, 4)  # time interval
+    >>> t_eval = np.linspace(*t_span)  # times at which to evaluate `y`
+    >>> y0 = [1,]  # initial state
+    >>> res = sp.integrate.solve_ivp(f, t_span=t_span, y0=y0, t_eval=t_eval)
+
+and plot the result::
+
+    >>> plt.plot(res.t, res.y[0])  # doctest: +SKIP
+    >>> plt.xlabel('t')  # doctest: +SKIP
+    >>> plt.ylabel('y')  # doctest: +SKIP
+    >>> plt.title('Solution of Initial Value Problem')  # doctest: +SKIP
 
 .. image:: auto_examples/images/sphx_glr_plot_solve_ivp_simple_001.png
     :target: auto_examples/plot_solve_ivp_simple.html
     :scale: 70
     :align: right
 
-
-Then, to compute ``y`` as a function of time::
-
-    >>> solution = sp.integrate.solve_ivp(calc_derivative, (0, 4), y0=(1,))
-
-.. raw:: html
-
-   <div style="clear: both"></div>
-
 Let us integrate a more complex ODE: a `damped
 spring-mass oscillator
 <https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator>`__.
-The position of a mass attached to a spring obeys the 2nd order *ODE*
-:math:`y'' + 2 \varepsilon \omega_0  y' + \omega_0^2 y = 0` with
-:math:`\omega_0^2 = k/m` with :math:`k` the spring constant, :math:`m` the mass
-and :math:`\varepsilon = c/(2 m \omega_0)` with :math:`c` the damping coefficient. We set::
+The position of a mass attached to a spring obeys the 2nd order ODE
+:math:`\ddot{y} + 2 \zeta \omega_0  \dot{y} + \omega_0^2 y = 0` with natural frequency
+:math:`\omega_0 = \sqrt{k/m}`, damping ratio :math:`\zeta = c/(2 m \omega_0)`,
+spring constant :math:`k`, mass :math:`m`, and damping coefficient :math:`c`.
 
-    >>> mass = 0.5  # kg
-    >>> kspring = 4  # N/m
-    >>> cviscous = 0.4  # N s/m
+Before using :func:`scipy.integrate.solve_ivp`, the 2nd order ODE
+needs to be transformed into a system of first-order ODEs. Note that
 
-Hence::
+.. math::
 
-    >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
-    >>> omega = np.sqrt(kspring / mass)
+    \begin{eqnarray}
+    \frac{dy}{dt} &=& \dot{y} \\
+    \frac{d\dot{y}}{dt} &=& \ddot{y} = -(2 \zeta \omega_0  \dot{y} + \omega_0^2 y)
+    \end{eqnarray}
 
-The system is underdamped, as::
+If we define :math:`z = [z_0, z_1]` where :math:`z_0 = y` and :math:`z_1 = \dot{y}`,
+then the first order equation:
 
-    >>> eps < 1
-    True
+.. math::
 
-For :func:`~scipy.integrate.solve_ivp`, the 2nd order equation
-needs to be transformed in a system of two first-order equations for the
-vector :math:`Y = (y, y')`: the function computes the
-velocity and acceleration::
+    \usepackage{amsmath}
+    \begin{eqnarray}
+    \frac{dz}{dt} =
+    \begin{bmatrix}
+        \frac{dz_0}{dt} \\
+        \frac{dz_1}{dt}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        z_1  \\
+        -(2 \zeta \omega_0  z_1 + \omega_0^2 z_0)
+    \end{bmatrix}
+    \end{eqnarray}
 
-    >>> def calc_deri(time, yvec, eps, omega):
-    ...     return (yvec[1], -2.0 * eps * omega * yvec[1] - omega **2 * yvec[0])
+is equivalent to the original second order equation.
+
+We set::
+
+    >>> m = 0.5  # kg
+    >>> k = 4  # N/m
+    >>> c = 0.4  # N s/m
+    >>> zeta = c / (2 * m * np.sqrt(k/m))
+    >>> omega = np.sqrt(k / m)
+
+and define the function that computes :math:`\dot{z} = f(t, z(t))`::
+
+    >>> def f(t, z, zeta, omega):
+    ...     return (z[1], -2.0 * zeta * omega * z[1] - omega**2 * z[0])
 
 .. image:: auto_examples/images/sphx_glr_plot_solve_ivp_damped_spring_mass_001.png
     :target: auto_examples/plot_solve_ivp_damped_spring_mass.html
@@ -803,26 +758,23 @@ velocity and acceleration::
 
 Integration of the system follows::
 
-    >>> time_vec = np.linspace(0, 10, 100)
-    >>> yinit = (1, 0)
-    >>> solution = sp.integrate.solve_ivp(calc_deri, (0, 10), yinit, args=(eps, omega), method='LSODA')
-
-.. raw:: html
-
-   <div style="clear: both"></div>
-
+    >>> t_span = (0, 10)
+    >>> t_eval = np.linspace(*t_span, 100)
+    >>> z0 = [1, 0]
+    >>> res = sp.integrate.solve_ivp(f, t_span, z0, t_eval=t_eval,
+    ...                              args=(zeta, omega), method='LSODA')
 
 .. tip::
 
     With the option `method='LSODA'`, :func:`scipy.integrate.solve_ivp` uses the LSODA
     (Livermore Solver for Ordinary Differential equations with Automatic method switching
-    for stiff and non-stiff problems), see the `ODEPACK Fortran library`_ for more details.
+    for stiff and non-stiff problems). See the `ODEPACK Fortran library`_ for more details.
 
 .. _`ODEPACK Fortran library` : https://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
 
 .. seealso:: **Partial Differental Equations**
 
-    There is no Partial Differential Equations (PDE) solver in Scipy.
+    There is no Partial Differential Equations (PDE) solver in SciPy.
     Some Python packages for solving PDE's are available, such as fipy_
     or SfePy_.
 
@@ -884,8 +836,8 @@ the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
 
 .. topic:: `numpy.fft`
 
-   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
-   the scipy one
+   NumPy also has an implementation of FFT (:mod:`numpy.fft`). However,
+   the SciPy one
    should be preferred, as it uses more efficient underlying implementations.
 
 |
@@ -1035,9 +987,9 @@ Image manipulation: :mod:`scipy.ndimage`
 Summary exercises on scientific computing
 -----------------------------------------
 
-The summary exercises use mainly Numpy, Scipy and Matplotlib. They provide some
+The summary exercises use mainly NumPy, SciPy and Matplotlib. They provide some
 real-life examples of scientific computing with Python. Now that the basics of
-working with Numpy and Scipy have been introduced, the interested user is
+working with NumPy and SciPy have been introduced, the interested user is
 invited to try these exercises.
 
 .. only:: latex
@@ -1078,10 +1030,10 @@ invited to try these exercises.
 .. seealso:: **References to go further**
 
    * Some chapters of the `advanced <advanced_topics_part>`__ and the
-     `packages and applications <applications_part>`__ parts of the scipy
+     `packages and applications <applications_part>`__ parts of the SciPy
      lectures
 
-   * The `scipy cookbook <https://scipy-cookbook.readthedocs.io>`__
+   * The `SciPy cookbook <https://scipy-cookbook.readthedocs.io>`__
 
 .. compile solutions, but don't list them explicitly
 .. toctree::

@@ -25,8 +25,8 @@ used for more efficient, non black-box, optimization.
 
    .. rst-class:: horizontal
 
-    * :ref:`Numpy <numpy>`
-    * :ref:`Scipy <scipy>`
+    * :ref:`NumPy <numpy>`
+    * :ref:`SciPy <scipy>`
     * :ref:`Matplotlib <matplotlib>`
 
 .. seealso::  **References**
@@ -375,7 +375,7 @@ gradient and sharp turns are reduced.
 
      - |cg_rosen_icond_conv|
 
-scipy provides :func:`scipy.optimize.minimize` to find the minimum of scalar
+SciPy provides :func:`scipy.optimize.minimize` to find the minimum of scalar
 functions of one or more variables. The simple conjugate gradient method can
 be used by setting the parameter ``method`` to CG ::
 
@@ -471,7 +471,7 @@ purpose, they rely on the 2 first derivative of the function: the
 
      - |ncg_rosen_icond_conv|
 
-In scipy, you can use the Newton method by setting ``method`` to Newton-CG in
+In SciPy, you can use the Newton method by setting ``method`` to Newton-CG in
 :func:`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
 inversion of the Hessian is performed by conjugate gradient ::
 
@@ -612,11 +612,11 @@ are also supported by L-BFGS-B::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
+    >>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)  # doctest: +ELLIPSIS
      message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
      success: True
       status: 0
-         fun: 1.4417677473011861e-15
+         fun: 1.4417677473...e-15
            x: [ 1.000e+00  1.000e+00]
          nit: 16
          jac: [ 1.023e-07 -2.593e-08]
@@ -752,8 +752,8 @@ value. The parameters are specified with ranges given to
     array([1.0000...,  1.0000...])
 
 
-Practical guide to optimization with scipy
-===========================================
+Practical guide to optimization with SciPy
+==========================================
 
 Choosing a method
 ------------------
@@ -927,7 +927,7 @@ Curve fitting
 
 Least square problems occur often when fitting a non-linear to data.
 While it is possible to construct our optimization problem ourselves,
-scipy provides a helper function for this purpose:
+SciPy provides a helper function for this purpose:
 :func:`scipy.optimize.curve_fit`::
 
 
@@ -1036,3 +1036,13 @@ Full code examples
 
 .. include:: auto_examples/index.rst
     :start-line: 1
+
+.. seealso::  **Other Software**
+
+    SciPy tries to include the best well-established, general-use,
+    and permissively-licensed optimization algorithms available. However,
+    even better options for a given task may be available in other libraries;
+    please also see IPOPT_ and PyGMO_.
+
+.. _IPOPT: https://github.com/xuy/pyipopt
+.. _PyGMO: https://esa.github.io/pygmo2/

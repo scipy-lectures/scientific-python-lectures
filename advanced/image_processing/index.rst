@@ -8,7 +8,7 @@
 .. _basic_image:
 
 =======================================================
-Image manipulation and processing using Numpy and Scipy
+Image manipulation and processing using NumPy and SciPy
 =======================================================
 
 **Authors**: *Emmanuelle Gouillart, Gaël Varoquaux*
@@ -31,7 +31,7 @@ arrays.
 
     (or 3-D: CT, MRI, 2D + time; 4-D, ...)
 
-    Here, **image == Numpy array** ``np.array``
+    Here, **image == NumPy array** ``np.array``
 
 **Tools used in this tutorial**:
 
@@ -81,7 +81,7 @@ Writing an array to a file:
     :align: center
     :scale: 50
 
-Creating a numpy array from an image file::
+Creating a NumPy array from an image file::
 
     >>> import imageio.v3 as iio
     >>> face = sp.datasets.face()

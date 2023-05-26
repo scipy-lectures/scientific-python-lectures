@@ -1,5 +1,5 @@
 /*  Example of wrapping a C function that takes a C double array as input using
- *  numpy typemaps for SWIG. */
+ *  NumPy typemaps for SWIG. */
 
 %module cos_doubles
 %{
@@ -9,7 +9,7 @@
     #include "cos_doubles.h"
 %}
 
-/*  include the numpy typemaps */
+/*  include the NumPy typemaps */
 %include "numpy.i"
 /*  need this for correct module initialization */
 %init %{
@@ -22,7 +22,7 @@
 
 /*  Wrapper for cos_doubles that massages the types */
 %inline %{
-    /*  takes as input two numpy arrays */
+    /*  takes as input two NumPy arrays */
     void cos_doubles_func(double * in_array, int size_in, double * out_array, int size_out) {
         /*  calls the original funcion, providing only the size of the first */
         cos_doubles(in_array, out_array, size_in);

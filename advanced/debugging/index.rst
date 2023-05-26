@@ -14,7 +14,7 @@ that we will employ are tailored to its needs.
 
 .. topic:: Prerequisites
 
-    * Numpy
+    * NumPy
     * IPython
     * `nosetests <https://nose.readthedocs.io/en/latest/>`__
     * `pyflakes <https://pypi.org/project/pyflakes>`__

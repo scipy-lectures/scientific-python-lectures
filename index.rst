@@ -1,5 +1,5 @@
-Scipy Lecture Notes
-===========================
+Scientific Python Lecture Notes
+===============================
 
 .. only:: html
 
@@ -75,9 +75,9 @@ Scipy Lecture Notes
 
     .. sidebar::  Download
 
-       |pdf| `PDF, 2 pages per side <./_downloads/ScipyLectures.pdf>`_
+       |pdf| `PDF, 2 pages per side <./_downloads/ScientificPythonLectures.pdf>`_
 
-       |pdf| `PDF, 1 page per side <./_downloads/ScipyLectures-simple.pdf>`_
+       |pdf| `PDF, 1 page per side <./_downloads/ScientificPythonLectures-simple.pdf>`_
 
        |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/main>`_
 
@@ -122,7 +122,7 @@ Scipy Lecture Notes
 
    <div style='display: none; height=0px;'>
 
- :download:`ScipyLectures.pdf` :download:`ScipyLectures-simple.pdf`
+ :download:`ScientificPythonLectures.pdf` :download:`ScientificPythonLectures-simple.pdf`
 
  .. image:: themes/plusBox.png
 

@@ -1,2 +1,2 @@
-Examples for the scipy sparse matrix chapter
-=============================================
+Examples for the SciPy sparse matrix chapter
+============================================
