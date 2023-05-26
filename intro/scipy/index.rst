@@ -155,22 +155,20 @@ functions here. Frequently used ones are:
 Linear algebra operations: :mod:`scipy.linalg`
 ----------------------------------------------
 
-.. tip::
+:mod:`scipy.linalg` provides a Python interface to efficient, compiled
+implementations of standard linear algebra operations: the BLAS (Basic
+Linear Algebra Subroutines) and LAPACK (Linear Algebra PACKage) libraries.
 
-    The :mod:`scipy.linalg` module provides standard linear algebra
-    operations, relying on an underlying efficient implementation (BLAS,
-    LAPACK).
-
-* The :func:`scipy.linalg.det` function computes the determinant of a
-  square matrix::
+For example, the :func:`scipy.linalg.det` function computes the determinant
+of a square matrix::
 
     >>> import scipy as sp
     >>> arr = np.array([[1, 2],
     ...                 [3, 4]])
     >>> sp.linalg.det(arr)
     -2.0
-    >>> arr = np.array([[3, 2],
-    ...                 [6, 4]])
+    >>> arr = np.array([[1, 1],
+    ...                 [1, 1]])
     >>> sp.linalg.det(arr)
     0.0
     >>> sp.linalg.det(np.ones((3, 4)))
@@ -178,50 +176,53 @@ Linear algebra operations: :mod:`scipy.linalg`
     ...
     ValueError: expected square matrix
 
-* The :func:`scipy.linalg.inv` function computes the inverse of a square
-  matrix::
+Mathematically, the solution of a linear system :math:`Ax = b` is :math:`x = A^{-1}b`,
+but explicit inversion of a matrix is numerically unstable and should be avoided.
+Instead, use :func:`scipy.linalg.solve`::
 
-    >>> arr = np.array([[1, 2],
-    ...                 [3, 4]])
-    >>> iarr = sp.linalg.inv(arr)
-    >>> iarr
-    array([[-2. ,  1. ],
-           [ 1.5, -0.5]])
-    >>> np.allclose(arr @ iarr, np.eye(2))
+    >>> A = np.array([[1, 2],
+    ...               [2, 3]])
+    >>> b = np.array([14, 23])
+    >>> x = sp.linalg.solve(A, b)
+    >>> x
+    array([4., 5.])
+    >>> np.allclose(A @ x, b)
     True
 
-  Finally computing the inverse of a singular matrix (its determinant is zero)
-  will raise ``LinAlgError``::
+Attempting to solve a linear system involving a singular matrix
+(i.e. one with a determinant of zero) will raise a ``LinAlgError``::
 
-    >>> arr = np.array([[3, 2],
-    ...                 [6, 4]])
-    >>> sp.linalg.inv(arr)  # doctest: +SKIP
+    >>> A = np.array([[1, 1],
+    ...               [1, 1]])
+    >>> sp.linalg.solve(A, b)  # doctest: +SKIP
     Traceback (most recent call last):
     ...
-    ...LinAlgError: singular matrix
+    ...LinAlgError: Matrix is singular
 
-* More advanced operations are available, for example singular-value
-  decomposition (SVD)::
+:mod:`scipy.linalg` also features matrix factorizations/decompositions
+such as the singular value decomposition.
 
-    >>> arr = np.arange(9).reshape((3, 3)) + np.diag([1, 0, 1])
-    >>> uarr, spec, vharr = sp.linalg.svd(arr)
+    >>> A = np.array([[1, 2],
+    ...               [2, 3]])
+    >>> U, s, Vh = sp.linalg.svd(A)
+    >>> s  # singular values
+    array([4.23606798, 0.23606798])
 
-  The resulting array spectrum is::
+The original matrix can be recovered by matrix multiplication of the
+factors::
 
-    >>> spec    # doctest: +ELLIPSIS
-    array([14.88982544,   0.45294236,   0.29654967])
-
-  The original matrix can be re-composed by matrix multiplication of the outputs of
-  ``svd`` with ``@``::
-
-    >>> sarr = np.diag(spec)
-    >>> svd_mat = uarr @ sarr @ vharr
-    >>> np.allclose(svd_mat, arr)
+    >>> S = np.diag(s)  # convert to diagonal matrix before matrix multiplication
+    >>> A2 = U @ S @ Vh
+    >>> np.allclose(A2, A)
+    True
+    >>> A3 = (U * s) @ Vh  # more efficient: use array math broadcasting rules!
+    >>> np.allclose(A3, A)
     True
 
-  SVD is commonly used in statistics and signal processing.  Many other
-  standard decompositions (QR, LU, Cholesky, Schur), as well as solvers
-  for linear systems, are available in :mod:`scipy.linalg`.
+Many other decompositions (e.g. LU, Cholesky, QR), solvers for structured
+linear systems (e.g. triangular, circulant), eigenvalue problem algorithms,
+matrix functions (e.g. matrix exponential), and routines for special matrix
+creation (e.g. block diagonal, toeplitz) are available in :mod:`scipy.linalg`.
 
 
 .. _intro_scipy_interpolate:
