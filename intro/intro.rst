@@ -167,12 +167,6 @@ that can be combined to obtain a scientific computing environment:
 
    :ref:`chapter on Python language <python_language_chapter>`
 
-|
-
-.. image:: random_c.jpg
-      :scale: 50
-      :align: right
-
 **Core numeric libraries**
 
 * **NumPy**: numerical computing with powerful **numerical arrays**
@@ -196,26 +190,12 @@ that can be combined to obtain a scientific computing environment:
 
     :ref:`chapter on matplotlib <matplotlib>`
 
-|
-
-.. image:: snapshot_ipython.png
-      :align: right
-      :scale: 40
-
-
 **Advanced interactive environments**:
 
 * **IPython**, an advanced **Python console** https://ipython.org/
 
 * **Jupyter**, **notebooks** in the browser https://jupyter.org/
 
-|clear-floats|
-
-.. image:: example_surface_from_irregular_data.jpg
-      :scale: 60
-      :align: right
-
-|
 
 **Domain-specific packages**,
 
