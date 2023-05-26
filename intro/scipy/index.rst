@@ -402,8 +402,8 @@ We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
     :ref:`solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_curvefit_temperature_data.py>`
 
 
-Finding the minimum of a scalar function
-........................................
+Optimization
+............
 
 .. Comment to make doctest pass
     >>> np.random.seed(0)
@@ -413,160 +413,90 @@ Finding the minimum of a scalar function
    :align: right
    :scale: 50
 
-Let's define the following function: ::
+Suppose we wish to minimize the scalar-valued function of a single
+variable :math:`f(x) = x^2  + 10 \sin(x)`::
 
     >>> def f(x):
     ...     return x**2 + 10*np.sin(x)
+    >>> x = np.arange(-5, 5, 0.1)
+    >>> plt.plot(x, f(x))  # doctest:+SKIP
+    >>> plt.show()  # doctest:+SKIP
 
-and plot it:
+We can see that the function has a local minimizer near :math:`x = 3.8`
+and a global minimizer near :math:`x = -1.3`, but
+the precise values cannot be determined from the plot.
 
-.. doctest::
+The most appropriate function for this purpose is
+:func:`scipy.optimize.minimize_scalar`.
+Since we know the approximate locations of the minima, we will provide
+bounds that restrict the search to the vicinity of the global minimum.
 
-    >>> x = np.arange(-10, 10, 0.1)
-    >>> plt.plot(x, f(x)) # doctest:+SKIP
-    >>> plt.show() # doctest:+SKIP
+    >>> res = sp.optimize.minimize_scalar(f, bounds=(-2, -1))
+    >>> res  # doctest: +ELLIPSIS
+     message: Solution found.
+     success: True
+      status: 0
+         fun: -7.9458233756...
+           x: -1.306440997...
+         nit: 8
+        nfev: 8
+    >>> res.fun == f(res.x)
+    True
 
-This function has a global minimum around -1.3 and a local minimum around
-3.8.
+If we did not already know the approximate location of the global minimum,
+we could use one of SciPy's global minimizers, such as
+:func:`scipy.optimize.differential_evolution`. We are required to pass
+``bounds``, but they do not need to be tight.
 
-Searching for minimum can be done with
-:func:`scipy.optimize.minimize`, given a starting point x0, it returns
-the location of the minimum that it has found:
+    >>> bounds=[(-5, 5)]  # list of lower, upper bound for each variable
+    >>> res = sp.optimize.differential_evolution(f, bounds=bounds)
+    >>> res  # doctest:+SKIP
+     message: Optimization terminated successfully.
+     success: True
+         fun: -7.9458233756...
+           x: [-1.306e+00]
+         nit: 6
+        nfev: 111
+         jac: [ 9.948e-06]
 
-.. sidebar:: result type
+For multivariate optimization, a good choice for many problems is
+:func:`scipy.optimize.minimize`.
+Suppose we wish to find the minimum of a quadratic function of two
+variables, :math:`f(x_0, x_1) = (x_0-1)^2 + (x_1-2)^2`.
 
-    The result of :func:`scipy.optimize.minimize` is a compound object
-    comprising all information on the convergence
+    >>> def f(x):
+    ...     return (x[0] - 1)**2 + (x[1] - 2)**2
 
-::
+Like :func:`scipy.optimize.root`, :func:`scipy.optimize.minimize`
+requires a guess ``x0``. (Note that this is the initial value of
+*both* variables rather than the value of the variable we happened to
+label :math:`x_0`.)
 
-    >>> result = sp.optimize.minimize(f, x0=0)
-    >>> result # doctest: +ELLIPSIS
+    >>> res = sp.optimize.minimize(f, x0=[0, 0])
+    >>> res  # doctest: +ELLIPSIS
       message: Optimization terminated successfully.
       success: True
        status: 0
-          fun: -7.9458233...
-            x: [-1.306e+00]
-          nit: 5
-          jac: [-1.192e-06]
-     hess_inv: [[ 8.589e-02]]
-         nfev: 12
-         njev: 6
-    >>> result.x # The coordinate of the minimum  # doctest: +ELLIPSIS
-    array([-1.30644...])
+          fun: 1.70578...e-16
+            x: [ 1.000e+00  2.000e+00]
+          nit: 2
+          jac: [ 3.219e-09 -8.462e-09]
+     hess_inv: [[ 9.000e-01 -2.000e-01]
+                [-2.000e-01  6.000e-01]]
+         nfev: 9
+         njev: 3
 
-|
+.. sidebar:: **Maximization?**
 
-**Methods**:
-As the function is a smooth function, gradient-descent based methods are
-good options. The `lBFGS algorithm
-<https://en.wikipedia.org/wiki/Limited-memory_BFGS>`__ is a good choice
-in general::
+   Is :func:`scipy.optimize.minimize` restricted to the solution of
+   minimization problems? Nope! To solve a maximization problem,
+   simply minimize the *negative* of the original objective function.
 
-
-    >>> sp.optimize.minimize(f, x0=0, method="L-BFGS-B") # doctest: +ELLIPSIS
-      message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
-      success: True
-       status: 0
-          fun: -7.9458233756...
-            x: [-1.306e+00]
-          nit: 5
-          jac: [-1.599e-06]
-         nfev: 12
-         njev: 6
-     hess_inv: <1x1 LbfgsInvHessProduct with dtype=float64>
-
-Note how it cost only 12 functions evaluation above to find a good value
-for the minimum.
-
-|
-
-**Global minimum**:
-A possible issue with this approach is that, if the function has local minima,
-the algorithm may find these local minima instead of the
-global minimum depending on the initial point x0::
-
-    >>> res = sp.optimize.minimize(f, x0=3, method="L-BFGS-B")
-    >>> res.x
-    array([3.83746...])
-
-.. Comment to make doctest pass
-   >>> np.random.seed(42)
-
-If we don't know the neighborhood of the global minimum to choose the
-initial point, we need to resort to costlier global optimization.  To
-find the global minimum, we use :func:`scipy.optimize.basinhopping`
-(added in version 0.12.0 of SciPy). It combines a local optimizer with
-sampling of starting points::
-
-   >>> sp.optimize.basinhopping(f, 0)  # doctest: +SKIP
-                     nfev: 1725
-    minimization_failures: 0
-                      fun: -7.9458233756152845
-                        x: array([-1.30644001])
-                  message: ['requested number of basinhopping iterations completed successfully']
-                     njev: 575
-                      nit: 100
-
-.. seealso:
-
-    Another available (but much less efficient) global optimizer is
-    :func:`scipy.optimize.brute` (brute force optimization on a grid).
-
-    More algorithms for different classes of global optimization problems
-    exist, but this is out of the scope of :mod:`scipy`.  Some useful
-    packages for global optimization are OpenOpt, IPOPT_, PyGMO_ and
-    PyEvolve_.
-
-.. note::
-
-   :mod:`scipy` used to contain the routine `anneal`, it has been removed in
-   SciPy 0.16.0.
-
-.. _IPOPT: https://github.com/xuy/pyipopt
-.. _PyGMO: https://esa.github.io/pygmo/
-.. _PyEvolve: https://pyevolve.sourceforge.net/
-
-|
-
-**Constraints**:
-We can constrain the variable to the interval
-``(0, 10)`` using the "bounds" argument:
-
-.. sidebar:: A list of bounds
-
-   As :func:`~scipy.optimize.minimize` works in general with x
-   multidimensionsal, the "bounds" argument is a list of bound on each
-   dimension.
-
-::
-
-    >>> res = sp.optimize.minimize(f, x0=1,
-    ...                         bounds=((0, 10), ))
-    >>> res.x    # doctest: +ELLIPSIS
-    array([0.])
-
-.. tip::
-
-   What has happened? Why are we finding 0, which is not a mimimum of our
-   function.
-
-
-.. topic:: **Minimizing functions of several variables**
-
-   To minimize over several variables, the trick is to turn them into a
-   function of a multi-dimensional variable (a vector). See for instance
-   the exercise on 2D minimization below.
-
-.. note::
-
-   :func:`scipy.optimize.minimize_scalar` is a function with dedicated
-   methods to minimize functions of only one variable.
-
-.. seealso::
-
-   Finding minima of function is discussed in more details in the
-   advanced chapter: :ref:`mathematical_optimization`.
+This barely scratches the surface of SciPy's optimization features, which
+include mixed integer linear programming, constrained nonlinear programming,
+and the solution of assignment problems. For much more information, see the
+documentation of :mod:`scipy.optimize` and the advanced chapter
+:ref:`mathematical_optimization`.
 
 .. topic:: Exercise: 2-D minimization
    :class: green
@@ -580,27 +510,21 @@ We can constrain the variable to the interval
 
     .. math:: f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
 
-    has multiple global and local minima. Find the global minima of this
-    function.
+    has multiple local minima. Find a global minimum (there is more than one,
+    each with the same value of the objective function) and at least one other
+    local minimum.
 
     Hints:
 
         - Variables can be restricted to :math:`-2 < x < 2` and :math:`-1 < y < 1`.
-        - Use :func:`numpy.meshgrid` and :func:`matplotlib.pyplot.imshow` to
-          find visually the regions.
-        - Use :func:`scipy.optimize.minimize`, optionally trying out
-          several of its methods.
-
-    How many global minima are there, and what is the function value at those
-    points?  What happens for an initial guess of :math:`(x, y) = (0, 0)` ?
+        - :func:`numpy.meshgrid` and :func:`matplotlib.pyplot.imshow` can help
+          with visualization.
+        - Try minimizing with :func:`scipy.optimize.minimize` with an initial
+          guess of :math:`(x, y) = (0, 0)`. Does it find the global minimum, or
+          converge to a local minimum? What about other initial guesses?
+        - Try minimizing with :func:`scipy.optimize.differential_evolution`.
 
     :ref:`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
-
-
-
-
-You can find all algorithms and functions with similar functionalities
-    in the documentation of :mod:`scipy.optimize`.
 
 See the summary exercise on :ref:`summary_exercise_optimize` for another, more
 advanced example.
