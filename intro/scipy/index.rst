@@ -145,10 +145,14 @@ are not considered to be "elementary" functions. Examples include
  * elliptic functions, such as :func:`scipy.special.ellipj`
    (Jacobian elliptic functions).
 
+Other special functions are combinations of familiar elementary functions,
+but they offer better accuracy or robustness than their naive implementations
+would.
+
 Most of these function are computed elementwise and follow standard
 NumPy broadcasting rules when the input arrays have different shapes.
 For example, :func:`scipy.special.xlog1py` is mathematically equivalent
-to :math:`x log(1 + y)`.
+to :math:`x\log(1 + y)`.
 
     >>> import scipy as sp
     >>> x = np.asarray([1, 2])
@@ -190,6 +194,10 @@ of the gamma function directly using :func:`scipy.special.gammaln`.
    array([  3.17805383, 144.56574395,          inf])
    >>> sp.special.gammaln(x)
    array([   3.17805383,  144.56574395, 2605.11585036])
+Such functions are often used in combination with 
+:func:`scipy.special.logsumexp([x, y])`, which computes
+:math:`\log(\exp(x) + \exp(y))` but it is preferable when
+the exponential of ``x`` or ``y`` would overflow or underflow.
 
 For more information about these and many other special functions, see
 the documentation of :mod:`scipy.special`.
