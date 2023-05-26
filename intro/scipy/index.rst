@@ -754,88 +754,116 @@ whether the means of two sets of observations are significantly different::
 Numerical integration: :mod:`scipy.integrate`
 ---------------------------------------------
 
-Function integrals
-...................
+Quadrature
+..........
 
-The most generic integration routine is :func:`scipy.integrate.quad`. To
-compute :math:`\int_0^{\pi / 2} sin(t) dt`::
+Suppose we wish to compute the definite integral
+:math:`\int_0^{\pi / 2} \sin(t) dt` numerically. :func:`scipy.integrate.quad`
+chooses one of several adaptive techniques depending on the parameters, and
+is therefore the recommended first choice for integration of function of a single variable::
 
-    >>> res, err = sp.integrate.quad(np.sin, 0, np.pi/2)
-    >>> np.allclose(res, 1)   # res is the result, is should be close to 1
+    >>> integral, error_estimate = sp.integrate.quad(np.sin, 0, np.pi/2)
+    >>> np.allclose(integral, 1)  # numerical result ~ analytical result
     True
-    >>> np.allclose(err, 1 - res)  # err is an estimate of the err
+    >>> abs(integral - 1) < error_estimate  #  actual error < estimated error
     True
 
-Other integration schemes are available:
-:func:`scipy.integrate.fixed_quad`, :func:`scipy.integrate.quadrature`,
-:func:`scipy.integrate.romberg`...
+Other functions for *numerical quadrature*, including integration of
+multivariate functions and approximating integrals from samples, are available
+in :mod:`scipy.integrate`.
 
-Integrating differential equations
-...................................
+Initial Value Problems
+......................
 
 :mod:`scipy.integrate` also features routines for integrating `Ordinary
 Differential Equations (ODE)
-<https://en.wikipedia.org/wiki/Ordinary_differential_equation>`__. In
-particular, :func:`scipy.integrate.solve_ivp` solves ODE of the form::
+<https://en.wikipedia.org/wiki/Ordinary_differential_equation>`__.
+For example, :func:`scipy.integrate.solve_ivp` integrates ODEs of the form::
 
-    dy/dt = rhs(t, y)
+.. math::
 
-.. note::
+    \frac{dy}{dt} = f(t, y(t))
 
-   For a long time, the go-to method for solving an ODE was
-   :func:`scipy.integrate.odeint`. The SciPy project recommends using
-   :func:`scipy.integrate.solve_ivp` instead.
+from an initial time :math:`t_0` and initial state :math:`y(t=t_0)=t_0` to a final
+time :math:`t_f` or until an event occurs (e.g. a specified state is reached).
 
-As an introduction, let us solve the ODE :math:`\frac{dy}{dt} = -2 y` between
-:math:`t = 0 \dots 4`, with the  initial condition :math:`y(t=0) = 1`.
-First the function computing the derivative of the position needs to be defined::
+As an introduction, consider the initial value problem given by
+:math:`\frac{dy}{dt} = -2 y` and the initial condition :math:`y(t=0) = 1` on
+the interval :math:`t = 0 \dots 4`. We begin by defining a callable that
+computes :math:`f(t, y(t))` given the current time and state.
 
-    >>> def calc_derivative(time, ypos):
-    ...     return -2 * ypos
+    >>> def f(t, y):
+    ...     return -2 * y
+
+Then, to compute ``y`` as a function of time::
+
+    >>> t_span = (0, 4)  # time interval
+    >>> t_eval = np.linspace(*t_span)  # times at which to evaluate `y`
+    >>> y0 = [1,]  # initial state
+    >>> res = sp.integrate.solve_ivp(f, t_span=t_span, y0=y0, t_eval=t_eval)
+
+and plot the result::
+
+    >>> plt.plot(res.t, res.y[0])  # doctest: +SKIP
+    >>> plt.xlabel('t')  # doctest: +SKIP
+    >>> plt.ylabel('y')  # doctest: +SKIP
+    >>> plt.title('Solution of Initial Value Problem')  # doctest: +SKIP
 
 .. image:: auto_examples/images/sphx_glr_plot_solve_ivp_simple_001.png
     :target: auto_examples/plot_solve_ivp_simple.html
     :scale: 70
     :align: right
 
-
-Then, to compute ``y`` as a function of time::
-
-    >>> solution = sp.integrate.solve_ivp(calc_derivative, (0, 4), y0=(1,))
-
-.. raw:: html
-
-   <div style="clear: both"></div>
-
 Let us integrate a more complex ODE: a `damped
 spring-mass oscillator
 <https://en.wikipedia.org/wiki/Harmonic_oscillator#Damped_harmonic_oscillator>`__.
-The position of a mass attached to a spring obeys the 2nd order *ODE*
-:math:`y'' + 2 \varepsilon \omega_0  y' + \omega_0^2 y = 0` with
-:math:`\omega_0^2 = k/m` with :math:`k` the spring constant, :math:`m` the mass
-and :math:`\varepsilon = c/(2 m \omega_0)` with :math:`c` the damping coefficient. We set::
+The position of a mass attached to a spring obeys the 2nd order ODE
+:math:`\ddot{y} + 2 \zeta \omega_0  \dot{y} + \omega_0^2 y = 0` with natural frequency
+:math:`\omega_0 = \sqrt{k/m}`, damping ratio :math:`\zeta = c/(2 m \omega_0)`,
+spring constant :math:`k`, mass :math:`m`, and damping coefficient :math:`c`.
 
-    >>> mass = 0.5  # kg
-    >>> kspring = 4  # N/m
-    >>> cviscous = 0.4  # N s/m
+Before using :func:`scipy.integrate.solve_ivp`, the 2nd order ODE
+needs to be transformed into a system of first-order ODEs. Note that
 
-Hence::
+.. math::
 
-    >>> eps = cviscous / (2 * mass * np.sqrt(kspring/mass))
-    >>> omega = np.sqrt(kspring / mass)
+    \begin{eqnarray}
+    \frac{dy}{dt} &=& \dot{y} \\
+    \frac{d\dot{y}}{dt} &=& \ddot{y} = -(2 \zeta \omega_0  \dot{y} + \omega_0^2 y)
+    \end{eqnarray}
 
-The system is underdamped, as::
+If we define :math:`z = [z_0, z_1]` where :math:`z_0 = y` and :math:`z_1 = \dot{y}`,
+then the first order equation:
 
-    >>> eps < 1
-    True
+.. math::
 
-For :func:`~scipy.integrate.solve_ivp`, the 2nd order equation
-needs to be transformed in a system of two first-order equations for the
-vector :math:`Y = (y, y')`: the function computes the
-velocity and acceleration::
+    \usepackage{amsmath}
+    \begin{eqnarray}
+    \frac{dz}{dt} =
+    \begin{bmatrix}
+        \frac{dz_0}{dt} \\
+        \frac{dz_1}{dt}
+    \end{bmatrix} =
+    \begin{bmatrix}
+        z_1  \\
+        -(2 \zeta \omega_0  z_1 + \omega_0^2 z_0)
+    \end{bmatrix}
+    \end{eqnarray}
 
-    >>> def calc_deri(time, yvec, eps, omega):
-    ...     return (yvec[1], -2.0 * eps * omega * yvec[1] - omega **2 * yvec[0])
+is equivalent to the original second order equation.
+
+We set::
+
+    >>> m = 0.5  # kg
+    >>> k = 4  # N/m
+    >>> c = 0.4  # N s/m
+    >>> zeta = c / (2 * m * np.sqrt(k/m))
+    >>> omega = np.sqrt(k / m)
+
+and define the function that computes :math:`\dot{z} = f(t, z(t))`::
+
+    >>> def f(t, z, zeta, omega):
+    ...     return (z[1], -2.0 * zeta * omega * z[1] - omega**2 * z[0])
 
 .. image:: auto_examples/images/sphx_glr_plot_solve_ivp_damped_spring_mass_001.png
     :target: auto_examples/plot_solve_ivp_damped_spring_mass.html
@@ -844,20 +872,17 @@ velocity and acceleration::
 
 Integration of the system follows::
 
-    >>> time_vec = np.linspace(0, 10, 100)
-    >>> yinit = (1, 0)
-    >>> solution = sp.integrate.solve_ivp(calc_deri, (0, 10), yinit, args=(eps, omega), method='LSODA')
-
-.. raw:: html
-
-   <div style="clear: both"></div>
-
+    >>> t_span = (0, 10)
+    >>> t_eval = np.linspace(*t_span, 100)
+    >>> z0 = [1, 0]
+    >>> res = sp.integrate.solve_ivp(f, t_span, z0, t_eval=t_eval,
+    ...                              args=(zeta, omega), method='LSODA')
 
 .. tip::
 
     With the option `method='LSODA'`, :func:`scipy.integrate.solve_ivp` uses the LSODA
     (Livermore Solver for Ordinary Differential equations with Automatic method switching
-    for stiff and non-stiff problems), see the `ODEPACK Fortran library`_ for more details.
+    for stiff and non-stiff problems). See the `ODEPACK Fortran library`_ for more details.
 
 .. _`ODEPACK Fortran library` : https://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
 
