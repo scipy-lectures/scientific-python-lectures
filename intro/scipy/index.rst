@@ -247,14 +247,6 @@ of a square matrix::
     ...                 [3, 4]])
     >>> sp.linalg.det(arr)
     -2.0
-    >>> arr = np.array([[1, 1],
-    ...                 [1, 1]])
-    >>> sp.linalg.det(arr)
-    0.0
-    >>> sp.linalg.det(np.ones((3, 4)))
-    Traceback (most recent call last):
-    ...
-    ValueError: expected square matrix
 
 Mathematically, the solution of a linear system :math:`Ax = b` is :math:`x = A^{-1}b`,
 but explicit inversion of a matrix is numerically unstable and should be avoided.
@@ -269,15 +261,17 @@ Instead, use :func:`scipy.linalg.solve`::
     >>> np.allclose(A @ x, b)
     True
 
-Attempting to solve a linear system involving a singular matrix
-(i.e. one with a determinant of zero) will raise a ``LinAlgError``::
+Linear systems with special structure can often be solved more efficiently
+than more general systems. For example, systems with triangular matrices
+can be solved using :func:`scipy.linalg.solve_triangular`::
 
-    >>> A = np.array([[1, 1],
-    ...               [1, 1]])
-    >>> sp.linalg.solve(A, b)  # doctest: +SKIP
-    Traceback (most recent call last):
-    ...
-    ...LinAlgError: Matrix is singular
+    >>> A_upper = sp.linalg.triu(A)
+    >>> A_upper
+    array([[1, 2],
+           [0, 3]])
+    >>> np.allclose(sp.linalg.solve_triangular(A_upper, b, lower=False),
+    ...             sp.linalg.solve(A_upper, b))
+    True
 
 :mod:`scipy.linalg` also features matrix factorizations/decompositions
 such as the singular value decomposition.
