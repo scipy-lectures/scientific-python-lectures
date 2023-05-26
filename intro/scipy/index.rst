@@ -190,10 +190,11 @@ of the gamma function is needed. In such cases, we can compute the logarithm
 of the gamma function directly using :func:`scipy.special.gammaln`.
 
    >>> x = [5, 50, 500]
-   >>> np.log(sp.special.gamma(c))
+   >>> np.log(sp.special.gamma(x))
    array([  3.17805383, 144.56574395,          inf])
    >>> sp.special.gammaln(x)
    array([   3.17805383,  144.56574395, 2605.11585036])
+
 Such functions are often used in combination with 
 :func:`scipy.special.logsumexp([x, y])`, which computes
 :math:`\log(\exp(x) + \exp(y))` but it is preferable when
