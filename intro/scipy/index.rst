@@ -271,18 +271,74 @@ interpolation example.
 Optimization and fit: :mod:`scipy.optimize`
 -------------------------------------------
 
-Optimization is the problem of finding a numerical solution to a
-minimization or equality.
+:mod:`scipy.optimize` provides algorithms for root finding, curve fitting,
+and more general optimization.
 
-.. tip::
+Root Finding
+............
 
-    The :mod:`scipy.optimize` module provides algorithms for function
-    minimization (scalar or multi-dimensional), curve fitting and root
-    finding.
+:func:`scipy.optimize.root_scalar` attempts to find a root of a specified
+scalar-valued function (i.e., an argument at which the function value is zero).
+Like many :mod:`scipy.optimize` functions, the function needs an initial
+guess of the solution, which the algorithm will refine until it converges or
+recognizes failure. We also provide the derivative to improve the rate of
+convergence.
 
+    >>> def f(x):
+    ...     return (x-1)*(x-2)
+    >>> def df(x):
+    ...     return 2*x - 3
+    >>> x0 = 0  # guess
+    >>> res = sp.optimize.root_scalar(f, x0=x0, fprime=df)
+    >>> res
+         converged: True
+              flag: 'converged'
+    function_calls: 12
+        iterations: 6
+              root: 1.0
+
+Note that only one the root at ``1.0`` is found. By inspection, we can tell
+that there is a second root at ``2.0``. We can direct the function toward a
+particular root by changing the guess or by passing a bracket that contains
+only the root we seek.
+
+    >>> res = sp.optimize.root_scalar(f, bracket=(1.5, 10))
+    >>> res.root
+    2.0
+
+For multivariate problems, use :func:`scipy.optimize.root`.
+
+    >>> def f(x):
+    ...     # intersection of unit circle and line from origin
+    ...     return [x[0]**2 + x[1]**2 - 1,
+    ...             x[1] - x[0]]
+    >>> res = sp.optimize.root(f, x0=[0, 0])
+    >>> np.allclose(f(res.x), 0, atol=1e-10)
+    True
+    >>> np.allclose(res.x, np.sqrt(2)/2)
+    True
+
+Over-constrained problems can be solved in the least-squares
+sense using :func:`scipy.optimize.root` with ``method='lm'``
+(Levenberg-Marquardt).
+
+    >>> def f(x):
+    ...     # intersection of unit circle, line from origin, and parabola
+    ...     return [x[0]**2 + x[1]**2 - 1,
+    ...             x[1] - x[0],
+    ...             x[1] - x[0]**2]
+    >>> res = sp.optimize.root(f, x0=[1, 1], method='lm')
+    >>> res.success
+    True
+    >>> res.x
+    array([0.76096066, 0.66017736])
+
+See the documentation of :func:`scipy.optimize.root_scalar`
+and :func:`scipy.optimize.root` for a variety of other solution
+algorithms and options.
 
 Curve fitting
-..............
+.............
 
 .. Comment to make doctest pass
     >>> np.random.seed(0)
@@ -292,19 +348,20 @@ Curve fitting
    :align: right
    :scale: 50
 
-Suppose we have data on a sine wave, with some noise: ::
+Suppose we have data that is sinusoidal but noisy::
 
-    >>> x_data = np.linspace(-5, 5, num=50)
-    >>> y_data = 2.9 * np.sin(1.5 * x_data) + np.random.normal(size=50)
+    >>> x = np.linspace(-5, 5, num=50)  # 50 values between -5 and 5
+    >>> noise = 0.01 * np.cos(100 * x)
+    >>> a, b = 2.9, 1.5
+    >>> y = a * np.cos(b * x) + noise
 
+We can approximate the underlying amplitude, frequency, and phase
+from the data by least squares curve fitting. To begin, we write
+a function that accepts the independent variable as the first
+argument and all parameters to fit as separate arguments::
 
-If we know that the data lies on a sine wave, but not the amplitudes
-or the period, we can find those by least squares curve fitting. First we
-have to define the test function to fit, here a sine with unknown
-amplitude and period::
-
-    >>> def test_func(x, a, b):
-    ...     return a * np.sin(b * x)
+    >>> def f(x, a, b, c):
+    ...     return a * np.sin(b * x + c)
 
 .. image:: auto_examples/images/sphx_glr_plot_curve_fit_002.png
    :target: auto_examples/plot_curve_fit.html
@@ -313,20 +370,22 @@ amplitude and period::
 
 We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
 
-    >>> params, params_covariance = sp.optimize.curve_fit(test_func, x_data, y_data, p0=[2, 2])
-    >>> print(params)
-    [3.05931973  1.45754553]
+    >>> params, _ = sp.optimize.curve_fit(f, x, y, p0=[2, 1, 3])
+    >>> params
+    array([2.900026  , 1.50012043, 1.57079633])
+    >>> ref = [a, b, np.pi/2]  # what we'd expect
+    >>> np.allclose(params, ref, rtol=1e-3)
+    True
 
 .. raw:: html
 
    <div style="clear: both"></div>
 
-
 .. topic:: Exercise: Curve fitting of temperature data
    :class: green
 
     The temperature extremes in Alaska for each month, starting in January, are
-    given by (in degrees Celcius)::
+    given by (in degrees Celsius)::
 
         max:  17,  19,  21,  28,  33,  38, 37,  37,  31,  23,  19,  18
         min: -62, -59, -56, -46, -32, -18, -9, -13, -25, -46, -52, -58
@@ -538,58 +597,9 @@ We can constrain the variable to the interval
     :ref:`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
 
 
-Finding the roots of a scalar function
-........................................
-
-To find a root, i.e. a point where :math:`f(x) = 0`, of the function :math:`f` above
-we can use :func:`scipy.optimize.root`:
-
-::
-
-    >>> root = sp.optimize.root(f, x0=1)  # our initial guess is 1
-    >>> root    # The full result
-     message: The solution converged.
-     success: True
-      status: 1
-         fun: [ 0.000e+00]
-           x: [ 0.000e+00]
-        nfev: 10
-        fjac: [[-1.000e+00]]
-           r: [-1.000e+01]
-         qtf: [ 1.333e-32]
-
-Note that only one root is found.  Inspecting the plot of :math:`f` reveals that
-there is a second root around -2.5. We find the exact value of it by adjusting
-our initial guess: ::
-
-    >>> root2 = sp.optimize.root(f, x0=-2.5)
-    >>> root2.x
-    array([-2.47948183])
-
-.. note::
-
-   :func:`scipy.optimize.root` also comes with a variety of algorithms,
-   set via the "method" argument.
-
-.. image:: auto_examples/images/sphx_glr_plot_optimize_example2_001.png
-   :target: auto_examples/plot_optimize_example2.html
-   :align: right
-   :scale: 70
-
-|
 
 
-Now that we have found the minima and roots of ``f`` and used curve fitting on it,
-we put all those results together in a single plot:
-
-.. raw:: html
-
-   <div style="clear: both"></div>
-
-
-.. seealso::
-
-    You can find all algorithms and functions with similar functionalities
+You can find all algorithms and functions with similar functionalities
     in the documentation of :mod:`scipy.optimize`.
 
 See the summary exercise on :ref:`summary_exercise_optimize` for another, more
