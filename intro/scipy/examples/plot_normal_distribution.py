@@ -8,23 +8,17 @@ PDF (probability density function).
 """
 
 import numpy as np
-
-# Sample from a normal distribution using NumPy's random number generator
-samples = np.random.normal(size=10000)
-
-# Compute a histogram of the sample
-bins = np.linspace(-5, 5, 30)
-histogram, bins = np.histogram(samples, bins=bins, density=True)
-
-bin_centers = 0.5*(bins[1:] + bins[:-1])
-
-# Compute the PDF on the bin centers from SciPy distribution object
 import scipy as sp
-pdf = sp.stats.norm.pdf(bin_centers)
-
 import matplotlib.pyplot as plt
-plt.figure(figsize=(6, 4))
-plt.plot(bin_centers, histogram, label="Histogram of samples")
-plt.plot(bin_centers, pdf, label="PDF")
-plt.legend()
+
+dist = sp.stats.norm(loc=0, scale=1)  # standard normal distribution
+sample = dist.rvs(size=100000)  # "random variate sample"
+plt.hist(sample,
+         bins=51,  # group the observations into 50 bins
+         density=True,  # normalize the frequencies
+         label='normalized histogram')
+
+x = np.linspace(-5, 5)  # possible values of the random variable
+plt.plot(x, dist.pdf(x), label='PDF')
+plt.legend()  # doctest: +SKIP
 plt.show()
