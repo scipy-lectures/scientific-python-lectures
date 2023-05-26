@@ -173,8 +173,9 @@ of ``1`` would lead to loss of precision due to floating point truncation error.
     2.5e-18
 
 Many special functions also have "logarithmized" variants. For instance,
-the gamma function is related to the factorial function, but it extends
-the domain from the positive integers to the complex plane.
+the gamma function :math:`\Gamma(\cdot)` is related to the factorial
+function by :math:`n! = \Gamma(n + 1)`, but it extends the domain from the
+positive integers to the complex plane.
 
    >>> x = np.arange(10)
    >>> np.allclose(sp.special.gamma(x + 1), sp.special.factorial(x))
@@ -193,10 +194,38 @@ of the gamma function directly using :func:`scipy.special.gammaln`.
    >>> sp.special.gammaln(x)
    array([   3.17805383,  144.56574395, 2605.11585036])
 
-Such functions are often used in combination with
-:func:`scipy.special.logsumexp([x, y])`, which computes
-:math:`\log(\exp(x) + \exp(y))` but it is preferable when
-the exponential of ``x`` or ``y`` would overflow or underflow.
+Such functions can often be used when the intermediate components of a
+calculation would overflow or underflow, but the final result would not.
+For example, suppose we wish to compute the ratio
+:math:`\Gamma(500)/\Gamma(499)`.
+
+    >>> a = sp.special.gamma(500)
+    >>> b = sp.special.gamma(499)
+    >>> a, b
+    (inf, inf)
+
+Both the numerator and denominator overflow, so performing $a / b$ will
+not return the result we seek. However, the magnitude of the result should
+be moderate, so the use of logarithms comes to mind. Combining the identities
+:math:`\log(a/b) = \log(a) - \log(b)` and :math:`\exp(\log(x)) = x`,
+we get:
+
+    >>> log_a = sp.special.gammaln(500)
+    >>> log_b = sp.special.gammaln(499)
+    >>> log_res = log_a - log_b
+    >>> res = np.exp(log_res)
+    >>> res  # doctest: +ELLIPSIS
+    499.0000000...
+
+Similarly, suppose we wish to compute the difference
+:math:`\log(\Gamma(500) - \Gamma(499))`. For this, we use
+:func:`scipy.special.logsumexp`, which computes
+:math:`\log(\exp(x) + \exp(y))` using a numerical trick that avoids overflow.
+
+    >>> res = sp.special.logsumexp([log_a, log_b],
+    ...                            b=[1, -1])  # weights the terms of the sum
+    >>> res  # doctest: +ELLIPSIS
+    2605.113844343...
 
 For more information about these and many other special functions, see
 the documentation of :mod:`scipy.special`.
