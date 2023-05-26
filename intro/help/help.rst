@@ -25,28 +25,15 @@ In Ipython it is not possible to open a separated window for help and
 documentation; however one can always open a second ``Ipython`` shell
 just to display help and docstrings...
 
-.. image:: scipy_doc.png
-     :align: right
-     :target: https://docs.scipy.org/doc/scipy/reference/
-     :width: 45%
-
-* NumPy's and SciPy's documentations can be browsed online on
-  https://docs.scipy.org/doc. The ``search`` button is quite useful inside
-  the reference documentation of the two packages
-  (https://numpy.org/doc/stable/reference/ and
-  https://docs.scipy.org/doc/scipy/reference/).
+* Numpy's and Scipy's documentations can be browsed online on
+  https://scipy.org and https://numpy.org. The ``search`` button is quite
+  useful inside
+  the reference documentation of the two packages.
 
   Tutorials on various topics as well as the complete API with all
   docstrings are found on this website.
 
-  |clear-floats|
-
-  .. image:: docwiki.png
-     :align: right
-     :target: https://numpy.org/doc/stable/
-     :width: 45%
-
-* NumPy's and SciPy's documentation is enriched and updated on a regular
+* Numpy's and Scipy's documentation is enriched and updated on a regular
   basis by users on a wiki https://numpy.org/doc/stable/. As a result,
   some docstrings are clearer or more detailed on the wiki, and you may
   want to read directly the documentation on the wiki instead of the
@@ -55,23 +42,14 @@ just to display help and docstrings...
   contribute to an open-source project and improve the tools you are
   using!
 
-  |clear-floats|
-
 * The SciPy Cookbook https://scipy-cookbook.readthedocs.io gives recipes on many
   common problems frequently encountered, such as fitting data points,
   solving ODE, etc.
-
-  .. image:: matplotlib.png
-     :align: right
-     :target: https://matplotlib.org/
-     :width: 45%
 
 * Matplotlib's website https://matplotlib.org/ features a very
   nice **gallery** with a large number of plots, each of them shows both
   the source code and the resulting plot. This is very useful for
   learning by example. More standard documentation is also available.
-
-  |clear-floats|
 
 
 Finally, two more "technical" possibilities are useful as well:
@@ -120,18 +98,11 @@ Finally, two more "technical" possibilities are useful as well:
 
 
 * If everything listed above fails (and Google doesn't have the
-  answer)... don't despair! Write to the mailing-list suited to your
-  problem: you should have a quick answer if you describe your problem
-  well. Experts on scientific Python often give very enlightening
-  explanations on the mailing-list.
-
-    * **NumPy discussion** (numpy-discussion@scipy.org): all about numpy
-      arrays, manipulating them, indexation questions, etc.
+  answer)... don't despair! There is a vibrant Scientific Python community.
+  Scientific Python is present on various platform.
+  https://scientific-python.org/community/
 
 
-    * **SciPy Users List** (scipy-user@scipy.org): scientific computing
-      with Python, high-level data processing, in particular with the
-      SciPy package.
-
-    * matplotlib-users@lists.sourceforge.net for plotting with
-      matplotlib.
+  Packages like SciPy and NumPy also have their own channels. Have a look at
+  their respective websites to find out how to engage with users and
+  maintainers.
