@@ -6,7 +6,7 @@
 
 .. _scipy:
 
-Scipy : high-level scientific computing
+SciPy : high-level scientific computing
 =======================================
 
 **Authors**: *Gaël Varoquaux, Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Ralf Gommers*
@@ -25,13 +25,13 @@ Scipy : high-level scientific computing
     libraries, such as the GSL (GNU Scientific  Library for C and C++),
     or Matlab's toolboxes. ``scipy`` is the core package for scientific
     routines in Python; it is meant to operate efficiently on ``numpy``
-    arrays, so that numpy and scipy work hand in hand.
+    arrays, so that NumPy and SciPy work hand in hand.
 
     Before implementing a routine, it is worth checking if the desired
-    data processing is not already implemented in Scipy. As
+    data processing is not already implemented in SciPy. As
     non-professional programmers, scientists often tend to **re-invent the
     wheel**, which leads to buggy, non-optimal, difficult-to-share and
-    unmaintainable code. By contrast, ``Scipy``'s routines are optimized
+    unmaintainable code. By contrast, ``SciPy``'s routines are optimized
     and tested, and should therefore be used when possible.
 
 
@@ -43,7 +43,7 @@ Scipy : high-level scientific computing
 .. warning::
 
     This tutorial is far from an introduction to numerical computing.
-    As enumerating the different submodules and functions in scipy would
+    As enumerating the different submodules and functions in SciPy would
     be very boring, we concentrate instead on a few examples to give a
     general idea of how to use ``scipy`` for scientific computing.
 
@@ -70,7 +70,7 @@ Scipy : high-level scientific computing
 .. tip::
 
    They all depend on :mod:`numpy`, but are mostly independent of each
-   other. The standard way of importing Numpy and these Scipy modules
+   other. The standard way of importing NumPy and these SciPy modules
    is::
 
     >>> import numpy as np
@@ -442,7 +442,7 @@ global minimum depending on the initial point x0::
 If we don't know the neighborhood of the global minimum to choose the
 initial point, we need to resort to costlier global optimization.  To
 find the global minimum, we use :func:`scipy.optimize.basinhopping`
-(added in version 0.12.0 of Scipy). It combines a local optimizer with
+(added in version 0.12.0 of SciPy). It combines a local optimizer with
 sampling of starting points::
 
    >>> sp.optimize.basinhopping(f, 0)  # doctest: +SKIP
@@ -858,7 +858,7 @@ Integration of the system follows::
 
 .. seealso:: **Partial Differental Equations**
 
-    There is no Partial Differential Equations (PDE) solver in Scipy.
+    There is no Partial Differential Equations (PDE) solver in SciPy.
     Some Python packages for solving PDE's are available, such as fipy_
     or SfePy_.
 
@@ -920,8 +920,8 @@ the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
 
 .. topic:: `numpy.fft`
 
-   Numpy also has an implementation of FFT (:mod:`numpy.fft`). However,
-   the scipy one
+   NumPy also has an implementation of FFT (:mod:`numpy.fft`). However,
+   the SciPy one
    should be preferred, as it uses more efficient underlying implementations.
 
 |
@@ -1071,9 +1071,9 @@ Image manipulation: :mod:`scipy.ndimage`
 Summary exercises on scientific computing
 -----------------------------------------
 
-The summary exercises use mainly Numpy, Scipy and Matplotlib. They provide some
+The summary exercises use mainly NumPy, SciPy and Matplotlib. They provide some
 real-life examples of scientific computing with Python. Now that the basics of
-working with Numpy and Scipy have been introduced, the interested user is
+working with NumPy and SciPy have been introduced, the interested user is
 invited to try these exercises.
 
 .. only:: latex
@@ -1114,10 +1114,10 @@ invited to try these exercises.
 .. seealso:: **References to go further**
 
    * Some chapters of the `advanced <advanced_topics_part>`__ and the
-     `packages and applications <applications_part>`__ parts of the scipy
+     `packages and applications <applications_part>`__ parts of the SciPy
      lectures
 
-   * The `scipy cookbook <https://scipy-cookbook.readthedocs.io>`__
+   * The `SciPy cookbook <https://scipy-cookbook.readthedocs.io>`__
 
 .. compile solutions, but don't list them explicitly
 .. toctree::

@@ -329,7 +329,7 @@ convention:
     documents the semantics and conventions associated with Python
     docstrings.
 
-    Also, the Numpy and Scipy modules have defined a precise standard
+    Also, the NumPy and SciPy modules have defined a precise standard
     for documenting scientific functions, that you may want to follow for
     your own functions, with a ``Parameters`` section, an ``Examples``
     section, etc. See

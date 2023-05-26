@@ -175,19 +175,19 @@ that can be combined to obtain a scientific computing environment:
 
 **Core numeric libraries**
 
-* **Numpy**: numerical computing with powerful **numerical arrays**
+* **NumPy**: numerical computing with powerful **numerical arrays**
   objects, and routines to manipulate them. https://numpy.org/
 
   .. seealso::
 
      :ref:`chapter on numpy <numpy>`
 
-* **Scipy** : high-level numerical routines.
+* **SciPy** : high-level numerical routines.
   Optimization, regression, interpolation, etc https://scipy.org/
 
   .. seealso::
 
-    :ref:`chapter on scipy <scipy>`
+    :ref:`chapter on SciPy <scipy>`
 
 * **Matplotlib** : 2-D visualization, "publication-ready" plots
   https://matplotlib.org/

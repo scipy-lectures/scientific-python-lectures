@@ -235,7 +235,7 @@ Fancy indexing works, as usual::
 
 _____
 
-While it is off topic in a chapter on numpy, let's take a moment to
+While it is off topic in a chapter on NumPy, let's take a moment to
 recall good coding practice, which really do pay off in the long run:
 
 .. topic:: Good practices

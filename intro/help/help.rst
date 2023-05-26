@@ -5,7 +5,7 @@ Getting help and finding documentation
 
 **Author**: *Emmanuelle Gouillart*
 
-Rather than knowing all functions in Numpy and Scipy, it is important to
+Rather than knowing all functions in NumPy and SciPy, it is important to
 find rapidly information throughout the documentation and the available
 help. Here are some ways to get information:
 
@@ -30,7 +30,7 @@ just to display help and docstrings...
      :target: https://docs.scipy.org/doc/scipy/reference/
      :width: 45%
 
-* Numpy's and Scipy's documentations can be browsed online on
+* NumPy's and SciPy's documentations can be browsed online on
   https://docs.scipy.org/doc. The ``search`` button is quite useful inside
   the reference documentation of the two packages
   (https://numpy.org/doc/stable/reference/ and
@@ -46,7 +46,7 @@ just to display help and docstrings...
      :target: https://numpy.org/doc/stable/
      :width: 45%
 
-* Numpy's and Scipy's documentation is enriched and updated on a regular
+* NumPy's and SciPy's documentation is enriched and updated on a regular
   basis by users on a wiki https://numpy.org/doc/stable/. As a result,
   some docstrings are clearer or more detailed on the wiki, and you may
   want to read directly the documentation on the wiki instead of the
@@ -125,13 +125,13 @@ Finally, two more "technical" possibilities are useful as well:
   well. Experts on scientific Python often give very enlightening
   explanations on the mailing-list.
 
-    * **Numpy discussion** (numpy-discussion@scipy.org): all about numpy
+    * **NumPy discussion** (numpy-discussion@scipy.org): all about numpy
       arrays, manipulating them, indexation questions, etc.
 
 
     * **SciPy Users List** (scipy-user@scipy.org): scientific computing
       with Python, high-level data processing, in particular with the
-      scipy package.
+      SciPy package.
 
     * matplotlib-users@lists.sourceforge.net for plotting with
       matplotlib.

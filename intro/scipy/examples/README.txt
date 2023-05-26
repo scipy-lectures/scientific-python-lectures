@@ -1,2 +1,2 @@
-Full code examples for the scipy chapter
------------------------------------------
+Full code examples for the SciPy chapter
+----------------------------------------
