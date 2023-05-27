@@ -371,6 +371,15 @@ convergence.
         iterations: 6
               root: 1.0
 
+.. warning::
+
+    None of the functions in :mod:`scipy.optimize` that accept a guess are
+    guaranteed to converge for all possible guesses! (For example, try
+    ``x0=1.5`` in the example above, where the derivative of the function is
+    exactly zero.) If this occurs, try a different guess, adjust the options
+    (like providing a ``bracket`` as shown below), or consider whether SciPy
+    offers a more appropriate method for the problem.
+
 Note that only one the root at ``1.0`` is found. By inspection, we can tell
 that there is a second root at ``2.0``. We can direct the function toward a
 particular root by changing the guess or by passing a bracket that contains
