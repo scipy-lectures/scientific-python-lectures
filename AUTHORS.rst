@@ -13,6 +13,11 @@ Editors
 
 - Pierre de Buyl
 
+- Jarrod Millman
+
+- Stéfan van der Walt
+
+
 Chapter authors
 ----------------
 
@@ -123,6 +128,8 @@ Listed by alphabetical order
 
 - Omar Gutiérrez
 
+- Matt Haberland
+
 - Valentin Haenel
 
 - Pierre Haessig
@@ -213,7 +220,7 @@ Listed by alphabetical order
 
 - Nicolas P. Rougier
 
-- Nicolas Rougier
+- Pamphile Roy
 
 - Rutzmoser
 
