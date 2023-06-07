@@ -13,7 +13,7 @@ Editors
 
 - Pierre de Buyl
 
-- K. Jarrod Millman
+- K\. Jarrod Millman
 
 - Stéfan van der Walt
 
@@ -148,7 +148,7 @@ Listed by alphabetical order
 
 - Tim Hoffmann
 
-- B. Hohl
+- B\. Hohl
 
 - Tarek Hoteit
 
@@ -182,7 +182,7 @@ Listed by alphabetical order
 
 - michelemaroni89
 
-- K. Jarrod Millman
+- K\. Jarrod Millman
 
 - Mohammad
 
