@@ -1,45 +1,50 @@
 {% extends 'basic/layout.html' %}
 
+{% block scripts %}
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    {{ super() }}
+
+{% endblock %}
+
 {% block extrahead %}
-  {{ super() }}
-    <link rel="stylesheet"
-	  href="https://unpkg.com/purecss@2.1.0/build/base-min.css">
 
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    {{ super() }}
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/base-min.css">
 
-<script type="text/javascript">
-$(function () {
-    // Highlight the table of content as we scroll
-    sections = {},
-    i        = 0,
-    url	 = document.URL.replace(/#.*$/, ""),
-    current_section = 0;
+    <script type="text/javascript">
+    $(function () {
+        // Highlight the table of content as we scroll
+        sections = {},
+        i        = 0,
+        url	 = document.URL.replace(/#.*$/, ""),
+        current_section = 0;
 
-    // Grab positions of our sections
-    $('.headerlink').each(function(){
-        sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+        // Grab positions of our sections
+        $('.headerlink').each(function(){
+            sections[this.href.replace(url, '')] = $(this).offset().top - 50;
+        });
+
+        $(window).scroll(function(event) {
+    	var pos   = $(window).scrollTop();
+
+    	// Highlight the current section
+    	$('a.internal').parent().removeClass('active');
+            for(i in sections){
+                if(sections[i] > pos){
+    		break;
+                };
+    	    if($('a.internal[href$="' + i + '"]').is(':visible')){
+    		current_section = i;
+    	    };
+            }
+    	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
+    	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
+    	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
+        });
+
     });
-
-    $(window).scroll(function(event) {
-	var pos   = $(window).scrollTop();
-
-	// Highlight the current section
-	$('a.internal').parent().removeClass('active');
-        for(i in sections){
-            if(sections[i] > pos){
-		break;
-            };
-	    if($('a.internal[href$="' + i + '"]').is(':visible')){
-		current_section = i;
-	    };
-        }
-	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
-	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
-	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
-    });
-
-});
-</script>
+    </script>
 
 {% endblock %}
 

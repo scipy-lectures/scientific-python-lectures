@@ -17,3 +17,4 @@ ipython
 sphinx-gallery>=0.13
 pre-commit>=3.3
 requests
+sphinxcontrib-jquery

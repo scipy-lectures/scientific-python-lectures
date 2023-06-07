@@ -13,7 +13,7 @@ Editors
 
 - Pierre de Buyl
 
-- Jarrod Millman
+- K\. Jarrod Millman
 
 - Stéfan van der Walt
 
@@ -148,7 +148,7 @@ Listed by alphabetical order
 
 - Tim Hoffmann
 
-- B. Hohl
+- B\. Hohl
 
 - Tarek Hoteit
 
@@ -181,6 +181,8 @@ Listed by alphabetical order
 - mhemantha
 
 - michelemaroni89
+
+- K\. Jarrod Millman
 
 - Mohammad
 
@@ -258,7 +260,9 @@ Listed by alphabetical order
 
 - Olav Vahtras
 
-- Gael Varoquaux
+- Stéfan van der Walt
+
+- Gaël Varoquaux
 
 - Nelle Varoquaux
 
@@ -269,7 +273,5 @@ Listed by alphabetical order
 - Pauli Virtanen
 
 - Yosh Wakeham
-
-- Stefan van der Walt
 
 - yasutomo57jp

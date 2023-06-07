@@ -207,7 +207,7 @@ that can be combined to obtain a scientific computing environment:
 
 * **scikit-learn** for :ref:`machine learning <scikit-learn_chapter>`
 
-and much more packages not documented in the scipy lectures.
+and many more packages not documented in the Scientific Python Lecture Notes.
 
 .. seealso::
 

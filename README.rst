@@ -5,7 +5,7 @@
   :target: https://github.com/scipy-lectures/scipy-lecture-notes/actions?query=workflow%3A%22test%22
 
 ===============================
-Scientific-Python-Lecture-Notes
+Scientific Python Lecture Notes
 ===============================
 
 This repository gathers some lecture notes on the scientific Python
