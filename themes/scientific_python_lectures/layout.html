@@ -19,15 +19,15 @@
         i        = 0,
         url	 = document.URL.replace(/#.*$/, ""),
         current_section = 0;
-    
+
         // Grab positions of our sections
         $('.headerlink').each(function(){
             sections[this.href.replace(url, '')] = $(this).offset().top - 50;
         });
-    
+
         $(window).scroll(function(event) {
     	var pos   = $(window).scrollTop();
-    
+
     	// Highlight the current section
     	$('a.internal').parent().removeClass('active');
             for(i in sections){
@@ -42,7 +42,7 @@
     	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
     	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
         });
-    
+
     });
     </script>
 
