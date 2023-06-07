@@ -2,6 +2,7 @@
 *~
 *.swp
 *.so
+*.bak
 build
 _build
 /euroscipy2010_tutorials/source/advanced_numpy/examples/mandel.c
@@ -41,3 +42,5 @@ tiny_elephant.png
 workfile
 airfares.txt
 wages.txt
+ScientificPythonLectures-simple.pdf
+ScientificPythonLectures.pdf
