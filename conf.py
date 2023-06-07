@@ -377,3 +377,9 @@ def add_per_page_js(app, pagename, templatename, context, doctree):
 
 def setup(app):
     app.connect("html-page-context", add_per_page_js)
+
+    # Is this still used?
+    app.add_css_file("https://unpkg.com/purecss@2.1.0/build/base-min.css")
+
+    app.add_js_file("scroll_highlight_toc.js")
+    app.add_js_file("https://code.jquery.com/jquery-3.7.0.min.js")
