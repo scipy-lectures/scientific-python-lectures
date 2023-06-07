@@ -361,9 +361,17 @@ extlinks = {
 imgmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
 immath_use_preview = True
 
-# Add the 'copybutton' javascript, to hide/show the prompt in code
-# examples
+
+def add_per_page_js(app, pagename, templatename, context, doctree):
+    if pagename.split('/')[-1] == 'index':
+        # For folding table of contents
+        app.add_js_file('foldable_toc.js')
+        app.add_css_file('foldable_toc.css')
 
 
 def setup(app):
+    # Add the 'copybutton' javascript, to hide/show the prompt in code
+    # examples
     app.add_js_file('copybutton.js')
+
+    app.connect("html-page-context", add_per_page_js)

@@ -63,8 +63,6 @@ Scientific Python Lecture Notes
 
 .. nice layout in the toc
 
-.. include:: tune_toc.rst
-
 .. |pdf| unicode:: U+f1c1 .. PDF file
 
 .. |archive| unicode:: U+f187 .. archive file
