@@ -166,7 +166,7 @@ rst_epilog = """
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-html_theme = 'scipy_lectures'
+html_theme = 'scientific_python_lectures'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
