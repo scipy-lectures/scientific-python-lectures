@@ -30,7 +30,13 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
     'sphinx_gallery.gen_gallery',
+    'sphinx_copybutton'
 ]
+
+# See https://sphinx-copybutton.readthedocs.io/en/latest/use.html#automatic-exclusion-of-prompts-from-the-copies
+copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_is_regexp = True
+copybutton_copy_empty_lines = False
 
 doctest_test_doctest_blocks = 'true'
 
@@ -370,8 +376,4 @@ def add_per_page_js(app, pagename, templatename, context, doctree):
 
 
 def setup(app):
-    # Add the 'copybutton' javascript, to hide/show the prompt in code
-    # examples
-    app.add_js_file('copybutton.js')
-
     app.connect("html-page-context", add_per_page_js)
