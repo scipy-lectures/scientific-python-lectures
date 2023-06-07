@@ -61,7 +61,7 @@ sphinx_gallery_conf = {
                      'packages/statistics/auto_examples',
                      'guide/auto_examples',
                      ],
-    'doc_module': 'scipy-lecture-notes',
+    'doc_module': 'scientific-python-lecture-notes',
     # The following is necessary to get the links in the code of the
     # examples
     'backreferences_dir': 'tmp',
@@ -207,7 +207,7 @@ html_title = "Scientific Python Lecture Notes"
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['themes/scipy_lectures/static']
+html_static_path = ['themes/scientific_python_lectures/static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
@@ -265,7 +265,7 @@ latex_show_pagerefs = False
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
     ('index', 'ScientificPythonLectures.tex', r'Scientific Python Lecture Notes',
-     r"""Scientific Python lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras""",
+     r"""Scientific Python lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras, Pierre de Buyl, K. Jarrod Millman, Stéfan van der Walt""",
      'manual'),
 ]
 
