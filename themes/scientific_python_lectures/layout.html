@@ -16,20 +16,20 @@
     <div class="script_container">
     <script>
     (function() {
-	var cx = '004523248466141510607:hgv2yimrahw';
-	var gcse = document.createElement('script');
-	gcse.type = 'text/javascript';
-	gcse.async = true;
-	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-	    '//cse.google.com/cse.js?cx=' + cx;
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(gcse, s);
+        var cx = '004523248466141510607:hgv2yimrahw';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
     })();
     </script>
     <gcse:search></gcse:search>
     </div>
     {%- if (pathto('index') == '#') %}
-	<img class="sidebarlogo" src="_images/logo.svg"/>
+        <img class="sidebarlogo" src="_images/logo.svg"/>
     {%- endif %}
 {% endblock %}
 
@@ -38,19 +38,19 @@
     {{ super() }}
     <!-- Insert a menu in the navigation bar -->
     <li class="left">
-	<!-- On click toggle the 'tip' on or off-->
-	<a onclick="$('.tip').each(function (index, obj) {
-			    collapse_tip_div(obj);
-		    });
-		    $('.tip').addClass('collapsed');
-		    $('.left').addClass('transparent');">
-	<img src="{{ pathto('_static/minus.png', 1) }}"
+        <!-- On click toggle the 'tip' on or off-->
+        <a onclick="$('.tip').each(function (index, obj) {
+                            collapse_tip_div(obj);
+                    });
+                    $('.tip').addClass('collapsed');
+                    $('.left').addClass('transparent');">
+        <img src="{{ pathto('_static/minus.png', 1) }}"
          alt="Collapse to compact view" style="padding: 1ex;"/>
-	<span class="hiddenlink">Collapse document to compact view</span>
+        <span class="hiddenlink">Collapse document to compact view</span>
     </a></li>
     <li class="right edit_on_github"><a href="https://github.com/scipy-lectures/scipy-lecture-notes/edit/main/{{ pagename }}.rst">Edit
     <span class="tooltip">
-	Improve this page:<br/>Edit it on Github.
+        Improve this page:<br/>Edit it on Github.
     </span>
     </a>
     </li>
@@ -63,58 +63,58 @@
     <script type="text/javascript">
     // Function to collapse the tip divs
     function collapse_tip_div(obj){
-	// Update the representation on the tip div based on whether it
-	// has the 'collapsed' css class or not: we only want to
-	// collapse divs that are not already collapsed
-	if($(obj).hasClass("collapsed")) {
-	} else {
-	    $(obj).find("p.summary").remove();
-	    var content = $(obj).text();
-	    var html = $(obj).html();
+        // Update the representation on the tip div based on whether it
+        // has the 'collapsed' css class or not: we only want to
+        // collapse divs that are not already collapsed
+        if($(obj).hasClass("collapsed")) {
+        } else {
+            $(obj).find("p.summary").remove();
+            var content = $(obj).text();
+            var html = $(obj).html();
 
-	    if(content.length > 40) {
-		if ($.browser.msie) {
-		    // We start at '3' to avoid 'tip', as IE
-		    // does not count whitespace
-		    var content = content.substr(3, 50);
-		} else {
-		    // We start at '5' to avoid 'tip '
-		    var content = content.substr(5, 50);
-		}
-	    }
-	    $(obj).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
-	}
+            if(content.length > 40) {
+                if ($.browser.msie) {
+                    // We start at '3' to avoid 'tip', as IE
+                    // does not count whitespace
+                    var content = content.substr(3, 50);
+                } else {
+                    // We start at '5' to avoid 'tip '
+                    var content = content.substr(5, 50);
+                }
+            }
+            $(obj).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
+        }
     }
     </script>
 
     <script type="text/javascript">
     $(function () {
-	$(".tip")
-	    .click(function(event){
-		$(this).toggleClass("collapsed");
-		// Change state of the global button
-		$('div.related li.transparent').removeClass('transparent')
-		$(this).find("p.summary").remove();
-		if($(this).hasClass("collapsed")) {
-		    var content = $(this).text();
-		    var html = $(this).html();
+        $(".tip")
+            .click(function(event){
+                $(this).toggleClass("collapsed");
+                // Change state of the global button
+                $('div.related li.transparent').removeClass('transparent')
+                $(this).find("p.summary").remove();
+                if($(this).hasClass("collapsed")) {
+                    var content = $(this).text();
+                    var html = $(this).html();
 
-		    if(content.length > 40) {
-			if ($.browser.msie) {
-			    // We start at '3' to avoid 'tip', as IE
-			    // does not count whitespace
-			    var content = content.substr(3, 50);
-			} else {
-			    // We start at '5' to avoid 'tip '
-			    var content = content.substr(5, 50);
-			}
-		    }
-		    $(this).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
-		}
-		if (event.target.tagName.toLowerCase() != "a") {
+                    if(content.length > 40) {
+                        if ($.browser.msie) {
+                            // We start at '3' to avoid 'tip', as IE
+                            // does not count whitespace
+                            var content = content.substr(3, 50);
+                        } else {
+                            // We start at '5' to avoid 'tip '
+                            var content = content.substr(5, 50);
+                        }
+                    }
+                    $(this).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
+                }
+                if (event.target.tagName.toLowerCase() != "a") {
                    return true; //Makes links clickable
-		}
-	});
+                }
+        });
     });
     </script>
 
