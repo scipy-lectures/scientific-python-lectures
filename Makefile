@@ -34,6 +34,8 @@ clean:
 	-rm -rf build/*
 	-rm -rf intro/scipy/auto_examples/ intro/matplotlib/auto_examples/ intro/scipy/summary-exercises/auto_examples advanced/mathematical_optimization/auto_examples/ advanced/advanced_numpy/auto_examples/ advanced/image_processing/auto_examples advanced/scipy_sparse/auto_examples packages/3d_plotting/auto_examples packages/statistics/auto_examples/ packages/scikit-image/auto_examples/ packages/scikit-learn/auto_examples intro/numpy/auto_examples guide/auto_examples
 	-rm -f data/test.png face.png face.raw file.mat fname.png local_logo.png mandelbrot.png output.txt output2.txt plot.png pop.npy pop2.txt random_00.png random_01.png random_02.png random_03.png random_04.png random_05.png random_06.png random_07.png random_08.png random_09.png red_elephant.png test.png tiny_elephant.png workfile
+	-rm -f ScientificPythonLectures-simple.pdf ScientificPythonLectures.pdf
+	-rm -f advanced/image_processing/examples/face.png advanced/mathematical_optimization/examples/helper/__pycache__/ intro/numpy/examples/__pycache__/
 
 test:
 	MATPLOTLIBRC=build_tools $(PYTHON) -m pytest --doctest-glob '*.rst' --ignore advanced/advanced_numpy/examples/myobject_test.py --ignore advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py --ignore advanced/interfacing_with_c/ctypes/cos_module.py --ignore advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/cos_doubles.py --ignore advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py --ignore advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py
