@@ -120,7 +120,7 @@ div.related li.right a {
     padding: 0px 8px;
     background-color: #333;
     background-image: linear-gradient(#444, #111);
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);ul
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 div.related a:hover {
@@ -876,70 +876,35 @@ div.hint {
     background-color: #FFD;
 }
 
-/* tip */
-div.tip .first {
-    visibility: hidden;
-    display: inline-block;
-    /*overflow: hidden;*/
-    margin-right: -2ex;
-    margin-left: -2ex;
-    height: auto;
-}
-
-
 div.tip {
     font-size: 95%;
     margin: 0px;
     padding: 0px;
     margin-left: -2ex;
-    padding-left: 2ex;
-    display: inline;
-    background-image: none;
+    padding: 2ex;
+    border: 1px solid;
+    background: #EEFFEE;
 }
 
-div.tip:hover {
-    background-image: url("minus.png");
-    background-repeat: no-repeat;
-    background-position: .1ex, 1ex;
+.div.tip p.admonition-title {
+    display: none;
 }
 
 div.collapsed {
     color: #CCC;
-    background-position: .1ex, 1ex;*/
     font-size: 90% ;
 }
 
-div.collapsed:hover {
-    background-image: none;
-}
-
-div.collapsed p.summary img {
-    margin-left: -1.9ex;
-    margin-right: .6ex;
-    opacity: .5;
-}
-
-div.collapsed p.admonition-title + p, div.collapsed p.admonition-title,
-div.collapsed p, div.collapsed img, div.collapsed div, div.collapsed ul,
-div.collapsed ol {
-    display: none;
+div.collapsed > :not(.summary) {
+    display: none !important;
 }
 
 div.collapsed p.summary {
     display: inline;
 }
 
-div.collapsed:hover p.summary img {
-    opacity: 1;
-}
-
-div.collapsed p.summary img {
-    display: inline;
-}
-
-div.collapsed:hover {
-    background-position: .1ex, 1ex;
-    color: #999;
+p.summary > img {
+    padding-right: 5px;
 }
 
 .transparent img {
@@ -953,6 +918,8 @@ div.collapsed:hover {
 div.tip p.summary {
     display: inline;
 }
+
+div.tip
 
 
 /* sidebar */

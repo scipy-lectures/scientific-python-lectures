@@ -12,8 +12,6 @@ itself, to numerical computing or plotting.
 .. include:: ../includes/big_toc_css.rst
    :start-line: 1
 
-.. include:: ../tune_toc.rst
-
 .. rst-class:: tune
 
   .. toctree::

@@ -1,53 +1,5 @@
 {% extends 'basic/layout.html' %}
 
-{% block scripts %}
-
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    {{ super() }}
-
-{% endblock %}
-
-{% block extrahead %}
-
-    {{ super() }}
-    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/base-min.css">
-
-    <script type="text/javascript">
-    $(function () {
-        // Highlight the table of content as we scroll
-        sections = {},
-        i        = 0,
-        url	 = document.URL.replace(/#.*$/, ""),
-        current_section = 0;
-
-        // Grab positions of our sections
-        $('.headerlink').each(function(){
-            sections[this.href.replace(url, '')] = $(this).offset().top - 50;
-        });
-
-        $(window).scroll(function(event) {
-    	var pos   = $(window).scrollTop();
-
-    	// Highlight the current section
-    	$('a.internal').parent().removeClass('active');
-            for(i in sections){
-                if(sections[i] > pos){
-    		break;
-                };
-    	    if($('a.internal[href$="' + i + '"]').is(':visible')){
-    		current_section = i;
-    	    };
-            }
-    	$('a.internal[href$="' + current_section + '"]').parent().addClass('active');
-    	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().addClass('active');
-    	$('a.internal[href$="' + current_section + '"]').parent().parent().parent().parent().parent().addClass('active');
-        });
-
-    });
-    </script>
-
-{% endblock %}
-
 {% block sidebarsourcelink %}
 {% endblock %}
 
@@ -56,7 +8,7 @@
 
 {% block sidebartoc %}
     {%- if (pathto('index') != '#') %}
-	<div class="sidebartoc">{{ super() }}</div>
+        <div class="sidebartoc">{{ super() }}</div>
     {%- endif %}
 {% endblock %}
 
@@ -64,106 +16,86 @@
     <div class="script_container">
     <script>
     (function() {
-	var cx = '004523248466141510607:hgv2yimrahw';
-	var gcse = document.createElement('script');
-	gcse.type = 'text/javascript';
-	gcse.async = true;
-	gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-	    '//cse.google.com/cse.js?cx=' + cx;
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(gcse, s);
+        var cx = '004523248466141510607:hgv2yimrahw';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
     })();
     </script>
     <gcse:search></gcse:search>
     </div>
     {%- if (pathto('index') == '#') %}
-	<img class="sidebarlogo" src="_images/logo.svg"/>
+        <img class="sidebarlogo" src="_images/logo.svg"/>
     {%- endif %}
 {% endblock %}
 
 
 {% block relbaritems %}
     {{ super() }}
-    <!-- Insert a menu in the navigation bar -->
-    <li class="left">
-	<!-- On click toggle the 'tip' on or off-->
-	<a onclick="$('.tip').each(function (index, obj) {
-			    collapse_tip_div(obj);
-		    });
-		    $('.tip').addClass('collapsed');
-		    $('.left').addClass('transparent');">
-	<img src="{{ pathto('_static/minus.png', 1) }}"
-         alt="Collapse to compact view" style="padding: 1ex;"/>
-	<span class="hiddenlink">Collapse document to compact view</span>
-    </a></li>
+    <!-- Insert a tip toggle in the navigation bar -->
+        <li class="left">
+        <!-- On click, expand all tips -->
+        <!--
+        <a>
+            <img src="{{ pathto('_static/plus.png', 1) }}"
+                 alt="Expand tips" style="padding: 1ex;"/>
+            <span class="hiddenlink">Collapse document to compact view</span>
+        </a>
+        -->
+        </li>
     <li class="right edit_on_github"><a href="https://github.com/scipy-lectures/scipy-lecture-notes/edit/main/{{ pagename }}.rst">Edit
-    <span class="tooltip">
-	Improve this page:<br/>Edit it on Github.
-    </span>
+      <span class="tooltip">
+        Improve this page:<br/>Edit it on Github.
+      </span>
     </a>
     </li>
-{% endblock %}
+    {% endblock %}
 
-{% block header %}
-   <!-- Use the header to add javascript -->
+    {% block header %}
+    <!-- Use the header to add javascript -->
     {{ super() }}
 
     <script type="text/javascript">
-    // Function to collapse the tip divs
-    function collapse_tip_div(obj){
-	// Update the representation on the tip div based on whether it
-	// has the 'collapsed' css class or not: we only want to
-	// collapse divs that are not already collapsed
-	if($(obj).hasClass("collapsed")) {
-	} else {
-	    $(obj).find("p.summary").remove();
-	    var content = $(obj).text();
-	    var html = $(obj).html();
+     // Function to toggle tip div
+     function toggle_tip_div(obj) {
+       $(obj).find("p.summary").remove();
 
-	    if(content.length > 40) {
-		if ($.browser.msie) {
-		    // We start at '3' to avoid 'tip', as IE
-		    // does not count whitespace
-		    var content = content.substr(3, 50);
-		} else {
-		    // We start at '5' to avoid 'tip '
-		    var content = content.substr(5, 50);
-		}
-	    }
-	    $(obj).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
-	}
-    }
-    </script>
+       var content = $(obj).text();
+       var html = $(obj).html();
 
-    <script type="text/javascript">
-    $(function () {
-	$(".tip")
-	    .click(function(event){
-		$(this).toggleClass("collapsed");
-		// Change state of the global button
-		$('div.related li.transparent').removeClass('transparent')
-		$(this).find("p.summary").remove();
-		if($(this).hasClass("collapsed")) {
-		    var content = $(this).text();
-		    var html = $(this).html();
+       if ($(obj).hasClass("collapsed")) {
+         // Expand
+         $(obj).html('<p class="summary"><img src="{{ pathto('_static/minus.png', 1) }}"></p>' + html);
+       } else {
+         // Collapse
+         if(content.length > 40) {
+           // We start at '5' to avoid 'tip '
+           content = content.substr(5, 50);
+         }
+         $(obj).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
+       }
 
-		    if(content.length > 40) {
-			if ($.browser.msie) {
-			    // We start at '3' to avoid 'tip', as IE
-			    // does not count whitespace
-			    var content = content.substr(3, 50);
-			} else {
-			    // We start at '5' to avoid 'tip '
-			    var content = content.substr(5, 50);
-			}
-		    }
-		    $(this).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
-		}
-		if (event.target.tagName.toLowerCase() != "a") {
-                   return true; //Makes links clickable
-		}
-	});
-    });
+       $(obj).toggleClass("collapsed");
+     }
+
+     $(document).ready(function () {
+       // Collapse all tips and add plus sign
+       $(".tip").each(function() { toggle_tip_div($(this)); });
+
+       $(".tip")
+         .click(function(event){
+           // Change state of the global button
+           $('div.related li.transparent').removeClass('transparent');
+           toggle_tip_div($(this));
+           if (event.target.tagName.toLowerCase() != "a") {
+             return true; //Makes links clickable
+           }
+         });
+     });
     </script>
 
 {% endblock %}

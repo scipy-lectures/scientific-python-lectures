@@ -12,8 +12,6 @@ tackles various specific topics.
 .. include:: ../includes/big_toc_css.rst
    :start-line: 1
 
-.. include:: ../tune_toc.rst
-
 .. rst-class:: tune
 
   .. toctree::

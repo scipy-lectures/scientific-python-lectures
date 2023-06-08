@@ -9,12 +9,13 @@ statsmodels>=0.14
 seaborn>=0.12
 pytest>=7.1
 sphinx>=7
+sphinx-gallery>=0.13
+sphinx-copybutton
 coverage>=6.4
 Pillow
 imageio>=2.22
 pooch
 ipython
-sphinx-gallery>=0.13
 pre-commit>=3.3
 requests
 sphinxcontrib-jquery

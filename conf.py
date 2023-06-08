@@ -30,7 +30,13 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
     'sphinx_gallery.gen_gallery',
+    'sphinx_copybutton'
 ]
+
+# See https://sphinx-copybutton.readthedocs.io/en/latest/use.html#automatic-exclusion-of-prompts-from-the-copies
+copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
+copybutton_prompt_is_regexp = True
+copybutton_copy_empty_lines = False
 
 doctest_test_doctest_blocks = 'true'
 
@@ -361,9 +367,19 @@ extlinks = {
 imgmath_dvipng_args = ['-gamma 1.5', '-D 180', '-bg', 'Transparent']
 immath_use_preview = True
 
-# Add the 'copybutton' javascript, to hide/show the prompt in code
-# examples
+
+def add_per_page_js(app, pagename, templatename, context, doctree):
+    if pagename.split('/')[-1] == 'index':
+        # For folding table of contents
+        app.add_js_file('foldable_toc.js')
+        app.add_css_file('foldable_toc.css')
 
 
 def setup(app):
-    app.add_js_file('copybutton.js')
+    app.add_js_file("https://code.jquery.com/jquery-3.7.0.min.js")
+    app.add_js_file("scroll_highlight_toc.js")
+
+    app.connect("html-page-context", add_per_page_js)
+
+    # Is this still used?
+    app.add_css_file("https://unpkg.com/purecss@2.1.0/build/base-min.css")
