@@ -36,71 +36,65 @@
 
 {% block relbaritems %}
     {{ super() }}
-    <!-- Insert a menu in the navigation bar -->
-    <li class="left">
-        <!-- On click toggle the 'tip' on or off-->
-        <a onclick="$('.tip').each(function (index, obj) {
-                            collapse_tip_div(obj);
-                    });
-                    $('.tip').addClass('collapsed');
-                    $('.left').addClass('transparent');">
-        <img src="{{ pathto('_static/minus.png', 1) }}"
-         alt="Collapse to compact view" style="padding: 1ex;"/>
-        <span class="hiddenlink">Collapse document to compact view</span>
-    </a></li>
+    <!-- Insert a tip toggle in the navigation bar -->
+        <li class="left">
+        <!-- On click, expand all tips -->
+        <!--
+        <a>
+            <img src="{{ pathto('_static/plus.png', 1) }}"
+                 alt="Expand tips" style="padding: 1ex;"/>
+            <span class="hiddenlink">Collapse document to compact view</span>
+        </a>
+        -->
+        </li>
     <li class="right edit_on_github"><a href="https://github.com/scipy-lectures/scipy-lecture-notes/edit/main/{{ pagename }}.rst">Edit
-    <span class="tooltip">
+      <span class="tooltip">
         Improve this page:<br/>Edit it on Github.
-    </span>
+      </span>
     </a>
     </li>
-{% endblock %}
+    {% endblock %}
 
-{% block header %}
-   <!-- Use the header to add javascript -->
+    {% block header %}
+    <!-- Use the header to add javascript -->
     {{ super() }}
 
     <script type="text/javascript">
-     // Function to collapse the tip divs
-     function collapse_tip_div(obj){
-       // Update the representation on the tip div based on whether it
-       // has the 'collapsed' css class or not: we only want to
-       // collapse divs that are not already collapsed
-       if ($(obj).hasClass("collapsed")) {
-       } else {
-         $(obj).find("p.summary").remove();
-         var content = $(obj).text();
-         var html = $(obj).html();
+     // Function to toggle tip div
+     function toggle_tip_div(obj) {
+       $(obj).find("p.summary").remove();
 
+       var content = $(obj).text();
+       var html = $(obj).html();
+
+       if ($(obj).hasClass("collapsed")) {
+         // Expand
+         $(obj).html('<p class="summary"><img src="{{ pathto('_static/minus.png', 1) }}"></p>' + html);
+       } else {
+         // Collapse
          if(content.length > 40) {
            // We start at '5' to avoid 'tip '
            content = content.substr(5, 50);
          }
          $(obj).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
        }
+
+       $(obj).toggleClass("collapsed");
      }
 
      $(document).ready(function () {
-       $(".tip")
-           .click(function(event){
-             $(this).toggleClass("collapsed");
-             // Change state of the global button
-             $('div.related li.transparent').removeClass('transparent')
-             $(this).find("p.summary").remove();
-             if($(this).hasClass("collapsed")) {
-               var content = $(this).text();
-               var html = $(this).html();
+       // Collapse all tips and add plus sign
+       $(".tip").each(function() { toggle_tip_div($(this)); });
 
-               if(content.length > 40) {
-                 // We start at '5' to avoid 'tip '
-                 content = content.substr(5, 50);
-               }
-               $(this).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
-             }
-             if (event.target.tagName.toLowerCase() != "a") {
-               return true; //Makes links clickable
-             }
-           });
+       $(".tip")
+         .click(function(event){
+           // Change state of the global button
+           $('div.related li.transparent').removeClass('transparent');
+           toggle_tip_div($(this));
+           if (event.target.tagName.toLowerCase() != "a") {
+             return true; //Makes links clickable
+           }
+         });
      });
     </script>
 
