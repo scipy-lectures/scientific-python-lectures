@@ -878,9 +878,6 @@ div.hint {
 
 div.tip {
     font-size: 95%;
-    margin: 0px;
-    padding: 0px;
-    margin-left: -2ex;
     padding: 2ex;
     border: 1px solid;
     background: #EEFFEE;
@@ -918,9 +915,6 @@ p.summary > img {
 div.tip p.summary {
     display: inline;
 }
-
-div.tip
-
 
 /* sidebar */
 div.sidebar ul {
