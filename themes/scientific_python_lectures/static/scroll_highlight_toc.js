@@ -1,6 +1,6 @@
 // Highlight the table of content as we scroll
 
-$(function () {
+$( document ).ready(function () {
     sections = {},
     i        = 0,
     url = document.URL.replace(/#.*$/, ""),
