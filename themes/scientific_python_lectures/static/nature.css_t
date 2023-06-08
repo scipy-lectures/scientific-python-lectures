@@ -35,9 +35,9 @@ body {
 }
 
 /**** For mobile device: increase font size on small devices ****/
-@media	only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	only screen and (-o-min-device-pixel-ratio: 15/10),
-	only screen and (min-resolution: 140dpi)
+@media  only screen and (-webkit-min-device-pixel-ratio: 1.5),
+        only screen and (-o-min-device-pixel-ratio: 15/10),
+        only screen and (min-resolution: 140dpi)
 {
   /* High DPI devices */
   body {
@@ -178,9 +178,9 @@ div.related li.edit_on_github:hover span.tooltip {
   }
 }
 
-@media	only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	only screen and (-o-min-device-pixel-ratio: 15/10),
-	only screen and (min-resolution: 140dpi)
+@media  only screen and (-webkit-min-device-pixel-ratio: 1.5),
+        only screen and (-o-min-device-pixel-ratio: 15/10),
+        only screen and (min-resolution: 140dpi)
 {
   /* High DPI devices */
   div.related {
@@ -196,9 +196,9 @@ div.related li.edit_on_github:hover span.tooltip {
 }
 
 
-@media	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5),
-	only screen and (max-width: 1080px) and (-o-min-device-pixel-ratio: 25/10),
-	only screen and (max-width: 1080px) and (min-resolution: 250dpi)
+@media  only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5),
+        only screen and (max-width: 1080px) and (-o-min-device-pixel-ratio: 25/10),
+        only screen and (max-width: 1080px) and (min-resolution: 250dpi)
 {
   /* High DPI small screen devices, typically mobile phones */
   div.related {
@@ -212,7 +212,7 @@ div.related li.edit_on_github:hover span.tooltip {
   }
 
   div.related li.left {
-	display: none;
+        display: none;
     }
 }
 
@@ -256,9 +256,9 @@ div.body {
     border-color: rgb(204, 204, 204);*/
 }
 
-@media	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5),
-	only screen and (max-width: 1080px) and (-o-min-device-pixel-ratio: 25/10),
-	only screen and (max-width: 1080px) and (min-resolution: 250dpi)
+@media  only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5),
+        only screen and (max-width: 1080px) and (-o-min-device-pixel-ratio: 25/10),
+        only screen and (max-width: 1080px) and (min-resolution: 250dpi)
 {
   /* Necessary for good layout on Android phones */
   div.body {
@@ -327,40 +327,40 @@ img.sidebarlogo {
     }
 
     div.bodywrapper {
-	margin: 0px;
+        margin: 0px;
     }
 }
 
 @media (max-width: 1324px) {
     div.sphinxsidebar {
-	margin-top: 0px;
-	width: 2em;
-	min-width: 20px;
+        margin-top: 0px;
+        width: 2em;
+        min-width: 20px;
     }
 
     div.sphinxsidebar:before {
-	content: "\f0c9";
-	margin-left: 1.1ex;
-	font-family: FontAwesome;
-	color: rgba(0, 0, 0, .3);
+        content: "\f0c9";
+        margin-left: 1.1ex;
+        font-family: FontAwesome;
+        color: rgba(0, 0, 0, .3);
     }
 
     div.bodywrapper {
-	margin: 0px;
+        margin: 0px;
     }
 
     div.sphinxsidebarwrapper {
-	display: none;
+        display: none;
     }
 
     div.sphinxsidebar:hover {
-	width: 300px;
-	z-index: 1000;
+        width: 300px;
+        z-index: 1000;
     }
 
     div.sphinxsidebar:hover div.sphinxsidebarwrapper {
-	display: block;
-	box-shadow: 10px 10px 5px #888888;
+        display: block;
+        box-shadow: 10px 10px 5px #888888;
     }
 }
 
@@ -441,14 +441,14 @@ h6 {
 @media (max-width: 110ex) {
     div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body
     h6 {
-	padding-left: 8px;
+        padding-left: 8px;
     }
 }
 
 @media (max-width: 100ex) {
     div.body h1, div.body h2, div.body h3, div.body h4, div.body h5, div.body
     h6 {
-	padding-left: 13px;
+        padding-left: 13px;
     }
 }
 
@@ -557,8 +557,8 @@ div.body pre {
     /* Break words to avoid too long lines */
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
-	-ms-hyphens: auto;
-	    hyphens: auto;
+        -ms-hyphens: auto;
+            hyphens: auto;
 }
 
 div.highlight-default {
@@ -592,18 +592,18 @@ div.highlight pre div.newline {
 }
 
 /* Disable the above hack on android phone, as font scaling breaks it */
-@media	only screen and (-webkit-min-device-pixel-ratio: 1.5),
-	only screen and (-o-min-device-pixel-ratio: 15/10),
-	only screen and (min-resolution: 140dpi)
+@media  only screen and (-webkit-min-device-pixel-ratio: 1.5),
+        only screen and (-o-min-device-pixel-ratio: 15/10),
+        only screen and (min-resolution: 140dpi)
   {
     div.highlight pre {
-	padding-left: 0pt;
-	text-indent: 0pt;
+        padding-left: 0pt;
+        text-indent: 0pt;
     }
 
     div.highlight pre div.newline {
-	margin-right: 0pt;
-	padding-left: 0pt;
+        margin-right: 0pt;
+        padding-left: 0pt;
     }
 }
 
@@ -652,16 +652,16 @@ div.highlight:hover span.copybutton:hover {
 
 @media (min-width: 1060px) {
     div.highlight:hover span.copybutton:after{
-	background: #3F556B;
-	border-radius: 5px;
-	color: white;
-	content: attr(title);
-	left: 110%;
-	padding: 5px 15px;
-	position: absolute;
-	z-index: 98;
-	width: 140px;
-	top: -10px;
+        background: #3F556B;
+        border-radius: 5px;
+        color: white;
+        content: attr(title);
+        left: 110%;
+        padding: 5px 15px;
+        position: absolute;
+        z-index: 98;
+        width: 140px;
+        top: -10px;
     }
 }
 
@@ -938,21 +938,21 @@ div.sidebar {
 }
 
 /* Suppress floats on small screens */
-@media 	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 70ex) {
+@media  only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 70ex) {
     div.sidebar {
-	float: none;
-	width: 95%;
-	padding-top: 8px;
+        float: none;
+        width: 95%;
+        padding-top: 8px;
     }
 }
 
-@media 	only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 60ex) {
+@media  only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 60ex) {
     img.align-right {
-	float: none;
+        float: none;
     }
 
     img.align-left {
-	float: none;
+        float: none;
     }
 }
 
