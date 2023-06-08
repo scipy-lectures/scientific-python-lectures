@@ -72,9 +72,8 @@
          $(obj).html('<p class="summary"><img src="{{ pathto('_static/minus.png', 1) }}"></p>' + html);
        } else {
          // Collapse
-         if(content.length > 40) {
-           // We start at '5' to avoid 'tip '
-           content = content.substr(5, 50);
+         if(content.length > 50) {
+           content = content.substr(0, 47);
          }
          $(obj).html('<p class="summary"><img src="{{ pathto('_static/plus.png', 1) }}">' + content + '...</p>' + html);
        }
@@ -83,6 +82,9 @@
      }
 
      $(document).ready(function () {
+       $(".tip").each(function() {
+         $(this).find("p.admonition-title").remove();
+       });
        // Collapse all tips and add plus sign
        $(".tip").each(function() { toggle_tip_div($(this)); });
 
