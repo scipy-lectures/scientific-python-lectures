@@ -937,6 +937,13 @@ div.sidebar {
     z-index: 50;
 }
 
+/* Stop highlight blocks from clearing divs, so that we
+   can float result images next to code snippets. */
+
+pre, div[class*="highlight-"] {
+   clear: none;
+}
+
 /* Suppress floats on small screens */
 @media  only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5), (max-width: 70ex) {
     div.sidebar {

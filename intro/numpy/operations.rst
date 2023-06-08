@@ -215,7 +215,7 @@ Computing sums
     10
 
 .. image:: images/reductions.png
-    :align: right
+   :align: right
 
 Sum by rows and by columns:
 
