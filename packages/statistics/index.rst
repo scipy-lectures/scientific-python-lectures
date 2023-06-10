@@ -314,16 +314,15 @@ use the :mod:`scipy.stats` sub-module of `SciPy
 Student's t-test: the simplest statistical test
 ------------------------------------------------
 
-1-sample t-test: testing the value of a population mean
+One-sample tests: testing the value of a population mean
 ........................................................
 
 .. image:: two_sided.png
    :scale: 50
    :align: right
 
-:func:`scipy.stats.ttest_1samp` tests if the population mean of data is
-likely to be equal to a given value (technically if observations are
-drawn from a Gaussian distributions of given population mean). It returns
+:func:`scipy.stats.ttest_1samp` tests the null hypothesis that the mean
+of the population underlying the data is equal to a given value. It returns
 the `T statistic <https://en.wikipedia.org/wiki/Student%27s_t-test>`_,
 and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
 function's help)::
@@ -331,22 +330,45 @@ function's help)::
     >>> sp.stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
     TtestResult(statistic=30.088099970..., pvalue=1.32891964...e-28, df=39)
 
-.. tip::
+The p-value of :math:`10^-28` indicates that such an extreme value of the statistic
+is unlikely to be observed under the null hypothesis. This may be taken as
+evidence that the null hypothesis is false and that the population mean IQ
+(VIQ measure) is not 0.
 
-    With a p-value of 10^-28 we can claim that the population mean for
-    the IQ (VIQ measure) is not 0.
+Technically, the p-value of the t-test is derived under the assumption that
+the means of samples drawn from the population are normally distributed.
+This condition is exactly satisfied when the population itself is normally
+distributed; however, due to the central limit theorem, the condition is
+nearly true for reasonably large samples drawn from populations that follow
+a variety of non-normal distributions.
 
-2-sample t-test: testing for difference across populations
+Nonetheless, if we are concerned that violation of the normality assumptions
+will affect the conclusions of the test, we can use a `Wilcoxon signed-rank test
+<https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, which relaxes
+this assumption at the expense of test power::
+
+    >>> sp.stats.wilcoxon(data['VIQ'])  # doctest: +ELLIPSIS
+    WilcoxonResult(statistic=0.0, pvalue=1.8189894...e-12)
+
+Two-sample t-test: testing for difference across populations
 ...........................................................
 
-We have seen above that the mean VIQ in the male and female populations
-were different. To test if this is significant, we do a 2-sample t-test
-with :func:`scipy.stats.ttest_ind`::
+We have seen above that the mean VIQ in the male and female samples
+were different. To test whether this difference is significant (and
+suggests that there is a difference in population means), we perform
+a two-sample t-test using :func:`scipy.stats.ttest_ind`::
 
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
     >>> sp.stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
     Ttest_indResult(statistic=-0.77261617232..., pvalue=0.4445287677858...)
+
+The corresponding non-parametric test is the `Mann–Whitney U
+test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
+:func:`scipy.stats.mannwhitneyu`.
+
+    >>> sp.stats.mannwhitneyu(female_viq, male_viq)   # doctest: +ELLIPSIS
+    MannwhitneyuResult(statistic=164.5, pvalue=0.34228868687...)
 
 Paired tests: repeated measurements on the same individuals
 -----------------------------------------------------------
@@ -356,16 +378,17 @@ Paired tests: repeated measurements on the same individuals
    :scale: 70
    :align: right
 
-PIQ, VIQ, and FSIQ give 3 measures of IQ. Let us test if FISQ and PIQ are
-significantly different. We can use a 2 sample test::
+PIQ, VIQ, and FSIQ give three measures of IQ. Let us test whether FISQ
+and PIQ are significantly different. We can use an "independent sample" test::
 
     >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
     Ttest_indResult(statistic=0.46563759638..., pvalue=0.64277250...)
 
-The problem with this approach is that it forgets that there are links
+The problem with this approach is that it ignores an important relationship
 between observations: FSIQ and PIQ are measured on the same individuals.
-Thus the variance due to inter-subject variability is confounding, and
-can be removed, using a "paired test", or `"repeated measures test"
+Thus, the variance due to inter-subject variability is confounding, reducing
+the power of the test. This variability can be removed using a "paired test"
+or `"repeated measures test"
 <https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
     >>> sp.stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
@@ -376,26 +399,17 @@ can be removed, using a "paired test", or `"repeated measures test"
    :scale: 60
    :align: right
 
-This is equivalent to a 1-sample test on the difference::
+This is equivalent to a one-sample test on the differences between paired
+observations::
 
     >>> sp.stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
     TtestResult(statistic=1.784201940..., pvalue=0.082172638..., df=39)
 
-|
+Accordingly, we can perform a nonparametric version of the test with
+``wilcoxon``.
 
-T-tests assume Gaussian errors. We
-can use a `Wilcoxon signed-rank test
-<https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, that relaxes
-this assumption::
-
-    >>> sp.stats.wilcoxon(data['FSIQ'], data['PIQ'], method="approx")  # doctest: +ELLIPSIS
-    WilcoxonResult(statistic=274.5, pvalue=0.106594927...)
-
-.. note::
-
-   The corresponding test in the non paired case is the `Mann–Whitney U
-   test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
-   :func:`scipy.stats.mannwhitneyu`.
+    >>> sp.stats.wilcoxon(data['FSIQ'], data['PIQ'])
+    WilcoxonResult(statistic=274.5, pvalue=0.106594927135...)
 
 .. topic:: **Exercise**
    :class: green
