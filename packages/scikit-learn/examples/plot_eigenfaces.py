@@ -2,13 +2,6 @@
 The eigenfaces example: chaining PCA and SVMs
 =============================================
 
-
-.. sidebar:: Code and notebook
-
-   Python code and Jupyter notebook for this section are found
-   :ref:`here
-   <sphx_glr_packages_scikit-learn_auto_examples_plot_eigenfaces.py>`
-
 The goal of this example is to show how an unsupervised method and a
 supervised one can be chained for better prediction. It starts with a
 didactic but lengthy way of doing things, and finishes with the

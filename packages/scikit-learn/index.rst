@@ -1358,11 +1358,6 @@ of digits eventhough it had no access to the class information.
         >>> # ...
 
 
-.. The eigenfaces example: chaining PCA and SVMs
-.. =============================================
-
-
-.. include:: auto_examples/plot_eigenfaces.rst
     :start-line: 7
     :end-before: plt.show()
 
