@@ -1357,12 +1357,6 @@ of digits eventhough it had no access to the class information.
         >>> digits = load_digits()
         >>> # ...
 
-
-    :start-line: 7
-    :end-before: plt.show()
-
-
-
 Parameter selection, Validation, and Testing
 =============================================
 
