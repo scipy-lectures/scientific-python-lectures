@@ -408,7 +408,7 @@ observations::
 Accordingly, we can perform a nonparametric version of the test with
 ``wilcoxon``.
 
-    >>> sp.stats.wilcoxon(data['FSIQ'], data['PIQ'])
+    >>> sp.stats.wilcoxon(data['FSIQ'], data['PIQ'], method="approx")
     WilcoxonResult(statistic=274.5, pvalue=0.106594927135...)
 
 .. topic:: **Exercise**
