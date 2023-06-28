@@ -365,11 +365,11 @@ convergence.
     >>> x0 = 0  # guess
     >>> res = sp.optimize.root_scalar(f, x0=x0, fprime=df)
     >>> res
-         converged: True
-              flag: 'converged'
-    function_calls: 12
-        iterations: 6
-              root: 1.0
+          converged: True
+               flag: converged
+     function_calls: 12
+         iterations: 6
+               root: 1.0
 
 .. warning::
 
