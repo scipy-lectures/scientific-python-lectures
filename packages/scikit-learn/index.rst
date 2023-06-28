@@ -1038,11 +1038,11 @@ Model Selection via Validation
     >>> X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
     ...                             test_size=0.25, random_state=0)
 
-    >>> for Model in [GaussianNB, KNeighborsClassifier, LinearSVC]:
-    ...     clf = Model().fit(X_train, y_train)
+    >>> for Model in [GaussianNB(), KNeighborsClassifier(), LinearSVC(dual=False)]:
+    ...     clf = Model.fit(X_train, y_train)
     ...     y_pred = clf.predict(X_test)
     ...     print('%s: %s' %
-    ...           (Model.__name__, metrics.f1_score(y_test, y_pred, average="macro")))
+    ...           (Model.__class__.__name__, metrics.f1_score(y_test, y_pred, average="macro")))
     GaussianNB: 0.8...
     KNeighborsClassifier: 0.9...
     LinearSVC: 0.9...
