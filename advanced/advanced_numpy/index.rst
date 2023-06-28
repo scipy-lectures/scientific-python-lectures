@@ -1264,7 +1264,7 @@ Imaging Library):
 .. seealso:: pilbuffer.py
 
 >>> from PIL import Image
->>> data = np.zeros((200, 200, 4), dtype=np.int8)
+>>> data = np.zeros((200, 200, 4), dtype=np.uint8)
 >>> data[:, :] = [255, 0, 0, 255] # Red
 >>> # In PIL, RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA]
 >>> data = data.view(np.int32).squeeze()
