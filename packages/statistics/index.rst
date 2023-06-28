@@ -361,7 +361,7 @@ a two-sample t-test using :func:`scipy.stats.ttest_ind`::
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
     >>> sp.stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
-    Ttest_indResult(statistic=-0.77261617232..., pvalue=0.4445287677858...)
+    TtestResult(statistic=-0.77261617232..., pvalue=0.4445287677858..., df=38.0)
 
 The corresponding non-parametric test is the `Mann–Whitney U
 test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
@@ -382,7 +382,7 @@ PIQ, VIQ, and FSIQ give three measures of IQ. Let us test whether FISQ
 and PIQ are significantly different. We can use an "independent sample" test::
 
     >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-    Ttest_indResult(statistic=0.46563759638..., pvalue=0.64277250...)
+    TtestResult(statistic=0.46563759638..., pvalue=0.64277250..., df=78.0)
 
 The problem with this approach is that it ignores an important relationship
 between observations: FSIQ and PIQ are measured on the same individuals.
@@ -630,7 +630,7 @@ model::
     previous t-test::
 
      >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
-     Ttest_indResult(statistic=0.46563759638..., pvalue=0.64277250...)
+     TtestResult(statistic=0.46563759638..., pvalue=0.64277250..., df=78.0)
 
 
 Multiple Regression: including multiple factors
