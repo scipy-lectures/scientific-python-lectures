@@ -44,7 +44,7 @@ Examples
     * prepare a linear system::
 
         >>> import numpy as np
-        >>> mtx = sp.sparse.spdiags([[1, 2, 3, 4, 5], [6, 5, 8, 9, 10]], [0, 1], 5, 5)
+        >>> mtx = sp.sparse.spdiags([[1, 2, 3, 4, 5], [6, 5, 8, 9, 10]], [0, 1], 5, 5, "csc")
         >>> mtx.todense()
         matrix([[ 1,  5,  0,  0,  0],
                 [ 0,  2,  8,  0,  0],
