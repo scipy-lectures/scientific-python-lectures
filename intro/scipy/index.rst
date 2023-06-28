@@ -265,7 +265,7 @@ Linear systems with special structure can often be solved more efficiently
 than more general systems. For example, systems with triangular matrices
 can be solved using :func:`scipy.linalg.solve_triangular`::
 
-    >>> A_upper = sp.linalg.triu(A)
+    >>> A_upper = np.triu(A)
     >>> A_upper
     array([[1, 2],
            [0, 3]])
