@@ -226,9 +226,9 @@ The library ships with a few of these:
     (300, 451, 3)
 
 Input/output, data types and colorspaces
-=========================================
+========================================
 
-I/O: :mod:`skimage.io` ::
+I/O: :mod:`skimage.io`
 
 Save an image to disk: :func:`skimage.io.imsave` ::
 

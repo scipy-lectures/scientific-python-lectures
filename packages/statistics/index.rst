@@ -351,7 +351,7 @@ this assumption at the expense of test power::
     WilcoxonResult(statistic=0.0, pvalue=1.8189894...e-12)
 
 Two-sample t-test: testing for difference across populations
-...........................................................
+............................................................
 
 We have seen above that the mean VIQ in the male and female samples
 were different. To test whether this difference is significant (and
