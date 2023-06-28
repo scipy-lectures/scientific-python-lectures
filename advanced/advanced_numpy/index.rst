@@ -1170,16 +1170,18 @@ Generalized ufuncs
     >>> np.linalg._umath_linalg.det.signature
     '(m,m)->()'
 
-* we also ship with a few g-ufuncs for testing, ATM::
 
-    >>> import numpy.core.umath_tests as ut
-    >>> ut.matrix_multiply.signature
-    '(m,n),(n,p)->(m,p)'
-
-    >>> x = np.ones((10, 2, 4))
-    >>> y = np.ones((10, 4, 5))
-    >>> ut.matrix_multiply(x, y).shape
-    (10, 2, 5)
+.. FIXME
+.. * we also ship with a few g-ufuncs for testing, ATM::
+..
+..     >>> import numpy.core.umath_tests as ut
+..     >>> ut.matrix_multiply.signature
+..     '(m,n),(n,p)->(m,p)'
+..
+..     >>> x = np.ones((10, 2, 4))
+..     >>> y = np.ones((10, 4, 5))
+..     >>> ut.matrix_multiply(x, y).shape
+..     (10, 2, 5)
 
 * in both examples the last two dimensions became *core dimensions*,
   and are modified as per the *signature*
