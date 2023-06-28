@@ -41,7 +41,7 @@ Examples
            [1, 2, 3, 4]])
     >>> offsets = np.array([0, -1, 2])
     >>> mtx = sp.sparse.dia_matrix((data, offsets), shape=(4, 4))
-    >>> mtx   # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> mtx
     <4x4 sparse matrix of type '<... 'numpy.int64'>'
             with 9 stored elements (3 diagonals) in DIAgonal format>
     >>> mtx.todense()
@@ -56,13 +56,13 @@ Examples
            [ 5,  6,  7,  8],
            [ 9, 10, 11, 12]])
     >>> mtx = sp.sparse.dia_matrix((data, offsets), shape=(4, 4))
-    >>> mtx.data        # doctest: +ELLIPSIS
+    >>> mtx.data
     array([[ 1,  2,  3,  4],
            [ 5,  6,  7,  8],
            [ 9, 10, 11, 12]])
     >>> mtx.offsets
     array([ 0, -1,  2], dtype=int32)
-    >>> print(mtx)   # doctest: +NORMALIZE_WHITESPACE
+    >>> print(mtx)
       (0, 0)        1
       (1, 1)        2
       (2, 2)        3

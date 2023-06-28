@@ -64,7 +64,7 @@ use different colormaps, crop the image, change some parts of the image.
 
         >>> import matplotlib.pyplot as plt
         >>> face = sp.datasets.face(gray=True)
-        >>> plt.imshow(face)    # doctest: +ELLIPSIS
+        >>> plt.imshow(face)
         <matplotlib.image.AxesImage object at 0x...>
 
 * The face is displayed in false colors. A colormap must be
@@ -72,7 +72,7 @@ use different colormaps, crop the image, change some parts of the image.
 
     .. sourcecode:: pycon
 
-        >>> plt.imshow(face, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+        >>> plt.imshow(face, cmap=plt.cm.gray)
         <matplotlib.image.AxesImage object at 0x...>
 
 * Create an array of the image with a narrower centering : for example,
@@ -103,7 +103,7 @@ use different colormaps, crop the image, change some parts of the image.
     .. sourcecode:: pycon
 
         >>> face[mask] = 0
-        >>> plt.imshow(face)    # doctest: +ELLIPSIS
+        >>> plt.imshow(face)
         <matplotlib.image.AxesImage object at 0x...>
 
 * Follow-up: copy all instructions of this exercise in a script called
@@ -125,11 +125,11 @@ northern Canada during 20 years:
  >>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
  >>> import matplotlib.pyplot as plt
- >>> plt.axes([0.2, 0.1, 0.5, 0.8]) # doctest: +ELLIPSIS
+ >>> plt.axes([0.2, 0.1, 0.5, 0.8])
  <Axes: >
- >>> plt.plot(year, hares, year, lynxes, year, carrots) # doctest: +ELLIPSIS
+ >>> plt.plot(year, hares, year, lynxes, year, carrots)
  [<matplotlib.lines.Line2D object at ...>, ...]
- >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5)) # doctest: +ELLIPSIS
+ >>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
  <matplotlib.legend.Legend object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_populations_001.png
@@ -226,7 +226,7 @@ Do this computation by:
   .. sourcecode:: pycon
 
     >>> import matplotlib.pyplot as plt
-    >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5]) # doctest: +ELLIPSIS
+    >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5])
     <matplotlib.image.AxesImage object at ...>
     >>> plt.gray()
     >>> plt.savefig('mandelbrot.png')

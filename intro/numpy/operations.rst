@@ -241,9 +241,9 @@ Sum by rows and by columns:
   .. sourcecode:: pycon
 
     >>> x = np.random.rand(2, 2, 2)
-    >>> x.sum(axis=2)[0, 1]     # doctest: +ELLIPSIS
+    >>> x.sum(axis=2)[0, 1]
     1.14764...
-    >>> x[0, 1, :].sum()     # doctest: +ELLIPSIS
+    >>> x[0, 1, :].sum()
     1.14764...
 
 Other reductions
@@ -378,13 +378,13 @@ Other reductions
 
   .. sourcecode:: pycon
 
-   >>> plt.figure(figsize=(4, 3)) # doctest: +ELLIPSIS
+   >>> plt.figure(figsize=(4, 3))
    <Figure size ... with 0 Axes>
-   >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-') # doctest: +ELLIPSIS
+   >>> plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-')
    [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
-   >>> plt.xlabel(r"$t$") # doctest: +ELLIPSIS
+   >>> plt.xlabel(r"$t$")
    Text(...'$t$')
-   >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$") # doctest: +ELLIPSIS
+   >>> plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
    Text(...'$\\sqrt{\\langle (\\delta x)^2 \\rangle}$')
    >>> plt.tight_layout() # provide sufficient space for labels
 

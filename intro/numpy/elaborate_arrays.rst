@@ -184,7 +184,7 @@ Field access works by indexing with field names::
 
 Multiple fields at once::
 
-    >>> samples[['position', 'value']] # doctest: +NORMALIZE_WHITESPACE
+    >>> samples[['position', 'value']]
     array([(1. ,  0.37), (1. ,  0.11), (1. ,  0.13), (1.5,  0.37),
            (3. ,  0.11), (1.2,  0.13)],
           dtype={'names': ['position', 'value'], 'formats': ['<f8', '<f8'], 'offsets': [4, 12], 'itemsize': 20})

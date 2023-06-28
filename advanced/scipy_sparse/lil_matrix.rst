@@ -39,10 +39,10 @@ Examples
 * assign the data using fancy indexing::
 
     >>> mtx[:2, [1, 2, 3]] = data
-    >>> mtx  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    >>> mtx
     <4x5 sparse matrix of type '<... 'numpy.float64'>'
             with 5 stored elements in List of Lists format>
-    >>> print(mtx)   # doctest: +NORMALIZE_WHITESPACE
+    >>> print(mtx)
       (0, 1)  1.0
       (0, 2)  1.0
       (0, 3)  1.0
@@ -62,26 +62,26 @@ Examples
 * more slicing and indexing::
 
     >>> mtx = sp.sparse.lil_matrix([[0, 1, 2, 0], [3, 0, 1, 0], [1, 0, 0, 1]])
-    >>> mtx.todense()    # doctest: +ELLIPSIS
+    >>> mtx.todense()
     matrix([[0, 1, 2, 0],
             [3, 0, 1, 0],
             [1, 0, 0, 1]]...)
-    >>> print(mtx) # doctest: +NORMALIZE_WHITESPACE
+    >>> print(mtx)
       (0, 1)    1
       (0, 2)    2
       (1, 0)    3
       (1, 2)    1
       (2, 0)    1
       (2, 3)    1
-    >>> mtx[:2, :]  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    >>> mtx[:2, :]
     <2x4 sparse matrix of type '<... 'numpy.int64'>'
       with 4 stored elements in List of Lists format>
-    >>> mtx[:2, :].todense()    # doctest: +ELLIPSIS
+    >>> mtx[:2, :].todense()
     matrix([[0, 1, 2, 0],
             [3, 0, 1, 0]]...)
-    >>> mtx[1:2, [0,2]].todense()    # doctest: +ELLIPSIS
+    >>> mtx[1:2, [0,2]].todense()
     matrix([[3, 1]]...)
-    >>> mtx.todense()    # doctest: +ELLIPSIS
+    >>> mtx.todense()
     matrix([[0, 1, 2, 0],
             [3, 0, 1, 0],
             [1, 0, 0, 1]]...)

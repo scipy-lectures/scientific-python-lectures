@@ -214,7 +214,7 @@ we get:
     >>> log_b = sp.special.gammaln(499)
     >>> log_res = log_a - log_b
     >>> res = np.exp(log_res)
-    >>> res  # doctest: +ELLIPSIS
+    >>> res
     499.0000000...
 
 Similarly, suppose we wish to compute the difference
@@ -224,7 +224,7 @@ Similarly, suppose we wish to compute the difference
 
     >>> res = sp.special.logsumexp([log_a, log_b],
     ...                            b=[1, -1])  # weights the terms of the sum
-    >>> res  # doctest: +ELLIPSIS
+    >>> res
     2605.113844343...
 
 For more information about these and many other special functions, see
@@ -515,7 +515,7 @@ Since we know the approximate locations of the minima, we will provide
 bounds that restrict the search to the vicinity of the global minimum.
 
     >>> res = sp.optimize.minimize_scalar(f, bounds=(-2, -1))
-    >>> res  # doctest: +ELLIPSIS
+    >>> res
      message: Solution found.
      success: True
       status: 0
@@ -556,7 +556,7 @@ requires a guess ``x0``. (Note that this is the initial value of
 label :math:`x_0`.)
 
     >>> res = sp.optimize.minimize(f, x0=[0, 0])
-    >>> res  # doctest: +ELLIPSIS
+    >>> res
       message: Optimization terminated successfully.
       success: True
        status: 0
@@ -657,9 +657,9 @@ maximum likelihood estimation of the unknown parameters using the
 distribution family's ``fit`` method::
 
     >>> loc, scale = sp.stats.norm.fit(sample)
-    >>> loc  # doctest: +ELLIPSIS
+    >>> loc
     0.0015767005...
-    >>> scale  # doctest: +ELLIPSIS
+    >>> scale
     0.9973396878...
 
 Since we know the true parameters of the distribution from which the
@@ -684,7 +684,7 @@ Sample Statistics and Hypothesis Tests
 The sample mean is an estimator of the mean of the distribution from which
 the sample was drawn::
 
-    >>> np.mean(sample)     # doctest: +ELLIPSIS
+    >>> np.mean(sample)
     0.001576700508...
 
 NumPy includes some of the most fundamental sample statistics (e.g.
@@ -693,7 +693,7 @@ NumPy includes some of the most fundamental sample statistics (e.g.
 is a common measure of central tendency for data that tends to be
 distributed over many orders of magnitude.
 
-    >>> sp.stats.gmean(2**sample)     # doctest: +ELLIPSIS
+    >>> sp.stats.gmean(2**sample)
     1.0010934829...
 
 SciPy also includes a variety of hypothesis tests that produce a
@@ -702,9 +702,9 @@ test the null hypothesis that ``sample`` was drawn from a normal
 distribution::
 
     >>> res = sp.stats.normaltest(sample)
-    >>> res.statistic  # doctest: +ELLIPSIS
+    >>> res.statistic
     5.20841759...
-    >>> res.pvalue  # doctest: +ELLIPSIS
+    >>> res.pvalue
     0.07396163283...
 
 Here, ``statistic`` is a sample statistic that tends to be high for
@@ -988,9 +988,9 @@ points using FFT. ::
 
   >>> x_resampled = sp.signal.resample(x, 25)
 
-  >>> plt.plot(t, x) # doctest: +ELLIPSIS
+  >>> plt.plot(t, x)
   [<matplotlib.lines.Line2D object at ...>]
-  >>> plt.plot(t[::4], x_resampled, 'ko') # doctest: +ELLIPSIS
+  >>> plt.plot(t[::4], x_resampled, 'ko')
   [<matplotlib.lines.Line2D object at ...>]
 
 .. tip::
@@ -1015,9 +1015,9 @@ points using FFT. ::
 
   >>> x_detrended = sp.signal.detrend(x)
 
-  >>> plt.plot(t, x) # doctest: +ELLIPSIS
+  >>> plt.plot(t, x)
   [<matplotlib.lines.Line2D object at ...>]
-  >>> plt.plot(t, x_detrended) # doctest: +ELLIPSIS
+  >>> plt.plot(t, x_detrended)
   [<matplotlib.lines.Line2D object at ...>]
 
 .. raw:: html

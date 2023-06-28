@@ -39,7 +39,7 @@ For example, :math:`3x^2 + 2x - 1`::
     >>> p = np.poly1d(np.polyfit(x, y, 3))
 
     >>> t = np.linspace(0, 1, 200) # use a larger number of points for smoother plotting
-    >>> plt.plot(x, y, 'o', t, p(t), '-')   # doctest: +ELLIPSIS
+    >>> plt.plot(x, y, 'o', t, p(t), '-')
     [<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
 
 .. image:: auto_examples/images/sphx_glr_plot_polyfit_001.png
@@ -73,9 +73,9 @@ range ``[-1, 1]``::
     >>> y = np.cos(x) + 0.3*np.random.rand(2000)
     >>> p = np.polynomial.Chebyshev.fit(x, y, 90)
 
-    >>> plt.plot(x, y, 'r.')   # doctest: +ELLIPSIS
+    >>> plt.plot(x, y, 'r.')
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(x, p(x), 'k-', lw=3)   # doctest: +ELLIPSIS
+    >>> plt.plot(x, p(x), 'k-', lw=3)
     [<matplotlib.lines.Line2D object at ...>]
 
 .. image:: auto_examples/images/sphx_glr_plot_chebyfit_001.png
@@ -100,7 +100,7 @@ Example: :download:`populations.txt <../../data/populations.txt>`:
 ::
 
     >>> data = np.loadtxt('data/populations.txt')
-    >>> data    # doctest: +ELLIPSIS
+    >>> data
     array([[  1900.,  30000.,   4000.,  48300.],
            [  1901.,  47200.,   6100.,  48200.],
            [  1902.,  70200.,   9800.,  41500.],
@@ -137,7 +137,7 @@ Using Matplotlib::
     >>> img = plt.imread('data/elephant.png')
     >>> img.shape, img.dtype
     ((200, 300, 3), dtype('float32'))
-    >>> plt.imshow(img)     # doctest: +ELLIPSIS
+    >>> plt.imshow(img)
     <matplotlib.image.AxesImage object at ...>
     >>> plt.savefig('plot.png')
 
@@ -150,7 +150,7 @@ Using Matplotlib::
 
 This saved only one channel (of RGB)::
 
-    >>> plt.imshow(plt.imread('red_elephant.png'))  # doctest: +ELLIPSIS
+    >>> plt.imshow(plt.imread('red_elephant.png'))
     <matplotlib.image.AxesImage object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_elephant_002.png
@@ -162,7 +162,7 @@ Other libraries::
 
     >>> import imageio.v3 as iio
     >>> iio.imwrite('tiny_elephant.png', (img[::6,::6] * 255).astype(np.uint8))
-    >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')  # doctest: +ELLIPSIS
+    >>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
     <matplotlib.image.AxesImage object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_elephant_003.png
