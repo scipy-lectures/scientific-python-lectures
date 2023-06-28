@@ -448,7 +448,7 @@ find the best possible resolution system. For example, if you know
 that it is a separable equations, you can use keyword ``hint='separable'``
 to force dsolve to resolve it as a separable equation::
 
-   >>> sym.dsolve(sym.sin(x) * sym.cos(f(x)) + sym.cos(x) * sym.sin(f(x)) * f(x).diff(x), f(x), hint='separable') # doctest: +NORMALIZE_WHITESPACE
+   >>> sym.dsolve(sym.sin(x) * sym.cos(f(x)) + sym.cos(x) * sym.sin(f(x)) * f(x).diff(x), f(x), hint='separable')
                   /  C1  \                    /  C1  \
     [f(x) = - acos|------| + 2*pi, f(x) = acos|------|]
                   \cos(x)/                    \cos(x)/

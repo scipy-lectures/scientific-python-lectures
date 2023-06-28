@@ -89,7 +89,7 @@ value will be::
 So the storm wind speed occurring every 50 years can be guessed by::
 
     >>> fifty_wind = quantile_func(fifty_prob)
-    >>> fifty_wind      # doctest: +ELLIPSIS
+    >>> fifty_wind
     array(32.97989825...)
 
 The results are now gathered on a Matplotlib figure:

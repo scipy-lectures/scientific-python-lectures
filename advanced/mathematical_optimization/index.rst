@@ -381,7 +381,7 @@ be used by setting the parameter ``method`` to CG ::
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> sp.optimize.minimize(f, [2, -1], method="CG") # doctest: +ELLIPSIS
+    >>> sp.optimize.minimize(f, [2, -1], method="CG")
      message: Optimization terminated successfully.
      success: True
       status: 0
@@ -397,7 +397,7 @@ numerically, but will perform better if you can pass them the gradient::
 
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> sp.optimize.minimize(f, [2, 1], method="CG", jac=jacobian) # doctest: +ELLIPSIS
+    >>> sp.optimize.minimize(f, [2, 1], method="CG", jac=jacobian)
      message: Optimization terminated successfully.
      success: True
       status: 0
@@ -479,7 +479,7 @@ inversion of the Hessian is performed by conjugate gradient ::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    >>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)
      message: Optimization terminated successfully.
      success: True
       status: 0
@@ -612,7 +612,7 @@ are also supported by L-BFGS-B::
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
-    >>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)  # doctest: +ELLIPSIS
+    >>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
      message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
      success: True
       status: 0
@@ -748,7 +748,7 @@ value. The parameters are specified with ranges given to
 
     >>> def f(x):   # The rosenbrock function
     ...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
-    >>> sp.optimize.brute(f, ((-1, 2), (-1, 2))) # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> sp.optimize.brute(f, ((-1, 2), (-1, 2))) # doctest:   +ELLIPSIS
     array([1.0000...,  1.0000...])
 
 
@@ -896,7 +896,7 @@ if we compute the norm ourselves and use a good generic optimizer
     >>> def g(x):
     ...     return np.sum(f(x)**2)
     >>> result = sp.optimize.minimize(g, x0, method="BFGS")
-    >>> result.fun # doctest: +ELLIPSIS
+    >>> result.fun
     2.6940...e-11
 
 BFGS needs more function calls, and gives a less precise result.
@@ -937,7 +937,7 @@ SciPy provides a helper function for this purpose:
     >>> x = np.linspace(0, 3, 50)
     >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
 
-    >>> sp.optimize.curve_fit(f, x, y)   # doctest: +ELLIPSIS
+    >>> sp.optimize.curve_fit(f, x, y)
     (array([1.5185...,  0.92665...]), array([[ 0.00037..., -0.00056...],
            [-0.0005...,  0.00123...]]))
 

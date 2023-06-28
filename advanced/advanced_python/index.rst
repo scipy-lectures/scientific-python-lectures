@@ -73,11 +73,11 @@ of an iterator. The `iter` function does that for us, saving a few
 keystrokes. ::
 
     >>> nums = [1, 2, 3]      # note that ... varies: these are different objects
-    >>> iter(nums)                           # doctest: +ELLIPSIS
+    >>> iter(nums)
     <...iterator object at ...>
-    >>> nums.__iter__()                      # doctest: +ELLIPSIS
+    >>> nums.__iter__()
     <...iterator object at ...>
-    >>> nums.__reversed__()                  # doctest: +ELLIPSIS
+    >>> nums.__reversed__()
     <...reverseiterator object at ...>
 
     >>> it = iter(nums)
@@ -127,7 +127,7 @@ parentheses or an expression. If round parentheses are used, then a
 generator iterator is created.  If rectangular parentheses are used,
 the process is short-circuited and we get a ``list``. ::
 
-    >>> (i for i in nums)                    # doctest: +ELLIPSIS
+    >>> (i for i in nums)
     <generator object <genexpr> at 0x...>
     >>> [i for i in nums]
     [1, 2, 3]
@@ -181,7 +181,7 @@ execution of this function is suspended. ::
     >>> def f():
     ...   yield 1
     ...   yield 2
-    >>> f()                                   # doctest: +ELLIPSIS
+    >>> f()
     <generator object f at 0x...>
     >>> gen = f()
     >>> next(gen)
@@ -667,7 +667,7 @@ automatically by using `functools.update_wrapper`.
     ...     return 14
     defining the decorator
     doing decoration, 'abc'
-    >>> function                           # doctest: +ELLIPSIS
+    >>> function
     <function function at 0x...>
     >>> print(function.__doc__)
     extensive documentation
@@ -733,7 +733,7 @@ which really form a part of the language:
   ...   def a(self):
   ...     "an important attribute"
   ...     return "a value"
-  >>> A.a                                   # doctest: +ELLIPSIS
+  >>> A.a
   <property object at 0x...>
   >>> A().a
   'a value'
@@ -792,13 +792,13 @@ which really form a part of the language:
     ...    @a.deleter
     ...    def a(self):
     ...      print("deleting")
-    >>> D.a                                    # doctest: +ELLIPSIS
+    >>> D.a
     <property object at 0x...>
-    >>> D.a.fget                               # doctest: +ELLIPSIS
+    >>> D.a.fget
     <function ...>
-    >>> D.a.fset                               # doctest: +ELLIPSIS
+    >>> D.a.fset
     <function ...>
-    >>> D.a.fdel                               # doctest: +ELLIPSIS
+    >>> D.a.fdel
     <function ...>
     >>> d = D()               # ... varies, this is not the same `a` function
     >>> d.a

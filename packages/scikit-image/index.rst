@@ -669,7 +669,7 @@ Example: compute the size and perimeter of the two segmented regions::
     >>> properties = ski.measure.regionprops(labels_rw)
     >>> [float(prop.area) for prop in properties]
     [770.0, 1168.0]
-    >>> [prop.perimeter for prop in properties] # doctest: +ELLIPSIS
+    >>> [prop.perimeter for prop in properties]
     [100.91..., 126.81...]
 
 .. seealso::
@@ -703,18 +703,18 @@ Some image processing operations::
 
 Visualize binary result::
 
-    >>> plt.figure() # doctest: +ELLIPSIS
+    >>> plt.figure()
     <Figure size ... with 0 Axes>
-    >>> plt.imshow(clean_border, cmap='gray') # doctest: +ELLIPSIS
+    >>> plt.imshow(clean_border, cmap='gray')
     <matplotlib.image.AxesImage object at 0x...>
 
 Visualize contour ::
 
-    >>> plt.figure() # doctest: +ELLIPSIS
+    >>> plt.figure()
     <Figure size ... with 0 Axes>
-    >>> plt.imshow(coins, cmap='gray') # doctest: +ELLIPSIS
+    >>> plt.imshow(coins, cmap='gray')
     <matplotlib.image.AxesImage object at 0x...>
-    >>> plt.contour(clean_border, [0.5]) # doctest: +ELLIPSIS
+    >>> plt.contour(clean_border, [0.5])
     <matplotlib.contour.QuadContourSet ...>
 
 Use ``skimage`` dedicated utility function::

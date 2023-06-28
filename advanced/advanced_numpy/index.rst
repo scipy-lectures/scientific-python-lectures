@@ -94,7 +94,7 @@ Block of memory
 ---------------
 
 >>> x = np.array([1, 2, 3], dtype=np.int32)
->>> x.data      # doctest: +ELLIPSIS
+>>> x.data
 <... at ...>
 >>> bytes(x.data)  # doctest: +SKIP
 '\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
@@ -130,7 +130,7 @@ x is a string (in Python 3 a bytes), we can represent its data as an
 array of ints::
 
     >>> y = np.frombuffer(x, dtype=np.int8)
-    >>> y.data      # doctest: +ELLIPSIS
+    >>> y.data
     <... at ...>
     >>> y.base is x
     True
@@ -1346,10 +1346,10 @@ Array siblings: :class:`chararray`, :class:`maskedarray`
 --------------------------------------------------
 
 >>> x = np.array(['a', '  bbb', '  ccc']).view(np.chararray)
->>> x.lstrip(' ')       # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+>>> x.lstrip(' ')
 chararray(['a', 'bbb', 'ccc'],
       dtype='...')
->>> x.upper()       # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+>>> x.upper()
 chararray(['A', '  BBB', '  CCC'],
       dtype='...')
 
@@ -1438,7 +1438,7 @@ Domain-aware functions
 
 The masked array package also contains domain-aware functions::
 
-    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))  # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    >>> np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
     masked_array(data=[0.0, 0.693147180559..., --, --, 1.098612288668..., --],
                  mask=[False, False,  True,  True, False,  True],
            fill_value=1e+20)
@@ -1479,7 +1479,7 @@ The masked array package also contains domain-aware functions::
 
    Note that Matplotlib knows about masked arrays::
 
-    >>> plt.plot(year, populations, 'o-')   # doctest: +ELLIPSIS
+    >>> plt.plot(year, populations, 'o-')
     [<matplotlib.lines.Line2D object at ...>, ...]
 
 .. image:: auto_examples/images/sphx_glr_plot_maskedstats_001.png
@@ -1591,12 +1591,12 @@ Good bug report
 
 3. Version of NumPy/SciPy
 
-   >>> print(np.__version__) # doctest: +ELLIPSIS
+   >>> print(np.__version__)
    1...
 
    **Check that the following is what you expect**
 
-   >>> print(np.__file__) # doctest: +ELLIPSIS
+   >>> print(np.__file__)
    /...
 
    In case you have old/broken NumPy installations lying around.

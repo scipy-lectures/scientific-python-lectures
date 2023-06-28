@@ -28,13 +28,13 @@ Examples
 * create a DOK matrix element by element::
 
     >>> mtx = sp.sparse.dok_matrix((5, 5), dtype=np.float64)
-    >>> mtx     # doctest: +NORMALIZE_WHITESPACE    +ELLIPSIS
+    >>> mtx
     <5x5 sparse matrix of type '<... 'numpy.float64'>'
             with 0 stored elements in Dictionary Of Keys format>
     >>> for ir in range(5):
     ...     for ic in range(5):
     ...         mtx[ir, ic] = 1.0 * (ir != ic)
-    >>> mtx     # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> mtx
     <5x5 sparse matrix of type '<... 'numpy.float64'>'
             with 20 stored elements in Dictionary Of Keys format>
     >>> mtx.todense()
@@ -48,7 +48,7 @@ Examples
 
     >>> mtx[1, 1]
     0.0
-    >>> mtx[1, 1:3]     # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> mtx[1, 1:3]
     <1x2 sparse matrix of type '<... 'numpy.float64'>'
           with 1 stored elements in Dictionary Of Keys format>
     >>> mtx[1, 1:3].todense()

@@ -527,9 +527,9 @@ structure of the data set. ::
     >>> from sklearn.decomposition import PCA
     >>> pca = PCA(n_components=2)
     >>> proj = pca.fit_transform(digits.data)
-    >>> plt.scatter(proj[:, 0], proj[:, 1], c=digits.target) # doctest: +ELLIPSIS
+    >>> plt.scatter(proj[:, 0], proj[:, 1], c=digits.target)
     <matplotlib.collections.PathCollection object at ...>
-    >>> plt.colorbar() # doctest: +ELLIPSIS
+    >>> plt.colorbar()
     <matplotlib.colorbar.Colorbar object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_digits_simple_classif_002.png
@@ -582,9 +582,9 @@ One good method to keep in mind is Gaussian Naive Bayes
     >>> # use the model to predict the labels of the test data
     >>> predicted = clf.predict(X_test)
     >>> expected = y_test
-    >>> print(predicted) # doctest: +ELLIPSIS
+    >>> print(predicted)
     [1 7 7 7 8 2 8 0 4 8 7 7 0 8 2 3 5 8 5 3 7 9 6 2 8 2 2 7 3 5...]
-    >>> print(expected) # doctest: +ELLIPSIS
+    >>> print(expected)
     [1 0 4 7 8 2 2 0 4 3 7 7 0 8 2 3 4 8 5 3 7 9 6 3 8 2 2 9 3 5...]
 
 As above, we plot the digits with the predicted labels to get an idea of
@@ -696,7 +696,7 @@ We can see that there are just over 20000 data points.
 
 The ``DESCR`` variable has a long description of the dataset::
 
-    >>> print(data.DESCR) # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    >>> print(data.DESCR)
     .. _california_housing_dataset:
     <BLANKLINE>
     California Housing dataset
@@ -749,7 +749,7 @@ It often helps to quickly visualize pieces of the data using histograms,
 scatter plots, or other plot types. With matplotlib, let us show a
 histogram of the target values: the median price in each neighborhood::
 
-    >>> plt.hist(data.target)  # doctest: +ELLIPSIS
+    >>> plt.hist(data.target)
     (array([...
 
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_001.png
@@ -764,7 +764,7 @@ others for our problem::
 
     >>> for index, feature_name in enumerate(data.feature_names):
     ...     plt.figure()
-    ...     plt.scatter(data.data[feature_name], data.target)  # doctest: +ELLIPSIS
+    ...     plt.scatter(data.data[feature_name], data.target)
     <Figure size...
 
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_002.png
@@ -818,7 +818,7 @@ wrapper around an ordinary least squares calculation. ::
     LinearRegression()
     >>> predicted = clf.predict(X_test)
     >>> expected = y_test
-    >>> print("RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2))) # doctest: +ELLIPSIS
+    >>> print("RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2)))
     RMS: 0.7...
 
 .. image:: auto_examples/images/sphx_glr_plot_california_prediction_010.png
@@ -827,7 +827,7 @@ wrapper around an ordinary least squares calculation. ::
 
 We can plot the error: expected as a function of predicted::
 
-    >>> plt.scatter(expected, predicted) # doctest: +ELLIPSIS
+    >>> plt.scatter(expected, predicted)
     <matplotlib.collections.PathCollection object at ...>
 
 .. tip::
@@ -878,7 +878,7 @@ parameter space. ::
     >>> # Instantiate and train the classifier
     >>> from sklearn.neighbors import KNeighborsClassifier
     >>> clf = KNeighborsClassifier(n_neighbors=1)
-    >>> clf.fit(X, y) # doctest: +ELLIPSIS
+    >>> clf.fit(X, y)
     KNeighborsClassifier(...)
 
     >>> # Check the results using metrics
@@ -914,9 +914,9 @@ Housing price dataset we introduced previously::
     >>> predicted = clf.predict(data.data)
     >>> expected = data.target
 
-    >>> plt.scatter(expected, predicted) # doctest: +ELLIPSIS
+    >>> plt.scatter(expected, predicted)
     <matplotlib.collections.PathCollection object at ...>
-    >>> plt.plot([0, 50], [0, 50], '--k') # doctest: +ELLIPSIS
+    >>> plt.plot([0, 50], [0, 50], '--k')
     [<matplotlib.lines.Line2D object at ...]
 
 .. figure:: auto_examples/images/sphx_glr_plot_measuring_performance_001.png
@@ -999,7 +999,7 @@ The averaged f1-score is often used as a convenient measure of the
 overall performance of an algorithm.  It appears in the bottom row
 of the classification report; it can also be accessed directly::
 
-    >>> metrics.f1_score(y_test, y_pred, average="macro") # doctest: +ELLIPSIS
+    >>> metrics.f1_score(y_test, y_pred, average="macro")
     0.991367...
 
 The over-fitting we saw previously can be quantified by computing the
@@ -1042,7 +1042,7 @@ Model Selection via Validation
     ...     clf = Model().fit(X_train, y_train)
     ...     y_pred = clf.predict(X_test)
     ...     print('%s: %s' %
-    ...           (Model.__name__, metrics.f1_score(y_test, y_pred, average="macro")))  # doctest: +ELLIPSIS
+    ...           (Model.__name__, metrics.f1_score(y_test, y_pred, average="macro")))
     GaussianNB: 0.8...
     KNeighborsClassifier: 0.9...
     LinearSVC: 0.9...
@@ -1089,7 +1089,7 @@ We can use different splitting strategies, such as random splitting::
 
     >>> from sklearn.model_selection import ShuffleSplit
     >>> cv = ShuffleSplit(n_splits=5)
-    >>> cross_val_score(clf, X, y, cv=cv)  # doctest: +ELLIPSIS
+    >>> cross_val_score(clf, X, y, cv=cv)
     array([...])
 
 .. tip::
@@ -1140,7 +1140,7 @@ between 0.0001 and 1::
     >>> for Model in [Lasso, Ridge]:
     ...     scores = [cross_val_score(Model(alpha), X, y, cv=3).mean()
     ...               for alpha in alphas]
-    ...     plt.plot(alphas, scores, label=Model.__name__) # doctest: +ELLIPSIS
+    ...     plt.plot(alphas, scores, label=Model.__name__)
     [<matplotlib.lines.Line2D object at ...
 
 .. image:: auto_examples/images/sphx_glr_plot_linear_model_cv_001.png
@@ -1242,19 +1242,19 @@ iris dataset::
 
     >>> from sklearn.decomposition import PCA
     >>> pca = PCA(n_components=2, whiten=True)
-    >>> pca.fit(X) # doctest: +ELLIPSIS
+    >>> pca.fit(X)
     PCA(n_components=2, ...)
 
 Once fitted, :class:`~sklearn.decomposition.PCA` exposes the singular
 vectors in the ``components_`` attribute::
 
-    >>> pca.components_     # doctest: +ELLIPSIS
+    >>> pca.components_
     array([[ 0.3..., -0.08...,  0.85...,  0.3...],
            [ 0.6...,  0.7..., -0.1..., -0.07...]])
 
 Other attributes are available as well::
 
-    >>> pca.explained_variance_ratio_    # doctest: +ELLIPSIS
+    >>> pca.explained_variance_ratio_
     array([0.92...,  0.053...])
 
 Let us project the iris dataset along those first two dimensions:::
@@ -1266,7 +1266,7 @@ Let us project the iris dataset along those first two dimensions:::
 :class:`~sklearn.decomposition.PCA` ``normalizes`` and ``whitens`` the data, which means that the data
 is now centered on both components with unit variance::
 
-    >>> X_pca.mean(axis=0) # doctest: +ELLIPSIS
+    >>> X_pca.mean(axis=0)
     array([...e-15,  ...e-15])
     >>> X_pca.std(axis=0, ddof=1)
     array([1.,  1.])
@@ -1284,7 +1284,7 @@ the dataset::
     >>> target_ids = range(len(iris.target_names))
     >>> for i, c, label in zip(target_ids, 'rgbcmykw', iris.target_names):
     ...     plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1],
-    ...                 c=c, label=label) # doctest: +ELLIPSIS
+    ...                 c=c, label=label)
     <matplotlib.collections.PathCollection ...
 
 .. image:: auto_examples/images/sphx_glr_plot_pca_001.png
@@ -1321,7 +1321,7 @@ in 2D enables visualization::
     >>> X_2d = tsne.fit_transform(X)
 
     >>> # Visualize the data
-    >>> plt.scatter(X_2d[:, 0], X_2d[:, 1], c=y) # doctest: +ELLIPSIS
+    >>> plt.scatter(X_2d[:, 0], X_2d[:, 1], c=y)
     <matplotlib.collections.PathCollection object at ...>
 
 
@@ -1524,11 +1524,11 @@ and test error, and plot it::
     ...                 param_range=degrees)
 
     >>> # Plot the mean train score and validation score across folds
-    >>> plt.plot(degrees, validation_scores.mean(axis=1), label='cross-validation')  # doctest: +ELLIPSIS
+    >>> plt.plot(degrees, validation_scores.mean(axis=1), label='cross-validation')
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(degrees, train_scores.mean(axis=1), label='training')  # doctest: +ELLIPSIS
+    >>> plt.plot(degrees, train_scores.mean(axis=1), label='training')
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.legend(loc='best')  # doctest: +ELLIPSIS
+    >>> plt.legend(loc='best')
     <matplotlib.legend.Legend object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_bias_variance_003.png
@@ -1585,9 +1585,9 @@ samples.
     ...     model, x[:, np.newaxis], y, train_sizes=np.logspace(-1, 0, 20))
 
     >>> # Plot the mean train score and validation score across folds
-    >>> plt.plot(train_sizes, validation_scores.mean(axis=1), label='cross-validation') # doctest: +ELLIPSIS
+    >>> plt.plot(train_sizes, validation_scores.mean(axis=1), label='cross-validation')
     [<matplotlib.lines.Line2D object at ...>]
-    >>> plt.plot(train_sizes, train_scores.mean(axis=1), label='training') # doctest: +ELLIPSIS
+    >>> plt.plot(train_sizes, train_scores.mean(axis=1), label='training')
     [<matplotlib.lines.Line2D object at ...>]
 
 

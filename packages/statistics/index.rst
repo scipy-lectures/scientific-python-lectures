@@ -124,7 +124,7 @@ data are a mixture of numerical and categorical values::
 
     >>> import pandas
     >>> data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
-    >>> data  # doctest: +ELLIPSIS
+    >>> data
         Unnamed: 0  Gender  FSIQ  VIQ  PIQ  Weight  Height  MRI_Count
     0            1  Female   133  132  124   118.0    64.5     816932
     1            2    Male   140  150  124     NaN    72.5    1001121
@@ -152,7 +152,7 @@ as a dictionary of 1D 'series', eg arrays or lists. If we have 3
 
 We can expose them as a :class:`pandas.DataFrame`::
 
-    >>> pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+    >>> pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})
                t       sin       cos
     0  -6.000000  0.279415  0.960170
     1  -5.368421  0.792419  0.609977
@@ -184,7 +184,7 @@ Manipulating data
     >>> data.columns  # It has columns   # doctest: +SKIP
     Index([u'Unnamed: 0', u'Gender', u'FSIQ', u'VIQ', u'PIQ', u'Weight', u'Height', u'MRI_Count'], dtype='object')
 
-    >>> print(data['Gender'])  # Columns can be addressed by name   # doctest: +ELLIPSIS
+    >>> print(data['Gender'])  # Columns can be addressed by name
     0     Female
     1       Male
     2       Male
@@ -327,7 +327,7 @@ the `T statistic <https://en.wikipedia.org/wiki/Student%27s_t-test>`_,
 and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
 function's help)::
 
-    >>> sp.stats.ttest_1samp(data['VIQ'], 0)   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_1samp(data['VIQ'], 0)
     TtestResult(statistic=30.088099970..., pvalue=1.32891964...e-28, df=39)
 
 The p-value of :math:`10^-28` indicates that such an extreme value of the statistic
@@ -347,7 +347,7 @@ will affect the conclusions of the test, we can use a `Wilcoxon signed-rank test
 <https://en.wikipedia.org/wiki/Wilcoxon_signed-rank_test>`_, which relaxes
 this assumption at the expense of test power::
 
-    >>> sp.stats.wilcoxon(data['VIQ'])  # doctest: +ELLIPSIS
+    >>> sp.stats.wilcoxon(data['VIQ'])
     WilcoxonResult(statistic=0.0, pvalue=1.8189894...e-12)
 
 Two-sample t-test: testing for difference across populations
@@ -360,14 +360,14 @@ a two-sample t-test using :func:`scipy.stats.ttest_ind`::
 
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
-    >>> sp.stats.ttest_ind(female_viq, male_viq)   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_ind(female_viq, male_viq)
     TtestResult(statistic=-0.77261617232..., pvalue=0.4445287677858..., df=38.0)
 
 The corresponding non-parametric test is the `Mann–Whitney U
 test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
 :func:`scipy.stats.mannwhitneyu`.
 
-    >>> sp.stats.mannwhitneyu(female_viq, male_viq)   # doctest: +ELLIPSIS
+    >>> sp.stats.mannwhitneyu(female_viq, male_viq)
     MannwhitneyuResult(statistic=164.5, pvalue=0.34228868687...)
 
 Paired tests: repeated measurements on the same individuals
@@ -381,7 +381,7 @@ Paired tests: repeated measurements on the same individuals
 PIQ, VIQ, and FSIQ give three measures of IQ. Let us test whether FISQ
 and PIQ are significantly different. We can use an "independent sample" test::
 
-    >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])
     TtestResult(statistic=0.46563759638..., pvalue=0.64277250..., df=78.0)
 
 The problem with this approach is that it ignores an important relationship
@@ -391,7 +391,7 @@ the power of the test. This variability can be removed using a "paired test"
 or `"repeated measures test"
 <https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
-    >>> sp.stats.ttest_rel(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_rel(data['FSIQ'], data['PIQ'])
     TtestResult(statistic=1.784201940..., pvalue=0.082172638183..., df=39)
 
 .. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_002.png
@@ -402,7 +402,7 @@ or `"repeated measures test"
 This is equivalent to a one-sample test on the differences between paired
 observations::
 
-    >>> sp.stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)   # doctest: +ELLIPSIS
+    >>> sp.stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)
     TtestResult(statistic=1.784201940..., pvalue=0.082172638..., df=39)
 
 Accordingly, we can perform a nonparametric version of the test with
@@ -478,7 +478,7 @@ Then we specify an OLS model and fit it::
 
 We can inspect the various statistics derived from the fit::
 
-    >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
+    >>> print(model.summary()) # doctest: +REPORT_UDIFF
                                 OLS Regression Results
     ==========================...
     Dep. Variable:                      y   R-squared:                       0.804
@@ -537,7 +537,7 @@ We can write a comparison between IQ of male and female using a linear
 model::
 
      >>> model = ols("VIQ ~ Gender + 1", data).fit()
-     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
+     >>> print(model.summary()) # doctest: +REPORT_UDIFF
                                  OLS Regression Results
      ==========================...
      Dep. Variable:                    VIQ   R-squared:                       0.015
@@ -598,7 +598,7 @@ model::
      >>> data_fisq = pandas.DataFrame({'iq': data['FSIQ'], 'type': 'fsiq'})
      >>> data_piq = pandas.DataFrame({'iq': data['PIQ'], 'type': 'piq'})
      >>> data_long = pandas.concat((data_fisq, data_piq))
-     >>> print(data_long)  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+     >>> print(data_long)
           iq  type
      0   133  fsiq
      1   140  fsiq
@@ -615,7 +615,7 @@ model::
      [80 rows x 2 columns]
 
      >>> model = ols("iq ~ type", data_long).fit()
-     >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE +REPORT_UDIFF
+     >>> print(model.summary()) # doctest: +REPORT_UDIFF
                                  OLS Regression Results
      ...
      ==========================...
@@ -629,7 +629,7 @@ model::
     corresponding p-values for the effect of the type of iq than the
     previous t-test::
 
-     >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])   # doctest: +ELLIPSIS
+     >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])
      TtestResult(statistic=0.46563759638..., pvalue=0.64277250..., df=78.0)
 
 
@@ -670,7 +670,7 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
 
     >>> data = pandas.read_csv('examples/iris.csv')
     >>> model = ols('sepal_width ~ name + petal_length', data).fit()
-    >>> print(model.summary())  # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE  +REPORT_UDIFF
+    >>> print(model.summary()) # doctest: +REPORT_UDIFF
                                 OLS Regression Results
     ==========================...
     Dep. Variable:            sepal_width   R-squared:                       0.478
@@ -714,7 +714,7 @@ write a **vector of 'contrast'** on the parameters estimated: we want to
 test ``"name[T.versicolor] - name[T.virginica]"``, with an `F-test
 <https://en.wikipedia.org/wiki/F-test>`_::
 
-    >>> print(model.f_test([0, 1, -1, 0]))  # doctest: +ELLIPSIS
+    >>> print(model.f_test([0, 1, -1, 0]))
     <F test: F=3.24533535..., p=0.07369..., df_denom=146, df_num=1>
 
 Is this difference significant?

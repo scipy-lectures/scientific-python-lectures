@@ -106,7 +106,7 @@ NumPy Reference documentation
 
    .. sourcecode:: pycon
 
-     >>> help(np.array) # doctest: +ELLIPSIS
+     >>> help(np.array)
      Help on built-in function array in module numpy:
      <BLANKLINE>
      array(...)
@@ -433,9 +433,9 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 .. sourcecode:: pycon
 
   >>> image = np.random.rand(30, 30)
-  >>> plt.imshow(image, cmap=plt.cm.hot)    # doctest: +ELLIPSIS
+  >>> plt.imshow(image, cmap=plt.cm.hot)
   <matplotlib.image.AxesImage object at ...>
-  >>> plt.colorbar()    # doctest: +ELLIPSIS
+  >>> plt.colorbar()
   <matplotlib.colorbar.Colorbar object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_basic2dplot_001.png

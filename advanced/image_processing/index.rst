@@ -129,12 +129,12 @@ Use ``matplotlib`` and ``imshow`` to display an image inside a
 
     >>> f = sp.datasets.face(gray=True)  # retrieve a grayscale image
     >>> import matplotlib.pyplot as plt
-    >>> plt.imshow(f, cmap=plt.cm.gray)        # doctest: +ELLIPSIS
+    >>> plt.imshow(f, cmap=plt.cm.gray)
     <matplotlib.image.AxesImage object at 0x...>
 
 Increase contrast by setting min and max values::
 
-    >>> plt.imshow(f, cmap=plt.cm.gray, vmin=30, vmax=200)        # doctest: +ELLIPSIS
+    >>> plt.imshow(f, cmap=plt.cm.gray, vmin=30, vmax=200)
     <matplotlib.image.AxesImage object at 0x...>
     >>> # Remove axes and ticks
     >>> plt.axis('off')
@@ -142,7 +142,7 @@ Increase contrast by setting min and max values::
 
 Draw contour lines::
 
-    >>> plt.contour(f, [50, 200])        # doctest: +ELLIPSIS
+    >>> plt.contour(f, [50, 200])
     <matplotlib.contour.QuadContourSet ...>
 
 
@@ -157,9 +157,9 @@ Draw contour lines::
 For smooth intensity variations, use ``interpolation='bilinear'``. For fine inspection of intensity variations, use
 ``interpolation='nearest'``::
 
-    >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='bilinear')        # doctest: +ELLIPSIS
+    >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='bilinear')
     <matplotlib.image.AxesImage object at 0x...>
-    >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='nearest')        # doctest: +ELLIPSIS
+    >>> plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='nearest')
     <matplotlib.image.AxesImage object at 0x...>
 
 .. figure:: auto_examples/images/sphx_glr_plot_interpolation_face_001.png
@@ -651,9 +651,9 @@ Use mathematical morphology to clean up the result::
 	>>> tmp = np.logical_not(reconstruct_img)
 	>>> eroded_tmp = sp.ndimage.binary_erosion(tmp)
 	>>> reconstruct_final = np.logical_not(sp.ndimage.binary_propagation(eroded_tmp, mask=tmp))
-	>>> np.abs(mask - close_img).mean() # doctest: +ELLIPSIS
+	>>> np.abs(mask - close_img).mean()
 	0.00727836...
-	>>> np.abs(mask - reconstruct_final).mean() # doctest: +ELLIPSIS
+	>>> np.abs(mask - reconstruct_final).mean()
 	0.00059502...
 
 .. topic:: **Exercise**
@@ -739,7 +739,7 @@ Label connected components: ``scipy.dimage.label``::
     >>> label_im, nb_labels = sp.ndimage.label(mask)
     >>> nb_labels # how many regions?
     28
-    >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
+    >>> plt.imshow(label_im)
     <matplotlib.image.AxesImage object at 0x...>
 
 .. figure:: auto_examples/images/sphx_glr_plot_synthetic_data_001.png
@@ -762,7 +762,7 @@ Clean up small connect components::
     >>> remove_pixel.shape
     (256, 256)
     >>> label_im[remove_pixel] = 0
-    >>> plt.imshow(label_im)        # doctest: +ELLIPSIS
+    >>> plt.imshow(label_im)
     <matplotlib.image.AxesImage object at 0x...>
 
 Now reassign labels with ``np.searchsorted``::
@@ -782,7 +782,7 @@ Find region of interest enclosing object::
 
     >>> slice_x, slice_y = sp.ndimage.find_objects(label_im==4)[0]
     >>> roi = im[slice_x, slice_y]
-    >>> plt.imshow(roi)     # doctest: +ELLIPSIS
+    >>> plt.imshow(roi)
     <matplotlib.image.AxesImage object at 0x...>
 
 .. figure:: auto_examples/images/sphx_glr_plot_find_object_001.png

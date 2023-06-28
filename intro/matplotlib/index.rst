@@ -1122,7 +1122,7 @@ from within a python session:
 ::
 
    >>> import matplotlib.pyplot as plt
-   >>> help(plt.plot)    # doctest: +ELLIPSIS +NORMALIZE_WHITESPACE
+   >>> help(plt.plot)
    Help on function plot in module matplotlib.pyplot:
    <BLANKLINE>
    plot(*args,...)

@@ -34,10 +34,10 @@ Changing orientation, resolution, .. ::
 
 ::
 
-    >>> plt.subplot(151)    # doctest: +ELLIPSIS
+    >>> plt.subplot(151)
     <Axes: >
 
-    >>> plt.imshow(shifted_face, cmap=plt.cm.gray)    # doctest: +ELLIPSIS
+    >>> plt.imshow(shifted_face, cmap=plt.cm.gray)
     <matplotlib.image.AxesImage object at 0x...>
 
     >>> plt.axis('off')
@@ -100,7 +100,7 @@ in order to modify geometrical structures.
 Let us first generate a structuring element::
 
     >>> el = sp.ndimage.generate_binary_structure(2, 1)
-    >>> el # doctest: +NORMALIZE_WHITESPACE +ELLIPSIS
+    >>> el
     array([[False, True, False],
            [...True, True, True],
            [False, True, False]])
@@ -291,7 +291,7 @@ Extract the 4th connected component, and crop the array around it::
     [(slice(30L, 48L, None), slice(30L, 48L, None))]
     >>> sl = sp.ndimage.find_objects(labels==4)
     >>> import matplotlib.pyplot as plt
-    >>> plt.imshow(sig[sl[0]])   # doctest: +ELLIPSIS
+    >>> plt.imshow(sig[sl[0]])
     <matplotlib.image.AxesImage object at ...>
 
 

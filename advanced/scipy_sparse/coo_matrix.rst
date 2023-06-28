@@ -49,7 +49,7 @@ Examples
     >>> col = np.array([0, 3, 1, 2])
     >>> data = np.array([4, 5, 7, 9])
     >>> mtx = sp.sparse.coo_matrix((data, (row, col)), shape=(4, 4))
-    >>> mtx     # doctest: +NORMALIZE_WHITESPACE  +ELLIPSIS
+    >>> mtx
     <4x4 sparse matrix of type '<... 'numpy.int64'>'
             with 4 stored elements in COOrdinate format>
     >>> mtx.todense()
@@ -72,7 +72,7 @@ Examples
 
 * no slicing...::
 
-    >>> mtx[2, 3]   # doctest: +ELLIPSIS
+    >>> mtx[2, 3]
     Traceback (most recent call last):
     ...
     TypeError: 'coo_matrix' object ...
