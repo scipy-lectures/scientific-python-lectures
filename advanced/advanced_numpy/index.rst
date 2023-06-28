@@ -1170,10 +1170,17 @@ Generalized ufuncs
     >>> np.linalg._umath_linalg.det.signature
     '(m,m)->()'
 
+ * matrix multiplication this way could be useful for operating on
+   many small matrices at once
 
-.. FIXME
-.. * we also ship with a few g-ufuncs for testing, ATM::
-..
+ * Also see ``tensordot`` and ``einsum``
+
+.. The below gufunc examples were from `np.core.umath_tests`,
+   which is now deprecated. We need another source of example
+   gufuncs.  See the discussion at:
+
+   https://mail.python.org/archives/list/numpy-discussion@python.org/thread/ZG7AUSPYYUNSPQU3YUZS2XCFD7AT3BJP/
+
 ..     >>> import numpy.core.umath_tests as ut
 ..     >>> ut.matrix_multiply.signature
 ..     '(m,n),(n,p)->(m,p)'
@@ -1183,12 +1190,10 @@ Generalized ufuncs
 ..     >>> ut.matrix_multiply(x, y).shape
 ..     (10, 2, 5)
 
-* in both examples the last two dimensions became *core dimensions*,
-  and are modified as per the *signature*
-* otherwise, the g-ufunc operates "elementwise"
+.. * in both examples the last two dimensions became *core dimensions*,
+..   and are modified as per the *signature*
+.. * otherwise, the g-ufunc operates "elementwise"
 
-* matrix multiplication this way could be useful for operating on
-  many small matrices at once
 
 .. rubric:: Generalized ufunc loop
 
