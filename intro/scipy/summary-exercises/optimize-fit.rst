@@ -131,8 +131,8 @@ following arguments:
     >>> import scipy as sp
     >>> t = np.arange(len(waveform_1))
     >>> x, flag = sp.optimize.leastsq(residuals, x0, args=(waveform_1, t))
-    >>> print(x)
-    [  2.70363341  27.82020742  15.47924562   3.05636228]
+    >>> x
+    array([ 2.70363, 27.82020, 15.47924,  3.05636])
 
 And visualize the solution:
 
