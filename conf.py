@@ -388,4 +388,4 @@ def setup(app):
     app.connect("html-page-context", add_per_page_js)
 
     # Is this still used?
-    app.add_css_file("https://unpkg.com/purecss@2.1.0/build/base-min.css")
+    app.add_css_file("https://unpkg.com/purecss@3.0.0/build/base-min.css")
