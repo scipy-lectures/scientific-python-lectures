@@ -1,7 +1,7 @@
 numpy==1.25.0
 scipy==1.11.1
 matplotlib==3.7.1
-pandas==2.0.2
+pandas==2.0.3
 scikit-learn==1.2.2
 scikit-image==0.21.0
 sympy==1.12
