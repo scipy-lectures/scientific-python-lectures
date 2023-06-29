@@ -121,7 +121,11 @@ Conditional Expressions
 
   Tests identity: both sides are the same object::
 
-    >>> 1 is 1.
+    >>> a = 1
+    >>> b = 1.
+    >>> a == b
+    True
+    >>> a is b
     False
 
     >>> a = 1
