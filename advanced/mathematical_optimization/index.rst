@@ -849,7 +849,7 @@ Synthetic exercices
 
     Optimize the following function, using K[0] as a starting point::
 
-        rng = np.random.default_rng(274469680215486569245740648368861359183)
+        rng = np.random.default_rng(27446968)
         K = rng.normal(size=(100, 100))
 
         def f(x):
@@ -930,7 +930,7 @@ SciPy provides a helper function for this purpose:
     ...     return np.cos(omega * t + phi)
 
     >>> x = np.linspace(0, 3, 50)
-    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> rng = np.random.default_rng(27446968)
     >>> y = f(x, 1.5, 1) + .1*rng.normal(size=50)
 
     >>> sp.optimize.curve_fit(f, x, y)

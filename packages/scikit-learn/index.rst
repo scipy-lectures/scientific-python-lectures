@@ -1481,7 +1481,7 @@ Let us create a dataset like in the example above::
     ...     return rng.normal(10 - 1. / (x + 0.1), err)
 
     >>> # randomly sample more data
-    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> rng = np.random.default_rng(27446968)
     >>> x = rng.random(size=200)
     >>> y = generating_func(x, err=1., rng=rng)
 

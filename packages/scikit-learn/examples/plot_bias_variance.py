@@ -30,7 +30,7 @@ from sklearn.preprocessing import PolynomialFeatures
 
 n_samples = 8
 
-rng = np.random.default_rng(274469680215486569245740648368861359183)
+rng = np.random.default_rng(27446968)
 x = 10 ** np.linspace(-2, 0, n_samples)
 y = generating_func(x, rng)
 

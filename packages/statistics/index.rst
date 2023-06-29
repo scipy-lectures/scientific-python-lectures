@@ -456,7 +456,7 @@ First, we generate simulated data according to the model::
 
     >>> import numpy as np
     >>> x = np.linspace(-5, 5, 20)
-    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> rng = np.random.default_rng(27446968)
     >>> # normal distributed noise
     >>> y = -5 + 3*x + 4 * rng.normal(size=x.shape)
     >>> # Create a data frame containing all the relevant variables

@@ -29,7 +29,7 @@ def granulometry(data, sizes=None):
     return granulo
 
 
-rng = np.random.default_rng(274469680215486569245740648368861359183)
+rng = np.random.default_rng(27446968)
 n = 10
 l = 256
 im = np.zeros((l, l))

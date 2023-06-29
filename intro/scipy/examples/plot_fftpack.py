@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 ############################################################
 
 # Seed the random number generator
-rng = np.random.default_rng(274469680215486569245740648368861359183)
+rng = np.random.default_rng(27446968)
 
 time_step = 0.02
 period = 5.0

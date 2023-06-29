@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Generates 2 sets of observations
-rng = np.random.default_rng(274469680215486569245740648368861359183)
+rng = np.random.default_rng(27446968)
 samples1 = rng.normal(0, size=1000)
 samples2 = rng.normal(1, size=1000)
 

@@ -10,7 +10,7 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
-rng = np.random.default_rng(274469680215486569245740648368861359183)
+rng = np.random.default_rng(27446968)
 
 mtx = sp.sparse.lil_matrix((1000, 1000), dtype=np.float64)
 mtx[0, :100] = rng.random(100)

@@ -29,7 +29,7 @@ x = np.linspace(-5, 5, 21)
 X, Y = np.meshgrid(x, x)
 
 # To get reproducable values, provide a seed value
-rng = np.random.default_rng(274469680215486569245740648368861359183)
+rng = np.random.default_rng(27446968)
 
 # Z is the elevation of this 2D grid
 Z = -5 + 3 * X - 0.5 * Y + 8 * np.random.normal(size=X.shape)

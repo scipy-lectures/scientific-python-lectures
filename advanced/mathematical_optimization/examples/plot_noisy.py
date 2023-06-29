@@ -7,7 +7,7 @@ Draws a figure explaining noisy vs non-noisy optimization
 import numpy as np
 import matplotlib.pyplot as plt
 
-rng = np.random.default_rng(274469680215486569245740648368861359183)
+rng = np.random.default_rng(27446968)
 
 x = np.linspace(-5, 5, 101)
 x_ = np.linspace(-5, 5, 31)

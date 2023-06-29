@@ -114,7 +114,7 @@ For large data, use ``np.memmap`` for memory mapping::
 
 Working on a list of image files ::
 
-    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> rng = np.random.default_rng(27446968)
     >>> for i in range(10):
     ...     im = rng.integers(0, 256, 10000, dtype=np.uint8).reshape((100, 100))
     ...     iio.imwrite(f'random_{i:02d}.png', im)
@@ -494,7 +494,7 @@ image.
 
 Also works for grey-valued images::
 
-    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> rng = np.random.default_rng(27446968)
     >>> im = np.zeros((64, 64))
     >>> x, y = (63*rng.random((2, 8))).astype(int)
     >>> im[x, y] = np.arange(8)
@@ -545,7 +545,7 @@ Also works for grey-valued images::
 
     >>> square = np.zeros((32, 32))
     >>> square[10:-10, 10:-10] = 1
-    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> rng = np.random.default_rng(27446968)
     >>> x, y = (32*rng.random((2, 20))).astype(int)
     >>> square[x, y] = 1
 
@@ -606,7 +606,7 @@ Segmentation
     >>> n = 10
     >>> l = 256
     >>> im = np.zeros((l, l))
-    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> rng = np.random.default_rng(27446968)
     >>> points = l*rng.random((2, n**2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
@@ -867,7 +867,7 @@ One example with mathematical morphology: `granulometry
     ...     return granulo
     ...
     >>>
-    >>> rng = np.random.default_rng(274469680215486569245740648368861359183)
+    >>> rng = np.random.default_rng(27446968)
     >>> n = 10
     >>> l = 256
     >>> im = np.zeros((l, l))

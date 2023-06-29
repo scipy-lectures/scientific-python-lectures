@@ -22,7 +22,7 @@ from statsmodels.stats.anova import anova_lm
 x = np.linspace(-5, 5, 20)
 
 # To get reproducable values, provide a seed value
-rng = np.random.default_rng(274469680215486569245740648368861359183)
+rng = np.random.default_rng(27446968)
 
 y = -5 + 3 * x + 4 * np.random.normal(size=x.shape)
 
