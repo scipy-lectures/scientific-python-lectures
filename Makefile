@@ -32,7 +32,7 @@ help:
 
 clean:
 	-rm -rf build/*
-	-find . -name pycache -type d | xargs rm -rf
+	-find . -name __pycache__ -type d | xargs rm -rf
 	-rm -rf intro/scipy/auto_examples/ intro/matplotlib/auto_examples/ intro/scipy/summary-exercises/auto_examples advanced/mathematical_optimization/auto_examples/ advanced/advanced_numpy/auto_examples/ advanced/image_processing/auto_examples advanced/scipy_sparse/auto_examples packages/3d_plotting/auto_examples packages/statistics/auto_examples/ packages/scikit-image/auto_examples/ packages/scikit-learn/auto_examples intro/numpy/auto_examples guide/auto_examples
 	-rm -f data/test.png face.png face.raw file.mat fname.png local_logo.png mandelbrot.png output.txt output2.txt plot.png pop.npy pop2.txt random_00.png random_01.png random_02.png random_03.png random_04.png random_05.png random_06.png random_07.png random_08.png random_09.png red_elephant.png test.png tiny_elephant.png workfile
 	-rm -f ScientificPythonLectures-simple.pdf ScientificPythonLectures.pdf
