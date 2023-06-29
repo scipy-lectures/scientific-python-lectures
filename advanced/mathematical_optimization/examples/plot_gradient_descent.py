@@ -279,7 +279,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     plt.legend(
         loc="upper right",
         frameon=True,
-        prop=dict(size=11),
+        prop={"size": 11},
         borderaxespad=0,
         handlelength=1.5,
         handletextpad=0.5,

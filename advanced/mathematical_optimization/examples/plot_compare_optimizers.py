@@ -65,7 +65,7 @@ for cost_name, symbol in zip(sorted(n_dim_bench.keys()), symbols):
 
 plt.xticks(np.arange(n_methods), method_names, size=11)
 plt.xlim(-0.2, n_methods - 0.5)
-plt.legend(loc="best", numpoints=1, handletextpad=0, prop=dict(size=12), frameon=False)
+plt.legend(loc="best", numpoints=1, handletextpad=0, prop={"size": 12}, frameon=False)
 plt.ylabel("# function calls (a.u.)")
 
 # Create a second legend for the problem dimensionality
@@ -87,7 +87,7 @@ plt.legend(
     loc=(0.47, 0.07),
     numpoints=1,
     handletextpad=0,
-    prop=dict(size=12),
+    prop={"size": 12},
     frameon=False,
     ncol=2,
 )

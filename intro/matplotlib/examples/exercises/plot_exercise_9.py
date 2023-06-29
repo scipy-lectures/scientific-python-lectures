@@ -54,7 +54,7 @@ plt.annotate(
     xytext=(+10, +30),
     textcoords="offset points",
     fontsize=16,
-    arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"),
+    arrowprops={"arrowstyle": "->", "connectionstyle": "arc3,rad=.2"},
 )
 
 plt.plot([t, t], [0, np.sin(t)], color="red", linewidth=1.5, linestyle="--")
@@ -75,7 +75,7 @@ plt.annotate(
     xytext=(-90, -50),
     textcoords="offset points",
     fontsize=16,
-    arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"),
+    arrowprops={"arrowstyle": "->", "connectionstyle": "arc3,rad=.2"},
 )
 
 plt.legend(loc="upper left")

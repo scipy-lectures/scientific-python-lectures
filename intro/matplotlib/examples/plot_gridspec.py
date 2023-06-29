@@ -6,7 +6,7 @@ An example demoing gridspec
 """
 
 import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
+from matplotlib import gridspec
 
 plt.figure(figsize=(6, 4))
 G = gridspec.GridSpec(3, 3)

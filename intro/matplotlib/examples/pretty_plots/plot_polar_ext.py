@@ -31,7 +31,7 @@ plt.text(
     horizontalalignment="left",
     verticalalignment="top",
     size="xx-large",
-    bbox=dict(facecolor="white", alpha=1.0),
+    bbox={"facecolor": "white", "alpha": 1.0},
     transform=plt.gca().transAxes,
 )
 

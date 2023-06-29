@@ -29,6 +29,7 @@ repos:
     rev: bf7a16254ec96b084a6caf3d435ec18f0f245cc7 # 23.3.0
     hooks:
       - id: black
+
   - repo: https://github.com/adamchainz/blacken-docs
     rev: 4b94add9bc83d772ae5e31a679a18609c1750513 # 1.14.0
     hooks:
@@ -40,8 +41,8 @@ repos:
       - id: cython-lint
         args: [--no-pycodestyle, --max-line-length=88]
 
-  - repo: https://github.com/asottile/pyupgrade
-    rev: aa5af9cd273894d0246e0eb9fa5ad557037481dc # v3.7.0
+  - repo: https://github.com/charliermarsh/ruff-pre-commit
+    rev: 1ac904bbe451ef0b5a437d1d3b331a244c1f272c # v0.0.275
     hooks:
-      - id: pyupgrade
-        args: [--py39-plus]
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
