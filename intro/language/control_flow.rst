@@ -6,10 +6,10 @@ Controls the order in which the code is executed.
 if/elif/else
 ------------
 
-.. sourcecode:: python
+.. code-block:: pycon
 
     >>> if 2**2 == 4:
-    ...     print('Obvious!')
+    ...     print("Obvious!")
     ...
     Obvious!
 
@@ -24,7 +24,7 @@ if/elif/else
     decrease the indentation depth, go four spaces to the left with the
     Backspace key. Press the Enter key twice to leave the logical block.
 
-.. sourcecode:: python
+.. code-block:: pycon
 
     >>> a = 10
 
@@ -33,7 +33,8 @@ if/elif/else
     ... elif a == 2:
     ...     print(2)
     ... else:
-    ...     print('A lot')
+    ...     print("A lot")
+    ...
     A lot
 
 Indentation is compulsory in scripts as well. As an exercise, re-type the

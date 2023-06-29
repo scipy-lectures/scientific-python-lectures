@@ -143,12 +143,12 @@ LinearOperator Class
 * has `shape` and `matvec()` (+ some optional parameters)
 * example:
 
-.. code-block:: python
+.. code-block:: pycon
 
     >>> import numpy as np
     >>> import scipy as sp
     >>> def mv(v):
-    ...     return np.array([2*v[0], 3*v[1]])
+    ...     return np.array([2 * v[0], 3 * v[1]])
     ...
     >>> A = sp.sparse.linalg.LinearOperator((2, 2), matvec=mv)
     >>> A
