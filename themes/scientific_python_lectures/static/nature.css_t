@@ -11,16 +11,6 @@
 @import url("basic.css");
 @import url("default.css");
 
-/* For FontAwesome */
-@font-face {
-  font-family: 'FontAwesome';
-  src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?v=4.7.0');
-  src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2?v=4.7.0') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff?v=4.7.0') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf?v=4.7.0') format('truetype'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
 body {
   font-size: .9em;
   line-height: 1.45;
@@ -339,9 +329,11 @@ img.sidebarlogo {
     }
 
     div.sphinxsidebar:before {
-        content: "\f0c9";
+        content: "☰";
+        display: inline-block;
+        font-size: 1.5rem;
         margin-left: 1.1ex;
-        font-family: FontAwesome;
+        margin-top: 1rem;
         color: rgba(0, 0, 0, .3);
     }
 
@@ -493,9 +485,8 @@ div.body h4 a.toc-backref {
 }
 
 a.headerlink:after {
-    content: "\f02b";
+    content: "🔗";
     margin-left: -1.1ex;
-    font-family: FontAwesome;
 }
 
 h1:hover a.headerlink, h2:hover a.headerlink,
@@ -967,9 +958,8 @@ div.warning .first {
 }
 
 div.warning:before {
-    content: "\f071";
+    content: "🚨";
     margin-right: .5ex;
-    font-family: FontAwesome;
     text-rendering: auto;
 }
 
