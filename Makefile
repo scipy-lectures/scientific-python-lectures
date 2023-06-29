@@ -82,8 +82,6 @@ latex: cleandoctrees
 	mkdir -p build/latex build/doctrees
 	sed -i '/^   solutions.rst/d' intro/scipy/index.rst
 	$(SPHINXBUILD) -b $@ $(ALLSPHINXOPTS) build/latex
-	sed -i -e 's/\\sphinxincludegraphics/\
-\\sphinxincludegraphics/g' build/latex/ScientificPythonLectures.tex
 	git restore intro/scipy/index.rst
 	@echo
 	@echo "Build finished; the LaTeX files are in build/latex."
