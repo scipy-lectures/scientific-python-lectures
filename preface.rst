@@ -1,6 +1,6 @@
-=========================================
-About the Scientific Python Lecture Notes
-=========================================
+====================================
+About the Scientific Python Lectures
+====================================
 
 .. contents::
    :local:

@@ -28,5 +28,5 @@ jobs:
           python -m pip install -r requirements.txt
           python -m pip list
 
-      - name: Test lecture notes
+      - name: Test lectures
         run: make test
