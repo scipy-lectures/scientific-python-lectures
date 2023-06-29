@@ -507,17 +507,17 @@ Main point
   - **strides**: the number of bytes to jump to find the next element
   - 1 stride per dimension
 
-.. code-block:: python
+.. code-block:: pycon
 
     >>> x.strides
     (3, 1)
-    >>> byte_offset = 3*1 + 1*2   # to find x[1, 2]
+    >>> byte_offset = 3 * 1 + 1 * 2  # to find x[1, 2]
     >>> x.flat[byte_offset]
     6
     >>> x[1, 2]
     6
 
-  - simple, **flexible**
+simple, **flexible**
 
 
 C and Fortran order

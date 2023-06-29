@@ -9,8 +9,9 @@ Demos various methods to find the minimum of a function.
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def f(x):
-    return x**2 + 10*np.sin(x)
+    return x**2 + 10 * np.sin(x)
 
 
 x = np.arange(-5, 5, 0.1)

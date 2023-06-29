@@ -11,7 +11,7 @@ P = np.random.rand(n_states, n_states)
 p = np.random.rand(n_states)
 
 # Normalize rows in P
-P /= P.sum(axis=1)[:,np.newaxis]
+P /= P.sum(axis=1)[:, np.newaxis]
 
 # Normalize p
 p /= p.sum()
@@ -27,7 +27,7 @@ print(p_50)
 w, v = np.linalg.eig(P.T)
 
 j_stationary = np.argmin(abs(w - 1.0))
-p_stationary = v[:,j_stationary].real
+p_stationary = v[:, j_stationary].real
 p_stationary /= p_stationary.sum()
 print(p_stationary)
 

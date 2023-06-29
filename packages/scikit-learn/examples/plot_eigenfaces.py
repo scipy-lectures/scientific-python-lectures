@@ -16,6 +16,7 @@ simpler, less rich dataset. Feel free to explore the LFW dataset.
 """
 
 from sklearn import datasets
+
 faces = datasets.fetch_olivetti_faces()
 faces.data.shape
 
@@ -23,6 +24,7 @@ faces.data.shape
 # Let's visualize these faces to see what we're working with
 
 import matplotlib.pyplot as plt
+
 fig = plt.figure(figsize=(8, 6))
 # plot several images
 for i in range(15):
@@ -46,8 +48,10 @@ for i in range(15):
 # typical train-test split on the images:
 
 from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(faces.data,
-        faces.target, random_state=0)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    faces.data, faces.target, random_state=0
+)
 
 print(X_train.shape, X_test.shape)
 
@@ -60,6 +64,7 @@ print(X_train.shape, X_test.shape)
 # in the dataset.
 
 from sklearn import decomposition
+
 pca = decomposition.PCA(n_components=150, whiten=True)
 pca.fit(X_train)
 
@@ -67,8 +72,7 @@ pca.fit(X_train)
 # One interesting part of PCA is that it computes the "mean" face, which
 # can be interesting to examine:
 
-plt.imshow(pca.mean_.reshape(faces.images[0].shape),
-           cmap=plt.cm.bone)
+plt.imshow(pca.mean_.reshape(faces.images[0].shape), cmap=plt.cm.bone)
 
 ############################################################
 # The principal components measure deviations about this mean along
@@ -82,8 +86,7 @@ print(pca.components_.shape)
 fig = plt.figure(figsize=(16, 6))
 for i in range(30):
     ax = fig.add_subplot(3, 10, i + 1, xticks=[], yticks=[])
-    ax.imshow(pca.components_[i].reshape(faces.images[0].shape),
-              cmap=plt.cm.bone)
+    ax.imshow(pca.components_[i].reshape(faces.images[0].shape), cmap=plt.cm.bone)
 
 ############################################################
 # The components ("eigenfaces") are ordered by their importance from
@@ -112,7 +115,8 @@ print(X_test_pca.shape)
 # dataset:
 
 from sklearn import svm
-clf = svm.SVC(C=5., gamma=0.001)
+
+clf = svm.SVC(C=5.0, gamma=0.001)
 clf.fit(X_train_pca, y_train)
 
 ############################################################
@@ -121,14 +125,14 @@ clf.fit(X_train_pca, y_train)
 # training set:
 
 import numpy as np
+
 fig = plt.figure(figsize=(8, 6))
 for i in range(15):
     ax = fig.add_subplot(3, 5, i + 1, xticks=[], yticks=[])
-    ax.imshow(X_test[i].reshape(faces.images[0].shape),
-              cmap=plt.cm.bone)
+    ax.imshow(X_test[i].reshape(faces.images[0].shape), cmap=plt.cm.bone)
     y_pred = clf.predict(X_test_pca[i, np.newaxis])[0]
-    color = ('black' if y_pred == y_test[i] else 'red')
-    ax.set_title(y_pred, fontsize='small', color=color)
+    color = "black" if y_pred == y_test[i] else "red"
+    ax.set_title(y_pred, fontsize="small", color=color)
 
 ############################################################
 # The classifier is correct on an impressive number of images given the
@@ -142,6 +146,7 @@ for i in range(15):
 # "goodness" of the classification:
 
 from sklearn import metrics
+
 y_pred = clf.predict(X_test_pca)
 print(metrics.classification_report(y_test, y_pred))
 
@@ -165,8 +170,13 @@ print(metrics.confusion_matrix(y_test, y_pred))
 # follows:
 
 from sklearn.pipeline import Pipeline
-clf = Pipeline([('pca', decomposition.PCA(n_components=150, whiten=True)),
-                ('svm', svm.LinearSVC(C=1.0))])
+
+clf = Pipeline(
+    [
+        ("pca", decomposition.PCA(n_components=150, whiten=True)),
+        ("svm", svm.LinearSVC(C=1.0)),
+    ]
+)
 
 clf.fit(X_train, y_train)
 

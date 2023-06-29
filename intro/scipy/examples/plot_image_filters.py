@@ -8,6 +8,7 @@ Demo filtering for denoising of images.
 
 # Load some data
 import scipy as sp
+
 face = sp.datasets.face(gray=True)
 face = face[:512, -512:]  # crop out square on right
 
@@ -15,6 +16,7 @@ face = face[:512, -512:]  # crop out square on right
 import matplotlib.pyplot as plt
 
 import numpy as np
+
 noisy_face = np.copy(face).astype(float)
 noisy_face += face.std() * 0.5 * np.random.standard_normal(face.shape)
 blurred_face = sp.ndimage.gaussian_filter(noisy_face, sigma=3)
@@ -24,24 +26,24 @@ wiener_face = sp.signal.wiener(noisy_face, (5, 5))
 plt.figure(figsize=(12, 3.5))
 plt.subplot(141)
 plt.imshow(noisy_face, cmap=plt.cm.gray)
-plt.axis('off')
-plt.title('noisy')
+plt.axis("off")
+plt.title("noisy")
 
 plt.subplot(142)
 plt.imshow(blurred_face, cmap=plt.cm.gray)
-plt.axis('off')
-plt.title('Gaussian filter')
+plt.axis("off")
+plt.title("Gaussian filter")
 
 plt.subplot(143)
 plt.imshow(median_face, cmap=plt.cm.gray)
-plt.axis('off')
-plt.title('median filter')
+plt.axis("off")
+plt.title("median filter")
 
 plt.subplot(144)
 plt.imshow(wiener_face, cmap=plt.cm.gray)
-plt.title('Wiener filter')
-plt.axis('off')
+plt.title("Wiener filter")
+plt.axis("off")
 
-plt.subplots_adjust(wspace=.05, left=.01, bottom=.01, right=.99, top=.99)
+plt.subplots_adjust(wspace=0.05, left=0.01, bottom=0.01, right=0.99, top=0.99)
 
 plt.show()

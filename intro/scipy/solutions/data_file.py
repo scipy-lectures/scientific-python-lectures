@@ -8,6 +8,7 @@ Script to read in a column of numbers and calculate the min, max and sum.
 Data is stored in data.txt.
 """
 
+
 def load_data(filename):
     fp = open(filename)
     data_string = fp.read()
@@ -22,9 +23,10 @@ def load_data(filename):
     # data = [float(x) for x in data_string.split()]
     return data
 
-if __name__ == '__main__':
-    data = load_data('data.txt')
+
+if __name__ == "__main__":
+    data = load_data("data.txt")
     # Python provides these basic math functions
-    print(f'min: {min(data):f}')
-    print(f'max: {max(data):f}')
-    print(f'sum: {sum(data):f}')
+    print(f"min: {min(data):f}")
+    print(f"max: {max(data):f}")
+    print(f"sum: {sum(data):f}")

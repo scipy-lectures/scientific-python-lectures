@@ -20,7 +20,7 @@ x = np.zeros((200, 200, 4), dtype=np.int8)
 data = ...
 
 img = Image.frombuffer("RGBA", (200, 200), data)
-img.save('test.png')
+img.save("test.png")
 
 #
 # Mini-exercise

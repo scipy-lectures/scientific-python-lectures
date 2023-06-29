@@ -14,9 +14,9 @@ np.random.seed(1)
 n = 10
 l = 256
 im = np.zeros((l, l))
-points = l*np.random.random((2, n**2))
+points = l * np.random.random((2, n**2))
 im[(points[0]).astype(int), (points[1]).astype(int)] = 1
-im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
+im = sp.ndimage.gaussian_filter(im, sigma=l / (4.0 * n))
 
 mask = im > im.mean()
 
@@ -30,14 +30,14 @@ labels = np.unique(label_im)
 label_clean = np.searchsorted(labels, label_im)
 
 
-plt.figure(figsize=(6 ,3))
+plt.figure(figsize=(6, 3))
 
 plt.subplot(121)
 plt.imshow(label_im, cmap=plt.cm.nipy_spectral)
-plt.axis('off')
+plt.axis("off")
 plt.subplot(122)
 plt.imshow(label_clean, vmax=nb_labels, cmap=plt.cm.nipy_spectral)
-plt.axis('off')
+plt.axis("off")
 
 plt.subplots_adjust(wspace=0.01, hspace=0.01, top=1, bottom=0, left=0, right=1)
 plt.show()

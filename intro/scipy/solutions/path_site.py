@@ -4,6 +4,7 @@ import os
 import sys
 import glob
 
+
 def find_module(module):
     result = []
     # Loop over the list of paths in sys.path
@@ -18,6 +19,6 @@ def find_module(module):
     return result
 
 
-if __name__ == '__main__':
-    result = find_module('site.py')
+if __name__ == "__main__":
+    result = find_module("site.py")
     print(result)

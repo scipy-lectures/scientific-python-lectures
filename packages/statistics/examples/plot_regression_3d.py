@@ -18,6 +18,7 @@ from mpl_toolkits.mplot3d import Axes3D
 
 # For statistics. Requires statsmodels 5.0 or more
 from statsmodels.formula.api import ols
+
 # Analysis of Variance (ANOVA) on linear models
 from statsmodels.stats.anova import anova_lm
 
@@ -31,16 +32,15 @@ X, Y = np.meshgrid(x, x)
 np.random.seed(1)
 
 # Z is the elevation of this 2D grid
-Z = -5 + 3*X - 0.5*Y + 8 * np.random.normal(size=X.shape)
+Z = -5 + 3 * X - 0.5 * Y + 8 * np.random.normal(size=X.shape)
 
 # Plot the data
-ax = plt.figure().add_subplot(projection='3d')
-surf = ax.plot_surface(X, Y, Z, cmap=plt.cm.coolwarm,
-                       rstride=1, cstride=1)
+ax = plt.figure().add_subplot(projection="3d")
+surf = ax.plot_surface(X, Y, Z, cmap=plt.cm.coolwarm, rstride=1, cstride=1)
 ax.view_init(20, -120)
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z")
 
 ##############################################################################
 # Multilinear regression model, calculating fit, P-values, confidence
@@ -54,7 +54,7 @@ X = X.flatten()
 Y = Y.flatten()
 Z = Z.flatten()
 
-data = pandas.DataFrame({'x': X, 'y': Y, 'z': Z})
+data = pandas.DataFrame({"x": X, "y": Y, "z": Z})
 
 # Fit the model
 model = ols("z ~ x + y", data).fit()
@@ -69,7 +69,7 @@ print(model._results.params)
 # Peform analysis of variance on fitted linear model
 anova_results = anova_lm(model)
 
-print('\nANOVA results')
+print("\nANOVA results")
 print(anova_results)
 
 plt.show()

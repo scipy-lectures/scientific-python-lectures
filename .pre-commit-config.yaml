@@ -25,6 +25,15 @@ repos:
         files: \.(md|rst|yml|yaml)
         args: [--prose-wrap=preserve]
 
+  - repo: https://github.com/psf/black
+    rev: bf7a16254ec96b084a6caf3d435ec18f0f245cc7 # 23.3.0
+    hooks:
+      - id: black
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: 4b94add9bc83d772ae5e31a679a18609c1750513 # 1.14.0
+    hooks:
+      - id: blacken-docs
+
   - repo: https://github.com/MarcoGorelli/cython-lint
     rev: ee720d6332a996d755b8919de55fc75d408be768 # v0.15.0
     hooks:
@@ -32,7 +41,7 @@ repos:
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: 1395c21a149988e686aef88be48d52ba0d5752f3 # v3.4.0
+    rev: aa5af9cd273894d0246e0eb9fa5ad557037481dc # v3.7.0
     hooks:
       - id: pyupgrade
-        args: [--py310-plus]
+        args: [--py39-plus]

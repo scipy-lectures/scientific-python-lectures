@@ -12,7 +12,8 @@ Discover the periods in evolution of animal populations
 ############################################################
 
 import numpy as np
-data = np.loadtxt('../../../../data/populations.txt')
+
+data = np.loadtxt("../../../../data/populations.txt")
 years = data[:, 0]
 populations = data[:, 1:]
 
@@ -21,11 +22,12 @@ populations = data[:, 1:]
 ############################################################
 
 import matplotlib.pyplot as plt
+
 plt.figure()
 plt.plot(years, populations * 1e-3)
-plt.xlabel('Year')
-plt.ylabel(r'Population number ($\cdot10^3$)')
-plt.legend(['hare', 'lynx', 'carrot'], loc=1)
+plt.xlabel("Year")
+plt.ylabel(r"Population number ($\cdot10^3$)")
+plt.legend(["hare", "lynx", "carrot"], loc=1)
 
 ############################################################
 # Plot its periods
@@ -37,10 +39,10 @@ frequencies = sp.fftpack.fftfreq(populations.shape[0], years[1] - years[0])
 periods = 1 / frequencies
 
 plt.figure()
-plt.plot(periods, abs(ft_populations) * 1e-3, 'o')
+plt.plot(periods, abs(ft_populations) * 1e-3, "o")
 plt.xlim(0, 22)
-plt.xlabel('Period')
-plt.ylabel(r'Power ($\cdot10^3$)')
+plt.xlabel("Period")
+plt.ylabel(r"Power ($\cdot10^3$)")
 
 plt.show()
 

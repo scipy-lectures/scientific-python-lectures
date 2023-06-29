@@ -4,10 +4,10 @@ The correction for the calculation of pi using the Wallis formula.
 
 pi = 3.14159265358979312
 
-my_pi = 1.
+my_pi = 1.0
 
 for i in range(1, 100000):
-    my_pi *= 4 * i ** 2 / (4 * i ** 2 - 1.)
+    my_pi *= 4 * i**2 / (4 * i**2 - 1.0)
 
 my_pi *= 2
 
@@ -33,6 +33,10 @@ print(abs(my_pi - better_pi))
 ###############################################################################
 # Solution in a single line using more adcanved constructs (reduce, lambda,
 # list comprehensions
-print(2 * reduce(lambda x, y: x * y,
-                 [float(4 * (i ** 2)) / ((4 * (i ** 2)) - 1)
-                 for i in range(1, 100000)]))
+print(
+    2
+    * reduce(
+        lambda x, y: x * y,
+        [float(4 * (i**2)) / ((4 * (i**2)) - 1) for i in range(1, 100000)],
+    )
+)

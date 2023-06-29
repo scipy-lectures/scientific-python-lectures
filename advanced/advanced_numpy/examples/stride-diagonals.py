@@ -12,9 +12,7 @@ from numpy.lib.stride_tricks import as_strided
 # Part 1
 #
 
-x = np.array([[1, 2, 3],
-              [4, 5, 6],
-              [7, 8, 9]], dtype=np.int32)
+x = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]], dtype=np.int32)
 
 x_diag = as_strided(x, shape=(3,), strides=(TODO,))
 x_supdiag = TODO
@@ -42,12 +40,12 @@ x_subdiag = TODO
 
 # Compute the tensor trace
 
-x = np.arange(5*5*5*5).reshape(5,5,5,5)
+x = np.arange(5 * 5 * 5 * 5).reshape(5, 5, 5, 5)
 
 s = 0
 for i in range(5):
     for j in range(5):
-        s += x[j,i,j,i]
+        s += x[j, i, j, i]
 
 # by striding and using .sum()
 

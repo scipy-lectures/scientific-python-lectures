@@ -20,7 +20,7 @@ import matplotlib.pyplot as plt
 #####################################################################
 
 # read image
-img = plt.imread('../../../../data/elephant.png')
+img = plt.imread("../../../../data/elephant.png")
 plt.figure()
 plt.imshow(img)
 
@@ -30,8 +30,8 @@ plt.imshow(img)
 
 # First a 1-D  Gaussian
 t = np.linspace(-10, 10, 30)
-bump = np.exp(-0.1*t**2)
-bump /= np.trapz(bump) # normalize the integral to 1
+bump = np.exp(-0.1 * t**2)
+bump /= np.trapz(bump)  # normalize the integral to 1
 
 # make a 2-D kernel out of it
 kernel = bump[:, np.newaxis] * bump[np.newaxis, :]
@@ -76,7 +76,7 @@ plt.imshow(img2)
 
 # mode='same' is there to enforce the same output shape as input arrays
 # (ie avoid border effects)
-img3 = sp.signal.fftconvolve(img, kernel[:, :, np.newaxis], mode='same')
+img3 = sp.signal.fftconvolve(img, kernel[:, :, np.newaxis], mode="same")
 plt.figure()
 plt.imshow(img3)
 

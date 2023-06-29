@@ -15,7 +15,7 @@ from pyamg.gallery import poisson
 
 N = 100
 K = 9
-A = poisson((N,N), format='csr')
+A = poisson((N, N), format="csr")
 
 # create the AMG hierarchy
 ml = smoothed_aggregation_solver(A)
@@ -27,16 +27,16 @@ X = sp.rand(A.shape[0], K)
 M = ml.aspreconditioner()
 
 # compute eigenvalues and eigenvectors with LOBPCG
-W,V = sp.sparse.linalg.lobpcg(A, X, M=M, tol=1e-8, largest=False)
+W, V = sp.sparse.linalg.lobpcg(A, X, M=M, tol=1e-8, largest=False)
 
 
-#plot the eigenvectors
-plt.figure(figsize=(9,9))
+# plot the eigenvectors
+plt.figure(figsize=(9, 9))
 
 for i in range(K):
-    plt.subplot(3, 3, i+1)
-    plt.title('Eigenvector %d' % i)
-    plt.pcolor(V[:,i].reshape(N,N))
-    plt.axis('equal')
-    plt.axis('off')
+    plt.subplot(3, 3, i + 1)
+    plt.title("Eigenvector %d" % i)
+    plt.pcolor(V[:, i].reshape(N, N))
+    plt.axis("equal")
+    plt.axis("off")
 plt.show()

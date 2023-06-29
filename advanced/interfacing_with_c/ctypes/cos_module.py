@@ -6,7 +6,8 @@ import ctypes
 
 # OSX or linux
 from ctypes.util import find_library
-libm = ctypes.cdll.LoadLibrary(find_library('m'))
+
+libm = ctypes.cdll.LoadLibrary(find_library("m"))
 
 # Windows
 # from ctypes import windll
@@ -20,5 +21,5 @@ libm.cos.restype = ctypes.c_double
 
 
 def cos_func(arg):
-    ''' Wrapper for cos from math.h '''
+    """Wrapper for cos from math.h"""
     return libm.cos(arg)

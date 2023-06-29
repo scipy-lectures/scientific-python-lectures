@@ -25,14 +25,13 @@ import matplotlib.pyplot as plt
 np.random.seed(1234)
 
 time_step = 0.02
-period = 5.
+period = 5.0
 
 time_vec = np.arange(0, 20, time_step)
-sig = (np.sin(2 * np.pi / period * time_vec)
-       + 0.5 * np.random.randn(time_vec.size))
+sig = np.sin(2 * np.pi / period * time_vec) + 0.5 * np.random.randn(time_vec.size)
 
 plt.figure(figsize=(6, 5))
-plt.plot(time_vec, sig, label='Original signal')
+plt.plot(time_vec, sig, label="Original signal")
 
 ############################################################
 # Compute and plot the power
@@ -42,7 +41,7 @@ plt.plot(time_vec, sig, label='Original signal')
 sig_fft = sp.fftpack.fft(sig)
 
 # And the power (sig_fft is of complex dtype)
-power = np.abs(sig_fft)**2
+power = np.abs(sig_fft) ** 2
 
 # The corresponding frequencies
 sample_freq = sp.fftpack.fftfreq(sig.size, d=time_step)
@@ -50,8 +49,8 @@ sample_freq = sp.fftpack.fftfreq(sig.size, d=time_step)
 # Plot the FFT power
 plt.figure(figsize=(6, 5))
 plt.plot(sample_freq, power)
-plt.xlabel('Frequency [Hz]')
-plt.ylabel('plower')
+plt.xlabel("Frequency [Hz]")
+plt.ylabel("plower")
 
 # Find the peak frequency: we can focus on only the positive frequencies
 pos_mask = np.where(sample_freq > 0)
@@ -60,11 +59,11 @@ peak_freq = freqs[power[pos_mask].argmax()]
 
 # Check that it does indeed correspond to the frequency that we generate
 # the signal with
-np.allclose(peak_freq, 1./period)
+np.allclose(peak_freq, 1.0 / period)
 
 # An inner plot to show the peak frequency
 axes = plt.axes([0.55, 0.3, 0.3, 0.5])
-plt.title('Peak frequency')
+plt.title("Peak frequency")
 plt.plot(freqs[:8], power[pos_mask][:8])
 plt.setp(axes, yticks=[])
 
@@ -83,12 +82,12 @@ high_freq_fft[np.abs(sample_freq) > peak_freq] = 0
 filtered_sig = sp.fftpack.ifft(high_freq_fft)
 
 plt.figure(figsize=(6, 5))
-plt.plot(time_vec, sig, label='Original signal')
-plt.plot(time_vec, filtered_sig, linewidth=3, label='Filtered signal')
-plt.xlabel('Time [s]')
-plt.ylabel('Amplitude')
+plt.plot(time_vec, sig, label="Original signal")
+plt.plot(time_vec, filtered_sig, linewidth=3, label="Filtered signal")
+plt.xlabel("Time [s]")
+plt.ylabel("Amplitude")
 
-plt.legend(loc='best')
+plt.legend(loc="best")
 
 ############################################################
 #

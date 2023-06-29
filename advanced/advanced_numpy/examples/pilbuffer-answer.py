@@ -13,13 +13,13 @@ import Image
 
 x = np.zeros((200, 200, 4), dtype=np.int8)
 
-x[:,:,0] = 254 # red
-x[:,:,3] = 255 # opaque
+x[:, :, 0] = 254  # red
+x[:, :, 3] = 255  # opaque
 
-data = x.view(np.int32) # Check that you understand why this is OK!
+data = x.view(np.int32)  # Check that you understand why this is OK!
 
 img = Image.frombuffer("RGBA", (200, 200), data)
-img.save('test.png')
+img.save("test.png")
 
 #
 # Modify the original data, and save again.
@@ -28,5 +28,5 @@ img.save('test.png')
 # happily shares the same data.
 #
 
-x[:,:,1] = 254
-img.save('test2.png')
+x[:, :, 1] = 254
+img.save("test2.png")

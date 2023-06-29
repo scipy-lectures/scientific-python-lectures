@@ -13,9 +13,9 @@ data type, statsmodels is able to automatically infer this.
 import pandas
 from statsmodels.formula.api import ols
 
-data = pandas.read_csv('../brain_size.csv', sep=';', na_values='.')
+data = pandas.read_csv("../brain_size.csv", sep=";", na_values=".")
 
-model = ols('VIQ ~ Gender + MRI_Count + Height', data).fit()
+model = ols("VIQ ~ Gender + MRI_Count + Height", data).fit()
 print(model.summary())
 
 # Here, we don't need to define a contrast, as we are testing a single
@@ -35,15 +35,19 @@ from pandas import plotting
 import matplotlib.pyplot as plt
 
 # Fill in the missing values for Height for plotting
-data['Height'].fillna(method='pad', inplace=True)
+data["Height"].fillna(method="pad", inplace=True)
 
 # The parameter 'c' is passed to plt.scatter and will control the color
 # The same holds for parameters 'marker', 'alpha' and 'cmap', that
 # control respectively the type of marker used, their transparency and
 # the colormap
-plotting.scatter_matrix(data[['VIQ', 'MRI_Count', 'Height']],
-                        c=(data['Gender'] == 'Female'), marker='o',
-                        alpha=1, cmap='winter')
+plotting.scatter_matrix(
+    data[["VIQ", "MRI_Count", "Height"]],
+    c=(data["Gender"] == "Female"),
+    marker="o",
+    alpha=1,
+    cmap="winter",
+)
 
 fig = plt.gcf()
 fig.suptitle("blue: male, green: female", size=13)
