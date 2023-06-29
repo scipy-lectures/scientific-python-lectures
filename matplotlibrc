@@ -3,6 +3,6 @@
 #
 # The file is taken in account by matplotlib by setting the environment
 # variable MATPLOTLIBRC to this directory, see
-# http://matplotlib.org/users/customizing.html#the-matplotlibrc-file
+# https://matplotlib.org/stable/tutorials/introductory/customizing.html#the-matplotlibrc-file
 
 backend      : Agg
