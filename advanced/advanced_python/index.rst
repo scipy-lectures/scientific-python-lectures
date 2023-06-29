@@ -109,10 +109,10 @@ all sequences and unordered containers in the standard library allow
 this. The concept is also stretched to other things:
 e.g. ``file`` objects support iteration over lines.
 
->>> f = open('/etc/fstab')
->>> f is f.__iter__()
-True
->>> f.close()
+    >>> with open("/etc/fstab") as f: # doctest: +SKIP
+    ...     f is f.__iter__()
+    ...
+    True
 
 The ``file`` is an iterator itself and it's ``__iter__`` method
 doesn't create a separate object: only a single thread of sequential
