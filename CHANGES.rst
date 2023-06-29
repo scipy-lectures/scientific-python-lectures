@@ -1,6 +1,18 @@
 What's new
 ==========
 
+Release 2023.1 (coming summer 2023)
+-----------------------------------
+
+- Renamed Scientific Python Lectures
+
+- Removed old content
+
+- Major updates to support recent packages
+
+- Updates to the SciPy and scikit-image chapters
+
+
 Release 2022.1 (August 2022)
 ----------------------------
 
