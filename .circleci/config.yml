@@ -14,8 +14,10 @@ jobs:
             sudo apt update
             sudo apt install -y \
               dvipng \
-              texlive-latex-base \
-              texlive-latex-extra
+              latexmk \
+              texlive-latex-extra \
+              texlive-fonts-extra \
+              texlive-extra-utils
 
       - restore_cache:
           keys:
