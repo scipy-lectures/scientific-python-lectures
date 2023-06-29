@@ -116,7 +116,7 @@ def create_base(box_bg="#CCCCCC", arrow1="#88CCFF", arrow2="#88FF88", supervised
 def plot_supervised_chart(annotate=False):
     create_base(supervised=True)
     if annotate:
-        fontdict = dict(color="r", weight="bold", size=14)
+        fontdict = {"color": "r", "weight": "bold", "size": 14}
         plt.text(
             1.9,
             4.55,

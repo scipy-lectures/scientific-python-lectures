@@ -55,7 +55,7 @@ plt.annotate(
     xytext=(10, 30),
     textcoords="offset points",
     fontsize=16,
-    arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"),
+    arrowprops={"arrowstyle": "->", "connectionstyle": "arc3,rad=.2"},
 )
 
 plt.plot([t, t], [0, np.sin(t)], color="red", linewidth=1.5, linestyle="--")
@@ -76,11 +76,11 @@ plt.annotate(
     xytext=(-90, -50),
     textcoords="offset points",
     fontsize=16,
-    arrowprops=dict(arrowstyle="->", connectionstyle="arc3,rad=.2"),
+    arrowprops={"arrowstyle": "->", "connectionstyle": "arc3,rad=.2"},
 )
 
 for label in ax.get_xticklabels() + ax.get_yticklabels():
     label.set_fontsize(16)
-    label.set_bbox(dict(facecolor="white", edgecolor="None", alpha=0.65))
+    label.set_bbox({"facecolor": "white", "edgecolor": "None", "alpha": 0.65})
 
 plt.show()

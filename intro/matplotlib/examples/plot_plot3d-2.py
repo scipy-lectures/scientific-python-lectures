@@ -24,7 +24,7 @@ ax.text2D(
     " 3D plots             \n",
     horizontalalignment="left",
     verticalalignment="top",
-    bbox=dict(facecolor="white", alpha=1.0),
+    bbox={"facecolor": "white", "alpha": 1.0},
     family="DejaVu Sans",
     size="x-large",
     transform=plt.gca().transAxes,
