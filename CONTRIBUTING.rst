@@ -93,3 +93,13 @@ Note that you will also need the following system packages:
    on Debian/Ubuntu),
  - `dvipng <http://savannah.nongnu.org/projects/dvipng/>`__, and
  - `git <https://git-scm.com/>`__.
+
+Updating the cover
+..................
+
+Use inkscape to modify the cover in ``images/``, then export to PDF::
+
+  inkscape --export-filename=cover-2023.pdf cover-2023.svg
+
+Ensure that the ``images/cover.pdf`` symlink points to the correct
+file.
