@@ -3,18 +3,21 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/python:3.11.4
 
     steps:
       - checkout
 
       - run:
-          name: Update apt-get
-          command: sudo apt-get update
-
-      - run:
           name: Install TeX
-          command: sudo apt-get install dvipng texlive-latex-base texlive-latex-extra
+          command: |
+            sudo apt update
+            sudo apt install -y \
+              dvipng \
+              latexmk \
+              texlive-latex-extra \
+              texlive-fonts-extra \
+              texlive-extra-utils
 
       - restore_cache:
           keys:
@@ -23,10 +26,8 @@ jobs:
       - run:
           name: Install Python dependencies
           command: |
-            python3 -m venv ~/venv
-            source ~/venv/bin/activate
-            pip install -U pip
-            pip install -r requirements.txt
+            pip install --upgrade --user pip
+            pip install --user -r requirements.txt
             pip list
 
       - save_cache:
@@ -39,8 +40,12 @@ jobs:
           command: |
             # NOTE: bad interaction w/ blas multithreading on circleci
             export OMP_NUM_THREADS=1
-            source ~/venv/bin/activate
+            make pdf
             make html  # FIX: check that failing examples produce failure
+            cp \
+              ScientificPythonLectures.pdf \
+              ScientificPythonLectures-simple.pdf \
+              build/html/_downloads/
 
       - store_artifacts:
           path: build/html

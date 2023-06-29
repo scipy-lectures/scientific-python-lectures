@@ -80,12 +80,9 @@ htmlhelp:
 
 latex: cleandoctrees
 	mkdir -p build/latex build/doctrees
-	cp intro/scipy/index.rst{,.bak}
 	sed -i '/^   solutions.rst/d' intro/scipy/index.rst
 	$(SPHINXBUILD) -b $@ $(ALLSPHINXOPTS) build/latex
-	sed -i -e 's/\\sphinxincludegraphics/\
-\\sphinxincludegraphics/g' build/latex/ScientificPythonLectures.tex
-	mv intro/scipy/index.rst{.bak,}
+	git restore intro/scipy/index.rst
 	@echo
 	@echo "Build finished; the LaTeX files are in build/latex."
 	@echo "Run \`make all-pdf' or \`make all-ps' in that directory to" \

@@ -88,10 +88,11 @@ Note that you will also need the following system packages:
  - a C compiler like gcc,
  - `GNU Make <https://www.gnu.org/software/make/>`__,
  - a full LaTeX distribution such as `TeX Live
-   <https://www.tug.org/texlive/>`__ (``texlive``,
+   <https://www.tug.org/texlive/>`__ (``texlive-latex-base``,
    ``texlive-latex-extra``, ``texlive-fonts-extra``, and ``latexmk``
    on Debian/Ubuntu),
- - `dvipng <http://savannah.nongnu.org/projects/dvipng/>`__, and
+ - `dvipng <http://savannah.nongnu.org/projects/dvipng/>`__,
+ - `latexmk <https://personal.psu.edu/~jcc8/software/latexmk/>`__,
  - `git <https://git-scm.com/>`__.
 
 Updating the cover
