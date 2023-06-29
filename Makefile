@@ -38,10 +38,10 @@ clean:
 	-rm -f advanced/image_processing/examples/face.png advanced/mathematical_optimization/examples/helper/__pycache__/ intro/numpy/examples/__pycache__/
 
 test:
-	MATPLOTLIBRC=build_tools $(PYTHON) -m pytest --doctest-glob '*.rst'
+	$(PYTHON) -m pytest --doctest-glob '*.rst'
 
 test-stop-when-failing:
-	MATPLOTLIBRC=build_tools $(PYTHON) -m pytest -x --doctest-glob '*.rst'
+	$(PYTHON) -m pytest -x --doctest-glob '*.rst'
 
 html-noplot:
 	$(SPHINXBUILD) -D plot_gallery=0 -b html $(ALLSPHINXOPTS) build/html
