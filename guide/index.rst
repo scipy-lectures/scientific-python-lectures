@@ -23,11 +23,11 @@ Make sure to read this `Documentation style guide`_ as well as these
 How to contribute ?
 ===================
 
-* If you spot typos, unclear or clumsy wording in the lecture notes, please
+* If you spot typos, unclear or clumsy wording in the lectures, please
   help to improve them. Simple text editing can be done by `editing files
   in your GitHub fork
   <https://help.github.com/articles/editing-files-in-your-repository/>`_ of
-  the lecture notes. On every html page of the lecture notes, an **edit**
+  the lectures. On every html page of the lectures, an **edit**
   button on the top right links to the editable source of the page (you still
   need to create a fork of the project). Edit the source and choose
   "Create a new branch for this commit and start a pull request".
@@ -149,7 +149,7 @@ In restructured-text markup this is::
 Linking to package documentations
 ==================================
 
-The goal of the Scientific Python Lecture Notes is not to duplicate or replace
+The goal of the Scientific Python Lectures is not to duplicate or replace
 the documentation of the various packages. You should link as much as
 possible to the original documentation.
 

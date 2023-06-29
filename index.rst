@@ -1,5 +1,5 @@
-Scientific Python Lecture Notes
-===============================
+Scientific Python Lectures
+==========================
 
 .. only:: html
 

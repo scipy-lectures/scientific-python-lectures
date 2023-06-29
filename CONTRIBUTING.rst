@@ -1,11 +1,11 @@
 Contributing
 =============
 
-The Scientific Python Lecture Notes are a community-based effort and require
+The Scientific Python Lectures are a community-based effort and require
 constant maintenance and improvements. New contributions such as wording
 improvements or inclusion of new topics are welcome.
 
-To propose bugfixes or straightforward improvements to the notes, see the
+To propose bugfixes or straightforward improvements to the lectures, see the
 contribution guide below.
 
 For new topics, read the objectives first and `open an issue on the GitHub
@@ -13,16 +13,16 @@ project <https://github.com/scipy-lectures/scipy-lecture-notes/issues>`_ to
 discuss it with the editors.
 
 
-Objectives and design choices for the lecture notes
----------------------------------------------------
+Objectives and design choices for the lectures
+----------------------------------------------
 
 Contributors should keep the following objectives and design choices of
-the Scientific Python Lecture Notes in mind.
+the Scientific Python Lectures in mind.
 
 Objectives:
 
 * Provide a self-contained introduction to Python and its primary computational
-  packages, the ”SciPy stack“.
+  packages, the ”Scientific Python stack“.
 * Provide tutorials for a selection of widely-used and stable computational
   libraries.
   Currently, we cover pandas, statmodels, seaborn, scikit-image,

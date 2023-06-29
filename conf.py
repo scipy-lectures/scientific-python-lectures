@@ -69,7 +69,7 @@ sphinx_gallery_conf = {
         "packages/statistics/auto_examples",
         "guide/auto_examples",
     ],
-    "doc_module": "scientific-python-lecture-notes",
+    "doc_module": "scientific-python-lectures",
     # The following is necessary to get the links in the code of the
     # examples
     "backreferences_dir": "tmp",
@@ -83,7 +83,7 @@ templates_path = ["_templates"]
 source_suffix = ".rst"
 
 # General information about the project.
-project = "Scientific Python Lecture Notes"
+project = "Scientific Python Lectures"
 copyright = f"{date.today().year}"
 
 # The version info for the project you're documenting, acts as replacement for
@@ -198,7 +198,7 @@ html_theme_options = {
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "Scientific Python Lecture Notes"
+html_title = "Scientific Python Lectures"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 # html_short_title = ""
@@ -275,8 +275,8 @@ latex_documents = [
     (
         "index",
         "ScientificPythonLectures.tex",
-        r"Scientific Python Lecture Notes",
-        r"""Scientific Python lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras, Pierre de Buyl, K. Jarrod Millman, Stéfan van der Walt""",
+        r"Scientific Python Lectures",
+        r"""Scientific Python Lectures team. Editors: Gaël Varoquaux, Emmanuelle Gouillart, Olav Vahtras, Pierre de Buyl, K. Jarrod Millman, Stéfan van der Walt""",
         "manual",
     ),
 ]
