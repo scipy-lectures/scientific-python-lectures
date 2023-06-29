@@ -13,8 +13,9 @@ plt.subplot(1, 1, 1, polar=True)
 
 N = 20
 theta = np.arange(0.0, 2 * np.pi, 2 * np.pi / N)
-radii = 10 * np.random.rand(N)
-width = np.pi / 4 * np.random.rand(N)
+rng = np.random.default_rng()
+radii = 10 * rng.random(N)
+width = np.pi / 4 * rng.random(N)
 bars = plt.bar(theta, radii, width=width, bottom=0.0)
 for r, bar in zip(radii, bars):
     bar.set_facecolor(plt.cm.jet(r / 10.0))

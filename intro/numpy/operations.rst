@@ -2,7 +2,6 @@
 ..  For doctests
 
     >>> import numpy as np
-    >>> np.random.seed(0)
     >>> # For doctest on headless environments
     >>> import matplotlib.pyplot as plt
     >>> plt.switch_backend("Agg")
@@ -240,11 +239,12 @@ Sum by rows and by columns:
 
   .. sourcecode:: pycon
 
-    >>> x = np.random.rand(2, 2, 2)
+    >>> rng = np.random.default_rng(27446968)
+    >>> x = rng.random((2, 2, 2))
     >>> x.sum(axis=2)[0, 1]
-    1.14764...
+    0.73415...
     >>> x[0, 1, :].sum()
-    1.14764...
+    0.73415...
 
 Other reductions
 ................
@@ -357,7 +357,8 @@ Other reductions
   .. sourcecode:: pycon
 
    >>> t = np.arange(t_max)
-   >>> steps = 2 * np.random.randint(0, 1 + 1, (n_stories, t_max)) - 1 # +1 because the high value is exclusive
+   >>> rng = np.random.default_rng()
+   >>> steps = 2 * rng.integers(0, 1 + 1, (n_stories, t_max)) - 1 # +1 because the high value is exclusive
    >>> np.unique(steps) # Verification: all steps are 1 or -1
    array([-1,  1])
 

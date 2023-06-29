@@ -13,9 +13,9 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
-np.random.seed(0)
+rng = np.random.default_rng(27446968)
 
-K = np.random.normal(size=(100, 100))
+K = rng.normal(size=(100, 100))
 
 
 def f(x):

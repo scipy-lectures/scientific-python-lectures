@@ -30,7 +30,7 @@ plt.plot(X_test, regr.predict(X_test))
 
 ############################################################
 # In real life situation, we have noise (e.g. measurement noise) in our data:
-np.random.seed(0)
+rng = np.random.default_rng(27446968)
 for _ in range(6):
     noisy_X = X + np.random.normal(loc=0, scale=0.1, size=X.shape)
     plt.plot(noisy_X, y, "o")

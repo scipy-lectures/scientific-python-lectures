@@ -9,8 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 n = 1024
-X = np.random.normal(0, 1, n)
-Y = np.random.normal(0, 1, n)
+rng = np.random.default_rng()
+X = rng.normal(0, 1, n)
+Y = rng.normal(0, 1, n)
 
 T = np.arctan2(Y, X)
 

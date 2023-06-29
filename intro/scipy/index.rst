@@ -2,7 +2,6 @@
     >>> import matplotlib.pyplot as plt
     >>> plt.switch_backend("Agg")
     >>> import numpy as np
-    >>> np.random.seed(0)
 
 .. _scipy:
 
@@ -314,7 +313,8 @@ includes, but not limited to `FITPACK Fortran subroutines`_.
 By imagining experimental data close to a sine function::
 
     >>> measured_time = np.linspace(0, 1, 10)
-    >>> noise = (np.random.random(10)*2 - 1) * 1e-1
+    >>> rng = np.random.default_rng()
+    >>> noise = (rng.random(10)*2 - 1) * 1e-1
     >>> measures = np.sin(2 * np.pi * measured_time) + noise
 
 :mod:`scipy.interpolate` has many interpolation methods which need to be
@@ -423,9 +423,6 @@ algorithms and options.
 Curve fitting
 .............
 
-.. Comment to make doctest pass
-    >>> np.random.seed(0)
-
 .. image:: auto_examples/images/sphx_glr_plot_curve_fit_001.png
    :target: auto_examples/plot_curve_fit.html
    :align: right
@@ -487,9 +484,6 @@ We then use :func:`scipy.optimize.curve_fit` to find :math:`a` and :math:`b`::
 
 Optimization
 ............
-
-.. Comment to make doctest pass
-    >>> np.random.seed(0)
 
 .. image:: auto_examples/images/sphx_glr_plot_optimize_example1_001.png
    :target: auto_examples/plot_optimize_example1.html
@@ -1011,7 +1005,8 @@ points using FFT. ::
 **Detrending** :func:`scipy.signal.detrend`: remove linear trend from signal::
 
   >>> t = np.linspace(0, 5, 100)
-  >>> x = t + np.random.normal(size=100)
+  >>> rng = np.random.default_rng()
+  >>> x = t + rng.normal(size=100)
 
   >>> x_detrended = sp.signal.detrend(x)
 

@@ -11,7 +11,7 @@ Demos a simple curve fitting
 import numpy as np
 
 # Seed the random number generator for reproducibility
-np.random.seed(0)
+rng = np.random.default_rng(27446968)
 
 x_data = np.linspace(-5, 5, num=50)
 noise = 0.01 * np.cos(100 * x_data)

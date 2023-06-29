@@ -13,7 +13,7 @@ import numpy as np
 
 n = 12
 l = 256
-np.random.seed(1)
+rng = np.random.default_rng(27446968)
 im = np.zeros((l, l))
 points = l * np.random.random((2, n**2))
 im[(points[0]).astype(int), (points[1]).astype(int)] = 1

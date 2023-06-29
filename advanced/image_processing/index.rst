@@ -1,6 +1,5 @@
 .. for doctests
    >>> import numpy as np
-   >>> np.random.seed(0)
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend("Agg")
 
@@ -114,8 +113,9 @@ For large data, use ``np.memmap`` for memory mapping::
 
 Working on a list of image files ::
 
+    >>> rng = np.random.default_rng(27446968)
     >>> for i in range(10):
-    ...     im = np.random.randint(0, 256, 10000, dtype=np.uint8).reshape((100, 100))
+    ...     im = rng.integers(0, 256, 10000, dtype=np.uint8).reshape((100, 100))
     ...     iio.imwrite(f'random_{i:02d}.png', im)
     >>> from glob import glob
     >>> filelist = glob('random*.png')
@@ -344,7 +344,8 @@ Noisy face::
 
     >>> f = sp.datasets.face(gray=True)
     >>> f = f[230:290, 220:320]
-    >>> noisy = f + 0.4 * f.std() * np.random.random(f.shape)
+    >>> rng = np.random.default_rng()
+    >>> noisy = f + 0.4 * f.std() * rng.random(f.shape)
 
 A **Gaussian filter** smoothes the noise out... and the edges as well::
 
@@ -370,7 +371,8 @@ Median filter: better result for straight boundaries (**low curvature**)::
     >>> im = np.zeros((20, 20))
     >>> im[5:-5, 5:-5] = 1
     >>> im = sp.ndimage.distance_transform_bf(im)
-    >>> im_noise = im + 0.2 * np.random.randn(*im.shape)
+    >>> rng = np.random.default_rng()
+    >>> im_noise = im + 0.2 * rng.standard_normal(im.shape)
     >>> im_med = sp.ndimage.median_filter(im_noise, 3)
 
 .. figure:: auto_examples/images/sphx_glr_plot_denoising_001.png
@@ -491,9 +493,9 @@ image.
 
 Also works for grey-valued images::
 
-    >>> np.random.seed(2)
+    >>> rng = np.random.default_rng(27446968)
     >>> im = np.zeros((64, 64))
-    >>> x, y = (63*np.random.random((2, 8))).astype(int)
+    >>> x, y = (63*rng.random((2, 8))).astype(int)
     >>> im[x, y] = np.arange(8)
 
     >>> bigger_points = sp.ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))
@@ -542,8 +544,8 @@ Also works for grey-valued images::
 
     >>> square = np.zeros((32, 32))
     >>> square[10:-10, 10:-10] = 1
-    >>> np.random.seed(2)
-    >>> x, y = (32*np.random.random((2, 20))).astype(int)
+    >>> rng = np.random.default_rng(27446968)
+    >>> x, y = (32*rng.random((2, 20))).astype(int)
     >>> square[x, y] = 1
 
     >>> open_square = sp.ndimage.binary_opening(square)
@@ -603,14 +605,14 @@ Segmentation
     >>> n = 10
     >>> l = 256
     >>> im = np.zeros((l, l))
-    >>> np.random.seed(1)
-    >>> points = l*np.random.random((2, n**2))
+    >>> rng = np.random.default_rng(27446968)
+    >>> points = l*rng.random((2, n**2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
 
     >>> mask = (im > im.mean()).astype(float)
     >>> mask += 0.1 * im
-    >>> img = mask + 0.2*np.random.randn(*mask.shape)
+    >>> img = mask + 0.2*rng.standard_normal(mask.shape)
 
     >>> hist, bin_edges = np.histogram(img, bins=60)
     >>> bin_centers = 0.5*(bin_edges[:-1] + bin_edges[1:])
@@ -652,9 +654,9 @@ Use mathematical morphology to clean up the result::
 	>>> eroded_tmp = sp.ndimage.binary_erosion(tmp)
 	>>> reconstruct_final = np.logical_not(sp.ndimage.binary_propagation(eroded_tmp, mask=tmp))
 	>>> np.abs(mask - close_img).mean()
-	0.00727836...
+	0.00640699...
 	>>> np.abs(mask - reconstruct_final).mean()
-	0.00059502...
+	0.00082232...
 
 .. topic:: **Exercise**
     :class: green
@@ -700,7 +702,8 @@ Use mathematical morphology to clean up the result::
         >>> mask = img.astype(bool)
         >>> img = img.astype(float)
 
-        >>> img += 1 + 0.2*np.random.randn(*img.shape)
+        >>> rng = np.random.default_rng()
+        >>> img += 1 + 0.2*rng.standard_normal(img.shape)
         >>> # Convert the image into a graph with the value of the gradient on
         >>> # the edges.
         >>> graph = image.img_to_graph(img, mask=mask)
@@ -727,7 +730,8 @@ Synthetic data::
     >>> n = 10
     >>> l = 256
     >>> im = np.zeros((l, l))
-    >>> points = l*np.random.random((2, n**2))
+    >>> rng = np.random.default_rng(27446968)
+    >>> points = l * rng.random((2, n**2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>> mask = im > im.mean()
@@ -862,11 +866,11 @@ One example with mathematical morphology: `granulometry
     ...     return granulo
     ...
     >>>
-    >>> np.random.seed(1)
+    >>> rng = np.random.default_rng(27446968)
     >>> n = 10
     >>> l = 256
     >>> im = np.zeros((l, l))
-    >>> points = l*np.random.random((2, n**2))
+    >>> points = l*rng.random((2, n**2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>>

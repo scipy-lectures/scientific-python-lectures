@@ -10,8 +10,9 @@ import matplotlib.pyplot as plt
 
 n = 12
 X = np.arange(n)
-Y1 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
-Y2 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
+rng = np.random.default_rng()
+Y1 = (1 - X / float(n)) * rng.uniform(0.5, 1.0, n)
+Y2 = (1 - X / float(n)) * rng.uniform(0.5, 1.0, n)
 
 plt.axes([0.025, 0.025, 0.95, 0.95])
 plt.bar(X, +Y1, facecolor="#9999ff", edgecolor="white")

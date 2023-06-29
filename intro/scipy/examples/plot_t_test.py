@@ -9,8 +9,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Generates 2 sets of observations
-samples1 = np.random.normal(0, size=1000)
-samples2 = np.random.normal(1, size=1000)
+rng = np.random.default_rng(27446968)
+samples1 = rng.normal(0, size=1000)
+samples2 = rng.normal(1, size=1000)
 
 # Compute a histogram of the sample
 bins = np.linspace(-4, 4, 30)

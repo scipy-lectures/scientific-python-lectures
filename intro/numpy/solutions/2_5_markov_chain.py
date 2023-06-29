@@ -1,14 +1,14 @@
 import numpy as np
 
-np.random.seed(1234)
+rng = np.random.default_rng(27446968)
 
 n_states = 5
 n_steps = 50
 tolerance = 1e-5
 
 # Random transition matrix and state vector
-P = np.random.rand(n_states, n_states)
-p = np.random.rand(n_states)
+P = rng.random(n_states, n_states)
+p = rng.random(n_states)
 
 # Normalize rows in P
 P /= P.sum(axis=1)[:, np.newaxis]

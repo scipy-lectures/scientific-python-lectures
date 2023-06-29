@@ -219,7 +219,6 @@ and many more packages not documented in the Scientific Python Lectures.
 
 ..
     >>> import numpy as np
-    >>> np.random.seed(4)
 
 
 Before starting: Installing a working environment

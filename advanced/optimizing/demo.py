@@ -6,8 +6,10 @@ import scipy as sp
 from ica import fastica
 
 
+# @profile  # uncomment this line to run with line_profiler
 def test():
-    data = np.random.random((5000, 100))
+    rng = np.random.default_rng()
+    data = rng.random((5000, 100))
     u, s, v = sp.linalg.svd(data)
     pca = u[:, :10].T @ data
     results = fastica(pca.T, whiten=False)

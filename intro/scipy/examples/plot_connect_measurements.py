@@ -11,7 +11,6 @@ import matplotlib.pyplot as plt
 
 ############################################################
 # Generate some binary data
-np.random.seed(0)
 x, y = np.indices((100, 100))
 sig = (
     np.sin(2 * np.pi * x / 50.0)

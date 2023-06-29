@@ -43,7 +43,7 @@ def iterated_wiener(noisy_img, size=3):
 ################################################################################
 cut = (slice(128, -128), slice(128, -128))
 
-np.random.seed(7)
+rng = np.random.default_rng(27446968)
 
 face = sp.datasets.face(gray=True)
 noisy_face = face + 20 * np.random.randint(3, size=face.shape) - 30

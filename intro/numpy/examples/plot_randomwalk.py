@@ -15,7 +15,8 @@ t_max = 200
 
 t = np.arange(t_max)
 # Steps can be -1 or 1 (note that randint excludes the upper limit)
-steps = 2 * np.random.randint(0, 1 + 1, (n_stories, t_max)) - 1
+rng = np.random.default_rng()
+steps = 2 * rng.integers(0, 1 + 1, (n_stories, t_max)) - 1
 
 # The time evolution of the position is obtained by successively
 # summing up individual steps. This is done for each of the

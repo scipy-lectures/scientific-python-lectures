@@ -730,8 +730,9 @@ care of marker size, color and transparency.
 ::
 
    n = 1024
-   X = np.random.normal(0,1,n)
-   Y = np.random.normal(0,1,n)
+   rng = np.random.default_rng()
+   X = rng.normal(0,1,n)
+   Y = rng.normal(0,1,n)
 
    plt.scatter(X,Y)
 
@@ -759,8 +760,9 @@ adding labels for red bars.
 
    n = 12
    X = np.arange(n)
-   Y1 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
-   Y2 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
+   rng = np.random.default_rng()
+   Y1 = (1 - X / float(n)) * rng.uniform(0.5, 1.0, n)
+   Y2 = (1 - X / float(n)) * rng.uniform(0.5, 1.0, n)
 
    plt.bar(X, +Y1, facecolor='#9999ff', edgecolor='white')
    plt.bar(X, -Y2, facecolor='#ff9999', edgecolor='white')
@@ -856,7 +858,8 @@ care of colors and slices size.
 
 ::
 
-   Z = np.random.uniform(0, 1, 20)
+   rng = np.random.default_rng()
+   Z = rng.uniform(0, 1, 20)
    plt.pie(Z)
 
 Click on the figure for the solution.
@@ -958,8 +961,9 @@ Starting from the code below, try to reproduce the graphic.
 
    N = 20
    theta = np.arange(0., 2 * np.pi, 2 * np.pi / N)
-   radii = 10 * np.random.rand(N)
-   width = np.pi / 4 * np.random.rand(N)
+   rng = np.random.default_rng()
+   radii = 10 * rng.random(N)
+   width = np.pi / 4 * rng.random(N)
    bars = plt.bar(theta, radii, width=width, bottom=0.0)
 
    for r, bar in zip(radii, bars):

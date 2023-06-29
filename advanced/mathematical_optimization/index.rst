@@ -849,8 +849,8 @@ Synthetic exercices
 
     Optimize the following function, using K[0] as a starting point::
 
-        np.random.seed(0)
-        K = np.random.normal(size=(100, 100))
+        rng = np.random.default_rng(27446968)
+        K = rng.normal(size=(100, 100))
 
         def f(x):
             return np.sum((K @ (x - 1))**2) + np.sum(x**2)**2
@@ -915,15 +915,10 @@ BFGS needs more function calls, and gives a less precise result.
 Curve fitting
 --------------
 
-.. np.random.seed(0)
-
 .. image:: auto_examples/images/sphx_glr_plot_curve_fitting_001.png
     :scale: 48%
     :target: auto_examples/plot_curve_fitting.html
     :align: right
-
-.. Comment to make doctest pass
-    >>> np.random.seed(0)
 
 Least square problems occur often when fitting a non-linear to data.
 While it is possible to construct our optimization problem ourselves,
@@ -935,11 +930,12 @@ SciPy provides a helper function for this purpose:
     ...     return np.cos(omega * t + phi)
 
     >>> x = np.linspace(0, 3, 50)
-    >>> y = f(x, 1.5, 1) + .1*np.random.normal(size=50)
+    >>> rng = np.random.default_rng(27446968)
+    >>> y = f(x, 1.5, 1) + .1*rng.normal(size=50)
 
     >>> sp.optimize.curve_fit(f, x, y)
-    (array([1.5185...,  0.92665...]), array([[ 0.00037..., -0.00056...],
-           [-0.0005...,  0.00123...]]))
+    (array([1.4812..., 0.9999...]), array([[ 0.0003..., -0.0004...],
+           [-0.0004...,  0.0010...]]))
 
 
 .. topic:: **Exercise**

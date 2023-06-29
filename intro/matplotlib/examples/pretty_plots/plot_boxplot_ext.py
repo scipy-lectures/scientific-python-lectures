@@ -16,7 +16,8 @@ axes = plt.subplot(111)
 n = 5
 Z = np.zeros((n, 4))
 X = np.linspace(0, 2, n)
-Y = np.random.random((n, 4))
+rng = np.random.default_rng()
+Y = rng.random((n, 4))
 plt.boxplot(Y)
 
 plt.xticks([])

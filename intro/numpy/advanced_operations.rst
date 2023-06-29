@@ -35,7 +35,8 @@ For example, :math:`3x^2 + 2x - 1`::
 ::
 
     >>> x = np.linspace(0, 1, 20)
-    >>> y = np.cos(x) + 0.3*np.random.rand(20)
+    >>> rng = np.random.default_rng()
+    >>> y = np.cos(x) + 0.3*rng.random(20)
     >>> p = np.poly1d(np.polyfit(x, y, 3))
 
     >>> t = np.linspace(0, 1, 200) # use a larger number of points for smoother plotting
@@ -70,7 +71,8 @@ Example using polynomials in Chebyshev basis, for polynomials in
 range ``[-1, 1]``::
 
     >>> x = np.linspace(-1, 1, 2000)
-    >>> y = np.cos(x) + 0.3*np.random.rand(2000)
+    >>> rng = np.random.default_rng()
+    >>> y = np.cos(x) + 0.3*rng.random(2000)
     >>> p = np.polynomial.Chebyshev.fit(x, y, 90)
 
     >>> plt.plot(x, y, 'r.')

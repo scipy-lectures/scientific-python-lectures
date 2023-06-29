@@ -2,7 +2,6 @@
     >>> import matplotlib.pyplot as plt
     >>> plt.switch_backend("Agg")
     >>> import numpy as np
-    >>> np.random.seed(0)
     >>> import pandas
     >>> pandas.options.display.width = 0
 
@@ -457,9 +456,9 @@ First, we generate simulated data according to the model::
 
     >>> import numpy as np
     >>> x = np.linspace(-5, 5, 20)
-    >>> np.random.seed(1)
+    >>> rng = np.random.default_rng(27446968)
     >>> # normal distributed noise
-    >>> y = -5 + 3*x + 4 * np.random.normal(size=x.shape)
+    >>> y = -5 + 3*x + 4 * rng.normal(size=x.shape)
     >>> # Create a data frame containing all the relevant variables
     >>> data = pandas.DataFrame({'x': x, 'y': y})
 
@@ -480,31 +479,30 @@ We can inspect the various statistics derived from the fit::
 
     >>> print(model.summary()) # doctest: +REPORT_UDIFF
                                 OLS Regression Results
-    ==========================...
-    Dep. Variable:                      y   R-squared:                       0.804
-    Model:                            OLS   Adj. R-squared:                  0.794
-    Method:                 Least Squares   F-statistic:                     74.03
-    Date:                ...                Prob (F-statistic):           8.56e-08
-    Time:                        ...        Log-Likelihood:                -57.988
-    No. Observations:                  20   AIC:                             120.0
-    Df Residuals:                      18   BIC:                             122.0
+    ==============================================================================
+    Dep. Variable:                      y   R-squared:                       0.901
+    Model:                            OLS   Adj. R-squared:                  0.896
+    Method:                 Least Squares   F-statistic:                     164.5
+    Date:                             ...   Prob (F-statistic):           1.72e-10
+    Time:                             ...   Log-Likelihood:                -51.758
+    No. Observations:                  20   AIC:                             107.5
+    Df Residuals:                      18   BIC:                             109.5
     Df Model:                           1
     Covariance Type:            nonrobust
-    ==========================...
+    ==============================================================================
                      coef    std err          t      P>|t|      [0.025      0.975]
-    ------------------------------------------...
-    Intercept     -5.5335      1.036     -5.342      0.000        -7.710    -3.357
-    x              2.9369      0.341      8.604      0.000         2.220     3.654
-    ==========================...
-    Omnibus:                        0.100   Durbin-Watson:                   2.956
-    Prob(Omnibus):                  0.951   Jarque-Bera (JB):                0.322
-    Skew:                          -0.058   Prob(JB):                        0.851
-    Kurtosis:                       2.390   Cond. No.                         3.03
-    ==========================...
+    ------------------------------------------------------------------------------
+    Intercept     -4.2948      0.759     -5.661      0.000      -5.889      -2.701
+    x              3.2060      0.250     12.825      0.000       2.681       3.731
+    ==============================================================================
+    Omnibus:                        1.218   Durbin-Watson:                   1.796
+    Prob(Omnibus):                  0.544   Jarque-Bera (JB):                0.999
+    Skew:                           0.503   Prob(JB):                        0.607
+    Kurtosis:                       2.568   Cond. No.                         3.03
+    ==============================================================================
     <BLANKLINE>
     Notes:
     [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
-
 
 .. topic:: Terminology:
 
@@ -539,27 +537,27 @@ model::
      >>> model = ols("VIQ ~ Gender + 1", data).fit()
      >>> print(model.summary()) # doctest: +REPORT_UDIFF
                                  OLS Regression Results
-     ==========================...
+     ==============================================================================
      Dep. Variable:                    VIQ   R-squared:                       0.015
      Model:                            OLS   Adj. R-squared:                 -0.010
      Method:                 Least Squares   F-statistic:                    0.5969
-     Date:                ...                Prob (F-statistic):              0.445
-     Time:                        ...        Log-Likelihood:                -182.42
+     Date:                             ...   Prob (F-statistic):              0.445
+     Time:                             ...   Log-Likelihood:                -182.42
      No. Observations:                  40   AIC:                             368.8
      Df Residuals:                      38   BIC:                             372.2
      Df Model:                           1
      Covariance Type:            nonrobust
-     ==========================...
-                       coef    std err        t      P>|t|      [0.025      0.975]
-     -----------------------------------------------------------------------...
-     Intercept        109.4500     5.308     20.619     0.000      98.704   120.196
-     Gender[T.Male]     5.8000     7.507      0.773     0.445      -9.397    20.997
-     ==========================...
+     ==================================================================================
+                          coef    std err          t      P>|t|      [0.025      0.975]
+     ----------------------------------------------------------------------------------
+     Intercept        109.4500      5.308     20.619      0.000      98.704     120.196
+     Gender[T.Male]     5.8000      7.507      0.773      0.445      -9.397      20.997
+     ==============================================================================
      Omnibus:                       26.188   Durbin-Watson:                   1.709
      Prob(Omnibus):                  0.000   Jarque-Bera (JB):                3.703
      Skew:                           0.010   Prob(JB):                        0.157
      Kurtosis:                       1.510   Cond. No.                         2.62
-     ==========================...
+     ==============================================================================
      <BLANKLINE>
      Notes:
      [1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
@@ -676,8 +674,8 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
     Dep. Variable:            sepal_width   R-squared:                       0.478
     Model:                            OLS   Adj. R-squared:                  0.468
     Method:                 Least Squares   F-statistic:                     44.63
-    Date:                ...                Prob (F-statistic):           1.58e-20
-    Time:                        ...        Log-Likelihood:                -38.185
+    Date:                             ...   Prob (F-statistic):           1.58e-20
+    Time:                             ...   Log-Likelihood:                -38.185
     No. Observations:                 150   AIC:                             84.37
     Df Residuals:                     146   BIC:                             96.41
     Df Model:                           3

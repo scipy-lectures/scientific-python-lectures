@@ -262,7 +262,7 @@ Remember to normalize the eigenvector --- I didn't...
 
 - Checks if ``p_50`` and ``p_stationary`` are equal to tolerance 1e-5
 
-Toolbox: ``np.random.rand``, ``@``, ``np.linalg.eig``,
+Toolbox: ``np.random``, ``@``, ``np.linalg.eig``,
 reductions, ``abs()``, ``argmin``, comparisons, ``all``,
 ``np.linalg.norm``, etc.
 

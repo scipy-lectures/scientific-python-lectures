@@ -1,6 +1,5 @@
 .. for doctests
    >>> import numpy as np
-   >>> np.random.seed(0)
    >>> import scipy as sp
 
 Compressed Sparse Row Format (CSR)

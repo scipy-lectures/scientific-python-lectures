@@ -11,6 +11,9 @@ import matplotlib.pyplot as plt
 
 from sklearn import svm
 
+
+rng = np.random.default_rng(27446968)
+
 ##############################################################################
 # data that is linearly separable
 
@@ -69,7 +72,7 @@ def nonlinear_model(rseed=42, n_samples=30):
     radius[far_pts] *= 1.2
     radius[~far_pts] *= 1.1
 
-    theta = np.random.random(n_samples) * np.pi * 2
+    theta = rng.random(n_samples) * np.pi * 2
 
     data = np.empty((n_samples, 2))
     data[:, 0] = radius * np.cos(theta)
