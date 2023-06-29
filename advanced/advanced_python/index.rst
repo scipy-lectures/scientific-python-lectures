@@ -112,6 +112,7 @@ e.g. ``file`` objects support iteration over lines.
 >>> f = open('/etc/fstab')
 >>> f is f.__iter__()
 True
+>>> f.close()
 
 The ``file`` is an iterator itself and it's ``__iter__`` method
 doesn't create a separate object: only a single thread of sequential

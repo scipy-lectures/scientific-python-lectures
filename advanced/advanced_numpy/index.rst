@@ -255,7 +255,7 @@ The ``.wav`` file header as a NumPy *structured* data type::
 
 >>> f = open('data/test.wav', 'r')
 >>> wav_header = np.fromfile(f, dtype=wav_header_dtype, count=1)
->>> f.close()  # doctest: +SKIP
+>>> f.close()
 >>> print(wav_header)   # doctest: +SKIP
 [ ('RIFF', 17402L, 'WAVE', 'fmt ', 16L, 1, 1, 16000L, 32000L, 2, 16, [['d', 'a'], ['t', 'a']], 17366L)]
 >>> wav_header['sample_rate']
