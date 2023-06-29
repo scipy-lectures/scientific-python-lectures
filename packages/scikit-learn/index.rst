@@ -582,9 +582,9 @@ One good method to keep in mind is Gaussian Naive Bayes
     >>> predicted = clf.predict(X_test)
     >>> expected = y_test
     >>> print(predicted)
-    [1 7 7 7 8 2 8 0 4 8 7 7 0 8 2 3 5 8 5 3 7 9 6 2 8 2 2 7 3 5...]
+    [5 1 7 2 8 9 4 3 9 3 6 2 3 2 6 7 4 3 5 7 5 7 0 1 2 5 9 8 1 8...]
     >>> print(expected)
-    [1 0 4 7 8 2 2 0 4 3 7 7 0 8 2 3 4 8 5 3 7 9 6 3 8 2 2 9 3 5...]
+    [5 8 7 2 8 9 4 3 7 3 6 2 3 2 6 7 4 3 5 7 5 7 0 1 2 5 3 3 1 8...]
 
 As above, we plot the digits with the predicted labels to get an idea of
 how well the classification is working.
@@ -608,11 +608,11 @@ the number of matches::
 
     >>> matches = (predicted == expected)
     >>> print(matches.sum())
-    367
+    371
     >>> print(len(matches))
     450
     >>> matches.sum() / float(len(matches))
-    0.81555555555555559
+    0.82444...
 
 We see that more than 80% of the 450 predictions match the input. But
 there are other more sophisticated metrics that can be used to judge the
@@ -626,20 +626,20 @@ combines several measures and prints a table with the results::
     >>> print(metrics.classification_report(expected, predicted))
                 precision    recall  f1-score   support
     <BLANKLINE>
-             0       1.00      0.91      0.95        46
-             1       0.76      0.64      0.69        44
-             2       0.85      0.62      0.72        47
-             3       0.98      0.82      0.89        49
-             4       0.89      0.86      0.88        37
-             5       0.97      0.93      0.95        41
-             6       1.00      0.98      0.99        44
-             7       0.73      1.00      0.84        45
-             8       0.50      0.90      0.64        49
-             9       0.93      0.54      0.68        48
+           0       1.00      0.98      0.99        45
+           1       0.91      0.66      0.76        44
+           2       0.91      0.56      0.69        36
+           3       0.89      0.67      0.77        49
+           4       0.95      0.83      0.88        46
+           5       0.93      0.93      0.93        45
+           6       0.92      0.98      0.95        47
+           7       0.75      0.96      0.84        50
+           8       0.49      0.97      0.66        39
+           9       0.85      0.67      0.75        49
     <BLANKLINE>
         accuracy                           0.82       450
        macro avg       0.86      0.82      0.82       450
-    weighted avg       0.86      0.82      0.82       450
+    weighted avg       0.86      0.82      0.83       450
     <BLANKLINE>
 
 
@@ -648,16 +648,16 @@ is a *confusion matrix*: it helps us visualize which labels are being
 interchanged in the classification errors::
 
     >>> print(metrics.confusion_matrix(expected, predicted))
-    [[42  0  0  0  3  0  0  1  0  0]
-     [ 0 28  0  0  0  0  0  1 13  2]
-     [ 0  3 29  0  0  0  0  0 15  0]
-     [ 0  0  2 40  0  0  0  2  5  0]
-     [ 0  0  1  0 32  1  0  3  0  0]
-     [ 0  0  0  0  0 38  0  2  1  0]
-     [ 0  0  1  0  0  0 43  0  0  0]
-     [ 0  0  0  0  0  0  0 45  0  0]
-     [ 0  3  1  0  0  0  0  1 44  0]
-     [ 0  3  0  1  1  0  0  7 10 26]]
+    [[44  0  0  0  0  0  0  0  0  1]
+     [ 0 29  0  0  0  0  1  6  6  2]
+     [ 0  1 20  1  0  0  0  0 14  0]
+     [ 0  0  0 33  0  2  0  1 11  2]
+     [ 0  0  0  0 38  1  2  4  1  0]
+     [ 0  0  0  0  0 42  1  0  2  0]
+     [ 0  0  0  0  0  0 46  0  1  0]
+     [ 0  0  0  0  1  0  0 48  0  1]
+     [ 0  1  0  0  0  0  0  0 38  0]
+     [ 0  1  2  3  1  0  0  5  4 33]]
 
 We see here that in particular, the numbers 1, 2, 3, and 9 are often
 being labeled 8.

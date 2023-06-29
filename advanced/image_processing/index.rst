@@ -1,6 +1,5 @@
 .. for doctests
    >>> import numpy as np
-   >>> np.random.seed(0)
    >>> import matplotlib.pyplot as plt
    >>> plt.switch_backend("Agg")
 
@@ -655,9 +654,9 @@ Use mathematical morphology to clean up the result::
 	>>> eroded_tmp = sp.ndimage.binary_erosion(tmp)
 	>>> reconstruct_final = np.logical_not(sp.ndimage.binary_propagation(eroded_tmp, mask=tmp))
 	>>> np.abs(mask - close_img).mean()
-	0.00727836...
+	0.00640699...
 	>>> np.abs(mask - reconstruct_final).mean()
-	0.00059502...
+	0.00082232...
 
 .. topic:: **Exercise**
     :class: green
@@ -731,8 +730,8 @@ Synthetic data::
     >>> n = 10
     >>> l = 256
     >>> im = np.zeros((l, l))
-    >>> rng = np.random.default_rng()
-    >>> points = l*rng.random((2, n**2))
+    >>> rng = np.random.default_rng(27446968)
+    >>> points = l * rng.random((2, n**2))
     >>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
     >>> im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
     >>> mask = im > im.mean()

@@ -934,8 +934,8 @@ SciPy provides a helper function for this purpose:
     >>> y = f(x, 1.5, 1) + .1*rng.normal(size=50)
 
     >>> sp.optimize.curve_fit(f, x, y)
-    (array([1.5185...,  0.92665...]), array([[ 0.00037..., -0.00056...],
-           [-0.0005...,  0.00123...]]))
+    (array([1.4812..., 0.9999...]), array([[ 0.0003..., -0.0004...],
+           [-0.0004...,  0.0010...]]))
 
 
 .. topic:: **Exercise**

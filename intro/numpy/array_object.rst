@@ -430,7 +430,8 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 
 .. sourcecode:: pycon
 
-  >>> image = np.random.rand(30, 30)
+  >>> rng = np.random.default_rng(27446968)
+  >>> image = rng.random((30, 30))
   >>> plt.imshow(image, cmap=plt.cm.hot)
   <matplotlib.image.AxesImage object at ...>
   >>> plt.colorbar()
@@ -726,14 +727,14 @@ Using boolean masks
     >>> rng = np.random.default_rng(27446968)
     >>> a = rng.integers(0, 21, 15)
     >>> a
-    array([10,  3,  8,  0, 19, 10, 11,  9, 10,  6,  0, 20, 12,  7, 14])
+    array([ 3, 13, 12, 10, 10, 10, 18,  4,  8,  5,  6, 11, 12, 17,  3])
     >>> (a % 3 == 0)
-    array([False,  True, False,  True, False, False, False,  True, False,
-            True,  True, False,  True, False, False])
+    array([ True, False,  True, False, False, False,  True, False, False,
+           False,  True, False,  True, False,  True])
     >>> mask = (a % 3 == 0)
     >>> extract_from_a = a[mask] # or,  a[a%3==0]
     >>> extract_from_a           # extract a sub-array with the mask
-    array([ 3,  0,  9,  6,  0, 12])
+    array([ 3, 12, 18,  6, 12,  3])
 
 Indexing with a mask can be very useful to assign a new value to a sub-array:
 
@@ -741,7 +742,7 @@ Indexing with a mask can be very useful to assign a new value to a sub-array:
 
     >>> a[a % 3 == 0] = -1
     >>> a
-    array([10, -1,  8, -1, 19, 10, 11, -1, 10, -1, -1, 20, -1,  7, 14])
+    array([-1, 13, -1, 10, 10, 10, -1,  4,  8,  5, -1, 11, -1, 17, -1])
 
 
 Indexing with an array of integers

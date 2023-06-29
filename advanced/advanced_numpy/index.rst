@@ -1167,7 +1167,7 @@ Generalized ufuncs
     >>> import numpy as np
     >>> rng = np.random.default_rng(27446968)
     >>> np.linalg.det(rng.random((3, 5, 5)))
-    array([ 0.00965823, -0.13344729,  0.04583961])
+    array([ 0.01829761, -0.0077266 , -0.05336566])
     >>> np.linalg._umath_linalg.det.signature
     '(m,m)->()'
 
@@ -1566,14 +1566,13 @@ Good bug report
     When calling numpy.random.permutation with non-integer arguments
     it fails with a cryptic error message::
 
-        >>> np.random.permutation(12)
-        array([11,  5,  8,  4,  6,  1,  9,  3,  7,  2, 10,  0])
-        >>> np.random.permutation(12.) #doctest: +SKIP
+        >>> rng.permutation(12)
+        array([ 2,  6,  4,  1,  8, 11, 10,  5,  9,  3,  7,  0])
+        >>> rng.permutation(12.) #doctest: +SKIP
         Traceback (most recent call last):
-          File "<stdin>", line 1, in <module>
-          File "mtrand.pyx", line 3311, in mtrand.RandomState.permutation
-          File "mtrand.pyx", line 3254, in mtrand.RandomState.shuffle
-        TypeError: len() of unsized object
+        File "<stdin>", line 1, in <module>
+        File "_generator.pyx", line 4844, in numpy.random._generator.Generator.permutation
+        numpy.exceptions.AxisError: axis 0 is out of bounds for array of dimension 0
 
     This also happens with long arguments, and so
     np.random.permutation(X.shape[0]) where X is an array fails on 64

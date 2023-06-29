@@ -29,34 +29,32 @@ Examples
 
 * prepare random data::
 
-    >>> from numpy.random import rand
-    >>> data = np.round(rand(2, 3))
+    >>> rng = np.random.default_rng(27446968)
+    >>> data = np.round(rng.random((2, 3)))
     >>> data
-    array([[1.,  1.,  1.],
-           [1.,  0.,  1.]])
+    array([[1.,  0.,  1.],
+           [0.,  0.,  1.]])
 
 * assign the data using fancy indexing::
 
     >>> mtx[:2, [1, 2, 3]] = data
     >>> mtx
     <4x5 sparse matrix of type '<... 'numpy.float64'>'
-            with 5 stored elements in List of Lists format>
+            with 3 stored elements in List of Lists format>
     >>> print(mtx)
-      (0, 1)  1.0
-      (0, 2)  1.0
-      (0, 3)  1.0
-      (1, 1)  1.0
-      (1, 3)  1.0
+      (0, 1)	1.0
+      (0, 3)	1.0
+      (1, 3)	1.0
     >>> mtx.todense()
-    matrix([[0.,  1.,  1.,  1.,  0.],
-            [0.,  1.,  0.,  1.,  0.],
-            [0.,  0.,  0.,  0.,  0.],
-            [0.,  0.,  0.,  0.,  0.]])
+    matrix([[0., 1., 0., 1., 0.],
+            [0., 0., 0., 1., 0.],
+            [0., 0., 0., 0., 0.],
+            [0., 0., 0., 0., 0.]])
     >>> mtx.toarray()
-    array([[0.,  1.,  1.,  1.,  0.],
-           [0.,  1.,  0.,  1.,  0.],
-           [0.,  0.,  0.,  0.,  0.],
-           [0.,  0.,  0.,  0.,  0.]])
+    array([[0., 1., 0., 1., 0.],
+           [0., 0., 0., 1., 0.],
+           [0., 0., 0., 0., 0.],
+           [0., 0., 0., 0., 0.]])
 
 * more slicing and indexing::
 
