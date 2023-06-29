@@ -14,6 +14,8 @@ SSH_HOST=
 SSH_USER=
 SSH_TARGET_DIR=
 
+SHELL := /bin/bash
+
 .PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip check-rsync-env
 
 all: html-noplot
