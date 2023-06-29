@@ -38,7 +38,12 @@ jobs:
           command: |
             # NOTE: bad interaction w/ blas multithreading on circleci
             export OMP_NUM_THREADS=1
+            make pdf
             make html  # FIX: check that failing examples produce failure
+            cp \
+              ScientificPythonLectures.pdf \
+              ScientificPythonLectures-simple.pdf \
+              build/html/_downloads/
 
       - store_artifacts:
           path: build/html
