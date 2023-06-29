@@ -17,8 +17,19 @@ plt.axes([0, 0, 1, 1], frameon=False)
 
 for i in range(1, 11):
     r, g, b = np.random.uniform(0, 1, 3)
-    plt.plot([i, ], [1, ], 's', markersize=8, markerfacecolor=(r, g, b, 1),
-             markeredgewidth=.1,  markeredgecolor=(0, 0, 0, .5))
+    plt.plot(
+        [
+            i,
+        ],
+        [
+            1,
+        ],
+        "s",
+        markersize=8,
+        markerfacecolor=(r, g, b, 1),
+        markeredgewidth=0.1,
+        markeredgecolor=(0, 0, 0, 0.5),
+    )
 plt.xlim(0, 11)
 plt.xticks([])
 plt.yticks([])

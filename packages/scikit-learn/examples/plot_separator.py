@@ -12,12 +12,10 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.datasets import make_blobs
 
 # we create 50 separable synthetic points
-X, Y = make_blobs(n_samples=50, centers=2,
-                  random_state=0, cluster_std=0.60)
+X, Y = make_blobs(n_samples=50, centers=2, random_state=0, cluster_std=0.60)
 
 # fit the model
-clf = SGDClassifier(loss="hinge", alpha=0.01,
-                    fit_intercept=True)
+clf = SGDClassifier(loss="hinge", alpha=0.01, fit_intercept=True)
 clf.fit(X, Y)
 
 # plot the line, the points, and the nearest vectors to the plane
@@ -34,11 +32,12 @@ for (i, j), val in np.ndenumerate(X1):
 
 plt.figure(figsize=(4, 3))
 ax = plt.axes()
-ax.contour(X1, X2, Z, [-1.0, 0.0, 1.0], colors='k',
-           linestyles=['dashed', 'solid', 'dashed'])
+ax.contour(
+    X1, X2, Z, [-1.0, 0.0, 1.0], colors="k", linestyles=["dashed", "solid", "dashed"]
+)
 ax.scatter(X[:, 0], X[:, 1], c=Y, cmap=plt.cm.Paired)
 
-ax.axis('tight')
+ax.axis("tight")
 
 
 plt.show()

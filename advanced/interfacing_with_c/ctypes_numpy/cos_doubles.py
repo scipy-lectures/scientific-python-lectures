@@ -7,7 +7,7 @@ from ctypes import c_int
 
 # input type for the cos_doubles function
 # must be a double array, with single dimension that is contiguous
-array_1d_double = npct.ndpointer(dtype=np.double, ndim=1, flags='CONTIGUOUS')
+array_1d_double = npct.ndpointer(dtype=np.double, ndim=1, flags="CONTIGUOUS")
 
 # load the library, using NumPy mechanisms
 libcd = npct.load_library("libcos_doubles", ".")

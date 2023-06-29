@@ -8,7 +8,7 @@ An example plotting the matplotlib colormaps.
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.rc('text', usetex=False)
+plt.rc("text", usetex=False)
 a = np.outer(np.arange(0, 1, 0.01), np.ones(10))
 
 plt.figure(figsize=(10, 5))
@@ -18,9 +18,9 @@ maps.sort()
 l = len(maps) + 1
 
 for i, m in enumerate(maps):
-    plt.subplot(1, l, i+1)
+    plt.subplot(1, l, i + 1)
     plt.axis("off")
-    plt.imshow(a, aspect='auto', cmap=plt.get_cmap(m), origin="lower")
-    plt.title(m, rotation=90, fontsize=10, va='bottom')
+    plt.imshow(a, aspect="auto", cmap=plt.get_cmap(m), origin="lower")
+    plt.title(m, rotation=90, fontsize=10, va="bottom")
 
 plt.show()

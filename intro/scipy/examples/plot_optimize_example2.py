@@ -13,8 +13,10 @@ Demos finding minima and roots of a function.
 import numpy as np
 
 x = np.arange(-10, 10, 0.1)
+
+
 def f(x):
-    return x**2 + 10*np.sin(x)
+    return x**2 + 10 * np.sin(x)
 
 
 ############################################################
@@ -25,7 +27,7 @@ import scipy as sp
 
 # Global optimization
 grid = (-10, 10, 0.1)
-xmin_global = sp.optimize.brute(f, (grid, ))
+xmin_global = sp.optimize.brute(f, (grid,))
 print(f"Global minima found {xmin_global}")
 
 # Constrain optimization
@@ -46,23 +48,24 @@ print(f"Second root found {root2.x}")
 ############################################################
 
 import matplotlib.pyplot as plt
+
 fig = plt.figure(figsize=(6, 4))
 ax = fig.add_subplot(111)
 
 # Plot the function
-ax.plot(x, f(x), 'b-', label="f(x)")
+ax.plot(x, f(x), "b-", label="f(x)")
 
 # Plot the minima
 xmins = np.array([xmin_global[0], xmin_local])
-ax.plot(xmins, f(xmins), 'go', label="Minima")
+ax.plot(xmins, f(xmins), "go", label="Minima")
 
 # Plot the roots
 roots = np.array([root.x, root2.x])
-ax.plot(roots, f(roots), 'kv', label="Roots")
+ax.plot(roots, f(roots), "kv", label="Roots")
 
 # Decorate the figure
-ax.legend(loc='best')
-ax.set_xlabel('x')
-ax.set_ylabel('f(x)')
-ax.axhline(0, color='gray')
+ax.legend(loc="best")
+ax.set_xlabel("x")
+ax.set_ylabel("f(x)")
+ax.axhline(0, color="gray")
 plt.show()

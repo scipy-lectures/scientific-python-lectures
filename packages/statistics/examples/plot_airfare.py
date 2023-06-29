@@ -23,27 +23,40 @@ import os
 import pandas
 import requests
 
-if not os.path.exists('airfares.txt'):
+if not os.path.exists("airfares.txt"):
     # Download the file if it is not present
     r = requests.get(
-        'https://users.stat.ufl.edu/~winner/data/airq4.dat',
+        "https://users.stat.ufl.edu/~winner/data/airq4.dat",
         verify=False  # Wouldn't normally do this, but this site's certificate
-                      # is not yet distributed
+        # is not yet distributed
     )
-    with open('airfares.txt', 'wb') as f:
+    with open("airfares.txt", "wb") as f:
         f.write(r.content)
 
 # As a seperator, ' +' is a regular expression that means 'one of more
 # space'
-data = pandas.read_csv('airfares.txt', delim_whitespace=True, header=0,
-                       names=['city1', 'city2', 'pop1', 'pop2',
-                              'dist', 'fare_2000', 'nb_passengers_2000',
-                              'fare_2001', 'nb_passengers_2001'])
+data = pandas.read_csv(
+    "airfares.txt",
+    delim_whitespace=True,
+    header=0,
+    names=[
+        "city1",
+        "city2",
+        "pop1",
+        "pop2",
+        "dist",
+        "fare_2000",
+        "nb_passengers_2000",
+        "fare_2001",
+        "nb_passengers_2001",
+    ],
+)
 
 # we log-transform the number of passengers
 import numpy as np
-data['nb_passengers_2000'] = np.log10(data['nb_passengers_2000'])
-data['nb_passengers_2001'] = np.log10(data['nb_passengers_2001'])
+
+data["nb_passengers_2000"] = np.log10(data["nb_passengers_2000"])
+data["nb_passengers_2001"] = np.log10(data["nb_passengers_2001"])
 
 ##############################################################################
 # Make a dataframe whith the year as an attribute, instead of separate columns
@@ -54,21 +67,21 @@ data['nb_passengers_2001'] = np.log10(data['nb_passengers_2001'])
 # Make an index of each flight
 data_flat = data.reset_index()
 
-data_2000 = data_flat[['city1', 'city2', 'pop1', 'pop2',
-                       'dist', 'fare_2000', 'nb_passengers_2000']]
+data_2000 = data_flat[
+    ["city1", "city2", "pop1", "pop2", "dist", "fare_2000", "nb_passengers_2000"]
+]
 # Rename the columns
-data_2000.columns = ['city1', 'city2', 'pop1', 'pop2', 'dist', 'fare',
-                     'nb_passengers']
+data_2000.columns = ["city1", "city2", "pop1", "pop2", "dist", "fare", "nb_passengers"]
 # Add a column with the year
-data_2000.insert(0, 'year', 2000)
+data_2000.insert(0, "year", 2000)
 
-data_2001 = data_flat[['city1', 'city2', 'pop1', 'pop2',
-                       'dist', 'fare_2001', 'nb_passengers_2001']]
+data_2001 = data_flat[
+    ["city1", "city2", "pop1", "pop2", "dist", "fare_2001", "nb_passengers_2001"]
+]
 # Rename the columns
-data_2001.columns = ['city1', 'city2', 'pop1', 'pop2', 'dist', 'fare',
-                     'nb_passengers']
+data_2001.columns = ["city1", "city2", "pop1", "pop2", "dist", "fare", "nb_passengers"]
 # Add a column with the year
-data_2001.insert(0, 'year', 2001)
+data_2001.insert(0, "year", 2001)
 
 data_flat = pandas.concat([data_2000, data_2001])
 
@@ -77,12 +90,19 @@ data_flat = pandas.concat([data_2000, data_2001])
 # Plot scatter matrices highlighting different aspects
 
 import seaborn
-seaborn.pairplot(data_flat, vars=['fare', 'dist', 'nb_passengers'],
-                 kind='reg', markers='.')
+
+seaborn.pairplot(
+    data_flat, vars=["fare", "dist", "nb_passengers"], kind="reg", markers="."
+)
 
 # A second plot, to show the effect of the year (ie the 9/11 effect)
-seaborn.pairplot(data_flat, vars=['fare', 'dist', 'nb_passengers'],
-                 kind='reg', hue='year', markers='.')
+seaborn.pairplot(
+    data_flat,
+    vars=["fare", "dist", "nb_passengers"],
+    kind="reg",
+    hue="year",
+    markers=".",
+)
 
 
 ##############################################################################
@@ -92,12 +112,12 @@ import matplotlib.pyplot as plt
 
 plt.figure(figsize=(5, 2))
 seaborn.boxplot(data.fare_2001 - data.fare_2000)
-plt.title('Fare: 2001 - 2000')
+plt.title("Fare: 2001 - 2000")
 plt.subplots_adjust()
 
 plt.figure(figsize=(5, 2))
 seaborn.boxplot(data.nb_passengers_2001 - data.nb_passengers_2000)
-plt.title('NB passengers: 2001 - 2000')
+plt.title("NB passengers: 2001 - 2000")
 plt.subplots_adjust()
 
 
@@ -106,22 +126,22 @@ plt.subplots_adjust()
 # passengers
 import statsmodels.formula.api as sm
 
-result = sm.ols(formula='fare ~ 1 + dist + nb_passengers', data=data_flat).fit()
+result = sm.ols(formula="fare ~ 1 + dist + nb_passengers", data=data_flat).fit()
 print(result.summary())
 
 # Using a robust fit
-result = sm.rlm(formula='fare ~ 1 + dist + nb_passengers', data=data_flat).fit()
+result = sm.rlm(formula="fare ~ 1 + dist + nb_passengers", data=data_flat).fit()
 print(result.summary())
 
 
 ##############################################################################
 # Statistical testing: regression of fare on distance: 2001/2000 difference
 
-result = sm.ols(formula='fare_2001 - fare_2000 ~ 1 + dist', data=data).fit()
+result = sm.ols(formula="fare_2001 - fare_2000 ~ 1 + dist", data=data).fit()
 print(result.summary())
 
 # Plot the corresponding regression
-data['fare_difference'] = data['fare_2001'] - data['fare_2000']
-seaborn.lmplot(x='dist', y='fare_difference', data=data)
+data["fare_difference"] = data["fare_2001"] - data["fare_2000"]
+seaborn.lmplot(x="dist", y="fare_difference", data=data)
 
 plt.show()

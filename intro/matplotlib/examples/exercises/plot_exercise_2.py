@@ -24,7 +24,7 @@ plt.plot(X, C, color="blue", linewidth=1.0, linestyle="-")
 plt.plot(X, S, color="green", linewidth=1.0, linestyle="-")
 
 # Set x limits
-plt.xlim(-4., 4.)
+plt.xlim(-4.0, 4.0)
 
 # Set x ticks
 plt.xticks(np.linspace(-4, 4, 9))

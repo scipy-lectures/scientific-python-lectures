@@ -12,5 +12,6 @@ def test():
     pca = u[:, :10].T @ data
     results = fastica(pca.T, whiten=False)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     test()

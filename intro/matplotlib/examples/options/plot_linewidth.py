@@ -12,10 +12,10 @@ dpi = 72.0
 figsize = size[0] / float(dpi), size[1] / float(dpi)
 fig = plt.figure(figsize=figsize, dpi=dpi)
 fig.patch.set_alpha(0)
-plt.axes([0, .1, 1, .8], frameon=False)
+plt.axes([0, 0.1, 1, 0.8], frameon=False)
 
 for i in range(1, 11):
-    plt.plot([i, i], [0, 1], color='b', lw=i/2.)
+    plt.plot([i, i], [0, 1], color="b", lw=i / 2.0)
 
 plt.xlim(0, 11)
 plt.ylim(0, 1)

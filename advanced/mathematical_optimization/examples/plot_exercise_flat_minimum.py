@@ -19,17 +19,21 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
+
 def f(x):
-    return np.exp(-1/(.01*x[0]**2 + x[1]**2))
+    return np.exp(-1 / (0.01 * x[0] ** 2 + x[1] ** 2))
+
 
 # A well-conditionned version of f:
 def g(x):
-    return f([10*x[0], x[1]])
+    return f([10 * x[0], x[1]])
+
 
 # The gradient of g. We won't use it here for the optimization.
 def g_prime(x):
-    r = np.sqrt(x[0]**2 + x[1]**2)
-    return 2/r**3*g(x)*x/r
+    r = np.sqrt(x[0] ** 2 + x[1] ** 2)
+    return 2 / r**3 * g(x) * x / r
+
 
 result = sp.optimize.minimize(g, [1, 1], method="Powell", tol=1e-10)
 x_min = result.x
@@ -45,17 +49,18 @@ plt.plot(t, f([0, t]))
 plt.figure(1)
 plt.clf()
 X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]
-plt.imshow(f([X, Y]).T, cmap=plt.cm.gray_r, extent=[-1.5, 1.5, -1.1, 1.1],
-          origin='lower')
+plt.imshow(
+    f([X, Y]).T, cmap=plt.cm.gray_r, extent=[-1.5, 1.5, -1.1, 1.1], origin="lower"
+)
 plt.contour(X, Y, f([X, Y]), cmap=plt.cm.gnuplot)
 
 # Plot the gradient
-dX, dY = g_prime([.1*X[::5, ::5], Y[::5, ::5]])
+dX, dY = g_prime([0.1 * X[::5, ::5], Y[::5, ::5]])
 # Adjust for our preconditioning
-dX *= .1
-plt.quiver(X[::5, ::5], Y[::5, ::5], dX, dY, color='.5')
+dX *= 0.1
+plt.quiver(X[::5, ::5], Y[::5, ::5], dX, dY, color=".5")
 
 # Plot our solution
-plt.plot(x_min[0], x_min[1], 'r+', markersize=15)
+plt.plot(x_min[0], x_min[1], "r+", markersize=15)
 
 plt.show()

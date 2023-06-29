@@ -18,7 +18,7 @@ mtx[1, 100:200] = mtx[0, :100]
 mtx.setdiag(rand(1000))
 
 plt.clf()
-plt.spy(mtx, marker='.', markersize=2)
+plt.spy(mtx, marker=".", markersize=2)
 plt.show()
 
 mtx = mtx.tocsr()
@@ -26,4 +26,4 @@ rhs = rand(1000)
 
 x = sp.sparse.linalg.spsolve(mtx, rhs)
 
-print(f'rezidual: {np.linalg.norm(mtx * x - rhs)!r}')
+print(f"rezidual: {np.linalg.norm(mtx * x - rhs)!r}")

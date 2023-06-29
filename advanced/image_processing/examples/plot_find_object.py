@@ -14,9 +14,9 @@ np.random.seed(1)
 n = 10
 l = 256
 im = np.zeros((l, l))
-points = l*np.random.random((2, n**2))
+points = l * np.random.random((2, n**2))
 im[(points[0]).astype(int), (points[1]).astype(int)] = 1
-im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
+im = sp.ndimage.gaussian_filter(im, sigma=l / (4.0 * n))
 
 mask = im > im.mean()
 
@@ -31,12 +31,12 @@ labels = np.unique(label_im)
 label_im = np.searchsorted(labels, label_im)
 
 # Now that we have only one connected component, extract it's bounding box
-slice_x, slice_y = sp.ndimage.find_objects(label_im==4)[0]
+slice_x, slice_y = sp.ndimage.find_objects(label_im == 4)[0]
 roi = im[slice_x, slice_y]
 
 plt.figure(figsize=(4, 2))
 plt.axes([0, 0, 1, 1])
 plt.imshow(roi)
-plt.axis('off')
+plt.axis("off")
 
 plt.show()

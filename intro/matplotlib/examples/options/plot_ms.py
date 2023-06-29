@@ -15,8 +15,19 @@ fig.patch.set_alpha(0)
 plt.axes([0, 0, 1, 1], frameon=False)
 
 for i in range(1, 11):
-    plt.plot([i, ], [1, ], 's', markersize=i, markerfacecolor='w',
-         markeredgewidth=.5, markeredgecolor='k')
+    plt.plot(
+        [
+            i,
+        ],
+        [
+            1,
+        ],
+        "s",
+        markersize=i,
+        markerfacecolor="w",
+        markeredgewidth=0.5,
+        markeredgecolor="k",
+    )
 
 plt.xlim(0, 11)
 plt.xticks([])

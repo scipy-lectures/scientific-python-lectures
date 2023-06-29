@@ -10,6 +10,7 @@ in the :ref:`statistics` chapter.
 
 # Load the data
 from sklearn.datasets import load_iris
+
 iris = load_iris()
 
 import matplotlib.pyplot as plt
