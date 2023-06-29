@@ -152,7 +152,7 @@ This can be compiled:
     creating build
     creating build/temp.linux-x86_64-2.7
     gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/include/python2.7 -c cos_module.c -o build/temp.linux-x86_64-2.7/cos_module.o
-    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_module.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/python_c_api/cos_module.so
+    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_module.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/python_c_api/cos_module.so
 
     $ ls
     build/  cos_module.c  cos_module.so  setup.py
@@ -175,7 +175,7 @@ The file ``cos_module.so`` contains the compiled extension, which we can now loa
     In [2]: cos_module?
     Type:       module
     String Form:<module 'cos_module' from 'cos_module.so'>
-    File:       /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/python_c_api/cos_module.so
+    File:       /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/python_c_api/cos_module.so
     Docstring:  <no docstring>
 
     In [3]: dir(cos_module)
@@ -289,7 +289,7 @@ We may now use this, as before:
     In [2]: cos_module?
     Type:       module
     String Form:<module 'cos_module' from 'cos_module.py'>
-    File:       /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/ctypes/cos_module.py
+    File:       /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/ctypes/cos_module.py
     Docstring:  <no docstring>
 
     In [3]: dir(cos_module)
@@ -324,7 +324,7 @@ message is not quite as helpful, since it does not tell us what the type should 
     <ipython-input-7-11bee483665d> in <module>()
     ----> 1 cos_module.cos_func('foo')
 
-    /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/ctypes/cos_module.py in cos_func(arg)
+    /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/ctypes/cos_module.py in cos_func(arg)
          12 def cos_func(arg):
          13     ''' Wrapper for cos from math.h '''
     ---> 14     return libm.cos(arg)
@@ -485,7 +485,7 @@ Generating the compiled wrappers is a two stage process:
     creating build/temp.linux-x86_64-2.7
     gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/include/python2.7 -c cos_module.c -o build/temp.linux-x86_64-2.7/cos_module.o
     gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/include/python2.7 -c cos_module_wrap.c -o build/temp.linux-x86_64-2.7/cos_module_wrap.o
-    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_module.o build/temp.linux-x86_64-2.7/cos_module_wrap.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/swig/_cos_module.so
+    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_module.o build/temp.linux-x86_64-2.7/cos_module_wrap.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/swig/_cos_module.so
 
     $ ls
     build/  cos_module.c  cos_module.h  cos_module.i  cos_module.py  _cos_module.so*  cos_module_wrap.c  setup.py
@@ -499,7 +499,7 @@ We can now load and execute the ``cos_module`` as we have done in the previous e
     In [2]: cos_module?
     Type:       module
     String Form:<module 'cos_module' from 'cos_module.py'>
-    File:       /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/swig/cos_module.py
+    File:       /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/swig/cos_module.py
     Docstring:  <no docstring>
 
     In [3]: dir(cos_module)
@@ -602,7 +602,7 @@ As previously, we need to use ``include_dirs`` to specify the location.
                      from /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/arrayobject.h:15,
                      from cos_doubles_wrap.c:2706:
     /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/npy_deprecated_api.h:11:2: warning: #warning "Using deprecated NumPy API, disable it by #defining NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION"
-    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_doubles.o build/temp.linux-x86_64-2.7/cos_doubles_wrap.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/swig_numpy/_cos_doubles.so
+    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_doubles.o build/temp.linux-x86_64-2.7/cos_doubles_wrap.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/swig_numpy/_cos_doubles.so
     $ ls
     build/         cos_doubles.h  cos_doubles.py    cos_doubles_wrap.c  setup.py
     cos_doubles.c  cos_doubles.i  _cos_doubles.so*  numpy.i             test_cos_doubles.py
@@ -687,7 +687,7 @@ Compiling this:
     creating build
     creating build/temp.linux-x86_64-2.7
     gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/include/python2.7 -c cos_module.c -o build/temp.linux-x86_64-2.7/cos_module.o
-    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_module.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/cython/cos_module.so
+    gcc -pthread -shared build/temp.linux-x86_64-2.7/cos_module.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/cython/cos_module.so
     $ ls
     build/  cos_module.c  cos_module.pyx  cos_module.so*  setup.py
 
@@ -700,7 +700,7 @@ And running it:
     In [2]: cos_module?
     Type:       module
     String Form:<module 'cos_module' from 'cos_module.so'>
-    File:       /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/cython/cos_module.so
+    File:       /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/cython/cos_module.so
     Docstring:  <no docstring>
 
     In [3]: dir(cos_module)
@@ -732,7 +732,7 @@ And, testing a little for robustness, we can see that we get good error messages
     <ipython-input-7-11bee483665d> in <module>()
     ----> 1 cos_module.cos_func('foo')
 
-    /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/cython/cos_module.so in cos_module.cos_func (cos_module.c:506)()
+    /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/cython/cos_module.so in cos_module.cos_func (cos_module.c:506)()
 
     TypeError: a float is required
 
@@ -797,7 +797,7 @@ And can be compiled using ``distutils``:
     /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/npy_deprecated_api.h:11:2: warning: #warning "Using deprecated NumPy API, disable it by #defining NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION"
     /home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include/numpy/__ufunc_api.h:236: warning: ‘_import_umath’ defined but not used
     gcc -pthread -fno-strict-aliasing -g -O2 -DNDEBUG -g -fwrapv -O3 -Wall -Wstrict-prototypes -fPIC -I/home/esc/anaconda/lib/python2.7/site-packages/numpy/core/include -I/home/esc/anaconda/include/python2.7 -c cos_doubles.c -o build/temp.linux-x86_64-2.7/cos_doubles.o
-    gcc -pthread -shared build/temp.linux-x86_64-2.7/_cos_doubles.o build/temp.linux-x86_64-2.7/cos_doubles.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scipy-lecture-notes/advanced/interfacing_with_c/cython_numpy/cos_doubles.so
+    gcc -pthread -shared build/temp.linux-x86_64-2.7/_cos_doubles.o build/temp.linux-x86_64-2.7/cos_doubles.o -L/home/esc/anaconda/lib -lpython2.7 -o /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/cython_numpy/cos_doubles.so
     $ ls
     build/  _cos_doubles.c  cos_doubles.c  cos_doubles.h  _cos_doubles.pyx  cos_doubles.so*  setup.py  test_cos_doubles.py
 
