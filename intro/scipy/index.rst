@@ -1065,33 +1065,25 @@ real-life examples of scientific computing with Python. Now that the basics of
 working with NumPy and SciPy have been introduced, the interested user is
 invited to try these exercises.
 
-.. only:: latex
-
-    .. toctree::
-       :maxdepth: 1
-
-       summary-exercises/stats-interpolate.rst
-       summary-exercises/optimize-fit.rst
-       summary-exercises/image-processing.rst
-       summary-exercises/answers_image_processing.rst
-
 .. only:: html
 
    **Exercises:**
 
-   .. toctree::
-       :maxdepth: 1
+.. toctree::
+    :maxdepth: 1
 
-       summary-exercises/stats-interpolate.rst
-       summary-exercises/optimize-fit.rst
-       summary-exercises/image-processing.rst
+    summary-exercises/stats-interpolate.rst
+    summary-exercises/optimize-fit.rst
+    summary-exercises/image-processing.rst
+
+.. only:: html
 
    **Proposed solutions:**
 
-   .. toctree::
-      :maxdepth: 1
+.. toctree::
+   :maxdepth: 1
 
-      summary-exercises/answers_image_processing.rst
+   summary-exercises/answers_image_processing.rst
 
 .. include the gallery. Skip the first line to avoid the "orphan"
    declaration
