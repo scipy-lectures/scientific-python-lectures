@@ -1,0 +1,49 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install TeX
+        run: |
+          sudo apt update
+          sudo apt install -y \
+            dvipng \
+            latexmk \
+            texlive-latex-extra \
+            texlive-fonts-extra \
+            texlive-extra-utils
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip wheel setuptools
+          python -m pip install -r requirements.txt
+
+      - name: "Build PDF & HTML"
+        run: |
+          make pdf
+          make html
+          mv \
+              ScientificPythonLectures.pdf \
+              ScientificPythonLectures-simple.pdf \
+              build/html/_downloads
+          echo -n 'lectures.scientific-python.org' > build/html/CNAME
+          touch build/html/.nojekyll
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          external_repository: scipy-lectures/lectures.scientific-python.org
+          publish_branch: gh-pages
+          publish_dir: ./build/html
