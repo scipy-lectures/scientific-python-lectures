@@ -10,6 +10,7 @@
 # serve to show the default.
 from datetime import date
 from subprocess import PIPE, Popen
+import os
 
 import sphinx_gallery
 from pygments import formatters
@@ -389,3 +390,9 @@ def setup(app):
 
     # Is this still used?
     app.add_css_file("https://unpkg.com/purecss@3.0.0/build/base-min.css")
+
+
+# Generate redirect on scipy-lectures.org
+domain = os.getenv("DOMAIN", "lectures.scientific-python.org")
+html_context = {"domain": domain}
+print(f"Building for domain: {domain}")

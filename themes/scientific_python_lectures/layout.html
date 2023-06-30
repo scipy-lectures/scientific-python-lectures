@@ -2,6 +2,13 @@
 
 {% block extrahead %}
 {{ super() }}
+{% if domain == 'scipy-lectures.org' %}
+  {% if pagename.endswith('index') %}
+  <meta http-equiv="refresh" content="0; url=https://lectures.scientific-python.org/{{ pagename.rsplit('/', 1)[0] }}"}}>
+  {% else %}
+  <meta http-equiv="refresh" content="0; url=https://lectures.scientific-python.org/{{ pagename }}.html"}}>
+  {% endif %}
+{% endif %}
 <script defer data-domain="lectures.scientific-python.org" src="https://views.scientific-python.org/js/script.js"></script>
 {% endblock %}
 

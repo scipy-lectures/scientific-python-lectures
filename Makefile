@@ -60,6 +60,9 @@ html:
 	@echo
 	@echo "Build finished. The HTML pages are in build/html."
 
+html-scipy: export DOMAIN=scipy-lectures.org
+html-scipy: html
+
 cleandoctrees:
 	rm -rf build/doctrees
 
@@ -120,7 +123,9 @@ zip: clean html pdf
 	cp ScientificPythonLectures.pdf build/ ;
 	git archive -o build/scientific-python-lectures-source-$(TAG).zip --prefix scientific-python-lectures-$(TAG)/ $(TAG)
 
-install: cleandoctrees html pdf
+# This target is used to deploy to the old location: scipy-lectures.org
+# The site is now hosted via Netlify at https://lectures.scientific-python.org
+install: cleandoctrees html-scipy pdf
 	rm -rf build/scipy-lectures.github.com
 	cp ScientificPythonLectures.pdf ScientificPythonLectures-simple.pdf build/html/_downloads/
 	cd build/ && \
