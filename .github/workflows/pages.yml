@@ -47,3 +47,6 @@ jobs:
           external_repository: scipy-lectures/lectures.scientific-python.org
           publish_branch: gh-pages
           publish_dir: ./build/html
+          force_orphan: true
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
