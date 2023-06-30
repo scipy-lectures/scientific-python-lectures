@@ -1,8 +1,8 @@
 .. image:: https://zenodo.org/badge/doi/10.5281/zenodo.594102.svg
     :target: https://dx.doi.org/10.5281/zenodo.594102
 
-.. image:: https://github.com/scipy-lectures/scipy-lecture-notes/workflows/test/badge.svg?branch=main
-  :target: https://github.com/scipy-lectures/scipy-lecture-notes/actions?query=workflow%3A%22test%22
+.. image:: https://github.com/scipy-lectures/scientific-python-lectures/workflows/test/badge.svg?branch=main
+  :target: https://github.com/scipy-lectures/scientific-python-lectures/actions?query=workflow%3A%22test%22
 
 ==========================
 Scientific Python Lectures

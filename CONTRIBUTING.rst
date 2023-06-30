@@ -9,7 +9,7 @@ To propose bugfixes or straightforward improvements to the lectures, see the
 contribution guide below.
 
 For new topics, read the objectives first and `open an issue on the GitHub
-project <https://github.com/scipy-lectures/scipy-lecture-notes/issues>`_ to
+project <https://github.com/scipy-lectures/scientific-python-lectures/issues>`_ to
 discuss it with the editors.
 
 

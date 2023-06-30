@@ -116,9 +116,9 @@ zip: clean html pdf
 	mkdir -p build/scipy_lecture_notes ;
 	cp ScientificPythonLectures.pdf ScientificPythonLectures-simple.pdf build/html/_downloads/
 	cp -r data build/html/
-	cd build/html ; zip -r ../scipy-lecture-notes-html-$(TAG).zip .
+	cd build/html ; zip -r ../scientific-python-lectures-html-$(TAG).zip .
 	cp ScientificPythonLectures.pdf build/ ;
-	git archive -o build/scipy-lecture-notes-source-$(TAG).zip --prefix scipy-lecture-notes-$(TAG)/ $(TAG)
+	git archive -o build/scientific-python-lectures-source-$(TAG).zip --prefix scientific-python-lectures-$(TAG)/ $(TAG)
 
 install: cleandoctrees html pdf
 	rm -rf build/scipy-lectures.github.com

@@ -96,7 +96,7 @@ Scientific Python Lectures
 
        |html-icon| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/main>`_
 
-       |github-icon| `Source code (github) <https://github.com/scipy-lectures/scipy-lecture-notes>`_
+       |github-icon| `Source code (github) <https://github.com/scipy-lectures/scientific-python-lectures>`_
 
 
     Tutorials on the scientific Python ecosystem: a quick introduction to

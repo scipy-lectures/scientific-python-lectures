@@ -61,7 +61,7 @@ The easiest way to make your own version of this teaching material
 is to fork it under GitHub, and use the git version control system to
 maintain your own fork. For this, all you have to do is create an account
 on GitHub and click on the *fork* button, on the top right of `this
-page <https://github.com/scipy-lectures/scipy-lecture-notes>`_. You can use git to pull from your *fork*, and push back to it the
+page <https://github.com/scipy-lectures/scientific-python-lectures>`_. You can use git to pull from your *fork*, and push back to it the
 changes. If you want to contribute the changes back, just fill a
 *pull request*, using the button on the top of your fork's page.
 
