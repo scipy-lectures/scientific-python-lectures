@@ -14,6 +14,8 @@ SSH_HOST=
 SSH_USER=
 SSH_TARGET_DIR=
 
+SHELL := /bin/bash
+
 .PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip check-rsync-env
 
 all: html-noplot
@@ -80,9 +82,10 @@ htmlhelp:
 
 latex: cleandoctrees
 	mkdir -p build/latex build/doctrees
+	cp intro/scipy/index.rst{,.bak}
 	sed -i '/^   solutions.rst/d' intro/scipy/index.rst
 	$(SPHINXBUILD) -b $@ $(ALLSPHINXOPTS) build/latex
-	git restore intro/scipy/index.rst
+	mv intro/scipy/index.rst{.bak,}
 	@echo
 	@echo "Build finished; the LaTeX files are in build/latex."
 	@echo "Run \`make all-pdf' or \`make all-ps' in that directory to" \

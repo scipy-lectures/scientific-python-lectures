@@ -35,7 +35,7 @@ Scientific Python Lectures
         margin-right: -20px;
         margin-top: -10px;
         border-radius: 6px;
-        font-family: FontAwesome, sans-serif;
+        font-family: sans-serif;
         min-width: 200pt;
     }
 
@@ -59,27 +59,44 @@ Scientific Python Lectures
         margin-top: 20px;
     }
 
+    .vcenter {
+      vertical-align: sub;
+    }
+
   </style>
 
 .. nice layout in the toc
 
-.. |pdf| unicode:: U+f1c1 .. PDF file
+.. Icons from https://fonts.google.com/icons
 
-.. |archive| unicode:: U+f187 .. archive file
+.. |pdf-icon| image:: images/icon-pdf.svg
+   :width: 15em
+   :class: vcenter
+   :alt: PDF icon
 
-.. |github| unicode:: U+f09b  .. github logo
+.. |html-icon| image:: images/icon-archive.svg
+   :width: 15em
+   :class: vcenter
+   :alt: Archive icon
+
+
+.. |github-icon| image:: images/icon-github.svg
+   :width: 15em
+   :class: vcenter
+   :alt: GitHub icon
+
 
 .. only:: html
 
-    .. sidebar::  Download
+    .. sidebar:: Download
 
-       |pdf| `PDF, 2 pages per side <./_downloads/ScientificPythonLectures.pdf>`_
+       |pdf-icon| `PDF, 2 pages per side <./_downloads/ScientificPythonLectures.pdf>`_
 
-       |pdf| `PDF, 1 page per side <./_downloads/ScientificPythonLectures-simple.pdf>`_
+       |pdf-icon| `PDF, 1 page per side <./_downloads/ScientificPythonLectures-simple.pdf>`_
 
-       |archive| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/main>`_
+       |html-icon| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/main>`_
 
-       |github| `Source code (github) <https://github.com/scipy-lectures/scientific-python-lectures>`_
+       |github-icon| `Source code (github) <https://github.com/scipy-lectures/scientific-python-lectures>`_
 
 
     Tutorials on the scientific Python ecosystem: a quick introduction to
