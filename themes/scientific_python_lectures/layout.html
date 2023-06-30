@@ -1,5 +1,10 @@
 {% extends 'basic/layout.html' %}
 
+{% block extrahead %}
+{{ super() }}
+<script defer data-domain="lectures.scientific-python.org" src="https://views.scientific-python.org/js/script.js"></script>
+{% endblock %}
+
 {% block sidebarsourcelink %}
 {% endblock %}
 
