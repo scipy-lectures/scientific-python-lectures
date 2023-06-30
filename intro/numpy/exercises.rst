@@ -33,7 +33,7 @@ Array manipulations
 3. Harder one: Generate a 10 x 3 array of random numbers (in range [0,1]).
    For each row, pick the number closest to 0.5.
 
-   - Use ``abs`` and ``argsort`` to find the column ``j`` closest for
+   - Use ``abs`` and ``argmin`` to find the column ``j`` closest for
      each row.
 
    - Use fancy indexing to extract the numbers.  (Hint: ``a[i,j]`` --
