@@ -41,8 +41,8 @@ repos:
       - id: cython-lint
         args: [--no-pycodestyle, --max-line-length=88]
 
-  - repo: https://github.com/charliermarsh/ruff-pre-commit
-    rev: 1ac904bbe451ef0b5a437d1d3b331a244c1f272c # v0.0.275
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: 95f113d6340ab4348ecc5d912cf6e6b3465bfb86 # v0.0.277
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
