@@ -322,7 +322,6 @@ will get you far. Here are several good easy-to-use editors:
     but commercial)
   * `Visual Studio Code <https://code.visualstudio.com/docs/languages/python>`_:
     integrates a Python console, notebooks, a debugger, ...
-  * `Atom <https://atom.io>`_
 
 Some of these are shipped by the various scientific Python distributions,
 and you can find them in the menus.
