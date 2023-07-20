@@ -94,8 +94,6 @@ Scientific Python Lectures
 
        |pdf-icon| `PDF, 1 page per side <./_downloads/ScientificPythonLectures-simple.pdf>`_
 
-       |html-icon| `HTML and example files <https://github.com/scipy-lectures/scipy-lectures.github.com/zipball/main>`_
-
        |github-icon| `Source code (github) <https://github.com/scipy-lectures/scientific-python-lectures>`_
 
 
