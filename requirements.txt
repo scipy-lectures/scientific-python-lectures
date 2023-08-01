@@ -1,4 +1,4 @@
-numpy==1.25.0
+numpy==1.25.2
 scipy==1.11.1
 matplotlib==3.7.1
 pandas==2.0.3
