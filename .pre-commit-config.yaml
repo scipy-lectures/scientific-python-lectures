@@ -19,36 +19,36 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: 50c5478ed9e10bf360335449280cf2a67f4edb7a # v2.7.1
+    rev: efd8b1e16f05132acf6edcf2827eeab21e0e00db # frozen: v3.0.0
     hooks:
       - id: prettier
         files: \.(md|rst|yml|yaml)
         args: [--prose-wrap=preserve]
 
   - repo: https://github.com/psf/black
-    rev: bf7a16254ec96b084a6caf3d435ec18f0f245cc7 # 23.3.0
+    rev: 193ee766ca496871f93621d6b58d57a6564ff81b # frozen: 23.7.0
     hooks:
       - id: black
 
   - repo: https://github.com/adamchainz/blacken-docs
-    rev: 4b94add9bc83d772ae5e31a679a18609c1750513 # 1.14.0
+    rev: 2e74dc4c30c336176e76e0426c66f09a4e79df9c # frozen: 1.15.0
     hooks:
       - id: blacken-docs
 
   - repo: https://github.com/MarcoGorelli/cython-lint
-    rev: ee720d6332a996d755b8919de55fc75d408be768 # v0.15.0
+    rev: 0d4704ff7d75ad487dcde6947c628be824060184 # frozen: v0.15.0
     hooks:
       - id: cython-lint
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: 95f113d6340ab4348ecc5d912cf6e6b3465bfb86 # v0.0.277
+    rev: ade96e24aa3fa43c9d9b50d6cccae93d82765f40 # frozen: v0.0.282
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
 
   - repo: https://github.com/codespell-project/codespell
-    rev: "v2.2.5"
+    rev: "355e50e14fd03fe83e4ed9aa0489824b150b3b58" # frozen: v2.2.5
     hooks:
       - id: codespell
         args: ["-w", "-L", "ans,nd,sav,mke,ags,mot,coo,whos"]
