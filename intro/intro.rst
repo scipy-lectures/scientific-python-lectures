@@ -25,7 +25,7 @@ Python's strengths
   don't want to re-program the plotting of a curve, a Fourier transform
   or a fitting algorithm. Don't reinvent the wheel!
 
-* **Easy to learn** Most scientists are not payed as programmers, neither
+* **Easy to learn** Most scientists are not paid as programmers, neither
   have they been trained so. They need to be able to draw a curve, smooth
   a signal, do a Fourier transform in a few minutes.
 

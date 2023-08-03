@@ -2,7 +2,7 @@
 Analysis of Iris petal and sepal sizes
 =======================================
 
-Ilustrate an analysis on a real dataset:
+Illustrate an analysis on a real dataset:
 
 - Visualizing the data to formulate intuitions
 - Fitting of a linear model

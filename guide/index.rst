@@ -84,7 +84,7 @@ presentation::
 
     .. tip::
 
-        Here insert a full-blown discussion, that will be collapsable in
+        Here insert a full-blown discussion, that will be collapsible in
         the HTML version.
 
         It can span on multiple paragraphs
@@ -93,7 +93,7 @@ This renders as:
 
     .. tip::
 
-        Here insert a full-blown discussion, that will be collapsable in
+        Here insert a full-blown discussion, that will be collapsible in
         the HTML version.
 
         It can span on multiple paragraphs

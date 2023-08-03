@@ -2,7 +2,7 @@
 Geometrical transformations
 ==============================
 
-This examples demos some simple geometrical transformations on a Racoon face.
+This examples demos some simple geometrical transformations on a Raccoon face.
 """
 
 import numpy as np

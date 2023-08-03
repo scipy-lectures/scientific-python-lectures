@@ -18,7 +18,7 @@ Block Compressed Row Format (BSR)
     * subclass of :class:`_cs_matrix` (common CSR/CSC functionality)
         * subclass of :class:`_data_matrix` (sparse matrix classes with
     	  `.data` attribute)
-* fast matrix vector products and other arithmetics (sparsetools)
+* fast matrix vector products and other arithmetic (sparsetools)
 * constructor accepts:
     * dense matrix (array)
     * sparse matrix

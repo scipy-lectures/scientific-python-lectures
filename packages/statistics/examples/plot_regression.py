@@ -21,7 +21,7 @@ from statsmodels.stats.anova import anova_lm
 # Generate and show the data
 x = np.linspace(-5, 5, 20)
 
-# To get reproducable values, provide a seed value
+# To get reproducible values, provide a seed value
 rng = np.random.default_rng(27446968)
 
 y = -5 + 3 * x + 4 * np.random.normal(size=x.shape)
@@ -44,7 +44,7 @@ model = ols("y ~ x", data).fit()
 # Print the summary
 print(model.summary())
 
-# Peform analysis of variance on fitted linear model
+# Perform analysis of variance on fitted linear model
 anova_results = anova_lm(model)
 
 print("\nANOVA results")

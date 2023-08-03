@@ -520,7 +520,7 @@ We can inspect the various statistics derived from the fit::
    :class: green
 
    Retrieve the estimated parameters from the model above. **Hint**:
-   use tab-completion to find the relevent attribute.
+   use tab-completion to find the relevant attribute.
 
 |
 
@@ -823,7 +823,7 @@ wage and eduction, can be plotted using :func:`seaborn.lmplot`::
         outliers, not representative of the population, but driving the
         regression.
 
-    To compute a regression that is less sentive to outliers, one must
+    To compute a regression that is less sensitive to outliers, one must
     use a `robust model
     <https://en.wikipedia.org/wiki/Robust_statistics>`_. This is done in
     seaborn using ``robust=True`` in the plotting functions, or in

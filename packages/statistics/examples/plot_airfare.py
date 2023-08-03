@@ -33,7 +33,7 @@ if not os.path.exists("airfares.txt"):
     with open("airfares.txt", "wb") as f:
         f.write(r.content)
 
-# As a seperator, ' +' is a regular expression that means 'one of more
+# As a separator, ' +' is a regular expression that means 'one of more
 # space'
 data = pandas.read_csv(
     "airfares.txt",
@@ -59,7 +59,7 @@ data["nb_passengers_2000"] = np.log10(data["nb_passengers_2000"])
 data["nb_passengers_2001"] = np.log10(data["nb_passengers_2001"])
 
 ##############################################################################
-# Make a dataframe whith the year as an attribute, instead of separate columns
+# Make a dataframe with the year as an attribute, instead of separate columns
 
 # This involves a small danse in which we separate the dataframes in 2,
 # one for year 2000, and one for 2001, before concatenating again.

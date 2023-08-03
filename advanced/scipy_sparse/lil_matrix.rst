@@ -15,7 +15,7 @@ List of Lists Format (LIL)
     * sparse matrix
     * shape tuple (create empty matrix)
 * flexible slicing, changing sparsity structure is efficient
-* slow arithmetics, slow column slicing due to being row-based
+* slow arithmetic, slow column slicing due to being row-based
 * use:
     * when sparsity pattern is not known apriori or changes
     * example: reading a sparse matrix from a text file

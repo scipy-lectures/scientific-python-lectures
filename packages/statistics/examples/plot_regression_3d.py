@@ -28,7 +28,7 @@ x = np.linspace(-5, 5, 21)
 # We generate a 2D grid
 X, Y = np.meshgrid(x, x)
 
-# To get reproducable values, provide a seed value
+# To get reproducible values, provide a seed value
 rng = np.random.default_rng(27446968)
 
 # Z is the elevation of this 2D grid
@@ -49,7 +49,7 @@ ax.set_zlabel("Z")
 # Convert the data into a Pandas DataFrame to use the formulas framework
 # in statsmodels
 
-# First we need to flatten the data: it's 2D layout is not relevent.
+# First we need to flatten the data: it's 2D layout is not relevant.
 X = X.flatten()
 Y = Y.flatten()
 Z = Z.flatten()
@@ -66,7 +66,7 @@ print("\nRetrieving manually the parameter estimates:")
 print(model._results.params)
 # should be array([-4.99754526,  3.00250049, -0.50514907])
 
-# Peform analysis of variance on fitted linear model
+# Perform analysis of variance on fitted linear model
 anova_results = anova_lm(model)
 
 print("\nANOVA results")

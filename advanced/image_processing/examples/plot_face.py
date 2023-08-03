@@ -1,8 +1,8 @@
 """
-Displaying a Racoon Face
-========================
+Displaying a Raccoon Face
+=========================
 
-Small example to plot a racoon face.
+Small example to plot a raccoon face.
 """
 
 import scipy as sp

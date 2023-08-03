@@ -2,7 +2,7 @@
 Total Variation denoising
 ===========================
 
-This example demoes Total-Variation (TV) denoising on a Racoon face.
+This example demoes Total-Variation (TV) denoising on a Raccoon face.
 """
 
 import numpy as np

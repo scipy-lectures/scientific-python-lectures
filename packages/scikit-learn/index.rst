@@ -46,10 +46,10 @@ scikit-learn: machine learning in Python
 .. currentmodule:: sklearn
 
 Introduction: problem settings
-===============================
+==============================
 
 What is machine learning?
---------------------------
+-------------------------
 
 .. tip::
 
@@ -104,10 +104,10 @@ result of test data: here, we might be given an x-value, and the model
 would allow us to predict the y value.
 
 Data in scikit-learn
----------------------
+--------------------
 
 The data matrix
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 Machine learning algorithms implemented in scikit-learn expect data
 to be stored in a **two-dimensional array or matrix**. The arrays can be
@@ -133,10 +133,10 @@ size of the array is expected to be ``[n_samples, n_features]``
     than NumPy arrays.
 
 A Simple Example: the Iris Dataset
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The application problem
-........................
+.......................
 
 As an example of a simple dataset, let us a look at the
 iris data stored by scikit-learn. Suppose we want to recognize species of
@@ -173,7 +173,7 @@ sample, and feature number ``i`` must be a similar kind of quantity for
 each sample.
 
 Loading the Iris Data with Scikit-learn
-........................................
+.......................................
 
 Scikit-learn has a very straightforward set of data on these iris
 species. The data consist of the following:
@@ -247,7 +247,7 @@ dimensions at a time using a scatter plot:
     :class: green
 
     Can you choose 2 features to find a plot where it is easier to
-    seperate the different classes of irises?
+    separate the different classes of irises?
 
     **Hint**: click on the figure above to see the code that generates it,
     and modify this code.
@@ -298,7 +298,7 @@ underscore::
     array([1.])
 
 Supervised Learning: Classification and regression
----------------------------------------------------
+--------------------------------------------------
 
 In **Supervised Learning**, we have a dataset consisting of both
 features and labels. The task is to construct an estimator which is able
@@ -364,7 +364,7 @@ regression one:
    A plot of a simple linear regression.
 
 A recap on Scikit-learn's estimator interface
-----------------------------------------------
+---------------------------------------------
 
 Scikit-learn strives to have a uniform interface across all methods, and
 we’ll see examples of these below. Given a scikit-learn *estimator*
@@ -404,9 +404,9 @@ object named ``model``, the following methods are available:
     input data.
 
 Regularization: what it is and why it is necessary
-----------------------------------------------------
+--------------------------------------------------
 
-Prefering simpler models
+Preferring simpler models
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Train errors** Suppose you are using a 1-nearest neighbor estimator.
@@ -561,7 +561,7 @@ One good method to keep in mind is Gaussian Naive Bayes
 .. tip::
 
    Gaussian Naive Bayes fits a Gaussian distribution to each training label
-   independantly on each feature, and uses this to quickly give a rough
+   independently on each feature, and uses this to quickly give a rough
    classification. It is generally not sufficiently accurate for real-world
    data, but can perform surprisingly well, for instance on text data.
 
@@ -857,7 +857,7 @@ We can plot the error: expected as a function of predicted::
 
 
 Measuring prediction performance
-=================================
+================================
 
 A quick test on the K-neighbors classifier
 ------------------------------------------
@@ -931,7 +931,7 @@ perfectly memorize the training set.
    Performance on test set does not measure overfit (as described above)
 
 A correct approach: Using a validation set
--------------------------------------------
+------------------------------------------
 
 Learning the parameters of a prediction function and testing it on the
 same data is a methodological mistake: a model that would just repeat the
@@ -1013,7 +1013,7 @@ f1-score on the training data itself::
    need to use different metrics, such as explained variance.
 
 Model Selection via Validation
---------------------------------
+------------------------------
 
 .. tip::
 
@@ -1072,7 +1072,7 @@ Model Selection via Validation
 
 
 Cross-validation
------------------
+----------------
 
 Cross-validation consists in repetively splitting the data in pairs of
 train and test sets, called 'folds'. Scikit-learn comes with a function
@@ -1099,10 +1099,10 @@ We can use different splitting strategies, such as random splitting::
     datasets.
 
 Hyperparameter optimization with cross-validation
---------------------------------------------------
+-------------------------------------------------
 
 Consider regularized linear models, such as *Ridge Regression*, which
-uses l2 regularlization, and *Lasso Regression*, which uses l1
+uses l2 regularization, and *Lasso Regression*, which uses l1
 regularization. Choosing their regularization parameter is important.
 
 Let us set these parameters on the Diabetes dataset, a simple regression
@@ -1302,7 +1302,7 @@ the dataset::
 
 
 Visualization with a non-linear embedding: tSNE
-------------------------------------------------
+-----------------------------------------------
 
 For visualization, more complex embeddings can be useful (for statistical
 analysis, they are harder to control). :class:`sklearn.manifold.TSNE` is
@@ -1338,7 +1338,7 @@ in 2D enables visualization::
 |
 
 :class:`sklearn.manifold.TSNE` separates quite well the different classes
-of digits eventhough it had no access to the class information.
+of digits even though it had no access to the class information.
 
 .. raw:: html
 
@@ -1357,7 +1357,7 @@ of digits eventhough it had no access to the class information.
         >>> # ...
 
 Parameter selection, Validation, and Testing
-=============================================
+============================================
 
 Hyperparameters, Over-fitting, and Under-fitting
 ------------------------------------------------
@@ -1421,7 +1421,7 @@ to the highest complexity that the data can support, depending on the
 amount of noise and of observations available.
 
 Visualizing the Bias/Variance Tradeoff
----------------------------------------
+--------------------------------------
 
 .. tip::
 
@@ -1657,7 +1657,7 @@ In particular, gathering more features for each sample will not help the
 results.
 
 Summary on model selection
----------------------------
+--------------------------
 
 We’ve seen above that an under-performing algorithm can be due to two
 possible situations: high bias (under-fitting) and high variance
@@ -1718,7 +1718,7 @@ for a particular learning task can inform the observing strategy that
 the astronomer employs.
 
 A last word of caution: separate validation and test set
----------------------------------------------------------
+--------------------------------------------------------
 
 Using validation schemes to determine hyper-parameters means that we are
 fitting the hyper-parameters to the particular validation set. In the

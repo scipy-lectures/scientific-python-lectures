@@ -24,7 +24,7 @@
 %inline %{
     /*  takes as input two NumPy arrays */
     void cos_doubles_func(double * in_array, int size_in, double * out_array, int size_out) {
-        /*  calls the original funcion, providing only the size of the first */
+        /*  calls the original function, providing only the size of the first */
         cos_doubles(in_array, out_array, size_in);
     }
 %}

@@ -38,6 +38,6 @@ plt.tight_layout()
 # Pretty much no errors!
 #
 # This is too good to be true: we are testing the model on the train
-# data, which is not a mesure of generalization.
+# data, which is not a measure of generalization.
 #
 # **The results are not valid**

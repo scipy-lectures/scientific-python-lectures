@@ -45,7 +45,7 @@ Picture manipulation: Framing a Face
 ------------------------------------
 
 Let's do some manipulations on NumPy arrays by starting with an image
-of a racoon.  ``scipy`` provides a 2D array of this image with the
+of a raccoon.  ``scipy`` provides a 2D array of this image with the
 ``scipy.datasets.face`` function::
 
 

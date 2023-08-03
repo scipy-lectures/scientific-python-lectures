@@ -1,8 +1,8 @@
 """
-Plotting in polar coordinnates
-===============================
+Plotting in polar coordinates
+=============================
 
-A simple example showing how to plot in polar coordinnates with
+A simple example showing how to plot in polar coordinates with
 matplotlib.
 """
 

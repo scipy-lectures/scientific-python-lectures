@@ -131,7 +131,7 @@ def fastica(
           derivative should be provided via argument fun_prime
     fun_prime : Empty string ('') or Function
                 See fun.
-    fun_args : Optional dictionnary
+    fun_args : Optional dictionary
                If empty and if fun='logcosh', fun_args will take value
                {'alpha' : 1.0}
     maxit : int

@@ -3,7 +3,7 @@ Display the contours of a function
 ===================================
 
 An example demoing how to plot the contours of a function, with
-additional layout tweeks.
+additional layout tweaks.
 
 """
 

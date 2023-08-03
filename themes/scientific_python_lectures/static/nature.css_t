@@ -406,7 +406,7 @@ div.sphinxsidebarwrapper ul ul li.active ul li.active a{
 
 
 div.sphinxsidebarwrapper ul ul li.active ul ul {
-    display: none; /* Alway hide 4 level down */
+    display: none; /* Always hide 4 level down */
 }
 
 /*********************************************/
