@@ -2,7 +2,7 @@
 Plotting in polar, decorated
 =============================
 
-An example showing how to plot in polar coordinnate, and some
+An example showing how to plot in polar coordinate, and some
 decorations.
 """
 

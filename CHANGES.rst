@@ -54,7 +54,7 @@ Release 2020.1 (March 2020)
 
 * Update packages (Pierre de Buyl)
 
-* Remove Python 2 continous integration (Olav Vahtras - EuroSciPy 2019 sprint)
+* Remove Python 2 continuous integration (Olav Vahtras - EuroSciPy 2019 sprint)
 
 * Fix chessboard size (Mark Setchell)
 
@@ -153,7 +153,7 @@ Release 2015.3 (November 2015)
 
 * Collapsed sidebar can now pop up for mid-sized display (Gaël Varoquaux)
 
-* Replaced pictures of Lena by racoon face (Thouis Jones)
+* Replaced pictures of Lena by raccoon face (Thouis Jones)
 
 Release 2015.2 (October 2015)
 -------------------------------------

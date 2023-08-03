@@ -22,7 +22,7 @@ Coordinate Format (COO)
 * fast matrix * vector (sparsetools)
 * fast and easy item-wise operations
     * manipulate data array directly (fast NumPy machinery)
-* no slicing, no arithmetics (directly)
+* no slicing, no arithmetic (directly)
 * use:
     * facilitates fast conversion among sparse formats
     * when converting to other format (usually CSR or CSC), duplicate

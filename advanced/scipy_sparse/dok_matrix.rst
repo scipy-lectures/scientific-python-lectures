@@ -17,7 +17,7 @@ Dictionary of Keys Format (DOK)
 * efficient O(1) access to individual elements
 * flexible slicing, changing sparsity structure is efficient
 * can be efficiently converted to a coo_matrix once constructed
-* slow arithmetics (`for` loops with `dict.iteritems()`)
+* slow arithmetic (`for` loops with `dict.iteritems()`)
 * use:
     * when sparsity pattern is not known apriori or changes
 

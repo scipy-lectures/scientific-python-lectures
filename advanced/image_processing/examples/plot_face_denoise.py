@@ -2,7 +2,7 @@
 Image denoising
 ================
 
-This example demoes image denoising on a Racoon face.
+This example demoes image denoising on a Raccoon face.
 """
 
 import numpy as np

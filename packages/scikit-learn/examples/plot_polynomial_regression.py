@@ -4,7 +4,7 @@ Plot fitting a 9th order polynomial
 
 Fits data generated from a 9th order polynomial with model of 4th order
 and 9th order polynomials, to demonstrate that often simpler models are
-to be prefered
+to be preferred
 """
 
 import numpy as np

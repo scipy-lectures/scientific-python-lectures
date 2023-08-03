@@ -37,7 +37,7 @@ data = pandas.read_csv(
     usecols=[0, 2, 5],
 )
 
-# Convert genders to strings (this is particulary useful so that the
+# Convert genders to strings (this is particularly useful so that the
 # statsmodels formulas detects that gender is a categorical variable)
 import numpy as np
 

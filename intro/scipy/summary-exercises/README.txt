@@ -1,2 +1,2 @@
-Examples for the summary excercises
-====================================
+Examples for the summary exercises
+==================================

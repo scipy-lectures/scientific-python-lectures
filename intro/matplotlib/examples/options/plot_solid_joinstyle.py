@@ -2,7 +2,7 @@
 Solid joint style
 ==================
 
-An example showing the differen solid joint styles in matplotlib.
+An example showing the different solid joint styles in matplotlib.
 """
 
 import numpy as np

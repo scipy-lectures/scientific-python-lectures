@@ -430,7 +430,7 @@ Additional Links
   from Python with
   `yep <https://pypi.org/project/yep>`_.
 
-* If you would like to track performace of your code across time, i.e. as you
+* If you would like to track performance of your code across time, i.e. as you
   make new commits to your repository, you could try:
   `asv <https://asv.readthedocs.io/en/stable/>`_
 

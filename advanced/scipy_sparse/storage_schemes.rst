@@ -88,7 +88,7 @@ Summary
      - yes
      - yes
      - iterative
-     - arithmetics via CSR, incremental construction
+     - arithmetic via CSR, incremental construction
    * - DOK
      - python
      - yes

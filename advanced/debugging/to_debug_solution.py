@@ -4,7 +4,7 @@ A script to compare different root-finding algorithms.
 This version of the script is buggy and does not execute. It is your task
 to find an fix these bugs.
 
-The output of the script sould look like:
+The output of the script should look like:
 
     Benching 1D root-finder optimizers from scipy.optimize:
                 brenth:   604678 total function calls
@@ -22,7 +22,7 @@ FUNCTIONS = (
     np.tanh,  # Contracting map
     lambda x: x**3 + 1e-4 * x,  # Almost null gradient at the root
     lambda x: x + np.sin(2 * x),  # Non monotonous function
-    lambda x: 1.1 * x + np.sin(4 * x),  # Fonction with several local maxima
+    lambda x: 1.1 * x + np.sin(4 * x),  # Function with several local maxima
 )
 
 OPTIMIZERS = (
@@ -49,7 +49,7 @@ def bench_optimizer(optimizer, param_grid):
 
 def compare_optimizers(optimizers):
     """Compare all the optimizers given on a grid of a few different
-    functions all admitting a signle root in zero and a upper and
+    functions all admitting a single root in zero and a upper and
     lower bounds.
     """
     random_a = -1.3 + np.random.random(size=100)

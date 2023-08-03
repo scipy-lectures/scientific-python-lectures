@@ -2,7 +2,7 @@
 Finding a minimum in a flat neighborhood
 =========================================
 
-An excercise of finding minimum. This excercise is hard because the
+An exercise of finding minimum. This exercise is hard because the
 function is very flat around the minimum (all its derivatives are zero).
 Thus gradient information is unreliable.
 
