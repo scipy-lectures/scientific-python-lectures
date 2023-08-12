@@ -784,7 +784,7 @@ Now reassign labels with ``np.searchsorted``::
 
 Find region of interest enclosing object::
 
-    >>> slice_x, slice_y = sp.ndimage.find_objects(label_im==4)[0]
+    >>> slice_x, slice_y = sp.ndimage.find_objects(label_im)[3]
     >>> roi = im[slice_x, slice_y]
     >>> plt.imshow(roi)
     <matplotlib.image.AxesImage object at 0x...>

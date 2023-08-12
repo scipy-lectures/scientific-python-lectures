@@ -289,11 +289,11 @@ Now compute measurements on each connected component::
 
 Extract the 4th connected component, and crop the array around it::
 
-    >>> sp.ndimage.find_objects(labels==4) # doctest: +SKIP
-    [(slice(30L, 48L, None), slice(30L, 48L, None))]
-    >>> sl = sp.ndimage.find_objects(labels==4)
+    >>> sp.ndimage.find_objects(labels)[3]
+    (slice(30, 48, None), slice(30, 48, None))
+    >>> sl = sp.ndimage.find_objects(labels)[3]
     >>> import matplotlib.pyplot as plt
-    >>> plt.imshow(sig[sl[0]])
+    >>> plt.imshow(sig[sl])
     <matplotlib.image.AxesImage object at ...>
 
 
