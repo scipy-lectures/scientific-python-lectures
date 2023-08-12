@@ -117,14 +117,14 @@ Raising exceptions
   .. sourcecode:: ipython
 
     In [15]: def filter_name(name):
-       ....:	try:
-       ....:	    name = name.encode('ascii')
-       ....:	except UnicodeError as e:
-       ....:	    if name == 'Gaël':
-       ....:		print('OK, Gaël')
-       ....:	    else:
-       ....:		raise e
-       ....:	return name
+       ....:    try:
+       ....:        name = name.encode('ascii')
+       ....:    except UnicodeError as e:
+       ....:        if name == 'Gaël':
+       ....:            print('OK, Gaël')
+       ....:        else:
+       ....:            raise e
+       ....:    return name
        ....:
 
     In [16]: filter_name('Gaël')

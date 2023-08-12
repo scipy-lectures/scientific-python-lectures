@@ -288,18 +288,18 @@ Getting help by using the **?** operator after an object:
 .. sourcecode:: ipython
 
     In [2]: print?
-    Type:		builtin_function_or_method
-    Base Class:	        <type 'builtin_function_or_method'>
-    String Form:	<built-in function print>
-    Namespace:	        Python builtin
+    Type:               builtin_function_or_method
+    Base Class:         <type 'builtin_function_or_method'>
+    String Form:        <built-in function print>
+    Namespace:          Python builtin
     Docstring:
-	print(value, ..., sep=' ', end='\n', file=sys.stdout)
+        print(value, ..., sep=' ', end='\n', file=sys.stdout)
 
-	Prints the values to a stream, or to sys.stdout by default.
-	Optional keyword arguments:
-	file: a file-like object (stream); defaults to the current sys.stdout.
-	sep:  string inserted between values, default a space.
-	end:  string appended after the last value, default a newline.
+        Prints the values to a stream, or to sys.stdout by default.
+        Optional keyword arguments:
+        file: a file-like object (stream); defaults to the current sys.stdout.
+        sep:  string inserted between values, default a space.
+        end:  string appended after the last value, default a newline.
 
 .. seealso::
 

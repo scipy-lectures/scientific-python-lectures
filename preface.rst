@@ -27,8 +27,8 @@ About the Scientific Python Lectures
 
     /* Below is necessary to avoid messing up android font size */
     @media  only screen and (max-width: 1080px) and (-webkit-min-device-pixel-ratio: 2.5),
-	only screen and (max-width: 1080px) and (-o-min-device-pixel-ratio: 25/10),
-	only screen and (max-width: 1080px) and (min-resolution: 250dpi)
+        only screen and (max-width: 1080px) and (-o-min-device-pixel-ratio: 25/10),
+        only screen and (max-width: 1080px) and (min-resolution: 250dpi)
     {
         div.section#authors ul.simple li,
         div.section#requirements ul.simple li{

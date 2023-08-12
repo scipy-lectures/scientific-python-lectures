@@ -19,7 +19,7 @@ Compressed Sparse Column Format (CSC)
           position of `i` in `indices[indptr[j]:indptr[j+1]]`
     * subclass of :class:`_cs_matrix` (common CSR/CSC functionality)
         * subclass of :class:`_data_matrix` (sparse matrix classes with
-    	  `.data` attribute)
+          `.data` attribute)
 * fast matrix vector products and other arithmetic (sparsetools)
 * constructor accepts:
     * dense matrix (array)
