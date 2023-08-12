@@ -703,11 +703,11 @@ The ``DESCR`` variable has a long description of the dataset::
     <BLANKLINE>
     **Data Set Characteristics:**
     <BLANKLINE>
-	:Number of Instances: 20640
+        :Number of Instances: 20640
     <BLANKLINE>
-	:Number of Attributes: 8 numeric, predictive attributes and the target
+        :Number of Attributes: 8 numeric, predictive attributes and the target
     <BLANKLINE>
-	:Attribute Information:
+        :Attribute Information:
             - MedInc        median income in block group
             - HouseAge      median house age in block group
             - AveRooms      average number of rooms per household
@@ -717,7 +717,7 @@ The ``DESCR`` variable has a long description of the dataset::
             - Latitude      block group latitude
             - Longitude     block group longitude
     <BLANKLINE>
-	:Missing Attribute Values: None
+        :Missing Attribute Values: None
     <BLANKLINE>
     This dataset was obtained from the StatLib repository.
     https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.html
@@ -740,8 +740,8 @@ The ``DESCR`` variable has a long description of the dataset::
     <BLANKLINE>
     .. topic:: References
     <BLANKLINE>
-	- Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,
-	  Statistics and Probability Letters, 33 (1997) 291-297
+        - Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,
+          Statistics and Probability Letters, 33 (1997) 291-297
 
 
 It often helps to quickly visualize pieces of the data using histograms,
@@ -978,16 +978,16 @@ Now we train on the training data, and test on the testing data::
     >>> print(metrics.classification_report(y_test, y_pred))
                   precision    recall  f1-score   support
     <BLANKLINE>
-	       0       1.00      1.00      1.00        37
-	       1       1.00      1.00      1.00        43
-	       2       1.00      0.98      0.99        44
-	       3       0.96      1.00      0.98        45
-	       4       1.00      1.00      1.00        38
-	       5       0.98      0.98      0.98        48
-	       6       1.00      1.00      1.00        52
-	       7       1.00      1.00      1.00        48
-	       8       1.00      1.00      1.00        48
-	       9       0.98      0.96      0.97        47
+               0       1.00      1.00      1.00        37
+               1       1.00      1.00      1.00        43
+               2       1.00      0.98      0.99        44
+               3       0.96      1.00      0.98        45
+               4       1.00      1.00      1.00        38
+               5       0.98      0.98      0.98        48
+               6       1.00      1.00      1.00        52
+               7       1.00      1.00      1.00        48
+               8       1.00      1.00      1.00        48
+               9       0.98      0.96      0.97        47
     <BLANKLINE>
         accuracy                           0.99       450
        macro avg       0.99      0.99      0.99       450

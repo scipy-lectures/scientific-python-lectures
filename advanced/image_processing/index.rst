@@ -648,15 +648,15 @@ Use mathematical morphology to clean up the result::
     Check that reconstruction operations (erosion + propagation) produce a
     better result than opening/closing::
 
-	>>> eroded_img = sp.ndimage.binary_erosion(binary_img)
-	>>> reconstruct_img = sp.ndimage.binary_propagation(eroded_img, mask=binary_img)
-	>>> tmp = np.logical_not(reconstruct_img)
-	>>> eroded_tmp = sp.ndimage.binary_erosion(tmp)
-	>>> reconstruct_final = np.logical_not(sp.ndimage.binary_propagation(eroded_tmp, mask=tmp))
-	>>> np.abs(mask - close_img).mean()
-	0.00640699...
-	>>> np.abs(mask - reconstruct_final).mean()
-	0.00082232...
+        >>> eroded_img = sp.ndimage.binary_erosion(binary_img)
+        >>> reconstruct_img = sp.ndimage.binary_propagation(eroded_img, mask=binary_img)
+        >>> tmp = np.logical_not(reconstruct_img)
+        >>> eroded_tmp = sp.ndimage.binary_erosion(tmp)
+        >>> reconstruct_final = np.logical_not(sp.ndimage.binary_propagation(eroded_tmp, mask=tmp))
+        >>> np.abs(mask - close_img).mean()
+        0.00640699...
+        >>> np.abs(mask - reconstruct_final).mean()
+        0.00082232...
 
 .. topic:: **Exercise**
     :class: green

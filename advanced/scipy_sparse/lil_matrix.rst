@@ -42,9 +42,9 @@ Examples
     <4x5 sparse matrix of type '<... 'numpy.float64'>'
             with 3 stored elements in List of Lists format>
     >>> print(mtx)
-      (0, 1)	1.0
-      (0, 3)	1.0
-      (1, 3)	1.0
+      (0, 1)    1.0
+      (0, 3)    1.0
+      (1, 3)    1.0
     >>> mtx.todense()
     matrix([[0., 1., 0., 1., 0.],
             [0., 0., 0., 1., 0.],

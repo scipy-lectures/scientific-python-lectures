@@ -677,7 +677,7 @@ which really form a part of the language:
 
     class Array(object):
         def __init__(self, data):
-	    self.data = data
+            self.data = data
 
         @classmethod
         def fromfile(cls, file):
@@ -824,14 +824,14 @@ to modify the function, we can use a decorator::
       f is deprecated
       """
       def __call__(self, func):
-	  self.func = func
-	  self.count = 0
-	  return self._wrapper
+          self.func = func
+          self.count = 0
+          return self._wrapper
       def _wrapper(self, *args, **kwargs):
-	  self.count += 1
-	  if self.count == 1:
-	      print(self.func.__name__, 'is deprecated')
-	  return self.func(*args, **kwargs)
+          self.count += 1
+          if self.count == 1:
+              print(self.func.__name__, 'is deprecated')
+          return self.func(*args, **kwargs)
 
 .. TODO: use update_wrapper here
 
@@ -864,10 +864,10 @@ be needed, the standard way to do this is something like::
   def find_answers():
       answers = []
       while True:
-	  ans = look_for_next_answer()
-	  if ans is None:
-	      break
-	  answers.append(ans)
+          ans = look_for_next_answer()
+          if ans is None:
+              break
+          answers.append(ans)
       return answers
 
 This is fine, as long as the body of the loop is fairly compact. Once
@@ -880,7 +880,7 @@ We can define a decorator which constructs the list for us::
 
   def vectorized(generator_func):
       def wrapper(*args, **kwargs):
-	  return list(generator_func(*args, **kwargs))
+          return list(generator_func(*args, **kwargs))
       return functools.update_wrapper(wrapper, generator_func)
 
 Our function then becomes::
@@ -888,10 +888,10 @@ Our function then becomes::
   @vectorized
   def find_answers():
       while True:
-	  ans = look_for_next_answer()
-	  if ans is None:
-	      break
-	  yield ans
+          ans = look_for_next_answer()
+          if ans is None:
+              break
+          yield ans
 
 A plugin registration system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1094,9 +1094,9 @@ support this use case.
   def some_generator(<arguments>):
       <setup>
       try:
-	  yield <value>
+          yield <value>
       finally:
-	  <cleanup>
+          <cleanup>
 
 The `contextlib.contextmanager` helper takes a generator and turns it
 into a context manager. The generator has to obey some rules which are
@@ -1115,21 +1115,21 @@ Let's rewrite the ``closing`` example as a generator::
   @contextlib.contextmanager
   def closing(obj):
       try:
-	  yield obj
+          yield obj
       finally:
-	  obj.close()
+          obj.close()
 
 Let's rewrite the ``assert_raises`` example as a generator::
 
   @contextlib.contextmanager
   def assert_raises(type):
       try:
-	  yield
+          yield
       except type:
-	  return
+          return
       except Exception as value:
-	  raise AssertionError('wrong exception type')
+          raise AssertionError('wrong exception type')
       else:
-	  raise AssertionError('exception expected')
+          raise AssertionError('exception expected')
 
 Here we use a decorator to turn generator functions into context managers!

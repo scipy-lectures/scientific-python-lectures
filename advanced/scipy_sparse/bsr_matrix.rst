@@ -14,10 +14,10 @@ Block Compressed Row Format (BSR)
     * three NumPy arrays: `indices`, `indptr`, `data`
         * `indices` is array of column indices for each block
         * `data` is array of corresponding nonzero values of shape `(nnz, R, C)`
-    	* ...
+        * ...
     * subclass of :class:`_cs_matrix` (common CSR/CSC functionality)
         * subclass of :class:`_data_matrix` (sparse matrix classes with
-    	  `.data` attribute)
+          `.data` attribute)
 * fast matrix vector products and other arithmetic (sparsetools)
 * constructor accepts:
     * dense matrix (array)

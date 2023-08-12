@@ -129,7 +129,7 @@ Example: :download:`populations.txt <../../data/populations.txt>`:
        In [2]: cd ex
        '/home/user/stuff/2011-numpy-tutorial/ex'
        In [3]: ls
-       populations.txt	species.txt
+       populations.txt  species.txt
 
 Images
 .......
