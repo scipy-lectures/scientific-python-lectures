@@ -155,7 +155,7 @@ possible to the original documentation.
 
 For cross-referencing API documentation we prefer to use the `intersphinx
 extension <https://www.sphinx-doc.org/en/master/usage/extensions/index.html#built-in-extensions>`_. This provides
-the directives `:mod:`, `:class:` and `:func:` to cross-link to modules,
+the directives ``:mod:``, ``:class:`` and ``:func:`` to cross-link to modules,
 classes and functions respectively. For example the ``:func:`numpy.var``` will
 create a link like :func:`numpy.var`.
 

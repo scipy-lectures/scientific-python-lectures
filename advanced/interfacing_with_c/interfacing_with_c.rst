@@ -227,7 +227,7 @@ returns a resulting new array.
    :language: c
 
 To compile this we can use distutils again. However we need to be sure to
-include the NumPy headers by using :func:``numpy.get_include``.
+include the NumPy headers by using :func:`numpy.get_include`.
 
 .. literalinclude:: numpy_c_api/setup.py
    :language: python

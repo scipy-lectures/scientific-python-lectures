@@ -106,8 +106,8 @@ Then you can manipulate them::
     >>> (x + y) ** 2
     (x + y)**2
 
-Symbols can now be manipulated using some of python operators: ``+``, ``-`,
-``*``, ``**`` (arithmetic), &, `|`, ~ , >>, << (boolean).
+Symbols can now be manipulated using some of python operators: ``+``, ``-``,
+``*``, ``**`` (arithmetic), ``&``, ``|``, ``~``, ``>>``, ``<<`` (boolean).
 
 
 .. topic:: **Printing**
