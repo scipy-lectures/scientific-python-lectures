@@ -324,7 +324,7 @@ How modules are found and imported
 
 When the ``import mymodule`` statement is executed, the module ``mymodule``
 is searched in a given list of directories. This list includes a list
-of installation-dependent default path (e.g., ``/usr/lib/python``) as
+of installation-dependent default path (e.g., ``/usr/lib64/python3.11``) as
 well as the list of directories specified by the environment variable
 ``PYTHONPATH``.
 
@@ -337,19 +337,19 @@ variable
 
     In [2]: sys.path
     Out[2]:
-    ['',
-     '/home/varoquau/.local/bin',
-     '/usr/lib/python2.7',
-     '/home/varoquau/.local/lib/python2.7/site-packages',
-     '/usr/lib/python2.7/dist-packages',
-     '/usr/local/lib/python2.7/dist-packages',
-     ...]
+    ['/home/jarrod/.venv/lectures/bin',
+     '/usr/lib64/python311.zip',
+     '/usr/lib64/python3.11',
+     '/usr/lib64/python3.11/lib-dynload',
+     '',
+     '/home/jarrod/.venv/lectures/lib64/python3.11/site-packages',
+     '/home/jarrod/.venv/lectures/lib/python3.11/site-packages']
 
 Modules must be located in the search path, therefore you can:
 
 * write your own modules within directories already defined in the
-  search path (e.g. ``$HOME/.local/lib/python2.7/dist-packages``). You
-  may use symbolic links (on Linux) to keep the code somewhere else.
+  search path (e.g. ``$HOME/.venv/lectures/lib64/python3.11/site-packages``).
+  You may use symbolic links (on Linux) to keep the code somewhere else.
 
 * modify the environment variable ``PYTHONPATH`` to include the
   directories containing the user-defined modules.

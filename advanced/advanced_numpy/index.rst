@@ -1499,9 +1499,8 @@ The masked array package also contains domain-aware functions::
 
 >>> arr = np.array([('a', 1), ('b', 2)], dtype=[('x', 'S1'), ('y', int)])
 >>> arr2 = arr.view(np.recarray)
->>> arr2.x       # doctest: +SKIP
-chararray(['a', 'b'],
-      dtype='|S1')
+>>> arr2.x
+array([b'a', b'b'], dtype='|S1')
 >>> arr2.y
 array([1, 2])
 
@@ -1545,9 +1544,9 @@ Reporting bugs
 
   - https://github.com/scipy/scipy/issues
 
-  - Click the "Register" link to get an account
+  - Click the "Sign up" link to get an account
 
-- Mailing lists ( scipy.org/Mailing_Lists )
+- Mailing lists (https://numpy.org/community/)
 
   - If you're unsure
 
@@ -1613,7 +1612,7 @@ Contributing to documentation
 
 1. Documentation editor
 
-   - https://docs.scipy.org/doc/numpy
+   - https://numpy.org/doc/stable/
 
    - Registration
 
@@ -1642,7 +1641,7 @@ Contributing to documentation
 
     - Check the style guide:
 
-      - https://docs.scipy.org/doc/numpy/
+      - https://numpy.org/doc/stable/
 
       - Don't be intimidated; to fix a small thing, just fix it
 
@@ -1674,11 +1673,7 @@ How to help, in general
 
   - *User guide*
 
-    - Needs to be done eventually.
-
-    - Want to think? Come up with a Table of Contents
-
-      https://scipy.org/Developer_Zone/UG_Toc
+    - https://numpy.org/doc/stable/user/
 
 - Ask on communication channels:
 

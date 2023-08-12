@@ -257,11 +257,11 @@ Bidirectional communication
 
 Each ``yield`` statement causes a value to be passed to the
 caller. This is the reason for the introduction of generators
-by :pep:`255` (implemented in Python 2.2).  But communication in the
+by :pep:`255`.  But communication in the
 reverse direction is also useful. One obvious way would be some
 external state, either a global variable or a shared mutable
-object. Direct communication is possible thanks to :pep:`342`
-(implemented in 2.5). It is achieved by turning the previously boring
+object. Direct communication is possible thanks to :pep:`342`.
+It is achieved by turning the previously boring
 ``yield`` statement into an expression. When the generator resumes
 execution after a ``yield`` statement, the caller can call a method on
 the generator object to either pass a value **into** the generator,
@@ -300,7 +300,6 @@ also have a `close() <generator.close>` method, which can be used to
 force a generator that would otherwise be able to provide more values
 to finish immediately. It allows the generator `__del__ <object.__del__>`
 method to destroy objects holding the state of generator.
-
 Let's define a generator which just prints what is passed in through
 send and throw. ::
 
@@ -334,23 +333,6 @@ send and throw. ::
     2
     >>> it.close()
     --closing--
-
-.. topic:: ``next`` or ``__next__``?
-
-  In Python 2.x, the iterator method to retrieve the next value is
-  called `next <iterator.next>`. It is invoked implicitly through the
-  global function `next`, which means that it should be called ``__next__``.
-  Just like the global function `iter` calls `__iter__ <iterator.__iter__>`.
-  This inconsistency is corrected in Python 3.x, where ``it.next``
-  becomes ``it.__next__``.  For other generator methods --- ``send``
-  and ``throw`` --- the situation is more complicated, because they
-  are not called implicitly by the interpreter. Nevertheless, there's
-  a proposed syntax extension to allow ``continue`` to take an
-  argument which will be passed to `send <generator.send>` of the
-  loop's iterator. If this extension is accepted, it's likely that
-  ``gen.send`` will become ``gen.__send__``. The last of generator
-  methods, `close <generator.close>`, is pretty obviously named
-  incorrectly, because it is already invoked implicitly.
 
 Chaining generators
 ^^^^^^^^^^^^^^^^^^^
@@ -397,20 +379,6 @@ Decorators
    and with concern that it might not be that useful.
 
                    *Bruce Eckel* --- An Introduction to Python Decorators
-
-.. documentation error:
-.. The result must be a class object, which is then bound to the class name.
-.. file:///usr/share/doc/python2.7/html/reference/compound_stmts.html
-.. >>> def deco(cls):return None
-.. ...
-.. >>> @deco
-.. ... class A: pass
-.. ...
-.. >>> A
-.. >>> type(A)
-.. <class 'NoneType'>
-.. >>> print(A)
-.. None
 
 Since functions and classes are objects, they can be passed
 around. Since they are mutable objects, they can be modified. The act
@@ -746,7 +714,7 @@ which really form a part of the language:
   read-only, because no setter is defined.
 
   To have a setter and a getter, two methods are required,
-  obviously. Since Python 2.6 the following syntax is preferred::
+  obviously::
 
     class Rectangle(object):
         def __init__(self, edge):
@@ -831,7 +799,7 @@ Some newer examples include:
   missing ordering methods
   (`__lt__ <object.__lt__>`, `__gt__ <object.__gt__>`,
   `__le__ <object.__le__>`, ...)
-  based on a single available one (Python 2.7).
+  based on a single available one.
 
 
 ..
@@ -962,7 +930,7 @@ directly, it would be impossible to distinguish it from an en-dash in
 the source of a program.
 
 .. _`unicode literal notation`:
-   https://docs.python.org/2.7/reference/lexical_analysis.html#string-literals
+   https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals
 
 .. seealso:: **More examples and reading**
 
@@ -1054,23 +1022,23 @@ release, Python provides support in more places:
 * all file-like objects:
 
   - `file` |==>| automatically closed
-  - `fileinput`, `tempfile` (py >= 3.2)
+  - `fileinput`, `tempfile`
   - `bz2.BZ2File`, `gzip.GzipFile`,
     `tarfile.TarFile`, `zipfile.ZipFile`
-  - `ftplib`, `nntplib` |==>| close connection (py >= 3.2 or 3.3)
+  - `ftplib`, `nntplib` |==>| close connection
 * locks
 
   - `multiprocessing.RLock` |==>| lock and unlock
   - `multiprocessing.Semaphore`
-  - `memoryview` |==>| automatically release (py >= 3.2 and 2.7)
+  - `memoryview` |==>| automatically release
 * `decimal.localcontext` |==>| modify precision of computations temporarily
 * `_winreg.PyHKEY <_winreg.OpenKey>` |==>| open and close hive key
 * `warnings.catch_warnings` |==>| kill warnings temporarily
 * `contextlib.closing` |==>| the same as the example above, call ``close``
 * parallel programming
 
-  - `concurrent.futures.ThreadPoolExecutor` |==>| invoke in parallel then kill thread pool (py >= 3.2)
-  - `concurrent.futures.ProcessPoolExecutor` |==>| invoke in parallel then kill process pool (py >= 3.2)
+  - `concurrent.futures.ThreadPoolExecutor` |==>| invoke in parallel then kill thread pool
+  - `concurrent.futures.ProcessPoolExecutor` |==>| invoke in parallel then kill process pool
   - `nogil` |==>| solve the GIL problem temporarily (cython only :( )
 
 
