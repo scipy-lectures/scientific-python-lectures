@@ -10,13 +10,9 @@ Linear System Solvers
 * all solvers are accessible from::
 
     >>> import scipy as sp
-    >>> sp.sparse.linalg.__all__    # doctest: +SKIP
-    ['ArpackError', 'ArpackNoConvergence', 'LinearOperator', 'MatrixRankWarning',
-     'SuperLU', 'aslinearoperator', 'bicg', 'bicgstab', 'cg', 'cgs', 'dsolve',
-     'eigen', 'eigs', 'eigsh', 'expm', 'expm_multiply', 'factorized', 'gcrotmk',
-     'gmres', 'interface', 'inv', 'isolve', 'lgmres', 'lobpcg', 'lsmr', 'lsqr',
-     'matfuncs', 'minres', 'norm', 'onenormest', 'qmr', 'spilu', 'splu', 'spsolve',
-     'spsolve_triangular', 'svds', 'tfqmr', 'use_solver']
+    >>> sp.sparse.linalg.__all__
+    ['ArpackError', 'ArpackNoConvergence', 'LinearOperator', ..., 'use_solver']
+
 
 Sparse Direct Solvers
 ---------------------
@@ -36,7 +32,9 @@ Examples
 ^^^^^^^^
 * import the whole module, and see its docstring::
 
-    >>> help(sp.sparse.linalg.spsolve) # doctest: +SKIP
+    >>> help(sp.sparse.linalg.spsolve)
+    Help on function spsolve in module scipy.sparse.linalg._dsolve.linsolve:
+    ...
 
 * both superlu and umfpack can be used (if the latter is installed) as
   follows:

@@ -179,9 +179,9 @@ Brent's method to find the minimum of a function:
     >>> result.success # check if solver was successful
     True
     >>> x_min = result.x
-    >>> x_min # doctest: +SKIP
+    >>> x_min
     0.699999999...
-    >>> x_min - 0.7 # doctest: +SKIP
+    >>> x_min - 0.7
     -2.16...e-10
 
 
