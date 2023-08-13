@@ -237,17 +237,10 @@ packaged, and it is recommended to use your package manager.
 There are several fully-featured scientific Python distributions:
 
 
-
-
 .. rst-class:: horizontal
 
   * `Anaconda <https://www.anaconda.com/download/>`_
-  * `EPD <https://store.enthought.com/downloads>`_
   * `WinPython <https://winpython.github.io>`_
-
-
-
-
 
 
 The workflow: interactive environments and text editors

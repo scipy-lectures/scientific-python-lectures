@@ -30,9 +30,8 @@ Statistics in Python
    * `Seaborn <https://seaborn.pydata.org>`__
 
    To install Python and these dependencies, we recommend that you
-   download `Anaconda Python <https://www.anaconda.com/distribution/>`_ or
-   `Enthought Canopy <https://store.enthought.com/>`_, or preferably use
-   the package manager if you are under Ubuntu or other linux.
+   download `Anaconda Python <https://www.anaconda.com/distribution/>`_ or,
+   preferably, use the package manager if you are under Ubuntu or other linux.
 
 .. seealso::
 

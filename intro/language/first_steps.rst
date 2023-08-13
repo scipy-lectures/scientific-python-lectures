@@ -5,15 +5,12 @@ First steps
 Start the **Ipython** shell (an enhanced interactive Python shell):
 
 * by typing "ipython" from a Linux/Mac terminal, or from the Windows cmd shell,
-* **or** by starting the program from a menu, e.g. in the `Python(x,y)`_ or
-  `EPD`_ menu if you have installed one of these scientific-Python suites.
 * **or** by starting the program from a menu, e.g. the `Anaconda Navigator`_,
-  the `Python(x,y)`_ menu or the `EPD`_ menu if you have installed one of these
+  the `Python(x,y)`_ menu if you have installed one of these
   scientific-Python suites.
 
 .. _`Python(x,y)`: https://python-xy.github.io/
 .. _`Anaconda Navigator`: https://anaconda.org/anaconda/anaconda-navigator
-.. _`EPD`: https://store.enthought.com/
 
 .. tip::
 
