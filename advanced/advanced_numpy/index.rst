@@ -96,8 +96,8 @@ Block of memory
 >>> x = np.array([1, 2, 3], dtype=np.int32)
 >>> x.data
 <... at ...>
->>> bytes(x.data)  # doctest: +SKIP
-'\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
+>>> bytes(x.data)
+b'\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00'
 
 Memory address of the data:
 
@@ -106,13 +106,8 @@ Memory address of the data:
 
 The whole ``__array_interface__``:
 
->>> x.__array_interface__  # doctest: +SKIP
-{'data': (35828928, False),
- 'descr': [('', '<i4')],
- 'shape': (4,),
- 'strides': None,
- 'typestr': '<i4',
- 'version': 3}
+>>> x.__array_interface__
+{'data': (..., False), 'strides': None, 'descr': [('', '<i4')], 'typestr': '<i4', 'shape': (3,), 'version': 3}
 
 Reminder: two :class:`ndarrays <ndarray>` may share the same memory::
 
@@ -124,7 +119,7 @@ Reminder: two :class:`ndarrays <ndarray>` may share the same memory::
 
 Memory does not need to be owned by an :class:`ndarray`::
 
-    >>> x = b'1234'      # The 'b' is for "bytes", necessary in Python 3
+    >>> x = b'1234'
 
 x is a string (in Python 3 a bytes), we can represent its data as an
 array of ints::
@@ -170,8 +165,8 @@ fields      sub-dtypes, if it's a **structured data type**
 shape       shape of the array, if it's a **sub-array**
 =========   ===================================================
 
->>> np.dtype(int).type      # doctest: +SKIP
-<type 'numpy.int64'>
+>>> np.dtype(int).type
+<class 'numpy.int64'>
 >>> np.dtype(int).itemsize
 8
 >>> np.dtype(int).byteorder
@@ -229,8 +224,8 @@ The ``.wav`` file header as a NumPy *structured* data type::
 
     >>> wav_header_dtype['format']
     dtype('S4')
-    >>> wav_header_dtype.fields     # doctest: +SKIP
-    dict_proxy({'block_align': (dtype('uint16'), 32), 'format': (dtype('S4'), 8), 'data_id': (dtype(('S1', (2, 2))), 36), 'fmt_id': (dtype('S4'), 12), 'byte_rate': (dtype('uint32'), 28), 'chunk_id': (dtype('S4'), 0), 'num_channels': (dtype('uint16'), 22), 'sample_rate': (dtype('uint32'), 24), 'bits_per_sample': (dtype('uint16'), 34), 'chunk_size': (dtype('uint32'), 4), 'fmt_size': (dtype('uint32'), 16), 'data_size': (dtype('uint32'), 40), 'audio_fmt': (dtype('uint16'), 20)})
+    >>> wav_header_dtype.fields
+    mappingproxy({'chunk_id': (dtype('S4'), 0), 'chunk_size': (dtype('uint32'), 4), 'format': (dtype('S4'), 8), 'fmt_id': (dtype('S4'), 12), 'fmt_size': (dtype('uint32'), 16), 'audio_fmt': (dtype('uint16'), 20), 'num_channels': (dtype('uint16'), 22), 'sample_rate': (dtype('uint32'), 24), 'byte_rate': (dtype('uint32'), 28), 'block_align': (dtype('uint16'), 32), 'bits_per_sample': (dtype('uint16'), 34), 'data_id': (dtype(('S1', (2, 2))), 36), 'data_size': (dtype('uint32'), 40)})
     >>> wav_header_dtype.fields['format']
     (dtype('S4'), 8)
 
@@ -669,9 +664,9 @@ Example: fake dimensions with strides
 .. rubric:: Stride manipulation
 
 >>> from numpy.lib.stride_tricks import as_strided
->>> help(as_strided)    # doctest: +SKIP
-as_strided(x, shape=None, strides=None)
-   Make an ndarray from the given array with the given shape and strides
+>>> help(as_strided)
+Help on function as_strided in module numpy.lib.stride_tricks:
+...
 
 .. warning::
 
@@ -814,11 +809,8 @@ More tricks: diagonals
 
        However,
 
-       >>> y.flags.owndata  # doctest: +SKIP
+       >>> y.flags.owndata
        False
-
-       **Note** This behavior has changed: before NumPy 1.9, np.diag
-       would make a copy.
 
     .. raw:: html
 
@@ -1330,8 +1322,9 @@ Array interface protocol
 ::
     >>> from PIL import Image
     >>> img = Image.open('data/test.png')
-    >>> img.__array_interface__     # doctest: +SKIP
-    {'data': ...,
+    >>> img.__array_interface__
+    {'version': 3,
+     'data': ...,
      'shape': (200, 200, 4),
      'typestr': '|u1'}
     >>> x = np.asarray(img)

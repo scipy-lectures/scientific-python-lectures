@@ -174,15 +174,15 @@ Brent's method to find the minimum of a function:
     >>> import numpy as np
     >>> import scipy as sp
     >>> def f(x):
-    ...     return -np.exp(-(x - 0.7)**2)
+    ...     return -np.exp(-(x - 0.5)**2)
     >>> result = sp.optimize.minimize_scalar(f)
     >>> result.success # check if solver was successful
     True
     >>> x_min = result.x
-    >>> x_min # doctest: +SKIP
-    0.699999999...
-    >>> x_min - 0.7 # doctest: +SKIP
-    -2.16...e-10
+    >>> x_min
+    0.50...
+    >>> x_min - 0.5
+    5.8...e-09
 
 
 .. |1d_optim_1| image:: auto_examples/images/sphx_glr_plot_1d_optim_001.png

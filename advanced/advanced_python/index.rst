@@ -141,9 +141,9 @@ A ``set`` is created when the generator expression is enclosed in curly
 braces. A ``dict`` is created when the generator expression contains
 "pairs" of the form ``key:value``::
 
-    >>> {i for i in range(3)}  # doctest: +SKIP
-    set([0, 1, 2])
-    >>> {i:i**2 for i in range(3)}   # doctest: +SKIP
+    >>> {i for i in range(3)}
+    {0, 1, 2}
+    >>> {i:i**2 for i in range(3)}
     {0: 0, 1: 1, 2: 4}
 
 One *gotcha* should be mentioned: in old Pythons the index variable
@@ -200,18 +200,16 @@ function. ::
     >>> def f():
     ...   print("-- start --")
     ...   yield 3
-    ...   print("-- middle --")
+    ...   print("-- finish --")
     ...   yield 4
-    ...   print("-- finished --")
     >>> gen = f()
     >>> next(gen)
     -- start --
     3
     >>> next(gen)
-    -- middle --
+    -- finish --
     4
-    >>> next(gen)                            # doctest: +SKIP
-    -- finished --
+    >>> next(gen)
     Traceback (most recent call last):
      ...
     StopIteration
@@ -219,11 +217,11 @@ function. ::
 Contrary to a normal function, where executing ``f()`` would
 immediately cause the first ``print`` to be executed, ``gen`` is
 assigned without executing any statements in the function body. Only
-when ``gen.next()`` is invoked by ``next``, the statements up to
+when ``gen.__next__()`` is invoked by ``next``, the statements up to
 the first ``yield`` are executed. The second ``next`` prints
-``-- middle --`` and execution halts on the second ``yield``.  The third
-``next`` prints ``-- finished --`` and falls of the end of the
-function. Since no ``yield`` was reached, an exception is raised.
+``-- finish --`` and execution halts on the second ``yield``.  The third
+``next`` falls of the end of the function.
+Since no ``yield`` was reached, an exception is raised.
 
 What happens with the function after a yield, when the control passes
 to the caller? The state of each generator is stored in the generator
