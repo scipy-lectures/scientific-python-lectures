@@ -179,8 +179,10 @@ Manipulating data
     >>> data.shape    # 40 rows and 8 columns
     (40, 8)
 
-    >>> data.columns  # It has columns   # doctest: +SKIP
-    Index([u'Unnamed: 0', u'Gender', u'FSIQ', u'VIQ', u'PIQ', u'Weight', u'Height', u'MRI_Count'], dtype='object')
+    >>> data.columns  # It has columns
+    Index(['Unnamed: 0', 'Gender', 'FSIQ', 'VIQ', 'PIQ', 'Weight', 'Height',
+           'MRI_Count'],
+          dtype='object')
 
     >>> print(data['Gender'])  # Columns can be addressed by name
     0     Female
@@ -266,7 +268,16 @@ dataframes:
 **Scatter matrices**::
 
     >>> from pandas import plotting
-    >>> plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])   # doctest: +SKIP
+    >>> plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])
+    array([[<Axes: xlabel='Weight', ylabel='Weight'>,
+            <Axes: xlabel='Height', ylabel='Weight'>,
+            <Axes: xlabel='MRI_Count', ylabel='Weight'>],
+           [<Axes: xlabel='Weight', ylabel='Height'>,
+            <Axes: xlabel='Height', ylabel='Height'>,
+            <Axes: xlabel='MRI_Count', ylabel='Height'>],
+           [<Axes: xlabel='Weight', ylabel='MRI_Count'>,
+            <Axes: xlabel='Height', ylabel='MRI_Count'>,
+            <Axes: xlabel='MRI_Count', ylabel='MRI_Count'>]], dtype=object)
 
 .. image:: auto_examples/images/sphx_glr_plot_pandas_002.png
    :target: auto_examples/plot_pandas.html
@@ -275,7 +286,16 @@ dataframes:
 
 ::
 
-    >>> plotting.scatter_matrix(data[['PIQ', 'VIQ', 'FSIQ']])   # doctest: +SKIP
+    >>> plotting.scatter_matrix(data[['PIQ', 'VIQ', 'FSIQ']])
+    array([[<Axes: xlabel='PIQ', ylabel='PIQ'>,
+            <Axes: xlabel='VIQ', ylabel='PIQ'>,
+            <Axes: xlabel='FSIQ', ylabel='PIQ'>],
+           [<Axes: xlabel='PIQ', ylabel='VIQ'>,
+            <Axes: xlabel='VIQ', ylabel='VIQ'>,
+            <Axes: xlabel='FSIQ', ylabel='VIQ'>],
+           [<Axes: xlabel='PIQ', ylabel='FSIQ'>,
+            <Axes: xlabel='VIQ', ylabel='FSIQ'>,
+            <Axes: xlabel='FSIQ', ylabel='FSIQ'>]], dtype=object)
 
 .. sidebar:: **Two populations**
 

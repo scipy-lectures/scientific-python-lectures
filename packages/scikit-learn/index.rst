@@ -1242,7 +1242,7 @@ iris dataset::
     >>> from sklearn.decomposition import PCA
     >>> pca = PCA(n_components=2, whiten=True)
     >>> pca.fit(X)
-    PCA(n_components=2, ...)
+    PCA(n_components=2, whiten=True)
 
 Once fitted, :class:`~sklearn.decomposition.PCA` exposes the singular
 vectors in the ``components_`` attribute::
