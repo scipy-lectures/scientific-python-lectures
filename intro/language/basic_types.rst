@@ -13,14 +13,14 @@ Numerical types
     >>> 1 + 1
     2
     >>> a = 4
-    >>> type(a)   # doctest: +SKIP
-    <type 'int'>
+    >>> type(a)
+    <class 'int'>
 
 :Floats:
 
     >>> c = 2.1
-    >>> type(c)   # doctest: +SKIP
-    <type 'float'>
+    >>> type(c)
+    <class 'float'>
 
 :Complex:
 
@@ -29,8 +29,8 @@ Numerical types
     1.5
     >>> a.imag
     0.5
-    >>> type(1. + 0j)   # doctest: +SKIP
-    <type 'complex'>
+    >>> type(1. + 0j)
+    <class 'complex'>
 
 :Booleans:
 
@@ -39,8 +39,8 @@ Numerical types
     >>> test = (3 > 4)
     >>> test
     False
-    >>> type(test)      # doctest: +SKIP
-    <type 'bool'>
+    >>> type(test)
+    <class 'bool'>
 
 .. tip::
 
@@ -82,8 +82,8 @@ Lists
 ::
 
     >>> colors = ['red', 'blue', 'green', 'black', 'white']
-    >>> type(colors)     # doctest: +SKIP
-    <type 'list'>
+    >>> type(colors)
+    <class 'list'>
 
 Indexing: accessing individual objects contained in the list::
 
@@ -344,20 +344,20 @@ Dictionaries
 .. tip::
 
     A dictionary is basically an efficient table that **maps keys to
-    values**. It is an **unordered** container
+    values**.
 
 ::
 
     >>> tel = {'emmanuelle': 5752, 'sebastian': 5578}
     >>> tel['francis'] = 5915
-    >>> tel     # doctest: +SKIP
-    {'sebastian': 5578, 'francis': 5915, 'emmanuelle': 5752}
+    >>> tel
+    {'emmanuelle': 5752, 'sebastian': 5578, 'francis': 5915}
     >>> tel['sebastian']
     5578
-    >>> tel.keys()   # doctest: +SKIP
-    ['sebastian', 'francis', 'emmanuelle']
-    >>> tel.values()   # doctest: +SKIP
-    [5578, 5915, 5752]
+    >>> tel.keys()
+    dict_keys(['emmanuelle', 'sebastian', 'francis'])
+    >>> tel.values()
+    dict_values([5752, 5578, 5915])
     >>> 'francis' in tel
     True
 
@@ -371,8 +371,8 @@ Dictionaries
   A dictionary can have keys (resp. values) with different types::
 
     >>> d = {'a':1, 'b':2, 3:'hello'}
-    >>> d       # doctest: +SKIP
-    {'a': 1, 3: 'hello', 'b': 2}
+    >>> d
+    {'a': 1, 'b': 2, 3: 'hello'}
 
 More container types
 ~~~~~~~~~~~~~~~~~~~~
@@ -393,9 +393,9 @@ between parentheses, or just separated by commas::
 
     >>> s = set(('a', 'b', 'c', 'a'))
     >>> s    # doctest: +SKIP
-    set(['a', 'c', 'b'])
-    >>> s.difference(('a', 'b'))    # doctest: +SKIP
-    set(['c'])
+    {'a', 'b', 'c'}
+    >>> s.difference(('a', 'b'))
+    {'c'}
 
 Assignment operator
 -------------------

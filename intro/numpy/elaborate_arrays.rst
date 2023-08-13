@@ -159,27 +159,25 @@ Structured data types
     (6,)
     >>> samples.dtype.names
     ('sensor_code', 'position', 'value')
-
     >>> samples[:] = [('ALFA',   1, 0.37), ('BETA', 1, 0.11), ('TAU', 1,   0.13),
     ...               ('ALFA', 1.5, 0.37), ('ALFA', 3, 0.11), ('TAU', 1.2, 0.13)]
-    >>> samples     # doctest: +SKIP
-    array([('ALFA', 1.0, 0.37), ('BETA', 1.0, 0.11), ('TAU', 1.0, 0.13),
-           ('ALFA', 1.5, 0.37), ('ALFA', 3.0, 0.11), ('TAU', 1.2, 0.13)],
+    >>> samples
+    array([(b'ALFA', 1. , 0.37), (b'BETA', 1. , 0.11), (b'TAU', 1. , 0.13),
+           (b'ALFA', 1.5, 0.37), (b'ALFA', 3. , 0.11), (b'TAU', 1.2, 0.13)],
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 Field access works by indexing with field names::
 
-    >>> samples['sensor_code']    # doctest: +SKIP
-    array(['ALFA', 'BETA', 'TAU', 'ALFA', 'ALFA', 'TAU'],
-          dtype='|S4')
+    >>> samples['sensor_code']
+    array([b'ALFA', b'BETA', b'TAU', b'ALFA', b'ALFA', b'TAU'], dtype='|S4')
     >>> samples['value']
     array([0.37,  0.11,  0.13,  0.37,  0.11,  0.13])
-    >>> samples[0]    # doctest: +SKIP
-    ('ALFA', 1.0, 0.37)
+    >>> samples[0]
+    (b'ALFA', 1., 0.37)
 
     >>> samples[0]['sensor_code'] = 'TAU'
-    >>> samples[0]    # doctest: +SKIP
-    ('TAU', 1.0, 0.37)
+    >>> samples[0]
+    (b'TAU', 1., 0.37)
 
 Multiple fields at once::
 
@@ -190,7 +188,7 @@ Multiple fields at once::
 
 Fancy indexing works, as usual::
 
-    >>> samples[samples['sensor_code'] == b'ALFA']    # doctest: +SKIP
+    >>> samples[samples['sensor_code'] == b'ALFA']
     array([(b'ALFA', 1.5, 0.37), (b'ALFA', 3. , 0.11)],
           dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 

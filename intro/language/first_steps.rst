@@ -37,22 +37,19 @@ To get yourself started, type the following stack of instructions ::
 
     >>> a = 3
     >>> b = 2*a
-    >>> type(b)     # doctest: +SKIP
-    <type 'int'>
+    >>> type(b)
+    <class 'int'>
     >>> print(b)
     6
     >>> a*b
     18
     >>> b = 'hello'
-    >>> type(b)    # doctest: +SKIP
-    <type 'str'>
+    >>> type(b)
+    <class 'str'>
     >>> b + b
     'hellohello'
     >>> 2*b
     'hellohello'
-
-.. We need to skip the call to 'type' because in Python3 is prints as
-   'type', but in Python2 as 'class'
 
 .. tip::
 

@@ -22,5 +22,5 @@ plt.hist(
 
 x = np.linspace(-5, 5)  # possible values of the random variable
 plt.plot(x, dist.pdf(x), label="PDF")
-plt.legend()  # doctest: +SKIP
+plt.legend()
 plt.show()

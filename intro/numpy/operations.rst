@@ -147,10 +147,10 @@ Other operations
 .. sourcecode:: pycon
 
     >>> a = np.arange(4)
-    >>> a + np.array([1, 2])  # doctest: +SKIP
+    >>> a + np.array([1, 2])
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    ValueError: operands could not be broadcast together with shapes (4) (2)
+    ValueError: operands could not be broadcast together with shapes (4,) (2,)
 
 *Broadcasting?* We'll return to that :ref:`later <broadcasting>`.
 
@@ -543,8 +543,10 @@ Or in color:
 
 .. sourcecode:: pycon
 
-    >>> plt.pcolor(distance)    # doctest: +SKIP
-    >>> plt.colorbar()    # doctest: +SKIP
+    >>> plt.pcolor(distance)
+    <matplotlib.collections.PolyCollection object at ...>
+    >>> plt.colorbar()
+    <matplotlib.colorbar.Colorbar object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_distances_001.png
    :width: 50%
@@ -740,11 +742,12 @@ However, it must not be referred to somewhere else:
 .. sourcecode:: pycon
 
     >>> b = a
-    >>> a.resize((4,))   # doctest: +SKIP
+    >>> a.resize((4,))
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    ValueError: cannot resize an array that has been referenced or is
-    referencing another array in this way.  Use the resize function
+    ValueError: cannot resize an array that references or is referenced
+    by another array in this way.
+    Use the np.resize function or refcheck=False
 
 .. seealso: ``help(np.tensordot)``
 

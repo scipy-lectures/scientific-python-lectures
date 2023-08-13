@@ -257,12 +257,12 @@ Functions for creating arrays
 
     >>> rng = np.random.default_rng(27446968)
     >>> a = rng.random(4)       # uniform in [0, 1]
-    >>> a  # doctest: +SKIP
-    array([ 0.95799151,  0.14222247,  0.08777354,  0.51887998])
+    >>> a
+    array([0.64613018, 0.48984931, 0.50851229, 0.22563948])
 
     >>> b = rng.standard_normal(4)      # Gaussian
-    >>> b  # doctest: +SKIP
-    array([ 0.37544699, -0.11425369, -0.47616538,  1.79664113])
+    >>> b
+    array([-0.38250769, -0.61536465,  0.98131732,  0.59353096])
 
 .. topic:: **Exercise: Creating arrays using functions**
    :class: green
@@ -346,8 +346,8 @@ There are also other types:
   .. sourcecode:: pycon
 
         >>> f = np.array(['Bonjour', 'Hello', 'Hallo'])
-        >>> f.dtype     # <--- strings containing max. 7 letters  # doctest: +SKIP
-        dtype('S7')
+        >>> f.dtype     # <--- strings containing max. 7 letters
+        dtype('<U7')
 
 :Much more:
 
@@ -416,9 +416,9 @@ Or, if you have enabled interactive plots with ``%matplotlib``:
 
   >>> x = np.linspace(0, 3, 20)
   >>> y = np.linspace(0, 9, 20)
-  >>> plt.plot(x, y)       # line plot    # doctest: +SKIP
+  >>> plt.plot(x, y)       # line plot
   [<matplotlib.lines.Line2D object at ...>]
-  >>> plt.plot(x, y, 'o')  # dot plot    # doctest: +SKIP
+  >>> plt.plot(x, y, 'o')  # dot plot
   [<matplotlib.lines.Line2D object at ...>]
 
 .. image:: auto_examples/images/sphx_glr_plot_basic1dplot_001.png
