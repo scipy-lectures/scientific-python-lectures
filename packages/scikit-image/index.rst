@@ -69,7 +69,8 @@ Images are NumPy's arrays ``np.ndarray``
     >>> check[::2, 1::2] = 1
     >>> check[1::2, ::2] = 1
     >>> import matplotlib.pyplot as plt
-    >>> plt.imshow(check, cmap='gray', interpolation='nearest') # doctest: +SKIP
+    >>> plt.imshow(check, cmap='gray', interpolation='nearest')
+    <matplotlib.image.AxesImage object at ...>
 
 
 .. image:: auto_examples/images/sphx_glr_plot_check_001.png
@@ -288,8 +289,8 @@ hence output an array with a different type and the data range from the
 input array ::
 
     >>> camera_sobel = ski.filters.sobel(camera)
-    >>> camera_sobel.max() # doctest: +SKIP
-    0.591502...
+    >>> camera_sobel.max()
+    0.644...
 
 
 Utility functions are provided in :mod:`skimage` to convert both the
