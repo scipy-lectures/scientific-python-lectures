@@ -496,8 +496,9 @@ variable :math:`f(x) = x^2  + 10 \sin(x)`::
     >>> def f(x):
     ...     return x**2 + 10*np.sin(x)
     >>> x = np.arange(-5, 5, 0.1)
-    >>> plt.plot(x, f(x))  # doctest:+SKIP
-    >>> plt.show()  # doctest:+SKIP
+    >>> plt.plot(x, f(x))
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.show()
 
 We can see that the function has a local minimizer near :math:`x = 3.8`
 and a global minimizer near :math:`x = -1.3`, but
@@ -628,8 +629,10 @@ variable's probability density function (PDF)::
     >>> sample = dist.rvs(size=100000)  # "random variate sample"
     >>> plt.hist(sample, bins=50, density=True, label='normalized histogram')  # doctest: +SKIP
     >>> x = np.linspace(-5, 5)
-    >>> plt.plot(x, dist.pdf(x), label='PDF')  # doctest: +SKIP
-    >>> plt.legend()  # doctest: +SKIP
+    >>> plt.plot(x, dist.pdf(x), label='PDF')
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.legend()
+    <matplotlib.legend.Legend object at ...>
 
 .. image:: auto_examples/images/sphx_glr_plot_normal_distribution_001.png
     :target: auto_examples/plot_normal_distribution.html
@@ -767,10 +770,14 @@ Then, to compute ``y`` as a function of time::
 
 and plot the result::
 
-    >>> plt.plot(res.t, res.y[0])  # doctest: +SKIP
-    >>> plt.xlabel('t')  # doctest: +SKIP
-    >>> plt.ylabel('y')  # doctest: +SKIP
-    >>> plt.title('Solution of Initial Value Problem')  # doctest: +SKIP
+    >>> plt.plot(res.t, res.y[0])
+    [<matplotlib.lines.Line2D object at ...>]
+    >>> plt.xlabel('t')
+    Text(0.5, 0, 't')
+    >>> plt.ylabel('y')
+    Text(0, 0.5, 'y')
+    >>> plt.title('Solution of Initial Value Problem')
+    Text(0.5, 1.0, 'Solution of Initial Value Problem')
 
 .. image:: auto_examples/images/sphx_glr_plot_solve_ivp_simple_001.png
     :target: auto_examples/plot_solve_ivp_simple.html
