@@ -271,10 +271,11 @@ are handy to explore and understand algorithms.
 
 Start `ipython`:
 
-.. sourcecode:: ipython
+.. ipython::
+    :doctest:
 
     In [1]: print('Hello world')
-    Hello world
+    He world
 
 Getting help by using the **?** operator after an object:
 
