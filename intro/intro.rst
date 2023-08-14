@@ -272,6 +272,7 @@ are handy to explore and understand algorithms.
 Start `ipython`:
 
 .. ipython::
+    :verbatim:
 
     In [1]: print('Hello world')
     He world
