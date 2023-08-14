@@ -275,32 +275,20 @@ Start `ipython`:
     :verbatim:
 
     In [1]: print('Hello world')
-    He world
+    Hello world
 
 Getting help by using the **?** operator after an object:
 
-.. sourcecode:: ipython
+.. ipython::
 
-    In [2]: print?
-    Type:               builtin_function_or_method
-    Base Class:         <type 'builtin_function_or_method'>
-    String Form:        <built-in function print>
-    Namespace:          Python builtin
-    Docstring:
-        print(value, ..., sep=' ', end='\n', file=sys.stdout)
-
-        Prints the values to a stream, or to sys.stdout by default.
-        Optional keyword arguments:
-        file: a file-like object (stream); defaults to the current sys.stdout.
-        sep:  string inserted between values, default a space.
-        end:  string appended after the last value, default a newline.
+    In [1]: print?
 
 .. seealso::
 
     * IPython user manual: https://ipython.readthedocs.io/en/stable/
 
     * Jupyter Notebook QuickStart:
-      https://jupyter.readthedocs.io/en/latest/content-quickstart.html
+      https://docs.jupyter.org/en/latest/start/index.html
 
 Elaboration of the work in an editor
 ..........................................
@@ -330,14 +318,20 @@ following lines::
 Now, you can run it in IPython console or a notebook and explore the
 resulting variables:
 
-.. sourcecode:: ipython
+.. ipython::
 
+    @suppress
+    In [1]: s = 'Hello world'
+
+    @verbatim
     In [1]: %run my_file.py
     Hello world
 
+    @doctest
     In [2]: s
     Out[2]: 'Hello world'
 
+    @verbatim
     In [3]: %whos
     Variable   Type    Data/Info
     ----------------------------
