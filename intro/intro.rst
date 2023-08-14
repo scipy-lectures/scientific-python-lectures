@@ -272,7 +272,6 @@ are handy to explore and understand algorithms.
 Start `ipython`:
 
 .. ipython::
-    :doctest:
 
     In [1]: print('Hello world')
     He world
