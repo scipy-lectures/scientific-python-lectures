@@ -227,12 +227,13 @@ Concatenate and repeat lists::
 
     Reminder: in Ipython: tab-completion (press tab)
 
-    .. sourcecode:: ipython
+    .. ipython::
 
+        @verbatim
         In [28]: rcolors.<TAB>
-        rcolors.append   rcolors.index    rcolors.remove
-        rcolors.count    rcolors.insert   rcolors.reverse
-        rcolors.extend   rcolors.pop      rcolors.sort
+                         append()  count()   insert()  reverse()
+                         clear()   extend()  pop()     sort()
+                         copy()    index()   remove()
 
 Strings
 ~~~~~~~
@@ -247,14 +248,10 @@ Different string syntaxes (simple, double or triple quotes)::
     s = """Hi,
     what's up?"""
 
-.. sourcecode:: ipython
+.. ipython::
+    :okexcept:
 
     In [1]: 'Hi, what's up?'
-    ------------------------------------------------------------
-       File "<ipython console>", line 1
-        'Hi, what's up?'
-               ^
-    SyntaxError: invalid syntax
 
 This syntax error can be avoided by enclosing the string in double quotes
 instead of single quotes. Alternatively, one can prepend a backslash to the
@@ -301,7 +298,7 @@ Slicing::
 A string is an **immutable object** and it is not possible to modify its
 contents. One may however create new strings from the original one.
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [53]: a = "hello, world!"
     In [54]: a[2] = 'z'
@@ -420,7 +417,7 @@ Things to note:
 
 * a single object can have several names bound to it:
 
-    .. sourcecode:: ipython
+    .. ipython::
 
         In [1]: a = [1, 2, 3]
         In [2]: b = a
@@ -436,7 +433,7 @@ Things to note:
 
 * to change a list *in place*, use indexing/slices:
 
-    .. sourcecode:: ipython
+    .. ipython::
 
         In [1]: a = [1, 2, 3]
         In [3]: a

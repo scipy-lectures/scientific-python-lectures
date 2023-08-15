@@ -18,14 +18,14 @@ Directory and file manipulation
 
 Current directory:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [17]: os.getcwd()
     Out[17]: '/Users/cburns/src/scipy2009/scipy_2009_tutorial/source'
 
 List a directory:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [31]: os.listdir(os.curdir)
     Out[31]:
@@ -42,7 +42,7 @@ List a directory:
 
 Make a directory:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [32]: os.mkdir('junkdir')
 
@@ -51,7 +51,7 @@ Make a directory:
 
 Rename the directory:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [36]: os.rename('junkdir', 'foodir')
 
@@ -68,7 +68,7 @@ Rename the directory:
 
 Delete a file:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [44]: fp = open('junk.txt', 'w')
 
@@ -87,7 +87,7 @@ Delete a file:
 
 ``os.path`` provides common operations on pathnames.
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [70]: fp = open('junk.txt', 'w')
 
@@ -129,7 +129,7 @@ Delete a file:
 Running an external command
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. sourcecode:: ipython
+.. ipython::
 
   In [8]: os.system('ls')
   basic_types.rst   demo.py          functions.rst  python_language.rst  standard_library.rst
@@ -142,7 +142,8 @@ Running an external command
     <https://amoffat.github.com/sh/>`_. Which provides much more convenient ways to
     obtain the output, error stream and exit code of the external command.
 
-    .. sourcecode:: ipython
+    .. ipython::
+        :verbatim:
 
         In [20]: import sh
         In [20]: com = sh.ls()
@@ -164,7 +165,7 @@ Walking a directory
 
 ``os.path.walk`` generates a list of filenames in a directory tree.
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [10]: for dirpath, dirnames, filenames in os.walk(os.curdir):
        ....:     for fp in filenames:
@@ -181,7 +182,8 @@ Walking a directory
 Environment variables:
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [9]: import os
 
@@ -230,7 +232,7 @@ The ``glob`` module provides convenient file pattern matching.
 
 Find all files ending in ``.txt``:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [18]: import glob
 
@@ -246,7 +248,7 @@ System-specific information related to the Python interpreter.
 
 * Which version of python are you running and where is it installed:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
     In [117]: sys.platform
     Out[117]: 'darwin'
@@ -260,7 +262,7 @@ System-specific information related to the Python interpreter.
 
 * List of command line arguments passed to a Python script:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
    In [100]: sys.argv
    Out[100]: ['/Users/cburns/local/bin/ipython']
@@ -269,7 +271,7 @@ System-specific information related to the Python interpreter.
 ``sys.path`` is a list of strings that specifies the search path for
 modules.  Initialized from PYTHONPATH:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [121]: sys.path
     Out[121]:
@@ -287,16 +289,21 @@ modules.  Initialized from PYTHONPATH:
 
 Useful to store arbitrary objects to a file. Not safe or fast!
 
-.. sourcecode:: ipython
+.. ipython::
 
-  In [1]: import pickle
+    In [1]: import pickle
 
-  In [2]: l = [1, None, 'Stan']
+    In [2]: l = [1, None, 'Stan']
 
-  In [3]: pickle.dump(l, file('test.pkl', 'w'))
+    In [3]: with open('test.pkl', 'wb') as file:
+       ...:     pickle.dump(l, file)
+       ...:
 
-  In [4]: pickle.load(file('test.pkl'))
-  Out[4]: [1, None, 'Stan']
+    In [4]: with open('test.pkl', 'rb') as file:
+       ...:     out = pickle.load(file)
+       ...:
+
+    In [5]: out
 
 
 .. topic:: Exercise

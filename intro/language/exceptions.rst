@@ -41,11 +41,12 @@ Catching exceptions
 try/except
 ~~~~~~~~~~~
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [10]: while True:
        ....:     try:
-       ....:         x = int(raw_input('Please enter a number: '))
+       ....:         x = int(input('Please enter a number: '))
        ....:         break
        ....:     except ValueError:
        ....:         print('That was no valid number.  Try again...')
@@ -60,17 +61,23 @@ try/except
 try/finally
 ~~~~~~~~~~~~
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [10]: try:
-       ....:     x = int(raw_input('Please enter a number: '))
+       ....:     x = int(input('Please enter a number: '))
        ....: finally:
        ....:     print('Thank you for your input')
-       ....:
        ....:
     Please enter a number: a
     Thank you for your input
     ---------------------------------------------------------------------------
+    ValueError                                Traceback (most recent call last)
+    Cell In[10], line 2
+          1 try:
+    ----> 2     x = int(input('Please enter a number: '))
+          3 finally:
+          4     print('Thank you for your input')
     ValueError: invalid literal for int() with base 10: 'a'
 
 Important for resource management (e.g. closing a file)
@@ -79,7 +86,7 @@ Easier to ask for forgiveness than for permission
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [11]: def print_sorted(collection):
        ....:     try:
@@ -87,7 +94,6 @@ Easier to ask for forgiveness than for permission
        ....:     except AttributeError:
        ....:         pass # The pass statement does nothing
        ....:     print(collection)
-       ....:
        ....:
 
     In [12]: print_sorted([1, 3, 2])
@@ -105,7 +111,8 @@ Raising exceptions
 
 * Capturing and reraising an exception:
 
-  .. sourcecode:: ipython
+  .. ipython::
+    :okexcept:
 
     In [15]: def filter_name(name):
        ....:    try:
@@ -123,13 +130,11 @@ Raising exceptions
     Out[16]: 'Ga\xc3\xabl'
 
     In [17]: filter_name('Stéfan')
-    ---------------------------------------------------------------------------
-    UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 2: ordinal not in range(128)
 
 
 * Exceptions to pass messages between parts of the code:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
     In [17]: def achilles_arrow(x):
        ....:    if abs(x - 1) < 1e-3:

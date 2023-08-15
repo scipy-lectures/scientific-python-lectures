@@ -122,7 +122,7 @@ Example: :download:`populations.txt <../../data/populations.txt>`:
 
 .. topic:: Reminder: Navigating the filesystem with IPython
 
-   .. sourcecode:: ipython
+   .. ipython::
 
        In [1]: pwd      # show current directory
        '/home/user/stuff/2011-numpy-tutorial'
