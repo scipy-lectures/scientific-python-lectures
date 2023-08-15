@@ -13,13 +13,12 @@ help. Here are some ways to get information:
   type the beginning of the function's name and use tab completion to
   display the matching functions.
 
-  .. sourcecode:: ipython
+  .. ipython::
 
-      In [204]: help np.v
-      np.vander     np.vdot       np.version    np.void0      np.vstack
-      np.var        np.vectorize  np.void       np.vsplit
+      @verbatim
+      In [204]: help(np.van<TAB>
 
-      In [204]: help np.vander
+      In [204]: help(np.vander)
 
 In Ipython it is not possible to open a separated window for help and
 documentation; however one can always open a second ``Ipython`` shell
@@ -59,43 +58,17 @@ Finally, two more "technical" possibilities are useful as well:
   the exact name  of a function.
 
 
-  .. sourcecode:: ipython
+  .. ipython::
 
       In [3]: import numpy as np
       In [4]: %psearch np.diag*
-      np.diag
-      np.diagflat
-      np.diagonal
 
 * numpy.lookfor looks for keywords inside the docstrings of specified modules.
 
-  .. sourcecode:: ipython
+  .. ipython::
+      :okwarning:
 
-      In [45]: numpy.lookfor('convolution')
-      Search results for 'convolution'
-      --------------------------------
-      numpy.convolve
-          Returns the discrete, linear convolution of two one-dimensional
-      sequences.
-      numpy.bartlett
-          Return the Bartlett window.
-      numpy.correlate
-          Discrete, linear correlation of two 1-dimensional sequences.
-      In [46]: numpy.lookfor('remove', module='os')
-      Search results for 'remove'
-      ---------------------------
-      os.remove
-          remove(path)
-      os.removedirs
-          removedirs(path)
-      os.rmdir
-          rmdir(path)
-      os.unlink
-          unlink(path)
-      os.walk
-          Directory tree generator.
-
-
+      In [45]: np.lookfor('convolution')
 
 * If everything listed above fails (and Google doesn't have the
   answer)... don't despair! There is a vibrant Scientific Python community.

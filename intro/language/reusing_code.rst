@@ -36,7 +36,8 @@ following lines in a file called ``test.py`` ::
     in Ipython, the syntax to execute a script is ``%run script.py``. For
     example,
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [1]: %run test.py
     Hello
@@ -93,7 +94,7 @@ directory as the test.py file, we can execute this in a console:
 Importing objects from modules
 ------------------------------
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [1]: import os
 
@@ -115,13 +116,13 @@ Importing objects from modules
 
 And also:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [4]: from os import listdir
 
 Importing shorthands:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [5]: import numpy as np
 
@@ -182,7 +183,8 @@ Let us create a module ``demo`` contained in the file ``demo.py``:
     The syntax is as follows.
 
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [1]: import demo
 
@@ -200,7 +202,8 @@ object's name, otherwise Python won't recognize the instruction.
 
 Introspection
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [4]: demo?
     Type:               module
@@ -240,7 +243,8 @@ Introspection
 
 Importing objects from modules into the main namespace
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [9]: from demo import print_a, print_b
 
@@ -265,12 +269,6 @@ Importing objects from modules into the main namespace
 
      .. sourcecode :: ipython
 
-        In [10]: reload(demo)
-
-    In Python3 instead ``reload`` is not builtin, so you have to import the ``importlib`` module first and then do:
-
-     .. sourcecode :: ipython
-
         In [10]: importlib.reload(demo)
 
 '__main__' and module loading
@@ -289,7 +287,8 @@ File ``demo2.py``:
 
 Importing it:
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [11]: import demo2
     b
@@ -298,7 +297,8 @@ Importing it:
 
 Running it:
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [13]: %run demo2
     b
@@ -331,7 +331,7 @@ well as the list of directories specified by the environment variable
 The list of directories searched by Python is given by the ``sys.path``
 variable
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [1]: import sys
 
@@ -415,16 +415,15 @@ imported.
 
 From Ipython:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [1]: import scipy as sp
 
-    In [2]: scipy.__file__
-    Out[2]: '/usr/lib64/python3.10/site-packages/scipy/__init__.py'
+    In [2]: sp.__file__
 
     In [3]: sp.version.version
-    Out[3]: '1.9.1'
 
+    @verbatim
     In [4]: sp.ndimage.morphology.binary_dilation?
     Signature:
     sp.ndimage.morphology.binary_dilation(
@@ -439,7 +438,6 @@ From Ipython:
     )
     Docstring:
     Multidimensional binary dilation with the given structuring element.
-
     ...
 
 
@@ -463,7 +461,7 @@ Good practices
     ``{`` or ``;`` characters that delineate logical blocks in other
     languages. Improper indentation leads to errors such as
 
-    .. sourcecode:: ipython
+    .. code-block:: ipython
 
         ------------------------------------------------------------
         IndentationError: unexpected indent (test.py, line 2)

@@ -124,7 +124,7 @@ Complex floating-point numbers:
    - Half the size in memory and on disk
    - Half the memory bandwidth required (may be a bit faster in some operations)
 
-     .. sourcecode:: ipython
+     .. ipython::
 
         In [1]: a = np.zeros((int(1e6),), dtype=np.float64)
 

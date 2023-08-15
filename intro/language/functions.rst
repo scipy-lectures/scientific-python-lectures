@@ -4,7 +4,7 @@ Defining functions
 Function definition
 -------------------
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [56]: def test():
        ....:     print('in test function')
@@ -23,7 +23,7 @@ Return statement
 
 Functions can *optionally* return values.
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [6]: def disk_area(radius):
        ...:     return 3.14 * radius * radius
@@ -53,7 +53,8 @@ Parameters
 
 Mandatory parameters (positional arguments)
 
-.. sourcecode:: ipython
+.. ipython::
+    :okexcept:
 
     In [81]: def double_it(x):
        ....:     return x * 2
@@ -63,14 +64,10 @@ Mandatory parameters (positional arguments)
     Out[82]: 6
 
     In [83]: double_it()
-    ---------------------------------------------------------------------------
-    Traceback (most recent call last):
-      File "<stdin>", line 1, in <module>
-    TypeError: double_it() takes exactly 1 argument (0 given)
 
 Optional parameters (keyword or named arguments)
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [84]: def double_it(x=2):
        ....:     return x * 2
@@ -93,7 +90,7 @@ Keyword arguments allow you to specify *default values*.
 
    Using an immutable type in a keyword argument:
 
-   .. sourcecode:: ipython
+   .. ipython::
 
        In [124]: bigx = 10
 
@@ -109,7 +106,7 @@ Keyword arguments allow you to specify *default values*.
    Using an mutable type in a keyword argument (and modifying it inside the
    function body):
 
-   .. sourcecode:: ipython
+   .. ipython::
 
        In [2]: def add_to_dict(args={'a': 1, 'b': 2}):
           ...:     for i in args.keys():
@@ -133,7 +130,7 @@ Keyword arguments allow you to specify *default values*.
 
   More involved example implementing python's slicing:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
     In [98]: def slicer(seq, start=None, stop=None, step=None):
        ....:     """Implement basic python slicing."""
@@ -159,7 +156,7 @@ Keyword arguments allow you to specify *default values*.
 
   The order of the keyword arguments does not matter:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
     In [107]: slicer(rhyme, step=2, start=1, stop=4)
     Out[107]: ['fish,', 'fish,']
@@ -226,7 +223,7 @@ Global variables
 Variables declared outside the function can be referenced within the
 function:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [114]: x = 5
 
@@ -242,7 +239,7 @@ unless declared **global** in the function.
 
 This doesn't work:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [117]: def setx(y):
        .....:     x = y
@@ -258,7 +255,7 @@ This doesn't work:
 
 This works:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [121]: def setx(y):
        .....:     global x
@@ -280,7 +277,7 @@ Special forms of parameters:
   * ``*args``: any number of positional arguments packed into a tuple
   * ``**kwargs``: any number of keyword arguments packed into a dictionary
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [35]: def variable_args(*args, **kwargs):
        ....:     print('args is', args)
@@ -298,7 +295,7 @@ Docstrings
 Documentation about what the function does and its parameters.  General
 convention:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [67]: def funcname(params):
        ....:     """Concise one-line sentence describing the function.
@@ -309,17 +306,14 @@ convention:
        ....:     pass
        ....:
 
+    @verbatim
     In [68]: funcname?
-    Type:           function
-    Base Class:     type 'function'>
-    String Form:    <function funcname at 0xeaa0f0>
-    Namespace:      Interactive
-    File:           <ipython console>
-    Definition:     funcname(params)
+    Signature: funcname(params)
     Docstring:
-        Concise one-line sentence describing the function.
-
-        Extended summary which can contain multiple paragraphs.
+    Concise one-line sentence describing the function.
+    Extended summary which can contain multiple paragraphs.
+    File:      ~/src/scientific-python-lectures/<ipython-input-13-64e466df6d64>
+    Type:      function
 
 .. Note:: **Docstring guidelines**
 
@@ -342,7 +336,7 @@ Functions are first-class objects, which means they can be:
   * an item in a list (or any collection)
   * passed as an argument to another function.
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [38]: va = variable_args
 

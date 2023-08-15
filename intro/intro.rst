@@ -363,10 +363,11 @@ functions*, and *aliases*.
 command history. Type *up* and *down* to navigate previously typed
 commands:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [1]: x = 10
 
+    @verbatim
     In [2]: <UP>
 
     In [2]: x = 10
@@ -378,14 +379,15 @@ structure of any object you’re dealing with. Simply type object_name.<TAB> to
 view the object’s attributes. Besides Python objects and keywords, tab
 completion also works on file and directory names.*
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [1]: x = 10
 
+    @verbatim
     In [2]: x.<TAB>
-    x.bit_length   x.denominator  x.imag         x.real
-    x.conjugate    x.from_bytes   x.numerator    x.to_bytes
-
+              as_integer_ratio() conjugate()        imag               to_bytes()
+              bit_count()        denominator        numerator
+              bit_length()       from_bytes()       real
 
 |
 
@@ -400,7 +402,7 @@ Other useful magic functions are:
 
 * ``%cd`` to change the current directory.
 
-  .. sourcecode:: ipython
+  .. ipython::
 
     In [1]: cd /tmp
     /tmp
@@ -409,7 +411,7 @@ Other useful magic functions are:
   been prefixed with the standard Python prompt (e.g. ``>>>``) or with an ipython
   prompt, (e.g. ``in [3]``):
 
-  .. sourcecode:: ipython
+  .. ipython::
 
     In [2]: %cpaste
     Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
@@ -423,7 +425,7 @@ Other useful magic functions are:
 * ``%timeit`` allows you to time the execution of short snippets using the
   ``timeit`` module from the standard library:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
       In [3]: %timeit x = 10
       10000000 loops, best of 3: 39 ns per loop
@@ -434,25 +436,22 @@ Other useful magic functions are:
   code you try to execute, raises an exception, using ``%debug`` will enter the
   debugger at the point where the exception was thrown.
 
-  .. sourcecode:: ipython
+  .. ipython::
+      :okexcept:
 
-    In [4]: x === 10
-      File "<ipython-input-6-12fd421b5f28>", line 1
-        x === 10
-            ^
-    SyntaxError: invalid syntax
+      In [4]: x === 10
 
-
-    In [5]: %debug
-    > /.../IPython/core/compilerop.py (87)ast_parse()
-         86         and are passed to the built-in compile function."""
-    ---> 87         return compile(source, filename, symbol, self.flags | PyCF_ONLY_AST, 1)
-         88
-
-    ipdb>locals()
-    {'source': u'x === 10\n', 'symbol': 'exec', 'self':
-    <IPython.core.compilerop.CachingCompiler instance at 0x2ad8ef0>,
-    'filename': '<ipython-input-6-12fd421b5f28>'}
+      @verbatim
+      In [5]: %debug
+      > /home/jarrod/.venv/lectures/lib64/python3.11/site-packages/IPython/core/compilerop.py(86)ast_parse()
+           84         Arguments are exactly the same as ast.parse (in the standard library),
+           85         and are passed to the built-in compile function."""
+      ---> 86         return compile(source, filename, symbol, self.flags | PyCF_ONLY_AST, 1)
+           87
+           88     def reset_compiler_flags(self):
+      ipdb> locals()
+      {'self': <IPython.core.compilerop.CachingCompiler object at 0x7f30d02efc10>, 'source': 'x === 10\n', 'filename': '<ipython-input-1-8e8bc565444b>', 'symbol': 'exec'}
+      ipdb>
 
   .. seealso:: :ref:`Chapter on debugging <debugging_chapter>`
 

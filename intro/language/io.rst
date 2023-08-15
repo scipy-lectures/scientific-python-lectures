@@ -16,7 +16,8 @@ strings). To write in a file::
 
 To read from a file
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [1]: f = open('workfile', 'r')
 
@@ -36,7 +37,8 @@ To read from a file
 Iterating over a file
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [6]: f = open('workfile', 'r')
 
@@ -44,7 +46,6 @@ Iterating over a file
        ...:     print(line)
        ...:
     This is a test
-
     and another test
 
     In [8]: f.close()

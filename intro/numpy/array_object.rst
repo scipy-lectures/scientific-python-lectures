@@ -62,7 +62,7 @@ NumPy arrays
 **Why it is useful:** Memory-efficient container that provides fast numerical
 operations.
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [1]: L = range(1000)
 
@@ -94,7 +94,7 @@ NumPy Reference documentation
 
 - Interactive help:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
      In [5]: np.array?
      String Form:<built-in function array>
@@ -124,7 +124,7 @@ NumPy Reference documentation
      numpy.memmap
          Create a memory-map to an array stored in a *binary* file on disk.
 
-  .. sourcecode:: ipython
+  .. ipython::
 
      In [6]: np.con*?
      np.concatenate
