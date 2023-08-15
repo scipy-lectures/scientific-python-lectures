@@ -168,7 +168,8 @@ The file ``cos_module.so`` contains the compiled extension, which we can now loa
    interpreter (see `PEP 3149 <https://peps.python.org/pep-3149/>`_) and is thus
    longer. The import statement is not affected by this.
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [1]: import cos_module
 
@@ -192,14 +193,14 @@ The file ``cos_module.so`` contains the compiled extension, which we can now loa
 
 Now let's see how robust this is:
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [10]: cos_module.cos_func('foo')
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
     <ipython-input-10-11bee483665d> in <module>()
     ----> 1 cos_module.cos_func('foo')
-
     TypeError: a float is required
 
 NumPy Support
@@ -282,7 +283,8 @@ As advertised, the wrapper code is in pure Python.
 
 We may now use this, as before:
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [1]: import cos_module
 
@@ -316,19 +318,18 @@ We may now use this, as before:
 As with the previous example, this code is somewhat robust, although the error
 message is not quite as helpful, since it does not tell us what the type should be.
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [7]: cos_module.cos_func('foo')
     ---------------------------------------------------------------------------
     ArgumentError                             Traceback (most recent call last)
     <ipython-input-7-11bee483665d> in <module>()
     ----> 1 cos_module.cos_func('foo')
-
     /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/ctypes/cos_module.py in cos_func(arg)
          12 def cos_func(arg):
          13     ''' Wrapper for cos from math.h '''
     ---> 14     return libm.cos(arg)
-
     ArgumentError: argument 1: <type 'exceptions.TypeError'>: wrong type
 
 NumPy Support
@@ -492,7 +493,8 @@ Generating the compiled wrappers is a two stage process:
 
 We can now load and execute the ``cos_module`` as we have done in the previous examples:
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [1]: import cos_module
 
@@ -531,14 +533,14 @@ We can now load and execute the ``cos_module`` as we have done in the previous e
 Again we test for robustness, and we see that we get a better error message
 (although, strictly speaking in Python there is no ``double`` type):
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [7]: cos_module.cos_func('foo')
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
     <ipython-input-7-11bee483665d> in <module>()
     ----> 1 cos_module.cos_func('foo')
-
     TypeError: in method 'cos_func', argument 1 of type 'double'
 
 NumPy Support
@@ -693,7 +695,8 @@ Compiling this:
 
 And running it:
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [1]: import cos_module
 
@@ -724,16 +727,15 @@ And running it:
 
 And, testing a little for robustness, we can see that we get good error messages:
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [7]: cos_module.cos_func('foo')
     ---------------------------------------------------------------------------
     TypeError                                 Traceback (most recent call last)
     <ipython-input-7-11bee483665d> in <module>()
     ----> 1 cos_module.cos_func('foo')
-
     /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/cython/cos_module.so in cos_module.cos_func (cos_module.c:506)()
-
     TypeError: a float is required
 
 

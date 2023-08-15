@@ -857,7 +857,7 @@ CPU cache effects
 
 Memory layout can affect performance:
 
-.. sourcecode:: ipython
+.. ipython::
 
    In [1]: x = np.zeros((20000,))
 

@@ -54,7 +54,7 @@ Timeit
 
 In IPython, use ``timeit`` (https://docs.python.org/3/library/timeit.html) to time elementary operations:
 
-.. sourcecode:: ipython
+.. ipython::
 
     In [1]: import numpy as np
 
@@ -101,24 +101,22 @@ Useful when you have a large program to profile, for example the
 To run it, you also need to download the :download:`ica module <ica.py>`.
 In IPython we can time the script:
 
-.. sourcecode:: ipython
+.. ipython::
+   :verbatim:
 
    In [1]: %run -t demo.py
-
    IPython CPU timings (estimated):
        User  :    14.3929 s.
        System:   0.256016 s.
 
 and profile it:
 
-.. sourcecode:: ipython
+.. ipython::
+   :verbatim:
 
    In [2]: %run -p demo.py
-
          916 function calls in 14.551 CPU seconds
-
    Ordered by: internal time
-
    ncalls  tottime  percall  cumtime  percall filename:lineno (function)
         1   14.457   14.457   14.479   14.479 decomp.py:849 (svd)
         1    0.054    0.054    0.054    0.054 {method 'random_sample' of 'mtrand.RandomState' objects}
@@ -246,7 +244,8 @@ we use the ``svd`` implementation of SciPy, we can ask for an incomplete
 version of the SVD. Note that implementations of linear algebra in
 SciPy are richer then those in NumPy and should be preferred.
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [3]: %timeit np.linalg.svd(data)
     1 loops, best of 3: 14.5 s per loop
@@ -267,7 +266,8 @@ We can then use this insight to :download:`optimize the previous code <demo_opt.
 .. literalinclude:: demo_opt.py
    :pyobject: test
 
-.. sourcecode:: ipython
+.. ipython::
+    :verbatim:
 
     In [1]: import demo
 
@@ -326,7 +326,8 @@ discuss only some commonly encountered tricks to make code faster.
 
 * **In place operations**
 
-  .. sourcecode:: ipython
+  .. ipython::
+    :verbatim:
 
     In [1]: a = np.zeros(1e7)
 
@@ -344,7 +345,8 @@ discuss only some commonly encountered tricks to make code faster.
   Copying big arrays is as costly as making simple numerical operations
   on them:
 
-  .. sourcecode:: ipython
+  .. ipython::
+    :verbatim:
 
     In [1]: a = np.zeros(1e7)
 
@@ -361,7 +363,8 @@ discuss only some commonly encountered tricks to make code faster.
   other things that **smaller strides are faster** (see
   :ref:`cache_effects`):
 
-  .. sourcecode:: ipython
+  .. ipython::
+    :verbatim:
 
     In [1]: c = np.zeros((1e4, 1e4), order='C')
 
@@ -377,7 +380,7 @@ discuss only some commonly encountered tricks to make code faster.
   This is the reason why Fortran ordering or C ordering may make a big
   difference on operations:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
     In [5]: rng = np.random.default_rng()
 
@@ -395,7 +398,7 @@ discuss only some commonly encountered tricks to make code faster.
 
   Note that copying the data to work around this effect may not be worth it:
 
-  .. sourcecode:: ipython
+  .. ipython::
 
     In [11]: %timeit c = np.ascontiguousarray(a.T)
     10 loops, best of 3: 106 ms per loop

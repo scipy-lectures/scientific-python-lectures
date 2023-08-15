@@ -233,50 +233,54 @@ Postmortem
 Here we debug the file :download:`index_error.py`. When running it, an
 :class:`IndexError` is raised. Type ``%debug`` and drop into the debugger.
 
-.. sourcecode:: ipython
+.. code-block:: ipython
 
     In [1]: %run index_error.py
     ---------------------------------------------------------------------------
     IndexError                                Traceback (most recent call last)
-    /home/varoquau/dev/scientific-python-lectures/advanced/debugging/index_error.py in <module>()
-          6
-          7 if __name__ == '__main__':
-    ----> 8     index_error()
-          9
+    File ~/src/scientific-python-lectures/advanced/debugging/index_error.py:10
+          6     print(lst[len(lst)])
+          9 if __name__ == "__main__":
+    ---> 10     index_error()
 
-    /home/varoquau/dev/scientific-python-lectures/advanced/debugging/index_error.py in index_error()
-          3 def index_error():
-          4     lst = list('foobar')
-    ----> 5     print lst[len(lst)]
-          6
-          7 if __name__ == '__main__':
+    File ~/src/scientific-python-lectures/advanced/debugging/index_error.py:6, in index_error()
+          4 def index_error():
+          5     lst = list("foobar")
+    ----> 6     print(lst[len(lst)])
 
     IndexError: list index out of range
 
+    In [61]: :q
+      Cell In[61], line 1
+        :q
+        ^
+    SyntaxError: invalid syntax
+
     In [2]: %debug
-    > /home/varoquau/dev/scientific-python-lectures/advanced/debugging/index_error.py(5)index_error()
-          4     lst = list('foobar')
-    ----> 5     print lst[len(lst)]
-          6
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/index_error.py(6)index_error()
+          4 def index_error():
+          5     lst = list("foobar")
+    ----> 6     print(lst[len(lst)])
+          7
+          8
 
     ipdb> list
           1 """Small snippet to raise an IndexError."""
           2
-          3 def index_error():
-          4     lst = list('foobar')
-    ----> 5     print lst[len(lst)]
-          6
-          7 if __name__ == '__main__':
-          8     index_error()
-          9
+          3
+          4 def index_error():
+          5     lst = list("foobar")
+    ----> 6     print(lst[len(lst)])
+          7
+          8
+          9 if __name__ == "__main__":
+         10     index_error()
 
     ipdb> len(lst)
     6
     ipdb> print(lst[len(lst)-1])
     r
     ipdb> quit
-
-    In [3]:
 
 .. topic:: Post-mortem debugging without IPython
 
@@ -316,34 +320,38 @@ For instance we are trying to debug :download:`wiener_filtering.py`.
 Indeed the code runs, but the filtering does not work well.
 
 * Run the script in IPython with the debugger using ``%run -d
-  wiener_filtering.p`` :
+  wiener_filtering.py`` :
 
-  .. sourcecode:: ipython
+  .. code-block:: ipython
 
     In [1]: %run -d wiener_filtering.py
     *** Blank or comment
     *** Blank or comment
     *** Blank or comment
-    Breakpoint 1 at /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py:4
-    NOTE: Enter 'c' at the ipdb>  prompt to start your script.
-    > <string>(1)<module>()
+    *** Blank or comment
+    NOTE: Enter 'c' at the ipdb>  prompt to continue execution.
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(1)<module>()
+    ----> 1 """ Wiener filtering a noisy raccoon face: this module is buggy
+          2 """
+          3
+          4 import numpy as np
+          5 import scipy as sp
 
 * Set a break point at line 34 using ``b 34``:
 
-  .. sourcecode:: ipython
+  .. code-block:: ipython
 
     ipdb> n
     > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(4)<module>()
           3
     1---> 4 import numpy as np
           5 import scipy as sp
-
     ipdb> b 34
     Breakpoint 2 at /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py:34
 
 * Continue execution to next breakpoint with ``c(ont(inue))``:
 
-  .. sourcecode:: ipython
+  .. code-block:: ipython
 
     ipdb> c
     > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(34)iterated_wiener()
@@ -355,14 +363,13 @@ Indeed the code runs, but the filtering does not work well.
   statement in the current execution context, while ``step`` will go across
   execution contexts, i.e. enable exploring inside function calls:
 
-  .. sourcecode:: ipython
+  .. code-block:: ipython
 
     ipdb> s
     > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(35)iterated_wiener()
     2    34     noisy_img = noisy_img
     ---> 35     denoised_img = local_mean(noisy_img, size=size)
          36     l_var = local_var(noisy_img, size=size)
-
     ipdb> n
     > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(36)iterated_wiener()
          35     denoised_img = local_mean(noisy_img, size=size)
@@ -372,7 +379,7 @@ Indeed the code runs, but the filtering does not work well.
 
 * Step a few lines and explore the local variables:
 
-  .. sourcecode:: ipython
+  .. code-block:: ipython
 
     ipdb> n
     > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(37)iterated_wiener()
@@ -398,7 +405,7 @@ doing integer arithmetic.
     When we run the :download:`wiener_filtering.py` file, the following
     warnings are raised:
 
-    .. sourcecode:: ipython
+    .. code-block:: ipython
 
         In [2]: %run wiener_filtering.py
         wiener_filtering.py:40: RuntimeWarning: divide by zero encountered in divide
@@ -408,7 +415,9 @@ doing integer arithmetic.
     We can turn these warnings in exception, which enables us to do
     post-mortem debugging on them, and find our problem more quickly:
 
-    .. sourcecode:: ipython
+    .. ipython::
+        :verbatim:
+        :okexcept:
 
         In [3]: np.seterr(all='raise')
         Out[3]: {'divide': 'print', 'invalid': 'print', 'over': 'print', 'under': 'ignore'}
@@ -419,21 +428,18 @@ doing integer arithmetic.
             176             else:
             177                 filename = fname
         --> 178             __builtin__.execfile(filename, *where)
-
         /home/esc/physique-cuso-python-2013/scientific-python-lectures/advanced/debugging/wiener_filtering.py in <module>()
              55 pl.matshow(noisy_face[cut], cmap=pl.cm.gray)
              56
         ---> 57 denoised_face = iterated_wiener(noisy_face)
              58 pl.matshow(denoised_face[cut], cmap=pl.cm.gray)
              59
-
         /home/esc/physique-cuso-python-2013/scientific-python-lectures/advanced/debugging/wiener_filtering.py in iterated_wiener(noisy_img, size)
              38         res = noisy_img - denoised_img
              39         noise = (res**2).sum()/res.size
         ---> 40         noise_level = (1 - noise/l_var )
              41         noise_level[noise_level<0] = 0
              42         denoised_img += noise_level*res
-
         FloatingPointError: divide by zero encountered in divide
 
 
