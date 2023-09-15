@@ -3,7 +3,6 @@
    >>> rng = np.random.default_rng(27446968)
    >>> # For doctest on headless environments
    >>> import matplotlib.pyplot as plt
-   >>> plt.switch_backend('Agg')
 
 .. _advanced_numpy:
 

@@ -1,6 +1,5 @@
 .. for doctests
     >>> import matplotlib.pyplot as plt
-    >>> plt.switch_backend("Agg")
     >>> import numpy as np
     >>> import pandas
     >>> pandas.options.display.width = 0

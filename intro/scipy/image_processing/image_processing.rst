@@ -2,7 +2,6 @@
 
 .. for doctests
    >>> import matplotlib.pyplot as plt
-   >>> plt.switch_backend("Agg")
 
 :mod:`scipy.ndimage` provides manipulation of n-dimensional arrays as
 images.

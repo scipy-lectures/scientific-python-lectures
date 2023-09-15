@@ -2,7 +2,6 @@
    >>> import numpy as np
    >>> # For doctest on headless environments
    >>> import matplotlib.pyplot as plt
-   >>> plt.switch_backend("Agg")
 
 Introduction
 ============

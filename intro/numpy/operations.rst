@@ -4,7 +4,6 @@
     >>> import numpy as np
     >>> # For doctest on headless environments
     >>> import matplotlib.pyplot as plt
-    >>> plt.switch_backend("Agg")
 
 .. currentmodule:: numpy
 
@@ -544,7 +543,7 @@ Or in color:
 .. sourcecode:: pycon
 
     >>> plt.pcolor(distance)
-    <matplotlib.collections.PolyCollection object at ...>
+    <matplotlib.collections.PolyQuadMesh object at ...>
     >>> plt.colorbar()
     <matplotlib.colorbar.Colorbar object at ...>
 

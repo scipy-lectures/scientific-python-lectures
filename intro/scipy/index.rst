@@ -1,6 +1,5 @@
 .. for doctests
     >>> import matplotlib.pyplot as plt
-    >>> plt.switch_backend("Agg")
     >>> import numpy as np
 
 .. _scipy:
@@ -773,9 +772,9 @@ and plot the result::
     >>> plt.plot(res.t, res.y[0])
     [<matplotlib.lines.Line2D object at ...>]
     >>> plt.xlabel('t')
-    Text(0.5, 0, 't')
+    Text(0.5, ..., 't')
     >>> plt.ylabel('y')
-    Text(0, 0.5, 'y')
+    Text(..., 0.5, 'y')
     >>> plt.title('Solution of Initial Value Problem')
     Text(0.5, 1.0, 'Solution of Initial Value Problem')
 
