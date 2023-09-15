@@ -16,6 +16,6 @@ Pillow
 imageio>=2.22
 pooch
 ipython
-pre-commit==3.3.3
+pre-commit==3.4.0
 requests
 sphinxcontrib-jquery
