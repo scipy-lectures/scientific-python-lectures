@@ -2,7 +2,6 @@
    >>> import numpy as np
    >>> import scipy as sp
    >>> import matplotlib.pyplot as plt
-   >>> plt.switch_backend("Agg")
 
 .. _scikit_image:
 

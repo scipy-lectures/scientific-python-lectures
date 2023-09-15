@@ -1129,12 +1129,12 @@ from within a python session:
    >>> help(plt.plot)
    Help on function plot in module matplotlib.pyplot:
    <BLANKLINE>
-   plot(*args,...)
+   plot(*args: ...) -> 'list[Line2D]'
        Plot y versus x as lines and/or markers.
    <BLANKLINE>
        Call signatures::
    <BLANKLINE>
-           plot([x], y, [fmt],...data=None, **kwargs)
+           plot([x], y, [fmt], *, data=None, **kwargs)
            plot([x], y, [fmt], [x2], y2, [fmt2], ..., **kwargs)
    ...
 
