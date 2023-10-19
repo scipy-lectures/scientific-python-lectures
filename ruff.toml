@@ -12,4 +12,4 @@ select = [
     "SIM2",    # simplify boolean comparisons
 ]
 
-target-version = "py39"
+target-version = "py310"
