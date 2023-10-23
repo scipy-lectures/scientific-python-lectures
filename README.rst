@@ -15,12 +15,12 @@ Python.
 These documents are written with the rest markup language (``.rst``
 extension) and built using `Sphinx <https://www.sphinx-doc.org>`_.
 
-You can view the online version at: https://scipy-lectures.org
+You can view the online version at: https://lectures.scientific-python.org/
 
 Reusing and distributing
 -------------------------
 
-As stated in the ``LICENSE.txt`` file, this material comes with no strings
+As stated in the ``LICENSE.rst`` file, this material comes with no strings
 attached. Feel free to reuse and modify for your own teaching purposes.
 
 However, we would like this reference material to be improved over time,
