@@ -1,8 +1,10 @@
 What's new
 ==========
 
-Release 2023.1 (coming summer 2023)
------------------------------------
+Release 2023.1 (coming 2023)
+----------------------------
+
+- Python 3.10, 3.11, 3.12
 
 - Renamed Scientific Python Lectures
 
