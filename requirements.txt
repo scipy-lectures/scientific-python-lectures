@@ -1,13 +1,13 @@
 numpy==1.26.2
 scipy==1.11.4
 matplotlib==3.8.2
-pandas==2.1.3
+pandas==2.1.4
 patsy==0.5.4
 scikit-learn==1.3.2
 scikit-image==0.22.0
 sympy==1.12
 statsmodels==0.14.1
-seaborn==0.13.0
+seaborn==0.13.1
 pytest>=7.4
 sphinx>=7
 sphinx-gallery>=0.14
@@ -17,6 +17,6 @@ Pillow
 pooch
 ipython
 pickleshare
-pre-commit==3.5.0
+pre-commit==3.6.0
 requests
 sphinxcontrib-jquery
