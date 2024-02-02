@@ -2,7 +2,7 @@ numpy==1.26.3
 scipy==1.11.4
 matplotlib==3.8.2
 pandas==2.1.4
-patsy==0.5.4
+patsy==0.5.6
 scikit-learn==1.4.0
 scikit-image==0.22.0
 sympy==1.12
