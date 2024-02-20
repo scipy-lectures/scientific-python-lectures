@@ -41,7 +41,7 @@ kernel = bump[:, np.newaxis] * bump[np.newaxis, :]
 #####################################################################
 
 # Padded fourier transform, with the same shape as the image
-# We use :func:`scipy.signal.fft.fft2` to have a 2D FFT
+# We use :func:`scipy.fft.fft2` to have a 2D FFT
 kernel_ft = sp.fft.fft2(kernel, s=img.shape[:2], axes=(0, 1))
 
 # convolve
