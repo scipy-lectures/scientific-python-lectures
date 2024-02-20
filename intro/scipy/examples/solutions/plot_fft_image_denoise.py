@@ -36,7 +36,7 @@ plt.title("Original image")
 ############################################################
 import scipy as sp
 
-im_fft = sp.fftpack.fft2(im)
+im_fft = sp.fft.fft2(im)
 
 # Show the results
 
@@ -88,7 +88,7 @@ plt.title("Filtered Spectrum")
 
 # Reconstruct the denoised image from the filtered spectrum, keep only the
 # real part for display.
-im_new = sp.fftpack.ifft2(im_fft2).real
+im_new = sp.fft.ifft2(im_fft2).real
 
 plt.figure()
 plt.imshow(im_new, plt.cm.gray)

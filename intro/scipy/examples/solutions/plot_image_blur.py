@@ -41,14 +41,14 @@ kernel = bump[:, np.newaxis] * bump[np.newaxis, :]
 #####################################################################
 
 # Padded fourier transform, with the same shape as the image
-# We use :func:`scipy.signal.fftpack.fft2` to have a 2D FFT
-kernel_ft = sp.fftpack.fft2(kernel, shape=img.shape[:2], axes=(0, 1))
+# We use :func:`scipy.signal.fft.fft2` to have a 2D FFT
+kernel_ft = sp.fft.fft2(kernel, s=img.shape[:2], axes=(0, 1))
 
 # convolve
-img_ft = sp.fftpack.fft2(img, axes=(0, 1))
+img_ft = sp.fft.fft2(img, axes=(0, 1))
 # the 'newaxis' is to match to color direction
 img2_ft = kernel_ft[:, :, np.newaxis] * img_ft
-img2 = sp.fftpack.ifft2(img2_ft, axes=(0, 1)).real
+img2 = sp.fft.ifft2(img2_ft, axes=(0, 1)).real
 
 # clip values to range
 img2 = np.clip(img2, 0, 1)
