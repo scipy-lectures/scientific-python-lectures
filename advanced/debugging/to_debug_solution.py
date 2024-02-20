@@ -16,6 +16,7 @@ from itertools import product
 
 import numpy as np
 import scipy as sp
+
 rng = np.random.default_rng(27446968)
 
 FUNCTIONS = (
