@@ -11,10 +11,12 @@ import matplotlib.pyplot as plt
 
 from skimage.restoration import denoise_tv_chambolle
 
+rng = np.random.default_rng(27446968)
+
 f = sp.datasets.face(gray=True)
 f = f[230:290, 220:320]
 
-noisy = f + 0.4 * f.std() * np.random.random(f.shape)
+noisy = f + 0.4 * f.std() * rng.random(f.shape)
 
 tv_denoised = denoise_tv_chambolle(noisy, weight=10)
 

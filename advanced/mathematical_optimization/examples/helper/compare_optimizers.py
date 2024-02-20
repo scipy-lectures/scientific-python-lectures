@@ -95,8 +95,8 @@ def mk_costs(ndim=2):
         "Rosenbrock  ": (rosenbrock, rosenbrock_prime, rosenbrock_hessian),
     }
 
-    rng = np.random.RandomState(0)
-    starting_points = 4 * rng.rand(20, ndim) - 2
+    rng = np.random.default_rng(5982345892)
+    starting_points = 4 * rng.random((20, ndim)) - 2
     if ndim > 100:
         starting_points = starting_points[:10]
     return costs, starting_points

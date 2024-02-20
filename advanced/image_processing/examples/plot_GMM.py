@@ -17,14 +17,14 @@ rng = np.random.default_rng(27446968)
 n = 10
 l = 256
 im = np.zeros((l, l))
-points = l * np.random.random((2, n**2))
+points = l * rng.random((2, n**2))
 im[(points[0]).astype(int), (points[1]).astype(int)] = 1
 im = sp.ndimage.gaussian_filter(im, sigma=l / (4.0 * n))
 
 mask = (im > im.mean()).astype(float)
 
 
-img = mask + 0.3 * np.random.randn(*mask.shape)
+img = mask + 0.3 * rng.normal(size=mask.shape)
 
 hist, bin_edges = np.histogram(img, bins=60)
 bin_centers = 0.5 * (bin_edges[:-1] + bin_edges[1:])

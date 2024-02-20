@@ -10,8 +10,8 @@ import scipy as sp
 import matplotlib.pyplot as plt
 
 im = np.zeros((64, 64))
-np.random.seed(2)
-x, y = (63 * np.random.random((2, 8))).astype(int)
+rng = np.random.default_rng(27446968)
+x, y = (63 * rng.random((2, 8))).astype(int)
 im[x, y] = np.arange(8)
 
 bigger_points = sp.ndimage.grey_dilation(im, size=(5, 5), structure=np.ones((5, 5)))

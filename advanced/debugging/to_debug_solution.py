@@ -16,6 +16,7 @@ from itertools import product
 
 import numpy as np
 import scipy as sp
+rng = np.random.default_rng(27446968)
 
 FUNCTIONS = (
     np.tan,  # Dilating map
@@ -52,8 +53,8 @@ def compare_optimizers(optimizers):
     functions all admitting a single root in zero and a upper and
     lower bounds.
     """
-    random_a = -1.3 + np.random.random(size=100)
-    random_b = 0.3 + np.random.random(size=100)
+    random_a = -1.3 + rng.random(size=100)
+    random_b = 0.3 + rng.random(size=100)
     param_grid = product(FUNCTIONS, random_a, random_b)
     values = []
     for value in param_grid:

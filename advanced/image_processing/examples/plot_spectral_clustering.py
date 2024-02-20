@@ -33,7 +33,8 @@ img = circle1 + circle2 + circle3 + circle4
 mask = img.astype(bool)
 img = img.astype(float)
 
-img += 1 + 0.2 * np.random.randn(*img.shape)
+rng = np.random.default_rng(27446968)
+img += 1 + 0.2 * rng.normal(size=img.shape)
 
 # Convert the image into a graph with the value of the gradient on the
 # edges.

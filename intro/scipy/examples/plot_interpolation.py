@@ -8,9 +8,9 @@ A demo of 1D interpolation
 # Generate data
 import numpy as np
 
-np.random.seed(0)
+rng = np.random.default_rng(27446968)
 measured_time = np.linspace(0, 1, 10)
-noise = 1e-1 * (np.random.random(10) * 2 - 1)
+noise = 1e-1 * (rng.random(10) * 2 - 1)
 measures = np.sin(2 * np.pi * measured_time) + noise
 
 # Interpolate it to new time points

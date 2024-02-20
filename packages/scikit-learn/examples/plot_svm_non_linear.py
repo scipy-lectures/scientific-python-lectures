@@ -66,8 +66,10 @@ ax.contour(
 # data with a non-linear separation
 
 
-def nonlinear_model(rseed=42, n_samples=30):
-    radius = 40 * np.random.random(n_samples)
+def nonlinear_model(rseed=27446968, n_samples=30):
+    rng = np.random.default_rng(rseed)
+
+    radius = 40 * rng.random(n_samples)
     far_pts = radius > 20
     radius[far_pts] *= 1.2
     radius[~far_pts] *= 1.1
