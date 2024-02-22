@@ -18,8 +18,8 @@ cmap_light = ListedColormap(["#FFAAAA", "#AAFFAA", "#AAAAFF"])
 cmap_bold = ListedColormap(["#FF0000", "#00FF00", "#0000FF"])
 
 
-rng = np.random.RandomState(0)
-x = 2 * rng.rand(100) - 1
+rng = np.random.default_rng(27446968)
+x = 2 * rng.random(100) - 1
 
 f = lambda t: 1.2 * t**2 + 0.1 * t**3 - 0.4 * t**5 - 0.5 * t**9
 y = f(x) + 0.4 * rng.normal(size=100)

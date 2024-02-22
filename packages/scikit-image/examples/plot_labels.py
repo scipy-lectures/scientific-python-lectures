@@ -15,7 +15,7 @@ n = 12
 l = 256
 rng = np.random.default_rng(27446968)
 im = np.zeros((l, l))
-points = l * np.random.random((2, n**2))
+points = l * rng.random((2, n**2))
 im[(points[0]).astype(int), (points[1]).astype(int)] = 1
 im = filters.gaussian(im, sigma=l / (4.0 * n))
 blobs = im > 0.7 * im.mean()

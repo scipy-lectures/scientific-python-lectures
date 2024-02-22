@@ -10,10 +10,12 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
+rng = np.random.default_rng(27446968)
+
 im = np.zeros((20, 20))
 im[5:-5, 5:-5] = 1
 im = sp.ndimage.distance_transform_bf(im)
-im_noise = im + 0.2 * np.random.randn(*im.shape)
+im_noise = im + 0.2 * rng.normal(size=im.shape)
 
 im_med = sp.ndimage.median_filter(im_noise, 3)
 

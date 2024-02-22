@@ -46,7 +46,7 @@ cut = (slice(128, -128), slice(128, -128))
 rng = np.random.default_rng(27446968)
 
 face = sp.datasets.face(gray=True)
-noisy_face = face + 20 * np.random.randint(3, size=face.shape) - 30
+noisy_face = face + 20 * rng.integers(3, size=face.shape) - 30
 
 plt.matshow(face[cut], cmap=plt.cm.gray)
 plt.matshow(noisy_face[cut], cmap=plt.cm.gray)

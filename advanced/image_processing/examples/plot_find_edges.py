@@ -9,6 +9,8 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
+rng = np.random.default_rng(27446968)
+
 im = np.zeros((256, 256))
 im[64:-64, 64:-64] = 1
 
@@ -33,7 +35,7 @@ plt.imshow(sob)
 plt.axis("off")
 plt.title("Sobel filter", fontsize=20)
 
-im += 0.07 * np.random.random(im.shape)
+im += 0.07 * rng.random(im.shape)
 
 sx = sp.ndimage.sobel(im, axis=0, mode="constant")
 sy = sp.ndimage.sobel(im, axis=1, mode="constant")

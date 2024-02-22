@@ -9,10 +9,12 @@ import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
 
+rng = np.random.default_rng(27446968)
+
 f = sp.datasets.face(gray=True)
 f = f[230:290, 220:320]
 
-noisy = f + 0.4 * f.std() * np.random.random(f.shape)
+noisy = f + 0.4 * f.std() * rng.random(f.shape)
 
 gauss_denoised = sp.ndimage.gaussian_filter(noisy, 2)
 med_denoised = sp.ndimage.median_filter(noisy, 3)
