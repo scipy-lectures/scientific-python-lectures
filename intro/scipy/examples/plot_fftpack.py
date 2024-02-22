@@ -6,8 +6,8 @@ Plotting and manipulating FFTs for filtering
 Plot the power of the FFT of a signal and inverse FFT back to reconstruct
 a signal.
 
-This example demonstrate :func:`scipy.fftpack.fft`,
-:func:`scipy.fftpack.fftfreq` and :func:`scipy.fftpack.ifft`. It
+This example demonstrate :func:`scipy.fft.fft`,
+:func:`scipy.fft.fftfreq` and :func:`scipy.fft.ifft`. It
 implements a basic filter that is very suboptimal, and should not be
 used.
 
@@ -38,13 +38,13 @@ plt.plot(time_vec, sig, label="Original signal")
 ############################################################
 
 # The FFT of the signal
-sig_fft = sp.fftpack.fft(sig)
+sig_fft = sp.fft.fft(sig)
 
 # And the power (sig_fft is of complex dtype)
 power = np.abs(sig_fft) ** 2
 
 # The corresponding frequencies
-sample_freq = sp.fftpack.fftfreq(sig.size, d=time_step)
+sample_freq = sp.fft.fftfreq(sig.size, d=time_step)
 
 # Plot the FFT power
 plt.figure(figsize=(6, 5))
@@ -79,7 +79,7 @@ plt.setp(axes, yticks=[])
 
 high_freq_fft = sig_fft.copy()
 high_freq_fft[np.abs(sample_freq) > peak_freq] = 0
-filtered_sig = sp.fftpack.ifft(high_freq_fft)
+filtered_sig = sp.fft.ifft(high_freq_fft)
 
 plt.figure(figsize=(6, 5))
 plt.plot(time_vec, sig, label="Original signal")

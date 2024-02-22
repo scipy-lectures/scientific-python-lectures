@@ -50,7 +50,7 @@ SciPy : high-level scientific computing
 =========================== ==========================================
 :mod:`scipy.cluster`         Vector quantization / Kmeans
 :mod:`scipy.constants`       Physical and mathematical constants
-:mod:`scipy.fftpack`         Fourier transform
+:mod:`scipy.fft`         Fourier transform
 :mod:`scipy.integrate`       Integration routines
 :mod:`scipy.interpolate`     Interpolation
 :mod:`scipy.io`              Data input and output
@@ -859,25 +859,25 @@ Integration of the system follows::
 .. _fipy: https://www.ctcms.nist.gov/fipy/
 .. _SfePy: https://sfepy.org/doc/
 
-Fast Fourier transforms: :mod:`scipy.fftpack`
+Fast Fourier transforms: :mod:`scipy.fft`
 ---------------------------------------------
 
-The :mod:`scipy.fftpack` module computes fast Fourier transforms (FFTs)
-and offers utilities to handle them. The main functions are:
+The :mod:`scipy.fft` module computes fast Fourier transforms (FFTs)
+and offers utilities to handle them. Some important functions are:
 
-* :func:`scipy.fftpack.fft` to compute the FFT
+* :func:`scipy.fft.fft` to compute the FFT
 
-* :func:`scipy.fftpack.fftfreq` to generate the sampling frequencies
+* :func:`scipy.fft.fftfreq` to generate the sampling frequencies
 
-* :func:`scipy.fftpack.ifft` computes the inverse FFT, from frequency
+* :func:`scipy.fft.ifft` to compute the inverse FFT, from frequency
   space to signal space
 
 |
 
 As an illustration, a (noisy) input signal (``sig``), and its FFT::
 
-    >>> sig_fft = sp.fftpack.fft(sig) # doctest:+SKIP
-    >>> freqs = sp.fftpack.fftfreq(sig.size, d=time_step) # doctest:+SKIP
+    >>> sig_fft = sp.fft.fft(sig)  # doctest:+SKIP
+    >>> freqs = sp.fft.fftfreq(sig.size, d=time_step)  # doctest:+SKIP
 
 
 .. |signal_fig| image:: auto_examples/images/sphx_glr_plot_fftpack_001.png
@@ -894,7 +894,7 @@ As an illustration, a (noisy) input signal (``sig``), and its FFT::
 **Signal**            **FFT**
 ===================== =====================
 
-As the signal comes from a real function, the Fourier transform is
+As the signal comes from a real-valued function, the Fourier transform is
 symmetric.
 
 The peak signal frequency can be found with ``freqs[power.argmax()]``
@@ -905,8 +905,8 @@ The peak signal frequency can be found with ``freqs[power.argmax()]``
     :align: right
 
 
-Setting the Fourrier component above this frequency to zero and inverting
-the FFT with :func:`scipy.fftpack.ifft`, gives a filtered signal.
+Setting the Fourier component above this frequency to zero and inverting
+the FFT with :func:`scipy.fft.ifft`, gives a filtered signal.
 
 .. note::
 
@@ -951,7 +951,7 @@ Crude periodicity finding (:ref:`link <sphx_glr_intro_scipy_auto_examples_soluti
 
    2. Load the image using :func:`matplotlib.pyplot.imread`.
 
-   3. Find and use the 2-D FFT function in :mod:`scipy.fftpack`, and plot the
+   3. Find and use the 2-D FFT function in :mod:`scipy.fft`, and plot the
       spectrum (Fourier transform of) the image. Do you have any trouble
       visualising the spectrum? If so, why?
 
