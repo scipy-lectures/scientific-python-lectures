@@ -100,7 +100,7 @@ Updating the cover
 
 Use inkscape to modify the cover in ``images/``, then export to PDF::
 
-  inkscape --export-filename=cover-2023.pdf cover-2023.svg
+  inkscape --export-filename=cover-2024.pdf cover-2024.svg
 
 Ensure that the ``images/cover.pdf`` symlink points to the correct
 file.
