@@ -5,6 +5,7 @@ Gradient descent
 An example demoing gradient descent by creating figures that trace the
 evolution of the optimizer.
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp

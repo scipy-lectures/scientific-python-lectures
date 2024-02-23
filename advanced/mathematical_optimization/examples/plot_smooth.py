@@ -4,6 +4,7 @@ Smooth vs non-smooth
 
 Draws a figure to explain smooth versus non smooth optimization.
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 

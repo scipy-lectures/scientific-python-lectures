@@ -16,7 +16,7 @@ Changing orientation, resolution, .. ::
     >>> # Load an image
     >>> face = sp.datasets.face(gray=True)
 
-    >>> # Shift, roate and zoom it
+    >>> # Shift, rotate and zoom it
     >>> shifted_face = sp.ndimage.shift(face, (50, 50))
     >>> shifted_face2 = sp.ndimage.shift(face, (50, 50), mode='nearest')
     >>> rotated_face = sp.ndimage.rotate(face, 30)

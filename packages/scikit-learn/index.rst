@@ -1073,7 +1073,7 @@ Model Selection via Validation
 Cross-validation
 ----------------
 
-Cross-validation consists in repetively splitting the data in pairs of
+Cross-validation consists in repeatedly splitting the data in pairs of
 train and test sets, called 'folds'. Scikit-learn comes with a function
 to automatically compute score on all these folds. Here we do
 :class:`~sklearn.model_selection.KFold` with k=5. ::

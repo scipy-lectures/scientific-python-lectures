@@ -248,7 +248,7 @@ latex_elements = {
         }%
         \makeatother%
         \newpage\newpage
-    """
+    """,
     # 'tableofcontents': '\\pagestyle{normal}\\pagenumbering{arabic} %\\tableofcontents',
 }
 

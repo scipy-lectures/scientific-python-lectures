@@ -5,6 +5,7 @@ Fitting in Chebyshev basis
 Plot noisy data and their polynomial fit in a Chebyshev basis
 
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 

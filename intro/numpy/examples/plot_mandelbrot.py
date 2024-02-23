@@ -5,6 +5,7 @@ Mandelbrot set
 Compute the Mandelbrot fractal and plot it
 
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy import newaxis
