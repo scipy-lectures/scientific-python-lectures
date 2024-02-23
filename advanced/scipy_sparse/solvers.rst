@@ -11,7 +11,7 @@ Linear System Solvers
 
     >>> import scipy as sp
     >>> sp.sparse.linalg.__all__
-    ['ArpackError', 'ArpackNoConvergence', 'LinearOperator', ..., 'use_solver']
+    ['ArpackError', 'ArpackNoConvergence', ..., 'use_solver']
 
 
 Sparse Direct Solvers
