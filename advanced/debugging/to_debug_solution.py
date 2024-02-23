@@ -12,6 +12,7 @@ The output of the script should look like:
                 ridder:   778394 total function calls
                 bisect:  2148380 total function calls
 """
+
 from itertools import product
 
 import numpy as np

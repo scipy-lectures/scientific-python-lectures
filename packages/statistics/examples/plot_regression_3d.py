@@ -7,6 +7,7 @@ statistical parameters.
 
 Also shows how to make 3d plots.
 """
+
 # Original author: Thomas Haslwanter
 
 import numpy as np

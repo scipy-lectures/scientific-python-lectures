@@ -27,7 +27,7 @@ if not os.path.exists("airfares.txt"):
     # Download the file if it is not present
     r = requests.get(
         "https://users.stat.ufl.edu/~winner/data/airq4.dat",
-        verify=False  # Wouldn't normally do this, but this site's certificate
+        verify=False,  # Wouldn't normally do this, but this site's certificate
         # is not yet distributed
     )
     with open("airfares.txt", "wb") as f:

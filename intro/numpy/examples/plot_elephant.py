@@ -5,6 +5,7 @@ Reading and writing an elephant
 Read and write images
 
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 

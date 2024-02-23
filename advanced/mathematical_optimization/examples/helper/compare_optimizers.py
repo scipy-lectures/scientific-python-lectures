@@ -4,6 +4,7 @@ Comparing optimizers
 
 Comparison of optimizers on various problems.
 """
+
 import functools
 import pickle
 import sys

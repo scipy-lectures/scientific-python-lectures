@@ -5,6 +5,7 @@ Fitting to polynomial
 Plot noisy data and their polynomial fit
 
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 

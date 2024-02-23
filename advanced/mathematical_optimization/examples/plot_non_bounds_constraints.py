@@ -5,6 +5,7 @@ Optimization with constraints
 An example showing how to do optimization with general constraints using
 SLSQP and cobyla.
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp

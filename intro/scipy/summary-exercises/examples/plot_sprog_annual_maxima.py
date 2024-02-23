@@ -4,6 +4,7 @@ The Gumbell distribution, results
 
 Generate the exercise results on the Gumbell distribution
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 

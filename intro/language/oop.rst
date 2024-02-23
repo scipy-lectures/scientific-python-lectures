@@ -5,7 +5,7 @@ Python supports object-oriented programming (OOP). The goals of OOP are:
 
     * to organize the code, and
 
-    * to re-use code in similar contexts.
+    * to reuse code in similar contexts.
 
 
 Here is a small example: we create a Student *class*, which is an object
@@ -52,6 +52,6 @@ Thanks to classes and object-oriented programming, we can organize code
 with different classes corresponding to different objects we encounter
 (an Experiment class, an Image class, a Flow class, etc.), with their own
 methods and attributes. Then we can use inheritance to consider
-variations around a base class and **re-use** code. Ex : from a Flow
+variations around a base class and **reuse** code. Ex : from a Flow
 base class, we can create derived StokesFlow, TurbulentFlow,
 PotentialFlow, etc.

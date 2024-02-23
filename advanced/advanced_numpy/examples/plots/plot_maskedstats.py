@@ -5,6 +5,7 @@ Example: Masked statistics
 Plot a masked statistics
 
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 

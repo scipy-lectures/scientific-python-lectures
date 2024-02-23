@@ -5,6 +5,7 @@
 Plot a basic 1D figure
 
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 

@@ -6,6 +6,7 @@ Plot distance as a function of time for a random walk
 together with the theoretical result
 
 """
+
 import numpy as np
 import matplotlib.pyplot as plt
 

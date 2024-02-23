@@ -811,7 +811,7 @@ Categorical variables can be plotted as the hue::
    .. tip::
 
      To switch back to seaborn settings, or understand better styling in
-     seaborn, see the `relevent section of the seaborn documentation
+     seaborn, see the `relevant section of the seaborn documentation
      <https://seaborn.pydata.org/tutorial/aesthetics.html>`_.
 
 
