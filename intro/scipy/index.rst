@@ -369,6 +369,7 @@ convergence.
      function_calls: 12
          iterations: 6
                root: 1.0
+             method: newton
 
 .. warning::
 
