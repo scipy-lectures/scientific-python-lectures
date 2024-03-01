@@ -1,5 +1,5 @@
-Sparse Matrices in SciPy
-========================
+Sparse Arrays in SciPy
+======================
 
 **Author**: *Robert Cimrman*
 

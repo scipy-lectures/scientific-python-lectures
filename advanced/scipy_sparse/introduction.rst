@@ -20,7 +20,7 @@ important features:
 Why Sparse Matrices?
 --------------------
 
-* the memory, that grows like `n**2`
+* the memory grows like `n**2` for dense matrix
 * small example (double precision matrix)::
 
     >>> import numpy as np
@@ -40,7 +40,7 @@ Sparse Matrices vs. Sparse Matrix Storage Schemes
 * storing all the zeros is wasteful -> store only nonzero items
 * think **compression**
 * pros: huge memory savings
-* cons: depends on actual storage scheme, (*) usually does not hold
+* cons: slow access to individual items, but it depends on actual storage scheme.
 
 Typical Applications
 --------------------

@@ -9,23 +9,23 @@ List of Lists Format (LIL)
     * each row is a Python list (sorted) of column indices of non-zero elements
     * rows stored in a NumPy array (`dtype=np.object`)
     * non-zero values data stored analogously
-* efficient for constructing sparse matrices incrementally
+* efficient for constructing sparse arrays incrementally
 * constructor accepts:
-    * dense matrix (array)
-    * sparse matrix
-    * shape tuple (create empty matrix)
+    * dense array/matrix
+    * sparse array/matrix
+    * shape tuple (create empty array)
 * flexible slicing, changing sparsity structure is efficient
 * slow arithmetic, slow column slicing due to being row-based
 * use:
     * when sparsity pattern is not known apriori or changes
-    * example: reading a sparse matrix from a text file
+    * example: reading a sparse array from a text file
 
 Examples
 --------
 
-* create an empty LIL matrix::
+* create an empty LIL array::
 
-    >>> mtx = sp.sparse.lil_matrix((4, 5))
+    >>> mtx = sp.sparse.lil_array((4, 5))
 
 * prepare random data::
 
@@ -39,17 +39,17 @@ Examples
 
     >>> mtx[:2, [1, 2, 3]] = data
     >>> mtx
-    <4x5 sparse matrix of type '<... 'numpy.float64'>'
+    <4x5 sparse array of type '<... 'numpy.float64'>'
             with 3 stored elements in List of Lists format>
     >>> print(mtx)
       (0, 1)    1.0
       (0, 3)    1.0
       (1, 3)    1.0
-    >>> mtx.todense()
-    matrix([[0., 1., 0., 1., 0.],
-            [0., 0., 0., 1., 0.],
-            [0., 0., 0., 0., 0.],
-            [0., 0., 0., 0., 0.]])
+    >>> mtx.toarray()
+    array([[0., 1., 0., 1., 0.],
+           [0., 0., 0., 1., 0.],
+           [0., 0., 0., 0., 0.],
+           [0., 0., 0., 0., 0.]])
     >>> mtx.toarray()
     array([[0., 1., 0., 1., 0.],
            [0., 0., 0., 1., 0.],
@@ -58,11 +58,11 @@ Examples
 
 * more slicing and indexing::
 
-    >>> mtx = sp.sparse.lil_matrix([[0, 1, 2, 0], [3, 0, 1, 0], [1, 0, 0, 1]])
-    >>> mtx.todense()
-    matrix([[0, 1, 2, 0],
-            [3, 0, 1, 0],
-            [1, 0, 0, 1]]...)
+    >>> mtx = sp.sparse.lil_array([[0, 1, 2, 0], [3, 0, 1, 0], [1, 0, 0, 1]])
+    >>> mtx.toarray()
+    array([[0, 1, 2, 0],
+           [3, 0, 1, 0],
+           [1, 0, 0, 1]]...)
     >>> print(mtx)
       (0, 1)    1
       (0, 2)    2
@@ -71,14 +71,14 @@ Examples
       (2, 0)    1
       (2, 3)    1
     >>> mtx[:2, :]
-    <2x4 sparse matrix of type '<... 'numpy.int64'>'
+    <2x4 sparse array of type '<... 'numpy.int64'>'
       with 4 stored elements in List of Lists format>
-    >>> mtx[:2, :].todense()
-    matrix([[0, 1, 2, 0],
-            [3, 0, 1, 0]]...)
-    >>> mtx[1:2, [0,2]].todense()
-    matrix([[3, 1]]...)
-    >>> mtx.todense()
-    matrix([[0, 1, 2, 0],
-            [3, 0, 1, 0],
-            [1, 0, 0, 1]]...)
+    >>> mtx[:2, :].toarray()
+    array([[0, 1, 2, 0],
+           [3, 0, 1, 0]]...)
+    >>> mtx[1:2, [0,2]].toarray()
+    array([[3, 1]]...)
+    >>> mtx.toarray()
+    array([[0, 1, 2, 0],
+           [3, 0, 1, 0],
+           [1, 0, 0, 1]]...)
