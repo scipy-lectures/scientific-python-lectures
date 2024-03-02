@@ -4,7 +4,7 @@ matplotlib==3.8.3
 pandas==2.2.1
 patsy==0.5.6
 pyarrow==15.0.0
-scikit-learn==1.4.0
+scikit-learn==1.4.1.post1
 scikit-image==0.22.0
 sympy==1.12
 statsmodels==0.14.1
