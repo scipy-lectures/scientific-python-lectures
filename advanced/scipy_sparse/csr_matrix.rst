@@ -58,9 +58,9 @@ Examples
     >>> mtx.data
     array([1, 2, 3, 4, 5, 6]...)
     >>> mtx.indices
-    array([0, 2, 2, 0, 1, 2], dtype=int32)
+    array([0, 2, 2, 0, 1, 2])
     >>> mtx.indptr
-    array([0, 2, 3, 6], dtype=int32)
+    array([0, 2, 3, 6])
 
 * create using `(data, indices, indptr)` tuple::
 

@@ -95,9 +95,9 @@ Examples
     >>> vec = np.ones((4, ))
     >>> vec
     array([1.,  1.,  1.,  1.])
-    >>> mtx * vec
+    >>> mtx @ vec
     array([12.,  19.,   9.,  11.])
-    >>> mtx.toarray() * vec
+    >>> (mtx * vec).toarray()
     array([[ 1.,   0.,  11.,   0.],
            [ 5.,   2.,   0.,  12.],
            [ 0.,   6.,   3.,   0.],

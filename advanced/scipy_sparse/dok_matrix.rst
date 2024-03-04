@@ -47,11 +47,11 @@ Examples
 
     >>> mtx[1, 1]
     0.0
-    >>> mtx[1, 1:3]
+    >>> mtx[[1], 1:3]
     <1x2 sparse array of type '<... 'numpy.float64'>'
           with 1 stored elements in Dictionary Of Keys format>
-    >>> mtx[1, 1:3].toarray()
+    >>> mtx[[1], 1:3].toarray()
     array([[0.,  1.]])
-    >>> mtx[[2,1], 1:3].toarray()
+    >>> mtx[[2, 1], 1:3].toarray()
     array([[1.,  0.],
            [0.,  1.]])
