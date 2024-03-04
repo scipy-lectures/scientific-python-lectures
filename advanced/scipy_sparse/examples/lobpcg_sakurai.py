@@ -1,8 +1,8 @@
 """
-LOBPCG: block-preconditionned solver
-=======================================
+LOBPCG: block-preconditioned solver
+===================================
 
-This example demos the LOBPCG block-preconditionned solver.
+This example demos the LOBPCG block-preconditioned solver.
 """
 
 import time
@@ -17,9 +17,10 @@ def sakurai(n):
     """Example taken from
     T. Sakurai, H. Tadano, Y. Inadomi and U. Nagashima
     A moment-based method for large-scale generalized eigenvalue problems
-    Appl. Num. Anal. Comp. Math. Vol. 1 No. 2 (2004)"""
+    Appl. Num. Anal. Comp. Math. Vol. 1 No. 2 (2004)
+    """
 
-    A = sparse.eye(n, n)
+    A = sp.sparse.eye(n, n)
     d0 = np.array(r_[5, 6 * ones(n - 2), 5])
     d1 = -4 * np.ones(n)
     d2 = np.ones(n)

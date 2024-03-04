@@ -17,7 +17,7 @@ Linear System Solvers
 Sparse Direct Solvers
 ---------------------
 
-* default solver: SuperLU 4.0
+* default solver: SuperLU
     * included in SciPy
     * real and complex systems
     * both single and double precision
@@ -43,12 +43,12 @@ Examples
 
         >>> import numpy as np
         >>> mtx = sp.sparse.spdiags([[1, 2, 3, 4, 5], [6, 5, 8, 9, 10]], [0, 1], 5, 5, "csc")
-        >>> mtx.todense()
-        matrix([[ 1,  5,  0,  0,  0],
-                [ 0,  2,  8,  0,  0],
-                [ 0,  0,  3,  9,  0],
-                [ 0,  0,  0,  4, 10],
-                [ 0,  0,  0,  0,  5]])
+        >>> mtx.toarray()
+        array([[ 1,  5,  0,  0,  0],
+               [ 0,  2,  8,  0,  0],
+               [ 0,  0,  3,  9,  0],
+               [ 0,  0,  0,  4, 10],
+               [ 0,  0,  0,  0,  5]])
         >>> rhs = np.array([1, 2, 3, 4, 5], dtype=np.float32)
 
     * solve as single precision real::
@@ -109,7 +109,7 @@ Common Parameters
 
 * mandatory:
 
-  A : {sparse matrix, dense matrix, LinearOperator}
+  A : {sparse array/matrix, dense array/matrix, LinearOperator}
       The N-by-N matrix of the linear system.
   b : {array, matrix}
       Right hand side of the linear system. Has shape (N,) or (N,1).
@@ -123,7 +123,7 @@ Common Parameters
   maxiter : integer
       Maximum number of iterations.  Iteration will stop after maxiter
       steps even if the specified tolerance has not been achieved.
-  M : {sparse matrix, dense matrix, LinearOperator}
+  M : {sparse array/matrix, dense array/matrix, LinearOperator}
       Preconditioner for A.  The preconditioner should approximate the
       inverse of A.  Effective preconditioning dramatically improves the
       rate of convergence, which implies that fewer iterations are needed
