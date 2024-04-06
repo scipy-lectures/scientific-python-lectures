@@ -137,9 +137,9 @@ are not considered to be "elementary" functions. Examples include
  * the gamma function, :func:`scipy.special.gamma`,
  * the error function, :func:`scipy.special.erf`,
  * Bessel functions, such as :func:`scipy.special.jv`
-   (Bessel functions of the first kind), and
+   (Bessel function of the first kind), and
  * elliptic functions, such as :func:`scipy.special.ellipj`
-   (Jacobian elliptic functions).
+   (Jacobi elliptic functions).
 
 Other special functions are combinations of familiar elementary functions,
 but they offer better accuracy or robustness than their naive implementations
@@ -160,8 +160,9 @@ to :math:`x\log(1 + y)`.
     >>> np.allclose(res, ref)
     True
 
-However, it is numerically favorable for small :math:`y`, when explicit addition
-of ``1`` would lead to loss of precision due to floating point truncation error.
+However, :func:`scipy.special.xlog1py` is numerically favorable for small :math:`y`,
+when explicit addition of ``1`` would lead to loss of precision due to floating
+point truncation error.
 
     >>> x = 2.5
     >>> y = 1e-18
@@ -202,7 +203,7 @@ For example, suppose we wish to compute the ratio
     >>> a, b
     (inf, inf)
 
-Both the numerator and denominator overflow, so performing $a / b$ will
+Both the numerator and denominator overflow, so performing :math:`a / b` will
 not return the result we seek. However, the magnitude of the result should
 be moderate, so the use of logarithms comes to mind. Combining the identities
 :math:`\log(a/b) = \log(a) - \log(b)` and :math:`\exp(\log(x)) = x`,
@@ -302,44 +303,49 @@ creation (e.g. block diagonal, toeplitz) are available in :mod:`scipy.linalg`.
 Interpolation: :mod:`scipy.interpolate`
 ---------------------------------------
 
-:mod:`scipy.interpolate` is useful for fitting a function from experimental
-data and thus evaluating points where no reference value exists. The module
-includes, but not limited to `FITPACK Fortran subroutines`_.
+:mod:`scipy.interpolate` is used for fitting a function -- an "interpolant" --
+to experimental or computed data. Once fit, the interpolant can be used to
+approximate the underlying function at intermediate points; it can also be used
+to compute the integral, derivative, or inverse of the function.
 
-.. _`FITPACK Fortran subroutines` : https://netlib.org/dierckx/index.html
-.. _netlib : https://netlib.org
+Some kinds of interpolants, known as "smoothing splines", are designed to
+generate smooth curves from noisy data. For example, suppose we have
+the following data::
 
-By imagining experimental data close to a sine function::
+    >>> rng = np.random.default_rng(27446968)
+    >>> measured_time = np.linspace(0, 2*np.pi, 20)
+    >>> function = np.sin(measured_time)
+    >>> noise = rng.normal(loc=0, scale=0.1, size=20)
+    >>> measurements = function + noise
 
-    >>> measured_time = np.linspace(0, 1, 10)
-    >>> rng = np.random.default_rng()
-    >>> noise = (rng.random(10)*2 - 1) * 1e-1
-    >>> measures = np.sin(2 * np.pi * measured_time) + noise
 
-:mod:`scipy.interpolate` has many interpolation methods which need to be
-chosen based on the data. See the
-`tutorial <https://scipy.github.io/devdocs/tutorial/interpolate.html>`__
-for some guidelines::
+:func:`scipy.interpolate.make_smoothing_spline` can be used to form a curve
+similar to the underlying sine function.
 
-    >>> spline = sp.interpolate.CubicSpline(measured_time, measures)
+    >>> smoothing_spline = sp.interpolate.make_smoothing_spline(measured_time, measurements)
+    >>> interpolation_time = np.linspace(0, 2*np.pi, 200)
+    >>> smooth_results = smoothing_spline(interpolation_time)
 
 .. image:: auto_examples/images/sphx_glr_plot_interpolation_001.png
     :target: auto_examples/plot_interpolation.html
     :scale: 60
     :align: right
 
-Then the result can be evaluated at the time of interest::
+On the other hand, if the data are not noisy, it may be desirable to pass
+exactly through each point.
 
-    >>> interpolation_time = np.linspace(0, 1, 50)
-    >>> linear_results = spline(interpolation_time)
+    >>> interp_spline = sp.interpolate.make_interp_spline(measured_time, function)
+    >>> interp_results = interp_spline(interpolation_time)
 
-:class:`scipy.interpolate.CloughTocher2DInterpolator` is similar to
-:class:`scipy.interpolate.CubicSpline`, but for 2-D arrays.
-See the summary exercise on
-:ref:`summary_exercise_stat_interp` for a more advanced spline
-interpolation example.
+.. image:: auto_examples/images/sphx_glr_plot_interpolation_002.png
+    :target: auto_examples/plot_interpolation.html
+    :scale: 60
+    :align: right
 
-
+See the summary exercise on :ref:`summary_exercise_stat_interp` for a more
+advanced spline interpolation example, and read the
+`SciPy interpolation tutorial <https://scipy.github.io/devdocs/tutorial/interpolate.html>`__
+and the :mod:`scipy.interpolate` documentation for much more information.
 
 Optimization and fit: :mod:`scipy.optimize`
 -------------------------------------------
