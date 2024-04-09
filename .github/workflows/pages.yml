@@ -41,7 +41,7 @@ jobs:
           touch build/html/.nojekyll
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           external_repository: scipy-lectures/lectures.scientific-python.org
