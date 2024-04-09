@@ -69,8 +69,9 @@ preamble = r"""\usepackage[T1]{fontenc}
                \renewcommand*\familydefault{\ttdefault}
                \usepackage{color}"""
 for nr, elem in enumerate((ex1color, ex2color, ex3color)):
-    preamble = preamble + r"\definecolor{{ex{}color}}{{rgb}}{{{}, {}, {}}}".format(
-        nr + 1, elem.r, elem.g, elem.b
+    preamble = (
+        preamble
+        + rf"\definecolor{{ex{nr + 1}color}}{{rgb}}{{{elem.r}, {elem.g}, {elem.b}}}"
     )
 text.preamble(preamble)
 unit.set(xscale=1.2)

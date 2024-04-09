@@ -26,7 +26,7 @@ repos:
         args: [--prose-wrap=preserve]
 
   - repo: https://github.com/psf/black
-    rev: 6fdf8a4af28071ed1d079c01122b34c5d587207a # frozen: 24.2.0
+    rev: 552baf822992936134cbd31a38f69c8cfe7c0f05 # frozen: 24.3.0
     hooks:
       - id: black
 
@@ -42,7 +42,7 @@ repos:
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: cc575a3e5800b42ffbb5182b53d87203b2c4fc26 # frozen: v0.2.2
+    rev: 1986670a8c4578a526ad3dddee3b35d9cfb9d7be # frozen: v0.3.4
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
