@@ -1,7 +1,7 @@
 """source code for figure
-   numpy_fancy_indexing.(png/pdf) used in Sect. 1.3.1.7 Fancy indexing
+numpy_fancy_indexing.(png/pdf) used in Sect. 1.3.1.7 Fancy indexing
 
-   Requirement: PyX>=0.14  (pip installable)
+Requirement: PyX>=0.14  (pip installable)
 
 """
 

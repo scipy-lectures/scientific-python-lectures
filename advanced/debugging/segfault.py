@@ -1,4 +1,4 @@
-""" Simple code that creates a segfault using numpy. Used to learn
+"""Simple code that creates a segfault using numpy. Used to learn
 debugging segfaults with GDB.
 """
 

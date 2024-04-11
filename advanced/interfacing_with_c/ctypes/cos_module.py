@@ -1,4 +1,4 @@
-""" Example of wrapping cos function from math.h using ctypes. """
+"""Example of wrapping cos function from math.h using ctypes."""
 
 import ctypes
 

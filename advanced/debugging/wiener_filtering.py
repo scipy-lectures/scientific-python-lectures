@@ -1,5 +1,4 @@
-""" Wiener filtering a noisy raccoon face: this module is buggy
-"""
+"""Wiener filtering a noisy raccoon face: this module is buggy"""
 
 import numpy as np
 import scipy as sp
