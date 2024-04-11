@@ -50,7 +50,7 @@ SciPy : high-level scientific computing
 =========================== ==========================================
 :mod:`scipy.cluster`         Vector quantization / Kmeans
 :mod:`scipy.constants`       Physical and mathematical constants
-:mod:`scipy.fft`         Fourier transform
+:mod:`scipy.fft`             Fourier transform
 :mod:`scipy.integrate`       Integration routines
 :mod:`scipy.interpolate`     Interpolation
 :mod:`scipy.io`              Data input and output
