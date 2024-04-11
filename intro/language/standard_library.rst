@@ -20,67 +20,59 @@ Current directory:
 
 .. ipython::
 
-    In [17]: os.getcwd()
-    Out[17]: '/Users/cburns/src/scipy2009/scipy_2009_tutorial/source'
+    In [1]: import os
+
+    In [2]: os.getcwd()
+    Out[2]: '/home/jarrod/src/scientific-python-lectures/intro'
 
 List a directory:
 
 .. ipython::
 
-    In [31]: os.listdir(os.curdir)
-    Out[31]:
-    ['.index.rst.swo',
-     '.python_language.rst.swp',
-     '.view_array.py.swp',
-     '_static',
-     '_templates',
-     'basic_types.rst',
-     'conf.py',
-     'control_flow.rst',
-     'debugging.rst',
-     ...
+    In [3]: os.listdir(os.curdir)
+    Out[3]: ['intro.rst', 'scipy', 'language', 'matplotlib', 'index.rst', 'numpy', 'help']
 
 Make a directory:
 
 .. ipython::
 
-    In [32]: os.mkdir('junkdir')
+    In [4]: os.mkdir('junkdir')
 
-    In [33]: 'junkdir' in os.listdir(os.curdir)
-    Out[33]: True
+    In [5]: 'junkdir' in os.listdir(os.curdir)
+    Out[5]: True
 
 Rename the directory:
 
 .. ipython::
 
-    In [36]: os.rename('junkdir', 'foodir')
+    In [6]: os.rename('junkdir', 'foodir')
 
-    In [37]: 'junkdir' in os.listdir(os.curdir)
-    Out[37]: False
+    In [7]: 'junkdir' in os.listdir(os.curdir)
+    Out[7]: False
 
-    In [38]: 'foodir' in os.listdir(os.curdir)
-    Out[38]: True
+    In [8]: 'foodir' in os.listdir(os.curdir)
+    Out[8]: True
 
-    In [41]: os.rmdir('foodir')
+    In [9]: os.rmdir('foodir')
 
-    In [42]: 'foodir' in os.listdir(os.curdir)
-    Out[42]: False
+    In [10]: 'foodir' in os.listdir(os.curdir)
+    Out[10]: False
 
 Delete a file:
 
 .. ipython::
 
-    In [44]: fp = open('junk.txt', 'w')
+    In [11]: fp = open('junk.txt', 'w')
 
-    In [45]: fp.close()
+    In [12]: fp.close()
 
-    In [46]: 'junk.txt' in os.listdir(os.curdir)
-    Out[46]: True
+    In [13]: 'junk.txt' in os.listdir(os.curdir)
+    Out[13]: True
 
-    In [47]: os.remove('junk.txt')
+    In [14]: os.remove('junk.txt')
 
-    In [48]: 'junk.txt' in os.listdir(os.curdir)
-    Out[48]: False
+    In [15]: 'junk.txt' in os.listdir(os.curdir)
+    Out[15]: False
 
 ``os.path``: path manipulations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -89,52 +81,50 @@ Delete a file:
 
 .. ipython::
 
-    In [70]: fp = open('junk.txt', 'w')
+    In [16]: fp = open('junk.txt', 'w')
 
-    In [71]: fp.close()
+    In [17]: fp.close()
 
-    In [72]: a = os.path.abspath('junk.txt')
+    In [18]: a = os.path.abspath('junk.txt')
 
-    In [73]: a
-    Out[73]: '/Users/cburns/src/scipy2009/scipy_2009_tutorial/source/junk.txt'
+    In [19]: a
+    Out[19]: '/home/jarrod/src/scientific-python-lectures/intro/junk.txt'
 
-    In [74]: os.path.split(a)
-    Out[74]: ('/Users/cburns/src/scipy2009/scipy_2009_tutorial/source',
-              'junk.txt')
+    In [20]: os.path.split(a)
+    Out[20]: ('/home/jarrod/src/scientific-python-lectures/intro', 'junk.txt')
 
-    In [78]: os.path.dirname(a)
-    Out[78]: '/Users/cburns/src/scipy2009/scipy_2009_tutorial/source'
+    In [21]: os.path.dirname(a)
+    Out[21]: '/home/jarrod/src/scientific-python-lectures/intro'
 
-    In [79]: os.path.basename(a)
-    Out[79]: 'junk.txt'
+    In [22]: os.path.basename(a)
+    Out[22]: 'junk.txt'
 
-    In [80]: os.path.splitext(os.path.basename(a))
-    Out[80]: ('junk', '.txt')
+    In [23]: os.path.splitext(os.path.basename(a))
+    Out[23]: ('junk', '.txt')
 
-    In [84]: os.path.exists('junk.txt')
-    Out[84]: True
+    In [24]: os.path.exists('junk.txt')
+    Out[24]: True
 
-    In [86]: os.path.isfile('junk.txt')
-    Out[86]: True
+    In [25]: os.path.isfile('junk.txt')
+    Out[25]: True
 
-    In [87]: os.path.isdir('junk.txt')
-    Out[87]: False
+    In [26]: os.path.isdir('junk.txt')
+    Out[26]: False
 
-    In [88]: os.path.expanduser('~/local')
-    Out[88]: '/Users/cburns/local'
+    In [27]: os.path.expanduser('~/local')
+    Out[27]: '/home/jarrod/local'
 
-    In [92]: os.path.join(os.path.expanduser('~'), 'local', 'bin')
-    Out[92]: '/Users/cburns/local/bin'
+    In [28]: os.path.join(os.path.expanduser('~'), 'local', 'bin')
+    Out[28]: '/home/jarrod/local/bin'
 
 Running an external command
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. ipython::
 
-  In [8]: os.system('ls')
-  basic_types.rst   demo.py          functions.rst  python_language.rst  standard_library.rst
-  control_flow.rst  exceptions.rst   io.rst         python-logo.png
-  demo2.py          first_steps.rst  oop.rst        reusing_code.rst
+    In [29]: os.system('ls')
+    help  index.rst  intro.rst  junk.txt  language	matplotlib  numpy  scipy
+    Out[29]: 0
 
 .. note:: Alternative to ``os.system``
 
@@ -145,20 +135,17 @@ Running an external command
     .. ipython::
         :verbatim:
 
-        In [20]: import sh
-        In [20]: com = sh.ls()
+        In [30]: import sh
+        In [31]: com = sh.ls()
 
-        In [21]: print(com)
+        In [32]: print(com)
         basic_types.rst   exceptions.rst   oop.rst              standard_library.rst
         control_flow.rst  first_steps.rst  python_language.rst
         demo2.py          functions.rst    python-logo.png
         demo.py           io.rst           reusing_code.rst
 
-        In [22]: print(com.exit_code)
-        0
-        In [23]: type(com)
-        Out[23]: sh.RunningCommand
-
+        In [33]: type(com)
+        Out[33]: str
 
 Walking a directory
 ~~~~~~~~~~~~~~~~~~~~
@@ -172,11 +159,11 @@ Walking a directory
        ....:         print(os.path.abspath(fp))
        ....:
        ....:
-    /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/.index.rst.swo
-    /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/.view_array.py.swp
-    /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/basic_types.rst
-    /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/conf.py
-    /Users/cburns/src/scipy2009/scipy_2009_tutorial/source/control_flow.rst
+    /home/jarrod/src/scientific-python-lectures/intro/language/basic_types.rst
+    /home/jarrod/src/scientific-python-lectures/intro/language/control_flow.rst
+    /home/jarrod/src/scientific-python-lectures/intro/language/python_language.rst
+    /home/jarrod/src/scientific-python-lectures/intro/language/reusing_code.rst
+    /home/jarrod/src/scientific-python-lectures/intro/language/standard_library.rst
     ...
 
 Environment variables:
@@ -185,35 +172,12 @@ Environment variables:
 .. ipython::
     :verbatim:
 
-    In [9]: import os
+    In [32]: os.environ.keys()
+    Out[32]: KeysView(environ({'SHELL': '/bin/bash', 'COLORTERM': 'truecolor', ...}))
 
-    In [11]: os.environ.keys()
-    Out[11]:
-    ['_',
-     'FSLDIR',
-     'TERM_PROGRAM_VERSION',
-     'FSLREMOTECALL',
-     'USER',
-     'HOME',
-     'PATH',
-     'PS1',
-     'SHELL',
-     'EDITOR',
-     'WORKON_HOME',
-     'PYTHONPATH',
-     ...
 
-    In [12]: os.environ['PYTHONPATH']
-    Out[12]: '.:/Users/cburns/src/utils:/Users/cburns/src/nitools:
-    /Users/cburns/local/lib/python2.5/site-packages/:
-    /usr/local/lib/python2.5/site-packages/:
-    /Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5'
-
-    In [16]: os.getenv('PYTHONPATH')
-    Out[16]: '.:/Users/cburns/src/utils:/Users/cburns/src/nitools:
-    /Users/cburns/local/lib/python2.5/site-packages/:
-    /usr/local/lib/python2.5/site-packages/:
-    /Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5'
+    In [34]: os.environ['SHELL']
+    Out[34]: '/bin/bash'
 
 
 ``shutil``: high-level file operations
@@ -234,12 +198,10 @@ Find all files ending in ``.txt``:
 
 .. ipython::
 
-    In [18]: import glob
+    In [36]: import glob
 
-    In [19]: glob.glob('*.txt')
-    Out[19]: ['holy_grail.txt', 'junk.txt', 'newfile.txt']
-
-
+    In [37]: glob.glob('*.txt')
+    Out[37]: ['junk.txt']
 
 ``sys`` module: system-specific information
 --------------------------------------------
@@ -248,41 +210,41 @@ System-specific information related to the Python interpreter.
 
 * Which version of python are you running and where is it installed:
 
-  .. ipython::
+.. ipython::
 
-    In [117]: sys.platform
-    Out[117]: 'darwin'
 
-    In [118]: sys.version
-    Out[118]: '2.5.2 (r252:60911, Feb 22 2008, 07:57:53) \n
-              [GCC 4.0.1 (Apple Computer, Inc. build 5363)]'
+    In [39]: import sys
 
-    In [119]: sys.prefix
-    Out[119]: '/Library/Frameworks/Python.framework/Versions/2.5'
+    In [40]: sys.platform
+    Out[40]: 'linux'
+
+    In [41]: sys.version
+    Out[41]: '3.11.8 (main, Feb 28 2024, 00:00:00) [GCC 13.2.1 20231011 (Red Hat 13.2.1-4)]'
+
+    In [42]: sys.prefix
+    Out[42]: '/home/jarrod/.venv/nx'
 
 * List of command line arguments passed to a Python script:
 
-  .. ipython::
+.. ipython::
 
-   In [100]: sys.argv
-   Out[100]: ['/Users/cburns/local/bin/ipython']
-
+    In [43]: sys.argv
+    Out[43]: ['/home/jarrod/.venv/nx/bin/ipython']
 
 ``sys.path`` is a list of strings that specifies the search path for
 modules.  Initialized from PYTHONPATH:
 
 .. ipython::
 
-    In [121]: sys.path
-    Out[121]:
-    ['',
-     '/Users/cburns/local/bin',
-     '/Users/cburns/local/lib/python2.5/site-packages/grin-1.1-py2.5.egg',
-     '/Users/cburns/local/lib/python2.5/site-packages/argparse-0.8.0-py2.5.egg',
-     '/Users/cburns/local/lib/python2.5/site-packages/urwid-0.9.7.1-py2.5.egg',
-     '/Users/cburns/local/lib/python2.5/site-packages/yolk-0.4.1-py2.5.egg',
-     '/Users/cburns/local/lib/python2.5/site-packages/virtualenv-1.2-py2.5.egg',
-     ...
+    In [44]: sys.path
+    Out[44]:
+    ['/home/jarrod/.venv/nx/bin',
+     '/usr/lib64/python311.zip',
+     '/usr/lib64/python3.11',
+     '/usr/lib64/python3.11/lib-dynload',
+     '',
+     '/home/jarrod/.venv/nx/lib64/python3.11/site-packages',
+     '/home/jarrod/.venv/nx/lib/python3.11/site-packages']
 
 ``pickle``: easy persistence
 -------------------------------
@@ -291,9 +253,9 @@ Useful to store arbitrary objects to a file. Not safe or fast!
 
 .. ipython::
 
-    In [1]: import pickle
+    In [45]: import pickle
 
-    In [2]: l = [1, None, 'Stan']
+    In [46]: l = [1, None, 'Stan']
 
     In [3]: with open('test.pkl', 'wb') as file:
        ...:     pickle.dump(l, file)
@@ -303,7 +265,8 @@ Useful to store arbitrary objects to a file. Not safe or fast!
        ...:     out = pickle.load(file)
        ...:
 
-    In [5]: out
+    In [49]: out
+    Out[49]: [1, None, 'Stan']
 
 
 .. topic:: Exercise
