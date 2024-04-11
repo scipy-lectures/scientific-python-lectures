@@ -25,16 +25,6 @@ repos:
         files: \.(md|rst|yml|yaml)
         args: [--prose-wrap=preserve]
 
-  - repo: https://github.com/psf/black
-    rev: 552baf822992936134cbd31a38f69c8cfe7c0f05 # frozen: 24.3.0
-    hooks:
-      - id: black
-
-  - repo: https://github.com/adamchainz/blacken-docs
-    rev: 960ead214cd1184149d366c6d27ca6c369ce46b6 # frozen: 1.16.0
-    hooks:
-      - id: blacken-docs
-
   - repo: https://github.com/MarcoGorelli/cython-lint
     rev: 582556b052c898dc484a981bea48de3284a4b8ee # frozen: v0.16.0
     hooks:
@@ -46,6 +36,7 @@ repos:
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
+      - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
     rev: "6e41aba91fb32e9feb741a6258eefeb9c6e4a482" # frozen: v2.2.6
