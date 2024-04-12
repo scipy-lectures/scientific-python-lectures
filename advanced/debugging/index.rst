@@ -250,12 +250,6 @@ Here we debug the file :download:`index_error.py`. When running it, an
 
     IndexError: list index out of range
 
-    In [61]: :q
-      Cell In[61], line 1
-        :q
-        ^
-    SyntaxError: invalid syntax
-
     In [2]: %debug
     > /home/jarrod/src/scientific-python-lectures/advanced/debugging/index_error.py(6)index_error()
           4 def index_error():
@@ -278,7 +272,7 @@ Here we debug the file :download:`index_error.py`. When running it, an
 
     ipdb> len(lst)
     6
-    ipdb> print(lst[len(lst)-1])
+    ipdb> print(lst[len(lst) - 1])
     r
     ipdb> quit
 
@@ -289,25 +283,26 @@ Here we debug the file :download:`index_error.py`. When running it, an
    you can call the script with ``python -m pdb script.py``::
 
     $ python -m pdb index_error.py
-    > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/index_error.py(1)<module>()
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/index_error.py(1)<module>()
     -> """Small snippet to raise an IndexError."""
     (Pdb) continue
     Traceback (most recent call last):
-    File "/usr/lib/python2.6/pdb.py", line 1296, in main
-        pdb._runscript(mainpyfile)
-    File "/usr/lib/python2.6/pdb.py", line 1215, in _runscript
-        self.run(statement)
-    File "/usr/lib/python2.6/bdb.py", line 372, in run
-        exec cmd in globals, locals
-    File "<string>", line 1, in <module>
-    File "index_error.py", line 8, in <module>
+      File "/usr/lib64/python3.11/pdb.py", line 1793, in main
+        pdb._run(target)
+      File "/usr/lib64/python3.11/pdb.py", line 1659, in _run
+        self.run(target.code)
+      File "/usr/lib64/python3.11/bdb.py", line 600, in run
+        exec(cmd, globals, locals)
+      File "<string>", line 1, in <module>
+      File "/home/jarrod/src/scientific-python-lectures/advanced/debugging/index_error.py", line 10, in <module>
         index_error()
-    File "index_error.py", line 5, in index_error
-        print lst[len(lst)]
+      File "/home/jarrod/src/scientific-python-lectures/advanced/debugging/index_error.py", line 6, in index_error
+        print(lst[len(lst)])
+              ~~~^^^^^^^^^^
     IndexError: list index out of range
     Uncaught exception. Entering post mortem debugging
     Running 'cont' or 'step' will restart the program
-    > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/index_error.py(5)index_error()
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/index_error.py(6)index_error()
     -> print(lst[len(lst)])
     (Pdb)
 
@@ -328,36 +323,40 @@ Indeed the code runs, but the filtering does not work well.
     *** Blank or comment
     *** Blank or comment
     *** Blank or comment
-    *** Blank or comment
     NOTE: Enter 'c' at the ipdb>  prompt to continue execution.
     > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(1)<module>()
-    ----> 1 """ Wiener filtering a noisy raccoon face: this module is buggy
-          2 """
-          3
-          4 import numpy as np
-          5 import scipy as sp
+    ----> 1 """Wiener filtering a noisy raccoon face: this module is buggy"""
+          2
+          3 import numpy as np
+          4 import scipy as sp
+          5 import matplotlib.pyplot as plt
 
-* Set a break point at line 34 using ``b 34``:
+* Set a break point at line 29 using ``b 29``:
 
   .. code-block:: ipython
 
     ipdb> n
-    > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(4)<module>()
-          3
-    1---> 4 import numpy as np
-          5 import scipy as sp
-    ipdb> b 34
-    Breakpoint 2 at /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py:34
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(3)<module>()
+          1 """Wiener filtering a noisy raccoon face: this module is buggy"""
+          2
+    ----> 3 import numpy as np
+          4 import scipy as sp
+          5 import matplotlib.pyplot as plt
+
+    ipdb> b 29
+    Breakpoint 1 at /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py:29
 
 * Continue execution to next breakpoint with ``c(ont(inue))``:
 
   .. code-block:: ipython
 
     ipdb> c
-    > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(34)iterated_wiener()
-         33     """
-    2--> 34     noisy_img = noisy_img
-         35     denoised_img = local_mean(noisy_img, size=size)
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(29)iterated_wiener()
+         27     Do not use this: this is crappy code to demo bugs!
+         28     """
+    1--> 29     noisy_img = noisy_img
+         30     denoised_img = local_mean(noisy_img, size=size)
+         31     l_var = local_var(noisy_img, size=size)
 
 * Step into code with ``n(ext)`` and ``s(tep)``: ``next`` jumps to the next
   statement in the current execution context, while ``step`` will go across
@@ -366,34 +365,41 @@ Indeed the code runs, but the filtering does not work well.
   .. code-block:: ipython
 
     ipdb> s
-    > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(35)iterated_wiener()
-    2    34     noisy_img = noisy_img
-    ---> 35     denoised_img = local_mean(noisy_img, size=size)
-         36     l_var = local_var(noisy_img, size=size)
-    ipdb> n
-    > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(36)iterated_wiener()
-         35     denoised_img = local_mean(noisy_img, size=size)
-    ---> 36     l_var = local_var(noisy_img, size=size)
-         37     for i in range(3):
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(30)iterated_wiener()
+         28     """
+    1    29     noisy_img = noisy_img
+    ---> 30     denoised_img = local_mean(noisy_img, size=size)
+         31     l_var = local_var(noisy_img, size=size)
+         32     for i in range(3):
 
+    ipdb> n
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(31)iterated_wiener()
+    1    29     noisy_img = noisy_img
+         30     denoised_img = local_mean(noisy_img, size=size)
+    ---> 31     l_var = local_var(noisy_img, size=size)
+         32     for i in range(3):
+         33         res = noisy_img - denoised_img
 
 * Step a few lines and explore the local variables:
 
   .. code-block:: ipython
 
     ipdb> n
-    > /home/varoquau/dev/scientific-python-lectures/advanced/optimizing/wiener_filtering.py(37)iterated_wiener()
-         36     l_var = local_var(noisy_img, size=size)
-    ---> 37     for i in range(3):
-         38         res = noisy_img - denoised_img
+    > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(32)iterated_wiener()
+         30     denoised_img = local_mean(noisy_img, size=size)
+         31     l_var = local_var(noisy_img, size=size)
+    ---> 32     for i in range(3):
+         33         res = noisy_img - denoised_img
+         34         noise = (res**2).sum() / res.size
+
     ipdb> print(l_var)
-    [[5868 5379 5316 ..., 5071 4799 5149]
-     [5013  363  437 ...,  346  262 4355]
-     [5379  410  344 ...,  392  604 3377]
-     ...,
-     [ 435  362  308 ...,  275  198 1632]
-     [ 548  392  290 ...,  248  263 1653]
-     [ 466  789  736 ..., 1835 1725 1940]]
+    [[2571 2782 3474 ... 3008 2922 3141]
+     [2105  708  475 ...  469  354 2884]
+     [1697  420  645 ...  273  236 2517]
+     ...
+     [2437  345  432 ...  413  387 4188]
+     [2598  179  247 ...  367  441 3909]
+     [2808 2525 3117 ... 4413 4454 4385]]
     ipdb> print(l_var.min())
     0
 
@@ -408,38 +414,34 @@ doing integer arithmetic.
     .. code-block:: ipython
 
         In [2]: %run wiener_filtering.py
-        wiener_filtering.py:40: RuntimeWarning: divide by zero encountered in divide
-            noise_level = (1 - noise/l_var )
-
+        /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py:35: RuntimeWarning: divide by zero encountered in divide
+          noise_level = 1 - noise / l_var
 
     We can turn these warnings in exception, which enables us to do
     post-mortem debugging on them, and find our problem more quickly:
 
-    .. ipython::
-        :verbatim:
-        :okexcept:
+    .. code-block:: ipython
 
         In [3]: np.seterr(all='raise')
-        Out[3]: {'divide': 'print', 'invalid': 'print', 'over': 'print', 'under': 'ignore'}
-        In [4]: %run wiener_filtering.py
+        Out[3]: {'divide': 'warn', 'over': 'warn', 'under': 'ignore', 'invalid': 'warn'}
+
+        In [4]:  %run wiener_filtering.py
         ---------------------------------------------------------------------------
         FloatingPointError                        Traceback (most recent call last)
-        /home/esc/anaconda/lib/python2.7/site-packages/IPython/utils/py3compat.pyc in execfile(fname, *where)
-            176             else:
-            177                 filename = fname
-        --> 178             __builtin__.execfile(filename, *where)
-        /home/esc/physique-cuso-python-2013/scientific-python-lectures/advanced/debugging/wiener_filtering.py in <module>()
-             55 pl.matshow(noisy_face[cut], cmap=pl.cm.gray)
-             56
-        ---> 57 denoised_face = iterated_wiener(noisy_face)
-             58 pl.matshow(denoised_face[cut], cmap=pl.cm.gray)
-             59
-        /home/esc/physique-cuso-python-2013/scientific-python-lectures/advanced/debugging/wiener_filtering.py in iterated_wiener(noisy_img, size)
-             38         res = noisy_img - denoised_img
-             39         noise = (res**2).sum()/res.size
-        ---> 40         noise_level = (1 - noise/l_var )
-             41         noise_level[noise_level<0] = 0
-             42         denoised_img += noise_level*res
+        File ~/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py:52
+             49 plt.matshow(face[cut], cmap=plt.cm.gray)
+             50 plt.matshow(noisy_face[cut], cmap=plt.cm.gray)
+        ---> 52 denoised_face = iterated_wiener(noisy_face)
+             53 plt.matshow(denoised_face[cut], cmap=plt.cm.gray)
+             55 plt.show()
+
+        File ~/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py:35, in iterated_wiener(noisy_img, size)
+             33 res = noisy_img - denoised_img
+             34 noise = (res**2).sum() / res.size
+        ---> 35 noise_level = 1 - noise / l_var
+             36 noise_level[noise_level < 0] = 0
+             37 denoised_img = np.int64(noise_level * res)
+
         FloatingPointError: divide by zero encountered in divide
 
 
@@ -521,12 +523,16 @@ Type ``h`` or ``help`` to access the interactive help:
 
     Documented commands (type help <topic>):
     ========================================
-    EOF    bt         cont      enable  jump  pdef   r        tbreak   w
-    a      c          continue  exit    l     pdoc   restart  u        whatis
-    alias  cl         d         h       list  pinfo  return   unalias  where
-    args   clear      debug     help    n     pp     run      unt
-    b      commands   disable   ignore  next  q      s        until
-    break  condition  down      j       p     quit   step     up
+    EOF    commands   enable      ll        pp       s                until
+    a      condition  exceptions  longlist  psource  skip_hidden      up
+    alias  cont       exit        n         q        skip_predicates  w
+    args   context    h           next      quit     source           whatis
+    b      continue   help        p         r        step             where
+    break  d          ignore      pdef      restart  tbreak
+    bt     debug      j           pdoc      return   u
+    c      disable    jump        pfile     retval   unalias
+    cl     display    l           pinfo     run      undisplay
+    clear  down       list        pinfo2    rv       unt
 
     Miscellaneous help topics:
     ==========================
@@ -534,7 +540,7 @@ Type ``h`` or ``help`` to access the interactive help:
 
     Undocumented commands:
     ======================
-    retval  rv
+    interact
 
 Debugging segmentation faults using gdb
 ==========================================
