@@ -1,7 +1,11 @@
+target-version = "py310"
+
+[lint]
 select = [
     "UP",      # pyupgrade
     "C4",      # flake8-comprehensions
     "E713",    # use 'key not in list'
+    "NPY201",  # NumPy 2 compatibility
     "PIE",     # flake8-pie
     "PGH003",  # forbid blanket 'type: ignore' comments
     "PLR0402", # useless import alias
@@ -12,4 +16,5 @@ select = [
     "SIM2",    # simplify boolean comparisons
 ]
 
-target-version = "py310"
+[format]
+docstring-code-format = true
