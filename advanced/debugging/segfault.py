@@ -8,7 +8,7 @@ from numpy.lib import stride_tricks
 
 def make_big_array(small_array):
     big_array = stride_tricks.as_strided(
-        small_array, shape=(2e6, 2e6), strides=(32, 32)
+        small_array, shape=(int(2e6), int(2e6)), strides=(32, 32)
     )
     return big_array
 

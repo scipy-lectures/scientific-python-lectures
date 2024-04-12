@@ -9,15 +9,14 @@ def local_mean(img, size=3):
     """Compute a image of the local average"""
     structure_element = np.ones((size, size), dtype=img.dtype)
     l_mean = sp.signal.correlate(img, structure_element, mode="same")
-    l_mean /= size**2
-    return l_mean
+    return np.int64(l_mean / size**2)
 
 
 def local_var(img, size=3):
     """Compute a image of the local variance"""
     structure_element = np.ones((size, size), dtype=img.dtype)
     l_var = sp.signal.correlate(img**2, structure_element, mode="same")
-    l_var /= size**2
+    l_var = np.int64(l_var / size**2)
     l_var -= local_mean(img, size=size) ** 2
     return l_var
 
@@ -35,7 +34,7 @@ def iterated_wiener(noisy_img, size=3):
         noise = (res**2).sum() / res.size
         noise_level = 1 - noise / l_var
         noise_level[noise_level < 0] = 0
-        denoised_img += noise_level * res
+        denoised_img = np.int64(noise_level * res)
     return denoised_img
 
 
