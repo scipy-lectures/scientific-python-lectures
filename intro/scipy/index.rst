@@ -361,7 +361,7 @@ For functions that are monotonic on an interval (e.g. :math:`\sin` from :math:`\
 to :math:`3\pi/2`), we can reverse the arguments of ``make_interp_spline`` to
 interpolate the inverse function. Because the first argument is expected to be
 monotonically *increasing*, we also reverse the order of elements in the arrays
-with `numpy.flip`.
+with :func:`numpy.flip`.
 
     >>> i = (measured_time > np.pi/2) & (measured_time < 3*np.pi/2)
     >>> inverse_spline = sp.interpolate.make_interp_spline(np.flip(function[i]),
