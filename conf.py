@@ -277,8 +277,7 @@ extlinks = {
 
 # -- Options for imgmath ------------------------------------------------
 
-imgmath_dvipng_args = ["-gamma 1.5", "-D 180", "-bg", "Transparent"]
-immath_use_preview = True
+imgmath_use_preview = True
 
 
 def add_per_page_js(app, pagename, templatename, context, doctree):
