@@ -357,7 +357,7 @@ constant of integration.
     :scale: 60
     :align: right
 
-For functions that are monotonic on an interval (e.g. :math:`sin` from :math:`\pi/2`
+For functions that are monotonic on an interval (e.g. :math:`\sin` from :math:`\pi/2`
 to :math:`3\pi/2`), we can reverse the arguments of ``make_interp_spline`` to
 interpolate the inverse function. Because the first argument is expected to be
 monotonically *increasing*, we also reverse the order of elements in the arrays
