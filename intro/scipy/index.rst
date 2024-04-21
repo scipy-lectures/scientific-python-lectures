@@ -342,6 +342,33 @@ exactly through each point.
     :scale: 60
     :align: right
 
+The ``derivative`` and ``antiderivative`` methods of the result object can be used
+for differentiation and integration. For the latter, the constant of integration is
+assumed to be zero, but we can "wrap" the antiderivative to include a nonzero
+constant of integration.
+
+    >>> d_interp_spline = interp_spline.derivative()
+    >>> d_interp_results = d_interp_spline(interpolation_time)
+    >>> i_interp_spline = lambda t: interp_spline.antiderivative()(t) - 1
+    >>> i_interp_results = i_interp_spline(interpolation_time)
+
+.. image:: auto_examples/images/sphx_glr_plot_interpolation_003.png
+    :target: auto_examples/plot_interpolation.html
+    :scale: 60
+    :align: right
+
+For functions that are monotonic on an interval (e.g. :math:`\sin` from :math:`\pi/2`
+to :math:`3\pi/2`), we can reverse the arguments of ``make_interp_spline`` to
+interpolate the inverse function. Because the first argument is expected to be
+monotonically *increasing*, we also reverse the order of elements in the arrays
+with :func:`numpy.flip`.
+
+    >>> i = (measured_time > np.pi/2) & (measured_time < 3*np.pi/2)
+    >>> inverse_spline = sp.interpolate.make_interp_spline(np.flip(function[i]),
+    ...                                                    np.flip(measured_time[i]))
+    >>> inverse_spline(0)
+    array(3.14159265)
+
 See the summary exercise on :ref:`summary_exercise_stat_interp` for a more
 advanced spline interpolation example, and read the
 `SciPy interpolation tutorial <https://scipy.github.io/devdocs/tutorial/interpolate.html>`__
