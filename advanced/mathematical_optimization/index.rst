@@ -1002,7 +1002,7 @@ and :math:`g(x) < 0`.
      message: Optimization terminated successfully
      success: True
       status: 0
-         fun: 2.4748737350439685
+         fun: 2.474873735045016
            x: [ 1.250e+00  2.500e-01]
          nit: 5
          jac: [-7.071e-01 -7.071e-01]
