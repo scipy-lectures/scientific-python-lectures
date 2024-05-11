@@ -26,16 +26,16 @@ repos:
         args: [--prose-wrap=preserve]
 
   - repo: https://github.com/MarcoGorelli/cython-lint
-    rev: 582556b052c898dc484a981bea48de3284a4b8ee # frozen: v0.16.0
+    rev: 9247866fce7128f2c0eaf4a09f437880397d4689 # frozen: v0.16.2
     hooks:
       - id: cython-lint
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: c0bff48397a5119af3fadb07c507dd09ac9e2aa8 # frozen: v0.3.6
+    rev: f8a3f8c471fb698229face5ed7640a64900b781e # frozen: v0.4.4
     hooks:
       - id: ruff
-        args: [--fix, --exit-non-zero-on-fix]
+        args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
       - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
