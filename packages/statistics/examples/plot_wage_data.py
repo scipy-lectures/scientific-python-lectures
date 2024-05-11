@@ -17,12 +17,12 @@ plt.rcdefaults().
 # Standard library imports
 import os
 
-import matplotlib.pyplot as plt
+import requests
 
+import matplotlib.pyplot as plt
 ##############################################################################
 # Load the data
 import pandas
-import requests
 
 if not os.path.exists("wages.txt"):
     # Download the file if it is not present

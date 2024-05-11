@@ -6,8 +6,8 @@ Generate a chart of the data fitted by Gaussian curve
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 import scipy as sp
+import matplotlib.pyplot as plt
 
 
 def model(t, coeffs):

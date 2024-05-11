@@ -6,23 +6,17 @@ An example demoing gradient descent by creating figures that trace the
 evolution of the optimizer.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy as sp
-
-import sys
 import os
+import sys
+
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
 
 sys.path.append(os.path.abspath("helper"))
-from cost_functions import (
-    mk_quad,
-    mk_gauss,
-    rosenbrock,
-    rosenbrock_prime,
-    rosenbrock_hessian,
-    LoggingFunction,
-    CountingFunction,
-)
+from cost_functions import (CountingFunction, LoggingFunction, mk_gauss,
+                            mk_quad, rosenbrock, rosenbrock_hessian,
+                            rosenbrock_prime)
 
 x_min, x_max = -1, 2
 y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2

@@ -6,10 +6,11 @@ The "setup.py" script that builds the mandel.so extension from the
 C sources.
 """
 
-import os
-import sys
-from os.path import join
 from distutils.sysconfig import get_python_inc
+import os
+from os.path import join
+import sys
+
 import numpy
 from numpy.distutils.misc_util import get_numpy_include_dirs
 

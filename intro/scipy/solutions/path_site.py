@@ -1,8 +1,8 @@
 """Script to search the PYTHONPATH for the module site.py"""
 
+import glob
 import os
 import sys
-import glob
 
 
 def find_module(module):

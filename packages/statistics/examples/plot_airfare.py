@@ -18,10 +18,11 @@ significantly non-zero: the air fares have decreased between 2000 and
 # Standard library imports
 import os
 
+import requests
+
 ##############################################################################
 # Load the data
 import pandas
-import requests
 
 if not os.path.exists("airfares.txt"):
     # Download the file if it is not present

@@ -3,9 +3,9 @@
 # License: GPL unless permission obtained otherwise
 # Look at algorithms in Tables 8.3 and 8.4 page 196 in the book: Independent Component Analysis, by Aapo et al.
 
-import numpy as np
 import types
 
+import numpy as np
 
 __all__ = ["fastica"]
 

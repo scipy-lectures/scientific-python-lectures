@@ -6,7 +6,7 @@ The script to build the extension
 
 """
 
-from distutils.core import setup, Extension
+from distutils.core import Extension, setup
 
 setup(
     name="myobject",

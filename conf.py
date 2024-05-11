@@ -1,10 +1,10 @@
 from datetime import date
-from subprocess import PIPE, Popen
 import os
+from subprocess import PIPE, Popen
 
-import sphinx_gallery
 from pygments import formatters
 from sphinx import highlighting
+import sphinx_gallery
 
 # General configuration
 # ---------------------

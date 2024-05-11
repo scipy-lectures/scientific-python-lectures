@@ -45,8 +45,8 @@ plt.colorbar()
 # Classify with Gaussian naive Bayes
 # ----------------------------------
 
-from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
 
 # split the data into training and validation sets
 X_train, X_test, y_train, y_test = train_test_split(digits.data, digits.target)

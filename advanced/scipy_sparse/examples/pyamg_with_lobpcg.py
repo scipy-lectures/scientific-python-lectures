@@ -7,11 +7,11 @@ the LOBPCG eigensolver on a two-dimensional Poisson problem with
 Dirichlet boundary conditions.
 """
 
-import scipy as sp
-import matplotlib.pyplot as plt
-
 from pyamg import smoothed_aggregation_solver
 from pyamg.gallery import poisson
+
+import scipy as sp
+import matplotlib.pyplot as plt
 
 N = 100
 K = 9

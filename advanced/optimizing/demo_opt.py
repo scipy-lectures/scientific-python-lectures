@@ -1,9 +1,9 @@
 # For this example to run, you also need the 'ica.py' file
 
+from ica import fastica
+
 import numpy as np
 import scipy as sp
-
-from ica import fastica
 
 
 def test():

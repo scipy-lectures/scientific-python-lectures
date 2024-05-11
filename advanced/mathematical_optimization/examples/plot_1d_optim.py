@@ -6,8 +6,8 @@ Illustration of 1D optimization: Brent's method
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 import scipy as sp
+import matplotlib.pyplot as plt
 
 x = np.linspace(-1, 3, 100)
 x_0 = np.exp(-1)

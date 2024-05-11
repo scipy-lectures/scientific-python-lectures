@@ -12,10 +12,8 @@ Illustrate an analysis on a real dataset:
 """
 
 import matplotlib.pyplot as plt
-
 import pandas
 from pandas import plotting
-
 from statsmodels.formula.api import ols
 
 # Load the data

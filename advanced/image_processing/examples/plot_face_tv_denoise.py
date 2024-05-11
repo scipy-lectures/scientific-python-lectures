@@ -8,7 +8,6 @@ This example demoes Total-Variation (TV) denoising on a Raccoon face.
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
-
 from skimage.restoration import denoise_tv_chambolle
 
 rng = np.random.default_rng(27446968)

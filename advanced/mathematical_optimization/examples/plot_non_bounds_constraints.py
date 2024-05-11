@@ -7,8 +7,8 @@ SLSQP and cobyla.
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 import scipy as sp
+import matplotlib.pyplot as plt
 
 x, y = np.mgrid[-2.03:4.2:0.04, -1.6:3.2:0.04]
 x = x.T

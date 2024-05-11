@@ -1,4 +1,5 @@
 import cos_module_np
+
 import numpy as np
 import matplotlib.pyplot as plt
 

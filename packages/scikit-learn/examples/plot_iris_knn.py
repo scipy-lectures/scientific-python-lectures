@@ -7,9 +7,9 @@ with a single nearest neighbor, and then using 3 nearest neighbors.
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
-from sklearn import neighbors, datasets
 from matplotlib.colors import ListedColormap
+import matplotlib.pyplot as plt
+from sklearn import datasets, neighbors
 
 # Create color maps for 3-class classification problem, as with iris
 cmap_light = ListedColormap(["#FFAAAA", "#AAFFAA", "#AAAAFF"])

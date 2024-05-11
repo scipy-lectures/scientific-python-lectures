@@ -1,9 +1,10 @@
 """Example of wrapping a C library function that accepts a C double array as
 input using the numpy.ctypeslib."""
 
+from ctypes import c_int
+
 import numpy as np
 import numpy.ctypeslib as npct
-from ctypes import c_int
 
 # input type for the cos_doubles function
 # must be a double array, with single dimension that is contiguous

@@ -5,9 +5,10 @@ Requirement: PyX>=0.14  (pip installable)
 
 """
 
+from math import cos, radians, sin
 import os
 import sys
-from math import cos, radians, sin
+
 from pyx import canvas, color, path, text, unit
 
 

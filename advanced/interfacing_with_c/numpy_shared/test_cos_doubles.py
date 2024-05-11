@@ -1,6 +1,7 @@
+import cos_doubles
+
 import numpy as np
 import matplotlib.pyplot as plt
-import cos_doubles
 
 x = np.arange(0, 2 * np.pi, 0.1)
 y = np.empty_like(x)

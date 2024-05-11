@@ -6,10 +6,9 @@ This example shows how to label connected components of a binary image, using
 the dedicated skimage.measure.label function.
 """
 
-from skimage import measure
-from skimage import filters
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+from skimage import filters, measure
 
 n = 12
 l = 256

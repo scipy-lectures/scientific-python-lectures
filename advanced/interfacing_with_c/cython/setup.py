@@ -1,4 +1,5 @@
-from distutils.core import setup, Extension
+from distutils.core import Extension, setup
+
 from Cython.Distutils import build_ext
 
 setup(

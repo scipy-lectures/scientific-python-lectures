@@ -42,11 +42,8 @@ cdef void mandel_single_point(double complex *z_in,
 # Pulls definitions from the NumPy C headers.
 # -------------------------------------------
 
-from numpy cimport import_array, import_ufunc
-from numpy cimport (PyUFunc_FromFuncAndData,
-                    PyUFuncGenericFunction)
-from numpy cimport NPY_CDOUBLE
-from numpy cimport PyUFunc_DD_D
+from numpy cimport (NPY_CDOUBLE, PyUFunc_DD_D, PyUFunc_FromFuncAndData,
+                    PyUFuncGenericFunction, import_array, import_ufunc)
 
 # Required module initialization
 # ------------------------------

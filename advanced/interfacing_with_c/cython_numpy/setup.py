@@ -1,6 +1,8 @@
-from distutils.core import setup, Extension
-import numpy
+from distutils.core import Extension, setup
+
 from Cython.Distutils import build_ext
+
+import numpy
 
 setup(
     cmdclass={"build_ext": build_ext},

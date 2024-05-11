@@ -6,6 +6,7 @@ An exercise to learn complex dtypes.
 """
 
 import sys
+
 import numpy as np
 
 wav_header_dtype = np.dtype(

@@ -32,8 +32,8 @@ print(model.f_test([0, 1, 0, 0]))
 # This plotting is useful to get an intuitions on the relationships between
 # our different variables
 
-from pandas import plotting
 import matplotlib.pyplot as plt
+from pandas import plotting
 
 # Fill in the missing values for Height for plotting
 data["Height"].fillna(method="pad", inplace=True)

@@ -5,10 +5,9 @@ Segmentation contours
 Visualize segmentation contours on original grayscale image.
 """
 
-from skimage import data, segmentation
-from skimage import filters
-import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.pyplot as plt
+from skimage import data, filters, segmentation
 
 coins = data.coins()
 mask = coins > filters.threshold_otsu(coins)

@@ -20,10 +20,10 @@ def generating_func(x, rng=None, error=0.5):
     return rng.normal(10 - 1.0 / (x + 0.1), error)
 
 
+from sklearn.linear_model import LinearRegression
 ############################################################
 # A polynomial regression
 from sklearn.pipeline import make_pipeline
-from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 
 ############################################################

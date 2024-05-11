@@ -8,9 +8,7 @@ a Gaussian filter, a median filter, and total variation denoising.
 
 import numpy as np
 import matplotlib.pyplot as plt
-from skimage import data
-from skimage import filters
-from skimage import restoration
+from skimage import data, filters, restoration
 
 coins = data.coins()
 gaussian_filter_coins = filters.gaussian(coins, sigma=2)

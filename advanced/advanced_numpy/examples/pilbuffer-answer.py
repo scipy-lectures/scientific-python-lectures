@@ -6,8 +6,9 @@ Show how to exchange data between numpy and a library that only knows
 the buffer interface.
 """
 
-import numpy as np
 import Image
+
+import numpy as np
 
 # Let's make a sample image, RGBA format
 

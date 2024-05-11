@@ -6,8 +6,8 @@ A small figure explaining optimization with constraints
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 import scipy as sp
+import matplotlib.pyplot as plt
 
 x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]
 x = x.T

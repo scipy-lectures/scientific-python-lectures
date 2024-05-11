@@ -13,12 +13,12 @@ statsmodels' formulas
 
 """
 
+import os
+import urllib
+
 ##############################################################################
 # Load and massage the data
 import pandas
-
-import urllib
-import os
 
 if not os.path.exists("wages.txt"):
     # Download the file if it is not present

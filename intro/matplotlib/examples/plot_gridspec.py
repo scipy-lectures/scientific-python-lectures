@@ -5,8 +5,8 @@ GridSpec
 An example demoing gridspec
 """
 
-import matplotlib.pyplot as plt
 from matplotlib import gridspec
+import matplotlib.pyplot as plt
 
 plt.figure(figsize=(6, 4))
 G = gridspec.GridSpec(3, 3)

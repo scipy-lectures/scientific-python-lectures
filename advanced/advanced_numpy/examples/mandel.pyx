@@ -61,31 +61,17 @@ cdef void mandel_single_point(double complex *z_in,
 # Pulls definitions from the NumPy C headers.
 # -------------------------------------------
 
-from numpy cimport import_array, import_ufunc
-from numpy cimport (PyUFunc_FromFuncAndData,
-                    PyUFuncGenericFunction)
-from numpy cimport NPY_CDOUBLE, NP_DOUBLE, NPY_LONG
+from numpy cimport (NP_DOUBLE, NPY_CDOUBLE, NPY_LONG, PyUFunc_d_d, PyUFunc_D_D,
+                    PyUFunc_dd_d, PyUFunc_DD_D, PyUFunc_f_f, PyUFunc_F_F,
+                    PyUFunc_f_f_As_d_d, PyUFunc_F_F_As_D_D, PyUFunc_ff_f,
+                    PyUFunc_FF_F, PyUFunc_ff_f_As_dd_d, PyUFunc_FF_F_As_DD_D,
+                    PyUFunc_FromFuncAndData, PyUFunc_g_g, PyUFunc_G_G,
+                    PyUFunc_gg_g, PyUFunc_GG_G, PyUFuncGenericFunction,
+                    import_array, import_ufunc)
 
 # Import all pre-defined loop functions
 # you won't need all of them - keep the relevant ones
 
-from numpy cimport (
-    PyUFunc_f_f_As_d_d,
-    PyUFunc_d_d,
-    PyUFunc_f_f,
-    PyUFunc_g_g,
-    PyUFunc_F_F_As_D_D,
-    PyUFunc_F_F,
-    PyUFunc_D_D,
-    PyUFunc_G_G,
-    PyUFunc_ff_f_As_dd_d,
-    PyUFunc_ff_f,
-    PyUFunc_dd_d,
-    PyUFunc_gg_g,
-    PyUFunc_FF_F_As_DD_D,
-    PyUFunc_DD_D,
-    PyUFunc_FF_F,
-    PyUFunc_GG_G)
 
 
 # Required module initialization

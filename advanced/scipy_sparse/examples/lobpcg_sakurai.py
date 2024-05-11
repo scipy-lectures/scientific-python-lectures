@@ -6,6 +6,7 @@ This example demos the LOBPCG block-preconditioned solver.
 """
 
 import time
+
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt

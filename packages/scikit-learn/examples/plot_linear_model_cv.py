@@ -14,10 +14,10 @@ data = load_diabetes()
 X, y = data.data, data.target
 print(X.shape)
 
+from sklearn.linear_model import Lasso, Ridge
 ############################################################
 # Compute the cross-validation score with the default hyper-parameters
 from sklearn.model_selection import cross_val_score
-from sklearn.linear_model import Ridge, Lasso
 
 for Model in [Ridge, Lasso]:
     model = Model()

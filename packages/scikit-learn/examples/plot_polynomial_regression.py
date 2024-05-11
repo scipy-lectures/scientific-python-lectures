@@ -8,9 +8,8 @@ to be preferred
 """
 
 import numpy as np
-import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
-
+import matplotlib.pyplot as plt
 from sklearn import linear_model
 
 # Create color maps for 3-class classification problem, as with iris

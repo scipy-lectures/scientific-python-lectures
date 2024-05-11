@@ -6,8 +6,9 @@ Plot the Mandelbrot ensemble.
 
 """
 
-import numpy as np
 import mandel
+
+import numpy as np
 
 x = np.linspace(-1.7, 0.6, 1000)
 y = np.linspace(-1.4, 1.4, 1000)

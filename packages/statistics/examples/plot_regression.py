@@ -11,10 +11,8 @@ p-values.
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas
-
 # For statistics. Requires statsmodels 5.0 or more
 from statsmodels.formula.api import ols
-
 # Analysis of Variance (ANOVA) on linear models
 from statsmodels.stats.anova import anova_lm
 

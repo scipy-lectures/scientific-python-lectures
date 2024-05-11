@@ -6,9 +6,8 @@ This example illustrates the use of the horizontal Sobel filter, to compute
 horizontal gradients.
 """
 
-from skimage import data
-from skimage import filters
 import matplotlib.pyplot as plt
+from skimage import data, filters
 
 text = data.text()
 hsobel_text = filters.sobel_h(text)

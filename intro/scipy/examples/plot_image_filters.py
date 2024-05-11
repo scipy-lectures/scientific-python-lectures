@@ -12,10 +12,9 @@ import scipy as sp
 face = sp.datasets.face(gray=True)
 face = face[:512, -512:]  # crop out square on right
 
+import numpy as np
 # Apply a variety of filters
 import matplotlib.pyplot as plt
-
-import numpy as np
 
 noisy_face = np.copy(face).astype(float)
 rng = np.random.default_rng()

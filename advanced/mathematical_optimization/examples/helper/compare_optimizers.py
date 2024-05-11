@@ -9,19 +9,13 @@ import functools
 import pickle
 import sys
 
+from cost_functions import (CountingFunction, LoggingFunction, mk_gauss,
+                            mk_quad, rosenbrock, rosenbrock_hessian,
+                            rosenbrock_prime)
+
 import numpy as np
 import scipy as sp
 from joblib import Memory
-
-from cost_functions import (
-    mk_quad,
-    mk_gauss,
-    rosenbrock,
-    rosenbrock_prime,
-    rosenbrock_hessian,
-    LoggingFunction,
-    CountingFunction,
-)
 
 
 def my_partial(**kwargs):

@@ -11,12 +11,11 @@ background are used as seeds.
 """
 
 import numpy as np
-from skimage.segmentation import watershed
-from skimage.feature import peak_local_max
-from skimage import measure
-from skimage.segmentation import random_walker
-import matplotlib.pyplot as plt
 import scipy as sp
+import matplotlib.pyplot as plt
+from skimage import measure
+from skimage.feature import peak_local_max
+from skimage.segmentation import random_walker, watershed
 
 # Generate an initial image with two overlapping circles
 x, y = np.indices((80, 80))

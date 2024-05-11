@@ -12,14 +12,11 @@ Also shows how to make 3d plots.
 
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas
-
 # For 3d plots. This import is necessary to have 3D plotting below
 from mpl_toolkits.mplot3d import Axes3D
-
+import pandas
 # For statistics. Requires statsmodels 5.0 or more
 from statsmodels.formula.api import ols
-
 # Analysis of Variance (ANOVA) on linear models
 from statsmodels.stats.anova import anova_lm
 

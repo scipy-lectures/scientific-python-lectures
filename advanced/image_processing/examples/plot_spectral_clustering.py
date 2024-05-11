@@ -7,9 +7,8 @@ This example uses spectral clustering to do segmentation.
 
 import numpy as np
 import matplotlib.pyplot as plt
-
-from sklearn.feature_extraction import image
 from sklearn.cluster import spectral_clustering
+from sklearn.feature_extraction import image
 
 ################################################################################
 l = 100
