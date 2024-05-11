@@ -6,10 +6,10 @@ Plot the decision boundary of nearest neighbor decision on iris, first
 with a single nearest neighbor, and then using 3 nearest neighbors.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-from sklearn import neighbors, datasets
+import numpy as np
 from matplotlib.colors import ListedColormap
+from sklearn import datasets, neighbors
 
 # Create color maps for 3-class classification problem, as with iris
 cmap_light = ListedColormap(["#FFAAAA", "#AAFFAA", "#AAAAFF"])

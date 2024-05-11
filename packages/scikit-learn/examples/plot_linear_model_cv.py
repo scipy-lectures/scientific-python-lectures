@@ -16,8 +16,8 @@ print(X.shape)
 
 ############################################################
 # Compute the cross-validation score with the default hyper-parameters
+from sklearn.linear_model import Lasso, Ridge
 from sklearn.model_selection import cross_val_score
-from sklearn.linear_model import Ridge, Lasso
 
 for Model in [Ridge, Lasso]:
     model = Model()
@@ -26,8 +26,8 @@ for Model in [Ridge, Lasso]:
 ############################################################
 # We compute the cross-validation score as a function of alpha, the
 # strength of the regularization for Lasso and Ridge
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 alphas = np.logspace(-3, -1, 30)
 

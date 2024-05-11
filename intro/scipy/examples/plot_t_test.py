@@ -5,8 +5,8 @@ Comparing 2 sets of samples from Gaussians
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Generates 2 sets of observations
 rng = np.random.default_rng(27446968)

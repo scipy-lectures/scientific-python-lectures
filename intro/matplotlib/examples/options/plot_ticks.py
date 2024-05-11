@@ -6,8 +6,8 @@ An example demoing different locators to position ticks on axis for
 matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def tickline():

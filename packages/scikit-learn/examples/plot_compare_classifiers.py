@@ -6,10 +6,10 @@ Compare the performance of a variety of classifiers on a test set for the
 digits data.
 """
 
-from sklearn import model_selection, datasets, metrics
-from sklearn.svm import LinearSVC
+from sklearn import datasets, metrics, model_selection
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import LinearSVC
 
 digits = datasets.load_digits()
 X = digits.data

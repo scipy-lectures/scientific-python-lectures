@@ -5,8 +5,8 @@ Imshow elaborate
 An example demoing imshow and styling the figure.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def f(x, y):

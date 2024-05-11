@@ -5,8 +5,8 @@ Dash capstyle
 An example demoing the dash capstyle.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 size = 256, 16
 dpi = 72.0

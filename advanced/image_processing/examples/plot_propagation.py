@@ -5,9 +5,9 @@ Opening, erosion, and propagation
 This example shows simple operations of mathematical morphology.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 square = np.zeros((32, 32))
 square[10:-10, 10:-10] = 1

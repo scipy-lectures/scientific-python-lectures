@@ -5,9 +5,9 @@ Image denoising
 This example demoes image denoising on a Raccoon face.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(27446968)
 

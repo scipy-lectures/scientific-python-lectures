@@ -8,8 +8,9 @@ C sources.
 
 import os
 import sys
-from os.path import join
 from distutils.sysconfig import get_python_inc
+from os.path import join
+
 import numpy
 from numpy.distutils.misc_util import get_numpy_include_dirs
 

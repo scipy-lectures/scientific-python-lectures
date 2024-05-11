@@ -7,9 +7,9 @@ Solve the ODE dy/dt = -2y between t = 0..4, with the initial condition
 y(t=0) = 1.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 
 def f(t, y):

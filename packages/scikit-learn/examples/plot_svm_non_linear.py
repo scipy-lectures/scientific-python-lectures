@@ -6,11 +6,9 @@ This is an example plot from the tutorial which accompanies an explanation
 of the support vector machine GUI.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-
+import numpy as np
 from sklearn import svm
-
 
 rng = np.random.default_rng(27446968)
 

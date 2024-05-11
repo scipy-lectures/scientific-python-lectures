@@ -10,8 +10,8 @@ Also shows how to make 3d plots.
 
 # Original author: Thomas Haslwanter
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas
 
 # For 3d plots. This import is necessary to have 3D plotting below

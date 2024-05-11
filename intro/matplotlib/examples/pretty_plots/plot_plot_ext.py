@@ -5,8 +5,8 @@ Plot example vignette
 An example of plots with matplotlib, and added annotations.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 256
 X = np.linspace(0, 2, n)

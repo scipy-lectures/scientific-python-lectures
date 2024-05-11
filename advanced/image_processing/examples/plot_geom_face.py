@@ -5,9 +5,9 @@ Geometrical transformations
 This examples demos some simple geometrical transformations on a Raccoon face.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 face = sp.datasets.face(gray=True)
 lx, ly = face.shape

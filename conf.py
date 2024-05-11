@@ -1,6 +1,6 @@
+import os
 from datetime import date
 from subprocess import PIPE, Popen
-import os
 
 import sphinx_gallery
 from pygments import formatters

@@ -5,9 +5,9 @@ Granulometry
 This example performs a simple granulometry analysis.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 
 def disk_structure(n):

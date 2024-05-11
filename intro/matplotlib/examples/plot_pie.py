@@ -5,8 +5,8 @@ Pie chart
 A simple pie chart example with matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 20
 Z = np.ones(n)

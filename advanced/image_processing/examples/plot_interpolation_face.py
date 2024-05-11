@@ -5,8 +5,8 @@ Image interpolation
 The example demonstrates image interpolation on a Raccoon face.
 """
 
-import scipy as sp
 import matplotlib.pyplot as plt
+import scipy as sp
 
 f = sp.datasets.face(gray=True)
 

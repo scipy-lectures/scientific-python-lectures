@@ -8,9 +8,9 @@ background.
 
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 from sklearn.mixture import GaussianMixture
 
 rng = np.random.default_rng(27446968)

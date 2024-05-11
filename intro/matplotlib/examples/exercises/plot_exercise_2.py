@@ -5,8 +5,8 @@ Exercise 2
 Exercise 2 with matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Create a new figure of size 8x6 points, using 100 dots per inch
 plt.figure(figsize=(8, 6), dpi=80)

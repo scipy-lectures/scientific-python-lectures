@@ -5,8 +5,8 @@ The lidar system, data (2 of 2 datasets)
 Generate a chart of more complex data recorded by the lidar system
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 waveform_2 = np.load("waveform_2.npy")
 

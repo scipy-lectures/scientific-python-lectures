@@ -6,9 +6,9 @@ This example shows how to extract the bounding box of the largest object
 
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(27446968)
 n = 10

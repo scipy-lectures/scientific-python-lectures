@@ -6,8 +6,8 @@ Plot a masked statistics
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 data = np.loadtxt("../../../../data/populations.txt")
 populations = np.ma.masked_array(data[:, 1:])

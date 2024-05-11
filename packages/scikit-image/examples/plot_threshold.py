@@ -6,9 +6,7 @@ This example illustrates automatic Otsu thresholding.
 """
 
 import matplotlib.pyplot as plt
-from skimage import data
-from skimage import filters
-from skimage import exposure
+from skimage import data, exposure, filters
 
 camera = data.camera()
 val = filters.threshold_otsu(camera)

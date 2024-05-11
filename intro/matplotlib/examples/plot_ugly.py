@@ -5,8 +5,8 @@ A example of plotting not quite right
 An "ugly" example of plotting.
 """
 
-import numpy as np
 import matplotlib
+import numpy as np
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt

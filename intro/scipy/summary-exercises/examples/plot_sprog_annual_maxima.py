@@ -5,8 +5,8 @@ The Gumbell distribution, results
 Generate the exercise results on the Gumbell distribution
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 years_nb = 21
 wspeeds = np.load("sprog-windspeeds.npy")

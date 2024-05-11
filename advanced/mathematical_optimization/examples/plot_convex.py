@@ -5,8 +5,8 @@ Convex function
 A figure showing the definition of a convex function
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 x = np.linspace(-1, 2)
 

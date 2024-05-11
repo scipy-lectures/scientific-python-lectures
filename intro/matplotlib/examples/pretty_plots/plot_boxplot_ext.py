@@ -6,9 +6,8 @@ An example of doing box plots with matplotlib
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 fig = plt.figure(figsize=(8, 5))
 axes = plt.subplot(111)

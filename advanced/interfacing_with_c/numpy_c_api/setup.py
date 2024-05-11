@@ -1,4 +1,5 @@
-from distutils.core import setup, Extension
+from distutils.core import Extension, setup
+
 import numpy
 
 # define the extension module

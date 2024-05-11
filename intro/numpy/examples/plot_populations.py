@@ -6,8 +6,8 @@ Plot populations of hares, lynxes, and carrots
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 data = np.loadtxt("../../../data/populations.txt")
 year, hares, lynxes, carrots = data.T

@@ -5,9 +5,9 @@ Greyscale dilation
 This example illustrates greyscale mathematical morphology.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 im = np.zeros((64, 64))
 rng = np.random.default_rng(27446968)

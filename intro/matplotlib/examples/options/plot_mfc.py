@@ -5,8 +5,8 @@ Marker face color
 Demo the marker face color of matplotlib's markers.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 size = 256, 16
 dpi = 72.0

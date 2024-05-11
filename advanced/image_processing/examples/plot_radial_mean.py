@@ -5,9 +5,9 @@ Radial mean
 This example shows how to do a radial mean with scikit-image.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 f = sp.datasets.face(gray=True)
 sx, sy = f.shape

@@ -6,8 +6,8 @@ An example showing how to do optimization with general constraints using
 SLSQP and cobyla.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy as sp
 
 x, y = np.mgrid[-2.03:4.2:0.04, -1.6:3.2:0.04]

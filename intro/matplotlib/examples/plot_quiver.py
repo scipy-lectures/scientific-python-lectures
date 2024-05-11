@@ -6,8 +6,8 @@ A simple example showing how to plot a vector field (quiver) with
 matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 8
 X, Y = np.mgrid[0:n, 0:n]

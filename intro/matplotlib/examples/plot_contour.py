@@ -6,8 +6,8 @@ An example showing how to display the contours of a function with
 matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def f(x, y):

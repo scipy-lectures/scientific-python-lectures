@@ -6,9 +6,10 @@ This example demos the LOBPCG block-preconditioned solver.
 """
 
 import time
+
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 np.set_printoptions(precision=8, linewidth=90)
 

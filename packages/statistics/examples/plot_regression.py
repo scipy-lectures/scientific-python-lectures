@@ -8,8 +8,8 @@ p-values.
 
 # Original author: Thomas Haslwanter
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import pandas
 
 # For statistics. Requires statsmodels 5.0 or more

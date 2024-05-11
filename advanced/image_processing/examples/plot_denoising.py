@@ -6,9 +6,9 @@ This example shows the original image, the noisy image, the denoised
 one (with the median filter) and the difference between the two.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(27446968)
 

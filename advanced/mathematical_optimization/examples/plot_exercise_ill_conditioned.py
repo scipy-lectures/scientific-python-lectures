@@ -10,9 +10,9 @@ problem can be judged from looking at the conditioning of K.
 
 import time
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(27446968)
 

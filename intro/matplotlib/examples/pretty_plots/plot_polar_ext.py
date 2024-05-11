@@ -6,8 +6,8 @@ An example showing how to plot in polar coordinate, and some
 decorations.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 plt.subplot(1, 1, 1, polar=True)
 

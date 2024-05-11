@@ -5,9 +5,9 @@ Histogram segmentation
 This example does simple histogram analysis to perform segmentation.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(27446968)
 n = 10

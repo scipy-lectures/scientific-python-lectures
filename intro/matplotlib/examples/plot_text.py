@@ -5,9 +5,8 @@ Demo text printing
 A example showing off elaborate text printing with matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-
+import numpy as np
 
 eqs = []
 eqs.append(

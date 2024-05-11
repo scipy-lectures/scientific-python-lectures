@@ -5,8 +5,8 @@ Linestyles
 Plot the different line styles.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def linestyle(ls, i):

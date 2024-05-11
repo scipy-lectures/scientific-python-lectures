@@ -9,8 +9,8 @@ Plots the results from the comparison of optimizers.
 import pickle
 import sys
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 results = pickle.load(
     open(f"helper/compare_optimizers_py{sys.version_info[0]}.pkl", "rb")

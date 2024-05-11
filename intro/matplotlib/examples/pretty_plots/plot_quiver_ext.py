@@ -5,8 +5,8 @@ Plotting quiver decorated
 An example showing quiver with decorations.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 8
 X, Y = np.mgrid[0:n, 0:n]

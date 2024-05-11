@@ -5,8 +5,8 @@ Blurring of images
 An example showing various processes that blur an image.
 """
 
-import scipy as sp
 import matplotlib.pyplot as plt
+import scipy as sp
 
 face = sp.datasets.face(gray=True)
 blurred_face = sp.ndimage.gaussian_filter(face, sigma=3)

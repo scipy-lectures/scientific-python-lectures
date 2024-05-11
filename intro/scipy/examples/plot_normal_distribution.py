@@ -7,9 +7,9 @@ Explore the normal distribution: a histogram built from samples and the
 PDF (probability density function).
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 dist = sp.stats.norm(loc=0, scale=1)  # standard normal distribution
 sample = dist.rvs(size=100000)  # "random variate sample"

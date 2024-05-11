@@ -5,8 +5,8 @@ Exercise: using the buffer protocole
 Skeletton of the code to do an exercise using the buffer protocole.
 """
 
-import numpy as np
 import Image
+import numpy as np
 
 # Let's make a sample image, RGBA format
 

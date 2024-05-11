@@ -6,8 +6,8 @@ Spectrogram, power spectral density
 Demo spectrogram and power spectral density on a frequency chirp.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 ############################################################
 # Generate a chirp signal

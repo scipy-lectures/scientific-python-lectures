@@ -7,8 +7,8 @@ together with the theoretical result
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 # We create 1000 realizations with 200 steps each
 n_stories = 1000

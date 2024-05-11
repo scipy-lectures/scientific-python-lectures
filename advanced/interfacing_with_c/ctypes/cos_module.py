@@ -3,7 +3,6 @@
 import ctypes
 
 # find and load the library
-
 # OSX or linux
 from ctypes.util import find_library
 

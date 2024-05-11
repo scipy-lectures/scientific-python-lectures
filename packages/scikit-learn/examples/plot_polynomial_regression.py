@@ -7,10 +7,9 @@ and 9th order polynomials, to demonstrate that often simpler models are
 to be preferred
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from matplotlib.colors import ListedColormap
-
 from sklearn import linear_model
 
 # Create color maps for 3-class classification problem, as with iris

@@ -5,11 +5,11 @@ Watershed segmentation
 This example shows how to do segmentation with watershed.
 """
 
-import numpy as np
-from skimage.segmentation import watershed
-from skimage.feature import peak_local_max
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy as sp
+from skimage.feature import peak_local_max
+from skimage.segmentation import watershed
 
 # Generate an initial image with two overlapping circles
 x, y = np.indices((80, 80))

@@ -5,8 +5,8 @@ Plot and filled plots
 Simple example of plots and filling between them with matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 256
 X = np.linspace(-np.pi, np.pi, n)

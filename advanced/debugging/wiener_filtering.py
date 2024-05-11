@@ -1,8 +1,8 @@
 """Wiener filtering a noisy raccoon face: this module is buggy"""
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 
 def local_mean(img, size=3):

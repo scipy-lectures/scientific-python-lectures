@@ -5,8 +5,8 @@ Display a Raccoon Face
 An example that displays a raccoon face with matplotlib.
 """
 
-import scipy as sp
 import matplotlib.pyplot as plt
+import scipy as sp
 
 f = sp.datasets.face(gray=True)
 

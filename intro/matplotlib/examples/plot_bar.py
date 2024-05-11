@@ -5,8 +5,8 @@ Bar plots
 An example of bar plots with matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 12
 X = np.arange(n)

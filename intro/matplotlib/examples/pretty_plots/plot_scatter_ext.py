@@ -5,8 +5,8 @@ Plot scatter decorated
 An example showing the scatter function, with decorations.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 1024
 rng = np.random.default_rng()

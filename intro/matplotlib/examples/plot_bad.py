@@ -5,8 +5,8 @@ A simple plotting example
 A plotting example with a few simple tweaks
 """
 
-import numpy as np
 import matplotlib
+import numpy as np
 
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt

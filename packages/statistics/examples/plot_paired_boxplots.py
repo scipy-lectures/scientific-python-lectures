@@ -10,9 +10,8 @@ subject) is much smaller than the spread of the individual measures.
 
 """
 
-import pandas
-
 import matplotlib.pyplot as plt
+import pandas
 
 data = pandas.read_csv("brain_size.csv", sep=";", na_values=".")
 

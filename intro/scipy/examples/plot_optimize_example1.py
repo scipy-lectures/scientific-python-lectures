@@ -6,8 +6,8 @@ Finding the minimum of a smooth function
 Demos various methods to find the minimum of a function.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def f(x):

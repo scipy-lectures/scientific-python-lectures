@@ -5,8 +5,8 @@
 Demo 3D plotting with matplotlib and decorate the figure.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 
 fig = plt.figure()

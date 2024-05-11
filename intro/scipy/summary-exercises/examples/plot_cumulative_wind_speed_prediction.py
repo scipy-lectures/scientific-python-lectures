@@ -6,9 +6,9 @@ Generate the image cumulative-wind-speed-prediction.png
 for the interpolate section of scipy.rst.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 max_speeds = np.load("max-speeds.npy")
 years_nb = max_speeds.shape[0]

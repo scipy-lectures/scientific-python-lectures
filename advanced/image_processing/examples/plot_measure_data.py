@@ -6,9 +6,9 @@ This examples shows how to measure quantities from various images.
 
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(27446968)
 n = 10

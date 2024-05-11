@@ -5,8 +5,8 @@ Brent's method
 Illustration of 1D optimization: Brent's method
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy as sp
 
 x = np.linspace(-1, 3, 100)

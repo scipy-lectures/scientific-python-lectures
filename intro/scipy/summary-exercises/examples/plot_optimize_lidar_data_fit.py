@@ -5,8 +5,8 @@ The lidar system, data and fit (1 of 2 datasets)
 Generate a chart of the data fitted by Gaussian curve
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy as sp
 
 

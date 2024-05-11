@@ -5,8 +5,8 @@ Solid joint style
 An example showing the different solid joint styles in matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 size = 256, 16
 dpi = 72.0

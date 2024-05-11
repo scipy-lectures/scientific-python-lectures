@@ -5,8 +5,8 @@ Plotting a scatter of points
 A simple example showing how to plot a scatter of points with matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 1024
 rng = np.random.default_rng()

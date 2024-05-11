@@ -1,5 +1,5 @@
-import numpy as np
 import fortran_module
+import numpy as np
 
 
 def some_function(input):

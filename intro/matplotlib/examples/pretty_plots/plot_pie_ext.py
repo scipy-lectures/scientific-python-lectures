@@ -5,8 +5,8 @@ Pie chart vignette
 Demo pie chart with matplotlib and style the figure.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 20
 X = np.ones(n)

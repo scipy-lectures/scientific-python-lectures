@@ -4,8 +4,8 @@ A simple linear regression
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.linear_model import LinearRegression
 
 # x from 0 to 30

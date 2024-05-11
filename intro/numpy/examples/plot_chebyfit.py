@@ -6,8 +6,8 @@ Plot noisy data and their polynomial fit in a Chebyshev basis
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 rng = np.random.default_rng(27446968)
 

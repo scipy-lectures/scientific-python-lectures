@@ -21,8 +21,8 @@ Implements, via FFT, the following convolution:
 ############################################################
 # Read and plot the image
 ############################################################
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 im = plt.imread("../../../../data/moonlanding.png").astype(float)
 

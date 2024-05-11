@@ -5,8 +5,8 @@ Smooth vs non-smooth
 Draws a figure to explain smooth versus non smooth optimization.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 x = np.linspace(-1.5, 1.5, 101)
 

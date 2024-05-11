@@ -5,8 +5,8 @@ Dash join style
 Example demoing the dash join style.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 size = 256, 16
 dpi = 72.0

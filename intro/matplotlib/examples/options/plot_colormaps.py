@@ -5,8 +5,8 @@ Colormaps
 An example plotting the matplotlib colormaps.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 plt.rc("text", usetex=False)
 a = np.outer(np.arange(0, 1, 0.01), np.ones(10))

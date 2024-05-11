@@ -6,8 +6,8 @@ This example shows how to sharpen an image in noiseless situation by
 applying the filter inverse to the blur.
 """
 
-import scipy as sp
 import matplotlib.pyplot as plt
+import scipy as sp
 
 f = sp.datasets.face(gray=True).astype(float)
 blurred_f = sp.ndimage.gaussian_filter(f, 3)

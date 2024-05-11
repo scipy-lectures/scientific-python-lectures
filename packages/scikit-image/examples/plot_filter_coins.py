@@ -6,11 +6,9 @@ This example compares several denoising filters available in scikit-image:
 a Gaussian filter, a median filter, and total variation denoising.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-from skimage import data
-from skimage import filters
-from skimage import restoration
+import numpy as np
+from skimage import data, filters, restoration
 
 coins = data.coins()
 gaussian_filter_coins = filters.gaussian(coins, sigma=2)

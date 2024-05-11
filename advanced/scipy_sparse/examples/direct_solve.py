@@ -7,9 +7,9 @@ to CSR format and solve A x = b for x:and solve a linear system with a
 direct solver.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(27446968)
 

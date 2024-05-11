@@ -6,9 +6,9 @@ Integrate the Damped spring-mass oscillator
 
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 m = 0.5  # kg
 k = 4  # N/m

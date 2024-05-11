@@ -7,7 +7,6 @@ An example showing vertical arrangement of subplots with matplotlib.
 
 import matplotlib.pyplot as plt
 
-
 plt.figure(figsize=(6, 4))
 plt.subplot(1, 2, 1)
 plt.xticks([])

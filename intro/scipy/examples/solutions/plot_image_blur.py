@@ -11,9 +11,9 @@ down to multiplying their FFTs (and performing an inverse FFT).
 
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 #####################################################################
 # The original image

@@ -5,8 +5,8 @@ Exercise 9
 Exercise 9 with matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 plt.figure(figsize=(8, 5), dpi=80)
 plt.subplot(111)

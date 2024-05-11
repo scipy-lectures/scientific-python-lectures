@@ -5,8 +5,8 @@ Noisy optimization problem
 Draws a figure explaining noisy vs non-noisy optimization
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 rng = np.random.default_rng(27446968)
 

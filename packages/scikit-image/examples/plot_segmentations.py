@@ -10,13 +10,12 @@ unambigusouly to a reagion. Here, local maxima of the distance map to the
 background are used as seeds.
 """
 
-import numpy as np
-from skimage.segmentation import watershed
-from skimage.feature import peak_local_max
-from skimage import measure
-from skimage.segmentation import random_walker
 import matplotlib.pyplot as plt
+import numpy as np
 import scipy as sp
+from skimage import measure
+from skimage.feature import peak_local_max
+from skimage.segmentation import random_walker, watershed
 
 # Generate an initial image with two overlapping circles
 x, y = np.indices((80, 80))

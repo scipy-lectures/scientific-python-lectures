@@ -7,8 +7,8 @@ How to create an image with basic NumPy commands : ``np.zeros``, slicing...
 This examples show how to create a simple checkerboard.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 check = np.zeros((8, 8))
 check[::2, 1::2] = 1

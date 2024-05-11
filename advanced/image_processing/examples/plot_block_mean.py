@@ -6,9 +6,9 @@ An example showing how to use broad-casting to plot the mean of
 blocks of an image.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 f = sp.datasets.face(gray=True)
 sx, sy = f.shape

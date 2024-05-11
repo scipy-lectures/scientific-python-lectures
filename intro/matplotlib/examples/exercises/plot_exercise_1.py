@@ -5,8 +5,8 @@ Exercise 1
 Solution of the exercise 1 with matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 256
 X = np.linspace(-np.pi, np.pi, 256)

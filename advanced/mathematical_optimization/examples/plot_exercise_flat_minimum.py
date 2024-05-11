@@ -15,9 +15,9 @@ algorithm. With 162 function evaluations, we get to 1e-8 of the
 solution.
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 
 def f(x):

@@ -5,8 +5,8 @@ Text printing decorated
 An example showing text printing and decorating the resulting figure.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 fig = plt.figure()
 plt.xticks([])

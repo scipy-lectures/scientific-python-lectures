@@ -11,8 +11,8 @@ the model *underfits*, while for too large a degree, it overfits.
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def generating_func(x, rng=None, error=0.5):
@@ -22,8 +22,8 @@ def generating_func(x, rng=None, error=0.5):
 
 ############################################################
 # A polynomial regression
-from sklearn.pipeline import make_pipeline
 from sklearn.linear_model import LinearRegression
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures
 
 ############################################################

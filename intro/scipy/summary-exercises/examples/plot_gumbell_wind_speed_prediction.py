@@ -5,9 +5,9 @@ The Gumbell distribution
 Generate the exercise results on the Gumbell distribution
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 
 def gumbell_dist(arr):

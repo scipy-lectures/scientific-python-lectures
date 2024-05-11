@@ -7,9 +7,9 @@ tricks.
 
 """
 
+import matplotlib.pyplot as plt
 import numpy as np
 import scipy as sp
-import matplotlib.pyplot as plt
 
 face = sp.datasets.face(gray=True)
 face[10:13, 20:23]

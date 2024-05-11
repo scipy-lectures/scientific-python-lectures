@@ -6,8 +6,8 @@ A simple example showing how to plot in polar coordinates with
 matplotlib.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 ax = plt.axes([0.025, 0.025, 0.95, 0.95], polar=True)
 

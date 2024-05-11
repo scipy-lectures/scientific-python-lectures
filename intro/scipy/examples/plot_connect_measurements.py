@@ -6,8 +6,8 @@ Demo connected components
 Extracting and labeling connected components in a 2D array
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 ############################################################
 # Generate some binary data

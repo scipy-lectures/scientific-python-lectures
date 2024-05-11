@@ -5,9 +5,9 @@ Tutorial Diagrams
 This script plots the flow-charts used in the scikit-learn tutorials.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle, Rectangle, Polygon, Arrow, FancyArrow
+import numpy as np
+from matplotlib.patches import Arrow, Circle, FancyArrow, Polygon, Rectangle
 
 
 def create_base(box_bg="#CCCCCC", arrow1="#88CCFF", arrow2="#88FF88", supervised=True):

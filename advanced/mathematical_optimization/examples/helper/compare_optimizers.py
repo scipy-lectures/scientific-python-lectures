@@ -11,17 +11,17 @@ import sys
 
 import numpy as np
 import scipy as sp
-from joblib import Memory
-
 from cost_functions import (
-    mk_quad,
-    mk_gauss,
-    rosenbrock,
-    rosenbrock_prime,
-    rosenbrock_hessian,
-    LoggingFunction,
     CountingFunction,
+    LoggingFunction,
+    mk_gauss,
+    mk_quad,
+    rosenbrock,
+    rosenbrock_hessian,
+    rosenbrock_prime,
 )
+
+from joblib import Memory
 
 
 def my_partial(**kwargs):

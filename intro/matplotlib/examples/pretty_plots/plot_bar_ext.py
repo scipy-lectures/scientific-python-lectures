@@ -5,8 +5,8 @@ Bar plot advanced
 An more elaborate bar plot example
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 n = 16
 X = np.arange(n)
