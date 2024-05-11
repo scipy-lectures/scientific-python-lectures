@@ -32,9 +32,9 @@ y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
 def super_fmt(value):
     if value > 1:
         if np.abs(int(value) - value) < 0.1:
-            out = "$10^{%.1i}$" % value
+            out = f"$10^{{{int(value):d}}}$"
         else:
-            out = "$10^{%.1f}$" % value
+            out = f"$10^{{{value:.1f}}}$"
     else:
         value = np.exp(value - 0.01)
         if value > 0.1:
