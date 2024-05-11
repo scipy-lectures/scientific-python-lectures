@@ -8,6 +8,7 @@ select = [
   "EM",      # flake8-errmsg
   "EXE",     # flake8-executable
   "FURB",    # refurb
+  "I",       # isort
   "NPY",     # NumPy specific rules
   "PD",      # pandas-vet
   "PGH",     # pygrep-hooks
