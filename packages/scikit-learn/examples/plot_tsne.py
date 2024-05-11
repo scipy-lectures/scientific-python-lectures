@@ -38,7 +38,7 @@ import matplotlib.pyplot as plt
 
 plt.figure(figsize=(6, 5))
 colors = "r", "g", "b", "c", "m", "y", "k", "w", "orange", "purple"
-for i, c, label in zip(target_ids, colors, digits.target_names):
+for i, c, label in zip(target_ids, colors, digits.target_names, strict=True):
     plt.scatter(X_2d[y == i, 0], X_2d[y == i, 1], c=c, label=label)
 plt.legend()
 plt.show()

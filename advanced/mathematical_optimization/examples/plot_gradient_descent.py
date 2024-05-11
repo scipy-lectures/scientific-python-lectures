@@ -10,7 +10,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp
 
-import sys, os
+import sys
+import os
 
 sys.path.append(os.path.abspath("helper"))
 from cost_functions import (
@@ -245,7 +246,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     )
     contours = plt.contour(
         log_z,
-        levels=levels.get(f, None),
+        levels=levels.get(f),
         extent=[x_min, x_max, y_min, y_max],
         cmap=plt.cm.gnuplot,
         origin="lower",

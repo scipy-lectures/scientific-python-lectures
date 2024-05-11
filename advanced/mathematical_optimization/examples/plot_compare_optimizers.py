@@ -29,9 +29,11 @@ method_names = list(list(results.values())[0]["Rosenbrock  "].keys())
 method_names.sort(key=lambda x: x[::-1], reverse=True)
 
 for n_dim_index, ((n_dim, n_dim_bench), color) in enumerate(
-    zip(sorted(results.items()), colors)
+    zip(sorted(results.items()), colors, strict=True)
 ):
-    for (cost_name, cost_bench), symbol in zip(sorted(n_dim_bench.items()), symbols):
+    for (cost_name, cost_bench), symbol in zip(
+        sorted(n_dim_bench.items()), symbols, strict=True
+    ):
         for (
             method_index,
             method_name,
@@ -50,7 +52,7 @@ for n_dim_index, ((n_dim, n_dim_bench), color) in enumerate(
             )
 
 # Create a legend for the problem type
-for cost_name, symbol in zip(sorted(n_dim_bench.keys()), symbols):
+for cost_name, symbol in zip(sorted(n_dim_bench.keys()), symbols, strict=True):
     plt.semilogy(
         [
             -10,
@@ -71,7 +73,7 @@ plt.ylabel("# function calls (a.u.)")
 # Create a second legend for the problem dimensionality
 plt.twinx()
 
-for n_dim, color in zip(sorted(results.keys()), colors):
+for n_dim, color in zip(sorted(results.keys()), colors, strict=True):
     plt.plot(
         [
             -10,
