@@ -16,7 +16,7 @@ SSH_TARGET_DIR=
 
 SHELL := /bin/bash
 
-.PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip check-rsync-env
+.PHONY: help clean html web pickle htmlhelp latex changes linkcheck zip check-rsync-env test
 
 all: html-noplot
 

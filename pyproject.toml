@@ -1,6 +1,17 @@
+[tool.pytest.ini_options]
+doctest_optionflags = "NUMBER NORMALIZE_WHITESPACE ELLIPSIS"
+filterwarnings = [
+    "error",
+    "ignore:FigureCanvasAgg is non-interactive:UserWarning",
+    "ignore:datetime.datetime.utcfromtimestamp:DeprecationWarning",
+    "ignore:'scipy.sparse.linalg.cg' keyword argument:DeprecationWarning",
+]
+addopts = "--ignore=advanced/advanced_numpy/examples/myobject_test.py --ignore=advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py --ignore=advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py --ignore=advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py --ignore=advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py --ignore=advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py --ignore=intro/scipy/examples/plot_t_test.py"
+
+[tool.ruff]
 target-version = "py310"
 
-[lint]
+[tool.ruff.lint]
 select = [
   "B",       # flake8-bugbear
   "C4",      # flake8-comprehensions
@@ -46,5 +57,5 @@ ignore = [
   "SIM115"    # Use context handler for opening files
 ]
 
-[format]
+[tool.ruff.format]
 docstring-code-format = true
