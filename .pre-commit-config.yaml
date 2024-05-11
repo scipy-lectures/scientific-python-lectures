@@ -38,6 +38,11 @@ repos:
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
       - id: ruff-format
 
+  - repo: https://github.com/pycqa/isort
+    rev: c235f5e450b4b84e58d114ed4c589cbf454175a3  # frozen: 5.13.2
+    hooks:
+      - id: isort
+
   - repo: https://github.com/codespell-project/codespell
     rev: "6e41aba91fb32e9feb741a6258eefeb9c6e4a482" # frozen: v2.2.6
     hooks:
