@@ -1,12 +1,24 @@
 [tool.pytest.ini_options]
+minversion = "8.2"
 doctest_optionflags = "NUMBER NORMALIZE_WHITESPACE ELLIPSIS"
+xfail_strict = true
 filterwarnings = [
-    "error",
-    "ignore:FigureCanvasAgg is non-interactive:UserWarning",
-    "ignore:datetime.datetime.utcfromtimestamp:DeprecationWarning",
-    "ignore:'scipy.sparse.linalg.cg' keyword argument:DeprecationWarning",
+  "error",
+  "ignore:FigureCanvasAgg is non-interactive:UserWarning",
+  "ignore:datetime.datetime.utcfromtimestamp:DeprecationWarning",
+  "ignore:'scipy.sparse.linalg.cg' keyword argument:DeprecationWarning",
 ]
-addopts = "--ignore=advanced/advanced_numpy/examples/myobject_test.py --ignore=advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py --ignore=advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py --ignore=advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py --ignore=advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py --ignore=advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py --ignore=intro/scipy/examples/plot_t_test.py"
+addopts = [
+  "-ra", "--showlocals", "--strict-markers", "--strict-config",
+  "--ignore=advanced/advanced_numpy/examples/myobject_test.py",
+  "--ignore=advanced/interfacing_with_c/ctypes_numpy/test_cos_doubles.py",
+  "--ignore=advanced/interfacing_with_c/cython_numpy/test_cos_doubles.py",
+  "--ignore=advanced/interfacing_with_c/numpy_c_api/test_cos_module_np.py",
+  "--ignore=advanced/interfacing_with_c/numpy_shared/test_cos_doubles.py",
+  "--ignore=advanced/interfacing_with_c/swig_numpy/test_cos_doubles.py",
+  "--ignore=intro/scipy/examples/plot_t_test.py",
+]
+log_cli_level = "info"
 
 [tool.ruff]
 target-version = "py310"
