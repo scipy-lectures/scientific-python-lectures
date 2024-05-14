@@ -42,7 +42,9 @@ repos:
     rev: "v1.10.0"
     hooks:
       - id: mypy
-        args: []
+        args: ["--exclude", "advanced/advanced_numpy/examples/setup.py", "-v"]
+        additional_dependencies: ["types-aiofiles"]
+        exclude: advanced/interfacing_with_c/examples/
 
   - repo: https://github.com/codespell-project/codespell
     rev: "6e41aba91fb32e9feb741a6258eefeb9c6e4a482" # frozen: v2.2.6
