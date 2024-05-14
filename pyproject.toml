@@ -1,3 +1,10 @@
+[tool.mypy]
+python_version = "3.10"
+strict = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+warn_unreachable = true
+exclude = ['advanced/interfacing_with_c/']
+
 [tool.pytest.ini_options]
 minversion = "8.2"
 doctest_optionflags = "NUMBER NORMALIZE_WHITESPACE ELLIPSIS"
