@@ -21,3 +21,6 @@ pickleshare
 pre-commit==3.7.1
 requests
 sphinxcontrib-jquery
+myst-nb
+jupytext
+linkify-it-py
