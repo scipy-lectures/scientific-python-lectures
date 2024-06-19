@@ -1,7 +1,14 @@
-from distutils.core import setup, Extension
-from Cython.Distutils import build_ext
+from setuptools import setup, Extension
+from Cython.Build import cythonize
+
+
+extensions = [
+    Extension(
+        "cos_module",
+        sources=["cos_module.pyx"]
+    )
+]
 
 setup(
-    cmdclass={"build_ext": build_ext},
-    ext_modules=[Extension("cos_module", ["cos_module.pyx"])],
+    ext_modules=cythonize(extensions)
 )

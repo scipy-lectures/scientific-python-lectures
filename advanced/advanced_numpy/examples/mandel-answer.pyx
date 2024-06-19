@@ -3,7 +3,7 @@
 
 cdef void mandel_single_point(double complex *z_in,
                               double complex *c_in,
-                              double complex *z_out) nogil:
+                              double complex *z_out) noexcept nogil:
     #
     # The Mandelbrot iteration
     #

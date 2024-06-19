@@ -1,14 +1,16 @@
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
+from Cython.Build import cythonize
 import numpy
-from Cython.Distutils import build_ext
+
+
+extensions = [
+    Extension(
+        "cos_doubles",
+        sources=["_cos_doubles.pyx", "cos_doubles.c"],
+        include_dirs=[numpy.get_include()]
+    )
+]
 
 setup(
-    cmdclass={"build_ext": build_ext},
-    ext_modules=[
-        Extension(
-            "cos_doubles",
-            sources=["_cos_doubles.pyx", "cos_doubles.c"],
-            include_dirs=[numpy.get_include()],
-        )
-    ],
+    ext_modules=cythonize(extensions)
 )
