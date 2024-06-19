@@ -131,13 +131,13 @@ return types into place and for the module initialisation. Although some of
 this is amortised, as the extension grows, the boilerplate required for each
 function(s) remains.
 
-The standard python build system ``distutils`` supports compiling C-extensions
-from a ``setup.py``, which is rather convenient:
+The standard python build system, ``setuptools``, supports compiling
+C-extensions via a ``setup.py`` file:
 
 .. literalinclude:: python_c_api/setup.py
    :language: python
 
-This can be compiled:
+The setup file is called as follows:
 
 .. sourcecode:: console
 
@@ -227,7 +227,7 @@ returns a resulting new array.
 .. literalinclude:: numpy_c_api/cos_module_np.c
    :language: c
 
-To compile this we can use distutils again. However we need to be sure to
+To compile this we can use ``setuptools`` again. However we need to be sure to
 include the NumPy headers by using :func:`numpy.get_include`.
 
 .. literalinclude:: numpy_c_api/setup.py
@@ -361,7 +361,7 @@ The function implementation resides in the following C source file:
 .. literalinclude:: ctypes_numpy/cos_doubles.c
    :language: c
 
-And since the library is pure C, we can't use ``distutils`` to compile it, but
+And since the library is pure C, we can't use ``setuptools`` to compile it, but
 must use a combination of ``make`` and ``gcc``:
 
 .. literalinclude:: ctypes_numpy/makefile
@@ -464,7 +464,7 @@ Generating the compiled wrappers is a two stage process:
    module.
 
 #. Compile the ``cos_module_wrap.c`` into the ``_cos_module.so``. Luckily,
-   ``distutils`` knows how to handle SWIG interface files, so that our
+   ``setuptools`` knows how to handle SWIG interface files, so that our
    ``setup.py`` is simply:
 
 .. literalinclude:: swig/setup.py
@@ -576,7 +576,7 @@ file:
   header, There is nothing there that we wish to expose to Python since we
   expose the functionality through ``cos_doubles_func``.
 
-And, as before we can use distutils to wrap this:
+And, as before we can use ``setuptools`` to wrap this:
 
 .. literalinclude:: swig_numpy/setup.py
    :language: python
@@ -670,8 +670,8 @@ The main Cython code for our ``cos_module`` is contained in the file
 Note the additional keywords such as ``cdef`` and ``extern``. Also the
 ``cos_func`` is then pure Python.
 
-Again we can use the standard ``distutils`` module, but this time we need some
-additional pieces from the ``Cython.Distutils``:
+Again we can use the standard ``setuptools`` module, but this time we need some
+additional pieces from ``Cython.Build``:
 
 .. literalinclude:: cython/setup.py
 
@@ -774,7 +774,7 @@ This is wrapped as ``cos_doubles_func`` using the following Cython code:
 .. literalinclude:: cython_numpy/_cos_doubles.pyx
    :language: cython
 
-And can be compiled using ``distutils``:
+And can be compiled using ``setuptools``:
 
 .. literalinclude:: cython_numpy/setup.py
    :language: python
