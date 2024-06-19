@@ -864,7 +864,7 @@ Summary
 * Know miscellaneous operations on arrays, such as finding the mean or max
   (``array.max()``, ``array.mean()``). No need to retain everything, but
   have the reflex to search in the documentation (online docs,
-  ``help()``, ``lookfor()``)!!
+  ``help()``)!!
 
 * For advanced use: master the indexing with arrays of integers, as well as
   broadcasting. Know more NumPy functions to handle various array

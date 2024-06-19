@@ -113,16 +113,6 @@ NumPy Reference documentation
 
 - Looking for something:
 
-  .. sourcecode:: pycon
-
-     >>> np.lookfor('create array') # doctest: +SKIP
-     Search results for 'create array'
-     ---------------------------------
-     numpy.array
-         Create an array.
-     numpy.memmap
-         Create a memory-map to an array stored in a *binary* file on disk.
-
   .. ipython::
 
      In [6]: np.con*?
