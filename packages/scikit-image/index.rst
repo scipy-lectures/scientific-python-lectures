@@ -281,7 +281,7 @@ unsigned.
 
         >>> camera_float = ski.util.img_as_float(camera)
         >>> camera.max(), camera_float.max()
-        (255, 1.0)
+        (np.uint8(255), np.float64(1.0))
 
 Some image processing routines need to work with float arrays, and may
 hence output an array with a different type and the data range from the
@@ -289,7 +289,7 @@ input array ::
 
     >>> camera_sobel = ski.filters.sobel(camera)
     >>> camera_sobel.max()
-    0.644...
+    np.float64(0.644...)
 
 
 Utility functions are provided in :mod:`skimage` to convert both the
@@ -670,7 +670,7 @@ Example: compute the size and perimeter of the two segmented regions::
     >>> [float(prop.area) for prop in properties]
     [770.0, 1168.0]
     >>> [prop.perimeter for prop in properties]
-    [100.91..., 126.81...]
+    [np.float64(100.91...), np.float64(126.81...)]
 
 .. seealso::
 

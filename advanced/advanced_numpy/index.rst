@@ -312,7 +312,9 @@ Casting
     >>> y + 1
     array([2, 3, 4, 5], dtype=int8)
     >>> y + 256
-    array([257, 258, 259, 260], dtype=int16)
+    Traceback (most recent call last):
+      File "<stdin>", line 1, in <module>
+    OverflowError: Python integer 256 out of bounds for int8
     >>> y + 256.0
     array([257.,  258.,  259.,  260.])
     >>> y + np.array([256], dtype=np.int32)
@@ -507,9 +509,9 @@ Main point
     (3, 1)
     >>> byte_offset = 3 * 1 + 1 * 2  # to find x[1, 2]
     >>> x.flat[byte_offset]
-    6
+    np.int8(6)
     >>> x[1, 2]
-    6
+    np.int8(6)
 
 simple, **flexible**
 
@@ -1343,18 +1345,12 @@ Array siblings: :class:`chararray`, :class:`maskedarray`
 :class:`chararray`: vectorized string operations
 --------------------------------------------------
 
->>> x = np.array(['a', '  bbb', '  ccc']).view(np.chararray)
->>> x.lstrip(' ')
-chararray(['a', 'bbb', 'ccc'],
-      dtype='...')
+>>> x = np.char.asarray(['a', '  bbb', '  ccc'])
+>>> x
+chararray(['a', '  bbb', '  ccc'], dtype='<U5')
 >>> x.upper()
-chararray(['A', '  BBB', '  CCC'],
-      dtype='...')
+chararray(['A', '  BBB', '  CCC'], dtype='<U5')
 
-.. note::
-
-   ``.view()`` has a second meaning: it can make an ndarray an instance
-   of a specialized ndarray subclass
 
 :class:`masked_array` missing data
 ------------------------------------
@@ -1376,9 +1372,9 @@ One way to describe this is to create a masked array::
 Masked mean ignores masked data::
 
     >>> mx.mean()
-    2.75
+    np.float64(2.75)
     >>> np.mean(mx)
-    2.75
+    np.float64(2.75)
 
 .. warning:: Not all NumPy functions respect masks, for instance
    ``np.dot``, so check the return types.
@@ -1588,7 +1584,7 @@ Good bug report
 3. Version of NumPy/SciPy
 
    >>> print(np.__version__)
-   1...
+   2...
 
    **Check that the following is what you expect**
 

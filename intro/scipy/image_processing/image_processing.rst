@@ -40,7 +40,7 @@ Changing orientation, resolution, .. ::
     <matplotlib.image.AxesImage object at 0x...>
 
     >>> plt.axis('off')
-    (-0.5, 1023.5, 767.5, -0.5)
+    (np.float64(-0.5), np.float64(1023.5), np.float64(767.5), np.float64(-0.5))
 
     >>> # etc.
 

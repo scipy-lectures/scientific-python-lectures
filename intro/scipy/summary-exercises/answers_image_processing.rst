@@ -76,4 +76,4 @@ Example of solution for the image processing exercise: unmolten grains in glass
     >>> mean_bubble_size = bubbles_areas.mean()
     >>> median_bubble_size = np.median(bubbles_areas)
     >>> mean_bubble_size, median_bubble_size
-    (1699.875, 65.0)
+    (np.float64(1699.875), np.float64(65.0))

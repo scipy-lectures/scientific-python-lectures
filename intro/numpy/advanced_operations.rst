@@ -25,7 +25,7 @@ For example, :math:`3x^2 + 2x - 1`::
 
     >>> p = np.poly1d([3, 2, -1])
     >>> p(0)
-    -1
+    np.int64(-1)
     >>> p.roots
     array([-1.        ,  0.33333333])
     >>> p.order
@@ -60,7 +60,7 @@ e.g. the Chebyshev basis.
 
     >>> p = np.polynomial.Polynomial([-1, 2, 3]) # coefs in different order!
     >>> p(0)
-    -1.0
+    np.float64(-1.0)
     >>> p.roots()
     array([-1.        ,  0.33333333])
     >>> p.degree()  # In general polynomials do not always expose 'order'

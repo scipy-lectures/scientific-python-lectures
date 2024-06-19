@@ -97,14 +97,14 @@ Floating-point numbers:
 ::
 
     >>> np.finfo(np.float32).eps
-    1.1920929e-07
+    np.float32(1.1920929e-07)
     >>> np.finfo(np.float64).eps
-    2.2204460492503131e-16
+    np.float64(2.220446049250313e-16)
 
     >>> np.float32(1e-8) + np.float32(1) == 1
-    True
+    np.True_
     >>> np.float64(1e-8) + np.float64(1) == 1
-    False
+    np.False_
 
 Complex floating-point numbers:
 
@@ -173,11 +173,11 @@ Field access works by indexing with field names::
     >>> samples['value']
     array([0.37,  0.11,  0.13,  0.37,  0.11,  0.13])
     >>> samples[0]
-    (b'ALFA', 1., 0.37)
+    np.void((b'ALFA', 1.0, 0.37), dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
     >>> samples[0]['sensor_code'] = 'TAU'
     >>> samples[0]
-    (b'TAU', 1., 0.37)
+    np.void((b'TAU', 1.0, 0.37), dtype=[('sensor_code', 'S4'), ('position', '<f8'), ('value', '<f8')])
 
 Multiple fields at once::
 
