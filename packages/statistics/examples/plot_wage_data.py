@@ -3,7 +3,7 @@ Visualizing factors influencing wages
 =====================================
 
 This example uses seaborn to quickly plot various factors relating wages,
-experience and eduction.
+experience, and education.
 
 Seaborn (https://seaborn.pydata.org) is a library that combines
 visualization and statistical fits to show trends in data.

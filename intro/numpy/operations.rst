@@ -878,4 +878,4 @@ Summary
 
    The remainder of this chapter is not necessary to follow the rest of
    the intro part. But be sure to come back and finish this chapter, as
-   well as to do some more :ref:`exercices <numpy_exercises>`.
+   well as to do some more :ref:`exercises <numpy_exercises>`.

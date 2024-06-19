@@ -824,7 +824,7 @@ lmplot: plotting a univariate regression
    :scale: 60
 
 A regression capturing the relation between one variable and another, eg
-wage and eduction, can be plotted using :func:`seaborn.lmplot`::
+wage, and education, can be plotted using :func:`seaborn.lmplot`::
 
     >>> seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)  # doctest: +SKIP
 
