@@ -63,15 +63,15 @@ Examples
     >>> mtx.offsets
     array([ 0, -1,  2], dtype=int32)
     >>> print(mtx)
-      (0, 0)        1
-      (1, 1)        2
-      (2, 2)        3
-      (3, 3)        4
-      (1, 0)        5
-      (2, 1)        6
-      (3, 2)        7
-      (0, 2)        11
-      (1, 3)        12
+    (np.int32(0), np.int32(0))	1
+    (np.int32(1), np.int32(1))	2
+    (np.int32(2), np.int32(2))	3
+    (np.int32(3), np.int32(3))	4
+    (np.int32(1), np.int32(0))	5
+    (np.int32(2), np.int32(1))	6
+    (np.int32(3), np.int32(2))	7
+    (np.int32(0), np.int32(2))	11
+    (np.int32(1), np.int32(3))	12
     >>> mtx.toarray()
     array([[ 1,  0, 11,  0],
            [ 5,  2,  0, 12],

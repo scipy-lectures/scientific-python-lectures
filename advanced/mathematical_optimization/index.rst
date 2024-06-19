@@ -180,9 +180,9 @@ Brent's method to find the minimum of a function:
     True
     >>> x_min = result.x
     >>> x_min
-    0.50...
+    np.float64(0.50...)
     >>> x_min - 0.5
-    5.8...e-09
+    np.float64(5.8...e-09)
 
 
 .. |1d_optim_1| image:: auto_examples/images/sphx_glr_plot_1d_optim_001.png
@@ -824,7 +824,7 @@ handy.
    given, and a gradient computed numerically:
 
     >>> sp.optimize.check_grad(f, jacobian, [2, -1])
-    2.384185791015625e-07
+    np.float64(2.384185791015625e-07)
 
    See also :func:`scipy.optimize.approx_fprime` to find your errors.
 
@@ -897,7 +897,7 @@ if we compute the norm ourselves and use a good generic optimizer
     ...     return np.sum(f(x)**2)
     >>> result = sp.optimize.minimize(g, x0, method="BFGS")
     >>> result.fun
-    2.6940...e-11
+    np.float64(2.6940...e-11)
 
 BFGS needs more function calls, and gives a less precise result.
 

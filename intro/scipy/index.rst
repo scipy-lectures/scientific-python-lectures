@@ -167,9 +167,9 @@ point truncation error.
     >>> x = 2.5
     >>> y = 1e-18
     >>> x * np.log(1 + y)
-    0.0
+    np.float64(0.0)
     >>> sp.special.xlog1py(x, y)
-    2.5e-18
+    np.float64(2.5e-18)
 
 Many special functions also have "logarithmized" variants. For instance,
 the gamma function :math:`\Gamma(\cdot)` is related to the factorial
@@ -180,7 +180,7 @@ positive integers to the complex plane.
    >>> np.allclose(sp.special.gamma(x + 1), sp.special.factorial(x))
    True
    >>> sp.special.gamma(5) < sp.special.gamma(5.5) < sp.special.gamma(6)
-   True
+   np.True_
 
 The factorial function grows quickly, and so the gamma function overflows
 for moderate values of the argument. However, sometimes only the logarithm
@@ -201,7 +201,7 @@ For example, suppose we wish to compute the ratio
     >>> a = sp.special.gamma(500)
     >>> b = sp.special.gamma(499)
     >>> a, b
-    (inf, inf)
+    (np.float64(inf), np.float64(inf))
 
 Both the numerator and denominator overflow, so performing :math:`a / b` will
 not return the result we seek. However, the magnitude of the result should
@@ -214,7 +214,7 @@ we get:
     >>> log_res = log_a - log_b
     >>> res = np.exp(log_res)
     >>> res
-    499.0000000...
+    np.float64(499.0000000...)
 
 Similarly, suppose we wish to compute the difference
 :math:`\log(\Gamma(500) - \Gamma(499))`. For this, we use
@@ -224,7 +224,7 @@ Similarly, suppose we wish to compute the difference
     >>> res = sp.special.logsumexp([log_a, log_b],
     ...                            b=[1, -1])  # weights the terms of the sum
     >>> res
-    2605.113844343...
+    np.float64(2605.113844343...)
 
 For more information about these and many other special functions, see
 the documentation of :mod:`scipy.special`.
@@ -245,7 +245,7 @@ of a square matrix::
     >>> arr = np.array([[1, 2],
     ...                 [3, 4]])
     >>> sp.linalg.det(arr)
-    -2.0
+    np.float64(-2.0)
 
 Mathematically, the solution of a linear system :math:`Ax = b` is :math:`x = A^{-1}b`,
 but explicit inversion of a matrix is numerically unstable and should be avoided.
@@ -552,7 +552,7 @@ bounds that restrict the search to the vicinity of the global minimum.
          nit: 8
         nfev: 8
     >>> res.fun == f(res.x)
-    True
+    np.True_
 
 If we did not already know the approximate location of the global minimum,
 we could use one of SciPy's global minimizers, such as
@@ -688,9 +688,9 @@ distribution family's ``fit`` method::
 
     >>> loc, scale = sp.stats.norm.fit(sample)
     >>> loc
-    0.0015767005...
+    np.float64(0.0015767005...)
     >>> scale
-    0.9973396878...
+    np.float64(0.9973396878...)
 
 Since we know the true parameters of the distribution from which the
 sample was drawn, we are not surprised that these estimates are similar.
@@ -715,7 +715,7 @@ The sample mean is an estimator of the mean of the distribution from which
 the sample was drawn::
 
     >>> np.mean(sample)
-    0.001576700508...
+    np.float64(0.001576700508...)
 
 NumPy includes some of the most fundamental sample statistics (e.g.
 :func:`numpy.mean`, :func:`numpy.var`, :func:`numpy.percentile`);
@@ -724,7 +724,7 @@ is a common measure of central tendency for data that tends to be
 distributed over many orders of magnitude.
 
     >>> sp.stats.gmean(2**sample)
-    1.0010934829...
+    np.float64(1.0010934829...)
 
 SciPy also includes a variety of hypothesis tests that produce a
 sample statistic and a p-value. For instance, suppose we wish to
@@ -733,9 +733,9 @@ distribution::
 
     >>> res = sp.stats.normaltest(sample)
     >>> res.statistic
-    5.20841759...
+    np.float64(5.20841759...)
     >>> res.pvalue
-    0.07396163283...
+    np.float64(0.07396163283...)
 
 Here, ``statistic`` is a sample statistic that tends to be high for
 samples that are drawn from non-normal distributions. ``pvalue`` is

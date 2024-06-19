@@ -51,8 +51,6 @@ just to display help and docstrings...
   learning by example. More standard documentation is also available.
 
 
-Finally, two more "technical" possibilities are useful as well:
-
 * In Ipython, the magical function ``%psearch`` search for objects
   matching patterns. This is useful if, for example, one does not know
   the exact name  of a function.
@@ -62,13 +60,6 @@ Finally, two more "technical" possibilities are useful as well:
 
       In [3]: import numpy as np
       In [4]: %psearch np.diag*
-
-* numpy.lookfor looks for keywords inside the docstrings of specified modules.
-
-  .. ipython::
-      :okwarning:
-
-      In [45]: np.lookfor('convolution')
 
 * If everything listed above fails (and Google doesn't have the
   answer)... don't despair! There is a vibrant Scientific Python community.

@@ -46,7 +46,7 @@ Examples
 * slicing and indexing::
 
     >>> mtx[1, 1]
-    0.0
+    np.float64(0.0)
     >>> mtx[[1], 1:3]
     <1x2 sparse array of type '<... 'numpy.float64'>'
           with 1 stored elements in Dictionary Of Keys format>

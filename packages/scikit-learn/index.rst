@@ -612,7 +612,7 @@ the number of matches::
     >>> print(len(matches))
     450
     >>> matches.sum() / float(len(matches))
-    0.8555...
+    np.float64(0.8555...)
 
 We see that more than 80% of the 450 predictions match the input. But
 there are other more sophisticated metrics that can be used to judge the
@@ -999,13 +999,13 @@ overall performance of an algorithm.  It appears in the bottom row
 of the classification report; it can also be accessed directly::
 
     >>> metrics.f1_score(y_test, y_pred, average="macro")
-    0.991367...
+    np.float64(0.991367...)
 
 The over-fitting we saw previously can be quantified by computing the
 f1-score on the training data itself::
 
     >>> metrics.f1_score(y_train, clf.predict(X_train), average="macro")
-    1.0
+    np.float64(1.0)
 
 .. note::
 
@@ -1164,8 +1164,8 @@ We can find the optimal parameters this way::
     >>> for Model in [Ridge, Lasso]:
     ...     gscv = GridSearchCV(Model(), dict(alpha=alphas), cv=3).fit(X, y)
     ...     print('%s: %s' % (Model.__name__, gscv.best_params_))
-    Ridge: {'alpha': 0.062101694189156162}
-    Lasso: {'alpha': 0.01268961003167922}
+    Ridge: {'alpha': np.float64(0.06210169418915616)}
+    Lasso: {'alpha': np.float64(0.01268961003167922)}
 
 Built-in Hyperparameter Search
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

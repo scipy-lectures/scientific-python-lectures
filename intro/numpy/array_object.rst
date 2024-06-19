@@ -113,16 +113,6 @@ NumPy Reference documentation
 
 - Looking for something:
 
-  .. sourcecode:: pycon
-
-     >>> np.lookfor('create array') # doctest: +SKIP
-     Search results for 'create array'
-     ---------------------------------
-     numpy.array
-         Create an array.
-     numpy.memmap
-         Create a memory-map to an array stored in a *binary* file on disk.
-
   .. ipython::
 
      In [6]: np.con*?
@@ -463,7 +453,7 @@ other Python sequences (e.g. lists):
     >>> a
     array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     >>> a[0], a[2], a[-1]
-    (0, 2, 9)
+    (np.int64(0), np.int64(2), np.int64(9))
 
 .. warning::
 
@@ -487,7 +477,7 @@ For multidimensional arrays, indices are tuples of integers:
            [0, 1, 0],
            [0, 0, 2]])
     >>> a[1, 1]
-    1
+    np.int64(1)
     >>> a[2, 1] = 10 # third line, second column
     >>> a
     array([[ 0,  0,  0],

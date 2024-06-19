@@ -137,7 +137,7 @@ Increase contrast by setting min and max values::
     <matplotlib.image.AxesImage object at 0x...>
     >>> # Remove axes and ticks
     >>> plt.axis('off')
-    (-0.5, 1023.5, 767.5, -0.5)
+    (np.float64(-0.5), np.float64(1023.5), np.float64(767.5), np.float64(-0.5))
 
 Draw contour lines::
 
@@ -190,7 +190,7 @@ Images are arrays: use the whole ``numpy`` machinery.
 
     >>> face = sp.datasets.face(gray=True)
     >>> face[0, 40]
-    127
+    np.uint8(127)
     >>> # Slicing
     >>> face[10:13, 20:23]
     array([[141, 153, 145],
@@ -222,9 +222,9 @@ Statistical information
 
     >>> face = sp.datasets.face(gray=True)
     >>> face.mean()
-    113.48026784261067
+    np.float64(113.48026784261067)
     >>> face.max(), face.min()
-    (250, 0)
+    (np.uint8(250), np.uint8(0))
 
 
 ``np.histogram``
@@ -653,9 +653,9 @@ Use mathematical morphology to clean up the result::
         >>> eroded_tmp = sp.ndimage.binary_erosion(tmp)
         >>> reconstruct_final = np.logical_not(sp.ndimage.binary_propagation(eroded_tmp, mask=tmp))
         >>> np.abs(mask - close_img).mean()
-        0.00640699...
+        np.float64(0.00640699...)
         >>> np.abs(mask - reconstruct_final).mean()
-        0.00082232...
+        np.float64(0.00082232...)
 
 .. topic:: **Exercise**
     :class: green

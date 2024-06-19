@@ -208,9 +208,9 @@ Computing sums
 
     >>> x = np.array([1, 2, 3, 4])
     >>> np.sum(x)
-    10
+    np.int64(10)
     >>> x.sum()
-    10
+    np.int64(10)
 
 .. image:: images/reductions.png
    :align: right
@@ -226,11 +226,11 @@ Sum by rows and by columns:
     >>> x.sum(axis=0)   # columns (first dimension)
     array([3, 3])
     >>> x[:, 0].sum(), x[:, 1].sum()
-    (3, 3)
+    (np.int64(3), np.int64(3))
     >>> x.sum(axis=1)   # rows (second dimension)
     array([2, 4])
     >>> x[0, :].sum(), x[1, :].sum()
-    (2, 4)
+    (np.int64(2), np.int64(4))
 
 .. tip::
 
@@ -241,9 +241,9 @@ Sum by rows and by columns:
     >>> rng = np.random.default_rng(27446968)
     >>> x = rng.random((2, 2, 2))
     >>> x.sum(axis=2)[0, 1]
-    0.73415...
+    np.float64(0.73415...)
     >>> x[0, 1, :].sum()
-    0.73415...
+    np.float64(0.73415...)
 
 Other reductions
 ................
@@ -256,23 +256,23 @@ Other reductions
 
   >>> x = np.array([1, 3, 2])
   >>> x.min()
-  1
+  np.int64(1)
   >>> x.max()
-  3
+  np.int64(3)
 
   >>> x.argmin()  # index of minimum
-  0
+  np.int64(0)
   >>> x.argmax()  # index of maximum
-  1
+  np.int64(1)
 
 **Logical operations:**
 
 .. sourcecode:: pycon
 
   >>> np.all([True, True, False])
-  False
+  np.False_
   >>> np.any([True, True, False])
-  True
+  np.True_
 
 .. note::
 
@@ -282,15 +282,15 @@ Other reductions
 
       >>> a = np.zeros((100, 100))
       >>> np.any(a != 0)
-      False
+      np.False_
       >>> np.all(a == a)
-      True
+      np.True_
 
       >>> a = np.array([1, 2, 3, 2])
       >>> b = np.array([2, 2, 3, 2])
       >>> c = np.array([6, 4, 4, 5])
       >>> ((a <= b) & (b <= c)).all()
-      True
+      np.True_
 
 **Statistics:**
 
@@ -299,14 +299,14 @@ Other reductions
   >>> x = np.array([1, 2, 3, 1])
   >>> y = np.array([[1, 2, 3], [5, 6, 1]])
   >>> x.mean()
-  1.75
+  np.float64(1.75)
   >>> np.median(x)
-  1.5
+  np.float64(1.5)
   >>> np.median(y, axis=-1) # last axis
   array([2.,  5.])
 
   >>> x.std()          # full population standard dev.
-  0.82915619758884995
+  np.float64(0.82915619758884995)
 
 
 ... and many more (best to learn as you go).
@@ -709,12 +709,12 @@ Dimension shuffling
     >>> a.shape
     (4, 3, 2)
     >>> a[0, 2, 1]
-    5
+    np.int64(5)
     >>> b = a.transpose(1, 2, 0)
     >>> b.shape
     (3, 2, 4)
     >>> b[2, 1, 0]
-    5
+    np.int64(5)
 
 Also creates a view:
 
@@ -722,7 +722,7 @@ Also creates a view:
 
     >>> b[2, 1, 0] = -1
     >>> a[0, 2, 1]
-    -1
+    np.int64(-1)
 
 Resizing
 ........
@@ -817,7 +817,7 @@ Finding minima and maxima:
     >>> j_max = np.argmax(a)
     >>> j_min = np.argmin(a)
     >>> j_max, j_min
-    (0, 2)
+    (np.int64(0), np.int64(2))
 
 
 .. XXX: need a frame for summaries
@@ -864,7 +864,7 @@ Summary
 * Know miscellaneous operations on arrays, such as finding the mean or max
   (``array.max()``, ``array.mean()``). No need to retain everything, but
   have the reflex to search in the documentation (online docs,
-  ``help()``, ``lookfor()``)!!
+  ``help()``)!!
 
 * For advanced use: master the indexing with arrays of integers, as well as
   broadcasting. Know more NumPy functions to handle various array

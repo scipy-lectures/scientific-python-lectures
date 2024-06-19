@@ -193,7 +193,7 @@ Manipulating data
 
     >>> # Simpler selector
     >>> data[data['Gender'] == 'Female']['VIQ'].mean()
-    109.45
+    np.float64(109.45)
 
 .. note:: For a quick view on a large dataframe, use its `describe`
     method: :meth:`pandas.DataFrame.describe`.
@@ -205,8 +205,8 @@ Manipulating data
     >>> groupby_gender = data.groupby('Gender')
     >>> for gender, value in groupby_gender['VIQ']:
     ...     print((gender, value.mean()))
-    ('Female', 109.45)
-    ('Male', 115.25)
+    ('Female', np.float64(109.45))
+    ('Male', np.float64(115.25))
 
 
 `groupby_gender` is a powerful object that exposes many
@@ -345,7 +345,7 @@ and the `p-value <https://en.wikipedia.org/wiki/P-value>`_ (see the
 function's help)::
 
     >>> sp.stats.ttest_1samp(data['VIQ'], 0)
-    TtestResult(statistic=30.088099970..., pvalue=1.32891964...e-28, df=39)
+    TtestResult(statistic=np.float64(30.088099970...), pvalue=np.float64(1.32891964...e-28), df=np.int64(39))
 
 The p-value of :math:`10^-28` indicates that such an extreme value of the statistic
 is unlikely to be observed under the null hypothesis. This may be taken as
@@ -365,7 +365,7 @@ will affect the conclusions of the test, we can use a `Wilcoxon signed-rank test
 this assumption at the expense of test power::
 
     >>> sp.stats.wilcoxon(data['VIQ'])
-    WilcoxonResult(statistic=0.0, pvalue=1.8189894...e-12)
+    WilcoxonResult(statistic=np.float64(0.0), pvalue=np.float64(1.8189894...e-12))
 
 Two-sample t-test: testing for difference across populations
 ............................................................
@@ -378,14 +378,14 @@ a two-sample t-test using :func:`scipy.stats.ttest_ind`::
     >>> female_viq = data[data['Gender'] == 'Female']['VIQ']
     >>> male_viq = data[data['Gender'] == 'Male']['VIQ']
     >>> sp.stats.ttest_ind(female_viq, male_viq)
-    TtestResult(statistic=-0.77261617232..., pvalue=0.4445287677858..., df=38.0)
+    TtestResult(statistic=np.float64(-0.77261617232...), pvalue=np.float64(0.4445287677858...), df=np.float64(38.0))
 
 The corresponding non-parametric test is the `Mann–Whitney U
 test <https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U>`_,
 :func:`scipy.stats.mannwhitneyu`.
 
     >>> sp.stats.mannwhitneyu(female_viq, male_viq)
-    MannwhitneyuResult(statistic=164.5, pvalue=0.34228868687...)
+    MannwhitneyuResult(statistic=np.float64(164.5), pvalue=np.float64(0.34228868687...))
 
 Paired tests: repeated measurements on the same individuals
 -----------------------------------------------------------
@@ -399,7 +399,7 @@ PIQ, VIQ, and FSIQ give three measures of IQ. Let us test whether FISQ
 and PIQ are significantly different. We can use an "independent sample" test::
 
     >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])
-    TtestResult(statistic=0.46563759638..., pvalue=0.64277250..., df=78.0)
+    TtestResult(statistic=np.float64(0.46563759638...), pvalue=np.float64(0.64277250...), df=np.float64(78.0))
 
 The problem with this approach is that it ignores an important relationship
 between observations: FSIQ and PIQ are measured on the same individuals.
@@ -409,7 +409,7 @@ or `"repeated measures test"
 <https://en.wikipedia.org/wiki/Repeated_measures_design>`_::
 
     >>> sp.stats.ttest_rel(data['FSIQ'], data['PIQ'])
-    TtestResult(statistic=1.784201940..., pvalue=0.082172638183..., df=39)
+    TtestResult(statistic=np.float64(1.784201940...), pvalue=np.float64(0.082172638183...), df=np.int64(39))
 
 .. image:: auto_examples/images/sphx_glr_plot_paired_boxplots_002.png
    :target: auto_examples/plot_pandas.html
@@ -420,13 +420,13 @@ This is equivalent to a one-sample test on the differences between paired
 observations::
 
     >>> sp.stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)
-    TtestResult(statistic=1.784201940..., pvalue=0.082172638..., df=39)
+    TtestResult(statistic=np.float64(1.784201940...), pvalue=np.float64(0.082172638...), df=np.int64(39))
 
 Accordingly, we can perform a nonparametric version of the test with
 ``wilcoxon``.
 
     >>> sp.stats.wilcoxon(data['FSIQ'], data['PIQ'], method="approx")
-    WilcoxonResult(statistic=274.5, pvalue=0.106594927135...)
+    WilcoxonResult(statistic=np.float64(274.5), pvalue=np.float64(0.106594927135...))
 
 .. topic:: **Exercise**
    :class: green
@@ -646,7 +646,7 @@ model::
     previous t-test::
 
      >>> sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])
-     TtestResult(statistic=0.46563759638..., pvalue=0.64277250..., df=78.0)
+     TtestResult(statistic=np.float64(0.46563759638...), pvalue=np.float64(0.64277250...), df=np.float64(78.0))
 
 
 Multiple Regression: including multiple factors
