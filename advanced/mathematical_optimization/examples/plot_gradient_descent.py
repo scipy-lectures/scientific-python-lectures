@@ -242,7 +242,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
         extent=[x_min, x_max, y_min, y_max],
         cmap=plt.cm.gray_r,
         origin="lower",
-        vmax=log_z.min() + 1.5 * log_z.ptp(),
+        vmax=log_z.min() + 1.5 * np.ptp(log_z),
     )
     contours = plt.contour(
         log_z,
