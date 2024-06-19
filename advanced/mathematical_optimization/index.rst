@@ -828,7 +828,7 @@ handy.
 
    See also :func:`scipy.optimize.approx_fprime` to find your errors.
 
-Synthetic exercices
+Synthetic exercises
 -------------------
 
 .. |flat_min_0| image:: auto_examples/images/sphx_glr_plot_exercise_flat_minimum_001.png
@@ -844,7 +844,7 @@ Synthetic exercices
     :target: auto_examples/plot_exercise_ill_conditioned.html
     :align: right
 
-.. topic:: **Exercice: A simple (?) quadratic function**
+.. topic:: **Exercise: A simple (?) quadratic function**
     :class: green
 
     Optimize the following function, using K[0] as a starting point::
@@ -858,7 +858,7 @@ Synthetic exercices
     Time your approach. Find the fastest approach. Why is BFGS not
     working well?
 
-.. topic:: **Exercice: A locally flat minimum**
+.. topic:: **Exercise: A locally flat minimum**
     :class: green
 
     Consider the function `exp(-1/(.1*x**2 + y**2)`. This function admits

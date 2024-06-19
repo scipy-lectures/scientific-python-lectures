@@ -32,14 +32,14 @@ repos:
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: f8a3f8c471fb698229face5ed7640a64900b781e # frozen: v0.4.4
+    rev: 02609a0003fd4903bd7f43852e5dfc82242a96db # frozen: v0.4.9
     hooks:
       - id: ruff
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
       - id: ruff-format
 
   - repo: https://github.com/codespell-project/codespell
-    rev: "6e41aba91fb32e9feb741a6258eefeb9c6e4a482" # frozen: v2.2.6
+    rev: "193cd7d27cd571f79358af09a8fb8997e54f8fff" # frozen: v2.3.0
     hooks:
       - id: codespell
         args: ["-w", "-L", "ans,nd,sav,mke,ags,mot,coo,whos,manuel"]
