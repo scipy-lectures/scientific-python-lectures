@@ -11,13 +11,7 @@ from Cython.Build import cythonize
 import numpy
 
 extensions = [
-    Extension(
-        "mandel",
-        sources=["mandel.pyx"],
-        include_dirs=[numpy.get_include()]
-    )
+    Extension("mandel", sources=["mandel.pyx"], include_dirs=[numpy.get_include()])
 ]
 
-setup(
-    ext_modules=cythonize(extensions)
-)
+setup(ext_modules=cythonize(extensions))
