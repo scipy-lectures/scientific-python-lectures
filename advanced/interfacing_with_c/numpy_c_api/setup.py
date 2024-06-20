@@ -1,5 +1,6 @@
-from distutils.core import setup, Extension
+from setuptools import setup, Extension
 import numpy
+
 
 # define the extension module
 cos_module_np = Extension(
