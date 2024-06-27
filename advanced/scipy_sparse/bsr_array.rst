@@ -35,8 +35,8 @@ Examples
 
     >>> mtx = sp.sparse.bsr_array((3, 4), dtype=np.int8)
     >>> mtx
-    <3x4 sparse array of type '<... 'numpy.int8'>'
-            with 0 stored elements (blocksize = 1x1) in Block Sparse Row format>
+    <Block Sparse Row sparse array of dtype 'int8'
+            with 0 stored elements (blocksize=1x1) and shape (3, 4)>
     >>> mtx.toarray()
     array([[0, 0, 0, 0],
            [0, 0, 0, 0],
@@ -46,8 +46,8 @@ Examples
 
     >>> mtx = sp.sparse.bsr_array((3, 4), blocksize=(3, 2), dtype=np.int8)
     >>> mtx
-    <3x4 sparse array of type '<... 'numpy.int8'>'
-            with 0 stored elements (blocksize = 3x2) in Block Sparse Row format>
+    <Block Sparse Row sparse array of dtype 'int8'
+            with 0 stored elements (blocksize=3x2) and shape (3, 4)>
     >>> mtx.toarray()
     array([[0, 0, 0, 0],
            [0, 0, 0, 0],
@@ -62,8 +62,8 @@ Examples
     >>> data = np.array([1, 2, 3, 4, 5, 6])
     >>> mtx = sp.sparse.bsr_array((data, (row, col)), shape=(3, 3))
     >>> mtx
-    <3x3 sparse array of type '<... 'numpy.int64'>'
-            with 6 stored elements (blocksize = 1x1) in Block Sparse Row format>
+    <Block Sparse Row sparse array of dtype 'int64'
+            with 6 stored elements (blocksize=1x1) and shape (3, 3)>
     >>> mtx.toarray()
     array([[1, 0, 2],
            [0, 0, 3],
