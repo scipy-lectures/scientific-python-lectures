@@ -50,8 +50,8 @@ Examples
     >>> data = np.array([1, 2, 3, 4, 5, 6])
     >>> mtx = sp.sparse.csc_array((data, (row, col)), shape=(3, 3))
     >>> mtx
-    <3x3 sparse array of type '<... 'numpy.int64'>'
-            with 6 stored elements in Compressed Sparse Column format>
+    <Compressed Sparse Column sparse array of dtype 'int64'
+            with 6 stored elements and shape (3, 3)>
     >>> mtx.toarray()
     array([[1, 0, 2],
            [0, 0, 3],
