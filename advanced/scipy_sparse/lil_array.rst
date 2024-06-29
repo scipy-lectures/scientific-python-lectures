@@ -39,9 +39,12 @@ Examples
 
     >>> mtx[:2, [1, 2, 3]] = data
     >>> mtx
-    <4x5 sparse array of type '<... 'numpy.float64'>'
-            with 3 stored elements in List of Lists format>
+    <List of Lists sparse array of dtype 'float64'
+            with 3 stored elements and shape (4, 5)>
     >>> print(mtx)
+    <List of Lists sparse array of dtype 'float64'
+            with 3 stored elements and shape (4, 5)>
+      Coords    Values
       (0, 1)    1.0
       (0, 3)    1.0
       (1, 3)    1.0
@@ -64,6 +67,9 @@ Examples
            [3, 0, 1, 0],
            [1, 0, 0, 1]]...)
     >>> print(mtx)
+    <List of Lists sparse array of dtype 'int64'
+            with 6 stored elements and shape (3, 4)>
+      Coords    Values
       (0, 1)    1
       (0, 2)    2
       (1, 0)    3
@@ -71,8 +77,8 @@ Examples
       (2, 0)    1
       (2, 3)    1
     >>> mtx[:2, :]
-    <2x4 sparse array of type '<... 'numpy.int64'>'
-      with 4 stored elements in List of Lists format>
+    <List of Lists sparse array of dtype 'int64'
+            with 4 stored elements and shape (2, 4)>
     >>> mtx[:2, :].toarray()
     array([[0, 1, 2, 0],
            [3, 0, 1, 0]]...)
