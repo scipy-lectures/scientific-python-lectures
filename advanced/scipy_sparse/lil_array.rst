@@ -42,6 +42,9 @@ Examples
     <List of Lists sparse array of dtype 'float64'
             with 3 stored elements and shape (4, 5)>
     >>> print(mtx)
+    <List of Lists sparse array of dtype 'float64'
+            with 3 stored elements and shape (4, 5)>
+      Coords    Values
       (0, 1)    1.0
       (0, 3)    1.0
       (1, 3)    1.0
@@ -64,6 +67,9 @@ Examples
            [3, 0, 1, 0],
            [1, 0, 0, 1]]...)
     >>> print(mtx)
+    <List of Lists sparse array of dtype 'int64'
+            with 6 stored elements and shape (3, 4)>
+      Coords    Values
       (0, 1)    1
       (0, 2)    2
       (1, 0)    3
