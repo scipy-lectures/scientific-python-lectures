@@ -49,8 +49,8 @@ Examples
     >>> data = np.array([4, 5, 7, 9])
     >>> mtx = sp.sparse.coo_array((data, (row, col)), shape=(4, 4))
     >>> mtx
-    <4x4 sparse array of type '<... 'numpy.int64'>'
-            with 4 stored elements in COOrdinate format>
+    <COOrdinate sparse array of dtype 'int64'
+            with 4 stored elements and shape (4, 4)>
     >>> mtx.toarray()
     array([[4, 0, 9, 0],
            [0, 7, 0, 0],

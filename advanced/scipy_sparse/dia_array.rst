@@ -42,8 +42,8 @@ Examples
     >>> offsets = np.array([0, -1, 2])
     >>> mtx = sp.sparse.dia_array((data, offsets), shape=(4, 4))
     >>> mtx
-    <4x4 sparse array of type '<... 'numpy.int64'>'
-            with 9 stored elements (3 diagonals) in DIAgonal format>
+    <DIAgonal sparse array of dtype 'int64'
+        with 9 stored elements (3 diagonals) and shape (4, 4)>
     >>> mtx.toarray()
     array([[1, 0, 3, 0],
            [1, 2, 0, 4],
@@ -63,15 +63,18 @@ Examples
     >>> mtx.offsets
     array([ 0, -1,  2], dtype=int32)
     >>> print(mtx)
-    (np.int32(0), np.int32(0))	1
-    (np.int32(1), np.int32(1))	2
-    (np.int32(2), np.int32(2))	3
-    (np.int32(3), np.int32(3))	4
-    (np.int32(1), np.int32(0))	5
-    (np.int32(2), np.int32(1))	6
-    (np.int32(3), np.int32(2))	7
-    (np.int32(0), np.int32(2))	11
-    (np.int32(1), np.int32(3))	12
+    <DIAgonal sparse array of dtype 'int64'
+        with 9 stored elements (3 diagonals) and shape (4, 4)>
+      Coords    Values
+      (0, 0)	1
+      (1, 1)	2
+      (2, 2)	3
+      (3, 3)	4
+      (1, 0)	5
+      (2, 1)	6
+      (3, 2)	7
+      (0, 2)	11
+      (1, 3)	12
     >>> mtx.toarray()
     array([[ 1,  0, 11,  0],
            [ 5,  2,  0, 12],
