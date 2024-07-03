@@ -31,7 +31,7 @@ plt.imshow(img)
 # First a 1-D  Gaussian
 t = np.linspace(-10, 10, 30)
 bump = np.exp(-0.1 * t**2)
-bump /= np.trapz(bump)  # normalize the integral to 1
+bump /= np.trapezoid(bump)  # normalize the integral to 1
 
 # make a 2-D kernel out of it
 kernel = bump[:, np.newaxis] * bump[np.newaxis, :]
