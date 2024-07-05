@@ -15,7 +15,7 @@ rng = np.random.default_rng(27446968)
 
 mtx = sp.sparse.lil_array((1000, 1000), dtype=np.float64)
 mtx[0, :100] = rng.random(100)
-mtx[1, 100:200] = mtx[0, :100]
+mtx[1, 100:200] = mtx[[0], :100]
 mtx.setdiag(rng.random(1000))
 
 plt.clf()
@@ -27,4 +27,4 @@ rhs = rng.random(1000)
 
 x = sp.sparse.linalg.spsolve(mtx, rhs)
 
-print(f"residual: {np.linalg.norm(mtx * x - rhs)!r}")
+print(f"residual: {np.linalg.norm(mtx @ x - rhs)!r}")
