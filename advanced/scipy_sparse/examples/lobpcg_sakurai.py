@@ -21,7 +21,7 @@ def sakurai(n):
     """
 
     A = sp.sparse.eye(n, n)
-    d0 = np.array(r_[5, 6 * ones(n - 2), 5])
+    d0 = np.r_[5, 6 * np.ones(n - 2), 5]
     d1 = -4 * np.ones(n)
     d2 = np.ones(n)
     B = sp.sparse.spdiags([d2, d1, d0, d1, d2], [-2, -1, 0, 1, 2], n, n)
@@ -41,13 +41,13 @@ m = 3  # Blocksize
 #
 n = 2500
 A, B, w_ex = sakurai(n)  # Mikota pair
-X = np.rand(n, m)
+X = np.random.rand(n, m)
 data = []
-tt = time.clock()
+tt = time.process_time()
 eigs, vecs, resnh = sp.sparse.linalg.lobpcg(
     A, X, B, tol=1e-6, maxiter=500, retResidualNormsHistory=1
 )
-data.append(time.clock() - tt)
+data.append(time.process_time() - tt)
 print("Results by LOBPCG for n=" + str(n))
 print()
 print(eigs)
