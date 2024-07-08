@@ -100,7 +100,7 @@ NumPy Reference documentation
      Docstring:
      array(object, dtype=None, copy=True, order=None, subok=False, ndmin=0, ...
 
-  .. tip:
+  .. tip::
 
    .. sourcecode:: pycon
 
