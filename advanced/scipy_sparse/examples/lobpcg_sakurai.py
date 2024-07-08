@@ -45,7 +45,13 @@ X = np.random.random((n, m))
 data = []
 tt = time.time()
 eigs, vecs, resnh = sp.sparse.linalg.lobpcg(
-    A, X, B, tol=1e-6, largest=False, maxiter=500, retResidualNormsHistory=1,
+    A,
+    X,
+    B,
+    tol=1e-6,
+    largest=False,
+    maxiter=500,
+    retResidualNormsHistory=1,
 )
 data.append(time.time() - tt)
 print("Results by LOBPCG for n=" + str(n))
