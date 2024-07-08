@@ -50,7 +50,7 @@ eigs, vecs, resnh = sp.sparse.linalg.lobpcg(
     B,
     tol=1e-6,
     largest=False,
-    maxiter=500,
+    maxiter=2000,
     retResidualNormsHistory=1,
 )
 data.append(time.time() - tt)
