@@ -153,6 +153,7 @@ Walking a directory
 ``os.path.walk`` generates a list of filenames in a directory tree.
 
 .. ipython::
+    :verbatim:
 
     In [10]: for dirpath, dirnames, filenames in os.walk(os.curdir):
        ....:     for fp in filenames:
