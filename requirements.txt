@@ -1,12 +1,12 @@
-numpy==2.0.0
+numpy==2.0.1
 scipy==1.14.0
 matplotlib==3.9.1
 pandas==2.2.2
 patsy==0.5.6
-pyarrow==16.1.0
+pyarrow==17.0.0
 scikit-learn==1.5.1
 scikit-image==0.24.0
-sympy==1.13.0
+sympy==1.13.1
 statsmodels==0.14.2
 seaborn==0.13.2
 pytest>=8.2
