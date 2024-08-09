@@ -70,18 +70,15 @@ Scientific Python Lectures
 .. Icons from https://fonts.google.com/icons
 
 .. |pdf-icon| image:: images/icon-pdf.svg
-   :width: 15em
    :class: vcenter
    :alt: PDF icon
 
 .. |html-icon| image:: images/icon-archive.svg
-   :width: 15em
    :class: vcenter
    :alt: Archive icon
 
 
 .. |github-icon| image:: images/icon-github.svg
-   :width: 15em
    :class: vcenter
    :alt: GitHub icon
 
