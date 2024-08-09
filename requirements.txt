@@ -10,7 +10,7 @@ sympy==1.13.1
 statsmodels==0.14.2
 seaborn==0.13.2
 pytest>=8.2
-sphinx>=7.4
+sphinx>=8.0
 sphinx-gallery>=0.17
 sphinx-copybutton
 coverage>=7.5
