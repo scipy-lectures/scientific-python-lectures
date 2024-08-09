@@ -18,6 +18,6 @@ Pillow
 pooch
 ipython
 pickleshare
-pre-commit==3.7.1
+pre-commit==3.8.0
 requests
 sphinxcontrib-jquery
