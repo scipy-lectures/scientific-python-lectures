@@ -19,7 +19,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: 1463d990e0801964764a375260dca598513f3be5  # frozen: v3.3.3
+    rev: 1463d990e0801964764a375260dca598513f3be5 # frozen: v3.3.3
     hooks:
       - id: prettier
         files: \.(md|rst|yml|yaml)
