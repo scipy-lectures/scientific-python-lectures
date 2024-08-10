@@ -18,8 +18,8 @@ repos:
       - id: mixed-line-ending
       - id: trailing-whitespace
 
-  - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: ffb6a759a979008c0e6dff86e39f4745a2d9eac4 # frozen: v3.1.0
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: 1463d990e0801964764a375260dca598513f3be5 # frozen: v3.3.3
     hooks:
       - id: prettier
         files: \.(md|rst|yml|yaml)
