@@ -32,7 +32,7 @@ repos:
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: ac97362543353002a47d6cae8918b25444d102df # frozen: v0.5.7
+    rev: f1ebc5730d98440041cc43e4d69829ad598ae1e7 # frozen: v0.6.3
     hooks:
       - id: ruff
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
