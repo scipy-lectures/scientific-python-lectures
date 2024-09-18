@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 im = plt.imread("../../../../data/moonlanding.png").astype(float)
 
 plt.figure()
-plt.imshow(im, plt.cm.gray)
+plt.imshow(im, "gray")
 plt.title("Original image")
 
 
@@ -91,7 +91,7 @@ plt.title("Filtered Spectrum")
 im_new = sp.fft.ifft2(im_fft2).real
 
 plt.figure()
-plt.imshow(im_new, plt.cm.gray)
+plt.imshow(im_new, "gray")
 plt.title("Reconstructed Image")
 
 
@@ -105,7 +105,7 @@ plt.title("Reconstructed Image")
 im_blur = sp.ndimage.gaussian_filter(im, 4)
 
 plt.figure()
-plt.imshow(im_blur, plt.cm.gray)
+plt.imshow(im_blur, "gray")
 plt.title("Blurred image")
 
 plt.show()

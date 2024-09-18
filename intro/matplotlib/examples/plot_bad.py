@@ -12,7 +12,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 fig = plt.figure(figsize=(5, 4), dpi=72)
-axes = fig.add_axes([0.01, 0.01, 0.98, 0.98])
+axes = fig.add_axes((0.01, 0.01, 0.98, 0.98))
 x = np.linspace(0, 2, 200)
 y = np.sin(2 * np.pi * x)
 plt.plot(x, y, lw=0.25, c="k")

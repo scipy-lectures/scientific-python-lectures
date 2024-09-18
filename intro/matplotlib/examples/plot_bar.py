@@ -14,7 +14,7 @@ rng = np.random.default_rng()
 Y1 = (1 - X / float(n)) * rng.uniform(0.5, 1.0, n)
 Y2 = (1 - X / float(n)) * rng.uniform(0.5, 1.0, n)
 
-plt.axes([0.025, 0.025, 0.95, 0.95])
+plt.axes((0.025, 0.025, 0.95, 0.95))
 plt.bar(X, +Y1, facecolor="#9999ff", edgecolor="white")
 plt.bar(X, -Y2, facecolor="#ff9999", edgecolor="white")
 

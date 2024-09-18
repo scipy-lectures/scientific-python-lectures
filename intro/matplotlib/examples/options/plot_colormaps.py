@@ -6,14 +6,17 @@ An example plotting the matplotlib colormaps.
 """
 
 import numpy as np
+
+import matplotlib
 import matplotlib.pyplot as plt
+
 
 plt.rc("text", usetex=False)
 a = np.outer(np.arange(0, 1, 0.01), np.ones(10))
 
 plt.figure(figsize=(10, 5))
 plt.subplots_adjust(top=0.8, bottom=0.05, left=0.01, right=0.99)
-maps = [m for m in plt.cm.datad if not m.endswith("_r")]
+maps = [m for m in matplotlib.colormaps if not m.endswith("_r")]
 maps.sort()
 l = len(maps) + 1
 

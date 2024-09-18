@@ -29,6 +29,6 @@ def compute_mandelbrot(N_max, some_threshold, nx, ny):
 
 mandelbrot_set = compute_mandelbrot(50, 50.0, 601, 401)
 
-plt.imshow(mandelbrot_set.T, extent=[-2, 1, -1.5, 1.5])
+plt.imshow(mandelbrot_set.T, extent=[-2, 1, -1.5, 1.5])  # type: ignore[arg-type]
 plt.gray()
 plt.savefig("mandelbrot.png")

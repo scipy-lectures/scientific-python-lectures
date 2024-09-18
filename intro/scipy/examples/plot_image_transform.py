@@ -23,23 +23,23 @@ zoomed_face.shape
 
 plt.figure(figsize=(15, 3))
 plt.subplot(151)
-plt.imshow(shifted_face, cmap=plt.cm.gray)
+plt.imshow(shifted_face, cmap="gray")
 plt.axis("off")
 
 plt.subplot(152)
-plt.imshow(shifted_face2, cmap=plt.cm.gray)
+plt.imshow(shifted_face2, cmap="gray")
 plt.axis("off")
 
 plt.subplot(153)
-plt.imshow(rotated_face, cmap=plt.cm.gray)
+plt.imshow(rotated_face, cmap="gray")
 plt.axis("off")
 
 plt.subplot(154)
-plt.imshow(cropped_face, cmap=plt.cm.gray)
+plt.imshow(cropped_face, cmap="gray")
 plt.axis("off")
 
 plt.subplot(155)
-plt.imshow(zoomed_face, cmap=plt.cm.gray)
+plt.imshow(zoomed_face, cmap="gray")
 plt.axis("off")
 
 plt.subplots_adjust(wspace=0.05, left=0.01, bottom=0.01, right=0.99, top=0.99)

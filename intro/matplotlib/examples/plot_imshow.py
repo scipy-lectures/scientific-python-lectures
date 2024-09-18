@@ -19,7 +19,7 @@ y = np.linspace(-3, 3, int(3.0 * n))
 X, Y = np.meshgrid(x, y)
 Z = f(X, Y)
 
-plt.axes([0.025, 0.025, 0.95, 0.95])
+plt.axes((0.025, 0.025, 0.95, 0.95))
 plt.imshow(Z, interpolation="nearest", cmap="bone", origin="lower")
 plt.colorbar(shrink=0.92)
 

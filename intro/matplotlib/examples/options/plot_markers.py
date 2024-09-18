@@ -58,7 +58,7 @@ size = 20 * n_markers, 300
 dpi = 72.0
 figsize = size[0] / float(dpi), size[1] / float(dpi)
 fig = plt.figure(figsize=figsize, dpi=dpi)
-plt.axes([0, 0.01, 1, 0.9], frameon=False)
+plt.axes((0, 0.01, 1, 0.9), frameon=False)
 
 for i, m in enumerate(markers):
     marker(m, i)

@@ -36,7 +36,7 @@ rng = np.random.default_rng(27446968)
 Z = -5 + 3 * X - 0.5 * Y + 8 * np.random.normal(size=X.shape)
 
 # Plot the data
-ax = plt.figure().add_subplot(projection="3d")
+ax: Axes3D = plt.figure().add_subplot(projection="3d")
 surf = ax.plot_surface(X, Y, Z, cmap=plt.cm.coolwarm, rstride=1, cstride=1)
 ax.view_init(20, -120)
 ax.set_xlabel("X")
