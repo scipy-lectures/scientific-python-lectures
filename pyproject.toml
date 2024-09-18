@@ -3,7 +3,28 @@ python_version = "3.10"
 strict = true
 enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
 warn_unreachable = true
-exclude = ['advanced/interfacing_with_c/']
+# Sync with .pre-commit-config.yaml
+exclude = '''
+(?x)(
+  ^build/
+  | ^advanced/.*/setup\.py$
+  | .*/demo.py$
+  | .*/auto_examples/
+  | advanced/mathematical_optimization/examples/plot_gradient_descent\.py$
+  | advanced/mathematical_optimization/examples/helper/compare_optimizers\.py$
+  | advanced/advanced_numpy/examples/view-colors\.py$
+  | advanced/advanced_numpy/examples/stride-diagonals\.py$
+  | advanced/interfacing_with_c/cython_numpy/test_cos_doubles\.py$
+  | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+  | advanced/interfacing_with_c/swig.*\.py$
+  | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+)
+'''
+
+# Can make these more strict over time
+ignore_missing_imports = true
+allow_untyped_defs = true
+allow_untyped_calls = true
 
 [tool.pytest.ini_options]
 minversion = "8.2"
