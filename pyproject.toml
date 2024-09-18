@@ -18,13 +18,29 @@ exclude = '''
   | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
   | advanced/interfacing_with_c/swig.*\.py$
   | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+  | intro/numpy/solutions/2_a_call_fortran\.py$
 )
 '''
 
 # Can make these more strict over time
-ignore_missing_imports = true
 allow_untyped_defs = true
 allow_untyped_calls = true
+
+## Unfortunately need this to fix matplotlib errors
+#disable_error_code = "attr-defined"
+
+[[tool.mypy.overrides]]
+module = "scipy"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "matplotlib.pyplot.*"
+disable_error_code = ["arg-type"]
+
+[[tool.mypy.overrides]]
+module = "mpl_toolkits.mplot3d.*"
+ignore_missing_imports = true
+
 
 [tool.pytest.ini_options]
 minversion = "8.2"
