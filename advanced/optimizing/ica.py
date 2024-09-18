@@ -280,7 +280,7 @@ def fastica(
         "w_init": w_init,
     }
 
-    func = algorithm_funcs.get(algorithm, "parallel")
+    func = algorithm_funcs[algorithm]
 
     W = func(X1, **kwargs)
     del X1

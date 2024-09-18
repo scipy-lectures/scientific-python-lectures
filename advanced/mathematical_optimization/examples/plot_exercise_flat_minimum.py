@@ -48,7 +48,7 @@ plt.plot(t, f([0, t]))
 
 plt.figure(1)
 plt.clf()
-X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]
+X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]  # type: ignore[misc]
 plt.imshow(
     f([X, Y]).T, cmap=plt.cm.gray_r, extent=[-1.5, 1.5, -1.1, 1.1], origin="lower"
 )

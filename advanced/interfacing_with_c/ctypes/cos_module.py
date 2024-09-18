@@ -7,7 +7,10 @@ import ctypes
 # OSX or linux
 from ctypes.util import find_library
 
-libm = ctypes.cdll.LoadLibrary(find_library("m"))
+libm_name = find_library("m")
+assert libm_name is not None, "Cannot find libm (math) on this system 👀. That's bad."
+
+libm = ctypes.cdll.LoadLibrary(libm_name)
 
 # Windows
 # from ctypes import windll

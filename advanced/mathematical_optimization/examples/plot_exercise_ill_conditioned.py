@@ -37,7 +37,7 @@ def hessian(x):
 
 plt.figure(1)
 plt.clf()
-Z = X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]
+Z = X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]  # type: ignore[misc]
 # Complete in the additional dimensions with zeros
 Z = np.reshape(Z, (2, -1)).copy()
 Z.resize((100, Z.shape[-1]))

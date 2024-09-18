@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp
 
-x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]
+x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]  # type: ignore[misc]
 x = x.T
 y = y.T
 

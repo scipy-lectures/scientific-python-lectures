@@ -2,6 +2,9 @@
 The correction for the calculation of pi using the Wallis formula.
 """
 
+from functools import reduce
+
+
 pi = 3.14159265358979312
 
 my_pi = 1.0
@@ -31,7 +34,7 @@ print(abs(pi - better_pi))
 print(abs(my_pi - better_pi))
 
 ###############################################################################
-# Solution in a single line using more adcanved constructs (reduce, lambda,
+# Solution in a single line using more advanced constructs (reduce, lambda,
 # list comprehensions
 print(
     2
