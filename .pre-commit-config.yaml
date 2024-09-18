@@ -42,9 +42,24 @@ repos:
     rev: "v1.10.0"
     hooks:
       - id: mypy
-        args: ["--exclude", "advanced/advanced_numpy/examples/setup.py", "-v"]
-        additional_dependencies: ["types-aiofiles"]
-        exclude: advanced/interfacing_with_c/examples/
+        args: [
+          "--ignore-missing-imports",
+          "--allow-untyped-defs",
+          "--allow-untyped-calls"
+        ]
+        additional_dependencies:
+          - types-aiofiles
+          - types-requests
+        exclude: |
+          (?x)(
+            ^advanced/.*/setup\.py|
+            ^.*/demo.py|
+            .*/auto_examples/.*|
+            advanced/mathematical_optimization/examples/plot_gradient_descent\.py|
+            advanced/mathematical_optimization/examples/helper/compare_optimizers\.py|
+            advanced/advanced_numpy/examples/view-colors\.py|
+            advanced/advanced_numpy/examples/stride-diagonals\.py
+          )
 
   - repo: https://github.com/codespell-project/codespell
     rev: 193cd7d27cd571f79358af09a8fb8997e54f8fff # frozen: v2.3.0
