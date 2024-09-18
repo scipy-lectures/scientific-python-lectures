@@ -166,7 +166,7 @@ Getting started: 1D optimization
 ---------------------------------
 
 Let's get started by finding the minimum of the scalar function
-:math:`f(x)=\exp[(x-0.7)^2]`. :func:`scipy.optimize.minimize_scalar` uses
+:math:`f(x)=\exp[(x-0.5)^2]`. :func:`scipy.optimize.minimize_scalar` uses
 Brent's method to find the minimum of a function:
 
 ::
