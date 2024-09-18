@@ -41,6 +41,17 @@ disable_error_code = ["arg-type"]
 module = "mpl_toolkits.mplot3d.*"
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = "sklearn.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "seaborn.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "statsmodels.*"
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 minversion = "8.2"

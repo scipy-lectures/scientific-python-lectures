@@ -45,6 +45,7 @@ repos:
         additional_dependencies:
           - types-aiofiles
           - types-requests
+          - pandas-stubs
         exclude: |
           (?x)(
             ^build/
