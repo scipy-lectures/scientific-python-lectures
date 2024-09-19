@@ -47,6 +47,7 @@ repos:
           - types-requests
           - pandas-stubs
           - types-pillow
+          - matplotlib
         exclude: |
           (?x)(
             ^build/

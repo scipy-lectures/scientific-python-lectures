@@ -49,9 +49,7 @@ plt.plot(t, f([0, t]))
 plt.figure(1)
 plt.clf()
 X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]  # type: ignore[misc]
-plt.imshow(
-    f([X, Y]).T, cmap="gray_r", extent=(-1.5, 1.5, -1.1, 1.1), origin="lower"
-)
+plt.imshow(f([X, Y]).T, cmap="gray_r", extent=(-1.5, 1.5, -1.1, 1.1), origin="lower")
 plt.contour(X, Y, f([X, Y]), cmap="gnuplot")
 
 # Plot the gradient
