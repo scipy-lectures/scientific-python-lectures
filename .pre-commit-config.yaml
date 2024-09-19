@@ -46,10 +46,11 @@ repos:
           - types-aiofiles
           - types-requests
           - pandas-stubs
+          - types-pillow
         exclude: |
           (?x)(
             ^build/
-            | ^advanced/.*/setup\.py$
+            | .*/setup.*\.py$
             | .*/demo.py$
             | .*/auto_examples/
             | advanced/mathematical_optimization/examples/plot_gradient_descent\.py$
@@ -59,7 +60,11 @@ repos:
             | advanced/interfacing_with_c/cython_numpy/test_cos_doubles\.py$
             | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
             | advanced/interfacing_with_c/swig.*\.py$
+            | advanced/advanced_numpy/examples/myobject_test\.py$
             | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+            | advanced/interfacing_with_c/numpy_c_api/test_cos_module_np\.py$
+            | intro/numpy/solutions/2_a_call_fortran\.py$
+            | advanced/advanced_numpy/examples/mandelplot\.py$
           )
 
   - repo: https://github.com/codespell-project/codespell

@@ -7,7 +7,7 @@ warn_unreachable = true
 exclude = '''
 (?x)(
   ^build/
-  | ^advanced/.*/setup\.py$
+  | .*/setup.*\.py$
   | .*/demo.py$
   | .*/auto_examples/
   | advanced/mathematical_optimization/examples/plot_gradient_descent\.py$
@@ -17,8 +17,11 @@ exclude = '''
   | advanced/interfacing_with_c/cython_numpy/test_cos_doubles\.py$
   | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
   | advanced/interfacing_with_c/swig.*\.py$
+  | advanced/advanced_numpy/examples/myobject_test\.py$
   | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+  | advanced/interfacing_with_c/numpy_c_api/test_cos_module_np\.py$
   | intro/numpy/solutions/2_a_call_fortran\.py$
+  | advanced/advanced_numpy/examples/mandelplot\.py$
 )
 '''
 
@@ -51,6 +54,10 @@ ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = "statsmodels.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pyamg.*"
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]
