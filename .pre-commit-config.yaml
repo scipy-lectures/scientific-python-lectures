@@ -50,6 +50,8 @@ repos:
         exclude: |
           (?x)(
             ^build/
+            | ^pyximages/
+            | conf\.py$
             | .*/setup.*\.py$
             | .*/demo.py$
             | .*/auto_examples/

@@ -7,6 +7,8 @@ warn_unreachable = true
 exclude = '''
 (?x)(
   ^build/
+  | ^pyximages/
+  | conf\.py$
   | .*/setup.*\.py$
   | .*/demo.py$
   | .*/auto_examples/
@@ -28,9 +30,6 @@ exclude = '''
 # Can make these more strict over time
 allow_untyped_defs = true
 allow_untyped_calls = true
-
-## Unfortunately need this to fix matplotlib errors
-#disable_error_code = "attr-defined"
 
 [[tool.mypy.overrides]]
 module = "scipy"
