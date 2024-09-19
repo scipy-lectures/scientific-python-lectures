@@ -8,7 +8,7 @@ import ctypes
 from ctypes.util import find_library
 
 libm_name = find_library("m")
-assert libm_name is not None, "Cannot find libm (math) on this system 👀. That's bad."
+assert libm_name is not None, "Cannot find libm (math) on this system :/ That's bad."
 
 libm = ctypes.cdll.LoadLibrary(libm_name)
 
