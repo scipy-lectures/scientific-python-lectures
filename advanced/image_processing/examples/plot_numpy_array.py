@@ -22,8 +22,8 @@ face[mask] = 0
 face[range(400), range(400)] = 255
 
 plt.figure(figsize=(3, 3))
-plt.axes([0, 0, 1, 1])
-plt.imshow(face, cmap=plt.cm.gray)
+plt.axes((0, 0, 1, 1))
+plt.imshow(face, cmap="gray")
 plt.axis("off")
 
 plt.show()

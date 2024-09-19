@@ -1,21 +1,23 @@
 """
-Exercise: using the buffer protocole
-====================================
+Exercise: using the buffer protocol
+===================================
 
-Skeletton of the code to do an exercise using the buffer protocole.
+Skeleton of the code to do an exercise using the buffer protocole.
 """
 
 import numpy as np
-import Image
+from PIL import Image
 
 # Let's make a sample image, RGBA format
 
-x = np.zeros((200, 200, 4), dtype=np.int8)
+x = np.zeros((200, 200, 4), dtype=np.uint8)
 
-# TODO: fill `x` with fully opaque red [255, 0, 0, 255]
+# TODO: fill `data` with fully opaque red [255, 0, 0, 255]
 
-# TODO: RGBA images consist of 32-bit integers whose bytes are [RR,GG,BB,AA]
-#       How to get that from ``x``?
+# TODO: `x` is an array of bytes (8-bit integers)
+#       What we need for PIL to understand this data is RGBA array,
+#       where each element is a 32-bit integer, with bytes [RR,GG,BB,AA].
+#       How do we convert `x` to such an array, called `data`?
 
 data = ...
 

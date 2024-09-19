@@ -19,7 +19,7 @@ block_mean = sp.ndimage.mean(f, labels=regions, index=np.arange(1, regions.max()
 block_mean.shape = (sx // 4, sy // 6)
 
 plt.figure(figsize=(5, 5))
-plt.imshow(block_mean, cmap=plt.cm.gray)
+plt.imshow(block_mean, cmap="gray")
 plt.axis("off")
 
 plt.show()

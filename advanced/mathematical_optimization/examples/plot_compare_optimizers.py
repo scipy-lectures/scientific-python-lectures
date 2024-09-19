@@ -10,6 +10,8 @@ import pickle
 import sys
 
 import numpy as np
+
+import matplotlib
 import matplotlib.pyplot as plt
 
 results = pickle.load(
@@ -23,7 +25,8 @@ symbols = "o>*Ds"
 plt.figure(1, figsize=(10, 4))
 plt.clf()
 
-colors = plt.cm.nipy_spectral(np.linspace(0, 1, n_dims))[:, :3]
+nipy_spectral = matplotlib.colormaps["nipy_spectral"]
+colors = nipy_spectral(np.linspace(0, 1, n_dims))[:, :3]
 
 method_names = list(list(results.values())[0]["Rosenbrock  "].keys())
 method_names.sort(key=lambda x: x[::-1], reverse=True)
