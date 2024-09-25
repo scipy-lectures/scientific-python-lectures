@@ -23,7 +23,7 @@ plt.imshow(img)
 
 plt.figure()
 img_red = img[:, :, 0]
-plt.imshow(img_red, cmap=plt.cm.gray)
+plt.imshow(img_red, cmap="gray")
 
 #################################
 # lower resolution

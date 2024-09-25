@@ -7,7 +7,7 @@ n_steps = 50
 tolerance = 1e-5
 
 # Random transition matrix and state vector
-P = rng.random(n_states, n_states)
+P = rng.random(size=(n_states, n_states))
 p = rng.random(n_states)
 
 # Normalize rows in P

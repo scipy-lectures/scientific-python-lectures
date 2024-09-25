@@ -38,7 +38,7 @@ clf.fit(X, y)
 
 plt.figure(figsize=(6, 4))
 ax = plt.subplot(111, xticks=[], yticks=[])
-ax.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.bone)
+ax.scatter(X[:, 0], X[:, 1], c=y, cmap="bone")
 
 ax.scatter(
     clf.support_vectors_[:, 0],
@@ -92,7 +92,7 @@ clf.fit(X, y)
 
 plt.figure(figsize=(6, 4))
 ax = plt.subplot(1, 1, 1, xticks=[], yticks=[])
-ax.scatter(X[:, 0], X[:, 1], c=y, cmap=plt.cm.bone, zorder=2)
+ax.scatter(X[:, 0], X[:, 1], c=y, cmap="bone", zorder=2)
 
 ax.scatter(
     clf.support_vectors_[:, 0],

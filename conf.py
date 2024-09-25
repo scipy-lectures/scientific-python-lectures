@@ -95,7 +95,7 @@ pygments_style = "sphinx"
 # have indented line wrapping
 
 
-class MyHtmlFormatter(formatters.HtmlFormatter):
+class MyHtmlFormatter(formatters.HtmlFormatter):  # type: ignore[misc]
     def __init__(self, **options):
         options["lineseparator"] = '\n<div class="newline"></div>'
         formatters.HtmlFormatter.__init__(self, **options)

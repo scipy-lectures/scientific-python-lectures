@@ -20,8 +20,8 @@ def sixhump(x):
 # Make a grid to evaluate the function (for plotting)
 xlim = [-2, 2]
 ylim = [-1, 1]
-x = np.linspace(*xlim)
-y = np.linspace(*ylim)
+x = np.linspace(*xlim)  # type: ignore[call-overload]
+y = np.linspace(*ylim)  # type: ignore[call-overload]
 xg, yg = np.meshgrid(x, y)
 
 ############################################################
@@ -31,7 +31,7 @@ xg, yg = np.meshgrid(x, y)
 import matplotlib.pyplot as plt
 
 plt.figure()
-plt.imshow(sixhump([xg, yg]), extent=xlim + ylim, origin="lower")
+plt.imshow(sixhump([xg, yg]), extent=xlim + ylim, origin="lower")  # type: ignore[arg-type]
 plt.colorbar()
 
 ############################################################
@@ -40,14 +40,14 @@ plt.colorbar()
 from mpl_toolkits.mplot3d import Axes3D
 
 fig = plt.figure()
-ax = fig.add_subplot(111, projection="3d")
+ax: Axes3D = fig.add_subplot(111, projection="3d")
 surf = ax.plot_surface(
     xg,
     yg,
     sixhump([xg, yg]),
     rstride=1,
     cstride=1,
-    cmap=plt.cm.viridis,
+    cmap="viridis",
     linewidth=0,
     antialiased=False,
 )
@@ -70,7 +70,7 @@ res_global = sp.optimize.differential_evolution(sixhump, bounds=[xlim, ylim])
 
 plt.figure()
 # Show the function in 2D
-plt.imshow(sixhump([xg, yg]), extent=xlim + ylim, origin="lower")
+plt.imshow(sixhump([xg, yg]), extent=xlim + ylim, origin="lower")  # type: ignore[arg-type]
 plt.colorbar()
 # Mark the minima
 plt.scatter(res_local.x[0], res_local.x[1], label="local minimizer")

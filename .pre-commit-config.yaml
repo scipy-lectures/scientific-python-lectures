@@ -38,6 +38,38 @@ repos:
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
       - id: ruff-format
 
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.10.0"
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - types-aiofiles
+          - types-requests
+          - pandas-stubs
+          - types-pillow
+          - matplotlib
+        exclude: |
+          (?x)(
+            ^build/
+            | ^pyximages/
+            | conf\.py$
+            | .*/setup.*\.py$
+            | .*/demo.py$
+            | .*/auto_examples/
+            | advanced/mathematical_optimization/examples/plot_gradient_descent\.py$
+            | advanced/mathematical_optimization/examples/helper/compare_optimizers\.py$
+            | advanced/advanced_numpy/examples/view-colors\.py$
+            | advanced/advanced_numpy/examples/stride-diagonals\.py$
+            | advanced/interfacing_with_c/cython_numpy/test_cos_doubles\.py$
+            | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+            | advanced/interfacing_with_c/swig.*\.py$
+            | advanced/advanced_numpy/examples/myobject_test\.py$
+            | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+            | advanced/interfacing_with_c/numpy_c_api/test_cos_module_np\.py$
+            | intro/numpy/solutions/2_a_call_fortran\.py$
+            | advanced/advanced_numpy/examples/mandelplot\.py$
+          )
+
   - repo: https://github.com/codespell-project/codespell
     rev: 193cd7d27cd571f79358af09a8fb8997e54f8fff # frozen: v2.3.0
     hooks:

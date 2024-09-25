@@ -1,3 +1,63 @@
+[tool.mypy]
+strict = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+warn_unreachable = true
+# Sync with .pre-commit-config.yaml
+exclude = '''
+(?x)(
+  ^build/
+  | ^pyximages/
+  | conf\.py$
+  | .*/setup.*\.py$
+  | .*/demo.py$
+  | .*/auto_examples/
+  | advanced/mathematical_optimization/examples/plot_gradient_descent\.py$
+  | advanced/mathematical_optimization/examples/helper/compare_optimizers\.py$
+  | advanced/advanced_numpy/examples/view-colors\.py$
+  | advanced/advanced_numpy/examples/stride-diagonals\.py$
+  | advanced/interfacing_with_c/cython_numpy/test_cos_doubles\.py$
+  | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+  | advanced/interfacing_with_c/swig.*\.py$
+  | advanced/advanced_numpy/examples/myobject_test\.py$
+  | advanced/interfacing_with_c/numpy_shared/test_cos_doubles\.py$
+  | advanced/interfacing_with_c/numpy_c_api/test_cos_module_np\.py$
+  | intro/numpy/solutions/2_a_call_fortran\.py$
+  | advanced/advanced_numpy/examples/mandelplot\.py$
+)
+'''
+
+# Can make these more strict over time
+allow_untyped_defs = true
+allow_untyped_calls = true
+
+[[tool.mypy.overrides]]
+module = "scipy"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "matplotlib.pyplot.*"
+disable_error_code = ["arg-type"]
+
+[[tool.mypy.overrides]]
+module = "mpl_toolkits.mplot3d.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "sklearn.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "seaborn.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "statsmodels.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "pyamg.*"
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 minversion = "8.2"
 doctest_optionflags = "NUMBER NORMALIZE_WHITESPACE ELLIPSIS"

@@ -50,7 +50,7 @@ short_names = [n.split(":")[0] for n in names]
 data = pandas.read_csv(
     "wages.txt", skiprows=27, skipfooter=6, sep=None, header=None, engine="python"
 )
-data.columns = short_names
+data.columns = pandas.Index(short_names)
 
 # Log-transform the wages, because they typically are increased with
 # multiplicative factors

@@ -43,7 +43,7 @@ n = 2500
 A, B, w_ex = sakurai(n)  # Mikota pair
 X = np.random.random((n, m))
 data = []
-tt = time.time()
+tt = time.perf_counter()
 eigs, vecs, resnh = sp.sparse.linalg.lobpcg(
     A,
     X,
@@ -53,7 +53,7 @@ eigs, vecs, resnh = sp.sparse.linalg.lobpcg(
     maxiter=2000,
     retResidualNormsHistory=1,
 )
-data.append(time.time() - tt)
+data.append(time.perf_counter() - tt)
 print("Results by LOBPCG for n=" + str(n))
 print()
 print(eigs)

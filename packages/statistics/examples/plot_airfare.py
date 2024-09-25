@@ -71,7 +71,9 @@ data_2000 = data_flat[
     ["city1", "city2", "pop1", "pop2", "dist", "fare_2000", "nb_passengers_2000"]
 ]
 # Rename the columns
-data_2000.columns = ["city1", "city2", "pop1", "pop2", "dist", "fare", "nb_passengers"]
+data_2000.columns = pandas.Index(
+    ["city1", "city2", "pop1", "pop2", "dist", "fare", "nb_passengers"]
+)
 # Add a column with the year
 data_2000.insert(0, "year", 2000)
 
@@ -79,7 +81,9 @@ data_2001 = data_flat[
     ["city1", "city2", "pop1", "pop2", "dist", "fare_2001", "nb_passengers_2001"]
 ]
 # Rename the columns
-data_2001.columns = ["city1", "city2", "pop1", "pop2", "dist", "fare", "nb_passengers"]
+data_2001.columns = pandas.Index(
+    ["city1", "city2", "pop1", "pop2", "dist", "fare", "nb_passengers"]
+)
 # Add a column with the year
 data_2001.insert(0, "year", 2001)
 

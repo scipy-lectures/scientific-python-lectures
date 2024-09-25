@@ -13,14 +13,14 @@ f = sp.datasets.face(gray=True)
 plt.figure(figsize=(10, 3.6))
 
 plt.subplot(131)
-plt.imshow(f, cmap=plt.cm.gray)
+plt.imshow(f, cmap="gray")
 
 plt.subplot(132)
-plt.imshow(f, cmap=plt.cm.gray, vmin=30, vmax=200)
+plt.imshow(f, cmap="gray", vmin=30, vmax=200)
 plt.axis("off")
 
 plt.subplot(133)
-plt.imshow(f, cmap=plt.cm.gray)
+plt.imshow(f, cmap="gray")
 plt.contour(f, [50, 200])
 plt.axis("off")
 

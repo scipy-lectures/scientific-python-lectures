@@ -7,7 +7,10 @@ decorations.
 """
 
 import numpy as np
+
+import matplotlib
 import matplotlib.pyplot as plt
+
 
 plt.subplot(1, 1, 1, polar=True)
 
@@ -17,8 +20,10 @@ rng = np.random.default_rng()
 radii = 10 * rng.random(N)
 width = np.pi / 4 * rng.random(N)
 bars = plt.bar(theta, radii, width=width, bottom=0.0)
+jet = matplotlib.colormaps["jet"]
+
 for r, bar in zip(radii, bars, strict=True):
-    bar.set_facecolor(plt.cm.jet(r / 10.0))
+    bar.set_facecolor(jet(r / 10.0))
     bar.set_alpha(0.5)
 plt.gca().set_xticklabels([])
 plt.gca().set_yticklabels([])

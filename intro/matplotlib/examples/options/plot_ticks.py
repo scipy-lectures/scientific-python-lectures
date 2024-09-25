@@ -7,6 +7,8 @@ matplotlib.
 """
 
 import numpy as np
+
+from matplotlib import ticker
 import matplotlib.pyplot as plt
 
 
@@ -19,19 +21,19 @@ def tickline():
     ax.xaxis.set_ticks_position("bottom")
     ax.spines["bottom"].set_position(("data", 0))
     ax.yaxis.set_ticks_position("none")
-    ax.xaxis.set_minor_locator(plt.MultipleLocator(0.1))
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(0.1))
     ax.plot(np.arange(11), np.zeros(11))
     return ax
 
 
 locators = [
-    "plt.NullLocator()",
-    "plt.MultipleLocator(1.0)",
-    "plt.FixedLocator([0, 2, 8, 9, 10])",
-    "plt.IndexLocator(3, 1)",
-    "plt.LinearLocator(5)",
-    "plt.LogLocator(2, [1.0])",
-    "plt.AutoLocator()",
+    "ticker.NullLocator()",
+    "ticker.MultipleLocator(1.0)",
+    "ticker.FixedLocator([0, 2, 8, 9, 10])",
+    "ticker.IndexLocator(3, 1)",
+    "ticker.LinearLocator(5)",
+    "ticker.LogLocator(2, [1.0])",
+    "ticker.AutoLocator()",
 ]
 
 n_locators = len(locators)
@@ -47,7 +49,7 @@ for i, locator in enumerate(locators):
     plt.subplot(n_locators, 1, i + 1)
     ax = tickline()
     ax.xaxis.set_major_locator(eval(locator))
-    plt.text(5, 0.3, locator[3:], ha="center")
+    plt.text(5, 0.3, locator[7:], ha="center")
 
 plt.subplots_adjust(bottom=0.01, top=0.99, left=0.01, right=0.99)
 plt.show()

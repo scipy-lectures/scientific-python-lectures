@@ -62,7 +62,7 @@ peak_freq = freqs[power[pos_mask].argmax()]
 np.allclose(peak_freq, 1.0 / period)
 
 # An inner plot to show the peak frequency
-axes = plt.axes([0.55, 0.3, 0.3, 0.5])
+axes = plt.axes((0.55, 0.3, 0.3, 0.5))
 plt.title("Peak frequency")
 plt.plot(freqs[:8], power[pos_mask][:8])
 plt.setp(axes, yticks=[])

@@ -6,10 +6,10 @@ Demo 3D plotting with matplotlib and style the figure.
 """
 
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import axes3d
+from mpl_toolkits.mplot3d.axes3d import Axes3D, get_test_data
 
-ax = plt.figure().add_subplot(projection="3d")
-X, Y, Z = axes3d.get_test_data(0.05)
+ax: Axes3D = plt.figure().add_subplot(projection="3d")
+X, Y, Z = get_test_data(0.05)
 cset = ax.contourf(X, Y, Z)
 ax.clabel(cset, fontsize=9, inline=1)
 

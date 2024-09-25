@@ -12,7 +12,7 @@ n = 256
 X = np.linspace(-np.pi, np.pi, n)
 Y = np.sin(2 * X)
 
-plt.axes([0.025, 0.025, 0.95, 0.95])
+plt.axes((0.025, 0.025, 0.95, 0.95))
 
 plt.plot(X, Y + 1, color="blue", alpha=1.00)
 plt.fill_between(X, 1, Y + 1, color="blue", alpha=0.25)

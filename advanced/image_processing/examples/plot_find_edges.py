@@ -23,7 +23,7 @@ sob = np.hypot(sx, sy)
 
 plt.figure(figsize=(16, 5))
 plt.subplot(141)
-plt.imshow(im, cmap=plt.cm.gray)
+plt.imshow(im, cmap="gray")
 plt.axis("off")
 plt.title("square", fontsize=20)
 plt.subplot(142)

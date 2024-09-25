@@ -34,7 +34,7 @@ plt.imshow(im_med, interpolation="nearest", vmin=0, vmax=5)
 plt.axis("off")
 plt.title("Median filter", fontsize=20)
 plt.subplot(144)
-plt.imshow(np.abs(im - im_med), cmap=plt.cm.hot, interpolation="nearest")
+plt.imshow(np.abs(im - im_med), cmap="hot", interpolation="nearest")
 plt.axis("off")
 plt.title("Error", fontsize=20)
 

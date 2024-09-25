@@ -20,8 +20,8 @@ rbin = (20 * r / r.max()).astype(int)
 radial_mean = sp.ndimage.mean(f, labels=rbin, index=np.arange(1, rbin.max() + 1))
 
 plt.figure(figsize=(5, 5))
-plt.axes([0, 0, 1, 1])
-plt.imshow(rbin, cmap=plt.cm.nipy_spectral)
+plt.axes((0, 0, 1, 1))
+plt.imshow(rbin, cmap="nipy_spectral")
 plt.axis("off")
 
 plt.show()

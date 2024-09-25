@@ -35,7 +35,7 @@ slice_x, slice_y = sp.ndimage.find_objects(label_im == 4)[0]
 roi = im[slice_x, slice_y]
 
 plt.figure(figsize=(4, 2))
-plt.axes([0, 0, 1, 1])
+plt.axes((0, 0, 1, 1))
 plt.imshow(roi)
 plt.axis("off")
 

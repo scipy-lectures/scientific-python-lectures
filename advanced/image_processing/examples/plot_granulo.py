@@ -44,7 +44,7 @@ granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
 plt.figure(figsize=(6, 2.2))
 
 plt.subplot(121)
-plt.imshow(mask, cmap=plt.cm.gray)
+plt.imshow(mask, cmap="gray")
 opened = sp.ndimage.binary_opening(mask, structure=disk_structure(10))
 opened_more = sp.ndimage.binary_opening(mask, structure=disk_structure(14))
 plt.contour(opened, [0.5], colors="b", linewidths=2)

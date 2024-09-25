@@ -47,7 +47,7 @@ plt.axvline(0.5, color="r", ls="--", lw=2)
 plt.text(0.57, 0.8, "histogram", fontsize=20, transform=plt.gca().transAxes)
 plt.yticks([])
 plt.subplot(133)
-plt.imshow(binary_img, cmap=plt.cm.gray, interpolation="nearest")
+plt.imshow(binary_img, cmap="gray", interpolation="nearest")
 plt.axis("off")
 
 plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
