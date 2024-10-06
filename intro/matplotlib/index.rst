@@ -1126,7 +1126,7 @@ from within a python session:
 ::
 
    >>> import matplotlib.pyplot as plt
-   >>> help(plt.plot)
+   >>> help(plt.plot)  # doctest: +SKIP
    Help on function plot in module matplotlib.pyplot:
    <BLANKLINE>
    plot(*args: ...) -> 'list[Line2D]'
