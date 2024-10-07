@@ -86,7 +86,7 @@ plt.legend(loc="best")
 # Plot a validation curve
 from sklearn.model_selection import validation_curve
 
-degrees = np.arange(1, 21)
+degrees = list(range(1, 21))
 
 model = make_pipeline(PolynomialFeatures(), LinearRegression())
 

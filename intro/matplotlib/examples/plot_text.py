@@ -20,7 +20,7 @@ eqs.append(r"$\int_{-\infty}^\infty e^{-x^2}dx=\sqrt{\pi}$")
 eqs.append(r"$E = mc^2 = \sqrt{{m_0}^2c^4 + p^2c^2}$")
 eqs.append(r"$F_G = G\frac{m_1m_2}{r^2}$")
 
-plt.axes([0.025, 0.025, 0.95, 0.95])
+plt.axes((0.025, 0.025, 0.95, 0.95))
 
 rng = np.random.default_rng()
 

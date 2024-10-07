@@ -19,7 +19,7 @@ def f(x):
 
 for epsilon in (0, 1):
     plt.figure(figsize=(3, 2.5))
-    plt.axes([0, 0, 1, 1])
+    plt.axes((0, 0, 1, 1))
 
     # A convex function
     plt.plot(x, f(x), linewidth=2)
@@ -47,7 +47,7 @@ for epsilon in (0, 1):
             plt.text(
                 this_x - 0.05 * np.sign(this_x) - 0.05,
                 f(this_x) + 1.2 * (0.3 - iter % 2),
-                iter + 1,
+                str(iter + 1),
                 size=12,
             )
 

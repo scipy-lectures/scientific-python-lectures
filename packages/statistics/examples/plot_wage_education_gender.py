@@ -17,12 +17,14 @@ statsmodels' formulas
 # Load and massage the data
 import pandas
 
-import urllib
+import urllib.request
 import os
 
 if not os.path.exists("wages.txt"):
     # Download the file if it is not present
-    urllib.urlretrieve("http://lib.stat.cmu.edu/datasets/CPS_85_Wages", "wages.txt")
+    url = "http://lib.stat.cmu.edu/datasets/CPS_85_Wages"
+    with urllib.request.urlopen(url) as r, open("wages.txt", "wb") as f:
+        f.write(r.read())
 
 # EDUCATION: Number of years of education
 # SEX: 1=Female, 0=Male

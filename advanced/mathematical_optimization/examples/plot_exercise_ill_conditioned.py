@@ -37,14 +37,14 @@ def hessian(x):
 
 plt.figure(1)
 plt.clf()
-Z = X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]
+Z = X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]  # type: ignore[misc]
 # Complete in the additional dimensions with zeros
 Z = np.reshape(Z, (2, -1)).copy()
 Z.resize((100, Z.shape[-1]))
 Z = np.apply_along_axis(f, 0, Z)
 Z = np.reshape(Z, X.shape)
-plt.imshow(Z.T, cmap=plt.cm.gray_r, extent=[-1.5, 1.5, -1.1, 1.1], origin="lower")
-plt.contour(X, Y, Z, cmap=plt.cm.gnuplot)
+plt.imshow(Z.T, cmap="gray_r", extent=(-1.5, 1.5, -1.1, 1.1), origin="lower")
+plt.contour(X, Y, Z, cmap="gnuplot")
 
 # A reference but slow solution:
 t0 = time.time()

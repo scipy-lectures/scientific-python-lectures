@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 data = np.loadtxt("../../../../data/populations.txt")
-populations = np.ma.masked_array(data[:, 1:])
+populations = np.ma.masked_array(data[:, 1:])  # type: ignore[var-annotated]
 year = data[:, 0]
 
 bad_years = ((year >= 1903) & (year <= 1910)) | ((year >= 1917) & (year <= 1918))

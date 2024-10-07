@@ -13,7 +13,7 @@ figsize = size[0] / float(dpi), size[1] / float(dpi)
 fig = plt.figure(figsize=figsize, dpi=dpi)
 fig.patch.set_alpha(0)
 
-plt.axes([0, 0, 1, 1], frameon=False)
+plt.axes((0, 0, 1, 1), frameon=False)
 
 plt.rcParams["text.antialiased"] = False
 plt.text(0.5, 0.5, "Aliased", ha="center", va="center")

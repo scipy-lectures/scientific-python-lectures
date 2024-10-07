@@ -36,7 +36,7 @@ from pandas import plotting
 import matplotlib.pyplot as plt
 
 # Fill in the missing values for Height for plotting
-data["Height"].fillna(method="pad", inplace=True)
+data["Height"] = data["Height"].ffill()
 
 # The parameter 'c' is passed to plt.scatter and will control the color
 # The same holds for parameters 'marker', 'alpha' and 'cmap', that

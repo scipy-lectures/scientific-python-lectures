@@ -26,22 +26,22 @@ import matplotlib.pyplot as plt
 
 plt.figure(figsize=(12, 3.5))
 plt.subplot(141)
-plt.imshow(a, cmap=plt.cm.gray)
+plt.imshow(a, cmap="gray")
 plt.axis("off")
 plt.title("a")
 
 plt.subplot(142)
-plt.imshow(mask, cmap=plt.cm.gray)
+plt.imshow(mask, cmap="gray")
 plt.axis("off")
 plt.title("mask")
 
 plt.subplot(143)
-plt.imshow(opened_mask, cmap=plt.cm.gray)
+plt.imshow(opened_mask, cmap="gray")
 plt.axis("off")
 plt.title("opened_mask")
 
 plt.subplot(144)
-plt.imshow(closed_mask, cmap=plt.cm.gray)
+plt.imshow(closed_mask, cmap="gray")
 plt.title("closed_mask")
 plt.axis("off")
 

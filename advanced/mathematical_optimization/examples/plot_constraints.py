@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp
 
-x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]
+x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]  # type: ignore[misc]
 x = x.T
 y = y.T
 
@@ -18,12 +18,12 @@ for i in (1, 2):
     # path
     plt.figure(i, figsize=(3, 2.5))
     plt.clf()
-    plt.axes([0, 0, 1, 1])
+    plt.axes((0, 0, 1, 1))
 
     contours = plt.contour(
         np.sqrt((x - 3) ** 2 + (y - 2) ** 2),
         extent=[-3, 6, -2.5, 5],
-        cmap=plt.cm.gnuplot,
+        cmap="gnuplot",
     )
     plt.clabel(contours, inline=1, fmt="%1.1f", fontsize=14)
     plt.plot(

@@ -26,22 +26,22 @@ wiener_face = sp.signal.wiener(noisy_face, (5, 5))
 
 plt.figure(figsize=(12, 3.5))
 plt.subplot(141)
-plt.imshow(noisy_face, cmap=plt.cm.gray)
+plt.imshow(noisy_face, cmap="gray")
 plt.axis("off")
 plt.title("noisy")
 
 plt.subplot(142)
-plt.imshow(blurred_face, cmap=plt.cm.gray)
+plt.imshow(blurred_face, cmap="gray")
 plt.axis("off")
 plt.title("Gaussian filter")
 
 plt.subplot(143)
-plt.imshow(median_face, cmap=plt.cm.gray)
+plt.imshow(median_face, cmap="gray")
 plt.axis("off")
 plt.title("median filter")
 
 plt.subplot(144)
-plt.imshow(wiener_face, cmap=plt.cm.gray)
+plt.imshow(wiener_face, cmap="gray")
 plt.title("Wiener filter")
 plt.axis("off")
 

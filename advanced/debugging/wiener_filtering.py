@@ -46,10 +46,10 @@ rng = np.random.default_rng(27446968)
 face = sp.datasets.face(gray=True)
 noisy_face = face + 20 * rng.integers(3, size=face.shape) - 30
 
-plt.matshow(face[cut], cmap=plt.cm.gray)
-plt.matshow(noisy_face[cut], cmap=plt.cm.gray)
+plt.matshow(face[cut], cmap="gray")
+plt.matshow(noisy_face[cut], cmap="gray")
 
 denoised_face = iterated_wiener(noisy_face)
-plt.matshow(denoised_face[cut], cmap=plt.cm.gray)
+plt.matshow(denoised_face[cut], cmap="gray")
 
 plt.show()

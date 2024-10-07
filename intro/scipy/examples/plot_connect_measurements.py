@@ -26,7 +26,7 @@ plt.axis("off")
 plt.title("sig")
 
 plt.subplot(1, 2, 2)
-plt.imshow(mask, cmap=plt.cm.gray)
+plt.imshow(mask, cmap="gray")
 plt.axis("off")
 plt.title("mask")
 plt.subplots_adjust(wspace=0.05, left=0.01, bottom=0.01, right=0.99, top=0.9)

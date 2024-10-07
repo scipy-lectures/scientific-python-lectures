@@ -35,7 +35,7 @@ ax = plt.axes()
 ax.contour(
     X1, X2, Z, [-1.0, 0.0, 1.0], colors="k", linestyles=["dashed", "solid", "dashed"]
 )
-ax.scatter(X[:, 0], X[:, 1], c=Y, cmap=plt.cm.Paired)
+ax.scatter(X[:, 0], X[:, 1], c=Y, cmap="Paired")
 
 ax.axis("tight")
 

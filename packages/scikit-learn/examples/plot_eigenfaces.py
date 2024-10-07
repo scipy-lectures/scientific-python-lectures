@@ -29,7 +29,7 @@ fig = plt.figure(figsize=(8, 6))
 # plot several images
 for i in range(15):
     ax = fig.add_subplot(3, 5, i + 1, xticks=[], yticks=[])
-    ax.imshow(faces.images[i], cmap=plt.cm.bone)
+    ax.imshow(faces.images[i], cmap="bone")
 
 ############################################################
 # .. tip::
@@ -72,7 +72,7 @@ pca.fit(X_train)
 # One interesting part of PCA is that it computes the "mean" face, which
 # can be interesting to examine:
 
-plt.imshow(pca.mean_.reshape(faces.images[0].shape), cmap=plt.cm.bone)
+plt.imshow(pca.mean_.reshape(faces.images[0].shape), cmap="bone")
 
 ############################################################
 # The principal components measure deviations about this mean along
@@ -86,7 +86,7 @@ print(pca.components_.shape)
 fig = plt.figure(figsize=(16, 6))
 for i in range(30):
     ax = fig.add_subplot(3, 10, i + 1, xticks=[], yticks=[])
-    ax.imshow(pca.components_[i].reshape(faces.images[0].shape), cmap=plt.cm.bone)
+    ax.imshow(pca.components_[i].reshape(faces.images[0].shape), cmap="bone")
 
 ############################################################
 # The components ("eigenfaces") are ordered by their importance from
@@ -129,7 +129,7 @@ import numpy as np
 fig = plt.figure(figsize=(8, 6))
 for i in range(15):
     ax = fig.add_subplot(3, 5, i + 1, xticks=[], yticks=[])
-    ax.imshow(X_test[i].reshape(faces.images[0].shape), cmap=plt.cm.bone)
+    ax.imshow(X_test[i].reshape(faces.images[0].shape), cmap="bone")
     y_pred = clf.predict(X_test_pca[i, np.newaxis])[0]
     color = "black" if y_pred == y_test[i] else "red"
     ax.set_title(y_pred, fontsize="small", color=color)
