@@ -99,15 +99,14 @@ pygments_style = "sphinx"
 
 # Enable executable .md files support
 myst_enable_extensions = [
-    'colon_fence',
-    'dollarmath',
-    'substitution',
-    'tasklist',
-    'attrs_inline',
-    'linkify',
+    "colon_fence",
+    "dollarmath",
+    "substitution",
+    "tasklist",
+    "attrs_inline",
 ]
 
-nb_output_stderr = 'show'
+nb_output_stderr = "show"
 
 # Monkey-patch sphinx to set the lineseparator option of pygment, to
 # have indented line wrapping

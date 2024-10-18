@@ -14,8 +14,8 @@ kernelspec:
 
 # Python scientific computing ecosystem
 
-*Authors*: *Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux,
-Valentin Haenel*
+_Authors_: _Fernando Perez, Emmanuelle Gouillart, Gaël Varoquaux,
+Valentin Haenel_
 
 ## Why Python?
 
@@ -29,27 +29,27 @@ Valentin Haenel*
 ### Python’s strengths
 
 - **Batteries included** Rich collection of already existing **bricks**
-    of classic numerical methods, plotting or data processing tools. We
-    don’t want to re-program the plotting of a curve, a Fourier transform
-    or a fitting algorithm. Don’t reinvent the wheel!
+  of classic numerical methods, plotting or data processing tools. We
+  don’t want to re-program the plotting of a curve, a Fourier transform
+  or a fitting algorithm. Don’t reinvent the wheel!
 
 - **Easy to learn** Most scientists are not paid as programmers, neither
-    have they been trained so. They need to be able to draw a curve, smooth
-    a signal, do a Fourier transform in a few minutes.
+  have they been trained so. They need to be able to draw a curve, smooth
+  a signal, do a Fourier transform in a few minutes.
 
 - **Easy communication** To keep code alive within a lab or a company
-    it should be as readable as a book by collaborators, students, or
-    maybe customers. Python syntax is simple, avoiding strange symbols or
-    lengthy routine specifications that would divert the reader from
-    mathematical or scientific understanding of the code.
+  it should be as readable as a book by collaborators, students, or
+  maybe customers. Python syntax is simple, avoiding strange symbols or
+  lengthy routine specifications that would divert the reader from
+  mathematical or scientific understanding of the code.
 
 - **Efficient code** Python numerical modules are computationally
-    efficient. But needless to say that a very fast code becomes useless if
-    too much time is spent writing it. Python aims for quick development
-    times and quick execution times.
+  efficient. But needless to say that a very fast code becomes useless if
+  too much time is spent writing it. Python aims for quick development
+  times and quick execution times.
 
 - **Universal** Python is a language used for many different problems.
-    Learning Python avoids learning a new software for each new problem.
+  Learning Python avoids learning a new software for each new problem.
 
 ### How does Python compare to other solutions?
 
@@ -124,17 +124,16 @@ that can be combined to obtain a scientific computing environment:
 
 **Python**, a generic and modern computing language
 
--   The language: flow control, data types (`string`, `int`),
-    data collections (lists, dictionaries), etc.
+- The language: flow control, data types (`string`, `int`),
+  data collections (lists, dictionaries), etc.
 
--   Modules of the standard library: string processing, file
-    management, simple network protocols.
+- Modules of the standard library: string processing, file
+  management, simple network protocols.
 
--   A large number of specialized modules or applications written in
-    Python: web framework, etc. … and scientific
-    computing.
+- A large number of specialized modules or applications written in
+  Python: web framework, etc. ... and scientific computing.
 
--   Development tools (automatic testing, documentation generation)
+- Development tools (automatic testing, documentation generation)
 
 :::{seealso}
 {ref}`chapter on Python language <python_language_chapter>`
@@ -142,42 +141,42 @@ that can be combined to obtain a scientific computing environment:
 
 **Core numeric libraries**
 
--   **NumPy**: numerical computing with powerful **numerical arrays**
-    objects, and routines to manipulate them. https://numpy.org/
+- **NumPy**: numerical computing with powerful **numerical arrays**
+  objects, and routines to manipulate them. https://numpy.org/
 
-    :::{seealso}
-    {ref}`chapter on numpy <numpy>`
-    :::
+  :::{seealso}
+  {ref}`chapter on numpy <numpy>`
+  :::
 
--   **SciPy** : high-level numerical routines.
-    Optimization, regression, interpolation, etc https://scipy.org/
+- **SciPy** : high-level numerical routines.
+  Optimization, regression, interpolation, etc https://scipy.org/
 
-    :::{seealso}
-    {ref}`chapter on SciPy <scipy>`
-    :::
+  :::{seealso}
+  {ref}`chapter on SciPy <scipy>`
+  :::
 
--   **Matplotlib** : 2-D visualization, “publication-ready” plots
-    https://matplotlib.org/
+- **Matplotlib** : 2-D visualization, “publication-ready” plots
+  https://matplotlib.org/
 
-    :::{seealso}
-    {ref}`chapter on matplotlib <matplotlib>`
-    :::
+  :::{seealso}
+  {ref}`chapter on matplotlib <matplotlib>`
+  :::
 
 **Advanced interactive environments**:
 
--   **IPython**, an advanced **Python console** https://ipython.org/
+- **IPython**, an advanced **Python console** https://ipython.org/
 
--   **Jupyter**, **notebooks** in the browser https://jupyter.org/
+- **Jupyter**, **notebooks** in the browser https://jupyter.org/
 
 **Domain-specific packages**,
 
--   **pandas, statsmodels, seaborn** for {ref}`statistics <statistics>`
+- **pandas, statsmodels, seaborn** for {ref}`statistics <statistics>`
 
--   **sympy** for {ref}`symbolic computing <sympy>`
+- **sympy** for {ref}`symbolic computing <sympy>`
 
--   **scikit-image** for {ref}`image processing <scikit_image>`
+- **scikit-image** for {ref}`image processing <scikit_image>`
 
--   **scikit-learn** for {ref}`machine learning <scikit-learn_chapter>`
+- **scikit-learn** for {ref}`machine learning <scikit-learn_chapter>`
 
 and many more packages not documented in the Scientific Python Lectures.
 
@@ -216,6 +215,7 @@ possible for Python to be used for programs, in web servers, or
 embedded devices.
 
 (interactive_work)=
+
 ### Interactive work
 
 We recommend an interactive work with the [IPython](https://ipython.org)
@@ -261,12 +261,11 @@ but also to create and reuse Python files. For this, a powerful code editor
 will get you far. Here are several good easy-to-use editors:
 
 - [Spyder](https://www.spyder-ide.org/): integrates an IPython
-    console, a debugger, a profiler…
+  console, a debugger, a profiler…
 - [PyCharm](https://www.jetbrains.com/pycharm): integrates an IPython
-    console, notebooks, a debugger… (freely available,
-    but commercial)
+  console, notebooks, a debugger… (freely available, but commercial)
 - [Visual Studio Code](https://code.visualstudio.com/docs/languages/python):
-    integrates a Python console, notebooks, a debugger, …
+  integrates a Python console, notebooks, a debugger, ...
 
 Some of these are shipped by the various scientific Python distributions,
 and you can find them in the menus.
@@ -309,11 +308,11 @@ the script to a set of functions:
 #### IPython and Jupyter Tips and Tricks
 
 The user manuals contain a wealth of information. Here we give a quick
-introduction to four useful features: *history*, *tab completion*, *magic
-functions*, and *aliases*.
+introduction to four useful features: _history_, _tab completion_, _magic
+functions_, and _aliases_.
 
 **Command history** Like a UNIX shell, the IPython console supports
-command history. Type *up* and *down* to navigate previously typed
+command history. Type _up_ and _down_ to navigate previously typed
 commands:
 
 :::{code} ipython
@@ -347,64 +346,64 @@ you can just type the magic function and it will work.
 
 Other useful magic functions are:
 
--   `%cd` to change the current directory.
+- `%cd` to change the current directory.
 
-    :::{code} ipython
+  :::{code} ipython
 
-    In [1]: cd /tmp
-    /tmp
-    :::
+  In [1]: cd /tmp
+  /tmp
+  :::
 
--   `%cpaste` allows you to paste code, especially code from websites which has
-    been prefixed with the standard Python prompt (e.g. `>>>`) or with an ipython
-    prompt, (e.g. `in [3]`):
+- `%cpaste` allows you to paste code, especially code from websites which has
+  been prefixed with the standard Python prompt (e.g. `>>>`) or with an ipython
+  prompt, (e.g. `in [3]`):
 
-    :::{code} ipython
+  :::{code} ipython
 
-    In [2]: %cpaste
-    Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
-    :for i in range(3):
-        print(i):
-    :--
-    0
-    1
-    2
-    :::
+  In [2]: %cpaste
+  Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
+  :for i in range(3):
+      print(i):
+  :--
+  0
+  1
+  2
+  :::
 
--   `%timeit` allows you to time the execution of short snippets using the
-    `timeit` module from the standard library:
+- `%timeit` allows you to time the execution of short snippets using the
+  `timeit` module from the standard library:
 
-    :::{code} ipython
-        In [3]: %timeit x = 10
-        10000000 loops, best of 3: 39 ns per loop
-    :::
+  :::{code} ipython
+      In [3]: %timeit x = 10
+      10000000 loops, best of 3: 39 ns per loop
+  :::
 
-    :::{seealso} {ref}`Chapter on optimizing code <optimizing_code_chapter>`
-    :::
+  :::{seealso} {ref}`Chapter on optimizing code <optimizing_code_chapter>`
+  :::
 
--   `%debug` allows you to enter post-mortem debugging. That is to say, if the
-    code you try to execute, raises an exception, using `%debug` will enter the
-    debugger at the point where the exception was thrown.
+- `%debug` allows you to enter post-mortem debugging. That is to say, if the
+  code you try to execute, raises an exception, using `%debug` will enter the
+  debugger at the point where the exception was thrown.
 
-    :::{code} ipython
-        In [4]: x === 10
+  :::{code} ipython
+      In [4]: x === 10
 
-        In [5]: %debug
-        > /home/jarrod/.venv/lectures/lib64/python3.11/site-packages/IPython/core/compilerop.py(86)ast_parse()
-             84         Arguments are exactly the same as ast.parse (in the standard library),
-             85         and are passed to the built-in compile function."""
-        ---> 86         return compile(source, filename, symbol, self.flags | PyCF_ONLY_AST, 1)
-             87
-             88     def reset_compiler_flags(self):
-        ipdb> locals()
-        {'self': <IPython.core.compilerop.CachingCompiler object at 0x7f30d02efc10>, 'source': 'x === 10\n', 'filename': '<ipython-input-1-8e8bc565444b>', 'symbol': 'exec'}
-        ipdb>
-    :::
+      In [5]: %debug
+      > /home/jarrod/.venv/lectures/lib64/python3.11/site-packages/IPython/core/compilerop.py(86)ast_parse()
+            84         Arguments are exactly the same as ast.parse (in the standard library),
+            85         and are passed to the built-in compile function."""
+      ---> 86         return compile(source, filename, symbol, self.flags | PyCF_ONLY_AST, 1)
+            87
+            88     def reset_compiler_flags(self):
+      ipdb> locals()
+      {'self': <IPython.core.compilerop.CachingCompiler object at 0x7f30d02efc10>, 'source': 'x === 10\n', 'filename': '<ipython-input-1-8e8bc565444b>', 'symbol': 'exec'}
+      ipdb>
+  :::
 
     :::{seealso} {ref}`Chapter on debugging <debugging_chapter>`
 
 **Aliases**
-Furthermore IPython ships with various *aliases* which emulate common UNIX
+Furthermore IPython ships with various _aliases_ which emulate common UNIX
 command line tools such as `ls` to list files, `cp` to copy files and `rm` to
 remove files (a full list of aliases is shown when typing `alias`).
 
