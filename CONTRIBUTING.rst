@@ -33,7 +33,7 @@ Design choices:
 
 * Each chapter should provide a useful basis for a 1‒2 h tutorial.
 * The code should be readable.
-* An idomatic style should be followed, e.g. ``import numpy as np``,
+* An idiomatic style should be followed, e.g. ``import numpy as np``,
   preference for array operations, PEP8 coding conventions.
 
 
