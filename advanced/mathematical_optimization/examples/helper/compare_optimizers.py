@@ -183,8 +183,8 @@ if True:
 
                 # Normalize across methods
                 x0_mean = np.mean(all_bench)
-                for method_name in function_bench:
-                    function_bench[method_name][-1] /= x0_mean
+                for _, values in function_bench.items():
+                    values[-1] /= x0_mean
             this_dim_benchs[cost_name] = function_bench
         gradient_less_benchs[ndim] = this_dim_benchs
         print(80 * "_")
