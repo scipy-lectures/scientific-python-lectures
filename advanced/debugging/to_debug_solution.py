@@ -61,8 +61,7 @@ def compare_optimizers(optimizers):
     print("Benching 1D root-finder optimizers from scipy.optimize:")
     for optimizer in OPTIMIZERS:
         print(
-            "% 20s: % 8i total function calls"
-            % (optimizer.__name__, bench_optimizer(optimizer, param_grid))
+            f"{optimizer.__name__:>20s}: {bench_optimizer(optimizer, param_grid):>8d} total function calls"
         )
 
 

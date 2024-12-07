@@ -139,7 +139,7 @@ for d in [1, 5, 15]:
     plt.legend(loc="best")
     plt.xlabel("number of train samples")
     plt.ylabel("explained variance")
-    plt.title("Learning curve (degree=%i)" % d)
+    plt.title(f"Learning curve (degree={d})")
     plt.tight_layout()
 
 
