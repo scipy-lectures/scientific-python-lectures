@@ -86,7 +86,7 @@ for n_dim, color in zip(sorted(results.keys()), colors, strict=True):
         ],
         "o",
         color=color,
-        label="# dim: %i" % n_dim,
+        label=f"# dim: {n_dim}",
     )
 plt.legend(
     loc=(0.47, 0.07),
