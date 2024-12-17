@@ -23,8 +23,12 @@ exclude = '''
   | advanced/interfacing_with_c/numpy_c_api/test_cos_module_np\.py$
   | intro/numpy/solutions/2_a_call_fortran\.py$
   | advanced/advanced_numpy/examples/mandelplot\.py$
+  | intro/numpy/solutions/2_5_markov_chain\.py$
+  | intro/matplotlib/examples/plot_bar\.py$
 )
 '''
+# intro/numpy/solutions/2_5_markov_chain.py -> https://github.com/numpy/numpy/issues/27957
+# intro/matplotliub/examples/plot_bar.py -> https://github.com/matplotlib/matplotlib/issues/29332
 
 # Can make these more strict over time
 allow_untyped_defs = true
@@ -109,6 +113,7 @@ ignore = [
   "B006",     # Do not use mutable data structures for argument defaults
   "B007",     # Loop control variable {name} not used within loop body
   "B018",     # Found useless expression. Either assign it to a variable or remove it.
+  "B905",     # Zip without explicit `strict` keyword
   "E402",     # Module level import not at top of file
   "E501",     # Line too long
   "E741",     # Ambiguous variable name

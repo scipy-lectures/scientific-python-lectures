@@ -10,9 +10,9 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 
 ax: Axes3D = plt.figure().add_subplot(projection="3d")
-X = np.arange(-4, 4, 0.25)
-Y = np.arange(-4, 4, 0.25)
-X, Y = np.meshgrid(X, Y)
+x = np.arange(-4, 4, 0.25)
+y = np.arange(-4, 4, 0.25)
+X, Y = np.meshgrid(x, y)
 R = np.sqrt(X**2 + Y**2)
 Z = np.sin(R)
 
