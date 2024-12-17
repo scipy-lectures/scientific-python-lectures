@@ -68,6 +68,8 @@ repos:
             | advanced/interfacing_with_c/numpy_c_api/test_cos_module_np\.py$
             | intro/numpy/solutions/2_a_call_fortran\.py$
             | advanced/advanced_numpy/examples/mandelplot\.py$
+            | intro/numpy/solutions/2_5_markov_chain\.py$
+            | intro/matplotlib/examples/plot_bar\.py$
           )
 
   - repo: https://github.com/codespell-project/codespell
