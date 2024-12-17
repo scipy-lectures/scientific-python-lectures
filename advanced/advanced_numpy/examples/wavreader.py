@@ -46,6 +46,5 @@ wav_header = np.fromfile(f, dtype=wav_header_dtype, count=1)
 f.close()
 
 print(
-    "Sample rate: %d, channels: %d"
-    % (wav_header["sample_rate"][0], wav_header["num_channels"][0])
+    f"Sample rate: {wav_header['sample_rate'][0]}, channels: {wav_header['num_channels'][0]}"
 )

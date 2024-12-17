@@ -87,7 +87,7 @@ def _ica_par(X, tol, g, gprime, fun_args, maxit, w_init):
 
         W1 = _sym_decorrelation(W1)
 
-        lim = max(abs(abs(np.diag(W1 @ W.T)) - 1))
+        lim = np.max(np.abs(np.abs(np.diag(W1 @ W.T)) - 1))
         W = W1
         it = it + 1
 

@@ -19,27 +19,27 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: 1463d990e0801964764a375260dca598513f3be5 # frozen: v3.3.3
+    rev: bc7af46104f0f5368b95878decf720f9f00c2559 # frozen: v3.4.2
     hooks:
       - id: prettier
         files: \.(md|rst|yml|yaml)
         args: [--prose-wrap=preserve]
 
   - repo: https://github.com/MarcoGorelli/cython-lint
-    rev: 9247866fce7128f2c0eaf4a09f437880397d4689 # frozen: v0.16.2
+    rev: 1ac5158c1b0f405350517c218f03d3a21bbb381c # frozen: v0.16.6
     hooks:
       - id: cython-lint
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: 75b98813cfb7e663870a28c74366a1e99d7bfe79 # frozen: v0.6.9
+    rev: 8b76f04e7e5a9cd259e9d1db7799599355f97cdf # frozen: v0.8.2
     hooks:
       - id: ruff
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "d4911cfb7f1010759fde68da196036feeb25b99d" # frozen: v1.11.2
+    rev: "f56614daa94d5cd733d3b7004c5df9caad267b4a" # frozen: v1.13.0
     hooks:
       - id: mypy
         additional_dependencies:
@@ -68,6 +68,8 @@ repos:
             | advanced/interfacing_with_c/numpy_c_api/test_cos_module_np\.py$
             | intro/numpy/solutions/2_a_call_fortran\.py$
             | advanced/advanced_numpy/examples/mandelplot\.py$
+            | intro/numpy/solutions/2_5_markov_chain\.py$
+            | intro/matplotlib/examples/plot_bar\.py$
           )
 
   - repo: https://github.com/codespell-project/codespell

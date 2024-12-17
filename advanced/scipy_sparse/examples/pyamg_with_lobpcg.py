@@ -36,7 +36,7 @@ plt.figure(figsize=(9, 9))
 
 for i in range(K):
     plt.subplot(3, 3, i + 1)
-    plt.title("Eigenvector %d" % i)
+    plt.title(f"Eigenvector {i}")
     plt.pcolor(V[:, i].reshape(N, N))
     plt.axis("equal")
     plt.axis("off")
