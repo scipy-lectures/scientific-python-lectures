@@ -32,14 +32,14 @@ repos:
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: 8b76f04e7e5a9cd259e9d1db7799599355f97cdf # frozen: v0.8.2
+    rev: f0b5944bef86f50d875305821a0ab0d8c601e465 # frozen: v0.8.4
     hooks:
       - id: ruff
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "f56614daa94d5cd733d3b7004c5df9caad267b4a" # frozen: v1.13.0
+    rev: "648203cec3e499b9eff54a24d6cf4b25ce02eb1e" # frozen: v1.14.0
     hooks:
       - id: mypy
         additional_dependencies:
