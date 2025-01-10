@@ -999,13 +999,13 @@ overall performance of an algorithm.  It appears in the bottom row
 of the classification report; it can also be accessed directly::
 
     >>> metrics.f1_score(y_test, y_pred, average="macro")
-    np.float64(0.991367...)
+    0.991367...
 
 The over-fitting we saw previously can be quantified by computing the
 f1-score on the training data itself::
 
     >>> metrics.f1_score(y_train, clf.predict(X_train), average="macro")
-    np.float64(1.0)
+    1.0
 
 .. note::
 
