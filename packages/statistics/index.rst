@@ -365,7 +365,7 @@ will affect the conclusions of the test, we can use a `Wilcoxon signed-rank test
 this assumption at the expense of test power::
 
     >>> sp.stats.wilcoxon(data['VIQ'])
-    WilcoxonResult(statistic=np.float64(0.0), pvalue=np.float64(1.8189894...e-12))
+    WilcoxonResult(statistic=np.float64(0.0), pvalue=np.float64(3.4881726...e-08))
 
 Two-sample t-test: testing for difference across populations
 ............................................................
