@@ -887,11 +887,10 @@ Lets try to minimize the norm of the following vectorial function::
     >>> x0 = np.zeros(10)
     >>> sp.optimize.leastsq(f, x0)
     (array([0.        , 0.11111111, 0.22222222, 0.33333333, 0.44444444,
-           0.55555556, 0.66666667, 0.77777778, 0.88888889, 1.        ]), 2)
+           0.55555556, 0.66666667, 0.77777778, 0.88888889, 1.        ]), ...)
 
-This took 67 function evaluations (check it with 'full_output=1'). What
-if we compute the norm ourselves and use a good generic optimizer
-(BFGS)::
+This took 67 function evaluations (check it with 'full_output=True'). What
+if we compute the norm ourselves and use a good generic optimizer (BFGS)::
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
