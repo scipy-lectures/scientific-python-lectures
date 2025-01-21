@@ -957,7 +957,7 @@ support bound constraints with the parameter ``bounds``::
     >>> def f(x):
     ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
     >>> sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
-      message: CONVERGENCE: NORM OF PROJECTED GRADIENT <=_PGTOL
+      message: CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
       success: True
        status: 0
           fun: 1.5811388300841898
