@@ -613,16 +613,16 @@ are also supported by L-BFGS-B::
     >>> def jacobian(x):
     ...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
     >>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
-     message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
-     success: True
-      status: 0
-         fun: 1.4417677473...e-15
-           x: [ 1.000e+00  1.000e+00]
-         nit: 16
-         jac: [ 1.023e-07 -2.593e-08]
-        nfev: 17
-        njev: 17
-    hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+      message: CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
+      success: True
+       status: 0
+          fun: 1.4417677473...e-15
+            x: [ 1.000e+00  1.000e+00]
+          nit: 16
+          jac: [ 1.023e-07 -2.593e-08]
+         nfev: 17
+         njev: 17
+     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
 
 Gradient-less methods
 ----------------------
@@ -886,12 +886,11 @@ Lets try to minimize the norm of the following vectorial function::
 
     >>> x0 = np.zeros(10)
     >>> sp.optimize.leastsq(f, x0)
-    (array([0.        ,  0.11111111,  0.22222222,  0.33333333,  0.44444444,
-            0.55555556,  0.66666667,  0.77777778,  0.88888889,  1.        ]), 2)
+    (array([0.        , 0.11111111, 0.22222222, 0.33333333, 0.44444444,
+           0.55555556, 0.66666667, 0.77777778, 0.88888889, 1.        ]), ...)
 
-This took 67 function evaluations (check it with 'full_output=1'). What
-if we compute the norm ourselves and use a good generic optimizer
-(BFGS)::
+This took 67 function evaluations (check it with 'full_output=True'). What
+if we compute the norm ourselves and use a good generic optimizer (BFGS)::
 
     >>> def g(x):
     ...     return np.sum(f(x)**2)
@@ -958,7 +957,7 @@ support bound constraints with the parameter ``bounds``::
     >>> def f(x):
     ...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
     >>> sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
-      message: CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL
+      message: CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
       success: True
        status: 0
           fun: 1.5811388300841898
@@ -967,7 +966,7 @@ support bound constraints with the parameter ``bounds``::
           jac: [-9.487e-01 -3.162e-01]
          nfev: 9
          njev: 3
-         hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+     hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
 
 .. image:: auto_examples/images/sphx_glr_plot_constraints_002.png
     :target: auto_examples/plot_constraints.html
