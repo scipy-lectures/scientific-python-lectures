@@ -32,14 +32,14 @@ repos:
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: f0b5944bef86f50d875305821a0ab0d8c601e465 # frozen: v0.8.4
+    rev: d7f0995508bdaeb0a1f4a838500d6a0a1fc6ec7b # frozen: v0.9.5
     hooks:
       - id: ruff
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: "648203cec3e499b9eff54a24d6cf4b25ce02eb1e" # frozen: v1.14.0
+    rev: "f40886d54c729f533f864ed6ce584e920feb0af7" # frozen: v1.15.0
     hooks:
       - id: mypy
         additional_dependencies:
@@ -73,7 +73,7 @@ repos:
           )
 
   - repo: https://github.com/codespell-project/codespell
-    rev: 193cd7d27cd571f79358af09a8fb8997e54f8fff # frozen: v2.3.0
+    rev: 63c8f8312b7559622c0d82815639671ae42132ac # frozen: v2.4.1
     hooks:
       - id: codespell
         args: ["-w", "-L", "ans,nd,sav,mke,ags,mot,coo,whos,manuel"]

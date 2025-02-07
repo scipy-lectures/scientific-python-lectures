@@ -113,7 +113,10 @@ for nx in range(ncols):
     for ny in range(nrows):
         y = (ncols - ny - 0.5) * boxsize
         c.text(
-            x, y, rf"\textbf{{{ny*10+nx}}}", [text.halign.center, text.valign.middle]
+            x,
+            y,
+            rf"\textbf{{{ny * 10 + nx}}}",
+            [text.halign.center, text.valign.middle],
         )
 
 parwidth = 10.6
