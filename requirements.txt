@@ -1,5 +1,5 @@
 numpy==2.2.3
-scipy==1.15.1
+scipy==1.15.2
 matplotlib==3.10.0
 pandas==2.2.3
 patsy==1.0.1
