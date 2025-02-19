@@ -5,7 +5,7 @@ pandas==2.2.3
 patsy==1.0.1
 pyarrow==19.0.1
 scikit-learn==1.6.1
-scikit-image==0.25.0
+scikit-image==0.25.2
 sympy==1.13.3
 statsmodels==0.14.4
 seaborn==0.13.2
