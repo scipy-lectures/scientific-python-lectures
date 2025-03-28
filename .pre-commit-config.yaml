@@ -19,7 +19,7 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/rbubley/mirrors-prettier
-    rev: bc7af46104f0f5368b95878decf720f9f00c2559 # frozen: v3.4.2
+    rev: 787fb9f542b140ba0b2aced38e6a3e68021647a3 # frozen: v3.5.3
     hooks:
       - id: prettier
         files: \.(md|rst|yml|yaml)
@@ -32,7 +32,7 @@ repos:
         args: [--no-pycodestyle, --max-line-length=88]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: d7f0995508bdaeb0a1f4a838500d6a0a1fc6ec7b # frozen: v0.9.5
+    rev: 25a8c8da6c24a3b9a1a536e2674683dd0eead5d6 # frozen: v0.11.2
     hooks:
       - id: ruff
         args: ["--fix", "--show-fixes", "--exit-non-zero-on-fix"]
