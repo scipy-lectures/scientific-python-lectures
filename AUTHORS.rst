@@ -5,6 +5,10 @@ Authors
 Editors
 --------
 
+- K\. Jarrod Millman
+
+- Stéfan van der Walt
+
 - Gaël Varoquaux
 
 - Emmanuelle Gouillart
@@ -12,10 +16,6 @@ Editors
 - Olav Vahtras
 
 - Pierre de Buyl
-
-- K\. Jarrod Millman
-
-- Stéfan van der Walt
 
 
 Chapter authors
