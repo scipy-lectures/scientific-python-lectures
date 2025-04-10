@@ -540,22 +540,11 @@ each step an approximation of the Hessian.
 .. |bfgs_gauss_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_032.png
    :scale: 75%
 
-Full code examples
-==================
-
-.. include the gallery. Skip the first line to avoid the "orphan"
-   declaration
-
-.. include:: auto_examples/index.rst
-   :start-line: 1
-
-
 .. |bfgs_rosen_icond| image:: auto_examples/images/sphx_glr_plot_gradient_descent_014.png
    :scale: 90%
 
 .. |bfgs_rosen_icond_conv| image:: auto_examples/images/sphx_glr_plot_gradient_descent_033.png
    :scale: 75%
-
 
 .. list-table::
    :widths: 1 1 1
