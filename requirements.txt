@@ -6,7 +6,7 @@ patsy==1.0.1
 pyarrow==20.0.0
 scikit-learn==1.6.1
 scikit-image==0.25.2
-sympy==1.13.3
+sympy==1.14.0
 statsmodels==0.14.4
 seaborn==0.13.2
 pytest>=8.3
