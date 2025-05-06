@@ -2,7 +2,7 @@
 Simple picture of the formal problem of machine learning
 =========================================================
 
-This example generates simple synthetic data ploints and shows a
+This example generates simple synthetic data points and shows a
 separating hyperplane on them.
 """
 
