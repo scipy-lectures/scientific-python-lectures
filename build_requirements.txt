@@ -1,0 +1,11 @@
+# Build requirements
+-r requirements.txt
+# To upgrade certificates; needed for Python.org install.
+# certifi
+# Also: https://stackoverflow.com/a/79235523
+# export SSL_CERT_FILE=$(python3 -m certifi)
+sphinx-book-theme@git+https://github.com/executablebooks/sphinx-book-theme@56874cb
+sphinx_exercise
+jupyter-book
+# To allow static build / upload
+ghp-import

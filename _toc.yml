@@ -1,0 +1,17 @@
+format: jb-book
+root: index
+parts:
+  - caption: Getting started with Python for Science
+    chapters:
+      - file: intro/index
+      - file: intro/intro
+      - file: intro/language/python_language
+      - file: intro/numpy/index
+      - file: intro/matplotlib/index
+      - file: intro/scipy/index
+      - file: intro/help/help
+parts:
+  - caption: About the Scientific Python Lectures
+    chapters:
+      - file: about.md
+      - file: AUTHORS.md

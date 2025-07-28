@@ -1,0 +1,103 @@
+# Book settings
+title : "Scientific Python Lectures"
+author: Scientific Python developers
+copyright: "2025"
+logo: images/sp_lectures.png
+email: jarr
+# >- starts a multiline string, where newlines replaced by spaces, and final
+# newlines are stripped.
+description: >-
+  One document to learn numerics, science, and data with Python
+
+execute:
+  # 'cache' attempts to cache the results.
+  # 'auto' appears to be safer.
+  execute_notebooks: cache
+  timeout: 180
+
+exclude_patterns:
+  - README.md
+  - CONTRIBUTING.md
+  - CHANGES.md
+  - AUTHORS.md
+  - todo.md
+  - _scripts/*
+  - _notes/*
+  - _to_ignore.md
+  - data/LICENSE.txt
+  - .pytest_cache/*
+  - .ipynb_notebooks/*
+
+html:
+  favicon: images/sp_lectures.png
+  home_page_in_navbar: false
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://lectures.scientific-python.org
+
+repository:
+  url: https://github.com/scipy-lectures/scientific-python-lectures
+  branch: main
+
+launch_buttons:
+  # The interface interactive links will activate ["classic", "jupyterlab"]
+  notebook_interface: "jupyterlab"
+  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+  # jupyterhub_url: "https://ds.lis.2i2c.cloud"
+  # Example jupyterhub link:
+  # https://ds.lis.2i2c.cloud/hub/user-redirect/git-pull?repo=https%3A//github.com/lisds/textbook&urlpath=lab/tree/textbook/code-basics/variables_intro.Rmd&branch=main
+  # The URL of the BinderHub (e.g., https://mybinder.org)
+  # binderhub_url: "https://mybinder.org"
+  # Jupyterlite URL
+  jupyterlite_url: "interact/lab/index.html"
+  # Extension (if different from source file).
+  jupyterlite_ext: ".ipynb"
+  # Example jupyterlite link:
+  # https://pxr687.github.io/ASPP_pandas_tutorials/interact/lab/index.html?path=variables_intro.ipynb
+  # The URL of Google Colab (e.g., https://colab.research.google.com)
+  # colab_url: "https://colab.research.google.com"
+  # thebe: true
+
+sphinx:
+  recursive_update: true
+  config:
+    nb_custom_formats:
+      .Rmd:
+        - jupytext.reads
+        - fmt: Rmd
+
+  extra_extensions:
+    # For documenting 'click' Python CLIs
+    # - sphinx_click.ext
+    # Directive for creating tab panels in pages.
+    # https://github.com/djungelorm/sphinx-tabs
+    # - sphinx_tabs.tabs
+    # A sphinx extension for creating panels in a grid layout or as
+    # drop-downs.
+    # - sphinx_panels
+    # Needed as of 5 Dec 2022 - release of IPython 8.7.0
+    # https://github.com/ipython/ipython/issues/13845
+    # Fix from:
+    # https://github.com/spatialaudio/nbsphinx/issues/24#issuecomment-267687633
+    # Alternative is to pin install to !=8.7.0
+    - IPython.sphinxext.ipython_console_highlighting
+    - sphinx_exercise
+
+latex:
+  latex_documents:
+    targetname: odsti_textbook.tex
+
+bibtex_bibfiles:
+  - sp_lectures.bib
+
+# HTML redirection
+# Pages linked, but then renamed.
+redirection:
+  builddir: _build/html
+  redirects:
+    # data-types/Ranges: ../arrays/Ranges
+
+parse:
+  myst_substitutions:
+    release: "2025.2rc0.dev0"

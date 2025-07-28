@@ -1,3 +1,4 @@
+# Requirements for notebooks / Binderhub
 numpy==2.2.5
 scipy==1.15.2
 matplotlib==3.10.1
@@ -20,4 +21,6 @@ ipython
 pickleshare
 pre-commit==4.2.0
 requests
-sphinxcontrib-jquery
+xlrd
+openpyxl
+jupytext

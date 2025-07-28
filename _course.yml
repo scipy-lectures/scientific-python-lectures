@@ -1,0 +1,10 @@
+# Configuration for textbook exercise builds
+# For dir2exercise script.
+# Link into home directory.
+url : "https://odsti.github.io" # Top-level URL for built book.
+baseurl : "/cfd-textbook" # the subpath of built book under URL.
+# Local output path for exercise dirs.
+org_path : "~/dev_trees/odsti-builds"
+org_name : "odsti"
+git_root : "https://github.com"  # Git base URL for exercise dirs.
+jh_root : "https://ds.odsti.2i2c.cloud"  # JupyterHub base URL
