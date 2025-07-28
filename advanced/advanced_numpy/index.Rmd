@@ -13,12 +13,6 @@ jupyter:
     name: python3
 ---
 
-% For doctests
-% >>> import numpy as np
-% >>> rng = np.random.default_rng(27446968)
-% >>> # For doctest on headless environments
-% >>> import matplotlib.pyplot as plt
-
 (advanced-numpy)=
 
 # Advanced NumPy
@@ -41,28 +35,16 @@ This section covers:
 - Recently added features, and what's in them: PEP
   3118 buffers, generalized ufuncs, ...
 
-```{eval-rst}
-.. currentmodule:: numpy
-```
-
-:::{topic} Prerequisites
+:::{admonition} Prerequisites
 - NumPy
 - Cython
 - Pillow (Python imaging library, used in a couple of examples)
 :::
 
-```{contents} Chapter contents
-:depth: 2
-:local: true
+```{python}
+# Import Numpy module.
+import numpy as np
 ```
-
-:::{tip}
-In this section, NumPy will be imported as follows:
-
-```
->>> import numpy as np
-```
-:::
 
 ## Life of ndarray
 
@@ -173,7 +155,6 @@ block.
 
 {class}`dtype` describes a single item in the array:
 
-```{eval-rst}
 =========   ===================================================
 type        **scalar type** of the data, one of:
 
@@ -186,7 +167,6 @@ byteorder   **byte order**: big-endian ``>`` / little-endian ``<`` / not applica
 fields      sub-dtypes, if it's a **structured data type**
 shape       shape of the array, if it's a **sub-array**
 =========   ===================================================
-```
 
 ```pycon
 >>> np.dtype(int).type
@@ -201,7 +181,6 @@ shape       shape of the array, if it's a **sub-array**
 
 The `.wav` file header:
 
-```{eval-rst}
 ================   ==========================================
 chunk_id           ``"RIFF"``
 chunk_size         4-byte unsigned little-endian integer
@@ -217,7 +196,6 @@ bits_per_sample    2-byte unsigned little-endian integer
 data_id            ``"data"``
 data_size          4-byte unsigned little-endian integer
 ================   ==========================================
-```
 
 - 44-byte block of raw data (in the beginning of the file)
 - ... followed by `data_size` bytes of actual sound data.
@@ -368,22 +346,15 @@ Exact rules: see [NumPy documentation](https://numpy.org/doc/stable/reference/uf
 
 - Data block in memory (4 bytes)
 
-  ```{eval-rst}
   ==========  ====  ========== ====  ==========  ====  ==========
    ``0x01``    ||    ``0x02``   ||    ``0x03``    ||    ``0x04``
   ==========  ====  ========== ====  ==========  ====  ==========
-  ```
 
   - 4 of uint8, OR,
-
   - 4 of int8, OR,
-
   - 2 of int16, OR,
-
   - 1 of int32, OR,
-
   - 1 of float32, OR,
-
   - ...
 
   How to switch from one to another?
@@ -399,15 +370,13 @@ Exact rules: see [NumPy documentation](https://numpy.org/doc/stable/reference/uf
    (513, 1027)
    ```
 
-> ```{eval-rst}
-> ==========  ========== ====  ==========  ==========
->  ``0x01``    ``0x02``   ||    ``0x03``    ``0x04``
-> ==========  ========== ====  ==========  ==========
-> ```
->
-> > :::{note}
-> > little-endian: least significant byte is on the *left* in memory
-> > :::
+   ==========  ========== ====  ==========  ==========
+    ``0x01``    ``0x02``   ||    ``0x03``    ``0x04``
+   ==========  ========== ====  ==========  ==========
+
+   :::{note}
+   little-endian: least significant byte is on the *left* in memory
+   :::
 
 2. Create a new view of type `uint32`, shorthand `i4`:
 
@@ -419,11 +388,9 @@ Exact rules: see [NumPy documentation](https://numpy.org/doc/stable/reference/uf
    67305985
    ```
 
-> ```{eval-rst}
-> ==========  ==========  ==========  ==========
->  ``0x01``    ``0x02``    ``0x03``    ``0x04``
-> ==========  ==========  ==========  ==========
-> ```
+   ==========  ==========  ==========  ==========
+    ``0x01``    ``0x02``    ``0x03``    ``0x04``
+   ==========  ==========  ==========  ==========
 
 :::{note}
 - `.view()` makes *views*, does not copy (or alter) the memory block
@@ -969,29 +936,26 @@ stride-diagonals.py
 
 Memory layout can affect performance:
 
-```{eval-rst}
-.. ipython::
+```{python}
+x = np.zeros((20000,))
+y = np.zeros((20000*67,))[::67]
 
-   In [1]: x = np.zeros((20000,))
-
-   In [2]: y = np.zeros((20000*67,))[::67]
-
-   In [3]: x.shape, y.shape
-   ((20000,), (20000,))
-
-   In [4]: %timeit x.sum()
-   100000 loops, best of 3: 0.180 ms per loop
-
-   In [5]: %timeit y.sum()
-   100000 loops, best of 3: 2.34 ms per loop
-
-   In [6]: x.strides, y.strides
-   ((8,), (536,))
-
+x.shape, y.shape
 ```
 
-```{rubric} Smaller strides are faster?
+```{python}
+%timeit np.median(x)
 ```
+
+```{python}
+%timeit np.median(y)
+```
+
+```{python}
+x.strides, y.strides
+```
+
+::: {note} Smaller strides are faster?
 
 ```{image} cpu-cacheline.png
 ```
@@ -1002,6 +966,8 @@ Memory layout can affect performance:
 
   - $\Rightarrow$ fewer transfers needed
   - $\Rightarrow$ faster
+
+:::
 
 :::{seealso}
 - [numexpr](https://numexpr.readthedocs.io/projects/NumExpr3/en/latest/) is designed to mitigate
@@ -1098,7 +1064,6 @@ Memory layout can affect performance:
 3. `ufunc_loop` is of very generic form, and NumPy provides
    pre-made ones
 
-   ```{eval-rst}
    ================  =======================================================
    ``PyUfunc_f_f``   ``float elementwise_func(float input_1)``
    ``PyUfunc_ff_f``  ``float elementwise_func(float input_1, float input_2)``
@@ -1107,7 +1072,6 @@ Memory layout can affect performance:
    ``PyUfunc_D_D``   ``elementwise_func(npy_cdouble *input, npy_cdouble* output)``
    ``PyUfunc_DD_D``  ``elementwise_func(npy_cdouble *in1, npy_cdouble *in2, npy_cdouble* out)``
    ================  =======================================================
-   ```
 
    - Only `elementwise_func` needs to be supplied
    - ... except when your elementwise function is not in one of the above forms
@@ -1150,7 +1114,6 @@ mandel.pyx, mandelplot.py
 
 Reminder: some pre-made Ufunc loops:
 
-```{eval-rst}
 ================  =======================================================
 ``PyUfunc_f_f``   ``float elementwise_func(float input_1)``
 ``PyUfunc_ff_f``  ``float elementwise_func(float input_1, float input_2)``
@@ -1159,7 +1122,6 @@ Reminder: some pre-made Ufunc loops:
 ``PyUfunc_D_D``   ``elementwise_func(complex_double *input, complex_double* output)``
 ``PyUfunc_DD_D``  ``elementwise_func(complex_double *in1, complex_double *in2, complex_double* out)``
 ================  =======================================================
-```
 
 Type codes:
 
