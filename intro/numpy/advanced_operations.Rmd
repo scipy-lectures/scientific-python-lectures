@@ -6,30 +6,14 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
 
-% For doctests
-% >>> import numpy as np
-% >>> # For doctest on headless environments
-% >>> import matplotlib
-% >>> matplotlib.use('Agg')
-% >>> import matplotlib.pyplot as plt
-
-```{eval-rst}
-.. currentmodule:: numpy
-```
-
 # Advanced operations
-
-```{contents} Section contents
-:depth: 1
-:local: true
-```
 
 ## Polynomials
 
@@ -37,31 +21,32 @@ NumPy also contains polynomials in different bases:
 
 For example, $3x^2 + 2x - 1$:
 
-```
->>> p = np.poly1d([3, 2, -1])
->>> p(0)
-np.int64(-1)
->>> p.roots
-array([-1.        ,  0.33333333])
->>> p.order
-2
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
 ```
 
-```
->>> x = np.linspace(0, 1, 20)
->>> rng = np.random.default_rng()
->>> y = np.cos(x) + 0.3*rng.random(20)
->>> p = np.poly1d(np.polyfit(x, y, 3))
-
->>> t = np.linspace(0, 1, 200) # use a larger number of points for smoother plotting
->>> plt.plot(x, y, 'o', t, p(t), '-')
-[<matplotlib.lines.Line2D object at ...>, <matplotlib.lines.Line2D object at ...>]
+```{python}
+p = np.poly1d([3, 2, -1])
+p(0)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_polyfit_001.png
-:align: center
-:target: auto_examples/plot_polyfit.html
-:width: 50%
+```{python}
+p.roots
+```
+
+```{python}
+p.order
+```
+
+```{python}
+x = np.linspace(0, 1, 20)
+rng = np.random.default_rng()
+y = np.cos(x) + 0.3*rng.random(20)
+p = np.poly1d(np.polyfit(x, y, 3))
+
+t = np.linspace(0, 1, 200) # use a larger number of points for smoother plotting
+plt.plot(x, y, 'o', t, p(t), '-');
 ```
 
 See <https://numpy.org/doc/stable/reference/routines.polynomials.poly1d.html>
@@ -141,18 +126,31 @@ If you have a complicated text file, what you can try are:
   (Python is quite well suited for this)
 :::
 
-:::{topic} Reminder: Navigating the filesystem with IPython
-```{eval-rst}
-.. ipython::
+### Reminder: Navigating the filesystem with Jupyter and IPython
 
-    In [1]: pwd      # show current directory
-    '/home/user/stuff/2011-numpy-tutorial'
-    In [2]: cd ex
-    '/home/user/stuff/2011-numpy-tutorial/ex'
-    In [3]: ls
-    populations.txt  species.txt
+Show current directory:
+
+```{python}
+pwd
 ```
-:::
+
+Change to `data` subdirectory:
+
+```{python}
+cd data
+```
+
+Show filesystem listing for current directory:
+
+```{python}
+ls
+```
+
+Change back to containing directory.
+
+```{python}
+cd ..
+```
 
 ### Images
 
