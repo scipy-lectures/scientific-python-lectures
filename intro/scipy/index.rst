@@ -831,6 +831,7 @@ needs to be transformed into a system of first-order ODEs. Note that
 .. math::
 
     \frac{dy}{dt} = \dot{y}
+
     \frac{d\dot{y}}{dt} = \ddot{y} = -(2 \zeta \omega_0  \dot{y} + \omega_0^2 y)
 
 If we define :math:`z = [z_0, z_1]` where :math:`z_0 = y` and :math:`z_1 = \dot{y}`,
