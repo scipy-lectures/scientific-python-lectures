@@ -1637,7 +1637,7 @@ array([1, 2])
 
 #### Good bug report
 
-```
+```text
 Title: numpy.random.permutations fails for non-integer arguments
 
 I'm trying to generate random permutations, using numpy.random.permutations
