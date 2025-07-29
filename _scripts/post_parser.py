@@ -8,6 +8,23 @@ import re
 import textwrap
 
 
+RMD_HEADER = '''\
+---
+jupyter:
+  jupytext:
+    formats: ipynb,Rmd
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.17.1
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+'''
+
 def process_python_block(lines):
     if any([L.strip().startswith('>>> ') for L in lines]):
         return process_doctest_block(lines)
@@ -268,7 +285,13 @@ def process_md(fname):
     fpath = Path(fname)
     lines = fpath.read_text().splitlines()
     out_lines = parse_lines(lines)
-    fpath.write_text('\n'.join(out_lines))
+    content = '\n'.join(out_lines)
+    out_path = fpath
+    if fpath.suffix == '.md' and '```{python}' in content:
+        out_path = fpath.with_suffix('.Rmd')
+        fpath.unlink()
+        content = f'{RMD_HEADER}\n{content}'
+    out_path.write_text(content)
 
 
 def get_parser():
