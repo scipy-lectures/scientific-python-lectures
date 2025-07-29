@@ -50,7 +50,7 @@ IPY_OUT = re.compile(r'Out \[\d+\]: (.*)$')
 def process_verbatim_block(lines):
     out_lines = []
     for line in lines:
-        if line.strip() == '@verbatim':
+        if line.strip() in ('@verbatim', ':verbatim:'):
             continue
         line = IPY_IN.sub(r'\1', line)
         line = IPY_OUT.sub(r'\1', line)
@@ -75,7 +75,7 @@ _IPY_BLOCK = '''\
 
 def process_ipython_block(lines):
     text = textwrap.dedent('\n'.join(lines))
-    if '@verbatim' in text:
+    if '@verbatim' in text or ':verbatim:' in text:
         return process_verbatim_block(text.splitlines())
     out_lines = ['```{python}']
     state = 'start'
@@ -126,6 +126,7 @@ _DOCTEST_BLOCK = r'''
 
 
 def process_doctest_block(lines):
+    lines = textwrap.dedent('\n'.join(lines)).splitlines()
     out_lines = ['```{python}']
     state = 'start'
     last_i = len(lines) - 1
