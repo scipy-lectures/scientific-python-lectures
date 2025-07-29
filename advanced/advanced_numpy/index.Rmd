@@ -1407,19 +1407,18 @@ Documentation:
 % >>> if not os.path.exists('data'): os.mkdir('data')
 % >>> plt.imsave('data/test.png', data)
 
-::
-: ```pycon
-  >>> from PIL import Image
-  >>> img = Image.open('data/test.png')
-  >>> img.__array_interface__
-  {'version': 3,
-   'data': ...,
-   'shape': (200, 200, 4),
-   'typestr': '|u1'}
-  >>> x = np.asarray(img)
-  >>> x.shape
-  (200, 200, 4)
-  ```
+```pycon
+>>> from PIL import Image
+>>> img = Image.open('data/test.png')
+>>> img.__array_interface__
+{'version': 3,
+ 'data': ...,
+ 'shape': (200, 200, 4),
+ 'typestr': '|u1'}
+>>> x = np.asarray(img)
+>>> x.shape
+(200, 200, 4)
+```
 
 :::{note}
 A more C-friendly variant of the array interface is also defined.
