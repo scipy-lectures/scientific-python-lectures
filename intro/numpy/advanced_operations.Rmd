@@ -59,29 +59,35 @@ e.g. the Chebyshev basis.
 
 $3x^2 + 2x - 1$:
 
+```{python}
+p = np.polynomial.Polynomial([-1, 2, 3]) # coefs in different order!
+p(0)
 ```
->>> p = np.polynomial.Polynomial([-1, 2, 3]) # coefs in different order!
->>> p(0)
-np.float64(-1.0)
->>> p.roots()
-array([-1.        ,  0.33333333])
->>> p.degree()  # In general polynomials do not always expose 'order'
-2
+
+```{python}
+p.roots()
+```
+
+```{python}
+p.degree()  # In general polynomials do not always expose 'order'
 ```
 
 Example using polynomials in Chebyshev basis, for polynomials in
 range `[-1, 1]`:
 
+```{python}
+x = np.linspace(-1, 1, 2000)
+rng = np.random.default_rng()
+y = np.cos(x) + 0.3*rng.random(2000)
+p = np.polynomial.Chebyshev.fit(x, y, 90)
 ```
->>> x = np.linspace(-1, 1, 2000)
->>> rng = np.random.default_rng()
->>> y = np.cos(x) + 0.3*rng.random(2000)
->>> p = np.polynomial.Chebyshev.fit(x, y, 90)
 
->>> plt.plot(x, y, 'r.')
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.plot(x, p(x), 'k-', lw=3)
-[<matplotlib.lines.Line2D object at ...>]
+```{python}
+plt.plot(x, y, 'r.')
+```
+
+```{python}
+plt.plot(x, p(x), 'k-', lw=3)
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_chebyfit_001.png
@@ -98,24 +104,18 @@ The Chebyshev polynomials have some advantages in interpolation.
 
 Example: {download}`populations.txt <../../data/populations.txt>`:
 
-```{eval-rst}
 .. include:: ../../data/populations.txt
     :end-line: 5
     :literal:
+
+```{python}
+data = np.loadtxt('data/populations.txt')
+data
 ```
 
-```
->>> data = np.loadtxt('data/populations.txt')
->>> data
-array([[  1900.,  30000.,   4000.,  48300.],
-       [  1901.,  47200.,   6100.,  48200.],
-       [  1902.,  70200.,   9800.,  41500.],
-...
-```
-
-```
->>> np.savetxt('pop2.txt', data)
->>> data2 = np.loadtxt('pop2.txt')
+```{python}
+np.savetxt('pop2.txt', data)
+data2 = np.loadtxt('pop2.txt')
 ```
 
 :::{note}
@@ -156,15 +156,18 @@ cd ..
 
 Using Matplotlib:
 
+```{python}
+img = plt.imread('data/elephant.png')
+img.shape, img.dtype
 ```
->>> img = plt.imread('data/elephant.png')
->>> img.shape, img.dtype
-((200, 300, 3), dtype('float32'))
->>> plt.imshow(img)
-<matplotlib.image.AxesImage object at ...>
->>> plt.savefig('plot.png')
 
->>> plt.imsave('red_elephant.png', img[:,:,0], cmap=plt.cm.gray)
+```{python}
+plt.imshow(img)
+```
+
+```{python}
+plt.savefig('plot.png')
+plt.imsave('red_elephant.png', img[:,:,0], cmap=plt.cm.gray)
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_elephant_001.png
@@ -175,9 +178,8 @@ Using Matplotlib:
 
 This saved only one channel (of RGB):
 
-```
->>> plt.imshow(plt.imread('red_elephant.png'))
-<matplotlib.image.AxesImage object at ...>
+```{python}
+plt.imshow(plt.imread('red_elephant.png'))
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_elephant_002.png
@@ -188,11 +190,10 @@ This saved only one channel (of RGB):
 
 Other libraries:
 
-```
->>> import imageio.v3 as iio
->>> iio.imwrite('tiny_elephant.png', (img[::6,::6] * 255).astype(np.uint8))
->>> plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
-<matplotlib.image.AxesImage object at ...>
+```{python}
+import imageio.v3 as iio
+iio.imwrite('tiny_elephant.png', (img[::6,::6] * 255).astype(np.uint8))
+plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_elephant_003.png
@@ -205,10 +206,10 @@ Other libraries:
 
 NumPy has its own binary format, not portable but with efficient I/O:
 
-```
->>> data = np.ones((3, 3))
->>> np.save('pop.npy', data)
->>> data3 = np.load('pop.npy')
+```{python}
+data = np.ones((3, 3))
+np.save('pop.npy', data)
+data3 = np.load('pop.npy')
 ```
 
 ### Well-known (& more obscure) file formats

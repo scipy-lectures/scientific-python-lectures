@@ -34,7 +34,7 @@ take care to respect indentation rules!).
 The extension for Python files is `.py`. Write or copy-and-paste the
 following lines in a file called `test.py`
 
-```
+```{python}
 message = "Hello how are you?"
 for word in message.split():
     print(word)
@@ -51,19 +51,17 @@ in Ipython, the syntax to execute a script is `%run script.py`. For
 example,
 :::
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
+```python
 
-    In [1]: %run test.py
-    Hello
-    how
-    are
-    you?
 
-    In [2]: message
-    Out[2]: 'Hello how are you?'
+%run test.py
+Hello
+how
+are
+you?
 
+message
+Out[2]: 'Hello how are you?'
 ```
 
 The script has been executed. Moreover the variables defined in the
@@ -93,7 +91,7 @@ Standalone scripts may also take command-line arguments
 
 In `file.py`:
 
-```
+```{python}
 import sys
 print(sys.argv)
 ```
@@ -111,46 +109,29 @@ Don't implement option parsing yourself. Use a dedicated module such as
 
 ## Importing objects from modules
 
-```{eval-rst}
-.. ipython::
+```{python}
+import os
+os
+```
 
-    In [1]: import os
-
-    In [2]: os
-    Out[2]: <module 'os' from '/usr/lib64/python3.10/os.py'>
-
-    In [3]: os.listdir('.')
-    Out[3]:
-    ['conf.py',
-     'basic_types.rst',
-     'control_flow.rst',
-     'functions.rst',
-     'python_language.rst',
-     'reusing.rst',
-     'file_io.rst',
-     'exceptions.rst',
-     'workflow.rst',
-     'index.rst']
+```{python}
+os.listdir('.')
 ```
 
 And also:
 
-```{eval-rst}
-.. ipython::
-
-    In [4]: from os import listdir
+```{python}
+from os import listdir
 ```
 
 Importing shorthands:
 
-```{eval-rst}
-.. ipython::
-
-    In [5]: import numpy as np
+```{python}
+import numpy as np
 ```
 
 :::{warning}
-```
+```{python}
 from os import *
 ```
 
@@ -172,11 +153,10 @@ This is called the *star import* and please, **Do not use it**
 Modules are thus a good way to organize code in a hierarchical way. Actually,
 all the scientific computing tools we are going to use are modules:
 
-```
->>> import numpy as np # data arrays
->>> np.linspace(0, 10, 6)
-array([  0.,   2.,   4.,   6.,   8.,  10.])
->>> import scipy as sp  # scientific computing
+```{python}
+import numpy as np # data arrays
+np.linspace(0, 10, 6)
+import scipy as sp  # scientific computing
 ```
 :::
 
@@ -202,18 +182,17 @@ the function `print_a`, we are rather going to **import it as a module**.
 The syntax is as follows.
 :::
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
-
-    In [1]: import demo
+```python
 
 
-    In [2]: demo.print_a()
-    a
+import demo
 
-    In [3]: demo.print_b()
-    b
+
+demo.print_a()
+a
+
+demo.print_b()
+b
 ```
 
 Importing the module gives access to its objects, using the
@@ -222,64 +201,61 @@ object's name, otherwise Python won't recognize the instruction.
 
 Introspection
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
-
-    In [4]: demo?
-    Type:               module
-    Base Class: <type 'module'>
-    String Form:        <module 'demo' from 'demo.py'>
-    Namespace:  Interactive
-    File:               /home/varoquau/Projects/Python_talks/scipy_2009_tutorial/source/demo.py
-    Docstring:
-        A demo module.
+```python
 
 
-    In [5]: who
-    demo
-
-    In [6]: whos
-    Variable   Type      Data/Info
-    ------------------------------
-    demo       module    <module 'demo' from 'demo.py'>
-
-    In [7]: dir(demo)
-    Out[7]:
-    ['__builtins__',
-    '__doc__',
-    '__file__',
-    '__name__',
-    '__package__',
-    'c',
-    'd',
-    'print_a',
-    'print_b']
+demo?
+Type:               module
+Base Class: <type 'module'>
+String Form:        <module 'demo' from 'demo.py'>
+Namespace:  Interactive
+File:               /home/varoquau/Projects/Python_talks/scipy_2009_tutorial/source/demo.py
+Docstring:
+    A demo module.
 
 
-    In [8]: demo.<TAB>
-    demo.c        demo.print_a  demo.py
-    demo.d        demo.print_b  demo.pyc
+who
+demo
 
+whos
+Variable   Type      Data/Info
+------------------------------
+demo       module    <module 'demo' from 'demo.py'>
+
+dir(demo)
+Out[7]:
+['__builtins__',
+'__doc__',
+'__file__',
+'__name__',
+'__package__',
+'c',
+'d',
+'print_a',
+'print_b']
+
+
+demo.<TAB>
+demo.c        demo.print_a  demo.py
+demo.d        demo.print_b  demo.pyc
 ```
 
 Importing objects from modules into the main namespace
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
+```python
 
-    In [9]: from demo import print_a, print_b
 
-    In [10]: whos
-    Variable   Type        Data/Info
-    --------------------------------
-    demo       module      <module 'demo' from 'demo.py'>
-    print_a    function    <function print_a at 0xb7421534>
-    print_b    function    <function print_b at 0xb74214c4>
+from demo import print_a, print_b
 
-    In [11]: print_a()
-    a
+whos
+Variable   Type        Data/Info
+--------------------------------
+demo       module      <module 'demo' from 'demo.py'>
+print_a    function    <function print_a at 0xb7421534>
+print_b    function    <function print_b at 0xb74214c4>
+
+print_a()
+a
 ```
 
 :::{warning}
@@ -311,26 +287,23 @@ File `demo2.py`:
 
 Importing it:
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
+```python
 
-    In [11]: import demo2
-    b
 
-    In [12]: import demo2
+import demo2
+b
+
+import demo2
 ```
 
 Running it:
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
+```python
 
-    In [13]: %run demo2
-    b
-    a
 
+%run demo2
+b
+a
 ```
 
 ## Scripts or modules? How to organize your code
@@ -357,20 +330,9 @@ well as the list of directories specified by the environment variable
 The list of directories searched by Python is given by the `sys.path`
 variable
 
-```{eval-rst}
-.. ipython::
-
-    In [1]: import sys
-
-    In [2]: sys.path
-    Out[2]:
-    ['/home/jarrod/.venv/lectures/bin',
-     '/usr/lib64/python311.zip',
-     '/usr/lib64/python3.11',
-     '/usr/lib64/python3.11/lib-dynload',
-     '',
-     '/home/jarrod/.venv/lectures/lib64/python3.11/site-packages',
-     '/home/jarrod/.venv/lectures/lib/python3.11/site-packages']
+```{python}
+import sys
+sys.path
 ```
 
 Modules must be located in the search path, therefore you can:
@@ -386,9 +348,9 @@ Modules must be located in the search path, therefore you can:
   On Linux/Unix, add the following line to a file read by the shell at
   startup (e.g. /etc/profile, .profile)
 
-  ```
+```{python}
   export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
-  ```
+```
 
   On Windows, <https://support.microsoft.com/kb/310519> explains how to
   handle environment variables.
@@ -397,12 +359,12 @@ Modules must be located in the search path, therefore you can:
 - or modify the `sys.path` variable itself within a Python script.
 
   :::{tip}
-  ```
+```{python}
   import sys
   new_path = '/home/emma/user_defined_modules'
   if new_path not in sys.path:
       sys.path.append(new_path)
-  ```
+```
 
   This method is not very robust, however, because it makes the code
   less portable (user-dependent path) and because you have to add the
@@ -441,32 +403,30 @@ fourier.py   LICENSE.txt        _morphology.py    setup.py
 
 From Ipython:
 
-```{eval-rst}
-.. ipython::
+```python
 
-    In [1]: import scipy as sp
 
-    In [2]: sp.__file__
+import scipy as sp
 
-    In [3]: sp.version.version
+sp.__file__
 
-    @verbatim
-    In [4]: sp.ndimage.morphology.binary_dilation?
-    Signature:
-    sp.ndimage.morphology.binary_dilation(
-        input,
-        structure=None,
-        iterations=1,
-        mask=None,
-        output=None,
-        border_value=0,
-        origin=0,
-        brute_force=False,
-    )
-    Docstring:
-    Multidimensional binary dilation with the given structuring element.
-    ...
+sp.version.version
 
+sp.ndimage.morphology.binary_dilation?
+Signature:
+sp.ndimage.morphology.binary_dilation(
+    input,
+    structure=None,
+    iterations=1,
+    mask=None,
+    output=None,
+    border_value=0,
+    origin=0,
+    brute_force=False,
+)
+Docstring:
+Multidimensional binary dilation with the given structuring element.
+...
 ```
 
 ## Good practices
@@ -510,20 +470,20 @@ From Ipython:
   than (e.g.) 80 characters. Long lines can be broken with the `\`
   character
 
-  ```
-  >>> long_line = "Here is a very very long line \
-  ... that we break in two parts."
-  ```
+```{python}
+long_line = "Here is a very very long line \
+that we break in two parts."
+```
 
   **Spaces**
 
   Write well-spaced code: put whitespaces after commas, around arithmetic
   operators, etc.:
 
-  ```
-  >>> a = 1 # yes
-  >>> a=1 # too cramped
-  ```
+```{python}
+a = 1 # yes
+a=1 # too cramped
+```
 
   A certain number of rules
   for writing "beautiful" code (and more importantly using the same

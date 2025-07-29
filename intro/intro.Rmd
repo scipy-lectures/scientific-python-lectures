@@ -52,7 +52,6 @@ Valentin Haenel*
 
 #### Compiled languages: C, C++, Fortran...
 
-```{eval-rst}
 
 :Cons:
 
@@ -62,11 +61,9 @@ Valentin Haenel*
 
 Matlab scripting language
 ~~~~~~~~~~~~~~~~~~~~~~~~~
-```
 
 #### Matlab scripting language
 
-```{eval-rst}
 
 :Cons:
 
@@ -82,11 +79,9 @@ Julia
   * Fast code, yet interactive and simple.
 
   * Easily connects to Python or C.
-```
 
 #### Julia
 
-```{eval-rst}
 
 :Cons:
 
@@ -98,11 +93,9 @@ Other scripting languages: Scilab, Octave, R, IDL, etc.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 :Pros:
-```
 
 #### Other scripting languages: Scilab, Octave, R, IDL, etc.
 
-```{eval-rst}
 
 :Cons:
 
@@ -117,11 +110,9 @@ Python
 ~~~~~~
 
 :Pros:
-```
 
 #### Python
 
-```{eval-rst}
 
 :Cons:
 
@@ -144,7 +135,6 @@ that can be combined to obtain a scientific computing environment:
 
 * Modules of the standard library: string processing, file
   management, simple network protocols.
-```
 
 ## The scientific Python ecosystem
 
@@ -229,13 +219,11 @@ packaged, and it is recommended to use your package manager.
 
 There are several fully-featured scientific Python distributions:
 
-```{eval-rst}
 .. rst-class:: horizontal
 
   * `Anaconda <https://www.anaconda.com/download/>`_
   * `WinPython <https://winpython.github.io>`_
 
-```
 
 ## The workflow: interactive environments and text editors
 
@@ -261,20 +249,17 @@ To execute code, press "shift enter"
 
 Start `ipython`:
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
+```python
 
-    In [1]: print('Hello world')
-    Hello world
+
+print('Hello world')
+Hello world
 ```
 
 Getting help by using the **?** operator after an object:
 
-```{eval-rst}
-.. ipython::
-
-    In [1]: print?
+```{python}
+print?
 ```
 
 :::{seealso}
@@ -303,7 +288,7 @@ and you can find them in the menus.
 As an exercise, create a file `my_file.py` in a code editor, and add the
 following lines:
 
-```
+```{python}
 s = 'Hello world'
 print(s)
 ```
@@ -311,26 +296,23 @@ print(s)
 Now, you can run it in IPython console or a notebook and explore the
 resulting variables:
 
-```{eval-rst}
-.. ipython::
+```python
 
-    @suppress
-    In [1]: s = 'Hello world'
 
-    @verbatim
-    In [1]: %run my_file.py
-    Hello world
+@suppress
+s = 'Hello world'
 
-    @doctest
-    In [2]: s
-    Out[2]: 'Hello world'
+%run my_file.py
+Hello world
 
-    @verbatim
-    In [3]: %whos
-    Variable   Type    Data/Info
-    ----------------------------
-    s          str     Hello world
+@doctest
+s
+Out[2]: 'Hello world'
 
+%whos
+Variable   Type    Data/Info
+----------------------------
+s          str     Hello world
 ```
 
 :::{topic} **From a script to functions**
@@ -353,15 +335,14 @@ functions*, and *aliases*.
 command history. Type *up* and *down* to navigate previously typed
 commands:
 
-```{eval-rst}
-.. ipython::
+```python
 
-    In [1]: x = 10
 
-    @verbatim
-    In [2]: <UP>
+x = 10
 
-    In [2]: x = 10
+<UP>
+
+x = 10
 ```
 
 **Tab completion** Tab completion, is a convenient way to explore the
@@ -369,16 +350,15 @@ structure of any object you’re dealing with. Simply type object_name.\<TAB> to
 view the object’s attributes. Besides Python objects and keywords, tab
 completion also works on file and directory names.\*
 
-```{eval-rst}
-.. ipython::
+```python
 
-    In [1]: x = 10
 
-    @verbatim
-    In [2]: x.<TAB>
-              as_integer_ratio() conjugate()        imag               to_bytes()
-              bit_count()        denominator        numerator
-              bit_length()       from_bytes()       real
+x = 10
+
+x.<TAB>
+          as_integer_ratio() conjugate()        imag               to_bytes()
+          bit_count()        denominator        numerator
+          bit_length()       from_bytes()       real
 ```
 
 **Magic functions**

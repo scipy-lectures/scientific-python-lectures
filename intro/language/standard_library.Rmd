@@ -31,124 +31,104 @@ Reference document for this section:
 
 Current directory:
 
-```{eval-rst}
-.. ipython::
-
-    In [1]: import os
-
-    In [2]: os.getcwd()
-    Out[2]: '/home/jarrod/src/scientific-python-lectures/intro'
+```{python}
+import os
+os.getcwd()
 ```
 
 List a directory:
 
-```{eval-rst}
-.. ipython::
-
-    In [3]: os.listdir(os.curdir)
-    Out[3]: ['intro.rst', 'scipy', 'language', 'matplotlib', 'index.rst', 'numpy', 'help']
+```{python}
+os.listdir(os.curdir)
 ```
 
 Make a directory:
 
-```{eval-rst}
-.. ipython::
-
-    In [4]: os.mkdir('junkdir')
-
-    In [5]: 'junkdir' in os.listdir(os.curdir)
-    Out[5]: True
+```{python}
+os.mkdir('junkdir')
+'junkdir' in os.listdir(os.curdir)
 ```
 
 Rename the directory:
 
-```{eval-rst}
-.. ipython::
+```{python}
+os.rename('junkdir', 'foodir')
+'junkdir' in os.listdir(os.curdir)
+```
 
-    In [6]: os.rename('junkdir', 'foodir')
+```{python}
+'foodir' in os.listdir(os.curdir)
+```
 
-    In [7]: 'junkdir' in os.listdir(os.curdir)
-    Out[7]: False
-
-    In [8]: 'foodir' in os.listdir(os.curdir)
-    Out[8]: True
-
-    In [9]: os.rmdir('foodir')
-
-    In [10]: 'foodir' in os.listdir(os.curdir)
-    Out[10]: False
+```{python}
+os.rmdir('foodir')
+'foodir' in os.listdir(os.curdir)
 ```
 
 Delete a file:
 
-```{eval-rst}
-.. ipython::
+```{python}
+fp = open('junk.txt', 'w')
+fp.close()
+'junk.txt' in os.listdir(os.curdir)
+```
 
-    In [11]: fp = open('junk.txt', 'w')
-
-    In [12]: fp.close()
-
-    In [13]: 'junk.txt' in os.listdir(os.curdir)
-    Out[13]: True
-
-    In [14]: os.remove('junk.txt')
-
-    In [15]: 'junk.txt' in os.listdir(os.curdir)
-    Out[15]: False
+```{python}
+os.remove('junk.txt')
+'junk.txt' in os.listdir(os.curdir)
 ```
 
 ### `os.path`: path manipulations
 
 `os.path` provides common operations on pathnames.
 
-```{eval-rst}
-.. ipython::
+```{python}
+fp = open('junk.txt', 'w')
+fp.close()
+a = os.path.abspath('junk.txt')
+a
+```
 
-    In [16]: fp = open('junk.txt', 'w')
+```{python}
+os.path.split(a)
+```
 
-    In [17]: fp.close()
+```{python}
+os.path.dirname(a)
+```
 
-    In [18]: a = os.path.abspath('junk.txt')
+```{python}
+os.path.basename(a)
+```
 
-    In [19]: a
-    Out[19]: '/home/jarrod/src/scientific-python-lectures/intro/junk.txt'
+```{python}
+os.path.splitext(os.path.basename(a))
+```
 
-    In [20]: os.path.split(a)
-    Out[20]: ('/home/jarrod/src/scientific-python-lectures/intro', 'junk.txt')
+```{python}
+os.path.exists('junk.txt')
+```
 
-    In [21]: os.path.dirname(a)
-    Out[21]: '/home/jarrod/src/scientific-python-lectures/intro'
+```{python}
+os.path.isfile('junk.txt')
+```
 
-    In [22]: os.path.basename(a)
-    Out[22]: 'junk.txt'
+```{python}
+os.path.isdir('junk.txt')
+```
 
-    In [23]: os.path.splitext(os.path.basename(a))
-    Out[23]: ('junk', '.txt')
+```{python}
+os.path.expanduser('~/local')
+```
 
-    In [24]: os.path.exists('junk.txt')
-    Out[24]: True
-
-    In [25]: os.path.isfile('junk.txt')
-    Out[25]: True
-
-    In [26]: os.path.isdir('junk.txt')
-    Out[26]: False
-
-    In [27]: os.path.expanduser('~/local')
-    Out[27]: '/home/jarrod/local'
-
-    In [28]: os.path.join(os.path.expanduser('~'), 'local', 'bin')
-    Out[28]: '/home/jarrod/local/bin'
+```{python}
+os.path.join(os.path.expanduser('~'), 'local', 'bin')
 ```
 
 ### Running an external command
 
-```{eval-rst}
-.. ipython::
-
-    In [29]: os.system('ls')
-    help  index.rst  intro.rst  junk.txt  language      matplotlib  numpy  scipy
-    Out[29]: 0
+```{python}
+os.system('ls')
 ```
 
 :::{note}
@@ -157,21 +137,20 @@ Alternative to `os.system`
 A noteworthy alternative to `os.system` is the [sh module](https://amoffat.github.com/sh/). Which provides much more convenient ways to
 obtain the output, error stream and exit code of the external command.
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
+```python
 
-    In [30]: import sh
-    In [31]: com = sh.ls()
 
-    In [32]: print(com)
-    basic_types.rst   exceptions.rst   oop.rst              standard_library.rst
-    control_flow.rst  first_steps.rst  python_language.rst
-    demo2.py          functions.rst    python-logo.png
-    demo.py           io.rst           reusing_code.rst
+import sh
+com = sh.ls()
 
-    In [33]: type(com)
-    Out[33]: str
+print(com)
+basic_types.rst   exceptions.rst   oop.rst              standard_library.rst
+control_flow.rst  first_steps.rst  python_language.rst
+demo2.py          functions.rst    python-logo.png
+demo.py           io.rst           reusing_code.rst
+
+type(com)
+Out[33]: str
 ```
 :::
 
@@ -179,35 +158,23 @@ obtain the output, error stream and exit code of the external command.
 
 `os.path.walk` generates a list of filenames in a directory tree.
 
-```{eval-rst}
-.. ipython::
-
-    In [10]: for dirpath, dirnames, filenames in os.walk(os.curdir):
-       ....:     for fp in filenames:
-       ....:         print(os.path.abspath(fp))
-       ....:
-       ....:
-    /home/jarrod/src/scientific-python-lectures/intro/language/basic_types.rst
-    /home/jarrod/src/scientific-python-lectures/intro/language/control_flow.rst
-    /home/jarrod/src/scientific-python-lectures/intro/language/python_language.rst
-    /home/jarrod/src/scientific-python-lectures/intro/language/reusing_code.rst
-    /home/jarrod/src/scientific-python-lectures/intro/language/standard_library.rst
-    ...
+```{python}
+for dirpath, dirnames, filenames in os.walk(os.curdir):
+    for fp in filenames:
+        print(os.path.abspath(fp))
 ```
 
 ### Environment variables:
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
-
-    In [32]: os.environ.keys()
-    Out[32]: KeysView(environ({'SHELL': '/bin/bash', 'COLORTERM': 'truecolor', ...}))
+```python
 
 
-    In [34]: os.environ['SHELL']
-    Out[34]: '/bin/bash'
+os.environ.keys()
+Out[32]: KeysView(environ({'SHELL': '/bin/bash', 'COLORTERM': 'truecolor', ...}))
 
+
+os.environ['SHELL']
+Out[34]: '/bin/bash'
 ```
 
 ## `shutil`: high-level file operations
@@ -224,13 +191,9 @@ The `glob` module provides convenient file pattern matching.
 
 Find all files ending in `.txt`:
 
-```{eval-rst}
-.. ipython::
-
-    In [36]: import glob
-
-    In [37]: glob.glob('*.txt')
-    Out[37]: ['junk.txt']
+```{python}
+import glob
+glob.glob('*.txt')
 ```
 
 ## `sys` module: system-specific information
@@ -239,70 +202,50 @@ System-specific information related to the Python interpreter.
 
 - Which version of python are you running and where is it installed:
 
-```{eval-rst}
-.. ipython::
+```{python}
+import sys
+sys.platform
+```
 
+```{python}
+sys.version
+```
 
-    In [39]: import sys
-
-    In [40]: sys.platform
-    Out[40]: 'linux'
-
-    In [41]: sys.version
-    Out[41]: '3.11.8 (main, Feb 28 2024, 00:00:00) [GCC 13.2.1 20231011 (Red Hat 13.2.1-4)]'
-
-    In [42]: sys.prefix
-    Out[42]: '/home/jarrod/.venv/nx'
+```{python}
+sys.prefix
 ```
 
 - List of command line arguments passed to a Python script:
 
-```{eval-rst}
-.. ipython::
-
-    In [43]: sys.argv
-    Out[43]: ['/home/jarrod/.venv/nx/bin/ipython']
+```{python}
+sys.argv
 ```
 
 `sys.path` is a list of strings that specifies the search path for
 modules. Initialized from PYTHONPATH:
 
-```{eval-rst}
-.. ipython::
-
-    In [44]: sys.path
-    Out[44]:
-    ['/home/jarrod/.venv/nx/bin',
-     '/usr/lib64/python311.zip',
-     '/usr/lib64/python3.11',
-     '/usr/lib64/python3.11/lib-dynload',
-     '',
-     '/home/jarrod/.venv/nx/lib64/python3.11/site-packages',
-     '/home/jarrod/.venv/nx/lib/python3.11/site-packages']
+```{python}
+sys.path
 ```
 
 ## `pickle`: easy persistence
 
 Useful to store arbitrary objects to a file. Not safe or fast!
 
-```{eval-rst}
-.. ipython::
+```{python}
+import pickle
+l = [1, None, 'Stan']
+with open('test.pkl', 'wb') as file:
+    pickle.dump(l, file)
+```
 
-    In [45]: import pickle
+```{python}
+with open('test.pkl', 'rb') as file:
+    out = pickle.load(file)
+```
 
-    In [46]: l = [1, None, 'Stan']
-
-    In [3]: with open('test.pkl', 'wb') as file:
-       ...:     pickle.dump(l, file)
-       ...:
-
-    In [4]: with open('test.pkl', 'rb') as file:
-       ...:     out = pickle.load(file)
-       ...:
-
-    In [49]: out
-    Out[49]: [1, None, 'Stan']
-
+```{python}
+out
 ```
 
 :::{topic} Exercise

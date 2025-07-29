@@ -22,30 +22,30 @@ Python. Since we will use the NumPy methods to read and write files,
 We write or read **strings** to/from files (other types must be converted to
 strings). To write in a file:
 
+```{python}
+f = open('workfile', 'w') # opens the workfile file
+type(f)
 ```
->>> f = open('workfile', 'w') # opens the workfile file
->>> type(f)
-<class '_io.TextIOWrapper'>
->>> f.write('This is a test \nand another test')   # doctest: +SKIP
->>> f.close()
+
+```{python}
+f.write('This is a test \nand another test')   # doctest: +SKIP
+f.close()
 ```
 
 To read from a file
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
+```python
 
-    In [1]: f = open('workfile', 'r')
 
-    In [2]: s = f.read()
+f = open('workfile', 'r')
 
-    In [3]: print(s)
-    This is a test
-    and another test
+s = f.read()
 
-    In [4]: f.close()
+print(s)
+This is a test
+and another test
 
+f.close()
 ```
 
 :::{seealso}
@@ -54,19 +54,18 @@ For more details: <https://docs.python.org/3/tutorial/inputoutput.html>
 
 ## Iterating over a file
 
-```{eval-rst}
-.. ipython::
-    :verbatim:
+```python
 
-    In [6]: f = open('workfile', 'r')
 
-    In [7]: for line in f:
-       ...:     print(line)
-       ...:
-    This is a test
-    and another test
+f = open('workfile', 'r')
 
-    In [8]: f.close()
+for line in f:
+   ...:     print(line)
+   ...:
+This is a test
+and another test
+
+f.close()
 ```
 
 ### File modes
