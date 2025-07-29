@@ -246,12 +246,12 @@ def parse_lines(lines):
             state = 'ipython-block'
             continue
         if state.endswith('block'):
-            if LS != '```':
+            if line.strip() != '```':
                 block_lines.append(line)
                 continue
             parsed_lines += (STATE_PROCESSOR[state](block_lines)
-                             if state in STATE_PROCESSOR
-                             else [directive] + block_lines + [line])
+                            if state in STATE_PROCESSOR
+                            else [directive] + block_lines + [line])
             block_lines = []
             state = 'default'
             continue
