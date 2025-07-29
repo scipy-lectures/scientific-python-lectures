@@ -213,7 +213,12 @@ def test_ipython_block_in_rst():
 
 STATE_PROCESSOR = {'python-block': process_python_block,
                    'ipython-block': process_ipython_block,
+                   'doctest-block': process_doctest_block,
                    'eval-rst-block': process_eval_rst_block}
+
+
+def other_processor(directive, lines):
+    return ['```' + directive] + lines + ['```']
 
 
 def parse_lines(lines):
@@ -232,6 +237,13 @@ def parse_lines(lines):
             if line.strip() == '```':
                 state = 'python-block'
                 continue
+            if line.strip() == '```pycon':
+                state = 'doctest-block'
+                continue
+            if line.startswith('```'):
+                state = 'other-block'
+                directive = line[3:].strip()
+                continue
         if state == 'ipython-block-header':
             # Drop ipython line
             state = 'ipython-block'
@@ -240,7 +252,9 @@ def parse_lines(lines):
             if line.strip() != '```':
                 block_lines.append(line)
                 continue
-            parsed_lines += STATE_PROCESSOR[state](block_lines)
+            parsed_lines += (STATE_PROCESSOR[state](block_lines)
+                            if state in STATE_PROCESSOR
+                            else other_processor(directive, block_lines))
             block_lines = []
             state = 'default'
             continue
