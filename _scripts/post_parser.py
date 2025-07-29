@@ -73,6 +73,9 @@ _IPY_BLOCK = '''\
 '''.splitlines()
 
 
+_IPY_CONT_RE = re.compile(r'\s*\.{3,}: (.*)$')
+
+
 def process_ipython_block(lines):
     text = textwrap.dedent('\n'.join(lines))
     if '@verbatim' in text or ':verbatim:' in text:
@@ -89,8 +92,8 @@ def process_ipython_block(lines):
             state = 'code'
             out_lines.append(m.groups()[0])
             continue
-        if state == 'code' and line.startswith('... '):
-            out_lines.append(line[4:])
+        if state == 'code' and (m := _IPY_CONT_RE.match(line)):
+            out_lines.append(m.groups()[0])
             continue
         # In code, but no code input line.
         if line.strip():
