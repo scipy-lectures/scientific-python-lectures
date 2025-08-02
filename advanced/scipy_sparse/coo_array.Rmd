@@ -13,10 +13,10 @@ jupyter:
     name: python3
 ---
 
-% for doctests
-% >>> import numpy as np
-% >>> import scipy as sp
-
+```{python} tags=c("hide-input")
+import numpy as np
+import scipy as sp
+```
 # Coordinate Format (COO)
 
 - also known as the 'ijv' or 'triplet' format
@@ -49,50 +49,37 @@ jupyter:
 
 - create empty COO array:
 
-  ```
-  >>> mtx = sp.sparse.coo_array((3, 4), dtype=np.int8)
-  >>> mtx.toarray()
-  array([[0, 0, 0, 0],
-          [0, 0, 0, 0],
-          [0, 0, 0, 0]], dtype=int8)
-  ```
+```{python}
+mtx = sp.sparse.coo_array((3, 4), dtype=np.int8)
+mtx.toarray()
+```
 
 - create using `(data, ij)` tuple:
 
-  ```
-  >>> row = np.array([0, 3, 1, 0])
-  >>> col = np.array([0, 3, 1, 2])
-  >>> data = np.array([4, 5, 7, 9])
-  >>> mtx = sp.sparse.coo_array((data, (row, col)), shape=(4, 4))
-  >>> mtx
-  <COOrdinate sparse array of dtype 'int64'
-          with 4 stored elements and shape (4, 4)>
-  >>> mtx.toarray()
-  array([[4, 0, 9, 0],
-         [0, 7, 0, 0],
-         [0, 0, 0, 0],
-         [0, 0, 0, 5]])
-  ```
+```{python}
+row = np.array([0, 3, 1, 0])
+col = np.array([0, 3, 1, 2])
+data = np.array([4, 5, 7, 9])
+mtx = sp.sparse.coo_array((data, (row, col)), shape=(4, 4))
+mtx
+```
+
+```{python}
+mtx.toarray()
+```
 
 - duplicates entries are summed together:
 
-  ```
-  >>> row = np.array([0, 0, 1, 3, 1, 0, 0])
-  >>> col = np.array([0, 2, 1, 3, 1, 0, 0])
-  >>> data = np.array([1, 1, 1, 1, 1, 1, 1])
-  >>> mtx = sp.sparse.coo_array((data, (row, col)), shape=(4, 4))
-  >>> mtx.toarray()
-  array([[3, 0, 1, 0],
-         [0, 2, 0, 0],
-         [0, 0, 0, 0],
-         [0, 0, 0, 1]])
-  ```
+```{python}
+row = np.array([0, 0, 1, 3, 1, 0, 0])
+col = np.array([0, 2, 1, 3, 1, 0, 0])
+data = np.array([1, 1, 1, 1, 1, 1, 1])
+mtx = sp.sparse.coo_array((data, (row, col)), shape=(4, 4))
+mtx.toarray()
+```
 
 - no slicing...:
 
-  ```
-  >>> mtx[2, 3]
-  Traceback (most recent call last):
-  ...
-  TypeError: 'coo_array' object ...
-  ```
+```{python}
+mtx[2, 3]
+```

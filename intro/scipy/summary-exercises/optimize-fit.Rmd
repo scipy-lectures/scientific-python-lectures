@@ -13,9 +13,9 @@ jupyter:
     name: python3
 ---
 
-% for doctests
-% >>> import matplotlib.pyplot as plt
-
+```{python} tags=c("hide-input")
+import matplotlib.pyplot as plt
+```
 (summary-exercise-optimize)=
 
 # Non linear least squares curve fitting: application to point extraction in topographical lidar data
@@ -57,19 +57,18 @@ or a sum of Gaussian functions.
 
 Load the first waveform using:
 
-```
->>> import numpy as np
->>> waveform_1 = np.load('intro/scipy/summary-exercises/examples/waveform_1.npy')
+```{python}
+import numpy as np
+waveform_1 = np.load('intro/scipy/summary-exercises/examples/waveform_1.npy')
 ```
 
 and visualize it:
 
-```
->>> import matplotlib.pyplot as plt
->>> t = np.arange(len(waveform_1))
->>> plt.plot(t, waveform_1) #doctest: +ELLIPSIS
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.show()
+```{python}
+import matplotlib.pyplot as plt
+t = np.arange(len(waveform_1))
+plt.plot(t, waveform_1)
+plt.show()
 ```
 
 As shown below, this waveform is a 80-bin-length signal with a single peak
@@ -101,9 +100,9 @@ $$
 
 can be defined in python by:
 
-```
->>> def model(t, coeffs):
-...    return coeffs[0] + coeffs[1] * np.exp( - ((t-coeffs[2])/coeffs[3])**2 )
+```{python}
+def model(t, coeffs):
+   return coeffs[0] + coeffs[1] * np.exp( - ((t-coeffs[2])/coeffs[3])**2 )
 ```
 
 where
@@ -117,8 +116,8 @@ where
 
 One possible initial solution that we determine by inspection is:
 
-```
->>> x0 = np.array([3, 30, 15, 1], dtype=float)
+```{python}
+x0 = np.array([3, 30, 15, 1], dtype=float)
 ```
 
 ### Fit
@@ -127,9 +126,9 @@ One possible initial solution that we determine by inspection is:
 an argument. Basically, the function to minimize is the residuals (the
 difference between the data and the model):
 
-```
->>> def residuals(coeffs, y, t):
-...     return y - model(t, coeffs)
+```{python}
+def residuals(coeffs, y, t):
+    return y - model(t, coeffs)
 ```
 
 So let's get our solution by calling {func}`scipy.optimize.leastsq` with the
@@ -139,12 +138,11 @@ following arguments:
 - an initial solution
 - the additional arguments to pass to the function
 
-```
->>> import scipy as sp
->>> t = np.arange(len(waveform_1))
->>> x, flag = sp.optimize.leastsq(residuals, x0, args=(waveform_1, t))
->>> x
-array([ 2.70363, 27.82020, 15.47924,  3.05636])
+```{python}
+import scipy as sp
+t = np.arange(len(waveform_1))
+x, flag = sp.optimize.leastsq(residuals, x0, args=(waveform_1, t))
+x
 ```
 
 And visualize the solution:

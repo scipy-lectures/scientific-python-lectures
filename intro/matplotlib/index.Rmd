@@ -15,9 +15,6 @@ jupyter:
 
 (matplotlib)=
 
-```{eval-rst}
-.. currentmodule:: matplotlib.pyplot
-```
 
 # Matplotlib: plotting
 
@@ -27,11 +24,6 @@ corrections.
 :::
 
 **Authors**: *Nicolas Rougier, Mike Müller, Gaël Varoquaux*
-
-```{contents} Chapter contents
-:depth: 1
-:local: true
-```
 
 ## Introduction
 
@@ -54,7 +46,6 @@ in combination with Matplotlib:
 
 For interactive matplotlib sessions, turn on the **matplotlib mode**
 
-```{eval-rst}
 
 :Jupyter notebook:
 
@@ -68,7 +59,6 @@ pyplot
 ------
 
 .. tip::
-```
 
 ### pyplot
 
@@ -79,7 +69,7 @@ majority of plotting commands in pyplot have Matlab™ analogs with similar
 arguments. Important commands are explained with interactive examples.
 :::
 
-```
+```{python}
 import matplotlib.pyplot as plt
 ```
 
@@ -93,7 +83,7 @@ step to make it nicer.
 First step is to get the data for the sine and cosine functions:
 :::
 
-```
+```{python}
 import numpy as np
 
 X = np.linspace(-np.pi, np.pi, 256)
@@ -106,13 +96,13 @@ values).
 
 To run the example, you can type them in an IPython interactive session:
 
-```
+```{python}
 $ ipython --matplotlib
 ```
 
 This brings us to the IPython prompt:
 
-```
+```{python}
 IPython 0.13 -- An enhanced Interactive Python.
 ?       -> Introduction to IPython's features.
 %magic  -> Information about IPython's 'magic' % functions.
@@ -124,7 +114,7 @@ object? -> Details about 'object'. ?object also works, ?? prints more.
 You can also download each of the examples and run it using regular
 python, but you will lose interactive data manipulation:
 
-```
+```{python}
 $ python plot_exercise_1.py
 ```
 
@@ -156,7 +146,7 @@ properties and so on.
 
 {{ clear-floats }}
 
-```
+```{python}
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -194,7 +184,7 @@ affect (see [Line properties] and [Line styles] below).
 
 {{ clear-floats }}
 
-```
+```{python}
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -255,7 +245,7 @@ size to make it more horizontal.
 
 {{ clear-floats }}
 
-```
+```{python}
 ...
 plt.figure(figsize=(10, 6), dpi=80)
 plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
@@ -285,7 +275,7 @@ some space in order to clearly see all data points.
 
 {{ clear-floats }}
 
-```
+```{python}
 ...
 plt.xlim(X.min() * 1.1, X.max() * 1.1)
 plt.ylim(C.min() * 1.1, C.max() * 1.1)
@@ -317,7 +307,7 @@ only these values.
 
 {{ clear-floats }}
 
-```
+```{python}
 ...
 plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
 plt.yticks([-1, 0, +1])
@@ -352,7 +342,7 @@ latex to allow for nice rendering of the label.
 
 {{ clear-floats }}
 
-```
+```{python}
 ...
 plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi],
           [r'$-\pi$', r'$-\pi/2$', r'$0$', r'$+\pi/2$', r'$+\pi$'])
@@ -390,7 +380,7 @@ ones to coordinate 0 in data space coordinates.
 
 {{ clear-floats }}
 
-```
+```{python}
 ...
 ax = plt.gca()  # gca stands for 'get current axis'
 ax.spines['right'].set_color('none')
@@ -426,7 +416,7 @@ box) to the plot commands.
 
 {{ clear-floats }}
 
-```
+```{python}
 ...
 plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine")
 plt.plot(X, S, color="red",  linewidth=2.5, linestyle="-", label="sine")
@@ -460,7 +450,7 @@ text with an arrow.
 
 {{ clear-floats }}
 
-```
+```{python}
 ...
 
 t = 2 * np.pi / 3
@@ -506,7 +496,7 @@ background. This will allow us to see both the data and the labels.
 
 {{ clear-floats }}
 
-```
+```{python}
 ...
 for label in ax.get_xticklabels() + ax.get_yticklabels():
     label.set_fontsize(16)
@@ -563,7 +553,7 @@ calling close. Depending on the argument it closes (1) the current figure
 argument), or (3) all figures (`"all"` as argument).
 :::
 
-```
+```{python}
 plt.close(1)     # Closes figure 1
 ```
 
@@ -576,9 +566,10 @@ the number of rows and columns and the number of the plot. Note that the
 is a more powerful alternative.
 :::
 
-% avoid an ugly interplay between 'tip' and the images below: we want a
-% line-return
-
+<!---
+avoid an ugly interplay between 'tip' and the images below: we want a
+line-return
+-->
 {{ clear-floats }}
 
 ```{image} auto_examples/images/sphx_glr_plot_subplot-horizontal_001.png
@@ -632,7 +623,7 @@ below).
 Tick locators control the positions of the ticks. They are set as
 follows:
 
-```
+```{python}
 ax = plt.gca()
 ax.xaxis.set_major_locator(eval(locator))
 ```
@@ -734,7 +725,7 @@ care of filled areas:
 You need to use the {func}`fill_between()` command.
 :::
 
-```
+```{python}
 n = 256
 X = np.linspace(-np.pi, np.pi, n)
 Y = np.sin(2 * X)
@@ -760,7 +751,7 @@ care of marker size, color and transparency.
 Color is given by angle of (X,Y).
 :::
 
-```
+```{python}
 n = 1024
 rng = np.random.default_rng()
 X = rng.normal(0,1,n)
@@ -788,7 +779,7 @@ You need to take care of text alignment.
 
 {{ clear-floats }}
 
-```
+```{python}
 n = 12
 X = np.arange(n)
 rng = np.random.default_rng()
@@ -821,7 +812,7 @@ care of the colormap (see [Colormaps] below).
 You need to use the {func}`clabel()` command.
 :::
 
-```
+```{python}
 def f(x, y):
     return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 -y ** 2)
 
@@ -852,7 +843,7 @@ You need to take care of the `origin` of the image in the imshow command and
 use a {func}`colorbar()`
 :::
 
-```
+```{python}
 def f(x, y):
     return (1 - x / 2 + x ** 5 + y ** 3) * np.exp(-x ** 2 - y ** 2)
 
@@ -880,7 +871,7 @@ care of colors and slices size.
 You need to modify Z.
 :::
 
-```
+```{python}
 rng = np.random.default_rng()
 Z = rng.uniform(0, 1, 20)
 plt.pie(Z)
@@ -903,7 +894,7 @@ care of colors and orientations.
 You need to draw arrows twice.
 :::
 
-```
+```{python}
 n = 8
 X, Y = np.mgrid[0:n, 0:n]
 plt.quiver(X, Y)
@@ -922,7 +913,7 @@ Click on figure for solution.
 Starting from the code below, try to reproduce the graphic taking
 care of line styles.
 
-```
+```{python}
 axes = plt.gca()
 axes.set_xlim(0, 4)
 axes.set_ylim(0, 3)
@@ -946,7 +937,7 @@ Starting from the code below, try to reproduce the graphic.
 You can use several subplots with different partition.
 :::
 
-```
+```{python}
 plt.subplot(2, 2, 1)
 plt.subplot(2, 2, 3)
 plt.subplot(2, 2, 4)
@@ -968,7 +959,7 @@ You only need to modify the `axes` line
 
 Starting from the code below, try to reproduce the graphic.
 
-```
+```{python}
 plt.axes([0, 0, 1, 1])
 
 N = 20
@@ -999,7 +990,7 @@ Starting from the code below, try to reproduce the graphic.
 You need to use {func}`contourf()`
 :::
 
-```
+```{python}
 from mpl_toolkits.mplot3d import Axes3D
 
 fig = plt.figure()
@@ -1033,7 +1024,7 @@ Click on figure for solution.
 
 ______________________________________________________________________
 
-:::{topic} **Quick read**
+:::{admonition} Quick read
 If you want to do a first quick pass through the Scientific Python Lectures
 to learn the ecosystem, you can directly skip to the next chapter:
 {ref}`scipy`.
@@ -1049,7 +1040,6 @@ community of users and developers. Here are some links of interest:
 
 ### Tutorials
 
-```{eval-rst}
 .. hlist::
 
   * `Pyplot tutorial <https://matplotlib.org/users/pyplot_tutorial.html>`_
@@ -1100,11 +1090,9 @@ community of users and developers. Here are some links of interest:
     - The transformation pipeline
 
 
-```
 
 ### Matplotlib documentation
 
-```{eval-rst}
 .. hlist::
 
   * `User guide <https://matplotlib.org/users/index.html>`_
@@ -1119,26 +1107,15 @@ community of users and developers. Here are some links of interest:
 
   * `Screenshots <https://matplotlib.org/users/screenshots.html>`_
 
-```
 
 ### Code documentation
 
 The code is well documented and you can quickly access a specific command
 from within a python session:
 
-```
->>> import matplotlib.pyplot as plt
->>> help(plt.plot)  # doctest: +SKIP
-Help on function plot in module matplotlib.pyplot:
-<BLANKLINE>
-plot(*args: ...) -> 'list[Line2D]'
-    Plot y versus x as lines and/or markers.
-<BLANKLINE>
-    Call signatures::
-<BLANKLINE>
-        plot([x], y, [fmt], *, data=None, **kwargs)
-        plot([x], y, [fmt], [x2], y2, [fmt2], ..., **kwargs)
-...
+```{python}
+import matplotlib.pyplot as plt
+help(plt.plot)
 ```
 
 ### Galleries
@@ -1159,7 +1136,6 @@ Here is a set of tables that show main properties and styles.
 
 ### Line properties
 
-```{eval-rst}
 .. list-table::
    :widths: 20 30 50
    :header-rows: 1
@@ -1226,7 +1202,6 @@ Here is a set of tables that show main properties and styles.
      - .. image:: auto_examples/options/images/sphx_glr_plot_ms_001.png
 
 
-```
 
 ### Line styles
 
@@ -1252,7 +1227,5 @@ If you want to know more about colormaps, check the [documentation on Colormaps 
 
 ## Full code examples
 
-```{eval-rst}
 .. include::  auto_examples/index.rst
     :start-line: 1
-```

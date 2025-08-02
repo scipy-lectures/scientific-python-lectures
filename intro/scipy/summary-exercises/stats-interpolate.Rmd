@@ -53,23 +53,23 @@ The annual wind speeds maxima have already been computed and saved in
 the NumPy format in the file {download}`examples/max-speeds.npy`, thus they will be loaded
 by using NumPy:
 
-```
->>> import numpy as np
->>> max_speeds = np.load('intro/scipy/summary-exercises/examples/max-speeds.npy')
->>> years_nb = max_speeds.shape[0]
+```{python}
+import numpy as np
+max_speeds = np.load('intro/scipy/summary-exercises/examples/max-speeds.npy')
+years_nb = max_speeds.shape[0]
 ```
 
 Following the cumulative probability definition `p_i` from the previous
 section, the corresponding values will be:
 
-```
->>> cprob = (np.arange(years_nb, dtype=np.float32) + 1)/(years_nb + 1)
+```{python}
+cprob = (np.arange(years_nb, dtype=np.float32) + 1)/(years_nb + 1)
 ```
 
 and they are assumed to fit the given wind speeds:
 
-```
->>> sorted_max_speeds = np.sort(max_speeds)
+```{python}
+sorted_max_speeds = np.sort(max_speeds)
 ```
 
 ## Prediction with UnivariateSpline
@@ -90,33 +90,32 @@ are also provided for simpler use.
 For the Sprogø maxima wind speeds, the `UnivariateSpline` will be
 used because a spline of degree 3 seems to correctly fit the data:
 
-```
->>> import scipy as sp
->>> quantile_func = sp.interpolate.UnivariateSpline(cprob, sorted_max_speeds)
+```{python}
+import scipy as sp
+quantile_func = sp.interpolate.UnivariateSpline(cprob, sorted_max_speeds)
 ```
 
 The quantile function is now going to be evaluated from the full range
 of probabilities:
 
-```
->>> nprob = np.linspace(0, 1, 100)
->>> fitted_max_speeds = quantile_func(nprob)
+```{python}
+nprob = np.linspace(0, 1, 100)
+fitted_max_speeds = quantile_func(nprob)
 ```
 
 In the current model, the maximum wind speed occurring every 50 years is
 defined as the upper 2% quantile. As a result, the cumulative probability
 value will be:
 
-```
->>> fifty_prob = 1. - 0.02
+```{python}
+fifty_prob = 1. - 0.02
 ```
 
 So the storm wind speed occurring every 50 years can be guessed by:
 
-```
->>> fifty_wind = quantile_func(fifty_prob)
->>> fifty_wind
-array(32.97989825...)
+```{python}
+fifty_wind = quantile_func(fifty_prob)
+fifty_wind
 ```
 
 The results are now gathered on a Matplotlib figure:

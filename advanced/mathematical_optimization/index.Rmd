@@ -214,9 +214,9 @@ substitutions:
     ```
 ---
 
-% For doctesting
-% >>> import numpy as np
-
+```{python} tags=c("hide-input")
+import numpy as np
+```
 (mathematical-optimization)=
 
 # Mathematical optimization: finding minima of functions
@@ -233,17 +233,16 @@ optimization: we do not rely on the mathematical expression of the
 function that we are optimizing. Note that this expression can often be
 used for more efficient, non black-box, optimization.
 
-:::{topic} Prerequisites
-```{eval-rst}
+:::{admonition} Prerequisites
 .. rst-class:: horizontal
 
  * :ref:`NumPy <numpy>`
  * :ref:`SciPy <scipy>`
  * :ref:`Matplotlib <matplotlib>`
-```
 :::
 
-:::{seealso}
+:::{admonition} See also
+
 **References**
 
 Mathematical optimization is very ... mathematical. If you want
@@ -256,25 +255,19 @@ performance, it really pays to read the books:
 - [Practical Methods of Optimization](https://www.amazon.com/gp/product/0471494631/ref=ox_sc_act_title_1?ie=UTF8&smid=ATVPDKIKX0DER) by Fletcher: good at hand-waving explanations.
 :::
 
-```{eval-rst}
 .. include:: ../../includes/big_toc_css.rst
    :start-line: 1
 
-```
 
-```{contents} Chapters contents
-:depth: 2
-:local: true
-```
-
-% XXX: should I discuss root finding?
-
+<!---
+XXX: should I discuss root finding?
+-->
 ## Knowing your problem
 
 Not all optimization problems are equal. Knowing your problem enables you
 to choose the right tool.
 
-:::{topic} **Dimensionality of the problem**
+:::{admonition} Dimensionality of the problem
 The scale of an optimization problem is pretty much set by the
 *dimensionality of the problem*, i.e. the number of scalar variables
 on which the search is performed.
@@ -282,7 +275,6 @@ on which the search is performed.
 
 ### Convex versus non-convex optimization
 
-```{eval-rst}
 .. list-table::
 
  * - |convex_1d_1|
@@ -296,7 +288,6 @@ on which the search is performed.
        [f(A), f(B])], if A < C < B
 
    - **A non-convex function**
-```
 
 **Optimizing convex functions is easy. Optimizing non-convex functions can
 be very hard.**
@@ -308,7 +299,6 @@ also a global minimum. Then, in some sense, the minimum is unique.
 
 ### Smooth and non-smooth problems
 
-```{eval-rst}
 .. list-table::
 
  * - |smooth_1d_1|
@@ -320,7 +310,6 @@ also a global minimum. Then, in some sense, the minimum is unique.
      The gradient is defined everywhere, and is a continuous function
 
    - **A non-smooth function**
-```
 
 **Optimizing smooth functions is easier**
 (true in the context of *black-box* optimization, otherwise
@@ -330,15 +319,13 @@ piece-wise linear functions).
 
 ### Noisy versus exact cost functions
 
-```{eval-rst}
 .. list-table::
 
  * - Noisy (blue) and non-noisy (green) functions
 
    - |noisy|
-```
 
-:::{topic} **Noisy gradients**
+:::{admonition} Noisy gradients
 Many optimization methods rely on gradients of the objective function.
 If the gradient function is not given, they are computed numerically,
 which induces errors. In such situation, even if the objective
@@ -348,7 +335,6 @@ optimization.
 
 ### Constraints
 
-```{eval-rst}
 .. list-table::
 
  * - Optimizations under constraints
@@ -361,7 +347,6 @@ optimization.
 
    - |constraints|
 
-```
 
 ## A review of the different optimizers
 
@@ -371,22 +356,24 @@ Let's get started by finding the minimum of the scalar function
 $f(x)=\exp[(x-0.5)^2]$. {func}`scipy.optimize.minimize_scalar` uses
 Brent's method to find the minimum of a function:
 
-```
->>> import numpy as np
->>> import scipy as sp
->>> def f(x):
-...     return -np.exp(-(x - 0.5)**2)
->>> result = sp.optimize.minimize_scalar(f)
->>> result.success # check if solver was successful
-True
->>> x_min = result.x
->>> x_min
-np.float64(0.50...)
->>> x_min - 0.5
-np.float64(5.8...e-09)
+```{python}
+import numpy as np
+import scipy as sp
+def f(x):
+    return -np.exp(-(x - 0.5)**2)
+result = sp.optimize.minimize_scalar(f)
+result.success # check if solver was successful
 ```
 
-```{eval-rst}
+```{python}
+x_min = result.x
+x_min
+```
+
+```{python}
+x_min - 0.5
+```
+
 .. list-table:: **Brent's method on a quadratic function**: it
                 converges in 3 iterations, as the quadratic
                 approximation is then exact.
@@ -394,9 +381,7 @@ np.float64(5.8...e-09)
    * - |1d_optim_1|
 
      - |1d_optim_2|
-```
 
-```{eval-rst}
 .. list-table:: **Brent's method on a non-convex function**: note that
                 the fact that the optimizer avoided the local minimum
                 is a matter of luck.
@@ -404,7 +389,6 @@ np.float64(5.8...e-09)
    * - |1d_optim_3|
 
      - |1d_optim_4|
-```
 
 :::{note}
 You can use different solvers using the parameter `method`.
@@ -425,7 +409,6 @@ Here we focus on **intuitions**, not code. Code will follow.
 basically consists in taking small steps in the direction of the
 gradient, that is the direction of the *steepest descent*.
 
-```{eval-rst}
 .. list-table:: **Fixed step gradient descent**
    :widths: 1 1 1
 
@@ -444,12 +427,11 @@ gradient, that is the direction of the *steepest descent*.
      - |gradient_quad_icond|
 
      - |gradient_quad_icond_conv|
-```
 
 We can see that very anisotropic ([ill-conditioned](https://en.wikipedia.org/wiki/Condition_number)) functions are harder
 to optimize.
 
-:::{topic} **Take home message: conditioning number and preconditioning**
+:::{admonition} Take home message: conditioning number and preconditioning
 If you know natural scaling for your variables, prescale them so that
 they behave similarly. This is related to [preconditioning](https://en.wikipedia.org/wiki/Preconditioner).
 :::
@@ -458,7 +440,6 @@ Also, it clearly can be advantageous to take bigger steps. This
 is done in gradient descent code using a
 [line search](https://en.wikipedia.org/wiki/Line_search).
 
-```{eval-rst}
 .. list-table:: **Adaptive step gradient descent**
    :widths: 1 1 1
 
@@ -485,7 +466,6 @@ is done in gradient descent code using a
      - |agradient_rosen_icond|
 
      - |agradient_rosen_icond_conv|
-```
 
 The more a function looks like a quadratic function (elliptic
 iso-curves), the easier it is to optimize.
@@ -502,7 +482,6 @@ it cross the valley. The conjugate gradient solves this problem by adding
 a *friction* term: each step depends on the two last values of the
 gradient and sharp turns are reduced.
 
-```{eval-rst}
 .. list-table:: **Conjugate gradient descent**
    :widths: 1 1 1
 
@@ -517,43 +496,24 @@ gradient and sharp turns are reduced.
      - |cg_rosen_icond|
 
      - |cg_rosen_icond_conv|
-```
 
 SciPy provides {func}`scipy.optimize.minimize` to find the minimum of scalar
 functions of one or more variables. The simple conjugate gradient method can
 be used by setting the parameter `method` to CG
 
-```
->>> def f(x):   # The rosenbrock function
-...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
->>> sp.optimize.minimize(f, [2, -1], method="CG")
- message: Optimization terminated successfully.
- success: True
-  status: 0
-     fun: 1.650...e-11
-       x: [ 1.000e+00  1.000e+00]
-     nit: 13
-     jac: [-6.15...e-06  2.53...e-07]
-    nfev: 81
-    njev: 27
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+sp.optimize.minimize(f, [2, -1], method="CG")
 ```
 
 Gradient methods need the Jacobian (gradient) of the function. They can compute it
 numerically, but will perform better if you can pass them the gradient:
 
-```
->>> def jacobian(x):
-...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
->>> sp.optimize.minimize(f, [2, 1], method="CG", jac=jacobian)
- message: Optimization terminated successfully.
- success: True
-  status: 0
-     fun: 2.95786...e-14
-       x: [ 1.000e+00  1.000e+00]
-     nit: 8
-     jac: [ 7.183e-07 -2.990e-07]
-    nfev: 16
-    njev: 16
+```{python}
+def jacobian(x):
+    return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+sp.optimize.minimize(f, [2, 1], method="CG", jac=jacobian)
 ```
 
 Note that the function has only been evaluated 27 times, compared to 108
@@ -568,7 +528,6 @@ local quadratic approximation to compute the jump direction. For this
 purpose, they rely on the 2 first derivative of the function: the
 *gradient* and the [Hessian](https://en.wikipedia.org/wiki/Hessian_matrix).
 
-```{eval-rst}
 .. list-table::
    :widths: 1 1 1
 
@@ -596,28 +555,17 @@ purpose, they rely on the 2 first derivative of the function: the
      - |ncg_rosen_icond|
 
      - |ncg_rosen_icond_conv|
-```
 
 In SciPy, you can use the Newton method by setting `method` to Newton-CG in
 {func}`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
 inversion of the Hessian is performed by conjugate gradient
 
-```
->>> def f(x):   # The rosenbrock function
-...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
->>> def jacobian(x):
-...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
->>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)
- message: Optimization terminated successfully.
- success: True
-  status: 0
-     fun: 1.5601357400786612e-15
-       x: [ 1.000e+00  1.000e+00]
-     nit: 10
-     jac: [ 1.058e-07 -7.483e-08]
-    nfev: 11
-    njev: 33
-    nhev: 0
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+def jacobian(x):
+    return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)
 ```
 
 Note that compared to a conjugate gradient (above), Newton's method has
@@ -625,20 +573,10 @@ required less function evaluations, but more gradient evaluations, as it
 uses it to approximate the Hessian. Let's compute the Hessian and pass it
 to the algorithm:
 
-```
->>> def hessian(x): # Computed with sympy
-...     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
->>> sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)
- message: Optimization terminated successfully.
- success: True
-  status: 0
-     fun: 1.6277298383706738e-15
-       x: [ 1.000e+00  1.000e+00]
-     nit: 10
-     jac: [ 1.110e-07 -7.781e-08]
-    nfev: 11
-    njev: 11
-    nhev: 10
+```{python}
+def hessian(x): # Computed with sympy
+    return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
+sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)
 ```
 
 :::{note}
@@ -660,16 +598,14 @@ each step an approximation of the Hessian.
 
 ## Full code examples
 
-% include the gallery. Skip the first line to avoid the "orphan"
-% declaration
-
-```{eval-rst}
+<!---
+include the gallery. Skip the first line to avoid the "orphan"
+declaration
+-->
 .. include:: auto_examples/index.rst
    :start-line: 1
 
-```
 
-```{eval-rst}
 .. list-table::
    :widths: 1 1 1
 
@@ -696,25 +632,13 @@ each step an approximation of the Hessian.
      - |bfgs_rosen_icond|
 
      - |bfgs_rosen_icond_conv|
-```
 
-```
->>> def f(x):   # The rosenbrock function
-...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
->>> def jacobian(x):
-...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
->>> sp.optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)
- message: Optimization terminated successfully.
- success: True
-  status: 0
-     fun: 2.630637192365927e-16
-       x: [ 1.000e+00  1.000e+00]
-     nit: 8
-     jac: [ 6.709e-08 -3.222e-08]
-hess_inv: [[ 9.999e-01  2.000e+00]
-           [ 2.000e+00  4.499e+00]]
-    nfev: 10
-    njev: 10
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+def jacobian(x):
+    return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+sp.optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)
 ```
 
 **L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:
@@ -722,22 +646,12 @@ in very high dimensions (> 250) the Hessian matrix is too costly to
 compute and invert. L-BFGS keeps a low-rank version. In addition, box bounds
 are also supported by L-BFGS-B:
 
-```
->>> def f(x):   # The rosenbrock function
-...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
->>> def jacobian(x):
-...     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
->>> sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
-  message: CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
-  success: True
-   status: 0
-      fun: 1.4417677473...e-15
-        x: [ 1.000e+00  1.000e+00]
-      nit: 16
-      jac: [ 1.023e-07 -2.593e-08]
-     nfev: 17
-     njev: 17
- hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+def jacobian(x):
+    return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
 ```
 
 ### Gradient-less methods
@@ -746,7 +660,6 @@ are also supported by L-BFGS-B:
 
 Almost a gradient approach
 
-```{eval-rst}
 .. list-table::
    :widths: 1 1 1
 
@@ -765,7 +678,6 @@ Almost a gradient approach
 
      - |powell_rosen_icond_conv|
 
-```
 
 #### Simplex method: the Nelder-Mead
 
@@ -779,7 +691,6 @@ smooth such as experimental data points, as long as they display a
 large-scale bell-shape behavior. However it is slower than gradient-based
 methods on smooth, non-noisy functions.
 
-```{eval-rst}
 .. list-table::
    :widths: 1 1 1
 
@@ -794,24 +705,13 @@ methods on smooth, non-noisy functions.
      - |nm_rosen_icond|
 
      - |nm_rosen_icond_conv|
-```
 
 Using the Nelder-Mead solver in {func}`scipy.optimize.minimize`:
 
-```
->>> def f(x):   # The rosenbrock function
-...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
->>> sp.optimize.minimize(f, [2, -1], method="Nelder-Mead")
-       message: Optimization terminated successfully.
-       success: True
-        status: 0
-           fun: 1.11527915993744e-10
-             x: [ 1.000e+00  1.000e+00]
-           nit: 58
-          nfev: 111
- final_simplex: (array([[ 1.000e+00,  1.000e+00],
-                       [ 1.000e+00,  1.000e+00],
-                       [ 1.000e+00,  1.000e+00]]), array([ 1.115e-10,  1.537e-10,  4.988e-10]))
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+sp.optimize.minimize(f, [2, -1], method="Nelder-Mead")
 ```
 
 ### Global optimizers
@@ -828,11 +728,10 @@ parameters and returns the parameters corresponding to the minimum
 value. The parameters are specified with ranges given to
 {obj}`numpy.mgrid`. By default, 20 steps are taken in each direction:
 
-```
->>> def f(x):   # The rosenbrock function
-...     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
->>> sp.optimize.brute(f, ((-1, 2), (-1, 2))) # doctest:   +ELLIPSIS
-array([1.0000...,  1.0000...])
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+sp.optimize.brute(f, ((-1, 2), (-1, 2)))
 ```
 
 ## Practical guide to optimization with SciPy
@@ -847,7 +746,6 @@ All methods are exposed as the `method` argument of
 :width: 95%
 ```
 
-```{eval-rst}
 
 :With knowledge of the gradient:
 
@@ -875,7 +773,6 @@ Making your optimizer faster
 
 * Use `preconditionning <https://en.wikipedia.org/wiki/Preconditioner>`_
   when possible.
-```
 
 ### Making your optimizer faster
 
@@ -917,12 +814,12 @@ See also {func}`scipy.optimize.approx_fprime` to find your errors.
 :target: auto_examples/plot_exercise_ill_conditioned.html
 ```
 
-:::{topic} **Exercise: A simple (?) quadratic function**
+:::{admonition} Exercise: A simple (?) quadratic function
 :class: green
 
 Optimize the following function, using K[0] as a starting point:
 
-```
+```{python}
 rng = np.random.default_rng(27446968)
 K = rng.normal(size=(100, 100))
 
@@ -934,16 +831,14 @@ Time your approach. Find the fastest approach. Why is BFGS not
 working well?
 :::
 
-:::{topic} **Exercise: A locally flat minimum**
+:::{admonition} Exercise: A locally flat minimum
 :class: green
 
 Consider the function `exp(-1/(.1*x**2 + y**2)`. This function admits
 a minimum in (0, 0). Starting from an initialization at (1, 1), try
 to get within 1e-8 of this minimum point.
 
-```{eval-rst}
 .. centered:: |flat_min_0| |flat_min_1|
-```
 :::
 
 ## Special case: non-linear least-squares
@@ -956,25 +851,24 @@ implemented in {func}`scipy.optimize.leastsq`.
 
 Lets try to minimize the norm of the following vectorial function:
 
+```{python}
+def f(x):
+    return np.arctan(x) - np.arctan(np.linspace(0, 1, len(x)))
 ```
->>> def f(x):
-...     return np.arctan(x) - np.arctan(np.linspace(0, 1, len(x)))
 
->>> x0 = np.zeros(10)
->>> sp.optimize.leastsq(f, x0)
-(array([0.        , 0.11111111, 0.22222222, 0.33333333, 0.44444444,
-       0.55555556, 0.66666667, 0.77777778, 0.88888889, 1.        ]), ...)
+```{python}
+x0 = np.zeros(10)
+sp.optimize.leastsq(f, x0)
 ```
 
 This took 67 function evaluations (check it with 'full_output=True'). What
 if we compute the norm ourselves and use a good generic optimizer (BFGS):
 
-```
->>> def g(x):
-...     return np.sum(f(x)**2)
->>> result = sp.optimize.minimize(g, x0, method="BFGS")
->>> result.fun
-np.float64(2.6940...e-11)
+```{python}
+def g(x):
+    return np.sum(f(x)**2)
+result = sp.optimize.minimize(g, x0, method="BFGS")
+result.fun
 ```
 
 BFGS needs more function calls, and gives a less precise result.
@@ -1003,20 +897,22 @@ While it is possible to construct our optimization problem ourselves,
 SciPy provides a helper function for this purpose:
 {func}`scipy.optimize.curve_fit`:
 
-```
->>> def f(t, omega, phi):
-...     return np.cos(omega * t + phi)
-
->>> x = np.linspace(0, 3, 50)
->>> rng = np.random.default_rng(27446968)
->>> y = f(x, 1.5, 1) + .1*rng.normal(size=50)
-
->>> sp.optimize.curve_fit(f, x, y)
-(array([1.4812..., 0.9999...]), array([[ 0.0003..., -0.0004...],
-       [-0.0004...,  0.0010...]]))
+```{python}
+def f(t, omega, phi):
+    return np.cos(omega * t + phi)
 ```
 
-:::{topic} **Exercise**
+```{python}
+x = np.linspace(0, 3, 50)
+rng = np.random.default_rng(27446968)
+y = f(x, 1.5, 1) + .1*rng.normal(size=50)
+```
+
+```{python}
+sp.optimize.curve_fit(f, x, y)
+```
+
+:::{admonition} Exercise
 :class: green
 
 Do the same with omega = 3. What is the difficulty?
@@ -1032,20 +928,10 @@ as box bounds can be rewritten as such via change of variables. Both
 {func}`scipy.optimize.minimize_scalar` and {func}`scipy.optimize.minimize`
 support bound constraints with the parameter `bounds`:
 
-```
->>> def f(x):
-...    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
->>> sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
-  message: CONVERGENCE: NORM OF PROJECTED GRADIENT <= PGTOL
-  success: True
-   status: 0
-      fun: 1.5811388300841898
-        x: [ 1.500e+00  1.500e+00]
-      nit: 2
-      jac: [-9.487e-01 -3.162e-01]
-     nfev: 9
-     njev: 3
- hess_inv: <2x2 LbfgsInvHessProduct with dtype=float64>
+```{python}
+def f(x):
+   return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_constraints_002.png
@@ -1068,25 +954,20 @@ and $g(x) < 0$.
   :target: auto_examples/plot_non_bounds_constraints.html
   ```
 
-  ```
-  >>> def f(x):
-  ...     return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+```{python}
+def f(x):
+    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+```
 
-  >>> def constraint(x):
-  ...     return np.atleast_1d(1.5 - np.sum(np.abs(x)))
+```{python}
+def constraint(x):
+    return np.atleast_1d(1.5 - np.sum(np.abs(x)))
+```
 
-  >>> x0 = np.array([0, 0])
-  >>> sp.optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"})
-   message: Optimization terminated successfully
-   success: True
-    status: 0
-       fun: 2.47487373504...
-         x: [ 1.250e+00  2.500e-01]
-       nit: 5
-       jac: [-7.071e-01 -7.071e-01]
-      nfev: 15
-      njev: 5
-  ```
+```{python}
+x0 = np.array([0, 0])
+sp.optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"})
+```
 
 :::{warning}
 The above problem is known as the [Lasso](<https://en.wikipedia.org/wiki/Lasso_(statistics)>)
@@ -1095,7 +976,7 @@ problem in statistics, and there exist very efficient solvers for it
 general do not use generic solvers when specific ones exist.
 :::
 
-:::{topic} **Lagrange multipliers**
+:::{admonition} Lagrange multipliers
 If you are ready to do a bit of math, many constrained optimization
 problems can be converted to non-constrained optimization problems
 using a mathematical trick known as [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier).
@@ -1103,15 +984,15 @@ using a mathematical trick known as [Lagrange multipliers](https://en.wikipedia.
 
 ## Full code examples
 
-% include the gallery. Skip the first line to avoid the "orphan"
-% declaration
-
-```{eval-rst}
+<!---
+include the gallery. Skip the first line to avoid the "orphan"
+declaration
+-->
 .. include:: auto_examples/index.rst
     :start-line: 1
-```
 
-:::{seealso}
+:::{admonition} See also
+
 **Other Software**
 
 SciPy tries to include the best well-established, general-use,

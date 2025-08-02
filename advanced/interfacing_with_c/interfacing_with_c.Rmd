@@ -17,13 +17,14 @@ jupyter:
 
 **Author**: *Valentin Haenel*
 
-% TODO:
-%
-% * Download links
-% * Timing?
-% * Additional documentation
-% * What about overflow?
+<!---
+TODO:
 
+* Download links
+* Timing?
+* Additional documentation
+* What about overflow?
+-->
 This chapter contains an *introduction* to the many different routes for
 making your native code (primarily `C/C++`) available from Python, a
 process commonly referred to *wrapping*. The goal of this chapter is to
@@ -32,11 +33,6 @@ merits and shortcomings are, so that you can select the appropriate one
 for your specific needs. In any case, once you do start wrapping, you
 almost certainly will want to consult the respective documentation for
 your selected technique.
-
-```{contents} Chapters contents
-:depth: 1
-:local: true
-```
 
 ## Introduction
 
@@ -350,8 +346,9 @@ NumPy contains some support for interfacing with ctypes. In particular there is
 support for exporting certain attributes of a NumPy array as ctypes data-types
 and there are functions to convert from C arrays to NumPy arrays and back.
 
-% XXX Should use :mod: and :class:
-
+<!---
+XXX Should use :mod: and :class:
+-->
 For more information, consult the corresponding section in the [NumPy Cookbook](https://www.scipy.org/Cookbook/Ctypes) and the API documentation for
 [numpy.ndarray.ctypes](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.ctypes.html)
 and [numpy.ctypeslib](https://numpy.org/doc/stable/reference/routines.ctypeslib.html).

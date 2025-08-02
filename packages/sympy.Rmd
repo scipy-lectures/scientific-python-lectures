@@ -13,15 +13,16 @@ jupyter:
     name: python3
 ---
 
-% TODO: bench and fit in 1:30
-
+<!---
+TODO: bench and fit in 1:30
+-->
 (sympy)=
 
 # Sympy : Symbolic Mathematics in Python
 
 **Author**: *Fabian Pedregosa*
 
-:::{topic} Objectives
+:::{admonition} Objectives
 1. Evaluate expressions with arbitrary precision.
 2. Perform algebraic manipulations on symbolic expressions.
 3. Perform basic calculus tasks (limits, differentiation and
@@ -30,9 +31,7 @@ jupyter:
 5. Solve some differential equations.
 :::
 
-```{eval-rst}
 .. role:: input(strong)
-```
 
 **What is SymPy?** SymPy is a Python library for symbolic mathematics. It
 aims to be an alternative to systems such as Mathematica or Maple while keeping
@@ -42,11 +41,6 @@ external libraries.
 
 Sympy documentation and packages for installation can be found on
 <https://www.sympy.org/>
-
-```{contents} Chapters contents
-:depth: 4
-:local: true
-```
 
 ## First Steps with SymPy
 
@@ -58,15 +52,17 @@ The Rational class represents a rational number as a pair of two
 Integers: the numerator and the denominator, so `Rational(1, 2)`
 represents 1/2, `Rational(5, 2)` 5/2 and so on:
 
+```{python}
+import sympy as sym
+a = sym.Rational(1, 2)
 ```
->>> import sympy as sym
->>> a = sym.Rational(1, 2)
 
->>> a
-1/2
+```{python}
+a
+```
 
->>> a*2
-1
+```{python}
+a*2
 ```
 
 SymPy uses mpmath in the background, which makes it possible to
@@ -75,15 +71,16 @@ way, some special constants, like $e$, $pi$, $oo$ (Infinity),
 are treated as
 symbols and can be evaluated with arbitrary precision:
 
+```{python}
+sym.pi**2
 ```
->>> sym.pi**2
-pi**2
 
->>> sym.pi.evalf()
-3.14159265358979
+```{python}
+sym.pi.evalf()
+```
 
->>> (sym.pi + sym.exp(1)).evalf()
-5.85987448204884
+```{python}
+(sym.pi + sym.exp(1)).evalf()
 ```
 
 as you see, `evalf` evaluates the expression to a floating-point number.
@@ -91,14 +88,15 @@ as you see, `evalf` evaluates the expression to a floating-point number.
 There is also a class representing mathematical infinity, called
 `oo`:
 
-```
->>> sym.oo > 99999
-True
->>> sym.oo + 1
-oo
+```{python}
+sym.oo > 99999
 ```
 
-:::{topic} **Exercises**
+```{python}
+sym.oo + 1
+```
+
+:::{admonition} Exercises
 :class: green
 
 1. Calculate $\sqrt{2}$ with 100 decimals.
@@ -110,30 +108,30 @@ oo
 In contrast to other Computer Algebra Systems, in SymPy you have to declare
 symbolic variables explicitly:
 
-```
->>> x = sym.Symbol('x')
->>> y = sym.Symbol('y')
+```{python}
+x = sym.Symbol('x')
+y = sym.Symbol('y')
 ```
 
 Then you can manipulate them:
 
+```{python}
+x + y + x - y
 ```
->>> x + y + x - y
-2*x
 
->>> (x + y) ** 2
-(x + y)**2
+```{python}
+(x + y) ** 2
 ```
 
 Symbols can now be manipulated using some of python operators: `+`, `-`,
 `*`, `**` (arithmetic), `&`, `|`, `~`, `>>`, `<<` (boolean).
 
-:::{topic} **Printing**
+:::{admonition} Printing
 Sympy allows for control of the display of the output. From here we use the
 following setting for printing:
 
-```
->>> sym.init_printing(use_unicode=False, wrap_line=True)
+```{python}
+sym.init_printing(use_unicode=False, wrap_line=True)
 ```
 :::
 
@@ -147,27 +145,30 @@ take a look into some of the most frequently used: expand and simplify.
 Use this to expand an algebraic expression. It will try to denest
 powers and multiplications:
 
+```{python}
+sym.expand((x + y) ** 3)
 ```
->>> sym.expand((x + y) ** 3)
- 3      2          2    3
-x  + 3*x *y + 3*x*y  + y
->>> 3 * x * y ** 2 + 3 * y * x ** 2 + x ** 3 + y ** 3
- 3      2          2    3
-x  + 3*x *y + 3*x*y  + y
+
+```{python}
+3 * x * y ** 2 + 3 * y * x ** 2 + x ** 3 + y ** 3
 ```
 
 Further options can be given in form on keywords:
 
+```{python}
+sym.expand(x + y, complex=True)
 ```
->>> sym.expand(x + y, complex=True)
-re(x) + re(y) + I*im(x) + I*im(y)
->>> sym.I * sym.im(x) + sym.I * sym.im(y) + sym.re(x) + sym.re(y)
-re(x) + re(y) + I*im(x) + I*im(y)
 
->>> sym.expand(sym.cos(x + y), trig=True)
--sin(x)*sin(y) + cos(x)*cos(y)
->>> sym.cos(x) * sym.cos(y) - sym.sin(x) * sym.sin(y)
--sin(x)*sin(y) + cos(x)*cos(y)
+```{python}
+sym.I * sym.im(x) + sym.I * sym.im(y) + sym.re(x) + sym.re(y)
+```
+
+```{python}
+sym.expand(sym.cos(x + y), trig=True)
+```
+
+```{python}
+sym.cos(x) * sym.cos(y) - sym.sin(x) * sym.sin(y)
 ```
 
 ### Simplify
@@ -175,9 +176,8 @@ re(x) + re(y) + I*im(x) + I*im(y)
 Use simplify if you would like to transform an expression into a
 simpler form:
 
-```
->>> sym.simplify((x + x * y) / x)
-y + 1
+```{python}
+sym.simplify((x + x * y) / x)
 ```
 
 Simplification is a somewhat vague term, and more precises
@@ -185,7 +185,7 @@ alternatives to simplify exists: `powsimp` (simplification of
 exponents), `trigsimp` (for trigonometric expressions) , `logcombine`,
 `radsimp`, together.
 
-:::{topic} **Exercises**
+:::{admonition} Exercises
 :class: green
 
 1. Calculate the expanded form of $(x+y)^6$.
@@ -200,22 +200,22 @@ Limits are easy to use in SymPy, they follow the syntax `limit(function,
 variable, point)`, so to compute the limit of $f(x)$ as
 $x \rightarrow 0$, you would issue `limit(f, x, 0)`:
 
-```
->>> sym.limit(sym.sin(x) / x, x, 0)
-1
+```{python}
+sym.limit(sym.sin(x) / x, x, 0)
 ```
 
 you can also calculate the limit at infinity:
 
+```{python}
+sym.limit(x, x, sym.oo)
 ```
->>> sym.limit(x, x, sym.oo)
-oo
 
->>> sym.limit(1 / x, x, sym.oo)
-0
+```{python}
+sym.limit(1 / x, x, sym.oo)
+```
 
->>> sym.limit(x ** x, x, 0)
-1
+```{python}
+sym.limit(x ** x, x, 0)
 ```
 
 ```{index} differentiation, diff
@@ -226,25 +226,22 @@ oo
 You can differentiate any SymPy expression using `diff(func,
 var)`. Examples:
 
+```{python}
+sym.diff(sym.sin(x), x)
 ```
->>> sym.diff(sym.sin(x), x)
-cos(x)
->>> sym.diff(sym.sin(2 * x), x)
-2*cos(2*x)
 
->>> sym.diff(sym.tan(x), x)
-   2
-tan (x) + 1
+```{python}
+sym.diff(sym.sin(2 * x), x)
+```
+
+```{python}
+sym.diff(sym.tan(x), x)
 ```
 
 You can check that it is correct by:
 
-```
->>> sym.limit((sym.tan(x + y) - sym.tan(x)) / y, y, 0)
-   1
--------
-   2
-cos (x)
+```{python}
+sym.limit((sym.tan(x + y) - sym.tan(x)) / y, y, 0)
 ```
 
 Which is equivalent since
@@ -255,25 +252,22 @@ $$
 
 You can check this as well:
 
-```
->>> sym.trigsimp(sym.diff(sym.tan(x), x))
-   1
--------
-   2
-cos (x)
+```{python}
+sym.trigsimp(sym.diff(sym.tan(x), x))
 ```
 
 Higher derivatives can be calculated using the `diff(func, var, n)` method:
 
+```{python}
+sym.diff(sym.sin(2 * x), x, 1)
 ```
->>> sym.diff(sym.sin(2 * x), x, 1)
-2*cos(2*x)
 
->>> sym.diff(sym.sin(2 * x), x, 2)
--4*sin(2*x)
+```{python}
+sym.diff(sym.sin(2 * x), x, 2)
+```
 
->>> sym.diff(sym.sin(2 * x), x, 3)
--8*cos(2*x)
+```{python}
+sym.diff(sym.sin(2 * x), x, 3)
 ```
 
 ### Series expansion
@@ -281,20 +275,15 @@ Higher derivatives can be calculated using the `diff(func, var, n)` method:
 SymPy also knows how to compute the Taylor series of an expression at
 a point. Use `series(expr, var)`:
 
-```
->>> sym.series(sym.cos(x), x)
-     2    4
-    x    x     / 6\
-1 - -- + -- + O\x /
-    2    24
->>> sym.series(1/sym.cos(x), x)
-     2      4
-    x    5*x     / 6\
-1 + -- + ---- + O\x /
-    2     24
+```{python}
+sym.series(sym.cos(x), x)
 ```
 
-:::{topic} **Exercises**
+```{python}
+sym.series(1/sym.cos(x), x)
+```
+
+:::{admonition} Exercises
 :class: green
 
 1. Calculate $\lim_{x\rightarrow 0} \sin(x)/x$
@@ -311,48 +300,50 @@ elementary and special functions via `integrate()` facility, which uses
 the powerful extended Risch-Norman algorithm and some heuristics and pattern
 matching. You can integrate elementary functions:
 
+```{python}
+sym.integrate(6 * x ** 5, x)
 ```
->>> sym.integrate(6 * x ** 5, x)
- 6
-x
->>> sym.integrate(sym.sin(x), x)
--cos(x)
->>> sym.integrate(sym.log(x), x)
-x*log(x) - x
->>> sym.integrate(2 * x + sym.sinh(x), x)
- 2
-x  + cosh(x)
+
+```{python}
+sym.integrate(sym.sin(x), x)
+```
+
+```{python}
+sym.integrate(sym.log(x), x)
+```
+
+```{python}
+sym.integrate(2 * x + sym.sinh(x), x)
 ```
 
 Also special functions are handled easily:
 
-```
->>> sym.integrate(sym.exp(-x ** 2) * sym.erf(x), x)
-  ____    2
-\/ pi *erf (x)
---------------
-      4
+```{python}
+sym.integrate(sym.exp(-x ** 2) * sym.erf(x), x)
 ```
 
 It is possible to compute definite integral:
 
+```{python}
+sym.integrate(x**3, (x, -1, 1))
 ```
->>> sym.integrate(x**3, (x, -1, 1))
-0
->>> sym.integrate(sym.sin(x), (x, 0, sym.pi / 2))
-1
->>> sym.integrate(sym.cos(x), (x, -sym.pi / 2, sym.pi / 2))
-2
+
+```{python}
+sym.integrate(sym.sin(x), (x, 0, sym.pi / 2))
+```
+
+```{python}
+sym.integrate(sym.cos(x), (x, -sym.pi / 2, sym.pi / 2))
 ```
 
 Also improper integrals are supported as well:
 
+```{python}
+sym.integrate(sym.exp(-x), (x, 0, sym.oo))
 ```
->>> sym.integrate(sym.exp(-x), (x, 0, sym.oo))
-1
->>> sym.integrate(sym.exp(-x ** 2), (x, -sym.oo, sym.oo))
-  ____
-\/ pi
+
+```{python}
+sym.integrate(sym.exp(-x ** 2), (x, -sym.oo, sym.oo))
 ```
 
 ```{index} equations; algebraic, solve
@@ -363,30 +354,27 @@ Also improper integrals are supported as well:
 SymPy is able to solve algebraic equations, in one and several
 variables using {func}`~sympy.solveset`:
 
-```
->>> sym.solveset(x ** 4 - 1, x)
-{-1, 1, -I, I}
+```{python}
+sym.solveset(x ** 4 - 1, x)
 ```
 
 As you can see it takes as first argument an expression that is
 supposed to be equaled to 0. It also has (limited) support for transcendental
 equations:
 
-```
->>> sym.solveset(sym.exp(x) + 1, x)
-{I*(2*n*pi + pi) | n in Integers}
+```{python}
+sym.solveset(sym.exp(x) + 1, x)
 ```
 
-:::{topic} **Systems of linear equations**
+:::{admonition} Systems of linear equations
 Sympy is able to solve a large part of
 polynomial equations, and is also capable of solving multiple
 equations with respect to multiple variables giving a tuple as second
 argument. To do this you use the {func}`~sympy.solve` command:
 
-```
->>> solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
->>> solution[x], solution[y]
-(-3, 1)
+```{python}
+solution = sym.solve((x + 5 * y - 2, -3 * x + 6 * y - 15), (x, y))
+solution[x], solution[y]
 ```
 :::
 
@@ -395,36 +383,32 @@ Another alternative in the case of polynomial equations is
 terms, and is capable of computing the factorization over various
 domains:
 
+```{python}
+f = x ** 4 - 3 * x ** 2 + 1
+sym.factor(f)
 ```
->>> f = x ** 4 - 3 * x ** 2 + 1
->>> sym.factor(f)
-/ 2        \ / 2        \
-\x  - x - 1/*\x  + x - 1/
 
->>> sym.factor(f, modulus=5)
-       2        2
-(x - 2) *(x + 2)
+```{python}
+sym.factor(f, modulus=5)
 ```
 
 SymPy is also able to solve boolean equations, that is, to decide if a
 certain boolean expression is satisfiable or not. For this, we use the
 function satisfiable:
 
-```
->>> sym.satisfiable(x & y)
-{x: True, y: True}
+```{python}
+sym.satisfiable(x & y)
 ```
 
 This tells us that `(x & y)` is True whenever `x` and `y` are both True.
 If an expression cannot be true, i.e. no values of its arguments can make
 the expression True, it will return False:
 
-```
->>> sym.satisfiable(x & ~x)
-False
+```{python}
+sym.satisfiable(x & ~x)
 ```
 
-:::{topic} **Exercises**
+:::{admonition} Exercises
 :class: green
 
 1. Solve the system of equations $x + y = 2$, $2\cdot x + y = 0$
@@ -440,27 +424,20 @@ False
 
 Matrices are created as instances from the Matrix class:
 
-```
->>> sym.Matrix([[1, 0], [0, 1]])
-[1  0]
-[    ]
-[0  1]
+```{python}
+sym.Matrix([[1, 0], [0, 1]])
 ```
 
 unlike a NumPy array, you can also put Symbols in it:
 
+```{python}
+x, y = sym.symbols('x, y')
+A = sym.Matrix([[1, x], [y, 1]])
+A
 ```
->>> x, y = sym.symbols('x, y')
->>> A = sym.Matrix([[1, x], [y, 1]])
->>> A
-[1  x]
-[    ]
-[y  1]
 
->>> A**2
-[x*y + 1    2*x  ]
-[                ]
-[  2*y    x*y + 1]
+```{python}
+A**2
 ```
 
 ```{index} equations; differential, diff, dsolve
@@ -472,26 +449,23 @@ SymPy is capable of solving (some) Ordinary Differential.
 To solve differential equations, use dsolve. First, create
 an undefined function by passing cls=Function to the symbols function:
 
-```
->>> f, g = sym.symbols('f g', cls=sym.Function)
+```{python}
+f, g = sym.symbols('f g', cls=sym.Function)
 ```
 
 f and g are now undefined functions. We can call f(x), and it will represent
 an unknown function:
 
-```
->>> f(x)
+```{python}
 f(x)
+```
 
->>> f(x).diff(x, x) + f(x)
-         2
-        d
-f(x) + ---(f(x))
-         2
-       dx
+```{python}
+f(x).diff(x, x) + f(x)
+```
 
->>> sym.dsolve(f(x).diff(x, x) + f(x), f(x))
-f(x) = C1*sin(x) + C2*cos(x)
+```{python}
+sym.dsolve(f(x).diff(x, x) + f(x), f(x))
 ```
 
 Keyword arguments can be given to this function in order to help if
@@ -499,14 +473,11 @@ find the best possible resolution system. For example, if you know
 that it is a separable equations, you can use keyword `hint='separable'`
 to force dsolve to resolve it as a separable equation:
 
-```
->>> sym.dsolve(sym.sin(x) * sym.cos(f(x)) + sym.cos(x) * sym.sin(f(x)) * f(x).diff(x), f(x), hint='separable')
-               /  C1  \                    /  C1  \
- [f(x) = - acos|------| + 2*pi, f(x) = acos|------|]
-               \cos(x)/                    \cos(x)/
+```{python}
+sym.dsolve(sym.sin(x) * sym.cos(f(x)) + sym.cos(x) * sym.sin(f(x)) * f(x).diff(x), f(x), hint='separable')
 ```
 
-:::{topic} **Exercises**
+:::{admonition} Exercises
 :class: green
 
 1. Solve the Bernoulli differential equation

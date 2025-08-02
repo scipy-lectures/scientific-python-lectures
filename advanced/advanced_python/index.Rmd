@@ -21,9 +21,7 @@ substitutions:
     ```
 ---
 
-```{eval-rst}
 .. default-role:: py:obj
-```
 
 # Advanced Python Constructs
 
@@ -46,11 +44,6 @@ evaluated from various angles and discussed via *Python Enhancement
 Proposals* --- [PEPs]. As a result, features described in this chapter
 were added after it was shown that they indeed solve real problems and
 that their use is as simple as possible.
-
-```{contents} Chapter contents
-:depth: 4
-:local: true
-```
 
 ## Iterators, generator expressions and generators
 
@@ -82,26 +75,34 @@ create an iterator object is the most straightforward way to get hold
 of an iterator. The `iter` function does that for us, saving a few
 keystrokes.
 
+```{python}
+nums = [1, 2, 3]      # note that ... varies: these are different objects
+iter(nums)
 ```
->>> nums = [1, 2, 3]      # note that ... varies: these are different objects
->>> iter(nums)
-<...iterator object at ...>
->>> nums.__iter__()
-<...iterator object at ...>
->>> nums.__reversed__()
-<...reverseiterator object at ...>
 
->>> it = iter(nums)
->>> next(it)
-1
->>> next(it)
-2
->>> next(it)
-3
->>> next(it)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-StopIteration
+```{python}
+nums.__iter__()
+```
+
+```{python}
+nums.__reversed__()
+```
+
+```{python}
+it = iter(nums)
+next(it)
+```
+
+```{python}
+next(it)
+```
+
+```{python}
+next(it)
+```
+
+```{python}
+next(it)
 ```
 
 When used in a loop, `StopIteration <exceptions.StopIteration>` is
@@ -122,7 +123,7 @@ this. The concept is also stretched to other things:
 e.g. `file` objects support iteration over lines.
 
 > ```pycon
-> >>> with open("/etc/fstab") as f: # doctest: +SKIP
+> >>> with open("/etc/fstab") as f:
 > ...     f is f.__iter__()
 > ...
 > True
@@ -141,13 +142,16 @@ parentheses or an expression. If round parentheses are used, then a
 generator iterator is created. If rectangular parentheses are used,
 the process is short-circuited and we get a `list`.
 
+```{python}
+(i for i in nums)
 ```
->>> (i for i in nums)
-<generator object <genexpr> at 0x...>
->>> [i for i in nums]
-[1, 2, 3]
->>> list(i for i in nums)
-[1, 2, 3]
+
+```{python}
+[i for i in nums]
+```
+
+```{python}
+list(i for i in nums)
 ```
 
 The list comprehension syntax also extends to
@@ -156,11 +160,12 @@ A `set` is created when the generator expression is enclosed in curly
 braces. A `dict` is created when the generator expression contains
 "pairs" of the form `key:value`:
 
+```{python}
+{i for i in range(3)}
 ```
->>> {i for i in range(3)}
-{0, 1, 2}
->>> {i:i**2 for i in range(3)}
-{0: 0, 1: 1, 2: 4}
+
+```{python}
+{i:i**2 for i in range(3)}
 ```
 
 One *gotcha* should be mentioned: in old Pythons the index variable
@@ -192,43 +197,45 @@ Each encountered `yield` statement gives a value becomes the return
 value of `next`. After executing the `yield` statement, the
 execution of this function is suspended.
 
+```{python}
+def f():
+  yield 1
+  yield 2
+f()
 ```
->>> def f():
-...   yield 1
-...   yield 2
->>> f()
-<generator object f at 0x...>
->>> gen = f()
->>> next(gen)
-1
->>> next(gen)
-2
->>> next(gen)
-Traceback (most recent call last):
- File "<stdin>", line 1, in <module>
-StopIteration
+
+```{python}
+gen = f()
+next(gen)
+```
+
+```{python}
+next(gen)
+```
+
+```{python}
+next(gen)
 ```
 
 Let's go over the life of the single invocation of the generator
 function.
 
+```{python}
+def f():
+  print("-- start --")
+  yield 3
+  print("-- finish --")
+  yield 4
+gen = f()
+next(gen)
 ```
->>> def f():
-...   print("-- start --")
-...   yield 3
-...   print("-- finish --")
-...   yield 4
->>> gen = f()
->>> next(gen)
--- start --
-3
->>> next(gen)
--- finish --
-4
->>> next(gen)
-Traceback (most recent call last):
- ...
-StopIteration
+
+```{python}
+next(gen)
+```
+
+```{python}
+next(gen)
 ```
 
 Contrary to a normal function, where executing `f()` would
@@ -291,7 +298,7 @@ The second of the new methods is
 `throw(type, value=None, traceback=None) <generator.throw>`
 which is equivalent to:
 
-```
+```{python}
 raise type, value, traceback
 ```
 
@@ -319,37 +326,38 @@ method to destroy objects holding the state of generator.
 Let's define a generator which just prints what is passed in through
 send and throw.
 
+```{python}
+import itertools
+def g():
+    print('--start--')
+    for i in itertools.count():
+        print('--yielding %i--' % i)
+        try:
+            ans = yield i
+        except GeneratorExit:
+            print('--closing--')
+            raise
+        except Exception as e:
+            print('--yield raised %r--' % e)
+        else:
+            print('--yield returned %s--' % ans)
 ```
->>> import itertools
->>> def g():
-...     print('--start--')
-...     for i in itertools.count():
-...         print('--yielding %i--' % i)
-...         try:
-...             ans = yield i
-...         except GeneratorExit:
-...             print('--closing--')
-...             raise
-...         except Exception as e:
-...             print('--yield raised %r--' % e)
-...         else:
-...             print('--yield returned %s--' % ans)
 
->>> it = g()
->>> next(it)
---start--
---yielding 0--
-0
->>> it.send(11)
---yield returned 11--
---yielding 1--
-1
->>> it.throw(IndexError)
---yield raised IndexError()--
---yielding 2--
-2
->>> it.close()
---closing--
+```{python}
+it = g()
+next(it)
+```
+
+```{python}
+it.send(11)
+```
+
+```{python}
+it.throw(IndexError)
+```
+
+```{python}
+it.close()
 ```
 
 ### Chaining generators
@@ -364,7 +372,7 @@ values generated by a second generator, a **subgenerator**.
 If yielding of values is the only concern, this can be performed
 without much difficulty using a loop such as
 
-```pycon
+```{python}
 subgen = some_other_generator()
 for v in subgen:
     yield v
@@ -379,7 +387,7 @@ generator function. Such code is provided in {pep}`380#id13`, here it
 suffices to say that new syntax to properly yield from a subgenerator
 is being introduced in Python 3.3:
 
-```pycon
+```{python}
 yield from some_other_generator()
 ```
 
@@ -409,7 +417,7 @@ syntax, i.e. an at-symbol and the name of the decorating function.
 Function can be decorated by using the decorator syntax for
 functions:
 
-```
+```{python}
 @decorator             # ②
 def function():        # ①
     pass
@@ -438,7 +446,7 @@ the decorated function doubling as a temporary variable must be used
 at least three times, which is prone to errors. Nevertheless, the
 example above is equivalent to:
 
-```
+```{python}
 def function():                  # ①
     pass
 function = decorator(function)   # ②
@@ -495,31 +503,34 @@ etc.), but is only possible when no arguments are needed to customise
 the decorator. Decorators written as functions can be used in those
 two cases:
 
+```{python}
+def simple_decorator(function):
+  print("doing decoration")
+  return function
+@simple_decorator
+def function():
+  print("inside function")
 ```
->>> def simple_decorator(function):
-...   print("doing decoration")
-...   return function
->>> @simple_decorator
-... def function():
-...   print("inside function")
-doing decoration
->>> function()
-inside function
 
->>> def decorator_with_arguments(arg):
-...   print("defining the decorator")
-...   def _decorator(function):
-...       # in this inner function, arg is available too
-...       print("doing decoration, %r" % arg)
-...       return function
-...   return _decorator
->>> @decorator_with_arguments("abc")
-... def function():
-...   print("inside function")
-defining the decorator
-doing decoration, 'abc'
->>> function()
-inside function
+```{python}
+function()
+```
+
+```{python}
+def decorator_with_arguments(arg):
+  print("defining the decorator")
+  def _decorator(function):
+      # in this inner function, arg is available too
+      print("doing decoration, %r" % arg)
+      return function
+  return _decorator
+@decorator_with_arguments("abc")
+def function():
+  print("inside function")
+```
+
+```{python}
+function()
 ```
 
 The two trivial decorators above fall into the category of decorators
@@ -527,27 +538,25 @@ which return the original function. If they were to return a new
 function, an extra level of nestedness would be required.
 In the worst case, three levels of nested functions.
 
+```{python}
+def replacing_decorator_with_args(arg):
+  print("defining the decorator")
+  def _decorator(function):
+      # in this inner function, arg is available too
+      print("doing decoration, %r" % arg)
+      def _wrapper(*args, **kwargs):
+          print("inside wrapper, %r %r" % (args, kwargs))
+          return function(*args, **kwargs)
+      return _wrapper
+  return _decorator
+@replacing_decorator_with_args("abc")
+def function(*args, **kwargs):
+    print("inside function, %r %r" % (args, kwargs))
+    return 14
 ```
->>> def replacing_decorator_with_args(arg):
-...   print("defining the decorator")
-...   def _decorator(function):
-...       # in this inner function, arg is available too
-...       print("doing decoration, %r" % arg)
-...       def _wrapper(*args, **kwargs):
-...           print("inside wrapper, %r %r" % (args, kwargs))
-...           return function(*args, **kwargs)
-...       return _wrapper
-...   return _decorator
->>> @replacing_decorator_with_args("abc")
-... def function(*args, **kwargs):
-...     print("inside function, %r %r" % (args, kwargs))
-...     return 14
-defining the decorator
-doing decoration, 'abc'
->>> function(11, 12)
-inside wrapper, (11, 12) {}
-inside function, (11, 12) {}
-14
+
+```{python}
+function(11, 12)
 ```
 
 The `_wrapper` function is defined to accept all positional and
@@ -567,24 +576,27 @@ which is not very useful. Therefore it's enough to discuss class-based
 decorators where arguments are given in the decorator expression and
 the decorator `__init__` method is used for decorator construction.
 
+```{python}
+class decorator_class(object):
+  def __init__(self, arg):
+      # this method is called in the decorator expression
+      print("in decorator init, %s" % arg)
+      self.arg = arg
+  def __call__(self, function):
+      # this method is called to do the job
+      print("in decorator call, %s" % self.arg)
+      return function
+deco_instance = decorator_class('foo')
 ```
->>> class decorator_class(object):
-...   def __init__(self, arg):
-...       # this method is called in the decorator expression
-...       print("in decorator init, %s" % arg)
-...       self.arg = arg
-...   def __call__(self, function):
-...       # this method is called to do the job
-...       print("in decorator call, %s" % self.arg)
-...       return function
->>> deco_instance = decorator_class('foo')
-in decorator init, foo
->>> @deco_instance
-... def function(*args, **kwargs):
-...   print("in function, %s %s" % (args, kwargs))
-in decorator call, foo
->>> function()
-in function, () {}
+
+```{python}
+@deco_instance
+def function(*args, **kwargs):
+  print("in function, %s %s" % (args, kwargs))
+```
+
+```{python}
+function()
 ```
 
 Contrary to normal rules ({PEP}`8`) decorators written as classes
@@ -596,29 +608,31 @@ have a decorator which returns the original function. Objects are
 supposed to hold state, and such decorators are more useful when the
 decorator returns a new object.
 
+```{python}
+class replacing_decorator_class(object):
+  def __init__(self, arg):
+      # this method is called in the decorator expression
+      print("in decorator init, %s" % arg)
+      self.arg = arg
+  def __call__(self, function):
+      # this method is called to do the job
+      print("in decorator call, %s" % self.arg)
+      self.function = function
+      return self._wrapper
+  def _wrapper(self, *args, **kwargs):
+      print("in the wrapper, %s %s" % (args, kwargs))
+      return self.function(*args, **kwargs)
+deco_instance = replacing_decorator_class('foo')
 ```
->>> class replacing_decorator_class(object):
-...   def __init__(self, arg):
-...       # this method is called in the decorator expression
-...       print("in decorator init, %s" % arg)
-...       self.arg = arg
-...   def __call__(self, function):
-...       # this method is called to do the job
-...       print("in decorator call, %s" % self.arg)
-...       self.function = function
-...       return self._wrapper
-...   def _wrapper(self, *args, **kwargs):
-...       print("in the wrapper, %s %s" % (args, kwargs))
-...       return self.function(*args, **kwargs)
->>> deco_instance = replacing_decorator_class('foo')
-in decorator init, foo
->>> @deco_instance
-... def function(*args, **kwargs):
-...   print("in function, %s %s" % (args, kwargs))
-in decorator call, foo
->>> function(11, 12)
-in the wrapper, (11, 12) {}
-in function, (11, 12) {}
+
+```{python}
+@deco_instance
+def function(*args, **kwargs):
+  print("in function, %s %s" % (args, kwargs))
+```
+
+```{python}
+function(11, 12)
 ```
 
 A decorator like this can do pretty much anything, since it can modify
@@ -637,31 +651,33 @@ and `__name__` (the full name of the function), and
 value of the function available in Python 3). This can be done
 automatically by using `functools.update_wrapper`.
 
-:::{topic} `functools.update_wrapper(wrapper, wrapped) <functools.update_wrapper>`
+:::{admonition} `functools.update_wrapper(wrapper, wrapped) <functools.update_wrapper>`
 "Update a wrapper function to look like the wrapped function."
 
+```{python}
+import functools
+def replacing_decorator_with_args(arg):
+  print("defining the decorator")
+  def _decorator(function):
+      print("doing decoration, %r" % arg)
+      def _wrapper(*args, **kwargs):
+          print("inside wrapper, %r %r" % (args, kwargs))
+          return function(*args, **kwargs)
+      return functools.update_wrapper(_wrapper, function)
+  return _decorator
+@replacing_decorator_with_args("abc")
+def function():
+    "extensive documentation"
+    print("inside function")
+    return 14
 ```
->>> import functools
->>> def replacing_decorator_with_args(arg):
-...   print("defining the decorator")
-...   def _decorator(function):
-...       print("doing decoration, %r" % arg)
-...       def _wrapper(*args, **kwargs):
-...           print("inside wrapper, %r %r" % (args, kwargs))
-...           return function(*args, **kwargs)
-...       return functools.update_wrapper(_wrapper, function)
-...   return _decorator
->>> @replacing_decorator_with_args("abc")
-... def function():
-...     "extensive documentation"
-...     print("inside function")
-...     return 14
-defining the decorator
-doing decoration, 'abc'
->>> function
-<function function at 0x...>
->>> print(function.__doc__)
-extensive documentation
+
+```{python}
+function
+```
+
+```{python}
+print(function.__doc__)
 ```
 :::
 
@@ -698,7 +714,7 @@ which really form a part of the language:
   they don't pollute the module's namespace. Class methods can be used
   to provide alternative constructors:
 
-  ```
+```{python}
   class Array(object):
       def __init__(self, data):
           self.data = data
@@ -707,7 +723,7 @@ which really form a part of the language:
       def fromfile(cls, file):
           data = numpy.load(file)
           return cls(data)
-  ```
+```
 
   This is cleaner than using a multitude of flags to `__init__`.
 
@@ -722,17 +738,18 @@ which really form a part of the language:
   and setters. A method decorated with `property` becomes a getter
   which is automatically called on attribute access.
 
-  ```pycon
-  >>> class A(object):
-  ...   @property
-  ...   def a(self):
-  ...     "an important attribute"
-  ...     return "a value"
-  >>> A.a
-  <property object at 0x...>
-  >>> A().a
-  'a value'
-  ```
+```{python}
+class A(object):
+  @property
+  def a(self):
+    "an important attribute"
+    return "a value"
+A.a
+```
+
+```{python}
+A().a
+```
 
   In this example, `A.a` is an read-only attribute. It is also
   documented: `help(A)` includes the docstring for attribute `a`
@@ -743,7 +760,7 @@ which really form a part of the language:
   To have a setter and a getter, two methods are required,
   obviously:
 
-  ```
+```{python}
   class Rectangle(object):
       def __init__(self, edge):
           self.edge = edge
@@ -759,7 +776,7 @@ which really form a part of the language:
       @area.setter
       def area(self, area):
           self.edge = area ** 0.5
-  ```
+```
 
   The way that this works, is that the `property` decorator replaces
   the getter method with a property object. This object in turn has
@@ -779,38 +796,49 @@ which really form a part of the language:
 
   To make everything crystal clear, let's define a "debug" example:
 
-  ```
-  >>> class D(object):
-  ...    @property
-  ...    def a(self):
-  ...      print("getting 1")
-  ...      return 1
-  ...    @a.setter
-  ...    def a(self, value):
-  ...      print("setting %r" % value)
-  ...    @a.deleter
-  ...    def a(self):
-  ...      print("deleting")
-  >>> D.a
-  <property object at 0x...>
-  >>> D.a.fget
-  <function ...>
-  >>> D.a.fset
-  <function ...>
-  >>> D.a.fdel
-  <function ...>
-  >>> d = D()               # ... varies, this is not the same `a` function
-  >>> d.a
-  getting 1
-  1
-  >>> d.a = 2
-  setting 2
-  >>> del d.a
-  deleting
-  >>> d.a
-  getting 1
-  1
-  ```
+```{python}
+class D(object):
+   @property
+   def a(self):
+     print("getting 1")
+     return 1
+   @a.setter
+   def a(self, value):
+     print("setting %r" % value)
+   @a.deleter
+   def a(self):
+     print("deleting")
+D.a
+```
+
+```{python}
+D.a.fget
+```
+
+```{python}
+D.a.fset
+```
+
+```{python}
+D.a.fdel
+```
+
+```{python}
+d = D()               # ... varies, this is not the same `a` function
+d.a
+```
+
+```{python}
+d.a = 2
+```
+
+```{python}
+del d.a
+```
+
+```{python}
+d.a
+```
 
   Properties are a bit of a stretch for the decorator syntax. One of the
   premises of the decorator syntax --- that the name is not duplicated
@@ -831,23 +859,24 @@ Some newer examples include:
   `__le__ <object.__le__>`, ...)
   based on a single available one.
 
-% - `packaging.pypi.simple.socket_timeout` (in Python 3.3) adds
-% a socket timeout when retrieving data through a socket.
-
+<!---
+- `packaging.pypi.simple.socket_timeout` (in Python 3.3) adds
+a socket timeout when retrieving data through a socket.
+-->
 ### Deprecation of functions
 
 Let's say we want to print a deprecation warning on stderr on the
 first invocation of a function we don't like anymore. If we don't want
 to modify the function, we can use a decorator:
 
-```
+```{python}
 class deprecated(object):
     """Print a deprecation warning once on first use of the function.
 
-    >>> @deprecated()                    # doctest: +SKIP
+    >>> @deprecated()
     ... def f():
     ...     pass
-    >>> f()                              # doctest: +SKIP
+    >>> f()
     f is deprecated
     """
     def __call__(self, func):
@@ -861,18 +890,19 @@ class deprecated(object):
         return self.func(*args, **kwargs)
 ```
 
-% TODO: use update_wrapper here
-
+<!---
+TODO: use update_wrapper here
+-->
 It can also be implemented as a function:
 
-```
+```{python}
 def deprecated(func):
     """Print a deprecation warning once on first use of the function.
 
-    >>> @deprecated                      # doctest: +SKIP
+    >>> @deprecated
     ... def f():
     ...     pass
-    >>> f()                              # doctest: +SKIP
+    >>> f()
     f is deprecated
     """
     count = [0]
@@ -890,7 +920,7 @@ Let's say we have function which returns a lists of things, and this
 list created by running a loop. If we don't know how many objects will
 be needed, the standard way to do this is something like:
 
-```
+```{python}
 def find_answers():
     answers = []
     while True:
@@ -909,7 +939,7 @@ statements, but then the user would have to explicitly call
 
 We can define a decorator which constructs the list for us:
 
-```
+```{python}
 def vectorized(generator_func):
     def wrapper(*args, **kwargs):
         return list(generator_func(*args, **kwargs))
@@ -918,7 +948,7 @@ def vectorized(generator_func):
 
 Our function then becomes:
 
-```
+```{python}
 @vectorized
 def find_answers():
     while True:
@@ -934,7 +964,7 @@ This is a class decorator which doesn't modify the class, but just
 puts it in a global registry. It falls into the category of decorators
 returning the original object:
 
-```
+```{python}
 class WordProcessor(object):
     PLUGINS = []
     def process(self, text):
@@ -965,7 +995,8 @@ unicode database ("EM DASH"). If the Unicode character was inserted
 directly, it would be impossible to distinguish it from an en-dash in
 the source of a program.
 
-:::{seealso}
+:::{admonition} See also
+
 **More examples and reading**
 
 - {pep}`318` (function and method decorator syntax)
@@ -991,7 +1022,7 @@ A context manager is an object with `__enter__ <object.__enter__>` and
 `__exit__ <object.__exit__>` methods which can be used in the {compound}`with`
 statement:
 
-```
+```{python}
 with manager as var:
     do_something(var)
 ```
@@ -999,7 +1030,7 @@ with manager as var:
 is in the simplest case
 equivalent to
 
-```
+```{python}
 var = manager.__enter__()
 try:
     do_something(var)
@@ -1030,16 +1061,16 @@ leaving only the interesting `do_something` block.
 Let's say we want to make sure that a file is closed immediately after
 we are done writing to it:
 
-```
->>> class closing(object):
-...   def __init__(self, obj):
-...     self.obj = obj
-...   def __enter__(self):
-...     return self.obj
-...   def __exit__(self, *args):
-...     self.obj.close()
->>> with closing(open('/tmp/file', 'w')) as f:
-...   f.write('the contents\n')   # doctest: +SKIP
+```{python}
+class closing(object):
+  def __init__(self, obj):
+    self.obj = obj
+  def __enter__(self):
+    return self.obj
+  def __exit__(self, *args):
+    self.obj.close()
+with closing(open('/tmp/file', 'w')) as f:
+  f.write('the contents\n')
 ```
 
 Here we have made sure that the `f.close()` is called when the
@@ -1048,9 +1079,9 @@ operation, the support for this is already present in the `file`
 class. It has an `__exit__` method which calls `close` and can be
 used as a context manager itself:
 
-```
->>> with open('/tmp/file', 'a') as f:
-...   f.write('more contents\n')      # doctest: +SKIP
+```{python}
+with open('/tmp/file', 'a') as f:
+  f.write('more contents\n')
 ```
 
 The common use for `try..finally` is releasing resources. Various
@@ -1105,7 +1136,7 @@ The ability to catch exceptions opens interesting possibilities. A
 classic example comes from unit-tests --- we want to make sure that
 some code throws the right kind of exception:
 
-```
+```{python}
 class assert_raises(object):
     # based on pytest and unittest.TestCase
     def __init__(self, type):
@@ -1135,7 +1166,7 @@ generator. We would like to implement context managers as special
 generator functions. In fact, the generator protocol was designed to
 support this use case.
 
-```pycon
+```{python}
 @contextlib.contextmanager
 def some_generator(<arguments>):
     <setup>
@@ -1159,7 +1190,7 @@ shorter and simpler.
 
 Let's rewrite the `closing` example as a generator:
 
-```
+```{python}
 @contextlib.contextmanager
 def closing(obj):
     try:
@@ -1170,7 +1201,7 @@ def closing(obj):
 
 Let's rewrite the `assert_raises` example as a generator:
 
-```
+```{python}
 @contextlib.contextmanager
 def assert_raises(type):
     try:

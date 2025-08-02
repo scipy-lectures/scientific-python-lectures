@@ -97,7 +97,7 @@ bytes(x.data)
 Memory address of the data:
 
 ```{python}
-x.__array_interface__['data'][0] # doctest: +SKIP
+x.__array_interface__['data'][0]
 ```
 
 The whole `__array_interface__`:
@@ -140,7 +140,8 @@ y.flags
 The `owndata` and `writeable` flags indicate status of the memory
 block.
 
-:::{seealso}
+:::{admonition} See also
+
 [array interface](https://numpy.org/doc/stable/reference/arrays.interface.html)
 :::
 
@@ -221,7 +222,8 @@ wav_header_dtype = np.dtype([
    ])
 ```
 
-:::{seealso}
+:::{admonition} See also
+
 wavreader.py
 :::
 
@@ -241,7 +243,7 @@ wav_header_dtype.fields['format']
   to the name `format`
 - The second one is its offset (in bytes) from the beginning of the item
 
-:::{topic} Exercise
+:::{admonition} Exercise
 :class: green
 
 Mini-exercise, make a "sparse" dtype by using offsets, and only some
@@ -252,7 +254,7 @@ wav_header_dtype = np.dtype(dict(
   names=['format', 'sample_rate', 'data_id'],
   offsets=[offset_1, offset_2, offset_3], # counted from start of structure in bytes
   formats=list of dtypes for each of the fields,
-))  # doctest: +SKIP
+))
 ```
 
 and use that to read the sample rate, and `data_id` (as sub-array).
@@ -262,7 +264,7 @@ and use that to read the sample rate, and `data_id` (as sub-array).
 f = open('data/test.wav', 'r')
 wav_header = np.fromfile(f, dtype=wav_header_dtype, count=1)
 f.close()
-print(wav_header)   # doctest: +SKIP
+print(wav_header)
 ```
 
 ```{python}
@@ -272,7 +274,7 @@ wav_header['sample_rate']
 Let's try accessing the sub-array:
 
 ```{python}
-wav_header['data_id']  # doctest: +SKIP
+wav_header['data_id']
 ```
 
 ```{python}
@@ -421,7 +423,8 @@ y.base is x
 ```{rubric} Mini-exercise: data re-interpretation
 ```
 
-:::{seealso}
+:::{admonition} See also
+
 view-colors.py
 :::
 
@@ -441,14 +444,14 @@ How to make a (10, 10) structured array with field names 'r', 'g', 'b', 'a'
 without copying data?
 
 ```{python}
-y = ...                     # doctest: +SKIP
+y = ...
 ```
 
 ```{python}
-assert (y['r'] == 1).all()  # doctest: +SKIP
-assert (y['g'] == 2).all()  # doctest: +SKIP
-assert (y['b'] == 3).all()  # doctest: +SKIP
-assert (y['a'] == 4).all()  # doctest: +SKIP
+assert (y['r'] == 1).all()
+assert (y['g'] == 2).all()
+assert (y['b'] == 3).all()
+assert (y['a'] == 4).all()
 ```
 
 *Solution*
@@ -745,7 +748,8 @@ as_strided(x, strides=(2*2, ), shape=(2, ))
 x[::2]
 ```
 
-:::{seealso}
+:::{admonition} See also
+
 stride-fakedims.py
 :::
 
@@ -825,7 +829,8 @@ x[np.newaxis,:] * y[:,np.newaxis]
 
 #### More tricks: diagonals
 
-:::{seealso}
+:::{admonition} See also
+
 stride-diagonals.py
 :::
 
@@ -838,7 +843,7 @@ stride-diagonals.py
 >   ...               [4, 5, 6],
 >   ...               [7, 8, 9]], dtype=np.int32)
 >
->   >>> x_diag = as_strided(x, shape=(3,), strides=(???,)) # doctest: +SKIP
+>   >>> x_diag = as_strided(x, shape=(3,), strides=(???,))
 >   ```
 >
 > - Pick the first super-diagonal entries `[2, 6]`.
@@ -895,7 +900,8 @@ stride-diagonals.py
 > </div>
 > ```
 
-:::{seealso}
+:::{admonition} See also
+
 stride-diagonals.py
 :::
 
@@ -914,9 +920,9 @@ stride-diagonals.py
 > by striding, and using `sum()` on the result.
 >
 > ```
-> >>> y = as_strided(x, shape=(5, 5), strides=(TODO, TODO))   # doctest: +SKIP
-> >>> s2 = ...   # doctest: +SKIP
-> >>> assert s == s2   # doctest: +SKIP
+> >>> y = as_strided(x, shape=(5, 5), strides=(TODO, TODO))
+> >>> s2 = ...
+> >>> assert s == s2
 > ```
 
 *Solution*
@@ -975,7 +981,8 @@ x.strides, y.strides
 
 :::
 
-:::{seealso}
+:::{admonition} See also
+
 - [numexpr](https://numexpr.readthedocs.io/projects/NumExpr3/en/latest/) is designed to mitigate
   cache effects when evaluating array expressions.
 - [numba](https://numba.pydata.org/) is a compiler for Python code,
@@ -1109,7 +1116,8 @@ runs, $c$ belongs to the Mandelbrot set.
 
 - Write it in Cython
 
-:::{seealso}
+:::{admonition} See also
+
 mandel.pyx, mandelplot.py
 :::
 
@@ -1261,34 +1269,45 @@ np.linalg._umath_linalg.det.signature
 >   many small matrices at once
 > - Also see `tensordot` and `einsum`
 
-% The below gufunc examples were from `np.core.umath_tests`,
-% which is now deprecated. We need another source of example
-% gufuncs.  See the discussion at:
+<!---
+The below gufunc examples were from `np.core.umath_tests`,
+which is now deprecated. We need another source of example
+gufuncs.  See the discussion at:
+
+https://mail.python.org/archives/list/numpy-discussion@python.org/thread/ZG7AUSPYYUNSPQU3YUZS2XCFD7AT3BJP/
+-->
+```{python} tags=c("hide-input")
+import numpy.core.umath_tests as ut
+```
+```{python} tags=c("hide-input")
+ut.matrix_multiply.signature
+```
+<!---
+'(m,n),(n,p)->(m,p)'
+-->
 %
-% https://mail.python.org/archives/list/numpy-discussion@python.org/thread/ZG7AUSPYYUNSPQU3YUZS2XCFD7AT3BJP/
 
-% >>> import numpy.core.umath_tests as ut
-
-% >>> ut.matrix_multiply.signature
-
-% '(m,n),(n,p)->(m,p)'
-
-%
-
-% >>> x = np.ones((10, 2, 4))
-
-% >>> y = np.ones((10, 4, 5))
-
-% >>> ut.matrix_multiply(x, y).shape
-
-% (10, 2, 5)
-
-% * in both examples the last two dimensions became *core dimensions*,
-
-% and are modified as per the *signature*
-
-% * otherwise, the g-ufunc operates "elementwise"
-
+```{python} tags=c("hide-input")
+x = np.ones((10, 2, 4))
+```
+```{python} tags=c("hide-input")
+y = np.ones((10, 4, 5))
+```
+```{python} tags=c("hide-input")
+ut.matrix_multiply(x, y).shape
+```
+<!---
+(10, 2, 5)
+-->
+<!---
+* in both examples the last two dimensions became *core dimensions*,
+-->
+<!---
+and are modified as per the *signature*
+-->
+<!---
+* otherwise, the g-ufunc operates "elementwise"
+-->
 ```{rubric} Generalized ufunc loop
 ```
 
@@ -1352,7 +1371,8 @@ Currently, 3 solutions:
 Mini-exercise using [Pillow](https://python-pillow.org/) (Python
 Imaging Library):
 
-:::{seealso}
+:::{admonition} See also
+
 pilbuffer.py
 :::
 
@@ -1389,24 +1409,25 @@ img.save('test.png')
 - NumPy-specific approach; slowly deprecated (but not going away)
 - Not integrated in Python otherwise
 
-:::{seealso}
+:::{admonition} See also
+
 Documentation:
 <https://numpy.org/doc/stable/reference/arrays.interface.html>
 :::
 
 ```{python}
 x = np.array([[1, 2], [3, 4]])
-x.__array_interface__   # doctest: +SKIP
+x.__array_interface__
 ```
 
-% for doctest
-% >>> import matplotlib
-% >>> matplotlib.use('Agg')
-% >>> import matplotlib.pyplot as plt
-% >>> import os
-% >>> if not os.path.exists('data'): os.mkdir('data')
-% >>> plt.imsave('data/test.png', data)
-
+```{python} tags=c("hide-input")
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import os
+if not os.path.exists('data'): os.mkdir('data')
+plt.imsave('data/test.png', data)
+```
 ```{python}
 from PIL import Image
 img = Image.open('data/test.png')
@@ -1526,7 +1547,7 @@ Streamlined and more seamless support for dealing with missing data
 in arrays is making its way into NumPy 1.7. Stay tuned!
 :::
 
-:::{topic} Example: Masked statistics
+:::{admonition} Example: Masked statistics
 Canadian rangers were distracted when counting hares and lynxes in
 1903-1910 and 1917-1918, and got the numbers are wrong. (Carrot
 farmers stayed alert, though.) Compute the mean populations over
@@ -1623,7 +1644,7 @@ it fails with a cryptic error message::
 
     >>> rng.permutation(12)
     array([ 2,  6,  4,  1,  8, 11, 10,  5,  9,  3,  7,  0])
-    >>> rng.permutation(12.) #doctest: +SKIP
+    >>> rng.permutation(12.)
     Traceback (most recent call last):
     File "<stdin>", line 1, in <module>
     File "_generator.pyx", line 4844, in numpy.random._generator.Generator.permutation

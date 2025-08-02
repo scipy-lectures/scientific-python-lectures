@@ -25,18 +25,13 @@ debugging, to find and fix bugs.
 It is not specific to the scientific Python community, but the strategies
 that we will employ are tailored to its needs.
 
-:::{topic} Prerequisites
+:::{admonition} Prerequisites
 - NumPy
 - IPython
 - [nosetests](https://nose.readthedocs.io/en/latest/)
 - [pyflakes](https://pypi.org/project/pyflakes)
 - gdb for the C-debugging part.
 :::
-
-```{contents} Chapter contents
-:depth: 2
-:local: true
-```
 
 ## Avoiding bugs
 
@@ -108,26 +103,26 @@ You can bind a key to run pyflakes in the current buffer.
   Menu: TextMate -> Preferences -> Advanced -> Shell variables, add a
   shell variable:
 
-  ```
+```{python}
   TM_PYCHECKER = /Library/Frameworks/Python.framework/Versions/Current/bin/pyflakes
-  ```
+```
 
   Then `Ctrl-Shift-V` is binded to a pyflakes report
 
 - **In vim**
   In your `.vimrc` (binds F5 to `pyflakes`):
 
-  ```
+```{python}
   autocmd FileType python let &mp = 'echo "*** running % ***" ; pyflakes %'
   autocmd FileType tex,mp,rst,python imap <Esc>[15~ <C-O>:make!^M
   autocmd FileType tex,mp,rst,python map  <Esc>[15~ :make!^M
   autocmd FileType tex,mp,rst,python set autowrite
-  ```
+```
 
 - **In emacs**
   In your `.emacs` (binds F5 to `pyflakes`):
 
-  ```
+```{python}
   (defun pyflakes-thisfile () (interactive)
          (compile (format "pyflakes %s" (buffer-file-name)))
   )
@@ -146,7 +141,7 @@ You can bind a key to run pyflakes in the current buffer.
   )
 
   (add-hook 'python-mode-hook (lambda () (pyflakes-mode t)))
-  ```
+```
 
 #### A type-as-go spell-checker like integration
 
@@ -177,9 +172,9 @@ You can bind a key to run pyflakes in the current buffer.
   `flymake-mode` at the prompt. To enable it automatically when
   opening a Python file, add the following line to your .emacs file:
 
-  ```
+```{python}
   (add-hook 'python-mode-hook '(lambda () (flymake-mode)))
-  ```
+```
 
 ## Debugging workflow
 
@@ -227,7 +222,7 @@ Specifically it allows you to:
 > - Modify values of variables.
 > - Set breakpoints.
 
-:::{topic} **print**
+:::{admonition} print
 Yes, `print` statements do work as a debugging tool. However to
 inspect runtime, it is often more efficient to use the debugger.
 :::
@@ -290,12 +285,12 @@ r
 ipdb> quit
 ```
 
-:::{topic} Post-mortem debugging without IPython
+:::{admonition} Post-mortem debugging without IPython
 In some situations you cannot use IPython, for instance to debug a
 script that wants to be called from the command line. In this case,
 you can call the script with `python -m pdb script.py`:
 
-```
+```{python}
 $ python -m pdb index_error.py
 > /home/jarrod/src/scientific-python-lectures/advanced/debugging/index_error.py(1)<module>()
 -> """Small snippet to raise an IndexError."""
@@ -421,7 +416,7 @@ Indeed the code runs, but the filtering does not work well.
 Oh dear, nothing but integers, and 0 variation. Here is our bug, we are
 doing integer arithmetic.
 
-:::{topic} Raising exception on numerical errors
+:::{admonition} Raising exception on numerical errors
 When we run the {download}`wiener_filtering.py` file, the following
 warnings are raised:
 
@@ -483,9 +478,9 @@ FloatingPointError: divide by zero encountered in divide
 
   Insert the following line where you want to drop in the debugger:
 
-  ```
+```{python}
   import pdb; pdb.set_trace()
-  ```
+```
 
 :::{warning}
 When running `nosetests`, the output is captured, and thus it seems
@@ -493,7 +488,7 @@ that the debugger does not work. Simply run the nosetests with the `-s`
 flag.
 :::
 
-:::{topic} Graphical debuggers and alternatives
+:::{admonition} Graphical debuggers and alternatives
 - [pudb](https://pypi.org/project/pudb) is a good semi-graphical
   debugger with a text user interface in the console.
 - The [Visual Studio Code](https://code.visualstudio.com/) integrated
@@ -504,7 +499,6 @@ flag.
 
 ### Debugger commands and interaction
 
-```{eval-rst}
 ============ ======================================================================
 ``l(list)``   Lists the code at the current position
 ``u(p)``      Walk up the call stack
@@ -515,7 +509,6 @@ flag.
 ``a``         Print the local variables
 ``!command``  Execute the given **Python** command (by opposition to pdb commands
 ============ ======================================================================
-```
 
 :::{warning}
 **Debugger commands are not Python code**
@@ -530,7 +523,7 @@ in the debugger**.
 
 Type `h` or `help` to access the interactive help:
 
-```pycon
+```{python}
 ipdb> help
 
 Documented commands (type help <topic>):

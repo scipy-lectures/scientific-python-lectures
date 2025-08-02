@@ -19,14 +19,9 @@ jupyter:
 
 **Author**: *Nicolas Rougier*
 
-:::{topic} Foreword
+:::{admonition} Foreword
 Use the `topic` keyword for any forewords
 :::
-
-```{contents} Chapters contents
-:depth: 1
-:local: true
-```
 
 Make sure to read this [Documentation style guide] as well as these
 [tips, tricks] and conventions about documentation content and workflows.
@@ -89,7 +84,7 @@ read and refer to, please use the `tip` sphinx directive. It creates
 collapsible paragraphs, that can be hidden during an oral
 presentation:
 
-```
+```{python}
 .. tip::
 
     Here insert a full-blown discussion, that will be collapsible in
@@ -142,14 +137,14 @@ There are three main kinds of markup that should be used: *italics*, **bold**
 and `fixed-font`. *Italics* should be used when introducing a new technical
 term, **bold** should be used for emphasis and `fixed-font` for source code.
 
-:::{topic} Example:
+:::{admonition} Example:
 When using *object-oriented programming* in Python you **must** use the
 `class` keyword to define your *classes*.
 :::
 
 In restructured-text markup this is:
 
-```
+```{python}
 when using *object-oriented programming* in Python you **must** use the
 ``class`` keyword to define your *classes*.
 ```
@@ -204,15 +199,13 @@ This is a warning
 
 Figures positioned with `:align: right` are float. To flush them, use:
 
-```
+```{python}
 |clear-floats|
 ```
 
 ## References
 
-```{eval-rst}
 .. target-notes::
-```
 
 [documentation style guide]: https://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html
 [tips, tricks]: https://docness.readthedocs.org/en/latest/index.html

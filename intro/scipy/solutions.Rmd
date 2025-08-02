@@ -30,7 +30,7 @@ Compute the decimals of Pi using the Wallis formula:
 
 Implement the quicksort algorithm, as defined by wikipedia:
 
-```
+```{python}
 function quicksort(array)
     var list less, greater
     if length(array) ≤ 1
@@ -55,27 +55,19 @@ sequence, defined by:
 - `u_0 = 1; u_1 = 1`
 - `u_(n+2) = u_(n+1) + u_n`
 
+```{python}
+def fib(n):
+    """Display the n first terms of Fibonacci sequence"""
+    a, b = 0, 1
+    i = 0
+    while i < n:
+        print(b)
+        a, b = b, a+b
+        i +=1
 ```
->>> def fib(n):
-...     """Display the n first terms of Fibonacci sequence"""
-...     a, b = 0, 1
-...     i = 0
-...     while i < n:
-...         print(b)
-...         a, b = b, a+b
-...         i +=1
-...
->>> fib(10)
-1
-1
-2
-3
-5
-8
-13
-21
-34
-55
+
+```{python}
+fib(10)
 ```
 
 (dir-sort)=

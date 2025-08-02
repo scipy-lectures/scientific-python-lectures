@@ -372,7 +372,8 @@ Modules must be located in the search path, therefore you can:
   in this directory.
   :::
 
-:::{seealso}
+:::{admonition} See also
+
 See <https://docs.python.org/3/tutorial/modules.html> for more information
 about modules.
 :::
@@ -492,7 +493,7 @@ a=1 # too cramped
 
 ______________________________________________________________________
 
-:::{topic} **Quick read**
+:::{admonition} Quick read
 If you want to do a first quick pass through the Scientific Python Lectures
 to learn the ecosystem, you can directly skip to the next chapter:
 {ref}`numpy`.

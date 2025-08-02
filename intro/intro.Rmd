@@ -153,7 +153,8 @@ that can be combined to obtain a scientific computing environment:
   computing.
 - Development tools (automatic testing, documentation generation)
 
-:::{seealso}
+:::{admonition} See also
+
 {ref}`chapter on Python language <python_language_chapter>`
 :::
 
@@ -194,7 +195,8 @@ that can be combined to obtain a scientific computing environment:
 
 and many more packages not documented in the Scientific Python Lectures.
 
-:::{seealso}
+:::{admonition} See also
+
 {ref}`chapters on advanced topics <advanced_topics_part>`
 
 {ref}`chapters on packages and applications <applications_part>`
@@ -202,8 +204,9 @@ and many more packages not documented in the Scientific Python Lectures.
 
 {{ clear-floats }}
 
-% >>> import numpy as np
-
+```{python} tags=c("hide-input")
+import numpy as np
+```
 ## Before starting: Installing a working environment
 
 Python comes in many flavors, and there are many ways to install it.
@@ -262,7 +265,8 @@ Getting help by using the **?** operator after an object:
 print?
 ```
 
-:::{seealso}
+:::{admonition} See also
+
 - IPython user manual: <https://ipython.readthedocs.io/en/stable/>
 - Jupyter Notebook QuickStart:
   <https://docs.jupyter.org/en/latest/start/index.html>
@@ -315,7 +319,7 @@ Variable   Type    Data/Info
 s          str     Hello world
 ```
 
-:::{topic} **From a script to functions**
+:::{admonition} From a script to functions
 While it is tempting to work only with scripts, that is a file full
 of instructions following each other, do plan to progressively evolve
 the script to a set of functions:
@@ -442,10 +446,8 @@ Furthermore IPython ships with various *aliases* which emulate common UNIX
 command line tools such as `ls` to list files, `cp` to copy files and `rm` to
 remove files (a full list of aliases is shown when typing `alias`).
 
-:::{topic} **Getting help**
+:::{admonition} Getting help
 - The built-in cheat-sheet is accessible via the `%quickref` magic
   function.
 - A list of all available magic functions is shown when typing `%magic`.
 :::
-
-% :vim:spell:

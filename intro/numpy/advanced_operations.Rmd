@@ -222,7 +222,7 @@ data3 = np.load('pop.npy')
 
 ... if somebody uses it, there's probably also a Python library for it.
 
-:::{topic} Exercise: Text data files
+:::{admonition} Exercise: Text data files
 :class: green
 
 Write a Python script that loads data from {download}`populations.txt
@@ -230,23 +230,30 @@ Write a Python script that loads data from {download}`populations.txt
 5 rows. Save the smaller dataset to `pop2.txt`.
 :::
 
-% loadtxt, savez, load, fromfile, tofile
-
-% real life: point to HDF5, NetCDF, etc.
-
-% EXE: use loadtxt to load a data file
-
-% EXE: use savez and load to save data in binary format
-
-% EXE: use tofile and fromfile to put and get binary data bytes in/from a file
-% follow-up: .view()
-
-% EXE: parsing text files -- Python can do this reasonably well natively!
-% throw in the mix some random text file to be parsed (eg. PPM)
-
-% EXE: advanced: read the data in a PPM file
-
-:::{topic} NumPy internals
+<!---
+loadtxt, savez, load, fromfile, tofile
+-->
+<!---
+real life: point to HDF5, NetCDF, etc.
+-->
+<!---
+EXE: use loadtxt to load a data file
+-->
+<!---
+EXE: use savez and load to save data in binary format
+-->
+<!---
+EXE: use tofile and fromfile to put and get binary data bytes in/from a file
+follow-up: .view()
+-->
+<!---
+EXE: parsing text files -- Python can do this reasonably well natively!
+throw in the mix some random text file to be parsed (eg. PPM)
+-->
+<!---
+EXE: advanced: read the data in a PPM file
+-->
+:::{admonition} NumPy internals
 If you are interested in the NumPy internals, there is a good discussion in
 {ref}`advanced_numpy`.
 :::

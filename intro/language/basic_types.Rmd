@@ -266,7 +266,7 @@ rcolors
 ```
 :::
 
-:::{topic} **Methods and Object-Oriented Programming**
+:::{admonition} Methods and Object-Oriented Programming
 The notation `rcolors.method()` (e.g. `rcolors.append(3)` and `colors.pop()`) is our
 first example of object-oriented programming (OOP). Being a `list`, the
 object `rcolors` owns the *method* `function` that is called using the notation
@@ -274,7 +274,7 @@ object `rcolors` owns the *method* `function` that is called using the notation
 necessary for going through this tutorial.
 :::
 
-:::{topic} **Discovering methods:**
+:::{admonition} Discovering methods:
 Reminder: in Ipython: tab-completion (press tab)
 
 ```python
@@ -377,7 +377,8 @@ above. Remember the `a.` object-oriented notation and use tab
 completion or `help(str)` to search for new methods.
 :::
 
-:::{seealso}
+:::{admonition} See also
+
 Python offers advanced possibilities for manipulating strings,
 looking for patterns or formatting. The interested reader is referred to
 <https://docs.python.org/3/library/stdtypes.html#string-methods> and
@@ -460,7 +461,7 @@ u = (0, 2)
 
 ```{python}
 s = set(('a', 'b', 'c', 'a'))
-s    # doctest: +SKIP
+s
 ```
 
 ```{python}
@@ -537,7 +538,8 @@ id(a)
   > - mutable objects can be changed in place
   > - immutable objects cannot be modified once created
 
-:::{seealso}
+:::{admonition} See also
+
 A very good and detailed explanation of the above issues can
 be found in David M. Beazley's article [Types and Objects in Python](https://www.informit.com/articles/article.aspx?p=453682).
 :::

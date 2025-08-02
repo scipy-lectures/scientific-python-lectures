@@ -248,7 +248,7 @@ with open('test.pkl', 'rb') as file:
 out
 ```
 
-:::{topic} Exercise
+:::{admonition} Exercise
 Write a program to search your `PYTHONPATH` for the module `site.py`.
 :::
 

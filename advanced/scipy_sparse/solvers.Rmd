@@ -24,11 +24,10 @@ jupyter:
 
 - all solvers are accessible from:
 
-  ```
-  >>> import scipy as sp
-  >>> sp.sparse.linalg.__all__
-  ['ArpackError', 'ArpackNoConvergence', ..., 'use_solver']
-  ```
+```{python}
+import scipy as sp
+sp.sparse.linalg.__all__
+```
 
 ## Sparse Direct Solvers
 
@@ -47,11 +46,9 @@ jupyter:
 
 - import the whole module, and see its docstring:
 
-  ```
-  >>> help(sp.sparse.linalg.spsolve)
-  Help on function spsolve in module scipy.sparse.linalg._dsolve.linsolve:
-  ...
-  ```
+```{python}
+help(sp.sparse.linalg.spsolve)
+```
 
 - both superlu and umfpack can be used (if the latter is installed) as
   follows:
@@ -178,19 +175,24 @@ jupyter:
 - has `shape` and `matvec()` (+ some optional parameters)
 - example:
 
-```pycon
->>> import numpy as np
->>> import scipy as sp
->>> def mv(v):
-...     return np.array([2 * v[0], 3 * v[1]])
-...
->>> A = sp.sparse.linalg.LinearOperator((2, 2), matvec=mv)
->>> A
-<2x2 _CustomLinearOperator with dtype=int8>
->>> A.matvec(np.ones(2))
-array([2.,  3.])
->>> A * np.ones(2)
-array([2.,  3.])
+```{python}
+import numpy as np
+import scipy as sp
+def mv(v):
+    return np.array([2 * v[0], 3 * v[1]])
+```
+
+```{python}
+A = sp.sparse.linalg.LinearOperator((2, 2), matvec=mv)
+A
+```
+
+```{python}
+A.matvec(np.ones(2))
+```
+
+```{python}
+A * np.ones(2)
 ```
 
 ### A Few Notes on Preconditioning
@@ -223,7 +225,7 @@ array([2.,  3.])
 
 - output:
 
-  ```
+```{python}
   $ python examples/lobpcg_sakurai.py
   Results by LOBPCG for n=2500
 
@@ -234,7 +236,7 @@ array([2.,  3.])
   [ 0.06250005  0.0625002   0.06250044]
 
   Elapsed time 7.01
-  ```
+```
 
 ```{image} figures/lobpcg_eigenvalues.png
 ```

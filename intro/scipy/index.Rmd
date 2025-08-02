@@ -52,17 +52,17 @@ substitutions:
     ```
 ---
 
-% for doctests
-% >>> import matplotlib.pyplot as plt
-% >>> import numpy as np
-
+```{python} tags=c("hide-input")
+import matplotlib.pyplot as plt
+import numpy as np
+```
 (scipy)=
 
 # SciPy : high-level scientific computing
 
 **Authors**: *Gaël Varoquaux, Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Ralf Gommers*
 
-:::{topic} Scipy
+:::{admonition} Scipy
 The {mod}`scipy` package contains various toolboxes dedicated to common
 issues in scientific computing. Its different submodules correspond
 to different applications, such as interpolation, integration,
@@ -84,11 +84,6 @@ unmaintainable code. By contrast, `SciPy`'s routines are optimized
 and tested, and should therefore be used when possible.
 :::
 
-```{contents} Chapters contents
-:depth: 1
-:local: true
-```
-
 :::{warning}
 This tutorial is far from an introduction to numerical computing.
 As enumerating the different submodules and functions in SciPy would
@@ -98,7 +93,6 @@ general idea of how to use `scipy` for scientific computing.
 
 {mod}`scipy` is composed of task-specific sub-modules:
 
-```{eval-rst}
 =========================== ==========================================
 :mod:`scipy.cluster`         Vector quantization / Kmeans
 :mod:`scipy.constants`       Physical and mathematical constants
@@ -116,16 +110,15 @@ general idea of how to use `scipy` for scientific computing.
 :mod:`scipy.special`         Any special mathematical functions
 :mod:`scipy.stats`           Statistics
 =========================== ==========================================
-```
 
 :::{tip}
 They all depend on {mod}`numpy`, but are mostly independent of each
 other. The standard way of importing NumPy and these SciPy modules
 is:
 
-```
->>> import numpy as np
->>> import scipy as sp
+```{python}
+import numpy as np
+import scipy as sp
 ```
 :::
 
@@ -137,32 +130,34 @@ Harwell-Boeing.
 
 **Matlab files**: Loading and saving:
 
-```
->>> import scipy as sp
->>> a = np.ones((3, 3))
->>> sp.io.savemat('file.mat', {'a': a})  # savemat expects a dictionary
->>> data = sp.io.loadmat('file.mat')
->>> data['a']
-array([[1.,  1.,  1.],
-       [1.,  1.,  1.],
-       [1.,  1.,  1.]])
+```{python}
+import scipy as sp
+a = np.ones((3, 3))
+sp.io.savemat('file.mat', {'a': a})  # savemat expects a dictionary
+data = sp.io.loadmat('file.mat')
+data['a']
 ```
 
 :::{warning}
 **Python / Matlab mismatch**: The Matlab file format does not support 1D arrays.
 
+```{python}
+a = np.ones(3)
+a
 ```
->>> a = np.ones(3)
->>> a
-array([1.,  1.,  1.])
->>> a.shape
-(3,)
->>> sp.io.savemat('file.mat', {'a': a})
->>> a2 = sp.io.loadmat('file.mat')['a']
->>> a2
-array([[1.,  1.,  1.]])
->>> a2.shape
-(1, 3)
+
+```{python}
+a.shape
+```
+
+```{python}
+sp.io.savemat('file.mat', {'a': a})
+a2 = sp.io.loadmat('file.mat')['a']
+a2
+```
+
+```{python}
+a2.shape
 ```
 
 Notice that the original array was a one-dimensional array, whereas the
@@ -171,7 +166,8 @@ saved and reloaded array is a two-dimensional array with a single row.
 For other formats, see the {mod}`scipy.io` documentation.
 :::
 
-:::{seealso}
+:::{admonition} See also
+
 - Load text files: {func}`numpy.loadtxt`/{func}`numpy.savetxt`
 - Clever loading of text/csv files:
   {func}`numpy.genfromtxt`
@@ -307,41 +303,41 @@ Linear Algebra Subroutines) and LAPACK (Linear Algebra PACKage) libraries.
 For example, the {func}`scipy.linalg.det` function computes the determinant
 of a square matrix:
 
-```
->>> import scipy as sp
->>> arr = np.array([[1, 2],
-...                 [3, 4]])
->>> sp.linalg.det(arr)
-np.float64(-2.0)
+```{python}
+import scipy as sp
+arr = np.array([[1, 2],
+                [3, 4]])
+sp.linalg.det(arr)
 ```
 
 Mathematically, the solution of a linear system $Ax = b$ is $x = A^{-1}b$,
 but explicit inversion of a matrix is numerically unstable and should be avoided.
 Instead, use {func}`scipy.linalg.solve`:
 
+```{python}
+A = np.array([[1, 2],
+              [2, 3]])
+b = np.array([14, 23])
+x = sp.linalg.solve(A, b)
+x
 ```
->>> A = np.array([[1, 2],
-...               [2, 3]])
->>> b = np.array([14, 23])
->>> x = sp.linalg.solve(A, b)
->>> x
-array([4., 5.])
->>> np.allclose(A @ x, b)
-True
+
+```{python}
+np.allclose(A @ x, b)
 ```
 
 Linear systems with special structure can often be solved more efficiently
 than more general systems. For example, systems with triangular matrices
 can be solved using {func}`scipy.linalg.solve_triangular`:
 
+```{python}
+A_upper = np.triu(A)
+A_upper
 ```
->>> A_upper = np.triu(A)
->>> A_upper
-array([[1, 2],
-       [0, 3]])
->>> np.allclose(sp.linalg.solve_triangular(A_upper, b, lower=False),
-...             sp.linalg.solve(A_upper, b))
-True
+
+```{python}
+np.allclose(sp.linalg.solve_triangular(A_upper, b, lower=False),
+            sp.linalg.solve(A_upper, b))
 ```
 
 {mod}`scipy.linalg` also features matrix factorizations/decompositions
@@ -358,14 +354,15 @@ such as the singular value decomposition.
 The original matrix can be recovered by matrix multiplication of the
 factors:
 
+```{python}
+S = np.diag(s)  # convert to diagonal matrix before matrix multiplication
+A2 = U @ S @ Vh
+np.allclose(A2, A)
 ```
->>> S = np.diag(s)  # convert to diagonal matrix before matrix multiplication
->>> A2 = U @ S @ Vh
->>> np.allclose(A2, A)
-True
->>> A3 = (U * s) @ Vh  # more efficient: use array math broadcasting rules!
->>> np.allclose(A3, A)
-True
+
+```{python}
+A3 = (U * s) @ Vh  # more efficient: use array math broadcasting rules!
+np.allclose(A3, A)
 ```
 
 Many other decompositions (e.g. LU, Cholesky, QR), solvers for structured
@@ -386,12 +383,12 @@ Some kinds of interpolants, known as "smoothing splines", are designed to
 generate smooth curves from noisy data. For example, suppose we have
 the following data:
 
-```
->>> rng = np.random.default_rng(27446968)
->>> measured_time = np.linspace(0, 2*np.pi, 20)
->>> function = np.sin(measured_time)
->>> noise = rng.normal(loc=0, scale=0.1, size=20)
->>> measurements = function + noise
+```{python}
+rng = np.random.default_rng(27446968)
+measured_time = np.linspace(0, 2*np.pi, 20)
+function = np.sin(measured_time)
+noise = rng.normal(loc=0, scale=0.1, size=20)
+measurements = function + noise
 ```
 
 {func}`scipy.interpolate.make_smoothing_spline` can be used to form a curve
@@ -555,11 +552,11 @@ algorithms and options.
 
 Suppose we have data that is sinusoidal but noisy:
 
-```
->>> x = np.linspace(-5, 5, num=50)  # 50 values between -5 and 5
->>> noise = 0.01 * np.cos(100 * x)
->>> a, b = 2.9, 1.5
->>> y = a * np.cos(b * x) + noise
+```{python}
+x = np.linspace(-5, 5, num=50)  # 50 values between -5 and 5
+noise = 0.01 * np.cos(100 * x)
+a, b = 2.9, 1.5
+y = a * np.cos(b * x) + noise
 ```
 
 We can approximate the underlying amplitude, frequency, and phase
@@ -567,9 +564,9 @@ from the data by least squares curve fitting. To begin, we write
 a function that accepts the independent variable as the first
 argument and all parameters to fit as separate arguments:
 
-```
->>> def f(x, a, b, c):
-...     return a * np.sin(b * x + c)
+```{python}
+def f(x, a, b, c):
+    return a * np.sin(b * x + c)
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_curve_fit_002.png
@@ -580,20 +577,21 @@ argument and all parameters to fit as separate arguments:
 
 We then use {func}`scipy.optimize.curve_fit` to find $a$ and $b$:
 
+```{python}
+params, _ = sp.optimize.curve_fit(f, x, y, p0=[2, 1, 3])
+params
 ```
->>> params, _ = sp.optimize.curve_fit(f, x, y, p0=[2, 1, 3])
->>> params
-array([2.900026  , 1.50012043, 1.57079633])
->>> ref = [a, b, np.pi/2]  # what we'd expect
->>> np.allclose(params, ref, rtol=1e-3)
-True
+
+```{python}
+ref = [a, b, np.pi/2]  # what we'd expect
+np.allclose(params, ref, rtol=1e-3)
 ```
 
 ```{raw} html
 <div style="clear: both"></div>
 ```
 
-:::{topic} Exercise: Curve fitting of temperature data
+:::{admonition} Exercise: Curve fitting of temperature data
 :class: green
 
 > The temperature extremes in Alaska for each month, starting in January, are
@@ -627,13 +625,12 @@ True
 Suppose we wish to minimize the scalar-valued function of a single
 variable $f(x) = x^2  + 10 \sin(x)$:
 
-```
->>> def f(x):
-...     return x**2 + 10*np.sin(x)
->>> x = np.arange(-5, 5, 0.1)
->>> plt.plot(x, f(x))
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.show()
+```{python}
+def f(x):
+    return x**2 + 10*np.sin(x)
+x = np.arange(-5, 5, 0.1)
+plt.plot(x, f(x))
+plt.show()
 ```
 
 We can see that the function has a local minimizer near $x = 3.8$
@@ -667,7 +664,7 @@ we could use one of SciPy's global minimizers, such as
 > ```pycon
 > >>> bounds=[(-5, 5)]  # list of lower, upper bound for each variable
 > >>> res = sp.optimize.differential_evolution(f, bounds=bounds)
-> >>> res  # doctest:+SKIP
+> >>> res
 >  message: Optimization terminated successfully.
 >  success: True
 >      fun: -7.9458233756...
@@ -720,7 +717,7 @@ and the solution of assignment problems. For much more information, see the
 documentation of {mod}`scipy.optimize` and the advanced chapter
 {ref}`mathematical_optimization`.
 
-:::{topic} Exercise: 2-D minimization
+:::{admonition} Exercise: 2-D minimization
 :class: green
 
 > ```{image} auto_examples/images/sphx_glr_plot_2d_minimization_002.png
@@ -757,9 +754,10 @@ advanced example.
 
 ## Statistics and random numbers: {mod}`scipy.stats`
 
-% Comment to make doctest pass
-% >>> np.random.seed(0)
-
+```{python} tags=c("hide-input")
+# Comment to make doctest pass
+np.random.seed(0)
+```
 {mod}`scipy.stats` contains fundamental tools for statistics in Python.
 
 ### Statistical Distributions
@@ -769,15 +767,16 @@ We draw a sample consisting of 100000 observations from the random variable.
 The normalized histogram of the sample is an estimator of the random
 variable's probability density function (PDF):
 
+```{python}
+dist = sp.stats.norm(loc=0, scale=1)  # standard normal distribution
+sample = dist.rvs(size=100000)  # "random variate sample"
+plt.hist(sample, bins=50, density=True, label='normalized histogram')
+x = np.linspace(-5, 5)
+plt.plot(x, dist.pdf(x), label='PDF')
 ```
->>> dist = sp.stats.norm(loc=0, scale=1)  # standard normal distribution
->>> sample = dist.rvs(size=100000)  # "random variate sample"
->>> plt.hist(sample, bins=50, density=True, label='normalized histogram')  # doctest: +SKIP
->>> x = np.linspace(-5, 5)
->>> plt.plot(x, dist.pdf(x), label='PDF')
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.legend()
-<matplotlib.legend.Legend object at ...>
+
+```{python}
+plt.legend()
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_normal_distribution_001.png
@@ -800,18 +799,19 @@ distribution's location (mean) and scale (standard deviation). We perform
 maximum likelihood estimation of the unknown parameters using the
 distribution family's `fit` method:
 
+```{python}
+loc, scale = sp.stats.norm.fit(sample)
+loc
 ```
->>> loc, scale = sp.stats.norm.fit(sample)
->>> loc
-np.float64(0.0015767005...)
->>> scale
-np.float64(0.9973396878...)
+
+```{python}
+scale
 ```
 
 Since we know the true parameters of the distribution from which the
 sample was drawn, we are not surprised that these estimates are similar.
 
-:::{topic} Exercise: Probability distributions
+:::{admonition} Exercise: Probability distributions
 :class: green
 
 Generate 1000 random variates from a gamma distribution with a shape
@@ -830,9 +830,8 @@ distribution, and compute the variance.
 The sample mean is an estimator of the mean of the distribution from which
 the sample was drawn:
 
-```
->>> np.mean(sample)
-np.float64(0.001576700508...)
+```{python}
+np.mean(sample)
 ```
 
 NumPy includes some of the most fundamental sample statistics (e.g.
@@ -851,12 +850,13 @@ sample statistic and a p-value. For instance, suppose we wish to
 test the null hypothesis that `sample` was drawn from a normal
 distribution:
 
+```{python}
+res = sp.stats.normaltest(sample)
+res.statistic
 ```
->>> res = sp.stats.normaltest(sample)
->>> res.statistic
-np.float64(5.20841759...)
->>> res.pvalue
-np.float64(0.07396163283...)
+
+```{python}
+res.pvalue
 ```
 
 Here, `statistic` is a sample statistic that tends to be high for
@@ -881,12 +881,13 @@ $\int_0^{\pi / 2} \sin(t) dt$ numerically. {func}`scipy.integrate.quad`
 chooses one of several adaptive techniques depending on the parameters, and
 is therefore the recommended first choice for integration of function of a single variable:
 
+```{python}
+integral, error_estimate = sp.integrate.quad(np.sin, 0, np.pi/2)
+np.allclose(integral, 1)  # numerical result ~ analytical result
 ```
->>> integral, error_estimate = sp.integrate.quad(np.sin, 0, np.pi/2)
->>> np.allclose(integral, 1)  # numerical result ~ analytical result
-True
->>> abs(integral - 1) < error_estimate  #  actual error < estimated error
-True
+
+```{python}
+abs(integral - 1) < error_estimate  #  actual error < estimated error
 ```
 
 Other functions for *numerical quadrature*, including integration of
@@ -918,24 +919,29 @@ computes $f(t, y(t))$ given the current time and state.
 
 Then, to compute `y` as a function of time:
 
-```
->>> t_span = (0, 4)  # time interval
->>> t_eval = np.linspace(*t_span)  # times at which to evaluate `y`
->>> y0 = [1,]  # initial state
->>> res = sp.integrate.solve_ivp(f, t_span=t_span, y0=y0, t_eval=t_eval)
+```{python}
+t_span = (0, 4)  # time interval
+t_eval = np.linspace(*t_span)  # times at which to evaluate `y`
+y0 = [1,]  # initial state
+res = sp.integrate.solve_ivp(f, t_span=t_span, y0=y0, t_eval=t_eval)
 ```
 
 and plot the result:
 
+```{python}
+plt.plot(res.t, res.y[0])
 ```
->>> plt.plot(res.t, res.y[0])
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.xlabel('t')
-Text(0.5, ..., 't')
->>> plt.ylabel('y')
-Text(..., 0.5, 'y')
->>> plt.title('Solution of Initial Value Problem')
-Text(0.5, 1.0, 'Solution of Initial Value Problem')
+
+```{python}
+plt.xlabel('t')
+```
+
+```{python}
+plt.ylabel('y')
+```
+
+```{python}
+plt.title('Solution of Initial Value Problem')
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_solve_ivp_simple_001.png
@@ -978,19 +984,19 @@ is equivalent to the original second order equation.
 
 We set:
 
-```
->>> m = 0.5  # kg
->>> k = 4  # N/m
->>> c = 0.4  # N s/m
->>> zeta = c / (2 * m * np.sqrt(k/m))
->>> omega = np.sqrt(k / m)
+```{python}
+m = 0.5  # kg
+k = 4  # N/m
+c = 0.4  # N s/m
+zeta = c / (2 * m * np.sqrt(k/m))
+omega = np.sqrt(k / m)
 ```
 
 and define the function that computes $\dot{z} = f(t, z(t))$:
 
-```
->>> def f(t, z, zeta, omega):
-...     return (z[1], -2.0 * zeta * omega * z[1] - omega**2 * z[0])
+```{python}
+def f(t, z, zeta, omega):
+    return (z[1], -2.0 * zeta * omega * z[1] - omega**2 * z[0])
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_solve_ivp_damped_spring_mass_001.png
@@ -1001,12 +1007,12 @@ and define the function that computes $\dot{z} = f(t, z(t))$:
 
 Integration of the system follows:
 
-```
->>> t_span = (0, 10)
->>> t_eval = np.linspace(*t_span, 100)
->>> z0 = [1, 0]
->>> res = sp.integrate.solve_ivp(f, t_span, z0, t_eval=t_eval,
-...                              args=(zeta, omega), method='LSODA')
+```{python}
+t_span = (0, 10)
+t_eval = np.linspace(*t_span, 100)
+z0 = [1, 0]
+res = sp.integrate.solve_ivp(f, t_span, z0, t_eval=t_eval,
+                             args=(zeta, omega), method='LSODA')
 ```
 
 :::{tip}
@@ -1015,7 +1021,8 @@ With the option `method='LSODA'`, {func}`scipy.integrate.solve_ivp` uses the LSO
 for stiff and non-stiff problems). See the [ODEPACK Fortran library] for more details.
 :::
 
-:::{seealso}
+:::{admonition} See also
+
 **Partial Differental Equations**
 
 There is no Partial Differential Equations (PDE) solver in SciPy.
@@ -1035,9 +1042,9 @@ and offers utilities to handle them. Some important functions are:
 
 As an illustration, a (noisy) input signal (`sig`), and its FFT:
 
-```
->>> sig_fft = sp.fft.fft(sig)  # doctest:+SKIP
->>> freqs = sp.fft.fftfreq(sig.size, d=time_step)  # doctest:+SKIP
+```{python}
+sig_fft = sp.fft.fft(sig)
+freqs = sp.fft.fftfreq(sig.size, d=time_step)
 ```
 
 | {{ signal_fig }} | {{ fft_fig }} |
@@ -1062,7 +1069,7 @@ the FFT with {func}`scipy.fft.ifft`, gives a filtered signal.
 The code of this example can be found {ref}`here <sphx_glr_intro_scipy_auto_examples_plot_fftpack.py>`
 :::
 
-:::{topic} `numpy.fft`
+:::{admonition} `numpy.fft`
 NumPy also has an implementation of FFT ({mod}`numpy.fft`). However,
 the SciPy one
 should be preferred, as it uses more efficient underlying implementations.
@@ -1074,7 +1081,7 @@ should be preferred, as it uses more efficient underlying implementations.
 | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
 | {{ periodicity_finding }}                                                                                         | {{ image_blur }}                                                                                    |
 
-:::{topic} Exercise: Denoise moon landing image
+:::{admonition} Exercise: Denoise moon landing image
 :class: green
 
 ```{image} ../../data/moonlanding.png
@@ -1113,16 +1120,21 @@ regularly-sampled signals.
 **Resampling** {func}`scipy.signal.resample`: resample a signal to `n`
 points using FFT.
 
+```{python}
+t = np.linspace(0, 5, 100)
+x = np.sin(t)
 ```
->>> t = np.linspace(0, 5, 100)
->>> x = np.sin(t)
 
->>> x_resampled = sp.signal.resample(x, 25)
+```{python}
+x_resampled = sp.signal.resample(x, 25)
+```
 
->>> plt.plot(t, x)
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.plot(t[::4], x_resampled, 'ko')
-[<matplotlib.lines.Line2D object at ...>]
+```{python}
+plt.plot(t, x)
+```
+
+```{python}
+plt.plot(t[::4], x_resampled, 'ko')
 ```
 
 :::{tip}
@@ -1142,17 +1154,22 @@ only applies to regularly sampled data.
 
 **Detrending** {func}`scipy.signal.detrend`: remove linear trend from signal:
 
+```{python}
+t = np.linspace(0, 5, 100)
+rng = np.random.default_rng()
+x = t + rng.normal(size=100)
 ```
->>> t = np.linspace(0, 5, 100)
->>> rng = np.random.default_rng()
->>> x = t + rng.normal(size=100)
 
->>> x_detrended = sp.signal.detrend(x)
+```{python}
+x_detrended = sp.signal.detrend(x)
+```
 
->>> plt.plot(t, x)
-[<matplotlib.lines.Line2D object at ...>]
->>> plt.plot(t, x_detrended)
-[<matplotlib.lines.Line2D object at ...>]
+```{python}
+plt.plot(t, x)
+```
+
+```{python}
+plt.plot(t, x_detrended)
 ```
 
 ```{raw} html
@@ -1179,11 +1196,9 @@ spectrums over consecutive time windows--, while
 
 ## Image manipulation: {mod}`scipy.ndimage`
 
-```{eval-rst}
 .. include:: image_processing/image_processing.rst
     :start-line: 1
 
-```
 
 ## Summary exercises on scientific computing
 
@@ -1214,16 +1229,16 @@ summary-exercises/image-processing.rst
 summary-exercises/answers_image_processing.rst
 ```
 
-% include the gallery. Skip the first line to avoid the "orphan"
-% declaration
-
-```{eval-rst}
+<!---
+include the gallery. Skip the first line to avoid the "orphan"
+declaration
+-->
 .. include:: auto_examples/index.rst
     :start-line: 1
 
-```
 
-:::{seealso}
+:::{admonition} See also
+
 **References to go further**
 
 - Some chapters of the [advanced](advanced_topics_part) and the
@@ -1232,8 +1247,9 @@ summary-exercises/answers_image_processing.rst
 - The [SciPy cookbook](https://scipy-cookbook.readthedocs.io)
 :::
 
-% compile solutions, but don't list them explicitly
-
+<!---
+compile solutions, but don't list them explicitly
+-->
 ```{toctree}
 :hidden: true
 

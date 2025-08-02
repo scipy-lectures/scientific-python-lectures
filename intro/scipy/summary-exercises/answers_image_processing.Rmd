@@ -14,10 +14,10 @@ jupyter:
 ---
 
 :::{only} html
-```pycon
->>> import numpy as np
->>> import matplotlib.pyplot as plt
->>> import scipy as sp
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy as sp
 ```
 :::
 
@@ -34,24 +34,24 @@ jupyter:
    with the "right" orientation (origin in the bottom left corner, and not
    the upper left corner as for standard arrays).
 
-   ```
-   >>> dat = plt.imread('data/MV_HFV_012.jpg')
-   ```
+```{python}
+dat = plt.imread('data/MV_HFV_012.jpg')
+```
 
 2. Crop the image to remove the lower panel with measure information.
 
-   ```
-   >>> dat = dat[:-60]
-   ```
+```{python}
+dat = dat[:-60]
+```
 
 3. Slightly filter the image with a median filter in order to refine its
    histogram. Check how the histogram changes.
 
-   ```
-   >>> filtdat = sp.ndimage.median_filter(dat, size=(7,7))
-   >>> hi_dat = np.histogram(dat, bins=np.arange(256))
-   >>> hi_filtdat = np.histogram(filtdat, bins=np.arange(256))
-   ```
+```{python}
+filtdat = sp.ndimage.median_filter(dat, size=(7,7))
+hi_dat = np.histogram(dat, bins=np.arange(256))
+hi_filtdat = np.histogram(filtdat, bins=np.arange(256))
+```
 
    ```{image} ../image_processing/exo_histos.png
    :align: center
@@ -62,18 +62,18 @@ jupyter:
    Other option (homework): write a function that determines automatically
    the thresholds from the minima of the histogram.
 
-   ```
-   >>> void = filtdat <= 50
-   >>> sand = np.logical_and(filtdat > 50, filtdat <= 114)
-   >>> glass = filtdat > 114
-   ```
+```{python}
+void = filtdat <= 50
+sand = np.logical_and(filtdat > 50, filtdat <= 114)
+glass = filtdat > 114
+```
 
 5. Display an image in which the three phases are colored with three
    different colors.
 
-   ```
-   >>> phases = void.astype(int) + 2*glass.astype(int) + 3*sand.astype(int)
-   ```
+```{python}
+phases = void.astype(int) + 2*glass.astype(int) + 3*sand.astype(int)
+```
 
    ```{image} ../image_processing/three_phases.png
    :align: center
@@ -81,20 +81,20 @@ jupyter:
 
 6. Use mathematical morphology to clean the different phases.
 
-   ```
-   >>> sand_op = sp.ndimage.binary_opening(sand, iterations=2)
-   ```
+```{python}
+sand_op = sp.ndimage.binary_opening(sand, iterations=2)
+```
 
 7. Attribute labels to all bubbles and sand grains, and remove from the
    sand mask grains that are smaller than 10 pixels. To do so, use
    `sp.ndimage.sum` or `np.bincount` to compute the grain sizes.
 
-   ```
-   >>> sand_labels, sand_nb = sp.ndimage.label(sand_op)
-   >>> sand_areas = np.array(sp.ndimage.sum(sand_op, sand_labels, np.arange(sand_labels.max()+1)))
-   >>> mask = sand_areas > 100
-   >>> remove_small_sand = mask[sand_labels.ravel()].reshape(sand_labels.shape)
-   ```
+```{python}
+sand_labels, sand_nb = sp.ndimage.label(sand_op)
+sand_areas = np.array(sp.ndimage.sum(sand_op, sand_labels, np.arange(sand_labels.max()+1)))
+mask = sand_areas > 100
+remove_small_sand = mask[sand_labels.ravel()].reshape(sand_labels.shape)
+```
 
    ```{image} ../image_processing/sands.png
    :align: center
@@ -102,11 +102,10 @@ jupyter:
 
 8. Compute the mean size of bubbles.
 
-   ```
-   >>> bubbles_labels, bubbles_nb = sp.ndimage.label(void)
-   >>> bubbles_areas = np.bincount(bubbles_labels.ravel())[1:]
-   >>> mean_bubble_size = bubbles_areas.mean()
-   >>> median_bubble_size = np.median(bubbles_areas)
-   >>> mean_bubble_size, median_bubble_size
-   (np.float64(1699.875), np.float64(65.0))
-   ```
+```{python}
+bubbles_labels, bubbles_nb = sp.ndimage.label(void)
+bubbles_areas = np.bincount(bubbles_labels.ravel())[1:]
+mean_bubble_size = bubbles_areas.mean()
+median_bubble_size = np.median(bubbles_areas)
+mean_bubble_size, median_bubble_size
+```

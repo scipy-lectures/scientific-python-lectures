@@ -13,19 +13,16 @@ jupyter:
     name: python3
 ---
 
-% for doctests
-% >>> import numpy as np
-% >>> import scipy as sp
-% >>> import matplotlib.pyplot as plt
-
+```{python} tags=c("hide-input")
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+```
 (scikit-image)=
 
 # `scikit-image`: image processing
 
-```{eval-rst}
-.. currentmodule:: skimage
 
-```
 
 **Author**: *Emmanuelle Gouillart*
 
@@ -35,7 +32,8 @@ This chapter describes how to use `scikit-image` for various image
 processing tasks, and how it relates to other scientific Python
 modules such as NumPy and SciPy.
 
-:::{seealso}
+:::{admonition} See also
+
 For basic image manipulation, such as image cropping or simple
 filtering, a large number of simple operations can be realized with
 NumPy and SciPy only. See {ref}`basic_image`.
@@ -45,16 +43,10 @@ chapter before reading the current one, as basic operations such as
 masking and labeling are a prerequisite.
 :::
 
-```{contents} Chapters contents
-:depth: 2
-:local: true
-```
-
 ## Introduction and concepts
 
 Images are NumPy's arrays `np.ndarray`
 
-```{eval-rst}
 
 :pixels:
 
@@ -74,16 +66,14 @@ Images are NumPy's arrays `np.ndarray`
 
 
 ::
-```
 
-```
->>> import numpy as np
->>> check = np.zeros((8, 8))
->>> check[::2, 1::2] = 1
->>> check[1::2, ::2] = 1
->>> import matplotlib.pyplot as plt
->>> plt.imshow(check, cmap='gray', interpolation='nearest')
-<matplotlib.image.AxesImage object at ...>
+```{python}
+import numpy as np
+check = np.zeros((8, 8))
+check[::2, 1::2] = 1
+check[1::2, ::2] = 1
+import matplotlib.pyplot as plt
+plt.imshow(check, cmap='gray', interpolation='nearest')
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_check_001.png
@@ -197,58 +187,44 @@ It contains the following submodules:
 
 : Generic utilities.
 
-% TODO Edit this section with a more refined discussion of the various
-% package features.
-
+<!---
+TODO Edit this section with a more refined discussion of the various
+package features.
+-->
 ## Importing
 
 We import `scikit-image` using the convention:
 
-```
->>> import skimage as ski
+```{python}
+import skimage as ski
 ```
 
 Most functionality lives in subpackages, e.g.:
 
-```
->>> image = ski.data.cat()
+```{python}
+image = ski.data.cat()
 ```
 
 You can list all submodules with:
 
-```
->>> for m in dir(ski): print(m)
-__version__
-color
-data
-draw
-exposure
-feature
-filters
-future
-graph
-io
-measure
-metrics
-morphology
-registration
-restoration
-segmentation
-transform
-util
+```{python}
+for m in dir(ski): print(m)
 ```
 
 Most `scikit-image` functions take NumPy `ndarrays` as arguments
 
+```{python}
+camera = ski.data.camera()
+camera.dtype
 ```
->>> camera = ski.data.camera()
->>> camera.dtype
-dtype('uint8')
->>> camera.shape
-(512, 512)
->>> filtered_camera = ski.filters.gaussian(camera, sigma=1)
->>> type(filtered_camera)
-<class 'numpy.ndarray'>
+
+```{python}
+camera.shape
+```
+
+```{python}
+filtered_camera = ski.filters.gaussian(camera, sigma=1)
+type(filtered_camera)
 ```
 
 ## Example data
@@ -258,10 +234,9 @@ The library ships with a few of these:
 
 {mod}`skimage.data`
 
-```
->>> image = ski.data.cat()
->>> image.shape
-(300, 451, 3)
+```{python}
+image = ski.data.cat()
+image.shape
 ```
 
 ## Input/output, data types and colorspaces
@@ -270,14 +245,14 @@ I/O: {mod}`skimage.io`
 
 Save an image to disk: {func}`skimage.io.imsave`
 
-```
->>> ski.io.imsave("cat.png", image)
+```{python}
+ski.io.imsave("cat.png", image)
 ```
 
 Reading from files: {func}`skimage.io.imread`
 
-```
->>> cat = ski.io.imread("cat.png")
+```{python}
+cat = ski.io.imread("cat.png")
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_camera_001.png
@@ -291,8 +266,8 @@ This works with many data formats supported by the
 
 Loading also works with URLs:
 
-```
->>> logo = ski.io.imread('https://scikit-image.org/_static/img/logo.png')
+```{python}
+logo = ski.io.imread('https://scikit-image.org/_static/img/logo.png')
 ```
 
 ### Data types
@@ -308,11 +283,10 @@ floats.
 
 Careful with overflows with integer data types
 
-```
->>> camera = ski.data.camera()
->>> camera.dtype
-dtype('uint8')
->>> camera_multiply = 3 * camera
+```{python}
+camera = ski.data.camera()
+camera.dtype
+camera_multiply = 3 * camera
 ```
 
 Different integer sizes are possible: 8-, 16- or 32-bytes, signed or
@@ -323,10 +297,9 @@ An important (if questionable) `skimage` **convention**: float images
 are supposed to lie in [-1, 1] (in order to have comparable contrast for
 all float images)
 
-```
->>> camera_float = ski.util.img_as_float(camera)
->>> camera.max(), camera_float.max()
-(np.uint8(255), np.float64(1.0))
+```{python}
+camera_float = ski.util.img_as_float(camera)
+camera.max(), camera_float.max()
 ```
 :::
 
@@ -334,10 +307,9 @@ Some image processing routines need to work with float arrays, and may
 hence output an array with a different type and the data range from the
 input array
 
-```
->>> camera_sobel = ski.filters.sobel(camera)
->>> camera_sobel.max()
-np.float64(0.644...)
+```{python}
+camera_sobel = ski.filters.sobel(camera)
+camera_sobel.max()
 ```
 
 Utility functions are provided in {mod}`skimage` to convert both the
@@ -352,10 +324,9 @@ more details.
 Color images are of shape (N, M, 3) or (N, M, 4) (when an alpha channel
 encodes transparency)
 
-```
->>> face = sp.datasets.face()
->>> face.shape
-(768, 1024, 3)
+```{python}
+face = sp.datasets.face()
+face.shape
 ```
 
 Routines converting between different colorspaces (RGB, HSV, LAB etc.)
@@ -363,13 +334,13 @@ are available in {mod}`skimage.color` : `color.rgb2hsv`, `color.lab2rgb`,
 etc. Check the docstring for the expected dtype (and data range) of input
 images.
 
-:::{topic} 3D images
+:::{admonition} 3D images
 Most functions of `skimage` can take 3D images as input arguments.
 Check the docstring to know if a function can be used on 3D images
 (for example MRI or CT images).
 :::
 
-:::{topic} Exercise
+:::{admonition} Exercise
 :class: green
 
 > Open a color image on your disk as a NumPy array.
@@ -399,14 +370,14 @@ Neighbourhood: square (choose size), disk, or more complicated
 
 Example : horizontal Sobel filter
 
-```
->>> text = ski.data.text()
->>> hsobel_text = ski.filters.sobel_h(text)
+```{python}
+text = ski.data.text()
+hsobel_text = ski.filters.sobel_h(text)
 ```
 
 Uses the following linear kernel for computing horizontal gradients:
 
-```
+```{python}
 1   2   1
 0   0   0
 -1  -2  -1
@@ -423,9 +394,9 @@ Uses the following linear kernel for computing horizontal gradients:
 Non-local filters use a large region of the image (or all the image) to
 transform the value of one pixel:
 
-```
->>> camera = ski.data.camera()
->>> camera_equalized = ski.exposure.equalize_hist(camera)
+```{python}
+camera = ski.data.camera()
+camera_equalized = ski.exposure.equalize_hist(camera)
 ```
 
 Enhances contrast in large almost uniform regions.
@@ -447,14 +418,13 @@ image.
 
 Default structuring element: 4-connectivity of a pixel
 
+```{python}
+# Import structuring elements to make them more easily accessible
+from skimage.morphology import disk, diamond
 ```
->>> # Import structuring elements to make them more easily accessible
->>> from skimage.morphology import disk, diamond
 
->>> diamond(1)
-array([[0, 1, 0],
-       [1, 1, 1],
-       [0, 1, 0]], dtype=uint8)
+```{python}
+diamond(1)
 ```
 
 ```{image} ../../advanced/image_processing/diamond_kernel.png
@@ -463,77 +433,48 @@ array([[0, 1, 0],
 
 **Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.:
 
+```{python}
+a = np.zeros((7,7), dtype=np.uint8)
+a[1:6, 2:5] = 1
+a
 ```
->>> a = np.zeros((7,7), dtype=np.uint8)
->>> a[1:6, 2:5] = 1
->>> a
-array([[0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 1, 1, 1, 0, 0],
-       [0, 0, 1, 1, 1, 0, 0],
-       [0, 0, 1, 1, 1, 0, 0],
-       [0, 0, 1, 1, 1, 0, 0],
-       [0, 0, 1, 1, 1, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0]], dtype=uint8)
->>> ski.morphology.binary_erosion(a, diamond(1)).astype(np.uint8)
-array([[0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 1, 0, 0, 0],
-       [0, 0, 0, 1, 0, 0, 0],
-       [0, 0, 0, 1, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0]], dtype=uint8)
->>> #Erosion removes objects smaller than the structure
->>> ski.morphology.binary_erosion(a, diamond(2)).astype(np.uint8)
-array([[0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, 0]], dtype=uint8)
+
+```{python}
+ski.morphology.binary_erosion(a, diamond(1)).astype(np.uint8)
+```
+
+```{python}
+#Erosion removes objects smaller than the structure
+ski.morphology.binary_erosion(a, diamond(2)).astype(np.uint8)
 ```
 
 **Dilation**: maximum filter:
 
+```{python}
+a = np.zeros((5, 5))
+a[2, 2] = 1
+a
 ```
->>> a = np.zeros((5, 5))
->>> a[2, 2] = 1
->>> a
-array([[0.,  0.,  0.,  0.,  0.],
-       [0.,  0.,  0.,  0.,  0.],
-       [0.,  0.,  1.,  0.,  0.],
-       [0.,  0.,  0.,  0.,  0.],
-       [0.,  0.,  0.,  0.,  0.]])
->>> ski.morphology.binary_dilation(a, diamond(1)).astype(np.uint8)
-array([[0, 0, 0, 0, 0],
-       [0, 0, 1, 0, 0],
-       [0, 1, 1, 1, 0],
-       [0, 0, 1, 0, 0],
-       [0, 0, 0, 0, 0]], dtype=uint8)
+
+```{python}
+ski.morphology.binary_dilation(a, diamond(1)).astype(np.uint8)
 ```
 
 **Opening**: erosion + dilation:
 
+```{python}
+a = np.zeros((5,5), dtype=int)
+a[1:4, 1:4] = 1; a[4, 4] = 1
+a
 ```
->>> a = np.zeros((5,5), dtype=int)
->>> a[1:4, 1:4] = 1; a[4, 4] = 1
->>> a
-array([[0, 0, 0, 0, 0],
-       [0, 1, 1, 1, 0],
-       [0, 1, 1, 1, 0],
-       [0, 1, 1, 1, 0],
-       [0, 0, 0, 0, 1]])
->>> ski.morphology.binary_opening(a, diamond(1)).astype(np.uint8)
-array([[0, 0, 0, 0, 0],
-       [0, 0, 1, 0, 0],
-       [0, 1, 1, 1, 0],
-       [0, 0, 1, 0, 0],
-       [0, 0, 0, 0, 0]], dtype=uint8)
+
+```{python}
+ski.morphology.binary_opening(a, diamond(1)).astype(np.uint8)
 ```
 
 Opening removes small objects and smoothes corners.
 
-:::{topic} Grayscale mathematical morphology
+:::{admonition} Grayscale mathematical morphology
 Mathematical morphology operations are also available for
 (non-binary) grayscale images (int or float type). Erosion and dilation
 correspond to minimum (resp. maximum) filters.
@@ -542,7 +483,8 @@ correspond to minimum (resp. maximum) filters.
 Higher-level mathematical morphology are available: tophat,
 skeletonization, etc.
 
-:::{seealso}
+:::{admonition} See also
+
 Basic mathematical morphology is also implemented in
 {mod}`scipy.ndimage.morphology`. The `scipy.ndimage` implementation
 works on arbitrary-dimensional arrays.
@@ -550,17 +492,17 @@ works on arbitrary-dimensional arrays.
 
 ______________________________________________________________________
 
-:::{topic} Example of filters comparison: image denoising
-```
->>> coins = ski.data.coins()
->>> coins_zoom = coins[10:80, 300:370]
->>> median_coins = ski.filters.median(
-...     coins_zoom, disk(1)
-... )
->>> tv_coins = ski.restoration.denoise_tv_chambolle(
-...     coins_zoom, weight=0.1
-... )
->>> gaussian_coins = ski.filters.gaussian(coins, sigma=2)
+:::{admonition} Example of filters comparison: image denoising
+```{python}
+coins = ski.data.coins()
+coins_zoom = coins[10:80, 300:370]
+median_coins = ski.filters.median(
+    coins_zoom, disk(1)
+)
+tv_coins = ski.restoration.denoise_tv_chambolle(
+    coins_zoom, weight=0.1
+)
+gaussian_coins = ski.filters.gaussian(coins, sigma=2)
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_filter_coins_001.png
@@ -590,7 +532,7 @@ the background.
 versions of scikit-image
 :::
 
-```
+```{python}
 camera = ski.data.camera()
 val = ski.filters.threshold_otsu(camera)
 mask = camera < val
@@ -612,27 +554,27 @@ each one.
 
 Synthetic data:
 
-```
->>> n = 20
->>> l = 256
->>> im = np.zeros((l, l))
->>> rng = np.random.default_rng()
->>> points = l * rng.random((2, n ** 2))
->>> im[(points[0]).astype(int), (points[1]).astype(int)] = 1
->>> im = ski.filters.gaussian(im, sigma=l / (4. * n))
->>> blobs = im > im.mean()
+```{python}
+n = 20
+l = 256
+im = np.zeros((l, l))
+rng = np.random.default_rng()
+points = l * rng.random((2, n ** 2))
+im[(points[0]).astype(int), (points[1]).astype(int)] = 1
+im = ski.filters.gaussian(im, sigma=l / (4. * n))
+blobs = im > im.mean()
 ```
 
 Label all connected components:
 
-```
->>> all_labels = ski.measure.label(blobs)
+```{python}
+all_labels = ski.measure.label(blobs)
 ```
 
 Label only foreground connected components:
 
-```
->>> blobs_labels = ski.measure.label(blobs, background=0)
+```{python}
+blobs_labels = ski.measure.label(blobs, background=0)
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_labels_001.png
@@ -641,7 +583,8 @@ Label only foreground connected components:
 :width: 90%
 ```
 
-:::{seealso}
+:::{admonition} See also
+
 {func}`scipy.ndimage.find_objects` is useful to return slices on
 object in an image.
 :::
@@ -656,28 +599,28 @@ the regions.
 The Watershed ({func}`skimage.segmentation.watershed`) is a region-growing
 approach that fills "basins" in the image
 
-```
->>> # Generate an initial image with two overlapping circles
->>> x, y = np.indices((80, 80))
->>> x1, y1, x2, y2 = 28, 28, 44, 52
->>> r1, r2 = 16, 20
->>> mask_circle1 = (x - x1) ** 2 + (y - y1) ** 2 < r1 ** 2
->>> mask_circle2 = (x - x2) ** 2 + (y - y2) ** 2 < r2 ** 2
->>> image = np.logical_or(mask_circle1, mask_circle2)
->>> # Now we want to separate the two objects in image
->>> # Generate the markers as local maxima of the distance
->>> # to the background
->>> import scipy as sp
->>> distance = sp.ndimage.distance_transform_edt(image)
->>> peak_idx = ski.feature.peak_local_max(
-...     distance, footprint=np.ones((3, 3)), labels=image
-... )
->>> peak_mask = np.zeros_like(distance, dtype=bool)
->>> peak_mask[tuple(peak_idx.T)] = True
->>> markers = ski.morphology.label(peak_mask)
->>> labels_ws = ski.segmentation.watershed(
-...     -distance, markers, mask=image
-... )
+```{python}
+# Generate an initial image with two overlapping circles
+x, y = np.indices((80, 80))
+x1, y1, x2, y2 = 28, 28, 44, 52
+r1, r2 = 16, 20
+mask_circle1 = (x - x1) ** 2 + (y - y1) ** 2 < r1 ** 2
+mask_circle2 = (x - x2) ** 2 + (y - y2) ** 2 < r2 ** 2
+image = np.logical_or(mask_circle1, mask_circle2)
+# Now we want to separate the two objects in image
+# Generate the markers as local maxima of the distance
+# to the background
+import scipy as sp
+distance = sp.ndimage.distance_transform_edt(image)
+peak_idx = ski.feature.peak_local_max(
+    distance, footprint=np.ones((3, 3)), labels=image
+)
+peak_mask = np.zeros_like(distance, dtype=bool)
+peak_mask[tuple(peak_idx.T)] = True
+markers = ski.morphology.label(peak_mask)
+labels_ws = ski.segmentation.watershed(
+    -distance, markers, mask=image
+)
 ```
 
 #### *Random walker* segmentation
@@ -686,11 +629,11 @@ The random walker algorithm ({func}`skimage.segmentation.random_walker`)
 is similar to the Watershed, but with a more "probabilistic" approach. It
 is based on the idea of the diffusion of labels in the image:
 
-```
->>> # Transform markers image so that 0-valued pixels are to
->>> # be labelled, and -1-valued pixels represent background
->>> markers[~image] = -1
->>> labels_rw = ski.segmentation.random_walker(image, markers)
+```{python}
+# Transform markers image so that 0-valued pixels are to
+# be labelled, and -1-valued pixels represent background
+markers[~image] = -1
+labels_rw = ski.segmentation.random_walker(image, markers)
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_segmentations_001.png
@@ -699,7 +642,7 @@ is based on the idea of the diffusion of labels in the image:
 :width: 90%
 ```
 
-:::{topic} Postprocessing label images
+:::{admonition} Postprocessing label images
 `skimage` provides several utility functions that can be used on
 label images (ie images where different discrete values identify
 different regions). Functions names are often self-explaining:
@@ -708,7 +651,7 @@ different regions). Functions names are often self-explaining:
 {func}`skimage.morphology.remove_small_objects`, etc.
 :::
 
-:::{topic} Exercise
+:::{admonition} Exercise
 :class: green
 
 - Load the `coins` image from the `data` submodule.
@@ -723,21 +666,23 @@ different regions). Functions names are often self-explaining:
 
 Example: compute the size and perimeter of the two segmented regions:
 
-```
->>> properties = ski.measure.regionprops(labels_rw)
->>> [float(prop.area) for prop in properties]
-[770.0, 1168.0]
->>> [prop.perimeter for prop in properties]
-[np.float64(100.91...), np.float64(126.81...)]
+```{python}
+properties = ski.measure.regionprops(labels_rw)
+[float(prop.area) for prop in properties]
 ```
 
-:::{seealso}
+```{python}
+[prop.perimeter for prop in properties]
+```
+
+:::{admonition} See also
+
 for some properties, functions are available as well in
 {mod}`scipy.ndimage.measurements` with a different API (a list is
 returned).
 :::
 
-:::{topic} Exercise (continued)
+:::{admonition} Exercise (continued)
 :class: green
 
 > - Use the binary image of the coins and background from the previous
@@ -753,38 +698,42 @@ pipeline.
 
 Some image processing operations:
 
-```
->>> coins = ski.data.coins()
->>> mask = coins > ski.filters.threshold_otsu(coins)
->>> clean_border = ski.segmentation.clear_border(mask)
+```{python}
+coins = ski.data.coins()
+mask = coins > ski.filters.threshold_otsu(coins)
+clean_border = ski.segmentation.clear_border(mask)
 ```
 
 Visualize binary result:
 
+```{python}
+plt.figure()
 ```
->>> plt.figure()
-<Figure size ... with 0 Axes>
->>> plt.imshow(clean_border, cmap='gray')
-<matplotlib.image.AxesImage object at 0x...>
+
+```{python}
+plt.imshow(clean_border, cmap='gray')
 ```
 
 Visualize contour
 
+```{python}
+plt.figure()
 ```
->>> plt.figure()
-<Figure size ... with 0 Axes>
->>> plt.imshow(coins, cmap='gray')
-<matplotlib.image.AxesImage object at 0x...>
->>> plt.contour(clean_border, [0.5])
-<matplotlib.contour.QuadContourSet ...>
+
+```{python}
+plt.imshow(coins, cmap='gray')
+```
+
+```{python}
+plt.contour(clean_border, [0.5])
 ```
 
 Use `skimage` dedicated utility function:
 
-```
->>> coins_edges = ski.segmentation.mark_boundaries(
-...     coins, clean_border.astype(int)
-... )
+```{python}
+coins_edges = ski.segmentation.mark_boundaries(
+    coins, clean_border.astype(int)
+)
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_boundaries_001.png
@@ -804,7 +753,7 @@ Geometric or textural descriptor can be extracted from images in order to
 
 Example: detecting corners using Harris detector
 
-```
+```{python}
 tform = ski.transform.AffineTransform(
     scale=(1.3, 1.1), rotation=1, shear=0.7,
     translation=(210, 50)
@@ -836,10 +785,9 @@ example of scikit-image.
 
 ## Full code examples
 
-% include the gallery. Skip the first line to avoid the "orphan"
-% declaration
-
-```{eval-rst}
+<!---
+include the gallery. Skip the first line to avoid the "orphan"
+declaration
+-->
 .. include:: auto_examples/index.rst
     :start-line: 1
-```

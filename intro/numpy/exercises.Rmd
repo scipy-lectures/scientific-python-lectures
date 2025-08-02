@@ -13,9 +13,9 @@ jupyter:
     name: python3
 ---
 
-% for doctests
-% >>> import matplotlib.pyplot as plt
-
+```{python} tags=c("hide-input")
+import matplotlib.pyplot as plt
+```
 (numpy-exercises)=
 
 # Some exercises
@@ -24,22 +24,22 @@ jupyter:
 
 1. Form the 2-D array (without typing it in explicitly):
 
-   ```
+```{python}
    [[1,  6, 11],
     [2,  7, 12],
     [3,  8, 13],
     [4,  9, 14],
     [5, 10, 15]]
-   ```
+```
 
    and generate a new array containing its 2nd and 4th rows.
 
 2. Divide each column of the array:
 
-   ```pycon
-   >>> import numpy as np
-   >>> a = np.arange(25).reshape(5, 5)
-   ```
+```{python}
+import numpy as np
+a = np.arange(25).reshape(5, 5)
+```
 
    elementwise with the array `b = np.array([1., 5, 10, 15, 20])`.
    (Hint: `np.newaxis`).
@@ -59,9 +59,9 @@ Let's do some manipulations on NumPy arrays by starting with an image
 of a raccoon. `scipy` provides a 2D array of this image with the
 `scipy.datasets.face` function:
 
-```
->>> import scipy as sp
->>> face = sp.datasets.face(gray=True)  # 2D grayscale image
+```{python}
+import scipy as sp
+face = sp.datasets.face(gray=True)  # 2D grayscale image
 ```
 
 Here are a few images we will be able to obtain with our manipulations:
@@ -83,41 +83,41 @@ use different colormaps, crop the image, change some parts of the image.
 - The face is displayed in false colors. A colormap must be
   : specified for it to be displayed in grey.
 
-    ```pycon
-    >>> plt.imshow(face, cmap=plt.cm.gray)
-    <matplotlib.image.AxesImage object at 0x...>
-    ```
+```{python}
+plt.imshow(face, cmap=plt.cm.gray)
+```
 
 - Create an array of the image with a narrower centering
   : remove 100 pixels from all the borders of the image. To check the result,
     display this new array with `imshow`.
 
-    ```pycon
-    >>> crop_face = face[100:-100, 100:-100]
-    ```
+```{python}
+crop_face = face[100:-100, 100:-100]
+```
 
 - We will now frame the face with a black locket. For this, we
   : need to create a mask corresponding to the pixels we want to be
     black. The center of the face is around (660, 330), so we defined
     the mask by this condition `(y-300)**2 + (x-660)**2`
 
-    ```pycon
-    >>> sy, sx = face.shape
-    >>> y, x = np.ogrid[0:sy, 0:sx] # x and y indices of pixels
-    >>> y.shape, x.shape
-    ((768, 1), (1, 1024))
-    >>> centerx, centery = (660, 300) # center of the image
-    >>> mask = ((y - centery)**2 + (x - centerx)**2) > 230**2 # circle
-    ```
+```{python}
+sy, sx = face.shape
+y, x = np.ogrid[0:sy, 0:sx] # x and y indices of pixels
+y.shape, x.shape
+```
+
+```{python}
+centerx, centery = (660, 300) # center of the image
+mask = ((y - centery)**2 + (x - centerx)**2) > 230**2 # circle
+```
 
     then we assign the value 0 to the pixels of the image corresponding
     to the mask. The syntax is extremely simple and intuitive:
 
-    ```pycon
-    >>> face[mask] = 0
-    >>> plt.imshow(face)
-    <matplotlib.image.AxesImage object at 0x...>
-    ```
+```{python}
+face[mask] = 0
+plt.imshow(face)
+```
 
 - Follow-up: copy all instructions of this exercise in a script called
   : `face_locket.py` then execute this script in IPython with `%run
@@ -131,17 +131,22 @@ The data in {download}`populations.txt <../../data/populations.txt>`
 describes the populations of hares and lynxes (and carrots) in
 northern Canada during 20 years:
 
-```pycon
->>> data = np.loadtxt('data/populations.txt')
->>> year, hares, lynxes, carrots = data.T  # trick: columns to variables
+```{python}
+data = np.loadtxt('data/populations.txt')
+year, hares, lynxes, carrots = data.T  # trick: columns to variables
+```
 
->>> import matplotlib.pyplot as plt
->>> plt.axes([0.2, 0.1, 0.5, 0.8])
-<Axes: >
->>> plt.plot(year, hares, year, lynxes, year, carrots)
-[<matplotlib.lines.Line2D object at ...>, ...]
->>> plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
-<matplotlib.legend.Legend object at ...>
+```{python}
+import matplotlib.pyplot as plt
+plt.axes([0.2, 0.1, 0.5, 0.8])
+```
+
+```{python}
+plt.plot(year, hares, year, lynxes, year, carrots)
+```
+
+```{python}
+plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_populations_001.png
@@ -191,7 +196,7 @@ with `np.ogrid[0:1:20j]`.)
 
 **Reminder** Python functions:
 
-```
+```{python}
 def f(a, b, c):
     return some_result
 ```
@@ -209,7 +214,7 @@ Solution: {download}`Python source file <solutions/2_3_crude_integration.py>`
 Write a script that computes the Mandelbrot fractal. The Mandelbrot
 iteration:
 
-```
+```{python}
 N_max = 50
 some_threshold = 50
 
@@ -225,9 +230,9 @@ Point (x, y) belongs to the Mandelbrot set if $|z|$ \<
 
 Do this computation by:
 
-% For doctests
-% >>> mask = np.ones((3, 3))
-
+```{python} tags=c("hide-input")
+mask = np.ones((3, 3))
+```
 1. Construct a grid of c = x + 1j\*y values in range [-2, 1] x [-1.5, 1.5]
 2. Do the iteration
 3. Form the 2-d boolean mask indicating which points are in the set

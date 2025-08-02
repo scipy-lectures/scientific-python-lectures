@@ -32,9 +32,8 @@ especially for interactive scientific computing.
 
 Once you have started the interpreter, type
 
-```
->>> print("Hello, world!")
-Hello, world!
+```{python}
+print("Hello, world!")
 ```
 
 :::{tip}
@@ -44,22 +43,31 @@ first Python instruction, congratulations!
 
 To get yourself started, type the following stack of instructions
 
+```{python}
+a = 3
+b = 2*a
+type(b)
 ```
->>> a = 3
->>> b = 2*a
->>> type(b)
-<class 'int'>
->>> print(b)
-6
->>> a*b
-18
->>> b = 'hello'
->>> type(b)
-<class 'str'>
->>> b + b
-'hellohello'
->>> 2*b
-'hellohello'
+
+```{python}
+print(b)
+```
+
+```{python}
+a*b
+```
+
+```{python}
+b = 'hello'
+type(b)
+```
+
+```{python}
+b + b
+```
+
+```{python}
+2*b
 ```
 
 :::{tip}

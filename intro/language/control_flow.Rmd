@@ -19,11 +19,9 @@ Controls the order in which the code is executed.
 
 ## if/elif/else
 
-```pycon
->>> if 2**2 == 4:
-...     print("Obvious!")
-...
-Obvious!
+```{python}
+if 2**2 == 4:
+    print("Obvious!")
 ```
 
 **Blocks are delimited by indentation**
@@ -36,17 +34,17 @@ decrease the indentation depth, go four spaces to the left with the
 Backspace key. Press the Enter key twice to leave the logical block.
 :::
 
-```pycon
->>> a = 10
+```{python}
+a = 10
+```
 
->>> if a == 1:
-...     print(1)
-... elif a == 2:
-...     print(2)
-... else:
-...     print("A lot")
-...
-A lot
+```{python}
+if a == 1:
+    print(1)
+elif a == 2:
+    print(2)
+else:
+    print("A lot")
 ```
 
 Indentation is compulsory in scripts as well. As an exercise, re-type the
@@ -57,66 +55,56 @@ execute the script with `run condition.py` in Ipython.
 
 Iterating with an index:
 
-```
->>> for i in range(4):
-...     print(i)
-0
-1
-2
-3
+```{python}
+for i in range(4):
+    print(i)
 ```
 
 But most often, it is more readable to iterate over values:
 
-```
->>> for word in ('cool', 'powerful', 'readable'):
-...     print('Python is %s' % word)
-Python is cool
-Python is powerful
-Python is readable
+```{python}
+for word in ('cool', 'powerful', 'readable'):
+    print('Python is %s' % word)
 ```
 
 ## while/break/continue
 
 Typical C-style while loop (Mandelbrot problem):
 
-```
->>> z = 1 + 1j
->>> while abs(z) < 100:
-...     z = z**2 + 1
->>> z
-(-134+352j)
+```{python}
+z = 1 + 1j
+while abs(z) < 100:
+    z = z**2 + 1
+z
 ```
 
 **More advanced features**
 
 `break` out of enclosing for/while loop:
 
+```{python}
+z = 1 + 1j
 ```
->>> z = 1 + 1j
 
->>> while abs(z) < 100:
-...     if z.imag == 0:
-...         break
-...     z = z**2 + 1
+```{python}
+while abs(z) < 100:
+    if z.imag == 0:
+        break
+    z = z**2 + 1
 ```
 
 `continue` the next iteration of a loop.:
 
-```
->>> a = [1, 0, 2, 4]
->>> for element in a:
-...     if element == 0:
-...         continue
-...     print(1. / element)
-1.0
-0.5
-0.25
+```{python}
+a = [1, 0, 2, 4]
+for element in a:
+    if element == 0:
+        continue
+    print(1. / element)
 ```
 
 ## Conditional Expressions
 
-```{eval-rst}
 
 :``a == b``:
 
@@ -162,7 +150,6 @@ Iterate over any *sequence*
 
 You can iterate over any sequence (string, list, keys in a dictionary, lines in
 a file, ...)::
-```
 
 ## Advanced iteration
 
@@ -171,28 +158,24 @@ a file, ...)::
 You can iterate over any sequence (string, list, keys in a dictionary, lines in
 a file, ...):
 
-```
->>> vowels = 'aeiouy'
-
->>> for i in 'powerful':
-...     if i in vowels:
-...         print(i)
-o
-e
-u
+```{python}
+vowels = 'aeiouy'
 ```
 
+```{python}
+for i in 'powerful':
+    if i in vowels:
+        print(i)
 ```
->>> message = "Hello how are you?"
->>> message.split() # returns a list
-['Hello', 'how', 'are', 'you?']
->>> for word in message.split():
-...     print(word)
-...
-Hello
-how
-are
-you?
+
+```{python}
+message = "Hello how are you?"
+message.split() # returns a list
+```
+
+```{python}
+for word in message.split():
+    print(word)
 ```
 
 :::{tip}
@@ -214,37 +197,30 @@ item number.
 
 - Could use while loop with a counter as above. Or a for loop:
 
-  ```
-  >>> words = ('cool', 'powerful', 'readable')
-  >>> for i in range(0, len(words)):
-  ...     print((i, words[i]))
-  (0, 'cool')
-  (1, 'powerful')
-  (2, 'readable')
-  ```
+```{python}
+words = ('cool', 'powerful', 'readable')
+for i in range(0, len(words)):
+    print((i, words[i]))
+```
 
 - But, Python provides a built-in function - `enumerate` - for this:
 
-  ```
-  >>> for index, item in enumerate(words):
-  ...     print((index, item))
-  (0, 'cool')
-  (1, 'powerful')
-  (2, 'readable')
-  ```
+```{python}
+for index, item in enumerate(words):
+    print((index, item))
+```
 
 ### Looping over a dictionary
 
 Use **items**:
 
+```{python}
+d = {'a': 1, 'b':1.2, 'c':1j}
 ```
->>> d = {'a': 1, 'b':1.2, 'c':1j}
 
->>> for key, val in sorted(d.items()):
-...     print('Key: %s has value: %s' % (key, val))
-Key: a has value: 1
-Key: b has value: 1.2
-Key: c has value: 1j
+```{python}
+for key, val in sorted(d.items()):
+    print('Key: %s has value: %s' % (key, val))
 ```
 
 :::{note}
@@ -257,14 +233,13 @@ which will sort on the keys.
 Instead of creating a list by means of a loop, one can make use
 of a list comprehension with a rather self-explaining syntax.
 
-```
->>> [i**2 for i in range(4)]
-[0, 1, 4, 9]
+```{python}
+[i**2 for i in range(4)]
 ```
 
 ______________________________________________________________________
 
-:::{topic} Exercise
+:::{admonition} Exercise
 :class: green
 
 Compute the decimals of Pi using the Wallis formula:
@@ -273,5 +248,3 @@ $$
 \pi = 2 \prod_{i=1}^{\infty} \frac{4i^2}{4i^2 - 1}
 $$
 :::
-
-% :ref:`pi_wallis`

@@ -28,7 +28,7 @@ type(f)
 ```
 
 ```{python}
-f.write('This is a test \nand another test')   # doctest: +SKIP
+f.write('This is a test \nand another test')
 f.close()
 ```
 
@@ -48,7 +48,8 @@ and another test
 f.close()
 ```
 
-:::{seealso}
+:::{admonition} See also
+
 For more details: <https://docs.python.org/3/tutorial/inputoutput.html>
 :::
 

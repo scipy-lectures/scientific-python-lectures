@@ -13,19 +13,12 @@ jupyter:
     name: python3
 ---
 
-% For doctests
-%
-% >>> import numpy as np
-% >>> import matplotlib.pyplot as plt
-
-.. currentmodule:: numpy
+```{python} tags=c("hide-input")
+import numpy as np
+import matplotlib.pyplot as plt
+```
 
 # More elaborate arrays
-
-```{contents} Section contents
-:depth: 1
-:local: true
-```
 
 ## More data types
 
@@ -137,7 +130,7 @@ Complex floating-point numbers:
 :class:`complex256`  two 128-bit floats, platform-dependent
 =================== ==============================================================
 
-:::{topic} Smaller data types
+:::{admonition} Smaller data types
 If you don't know you need special data types, then you probably don't.
 
 Comparison on using `float32` instead of `float64`:
@@ -246,7 +239,7 @@ x + y
 - Masking versions of common functions:
 
 ```{python}
-np.ma.sqrt([1, -1, 2, -2]) #doctest:+ELLIPSIS
+np.ma.sqrt([1, -1, 2, -2])
 ```
 
 :::{note}
@@ -258,7 +251,7 @@ ______________________________________________________________________
 While it is off topic in a chapter on NumPy, let's take a moment to
 recall good coding practice, which really do pay off in the long run:
 
-:::{topic} Good practices
+:::{admonition} Good practices
 - Explicit variable names (no need of a comment to explain what is in
   the variable)
 

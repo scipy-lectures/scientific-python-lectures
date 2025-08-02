@@ -13,10 +13,10 @@ jupyter:
     name: python3
 ---
 
-% For doctests
-% >>> import numpy as np
-% >>> import scipy as sp
-
+```{python} tags=c("hide-input")
+import numpy as np
+import scipy as sp
+```
 # Dictionary of Keys Format (DOK)
 
 - subclass of Python dict
@@ -38,36 +38,36 @@ jupyter:
 
 - create a DOK array element by element:
 
-  ```
-  >>> mtx = sp.sparse.dok_array((5, 5), dtype=np.float64)
-  >>> mtx
-  <Dictionary Of Keys sparse array of dtype 'float64'
-          with 0 stored elements and shape (5, 5)>
-  >>> for ir in range(5):
-  ...     for ic in range(5):
-  ...         mtx[ir, ic] = 1.0 * (ir != ic)
-  >>> mtx
-  <Dictionary Of Keys sparse array of dtype 'float64'
-          with 20 stored elements and shape (5, 5)>
-  >>> mtx.toarray()
-  array([[0.,  1.,  1.,  1.,  1.],
-         [1.,  0.,  1.,  1.,  1.],
-         [1.,  1.,  0.,  1.,  1.],
-         [1.,  1.,  1.,  0.,  1.],
-         [1.,  1.,  1.,  1.,  0.]])
-  ```
+```{python}
+mtx = sp.sparse.dok_array((5, 5), dtype=np.float64)
+mtx
+```
+
+```{python}
+for ir in range(5):
+    for ic in range(5):
+        mtx[ir, ic] = 1.0 * (ir != ic)
+mtx
+```
+
+```{python}
+mtx.toarray()
+```
 
 - slicing and indexing:
 
-  ```
-  >>> mtx[1, 1]
-  np.float64(0.0)
-  >>> mtx[[1], 1:3]
-  <Dictionary Of Keys sparse array of dtype 'float64'
-          with 1 stored elements and shape (1, 2)>
-  >>> mtx[[1], 1:3].toarray()
-  array([[0.,  1.]])
-  >>> mtx[[2, 1], 1:3].toarray()
-  array([[1.,  0.],
-         [0.,  1.]])
-  ```
+```{python}
+mtx[1, 1]
+```
+
+```{python}
+mtx[[1], 1:3]
+```
+
+```{python}
+mtx[[1], 1:3].toarray()
+```
+
+```{python}
+mtx[[2, 1], 1:3].toarray()
+```

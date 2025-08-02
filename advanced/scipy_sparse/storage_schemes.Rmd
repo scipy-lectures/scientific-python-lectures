@@ -30,11 +30,11 @@ jupyter:
 
 - assume the following is imported:
 
-  ```
-  >>> import numpy as np
-  >>> import scipy as sp
-  >>> import matplotlib.pyplot as plt
-  ```
+```{python}
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+```
 
 - **warning** for Numpy users:
   : - passing a sparse array object to NumPy functions that expect
@@ -82,7 +82,6 @@ bsr_array
 
 ## Summary
 
-```{eval-rst}
 .. list-table:: Summary of storage schemes.
    :widths: 10 10 10 10 10 10 10 30
    :header-rows: 1
@@ -151,4 +150,3 @@ bsr_array
      - yes
      - iterative
      - O(1) item access, incremental construction, slow arithmetic
-```

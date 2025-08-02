@@ -13,10 +13,10 @@ jupyter:
     name: python3
 ---
 
-% For doctests
-% >>> import numpy as np
-% >>> import scipy as sp
-
+```{python} tags=c("hide-input")
+import numpy as np
+import scipy as sp
+```
 # Compressed Sparse Column Format (CSC)
 
 - column oriented
@@ -49,45 +49,43 @@ jupyter:
 
 - create empty CSC array:
 
-  ```
-  >>> mtx = sp.sparse.csc_array((3, 4), dtype=np.int8)
-  >>> mtx.toarray()
-  array([[0, 0, 0, 0],
-         [0, 0, 0, 0],
-         [0, 0, 0, 0]], dtype=int8)
-  ```
+```{python}
+mtx = sp.sparse.csc_array((3, 4), dtype=np.int8)
+mtx.toarray()
+```
 
 - create using `(data, coords)` tuple:
 
-  ```
-  >>> row = np.array([0, 0, 1, 2, 2, 2])
-  >>> col = np.array([0, 2, 2, 0, 1, 2])
-  >>> data = np.array([1, 2, 3, 4, 5, 6])
-  >>> mtx = sp.sparse.csc_array((data, (row, col)), shape=(3, 3))
-  >>> mtx
-  <Compressed Sparse Column sparse array of dtype 'int64'
-          with 6 stored elements and shape (3, 3)>
-  >>> mtx.toarray()
-  array([[1, 0, 2],
-         [0, 0, 3],
-         [4, 5, 6]]...)
-  >>> mtx.data
-  array([1, 4, 5, 2, 3, 6]...)
-  >>> mtx.indices
-  array([0, 2, 2, 0, 1, 2])
-  >>> mtx.indptr
-  array([0, 2, 3, 6])
-  ```
+```{python}
+row = np.array([0, 0, 1, 2, 2, 2])
+col = np.array([0, 2, 2, 0, 1, 2])
+data = np.array([1, 2, 3, 4, 5, 6])
+mtx = sp.sparse.csc_array((data, (row, col)), shape=(3, 3))
+mtx
+```
+
+```{python}
+mtx.toarray()
+```
+
+```{python}
+mtx.data
+```
+
+```{python}
+mtx.indices
+```
+
+```{python}
+mtx.indptr
+```
 
 - create using `(data, indices, indptr)` tuple:
 
-  ```
-  >>> data = np.array([1, 4, 5, 2, 3, 6])
-  >>> indices = np.array([0, 2, 2, 0, 1, 2])
-  >>> indptr = np.array([0, 2, 3, 6])
-  >>> mtx = sp.sparse.csc_array((data, indices, indptr), shape=(3, 3))
-  >>> mtx.toarray()
-  array([[1, 0, 2],
-         [0, 0, 3],
-         [4, 5, 6]])
-  ```
+```{python}
+data = np.array([1, 4, 5, 2, 3, 6])
+indices = np.array([0, 2, 2, 0, 1, 2])
+indptr = np.array([0, 2, 3, 6])
+mtx = sp.sparse.csc_array((data, indices, indptr), shape=(3, 3))
+mtx.toarray()
+```

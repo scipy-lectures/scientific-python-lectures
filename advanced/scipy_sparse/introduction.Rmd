@@ -13,11 +13,11 @@ jupyter:
     name: python3
 ---
 
-% For doctests
-% >>> import numpy as np
-% >>> # For doctest on headless environments
-% >>> import matplotlib.pyplot as plt
-
+```{python} tags=c("hide-input")
+import numpy as np
+# For doctest on headless environments
+import matplotlib.pyplot as plt
+```
 # Introduction
 
 (dense) matrix is:
@@ -37,17 +37,20 @@ important features:
 
 - small example (double precision matrix):
 
-  ```
-  >>> import numpy as np
-  >>> import matplotlib.pyplot as plt
-  >>> x = np.linspace(0, 1e6, 10)
-  >>> plt.plot(x, 8.0 * (x**2) / 1e6, lw=5)
-  [<matplotlib.lines.Line2D object at ...>]
-  >>> plt.xlabel('size n')
-  Text(...'size n')
-  >>> plt.ylabel('memory [MB]')
-  Text(...'memory [MB]')
-  ```
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(0, 1e6, 10)
+plt.plot(x, 8.0 * (x**2) / 1e6, lw=5)
+```
+
+```{python}
+plt.xlabel('size n')
+```
+
+```{python}
+plt.ylabel('memory [MB]')
+```
 
 ## Sparse Matrices vs. Sparse Matrix Storage Schemes
 
@@ -73,14 +76,12 @@ important features:
 
 ## Prerequisites
 
-```{eval-rst}
 .. rst-class:: horizontal
 
     * :ref:`numpy <numpy>`
     * :ref:`scipy <scipy>`
     * :ref:`matplotlib (optional) <matplotlib>`
     * :ref:`ipython (the enhancements come handy) <interactive_work>`
-```
 
 ## Sparsity Structure Visualization
 

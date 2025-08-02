@@ -361,7 +361,7 @@ examples on *lists*, *dictionaries*, *strings*, etc...
 
 ## Exercises
 
-:::{topic} Exercise: Fibonacci sequence
+:::{admonition} Exercise: Fibonacci sequence
 :class: green
 
 Write a function that displays the `n` first terms of the Fibonacci
@@ -372,9 +372,10 @@ $$
 $$
 :::
 
-% :ref:`fibonacci`
-
-:::{topic} Exercise: Quicksort
+<!---
+:ref:`fibonacci`
+-->
+:::{admonition} Exercise: Quicksort
 :class: green
 
 Implement the quicksort algorithm, as defined by wikipedia
@@ -391,5 +392,3 @@ Implement the quicksort algorithm, as defined by wikipedia
             if x < pivot + 1 then append x to less
             else append x to greater
         return concatenate(quicksort(less), pivot, quicksort(greater))
-
-% :ref:`quick_sort`

@@ -24,18 +24,20 @@ Here is a small example: we create a Student *class*, which is an object
 gathering several custom functions (*methods*) and variables (*attributes*),
 we will be able to use:
 
+```{python}
+class Student(object):
+    def __init__(self, name):
+        self.name = name
+    def set_age(self, age):
+        self.age = age
+    def set_major(self, major):
+        self.major = major
 ```
->>> class Student(object):
-...     def __init__(self, name):
-...         self.name = name
-...     def set_age(self, age):
-...         self.age = age
-...     def set_major(self, major):
-...         self.major = major
-...
->>> anna = Student('anna')
->>> anna.set_age(21)
->>> anna.set_major('physics')
+
+```{python}
+anna = Student('anna')
+anna.set_age(21)
+anna.set_major('physics')
 ```
 
 In the previous example, the Student class has `__init__`, `set_age` and
@@ -50,16 +52,19 @@ methods and attributes as the previous one, but with an additional
 `internship` attribute. We won't copy the previous class, but
 **inherit** from it:
 
+```{python}
+class MasterStudent(Student):
+    internship = 'mandatory, from March to June'
 ```
->>> class MasterStudent(Student):
-...     internship = 'mandatory, from March to June'
-...
->>> james = MasterStudent('james')
->>> james.internship
-'mandatory, from March to June'
->>> james.set_age(23)
->>> james.age
-23
+
+```{python}
+james = MasterStudent('james')
+james.internship
+```
+
+```{python}
+james.set_age(23)
+james.age
 ```
 
 The MasterStudent class inherited from the Student attributes and methods.
