@@ -26,7 +26,7 @@ jupyter:
 '''
 
 def process_python_block(lines):
-    if any([L.strip().startswith('>>> ') for L in lines]):
+    if [L.strip().startswith('>>> ') for L in lines if L.strip()][0]:
         return process_doctest_block(lines)
     return ['```{python}'] + lines[:] + ['```']
 
@@ -145,9 +145,14 @@ _DOCTEST_BLOCK = r'''
 '''.splitlines()
 
 
-def process_doctest_block(lines):
+def process_doctest_block(lines, tags=()):
     lines = textwrap.dedent('\n'.join(lines)).splitlines()
-    out_lines = ['```{python}']
+    if tags:
+        joined_tags = ', '.join(f'"{t}"' for t in tags)
+        cell_hdr = '```{python}' + f' tags=c({joined_tags})'
+    else:
+        cell_hdr = '```{python}'
+    out_lines = [cell_hdr]
     state = 'start'
     last_i = len(lines) - 1
     for i, line in enumerate(lines):
@@ -155,7 +160,7 @@ def process_doctest_block(lines):
             continue
         if line.startswith('>>> '):
             if state == 'output' and i != last_i:
-                out_lines += ['```', '', '```{python}']
+                out_lines += ['```', '', cell_hdr]
             state = 'code'
             out_lines.append(line[4:])
             continue
@@ -281,10 +286,58 @@ def parse_lines(lines):
     return parsed_lines
 
 
+def strip_content(lines):
+    text = '\n'.join(lines)
+    text = re.sub(r'^\.\.\s+currentmodule:: .*\n', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\s+#\s*doctest:.*$', '', text, flags=re.MULTILINE)
+    text = re.sub(r'\{topic\}', r'{admonition}', text, flags=re.MULTILINE)
+    text = re.sub(r'^:::\s*\{seealso\}$\n*(.*?)^:::\s*$',
+                  ':::{admonition} See also\n\n\\1:::\n',
+                  text,
+                  flags=re.MULTILINE | re.DOTALL)
+    return re.sub(r'\`\`\`\s*\{contents\}.*?^\`\`\`\s*\n', '',
+                  text,
+                  flags=re.MULTILINE | re.DOTALL).splitlines()
+
+
+def process_percent_block(lines):
+    # The first one or more lines should be considered comments.
+    for i, line in enumerate(lines):
+        if line.strip().startswith('>>> '):
+            head_lines = ['>>> # ' + L for L in lines[:i]
+                          if (L.strip() and not 'for doctest' in L.lower())]
+            return process_doctest_block(head_lines + lines[i:],
+                                         tags=('hide-input',))
+    return ['<!---'] + lines[:] + ['-->']
+
+
+def process_percent(lines):
+    out_lines = []
+    block_lines = []
+    state = 'default'
+    for line in lines:
+        pct_line = line.startswith('% ')
+        if state == 'default':
+            if not pct_line:
+                out_lines.append(line)
+                continue
+            state = 'percent-lines'
+        if state == 'percent-lines':
+            if line.startswith('%'):
+                block_lines.append(line[2:])
+            else:  # End of block
+                out_lines += process_percent_block(block_lines)
+                assert not line.strip()
+                state = 'default'
+                block_lines = []
+    return out_lines
+
+
 def process_md(fname):
     fpath = Path(fname)
-    lines = fpath.read_text().splitlines()
-    out_lines = parse_lines(lines)
+    out_lines = fpath.read_text().splitlines()[:]
+    for parser in [parse_lines, strip_content, process_percent]:
+        out_lines = parser(out_lines)
     content = '\n'.join(out_lines)
     out_path = fpath
     if fpath.suffix == '.md' and '```{python}' in content:
