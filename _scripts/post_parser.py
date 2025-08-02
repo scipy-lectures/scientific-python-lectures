@@ -25,10 +25,10 @@ jupyter:
 ---
 '''
 
-def process_python_block(lines):
+def process_python_block(lines, tags=()):
     if [L.strip().startswith('>>> ') for L in lines if L.strip()][0]:
         return process_doctest_block(lines)
-    return ['```{python}'] + lines[:] + ['```']
+    return [get_hdr(tags)] + lines[:] + ['```']
 
 
 _PY_BLOCK = """\
@@ -145,13 +145,18 @@ _DOCTEST_BLOCK = r'''
 '''.splitlines()
 
 
+def get_hdr(tags):
+    if not tags:
+        return '```{python}'
+    joined_tags = ', '.join(f'"{t}"' for t in tags)
+    return '```{python}' + f' tags=c({joined_tags})'
+
+
 def process_doctest_block(lines, tags=()):
+    if not any([L.strip().startswith('>>> ') for L in lines]):
+        return process_python_block(lines, tags)
     lines = textwrap.dedent('\n'.join(lines)).splitlines()
-    if tags:
-        joined_tags = ', '.join(f'"{t}"' for t in tags)
-        cell_hdr = '```{python}' + f' tags=c({joined_tags})'
-    else:
-        cell_hdr = '```{python}'
+    cell_hdr = get_hdr(tags)
     out_lines = [cell_hdr]
     state = 'start'
     last_i = len(lines) - 1
