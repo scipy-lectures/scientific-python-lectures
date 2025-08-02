@@ -295,7 +295,9 @@ def strip_content(lines):
     text = '\n'.join(lines)
     text = re.sub(r'^\.\.\s+currentmodule:: .*\n', '', text, flags=re.MULTILINE)
     text = re.sub(r'\s+#\s*doctest:.*$', '', text, flags=re.MULTILINE)
-    text = re.sub(r'\{topic\}', r'{admonition}', text, flags=re.MULTILINE)
+    text = re.sub(r'^:::\s*\{topic\}\s*\**(.*?)\**$',
+                  r':::{admonition} \1', text,
+                  flags=re.MULTILINE)
     text = re.sub(r'^:::\s*\{seealso\}$\n*(.*?)^:::\s*$',
                   ':::{admonition} See also\n\n\\1:::\n',
                   text,
