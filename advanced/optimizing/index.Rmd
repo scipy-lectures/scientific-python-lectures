@@ -311,10 +311,8 @@ indices arrays can be useful.
 Use {ref}`broadcasting <broadcasting>` to do operations on arrays as
 small as possible before combining them.
 
-<!---
 % XXX: complement broadcasting in the NumPy chapter with the example of
 % the 3D grid
--->
 
 ### In place operations
 
