@@ -214,7 +214,7 @@ substitutions:
     ```
 ---
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import numpy as np
 ```
 (mathematical-optimization)=

@@ -13,13 +13,13 @@ jupyter:
     name: python3
 ---
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas
 pandas.options.display.width = 0
 ```
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 # also switch current directory from the root directory (where the tests
 # are run) to be able to load the data
 import os

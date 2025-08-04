@@ -1268,10 +1268,10 @@ gufuncs.  See the discussion at:
 
 https://mail.python.org/archives/list/numpy-discussion@python.org/thread/ZG7AUSPYYUNSPQU3YUZS2XCFD7AT3BJP/
 -->
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import numpy.core.umath_tests as ut
 ```
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 ut.matrix_multiply.signature
 ```
 <!---
@@ -1279,13 +1279,13 @@ ut.matrix_multiply.signature
 -->
 %
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 x = np.ones((10, 2, 4))
 ```
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 y = np.ones((10, 4, 5))
 ```
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 ut.matrix_multiply(x, y).shape
 ```
 <!---
@@ -1412,7 +1412,7 @@ x = np.array([[1, 2], [3, 4]])
 x.__array_interface__
 ```
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt

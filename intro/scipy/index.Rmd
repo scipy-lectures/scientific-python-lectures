@@ -52,7 +52,7 @@ substitutions:
     ```
 ---
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import matplotlib.pyplot as plt
 import numpy as np
 ```
@@ -754,7 +754,7 @@ advanced example.
 
 ## Statistics and random numbers: {mod}`scipy.stats`
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 # Comment to make doctest pass
 np.random.seed(0)
 ```

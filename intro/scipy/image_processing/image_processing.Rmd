@@ -17,7 +17,7 @@ jupyter:
 orphan: true
 ---
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import matplotlib.pyplot as plt
 ```
 {mod}`scipy.ndimage` provides manipulation of n-dimensional arrays as

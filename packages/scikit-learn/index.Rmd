@@ -71,7 +71,7 @@ Varoquaux, Jake Vanderplas, Olivier Grisel.
   very complete and didactic.
 :::
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import numpy as np
 # For doctest on headless environments
 import matplotlib.pyplot as plt

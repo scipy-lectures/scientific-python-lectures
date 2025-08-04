@@ -13,12 +13,13 @@ jupyter:
     name: python3
 ---
 
-```{python} tags=c("hide-input")
+# The NumPy array object
+
+```{python tags=c("hide-input")}
+# Our usual imports.
 import numpy as np
 import matplotlib.pyplot as plt
 ```
-
-# The NumPy array object
 
 ## What are NumPy and NumPy arrays?
 
@@ -856,10 +857,10 @@ the same time:
 -->
 %
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 a = np.arange(12).reshape(3,4)
 ```
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 a
 ```
 <!---
@@ -871,10 +872,10 @@ array([[ 0,  1,  2,  3],
 <!---
 [ 8,  9, 10, 11]])
 -->
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 i = np.array([[0, 1], [1, 2]])
 ```
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 a[i, 2] # same as a[i, 2*np.ones((2, 2), dtype=int)]
 ```
 <!---

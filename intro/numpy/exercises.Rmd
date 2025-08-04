@@ -13,7 +13,7 @@ jupyter:
     name: python3
 ---
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import matplotlib.pyplot as plt
 ```
 (numpy-exercises)=
@@ -230,7 +230,7 @@ Point (x, y) belongs to the Mandelbrot set if $|z|$ \<
 
 Do this computation by:
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 mask = np.ones((3, 3))
 ```
 1. Construct a grid of c = x + 1j\*y values in range [-2, 1] x [-1.5, 1.5]

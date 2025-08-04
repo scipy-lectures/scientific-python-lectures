@@ -204,7 +204,7 @@ and many more packages not documented in the Scientific Python Lectures.
 
 {{ clear-floats }}
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import numpy as np
 ```
 ## Before starting: Installing a working environment

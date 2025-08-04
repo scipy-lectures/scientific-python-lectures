@@ -149,7 +149,7 @@ def get_hdr(tags):
     if not tags:
         return '```{python}'
     joined_tags = ', '.join(f'"{t}"' for t in tags)
-    return '```{python}' + f' tags=c({joined_tags})'
+    return f'```{{python tags=c({joined_tags})}}'
 
 
 def process_doctest_block(lines, tags=()):

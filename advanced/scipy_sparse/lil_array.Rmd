@@ -13,7 +13,7 @@ jupyter:
     name: python3
 ---
 
-```{python} tags=c("hide-input")
+```{python tags=c("hide-input")}
 import numpy as np
 import scipy as sp
 ```
