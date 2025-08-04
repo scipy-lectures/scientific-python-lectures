@@ -44,6 +44,8 @@ This section covers:
 ```{python}
 # Import Numpy module.
 import numpy as np
+# Import Matplotlib (for later).
+import matplotlib.pyplot as plt
 ```
 
 ## Life of ndarray
@@ -249,7 +251,7 @@ wav_header_dtype.fields['format']
 Mini-exercise, make a "sparse" dtype by using offsets, and only some
 of the fields:
 
-```{python}
+```{python tags=c("raises-exception")}
 wav_header_dtype = np.dtype(dict(
   names=['format', 'sample_rate', 'data_id'],
   offsets=[offset_1, offset_2, offset_3], # counted from start of structure in bytes
@@ -330,7 +332,7 @@ y
 y + 1
 ```
 
-```{python}
+```{python tags=c("raises-exception")}
 y + 256
 ```
 
@@ -420,8 +422,7 @@ y.base is x
 ```
 :::
 
-```{rubric} Mini-exercise: data re-interpretation
-```
+**Mini-exercise: data re-interpretation**
 
 :::{admonition} See also
 
@@ -447,7 +448,7 @@ without copying data?
 y = ...
 ```
 
-```{python}
+```{python tags=c("raises-exception")}
 assert (y['r'] == 1).all()
 assert (y['g'] == 2).all()
 assert (y['b'] == 3).all()
@@ -501,7 +502,7 @@ x.tobytes()
 
 The `\x` stands for heXadecimal, so what we are seeing is:
 
-```{python}
+```
 0x01 0x03 0x02 0x04
 ```
 
@@ -726,8 +727,7 @@ operation needs to make a copy here.
 
 #### Example: fake dimensions with strides
 
-```{rubric} Stride manipulation
-```
+**Stride manipulation**
 
 ```{python}
 from numpy.lib.stride_tricks import as_strided
@@ -816,8 +816,7 @@ y2
 x2 * y2
 ```
 
-```{rubric} ... seems somehow familiar ...
-```
+**... seems somehow familiar ...**
 
 ```{python}
 x = np.array([1, 2, 3, 4], dtype=np.int16)
@@ -1007,10 +1006,7 @@ x.strides, y.strides
 
 - Ufunc performs and elementwise operation on all elements of an array.
 
-  Examples:
-
-```{python}
-  np.add, np.subtract, scipy.special.*, ...
+  Examples: `np.add, np.subtract, scipy.special.*,` ...
 ```
 
 - Automatically support: broadcasting, casting, ...
@@ -1165,8 +1161,7 @@ Most of the boilerplate could be automated by these Cython modules:
 <https://github.com/cython/cython/wiki/MarkLodato-CreatingUfuncs>
 :::
 
-```{rubric} Several accepted input types
-```
+***Several accepted input types**
 
 E.g. supporting both single- and double-precision versions
 
@@ -1245,13 +1240,10 @@ mandel = PyUFunc_FromFuncAndData(
 > - This is called the *"signature"* of the generalized ufunc
 > - The dimensions on which the g-ufunc acts, are *"core dimensions"*
 
-```{rubric} Status in NumPy
-```
+**Status in NumPy**
 
 - g-ufuncs are in NumPy already ...
-
 - new ones can be created with `PyUFunc_FromFuncAndDataAndSignature`
-
 - most linear-algebra functions are implemented as g-ufuncs to enable working
   with stacked arrays:
 
@@ -1308,8 +1300,8 @@ and are modified as per the *signature*
 <!---
 * otherwise, the g-ufunc operates "elementwise"
 -->
-```{rubric} Generalized ufunc loop
-```
+
+**Generalized ufunc loop**
 
 Matrix multiplication `(m,n),(n,p) -> (m,p)`
 
@@ -1582,13 +1574,8 @@ plt.plot(year, populations, 'o-')
 ```
 :::
 
-```{image} auto_examples/images/sphx_glr_plot_maskedstats_001.png
-:align: center
-:target: auto_examples/plot_maskedstats.html
-:width: 50%
-```
 
-### {class}`recarray`: purely convenience
+### `np.recarray`: purely convenience
 
 ```{python}
 arr = np.array([('a', 1), ('b', 2)], dtype=[('x', 'S1'), ('y', int)])
@@ -1708,7 +1695,7 @@ print(np.__file__)
 
      - Send a mail @ `scipy-dev` mailing list; ask for activation:
 
-```{python}
+       ```text
        To: scipy-dev@scipy.org
 
        Hi,
@@ -1717,14 +1704,14 @@ print(np.__file__)
 
        Cheers,
        N. N.
-```
+       ```
 
-   > - Check the style guide:
-   >
-   >   - <https://numpy.org/doc/stable/>
-   >   - Don't be intimidated; to fix a small thing, just fix it
-   >
-   > - Edit
+   - Check the style guide:
+
+     - <https://numpy.org/doc/stable/>
+     - Don't be intimidated; to fix a small thing, just fix it
+
+   - Edit
 
 2. Edit sources and send patches (as for bugs)
 
@@ -1732,7 +1719,7 @@ print(np.__file__)
 
 ### Contributing features
 
-> The contribution of features is documented on <https://numpy.org/doc/stable/dev/>
+The contribution of features is documented on <https://numpy.org/doc/stable/dev/>
 
 ### How to help, in general
 
