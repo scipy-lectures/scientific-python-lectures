@@ -86,7 +86,7 @@ sphinx:
 
 latex:
   latex_documents:
-    targetname: odsti_textbook.tex
+    targetname: scientific_python_lectures.tex
 
 bibtex_bibfiles:
   - sp_lectures.bib
