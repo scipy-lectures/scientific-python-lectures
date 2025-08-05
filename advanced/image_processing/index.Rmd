@@ -6,22 +6,24 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
 
-```{python tags=c("hide-input")}
-import numpy as np
-import matplotlib.pyplot as plt
-```
 (basic-image)=
 
 # Image manipulation and processing using NumPy and SciPy
 
 **Authors**: *Emmanuelle Gouillart, Gaël Varoquaux*
+
+```{python tags=c("hide-input")}
+# Our usual imports.
+import numpy as np
+import matplotlib.pyplot as plt
+```
 
 This section addresses basic image manipulation and processing using the
 core scientific modules NumPy and SciPy. Some of the operations covered
@@ -45,7 +47,6 @@ Here, **image == NumPy array** `np.array`
 **Tools used in this tutorial**:
 
 - `numpy`: basic array manipulation
-
 - `scipy`: `scipy.ndimage` submodule dedicated to image processing
   (n-dimensional images). See the [documentation](https://docs.scipy.org/doc/scipy/tutorial/ndimage.html):
 
@@ -56,17 +57,11 @@ import scipy as sp
 **Common tasks in image processing**:
 
 - Input/Output, displaying images
-
 - Basic manipulations: cropping, flipping, rotating, ...
-
 - Image filtering: denoising, sharpening
-
 - Image segmentation: labeling pixels corresponding to different objects
-
 - Classification
-
 - Feature extraction
-
 - Registration
 
 - ...
@@ -75,21 +70,14 @@ import scipy as sp
 
 Writing an array to a file:
 
-```{literalinclude} examples/plot_face.py
-:lines: 8-
-```
-
-```{image} examples/face.png
-:align: center
-:scale: 50
-```
-
-Creating a NumPy array from an image file:
-
 ```{python}
+import scipy as sp
 import imageio.v3 as iio
-face = sp.datasets.face()
-iio.imwrite('face.png', face)  # First we need to create the PNG file
+
+f = sp.datasets.face()
+iio.imwrite("face.png", f)  # uses the Image module (PIL)
+
+plt.imshow(f)
 ```
 
 ```{python}
@@ -101,7 +89,7 @@ type(face)
 face.shape, face.dtype
 ```
 
-dtype is uint8 for 8-bit images (0-255)
+`dtype` is `uint8` for 8-bit images (0-255)
 
 Opening raw files (camera, 3-D images)
 
@@ -142,7 +130,6 @@ Use `matplotlib` and `imshow` to display an image inside a
 
 ```{python}
 f = sp.datasets.face(gray=True)  # retrieve a grayscale image
-import matplotlib.pyplot as plt
 plt.imshow(f, cmap=plt.cm.gray)
 ```
 
@@ -163,34 +150,24 @@ Draw contour lines:
 plt.contour(f, [50, 200])
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_display_face_001.png
-:scale: 80
-:target: auto_examples/plot_display_face.html
-:::
-
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_display_face.py>`\]
-:::
-
 For smooth intensity variations, use `interpolation='bilinear'`. For fine inspection of intensity variations, use
 `interpolation='nearest'`:
 
 ```{python}
 plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='bilinear')
+plt.axis("off")
 ```
 
 ```{python}
 plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='nearest')
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_interpolation_face_001.png
-:scale: 80
-:target: auto_examples/plot_interpolation_face.html
-:::
+The example below demonstrates image interpolation on a Raccoon face.
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_interpolation_face.py>`\]
-:::
+```{python}
+f = sp.datasets.face(gray=True)
+plt.axis("off")
+```
 
 :::{admonition} See also
 
@@ -201,10 +178,6 @@ More interpolation methods are in [Matplotlib's examples](https://matplotlib.org
 
 Images are arrays: use the whole `numpy` machinery.
 
-```{image} axis_convention.png
-:align: center
-:scale: 65
-```
 
 ```{python}
 face = sp.datasets.face(gray=True)
@@ -228,16 +201,12 @@ mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
 face[mask] = 0
 # Fancy indexing
 face[range(400), range(400)] = 255
+
+plt.figure(figsize=(3, 3))
+plt.axes((0, 0, 1, 1))
+plt.imshow(face, cmap="gray")
+plt.axis("off")
 ```
-
-:::{figure} auto_examples/images/sphx_glr_plot_numpy_array_001.png
-:scale: 100
-:target: auto_examples/plot_numpy_array.html
-:::
-
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_numpy_array.py>`\]
-:::
 
 ### Statistical information
 
@@ -288,14 +257,28 @@ rotate_face = sp.ndimage.rotate(face, 45)
 rotate_face_noreshape = sp.ndimage.rotate(face, 45, reshape=False)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_geom_face_001.png
-:scale: 65
-:target: auto_examples/plot_geom_face.html
-:::
+```{python}
+# Plot the transformed face.
+plt.figure(figsize=(12.5, 2.5))
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_geom_face.py>`\]
-:::
+plt.subplot(151)
+plt.imshow(face, cmap="gray")
+plt.axis("off")
+plt.subplot(152)
+plt.imshow(crop_face, cmap="gray")
+plt.axis("off")
+plt.subplot(153)
+plt.imshow(flip_ud_face, cmap="gray")
+plt.axis("off")
+plt.subplot(154)
+plt.imshow(rotate_face, cmap="gray")
+plt.axis("off")
+plt.subplot(155)
+plt.imshow(rotate_face_noreshape, cmap="gray")
+plt.axis("off")
+
+plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
+```
 
 ## Image filtering
 
@@ -326,14 +309,21 @@ very_blurred = sp.ndimage.gaussian_filter(face, sigma=5)
 local_mean = sp.ndimage.uniform_filter(face, size=11)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_blur_001.png
-:scale: 90
-:target: auto_examples/plot_blur.html
-:::
+```{python}
+# Plot the figures.
+plt.figure(figsize=(9, 3))
+plt.subplot(131)
+plt.imshow(blurred_face, cmap="gray")
+plt.axis("off")
+plt.subplot(132)
+plt.imshow(very_blurred, cmap="gray")
+plt.axis("off")
+plt.subplot(133)
+plt.imshow(local_mean, cmap="gray")
+plt.axis("off")
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_blur.py>`\]
-:::
+plt.subplots_adjust(wspace=0, hspace=0.0, top=0.99, bottom=0.01, left=0.01, right=0.99)
+```
 
 ### Sharpening
 
@@ -353,14 +343,21 @@ alpha = 30
 sharpened = blurred_f + alpha * (blurred_f - filter_blurred_f)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_sharpen_001.png
-:scale: 65
-:target: auto_examples/plot_sharpen.html
-:::
+```{python}
+plt.figure(figsize=(12, 4))
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_sharpen.py>`\]
-:::
+plt.subplot(131)
+plt.imshow(f, cmap="gray")
+plt.axis("off")
+plt.subplot(132)
+plt.imshow(blurred_f, cmap="gray")
+plt.axis("off")
+plt.subplot(133)
+plt.imshow(sharpened, cmap="gray")
+plt.axis("off")
+
+plt.tight_layout()
+```
 
 ### Denoising
 
@@ -387,14 +384,24 @@ A **median filter** preserves better the edges:
 med_denoised = sp.ndimage.median_filter(noisy, 3)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_face_denoise_001.png
-:scale: 60
-:target: auto_examples/plot_face_denoise.html
-:::
+```{python}
+plt.figure(figsize=(12, 2.8))
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_face_denoise.py>`\]
-:::
+plt.subplot(131)
+plt.imshow(noisy, cmap="gray", vmin=40, vmax=220)
+plt.axis("off")
+plt.title("noisy", fontsize=20)
+plt.subplot(132)
+plt.imshow(gauss_denoised, cmap="gray", vmin=40, vmax=220)
+plt.axis("off")
+plt.title("Gaussian filter", fontsize=20)
+plt.subplot(133)
+plt.imshow(med_denoised, cmap="gray", vmin=40, vmax=220)
+plt.axis("off")
+plt.title("Median filter", fontsize=20)
+
+plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9, bottom=0, left=0, right=1)
+```
 
 Median filter: better result for straight boundaries (**low curvature**):
 
@@ -407,14 +414,28 @@ im_noise = im + 0.2 * rng.standard_normal(im.shape)
 im_med = sp.ndimage.median_filter(im_noise, 3)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_denoising_001.png
-:scale: 50
-:target: auto_examples/plot_denoising.html
-:::
+```{python}
+plt.figure(figsize=(16, 5))
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_denoising.py>`\]
-:::
+plt.subplot(141)
+plt.imshow(im, interpolation="nearest")
+plt.axis("off")
+plt.title("Original image", fontsize=20)
+plt.subplot(142)
+plt.imshow(im_noise, interpolation="nearest", vmin=0, vmax=5)
+plt.axis("off")
+plt.title("Noisy image", fontsize=20)
+plt.subplot(143)
+plt.imshow(im_med, interpolation="nearest", vmin=0, vmax=5)
+plt.axis("off")
+plt.title("Median filter", fontsize=20)
+plt.subplot(144)
+plt.imshow(np.abs(im - im_med), cmap="hot", interpolation="nearest")
+plt.axis("off")
+plt.title("Error", fontsize=20)
+
+plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9, bottom=0, left=0, right=1)
+```
 
 Other rank filter: `scipy.ndimage.maximum_filter`,
 `scipy.ndimage.percentile_filter`
@@ -941,30 +962,29 @@ mask = im > im.mean()
 granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_granulo_001.png
-:scale: 100
-:target: auto_examples/plot_granulo.html
-:::
+```{python}
+# Do the plot.
+plt.figure(figsize=(6, 2.2))
+plt.subplot(121)
+plt.imshow(mask, cmap="gray")
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_granulo.py>`\]
-:::
+opened = sp.ndimage.binary_opening(mask, structure=disk_structure(10))
+opened_more = sp.ndimage.binary_opening(mask, structure=disk_structure(14))
 
-## Full code examples
-
-<!---
-include the gallery. Skip the first line to avoid the "orphan"
-declaration
--->
-.. include:: auto_examples/index.rst
-    :start-line: 1
+plt.contour(opened, [0.5], colors="b", linewidths=2)
+plt.contour(opened_more, [0.5], colors="r", linewidths=2)
+plt.axis("off")
+plt.subplot(122)
+plt.plot(np.arange(2, 19, 4), granulo, "ok", ms=8)
+```
 
 :::{admonition} See also
 
 More on image-processing:
 
 - The chapter on {ref}`Scikit-image <scikit_image>`
-- Other, more powerful and complete modules: [OpenCV](https://opencv-python-tutroals.readthedocs.org/en/latest)
-  (Python bindings), [CellProfiler](https://www.cellprofiler.org),
+- Other, more powerful and complete modules:
+  [OpenCV](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html) (Python
+  bindings), [CellProfiler](https://www.cellprofiler.org),
   [ITK](https://itk.org/) with Python bindings
 :::
