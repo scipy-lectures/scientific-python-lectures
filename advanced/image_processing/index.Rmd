@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.16.6
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -68,7 +68,7 @@ import scipy as sp
 
 ## Opening and writing to image files
 
-Writing an array to a file:
+Writing an array to an image file:
 
 ```{python}
 import scipy as sp
@@ -201,7 +201,9 @@ mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
 face[mask] = 0
 # Fancy indexing
 face[range(400), range(400)] = 255
+```
 
+```{python tags=c("hide-input")}
 plt.figure(figsize=(3, 3))
 plt.axes((0, 0, 1, 1))
 plt.imshow(face, cmap="gray")
@@ -257,7 +259,7 @@ rotate_face = sp.ndimage.rotate(face, 45)
 rotate_face_noreshape = sp.ndimage.rotate(face, 45, reshape=False)
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 # Plot the transformed face.
 plt.figure(figsize=(12.5, 2.5))
 
@@ -309,7 +311,7 @@ very_blurred = sp.ndimage.gaussian_filter(face, sigma=5)
 local_mean = sp.ndimage.uniform_filter(face, size=11)
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 # Plot the figures.
 plt.figure(figsize=(9, 3))
 plt.subplot(131)
@@ -343,7 +345,7 @@ alpha = 30
 sharpened = blurred_f + alpha * (blurred_f - filter_blurred_f)
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(12, 4))
 
 plt.subplot(131)
@@ -384,7 +386,7 @@ A **median filter** preserves better the edges:
 med_denoised = sp.ndimage.median_filter(noisy, 3)
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(12, 2.8))
 
 plt.subplot(131)
@@ -414,7 +416,7 @@ im_noise = im + 0.2 * rng.standard_normal(im.shape)
 im_med = sp.ndimage.median_filter(im_noise, 3)
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(16, 5))
 
 plt.subplot(141)
@@ -541,16 +543,25 @@ dilate_dist = sp.ndimage.grey_dilation(dist, size=(3, 3), \
         structure=np.ones((3, 3)))
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_greyscale_dilation_001.png
-:scale: 40
-:target: auto_examples/plot_greyscale_dilation.html
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(12.5, 3))
+plt.subplot(141)
+plt.imshow(im, interpolation="nearest", cmap="nipy_spectral")
+plt.axis("off")
+plt.subplot(142)
+plt.imshow(bigger_points, interpolation="nearest", cmap="nipy_spectral")
+plt.axis("off")
+plt.subplot(143)
+plt.imshow(dist, interpolation="nearest", cmap="nipy_spectral")
+plt.axis("off")
+plt.subplot(144)
+plt.imshow(dilate_dist, interpolation="nearest", cmap="nipy_spectral")
+plt.axis("off")
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_greyscale_dilation.py>`\]
-:::
+plt.subplots_adjust(wspace=0, hspace=0.02, top=0.99, bottom=0.01, left=0.01, right=0.99)
+```
 
-**Opening**: erosion + dilation:
+#### **Opening**: erosion + dilation:
 
 ```{python}
 a = np.zeros((5,5), dtype=int)
@@ -568,7 +579,7 @@ sp.ndimage.binary_opening(a, structure=np.ones((3,3))).astype(int)
 sp.ndimage.binary_opening(a).astype(int)
 ```
 
-**Application**: remove noise:
+#### **Application**: remove noise:
 
 ```{python}
 square = np.zeros((32, 32))
@@ -587,16 +598,22 @@ eroded_square = sp.ndimage.binary_erosion(square)
 reconstruction = sp.ndimage.binary_propagation(eroded_square, mask=square)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_propagation_001.png
-:scale: 40
-:target: auto_examples/plot_propagation.html
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(9.5, 3))
+plt.subplot(131)
+plt.imshow(square, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.subplot(132)
+plt.imshow(open_square, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.subplot(133)
+plt.imshow(reconstruction, cmap="gray", interpolation="nearest")
+plt.axis("off")
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_propagation.py>`\]
-:::
+plt.subplots_adjust(wspace=0, hspace=0.02, top=0.99, bottom=0.01, left=0.01, right=0.99)
+```
 
-**Closing**: dilation + erosion
+#### **Closing**: dilation + erosion
 
 Many other mathematical morphology operations: hit and miss transform, tophat,
 etc.
@@ -625,18 +642,45 @@ sy = sp.ndimage.sobel(im, axis=1, mode='constant')
 sob = np.hypot(sx, sy)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_find_edges_001.png
-:scale: 40
-:target: auto_examples/plot_find_edges.html
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(16, 5))
+plt.subplot(141)
+plt.imshow(im, cmap="gray")
+plt.axis("off")
+plt.title("square", fontsize=20)
+plt.subplot(142)
+plt.imshow(sx)
+plt.axis("off")
+plt.title("Sobel (x direction)", fontsize=20)
+plt.subplot(143)
+plt.imshow(sob)
+plt.axis("off")
+plt.title("Sobel filter", fontsize=20)
+```
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_find_edges.py>`\]
-:::
+```{python}
+# Set random seed.
+rng = np.random.default_rng(27446968)
+
+im += 0.07 * rng.random(im.shape)
+
+sx = sp.ndimage.sobel(im, axis=0, mode="constant")
+sy = sp.ndimage.sobel(im, axis=1, mode="constant")
+sob = np.hypot(sx, sy)
+```
+
+```{python tags=c("hide-input")}
+plt.subplot(144)
+plt.imshow(sob)
+plt.axis("off")
+plt.title("Sobel for noisy image", fontsize=20)
+
+plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=0.9)
+```
 
 ### Segmentation
 
-- **Histogram-based** segmentation (no spatial information)
+#### **Histogram-based** segmentation (no spatial information)
 
 ```{python}
 n = 10
@@ -660,14 +704,23 @@ bin_centers = 0.5*(bin_edges[:-1] + bin_edges[1:])
 binary_img = img > 0.5
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_histo_segmentation_001.png
-:scale: 65
-:target: auto_examples/plot_histo_segmentation.html
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(11, 4))
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_histo_segmentation.py>`\]
-:::
+plt.subplot(131)
+plt.imshow(img)
+plt.axis("off")
+plt.subplot(132)
+plt.plot(bin_centers, hist, lw=2)
+plt.axvline(0.5, color="r", ls="--", lw=2)
+plt.text(0.57, 0.8, "histogram", fontsize=20, transform=plt.gca().transAxes)
+plt.yticks([])
+plt.subplot(133)
+plt.imshow(binary_img, cmap="gray", interpolation="nearest")
+plt.axis("off")
+
+plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
+```
 
 Use mathematical morphology to clean up the result:
 
@@ -678,14 +731,27 @@ open_img = sp.ndimage.binary_opening(binary_img)
 close_img = sp.ndimage.binary_closing(open_img)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_clean_morpho_001.png
-:scale: 65
-:target: auto_examples/plot_clean_morpho.html
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(12, 3))
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_clean_morpho.py>`\]
-:::
+l = 128
+
+plt.subplot(141)
+plt.imshow(binary_img[:l, :l], cmap="gray")
+plt.axis("off")
+plt.subplot(142)
+plt.imshow(open_img[:l, :l], cmap="gray")
+plt.axis("off")
+plt.subplot(143)
+plt.imshow(close_img[:l, :l], cmap="gray")
+plt.axis("off")
+plt.subplot(144)
+plt.imshow(mask[:l, :l], cmap="gray")
+plt.contour(close_img[:l, :l], [0.5], linewidths=2, colors="r")
+plt.axis("off")
+
+plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
+```
 
 :::{admonition} Exercise
 :class: green
@@ -784,7 +850,7 @@ label_im[mask] = labels
 ```
 :::
 
-## Measuring objects properties: `scipy.ndimage.measurements`
+## Measuring object properties: `scipy.ndimage.measurements`
 
 Synthetic data:
 
@@ -799,7 +865,7 @@ im = sp.ndimage.gaussian_filter(im, sigma=l/(4.*n))
 mask = im > im.mean()
 ```
 
-- **Analysis of connected components**
+### Analysis of connected components
 
 Label connected components: `scipy.dimage.label`:
 
@@ -812,14 +878,21 @@ nb_labels # how many regions?
 plt.imshow(label_im)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_synthetic_data_001.png
-:scale: 90
-:target: auto_examples/plot_synthetic_data.html
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(9, 3))
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_synthetic_data.py>`\]
-:::
+plt.subplot(131)
+plt.imshow(im)
+plt.axis("off")
+plt.subplot(132)
+plt.imshow(mask, cmap="gray")
+plt.axis("off")
+plt.subplot(133)
+plt.imshow(label_im, cmap="nipy_spectral")
+plt.axis("off")
+
+plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=1)
+```
 
 Compute size, mean_value, etc. of each region:
 
@@ -848,14 +921,19 @@ labels = np.unique(label_im)
 label_im = np.searchsorted(labels, label_im)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_measure_data_001.png
-:scale: 90
-:target: auto_examples/plot_measure_data.html
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(6, 3))
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_measure_data.py>`\]
-:::
+plt.subplot(121)
+plt.imshow(label_im, cmap="nipy_spectral")
+plt.axis("off")
+plt.subplot(122)
+plt.imshow(label_im, vmax=nb_labels, cmap="nipy_spectral")
+plt.axis("off")
+
+plt.subplots_adjust(wspace=0.01, hspace=0.01, top=1, bottom=0, left=0, right=1)
+```
+
 
 Find region of interest enclosing object:
 
@@ -864,15 +942,6 @@ slice_x, slice_y = sp.ndimage.find_objects(label_im)[3]
 roi = im[slice_x, slice_y]
 plt.imshow(roi)
 ```
-
-:::{figure} auto_examples/images/sphx_glr_plot_find_object_001.png
-:scale: 130
-:target: auto_examples/plot_find_object.html
-:::
-
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_find_object.py>`\]
-:::
 
 Other spatial measures: `scipy.ndimage.center_of_mass`,
 `scipy.ndimage.maximum_position`, etc.
@@ -891,14 +960,11 @@ block_mean = sp.ndimage.mean(f, labels=regions, index=np.arange(1,
 block_mean.shape = (sx // 4, sy // 6)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_block_mean_001.png
-:scale: 70
-:target: auto_examples/plot_block_mean.html
-:::
-
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_block_mean.py>`\]
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(5, 5))
+plt.imshow(block_mean, cmap="gray")
+plt.axis("off")
+```
 
 When regions are regular blocks, it is more efficient to use stride
 tricks ({ref}`stride-manipulation-label`).
@@ -913,16 +979,14 @@ rbin = (20* r/r.max()).astype(int)
 radial_mean = sp.ndimage.mean(f, labels=rbin, index=np.arange(1, rbin.max() +1))
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_radial_mean_001.png
-:scale: 70
-:target: auto_examples/plot_radial_mean.html
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(5, 5))
+plt.axes((0, 0, 1, 1))
+plt.imshow(rbin, cmap="nipy_spectral")
+plt.axis("off")
+```
 
-:::{only} html
-\[{ref}`Python source code <sphx_glr_advanced_image_processing_auto_examples_plot_radial_mean.py>`\]
-:::
-
-- **Other measures**
+### Other measures
 
 Correlation function, Fourier/wavelet spectrum, etc.
 
@@ -962,15 +1026,19 @@ mask = im > im.mean()
 granulo = granulometry(mask, sizes=np.arange(2, 19, 4))
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 # Do the plot.
 plt.figure(figsize=(6, 2.2))
 plt.subplot(121)
 plt.imshow(mask, cmap="gray")
+```
 
+```{python}
 opened = sp.ndimage.binary_opening(mask, structure=disk_structure(10))
 opened_more = sp.ndimage.binary_opening(mask, structure=disk_structure(14))
+```
 
+```{python tags=c("hide-input")}
 plt.contour(opened, [0.5], colors="b", linewidths=2)
 plt.contour(opened_more, [0.5], colors="r", linewidths=2)
 plt.axis("off")
