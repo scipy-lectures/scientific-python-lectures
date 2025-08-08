@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.16.6
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -36,12 +36,14 @@ arrays.
 
 For more advanced image processing and image-specific routines, see the
 tutorial {ref}`scikit_image`, dedicated to the {mod}`skimage` module.
+
 :::
 
 :::{admonition} Image = 2-D numerical array
 (or 3-D: CT, MRI, 2D + time; 4-D, ...)
 
 Here, **image == NumPy array** `np.array`
+
 :::
 
 **Tools used in this tutorial**:
@@ -119,8 +121,8 @@ for i in range(10):
     im = rng.integers(0, 256, 10000, dtype=np.uint8).reshape((100, 100))
     iio.imwrite(f'random_{i:02d}.png', im)
 from glob import glob
-filelist = glob('random*.png')
-filelist.sort()
+filelist = sorted(glob('random*.png'))
+filelist
 ```
 
 ## Displaying images
@@ -137,36 +139,30 @@ Increase contrast by setting min and max values:
 
 ```{python}
 plt.imshow(f, cmap=plt.cm.gray, vmin=30, vmax=200)
-```
-
-```{python}
-# Remove axes and ticks
-plt.axis('off')
+# Remove axes and ticks.
+# Semicolon ends line to suppress repr of Matplotlib objects.
+plt.axis('off');
 ```
 
 Draw contour lines:
 
 ```{python}
+plt.imshow(f, cmap=plt.cm.gray, vmin=30, vmax=200)
 plt.contour(f, [50, 200])
+plt.axis('off');
 ```
 
 For smooth intensity variations, use `interpolation='bilinear'`. For fine inspection of intensity variations, use
 `interpolation='nearest'`:
 
 ```{python}
-plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='bilinear')
-plt.axis("off")
-```
-
-```{python}
-plt.imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='nearest')
-```
-
-The example below demonstrates image interpolation on a Raccoon face.
-
-```{python}
-f = sp.datasets.face(gray=True)
-plt.axis("off")
+fix, axes = plt.subplots(1, 2)
+axes[0].imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='bilinear')
+axes[0].axis('off')
+axes[0].set_title('Bilinear interpolation')
+axes[1].imshow(f[320:340, 510:530], cmap=plt.cm.gray, interpolation='nearest')
+axes[1].set_title('Nearest interpolation')
+axes[1].axis('off');
 ```
 
 :::{admonition} See also
@@ -177,6 +173,8 @@ More interpolation methods are in [Matplotlib's examples](https://matplotlib.org
 ## Basic manipulations
 
 Images are arrays: use the whole `numpy` machinery.
+
+![](axis_convention.png)
 
 
 ```{python}
@@ -207,7 +205,7 @@ face[range(400), range(400)] = 255
 plt.figure(figsize=(3, 3))
 plt.axes((0, 0, 1, 1))
 plt.imshow(face, cmap="gray")
-plt.axis("off")
+plt.axis("off");
 ```
 
 ### Statistical information
@@ -240,9 +238,8 @@ face.max(), face.min()
   of the lightest pixels.
 - Save the array to two different file formats (png, jpg, tiff)
 
-```{image} scikit_image_logo.png
-:align: center
-```
+![](scikit_image_logo.png)
+
 :::
 
 ### Geometrical transformations
@@ -261,25 +258,13 @@ rotate_face_noreshape = sp.ndimage.rotate(face, 45, reshape=False)
 
 ```{python tags=c("hide-input")}
 # Plot the transformed face.
-plt.figure(figsize=(12.5, 2.5))
+fig, axes = plt.subplots(1, 5, figsize=(12.5, 2.5))
+for i, img_arr in enumerate([face, crop_face, flip_ud_face, 
+                             rotate_face, rotate_face_noreshape]):
+    axes[i].imshow(img_arr, cmap="gray")
+    axes[i].axis('off')
 
-plt.subplot(151)
-plt.imshow(face, cmap="gray")
-plt.axis("off")
-plt.subplot(152)
-plt.imshow(crop_face, cmap="gray")
-plt.axis("off")
-plt.subplot(153)
-plt.imshow(flip_ud_face, cmap="gray")
-plt.axis("off")
-plt.subplot(154)
-plt.imshow(rotate_face, cmap="gray")
-plt.axis("off")
-plt.subplot(155)
-plt.imshow(rotate_face_noreshape, cmap="gray")
-plt.axis("off")
-
-plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
+plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1);
 ```
 
 ## Image filtering
@@ -313,18 +298,12 @@ local_mean = sp.ndimage.uniform_filter(face, size=11)
 
 ```{python tags=c("hide-input")}
 # Plot the figures.
-plt.figure(figsize=(9, 3))
-plt.subplot(131)
-plt.imshow(blurred_face, cmap="gray")
-plt.axis("off")
-plt.subplot(132)
-plt.imshow(very_blurred, cmap="gray")
-plt.axis("off")
-plt.subplot(133)
-plt.imshow(local_mean, cmap="gray")
-plt.axis("off")
+fig, axes = plt.subplots(1, 3, figsize=(9, 3))
+for i, img_arr in enumerate([blurred_face, very_blurred, local_mean]):
+    axes[i].imshow(blurred_face, cmap="gray")
+    axes[i].axis("off")
 
-plt.subplots_adjust(wspace=0, hspace=0.0, top=0.99, bottom=0.01, left=0.01, right=0.99)
+plt.subplots_adjust(wspace=0, hspace=0.0, top=0.99, bottom=0.01, left=0.01, right=0.99);
 ```
 
 ### Sharpening
@@ -336,7 +315,7 @@ face = sp.datasets.face(gray=True).astype(float)
 blurred_f = sp.ndimage.gaussian_filter(face, 3)
 ```
 
-increase the weight of edges by adding an approximation of the
+Increase the weight of edges by adding an approximation of the
 Laplacian:
 
 ```{python}
@@ -346,19 +325,12 @@ sharpened = blurred_f + alpha * (blurred_f - filter_blurred_f)
 ```
 
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(12, 4))
+fig, axes = plt.subplots(1, 3, figsize=(12, 4))
+for i, img_arr in enumerate([f, blurred_f, sharpened]):
+    axes[i].imshow(blurred_face, cmap="gray")
+    axes[i].axis("off")
 
-plt.subplot(131)
-plt.imshow(f, cmap="gray")
-plt.axis("off")
-plt.subplot(132)
-plt.imshow(blurred_f, cmap="gray")
-plt.axis("off")
-plt.subplot(133)
-plt.imshow(sharpened, cmap="gray")
-plt.axis("off")
-
-plt.tight_layout()
+plt.tight_layout();
 ```
 
 ### Denoising
@@ -368,6 +340,7 @@ Noisy face:
 ```{python}
 f = sp.datasets.face(gray=True)
 f = f[230:290, 220:320]
+
 rng = np.random.default_rng()
 noisy = f + 0.4 * f.std() * rng.random(f.shape)
 ```
@@ -387,22 +360,16 @@ med_denoised = sp.ndimage.median_filter(noisy, 3)
 ```
 
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(12, 2.8))
+fig, axes = plt.subplots(1, 3, figsize=(12, 2.8))
+for i, (name, img_arr) in enumerate([
+    ['noisy', noisy],
+    ['Gaussian filter', gauss_denoised],
+    ['Median filter', med_denoised]]):
+    axes[i].imshow(img_arr, cmap="gray", vmin=40, vmax=220)
+    axes[i].axis("off")
+    axes[i].set_title(name, fontsize=20)
 
-plt.subplot(131)
-plt.imshow(noisy, cmap="gray", vmin=40, vmax=220)
-plt.axis("off")
-plt.title("noisy", fontsize=20)
-plt.subplot(132)
-plt.imshow(gauss_denoised, cmap="gray", vmin=40, vmax=220)
-plt.axis("off")
-plt.title("Gaussian filter", fontsize=20)
-plt.subplot(133)
-plt.imshow(med_denoised, cmap="gray", vmin=40, vmax=220)
-plt.axis("off")
-plt.title("Median filter", fontsize=20)
-
-plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9, bottom=0, left=0, right=1)
+plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9, bottom=0, left=0, right=1);
 ```
 
 Median filter: better result for straight boundaries (**low curvature**):
@@ -417,24 +384,17 @@ im_med = sp.ndimage.median_filter(im_noise, 3)
 ```
 
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(16, 5))
-
-plt.subplot(141)
-plt.imshow(im, interpolation="nearest")
-plt.axis("off")
-plt.title("Original image", fontsize=20)
-plt.subplot(142)
-plt.imshow(im_noise, interpolation="nearest", vmin=0, vmax=5)
-plt.axis("off")
-plt.title("Noisy image", fontsize=20)
-plt.subplot(143)
-plt.imshow(im_med, interpolation="nearest", vmin=0, vmax=5)
-plt.axis("off")
-plt.title("Median filter", fontsize=20)
-plt.subplot(144)
-plt.imshow(np.abs(im - im_med), cmap="hot", interpolation="nearest")
-plt.axis("off")
-plt.title("Error", fontsize=20)
+fig, axes = plt.subplots(1, 4, figsize=(16, 5))
+for i, (name, img_arr) in enumerate([
+    ['Original image', im],
+    ['Noisy image', im_noise],
+    ['Median filter', im_med]]):
+    axes[i].imshow(img_arr, vmin=0, vmax=5)
+    axes[i].axis("off")
+    axes[i].set_title(name, fontsize=10)
+axes[-1].imshow(np.abs(im - im_med), cmap="hot", interpolation="nearest")
+axes[-1].axis("off")
+axes[-1].set_title('Error', fontsize=10)
 
 plt.subplots_adjust(wspace=0.02, hspace=0.02, top=0.9, bottom=0, left=0, right=1)
 ```
@@ -485,9 +445,7 @@ el
 el.astype(int)
 ```
 
-:::{figure} diamond_kernel.png
-:align: center
-:::
+![](diamond_kernel.png)
 
 **Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.:
 
@@ -506,9 +464,7 @@ sp.ndimage.binary_erosion(a).astype(a.dtype)
 sp.ndimage.binary_erosion(a, structure=np.ones((5,5))).astype(a.dtype)
 ```
 
-```{image} morpho_mat.png
-:align: center
-```
+![](morpho_mat.png)
 
 **Dilation**: maximum filter:
 
@@ -544,19 +500,10 @@ dilate_dist = sp.ndimage.grey_dilation(dist, size=(3, 3), \
 ```
 
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(12.5, 3))
-plt.subplot(141)
-plt.imshow(im, interpolation="nearest", cmap="nipy_spectral")
-plt.axis("off")
-plt.subplot(142)
-plt.imshow(bigger_points, interpolation="nearest", cmap="nipy_spectral")
-plt.axis("off")
-plt.subplot(143)
-plt.imshow(dist, interpolation="nearest", cmap="nipy_spectral")
-plt.axis("off")
-plt.subplot(144)
-plt.imshow(dilate_dist, interpolation="nearest", cmap="nipy_spectral")
-plt.axis("off")
+fig, axes = plt.subplots(1, 4, figsize=(12.5, 3))
+for i, img_arr in enumerate([im, bigger_points, dist, dilate_dist]):
+    axes[i].imshow(img_arr, interpolation='nearest', cmap='nipy_spectral')
+    axes[i].axis("off")
 
 plt.subplots_adjust(wspace=0, hspace=0.02, top=0.99, bottom=0.01, left=0.01, right=0.99)
 ```
@@ -599,16 +546,10 @@ reconstruction = sp.ndimage.binary_propagation(eroded_square, mask=square)
 ```
 
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(9.5, 3))
-plt.subplot(131)
-plt.imshow(square, cmap="gray", interpolation="nearest")
-plt.axis("off")
-plt.subplot(132)
-plt.imshow(open_square, cmap="gray", interpolation="nearest")
-plt.axis("off")
-plt.subplot(133)
-plt.imshow(reconstruction, cmap="gray", interpolation="nearest")
-plt.axis("off")
+fig, axes = plt.subplots(1, 3, figsize=(9.5, 3))
+for i, img_arr in enumerate([square, open_square, reconstruction]):
+    axes[i].imshow(img_arr, interpolation='nearest', cmap='gray')
+    axes[i].axis("off")
 
 plt.subplots_adjust(wspace=0, hspace=0.02, top=0.99, bottom=0.01, left=0.01, right=0.99)
 ```
@@ -627,9 +568,6 @@ Synthetic data:
 ```{python}
 im = np.zeros((256, 256))
 im[64:-64, 64:-64] = 1
-```
-
-```{python}
 im = sp.ndimage.rotate(im, 15, mode='constant')
 im = sp.ndimage.gaussian_filter(im, 8)
 ```
@@ -637,45 +575,39 @@ im = sp.ndimage.gaussian_filter(im, 8)
 Use a **gradient operator** (**Sobel**) to find high intensity variations:
 
 ```{python}
-sx = sp.ndimage.sobel(im, axis=0, mode='constant')
-sy = sp.ndimage.sobel(im, axis=1, mode='constant')
+# Filter x and y.
+sx = sp.ndimage.sobel(im, axis=0, mode="constant")
+sy = sp.ndimage.sobel(im, axis=1, mode="constant")
+# Combine x and y.
 sob = np.hypot(sx, sy)
-```
-
-```{python tags=c("hide-input")}
-plt.figure(figsize=(16, 5))
-plt.subplot(141)
-plt.imshow(im, cmap="gray")
-plt.axis("off")
-plt.title("square", fontsize=20)
-plt.subplot(142)
-plt.imshow(sx)
-plt.axis("off")
-plt.title("Sobel (x direction)", fontsize=20)
-plt.subplot(143)
-plt.imshow(sob)
-plt.axis("off")
-plt.title("Sobel filter", fontsize=20)
 ```
 
 ```{python}
+# Make a noisy image.
 # Set random seed.
 rng = np.random.default_rng(27446968)
 
-im += 0.07 * rng.random(im.shape)
+noisy_im = im + 0.07 * rng.random(im.shape)
 
-sx = sp.ndimage.sobel(im, axis=0, mode="constant")
-sy = sp.ndimage.sobel(im, axis=1, mode="constant")
-sob = np.hypot(sx, sy)
+# Filter x and y.
+n_sx = sp.ndimage.sobel(noisy_im, axis=0, mode="constant")
+n_sy = sp.ndimage.sobel(noisy_im, axis=1, mode="constant")
+# Combine x and y.
+noisy_sob = np.hypot(n_sx, n_sy)
 ```
 
 ```{python tags=c("hide-input")}
-plt.subplot(144)
-plt.imshow(sob)
-plt.axis("off")
-plt.title("Sobel for noisy image", fontsize=20)
-
-plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=0.9)
+fig, axes = plt.subplots(1, 4, figsize=(16, 5))
+for i, (name, img_arr) in enumerate([
+    ['Square', im],
+    ['Sobel (x direction)', sx],
+    ['Sobel filter', sob],
+    ['Sobel for noisy image', noisy_sob]]):
+    axes[i].imshow(img_arr, cmap='gray')
+    axes[i].axis("off")
+    axes[i].set_title(name, fontsize=10)
+    
+plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=0.9);
 ```
 
 ### Segmentation
@@ -705,19 +637,15 @@ binary_img = img > 0.5
 ```
 
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(11, 4))
-
-plt.subplot(131)
-plt.imshow(img)
-plt.axis("off")
-plt.subplot(132)
-plt.plot(bin_centers, hist, lw=2)
-plt.axvline(0.5, color="r", ls="--", lw=2)
-plt.text(0.57, 0.8, "histogram", fontsize=20, transform=plt.gca().transAxes)
-plt.yticks([])
-plt.subplot(133)
-plt.imshow(binary_img, cmap="gray", interpolation="nearest")
-plt.axis("off")
+fig, axes = plt.subplots(1, 3, figsize=(11, 4))
+axes[0].imshow(im)
+axes[0].axis("off")
+axes[1].plot(bin_centers, hist, lw=2)
+axes[1].axvline(0.5, color="r", ls="--", lw=2)
+axes[1].text(0.57, 0.8, "histogram", fontsize=20, transform=axes[1].transAxes)
+axes[1].set_yticks([])
+axes[2].imshow(binary_img, cmap="gray", interpolation="nearest")
+axes[2].axis("off")
 
 plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
 ```
@@ -732,23 +660,14 @@ close_img = sp.ndimage.binary_closing(open_img)
 ```
 
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(12, 3))
+L = 128
 
-l = 128
-
-plt.subplot(141)
-plt.imshow(binary_img[:l, :l], cmap="gray")
-plt.axis("off")
-plt.subplot(142)
-plt.imshow(open_img[:l, :l], cmap="gray")
-plt.axis("off")
-plt.subplot(143)
-plt.imshow(close_img[:l, :l], cmap="gray")
-plt.axis("off")
-plt.subplot(144)
-plt.imshow(mask[:l, :l], cmap="gray")
-plt.contour(close_img[:l, :l], [0.5], linewidths=2, colors="r")
-plt.axis("off")
+fig, axes = plt.subplots(1, 4, figsize=(12, 3))
+for i, img_arr in enumerate([binary_img, open_img, close_img, mask]):
+    axes[i].imshow(img_arr[:L, :L], cmap='gray')
+    axes[i].axis("off")
+    
+axes[-1].contour(close_img[:L, :L], [0.5], linewidths=2, colors="r")
 
 plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
 ```
@@ -771,6 +690,7 @@ np.abs(mask - close_img).mean()
 ```{python}
 np.abs(mask - reconstruct_final).mean()
 ```
+<!-- #region -->
 :::
 
 :::{admonition} Exercise
@@ -787,11 +707,13 @@ More advanced segmentation algorithms are found in the
 `scikit-image`: see {ref}`scikit_image`.
 :::
 
-:::{admonition} See also
+
+### Useful algorithms from other packages
 
 Other Scientific Packages provide algorithms that can be useful for
 image processing. In this example, we use the spectral clustering
 function of the `scikit-learn` in order to segment glued objects.
+<!-- #endregion -->
 
 ```{python}
 from sklearn.feature_extraction import image
@@ -845,14 +767,14 @@ label_im = -np.ones(mask.shape)
 label_im[mask] = labels
 ```
 
-```{image} image_spectral_clustering.png
-:align: center
-```
-:::
+<!-- #region -->
+![](image_spectral_clustering.png)
+
 
 ## Measuring object properties: `scipy.ndimage.measurements`
 
 Synthetic data:
+<!-- #endregion -->
 
 ```{python}
 n = 10
@@ -874,24 +796,16 @@ label_im, nb_labels = sp.ndimage.label(mask)
 nb_labels # how many regions?
 ```
 
-```{python}
-plt.imshow(label_im)
-```
-
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(9, 3))
+fig, axes = plt.subplots(1, 3, figsize=(9, 3))
+for i, (img_arr, cmap) in enumerate([
+    [im, 'viridis'],
+    [mask, 'gray'],
+    [label_im, 'nipy_spectral']]):
+    axes[i].imshow(img_arr, cmap=cmap)
+    axes[i].axis("off")
 
-plt.subplot(131)
-plt.imshow(im)
-plt.axis("off")
-plt.subplot(132)
-plt.imshow(mask, cmap="gray")
-plt.axis("off")
-plt.subplot(133)
-plt.imshow(label_im, cmap="nipy_spectral")
-plt.axis("off")
-
-plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=1)
+plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=1);
 ```
 
 Compute size, mean_value, etc. of each region:
@@ -911,7 +825,6 @@ remove_pixel.shape
 
 ```{python}
 label_im[remove_pixel] = 0
-plt.imshow(label_im)
 ```
 
 Now reassign labels with `np.searchsorted`:
@@ -922,14 +835,11 @@ label_im = np.searchsorted(labels, label_im)
 ```
 
 ```{python tags=c("hide-input")}
-plt.figure(figsize=(6, 3))
-
-plt.subplot(121)
-plt.imshow(label_im, cmap="nipy_spectral")
-plt.axis("off")
-plt.subplot(122)
-plt.imshow(label_im, vmax=nb_labels, cmap="nipy_spectral")
-plt.axis("off")
+fig, axes = plt.subplots(1, 2, figsize=(6, 3))
+axes[0].imshow(label_im, cmap="nipy_spectral")
+axes[0].axis("off")
+axes[1].imshow(label_im, vmax=nb_labels, cmap="nipy_spectral")
+axes[1].axis("off")
 
 plt.subplots_adjust(wspace=0.01, hspace=0.01, top=1, bottom=0, left=0, right=1)
 ```
@@ -940,7 +850,7 @@ Find region of interest enclosing object:
 ```{python}
 slice_x, slice_y = sp.ndimage.find_objects(label_im)[3]
 roi = im[slice_x, slice_y]
-plt.imshow(roi)
+plt.imshow(roi);
 ```
 
 Other spatial measures: `scipy.ndimage.center_of_mass`,
@@ -963,7 +873,7 @@ block_mean.shape = (sx // 4, sy // 6)
 ```{python tags=c("hide-input")}
 plt.figure(figsize=(5, 5))
 plt.imshow(block_mean, cmap="gray")
-plt.axis("off")
+plt.axis("off");
 ```
 
 When regions are regular blocks, it is more efficient to use stride
@@ -983,7 +893,7 @@ radial_mean = sp.ndimage.mean(f, labels=rbin, index=np.arange(1, rbin.max() +1))
 plt.figure(figsize=(5, 5))
 plt.axes((0, 0, 1, 1))
 plt.imshow(rbin, cmap="nipy_spectral")
-plt.axis("off")
+plt.axis("off");
 ```
 
 ### Other measures
@@ -1039,11 +949,12 @@ opened_more = sp.ndimage.binary_opening(mask, structure=disk_structure(14))
 ```
 
 ```{python tags=c("hide-input")}
-plt.contour(opened, [0.5], colors="b", linewidths=2)
-plt.contour(opened_more, [0.5], colors="r", linewidths=2)
-plt.axis("off")
-plt.subplot(122)
-plt.plot(np.arange(2, 19, 4), granulo, "ok", ms=8)
+fig, axes = plt.subplots(1, 2, figsize=(6, 2.2))
+axes[0].imshow(mask, cmap="gray")
+axes[0].contour(opened, [0.5], colors="b", linewidths=2)
+axes[0].contour(opened_more, [0.5], colors="r", linewidths=2)
+axes[0].axis("off")
+axes[1].plot(np.arange(2, 19, 4), granulo, "ok", ms=8)
 ```
 
 :::{admonition} See also
