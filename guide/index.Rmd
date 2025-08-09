@@ -202,13 +202,11 @@ This is a warning
 
 Figures positioned with `:align: right` are float. To flush them, use:
 
-```{python}
-|clear-floats|
+```markdown
+{{ clear-floats }}
 ```
 
 ## References
-
-.. target-notes::
 
 [documentation style guide]: https://documentation-style-guide-sphinx.readthedocs.org/en/latest/style-guide.html
 [tips, tricks]: https://docness.readthedocs.org/en/latest/index.html
