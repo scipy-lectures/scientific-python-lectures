@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.16.6
+      jupytext_version: 1.17.1
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -99,7 +99,7 @@ swallowed and causes the loop to finish. But with explicit invocation,
 we can see that once the iterator is exhausted, accessing it raises an
 exception.
 
-Using the {compound}`for..in <for>` loop also uses the `__iter__`
+Using the `for..in` loop also uses the `__iter__`
 method. This allows us to transparently start the iteration over a
 sequence. But if we already have the iterator, we want to be able to
 use it in an `for` loop in the same way. In order to achieve this,
@@ -375,7 +375,7 @@ for v in subgen:
 However, if the subgenerator is to interact properly with the caller
 in the case of calls to `send()`, `throw()` and `close()`,
 things become considerably more difficult. The `yield` statement has
-to be guarded by a {compound}`try..except..finally <try>` structure
+to be guarded by a `try..except..finally` structure
 similar to the one defined in the previous section to "debug" the
 generator function. Such code is provided in {pep}`380#id13`, here it
 suffices to say that new syntax to properly yield from a subgenerator
