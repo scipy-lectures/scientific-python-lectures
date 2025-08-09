@@ -6,42 +6,32 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.16.6
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
 
----
-substitutions:
-  ==>: |-
-    ```{eval-rst}
-    .. unicode:: U+02794 .. thick rightwards arrow
-    ```
----
-
-.. default-role:: py:obj
-
 # Advanced Python Constructs
 
 **Author** *Zbigniew Jędrzejewski-Szmek*
 
 This section covers some features of the Python language which can
-be considered advanced --- in the sense that not every language has
+be considered advanced — in the sense that not every language has
 them, and also in the sense that they are more useful in more
 complicated programs or libraries, but not in the sense of being
 particularly specialized, or particularly complicated.
 
 It is important to underline that this chapter is purely about the
-language itself --- about features supported through special syntax
+language itself — about features supported through special syntax
 complemented by functionality of the Python stdlib, which could not be
 implemented through clever external modules.
 
 The process of developing the Python programming language, its syntax,
 is very transparent; proposed changes are
 evaluated from various angles and discussed via *Python Enhancement
-Proposals* --- [PEPs]. As a result, features described in this chapter
+Proposals* — [PEPs]. As a result, features described in this chapter
 were added after it was shown that they indeed solve real problems and
 that their use is as simple as possible.
 
@@ -54,13 +44,12 @@ Duplication of effort is wasteful, and replacing the various
 home-grown approaches with a standard feature usually ends up
 making things more readable, and interoperable as well.
 
-> *Guido van Rossum* --- [Adding Optional Static Typing to Python]
+> *Guido van Rossum* — [Adding Optional Static Typing to Python]
 :::
 
-An iterator is an object adhering to the [iterator protocol]
---- basically this means that it has a `next <iterator.next>` method,
-which, when called, returns the next item in the sequence, and when
-there's nothing to return, raises the
+An iterator is an object adhering to the [iterator protocol] — basically this
+means that it has a `next <iterator.next>` method, which, when called, returns
+the next item in the sequence, and when there's nothing to return, raises the
 `StopIteration <exceptions.StopIteration>` exception.
 
 An iterator object allows to loop just once. It
@@ -101,7 +90,7 @@ next(it)
 next(it)
 ```
 
-```{python}
+```{python tags=c("raises-exception")}
 next(it)
 ```
 
@@ -122,16 +111,14 @@ all sequences and unordered containers in the standard library allow
 this. The concept is also stretched to other things:
 e.g. `file` objects support iteration over lines.
 
-> ```pycon
-> >>> with open("/etc/fstab") as f:
-> ...     f is f.__iter__()
-> ...
-> True
-> ```
+```python
+with open("/etc/fstab") as f:
+     assert f is f.__iter__()
+```
 
-The `file` is an iterator itself and it's `__iter__` method
-doesn't create a separate object: only a single thread of sequential
-access is allowed.
+The `file` is an iterator itself and its `__iter__` method doesn't create
+a separate object: only a single thread of sequential access is allowed.
+
 
 ### Generator expressions
 
@@ -177,7 +164,7 @@ One *gotcha* should be mentioned: in old Pythons the index variable
 A generator is a function that produces a
 sequence of results instead of a single value.
 
-> *David Beazley* --- [A Curious Course on Coroutines and Concurrency]
+> *David Beazley* — [A Curious Course on Coroutines and Concurrency]
 :::
 
 A third way to create iterator objects is to call a generator function.
@@ -199,8 +186,9 @@ execution of this function is suspended.
 
 ```{python}
 def f():
-  yield 1
-  yield 2
+    yield 1
+    yield 2
+    
 f()
 ```
 
@@ -213,7 +201,7 @@ next(gen)
 next(gen)
 ```
 
-```{python}
+```{python tags=c("raises-exception")}
 next(gen)
 ```
 
@@ -222,10 +210,11 @@ function.
 
 ```{python}
 def f():
-  print("-- start --")
-  yield 3
-  print("-- finish --")
-  yield 4
+    print("-- start --")
+    yield 3
+    print("-- finish --")
+    yield 4
+    
 gen = f()
 next(gen)
 ```
@@ -234,7 +223,7 @@ next(gen)
 next(gen)
 ```
 
-```{python}
+```{python tags=c("raises-exception")}
 next(gen)
 ```
 
@@ -271,7 +260,7 @@ A broader question is why are iterators useful? When an iterator is
 used to power a loop, the loop becomes very simple. The code to
 initialise the state, to decide if the loop is finished, and to find
 the next value is extracted into a separate place. This highlights the
-body of the loop --- the interesting part. In addition, it is possible
+body of the loop — the interesting part. In addition, it is possible
 to reuse the iterator code in other places.
 
 ### Bidirectional communication
@@ -298,9 +287,11 @@ The second of the new methods is
 `throw(type, value=None, traceback=None) <generator.throw>`
 which is equivalent to:
 
-```{python}
+
+```python
 raise type, value, traceback
 ```
+
 
 at the point of the `yield` statement.
 
@@ -328,6 +319,7 @@ send and throw.
 
 ```{python}
 import itertools
+
 def g():
     print('--start--')
     for i in itertools.count():
@@ -372,11 +364,13 @@ values generated by a second generator, a **subgenerator**.
 If yielding of values is the only concern, this can be performed
 without much difficulty using a loop such as
 
-```{python}
+
+```python
 subgen = some_other_generator()
 for v in subgen:
     yield v
 ```
+
 
 However, if the subgenerator is to interact properly with the caller
 in the case of calls to `send()`, `throw()` and `close()`,
@@ -387,9 +381,11 @@ generator function. Such code is provided in {pep}`380#id13`, here it
 suffices to say that new syntax to properly yield from a subgenerator
 is being introduced in Python 3.3:
 
-```{python}
+
+```python
 yield from some_other_generator()
 ```
+
 
 This behaves like the explicit loop above, repeatedly yielding values
 from `some_other_generator` until it is exhausted, but also forwards
@@ -401,7 +397,7 @@ from `some_other_generator` until it is exhausted, but also forwards
 This amazing feature appeared in the language almost apologetically
 and with concern that it might not be that useful.
 
-> *Bruce Eckel* --- An Introduction to Python Decorators
+> *Bruce Eckel* — An Introduction to Python Decorators
 :::
 
 Since functions and classes are objects, they can be passed
@@ -409,7 +405,7 @@ around. Since they are mutable objects, they can be modified. The act
 of altering a function or class object after it has been constructed
 but before is is bound to its name is called decorating.
 
-There are two things hiding behind the name "decorator" --- one is the
+There are two things hiding behind the name "decorator" — one is the
 function which does the work of decorating, i.e. performs the real
 work, and the other one is the expression adhering to the decorator
 syntax, i.e. an at-symbol and the name of the decorating function.
@@ -417,11 +413,13 @@ syntax, i.e. an at-symbol and the name of the decorating function.
 Function can be decorated by using the decorator syntax for
 functions:
 
-```{python}
+
+```python
 @decorator             # ②
 def function():        # ①
     pass
 ```
+
 
 - A function is defined in the standard way. ①
 - An expression starting with `@` placed before the function
@@ -433,7 +431,7 @@ def function():        # ①
   attached to the original name of the function.
 
 Decorators can be applied to functions and to classes. For
-classes the semantics are identical --- the original class definition
+classes the semantics are identical — the original class definition
 is used as an argument to call the decorator and whatever is returned
 is assigned under the original name.
 
@@ -446,13 +444,15 @@ the decorated function doubling as a temporary variable must be used
 at least three times, which is prone to errors. Nevertheless, the
 example above is equivalent to:
 
-```{python}
+
+```python
 def function():                  # ①
     pass
 function = decorator(function)   # ②
 ```
 
-Decorators can be stacked --- the order of application is
+
+Decorators can be stacked — the order of application is
 bottom-to-top, or inside-out. The semantics are such that the originally
 defined function is used as an argument for the first decorator,
 whatever is returned by the first decorator is used as an argument for
@@ -841,8 +841,8 @@ d.a
 ```
 
   Properties are a bit of a stretch for the decorator syntax. One of the
-  premises of the decorator syntax --- that the name is not duplicated
-  --- is violated, but nothing better has been invented so far. It is
+  premises of the decorator syntax — that the name is not duplicated
+  — is violated, but nothing better has been invented so far. It is
   just good style to use the same name for the getter, setter, and
   deleter methods.
 
@@ -1022,21 +1022,26 @@ A context manager is an object with `__enter__ <object.__enter__>` and
 `__exit__ <object.__exit__>` methods which can be used in the {compound}`with`
 statement:
 
-```{python}
+
+```python
 with manager as var:
     do_something(var)
 ```
 
+
 is in the simplest case
+
 equivalent to
 
-```{python}
+
+```python
 var = manager.__enter__()
 try:
     do_something(var)
 finally:
     manager.__exit__()
 ```
+
 
 In other words, the context manager protocol defined in {pep}`343`
 permits the extraction of the boring part of a
@@ -1094,31 +1099,31 @@ release, Python provides support in more places:
 
 - all file-like objects:
 
-  - `file` {{ ==> }} automatically closed
+  - `file` ➔ automatically closed
   - `fileinput`, `tempfile`
   - `bz2.BZ2File`, `gzip.GzipFile`,
     `tarfile.TarFile`, `zipfile.ZipFile`
-  - `ftplib`, `nntplib` {{ ==> }} close connection
+  - `ftplib`, `nntplib` ➔ close connection
 
 - locks
 
-  - `multiprocessing.RLock` {{ ==> }} lock and unlock
+  - `multiprocessing.RLock` ➔ lock and unlock
   - `multiprocessing.Semaphore`
-  - `memoryview` {{ ==> }} automatically release
+  - `memoryview` ➔ automatically release
 
-- `decimal.localcontext` {{ ==> }} modify precision of computations temporarily
+- `decimal.localcontext` ➔ modify precision of computations temporarily
 
-- `_winreg.PyHKEY <_winreg.OpenKey>` {{ ==> }} open and close hive key
+- `_winreg.PyHKEY <_winreg.OpenKey>` ➔ open and close hive key
 
-- `warnings.catch_warnings` {{ ==> }} kill warnings temporarily
+- `warnings.catch_warnings` ➔ kill warnings temporarily
 
-- `contextlib.closing` {{ ==> }} the same as the example above, call `close`
+- `contextlib.closing` ➔ the same as the example above, call `close`
 
 - parallel programming
 
-  - `concurrent.futures.ThreadPoolExecutor` {{ ==> }} invoke in parallel then kill thread pool
-  - `concurrent.futures.ProcessPoolExecutor` {{ ==> }} invoke in parallel then kill process pool
-  - `nogil` {{ ==> }} solve the GIL problem temporarily (cython only :( )
+  - `concurrent.futures.ThreadPoolExecutor` ➔ invoke in parallel then kill thread pool
+  - `concurrent.futures.ProcessPoolExecutor` ➔ invoke in parallel then kill process pool
+  - `nogil` ➔ solve the GIL problem temporarily (cython only :( )
 
 ### Catching exceptions
 
@@ -1133,7 +1138,7 @@ from `__exit__`. Exceptions can be easily ignored, because if
 rethrown after `__exit__` is finished.
 
 The ability to catch exceptions opens interesting possibilities. A
-classic example comes from unit-tests --- we want to make sure that
+classic example comes from unit-tests — we want to make sure that
 some code throws the right kind of exception:
 
 ```{python}
@@ -1166,7 +1171,8 @@ generator. We would like to implement context managers as special
 generator functions. In fact, the generator protocol was designed to
 support this use case.
 
-```{python}
+
+```python
 @contextlib.contextmanager
 def some_generator(<arguments>):
     <setup>
@@ -1176,9 +1182,10 @@ def some_generator(<arguments>):
         <cleanup>
 ```
 
+
 The `contextlib.contextmanager` helper takes a generator and turns it
 into a context manager. The generator has to obey some rules which are
-enforced by the wrapper function --- most importantly it must
+enforced by the wrapper function — most importantly it must
 `yield` exactly once. The part before the `yield` is executed from
 `__enter__`, the block of code protected by the context manager is
 executed when the generator is suspended in `yield`, and the rest is
@@ -1191,6 +1198,8 @@ shorter and simpler.
 Let's rewrite the `closing` example as a generator:
 
 ```{python}
+import contextlib
+
 @contextlib.contextmanager
 def closing(obj):
     try:
