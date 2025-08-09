@@ -1019,8 +1019,7 @@ the source of a program.
 ## Context managers
 
 A context manager is an object with `__enter__ <object.__enter__>` and
-`__exit__ <object.__exit__>` methods which can be used in the {compound}`with`
-statement:
+`__exit__ <object.__exit__>` methods which can be used in the `with` statement:
 
 
 ```python
@@ -1044,9 +1043,8 @@ finally:
 
 
 In other words, the context manager protocol defined in {pep}`343`
-permits the extraction of the boring part of a
-{compound}`try..except..finally <try>` structure into a separate class
-leaving only the interesting `do_something` block.
+permits the extraction of the boring part of a `try..except..finally` structure
+into a separate class leaving only the interesting `do_something` block.
 
 1. The `__enter__ <object.__enter__>` method is called first. It can
    return a value which will be assigned to `var`.
