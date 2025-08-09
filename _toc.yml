@@ -10,7 +10,17 @@ parts:
       - file: intro/matplotlib/index
       - file: intro/scipy/index
       - file: intro/help/help
-parts:
+  - caption: Advanced topics
+    chapters:
+      - file: advanced/index
+      - file: advanced/advanced_python/index
+      - file: advanced/advanced_numpy/index
+      - file: advanced/debugging/index
+      - file: advanced/optimizing/index
+      - file: advanced/scipy_sparse/index
+      - file: advanced/image_processing/index
+      - file: advanced/mathematical_optimization/index
+      - file: advanced/interfacing_with_c/interfacing_with_c
   - caption: About the Scientific Python Lectures
     chapters:
       - file: about.md
