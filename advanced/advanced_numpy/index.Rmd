@@ -52,7 +52,7 @@ import matplotlib.pyplot as plt
 
 ### It's...
 
-**ndarray** =
+**ndarray** is:
 
 > block of memory + indexing scheme + data type descriptor
 >
@@ -153,18 +153,13 @@ block.
 
 {class}`dtype` describes a single item in the array:
 
-=========   ===================================================
-type        **scalar type** of the data, one of:
-
-            int8, int16, float64, *et al.*  (fixed size)
-
-            str, unicode, void   (flexible size)
-
-itemsize    **size** of the data block
-byteorder   **byte order**: big-endian ``>`` / little-endian ``<`` / not applicable ``|``
-fields      sub-dtypes, if it's a **structured data type**
-shape       shape of the array, if it's a **sub-array**
-=========   ===================================================
+| | |
+| - | - |
+| type     |  **scalar type** of the data, one of:<br><br>int8, int16, float64, *et al.* (fixed size)<br><br>str, unicode, void (flexible size) |
+| itemsize |  **size** of the data block |
+| byteorder|  **byte order**: big-endian ``>`` / little-endian ``<`` / not applicable `` |
+| fields   |  sub-dtypes, if it's a **structured data type** |
+| shape    |  shape of the array, if it's a **sub-array** |
 
 ```{python}
 np.dtype(int).type
@@ -182,21 +177,21 @@ np.dtype(int).byteorder
 
 The `.wav` file header:
 
-================   ==========================================
-chunk_id           ``"RIFF"``
-chunk_size         4-byte unsigned little-endian integer
-format             ``"WAVE"``
-fmt_id             ``"fmt "``
-fmt_size           4-byte unsigned little-endian integer
-audio_fmt          2-byte unsigned little-endian integer
-num_channels       2-byte unsigned little-endian integer
-sample_rate        4-byte unsigned little-endian integer
-byte_rate          4-byte unsigned little-endian integer
-block_align        2-byte unsigned little-endian integer
-bits_per_sample    2-byte unsigned little-endian integer
-data_id            ``"data"``
-data_size          4-byte unsigned little-endian integer
-================   ==========================================
+| | |
+| - | - |
+| chunk_id         | ``"RIFF"`` |
+| chunk_size       | 4-byte unsigned little-endian integer |
+| format           | ``"WAVE"`` |
+| fmt_id           | ``"fmt "`` |
+| fmt_size         | 4-byte unsigned little-endian integer |
+| audio_fmt        | 2-byte unsigned little-endian integer |
+| num_channels     | 2-byte unsigned little-endian integer |
+| sample_rate      | 4-byte unsigned little-endian integer |
+| byte_rate        | 4-byte unsigned little-endian integer |
+| block_align      | 2-byte unsigned little-endian integer |
+| bits_per_sample  | 2-byte unsigned little-endian integer |
+| data_id          | ``"data"``                            |
+| data_size        | 4-byte unsigned little-endian integer |
 
 - 44-byte block of raw data (in the beginning of the file)
 - ... followed by `data_size` bytes of actual sound data.
@@ -245,11 +240,12 @@ wav_header_dtype.fields['format']
   to the name `format`
 - The second one is its offset (in bytes) from the beginning of the item
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: sparse-dtype
+:class: dropdown
+:::
 
-Mini-exercise, make a "sparse" dtype by using offsets, and only some
-of the fields:
+Make a "sparse" dtype by using offsets, and only some of the fields:
 
 ```{python tags=c("raises-exception")}
 wav_header_dtype = np.dtype(dict(
@@ -260,6 +256,8 @@ wav_header_dtype = np.dtype(dict(
 ```
 
 and use that to read the sample rate, and `data_id` (as sub-array).
+
+::: {exercise-end}
 :::
 
 ```{python}
@@ -357,22 +355,24 @@ Exact rules: see [NumPy documentation](https://numpy.org/doc/stable/reference/uf
 
 ##### Re-interpretation / viewing
 
-- Data block in memory (4 bytes)
+Let's say we have a data block in memory (4 bytes).  For the moment (as indicated by the bars between the values), we'll consider this to be four `unit8` values:
 
-  ==========  ====  ========== ====  ==========  ====  ==========
-   ``0x01``    ||    ``0x02``   ||    ``0x03``    ||    ``0x04``
-  ==========  ====  ========== ====  ==========  ====  ==========
+| | | | | | | |
+| - | - | - | - | - | - | - |
+| ``0x01``  | │ |    ``0x02``   | │ |   ``0x03``    | │ |   ``0x04`` |
 
-  - 4 of uint8, OR,
-  - 4 of int8, OR,
-  - 2 of int16, OR,
-  - 1 of int32, OR,
-  - 1 of float32, OR,
-  - ...
+However, we can interpret this block as:
 
-  How to switch from one to another?
+- 4 of uint8 (as here), OR,
+- 4 of int8, OR,
+- 2 of int16, OR,
+- 1 of int32, OR,
+- 1 of float32, OR,
+- ...
 
-1. Switch the dtype:
+How to switch from one to another?
+
+**Option 1: Switch the dtype**
 
 ```{python}
 x = np.array([1, 2, 3, 4], dtype=np.uint8)
@@ -380,37 +380,29 @@ x.dtype = "<i2"
 x
 ```
 
-```{python}
-0x0201, 0x0403
-```
+| | | | | |
+| - | - | - | - | - |
+| ``0x01``  |    ``0x02``   | │ |   ``0x03``    |    ``0x04`` |
 
-   ==========  ========== ====  ==========  ==========
-    ``0x01``    ``0x02``   ||    ``0x03``    ``0x04``
-   ==========  ========== ====  ==========  ==========
+:::{note}
+little-endian: least significant byte is on the *left* in memory
+:::
 
-   :::{note}
-   little-endian: least significant byte is on the *left* in memory
-   :::
-
-2. Create a new view of type `uint32`, shorthand `i4`:
+**Option 2: Create a new view of type `uint32`, shorthand `i4`**
 
 ```{python}
 y = x.view("<i4")
 y
 ```
 
-```{python}
-0x04030201
-```
+| | | | |
+| - | - | - | - |
+| ``0x01``  |    ``0x02``   |   ``0x03``    |    ``0x04`` |
 
-   ==========  ==========  ==========  ==========
-    ``0x01``    ``0x02``    ``0x03``    ``0x04``
-   ==========  ==========  ==========  ==========
+**On Views**
 
-:::{note}
 - `.view()` makes *views*, does not copy (or alter) the memory block
-
-- only changes the dtype (and adjusts array shape):
+- it only changes the dtype (and adjusts array shape):
 
 ```{python}
 x[1] = 5
@@ -420,13 +412,17 @@ y
 ```{python}
 y.base is x
 ```
-:::
 
 **Mini-exercise: data re-interpretation**
 
 :::{admonition} See also
 
 view-colors.py
+:::
+
+::: {exercise-start}
+:label: rgba-to-structured
+:class: dropdown
 :::
 
 You have RGBA data in an array:
@@ -441,8 +437,8 @@ x[:, :, 3] = 4
 
 where the last three dimensions are the R, B, and G, and alpha channels.
 
-How to make a (10, 10) structured array with field names 'r', 'g', 'b', 'a'
-without copying data?
+How would you make a (10, 10) structured array with field names 'r', 'g', 'b',
+'a' without copying data?
 
 ```{python}
 y = ...
@@ -455,26 +451,27 @@ assert (y['b'] == 3).all()
 assert (y['a'] == 4).all()
 ```
 
-*Solution*
+::: {exercise-end}
+:::
 
-> ```{raw} html
-> <a onclick="$('#hidden-item-0').toggle(100)">...</a>
-> <div id="hidden-item-0" style="display: none;">
-> ```
->
-> ```pycon
-> >>> y = x.view([('r', 'i1'),
-> ...             ('g', 'i1'),
-> ...             ('b', 'i1'),
-> ...             ('a', 'i1')]
-> ...              )[:, :, 0]
-> ```
->
-> ```{raw} html
-> </div>
-> ```
 
-:::{warning}
+::: {solution-start} rgba-to-structured
+:class: dropdown
+:::
+
+```{python}
+y = x.view([('r', 'i1'),
+            ('g', 'i1'),
+            ('b', 'i1'),
+            ('a', 'i1')]
+             )[:, :, 0]
+```
+
+::: {solution-end}
+:::
+
+#### A puzzle
+
 Another two arrays, each occupying exactly 4 bytes of memory:
 
 ```{python}
@@ -526,7 +523,6 @@ y.copy().view(np.int16)
 
 Can you explain these numbers, 513 and 1027, as well as the output
 shape of the resulting array?
-:::
 
 ### Indexing scheme: strides
 
@@ -595,23 +591,24 @@ y.tobytes('A')
 - Need to jump 2 bytes to find the next row
 - Need to jump 4 bytes to find the next column
 
-* Similarly to higher dimensions:
+Similarly for higher dimensions:
 
   - C: last dimensions vary fastest (= smaller strides)
   - F: first dimensions vary fastest
 
-  $$
-  \mathrm{shape} &= (d_1, d_2, ..., d_n)
-  \\
-  \mathrm{strides} &= (s_1, s_2, ..., s_n)
-  \\
-  s_j^C &= d_{j+1} d_{j+2} ... d_{n} \times \mathrm{itemsize}
-  \\
-  s_j^F &= d_{1} d_{2} ... d_{j-1} \times \mathrm{itemsize}
-  $$
+$$
+\begin{align}
+\mathrm{shape} &= (d_1, d_2, ..., d_n)
+\\
+\mathrm{strides} &= (s_1, s_2, ..., s_n)
+\\
+s_j^C &= d_{j+1} d_{j+2} ... d_{n} \times \mathrm{itemsize}
+\\
+s_j^F &= d_{1} d_{2} ... d_{j-1} \times \mathrm{itemsize}
+\end{align}
+$$
 
-:::{note}
-Now we can understand the behavior of `.view()`:
+**Now we can understand the behavior of `.view()`**
 
 ```{python}
 y = np.array([[1, 3], [2, 4]], dtype=np.uint8).transpose()
@@ -638,7 +635,6 @@ y.tobytes('A')
 
 - the results are different when interpreted as 2 of int16
 - `.copy()` creates new arrays in the C order (by default)
-:::
 
 :::{note}
 **In-place operations with views**
@@ -684,7 +680,7 @@ x.strides
 x[::2,::3,::4].strides
 ```
 
-- Similarly, transposes never make copies (it just swaps strides):
+Similarly, transposes never make copies (it just swaps strides):
 
 ```{python}
 x = np.zeros((10, 10, 10), dtype=float)
@@ -753,45 +749,57 @@ x[::2]
 stride-fakedims.py
 :::
 
-**Exercise**
+::: {exercise-start}
+:label: harder-strides
+:class: dropdown
+:::
 
-> ```
-> array([1, 2, 3, 4], dtype=np.int8)
->
-> -> array([[1, 2, 3, 4],
->           [1, 2, 3, 4],
->           [1, 2, 3, 4]], dtype=np.int8)
-> ```
->
-> using only `as_strided`.:
->
-> ```
-> Hint: byte_offset = stride[0]*index[0] + stride[1]*index[1] + ...
-> ```
+Convert this:
 
-*Spoiler*
+```{python}
+in_arr = np.array([1, 2, 3, 4], dtype=np.int8)
+in_arr
+```
 
-> ```{raw} html
-> <a onclick="$('#hidden-item-1').toggle(100)">...</a>
-> <div id="hidden-item-1" style="display: none;">
-> ```
->
-> Stride can also be *0*:
->
-> ```pycon
-> >>> x = np.array([1, 2, 3, 4], dtype=np.int8)
-> >>> y = as_strided(x, strides=(0, 1), shape=(3, 4))
-> >>> y
-> array([[1, 2, 3, 4],
->        [1, 2, 3, 4],
->        [1, 2, 3, 4]], dtype=int8)
-> >>> y.base.base is x
-> True
-> ```
->
-> ```{raw} html
-> </div>
-> ```
+to this:
+
+```python
+array([[1, 2, 3, 4],
+       [1, 2, 3, 4],
+       [1, 2, 3, 4]], dtype=np.int8)
+```
+
+using only `as_strided`.:
+
+**Hint**: `byte_offset = stride[0]*index[0] + stride[1]*index[1] + ...`
+
+::: {exercise-end}
+:::
+
+::: {admonition} Spoiler for strides exercise
+:class: dropdown
+
+Stride can also be *0*:
+
+:::
+
+
+::: {solution-start} harder-strides
+:class: dropdown
+:::
+
+```{python}
+x = np.array([1, 2, 3, 4], dtype=np.int8)
+y = as_strided(x, strides=(0, 1), shape=(3, 4))
+y
+```
+
+```{python}
+y.base.base is x
+```
+
+::: {solution-end}
+:::
 
 (broadcasting-advanced)=
 
@@ -833,113 +841,116 @@ x[np.newaxis,:] * y[:,np.newaxis]
 stride-diagonals.py
 :::
 
-**Challenge**
-
-> - Pick diagonal entries of the matrix: (assume C memory order):
->
->   ```
->   >>> x = np.array([[1, 2, 3],
->   ...               [4, 5, 6],
->   ...               [7, 8, 9]], dtype=np.int32)
->
->   >>> x_diag = as_strided(x, shape=(3,), strides=(???,))
->   ```
->
-> - Pick the first super-diagonal entries `[2, 6]`.
->
-> - And the sub-diagonals?
->
-> (Hint to the last two: slicing first moves the point where striding
->
-> : starts from.)
-
-*Solution*
-
-> ```{raw} html
-> <a onclick="$('#hidden-item-2').toggle(100)">...</a>
-> <div id="hidden-item-2" style="display: none;">
-> ```
->
-> Pick diagonals:
->
-> ```
-> >>> x_diag = as_strided(x, shape=(3, ), strides=((3+1)*x.itemsize, ))
-> >>> x_diag
-> array([1, 5, 9], dtype=int32)
-> ```
->
-> Slice first, to adjust the data pointer:
->
-> ```
-> >>> as_strided(x[0, 1:], shape=(2, ), strides=((3+1)*x.itemsize, ))
-> array([2, 6], dtype=int32)
->
-> >>> as_strided(x[1:, 0], shape=(2, ), strides=((3+1)*x.itemsize, ))
-> array([4, 8], dtype=int32)
-> ```
->
-> :::{note}
-> **Using np.diag**
->
-> ```pycon
-> >>> y = np.diag(x, k=1)
-> >>> y
-> array([2, 6], dtype=int32)
-> ```
->
-> However,
->
-> ```pycon
-> >>> y.flags.owndata
-> False
-> ```
-> :::
->
-> ```{raw} html
-> </div>
-> ```
-
-:::{admonition} See also
-
-stride-diagonals.py
+::: {exercise-start}
+:label: stride-diagonals
+:class: dropdown
 :::
 
+Pick diagonal entries of the matrix: (assume C memory order):
+
+```{python}
+x = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]], dtype=np.int32)
+```
+
+Your task is to work out the correct strides for to get the diagonal of the array, as in:
+
+```
+x_diag = as_strided(x, shape=(3,), strides=(...,))
+```
+
+Next:
+
+* Pick the first super-diagonal entries `[2, 6]`.
+* And the sub-diagonals?
+
+**Hint to the last two**: slicing first moves the point where striding starts
+from.
+
+::: {exercise-end}
+:::
+
+::: {solution-start} stride-diagonals
+:class: dropdown
+:::
+
+Pick diagonals:
+
+```{python}
+x_diag = as_strided(x, shape=(3, ), strides=((3+1)*x.itemsize,))
+x_diag
+```
+
+Slice first, to adjust the data pointer:
+
+```{python}
+as_strided(x[0, 1:], shape=(2, ), strides=((3+1)*x.itemsize, ))
+```
+
+```{python}
+as_strided(x[1:, 0], shape=(2, ), strides=((3+1)*x.itemsize, ))
+```
+
+::: {solution-end}
+:::
+
+#### Using np.diag
+
+```{python}
+y = np.diag(x, k=1)
+y
+```
+
+However,
+
+```{python}
+y.flags.owndata
+```
+
+
 **Challenge**
 
-> Compute the tensor trace:
->
-> ```
-> >>> x = np.arange(5*5*5*5).reshape(5, 5, 5, 5)
-> >>> s = 0
-> >>> for i in range(5):
-> ...    for j in range(5):
-> ...       s += x[j, i, j, i]
-> ```
->
-> by striding, and using `sum()` on the result.
->
-> ```
-> >>> y = as_strided(x, shape=(5, 5), strides=(TODO, TODO))
-> >>> s2 = ...
-> >>> assert s == s2
-> ```
+::: {exercise-start}
+:label: tensor-trace
+:class: dropdown
+:::
 
-*Solution*
+Compute the tensor trace:
 
-> ```{raw} html
-> <a onclick="$('#hidden-item-2-2').toggle(100)">...</a>
-> <div id="hidden-item-2-2" style="display: none;">
-> ```
->
-> ```pycon
-> >>> y = as_strided(x, shape=(5, 5), strides=((5*5*5 + 5)*x.itemsize,
-> ...                                          (5*5 + 1)*x.itemsize))
-> >>> s2 = y.sum()
-> ```
->
-> ```{raw} html
-> </div>
-> ```
+```{python}
+x = np.arange(5*5*5*5).reshape(5, 5, 5, 5)
+s = 0
+for i in range(5):
+    for j in range(5):
+        s += x[j, i, j, i]
+```
+
+
+by striding, and using `sum()` on the result.
+
+```{python tags=c("raises-exception")}
+y = as_strided(x, shape=(5, 5), strides=(..., ...))
+s2 = ...
+assert s == s2
+```
+
+::: {exercise-end}
+:::
+
+::: {solution-start} tensor-trace
+:class: dropdown
+:::
+
+```{python}
+y = as_strided(x, shape=(5, 5), strides=((5*5*5 + 5)*x.itemsize,
+                                         (5*5 + 1)*x.itemsize))
+s2 = y.sum()
+s2
+```
+
+::: {solution-end}
+:::
 
 (cache-effects)=
 
@@ -1002,90 +1013,91 @@ x.strides, y.strides
 
 ## Universal functions
 
-### What they are?
+### What are they?
 
-- Ufunc performs and elementwise operation on all elements of an array.
+- Ufunc performs an elementwise operation on all elements of an array.
 
   Examples: `np.add, np.subtract, scipy.special.*,` ...
-```
 
 - Automatically support: broadcasting, casting, ...
-
 - The author of an ufunc only has to supply the elementwise operation,
   NumPy takes care of the rest.
-
 - The elementwise operation needs to be implemented in C (or, e.g., Cython)
 
 #### Parts of an Ufunc
 
-1. Provided by user
+**Part 1: provided by user**
 
-   ```c
-   void ufunc_loop(void **args, int *dimensions, int *steps, void *data)
-   {
-       /*
-        * int8 output = elementwise_function(int8 input_1, int8 input_2)
-        *
-        * This function must compute the ufunc for many values at once,
-        * in the way shown below.
-        */
-       char *input_1 = (char*)args[0];
-       char *input_2 = (char*)args[1];
-       char *output = (char*)args[2];
-       int i;
+```c
+void ufunc_loop(void **args, int *dimensions, int *steps, void *data)
+{
+    /*
+    * int8 output = elementwise_function(int8 input_1, int8 input_2)
+    *
+    * This function must compute the ufunc for many values at once,
+    * in the way shown below.
+    */
+    char *input_1 = (char*)args[0];
+    char *input_2 = (char*)args[1];
+    char *output = (char*)args[2];
+    int i;
 
-       for (i = 0; i < dimensions[0]; ++i) {
-           *output = elementwise_function(*input_1, *input_2);
-           input_1 += steps[0];
-           input_2 += steps[1];
-           output += steps[2];
-       }
-   }
-   ```
+    for (i = 0; i < dimensions[0]; ++i) {
+        *output = elementwise_function(*input_1, *input_2);
+        input_1 += steps[0];
+        input_2 += steps[1];
+        output += steps[2];
+    }
+}
+```
 
-2. The NumPy part, built by
+**Part 2. The NumPy part, built by**
 
-   ```c
-   char types[3]
+```c
+char types[3]
 
-   types[0] = NPY_BYTE   /* type of first input arg */
-   types[1] = NPY_BYTE   /* type of second input arg */
-   types[2] = NPY_BYTE   /* type of third input arg */
+types[0] = NPY_BYTE   /* type of first input arg */
+types[1] = NPY_BYTE   /* type of second input arg */
+types[2] = NPY_BYTE   /* type of third input arg */
 
-   PyObject *python_ufunc = PyUFunc_FromFuncAndData(
-       ufunc_loop,
-       NULL,
-       types,
-       1, /* ntypes */
-       2, /* num_inputs */
-       1, /* num_outputs */
-       identity_element,
-       name,
-       docstring,
-       unused)
-   ```
+PyObject *python_ufunc = PyUFunc_FromFuncAndData(
+    ufunc_loop,
+    NULL,
+    types,
+    1, /* ntypes */
+    2, /* num_inputs */
+    1, /* num_outputs */
+    identity_element,
+    name,
+    docstring,
+    unused)
+```
 
-   - A ufunc can also support multiple different input-output type
-     combinations.
+A ufunc can also support multiple different input-output type combinations.
 
 #### Making it easier
 
-3. `ufunc_loop` is of very generic form, and NumPy provides
-   pre-made ones
+`ufunc_loop` is of very generic form, and NumPy provides pre-made ones
 
-   ================  =======================================================
-   ``PyUfunc_f_f``   ``float elementwise_func(float input_1)``
-   ``PyUfunc_ff_f``  ``float elementwise_func(float input_1, float input_2)``
-   ``PyUfunc_d_d``   ``double elementwise_func(double input_1)``
-   ``PyUfunc_dd_d``  ``double elementwise_func(double input_1, double input_2)``
-   ``PyUfunc_D_D``   ``elementwise_func(npy_cdouble *input, npy_cdouble* output)``
-   ``PyUfunc_DD_D``  ``elementwise_func(npy_cdouble *in1, npy_cdouble *in2, npy_cdouble* out)``
-   ================  =======================================================
+| | |
+| - | - |
+| ``PyUfunc_f_f``  | ``float elementwise_func(float input_1)`` |
+| ``PyUfunc_ff_f`` | ``float elementwise_func(float input_1, float input_2)`` |
+| ``PyUfunc_d_d``  | ``double elementwise_func(double input_1)`` |
+| ``PyUfunc_dd_d`` | ``double elementwise_func(double input_1, double input_2)`` |
+| ``PyUfunc_D_D``  | ``elementwise_func(npy_cdouble *input, npy_cdouble* output)`` |
+| ``PyUfunc_DD_D`` | ``elementwise_func(npy_cdouble *in1, npy_cdouble *in2, npy_cdouble* out)`` |
 
-   - Only `elementwise_func` needs to be supplied
-   - ... except when your elementwise function is not in one of the above forms
+- Only `elementwise_func` needs to be supplied
+- ... except when your elementwise function is not in one of the above forms
 
 ### Exercise: building an ufunc from scratch
+
+::: {exercise-start}
+:label: mandelbrot-ufunc
+:class: dropdown
+:::
+
 
 The Mandelbrot fractal is defined by the iteration
 
@@ -1097,20 +1109,20 @@ where $c = x + i y$ is a complex number. This iteration is
 repeated -- if $z$ stays finite no matter how long the iteration
 runs, $c$ belongs to the Mandelbrot set.
 
-- Make ufunc called `mandel(z0, c)` that computes:
+First — make a ufunc called `mandel(z0, c)` that computes:
 
-```{python}
-  z = z0
-  for k in range(iterations):
-      z = z*z + c
+```python
+z = z0
+for k in range(iterations):
+    z = z*z + c
 ```
 
-  say, 100 iterations or until `z.real**2 + z.imag**2 > 1000`.
-  Use it to determine which `c` are in the Mandelbrot set.
+Run for, say, 100 iterations or until `z.real**2 + z.imag**2 > 1000`.
+Use it to determine which `c` are in the Mandelbrot set.
 
-- Our function is a simple one, so make use of the `PyUFunc_*` helpers.
+Our function is a simple one, so make use of the `PyUFunc_*` helpers.
 
-- Write it in Cython
+Write it in Cython
 
 :::{admonition} See also
 
@@ -1122,27 +1134,32 @@ mandel.pyx, mandelplot.py
 ```
 :::
 
-Reminder: some pre-made Ufunc loops:
+**Reminder**: some pre-made Ufunc loops:
 
-================  =======================================================
-``PyUfunc_f_f``   ``float elementwise_func(float input_1)``
-``PyUfunc_ff_f``  ``float elementwise_func(float input_1, float input_2)``
-``PyUfunc_d_d``   ``double elementwise_func(double input_1)``
-``PyUfunc_dd_d``  ``double elementwise_func(double input_1, double input_2)``
-``PyUfunc_D_D``   ``elementwise_func(complex_double *input, complex_double* output)``
-``PyUfunc_DD_D``  ``elementwise_func(complex_double *in1, complex_double *in2, complex_double* out)``
-================  =======================================================
+| | |
+| - | - |
+| ``PyUfunc_f_f``  | ``float elementwise_func(float input_1)`` |
+| ``PyUfunc_ff_f`` | ``float elementwise_func(float input_1, float input_2)`` |
+| ``PyUfunc_d_d``  | ``double elementwise_func(double input_1)`` |
+| ``PyUfunc_dd_d`` | ``double elementwise_func(double input_1, double input_2)`` |
+| ``PyUfunc_D_D``  | ``elementwise_func(complex_double *input, complex_double* output)`` |
+| ``PyUfunc_DD_D`` | ``elementwise_func(complex_double *in1, complex_double *in2, complex_double* out)`` |
 
 Type codes:
 
-```{python}
+```
 NPY_BOOL, NPY_BYTE, NPY_UBYTE, NPY_SHORT, NPY_USHORT, NPY_INT, NPY_UINT,
 NPY_LONG, NPY_ULONG, NPY_LONGLONG, NPY_ULONGLONG, NPY_FLOAT, NPY_DOUBLE,
 NPY_LONGDOUBLE, NPY_CFLOAT, NPY_CDOUBLE, NPY_CLONGDOUBLE, NPY_DATETIME,
 NPY_TIMEDELTA, NPY_OBJECT, NPY_STRING, NPY_UNICODE, NPY_VOID
 ```
 
-### Solution: building an ufunc from scratch
+::: {exercise-end}
+:::
+
+::: {solution-start} mandelbrot-ufunc
+:class: dropdown
+:::
 
 ```{literalinclude} examples/mandel-answer.pyx
 :language: python
@@ -1161,7 +1178,7 @@ Most of the boilerplate could be automated by these Cython modules:
 <https://github.com/cython/cython/wiki/MarkLodato-CreatingUfuncs>
 :::
 
-***Several accepted input types**
+**Several accepted input types**
 
 E.g. supporting both single- and double-precision versions
 
@@ -1206,6 +1223,9 @@ mandel = PyUFunc_FromFuncAndData(
     )
 ```
 
+::: {solution-end}
+:::
+
 ### Generalized ufuncs
 
 **ufunc**
@@ -1216,29 +1236,29 @@ mandel = PyUFunc_FromFuncAndData(
 
 **generalized ufunc**
 
-> `output` and `input` can be arrays with a fixed number of dimensions
->
-> For example, matrix trace (sum of diag elements):
->
-> ```
-> input shape = (n, n)
-> output shape = ()      i.e.  scalar
->
-> (n, n) -> ()
-> ```
->
-> Matrix product:
->
-> ```
-> input_1 shape = (m, n)
-> input_2 shape = (n, p)
-> output shape  = (m, p)
->
-> (m, n), (n, p) -> (m, p)
-> ```
->
-> - This is called the *"signature"* of the generalized ufunc
-> - The dimensions on which the g-ufunc acts, are *"core dimensions"*
+`output` and `input` can be arrays with a fixed number of dimensions
+
+For example, matrix trace (sum of diag elements):
+
+```text
+input shape = (n, n)
+output shape = ()    #  i.e.  scalar
+
+(n, n) -> ()
+```
+
+Matrix product:
+
+```text
+input_1 shape = (m, n)
+input_2 shape = (n, p)
+output shape  = (m, p)
+
+(m, n), (n, p) -> (m, p)
+```
+
+- This is called the *"signature"* of the generalized ufunc
+- The dimensions on which the g-ufunc acts, are *"core dimensions"*
 
 **Status in NumPy**
 
@@ -1257,9 +1277,9 @@ np.linalg.det(rng.random((3, 5, 5)))
 np.linalg._umath_linalg.det.signature
 ```
 
-> - matrix multiplication this way could be useful for operating on
->   many small matrices at once
-> - Also see `tensordot` and `einsum`
+- matrix multiplication this way could be useful for operating on
+  many small matrices at once
+- Also see `tensordot` and `einsum`
 
 <!---
 
@@ -1269,21 +1289,14 @@ gufuncs.  See the discussion at:
 
 https://mail.python.org/archives/list/numpy-discussion@python.org/thread/ZG7AUSPYYUNSPQU3YUZS2XCFD7AT3BJP/
 
-```python
 import numpy.core.umath_tests as ut
-```
-
-```python
 ut.matrix_multiply.signature
-```
 
 '(m,n),(n,p)->(m,p)'
 
-```python
 x = np.ones((10, 2, 4))
 y = np.ones((10, 4, 5))
 ut.matrix_multiply(x, y).shape
-```
 
 (10, 2, 5)
 
@@ -1360,6 +1373,11 @@ Imaging Library):
 pilbuffer.py
 :::
 
+::: {exercise-start}
+:label: pil-buffer
+:class: dropdown
+:::
+
 ```{python}
 from PIL import Image
 data = np.zeros((200, 200, 4), dtype=np.uint8)
@@ -1370,9 +1388,12 @@ img = Image.frombuffer("RGBA", (200, 200), data, "raw", "RGBA", 0, 1)
 img.save('test.png')
 ```
 
-**Q:**
+**The question**
 
-> Check what happens if `data` is now modified, and `img` saved again.
+What happens if `data` is now modified, and `img` saved again?
+
+::: {exercise-end}
+:::
 
 ### The old buffer protocol
 
@@ -1531,7 +1552,8 @@ Streamlined and more seamless support for dealing with missing data
 in arrays is making its way into NumPy 1.7. Stay tuned!
 :::
 
-:::{admonition} Example: Masked statistics
+**Example: Masked statistics**
+
 Canadian rangers were distracted when counting hares and lynxes in
 1903-1910 and 1917-1918, and got the numbers are wrong. (Carrot
 farmers stayed alert, though.) Compute the mean populations over
@@ -1564,8 +1586,6 @@ Note that Matplotlib knows about masked arrays:
 ```{python}
 plt.plot(year, populations, 'o-')
 ```
-:::
-
 
 ### `np.recarray`: purely convenience
 
@@ -1641,29 +1661,26 @@ I'm using NumPy 1.4.1, built from the official tarball, on Windows
 ```
 
 0. What are you trying to do?
-
 1. **Small code snippet reproducing the bug** (if possible)
 
    - What actually happens
    - What you'd expect
-
 2. Platform (Windows / Linux / OSX, 32/64 bits, x86/PPC, ...)
-
 3. Version of NumPy/SciPy
 
 ```{python}
 print(np.__version__)
 ```
 
-   **Check that the following is what you expect**
+**Check that the following is what you expect**
 
 ```{python}
 print(np.__file__)
 ```
 
-   In case you have old/broken NumPy installations lying around.
+In case you have old/broken NumPy installations lying around.
 
-   If unsure, try to remove existing NumPy installations, and reinstall...
+If unsure, try to remove existing NumPy installations, and reinstall...
 
 ### Contributing to documentation
 
