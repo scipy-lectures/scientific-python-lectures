@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.16.6
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -791,20 +791,19 @@ Computing gradients, and even more Hessians, is very tedious but worth
 the effort. Symbolic computation with {ref}`Sympy <sympy>` may come in
 handy.
 
-:::{warning}
+**Warning**
+
 A *very* common source of optimization not converging well is human
 error in the computation of the gradient. You can use
 {func}`scipy.optimize.check_grad` to check that your gradient is
 correct. It returns the norm of the different between the gradient
 given, and a gradient computed numerically:
 
-> ```pycon
-> >>> sp.optimize.check_grad(f, jacobian, [2, -1])
-> np.float64(2.384185791015625e-07)
-> ```
+```{python}
+sp.optimize.check_grad(f, jacobian, [2, -1])
+```
 
 See also {func}`scipy.optimize.approx_fprime` to find your errors.
-:::
 
 ### Synthetic exercises
 
@@ -930,7 +929,8 @@ support bound constraints with the parameter `bounds`:
 
 ```{python}
 def f(x):
-   return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+
 sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
 ```
 
