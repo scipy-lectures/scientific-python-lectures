@@ -168,7 +168,7 @@ sequence of results instead of a single value.
 :::
 
 A third way to create iterator objects is to call a generator function.
-A **generator** is a function containing the keyword {simple}`yield`. It must be
+A **generator** is a function containing the keyword `yield`. It must be
 noted that the mere presence of this keyword completely changes the
 nature of the function: this `yield` statement doesn't have to be
 invoked, or even reachable, but causes the function to be marked as a
@@ -295,7 +295,7 @@ raise type, value, traceback
 
 at the point of the `yield` statement.
 
-Unlike {simple}`raise` (which immediately raises an exception from the
+Unlike `raise` (which immediately raises an exception from the
 current execution point), `throw()` first resumes the generator, and
 only then raises the exception. The word throw was picked because
 it is suggestive of putting the exception in another location, and is
@@ -1054,7 +1054,7 @@ leaving only the interesting `do_something` block.
    returned by `__enter__` is simply ignored.
 2. The block of code underneath `with` is executed. Just like with
    `try` clauses, it can either execute successfully to the end, or
-   it can {simple}`break`, {simple}`continue` or {simple}`return`, or
+   it can `break`, `continue` or `return`, or
    it can throw an exception. Either way, after the block is finished,
    the `__exit__ <object.__exit__>` method is called.
    If an exception was thrown, the information about the exception is
