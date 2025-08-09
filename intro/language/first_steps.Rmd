@@ -22,7 +22,9 @@ Start the **Ipython** shell (an enhanced interactive Python shell):
   the [Python(x,y)] menu if you have installed one of these
   scientific-Python suites.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 If you don't have Ipython installed on your computer, other Python
 shells are available, such as the plain Python shell started by
 typing "python" in a terminal, or the Idle interpreter. However, we
@@ -36,7 +38,9 @@ Once you have started the interpreter, type
 print("Hello, world!")
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The message "Hello, world!" is then displayed. You just executed your
 first Python instruction, congratulations!
 :::
@@ -70,7 +74,9 @@ b + b
 2*b
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Two variables `a` and `b` have been defined above. Note that one does
 not declare the type of a variable before assigning its value. In C,
 conversely, one should write:

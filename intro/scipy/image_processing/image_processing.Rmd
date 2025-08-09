@@ -104,7 +104,9 @@ can be applied to images.
 
 # Mathematical morphology
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 [Mathematical morphology](https://en.wikipedia.org/wiki/Mathematical_morphology) stems from set
 theory. It characterizes and transforms geometrical structures. Binary
 (black and white) images, in particular, can be transformed using this

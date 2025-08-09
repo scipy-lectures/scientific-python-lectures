@@ -81,7 +81,9 @@ import matplotlib.pyplot as plt
 
 ### What is machine learning?
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Machine Learning is about building programs with **tunable
 parameters** that are adjusted automatically so as to improve their
 behavior by **adapting to previously seen data.**
@@ -152,7 +154,9 @@ size of the array is expected to be `[n_samples, n_features]`
   generally real-valued, but may be boolean or discrete-valued in some
   cases.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The number of features must be fixed in advance. However it can be
 very high dimensional (e.g. millions of features) with most of them
 being zeros for a given sample. This is a case where `scipy.sparse`
@@ -347,7 +351,9 @@ more complicated examples are:
   *recommender systems*: a famous example is the [Netflix
   Prize](https://en.wikipedia.org/wiki/Netflix_prize)).
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 What these tasks have in common is that there is one or more unknown
 quantities associated with the object which needs to be determined from
 other observed quantities.
@@ -480,7 +486,9 @@ Let's look at the ground truth:
 :target: auto_examples/plot_polynomial_regression.html
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Regularization is ubiquitous in machine learning. Most scikit-learn
 estimators have a parameter to tune the amount of regularization. For
 instance, with k-NN, it is 'k', the number of nearest neighbors used to
@@ -495,7 +503,9 @@ boundaries in the feature space.
 | ------------------- | ----------------------- |
 | A linear separation | A non-linear separation |
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 For classification models, the decision boundary, that separates the
 class expresses the complexity of the model. For instance, a linear
 model, that makes a decision based on a linear combination of
@@ -585,7 +595,9 @@ One good method to keep in mind is Gaussian Naive Bayes
 `sklearn.cross_validation`
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Gaussian Naive Bayes fits a Gaussian distribution to each training label
 independently on each feature, and uses this to quickly give a rough
 classification. It is generally not sufficiently accurate for real-world
@@ -777,7 +789,9 @@ for index, feature_name in enumerate(data.feature_names):
 
 This is a manual version of a technique called **feature selection**.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Sometimes, in Machine Learning it is useful to use feature selection to
 decide which features are the most useful for a particular problem.
 Automated methods exist which quantify this sort of exercise of choosing
@@ -816,7 +830,9 @@ We can plot the error: expected as a function of predicted:
 plt.scatter(expected, predicted)
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The prediction at least correlates with the true price, though there are
 clearly some biases. We could imagine evaluating the performance of the
 regressor by, say, computing the RMS residuals between the true and
@@ -992,7 +1008,9 @@ need to use different metrics, such as explained variance.
 
 ### Model Selection via Validation
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 We have applied Gaussian Naives, support vectors machines, and
 K-nearest neighbors classifiers to the digits dataset. Now that we
 have these validation tools in place, we can ask quantitatively which
@@ -1073,7 +1091,9 @@ cv = ShuffleSplit(n_splits=5)
 cross_val_score(clf, X, y, cv=cv)
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 There exists [many different cross-validation strategies](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators)
 in scikit-learn. They are often useful to take in account non iid
 datasets.
@@ -1213,7 +1233,9 @@ X = iris.data
 y = iris.target
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 {class}`~sklearn.decomposition.PCA` computes linear combinations of
 the original features using a truncated Singular Value Decomposition
 of the matrix X, to project the data onto a base of the top singular
@@ -1280,7 +1302,9 @@ for i, c, label in zip(target_ids, 'rgbcmykw', iris.target_names):
 :target: auto_examples/plot_pca.html
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Note that this projection was determined *without* any information
 about the labels (represented by the colors): this is the sense in
 which the learning is **unsupervised**. Nevertheless, we see that the
@@ -1409,7 +1433,9 @@ amount of noise and of observations available.
 
 ### Visualizing the Bias/Variance Tradeoff
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Given a particular dataset and a model (e.g. a polynomial), we'd like to
 understand whether bias (underfit) or variance limits prediction, and how
 to tune the *hyperparameter* (here `d`, the degree of the polynomial)
@@ -1424,7 +1450,9 @@ varying degrees:
 :target: auto_examples/plot_bias_variance.html
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 In the above figure, we see fits for three different values of `d`.
 For `d = 1`, the data is under-fit. This means that the model is too
 simplistic: no straight line will ever be a good fit to this data. In
@@ -1551,7 +1579,9 @@ that the training explained variance is very high, while on the
 validation set, it is low. Choosing `d` around 4 or 5 gets us the best
 tradeoff.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The astute reader will realize that something is amiss here: in the
 above plot, `d = 4` gives the best results. But in the previous plot,
 we found that `d = 6` vastly over-fits the data. What’s going on here?

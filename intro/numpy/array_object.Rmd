@@ -40,7 +40,9 @@ a = np.array([0, 1, 2, 3])
 a
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 For example, An array containing:
 
 - values of an experiment/simulation at discrete time steps
@@ -190,7 +192,9 @@ c.shape
 
 ### Functions for creating arrays
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 In practice, we rarely enter items one by one...
 :::
 
@@ -296,7 +300,9 @@ b = np.array([1., 2., 3.])
 b.dtype
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Different data-types allow us to store data more compactly in memory,
 but most of the time we simply work with floating point numbers.
 Note that, in the example above, NumPy auto-detects the data-type
@@ -727,7 +733,9 @@ Skim through `help(np.nonzero)`, and print the prime numbers
 
 ## Fancy indexing
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 NumPy arrays can be indexed with slices, but also with boolean or
 integer arrays (**masks**). This method is called *fancy indexing*.
 It creates **copies not views**.

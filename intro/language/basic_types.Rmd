@@ -17,7 +17,9 @@ jupyter:
 
 ## Numerical types
 
-::: {tip}
+::: {note}
+:class: dropdown
+
 Python supports the following numerical, scalar types:
 :::
 
@@ -49,7 +51,9 @@ Python supports the following numerical, scalar types:
     <class 'bool'>
 
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 A Python shell can therefore replace your pocket calculator, with the
 basic arithmetic operations `+`, `-`, `*`, `/`, `%` (modulo)
 natively implemented
@@ -75,14 +79,18 @@ float(1)
 
 ## Containers
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Python provides many efficient types of containers, in which
 collections of objects can be stored.
 :::
 
 ### Lists
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 A list is an ordered collection of objects, that may have different
 types. For example:
 :::
@@ -130,7 +138,9 @@ such as `start<= i < stop` (`i` ranging from `start` to
 
 **Slicing syntax**: `colors[start:stop:stride]`
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 All slicing parameters are optional:
 
 ```{python}
@@ -174,7 +184,9 @@ colors
 colors[1], colors[2]
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 For collections of numerical data that all have the same type, it
 is often **more efficient** to use the `array` type provided by
 the `numpy` module. A NumPy array is a chunk of memory
@@ -185,7 +197,9 @@ functions instead of Python loops.
 :::
 ::::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Python offers a large panel of functions to modify lists, or query
 them. Here are a few examples; for more details, see
 <https://docs.python.org/3/tutorial/datastructures.html#more-on-lists>
@@ -244,7 +258,9 @@ rcolors + colors
 rcolors * 2
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Sort:
 
 ```{python}
@@ -305,7 +321,9 @@ instead of single quotes. Alternatively, one can prepend a backslash to the
 second single quote. Other uses of the backslash are, e.g., the newline character
 `\n` and the tab character `\t`.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Strings are collections like lists. Hence they can be indexed and
 sliced, using the same syntax and rules.
 :::
@@ -325,7 +343,9 @@ a[1]
 a[-1]
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 (Remember that negative indices correspond to counting from the right
 end.)
 :::
@@ -345,7 +365,9 @@ a[2:10:2] # Syntax: a[start:stop:step]
 a[::3] # every three characters, from beginning to end
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Accents and special characters can also be handled as in Python 3
 strings consist of Unicode characters.
 :::
@@ -366,7 +388,9 @@ a.replace('l', 'z', 1)
 a.replace('l', 'z')
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Strings have many useful methods, such as `a.replace` as seen
 above. Remember the `a.` object-oriented notation and use tab
 completion or `help(str)` to search for new methods.
@@ -394,7 +418,9 @@ filename
 
 ### Dictionaries
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 A dictionary is basically an efficient table that **maps keys to
 values**.
 :::
@@ -421,7 +447,9 @@ tel.values()
 'francis' in tel
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 It can be used to conveniently store and retrieve values
 associated with a name (a string for a date, a name, etc.). See
 <https://docs.python.org/3/tutorial/datastructures.html#dictionaries>
@@ -465,7 +493,9 @@ s.difference(('a', 'b'))
 
 ## Assignment operator
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 [Python library reference](https://docs.python.org/3/reference/simple_stmts.html#assignment-statements)
 says:
 

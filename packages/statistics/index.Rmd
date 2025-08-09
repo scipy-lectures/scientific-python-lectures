@@ -54,7 +54,9 @@ preferably, use the package manager if you are under Ubuntu or other linux.
   statistics.
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 **Why Python for statistics?**
 
 R is a language dedicated to statistics. Python is a general-purpose
@@ -65,7 +67,9 @@ e.g. image analysis, text mining, or control of a physical
 experiment, the richness of Python is an invaluable asset.
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 In this document, the Python inputs are represented with the sign
 ">>>".
 
@@ -94,7 +98,9 @@ observations. For instance, the data contained in
 
 ### The pandas data-frame
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 We will store and manipulate this data in a
 {class}`pandas.DataFrame`, from the [pandas](https://pandas.pydata.org) module. It is the Python equivalent of
 the spreadsheet table. It is different from a 2D `numpy` array as it
@@ -187,7 +193,9 @@ operations on the resulting group of dataframes:
 groupby_gender.mean()
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Use tab-completion on `groupby_gender` to find more. Other common
 grouping functions are median, count (useful for checking to see the
 amount of missing values in different subsets) or sum. Groupby
@@ -493,7 +501,9 @@ model = ols('VIQ ~ C(Gender)', data).fit()
 **Intercept**: We can remove the intercept using `- 1` in the formula,
 or force the use of an intercept using `+ 1`.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 By default, statsmodels treats a categorical variable with K possible
 values as K-1 'dummy' boolean variables (the last level being
 absorbed into the intercept term). This is almost always a good
@@ -547,7 +557,9 @@ Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
 
 **Example: the iris data** ({download}`examples/iris.csv`)
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Sepal and petal size tend to be related: bigger flowers are bigger!
 But is there in addition a systematic effect of species?
 :::
@@ -597,7 +609,9 @@ Let us consider a data giving wages and many other personal information
 on 500 individuals ([Berndt, ER. The Practice of Econometrics. 1991. NY:
 Addison-Wesley](https://lib.stat.cmu.edu/datasets/CPS_85_Wages)).
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The full code loading and plotting of the wages data is found in
 [corresponding example](auto_examples/plot_wage_data.html).
 :::
@@ -646,7 +660,9 @@ import matplotlib.pyplot as plt
 plt.rcdefaults()
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 To switch back to seaborn settings, or understand better styling in
 seaborn, see the [relevant section of the seaborn documentation](https://seaborn.pydata.org/tutorial/aesthetics.html).
 :::
@@ -673,7 +689,9 @@ seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)
 
 ::::{topic} **Robust regression**
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Given that, in the above plot, there seems to be a couple of data
 points that are outside of the main cloud to the right, they might be
 outliers, not representative of the population, but driving the
@@ -697,7 +715,9 @@ Model", {func}`statsmodels.formula.api.rlm`.
 
 Do wages increase more with education for males than females?
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The plot above is made of two different fits. We need to formulate a
 single model that tests for a variance of slope across the two
 populations. This is done via an ["interaction"](https://www.statsmodels.org/devel/example_formulas.html#multiplicative-interactions).

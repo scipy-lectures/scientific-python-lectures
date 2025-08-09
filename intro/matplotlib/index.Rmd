@@ -122,7 +122,9 @@ help    -> Python's own help system.
 object? -> Details about 'object'. ?object also works, ?? prints more.
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 You can also download each of the examples and run it using regular
 python, but you will lose interactive data manipulation:
 
@@ -148,7 +150,9 @@ Documentation
 - {func}`~plot()` command
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Matplotlib comes with a set of default settings that allow
 customizing all kinds of properties. You can control the defaults of
 almost every property in matplotlib: figure size and dpi, line width,
@@ -188,7 +192,9 @@ Documentation
 In the script below, we've instantiated (and commented) all the figure settings
 that influence the appearance of the plot.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The settings have been explicitly set to their default values, but
 now you can interactively play with the values to explore their
 affect (see [Line properties] and [Line styles] below).
@@ -249,7 +255,9 @@ Documentation
 - {class}`~matplotlib.lines.Line2D` API
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 First step, we want to have the cosine in blue and the sine in red and a
 slightly thicker line for both of them. We'll also slightly alter the figure
 size to make it more horizontal.
@@ -280,7 +288,9 @@ Documentation
 - {func}`ylim()` command
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Current limits of the figure are a bit too tight and we want to make
 some space in order to clearly see all data points.
 :::
@@ -311,7 +321,9 @@ Documentation
 - [Tick locating and formatting](https://matplotlib.org/api/ticker_api.html)
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Current ticks are not ideal because they do not show the interesting values
 ($\pm \pi$,:math:`\pm \pi`/2) for sine and cosine. We'll change them such that they show
 only these values.
@@ -344,7 +356,9 @@ Documentation
 - {meth}`~matplotlib.axes.Axes.set_yticklabels()`
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Ticks are now properly placed but their label is not very explicit.
 We could guess that 3.142 is $\pi$ but it would be better to make it
 explicit. When we set tick values, we can also provide a
@@ -380,7 +394,9 @@ Documentation
 - [Transformations tutorial](https://matplotlib.org/users/transforms_tutorial.html)
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Spines are the lines connecting the axis tick marks and noting the
 boundaries of the data area. They can be placed at arbitrary
 positions and until now, they were on the border of the axis. We'll
@@ -420,7 +436,9 @@ Documentation
 - {mod}`~matplotlib.legend` API
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Let's add a legend in the upper left corner. This only requires
 adding the keyword argument label (that will be used in the legend
 box) to the plot commands.
@@ -452,7 +470,9 @@ Documentation
 - {func}`annotate()` command
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Let's annotate some interesting points using the annotate command. We
 chose the $2\pi / 3$ value and we want to annotate both the sine and the
 cosine. We'll first draw a marker on the curve as well as a straight
@@ -499,7 +519,9 @@ Documentation
 - {meth}`~matplotlib.text.Text.set_bbox()` method
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The tick labels are now hardly visible because of the blue and red
 lines. We can make them bigger and we can also adjust their
 properties such that they'll be rendered on a semi-transparent white
@@ -521,7 +543,9 @@ for label in ax.get_xticklabels() + ax.get_yticklabels():
 A **"figure"** in matplotlib means the whole window in the user interface.
 Within this figure there can be **"subplots"**.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 So far we have used implicit figure and axes creation. This is handy for
 fast plots. We can have more control over the display using figure,
 subplot, and axes explicitly. While subplot positions the plots in a
@@ -535,7 +559,9 @@ strictly speaking, to make a `subplot(111)`. Let's look at the details.
 
 ### Figures
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 A figure is the windows in the GUI that has "Figure #" as title. Figures
 are numbered starting from 1 as opposed to the normal Python way starting
 from 0. This is clearly MATLAB-style. There are several parameters that
@@ -551,7 +577,9 @@ determine what the figure looks like:
 | `edgecolor` | `figure.edgecolor` | color of edge around the drawing background |
 | `frameon`   | `True`             | draw figure frame or not                    |
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The defaults can be specified in the resource file and will be used most of
 the time. Only the number of the figure is frequently changed.
 
@@ -571,7 +599,9 @@ plt.close(1)     # Closes figure 1
 
 ### Subplots
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 With subplot you can arrange plots in a regular grid. You need to specify
 the number of rows and columns and the number of the plot. Note that the
 [gridspec](https://matplotlib.org/users/gridspec.html) command

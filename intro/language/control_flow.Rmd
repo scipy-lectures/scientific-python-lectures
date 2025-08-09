@@ -26,7 +26,9 @@ if 2**2 == 4:
 
 **Blocks are delimited by indentation**
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Type the following lines in your Python interpreter, and be careful
 to **respect the indentation depth**. The Ipython shell automatically
 increases the indentation depth after a colon `:` sign; to
@@ -178,7 +180,9 @@ for word in message.split():
     print(word)
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Few languages (in particular, languages for scientific computing) allow to
 loop over anything but integers/indices. With Python it is possible to
 loop exactly over the objects of interest without bothering with indices

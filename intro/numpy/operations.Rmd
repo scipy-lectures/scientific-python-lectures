@@ -109,7 +109,9 @@ a == b
 a > b
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Array-wise comparisons:
 
 ```{python}
@@ -244,7 +246,9 @@ x.sum(axis=1)   # rows (second dimension)
 x[0, :].sum(), x[1, :].sum()
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Same idea in higher dimensions:
 
 ```{python}
@@ -345,7 +349,9 @@ x.std()          # full population standard dev.
 :align: center
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Let us consider a simple 1D random walk process: at each time step a
 walker jumps right or left with equal probability.
 
@@ -529,7 +535,9 @@ a
 a + b
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Broadcasting seems a bit magical, but it is actually quite natural to
 use it when we want to solve a problem whose output data is an array
 with more dimensions than input data.
@@ -594,7 +602,9 @@ x.shape, y.shape
 distance = np.sqrt(x ** 2 + y ** 2)
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 So, `np.ogrid` is very useful as soon as we have to handle
 computations on a grid. On the other hand, `np.mgrid` directly
 provides matrices full of indices for cases where we can't (or don't
@@ -681,7 +691,9 @@ a.reshape((2, -1))    # unspecified (-1) value is inferred
 or copy
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 ```{python}
 b[0, 0] = 99
 a

@@ -69,7 +69,9 @@ to different applications, such as interpolation, integration,
 optimization, image processing, statistics, special functions, etc.
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 {mod}`scipy` can be compared to other standard scientific-computing
 libraries, such as the GSL (GNU Scientific Library for C and C++),
 or Matlab's toolboxes. `scipy` is the core package for scientific
@@ -111,7 +113,9 @@ general idea of how to use `scipy` for scientific computing.
 :mod:`scipy.stats`           Statistics
 =========================== ==========================================
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 They all depend on {mod}`numpy`, but are mostly independent of each
 other. The standard way of importing NumPy and these SciPy modules
 is:
@@ -1015,7 +1019,9 @@ res = sp.integrate.solve_ivp(f, t_span, z0, t_eval=t_eval,
                              args=(zeta, omega), method='LSODA')
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 With the option `method='LSODA'`, {func}`scipy.integrate.solve_ivp` uses the LSODA
 (Livermore Solver for Ordinary Differential equations with Automatic method switching
 for stiff and non-stiff problems). See the [ODEPACK Fortran library] for more details.
@@ -1106,7 +1112,9 @@ should be preferred, as it uses more efficient underlying implementations.
 
 ## Signal processing: {mod}`scipy.signal`
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 {mod}`scipy.signal` is for typical signal processing: 1D,
 regularly-sampled signals.
 :::
@@ -1137,7 +1145,9 @@ plt.plot(t, x)
 plt.plot(t[::4], x_resampled, 'ko')
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Notice how on the side of the window the resampling is less accurate
 and has a rippling effect.
 
@@ -1181,7 +1191,9 @@ For non-linear filtering, {mod}`scipy.signal` has filtering (median
 filter {func}`scipy.signal.medfilt`, Wiener {func}`scipy.signal.wiener`),
 but we will discuss this in the image section.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 {mod}`scipy.signal` also has a full-blown set of tools for the design
 of linear filter (finite and infinite response filters), but this is
 out of the scope of this tutorial.

@@ -521,7 +521,9 @@ object of interest.
 
 #### Histogram-based method: **Otsu thresholding**
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The [Otsu method](https://en.wikipedia.org/wiki/Otsu%27s_method) is a
 simple heuristic to find a threshold to separate the foreground from
 the background.
@@ -546,7 +548,9 @@ mask = camera < val
 
 #### Labeling connected components of a discrete image
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Once you have separated foreground objects, it is use to separate them
 from each other. For this, we can assign a different integer labels to
 each one.

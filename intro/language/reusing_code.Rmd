@@ -24,7 +24,9 @@ Python Suite you may be using.
 
 ## Scripts
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Let us first write a *script*, that is a file with a sequence of
 instructions that are executed each time the script is called.
 Instructions may be e.g. copied-and-pasted from the interpreter (but
@@ -40,7 +42,9 @@ for word in message.split():
     print(word)
 ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Let us now execute the script interactively, that is inside the
 Ipython interpreter. This is maybe the most common use of scripts in
 scientific computing.
@@ -68,7 +72,9 @@ The script has been executed. Moreover the variables defined in the
 script (such as `message`) are now available inside the interpreter's
 namespace.
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Other interpreters also offer the possibility to execute scripts
 (e.g., `execfile` in the plain Python interpreter, etc.).
 :::
@@ -149,7 +155,9 @@ This is called the *star import* and please, **Do not use it**
   symbols.
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Modules are thus a good way to organize code in a hierarchical way. Actually,
 all the scientific computing tools we are going to use are modules:
 
@@ -162,7 +170,9 @@ import scipy as sp  # scientific computing
 
 ## Creating modules
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 If we want to write larger and better organized programs (compared to
 simple scripts), where some objects are defined, (variables,
 functions, classes) and that we want to reuse several times, we have
@@ -174,7 +184,9 @@ Let us create a module `demo` contained in the file `demo.py`:
 > ```{literalinclude} demo.py
 > ```
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 In this file, we defined two functions `print_a` and `print_b`. Suppose
 we want to call the `print_a` function from the interpreter. We could
 execute the file as a script, but since we just want to have access to
@@ -273,7 +285,9 @@ Solution:
 
 ## '\_\_main\_\_' and module loading
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Sometimes we want code to be executed when a module is
 run directly, but not when it is imported by another module.
 `if __name__ == '__main__'` allows us to check whether the

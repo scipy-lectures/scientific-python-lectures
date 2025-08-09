@@ -138,7 +138,9 @@ add_to_dict()
 ```
 :::
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 More involved example implementing python's slicing:
 
 ```{python}
@@ -184,7 +186,9 @@ to be used in most calls to the function.
 
 ## Passing by value
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 Can you modify the value of a variable inside a function? Most languages
 (C, Java, ...) distinguish "passing by value" and "passing by reference".
 In Python, such a distinction is somewhat artificial, and it is a bit
