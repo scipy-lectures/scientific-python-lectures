@@ -1397,14 +1397,29 @@ What happens if `data` is now modified, and `img` saved again?
 
 ### The old buffer protocol
 
-```{literalinclude} examples/pilbuffer-answer.py
-:language: python
+Show how to exchange data between numpy and a library that only knows
+the buffer interface:
+
+```{python}
+# Make a sample image, RGBA format
+x = np.zeros((200, 200, 4), dtype=np.uint8)
+x[:, :, 0] = 255  # red
+x[:, :, 3] = 255  # opaque
+
+data_i32 = x.view(np.int32)  # Check that you understand why this is OK!
+
+img = Image.frombuffer("RGBA", (200, 200), data_i32)
+img.save("test_red.png")
+
+# Modify the original data, and save again.
+x[:, :, 1] = 255
+img.save("test_recolored.png")
 ```
 
-```{image} test.png
+```{image} test_red.png
 ```
 
-```{image} test2.png
+```{image} test_recolored.png
 ```
 
 ### Array interface protocol
@@ -1433,6 +1448,7 @@ import os
 if not os.path.exists('data'): os.mkdir('data')
 plt.imsave('data/test.png', data)
 ```
+
 ```{python}
 from PIL import Image
 img = Image.open('data/test.png')
