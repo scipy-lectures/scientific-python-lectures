@@ -80,27 +80,30 @@ The HTML output is used for displaying on screen while teaching. The goal
 is to have the same material displayed as in the notes. Thus there needs
 to be a very concise display, with bullet-lists rather than full-blown
 paragraphs and sentences. For more elaborate discussions that people can
-read and refer to, please use the `tip` sphinx directive. It creates
-collapsible paragraphs, that can be hidden during an oral
-presentation:
+read and refer to, please use
+[Dropdowns](https://jupyterbook.org/en/stable/interactive/hiding.html#hide-markdown-using-myst-markdown).
+These create collapsible paragraphs, that can be hidden during an oral
+presentation.  For example:
 
-```{python}
-.. tip::
+::: {toggle}
 
-    Here insert a full-blown discussion, that will be collapsible in
-    the HTML version.
+Here insert a full-blown discussion, that will be collapsible in the HTML
+version.
 
-    It can span on multiple paragraphs
-```
+It can span on multiple paragraphs
+:::
 
-This renders as:
+This renders as a section that is only visible on clicking dropdown widget.
 
-> :::{tip}
-> Here insert a full-blown discussion, that will be collapsible in
-> the HTML version.
->
-> It can span on multiple paragraphs
-> :::
+You can also use `:class: dropdown` with an admonition, for the same purpose:
+
+::: {note}
+:class: dropdown
+
+Another discussion.
+
+It can also span on multiple paragraphs
+:::
 
 ## Figures and code examples
 

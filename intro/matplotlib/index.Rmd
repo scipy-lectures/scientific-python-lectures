@@ -27,46 +27,56 @@ corrections.
 
 ## Introduction
 
-:::{tip}
+
+::: {note}
+:class: dropdown
+
 [Matplotlib](https://matplotlib.org/) is probably the most
 used Python package for 2D-graphics. It provides both a quick
 way to visualize data from Python and publication-quality figures in
 many formats. We are going to explore matplotlib in interactive mode
 covering most common cases.
+
 :::
 
 ### IPython, Jupyter, and matplotlib modes
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 The [Jupyter](https://jupyter.org) notebook and the
 [IPython](https://ipython.org/) enhanced interactive Python, are
 tuned for the scientific-computing workflow in Python,
 in combination with Matplotlib:
+
 :::
 
 For interactive matplotlib sessions, turn on the **matplotlib mode**
 
+### IPython sessions
 
-:Jupyter notebook:
+To make plots open interactively in an IPython console session use the 
+the following [magic command](https://ipython.readthedocs.io/en/stable/interactive/magics.html):
 
-  In the notebook, insert, **at the beginning of the
-  notebook** the following `magic
-  <https://ipython.readthedocs.io/en/stable/interactive/magics.html>`_::
+```{python}
+%matplotlib
+```
 
-    %matplotlib inline
+### Jupyter notebook
 
-pyplot
-------
+The Jupyter Notebook uses Matplotlib mode by default; that is, it inserts the figures into the notebook, as you run Matplotlib commands.
 
-.. tip::
 
 ### pyplot
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 *pyplot* provides a procedural interface to the matplotlib object-oriented
 plotting library. It is modeled closely after Matlab™. Therefore, the
 majority of plotting commands in pyplot have Matlab™ analogs with similar
 arguments. Important commands are explained with interactive examples.
+
 :::
 
 ```{python}
@@ -75,7 +85,9 @@ import matplotlib.pyplot as plt
 
 ## Simple plot
 
-:::{tip}
+::: {note}
+:class: dropdown
+
 In this section, we want to draw the cosine and sine functions on the same
 plot. Starting from the default settings, we'll enrich the figure step by
 step to make it nicer.
@@ -96,13 +108,13 @@ values).
 
 To run the example, you can type them in an IPython interactive session:
 
-```{python}
+```bash
 $ ipython --matplotlib
 ```
 
 This brings us to the IPython prompt:
 
-```{python}
+```bash
 IPython 0.13 -- An enhanced Interactive Python.
 ?       -> Introduction to IPython's features.
 %magic  -> Information about IPython's 'magic' % functions.

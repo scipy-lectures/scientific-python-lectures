@@ -17,7 +17,7 @@ jupyter:
 
 ## Numerical types
 
-:::{tip}
+::: {tip}
 Python supports the following numerical, scalar types:
 :::
 
@@ -48,11 +48,6 @@ Python supports the following numerical, scalar types:
     >>> type(test)
     <class 'bool'>
 
-.. tip::
-
-    A Python shell can therefore replace your pocket calculator, with the
-    basic arithmetic operations ``+``, ``-``, ``*``, ``/``, ``%`` (modulo)
-    natively implemented
 
 :::{tip}
 A Python shell can therefore replace your pocket calculator, with the
