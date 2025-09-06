@@ -20,6 +20,8 @@ import matplotlib.pyplot as plt
 
 # Introduction
 
+**Section author**: *Robert Cimrman*
+
 (Dense) matrix is:
 
 - mathematical object

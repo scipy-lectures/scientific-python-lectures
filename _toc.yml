@@ -17,8 +17,14 @@ parts:
       - file: advanced/advanced_numpy/index
       - file: advanced/debugging/index
       - file: advanced/optimizing/index
-      - file: advanced/scipy_sparse/index
-      - file: advanced/image_processing/index
+  - caption: Sparse arrays in SciPy
+    chapters:
+      - file: advanced/scipy_sparse/introduction
+      - file: advanced/scipy_sparse/storage_schemes
+      - file: advanced/scipy_sparse/solvers
+      - file: advanced/scipy_sparse/other_packages
+  - caption: Other advanced topics
+    chapters:
       - file: advanced/mathematical_optimization/index
       - file: advanced/interfacing_with_c/interfacing_with_c
   - caption: About the Scientific Python Lectures

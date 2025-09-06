@@ -740,10 +740,12 @@ sp.optimize.brute(f, ((-1, 2), (-1, 2)))
 All methods are exposed as the `method` argument of
 {func}`scipy.optimize.minimize`.
 
-```{image} auto_examples/images/sphx_glr_plot_compare_optimizers_001.png
+<!---
+![](auto_examples/images/sphx_glr_plot_compare_optimizers_001.png)
+# For parsing.
 :align: center
 :width: 95%
-```
+-->
 
 
 :With knowledge of the gradient:
@@ -806,11 +808,13 @@ See also {func}`scipy.optimize.approx_fprime` to find your errors.
 
 ### Synthetic exercises
 
-```{image} auto_examples/images/sphx_glr_plot_exercise_ill_conditioned_001.png
+<!---
+![](auto_examples/images/sphx_glr_plot_exercise_ill_conditioned_001.png)
+# For parsing.
 :align: right
 :scale: 35%
 :target: auto_examples/plot_exercise_ill_conditioned.html
-```
+-->
 
 :::{admonition} Exercise: A simple (?) quadratic function
 :class: green
@@ -884,8 +888,8 @@ should be solved with {func}`scipy.linalg.lstsq`.
 
 ### Curve fitting
 
-![](auto_examples/images/sphx_glr_plot_curve_fitting_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_curve_fitting_001.png)
 # These applied to image above; but {image} directive broke
 # parsing of Python block below.
 :align: right
@@ -936,25 +940,29 @@ def f(x):
 sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_constraints_002.png
+<!---
+![](auto_examples/images/sphx_glr_plot_constraints_002.png)
+# For parsing.
 :align: right
 :scale: 75%
 :target: auto_examples/plot_constraints.html
-```
+-->
 
 ### General constraints
 
 Equality and inequality constraints specified as functions: $f(x) = 0$
 and $g(x) < 0$.
 
-- {func}`scipy.optimize.fmin_slsqp` Sequential least square programming:
-  equality and inequality constraints:
+#### {func}`scipy.optimize.fmin_slsqp` Sequential least square programming:
+equality and inequality constraints:
 
-  ```{image} auto_examples/images/sphx_glr_plot_non_bounds_constraints_001.png
-  :align: right
-  :scale: 75%
-  :target: auto_examples/plot_non_bounds_constraints.html
-  ```
+<!---
+![](auto_examples/images/sphx_glr_plot_non_bounds_constraints_001.png)
+# For parsing.
+:align: right
+:scale: 75%
+:target: auto_examples/plot_non_bounds_constraints.html
+-->
 
 ```{python}
 def f(x):

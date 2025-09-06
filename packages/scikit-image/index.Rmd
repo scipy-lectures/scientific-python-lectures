@@ -76,8 +76,8 @@ import matplotlib.pyplot as plt
 plt.imshow(check, cmap='gray', interpolation='nearest')
 ```
 
-![](auto_examples/images/sphx_glr_plot_check_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_check_001.png)
 # To fix parsing of Python block.
 :align: center
 :scale: 60
@@ -387,8 +387,8 @@ Uses the following linear kernel for computing horizontal gradients:
 -1  -2  -1
 ```
 
-![](auto_examples/images/sphx_glr_plot_sobel_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_sobel_001.png)
 # For parsing
 :align: center
 :target: auto_examples/plot_sobel.html
@@ -407,8 +407,8 @@ camera_equalized = ski.exposure.equalize_hist(camera)
 
 Enhances contrast in large almost uniform regions.
 
-![](auto_examples/images/sphx_glr_plot_equalize_hist_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_equalize_hist_001.png)
 # For parsing.
 :align: center
 :target: auto_examples/plot_equalize_hist.html
@@ -515,8 +515,8 @@ tv_coins = ski.restoration.denoise_tv_chambolle(
 gaussian_coins = ski.filters.gaussian(coins, sigma=2)
 ```
 
-![](auto_examples/images/sphx_glr_plot_filter_coins_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_filter_coins_001.png)
 # For parsing.
 :target: auto_examples/plot_filter_coins.html
 :width: 99%
@@ -552,8 +552,8 @@ val = ski.filters.threshold_otsu(camera)
 mask = camera < val
 ```
 
-![](auto_examples/images/sphx_glr_plot_threshold_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_threshold_001.png)
 # For parsing.
 :align: center
 :target: auto_examples/plot_threshold.html
@@ -595,8 +595,8 @@ Label only foreground connected components:
 blobs_labels = ski.measure.label(blobs, background=0)
 ```
 
-![](auto_examples/images/sphx_glr_plot_labels_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_labels_001.png)
 # For parsing.
 :align: center
 :target: auto_examples/plot_labels.html
@@ -656,8 +656,8 @@ markers[~image] = -1
 labels_rw = ski.segmentation.random_walker(image, markers)
 ```
 
-![](auto_examples/images/sphx_glr_plot_segmentations_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_segmentations_001.png)
 # For parsing.
 :align: center
 :target: auto_examples/plot_segmentations.html
@@ -758,8 +758,8 @@ coins_edges = ski.segmentation.mark_boundaries(
 )
 ```
 
-![](auto_examples/images/sphx_glr_plot_boundaries_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_boundaries_001.png)
 # For parsing.
 :align: center
 :target: auto_examples/plot_boundaries.html
@@ -795,8 +795,8 @@ coords_subpix = ski.feature.corner_subpix(
 )
 ```
 
-![](auto_examples/images/sphx_glr_plot_features_001.png)
 <!---
+![](auto_examples/images/sphx_glr_plot_features_001.png)
 # For parsing.
 :align: center
 :target: auto_examples/plot_features.html
