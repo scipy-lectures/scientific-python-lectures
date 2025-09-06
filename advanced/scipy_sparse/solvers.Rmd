@@ -32,15 +32,15 @@ sp.sparse.linalg.__all__
 ## Sparse Direct Solvers
 
 - default solver: SuperLU
-  : - included in SciPy
-    - real and complex systems
-    - both single and double precision
+  - included in SciPy
+  - real and complex systems
+  - both single and double precision
 - optional: umfpack
-  : - real and complex systems
-    - double precision only
-    - recommended for performance
-    - wrappers now live in {mod}`scikits.umfpack`
-    - check-out the new {mod}`scikits.suitesparse` by Nathaniel Smith
+  - real and complex systems
+  - double precision only
+  - recommended for performance
+  - wrappers now live in {mod}`scikits.umfpack`
+  - check-out the new {mod}`scikits.suitesparse` by Nathaniel Smith
 
 ### Examples
 
@@ -50,7 +50,7 @@ Import the whole module, and see its docstring:
 help(sp.sparse.linalg.spsolve)
 ```
 
-Both superlu and umfpack can be used (if the latter is installed) as follows:
+Both superlu and umfpack can be used (if the latter is installed) as follows.
 
 Prepare a linear system:
 
@@ -113,10 +113,8 @@ print(x)
 print("Error: %s" % (mtx2 * x - rhs))
 ```
 
-```{literalinclude} examples/direct_solve.py
-```
+{download}`examples/direct_solve.py`
 
-- {download}`examples/direct_solve.py`
 
 ## Iterative Solvers
 
@@ -192,28 +190,25 @@ A * np.ones(2)
   [PyAMG](https://github.com/pyamg/pyamg)
   - example by Nathan Bell:
 
-    ```{literalinclude} examples/pyamg_with_lobpcg.py
-    ```
-
     {download}`examples/pyamg_with_lobpcg.py`
 
-- example by Nils Wagner:
+Another example by Nils Wagner:
 
-  - {download}`examples/lobpcg_sakurai.py`
+{download}`examples/lobpcg_sakurai.py`
 
-- output:
+Output:
 
 ```bash
-  $ python examples/lobpcg_sakurai.py
-  Results by LOBPCG for n=2500
+$ python examples/lobpcg_sakurai.py
+Results by LOBPCG for n=2500
 
-  [ 0.06250083  0.06250028  0.06250007]
+[ 0.06250083  0.06250028  0.06250007]
 
-  Exact eigenvalues
+Exact eigenvalues
 
-  [ 0.06250005  0.0625002   0.06250044]
+[ 0.06250005  0.0625002   0.06250044]
 
-  Elapsed time 7.01
+Elapsed time 7.01
 ```
 
 ![](figures/lobpcg_eigenvalues.png)
