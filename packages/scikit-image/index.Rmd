@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -76,11 +76,13 @@ import matplotlib.pyplot as plt
 plt.imshow(check, cmap='gray', interpolation='nearest')
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_check_001.png
+![](auto_examples/images/sphx_glr_plot_check_001.png)
+<!---
+# To fix parsing of Python block.
 :align: center
 :scale: 60
 :target: auto_examples/plot_check.html
-```
+-->
 
 ### `scikit-image` and the scientific Python ecosystem
 
@@ -363,10 +365,12 @@ values of neighboring pixels. The function can be linear or non-linear.
 Neighbourhood: square (choose size), disk, or more complicated
 *structuring element*.
 
-```{image} ../../advanced/image_processing/kernels.png
+![](../../advanced/image_processing/kernels.png)
+<!---
+# For parsing
 :align: center
 :width: 80%
-```
+-->
 
 Example : horizontal Sobel filter
 
@@ -377,17 +381,19 @@ hsobel_text = ski.filters.sobel_h(text)
 
 Uses the following linear kernel for computing horizontal gradients:
 
-```{python}
-1   2   1
-0   0   0
+```
+ 1   2   1
+ 0   0   0
 -1  -2  -1
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_sobel_001.png
+![](auto_examples/images/sphx_glr_plot_sobel_001.png)
+<!---
+# For parsing
 :align: center
 :target: auto_examples/plot_sobel.html
 :width: 70%
-```
+-->
 
 ### Non-local filters
 
@@ -401,11 +407,13 @@ camera_equalized = ski.exposure.equalize_hist(camera)
 
 Enhances contrast in large almost uniform regions.
 
-```{image} auto_examples/images/sphx_glr_plot_equalize_hist_001.png
+![](auto_examples/images/sphx_glr_plot_equalize_hist_001.png)
+<!---
+# For parsing.
 :align: center
 :target: auto_examples/plot_equalize_hist.html
 :width: 70%
-```
+-->
 
 ### Mathematical morphology
 
@@ -427,9 +435,11 @@ from skimage.morphology import disk, diamond
 diamond(1)
 ```
 
-```{image} ../../advanced/image_processing/diamond_kernel.png
+![](../../advanced/image_processing/diamond_kernel.png)
+<!---
+# For parsing.
 :align: center
-```
+-->
 
 **Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.:
 
@@ -505,10 +515,12 @@ tv_coins = ski.restoration.denoise_tv_chambolle(
 gaussian_coins = ski.filters.gaussian(coins, sigma=2)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_filter_coins_001.png
+![](auto_examples/images/sphx_glr_plot_filter_coins_001.png)
+<!---
+# For parsing.
 :target: auto_examples/plot_filter_coins.html
 :width: 99%
-```
+-->
 :::
 
 ## Image segmentation
@@ -540,11 +552,13 @@ val = ski.filters.threshold_otsu(camera)
 mask = camera < val
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_threshold_001.png
+![](auto_examples/images/sphx_glr_plot_threshold_001.png)
+<!---
+# For parsing.
 :align: center
 :target: auto_examples/plot_threshold.html
 :width: 70%
-```
+-->
 
 #### Labeling connected components of a discrete image
 
@@ -581,11 +595,13 @@ Label only foreground connected components:
 blobs_labels = ski.measure.label(blobs, background=0)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_labels_001.png
+![](auto_examples/images/sphx_glr_plot_labels_001.png)
+<!---
+# For parsing.
 :align: center
 :target: auto_examples/plot_labels.html
 :width: 90%
-```
+-->
 
 :::{admonition} See also
 
@@ -640,11 +656,13 @@ markers[~image] = -1
 labels_rw = ski.segmentation.random_walker(image, markers)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_segmentations_001.png
+![](auto_examples/images/sphx_glr_plot_segmentations_001.png)
+<!---
+# For parsing.
 :align: center
 :target: auto_examples/plot_segmentations.html
 :width: 90%
-```
+-->
 
 :::{admonition} Postprocessing label images
 `skimage` provides several utility functions that can be used on
@@ -740,11 +758,13 @@ coins_edges = ski.segmentation.mark_boundaries(
 )
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_boundaries_001.png
+![](auto_examples/images/sphx_glr_plot_boundaries_001.png)
+<!---
+# For parsing.
 :align: center
 :target: auto_examples/plot_boundaries.html
 :width: 90%
-```
+-->
 
 ## Feature extraction for computer vision
 
@@ -762,8 +782,9 @@ tform = ski.transform.AffineTransform(
     scale=(1.3, 1.1), rotation=1, shear=0.7,
     translation=(210, 50)
 )
+
 image = ski.transform.warp(
-    data.checkerboard(), tform.inverse, output_shape=(350, 350)
+    ski.data.checkerboard(), tform.inverse, output_shape=(350, 350)
 )
 
 coords = ski.feature.corner_peaks(
@@ -774,11 +795,13 @@ coords_subpix = ski.feature.corner_subpix(
 )
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_features_001.png
+![](auto_examples/images/sphx_glr_plot_features_001.png)
+<!---
+# For parsing.
 :align: center
 :target: auto_examples/plot_features.html
 :width: 90%
-```
+-->
 
 (this example is taken from the [plot_corner](https://scikit-image.org/docs/stable/auto_examples/features_detection/plot_corner.html)
 example in scikit-image)

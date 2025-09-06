@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -55,7 +55,7 @@ by using NumPy:
 
 ```{python}
 import numpy as np
-max_speeds = np.load('intro/scipy/summary-exercises/examples/max-speeds.npy')
+max_speeds = np.load('examples/max-speeds.npy')
 years_nb = max_speeds.shape[0]
 ```
 
