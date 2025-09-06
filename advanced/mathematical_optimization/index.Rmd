@@ -11,9 +11,6 @@ jupyter:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
----
-
----
 substitutions:
   1d_optim_1: |-
     ```{image} auto_examples/images/sphx_glr_plot_1d_optim_001.png
@@ -214,12 +211,13 @@ substitutions:
     ```
 ---
 
-```{python tags=c("hide-input")}
-import numpy as np
-```
 (mathematical-optimization)=
 
 # Mathematical optimization: finding minima of functions
+
+```{python tags=c("hide-input")}
+import numpy as np
+```
 
 **Authors**: *Gaël Varoquaux*
 
@@ -262,6 +260,7 @@ performance, it really pays to read the books:
 <!---
 XXX: should I discuss root finding?
 -->
+
 ## Knowing your problem
 
 Not all optimization problems are equal. Knowing your problem enables you
