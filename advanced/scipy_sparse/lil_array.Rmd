@@ -17,32 +17,33 @@ jupyter:
 import numpy as np
 import scipy as sp
 ```
+
 # List of Lists Format (LIL)
 
 - row-based linked list
-  : - each row is a Python list (sorted) of column indices of non-zero elements
-    - rows stored in a NumPy array (`dtype=np.object`)
-    - non-zero values data stored analogously
+  - each row is a Python list (sorted) of column indices of non-zero elements
+  - rows stored in a NumPy array (`dtype=np.object`)
+  - non-zero values data stored analogously
 - efficient for constructing sparse arrays incrementally
 - constructor accepts:
-  : - dense array/matrix
-    - sparse array/matrix
-    - shape tuple (create empty array)
+  - dense array/matrix
+  - sparse array/matrix
+  - shape tuple (create empty array)
 - flexible slicing, changing sparsity structure is efficient
 - slow arithmetic, slow column slicing due to being row-based
 - use:
-  : - when sparsity pattern is not known apriori or changes
-    - example: reading a sparse array from a text file
+  - when sparsity pattern is not known *apriori* or changes
+  - example: reading a sparse array from a text file
 
 ## Examples
 
-- create an empty LIL array:
+### Create an empty LIL array:
 
 ```{python}
 mtx = sp.sparse.lil_array((4, 5))
 ```
 
-- prepare random data:
+### Prepare random data
 
 ```{python}
 rng = np.random.default_rng(27446968)
@@ -50,7 +51,7 @@ data = np.round(rng.random((2, 3)))
 data
 ```
 
-- assign the data using fancy indexing:
+### Assign the data using fancy indexing
 
 ```{python}
 mtx[:2, [1, 2, 3]] = data
@@ -69,7 +70,7 @@ mtx.toarray()
 mtx.toarray()
 ```
 
-- more slicing and indexing:
+### More slicing and indexing
 
 ```{python}
 mtx = sp.sparse.lil_array([[0, 1, 2, 0], [3, 0, 1, 0], [1, 0, 0, 1]])

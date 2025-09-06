@@ -19,33 +19,34 @@ import scipy as sp
 ```
 # Block Compressed Row Format (BSR)
 
-- basically a CSR with dense sub-matrices of fixed shape instead of scalar items
-  : - block size `(R, C)` must evenly divide the shape of the matrix `(M, N)`
-    - three NumPy arrays: `indices`, `indptr`, `data`
-      : - `indices` is array of column indices for each block
+- basically a CSR with dense sub-matrices of fixed shape instead of scalar
+  items
+  - block size `(R, C)` must evenly divide the shape of the matrix `(M, N)`
+  - three NumPy arrays: `indices`, `indptr`, `data`
+    - `indices` is array of column indices for each block
 
-        - `data` is array of corresponding nonzero values of shape `(nnz, R, C)`
+    - `data` is array of corresponding nonzero values of shape `(nnz, R, C)`
 
-        - ...
-    - subclass of {class}`_cs_matrix` (common CSR/CSC functionality)
-      : - subclass of {class}`_data_matrix` (sparse matrix classes with
-          `.data` attribute)
+    - ...
+  - subclass of {class}`_cs_matrix` (common CSR/CSC functionality)
+    - subclass of {class}`_data_matrix` (sparse matrix classes with
+      `.data` attribute)
 - fast matrix vector products and other arithmetic (sparsetools)
 - constructor accepts:
-  : - dense array/matrix
-    - sparse array/matrix
-    - shape tuple (create empty array)
-    - `(data, coords)` tuple
-    - `(data, indices, indptr)` tuple
+  - dense array/matrix
+  - sparse array/matrix
+  - shape tuple (create empty array)
+  - `(data, coords)` tuple
+  - `(data, indices, indptr)` tuple
 - many arithmetic operations considerably more efficient than CSR for
   sparse matrices with dense sub-matrices
 - use:
-  : - like CSR
-    - vector-valued finite element discretizations
+  - like CSR
+  - vector-valued finite element discretizations
 
 ## Examples
 
-- create empty BSR array with (1, 1) block size (like CSR...):
+### Create empty BSR array with (1, 1) block size (like CSR...):
 
 ```{python}
 mtx = sp.sparse.bsr_array((3, 4), dtype=np.int8)
@@ -56,7 +57,7 @@ mtx
 mtx.toarray()
 ```
 
-- create empty BSR array with (3, 2) block size:
+### Create empty BSR array with (3, 2) block size:
 
 ```{python}
 mtx = sp.sparse.bsr_array((3, 4), blocksize=(3, 2), dtype=np.int8)
@@ -67,9 +68,14 @@ mtx
 mtx.toarray()
 ```
 
-  - a bug?
+<!---
+# What does this refer to?
 
-- create using `(data, coords)` tuple with (1, 1) block size (like CSR...):
+- a bug?
+
+-->
+
+### Create using `(data, coords)` tuple with (1, 1) block size (like CSR...):
 
 ```{python}
 row = np.array([0, 0, 1, 2, 2, 2])
@@ -95,7 +101,7 @@ mtx.indices
 mtx.indptr
 ```
 
-- create using `(data, indices, indptr)` tuple with (2, 2) block size:
+### Create using `(data, indices, indptr)` tuple with (2, 2) block size:
 
 ```{python}
 indptr = np.array([0, 2, 3, 6])

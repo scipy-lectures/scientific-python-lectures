@@ -15,20 +15,20 @@ jupyter:
 
 ```{python tags=c("hide-input")}
 import numpy as np
-# For doctest on headless environments
 import matplotlib.pyplot as plt
 ```
+
 # Introduction
 
-(dense) matrix is:
+(Dense) matrix is:
 
 - mathematical object
 - data structure for storing a 2D array of values
 
-important features:
+Important features:
 
 - memory allocated once for all items
-  : - usually a contiguous chunk, think NumPy ndarray
+  - usually a contiguous chunk, think NumPy ndarray
 - *fast* access to individual items (\*)
 
 ## Why Sparse Matrices?
@@ -42,13 +42,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 x = np.linspace(0, 1e6, 10)
 plt.plot(x, 8.0 * (x**2) / 1e6, lw=5)
-```
-
-```{python}
 plt.xlabel('size n')
-```
-
-```{python}
 plt.ylabel('memory [MB]')
 ```
 
@@ -63,14 +57,14 @@ plt.ylabel('memory [MB]')
 ## Typical Applications
 
 - solution of partial differential equations (PDEs)
-  : - the *finite element method*
-    - mechanical engineering, electrotechnics, physics, ...
+  - the *finite element method*
+  - mechanical engineering, electrotechnics, physics, ...
 
 - graph theory
-  : - nonzero at `(i, j)` means that node `i` is connected to node `j`
+  - nonzero at `(i, j)` means that node `i` is connected to node `j`
 
 - natural language processing
-  : - nonzero at `(i, j)` means that the document `i` contains the word `j`
+  - nonzero at `(i, j)` means that the document `i` contains the word `j`
 
 - ...
 
@@ -88,11 +82,8 @@ plt.ylabel('memory [MB]')
 - {func}`spy` from `matplotlib`
 - example plots:
 
-```{image} figures/graph.png
-```
+![](figures/graph.png)
 
-```{image} figures/graph_g.png
-```
+![](figures/graph_g.png)
 
-```{image} figures/graph_rcm.png
-```
+![](figures/graph_rcm.png)

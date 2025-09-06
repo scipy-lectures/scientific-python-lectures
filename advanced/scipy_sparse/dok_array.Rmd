@@ -17,26 +17,27 @@ jupyter:
 import numpy as np
 import scipy as sp
 ```
+
 # Dictionary of Keys Format (DOK)
 
 - subclass of Python dict
-  : - keys are `(row, column)` index tuples (no duplicate entries allowed)
-    - values are corresponding non-zero values
+  - keys are `(row, column)` index tuples (no duplicate entries allowed)
+  - values are corresponding non-zero values
 - efficient for constructing sparse arrays incrementally
 - constructor accepts:
-  : - dense array/matrix
-    - sparse array/matrix
-    - shape tuple (create empty array)
+  - dense array/matrix
+  - sparse array/matrix
+  - shape tuple (create empty array)
 - efficient O(1) access to individual elements
 - flexible slicing, changing sparsity structure is efficient
 - can be efficiently converted to a coo_array once constructed
 - slow arithmetic (`for` loops with `dict.items()`)
 - use:
-  : - when sparsity pattern is not known apriori or changes
+  - when sparsity pattern is not known apriori or changes
 
 ## Examples
 
-- create a DOK array element by element:
+### Create a DOK array element by element:
 
 ```{python}
 mtx = sp.sparse.dok_array((5, 5), dtype=np.float64)
@@ -54,7 +55,7 @@ mtx
 mtx.toarray()
 ```
 
-- slicing and indexing:
+### Slicing and indexing:
 
 ```{python}
 mtx[1, 1]
