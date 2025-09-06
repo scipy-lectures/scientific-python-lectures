@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -195,10 +195,7 @@ The syntax is as follows.
 :::
 
 ```python
-
-
 import demo
-
 
 demo.print_a()
 a
@@ -214,8 +211,6 @@ object's name, otherwise Python won't recognize the instruction.
 Introspection
 
 ```python
-
-
 demo?
 Type:               module
 Base Class: <type 'module'>
@@ -255,8 +250,6 @@ demo.d        demo.print_b  demo.pyc
 Importing objects from modules into the main namespace
 
 ```python
-
-
 from demo import print_a, print_b
 
 whos
@@ -362,9 +355,9 @@ Modules must be located in the search path, therefore you can:
   On Linux/Unix, add the following line to a file read by the shell at
   startup (e.g. /etc/profile, .profile)
 
-```{python}
+  ```bash
   export PYTHONPATH=$PYTHONPATH:/home/emma/user_defined_modules
-```
+  ```
 
   On Windows, <https://support.microsoft.com/kb/310519> explains how to
   handle environment variables.
@@ -373,12 +366,12 @@ Modules must be located in the search path, therefore you can:
 - or modify the `sys.path` variable itself within a Python script.
 
   :::{tip}
-```{python}
+  ```python
   import sys
   new_path = '/home/emma/user_defined_modules'
   if new_path not in sys.path:
       sys.path.append(new_path)
-```
+  ```
 
   This method is not very robust, however, because it makes the code
   less portable (user-dependent path) and because you have to add the
@@ -416,7 +409,7 @@ _fourier.py  interpolation.py   meson.build       _ni_support.py     utils/
 fourier.py   LICENSE.txt        _morphology.py    setup.py
 ```
 
-From Ipython:
+From IPython:
 
 ```python
 

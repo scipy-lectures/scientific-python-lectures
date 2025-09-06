@@ -34,17 +34,13 @@ f.close()
 
 To read from a file
 
-```python
-
-
+```{python}
 f = open('workfile', 'r')
-
 s = f.read()
-
 print(s)
-This is a test
-and another test
+```
 
+```{python}
 f.close()
 ```
 
@@ -55,17 +51,14 @@ For more details: <https://docs.python.org/3/tutorial/inputoutput.html>
 
 ## Iterating over a file
 
-```python
-
-
+```{python}
 f = open('workfile', 'r')
 
 for line in f:
-   ...:     print(line)
-   ...:
-This is a test
-and another test
+    print(line)
+```
 
+```{python}
 f.close()
 ```
 

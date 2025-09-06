@@ -166,15 +166,12 @@ for dirpath, dirnames, filenames in os.walk(os.curdir):
 
 ### Environment variables:
 
-```python
-
-
+```{python}
 os.environ.keys()
-Out[32]: KeysView(environ({'SHELL': '/bin/bash', 'COLORTERM': 'truecolor', ...}))
+```
 
-
+```{python}
 os.environ['SHELL']
-Out[34]: '/bin/bash'
 ```
 
 ## `shutil`: high-level file operations
