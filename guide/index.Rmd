@@ -151,11 +151,13 @@ When using *object-oriented programming* in Python you **must** use the
 `class` keyword to define your *classes*.
 :::
 
-In restructured-text markup this is:
+In Markdown markup this is:
 
-```{python}
+```markdown
+:::{admonition} Example:
 when using *object-oriented programming* in Python you **must** use the
 ``class`` keyword to define your *classes*.
+:::
 ```
 
 ## Linking to package documentations
