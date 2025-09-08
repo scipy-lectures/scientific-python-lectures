@@ -100,7 +100,7 @@ redirection:
 parse:
   myst_substitutions:
     release: "2025.2rc0.dev0"
-    clear-floats: |
+    clear_floats: |
 
        <div style="clear: both"></div>
 

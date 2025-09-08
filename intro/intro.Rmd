@@ -151,7 +151,7 @@ and many more packages not documented in the Scientific Python Lectures.
 {ref}`chapters on packages and applications <applications_part>`
 :::
 
-{{ clear-floats }}
+{{ clear_floats }}
 
 ```{python tags=c("hide-input")}
 import numpy as np
