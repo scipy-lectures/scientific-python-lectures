@@ -24,32 +24,42 @@ Python supports the following numerical, scalar types:
 :::
 
 
-:Floats:
+Floats:
 
-    >>> c = 2.1
-    >>> type(c)
-    <class 'float'>
+```{python}
+c = 2.1
+type(c)
+```
 
-:Complex:
+Complex:
 
-    >>> a = 1.5 + 0.5j
-    >>> a.real
-    1.5
-    >>> a.imag
-    0.5
-    >>> type(1. + 0j)
-    <class 'complex'>
+```{python}
+a = 1.5 + 0.5j
+a.real
+```
 
-:Booleans:
+```{python}
+a.imag
+```
 
-    >>> 3 > 4
-    False
-    >>> test = (3 > 4)
-    >>> test
-    False
-    >>> type(test)
-    <class 'bool'>
+```{python}
+type(1. + 0j)
+```
 
+Booleans:
+
+```{python}
+3 > 4
+```
+
+```{python}
+test = (3 > 4)
+test
+```
+
+```{python}
+type(test)
+```
 
 ::: {note}
 :class: dropdown
@@ -312,7 +322,7 @@ s = """Hi,
 what's up?"""
 ```
 
-```{python}
+```{python tags=c("raises-exception")}
 'Hi, what's up?'
 ```
 
@@ -375,7 +385,7 @@ strings consist of Unicode characters.
 A string is an **immutable object** and it is not possible to modify its
 contents. One may however create new strings from the original one.
 
-```{python}
+```{python tags=c("raises-exception")}
 a = "hello, world!"
 a[2] = 'z'
 ```
