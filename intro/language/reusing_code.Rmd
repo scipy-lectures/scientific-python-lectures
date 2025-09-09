@@ -92,7 +92,7 @@ are
 you?
 ```
 
-::::{tip}
+:::: {tip}
 Standalone scripts may also take command-line arguments
 
 In `file.py`:
@@ -106,12 +106,14 @@ print(sys.argv)
 $ python file.py test arguments
 ['file.py', 'test', 'arguments']
 ```
+::::
 
-:::{warning}
+::: {warning}
+
 Don't implement option parsing yourself. Use a dedicated module such as
 {mod}`argparse`.
+
 :::
-::::
 
 ## Importing objects from modules
 
@@ -137,11 +139,13 @@ import numpy as np
 ```
 
 :::{warning}
+
+The following code is an example of what is called the *star import* and
+please, **Do not use it**
+
 ```{python}
 from os import *
 ```
-
-This is called the *star import* and please, **Do not use it**
 
 - Makes the code harder to read and understand: where do symbols come
   from?
@@ -153,6 +157,7 @@ This is called the *star import* and please, **Do not use it**
 - Creates possible name clashes between modules.
 - Makes the code impossible to statically check for undefined
   symbols.
+
 :::
 
 ::: {note}
@@ -264,6 +269,7 @@ a
 ```
 
 :::{warning}
+
 **Module caching**
 
 > Modules are cached: if you modify `demo.py` and re-import it in the
@@ -274,6 +280,7 @@ Solution:
 > ```ipython
 > In [10]: importlib.reload(demo)
 > ```
+
 :::
 
 ## '\_\_main\_\_' and module loading
