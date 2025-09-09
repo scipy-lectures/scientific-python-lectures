@@ -19,6 +19,13 @@ jupyter:
 
 **Author**: *Pauli Virtanen*
 
+```ipython
+[ins] In [1]: a = 1
+
+[ins] In [2]: a * 3
+Out[2]: 3
+```
+
 NumPy is at the base of Python's scientific stack of tools. Its purpose
 to implement efficient operations on many items in a block of memory.
 Understanding how it works in detail helps in making efficient use of its
@@ -53,4 +60,3 @@ import matplotlib.pyplot as plt
 ### It's...
 
 **ndarray** is **ndarray**.
-

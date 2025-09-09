@@ -200,14 +200,14 @@ To execute code, press "shift enter"
 
 Start `ipython`:
 
-```python
+```ipython
 In [2]: print('Hello world')
 Hello world
 ```
 
 Getting help by using the **?** operator after an object:
 
-```python
+```ipython
 In [3]: print?
 Signature: print(*args, sep=' ', end='\n', file=None, flush=False)
 Docstring:
@@ -259,7 +259,7 @@ print(s)
 Now, you can run it in IPython console or a notebook and explore the
 resulting variables:
 
-```python
+```ipython
 In [1]: %run my_file.py
 Hello world
 
@@ -289,7 +289,7 @@ functions*, and *aliases*.
 command history. Type the *up* and *down* cursor keys to navigate previously typed
 commands:
 
-```python
+```ipython
 In [3]: x = 10
 
 In [4]: <UP>
@@ -302,7 +302,7 @@ structure of any object you’re dealing with. Simply type object_name.\<TAB> to
 view the object’s attributes. Besides Python objects and keywords, tab
 completion also works on file and directory names.\*
 
-```python
+```ipython
 In [5]: x = 10
 
 In [6]: x.<TAB>
@@ -323,7 +323,7 @@ Other useful magic functions are:
 
 **`%cd` to change the current directory**
 
-```python
+```ipython
 In [1]: cd /tmp
 /tmp
 ```
@@ -334,7 +334,7 @@ In [1]: cd /tmp
 been prefixed with the standard Python prompt (e.g. `>>>`) or with an ipython
 prompt, (e.g. `in [3]`):
 
-```python
+```ipython
 In [2]: %cpaste
 Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
 :>>> for i in range(3):
@@ -350,7 +350,7 @@ Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
 `%timeit` allows you to time the execution of short snippets using the
 `timeit` module from the standard library:
 
-```python
+```ipython
 In [3]: %timeit x = 10
 10000000 loops, best of 3: 39 ns per loop
 ```
@@ -385,7 +385,7 @@ a look at what the values of `c` and `d` are at the time of the error.
 
 You can next type the `%debug` magic to enter the debugger, where you can print out values inside the function, before exiting the debugger with `q` followed by Return.
 
-```python
+```ipython
 In [4]: %debug
 > /var/folders/hd/rfxyn9gx4bl39bvwzrgn3rtr0000gn/T/ipykernel_62633/2015602957.py(2)func()
       1 def func(a, b):

@@ -97,7 +97,7 @@ efficiency vs. Python lists
 
 #### Interactive help:
 
-```{code-cell} ipython
+```ipython
 In [5]: np.array?
 String Form:<built-in function array>
 Docstring:
@@ -112,7 +112,7 @@ help(np.array)
 
 #### Looking for something:
 
-```{code-cell} ipython
+```ipython
 In [6]: np.con*?
 np.concatenate
 np.conj

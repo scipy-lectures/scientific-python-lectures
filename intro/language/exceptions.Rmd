@@ -57,8 +57,8 @@ As you can see, there are **different types** of exceptions for different errors
 
 ### try/except
 
-```python
-while True:
+```ipython
+In [1]: while True:
    ....:     try:
    ....:         x = int(input('Please enter a number: '))
    ....:         break
@@ -69,14 +69,14 @@ Please enter a number: a
 That was no valid number.  Try again...
 Please enter a number: 1
 
-x
+In [2]: x
 Out[9]: 1
 ```
 
 ### try/finally
 
-```python
-try:
+```ipython
+In [1]: try:
    ....:     x = int(input('Please enter a number: '))
    ....: finally:
    ....:     print('Thank you for your input')
