@@ -29,16 +29,25 @@ for the right exception type.
 
 Exceptions are raised by errors in Python:
 
-```{python}
+```{python tags=c("raises-exception")}
+1/0
 ```
 
-```{python}
-1/0
+```{python tags=c("raises-exception")}
 1 + 'e'
+```
+
+```{python tags=c("raises-exception")}
 d = {1:1, 2:2}
 d[3]
+```
+
+```{python tags=c("raises-exception")}
 l = [1, 2, 3]
 l[4]
+```
+
+```{python tags=c("raises-exception")}
 l.foobar
 ```
 
@@ -49,8 +58,6 @@ As you can see, there are **different types** of exceptions for different errors
 ### try/except
 
 ```python
-
-
 while True:
    ....:     try:
    ....:         x = int(input('Please enter a number: '))
@@ -69,8 +76,6 @@ Out[9]: 1
 ### try/finally
 
 ```python
-
-
 try:
    ....:     x = int(input('Please enter a number: '))
    ....: finally:
@@ -115,57 +120,45 @@ print_sorted('132')
 
 ## Raising exceptions
 
-- Capturing and reraising an exception:
+### Capturing and re-raising an exception:
 
-  ```{eval-rst}
-  .. ipython::
-    :okexcept:
+```{python}
+def filter_name(name):
+    try:
+        name = name.encode('ascii')
+    except UnicodeError as e:
+        if name == 'Gaël':
+            print('OK, Gaël')
+        else:
+            raise e
+    return name
 
-    In [15]: def filter_name(name):
-       ....:    try:
-       ....:        name = name.encode('ascii')
-       ....:    except UnicodeError as e:
-       ....:        if name == 'Gaël':
-       ....:            print('OK, Gaël')
-       ....:        else:
-       ....:            raise e
-       ....:    return name
-       ....:
+filter_name('Gaël')
+```
 
-    In [16]: filter_name('Gaël')
-    OK, Gaël
-    Out[16]: 'Ga\xc3\xabl'
+```{python tags=c("raises-exception")}
+filter_name('Stéfan')
+```
 
-    In [17]: filter_name('Stéfan')
+### Exceptions to pass messages between parts of the code:
 
-  ```
+```{python}
+def achilles_arrow(x):
+    if abs(x - 1) < 1e-3:
+        raise StopIteration
+    x = 1 - (1-x)/2.
+    return x
 
-- Exceptions to pass messages between parts of the code:
+x = 0
 
-  ```{eval-rst}
-  .. ipython::
+while True:
+    try:
+        x = achilles_arrow(x)
+    except StopIteration:
+        break
 
-    In [17]: def achilles_arrow(x):
-       ....:    if abs(x - 1) < 1e-3:
-       ....:        raise StopIteration
-       ....:    x = 1 - (1-x)/2.
-       ....:    return x
-       ....:
+x
+```
 
-    In [18]: x = 0
-
-    In [19]: while True:
-       ....:     try:
-       ....:         x = achilles_arrow(x)
-       ....:     except StopIteration:
-       ....:         break
-       ....:
-       ....:
-
-    In [20]: x
-    Out[20]: 0.9990234375
-
-  ```
-
-Use exceptions to notify certain conditions are met (e.g.
-StopIteration) or not (e.g. custom error raising)
+Use exceptions to notify certain conditions are met (e.g. `StopIteration`) or
+not (e.g. custom error raising).
