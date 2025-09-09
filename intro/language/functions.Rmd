@@ -72,6 +72,9 @@ def double_it(x):
 
 ```{python}
 double_it(3)
+```
+
+```{python tags=c("raises-exception")}
 double_it()
 ```
 
