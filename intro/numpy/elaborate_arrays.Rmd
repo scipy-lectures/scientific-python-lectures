@@ -139,21 +139,19 @@ Comparison on using `float32` instead of `float64`:
 
 - Half the memory bandwidth required (may be a bit faster in some operations)
 
-  ```{eval-rst}
-  .. ipython::
+  ```python
+  In [1]: a = np.zeros((int(1e6),), dtype=np.float64)
 
-     In [1]: a = np.zeros((int(1e6),), dtype=np.float64)
+  In [2]: b = np.zeros((int(1e6),), dtype=np.float32)
 
-     In [2]: b = np.zeros((int(1e6),), dtype=np.float32)
+  In [3]: %timeit a*a
+  1000 loops, best of 3: 1.78 ms per loop
 
-     In [3]: %timeit a*a
-     1000 loops, best of 3: 1.78 ms per loop
-
-     In [4]: %timeit b*b
-     1000 loops, best of 3: 1.07 ms per loop
+  In [4]: %timeit b*b
+  1000 loops, best of 3: 1.07 ms per loop
   ```
 
-- But: bigger rounding errors --- sometimes in surprising places
+- But: bigger rounding errors — sometimes in surprising places
   (i.e., don't use them unless you really need them)
 :::
 
