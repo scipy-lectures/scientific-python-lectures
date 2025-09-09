@@ -530,18 +530,7 @@ a[3:]
 
 A small illustrated summary of NumPy indexing and slicing...
 
-:::{only} latex
-```{image} ../../pyximages/numpy_indexing.pdf
-:align: center
-```
-:::
-
-:::{only} html
-```{image} ../../pyximages/numpy_indexing.png
-:align: center
-:width: 70%
-```
-:::
+![](../../pyximages/numpy_indexing.png)
 
 You can also combine assignment and slicing:
 
@@ -693,8 +682,7 @@ CHA: archimedean sieve
 
 ### Worked example: Prime number sieve
 
-```{image} images/prime-sieve.png
-```
+![](images/prime-sieve.png)
 
 Compute prime numbers in 0--99, with a sieve
 
@@ -806,11 +794,7 @@ ______________________________________________________________________
 
 The image below illustrates various fancy indexing applications
 
-```{image} ../../pyximages/numpy_fancy_indexing.*
-:align: center
-:width: 80%
-```
-:::
+![](../../pyximages/numpy_fancy_indexing.png)
 
 :::{admonition} Exercise: Fancy indexing
 :class: green
