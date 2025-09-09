@@ -46,19 +46,3 @@ etc. Some specific features of Python are as follows:
 See <https://www.python.org/about/> for more information about
 distinguishing features of Python.
 :::
-
-______________________________________________________________________
-
-```{toctree}
-:maxdepth: 2
-
-first_steps.rst
-basic_types.rst
-control_flow.rst
-functions.rst
-reusing_code.rst
-io.rst
-standard_library.rst
-exceptions.rst
-oop.rst
-```

@@ -6,6 +6,15 @@ parts:
       - file: intro/index
       - file: intro/intro
       - file: intro/language/python_language
+      - file: intro/language/first_steps
+      - file: intro/language/basic_types
+      - file: intro/language/control_flow
+      - file: intro/language/functions
+      - file: intro/language/reusing_code
+      - file: intro/language/io
+      - file: intro/language/standard_library
+      - file: intro/language/exceptions
+      - file: intro/language/oop
       - file: intro/numpy/index
       - file: intro/matplotlib/index
       - file: intro/scipy/index
