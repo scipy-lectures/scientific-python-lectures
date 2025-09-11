@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -14,6 +14,7 @@ jupyter:
 ---
 
 ```{python tags=c("hide-input")}
+import numpy as np
 import matplotlib.pyplot as plt
 ```
 (numpy-exercises)=
@@ -22,36 +23,62 @@ import matplotlib.pyplot as plt
 
 ## Array manipulations
 
-1. Form the 2-D array (without typing it in explicitly):
+### Form the 2-D array (without typing it in explicitly):
 
-```{python}
-   [[1,  6, 11],
-    [2,  7, 12],
-    [3,  8, 13],
-    [4,  9, 14],
-    [5, 10, 15]]
+::: {exercise-start}
+:label: array-manipulation
+:class: dropdown
+:::
+
+```python
+[[1,  6, 11],
+ [2,  7, 12],
+ [3,  8, 13],
+ [4,  9, 14],
+ [5, 10, 15]]
 ```
 
-   and generate a new array containing its 2nd and 4th rows.
+and generate a new array containing its 2nd and 4th rows.
 
-2. Divide each column of the array:
+### Divide each column of the array:
 
 ```{python}
 import numpy as np
 a = np.arange(25).reshape(5, 5)
 ```
 
-   elementwise with the array `b = np.array([1., 5, 10, 15, 20])`.
-   (Hint: `np.newaxis`).
+elementwise with the array `b = np.array([1., 5, 10, 15, 20])`.
+(Hint: `np.newaxis`).
 
-3. Harder one: Generate a 10 x 3 array of random numbers (in range [0,1]).
-   For each row, pick the number closest to 0.5.
+## Harder one, random numbers
 
-   - Use `abs` and `argmin` to find the column `j` closest for
-     each row.
-   - Use fancy indexing to extract the numbers. (Hint: `a[i,j]` --
-     the array `i` must contain the row numbers corresponding to stuff in
-     `j`.)
+Harder one: Generate a 10 x 3 array of random numbers (in range \[0,1\]). For each row, pick the number closest to 0.5.
+
+- Use `abs` and `argmin` to find the column `j` closest for
+  each row.
+- Use fancy indexing to extract the numbers. (Hint: `a[i,j]` -- the array `i`
+  must contain the row numbers corresponding to stuff in `j`.)
+
+::: {exercise-end}
+:::
+
+::: {solution-start} array-manipulation
+:class: dropdown
+:::
+
+```{python}
+import numpy as np
+from numpy import newaxis
+
+# Part 1.
+
+a = np.arange(1, 16).reshape(3, -1).T
+print(a)
+```
+
+::: {solution-end}
+:::
+
 
 ## Picture manipulation: Framing a Face
 
@@ -67,38 +94,39 @@ face = sp.datasets.face(gray=True)  # 2D grayscale image
 Here are a few images we will be able to obtain with our manipulations:
 use different colormaps, crop the image, change some parts of the image.
 
-```{image} images/faces.png
-:align: center
+[](!images/faces.png)
+
+Let's use the `imshow` function of matplotlib to display the image.
+
+```{python}
+import matplotlib.pyplot as plt
+face = sp.datasets.face(gray=True)
+plt.imshow(face)
 ```
 
-- Let's use the imshow function of matplotlib to display the image.
-
-  > ```pycon
-  > >>> import matplotlib.pyplot as plt
-  > >>> face = sp.datasets.face(gray=True)
-  > >>> plt.imshow(face)
-  > <matplotlib.image.AxesImage object at 0x...>
-  > ```
-
-- The face is displayed in false colors. A colormap must be
-  : specified for it to be displayed in grey.
+The face is displayed in false colors. A colormap must be specified for it
+to be displayed in grey.
 
 ```{python}
 plt.imshow(face, cmap=plt.cm.gray)
 ```
 
-- Create an array of the image with a narrower centering
-  : remove 100 pixels from all the borders of the image. To check the result,
-    display this new array with `imshow`.
+### Narrow centering
+
+Create an array of the image with a narrower centering; remove 100 pixels from
+all the borders of the image. To check the result, display this new array with
+`imshow`.
 
 ```{python}
 crop_face = face[100:-100, 100:-100]
 ```
 
-- We will now frame the face with a black locket. For this, we
-  : need to create a mask corresponding to the pixels we want to be
-    black. The center of the face is around (660, 330), so we defined
-    the mask by this condition `(y-300)**2 + (x-660)**2`
+### Frame face
+
+We will now frame the face with a black locket. For this, we need to create
+a mask corresponding to the pixels we want to be black. The center of the face
+is around (660, 330), so we defined the mask by this condition `(y-300)**2
++ (x-660)**2`
 
 ```{python}
 sy, sx = face.shape
@@ -111,19 +139,19 @@ centerx, centery = (660, 300) # center of the image
 mask = ((y - centery)**2 + (x - centerx)**2) > 230**2 # circle
 ```
 
-    then we assign the value 0 to the pixels of the image corresponding
-    to the mask. The syntax is extremely simple and intuitive:
+then we assign the value 0 to the pixels of the image corresponding to the
+mask. The syntax is extremely simple and intuitive:
 
 ```{python}
 face[mask] = 0
 plt.imshow(face)
 ```
 
-- Follow-up: copy all instructions of this exercise in a script called
-  : `face_locket.py` then execute this script in IPython with `%run
-    face_locket.py`.
+Follow-up:
 
-    Change the circle to an ellipsoid.
+- copy all instructions of this exercise in a script called : `face_locket.py`
+  then execute this script in IPython with `%run face_locket.py`.
+- Change the circle to an ellipsoid.
 
 ## Data statistics
 
@@ -138,24 +166,18 @@ year, hares, lynxes, carrots = data.T  # trick: columns to variables
 
 ```{python}
 import matplotlib.pyplot as plt
+
 plt.axes([0.2, 0.1, 0.5, 0.8])
-```
-
-```{python}
 plt.plot(year, hares, year, lynxes, year, carrots)
-```
-
-```{python}
 plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_populations_001.png
-:align: center
-:target: auto_examples/plot_populations.html
-:width: 50%
-```
+::: {exercise-start}
+:label: data-statistics
+:class: dropdown
+:::
 
-Computes and print, based on the data in `populations.txt`...
+Compute and print, based on the data in `populations.txt`...
 
 1. The mean and std of the populations of each species for the years
    in the period.
@@ -173,9 +195,58 @@ Computes and print, based on the data in `populations.txt`...
 
 ... all without for-loops.
 
-Solution: {download}`Python source file <solutions/2_2_data_statistics.py>`
+::: {exercise-end}
+:::
+
+::: {solution-start} data-statistics
+:class: dropdown
+:::
+
+```{python}
+import numpy as np
+
+data = np.loadtxt("data/populations.txt")
+year, hares, lynxes, carrots = data.T
+populations = data[:, 1:]
+
+print("       Hares, Lynxes, Carrots")
+print("Mean:", populations.mean(axis=0))
+print("Std:", populations.std(axis=0))
+
+j_max_years = np.argmax(populations, axis=0)
+print("Max. year:", year[j_max_years])
+
+max_species = np.argmax(populations, axis=1)
+species = np.array(["Hare", "Lynx", "Carrot"])
+print("Max species:")
+print(year)
+print(species[max_species])
+
+above_50000 = np.any(populations > 50000, axis=1)
+print("Any above 50000:", year[above_50000])
+
+j_top_2 = np.argsort(populations, axis=0)[:2]
+print("Top 2 years with lowest populations for each:")
+print(year[j_top_2])
+
+hare_grad = np.gradient(hares, 1.0)
+print("diff(Hares) vs. Lynxes correlation", np.corrcoef(hare_grad, lynxes)[0, 1])
+
+import matplotlib.pyplot as plt
+
+plt.plot(year, hare_grad, year, -lynxes)
+plt.savefig("plot.png")
+```
+
+::: {solution-end}
+:::
 
 ## Crude integral approximations
+
+::: {exercise-start}
+:label: integral-approx
+:class: dropdown
+:::
 
 Write a function `f(a, b, c)` that returns $a^b - c$. Form
 a 24x12x6 array containing its values in parameter ranges `[0,1] x
@@ -201,15 +272,49 @@ def f(a, b, c):
     return some_result
 ```
 
-Solution: {download}`Python source file <solutions/2_3_crude_integration.py>`
+::: {exercise-end}
+:::
+
+::: {solution-start} integral-approx
+:class: dropdown
+:::
+
+```{python}
+import numpy as np
+from numpy import newaxis
+
+
+def f(a, b, c):
+    return a**b - c
+
+
+a = np.linspace(0, 1, 24)
+b = np.linspace(0, 1, 12)
+c = np.linspace(0, 1, 6)
+
+samples = f(a[:, newaxis, newaxis], b[newaxis, :, newaxis], c[newaxis, newaxis, :])
+
+# or,
+#
+# a, b, c = np.ogrid[0:1:24j, 0:1:12j, 0:1:6j]
+# samples = f(a, b, c)
+
+integral = samples.mean()
+
+print("Approximation:", integral)
+print("Exact:", np.log(2) - 0.5)
+```
+
+::: {solution-end}
+:::
+
 
 ## Mandelbrot set
 
-```{image} auto_examples/images/sphx_glr_plot_mandelbrot_001.png
-:align: center
-:target: auto_examples/plot_mandelbrot.html
-:width: 50%
-```
+::: {exercise-start}
+:label: mandelbrot-set
+:class: dropdown
+:::
 
 Write a script that computes the Mandelbrot fractal. The Mandelbrot
 iteration:
@@ -233,25 +338,70 @@ Do this computation by:
 ```{python tags=c("hide-input")}
 mask = np.ones((3, 3))
 ```
+
 1. Construct a grid of c = x + 1j\*y values in range [-2, 1] x [-1.5, 1.5]
 2. Do the iteration
 3. Form the 2-d boolean mask indicating which points are in the set
 4. Save the result to an image with:
 
-> ```pycon
-> >>> import matplotlib.pyplot as plt
-> >>> plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5])
-> <matplotlib.image.AxesImage object at ...>
-> >>> plt.gray()
-> >>> plt.savefig('mandelbrot.png')
-> ```
+   ```python
+   import matplotlib.pyplot as plt
+   plt.imshow(mask.T, extent=[-2, 1, -1.5, 1.5])
+   plt.gray()
+   plt.savefig('mandelbrot.png')
+   ```
 
-Solution: {download}`Python source file <solutions/2_4_mandelbrot.py>`
+::: {exercise-end}
+:::
+
+::: {solution-start} mandelbrot-set
+:class: dropdown
+:::
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from numpy import newaxis
+
+
+def compute_mandelbrot(N_max, some_threshold, nx, ny):
+    # A grid of c-values
+    x = np.linspace(-2, 1, nx)
+    y = np.linspace(-1.5, 1.5, ny)
+
+    c = x[:, newaxis] + 1j * y[newaxis, :]
+
+    # Mandelbrot iteration
+
+    z = c
+    for j in range(N_max):
+        z = z**2 + c
+
+    mandelbrot_set = abs(z) < some_threshold
+
+    return mandelbrot_set
+
+# Save
+
+mandelbrot_set = compute_mandelbrot(50, 50.0, 601, 401)
+
+plt.imshow(mandelbrot_set.T, extent=[-2, 1, -1.5, 1.5])  # type: ignore[arg-type]
+plt.gray()
+plt.savefig("mandelbrot.png")
+```
+
+::: {solution-end}
+:::
+
 
 ## Markov chain
 
-```{image} images/markov-chain.png
-```
+![](images/markov-chain.png)
+
+::: {exercise-start}
+:label: markov-chain
+:class: dropdown
+:::
 
 Markov chain transition matrix `P`, and probability distribution on
 the states `p`:
@@ -269,12 +419,63 @@ Write a script that works with 5 states, and:
 - Computes the stationary distribution: the eigenvector of `P.T`
   with eigenvalue 1 (numerically: closest to 1) => `p_stationary`
 
-Remember to normalize the eigenvector --- I didn't...
+  Remember to normalize the eigenvector — I didn't...
 
 - Checks if `p_50` and `p_stationary` are equal to tolerance 1e-5
 
-Toolbox: `np.random`, `@`, `np.linalg.eig`,
-reductions, `abs()`, `argmin`, comparisons, `all`,
-`np.linalg.norm`, etc.
+Toolbox: `np.random`, `@`, `np.linalg.eig`, reductions, `abs()`, `argmin`,
+comparisons, `all`, `np.linalg.norm`, etc.
 
-Solution: {download}`Python source file <solutions/2_5_markov_chain.py>`
+::: {exercise-end}
+:::
+
+::: {solution-start} markov-chain
+:class: dropdown
+:::
+
+Solution to Markov chain exercise.
+
+```{python}
+import numpy as np
+
+rng = np.random.default_rng(27446968)
+
+n_states = 5
+n_steps = 50
+tolerance = 1e-5
+
+# Random transition matrix and state vector
+P = rng.random(size=(n_states, n_states))
+p = rng.random(n_states)
+
+# Normalize rows in P
+P /= P.sum(axis=1)[:, np.newaxis]
+
+# Normalize p
+p /= p.sum()
+
+# Take steps
+for k in range(n_steps):
+    p = P.T @ p
+
+p_50 = p
+print(p_50)
+
+# Compute stationary state
+w, v = np.linalg.eig(P.T)
+
+j_stationary = np.argmin(abs(w - 1.0))
+p_stationary = v[:, j_stationary].real
+p_stationary /= p_stationary.sum()
+print(p_stationary)
+
+# Compare
+if all(abs(p_50 - p_stationary) < tolerance):
+    print("Tolerance satisfied in infty-norm")
+
+if np.linalg.norm(p_50 - p_stationary) < tolerance:
+    print("Tolerance satisfied in 2-norm")
+```
+
+::: {solution-end}
+:::
