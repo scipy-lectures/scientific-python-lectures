@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -84,29 +84,17 @@ p = np.polynomial.Chebyshev.fit(x, y, 90)
 
 ```{python}
 plt.plot(x, y, 'r.')
-```
-
-```{python}
 plt.plot(x, p(x), 'k-', lw=3)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_chebyfit_001.png
-:align: center
-:target: auto_examples/plot_chebyfit.html
-:width: 50%
-```
-
 The Chebyshev polynomials have some advantages in interpolation.
+
 
 ## Loading data files
 
 ### Text files
 
-Example: {download}`populations.txt <../../data/populations.txt>`:
-
-.. include:: ../../data/populations.txt
-    :end-line: 5
-    :literal:
+Example: {download}`populations.txt <data/populations.txt>`.
 
 ```{python}
 data = np.loadtxt('data/populations.txt')
@@ -137,19 +125,19 @@ pwd
 Change to `data` subdirectory:
 
 ```{python}
-cd data
+# cd data
 ```
 
 Show filesystem listing for current directory:
 
 ```{python}
-ls
+# ls
 ```
 
 Change back to containing directory.
 
 ```{python}
-cd ..
+# cd ..
 ```
 
 ### Images
@@ -162,18 +150,14 @@ img.shape, img.dtype
 ```
 
 ```{python}
+# Plot and save the original figure
 plt.imshow(img)
+plt.savefig('plot.png')
 ```
 
 ```{python}
-plt.savefig('plot.png')
+# Plot and save the red channel of the image.
 plt.imsave('red_elephant.png', img[:,:,0], cmap=plt.cm.gray)
-```
-
-```{image} auto_examples/images/sphx_glr_plot_elephant_001.png
-:align: center
-:target: auto_examples/plot_elephant.html
-:width: 50%
 ```
 
 This saved only one channel (of RGB):
@@ -182,24 +166,14 @@ This saved only one channel (of RGB):
 plt.imshow(plt.imread('red_elephant.png'))
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_elephant_002.png
-:align: center
-:target: auto_examples/plot_elephant.html
-:width: 50%
-```
-
 Other libraries:
 
 ```{python}
 import imageio.v3 as iio
+
+# Lower resolution (every sixth pixel in each dimension).
 iio.imwrite('tiny_elephant.png', (img[::6,::6] * 255).astype(np.uint8))
 plt.imshow(plt.imread('tiny_elephant.png'), interpolation='nearest')
-```
-
-```{image} auto_examples/images/sphx_glr_plot_elephant_003.png
-:align: center
-:target: auto_examples/plot_elephant.html
-:width: 50%
 ```
 
 ### NumPy's own format
