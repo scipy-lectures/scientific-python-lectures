@@ -717,10 +717,6 @@ There are several locators for different kind of requirements:
 # ```
 -->
 
-```{raw} latex
-~
-```
-
 All of these locators derive from the base class {class}`matplotlib.ticker.Locator`.
 You can make your own locator deriving from it. Handling dates as ticks can be
 especially tricky. Therefore, matplotlib provides special locators in
