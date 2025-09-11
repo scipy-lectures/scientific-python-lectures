@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -15,7 +15,6 @@ jupyter:
 
 ```{python tags=c("hide-input")}
 import numpy as np
-# For doctest on headless environments
 import matplotlib.pyplot as plt
 ```
 
@@ -56,48 +55,48 @@ These operations are of course much faster than if you did them in pure python:
 
 ```{python}
 a = np.arange(10000)
-%timeit a + 1
+# %timeit a + 1
 ```
 
 ```{python}
 l = range(10000)
-%timeit [i+1 for i in l]
+# %timeit [i+1 for i in l]
 ```
 
-:::{warning}
-**Array multiplication is not matrix multiplication:**
+**Warning: array multiplication is not matrix multiplication**
+
+Consider these examples:
 
 ```{python}
 c = np.ones((3, 3))
 c * c                   # NOT matrix multiplication!
 ```
-:::
 
-:::{note}
 **Matrix multiplication:**
 
 ```{python}
 c @ c
 ```
+
+::: {exercise-start}
+:label: elementwise-exercise
+:class: dropdown
 :::
 
-:::{admonition} Exercise: Elementwise operations
-:class: green
+- Try simple arithmetic elementwise operations: add even elements
+  with odd elements
+- Time them against their pure python counterparts using `%timeit`.
+- Generate:
 
-> - Try simple arithmetic elementwise operations: add even elements
->   with odd elements
->
-> - Time them against their pure python counterparts using `%timeit`.
->
-> - Generate:
->
->   - `[2**0, 2**1, 2**2, 2**3, 2**4]`
->   - `a_j = 2^(3*j) - j`
+  - `[2**0, 2**1, 2**2, 2**3, 2**4]`
+  - `a_j = 2^(3*j) - j`
+
+::: {exercise-end}
 :::
 
 ### Other operations
 
-**Comparisons:**
+#### Comparisons
 
 ```{python}
 a = np.array([1, 2, 3, 4])
@@ -108,9 +107,6 @@ a == b
 ```{python}
 a > b
 ```
-
-::: {note}
-:class: dropdown
 
 Array-wise comparisons:
 
@@ -124,9 +120,8 @@ np.array_equal(a, b)
 ```{python}
 np.array_equal(a, c)
 ```
-:::
 
-**Logical operations:**
+#### Logical operations
 
 ```{python}
 a = np.array([1, 1, 0, 0], dtype=bool)
@@ -138,7 +133,7 @@ np.logical_or(a, b)
 np.logical_and(a, b)
 ```
 
-**Transcendental functions:**
+#### Transcendental functions
 
 ```{python}
 a = np.arange(5)
@@ -153,16 +148,16 @@ np.exp(a)
 np.log(np.exp(a))
 ```
 
-**Shape mismatches**
+#### Shape mismatches
 
-```{python}
+```{python tags=c("raises-exception")}
 a = np.arange(4)
 a + np.array([1, 2])
 ```
 
 *Broadcasting?* We'll return to that {ref}`later <broadcasting>`.
 
-**Transposition:**
+#### Transposition
 
 ```{python}
 a = np.triu(np.ones((3, 3)), 1)   # see help(np.triu)
@@ -173,8 +168,7 @@ a
 a.T
 ```
 
-:::{note}
-**The transposition is a view**
+Remember, **the transposition is a view**.
 
 The transpose returns a *view* of the original array:
 
@@ -187,10 +181,8 @@ a.T
 ```{python}
 a
 ```
-:::
 
-:::{note}
-**Linear algebra**
+#### Linear algebra
 
 The sub-module {mod}`numpy.linalg` implements basic linear algebra, such as
 solving linear systems, singular value decomposition, etc. However, it is
@@ -199,11 +191,15 @@ recommend the use of {mod}`scipy.linalg`, as detailed in section
 {ref}`scipy_linalg`
 :::
 
-:::{admonition} Exercise other operations
-:class: green
+::: {exercise-start}
+:label: other-operations-exercise
+:class: dropdown
+:::
 
-> - Look at the help for `np.allclose`. When might this be useful?
-> - Look at the help for `np.triu` and `np.tril`.
+- Look at the help for `np.allclose`. When might this be useful?
+- Look at the help for `np.triu` and `np.tril`.
+
+::: {exercise-end}
 :::
 
 ## Basic reductions
@@ -219,9 +215,7 @@ np.sum(x)
 x.sum()
 ```
 
-```{image} images/reductions.png
-:align: right
-```
+![](images/reductions.png)
 
 Sum by rows and by columns:
 
@@ -246,10 +240,7 @@ x.sum(axis=1)   # rows (second dimension)
 x[0, :].sum(), x[1, :].sum()
 ```
 
-::: {note}
-:class: dropdown
-
-Same idea in higher dimensions:
+Here is the same idea in higher dimensions:
 
 ```{python}
 rng = np.random.default_rng(27446968)
@@ -260,13 +251,12 @@ x.sum(axis=2)[0, 1]
 ```{python}
 x[0, 1, :].sum()
 ```
-:::
 
 ### Other reductions
 
---- works the same way (and take `axis=`)
+These work the same way (and take `axis=`)
 
-**Extrema:**
+#### Extrema
 
 ```{python}
 x = np.array([1, 3, 2])
@@ -285,7 +275,7 @@ x.argmin()  # index of minimum
 x.argmax()  # index of maximum
 ```
 
-**Logical operations:**
+#### Logical operations
 
 ```{python}
 np.all([True, True, False])
@@ -295,8 +285,7 @@ np.all([True, True, False])
 np.any([True, True, False])
 ```
 
-:::{note}
-Can be used for array comparisons:
+This can be used for array comparisons:
 
 ```{python}
 a = np.zeros((100, 100))
@@ -313,7 +302,6 @@ b = np.array([2, 2, 3, 2])
 c = np.array([6, 4, 4, 5])
 ((a <= b) & (b <= c)).all()
 ```
-:::
 
 **Statistics:**
 
@@ -337,20 +325,20 @@ x.std()          # full population standard dev.
 
 ... and many more (best to learn as you go).
 
-:::{admonition} Exercise: Reductions
-:class: green
-
-> - Given there is a `sum`, what other function might you expect to see?
-> - What is the difference between `sum` and `cumsum`?
+::: {exercise-start}
+:label: reductions-exercise
+:class: dropdown
 :::
 
-::::{topic} Worked Example: diffusion using a random walk algorithm
-```{image} random_walk.png
-:align: center
-```
+Given there is a `sum`, what other function might you expect to see?
+What is the difference between `sum` and `cumsum`?
 
-::: {note}
-:class: dropdown
+::: {exercise-end}
+:::
+
+#### Worked Example: diffusion using a random walk algorithm
+
+![](random_walk.png)
 
 Let us consider a simple 1D random walk process: at each time step a
 walker jumps right or left with equal probability.
@@ -361,20 +349,8 @@ simulate many "walkers" to find this law, and we are going to do so
 using array computing tricks: we are going to create a 2D array with
 the "stories" (each walker has a story) in one direction, and the
 time in the other:
-:::
 
-:::{only} latex
-```{image} random_walk_schema.png
-:align: center
-```
-:::
-
-:::{only} html
-```{image} random_walk_schema.png
-:align: center
-:width: 100%
-```
-:::
+![](random_walk_schema.png)
 
 ```{python}
 n_stories = 1000 # number of walkers
@@ -407,30 +383,14 @@ Plot the results:
 
 ```{python}
 plt.figure(figsize=(4, 3))
-```
-
-```{python}
 plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-')
-```
-
-```{python}
 plt.xlabel(r"$t$")
-```
-
-```{python}
 plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
 plt.tight_layout() # provide sufficient space for labels
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_randomwalk_001.png
-:align: center
-:target: auto_examples/plot_randomwalk.html
-:width: 50%
-```
-
 We find a well-known result in physics: the RMS distance grows as the
 square root of the time!
-::::
 
 <!---
 arithmetic: sum/prod/mean/std
@@ -456,6 +416,7 @@ EXE: load data with loadtxt from a file, and compute its basic statistics
 <!---
 CHA: implement mean and std using only sum()
 -->
+
 (broadcasting)=
 
 ## Broadcasting
@@ -482,18 +443,7 @@ CHA: implement mean and std using only sum()
 
 The image below gives an example of broadcasting:
 
-:::{only} latex
-```{image} images/numpy_broadcasting.png
-:align: center
-```
-:::
-
-:::{only} html
-```{image} images/numpy_broadcasting.png
-:align: center
-:width: 100%
-```
-:::
+![](images/numpy_broadcasting.png)
 
 Let's verify:
 
@@ -543,8 +493,7 @@ use it when we want to solve a problem whose output data is an array
 with more dimensions than input data.
 :::
 
-:::{admonition} Worked Example: Broadcasting
-:class: green
+### Worked Example: Broadcasting
 
 Let's construct an array of distances (in miles) between cities of
 Route 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City,
@@ -557,11 +506,7 @@ distance_array = np.abs(mileposts - mileposts[:, np.newaxis])
 distance_array
 ```
 
-```{image} images/route66.png
-:align: center
-:scale: 60
-```
-:::
+![](images/route66.png)
 
 A lot of grid-based or network-based problems can also use
 broadcasting. For instance, if we want to compute the distance from
@@ -577,20 +522,11 @@ Or in color:
 
 ```{python}
 plt.pcolor(distance)
-```
-
-```{python}
 plt.colorbar()
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_distances_001.png
-:align: center
-:target: auto_examples/plot_distances.html
-:width: 50%
-```
-
-**Remark** : the {func}`numpy.ogrid` function allows to directly create vectors x
-and y of the previous example, with two "significant dimensions":
+**Remark** : the {func}`numpy.ogrid` function allows to directly create
+vectors x and y of the previous example, with two "significant dimensions":
 
 ```{python}
 x, y = np.ogrid[0:5, 0:5]
@@ -601,9 +537,6 @@ x, y
 x.shape, y.shape
 distance = np.sqrt(x ** 2 + y ** 2)
 ```
-
-::: {note}
-:class: dropdown
 
 So, `np.ogrid` is very useful as soon as we have to handle
 computations on a grid. On the other hand, `np.mgrid` directly
@@ -618,7 +551,6 @@ x
 ```{python}
 y
 ```
-:::
 
 <!---
 rules
@@ -691,8 +623,7 @@ a.reshape((2, -1))    # unspecified (-1) value is inferred
 or copy
 :::
 
-::: {note}
-:class: dropdown
+For example, consider:
 
 ```{python}
 b[0, 0] = 99
@@ -709,7 +640,6 @@ a
 ```
 
 To understand this you need to learn more about the memory layout of a NumPy array.
-:::
 
 ### Adding a dimension
 
@@ -768,7 +698,7 @@ a
 
 However, it must not be referred to somewhere else:
 
-```{python}
+```{python tags=c("raises-exception")}
 b = a
 a.resize((4,))
 ```
@@ -804,14 +734,19 @@ EXE: shuffling dimensions when writing a general vectorized function
 <!---
 CHA: the mathematical 'vec' operation
 -->
-:::{admonition} Exercise: Shape manipulations
-:class: green
+
+::: {exercise-start}
+:label: shape-manipulation-exercise
+:class: dropdown
+:::
 
 - Look at the docstring for `reshape`, especially the notes section which
   has some more information about copies and views.
 - Use `flatten` as an alternative to `ravel`. What is the difference?
   (Hint: check which one returns a view and which a copy)
 - Experiment with `transpose` for dimension shuffling.
+
+::: {exercise-end}
 :::
 
 ## Sorting data
@@ -867,16 +802,20 @@ XXX: need a frame for summaries
 * Fancy indexing: ``a[a > 3]``, ``a[[2, 3]]``
 * Sorting data: ``.sort()``, ``np.sort``, ``np.argsort``, ``np.argmax``
 -->
-:::{admonition} Exercise: Sorting
-:class: green
+::: {exercise-start}
+:label: sorting-exercise
+:class: dropdown
+:::
 
-> - Try both in-place and out-of-place sorting.
-> - Try creating arrays with different dtypes and sorting them.
-> - Use `all` or `array_equal` to check the results.
-> - Look at `np.random.shuffle` for a way to create sortable input quicker.
-> - Combine `ravel`, `sort` and `reshape`.
-> - Look at the `axis` keyword for `sort` and rewrite the previous
->   exercise.
+- Try both in-place and out-of-place sorting.
+- Try creating arrays with different dtypes and sorting them.
+- Use `all` or `array_equal` to check the results.
+- Look at `np.random.shuffle` for a way to create sortable input quicker.
+- Combine `ravel`, `sort` and `reshape`.
+- Look at the `axis` keyword for `sort` and rewrite the previous
+  exercise.
+
+::: {exercise-end}
 :::
 
 ## Summary
@@ -892,11 +831,11 @@ XXX: need a frame for summaries
   with `ravel`.
 
 - Obtain a subset of the elements of an array and/or modify their values
-  with masks
+  with masks, with e.g.:
 
-```{python}
-a[a < 0] = 0
-```
+  ```python
+  a[a < 0] = 0
+  ```
 
 - Know miscellaneous operations on arrays, such as finding the mean or max
   (`array.max()`, `array.mean()`). No need to retain everything, but

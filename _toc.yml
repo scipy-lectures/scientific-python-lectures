@@ -6,16 +6,23 @@ parts:
       - file: intro/index
       - file: intro/intro
       - file: intro/language/python_language
-      - file: intro/language/first_steps
-      - file: intro/language/basic_types
-      - file: intro/language/control_flow
-      - file: intro/language/functions
-      - file: intro/language/reusing_code
-      - file: intro/language/io
-      - file: intro/language/standard_library
-      - file: intro/language/exceptions
-      - file: intro/language/oop
+        sections:
+        - file: intro/language/first_steps
+        - file: intro/language/basic_types
+        - file: intro/language/control_flow
+        - file: intro/language/functions
+        - file: intro/language/reusing_code
+        - file: intro/language/io
+        - file: intro/language/standard_library
+        - file: intro/language/exceptions
+        - file: intro/language/oop
       - file: intro/numpy/index
+        sections:
+        - file: intro/numpy/array_object
+        - file: intro/numpy/operations
+        - file: intro/numpy/elaborate_arrays
+        - file: intro/numpy/advanced_operations
+        - file: intro/numpy/exercises
       - file: intro/matplotlib/index
       - file: intro/scipy/index
       - file: intro/help/help
@@ -26,14 +33,11 @@ parts:
       - file: advanced/advanced_numpy/index
       - file: advanced/debugging/index
       - file: advanced/optimizing/index
-  - caption: Sparse arrays in SciPy
-    chapters:
       - file: advanced/scipy_sparse/introduction
-      - file: advanced/scipy_sparse/storage_schemes
-      - file: advanced/scipy_sparse/solvers
-      - file: advanced/scipy_sparse/other_packages
-  - caption: Other advanced topics
-    chapters:
+        sections:
+        - file: advanced/scipy_sparse/storage_schemes
+        - file: advanced/scipy_sparse/solvers
+        - file: advanced/scipy_sparse/other_packages
       - file: advanced/mathematical_optimization/index
       - file: advanced/interfacing_with_c/interfacing_with_c
   - caption: About the Scientific Python Lectures
