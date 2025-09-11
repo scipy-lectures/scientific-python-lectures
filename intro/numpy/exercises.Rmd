@@ -173,7 +173,7 @@ plt.legend(('Hare', 'Lynx', 'Carrot'), loc=(1.05, 0.5))
 ```
 
 ::: {exercise-start}
-:label: data-statistics
+:label: statistics-with-arrays
 :class: dropdown
 :::
 
@@ -198,7 +198,7 @@ Compute and print, based on the data in `populations.txt`...
 ::: {exercise-end}
 :::
 
-::: {solution-start} data-statistics
+::: {solution-start} statistics-with-arrays
 :class: dropdown
 :::
 
@@ -312,7 +312,7 @@ print("Exact:", np.log(2) - 0.5)
 ## Mandelbrot set
 
 ::: {exercise-start}
-:label: mandelbrot-set
+:label: mandelbrot-fractal
 :class: dropdown
 :::
 
@@ -354,7 +354,7 @@ mask = np.ones((3, 3))
 ::: {exercise-end}
 :::
 
-::: {solution-start} mandelbrot-set
+::: {solution-start} mandelbrot-fractal
 :class: dropdown
 :::
 
@@ -399,7 +399,7 @@ plt.savefig("mandelbrot.png")
 ![](images/markov-chain.png)
 
 ::: {exercise-start}
-:label: markov-chain
+:label: markov-implementation
 :class: dropdown
 :::
 
@@ -429,7 +429,7 @@ comparisons, `all`, `np.linalg.norm`, etc.
 ::: {exercise-end}
 :::
 
-::: {solution-start} markov-chain
+::: {solution-start} markov-implementation
 :class: dropdown
 :::
 
