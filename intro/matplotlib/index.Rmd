@@ -140,13 +140,12 @@ You can get source for each step by clicking on the corresponding figure.
 
 ### Plotting with default settings
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_1_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_1.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_1_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_1.html
+```
+
 
 :::{hint}
 
@@ -185,13 +184,12 @@ plt.show()
 
 ### Instantiating defaults
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_2_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_2.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_2_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_2.html
+```
+
 
 :::{hint}
 Documentation
@@ -252,13 +250,12 @@ plt.show()
 
 ### Changing colors and line widths
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_3_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_3.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_3_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_3.html
+```
+
 
 :::{hint}
 Documentation
@@ -287,13 +284,12 @@ plt.plot(X, S, color="red",  linewidth=2.5, linestyle="-")
 
 ### Setting limits
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_4_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_4.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_4_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_4.html
+```
+
 
 :::{hint}
 Documentation
@@ -320,13 +316,12 @@ plt.ylim(C.min() * 1.1, C.max() * 1.1)
 
 ### Setting ticks
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_5_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_5.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_5_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_5.html
+```
+
 
 :::{hint}
 Documentation
@@ -356,13 +351,12 @@ plt.yticks([-1, 0, +1])
 
 ### Setting tick labels
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_6_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_6.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_6_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_6.html
+```
+
 
 :::{hint}
 Documentation
@@ -398,13 +392,12 @@ plt.yticks([-1, 0, +1],
 
 ### Moving spines
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_7_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_7.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_7_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_7.html
+```
+
 
 :::{hint}
 Documentation
@@ -442,13 +435,12 @@ ax.spines['left'].set_position(('data',0))
 
 ### Adding a legend
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_8_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_8.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_8_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_8.html
+```
+
 
 :::{hint}
 Documentation
@@ -479,13 +471,12 @@ plt.legend(loc='upper left')
 
 ### Annotate some points
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_9_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_9.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_9_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_9.html
+```
+
 
 :::{hint}
 Documentation
@@ -530,13 +521,12 @@ plt.annotate(r'$sin(\frac{2\pi}{3})=\frac{\sqrt{3}}{2}$',
 
 ### Devil is in the details
 
-<!---
-# ```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_10_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/exercises/plot_exercise_10.html
-# ```
--->
+```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_10_001.png
+:align: right
+:scale: 35
+:target: auto_examples/exercises/plot_exercise_10.html
+```
+
 
 :::{hint}
 Documentation
@@ -634,39 +624,34 @@ the number of rows and columns and the number of the plot. Note that the
 is a more powerful alternative.
 :::
 
-<!---
 # avoid an ugly interplay between 'tip' and the images below: we want a
 # line-return
--->
+
 {{ clear_floats }}
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_subplot-horizontal_001.png
-# :scale: 25
-# :target: auto_examples/plot_subplot-horizontal.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_subplot-horizontal_001.png
+:scale: 25
+:target: auto_examples/plot_subplot-horizontal.html
+```
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_subplot-vertical_001.png
-# :scale: 25
-# :target: auto_examples/plot_subplot-vertical.html
-# ```
--->
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_subplot-grid_001.png
-# :scale: 25
-# :target: auto_examples/plot_subplot-grid.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_subplot-vertical_001.png
+:scale: 25
+:target: auto_examples/plot_subplot-vertical.html
+```
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_gridspec_001.png
-# :scale: 25
-# :target: auto_examples/plot_gridspec.html
-# ```
--->
+
+```{image} auto_examples/images/sphx_glr_plot_subplot-grid_001.png
+:scale: 25
+:target: auto_examples/plot_subplot-grid.html
+```
+
+
+```{image} auto_examples/images/sphx_glr_plot_gridspec_001.png
+:scale: 25
+:target: auto_examples/plot_gridspec.html
+```
+
 
 ### Axes
 
@@ -674,19 +659,17 @@ Axes are very similar to subplots but allow placement of plots at any location
 in the figure. So if we want to put a smaller plot inside a bigger one we do
 so with axes.
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_axes_001.png
-# :scale: 35
-# :target: auto_examples/plot_axes.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_axes_001.png
+:scale: 35
+:target: auto_examples/plot_axes.html
+```
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_axes-2_001.png
-# :scale: 35
-# :target: auto_examples/plot_axes-2.html
-# ```
--->
+
+```{image} auto_examples/images/sphx_glr_plot_axes-2_001.png
+:scale: 35
+:target: auto_examples/plot_axes-2.html
+```
+
 
 ### Ticks
 
@@ -710,12 +693,11 @@ ax.xaxis.set_major_locator(eval(locator))
 
 There are several locators for different kind of requirements:
 
-<!---
-# ```{image} auto_examples/options/images/sphx_glr_plot_ticks_001.png
-# :scale: 60
-# :target: auto_examples/options/plot_ticks.html
-# ```
--->
+```{image} auto_examples/options/images/sphx_glr_plot_ticks_001.png
+:scale: 60
+:target: auto_examples/options/plot_ticks.html
+```
+
 
 All of these locators derive from the base class {class}`matplotlib.ticker.Locator`.
 You can make your own locator deriving from it. Handling dates as ticks can be
@@ -724,99 +706,86 @@ matplotlib.dates.
 
 ## Other Types of Plots: examples and exercises
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_plot_ext_001.png
-# :scale: 39
-# :target: '`Regular Plots`_'
-# ```
--->
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_plot_ext_001.png
+:scale: 39
+:target: '`Regular Plots`_'
+```
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_scatter_ext_001.png
-# :scale: 39
-# :target: '`Scatter Plots`_'
-# ```
--->
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_bar_ext_001.png
-# :scale: 39
-# :target: '`Bar Plots`_'
-# ```
--->
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_scatter_ext_001.png
+:scale: 39
+:target: '`Scatter Plots`_'
+```
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_contour_ext_001.png
-# :scale: 39
-# :target: '`Contour Plots`_'
-# ```
--->
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_imshow_ext_001.png
-# :scale: 39
-# :target: '`Imshow`_'
-# ```
--->
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_bar_ext_001.png
+:scale: 39
+:target: '`Bar Plots`_'
+```
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_quiver_ext_001.png
-# :scale: 39
-# :target: '`Quiver Plots`_'
-# ```
--->
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_pie_ext_001.png
-# :scale: 39
-# :target: '`Pie Charts`_'
-# ```
--->
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_contour_ext_001.png
+:scale: 39
+:target: '`Contour Plots`_'
+```
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_grid_ext_001.png
-# :scale: 39
-# :target: '`Grids`_'
-# ```
--->
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_multiplot_ext_001.png
-# :scale: 39
-# :target: '`Multi Plots`_'
-# ```
--->
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_imshow_ext_001.png
+:scale: 39
+:target: '`Imshow`_'
+```
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_polar_ext_001.png
-# :scale: 39
-# :target: '`Polar Axis`_'
-# ```
--->
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_plot3d_ext_001.png
-# :scale: 39
-# :target: '`3D Plots`_'
-# ```
--->
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_quiver_ext_001.png
+:scale: 39
+:target: '`Quiver Plots`_'
+```
 
-<!---
-# ```{image} auto_examples/pretty_plots/images/sphx_glr_plot_text_ext_001.png
-# :scale: 39
-# :target: '`Text`_'
-# ```
--->
+
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_pie_ext_001.png
+:scale: 39
+:target: '`Pie Charts`_'
+```
+
+
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_grid_ext_001.png
+:scale: 39
+:target: '`Grids`_'
+```
+
+
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_multiplot_ext_001.png
+:scale: 39
+:target: '`Multi Plots`_'
+```
+
+
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_polar_ext_001.png
+:scale: 39
+:target: '`Polar Axis`_'
+```
+
+
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_plot3d_ext_001.png
+:scale: 39
+:target: '`3D Plots`_'
+```
+
+
+```{image} auto_examples/pretty_plots/images/sphx_glr_plot_text_ext_001.png
+:scale: 39
+:target: '`Text`_'
+```
+
 
 ### Regular Plots
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_plot_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_plot.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_plot_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_plot.html
+```
+
 
 Starting from the code below, try to reproduce the graphic taking
 care of filled areas:
@@ -838,13 +807,12 @@ Click on the figure for solution.
 
 ### Scatter Plots
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_scatter_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_scatter.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_scatter_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_scatter.html
+```
+
 
 Starting from the code below, try to reproduce the graphic taking
 care of marker size, color and transparency.
@@ -866,13 +834,12 @@ Click on figure for solution.
 
 ### Bar Plots
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_bar_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_bar.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_bar_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_bar.html
+```
+
 
 Starting from the code below, try to reproduce the graphic by
 adding labels for red bars.
@@ -903,13 +870,12 @@ Click on figure for solution.
 
 ### Contour Plots
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_contour_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_contour.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_contour_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_contour.html
+```
+
 
 Starting from the code below, try to reproduce the graphic taking
 care of the colormap (see [Colormaps] below).
@@ -935,13 +901,12 @@ Click on figure for solution.
 
 ### Imshow
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_imshow_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_imshow.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_imshow_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_imshow.html
+```
+
 
 Starting from the code below, try to reproduce the graphic taking
 care of colormap, image interpolation and origin.
@@ -966,13 +931,12 @@ Click on the figure for the solution.
 
 ### Pie Charts
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_pie_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_pie.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_pie_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_pie.html
+```
+
 
 Starting from the code below, try to reproduce the graphic taking
 care of colors and slices size.
@@ -991,13 +955,12 @@ Click on the figure for the solution.
 
 ### Quiver Plots
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_quiver_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_quiver.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_quiver_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_quiver.html
+```
+
 
 Starting from the code below, try to reproduce the graphic taking
 care of colors and orientations.
@@ -1016,13 +979,12 @@ Click on figure for solution.
 
 ### Grids
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_grid_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_grid.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_grid_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_grid.html
+```
+
 
 Starting from the code below, try to reproduce the graphic taking
 care of line styles.
@@ -1039,13 +1001,12 @@ Click on figure for solution.
 
 ### Multi Plots
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_multiplot_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_multiplot.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_multiplot_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_multiplot.html
+```
+
 
 Starting from the code below, try to reproduce the graphic.
 
@@ -1063,13 +1024,12 @@ Click on figure for solution.
 
 ### Polar Axis
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_polar_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_polar.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_polar_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_polar.html
+```
+
 
 :::{hint}
 You only need to modify the `axes` line
@@ -1096,13 +1056,12 @@ Click on figure for solution.
 
 ### 3D Plots
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_plot3d_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_plot3d.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_plot3d_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_plot3d.html
+```
+
 
 Starting from the code below, try to reproduce the graphic.
 
@@ -1128,13 +1087,12 @@ Click on figure for solution.
 
 ### Text
 
-<!---
-# ```{image} auto_examples/images/sphx_glr_plot_text_001.png
-# :align: right
-# :scale: 35
-# :target: auto_examples/plot_text.html
-# ```
--->
+```{image} auto_examples/images/sphx_glr_plot_text_001.png
+:align: right
+:scale: 35
+:target: auto_examples/plot_text.html
+```
+
 
 Try to do the same from scratch !
 
@@ -1256,7 +1214,6 @@ technical.
 
 Here is a set of tables that show main properties and styles.
 
-<!---
 # ### Line properties
 #
 # .. list-table::
@@ -1323,24 +1280,22 @@ Here is a set of tables that show main properties and styles.
 #    * - markersize (ms)
 #      - size of the marker in points
 #      - .. image:: auto_examples/options/images/sphx_glr_plot_ms_001.png
--->
+
 
 
 
 ### Line styles
 
-<!---
-# ```{image} auto_examples/options/images/sphx_glr_plot_linestyles_001.png
-# ```
--->
+```{image} auto_examples/options/images/sphx_glr_plot_linestyles_001.png
+```
+
 
 ### Markers
 
-<!---
-# ```{image} auto_examples/options/images/sphx_glr_plot_markers_001.png
-# :scale: 90
-# ```
--->
+```{image} auto_examples/options/images/sphx_glr_plot_markers_001.png
+:scale: 90
+```
+
 
 ### Colormaps
 
@@ -1349,15 +1304,13 @@ the reverse of `gray`.
 
 If you want to know more about colormaps, check the [documentation on Colormaps in matplotlib](https://matplotlib.org/tutorials/colors/colormaps.html).
 
-<!---
-# ```{image} auto_examples/options/images/sphx_glr_plot_colormaps_001.png
-# :scale: 80
-# ```
--->
+```{image} auto_examples/options/images/sphx_glr_plot_colormaps_001.png
+:scale: 80
+```
 
-<!---
+
 ## Full code examples
 
 # .. include::  auto_examples/index.rst
 #     :start-line: 1
--->
+
