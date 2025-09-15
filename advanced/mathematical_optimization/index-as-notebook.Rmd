@@ -1,0 +1,1540 @@
+---
+substitutions:
+  1d_optim_1: |-
+    ```{image} auto_examples/images/sphx_glr_plot_1d_optim_001.png
+    :scale: 90%
+    ```
+  1d_optim_2: |-
+    ```{image} auto_examples/images/sphx_glr_plot_1d_optim_002.png
+    :scale: 75%
+    ```
+  1d_optim_3: |-
+    ```{image} auto_examples/images/sphx_glr_plot_1d_optim_003.png
+    :scale: 90%
+    ```
+  1d_optim_4: |-
+    ```{image} auto_examples/images/sphx_glr_plot_1d_optim_004.png
+    :scale: 75%
+    ```
+  agradient_gauss_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_005.png
+    :scale: 90%
+    ```
+  agradient_gauss_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_024.png
+    :scale: 75%
+    ```
+  agradient_quad_cond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_002.png
+    :scale: 90%
+    ```
+  agradient_quad_cond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_021.png
+    :scale: 75%
+    ```
+  agradient_quad_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_004.png
+    :scale: 90%
+    ```
+  agradient_quad_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_023.png
+    :scale: 75%
+    ```
+  agradient_rosen_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_006.png
+    :scale: 90%
+    ```
+  agradient_rosen_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_025.png
+    :scale: 75%
+    ```
+  bfgs_gauss_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_013.png
+    :scale: 90%
+    ```
+  bfgs_gauss_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_032.png
+    :scale: 75%
+    ```
+  bfgs_quad_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_012.png
+    :scale: 90%
+    ```
+  bfgs_quad_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_031.png
+    :scale: 75%
+    ```
+  bfgs_rosen_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_014.png
+    :scale: 90%
+    ```
+  bfgs_rosen_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_033.png
+    :scale: 75%
+    ```
+  cg_gauss_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_007.png
+    :scale: 90%
+    ```
+  cg_gauss_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_026.png
+    :scale: 75%
+    ```
+  cg_rosen_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_008.png
+    :scale: 90%
+    ```
+  cg_rosen_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_027.png
+    :scale: 75%
+    ```
+  constraints: |-
+    ```{image} auto_examples/images/sphx_glr_plot_constraints_001.png
+    :target: auto_examples/plot_constraints.html
+    ```
+  convex_1d_1: |-
+    ```{image} auto_examples/images/sphx_glr_plot_convex_001.png
+    ```
+  convex_1d_2: |-
+    ```{image} auto_examples/images/sphx_glr_plot_convex_002.png
+    ```
+  flat_min_0: |-
+    ```{image} auto_examples/images/sphx_glr_plot_exercise_flat_minimum_001.png
+    :scale: 48%
+    :target: auto_examples/plot_exercise_flat_minimum.html
+    ```
+  flat_min_1: |-
+    ```{image} auto_examples/images/sphx_glr_plot_exercise_flat_minimum_002.png
+    :scale: 48%
+    :target: auto_examples/plot_exercise_flat_minimum.html
+    ```
+  gradient_quad_cond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_001.png
+    :scale: 90%
+    ```
+  gradient_quad_cond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_020.png
+    :scale: 75%
+    ```
+  gradient_quad_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_003.png
+    :scale: 90%
+    ```
+  gradient_quad_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_022.png
+    :scale: 75%
+    ```
+  ncg_gauss_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_010.png
+    :scale: 90%
+    ```
+  ncg_gauss_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_029.png
+    :scale: 75%
+    ```
+  ncg_quad_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_009.png
+    :scale: 90%
+    ```
+  ncg_quad_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_028.png
+    :scale: 75%
+    ```
+  ncg_rosen_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_011.png
+    :scale: 90%
+    ```
+  ncg_rosen_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_030.png
+    :scale: 75%
+    ```
+  nm_gauss_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_018.png
+    :scale: 90%
+    ```
+  nm_gauss_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_037.png
+    :scale: 75%
+    ```
+  nm_rosen_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_019.png
+    :scale: 90%
+    ```
+  nm_rosen_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_038.png
+    :scale: 75%
+    ```
+  noisy: |-
+    ```{image} auto_examples/images/sphx_glr_plot_noisy_001.png
+    ```
+  powell_gauss_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_016.png
+    :scale: 90%
+    ```
+  powell_gauss_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_035.png
+    :scale: 75%
+    ```
+  powell_quad_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_015.png
+    :scale: 90%
+    ```
+  powell_quad_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_034.png
+    :scale: 75%
+    ```
+  powell_rosen_icond: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_017.png
+    :scale: 90%
+    ```
+  powell_rosen_icond_conv: |-
+    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_036.png
+    :scale: 75%
+    ```
+  smooth_1d_1: |-
+    ```{image} auto_examples/images/sphx_glr_plot_smooth_001.png
+    ```
+  smooth_1d_2: |-
+    ```{image} auto_examples/images/sphx_glr_plot_smooth_002.png
+    ```
+jupyter:
+  jupytext:
+    formats: ipynb,Rmd
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.17.3
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+(mathematical-optimization)=
+
+# Mathematical optimization: finding minima of functions
+
+```{python tags=c("hide-input")}
+import numpy as np
+```
+
+**Authors**: *Gaël Varoquaux*
+
+[Mathematical optimization](https://en.wikipedia.org/wiki/Mathematical_optimization) deals with the
+problem of finding numerically minimums (or maximums or zeros) of
+a function. In this context, the function is called *cost function*, or
+*objective function*, or *energy*.
+
+Here, we are interested in using {mod}`scipy.optimize` for black-box
+optimization: we do not rely on the mathematical expression of the
+function that we are optimizing. Note that this expression can often be
+used for more efficient, non black-box, optimization.
+
+:::{admonition} Prerequisites
+.. rst-class:: horizontal
+
+ * :ref:`NumPy <numpy>`
+ * :ref:`SciPy <scipy>`
+ * :ref:`Matplotlib <matplotlib>`
+:::
+
+:::{admonition} See also
+
+**References**
+
+Mathematical optimization is very ... mathematical. If you want
+performance, it really pays to read the books:
+
+- [Convex Optimization](https://web.stanford.edu/~boyd/cvxbook/)
+  by Boyd and Vandenberghe (pdf available free online).
+- [Numerical Optimization](https://users.eecs.northwestern.edu/~nocedal/book/num-opt.html),
+  by Nocedal and Wright. Detailed reference on gradient descent methods.
+- [Practical Methods of Optimization](https://www.amazon.com/gp/product/0471494631/ref=ox_sc_act_title_1?ie=UTF8&smid=ATVPDKIKX0DER) by Fletcher: good at hand-waving explanations.
+:::
+
+.. include:: ../../includes/big_toc_css.rst
+   :start-line: 1
+
+
+<!---
+XXX: should I discuss root finding?
+-->
+
+## Knowing your problem
+
+Not all optimization problems are equal. Knowing your problem enables you
+to choose the right tool.
+
+:::{admonition} Dimensionality of the problem
+The scale of an optimization problem is pretty much set by the
+*dimensionality of the problem*, i.e. the number of scalar variables
+on which the search is performed.
+:::
+
+### Convex versus non-convex optimization
+
+.. list-table::
+
+ * - |convex_1d_1|
+
+   - |convex_1d_2|
+
+ * - **A convex function**:
+
+     - `f` is above all its tangents.
+     - equivalently, for two point A, B, f(C) lies below the segment
+       [f(A), f(B])], if A < C < B
+
+   - **A non-convex function**
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.linspace(-1, 2)
+
+plt.figure(figsize=(12, 4))
+plt.subplot(1, 2, 1)
+
+# A convex function
+plt.plot(x, x**2, linewidth=2)
+plt.text(-0.7, -(0.6**2), "$f$", size=20)
+
+# The tangent in one point
+plt.plot(x, 2 * x - 1)
+plt.plot(1, 1, "k+")
+plt.text(0.3, -0.75, "Tangent to $f$", size=15)
+plt.text(1, 1 - 0.5, "C", size=15)
+
+# Convexity as barycenter
+plt.plot([0.35, 1.85], [0.35**2, 1.85**2])
+plt.plot([0.35, 1.85], [0.35**2, 1.85**2], "k+")
+plt.text(0.35 - 0.2, 0.35**2 + 0.1, "A", size=15)
+plt.text(1.85 - 0.2, 1.85**2, "B", size=15)
+
+plt.ylim(ymin=-1)
+plt.xticks([])
+plt.yticks([])
+plt.title("A Convex Function", fontstyle='italic')
+
+# Convexity as barycenter
+plt.subplot(1, 2, 2)
+plt.plot(x, x**2 + np.exp(-5 * (x - 0.5) ** 2), linewidth=2)
+plt.text(-0.7, -(0.6**2), "$f$", size=20)
+
+plt.ylim(ymin=-1)
+plt.xticks([])
+plt.yticks([])
+plt.title('A Non-convex Function', fontstyle='italic')
+
+caption_text_1="""
+- $f$ is above all its tangents. 
+- equivalently, for two points $A, B, f(C)$ lies below the segment
+$[f(A), f(B])], \\text{if } A < C < B $
+"""
+
+plt.figtext(0.25, -0.2, caption_text_1, wrap=True,
+            horizontalalignment='center',
+            fontsize=12)
+plt.tight_layout();
+```
+
+
+**Optimizing convex functions is easy. Optimizing non-convex functions can
+be very hard.**
+
+:::{note}
+It can be proven that for a convex function a local minimum is
+also a global minimum. Then, in some sense, the minimum is unique.
+:::
+
+### Smooth and non-smooth problems
+
+.. list-table::
+
+ * - |smooth_1d_1|
+
+   - |smooth_1d_2|
+
+ * - **A smooth function**:
+
+     The gradient is defined everywhere, and is a continuous function
+
+   - **A non-smooth function**
+
+**Optimizing smooth functions is easier**
+(true in the context of *black-box* optimization, otherwise
+[Linear Programming](https://en.wikipedia.org/wiki/Linear_programming)
+is an example of methods which deal very efficiently with
+piece-wise linear functions).
+
+
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(8, 4))
+x = np.linspace(-1.5, 1.5, 101)
+
+# A smooth function
+plt.subplot(1, 2, 1)
+
+plt.plot(x, np.sqrt(0.2 + x**2), linewidth=2)
+plt.text(-1, 0, "$f$", size=20)
+plt.title('A Smooth Function',  fontstyle='italic')
+
+plt.ylim(ymin=-0.2)
+plt.axis("off")
+plt.tight_layout()
+
+# A non-smooth function
+plt.subplot(1, 2, 2)
+plt.plot(x, np.abs(x), linewidth=2)
+plt.text(-1, 0, "$f$", size=20)
+plt.title('A Non-smooth Function',  fontstyle='italic')
+
+plt.ylim(ymin=-0.2)
+caption_text_1="""
+The gradient is defined everywhere, and is a continuous function.
+"""
+
+plt.figtext(0.25, -0.2, caption_text_1, wrap=True,
+            horizontalalignment='center',
+            fontsize=12)
+plt.tight_layout();
+plt.axis("off")
+plt.tight_layout()
+
+```
+
+### Noisy versus exact cost functions
+
+.. list-table::
+
+ * - Noisy (blue) and non-noisy (green) functions
+
+   - |noisy|
+
+:::{admonition} Noisy gradients
+Many optimization methods rely on gradients of the objective function.
+If the gradient function is not given, they are computed numerically,
+which induces errors. In such situation, even if the objective
+function is not noisy, a gradient-based optimization may be a noisy
+optimization.
+:::
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 4))
+plt.subplot(1, 2, 1)
+caption_text_1="""
+ Noisy (blue) and non-noisy (green) functions
+"""
+
+plt.text(0.3, 0.45, caption_text_1, wrap=True,
+            horizontalalignment='left',
+            fontsize=12)
+plt.axis('off')
+
+rng = np.random.default_rng(27446968)
+
+x = np.linspace(-5, 5, 101)
+x_ = np.linspace(-5, 5, 31)
+
+
+def f(x):
+    return -np.exp(-(x**2))
+
+
+# A smooth function
+plt.subplot(1, 2, 2)
+plt.plot(x_, f(x_) + 0.2 * np.random.normal(size=31), linewidth=2)
+plt.plot(x, f(x), linewidth=2)
+
+plt.ylim(ymin=-1.3)
+plt.axis("off")
+plt.tight_layout()
+plt.show()
+```
+
+### Constraints
+
+.. list-table::
+
+ * - Optimizations under constraints
+
+     Here:
+
+     :math:`-1 < x_1 < 1`
+
+     :math:`-1 < x_2 < 1`
+
+   - |constraints|
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy as sp
+
+plt.figure(figsize=(10, 4))
+plt.subplot(1, 2, 1)
+caption_text_1="""
+ - Optimizations under constraints
+
+    Here:
+
+     $-1 < x_1 < 1$
+
+     $-1 < x_2 < 1$
+"""
+
+plt.text(0.3, 0.45, caption_text_1, wrap=True,
+            horizontalalignment='left',
+            fontsize=12)
+plt.axis('off')
+
+
+plt.subplot(1, 2, 2)
+
+x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]  # type: ignore[misc]
+x = x.T
+y = y.T
+
+for i in (1, 2):
+    # Create 2 figure: only the second one will have the optimization
+    # path
+    contours = plt.contour(
+        np.sqrt((x - 3) ** 2 + (y - 2) ** 2),
+        extent=[-3, 6, -2.5, 5],
+        cmap="gnuplot",
+    )
+    plt.clabel(contours, inline=1, fmt="%1.1f", fontsize=14)
+    plt.plot(
+        [-1.5, -1.5, 1.5, 1.5, -1.5], [-1.5, 1.5, 1.5, -1.5, -1.5], "k", linewidth=2
+    )
+    plt.fill_between([-1.5, 1.5], [-1.5, -1.5], [1.5, 1.5], color=".8")
+    plt.axvline(0, color="k")
+    plt.axhline(0, color="k")
+
+    plt.text(-0.9, 4.4, "$x_2$", size=20)
+    plt.text(5.6, -0.6, "$x_1$", size=20)
+    plt.axis("scaled")
+    plt.axis("off")
+
+# And now plot the optimization path
+accumulator = []
+
+
+def f(x):
+    # Store the list of function calls
+    accumulator.append(x)
+    return np.sqrt((x[0] - 3) ** 2 + (x[1] - 2) ** 2)
+
+
+# We don't use the gradient, as with the gradient, L-BFGS is too fast,
+# and finds the optimum without showing us a pretty path
+def f_prime(x):
+    r = np.sqrt((x[0] - 3) ** 2 + (x[0] - 2) ** 2)
+    return np.array(((x[0] - 3) / r, (x[0] - 2) / r))
+
+
+sp.optimize.minimize(
+    f, np.array([0, 0]), method="L-BFGS-B", bounds=((-1.5, 1.5), (-1.5, 1.5))
+)
+accumulated = np.array(accumulator)
+plt.plot(accumulated[:, 0], accumulated[:, 1]);
+```
+
+## A review of the different optimizers
+
+### Getting started: 1D optimization
+
+Let's get started by finding the minimum of the scalar function
+$f(x)=\exp[(x-0.5)^2]$. {func}`scipy.optimize.minimize_scalar` uses
+Brent's method to find the minimum of a function:
+
+```{python}
+import numpy as np
+import scipy as sp
+def f(x):
+    return -np.exp(-(x - 0.5)**2)
+result = sp.optimize.minimize_scalar(f)
+result.success # check if solver was successful
+```
+
+```{python}
+x_min = result.x
+x_min
+```
+
+```{python}
+x_min - 0.5
+```
+
+.. list-table:: **Brent's method on a quadratic function**: it
+                converges in 3 iterations, as the quadratic
+                approximation is then exact.
+
+   * - |1d_optim_1|
+
+     - |1d_optim_2|
+
+.. list-table:: **Brent's method on a non-convex function**: note that
+                the fact that the optimizer avoided the local minimum
+                is a matter of luck.
+
+   * - |1d_optim_3|
+
+     - |1d_optim_4|
+
+:::{note}
+You can use different solvers using the parameter `method`.
+:::
+
+:::{note}
+{func}`scipy.optimize.minimize_scalar` can also be used for optimization
+constrained to an interval using the parameter `bounds`.
+:::
+
+
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import optimize
+
+x = np.linspace(-1, 3, 100)
+x_0 = np.exp(-1)
+
+def f(x):
+    return (x - x_0)**2 + epsilon*np.exp(-5*(x - .5 - x_0)**2)
+
+plt.figure(figsize=(12, 6))
+for epsilon in (0, 1):
+    if epsilon == 0:
+        subplot_n0 = 1
+        subplot_n1 = 2
+        subplot_n2 = 3
+    else:
+        subplot_n0 = 4
+        subplot_n1 = 5
+        subplot_n2 = 6
+        
+    plt.subplot(2, 3, subplot_n0)
+    plt.scatter([0, 1], [0, 1], c='white')
+    plt.axis('off')
+    if epsilon == 0:
+        plt.text(-0.3, 1, "Brent’s method on a quadratic function:", fontweight='bold', horizontalalignment='left',
+            fontsize=12)
+        caption_text = "This converges in 3 iterations, as the quadratic \napproximation is then exact."
+        plt.text(-0.3, 0.83, caption_text,
+            horizontalalignment='left',
+            fontsize=12,
+            wrap=True)
+    else:  
+        plt.text(-0.3, 1, "Brent’s method on a non-convex function", fontweight='bold', horizontalalignment='left',
+            fontsize=12)
+        caption_text = "Note that the fact that the optimizer avoided\nthe local minimum is a matter of luck."
+        plt.text(-0.3, 0.83, caption_text,
+            horizontalalignment='left',
+            fontsize=12,
+            wrap=True)
+        
+    plt.subplot(2, 3, subplot_n1)
+
+    # A convex function
+    plt.plot(x, f(x), linewidth=2)
+
+    # Apply brent method. To have access to the iteration, do this in an
+    # artificial way: allow the algorithm to iter only once
+    all_x = list()
+    all_y = list()
+    for iter in range(30):
+        result = optimize.minimize_scalar(f, bracket=(-5, 2.9, 4.5), method="Brent",
+                    options={"maxiter": iter}, tol=np.finfo(1.).eps)
+        if result.success:
+            print('Converged at ', iter)
+            break
+
+        this_x = result.x
+        all_x.append(this_x)
+        all_y.append(f(this_x))
+        if iter < 6:
+            plt.text(this_x - .05*np.sign(this_x) - .05,
+                    f(this_x) + 1.2*(.3 - iter % 2), iter + 1,
+                    size=12)
+
+    plt.plot(all_x[:10], all_y[:10], 'k+', markersize=12, markeredgewidth=2)
+    plt.plot(all_x[-1], all_y[-1], 'rx', markersize=12)
+    plt.ylim(ymin=-1, ymax=8)
+    
+    plt.subplot(2, 3, subplot_n2)
+    plt.semilogy(np.abs(all_y - all_y[-1]), linewidth=2)
+    plt.ylabel('Error on f(x)')
+    plt.xlabel('Iteration')
+    
+plt.tight_layout()
+```
+
+### Gradient based methods
+
+#### Some intuitions about gradient descent
+
+Here we focus on **intuitions**, not code. Code will follow.
+
+[Gradient descent](https://en.wikipedia.org/wiki/Gradient_descent)
+basically consists in taking small steps in the direction of the
+gradient, that is the direction of the *steepest descent*.
+
+.. list-table:: **Fixed step gradient descent**
+   :widths: 1 1 1
+
+   * - **A well-conditioned quadratic function.**
+
+     - |gradient_quad_cond|
+
+     - |gradient_quad_cond_conv|
+
+   * - **An ill-conditioned quadratic function.**
+
+       The core problem of gradient-methods on ill-conditioned problems is
+       that the gradient tends not to point in the direction of the
+       minimum.
+
+     - |gradient_quad_icond|
+
+     - |gradient_quad_icond_conv|
+
+We can see that very anisotropic ([ill-conditioned](https://en.wikipedia.org/wiki/Condition_number)) functions are harder
+to optimize.
+
+:::{admonition} Take home message: conditioning number and preconditioning
+If you know natural scaling for your variables, prescale them so that
+they behave similarly. This is related to [preconditioning](https://en.wikipedia.org/wiki/Preconditioner).
+:::
+
+Also, it clearly can be advantageous to take bigger steps. This
+is done in gradient descent code using a
+[line search](https://en.wikipedia.org/wiki/Line_search).
+
+.. list-table:: **Adaptive step gradient descent**
+   :widths: 1 1 1
+
+   * - A well-conditioned quadratic function.
+
+     - |agradient_quad_cond|
+
+     - |agradient_quad_cond_conv|
+
+   * - An ill-conditioned quadratic function.
+
+     - |agradient_quad_icond|
+
+     - |agradient_quad_icond_conv|
+
+   * - An ill-conditioned non-quadratic function.
+
+     - |agradient_gauss_icond|
+
+     - |agradient_gauss_icond_conv|
+
+   * - An ill-conditioned very non-quadratic function.
+
+     - |agradient_rosen_icond|
+
+     - |agradient_rosen_icond_conv|
+
+The more a function looks like a quadratic function (elliptic
+iso-curves), the easier it is to optimize.
+
+#### Conjugate gradient descent
+
+The gradient descent algorithms above are toys not to be used on real
+problems.
+
+As can be seen from the above experiments, one of the problems of the
+simple gradient descent algorithms, is that it tends to oscillate across
+a valley, each time following the direction of the gradient, that makes
+it cross the valley. The conjugate gradient solves this problem by adding
+a *friction* term: each step depends on the two last values of the
+gradient and sharp turns are reduced.
+
+.. list-table:: **Conjugate gradient descent**
+   :widths: 1 1 1
+
+   * - An ill-conditioned non-quadratic function.
+
+     - |cg_gauss_icond|
+
+     - |cg_gauss_icond_conv|
+
+   * - An ill-conditioned very non-quadratic function.
+
+     - |cg_rosen_icond|
+
+     - |cg_rosen_icond_conv|
+
+SciPy provides {func}`scipy.optimize.minimize` to find the minimum of scalar
+functions of one or more variables. The simple conjugate gradient method can
+be used by setting the parameter `method` to CG
+
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+sp.optimize.minimize(f, [2, -1], method="CG")
+```
+
+Gradient methods need the Jacobian (gradient) of the function. They can compute it
+numerically, but will perform better if you can pass them the gradient:
+
+```{python}
+def jacobian(x):
+    return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+sp.optimize.minimize(f, [2, 1], method="CG", jac=jacobian)
+```
+
+Note that the function has only been evaluated 27 times, compared to 108
+without the gradient.
+
+### Newton and quasi-newton methods
+
+#### Newton methods: using the Hessian (2nd differential)
+
+[Newton methods](https://en.wikipedia.org/wiki/Newton%27s_method_in_optimization) use a
+local quadratic approximation to compute the jump direction. For this
+purpose, they rely on the 2 first derivative of the function: the
+*gradient* and the [Hessian](https://en.wikipedia.org/wiki/Hessian_matrix).
+
+.. list-table::
+   :widths: 1 1 1
+
+   * - **An ill-conditioned quadratic function:**
+
+       Note that, as the quadratic approximation is exact, the Newton
+       method is blazing fast
+
+     - |ncg_quad_icond|
+
+     - |ncg_quad_icond_conv|
+
+   * - **An ill-conditioned non-quadratic function:**
+
+       Here we are optimizing a Gaussian, which is always below its
+       quadratic approximation. As a result, the Newton method overshoots
+       and leads to oscillations.
+
+     - |ncg_gauss_icond|
+
+     - |ncg_gauss_icond_conv|
+
+   * - **An ill-conditioned very non-quadratic function:**
+
+     - |ncg_rosen_icond|
+
+     - |ncg_rosen_icond_conv|
+
+In SciPy, you can use the Newton method by setting `method` to Newton-CG in
+{func}`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
+inversion of the Hessian is performed by conjugate gradient
+
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+def jacobian(x):
+    return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian)
+```
+
+Note that compared to a conjugate gradient (above), Newton's method has
+required less function evaluations, but more gradient evaluations, as it
+uses it to approximate the Hessian. Let's compute the Hessian and pass it
+to the algorithm:
+
+```{python}
+def hessian(x): # Computed with sympy
+    return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
+sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)
+```
+
+:::{note}
+At very high-dimension, the inversion of the Hessian can be costly
+and unstable (large scale > 250).
+:::
+
+:::{note}
+Newton optimizers should not to be confused with Newton's root finding
+method, based on the same principles, {func}`scipy.optimize.newton`.
+:::
+
+(quasi-newton)=
+
+#### Quasi-Newton methods: approximating the Hessian on the fly
+
+**BFGS**: BFGS (Broyden-Fletcher-Goldfarb-Shanno algorithm) refines at
+each step an approximation of the Hessian.
+
+## Full code examples
+
+<!---
+include the gallery. Skip the first line to avoid the "orphan"
+declaration
+-->
+.. include:: auto_examples/index.rst
+   :start-line: 1
+
+
+.. list-table::
+   :widths: 1 1 1
+
+   * - **An ill-conditioned quadratic function:**
+
+       On a exactly quadratic function, BFGS is not as fast as Newton's
+       method, but still very fast.
+
+     - |bfgs_quad_icond|
+
+     - |bfgs_quad_icond_conv|
+
+   * - **An ill-conditioned non-quadratic function:**
+
+       Here BFGS does better than Newton, as its empirical estimate of the
+       curvature is better than that given by the Hessian.
+
+     - |bfgs_gauss_icond|
+
+     - |bfgs_gauss_icond_conv|
+
+   * - **An ill-conditioned very non-quadratic function:**
+
+     - |bfgs_rosen_icond|
+
+     - |bfgs_rosen_icond_conv|
+
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+def jacobian(x):
+    return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+sp.optimize.minimize(f, [2, -1], method="BFGS", jac=jacobian)
+```
+
+**L-BFGS:** Limited-memory BFGS Sits between BFGS and conjugate gradient:
+in very high dimensions (> 250) the Hessian matrix is too costly to
+compute and invert. L-BFGS keeps a low-rank version. In addition, box bounds
+are also supported by L-BFGS-B:
+
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+def jacobian(x):
+    return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
+```
+
+### Gradient-less methods
+
+#### A shooting method: the Powell algorithm
+
+Almost a gradient approach
+
+.. list-table::
+   :widths: 1 1 1
+
+   * - **An ill-conditioned quadratic function:**
+
+       Powell's method isn't too sensitive to local ill-conditionning in
+       low dimensions
+
+     - |powell_quad_icond|
+
+     - |powell_quad_icond_conv|
+
+   * - **An ill-conditioned very non-quadratic function:**
+
+     - |powell_rosen_icond|
+
+     - |powell_rosen_icond_conv|
+
+
+#### Simplex method: the Nelder-Mead
+
+The Nelder-Mead algorithms is a generalization of dichotomy approaches to
+high-dimensional spaces. The algorithm works by refining a [simplex](https://en.wikipedia.org/wiki/Simplex), the generalization of intervals
+and triangles to high-dimensional spaces, to bracket the minimum.
+
+**Strong points**: it is robust to noise, as it does not rely on
+computing gradients. Thus it can work on functions that are not locally
+smooth such as experimental data points, as long as they display a
+large-scale bell-shape behavior. However it is slower than gradient-based
+methods on smooth, non-noisy functions.
+
+.. list-table::
+   :widths: 1 1 1
+
+   * - **An ill-conditioned non-quadratic function:**
+
+     - |nm_gauss_icond|
+
+     - |nm_gauss_icond_conv|
+
+   * - **An ill-conditioned very non-quadratic function:**
+
+     - |nm_rosen_icond|
+
+     - |nm_rosen_icond_conv|
+
+Using the Nelder-Mead solver in {func}`scipy.optimize.minimize`:
+
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+sp.optimize.minimize(f, [2, -1], method="Nelder-Mead")
+```
+
+### Global optimizers
+
+If your problem does not admit a unique local minimum (which can be hard
+to test unless the function is convex), and you do not have prior
+information to initialize the optimization close to the solution, you
+may need a global optimizer.
+
+#### Brute force: a grid search
+
+{func}`scipy.optimize.brute` evaluates the function on a given grid of
+parameters and returns the parameters corresponding to the minimum
+value. The parameters are specified with ranges given to
+{obj}`numpy.mgrid`. By default, 20 steps are taken in each direction:
+
+```{python}
+def f(x):   # The rosenbrock function
+    return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+sp.optimize.brute(f, ((-1, 2), (-1, 2)))
+```
+
+## Practical guide to optimization with SciPy
+
+### Choosing a method
+
+All methods are exposed as the `method` argument of
+{func}`scipy.optimize.minimize`.
+
+<!---
+![](auto_examples/images/sphx_glr_plot_compare_optimizers_001.png)
+# For parsing.
+:align: center
+:width: 95%
+-->
+
+
+:With knowledge of the gradient:
+
+ * **BFGS** or **L-BFGS**.
+
+ * Computational overhead of BFGS is larger than that L-BFGS, itself
+   larger than that of conjugate gradient. On the other side, BFGS usually
+   needs less function evaluations than CG. Thus conjugate gradient method
+   is better than BFGS at optimizing computationally cheap functions.
+
+:With the Hessian:
+
+ * If you can compute the Hessian, prefer the Newton method
+   (**Newton-CG** or **TCG**).
+
+:If you have noisy measurements:
+
+ * Use **Nelder-Mead** or **Powell**.
+
+Making your optimizer faster
+-----------------------------
+
+* Choose the right method (see above), do compute analytically the
+  gradient and Hessian, if you can.
+
+* Use `preconditionning <https://en.wikipedia.org/wiki/Preconditioner>`_
+  when possible.
+
+### Making your optimizer faster
+
+- Choose the right method (see above), do compute analytically the
+  gradient and Hessian, if you can.
+- Use [preconditionning](https://en.wikipedia.org/wiki/Preconditioner)
+  when possible.
+- Choose your initialization points wisely. For instance, if you are
+  running many similar optimizations, warm-restart one with the results of
+  another.
+- Relax the tolerance if you don't need precision using the parameter `tol`.
+
+### Computing gradients
+
+Computing gradients, and even more Hessians, is very tedious but worth
+the effort. Symbolic computation with {ref}`Sympy <sympy>` may come in
+handy.
+
+**Warning**
+
+A *very* common source of optimization not converging well is human
+error in the computation of the gradient. You can use
+{func}`scipy.optimize.check_grad` to check that your gradient is
+correct. It returns the norm of the different between the gradient
+given, and a gradient computed numerically:
+
+```{python}
+sp.optimize.check_grad(f, jacobian, [2, -1])
+```
+
+See also {func}`scipy.optimize.approx_fprime` to find your errors.
+
+### Synthetic exercises
+
+<!---
+![](auto_examples/images/sphx_glr_plot_exercise_ill_conditioned_001.png)
+# For parsing.
+:align: right
+:scale: 35%
+:target: auto_examples/plot_exercise_ill_conditioned.html
+-->
+
+:::{admonition} Exercise: A simple (?) quadratic function
+:class: green
+
+Optimize the following function, using K[0] as a starting point:
+
+```{python}
+rng = np.random.default_rng(27446968)
+K = rng.normal(size=(100, 100))
+
+def f(x):
+    return np.sum((K @ (x - 1))**2) + np.sum(x**2)**2
+```
+
+Time your approach. Find the fastest approach. Why is BFGS not
+working well?
+:::
+
+:::{admonition} Exercise: A locally flat minimum
+:class: green
+
+Consider the function `exp(-1/(.1*x**2 + y**2)`. This function admits
+a minimum in (0, 0). Starting from an initialization at (1, 1), try
+to get within 1e-8 of this minimum point.
+
+.. centered:: |flat_min_0| |flat_min_1|
+:::
+
+## Special case: non-linear least-squares
+
+### Minimizing the norm of a vector function
+
+Least square problems, minimizing the norm of a vector function, have a
+specific structure that can be used in the [Levenberg–Marquardt algorithm](https://en.wikipedia.org/wiki/Levenberg-Marquardt_algorithm)
+implemented in {func}`scipy.optimize.leastsq`.
+
+Lets try to minimize the norm of the following vectorial function:
+
+```{python}
+def f(x):
+    return np.arctan(x) - np.arctan(np.linspace(0, 1, len(x)))
+```
+
+```{python}
+x0 = np.zeros(10)
+sp.optimize.leastsq(f, x0)
+```
+
+This took 67 function evaluations (check it with 'full_output=True'). What
+if we compute the norm ourselves and use a good generic optimizer (BFGS):
+
+```{python}
+def g(x):
+    return np.sum(f(x)**2)
+result = sp.optimize.minimize(g, x0, method="BFGS")
+result.fun
+```
+
+BFGS needs more function calls, and gives a less precise result.
+
+:::{note}
+`leastsq` is interesting compared to BFGS only if the
+dimensionality of the output vector is large, and larger than the number
+of parameters to optimize.
+:::
+
+:::{warning}
+If the function is linear, this is a linear-algebra problem, and
+should be solved with {func}`scipy.linalg.lstsq`.
+:::
+
+### Curve fitting
+
+<!---
+![](auto_examples/images/sphx_glr_plot_curve_fitting_001.png)
+# These applied to image above; but {image} directive broke
+# parsing of Python block below.
+:align: right
+:scale: 48%
+:target: auto_examples/plot_curve_fitting.html
+-->
+
+Least square problems occur often when fitting a non-linear to data.
+While it is possible to construct our optimization problem ourselves,
+SciPy provides a helper function for this purpose:
+{func}`scipy.optimize.curve_fit`:
+
+```{python}
+def f(t, omega, phi):
+    return np.cos(omega * t + phi)
+```
+
+```{python}
+x = np.linspace(0, 3, 50)
+rng = np.random.default_rng(27446968)
+y = f(x, 1.5, 1) + .1*rng.normal(size=50)
+```
+
+```{python}
+sp.optimize.curve_fit(f, x, y)
+```
+
+```{python}
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(27446968)
+
+
+# Our test function
+def f(t, omega, phi):
+    return np.cos(omega * t + phi)
+
+
+# Our x and y data
+x = np.linspace(0, 3, 50)
+y = f(x, 1.5, 1) + 0.1 * np.random.normal(size=50)
+
+# Fit the model: the parameters omega and phi can be found in the
+# `params` vector
+params, params_cov = sp.optimize.curve_fit(f, x, y)
+
+# plot the data and the fitted curve
+t = np.linspace(0, 3, 1000)
+
+plt.figure(1)
+plt.clf()
+plt.plot(x, y, "bx")
+plt.plot(t, f(t, *params), "r-")
+plt.show()
+```
+
+:::{admonition} Exercise
+:class: green
+
+Do the same with omega = 3. What is the difficulty?
+:::
+
+## Optimization with constraints
+
+### Box bounds
+
+Box bounds correspond to limiting each of the individual parameters of
+the optimization. Note that some problems that are not originally written
+as box bounds can be rewritten as such via change of variables. Both
+{func}`scipy.optimize.minimize_scalar` and {func}`scipy.optimize.minimize`
+support bound constraints with the parameter `bounds`:
+
+```{python}
+def f(x):
+    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+
+sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
+```
+
+```{python}
+
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy as sp
+
+x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]  # type: ignore[misc]
+x = x.T
+y = y.T
+
+for i in (1, 2):
+    # Create 2 figure: only the second one will have the optimization
+    # path
+    if i == 2:
+        plt.figure(i, figsize=(3, 2.5))
+        plt.clf()
+        plt.axes((0, 0, 1, 1))
+
+        contours = plt.contour(
+            np.sqrt((x - 3) ** 2 + (y - 2) ** 2),
+            extent=[-3, 6, -2.5, 5],
+            cmap="gnuplot",
+        )
+        plt.clabel(contours, inline=1, fmt="%1.1f", fontsize=14)
+        plt.plot(
+            [-1.5, -1.5, 1.5, 1.5, -1.5], [-1.5, 1.5, 1.5, -1.5, -1.5], "k", linewidth=2
+        )
+        plt.fill_between([-1.5, 1.5], [-1.5, -1.5], [1.5, 1.5], color=".8")
+        plt.axvline(0, color="k")
+        plt.axhline(0, color="k")
+
+        plt.text(-0.9, 4.4, "$x_2$", size=20)
+        plt.text(5.6, -0.6, "$x_1$", size=20)
+        plt.axis("equal")
+        plt.axis("off")
+
+# And now plot the optimization path
+accumulator = []
+
+
+def f(x):
+    # Store the list of function calls
+    accumulator.append(x)
+    return np.sqrt((x[0] - 3) ** 2 + (x[1] - 2) ** 2)
+
+
+# We don't use the gradient, as with the gradient, L-BFGS is too fast,
+# and finds the optimum without showing us a pretty path
+def f_prime(x):
+    r = np.sqrt((x[0] - 3) ** 2 + (x[0] - 2) ** 2)
+    return np.array(((x[0] - 3) / r, (x[0] - 2) / r))
+
+
+sp.optimize.minimize(
+    f, np.array([0, 0]), method="L-BFGS-B", bounds=((-1.5, 1.5), (-1.5, 1.5))
+)
+
+accumulated = np.array(accumulator)
+plt.plot(accumulated[:, 0], accumulated[:, 1])
+
+plt.show()
+```
+
+<!---
+![](auto_examples/images/sphx_glr_plot_constraints_002.png)
+# For parsing.
+:align: right
+:scale: 75%
+:target: auto_examples/plot_constraints.html
+-->
+
+### General constraints
+
+Equality and inequality constraints specified as functions: $f(x) = 0$
+and $g(x) < 0$.
+
+#### {func}`scipy.optimize.fmin_slsqp` Sequential least square programming:
+equality and inequality constraints:
+
+<!---
+![](auto_examples/images/sphx_glr_plot_non_bounds_constraints_001.png)
+# For parsing.
+:align: right
+:scale: 75%
+:target: auto_examples/plot_non_bounds_constraints.html
+-->
+
+```{python}
+def f(x):
+    return np.sqrt((x[0] - 3)**2 + (x[1] - 2)**2)
+```
+
+```{python}
+def constraint(x):
+    return np.atleast_1d(1.5 - np.sum(np.abs(x)))
+```
+
+```{python}
+x0 = np.array([0, 0])
+sp.optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"})
+```
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy as sp
+
+x, y = np.mgrid[-2.03:4.2:0.04, -1.6:3.2:0.04]  # type: ignore[misc]
+x = x.T
+y = y.T
+
+plt.figure(1, figsize=(3, 2.5))
+plt.clf()
+plt.axes((0, 0, 1, 1))
+
+contours = plt.contour(
+    np.sqrt((x - 3) ** 2 + (y - 2) ** 2),
+    extent=[-2.03, 4.2, -1.6, 3.2],
+    cmap="gnuplot",
+)
+plt.clabel(contours, inline=1, fmt="%1.1f", fontsize=14)
+plt.plot([-1.5, 0, 1.5, 0, -1.5], [0, 1.5, 0, -1.5, 0], "k", linewidth=2)
+plt.fill_between([-1.5, 0, 1.5], [0, -1.5, 0], [0, 1.5, 0], color=".8")
+plt.axvline(0, color="k")
+plt.axhline(0, color="k")
+
+plt.text(-0.9, 2.8, "$x_2$", size=20)
+plt.text(3.6, -0.6, "$x_1$", size=20)
+plt.axis("tight")
+plt.axis("off")
+
+# And now plot the optimization path
+accumulator = []
+
+
+def f(x):
+    # Store the list of function calls
+    accumulator.append(x)
+    return np.sqrt((x[0] - 3) ** 2 + (x[1] - 2) ** 2)
+
+
+def constraint(x):
+    return np.atleast_1d(1.5 - np.sum(np.abs(x)))
+
+
+sp.optimize.minimize(
+    f, np.array([0, 0]), method="SLSQP", constraints={"fun": constraint, "type": "ineq"}
+)
+
+accumulated = np.array(accumulator)
+plt.plot(accumulated[:, 0], accumulated[:, 1])
+
+plt.show()
+```
+
+:::{warning}
+The above problem is known as the [Lasso](<https://en.wikipedia.org/wiki/Lasso_(statistics)>)
+problem in statistics, and there exist very efficient solvers for it
+(for instance in [scikit-learn](https://scikit-learn.org)). In
+general do not use generic solvers when specific ones exist.
+:::
+
+:::{admonition} Lagrange multipliers
+If you are ready to do a bit of math, many constrained optimization
+problems can be converted to non-constrained optimization problems
+using a mathematical trick known as [Lagrange multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier).
+:::
+
+## Full code examples
+
+<!---
+include the gallery. Skip the first line to avoid the "orphan"
+declaration
+-->
+.. include:: auto_examples/index.rst
+    :start-line: 1
+
+:::{admonition} See also
+
+**Other Software**
+
+SciPy tries to include the best well-established, general-use,
+and permissively-licensed optimization algorithms available. However,
+even better options for a given task may be available in other libraries;
+please also see [IPOPT] and [PyGMO].
+:::
+
+[ipopt]: https://github.com/xuy/pyipopt
+[pygmo]: https://esa.github.io/pygmo2/
+
+```{python}
+"""
+Alternating optimization
+=========================
+
+The challenge here is that Hessian of the problem is a very
+ill-conditioned matrix. This can easily be seen, as the Hessian of the
+first term in simply 2 * K.T @ K. Thus the conditioning of the
+problem can be judged from looking at the conditioning of K.
+"""
+
+import time
+
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(27446968)
+
+K = rng.normal(size=(100, 100))
+
+
+def f(x):
+    return np.sum((K @ (x - 1)) ** 2) + np.sum(x**2) ** 2
+
+
+def f_prime(x):
+    return 2 * K.T @ K @ (x - 1) + 4 * np.sum(x**2) * x
+
+
+def hessian(x):
+    H = 2 * K.T @ K + 4 * 2 * x * x[:, np.newaxis]
+    return H + 4 * np.eye(H.shape[0]) * np.sum(x**2)
+
+
+###############################################################################
+# Some pretty plotting
+
+plt.figure(1)
+plt.clf()
+Z = X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]  # type: ignore[misc]
+# Complete in the additional dimensions with zeros
+Z = np.reshape(Z, (2, -1)).copy()
+Z.resize((100, Z.shape[-1]))
+Z = np.apply_along_axis(f, 0, Z)
+Z = np.reshape(Z, X.shape)
+plt.imshow(Z.T, cmap="gray_r", extent=(-1.5, 1.5, -1.1, 1.1), origin="lower")
+plt.contour(X, Y, Z, cmap="gnuplot")
+
+# A reference but slow solution:
+t0 = time.time()
+x_ref = sp.optimize.minimize(f, K[0], method="Powell").x
+print(f"     Powell: time {time.time() - t0:.2f}s")
+f_ref = f(x_ref)
+
+# Compare different approaches
+t0 = time.time()
+x_bfgs = sp.optimize.minimize(f, K[0], method="BFGS").x
+print(
+    f"       BFGS: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_bfgs - x_ref) ** 2)):.2f}, f error {f(x_bfgs) - f_ref:.2f}"
+)
+
+t0 = time.time()
+x_l_bfgs = sp.optimize.minimize(f, K[0], method="L-BFGS-B").x
+print(
+    f"     L-BFGS: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_l_bfgs - x_ref) ** 2)):.2f}, f error {f(x_l_bfgs) - f_ref:.2f}"
+)
+
+
+t0 = time.time()
+x_bfgs = sp.optimize.minimize(f, K[0], jac=f_prime, method="BFGS").x
+print(
+    f"  BFGS w f': time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_bfgs - x_ref) ** 2)):.2f}, f error {f(x_bfgs) - f_ref:.2f}"
+)
+
+t0 = time.time()
+x_l_bfgs = sp.optimize.minimize(f, K[0], jac=f_prime, method="L-BFGS-B").x
+print(
+    f"L-BFGS w f': time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_l_bfgs - x_ref) ** 2)):.2f}, f error {f(x_l_bfgs) - f_ref:.2f}"
+)
+
+t0 = time.time()
+x_newton = sp.optimize.minimize(
+    f, K[0], jac=f_prime, hess=hessian, method="Newton-CG"
+).x
+print(
+    f"     Newton: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_newton - x_ref) ** 2)):.2f}, f error {f(x_newton) - f_ref:.2f}"
+)
+
+plt.show()
+```
+
+```{python}
+
+```
