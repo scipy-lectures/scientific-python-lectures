@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+""" Process sphinx-gallery examples in notebook
+"""
 
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import ast
