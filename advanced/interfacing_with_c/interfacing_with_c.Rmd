@@ -249,9 +249,7 @@ script:
 
 And this should result in the following figure:
 
-```{image} numpy_c_api/test_cos_module_np.png
-:scale: 50
-```
+![](numpy_c_api/test_cos_module_np.png)
 
 ## Ctypes
 
@@ -412,9 +410,7 @@ And, as before, we convince ourselves that it worked:
 :language: numpy
 ```
 
-```{image} ctypes_numpy/test_cos_doubles.png
-:scale: 50
-```
+![](ctypes_numpy/test_cos_doubles.png)
 
 ## SWIG
 
@@ -633,9 +629,7 @@ And, as before, we convince ourselves that it worked:
 :language: numpy
 ```
 
-```{image} swig_numpy/test_cos_doubles.png
-:scale: 50
-```
+![](swig_numpy/test_cos_doubles.png)
 
 ## Cython
 
@@ -832,9 +826,7 @@ And, as before, we convince ourselves that it worked:
 :language: numpy
 ```
 
-```{image} cython_numpy/test_cos_doubles.png
-:scale: 50
-```
+![](cython_numpy/test_cos_doubles.png)
 
 ## Summary
 

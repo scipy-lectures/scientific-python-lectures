@@ -42,10 +42,7 @@ substitutions:
 
 **Authors**: *Gael Varoquaux*
 
-```{image} images/scikit-learn-logo.png
-:align: right
-:scale: 40
-```
+![](images/scikit-learn-logo.png)
 
 :::{admonition} Prerequisites
 .. rst-class:: horizontal

@@ -1090,9 +1090,7 @@ should be preferred, as it uses more efficient underlying implementations.
 :::{admonition} Exercise: Denoise moon landing image
 :class: green
 
-```{image} ../../data/moonlanding.png
-:scale: 70
-```
+![](../../data/moonlanding.png)
 
 1. Examine the provided image {download}`moonlanding.png
    <../../data/moonlanding.png>`, which is heavily contaminated with periodic

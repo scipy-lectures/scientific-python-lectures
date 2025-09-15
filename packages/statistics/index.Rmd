@@ -288,10 +288,7 @@ the {ref}`scipy <scipy>` chapter.
 
 #### One-sample tests: testing the value of a population mean
 
-```{image} two_sided.png
-:align: right
-:scale: 50
-```
+![](two_sided.png)
 
 {func}`scipy.stats.ttest_1samp` tests the null hypothesis that the mean
 of the population underlying the data is equal to a given value. It returns
