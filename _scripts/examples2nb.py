@@ -96,7 +96,7 @@ def process_example(eg_path, import_lines=None):
             out_cells.append(cell)
     nb.cells = out_cells
     # Get title from filename if not already found.
-    if title is None and (m := re.match('plot_(.+)\.py', eg_path.name)):
+    if title is None and (m := re.match(r'plot_(.+)\.py', eg_path.name)):
         title = m.groups()[0]
     return nb, title
 
@@ -144,14 +144,26 @@ def get_parser():
     parser = ArgumentParser(description=__doc__,  # Usage from docstring
                             formatter_class=RawDescriptionHelpFormatter)
     parser.add_argument('nb_file', help='notebook file')
-    parser.add_argument('example_dir', help='path to examples')
+    parser.add_argument('--eg-dir', help='path to examples')
+    parser.add_argument('--root-dir', help='root path to book', default='.')
     return parser
 
 
 def main():
     parser = get_parser()
     args = parser.parse_args()
-    process_nb_examples(Path(args.nb_file), Path(args.example_dir))
+    nb_pth = Path(args.nb_file)
+    if not nb_pth.is_file():
+        raise RuntimeError(f'Notebook {nb_pth} is not a file')
+    if args.eg_dir is not None:
+        eg_pth = Path(args.eg_dir)
+    else:
+        eg_pth = nb_pth.parent / 'examples'
+        if not eg_pth.is_dir():
+            eg_pth = nb_pth.parent.parent / 'examples'
+        if not eg_pth.is_dir():
+            raise RuntimeError("Cannot find examples directory")
+    process_nb_examples(Path(args.root_dir), nb_pth, eg_pth)
 
 
 if __name__ == '__main__':
