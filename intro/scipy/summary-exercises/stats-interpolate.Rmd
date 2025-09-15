@@ -72,7 +72,7 @@ and they are assumed to fit the given wind speeds:
 sorted_max_speeds = np.sort(max_speeds)
 ```
 
-## Prediction with UnivariateSpline
+## Prediction with `UnivariateSpline`
 
 In this section the quantile function will be estimated by using the
 `UnivariateSpline` class which can represent a spline from points. The
