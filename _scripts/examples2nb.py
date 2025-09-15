@@ -101,13 +101,19 @@ def process_example(eg_path, import_lines=None):
     return nb, title
 
 
-def process_nb_examples(root_path, nb_path, examples_path):
+def process_nb_examples(root_path,
+                        nb_path,
+                        examples_path,
+                        use_title=True):
     # Get all references (something)=
     ref_defs = get_ref_targets(root_path)
     # Get all examples.
     examples = {}
     nb_imp_lines = []
-    for eg_path in examples_path.glob('plot_*.py'):
+    eg_paths = list(examples_path.glob('plot_*.py'))
+    if not eg_paths:
+        raise RuntimeError(f'No examples at {examples_path}')
+    for eg_path in eg_paths:
         nb, title = process_example(eg_path, nb_imp_lines)
         if title is None:
             ref = eg_path.with_suffix('').name
@@ -116,6 +122,7 @@ def process_nb_examples(root_path, nb_path, examples_path):
                    .replace('  ', ' ')
                    .replace(' ', '-'))
         assert ref not in ref_defs
+        title = title if use_title else eg_path.stem
         examples[ref] = (title, nb)
     # Analyze notebook for references to examples
     eg_refs = get_eg_refs(nb_path)
@@ -146,6 +153,9 @@ def get_parser():
     parser.add_argument('nb_file', help='notebook file')
     parser.add_argument('--eg-dir', help='path to examples')
     parser.add_argument('--root-dir', help='root path to book', default='.')
+    parser.add_argument('--eg-nb', help='Output notebook filename')
+    parser.add_argument('--fname-titles', action='store_true',
+                        help='If set, use filesnames as titles for examples')
     return parser
 
 
@@ -163,7 +173,15 @@ def main():
             eg_pth = nb_pth.parent.parent / 'examples'
         if not eg_pth.is_dir():
             raise RuntimeError("Cannot find examples directory")
-    process_nb_examples(Path(args.root_dir), nb_pth, eg_pth)
+    if args.eg_nb is not None:
+        eg_nb = Path(args.eg_nb)
+    else:
+        eg_nb = (nb_pth.parent / (nb_pth.stem + '_examples' + nb_pth.suffix))
+    out_txt = process_nb_examples(Path(args.root_dir),
+                                  nb_pth,
+                                  eg_pth,
+                                  not args.fname_titles)
+    eg_nb.write_text(out_txt)
 
 
 if __name__ == '__main__':
