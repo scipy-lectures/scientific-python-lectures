@@ -13,9 +13,7 @@ excellent tutorial <https://docs.python.org/3/tutorial>. Dedicated books
 are also available, such as [Dive into Python 3](https://diveintopython3.net/).
 :::
 
-```{image} python-logo.png
-:align: right
-```
+![](python-logo.png)
 
 :::{tip}
 Python is a **programming language**, as are C, Fortran, BASIC, PHP,

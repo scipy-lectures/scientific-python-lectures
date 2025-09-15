@@ -2,9 +2,7 @@
 
 # Image processing application: counting bubbles and unmolten grains
 
-```{image} ../image_processing/MV_HFV_012.jpg
-:align: center
-```
+![](../image_processing/MV_HFV_012.jpg)
 
 :::{only} latex
 :::

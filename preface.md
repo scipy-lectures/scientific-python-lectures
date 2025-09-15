@@ -9,9 +9,7 @@
 
 *Release:* {{ release }}
 
-```{image} https://zenodo.org/badge/doi/10.5281/zenodo.594102.svg
-:target: http://dx.doi.org/10.5281/zenodo.594102
-```
+![http://dx.doi.org/10.5281/zenodo.594102](https://zenodo.org/badge/doi/10.5281/zenodo.594102.svg)
 
 ```{raw} html
 <style type="text/css">
