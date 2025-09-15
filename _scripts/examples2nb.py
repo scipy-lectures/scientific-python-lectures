@@ -8,6 +8,7 @@ import re
 from pathlib import Path
 
 import jupytext
+import nbformat
 
 
 HEADER = '''\
@@ -82,9 +83,11 @@ def process_example(eg_path, import_lines=None):
             out_cells.append(cell)
             continue
         out_lines = []
+        show_cell = False
         for L in cell['source'].splitlines():
             sL = L.strip()
             if sL.startswith('plt.show'):
+                show_cell = True
                 continue
             if sL.startswith('import '):
                 if sL in import_lines:
@@ -93,6 +96,11 @@ def process_example(eg_path, import_lines=None):
             out_lines.append(L)
         if out_lines:
             cell['source'] = '\n'.join(out_lines)
+            if show_cell:
+                cell['metadata'] = cell.get('metadata', {})
+                cell['metadata']['tags'] = list(set(
+                    cell['metadata'].get('tags', [])
+                ).union(['hide-input']))
             out_cells.append(cell)
     nb.cells = out_cells
     # Get title from filename if not already found.
@@ -128,23 +136,24 @@ def process_nb_examples(root_path,
     eg_refs = get_eg_refs(nb_path)
     # Try to detect possible titles for each reference.
     # Run through examples in notebook order
-    nb_out = [HEADER, '# Examples for ' + str(nb_path)]
+    nb_out = jupytext.reads(HEADER, 'Rmd')
+    cells = nb_out.cells
+    nmc = nbformat.versions[nb_out['nbformat']].new_markdown_cell
+    cells.append(nmc('# Examples for ' + str(nb_path)))
     for eg_ref in eg_refs:
-        nb_out += ['', ''] + output_example(ref, examples, header_level=2)
+        cells +=  output_example(ref, examples, nmc, header_level=2)
     remaining = [ref for ref in examples if ref not in eg_refs]
     if remaining:
-        nb_out += ['', '', '## Other examples', '']
+        cells.append(nmc('## Other examples'))
         for ref in remaining:
-            nb_out += output_example(ref, examples, header_level=3)
-    return '\n'.join(nb_out)
+            cells += output_example(ref, examples, nmc, header_level=3)
+    return nb_out
 
 
-def output_example(ref, examples, header_level=2):
+def output_example(ref, examples, nmc, header_level=2):
     title, nb = examples[ref]
     title = ref.replace('-', ' ').title() if title is None else title
-    return [f'({ref})=', '',
-            '#' * header_level + ' ' + title, '',
-            jupytext.writes(nb, 'Rmd')]
+    return [nmc(f'({ref}=\n\n{'#' * header_level} {title}')] + nb.cells
 
 
 def get_parser():
@@ -177,11 +186,11 @@ def main():
         eg_nb = Path(args.eg_nb)
     else:
         eg_nb = (nb_pth.parent / (nb_pth.stem + '_examples' + nb_pth.suffix))
-    out_txt = process_nb_examples(Path(args.root_dir),
-                                  nb_pth,
-                                  eg_pth,
-                                  not args.fname_titles)
-    eg_nb.write_text(out_txt)
+    out_nb = process_nb_examples(Path(args.root_dir),
+                                 nb_pth,
+                                 eg_pth,
+                                 not args.fname_titles)
+    jupytext.write(out_nb, eg_nb, fmt='rmarkdown')
 
 
 if __name__ == '__main__':
