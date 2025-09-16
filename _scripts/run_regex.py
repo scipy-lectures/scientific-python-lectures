@@ -37,6 +37,7 @@ def main():
     args = parser.parse_args()
     for fname in args.fname:
         run_regexp(fname, IMAGE_NOT_EXAMPLE, REPLACER)
+        
 
 
 if __name__ == '__main__':
