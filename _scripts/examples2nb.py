@@ -142,9 +142,7 @@ def process_nb_examples(root_path, nb_path, examples_path):
         nb, title = process_example(eg_path, nb_imp_lines)
         eg_stem = eg_path.stem
         ref = (eg_stem if title is None else
-               re.sub(r',;:', '', title).lower()
-               .replace('  ', ' ')
-               .replace(' ', '-'))
+               re.sub(r'[^a-zA-Z0-9]', '-', title).lower().strip('-'))
         assert ref not in ref_defs
         examples[eg_stem] = nb, title, ref
     # Analyze notebook for references to examples
@@ -182,23 +180,20 @@ def get_parser():
 
 
 def main():
-    parser = get_parser()
-    args = parser.parse_args()
+    args = get_parser().parse_args()
+    # Process inputs and set defaults.
     nb_pth = Path(args.nb_file)
     if not nb_pth.is_file():
         raise RuntimeError(f'Notebook {nb_pth} is not a file')
     if args.eg_dir is not None:
         eg_pth = Path(args.eg_dir)
-    else:
-        eg_pth = nb_pth.parent / 'examples'
-        if not eg_pth.is_dir():
-            eg_pth = nb_pth.parent.parent / 'examples'
-        if not eg_pth.is_dir():
-            raise RuntimeError("Cannot find examples directory")
-    if args.eg_nb is not None:
-        eg_nb = Path(args.eg_nb)
-    else:
-        eg_nb = (nb_pth.parent / (nb_pth.stem + '_examples' + nb_pth.suffix))
+    elif (eg_pth := nb_pth.parent / 'examples').is_dir():
+        pass
+    elif not (eg_pth := nb_pth.parent.parent / 'examples').is_dir():
+        raise RuntimeError("Cannot find examples directory")
+    eg_nb = Path(args.eg_nb) if args.eg_nb is not None else (
+        nb_pth.parent / (nb_pth.stem + '_examples' + nb_pth.suffix))
+    # Generate, swrite examples notebook.
     out_nb = process_nb_examples(Path(args.root_dir), nb_pth, eg_pth)
     jupytext.write(out_nb, eg_nb, fmt='rmarkdown')
 
