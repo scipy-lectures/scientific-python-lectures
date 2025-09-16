@@ -4,6 +4,7 @@
 
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import ast
+from copy import deepcopy
 import re
 from pathlib import Path
 
@@ -11,7 +12,7 @@ import jupytext
 import nbformat
 
 
-HEADER = '''\
+HEADER = jupytext.reads('''\
 ---
 jupyter:
   jupytext:
@@ -27,8 +28,10 @@ jupyter:
     name: python3
 ---
 
-'''
+''', fmt='Rmd')
 
+# New Markdown cell function
+NMC = nbformat.versions[HEADER['nbformat']].new_markdown_cell
 
 
 def get_ref_targets(root_path, nb_ext='.Rmd', excludes=()):
@@ -37,15 +40,32 @@ def get_ref_targets(root_path, nb_ext='.Rmd', excludes=()):
         if nb_path in excludes:
             continue
         refs += re.findall(r"^\s*\(\s*([a-zA-Z0-9-_]+)\s*\)=\s*$",
+
                            nb_path.read_text(),
                            flags=re.MULTILINE)
     return refs
 
 
-def get_eg_refs(nb_path):
-    # Analyze notebook for references to examples
-    # Try to detect possible titles for each reference.
-    return []
+FIG_EG_RE = re.compile(r'''
+^(\s*:::+|```)\s*\{(?:figure|image)\}\s*
+auto_examples/.*?images/sphx_glr_(?P<stem>\w+?)_\d{3}\.png
+.*?
+\s*\1''', flags=re.MULTILINE | re.VERBOSE | re.DOTALL)
+
+
+def get_eg_stems(nb_path):
+    """ Analyze notebook for references to example output
+    """
+    refs = []
+    nb = jupytext.read(nb_path)
+    for cell in nb.cells:
+        if cell['cell_type'] != 'markdown':
+            continue
+        for ref in [m.groupdict()['stem']
+                    for m in FIG_EG_RE.finditer(cell['source'])]:
+            if ref not in refs:
+                refs.append(ref)
+    return refs
 
 
 def proc_str(s):
@@ -109,10 +129,7 @@ def process_example(eg_path, import_lines=None):
     return nb, title
 
 
-def process_nb_examples(root_path,
-                        nb_path,
-                        examples_path,
-                        use_title=True):
+def process_nb_examples(root_path, nb_path, examples_path):
     # Get all references (something)=
     ref_defs = get_ref_targets(root_path)
     # Get all examples.
@@ -123,37 +140,35 @@ def process_nb_examples(root_path,
         raise RuntimeError(f'No examples at {examples_path}')
     for eg_path in eg_paths:
         nb, title = process_example(eg_path, nb_imp_lines)
-        if title is None:
-            ref = eg_path.with_suffix('').name
-        else:
-            ref = (re.sub(r',;:', '', title).lower()
-                   .replace('  ', ' ')
-                   .replace(' ', '-'))
+        eg_stem = eg_path.stem
+        ref = (eg_stem if title is None else
+               re.sub(r',;:', '', title).lower()
+               .replace('  ', ' ')
+               .replace(' ', '-'))
         assert ref not in ref_defs
-        title = title if use_title else eg_path.stem
-        examples[ref] = (title, nb)
+        examples[eg_stem] = nb, title, ref
     # Analyze notebook for references to examples
-    eg_refs = get_eg_refs(nb_path)
+    eg_stems = get_eg_stems(nb_path)
     # Try to detect possible titles for each reference.
     # Run through examples in notebook order
-    nb_out = jupytext.reads(HEADER, 'Rmd')
+    nb_out = deepcopy(HEADER)
     cells = nb_out.cells
-    nmc = nbformat.versions[nb_out['nbformat']].new_markdown_cell
-    cells.append(nmc('# Examples for ' + str(nb_path)))
-    for eg_ref in eg_refs:
-        cells +=  output_example(ref, examples, nmc, header_level=2)
-    remaining = [ref for ref in examples if ref not in eg_refs]
+    cells.append(NMC(f'# Examples for {nb_path}'))
+    for eg_stem in eg_stems:
+        cells +=  output_example(eg_stem, examples, header_level=2)
+    remaining = [s for s in examples if s not in eg_stems]
     if remaining:
-        cells.append(nmc('## Other examples'))
-        for ref in remaining:
-            cells += output_example(ref, examples, nmc, header_level=3)
+        cells.append(NMC('## Other examples'))
+        for eg_stem in remaining:
+            cells += output_example(eg_stem, examples, header_level=3)
     return nb_out
 
 
-def output_example(ref, examples, nmc, header_level=2):
-    title, nb = examples[ref]
+def output_example(eg_stem, examples, header_level=2):
+    nb, title, ref = examples[eg_stem]
     title = ref.replace('-', ' ').title() if title is None else title
-    return [nmc(f'({ref}=\n\n{'#' * header_level} {title}')] + nb.cells
+    return [NMC(f'({ref})=\n\n{'#' * header_level} {title}\n\n'
+                f'<!--- {eg_stem} -->')] + nb.cells
 
 
 def get_parser():
@@ -163,8 +178,6 @@ def get_parser():
     parser.add_argument('--eg-dir', help='path to examples')
     parser.add_argument('--root-dir', help='root path to book', default='.')
     parser.add_argument('--eg-nb', help='Output notebook filename')
-    parser.add_argument('--fname-titles', action='store_true',
-                        help='If set, use filesnames as titles for examples')
     return parser
 
 
@@ -186,10 +199,7 @@ def main():
         eg_nb = Path(args.eg_nb)
     else:
         eg_nb = (nb_pth.parent / (nb_pth.stem + '_examples' + nb_pth.suffix))
-    out_nb = process_nb_examples(Path(args.root_dir),
-                                 nb_pth,
-                                 eg_pth,
-                                 not args.fname_titles)
+    out_nb = process_nb_examples(Path(args.root_dir), nb_pth, eg_pth)
     jupytext.write(out_nb, eg_nb, fmt='rmarkdown')
 
 
