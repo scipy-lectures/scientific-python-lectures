@@ -10,6 +10,8 @@ from pathlib import Path
 import jupytext
 import nbformat
 
+import chardet
+
 
 HEADER = '''\
 ---
@@ -30,14 +32,24 @@ jupyter:
 '''
 
 
+def get_encoding(fpath):
+    with open(fpath, 'rb') as file:
+        detector = chardet.universaldetector.UniversalDetector()
+        for line in file:
+            detector.feed(line)
+            if detector.done:
+                break
+        detector.close()
+    return detector.result['encoding']
 
 def get_ref_targets(root_path, nb_ext='.Rmd', excludes=()):
     refs = []
     for nb_path in root_path.glob('**/*' + nb_ext):
         if nb_path in excludes:
             continue
+        encoding = get_encoding(nb_path)
         refs += re.findall(r"^\s*\(\s*([a-zA-Z0-9-_]+)\s*\)=\s*$",
-                           nb_path.read_text(),
+                           nb_path.read_text(encoding=encoding),
                            flags=re.MULTILINE)
     return refs
 
