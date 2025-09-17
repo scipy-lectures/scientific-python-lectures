@@ -14,8 +14,7 @@ from sklearn import svm
 
 rng = np.random.default_rng(27446968)
 
-##############################################################################
-# data that is linearly separable
+# Data that is linearly separable
 
 
 def linear_model(rseed=42, n_samples=30):
@@ -62,8 +61,7 @@ ax.contour(
 )
 
 
-##############################################################################
-# data with a non-linear separation
+# Data with a non-linear separation
 
 
 def nonlinear_model(rseed=27446968, n_samples=30):
