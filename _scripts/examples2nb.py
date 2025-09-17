@@ -15,6 +15,7 @@ import nbformat
 HEADER = jupytext.reads('''\
 ---
 jupyter:
+  orphan: true
   jupytext:
     formats: ipynb,Rmd
     text_representation:
@@ -135,18 +136,25 @@ def process_nb_examples(root_path, nb_path, examples_path):
     # Get all examples.
     examples = {}
     nb_imp_lines = []
-    eg_paths = list(examples_path.glob('plot_*.py'))
-    if not eg_paths:
+    # Analyze notebook for references to examples
+    eg_stems = get_eg_stems(nb_path)
+    # Work through examples in notebook order.
+    eg_in = sorted(examples_path.glob('plot_*.py'))
+    if not eg_in:
         raise RuntimeError(f'No examples at {examples_path}')
+
+    def eg_sorter(pth):
+        return [eg_stems.index(pth.stem) if pth.stem in eg_stems
+                else len(eg_stems)]
+
+    eg_paths = sorted(eg_in, key=eg_sorter)  # Relies on stable sort.
     for eg_path in eg_paths:
         nb, title = process_example(eg_path, nb_imp_lines)
         eg_stem = eg_path.stem
         ref = (eg_stem if title is None else
-               re.sub(r'[^a-zA-Z0-9]', '-', title).lower().strip('-'))
+               re.sub(r'[^a-zA-Z0-9]+', '-', title).lower().strip('-'))
         assert ref not in ref_defs
         examples[eg_stem] = nb, title, ref
-    # Analyze notebook for references to examples
-    eg_stems = get_eg_stems(nb_path)
     # Try to detect possible titles for each reference.
     # Run through examples in notebook order
     nb_out = deepcopy(HEADER)
@@ -165,7 +173,7 @@ def process_nb_examples(root_path, nb_path, examples_path):
 def output_example(eg_stem, examples, header_level=2):
     nb, title, ref = examples[eg_stem]
     title = ref.replace('-', ' ').title() if title is None else title
-    return [NMC(f'({ref})=\n\n{'#' * header_level} {title}\n\n'
+    return [NMC(f'({ref})=\n\n{"#" * header_level} {title}\n\n'
                 f'<!--- {eg_stem} -->')] + nb.cells
 
 
