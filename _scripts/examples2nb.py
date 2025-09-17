@@ -193,7 +193,7 @@ def main():
         raise RuntimeError("Cannot find examples directory")
     eg_nb = Path(args.eg_nb) if args.eg_nb is not None else (
         nb_pth.parent / (nb_pth.stem + '_examples' + nb_pth.suffix))
-    # Generate, swrite examples notebook.
+    # Generate, write examples notebook.
     out_nb = process_nb_examples(Path(args.root_dir), nb_pth, eg_pth)
     jupytext.write(out_nb, eg_nb, fmt='rmarkdown')
 
