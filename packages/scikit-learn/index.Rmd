@@ -237,13 +237,9 @@ species. The data consist of the following:
 
 - Target classes to predict:
 
-  ```{eval-rst}
-  .. rst-class:: horizontal
-
-   * Setosa
-   * Versicolour
-   * Virginica
-  ```
+  * Setosa
+  * Versicolour
+  * Virginica
 
 {mod}`scikit-learn` embeds a copy of the iris CSV file along with a
 function to load it into NumPy arrays:
@@ -261,46 +257,69 @@ The features of each sample flower are stored in the `data` attribute
 of the dataset:
 
 ```{python}
-print(iris.data.shape)
+iris.data.shape
 ```
 
 ```{python}
 n_samples, n_features = iris.data.shape
-print(n_samples)
+n_samples
 ```
 
 ```{python}
-print(n_features)
+n_features
 ```
 
 ```{python}
-print(iris.data[0])
+iris.data[0]
 ```
 
 The information about the class of each sample is stored in the
 `target` attribute of the dataset:
 
 ```{python}
-print(iris.target.shape)
+iris.target.shape
 ```
 
 ```{python}
-print(iris.target)
+iris.target
 ```
 
 The names of the classes are stored in the last attribute, namely
 `target_names`:
 
 ```{python}
-print(iris.target_names)
+iris.target_names
 ```
 
 This data is four-dimensional, but we can visualize two of the
 dimensions at a time using a scatter plot:
 
-```{image} auto_examples/images/sphx_glr_plot_iris_scatter_001.png
-:align: left
-:target: auto_examples/plot_iris_scatter.html
+::: {note}
+
+There is a more elaborate visualization of this dataset is detailed in the
+:ref:`statistics` chapter.
+
+```{python tags=c("hide-input")}
+# Load the data
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+
+from matplotlib import ticker
+
+# The indices of the features that we are plotting
+x_index = 0
+y_index = 1
+
+# this formatter will label the colorbar with the correct target names
+formatter = ticker.FuncFormatter(lambda i, *args: iris.target_names[int(i)])
+
+plt.figure(figsize=(5, 4))
+plt.scatter(iris.data[:, x_index], iris.data[:, y_index], c=iris.target)
+plt.colorbar(ticks=[0, 1, 2], format=formatter)
+plt.xlabel(iris.feature_names[x_index])
+plt.ylabel(iris.feature_names[y_index])
+plt.tight_layout()
 ```
 
 :::{admonition} Exercise**:
@@ -329,7 +348,7 @@ when it is instantiated:
 
 ```{python}
 model = LinearRegression(n_jobs=1)
-print(model)
+model
 ```
 
 #### Fitting on data
@@ -406,7 +425,7 @@ X, y = iris.data, iris.target
 knn = neighbors.KNeighborsClassifier(n_neighbors=1)
 knn.fit(X, y)
 # What kind of iris has 3cm x 5cm sepal and 4cm x 2cm petal?
-print(iris.target_names[knn.predict([[3, 5, 4, 2]])])
+iris.target_names[knn.predict([[3, 5, 4, 2]])]
 ```
 
 :::{figure} auto_examples/images/sphx_glr_plot_iris_knn_001.png
@@ -651,11 +670,11 @@ clf.fit(X_train, y_train)
 # use the model to predict the labels of the test data
 predicted = clf.predict(X_test)
 expected = y_test
-print(predicted)
+predicted
 ```
 
 ```{python}
-print(expected)
+expected
 ```
 
 As above, we plot the digits with the predicted labels to get an idea of
@@ -680,11 +699,11 @@ the number of matches:
 
 ```{python}
 matches = (predicted == expected)
-print(matches.sum())
+matches.sum()
 ```
 
 ```{python}
-print(len(matches))
+len(matches)
 ```
 
 ```{python}
@@ -701,7 +720,7 @@ combines several measures and prints a table with the results:
 
 ```{python}
 from sklearn import metrics
-print(metrics.classification_report(expected, predicted))
+metrics.classification_report(expected, predicted)
 ```
 
 Another enlightening metric for this sort of multi-label classification
@@ -709,7 +728,7 @@ is a *confusion matrix*: it helps us visualize which labels are being
 interchanged in the classification errors:
 
 ```{python}
-print(metrics.confusion_matrix(expected, predicted))
+metrics.confusion_matrix(expected, predicted)
 ```
 
 We see here that in particular, the numbers 1, 2, 3, and 9 are often
@@ -735,11 +754,11 @@ the price of a new market given its attributes?:
 ```{python}
 from sklearn.datasets import fetch_california_housing
 data = fetch_california_housing(as_frame=True)
-print(data.data.shape)
+data.data.shape
 ```
 
 ```{python}
-print(data.target.shape)
+data.target.shape
 ```
 
 We can see that there are just over 20000 data points.
@@ -747,7 +766,7 @@ We can see that there are just over 20000 data points.
 The `DESCR` variable has a long description of the dataset:
 
 ```{python}
-print(data.DESCR)
+data.DESCR
 ```
 
 It often helps to quickly visualize pieces of the data using histograms,
@@ -842,7 +861,7 @@ clf.fit(X_train, y_train)
 ```{python}
 predicted = clf.predict(X_test)
 expected = y_test
-print("RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2)))
+"RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2))
 ```
 
 ```{image} auto_examples/images/sphx_glr_plot_california_prediction_010.png
@@ -918,7 +937,7 @@ y_pred = clf.predict(X)
 ```
 
 ```{python}
-print(metrics.confusion_matrix(y_pred, y))
+metrics.confusion_matrix(y_pred, y)
 ```
 
 Apparently, we've found a perfect classifier! But this is misleading for
@@ -1005,11 +1024,11 @@ y_pred = clf.predict(X_test)
 ```
 
 ```{python}
-print(metrics.confusion_matrix(y_test, y_pred))
+metrics.confusion_matrix(y_test, y_pred)
 ```
 
 ```{python}
-print(metrics.classification_report(y_test, y_pred))
+metrics.classification_report(y_test, y_pred)
 ```
 
 The averaged f1-score is often used as a convenient measure of the
@@ -1140,7 +1159,7 @@ of disease progression after one year:
 from sklearn.datasets import load_diabetes
 data = load_diabetes()
 X, y = data.data, data.target
-print(X.shape)
+X.shape
 ```
 
 With the default hyper-parameters: we compute the cross-validation score:
