@@ -34,6 +34,9 @@ jupyter:
 # New Markdown cell function
 NMC = nbformat.versions[HEADER['nbformat']].new_markdown_cell
 
+# Default encoding for notebooks and examples.
+NB_ENCODING='utf-8'
+
 
 def get_ref_targets(root_path, nb_ext='.Rmd', excludes=()):
     refs = []
@@ -41,8 +44,7 @@ def get_ref_targets(root_path, nb_ext='.Rmd', excludes=()):
         if nb_path in excludes:
             continue
         refs += re.findall(r"^\s*\(\s*([a-zA-Z0-9-_]+)\s*\)=\s*$",
-
-                           nb_path.read_text(),
+                           nb_path.read_text(NB_ENCODING),
                            flags=re.MULTILINE)
     return refs
 
@@ -83,7 +85,7 @@ def proc_str(s):
 
 def process_example(eg_path, import_lines=None):
     import_lines = [] if import_lines is None else import_lines
-    txt = eg_path.read_text()
+    txt = eg_path.read_text(NB_ENCODING)
     nb = jupytext.reads(txt, 'py:nomarker')
     title = None
     # Convert standalone multiline strings to Markdown cells.
