@@ -72,6 +72,7 @@ def get_eg_stems(nb_path):
 def proc_str(s):
     s = s.strip()
     lines = s.splitlines()
+    title = None
     if len(lines) > 2 and re.match(r'^[=-]{2,}\s*$', lines[1]):
         title = lines[0].strip()
         lines = lines[2:]

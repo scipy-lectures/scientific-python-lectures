@@ -25,20 +25,17 @@ substitutions:
     :target: auto_examples/plot_svm_non_linear.html
     :width: 400
     ```
-  setosa_picture: |-
-    ```{image} images/iris_setosa.jpg
-    ```
-  versicolor_picture: |-
-    ```{image} images/iris_versicolor.jpg
-    ```
-  virginica_picture: |-
-    ```{image} images/iris_virginica.jpg
-    ```
 ---
 
 (scikit-learn-chapter)=
 
 # scikit-learn: machine learning in Python
+
+```{python tags=c("hide-input")}
+import numpy as np
+# For doctest on headless environments
+import matplotlib.pyplot as plt
+```
 
 **Authors**: *Gael Varoquaux*
 
@@ -53,8 +50,9 @@ substitutions:
  * :ref:`ipython (the enhancements come handy) <interactive_work>`
 :::
 
-:::{sidebar} **Acknowledgements**
-This chapter is adapted from [a tutorial](https://www.youtube.com/watch?v=r4bRUvvlaBw) given by Gaël
+:::{admonition} **Acknowledgements**
+This chapter is adapted from [a
+tutorial](https://www.youtube.com/watch?v=r4bRUvvlaBw) given by Gaël
 Varoquaux, Jake Vanderplas, Olivier Grisel.
 :::
 
@@ -67,12 +65,6 @@ Varoquaux, Jake Vanderplas, Olivier Grisel.
 - The [documentation of scikit-learn](https://scikit-learn.org) is
   very complete and didactic.
 :::
-
-```{python tags=c("hide-input")}
-import numpy as np
-# For doctest on headless environments
-import matplotlib.pyplot as plt
-```
 
 ## Introduction: problem settings
 
@@ -92,13 +84,38 @@ to make computers learn to behave more intelligently by somehow
 like a database system would do.
 :::
 
-:::{figure} auto_examples/images/sphx_glr_plot_separator_001.png
-:align: right
-:target: auto_examples/plot_separator.html
-:width: 350
 
-A classification problem
-:::
+```{python tags=c("hide-input")}
+from sklearn.linear_model import SGDClassifier
+from sklearn.datasets import make_blobs
+
+# we create 50 separable synthetic points
+X, Y = make_blobs(n_samples=50, centers=2, random_state=0, cluster_std=0.60)
+
+# fit the model
+clf = SGDClassifier(loss="hinge", alpha=0.01, fit_intercept=True)
+clf.fit(X, Y)
+
+# plot the line, the points, and the nearest vectors to the plane
+xx = np.linspace(-1, 5, 10)
+yy = np.linspace(-1, 5, 10)
+X1, X2 = np.meshgrid(xx, yy)
+Z = np.empty(X1.shape)
+for (i, j), val in np.ndenumerate(X1):
+    x1 = val
+    x2 = X2[i, j]
+    p = clf.decision_function([[x1, x2]])
+    Z[i, j] = p[0]
+
+plt.figure(figsize=(4, 3))
+ax = plt.axes()
+ax.contour(
+    X1, X2, Z, [-1.0, 0.0, 1.0], colors="k", linestyles=["dashed", "solid", "dashed"]
+)
+ax.scatter(X[:, 0], X[:, 1], c=Y, cmap="Paired")
+ax.set_title('A classification problem')
+ax.axis("tight");
+```
 
 We'll take a look at two very simple machine learning tasks here. The
 first is a **classification** task: the figure shows a collection of
@@ -111,17 +128,33 @@ By drawing this separating line, we have learned a model which can
 plane which is unlabeled, this algorithm could now **predict** whether
 it's a blue or a red point.
 
-```{raw} html
-<div style="flush: both;"></div>
+```{python tags=c("hide-input")}
+from sklearn.linear_model import LinearRegression
+
+# x from 0 to 30
+rng = np.random.default_rng()
+x = 30 * rng.random((20, 1))
+# y = a*x + b with noise
+y = 0.5 * x + 1.0 + rng.normal(size=x.shape)
+
+# create a linear regression model
+model = LinearRegression()
+model.fit(x, y)
+
+# predict y from the data
+x_new = np.linspace(0, 30, 100)
+y_new = model.predict(x_new[:, np.newaxis])
+
+# plot the results
+plt.figure(figsize=(4, 3))
+ax = plt.axes()
+ax.scatter(x, y)
+ax.plot(x_new, y_new)
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.axis("tight")
+ax.set_title('A regression problem');
 ```
-
-:::{figure} auto_examples/images/sphx_glr_plot_linear_regression_001.png
-:align: right
-:target: auto_examples/plot_linear_regression.html
-:width: 350
-
-A regression problem
-:::
 
 The next simple task we'll look at is a **regression** task: a simple
 best-fit line to a set of data.
@@ -131,6 +164,7 @@ is that the model can make generalizations about new data. The model has
 been **learned** from the training data, and can be used to predict the
 result of test data: here, we might be given an x-value, and the model
 would allow us to predict the y value.
+
 
 ### Data in scikit-learn
 
@@ -170,20 +204,19 @@ iris data stored by scikit-learn. Suppose we want to recognize species of
 irises. The data consists of measurements of
 three different species of irises:
 
-| {{ setosa_picture }} | {{ versicolor_picture }} | {{ virginica_picture }} |
-| -------------------- | ------------------------ | ----------------------- |
+| ![](images/iris_setosa.jpg) | ![](images/iris_versicolor.jpg) | ![](images/iris_virginica.jpg) |
+| :------------------: | :----------------------: | :---------------------: |
 | Setosa Iris          | Versicolor Iris          | Virginica Iris          |
 
 :::{admonition} Quick Question:
-:class: green
 
-> **If we want to design an algorithm to recognize iris species, what
-> might the data be?**
->
-> Remember: we need a 2D array of size `[n_samples x n_features]`.
->
-> - What would the `n_samples` refer to?
-> - What might the `n_features` refer to?
+**If we want to design an algorithm to recognize iris species, what
+might the data be?**
+
+Remember: we need a 2D array of size `[n_samples x n_features]`.
+
+- What would the `n_samples` refer to?
+- What might the `n_features` refer to?
 :::
 
 Remember that there must be a **fixed** number of features for each
@@ -197,14 +230,10 @@ species. The data consist of the following:
 
 - Features in the Iris dataset:
 
-  ```{eval-rst}
-  .. rst-class:: horizontal
-
-   * sepal length (cm)
-   * sepal width (cm)
-   * petal length (cm)
-   * petal width (cm)
-  ```
+  * sepal length (cm)
+  * sepal width (cm)
+  * petal length (cm)
+  * petal width (cm)
 
 - Target classes to predict:
 
