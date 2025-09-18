@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -61,7 +61,7 @@ following [magic
 command](https://ipython.readthedocs.io/en/stable/interactive/magics.html):
 
 ```{python}
-%matplotlib
+# %matplotlib
 ```
 
 ### Jupyter notebook
@@ -125,28 +125,7 @@ help    -> Python's own help system.
 object? -> Details about 'object'. ?object also works, ?? prints more.
 ```
 
-::: {note}
-:class: dropdown
-
-You can also download each of the examples and run it using regular
-python, but you will lose interactive data manipulation:
-
-```bash
-$ python plot_exercise_1.py
-```
-
-You can get source for each step by clicking on the corresponding figure.
-
-:::
-
 ### Plotting with default settings
-
-```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_1_001.png
-:align: right
-:scale: 35
-:target: auto_examples/exercises/plot_exercise_1.html
-```
-
 
 :::{hint}
 
@@ -168,8 +147,6 @@ properties and so on.
 
 :::
 
-{{ clear_floats }}
-
 ```{python}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -178,19 +155,18 @@ X = np.linspace(-np.pi, np.pi, 256)
 C, S = np.cos(X), np.sin(X)
 
 plt.plot(X, C)
-plt.plot(X, S)
-
-plt.show()
+plt.plot(X, S);
 ```
+
+::: {note}
+
+You will notice that we used a semicolon (`;`) to end the last line in the
+cell above.  This is to prevent Jupyter or IPython echoing the return value of
+this final expression back to us in the notebook or console session.  It has no other effect; it does not affect the execution of the code.
+
+:::
 
 ### Instantiating defaults
-
-```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_2_001.png
-:align: right
-:scale: 35
-:target: auto_examples/exercises/plot_exercise_2.html
-```
-
 
 :::{hint}
 Documentation
@@ -238,23 +214,13 @@ plt.xticks(np.linspace(-4, 4, 9))
 plt.ylim(-1.0, 1.0)
 
 # Set y ticks
-plt.yticks(np.linspace(-1, 1, 5))
+plt.yticks(np.linspace(-1, 1, 5));
 
-# Save figure using 72 dots per inch
+# You could also save this figure using 72 dots per inch with:
 # plt.savefig("exercise_2.png", dpi=72)
-
-# Show result on screen
-plt.show()
 ```
 
 ### Changing colors and line widths
-
-```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_3_001.png
-:align: right
-:scale: 35
-:target: auto_examples/exercises/plot_exercise_3.html
-```
-
 
 :::{hint}
 Documentation
@@ -271,24 +237,13 @@ slightly thicker line for both of them. We'll also slightly alter the figure
 size to make it more horizontal.
 :::
 
-{{ clear_floats }}
-
 ```{python}
-...
 plt.figure(figsize=(10, 6), dpi=80)
 plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
-plt.plot(X, S, color="red",  linewidth=2.5, linestyle="-")
-...
+plt.plot(X, S, color="red",  linewidth=2.5, linestyle="-");
 ```
 
 ### Setting limits
-
-```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_4_001.png
-:align: right
-:scale: 35
-:target: auto_examples/exercises/plot_exercise_4.html
-```
-
 
 :::{hint}
 Documentation
@@ -307,20 +262,18 @@ some space in order to clearly see all data points.
 {{ clear_floats }}
 
 ```{python}
-...
+# As before.
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-")
+
+# Setting the axis limits.
 plt.xlim(X.min() * 1.1, X.max() * 1.1)
 plt.ylim(C.min() * 1.1, C.max() * 1.1)
-...
 ```
 
 ### Setting ticks
-
-```{image} auto_examples/exercises/images/sphx_glr_plot_exercise_5_001.png
-:align: right
-:scale: 35
-:target: auto_examples/exercises/plot_exercise_5.html
-```
-
 
 :::{hint}
 Documentation
@@ -339,13 +292,18 @@ Current ticks are not ideal because they do not show the interesting values
 only these values.
 :::
 
-{{ clear_floats }}
-
 ```{python}
-...
+# As before.
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-")
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.ylim(C.min() * 1.1, C.max() * 1.1)
+
+# Set x and y ticks.
 plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
 plt.yticks([-1, 0, +1])
-...
 ```
 
 ### Setting tick labels
