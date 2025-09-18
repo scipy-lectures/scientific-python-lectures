@@ -6,25 +6,11 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
----
-
----
-substitutions:
-  linear: |-
-    ```{image} auto_examples/images/sphx_glr_plot_svm_non_linear_001.png
-    :target: auto_examples/plot_svm_non_linear.html
-    :width: 400
-    ```
-  nonlinear: |-
-    ```{image} auto_examples/images/sphx_glr_plot_svm_non_linear_002.png
-    :target: auto_examples/plot_svm_non_linear.html
-    :width: 400
-    ```
 ---
 
 (scikit-learn-chapter)=
@@ -33,7 +19,6 @@ substitutions:
 
 ```{python tags=c("hide-input")}
 import numpy as np
-# For doctest on headless environments
 import matplotlib.pyplot as plt
 ```
 
@@ -51,9 +36,11 @@ import matplotlib.pyplot as plt
 :::
 
 :::{admonition} **Acknowledgements**
+
 This chapter is adapted from [a
 tutorial](https://www.youtube.com/watch?v=r4bRUvvlaBw) given by Gaël
 Varoquaux, Jake Vanderplas, Olivier Grisel.
+
 :::
 
 :::{admonition} See also
@@ -64,6 +51,7 @@ Varoquaux, Jake Vanderplas, Olivier Grisel.
   for readers looking into machine learning.
 - The [documentation of scikit-learn](https://scikit-learn.org) is
   very complete and didactic.
+  
 :::
 
 ## Introduction: problem settings
@@ -166,7 +154,7 @@ result of test data: here, we might be given an x-value, and the model
 would allow us to predict the y value.
 
 
-### Data in scikit-learn
+### Data in Scikit-learn
 
 #### The data matrix
 
@@ -300,11 +288,6 @@ There is a more elaborate visualization of this dataset is detailed in the
 :ref:`statistics` chapter.
 
 ```{python tags=c("hide-input")}
-# Load the data
-from sklearn.datasets import load_iris
-
-iris = load_iris()
-
 from matplotlib import ticker
 
 # The indices of the features that we are plotting
@@ -322,22 +305,27 @@ plt.ylabel(iris.feature_names[y_index])
 plt.tight_layout()
 ```
 
-:::{admonition} Exercise**:
-:class: green
+::: {exercise-start}
+:label: chose-two-features
+:class: dropdown
+:::
 
 Can you choose 2 features to find a plot where it is easier to
 separate the different classes of irises?
 
 **Hint**: click on the figure above to see the code that generates it,
 and modify this code.
+
+::: {exercise-end}
 :::
 
-## Basic principles of machine learning with scikit-learn
+## Basic principles of machine learning with Scikit-learn
 
-### Introducing the scikit-learn estimator object
+### Introducing the Scikit-learn estimator object
 
-Every algorithm is exposed in scikit-learn via an ''Estimator'' object.
-For instance a linear regression is: {class}`sklearn.linear_model.LinearRegression`
+Every algorithm is exposed in Scikit-learn via an "Estimator" object. For
+instance a linear regression is:
+{class}`sklearn.linear_model.LinearRegression`
 
 ```{python}
 from sklearn.linear_model import LinearRegression
@@ -362,7 +350,8 @@ y = np.array([0, 1, 2])
 ```
 
 ```{python}
-X = x[:, np.newaxis] # The input data for sklearn is 2D: (samples == 3 x features == 1)
+# The input data for sklearn is 2D: (samples == 3 x features == 1)
+X = x[:, np.newaxis]
 X
 ```
 
@@ -420,35 +409,82 @@ predominant class. Let's try it out on our iris classification problem:
 
 ```{python}
 from sklearn import neighbors, datasets
-iris = datasets.load_iris()
+
 X, y = iris.data, iris.target
 knn = neighbors.KNeighborsClassifier(n_neighbors=1)
 knn.fit(X, y)
+
 # What kind of iris has 3cm x 5cm sepal and 4cm x 2cm petal?
 iris.target_names[knn.predict([[3, 5, 4, 2]])]
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_iris_knn_001.png
-:align: center
-:target: auto_examples/plot_iris_knn.html
+```{python tags=c("hide-input")}
+from matplotlib.colors import ListedColormap
 
-A plot of the sepal space and the prediction of the KNN
-:::
+# Create color maps for 3-class classification problem, as with iris
+cmap_light = ListedColormap(["#FFAAAA", "#AAFFAA", "#AAAAFF"])
+cmap_bold = ListedColormap(["#FF0000", "#00FF00", "#0000FF"])
+
+X = iris.data[:, :2]  # we only take the first two features. We could
+# avoid this ugly slicing by using a two-dim dataset
+y = iris.target
+
+knn = neighbors.KNeighborsClassifier(n_neighbors=1)
+knn.fit(X, y)
+
+x_min, x_max = X[:, 0].min() - 0.1, X[:, 0].max() + 0.1
+y_min, y_max = X[:, 1].min() - 0.1, X[:, 1].max() + 0.1
+xx, yy = np.meshgrid(np.linspace(x_min, x_max, 100), np.linspace(y_min, y_max,
+100))
+Z = knn.predict(np.c_[xx.ravel(), yy.ravel()])
+
+# Put the result into a color plot
+Z = Z.reshape(xx.shape)
+plt.figure()
+plt.pcolormesh(xx, yy, Z, cmap=cmap_light)
+# Plot also the training points
+plt.scatter(X[:, 0], X[:, 1], c=y, cmap=cmap_bold)
+plt.xlabel("sepal length (cm)")
+plt.ylabel("sepal width (cm)")
+plt.axis("tight")
+plt.title('Sepal space and the prediction of the KNN');
+```
 
 **Regression**: The simplest possible regression setting is the linear
 regression one:
 
-```{literalinclude} examples/plot_linear_regression.py
-:end-before: plot the results
-:start-after: import matplotlib.pyplot as plt
+```{python}
+from sklearn.linear_model import LinearRegression
+
+# x from 0 to 30
+rng = np.random.default_rng()
+x = 30 * rng.random((20, 1))
+
+# y = a*x + b with noise
+y = 0.5 * x + 1.0 + rng.normal(size=x.shape)
+
+# create a linear regression model
+model = LinearRegression()
+model.fit(x, y)
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_linear_regression_001.png
-:align: center
-:target: auto_examples/plot_linear_regression.html
+```{python}
+# predict y from the data
+x_new = np.linspace(0, 30, 100)
+y_new = model.predict(x_new[:, np.newaxis])
+```
 
-A plot of a simple linear regression.
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(4, 3))
+ax = plt.axes()
+ax.scatter(x, y)
+ax.plot(x_new, y_new)
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.axis("tight");
+ax.set_title('A plot of a simple linear regression');
+```
+
 
 ### A recap on Scikit-learn's estimator interface
 
@@ -456,37 +492,11 @@ Scikit-learn strives to have a uniform interface across all methods, and
 we’ll see examples of these below. Given a scikit-learn *estimator*
 object named `model`, the following methods are available:
 
-
-:In **supervised estimators**:
-
-  - ``model.predict()`` : given a trained model, predict the label of a
-    new set of data. This method accepts one argument, the new data
-    ``X_new`` (e.g. ``model.predict(X_new)``), and returns the learned
-    label for each object in the array.
-  - ``model.predict_proba()`` : For classification problems, some
-    estimators also provide this method, which returns the probability
-    that a new observation has each categorical label. In this case, the
-    label with the highest probability is returned by
-    ``model.predict()``.
-  - ``model.score()`` : for classification or regression problems, most
-    (all?) estimators implement a score method. Scores are between 0 and
-    1, with a larger score indicating a better fit.
-
-:In **unsupervised estimators**:
-
-  - ``model.transform()`` : given an unsupervised model, transform new
-    data into the new basis. This also accepts one argument ``X_new``,
-    and returns the new representation of the data based on the
-    unsupervised model.
-  - ``model.fit_transform()`` : some estimators implement this method,
-    which more efficiently performs a fit and a transform on the same
-    input data.
-
-Regularization: what it is and why it is necessary
---------------------------------------------------
-
-Preferring simpler models
-~~~~~~~~~~~~~~~~~~~~~~~~~
+|   |   |
+| :- | :- |
+| **All Estimators** | • ``model.fit()`` : fit training data. For supervised learning applications, this accepts two arguments: the data ``X`` and the labels ``y`` (e.g. ``model.fit(X, y)``). For unsupervised learning applications, this accepts only a single argument, the data ``X`` (e.g. ``model.fit(X)``). |
+| **Supervised estimators** | • ``model.predict()`` : given a trained model, predict the label of a new set of data. This method accepts one argument, the new data ``X_new`` (e.g. ``model.predict(X_new)``), and returns the learned label for each object in the array.<br> • ``model.predict_proba()`` : For classification problems, some estimators also provide this method, which returns the probability that a new observation has each categorical label. In this case, the label with the highest probability is returned by ``model.predict()``.<br> • ``model.score()`` : for classification or regression problems, most (all?) estimators implement a score method. Scores are between 0 and 1, with a larger score indicating a better fit.|
+| **Unsupervised estimators** | • ``model.transform()`` : given an unsupervised model, transform new data into the new basis. This also accepts one argument ``X_new``, and returns the new representation of the data based on the unsupervised model.<br> • ``model.fit_transform()`` : some estimators implement this method, which more efficiently performs a fit and a transform on the same input data.|
 
 ### Regularization: what it is and why it is necessary
 
@@ -499,37 +509,66 @@ How many errors do you expect on your train set?
   You need to leave out a test set.
 - In general, we should accept errors on the train set.
 
-**An example of regularization** The core idea behind regularization is
-that we are going to prefer models that are simpler, for a certain
-definition of ''simpler'', even if they lead to more errors on the train
-set.
+**An example of regularization** The core idea behind regularization is that
+we are going to prefer models that are simpler, for a certain definition of
+''simpler'', even if they lead to more errors on the train set.
 
 As an example, let's generate with a 9th order polynomial, with noise:
 
-:::{figure} auto_examples/images/sphx_glr_plot_polynomial_regression_001.png
-:align: center
-:scale: 90
-:target: auto_examples/plot_polynomial_regression.html
-:::
+
+```{python tags=c("hide-input")}
+from sklearn import linear_model
+
+rng = np.random.default_rng(27446968)
+x = 2 * rng.random(100) - 1
+
+f = lambda t: 1.2 * t**2 + 0.1 * t**3 - 0.4 * t**5 - 0.5 * t**9
+y = f(x) + 0.4 * rng.normal(size=100)
+
+x_test = np.linspace(-1, 1, 100)
+plt.figure(figsize=(6, 4))
+plt.scatter(x, y, s=4);
+```
 
 And now, let's fit a 4th order and a 9th order polynomial to the data.
 
-:::{figure} auto_examples/images/sphx_glr_plot_polynomial_regression_002.png
-:align: center
-:scale: 90
-:target: auto_examples/plot_polynomial_regression.html
-:::
+```{python tags=c("hide-input")}
+# Fitting 4th and 9th order polynomials
+#
+# For this we need to engineer features: the n_th powers of x:
+plt.figure(figsize=(6, 4))
+plt.scatter(x, y, s=4)
 
-With your naked eyes, which model do you prefer, the 4th order one, or
-the 9th order one?
+X = np.array([x**i for i in range(5)]).T
+X_test = np.array([x_test**i for i in range(5)]).T
+regr = linear_model.LinearRegression()
+regr.fit(X, y)
+plt.plot(x_test, regr.predict(X_test), label="4th order")
+
+X = np.array([x**i for i in range(10)]).T
+X_test = np.array([x_test**i for i in range(10)]).T
+regr = linear_model.LinearRegression()
+regr.fit(X, y)
+plt.plot(x_test, regr.predict(X_test), label="9th order")
+
+plt.legend(loc="best")
+plt.axis("tight")
+plt.title("Fitting a 4th and a 9th order polynomial");
+```
+
+With your naked eye, which model do you prefer, the 4th order one, or the 9th
+order one?
 
 Let's look at the ground truth:
 
-:::{figure} auto_examples/images/sphx_glr_plot_polynomial_regression_003.png
-:align: center
-:scale: 90
-:target: auto_examples/plot_polynomial_regression.html
-:::
+```{python tags=c("hide-input")}
+# Ground truth
+plt.figure(figsize=(6, 4))
+plt.scatter(x, y, s=4)
+plt.plot(x_test, f(x_test), label="truth")
+plt.axis("tight")
+plt.title("Ground truth (9th order polynomial)");
+```
 
 ::: {note}
 :class: dropdown
@@ -544,9 +583,106 @@ boundaries in the feature space.
 
 #### Simple versus complex models for classification
 
-| {{ linear }}        | {{ nonlinear }}         |
-| ------------------- | ----------------------- |
-| A linear separation | A non-linear separation |
+```{python tags=c("hide-input")}
+# This is an example plot from the tutorial which accompanies an explanation
+# of the support vector machine GUI.
+
+from sklearn import svm
+
+rng = np.random.default_rng(27446968)
+
+# Data that is linearly separable
+def linear_model(rng, n_samples=30):
+    "Generate data according to a linear model"
+    data = rng.normal(0, 10, (n_samples, 2))
+    data[: n_samples // 2] -= 15
+    data[n_samples // 2 :] += 15
+
+    labels = np.ones(n_samples)
+    labels[: n_samples // 2] = -1
+
+    return data, labels
+
+X, y = linear_model(rng)
+clf = svm.SVC(kernel="linear")
+clf.fit(X, y)
+
+fig, axes = plt.subplots(1, 2, figsize=(10, 5))
+ax = axes[0]
+ax.scatter(X[:, 0], X[:, 1], c=y, cmap="bone")
+ax.scatter(
+    clf.support_vectors_[:, 0],
+    clf.support_vectors_[:, 1],
+    s=80,
+    edgecolors="k",
+    facecolors="none",
+)
+delta = 1
+y_min, y_max = -50, 50
+x_min, x_max = -50, 50
+x = np.arange(x_min, x_max + delta, delta)
+y = np.arange(y_min, y_max + delta, delta)
+X1, X2 = np.meshgrid(x, y)
+Z = clf.decision_function(np.c_[X1.ravel(), X2.ravel()])
+Z = Z.reshape(X1.shape)
+ax.contour(
+    X1, X2, Z, [-1.0, 0.0, 1.0], colors="k", linestyles=["dashed", "solid", "dashed"]
+)
+ax.set_title("A linear separation")
+
+# Data with a non-linear separation
+
+def nonlinear_model(rng, n_samples=30):
+    radius = 40 * rng.random(n_samples)
+    far_pts = radius > 20
+    radius[far_pts] *= 1.2
+    radius[~far_pts] *= 1.1
+
+    theta = rng.random(n_samples) * np.pi * 2
+
+    data = np.empty((n_samples, 2))
+    data[:, 0] = radius * np.cos(theta)
+    data[:, 1] = radius * np.sin(theta)
+
+    labels = np.ones(n_samples)
+    labels[far_pts] = -1
+
+    return data, labels
+
+rng = np.random.default_rng(27446968)
+
+X, y = nonlinear_model(rng)
+clf = svm.SVC(kernel="rbf", gamma=0.001, coef0=0, degree=3)
+clf.fit(X, y)
+
+ax = axes[1]
+ax.scatter(X[:, 0], X[:, 1], c=y, cmap="bone", zorder=2)
+ax.scatter(
+    clf.support_vectors_[:, 0],
+    clf.support_vectors_[:, 1],
+    s=80,
+    edgecolors="k",
+    facecolors="none",
+)
+delta = 1
+y_min, y_max = -50, 50
+x_min, x_max = -50, 50
+x = np.arange(x_min, x_max + delta, delta)
+y = np.arange(y_min, y_max + delta, delta)
+X1, X2 = np.meshgrid(x, y)
+Z = clf.decision_function(np.c_[X1.ravel(), X2.ravel()])
+Z = Z.reshape(X1.shape)
+ax.contour(
+    X1,
+    X2,
+    Z,
+    [-1.0, 0.0, 1.0],
+    colors="k",
+    linestyles=["dashed", "solid", "dashed"],
+    zorder=1,
+)
+ax.set_title("A non-linear separation");
+```
 
 ::: {note}
 :class: dropdown
@@ -561,11 +697,6 @@ features, is more complex than a non-linear one.
 
 ### The nature of the data
 
-:::{sidebar} Code and notebook
-Python code and Jupyter notebook for this section are found
-{ref}`here <sphx_glr_packages_scikit-learn_auto_examples_plot_digits_simple_classif.py>`
-:::
-
 In this section we'll apply scikit-learn to the classification of
 handwritten digits. This will go a bit beyond the iris classification we
 saw before: we'll discuss some of the metrics which can be used in
@@ -576,19 +707,16 @@ from sklearn.datasets import load_digits
 digits = load_digits()
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_digits_simple_classif_001.png
-:align: center
-:target: auto_examples/plot_digits_simple_classif.html
-```
+Let us visualize the data and remind us what we're looking at:
 
-Let us visualize the data and remind us what we're looking at (click on
-the figure for the full code):
-
-```{python}
-# plot the digits: each image is 8x8 pixels
+```{python tags=c("hide-input")}
+fig = plt.figure(figsize=(6, 6))  # figure size in inches
+fig.subplots_adjust(left=0, right=1, bottom=0, top=1, hspace=0.05, wspace=0.05)
 for i in range(64):
     ax = fig.add_subplot(8, 8, i + 1, xticks=[], yticks=[])
-    ax.imshow(digits.images[i], cmap=plt.cm.binary, interpolation='nearest')
+    ax.imshow(digits.images[i], cmap="binary", interpolation="nearest")
+    # label the image with the target value
+    ax.text(0, 7, str(digits.target[i]))
 ```
 
 ### Visualizing the Data on its principal components
@@ -605,20 +733,11 @@ structure of the data set.
 from sklearn.decomposition import PCA
 pca = PCA(n_components=2)
 proj = pca.fit_transform(digits.data)
-plt.scatter(proj[:, 0], proj[:, 1], c=digits.target)
-```
-
-```{python}
-plt.colorbar()
-```
-
-```{image} auto_examples/images/sphx_glr_plot_digits_simple_classif_002.png
-:align: center
-:target: auto_examples/plot_digits_simple_classif.html
+plt.scatter(proj[:, 0], proj[:, 1], c=digits.target, cmap='Paired')
+plt.colorbar();
 ```
 
 :::{admonition} Question
-:class: green
 
 Given these projections of the data, which numbers do you think a
 classifier might have trouble distinguishing?
@@ -635,7 +754,7 @@ to give us clues about our data.
 One good method to keep in mind is Gaussian Naive Bayes
 ({class}`sklearn.naive_bayes.GaussianNB`).
 
-:::{sidebar} Old scikit-learn versions
+:::{admonition} Old scikit-learn versions
 {func}`~sklearn.model_selection.train_test_split` is imported from
 `sklearn.cross_validation`
 :::
@@ -669,27 +788,38 @@ clf.fit(X_train, y_train)
 ```{python}
 # use the model to predict the labels of the test data
 predicted = clf.predict(X_test)
-expected = y_test
 predicted
 ```
 
 ```{python}
+expected = y_test
 expected
 ```
 
 As above, we plot the digits with the predicted labels to get an idea of
 how well the classification is working.
 
-```{image} auto_examples/images/sphx_glr_plot_digits_simple_classif_003.png
-:align: center
-:target: auto_examples/plot_digits_simple_classif.html
+```{python tags=c("hide-input")}
+# plot the digits: each image is 8x8 pixels
+fig = plt.figure(figsize=(6, 6))  # figure size in inches
+fig.subplots_adjust(left=0, right=1, bottom=0, top=1, hspace=0.05, wspace=0.05)
+for i in range(64):
+    ax = fig.add_subplot(8, 8, i + 1, xticks=[], yticks=[])
+    ax.imshow(X_test.reshape(-1, 8, 8)[i], cmap="binary", interpolation="nearest")
+
+    # label the image with the target value
+    if predicted[i] == expected[i]:
+        ax.text(0, 7, str(predicted[i]), color="green")
+    else:
+        ax.text(0, 7, str(predicted[i]), color="red")
 ```
 
 :::{admonition} Question
-:class: green
 
 Why did we split the data into training and validation sets?
+
 :::
+
 
 ### Quantitative Measurement of Performance
 
@@ -698,15 +828,18 @@ resort to plotting examples. A simple method might be to simply compare
 the number of matches:
 
 ```{python}
+# The number of correct matches
 matches = (predicted == expected)
 matches.sum()
 ```
 
 ```{python}
+# The total number of data points
 len(matches)
 ```
 
 ```{python}
+# The ratio of correct predictions
 matches.sum() / float(len(matches))
 ```
 
@@ -720,7 +853,8 @@ combines several measures and prints a table with the results:
 
 ```{python}
 from sklearn import metrics
-metrics.classification_report(expected, predicted)
+
+print(metrics.classification_report(expected, predicted))
 ```
 
 Another enlightening metric for this sort of multi-label classification
@@ -734,25 +868,24 @@ metrics.confusion_matrix(expected, predicted)
 We see here that in particular, the numbers 1, 2, 3, and 9 are often
 being labeled 8.
 
+
 ## Supervised Learning: Regression of Housing Data
 
 Here we'll do a short example of a regression problem: learning a
 continuous value from a set of features.
 
+
 ### A quick look at the data
 
-:::{sidebar} Code and notebook
-Python code and Jupyter notebook for this section are found
-{ref}`here <sphx_glr_packages_scikit-learn_auto_examples_plot_california_prediction.py>`
-:::
 
-We'll use the California house prices set, available in scikit-learn.
+We'll use the California house prices set, available in Scikit-learn.
 This records measurements of 8 attributes of housing markets in
 California, as well as the median price. The question is: can you predict
 the price of a new market given its attributes?:
 
 ```{python}
 from sklearn.datasets import fetch_california_housing
+
 data = fetch_california_housing(as_frame=True)
 data.data.shape
 ```
@@ -766,70 +899,34 @@ We can see that there are just over 20000 data points.
 The `DESCR` variable has a long description of the dataset:
 
 ```{python}
-data.DESCR
+print(data.DESCR)
 ```
 
 It often helps to quickly visualize pieces of the data using histograms,
 scatter plots, or other plot types. With matplotlib, let us show a
 histogram of the target values: the median price in each neighborhood:
 
-```{python}
+```{python tags=c("hide-input")}
+plt.figure(figsize=(4, 3))
 plt.hist(data.target)
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_001.png
-:align: center
-:scale: 70
-:target: auto_examples/plot_california_prediction.html
+plt.xlabel("price ($100k)")
+plt.ylabel("count")
+plt.tight_layout()
 ```
 
 Let's have a quick look to see if some features are more relevant than
 others for our problem:
 
 ```{python}
+fig, axes = plt.subplots(3, 3, figsize=(8, 8))
+axes = axes.ravel()
 for index, feature_name in enumerate(data.feature_names):
-    plt.figure()
-    plt.scatter(data.data[feature_name], data.target)
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_002.png
-:target: auto_examples/plot_california_prediction.html
-:width: 32%
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_003.png
-:target: auto_examples/plot_california_prediction.html
-:width: 32%
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_004.png
-:target: auto_examples/plot_california_prediction.html
-:width: 32%
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_005.png
-:target: auto_examples/plot_california_prediction.html
-:width: 32%
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_006.png
-:target: auto_examples/plot_california_prediction.html
-:width: 32%
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_007.png
-:target: auto_examples/plot_california_prediction.html
-:width: 32%
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_008.png
-:target: auto_examples/plot_california_prediction.html
-:width: 32%
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_009.png
-:target: auto_examples/plot_california_prediction.html
-:width: 32%
+    ax = axes[index]
+    ax.scatter(data.data[feature_name], data.target)
+    ax.set_ylabel("Price", size=15)
+    ax.set_xlabel(feature_name, size=15)
+axes[-1].axis('off')
+plt.tight_layout()
 ```
 
 This is a manual version of a technique called **feature selection**.
@@ -851,9 +948,9 @@ particularly simple one is `LinearRegression`: this is basically a
 wrapper around an ordinary least squares calculation.
 
 ```{python}
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(data.data, data.target)
 from sklearn.linear_model import LinearRegression
+
+X_train, X_test, y_train, y_test = train_test_split(data.data, data.target)
 clf = LinearRegression()
 clf.fit(X_train, y_train)
 ```
@@ -861,18 +958,19 @@ clf.fit(X_train, y_train)
 ```{python}
 predicted = clf.predict(X_test)
 expected = y_test
-"RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2))
-```
-
-```{image} auto_examples/images/sphx_glr_plot_california_prediction_010.png
-:align: right
-:target: auto_examples/plot_california_prediction.html
+print("RMS: %s" % np.sqrt(np.mean((predicted - expected) ** 2)))
 ```
 
 We can plot the error: expected as a function of predicted:
 
-```{python}
+```{python tags=c("hide-input")}
+plt.figure(figsize=(4, 3))
 plt.scatter(expected, predicted)
+plt.plot([0, 8], [0, 8], "--k")
+plt.axis("tight")
+plt.xlabel("True price ($100k)")
+plt.ylabel("Predicted price ($100k)")
+plt.tight_layout()
 ```
 
 ::: {note}
@@ -885,8 +983,10 @@ predicted price. There are some subtleties in this, however, which we'll
 cover in a later section.
 :::
 
-:::{admonition} Exercise: Gradient Boosting Tree Regression
-:class: green
+::: {exercise-start}
+:label: gradient-boost-tree-ex
+:class: dropdown
+:::
 
 There are many other types of regressors available in scikit-learn:
 we'll try a more powerful one here.
@@ -902,8 +1002,41 @@ from sklearn.ensemble import GradientBoostingRegressor
 # Instantiate the model, fit the results, and scatter in vs. out
 ```
 
-**Solution** The solution is found in {ref}`the code of this chapter <sphx_glr_packages_scikit-learn_auto_examples_plot_california_prediction.py>`
+::: {exercise-end}
 :::
+
+::: {solution-start} gradient-boost-tree-ex
+:class: dropdown
+:::
+
+```{python}
+clf = GradientBoostingRegressor()
+clf.fit(X_train, y_train)
+```
+
+```{python}
+predicted = clf.predict(X_test)
+expected = y_test
+```
+
+```{python}
+plt.figure(figsize=(4, 3))
+plt.scatter(expected, predicted)
+plt.plot([0, 5], [0, 5], "--k")
+plt.axis("tight")
+plt.xlabel("True price ($100k)")
+plt.ylabel("Predicted price ($100k)")
+plt.tight_layout()
+```
+
+```{python}
+# Print the error rate
+print(f"RMS: {np.sqrt(np.mean((predicted - expected) ** 2))!r} ")
+```
+
+::: {solution-end}
+:::
+
 
 ## Measuring prediction performance
 
@@ -916,8 +1049,7 @@ an unknown point based on the labels of the *K* nearest points in the
 parameter space.
 
 ```{python}
-# Get the data
-from sklearn.datasets import load_digits
+# Get the data (again)
 digits = load_digits()
 X = digits.data
 y = digits.target
@@ -932,12 +1064,9 @@ clf.fit(X, y)
 
 ```{python}
 # Check the results using metrics
-from sklearn import metrics
 y_pred = clf.predict(X)
-```
 
-```{python}
-metrics.confusion_matrix(y_pred, y)
+print(metrics.confusion_matrix(y_pred, y))
 ```
 
 Apparently, we've found a perfect classifier! But this is misleading for
@@ -950,7 +1079,6 @@ fit an other instance-based model named "decision tree" to the California
 Housing price dataset we introduced previously:
 
 ```{python}
-from sklearn.datasets import fetch_california_housing
 from sklearn.tree import DecisionTreeRegressor
 ```
 
@@ -961,19 +1089,15 @@ predicted = clf.predict(data.data)
 expected = data.target
 ```
 
-```{python}
+```{python tags=c("hide-input")}
+plt.figure(figsize=(4, 3))
 plt.scatter(expected, predicted)
+plt.plot([0, 5], [0, 5], "--k")
+plt.axis("tight")
+plt.xlabel("True price ($100k)")
+plt.ylabel("Predicted price ($100k)")
+plt.tight_layout()
 ```
-
-```{python}
-plt.plot([0, 50], [0, 50], '--k')
-```
-
-:::{figure} auto_examples/images/sphx_glr_plot_measuring_performance_001.png
-:align: right
-:target: auto_examples/plot_measuring_performance.html
-:width: 350
-:::
 
 Here again the predictions are seemingly perfect as the model was able to
 perfectly memorize the training set.
@@ -983,6 +1107,7 @@ perfectly memorize the training set.
 
 Performance on test set does not measure overfit (as described above)
 :::
+
 
 ### A correct approach: Using a validation set
 
@@ -1003,13 +1128,14 @@ In scikit-learn such a random split can be quickly computed with the
 
 ```{python}
 from sklearn import model_selection
+
 X = digits.data
 y = digits.target
 ```
 
 ```{python}
-X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
-                                        test_size=0.25, random_state=0)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(
+    X, y, test_size=0.25, random_state=0)
 ```
 
 ```{python}
@@ -1024,11 +1150,11 @@ y_pred = clf.predict(X_test)
 ```
 
 ```{python}
-metrics.confusion_matrix(y_test, y_pred)
+print(metrics.confusion_matrix(y_test, y_pred))
 ```
 
 ```{python}
-metrics.classification_report(y_test, y_pred)
+print(metrics.classification_report(y_test, y_pred))
 ```
 
 The averaged f1-score is often used as a convenient measure of the
@@ -1062,23 +1188,22 @@ have these validation tools in place, we can ask quantitatively which
 of the three estimators works best for this dataset.
 :::
 
-- With the default hyper-parameters for each estimator, which gives the
-  best f1 score on the **validation set**? Recall that hyperparameters
-  are the parameters set when you instantiate the classifier: for
-  example, the `n_neighbors` in `clf =
-  KNeighborsClassifier(n_neighbors=1)`
+With the default hyper-parameters for each estimator, which gives the best f1
+score on the **validation set**? Recall that hyperparameters are the
+parameters set when you instantiate the classifier: for example, the
+`n_neighbors` in `clf = KNeighborsClassifier(n_neighbors=1)`
 
 ```{python}
 from sklearn.naive_bayes import GaussianNB
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import LinearSVC
 ```
 
 ```{python}
 X = digits.data
 y = digits.target
-X_train, X_test, y_train, y_test = model_selection.train_test_split(X, y,
-                            test_size=0.25, random_state=0)
+
+X_train, X_test, y_train, y_test = model_selection.train_test_split(
+    X, y, test_size=0.25, random_state=0)
 ```
 
 ```{python}
@@ -1089,31 +1214,61 @@ for Model in [GaussianNB(), KNeighborsClassifier(), LinearSVC(dual=False)]:
           (Model.__class__.__name__, metrics.f1_score(y_test, y_pred, average="macro")))
 ```
 
-- For each classifier, which value for the hyperparameters gives the best
-  results for the digits data? For {class}`~sklearn.svm.LinearSVC`, use
-  `loss='l2'` and `loss='l1'`. For
-  {class}`~sklearn.neighbors.KNeighborsClassifier` we use
-  `n_neighbors` between 1 and 10. Note that
-  {class}`~sklearn.naive_bayes.GaussianNB` does not have any adjustable
-  hyperparameters.
+::: {exercise-start}
+:label: which-hyper-ex
+:class: dropdown
+:::
 
-```{python}
-  LinearSVC(loss='l1'): 0.930570687535
-  LinearSVC(loss='l2'): 0.933068826918
-  -------------------
-  KNeighbors(n_neighbors=1): 0.991367521884
-  KNeighbors(n_neighbors=2): 0.984844206884
-  KNeighbors(n_neighbors=3): 0.986775344954
-  KNeighbors(n_neighbors=4): 0.980371905382
-  KNeighbors(n_neighbors=5): 0.980456280495
-  KNeighbors(n_neighbors=6): 0.975792419414
-  KNeighbors(n_neighbors=7): 0.978064579214
-  KNeighbors(n_neighbors=8): 0.978064579214
-  KNeighbors(n_neighbors=9): 0.978064579214
-  KNeighbors(n_neighbors=10): 0.975555089773
+For each classifier, which value for the hyperparameters gives the best
+results for the digits data? For {class}`~sklearn.svm.LinearSVC`, use
+`loss='hinge'` and `loss='squared_hinge'`. For
+{class}`~sklearn.neighbors.KNeighborsClassifier` we use `n_neighbors` between
+1 and 10. Note that {class}`~sklearn.naive_bayes.GaussianNB` does not have any
+adjustable hyperparameters.  Your results should look something like this:
+
+```text
+LinearSVC(loss='hinge'): 0.9369152611313591
+LinearSVC(loss='squared_hinge'): 0.9323387371152745
+-------------------
+KNeighbors(n_neighbors=1): 0.9913675218842191
+KNeighbors(n_neighbors=2): 0.9848442068835102
+KNeighbors(n_neighbors=3): 0.9867753449543099
+KNeighbors(n_neighbors=4): 0.9803719053818863
+KNeighbors(n_neighbors=5): 0.9804562804949924
+KNeighbors(n_neighbors=6): 0.9757924194139573
+KNeighbors(n_neighbors=7): 0.9780645792142071
+KNeighbors(n_neighbors=8): 0.9780645792142071
+KNeighbors(n_neighbors=9): 0.9780645792142071
+KNeighbors(n_neighbors=10): 0.9755550897728812
 ```
 
-  **Solution:** {ref}`code source <sphx_glr_packages_scikit-learn_auto_examples_plot_compare_classifiers.py>`
+::: {exercise-end}
+:::
+
+::: {solution-start} which-hyper-ex
+:class: dropdown
+:::
+
+```{python}
+# test SVC loss
+for loss in ["hinge", "squared_hinge"]:
+    clf = LinearSVC(loss=loss).fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+    print(
+        f"LinearSVC(loss='{loss}'): {metrics.f1_score(y_test, y_pred, average='macro')}"
+    )
+print("-------------------")
+# test the number of neighbors
+for n_neighbors in range(1, 11):
+    clf = KNeighborsClassifier(n_neighbors=n_neighbors).fit(X_train, y_train)
+    y_pred = clf.predict(X_test)
+    print(
+        f"KNeighbors(n_neighbors={n_neighbors}): {metrics.f1_score(y_test, y_pred, average='macro')}"
+    )
+```
+
+::: {solution-end}
+:::
 
 ### Cross-validation
 
@@ -1123,8 +1278,9 @@ to automatically compute score on all these folds. Here we do
 {class}`~sklearn.model_selection.KFold` with k=5.
 
 ```{python}
-clf = KNeighborsClassifier()
 from sklearn.model_selection import cross_val_score
+
+clf = KNeighborsClassifier()
 cross_val_score(clf, X, y, cv=5)
 ```
 
@@ -1132,6 +1288,7 @@ We can use different splitting strategies, such as random splitting:
 
 ```{python}
 from sklearn.model_selection import ShuffleSplit
+
 cv = ShuffleSplit(n_splits=5)
 cross_val_score(clf, X, y, cv=cv)
 ```
@@ -1139,16 +1296,17 @@ cross_val_score(clf, X, y, cv=cv)
 ::: {note}
 :class: dropdown
 
-There exists [many different cross-validation strategies](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators)
-in scikit-learn. They are often useful to take in account non iid
-datasets.
+There exist [many different cross-validation
+strategies](https://scikit-learn.org/stable/modules/cross_validation.html#cross-validation-iterators)
+in scikit-learn. They are often useful to take in account non i.i.d datasets.
 :::
+
 
 ### Hyperparameter optimization with cross-validation
 
-Consider regularized linear models, such as *Ridge Regression*, which
-uses l2 regularization, and *Lasso Regression*, which uses l1
-regularization. Choosing their regularization parameter is important.
+Consider regularized linear models, such as *Ridge Regression*, which uses l2
+regularization, and *Lasso Regression*, which uses l1 regularization. Choosing
+their regularization parameter is important.
 
 Let us set these parameters on the Diabetes dataset, a simple regression
 problem. The diabetes data consists of 10 physiological variables (age,
@@ -1157,6 +1315,7 @@ of disease progression after one year:
 
 ```{python}
 from sklearn.datasets import load_diabetes
+
 data = load_diabetes()
 X, y = data.data, data.target
 X.shape
@@ -1166,12 +1325,10 @@ With the default hyper-parameters: we compute the cross-validation score:
 
 ```{python}
 from sklearn.linear_model import Ridge, Lasso
-```
 
-```{python}
 for Model in [Ridge, Lasso]:
     model = Model()
-    print('%s: %s' % (Model.__name__, cross_val_score(model, X, y).mean()))
+    print(f"{Model.__name__}: {cross_val_score(model, X, y).mean()}")
 ```
 
 #### Basic Hyperparameter Optimization
@@ -1186,23 +1343,22 @@ alphas = np.logspace(-3, -1, 30)
 ```
 
 ```{python}
+plt.figure(figsize=(5, 3))
 for Model in [Lasso, Ridge]:
     scores = [cross_val_score(Model(alpha), X, y, cv=3).mean()
               for alpha in alphas]
     plt.plot(alphas, scores, label=Model.__name__)
-```
-
-```{image} auto_examples/images/sphx_glr_plot_linear_model_cv_001.png
-:align: left
-:scale: 70
-:target: auto_examples/plot_linear_model_cv.html
+plt.legend(loc="lower left")
+plt.xlabel("alpha")
+plt.ylabel("cross validation score")
+plt.tight_layout()
 ```
 
 :::{admonition} Question
-:class: green
 
 Can we trust our results to be actually useful?
 :::
+
 
 #### Automatically Performing Grid Search
 
@@ -1212,6 +1368,7 @@ We can find the optimal parameters this way:
 
 ```{python}
 from sklearn.model_selection import GridSearchCV
+
 for Model in [Ridge, Lasso]:
     gscv = GridSearchCV(Model(), dict(alpha=alphas), cv=3).fit(X, y)
     print('%s: %s' % (Model.__name__, gscv.best_params_))
@@ -1237,6 +1394,7 @@ for Model in [RidgeCV, LassoCV]:
 
 We see that the results match those returned by GridSearchCV
 
+
 #### Nested cross-validation
 
 How do we measure the performance of these estimators? We have used data
@@ -1258,6 +1416,7 @@ under-perform {class}`~sklearn.linear_model.RidgeCV`. The reason is
 that setting the hyper-parameter is harder for Lasso, thus the
 estimation error on this hyper-parameter is larger.
 :::
+
 
 ## Unsupervised Learning: Dimensionality Reduction and Visualization
 
@@ -1289,6 +1448,7 @@ vectors.
 
 ```{python}
 from sklearn.decomposition import PCA
+
 pca = PCA(n_components=2, whiten=True)
 pca.fit(X)
 ```
@@ -1313,8 +1473,8 @@ X_pca = pca.transform(X)
 X_pca.shape
 ```
 
-{class}`~sklearn.decomposition.PCA` `normalizes` and `whitens` the data, which means that the data
-is now centered on both components with unit variance:
+{class}`~sklearn.decomposition.PCA` `normalizes` and `whitens` the data, which
+means that the data is now centered on both components with unit variance:
 
 ```{python}
 X_pca.mean(axis=0)
@@ -1335,16 +1495,12 @@ With a number of retained components 2 or 3, PCA is useful to visualize
 the dataset:
 
 ```{python}
+plt.figure(figsize=(6, 5))
 target_ids = range(len(iris.target_names))
 for i, c, label in zip(target_ids, 'rgbcmykw', iris.target_names):
     plt.scatter(X_pca[y == i, 0], X_pca[y == i, 1],
                 c=c, label=label)
-```
-
-```{image} auto_examples/images/sphx_glr_plot_pca_001.png
-:align: left
-:scale: 70
-:target: auto_examples/plot_pca.html
+plt.legend();
 ```
 
 ::: {note}
@@ -1357,6 +1513,7 @@ projection gives us insight into the distribution of the different
 flowers in parameter space: notably, *iris setosa* is much more
 distinct than the other two species.
 :::
+
 
 ### Visualization with a non-linear embedding: tSNE
 
@@ -1375,19 +1532,19 @@ y = digits.target[:500]
 ```{python}
 # Fit and transform with a TSNE
 from sklearn.manifold import TSNE
-tsne = TSNE(n_components=2, learning_rate='auto', init='random', random_state=0)
+
+tsne = TSNE(n_components=2, random_state=0)
 X_2d = tsne.fit_transform(X)
 ```
 
 ```{python}
 # Visualize the data
-plt.scatter(X_2d[:, 0], X_2d[:, 1], c=y)
-```
-
-```{image} auto_examples/images/sphx_glr_plot_tsne_001.png
-:align: left
-:scale: 70
-:target: auto_examples/plot_tsne.html
+target_ids = range(len(digits.target_names))
+plt.figure(figsize=(6, 5))
+colors = "r", "g", "b", "c", "m", "y", "k", "w", "orange", "purple"
+for i, c, label in zip(target_ids, colors, digits.target_names, strict=True):
+    plt.scatter(X_2d[y == i, 0], X_2d[y == i, 1], c=c, label=label)
+plt.legend();
 ```
 
 :::{admonition} fit_transform
@@ -1398,12 +1555,11 @@ need to use its `fit_transform` method.
 {class}`sklearn.manifold.TSNE` separates quite well the different classes
 of digits even though it had no access to the class information.
 
-```{raw} html
-<div style="clear: both"></div>
-```
 
-:::{admonition} Exercise: Other dimension reduction of digits
-:class: green
+::: {exercise-start}
+:label: digit-dims-ex
+:class: dropdown
+:::
 
 {mod}`sklearn.manifold` has many other non-linear embeddings. Try
 them out on the digits dataset. Could you judge their quality without
@@ -1414,7 +1570,10 @@ from sklearn.datasets import load_digits
 digits = load_digits()
 # ...
 ```
+
+::: {exercise-end}
 :::
+
 
 ## Parameter selection, Validation, and Testing
 
@@ -1447,34 +1606,74 @@ successful machine learning practitioners from the unsuccessful.
 
 #### Bias-variance trade-off: illustration on a simple regression problem
 
-:::{sidebar} Code and notebook
-Python code and Jupyter notebook for this section are found
-{ref}`here
-<sphx_glr_packages_scikit-learn_auto_examples_plot_variance_linear_regr.py>`
-:::
-
 Let us start with a simple 1D regression problem. This
 will help us to easily visualize the data and the model, and the results
 generalize easily to higher-dimensional datasets. We'll explore a simple
 **linear regression** problem, with {mod}`sklearn.linear_model`.
 
-.. include:: auto_examples/plot_variance_linear_regr.rst
-    :start-after: We consider the situation where we have only 2 data point
-    :end-before: **Total running time of the script:**
+We consider the situation where we have only 2 data point
 
+```{python}
+X = np.c_[0.5, 1].T
+y = [0.5, 1]
+X_test = np.c_[0, 2].T
+```
+
+Without noise, as linear regression fits the data perfectly
+
+```{python}
+from sklearn import linear_model
+```
+
+```{python}
+regr = linear_model.LinearRegression()
+regr.fit(X, y)
+plt.plot(X, y, "o")
+plt.plot(X_test, regr.predict(X_test))
+```
+
+In real life situation, we have noise (e.g. measurement noise) in our data:
+
+```{python}
+rng = np.random.default_rng(27446968)
+for _ in range(6):
+    noisy_X = X + rng.normal(loc=0, scale=0.1, size=X.shape)
+    plt.plot(noisy_X, y, "o")
+    regr.fit(noisy_X, y)
+    plt.plot(X_test, regr.predict(X_test))
+```
+
+As we can see, our linear model captures and amplifies the noise in the
+data. It displays a lot of variance.
+
+We can use another linear estimator that uses regularization, the
+:class:`~sklearn.linear_model.Ridge` estimator. This estimator
+regularizes the coefficients by shrinking them to zero, under the
+assumption that very high correlations are often spurious. The alpha
+parameter controls the amount of shrinkage used.
+
+```{python}
+regr = linear_model.Ridge(alpha=0.1)
+for _ in range(6):
+    noisy_X = X + rng.normal(loc=0, scale=0.1, size=X.shape)
+    plt.plot(noisy_X, y, "o")
+    regr.fit(noisy_X, y)
+    plt.plot(X_test, regr.predict(X_test))
+```
 
 As we can see, the estimator displays much less variance. However it
 systematically under-estimates the coefficient. It displays a biased
 behavior.
 
-This is a typical example of **bias/variance tradeof**: non-regularized
+This is a typical example of **bias/variance trade-off**: non-regularized
 estimator are not biased, but they can display a lot of variance.
 Highly-regularized models have little variance, but high bias. This bias
 is not necessarily a bad thing: what matters is choosing the
-tradeoff between bias and variance that leads to the best prediction
+trade-off between bias and variance that leads to the best prediction
 performance. For a specific dataset there is a sweet spot corresponding
 to the highest complexity that the data can support, depending on the
 amount of noise and of observations available.
+
 
 ### Visualizing the Bias/Variance Tradeoff
 
@@ -1490,9 +1689,45 @@ to give the best fit.
 On a given data, let us fit a simple polynomial regression model with
 varying degrees:
 
-```{image} auto_examples/images/sphx_glr_plot_bias_variance_001.png
-:align: center
-:target: auto_examples/plot_bias_variance.html
+```{python tags=c("hide-input")}
+# A polynomial regression
+from sklearn.pipeline import make_pipeline
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import PolynomialFeatures
+
+n_samples = 8
+
+def generating_func(x, rng=None, error=0.5):
+    rng = np.random.default_rng(rng)
+    return rng.normal(10 - 1.0 / (x + 0.1), error)
+
+rng = np.random.default_rng(27446968)
+x = 10 ** np.linspace(-2, 0, n_samples)
+y = generating_func(x, rng=rng)
+
+x_test = np.linspace(-0.2, 1.2, 1000)
+
+titles = ["d = 1 (under-fit; high bias)", "d = 2", "d = 6 (over-fit; high variance)"]
+degrees = [1, 2, 6]
+
+fig, axes = plt.subplots(1, 3, figsize=(9, 3.5))
+fig.subplots_adjust(left=0.06, right=0.98, bottom=0.15, top=0.85, wspace=0.05)
+for i, d in enumerate(degrees):
+    ax = axes[i]
+    ax.scatter(x, y, marker="x", c="k", s=50)
+
+    model = make_pipeline(PolynomialFeatures(d), LinearRegression())
+    model.fit(x[:, np.newaxis], y)
+    
+    ax.plot(x_test, model.predict(x_test[:, np.newaxis]), "-b")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_xlim(-0.2, 1.2)
+    ax.set_ylim(0, 12)
+    ax.set_xlabel("house size")
+    if i == 0:
+        ax.set_ylabel("price")
+    ax.set_title(titles[i])
 ```
 
 ::: {note}
@@ -1520,7 +1755,8 @@ metaparameters (in this case, the polynomial degree d) in order to
 determine the best algorithm.
 :::
 
-:::{admonition} Polynomial regression with scikit-learn
+#### Polynomial regression with scikit-learn
+
 A polynomial regression is built by pipelining
 {class}`~sklearn.preprocessing.PolynomialFeatures`
 and a {class}`~sklearn.linear_model.LinearRegression`:
@@ -1531,28 +1767,16 @@ from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 model = make_pipeline(PolynomialFeatures(degree=2), LinearRegression())
 ```
-:::
 
 #### Validation Curves
 
 Let us create a dataset like in the example above:
 
 ```{python}
-def generating_func(x, rng, err=0.5):
-    return rng.normal(10 - 1. / (x + 0.1), err)
-```
-
-```{python}
 # randomly sample more data
 rng = np.random.default_rng(27446968)
 x = rng.random(size=200)
-y = generating_func(x, err=1., rng=rng)
-```
-
-```{image} auto_examples/images/sphx_glr_plot_bias_variance_002.png
-:align: right
-:scale: 60
-:target: auto_examples/plot_bias_variance.html
+y = generating_func(x, rng=rng, error=1.)
 ```
 
 Central to quantify bias and variance of a model is to apply it on *test
@@ -1560,12 +1784,19 @@ data*, sampled from the same distribution as the train, but that will
 capture independent noise:
 
 ```{python}
-xtrain, xtest, ytrain, ytest = train_test_split(x, y, test_size=0.4)
+# split into training, validation, and testing sets.
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.4)
 ```
 
-```{raw} html
-<div style="clear: both"></div>
+```{python tags=c("hide-input")}
+# show the training and validation sets
+plt.figure(figsize=(6, 4))
+plt.scatter(x_train, y_train, color="red", label="Training set")
+plt.scatter(x_test, y_test, color="blue", label="Test set")
+plt.title("The data")
+plt.legend(loc="best")
 ```
+
 
 **Validation curve** A validation curve consists in varying a model parameter
 that controls its complexity (here the degree of the
@@ -1582,9 +1813,6 @@ from sklearn.model_selection import validation_curve
 
 ```{python}
 degrees = np.arange(1, 21)
-```
-
-```{python}
 model = make_pipeline(PolynomialFeatures(), LinearRegression())
 ```
 
@@ -1596,23 +1824,17 @@ train_scores, validation_scores = validation_curve(
                 param_range=degrees)
 ```
 
-```{python}
-# Plot the mean train score and validation score across folds
-plt.plot(degrees, validation_scores.mean(axis=1), label='cross-validation')
-```
+Plot the mean train score and validation score across folds:
 
 ```{python}
-plt.plot(degrees, train_scores.mean(axis=1), label='training')
-```
-
-```{python}
-plt.legend(loc='best')
-```
-
-```{image} auto_examples/images/sphx_glr_plot_bias_variance_003.png
-:align: left
-:scale: 60
-:target: auto_examples/plot_bias_variance.html
+plt.figure(figsize=(6, 4))
+plt.plot(degrees, validation_scores.mean(axis=1), lw=2, label="cross-validation")
+plt.plot(degrees, train_scores.mean(axis=1), lw=2, label="training")
+plt.legend(loc="best")
+plt.xlabel("degree of fit")
+plt.ylabel("explained variance")
+plt.title("Validation curve")
+plt.tight_layout()
 ```
 
 This figure shows why validation is important. On the left side of the
@@ -1622,13 +1844,13 @@ validation set. On the far right side of the plot, we have a very high
 degree polynomial, which over-fits the data. This can be seen in the fact
 that the training explained variance is very high, while on the
 validation set, it is low. Choosing `d` around 4 or 5 gets us the best
-tradeoff.
+trade-off.
 
 ::: {note}
 :class: dropdown
 
 The astute reader will realize that something is amiss here: in the
-above plot, `d = 4` gives the best results. But in the previous plot,
+above plot, `d` around 7 gives the best results. But in the previous plot,
 we found that `d = 6` vastly over-fits the data. What’s going on here?
 The difference is the **number of training points** used. In the
 previous example, there were only eight training points. In this
@@ -1637,6 +1859,7 @@ points used, the more complicated model can be used. But how can you
 determine for a given model whether more training points will be
 helpful? A useful diagnostic for this are learning curves.
 :::
+
 
 #### Learning Curves
 
@@ -1648,7 +1871,6 @@ quantitative view into how beneficial it will be to add training
 samples.
 
 :::{admonition} Questions:
-:class: green
 
 - As the number of training samples are increased, what do you expect
   to see for the training score? For the validation score?
@@ -1659,28 +1881,38 @@ samples.
 {mod}`scikit-learn` provides
 {func}`sklearn.model_selection.learning_curve`:
 
+
+Here is the pattern for using a learning curve, here with an order 1 polynomial and linear regression:
+
 ```{python}
 from sklearn.model_selection import learning_curve
+
+model = make_pipeline(PolynomialFeatures(degree=1), LinearRegression())
+
 train_sizes, train_scores, validation_scores = learning_curve(
     model, x[:, np.newaxis], y, train_sizes=np.logspace(-1, 0, 20))
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 # Plot the mean train score and validation score across folds
-plt.plot(train_sizes, validation_scores.mean(axis=1), label='cross-validation')
+def plot_model(d):
+    plt.figure(figsize=(6, 4))
+    model = make_pipeline(PolynomialFeatures(degree=d), LinearRegression())
+    train_sizes, train_scores, validation_scores = learning_curve(
+        model, x[:, np.newaxis], y, train_sizes=np.logspace(-1, 0, 20))
+    plt.plot(train_sizes, validation_scores.mean(axis=1), lw=2, label='cross-validation')
+    plt.plot(train_sizes, train_scores.mean(axis=1), lw=2, label='training')
+    plt.ylim(ymin=-0.1, ymax=1)
+    plt.legend(loc="best")
+    plt.xlabel("number of train samples")
+    plt.ylabel("explained variance")
+    plt.title(f"Learning curve (degree={d})")
+    plt.tight_layout()
+
+plot_model(1)
 ```
 
-```{python}
-plt.plot(train_sizes, train_scores.mean(axis=1), label='training')
-```
-
-:::{figure} auto_examples/images/sphx_glr_plot_bias_variance_004.png
-:align: left
-:scale: 60
-:target: auto_examples/plot_bias_variance.html
-
-For a `degree=1` model
-:::
+<!--- Check the plot above -->
 
 Note that the validation score *generally increases* with a growing
 training set, while the training score *generally decreases* with a
@@ -1693,8 +1925,6 @@ both the training and validation scores are low. When confronted
 with this type of learning curve, we can expect that adding more
 training data will not help: both lines converge to a
 relatively low score.
-
-{{ clear_floats }}
 
 **When the learning curves have converged to a low score, we have a
 high bias model.**
@@ -1710,13 +1940,9 @@ model.
 
 Now let's look at a high-variance (i.e. over-fit) model:
 
-:::{figure} auto_examples/images/sphx_glr_plot_bias_variance_006.png
-:align: left
-:scale: 60
-:target: auto_examples/plot_bias_variance.html
-
-For a `degree=15` model
-:::
+```{python tags=c("hide-input")}
+plot_model(15)
+```
 
 Here we show the learning curve for `d = 15`. From the above
 discussion, we know that `d = 15` is a **high-variance** estimator
@@ -1725,8 +1951,6 @@ training score is much higher than the validation score. As we add more
 samples to this training set, the training score will continue to
 decrease, while the cross-validation error will continue to increase, until they
 meet in the middle.
-
-{{ clear_floats }}
 
 **Learning curves that have not yet converged with the full training
 set indicate a high-variance, over-fit model.**
@@ -1820,9 +2044,6 @@ For this reason, it is recommended to split the data into three sets:
 Many machine learning practitioners do not separate test set and
 validation set. But if your goal is to gauge the error of a model on
 unknown data, using an independent test set is vital.
-
-.. include:: auto_examples/index.rst
-    :start-line: 1
 
 :::{admonition} See also
 
