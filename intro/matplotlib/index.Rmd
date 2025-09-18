@@ -56,7 +56,7 @@ For interactive matplotlib sessions, turn on the **matplotlib mode**
 
 ### IPython sessions
 
-To make plots open interactively in an IPython console session use the the
+To make plots open interactively in an IPython console session use the
 following [magic
 command](https://ipython.readthedocs.io/en/stable/interactive/magics.html):
 
@@ -108,7 +108,8 @@ C, S = np.cos(X), np.sin(X)
 (included). `C` is the cosine (256 values) and `S` is the sine (256
 values).
 
-To run the example, you can type them in an IPython interactive session:
+To run the code, you can execute it in a Jupyter notebook or type it in an
+IPython interactive session:
 
 ```bash
 $ ipython --matplotlib
@@ -197,8 +198,8 @@ Documentation
 - [Customizing matplotlib](https://matplotlib.org/users/customizing.html)
 :::
 
-In the script below, we've instantiated (and commented) all the figure settings
-that influence the appearance of the plot.
+In the plotting code below, you will see that we've instantiated (and
+commented) all the figure settings that influence the appearance of the plot.
 
 ::: {note}
 :class: dropdown
@@ -207,8 +208,6 @@ The settings have been explicitly set to their default values, but
 now you can interactively play with the values to explore their
 affect (see [Line properties] and [Line styles] below).
 :::
-
-{{ clear_floats }}
 
 ```{python}
 import numpy as np
