@@ -1,0 +1,2527 @@
+---
+jupyter:
+  jupytext:
+    formats: ipynb,Rmd
+    text_representation:
+      extension: .Rmd
+      format_name: rmarkdown
+      format_version: '1.2'
+      jupytext_version: 1.17.2
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+  orphan: true
+---
+
+# Examples for intro/matplotlib/index.Rmd
+
+(exercise-1)=
+
+## Exercise 1
+
+<!--- plot_exercise_1 -->
+
+
+Solution of the exercise 1 with matplotlib.
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+
+n = 256
+X = np.linspace(-np.pi, np.pi, 256)
+C, S = np.cos(X), np.sin(X)
+plt.plot(X, C)
+plt.plot(X, S);
+```
+
+(exercise-2)=
+
+## Exercise 2
+
+<!--- plot_exercise_2 -->
+
+
+Exercise 2 with matplotlib.
+
+```{python}
+# Create a new figure of size 8x6 points, using 100 dots per inch
+plt.figure(figsize=(8, 6), dpi=80)
+# Create a new subplot from a grid of 1x1
+plt.subplot(111)
+
+X = np.linspace(-np.pi, np.pi, 256)
+C, S = np.cos(X), np.sin(X)
+
+# Plot cosine using blue color with a continuous line of width 1 (pixels)
+plt.plot(X, C, color="blue", linewidth=1.0, linestyle="-")
+# Plot sine using green color with a continuous line of width 1 (pixels)
+plt.plot(X, S, color="green", linewidth=1.0, linestyle="-")
+# Set x limits
+plt.xlim(-4.0, 4.0)
+# Set x ticks
+plt.xticks(np.linspace(-4, 4, 9))
+# Set y limits
+plt.ylim(-1.0, 1.0)
+# Set y ticks
+plt.yticks(np.linspace(-1, 1, 5));
+```
+
+(exercise-3)=
+
+## Exercise 3
+
+<!--- plot_exercise_3 -->
+
+
+Exercise 3 with matplotlib.
+
+```{python}
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+X = np.linspace(-np.pi, np.pi, 256)
+C, S = np.cos(X), np.sin(X)
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-")
+plt.xlim(-4.0, 4.0)
+plt.xticks(np.linspace(-4, 4, 9))
+plt.ylim(-1.0, 1.0)
+plt.yticks(np.linspace(-1, 1, 5));
+```
+
+(exercise-4)=
+
+## Exercise 4
+
+<!--- plot_exercise_4 -->
+
+
+Exercise 4 with matplotlib.
+
+```{python}
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+X = np.linspace(-np.pi, np.pi, 256)
+S = np.sin(X)
+C = np.cos(X)
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-")
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.ylim(C.min() * 1.1, C.max() * 1.1);
+```
+
+(exercise-5)=
+
+## Exercise 5
+
+<!--- plot_exercise_5 -->
+
+
+Exercise 5 with matplotlib.
+
+```{python}
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+X = np.linspace(-np.pi, np.pi, 256)
+S = np.sin(X)
+C = np.cos(X)
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-")
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.xticks([-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi])
+plt.ylim(C.min() * 1.1, C.max() * 1.1)
+plt.yticks([-1, 0, +1]);
+```
+
+(exercise-6)=
+
+## Exercise 6
+
+<!--- plot_exercise_6 -->
+
+
+Exercise 6 with matplotlib.
+
+```{python}
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+X = np.linspace(-np.pi, np.pi, 256)
+C = np.cos(X)
+S = np.sin(X)
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-")
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.xticks(
+    [-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi],
+    [r"$-\pi$", r"$-\pi/2$", r"$0$", r"$+\pi/2$", r"$+\pi$"],
+)
+plt.ylim(C.min() * 1.1, C.max() * 1.1)
+plt.yticks([-1, 0, +1], [r"$-1$", r"$0$", r"$+1$"]);
+```
+
+(exercise-7)=
+
+## Exercise 7
+
+<!--- plot_exercise_7 -->
+
+
+Exercise 7 with matplotlib
+
+```{python}
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+C = np.cos(X)
+S = np.sin(X)
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-")
+
+ax = plt.gca()
+ax.spines["right"].set_color("none")
+ax.spines["top"].set_color("none")
+ax.xaxis.set_ticks_position("bottom")
+ax.spines["bottom"].set_position(("data", 0))
+ax.yaxis.set_ticks_position("left")
+ax.spines["left"].set_position(("data", 0))
+
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.xticks(
+    [-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi],
+    [r"$-\pi$", r"$-\pi/2$", r"$0$", r"$+\pi/2$", r"$+\pi$"],
+)
+
+plt.ylim(C.min() * 1.1, C.max() * 1.1)
+plt.yticks([-1, 0, +1], [r"$-1$", r"$0$", r"$+1$"]);
+```
+
+(exercise-8)=
+
+## Exercise 8
+
+<!--- plot_exercise_8 -->
+
+
+Exercise 8 with matplotlib.
+
+```{python}
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+
+X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+C = np.cos(X)
+S = np.sin(X)
+
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-", label="sine")
+
+ax = plt.gca()
+ax.spines["right"].set_color("none")
+ax.spines["top"].set_color("none")
+ax.xaxis.set_ticks_position("bottom")
+ax.spines["bottom"].set_position(("data", 0))
+ax.yaxis.set_ticks_position("left")
+ax.spines["left"].set_position(("data", 0))
+
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.xticks(
+    [-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi],
+    [r"$-\pi$", r"$-\pi/2$", r"$0$", r"$+\pi/2$", r"$+\pi$"],
+)
+
+plt.ylim(C.min() * 1.1, C.max() * 1.1)
+plt.yticks([-1, +1], [r"$-1$", r"$+1$"])
+
+plt.legend(loc="upper left");
+```
+
+(exercise-9)=
+
+## Exercise 9
+
+<!--- plot_exercise_9 -->
+
+
+Exercise 9 with matplotlib.
+
+```{python}
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+
+X = np.linspace(-np.pi, np.pi, 256, endpoint=True)
+C = np.cos(X)
+S = np.sin(X)
+
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-", label="sine")
+
+ax = plt.gca()
+ax.spines["right"].set_color("none")
+ax.spines["top"].set_color("none")
+ax.xaxis.set_ticks_position("bottom")
+ax.spines["bottom"].set_position(("data", 0))
+ax.yaxis.set_ticks_position("left")
+ax.spines["left"].set_position(("data", 0))
+
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.xticks(
+    [-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi],
+    [r"$-\pi$", r"$-\pi/2$", r"$0$", r"$+\pi/2$", r"$+\pi$"],
+)
+
+plt.ylim(C.min() * 1.1, C.max() * 1.1)
+plt.yticks([-1, +1], [r"$-1$", r"$+1$"])
+
+t = 2 * np.pi / 3
+plt.plot([t, t], [0, np.cos(t)], color="blue", linewidth=1.5, linestyle="--")
+plt.scatter(
+    [
+        t,
+    ],
+    [
+        np.cos(t),
+    ],
+    50,
+    color="blue",
+)
+plt.annotate(
+    r"$sin(\frac{2\pi}{3})=\frac{\sqrt{3}}{2}$",
+    xy=(t, np.sin(t)),
+    xycoords="data",
+    xytext=(+10, +30),
+    textcoords="offset points",
+    fontsize=16,
+    arrowprops={"arrowstyle": "->", "connectionstyle": "arc3,rad=.2"},
+)
+
+plt.plot([t, t], [0, np.sin(t)], color="red", linewidth=1.5, linestyle="--")
+plt.scatter(
+    [
+        t,
+    ],
+    [
+        np.sin(t),
+    ],
+    50,
+    color="red",
+)
+plt.annotate(
+    r"$cos(\frac{2\pi}{3})=-\frac{1}{2}$",
+    xy=(t, np.cos(t)),
+    xycoords="data",
+    xytext=(-90, -50),
+    textcoords="offset points",
+    fontsize=16,
+    arrowprops={"arrowstyle": "->", "connectionstyle": "arc3,rad=.2"},
+)
+
+plt.legend(loc="upper left");
+```
+
+(exercise)=
+
+## Exercise
+
+<!--- plot_exercise_10 -->
+
+
+Exercises with matplotlib.
+
+```{python}
+plt.figure(figsize=(8, 5), dpi=80)
+plt.subplot(111)
+
+X = np.linspace(-np.pi, np.pi, 256)
+C, S = np.cos(X), np.sin(X)
+
+plt.plot(X, C, color="blue", linewidth=2.5, linestyle="-", label="cosine")
+plt.plot(X, S, color="red", linewidth=2.5, linestyle="-", label="sine")
+
+ax = plt.gca()
+ax.spines["right"].set_color("none")
+ax.spines["top"].set_color("none")
+ax.xaxis.set_ticks_position("bottom")
+ax.spines["bottom"].set_position(("data", 0))
+ax.yaxis.set_ticks_position("left")
+ax.spines["left"].set_position(("data", 0))
+
+plt.xlim(X.min() * 1.1, X.max() * 1.1)
+plt.xticks(
+    [-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi],
+    [r"$-\pi$", r"$-\pi/2$", r"$0$", r"$+\pi/2$", r"$+\pi$"],
+)
+
+plt.ylim(C.min() * 1.1, C.max() * 1.1)
+plt.yticks([-1, 1], [r"$-1$", r"$+1$"])
+
+plt.legend(loc="upper left")
+
+t = 2 * np.pi / 3
+plt.plot([t, t], [0, np.cos(t)], color="blue", linewidth=1.5, linestyle="--")
+plt.scatter(
+    [
+        t,
+    ],
+    [
+        np.cos(t),
+    ],
+    50,
+    color="blue",
+)
+plt.annotate(
+    r"$sin(\frac{2\pi}{3})=\frac{\sqrt{3}}{2}$",
+    xy=(t, np.sin(t)),
+    xycoords="data",
+    xytext=(10, 30),
+    textcoords="offset points",
+    fontsize=16,
+    arrowprops={"arrowstyle": "->", "connectionstyle": "arc3,rad=.2"},
+)
+
+plt.plot([t, t], [0, np.sin(t)], color="red", linewidth=1.5, linestyle="--")
+plt.scatter(
+    [
+        t,
+    ],
+    [
+        np.sin(t),
+    ],
+    50,
+    color="red",
+)
+plt.annotate(
+    r"$cos(\frac{2\pi}{3})=-\frac{1}{2}$",
+    xy=(t, np.cos(t)),
+    xycoords="data",
+    xytext=(-90, -50),
+    textcoords="offset points",
+    fontsize=16,
+    arrowprops={"arrowstyle": "->", "connectionstyle": "arc3,rad=.2"},
+)
+
+for label in ax.get_xticklabels() + ax.get_yticklabels():
+    label.set_fontsize(16)
+    label.set_bbox({"facecolor": "white", "edgecolor": "None", "alpha": 0.65})
+```
+
+(gridspec)=
+
+## GridSpec
+
+<!--- plot_gridspec -->
+
+
+An example demoing gridspec
+
+```{python}
+from matplotlib import gridspec
+
+plt.figure(figsize=(6, 4))
+G = gridspec.GridSpec(3, 3)
+
+axes_1 = plt.subplot(G[0, :])
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "Axes 1", ha="center", va="center", size=24, alpha=0.5)
+
+axes_2 = plt.subplot(G[1, :-1])
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "Axes 2", ha="center", va="center", size=24, alpha=0.5)
+
+axes_3 = plt.subplot(G[1:, -1])
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "Axes 3", ha="center", va="center", size=24, alpha=0.5)
+
+axes_4 = plt.subplot(G[-1, 0])
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "Axes 4", ha="center", va="center", size=24, alpha=0.5)
+
+axes_5 = plt.subplot(G[-1, -2])
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "Axes 5", ha="center", va="center", size=24, alpha=0.5)
+
+plt.tight_layout()
+```
+
+(simple-axes-example)=
+
+## Simple axes example
+
+<!--- plot_axes -->
+
+
+This example shows a couple of simple usage of axes.
+
+```{python}
+plt.axes((0.1, 0.1, 0.8, 0.8))
+plt.xticks([])
+plt.yticks([])
+plt.text(
+    0.6, 0.6, "axes([0.1, 0.1, 0.8, 0.8])", ha="center", va="center", size=20, alpha=0.5
+)
+
+plt.axes((0.2, 0.2, 0.3, 0.3))
+plt.xticks([])
+plt.yticks([])
+plt.text(
+    0.5, 0.5, "axes([0.2, 0.2, 0.3, 0.3])", ha="center", va="center", size=16, alpha=0.5
+)
+```
+
+(locators-for-tick-on-axis)=
+
+## Locators for tick on axis
+
+<!--- plot_ticks -->
+
+
+An example demoing different locators to position ticks on axis for
+matplotlib.
+
+```{python}
+from matplotlib import ticker
+
+def tickline():
+    plt.xlim(0, 10), plt.ylim(-1, 1), plt.yticks([])
+    ax = plt.gca()
+    ax.spines["right"].set_color("none")
+    ax.spines["left"].set_color("none")
+    ax.spines["top"].set_color("none")
+    ax.xaxis.set_ticks_position("bottom")
+    ax.spines["bottom"].set_position(("data", 0))
+    ax.yaxis.set_ticks_position("none")
+    ax.xaxis.set_minor_locator(ticker.MultipleLocator(0.1))
+    ax.plot(np.arange(11), np.zeros(11))
+    return ax
+
+locators = [
+    "ticker.NullLocator()",
+    "ticker.MultipleLocator(1.0)",
+    "ticker.FixedLocator([0, 2, 8, 9, 10])",
+    "ticker.IndexLocator(3, 1)",
+    "ticker.LinearLocator(5)",
+    "ticker.LogLocator(2, [1.0])",
+    "ticker.AutoLocator()",
+]
+
+n_locators = len(locators)
+
+size = 512, 40 * n_locators
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+
+for i, locator in enumerate(locators):
+    plt.subplot(n_locators, 1, i + 1)
+    ax = tickline()
+    ax.xaxis.set_major_locator(eval(locator))
+    plt.text(5, 0.3, locator[7:], ha="center")
+
+plt.subplots_adjust(bottom=0.01, top=0.99, left=0.01, right=0.99)
+```
+
+(plot-example-vignette)=
+
+## Plot example vignette
+
+<!--- plot_plot_ext -->
+
+
+An example of plots with matplotlib, and added annotations.
+
+```{python}
+n = 256
+X = np.linspace(0, 2, n)
+Y = np.sin(2 * np.pi * X)
+
+plt.plot(X, Y, lw=2, color="violet")
+plt.xlim(-0.2, 2.2)
+plt.xticks([])
+plt.ylim(-1.2, 1.2)
+plt.yticks([])
+
+# Add a title and a box around it
+from matplotlib.patches import FancyBboxPatch
+
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Regular Plot:      plt.plot(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n   Plot lines and/or markers ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(plot-scatter-decorated)=
+
+## Plot scatter decorated
+
+<!--- plot_scatter_ext -->
+
+
+An example showing the scatter function, with decorations.
+
+```{python}
+n = 1024
+rng = np.random.default_rng()
+X = rng.normal(0, 1, n)
+Y = rng.normal(0, 1, n)
+
+T = np.arctan2(Y, X)
+
+plt.scatter(X, Y, s=75, c=T, alpha=0.5)
+plt.xlim(-1.5, 1.5)
+plt.xticks([])
+plt.ylim(-1.5, 1.5)
+plt.yticks([])
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Scatter Plot:  plt.scatter(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n   Make a scatter plot of x versus y ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(bar-plot-advanced)=
+
+## Bar plot advanced
+
+<!--- plot_bar_ext -->
+
+
+An more elaborate bar plot example
+
+```{python}
+n = 16
+X = np.arange(n)
+Y1 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
+Y2 = (1 - X / float(n)) * np.random.uniform(0.5, 1.0, n)
+plt.bar(X, Y1, facecolor="#9999ff", edgecolor="white")
+plt.bar(X, -Y2, facecolor="#ff9999", edgecolor="white")
+plt.xlim(-0.5, n)
+plt.xticks([])
+plt.ylim(-1, 1)
+plt.yticks([])
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Bar Plot:              plt.bar(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n   Make a bar plot with rectangles ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(display-the-contours-of-a-function)=
+
+## Display the contours of a function
+
+<!--- plot_contour_ext -->
+
+
+An example demoing how to plot the contours of a function, with
+additional layout tweaks.
+
+```{python}
+def f(x, y):
+    return (1 - x / 2 + x**5 + y**3) * np.exp(-(x**2) - y**2)
+
+n = 256
+x = np.linspace(-3, 3, n)
+y = np.linspace(-3, 3, n)
+X, Y = np.meshgrid(x, y)
+
+plt.contourf(X, Y, f(X, Y), 8, alpha=0.75, cmap="hot")
+C = plt.contour(X, Y, f(X, Y), 8, colors="black", linewidth=0.5)
+plt.clabel(C, inline=1, fontsize=10)
+plt.xticks([])
+plt.yticks([])
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Contour Plot: plt.contour(..)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n  Draw contour lines and filled contours ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(imshow-demo)=
+
+## Imshow demo
+
+<!--- plot_imshow_ext -->
+
+
+Demoing imshow
+
+```{python}
+def f(x, y):
+    return (1 - x / 2 + x**5 + y**3) * np.exp(-(x**2) - y**2)
+
+n = 10
+x = np.linspace(-3, 3, 8 * n)
+y = np.linspace(-3, 3, 6 * n)
+X, Y = np.meshgrid(x, y)
+Z = f(X, Y)
+plt.imshow(Z, interpolation="nearest", cmap="bone", origin="lower")
+plt.xticks([])
+plt.yticks([])
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Imshow:       plt.imshow(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n   Display an image to current axes ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    family="DejaVu Sans",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(plotting-quiver-decorated)=
+
+## Plotting quiver decorated
+
+<!--- plot_quiver_ext -->
+
+
+An example showing quiver with decorations.
+
+```{python}
+n = 8
+X, Y = np.mgrid[0:n, 0:n]
+T = np.arctan2(Y - n / 2.0, X - n / 2.0)
+R = 10 + np.sqrt((Y - n / 2.0) ** 2 + (X - n / 2.0) ** 2)
+U, V = R * np.cos(T), R * np.sin(T)
+
+plt.quiver(X, Y, U, V, R, alpha=0.5)
+plt.quiver(X, Y, U, V, edgecolor="k", facecolor="None", linewidth=0.5)
+
+plt.xlim(-1, n)
+plt.xticks([])
+plt.ylim(-1, n)
+plt.yticks([])
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Quiver Plot:    plt.quiver(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n    Plot a 2-D field of arrows ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+
+(pie-chart-vignette)=
+
+## Pie chart vignette
+
+<!--- plot_pie_ext -->
+
+
+Demo pie chart with matplotlib and style the figure.
+
+```{python}
+n = 20
+X = np.ones(n)
+X[-1] *= 2
+plt.pie(X, explode=X * 0.05, colors=[f"{i / float(n):f}" for i in range(n)])
+
+fig = plt.gcf()
+w, h = fig.get_figwidth(), fig.get_figheight()
+r = h / float(w)
+
+plt.xlim(-1.5, 1.5)
+plt.ylim(-1.5 * r, 1.5 * r)
+plt.xticks([])
+plt.yticks([])
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Pie Chart:           plt.pie(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n   Make a pie chart of an array ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(grid-elaborate)=
+
+## Grid elaborate
+
+<!--- plot_grid_ext -->
+
+
+An example displaying a grid on the axes and tweaking the layout.
+
+```{python}
+from matplotlib.ticker import MultipleLocator
+
+fig = plt.figure(figsize=(8, 6), dpi=72, facecolor="white")
+axes = plt.subplot(111)
+axes.set_xlim(0, 4)
+axes.set_ylim(0, 3)
+
+axes.xaxis.set_major_locator(MultipleLocator(1.0))
+axes.xaxis.set_minor_locator(MultipleLocator(0.1))
+axes.yaxis.set_major_locator(MultipleLocator(1.0))
+axes.yaxis.set_minor_locator(MultipleLocator(0.1))
+axes.grid(which="major", axis="x", linewidth=0.75, linestyle="-", color="0.75")
+axes.grid(which="minor", axis="x", linewidth=0.25, linestyle="-", color="0.75")
+axes.grid(which="major", axis="y", linewidth=0.75, linestyle="-", color="0.75")
+axes.grid(which="minor", axis="y", linewidth=0.25, linestyle="-", color="0.75")
+axes.set_xticklabels([])
+axes.set_yticklabels([]);
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Grid:                  plt.grid(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=axes.transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n    Draw ticks and grid ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=axes.transAxes,
+)
+```
+
+(multiple-plots-vignette)=
+
+## Multiple plots vignette
+
+<!--- plot_multiplot_ext -->
+
+
+Demo multiple plots and style the figure.
+
+```{python}
+ax = plt.subplot(2, 1, 1)
+ax.set_xticklabels([])
+ax.set_yticklabels([])
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.72),
+        width=0.66,
+        height=0.34,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Multiplot:     plt.subplot(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=ax.transAxes,
+)
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n    Plot several plots at once ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=ax.transAxes,
+)
+
+ax = plt.subplot(2, 2, 3)
+ax.set_xticklabels([])
+ax.set_yticklabels([])
+
+ax = plt.subplot(2, 2, 4)
+ax.set_xticklabels([])
+ax.set_yticklabels([]);
+```
+
+(plotting-in-polar-decorated)=
+
+## Plotting in polar, decorated
+
+<!--- plot_polar_ext -->
+
+
+An example showing how to plot in polar coordinate, and some
+decorations.
+
+```{python}
+import matplotlib
+```
+
+
+```{python}
+plt.subplot(1, 1, 1, polar=True)
+
+N = 20
+theta = np.arange(0.0, 2 * np.pi, 2 * np.pi / N)
+rng = np.random.default_rng()
+radii = 10 * rng.random(N)
+width = np.pi / 4 * rng.random(N)
+bars = plt.bar(theta, radii, width=width, bottom=0.0)
+jet = matplotlib.colormaps["jet"]
+
+for r, bar in zip(radii, bars, strict=True):
+    bar.set_facecolor(jet(r / 10.0))
+    bar.set_alpha(0.5)
+plt.gca().set_xticklabels([])
+plt.gca().set_yticklabels([])
+
+plt.text(
+    -0.2,
+    1.02,
+    " Polar Axis                  \n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    bbox={"facecolor": "white", "alpha": 1.0},
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.2,
+    1.01,
+    "\n\n Plot anything using polar axis ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(3d-plotting-vignette)=
+
+## 3D plotting vignette
+
+<!--- plot_plot3d_ext -->
+
+
+Demo 3D plotting with matplotlib and decorate the figure.
+
+```{python}
+from mpl_toolkits.mplot3d import Axes3D
+
+x = np.arange(-4, 4, 0.25)
+y = np.arange(-4, 4, 0.25)
+X, Y = np.meshgrid(x, y)
+R = np.sqrt(X**2 + Y**2)
+Z = np.sin(R)
+
+fig = plt.figure()
+# ax: Axes3D states the output type of `ax`, helpful for type checkers.
+ax: Axes3D = fig.add_subplot(111, projection="3d")
+
+ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap="hot")
+ax.contourf(X, Y, Z, zdir="z", offset=-2, cmap="hot")
+
+ax.set_zlim(-2, 2)
+plt.xticks([])
+plt.yticks([])
+ax.set_zticks([])
+
+ax.text2D(
+    0.05,
+    0.93,
+    " 3D plots             \n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    bbox={"facecolor": "white", "alpha": 1.0},
+    transform=plt.gca().transAxes,
+)
+
+ax.text2D(
+    0.05,
+    0.87,
+    " Plot 2D or 3D data",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(text-printing-decorated)=
+
+## Text printing decorated
+
+<!--- plot_text_ext -->
+
+
+An example showing text printing and decorating the resulting figure.
+
+```{python}
+fig = plt.figure()
+plt.xticks([])
+plt.yticks([])
+
+eqs = []
+eqs.append(
+    r"$W^{3\beta}_{\delta_1 \rho_1 \sigma_2} = U^{3\beta}_{\delta_1 \rho_1} + \frac{1}{8 \pi 2} \int^{\alpha_2}_{\alpha_2} d \alpha^\prime_2 \left[\frac{ U^{2\beta}_{\delta_1 \rho_1} - \alpha^\prime_2U^{1\beta}_{\rho_1 \sigma_2} }{U^{0\beta}_{\rho_1 \sigma_2}}\right]$"
+)
+eqs.append(
+    r"$\frac{d\rho}{d t} + \rho \vec{v}\cdot\nabla\vec{v} = -\nabla p + \mu\nabla^2 \vec{v} + \rho \vec{g}$"
+)
+eqs.append(r"$\int_{-\infty}^\infty e^{-x^2}dx=\sqrt{\pi}$")
+eqs.append(r"$E = mc^2 = \sqrt{{m_0}^2c^4 + p^2c^2}$")
+eqs.append(r"$F_G = G\frac{m_1m_2}{r^2}$")
+
+rng = np.random.default_rng()
+
+for i in range(24):
+    index = rng.integers(0, len(eqs))
+    eq = eqs[index]
+    size = rng.uniform(12, 32)
+    x, y = rng.uniform(0, 1, 2)
+    alpha = rng.uniform(0.25, 0.75)
+    plt.text(
+        x,
+        y,
+        eq,
+        ha="center",
+        va="center",
+        color="#11557c",
+        alpha=alpha,
+        transform=plt.gca().transAxes,
+        fontsize=size,
+        clip_on=True,
+    )
+```
+
+
+```{python}
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Text:                   plt.text(...)\n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=plt.gca().transAxes,
+)
+
+plt.text(
+    -0.05,
+    1.01,
+    "\n\n     Draw any kind of text ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=plt.gca().transAxes,
+);
+```
+
+(plot-and-filled-plots)=
+
+## Plot and filled plots
+
+<!--- plot_plot -->
+
+
+Simple example of plots and filling between them with matplotlib.
+
+```{python}
+n = 256
+X = np.linspace(-np.pi, np.pi, n)
+Y = np.sin(2 * X)
+
+plt.axes((0.025, 0.025, 0.95, 0.95))
+
+plt.plot(X, Y + 1, color="blue", alpha=1.00)
+plt.fill_between(X, 1, Y + 1, color="blue", alpha=0.25)
+
+plt.plot(X, Y - 1, color="blue", alpha=1.00)
+plt.fill_between(X, -1, Y - 1, (Y - 1) > -1, color="blue", alpha=0.25)
+plt.fill_between(X, -1, Y - 1, (Y - 1) < -1, color="red", alpha=0.25)
+
+plt.xlim(-np.pi, np.pi)
+plt.xticks([])
+plt.ylim(-2.5, 2.5)
+plt.yticks([]);
+```
+
+(plotting-a-scatter-of-points)=
+
+## Plotting a scatter of points
+
+<!--- plot_scatter -->
+
+
+A simple example showing how to plot a scatter of points with matplotlib.
+
+```{python}
+n = 1024
+rng = np.random.default_rng()
+X = rng.normal(0, 1, n)
+Y = rng.normal(0, 1, n)
+T = np.arctan2(Y, X)
+
+plt.axes((0.025, 0.025, 0.95, 0.95))
+plt.scatter(X, Y, s=75, c=T, alpha=0.5)
+
+plt.xlim(-1.5, 1.5)
+plt.xticks([])
+plt.ylim(-1.5, 1.5)
+plt.yticks([]);
+```
+
+(bar-plots)=
+
+## Bar plots
+
+<!--- plot_bar -->
+
+
+An example of bar plots with matplotlib.
+
+```{python}
+n = 12
+X = np.arange(n)
+rng = np.random.default_rng()
+Y1 = (1 - X / n) * rng.uniform(0.5, 1.0, n)
+Y2 = (1 - X / n) * rng.uniform(0.5, 1.0, n)
+
+plt.axes((0.025, 0.025, 0.95, 0.95))
+plt.bar(X, +Y1, facecolor="#9999ff", edgecolor="white")
+plt.bar(X, -Y2, facecolor="#ff9999", edgecolor="white")
+
+for x, y in zip(X, Y1):
+    plt.text(x, y + 0.05, f"{y:.2f}", ha="center", va="bottom")
+
+for x, y in zip(X, Y2):
+    plt.text(x, -y - 0.05, f"{y:.2f}", ha="center", va="top")
+
+plt.xlim(-0.5, n)
+plt.xticks([])
+plt.ylim(-1.25, 1.25)
+plt.yticks([]);
+```
+
+(displaying-the-contours-of-a-function)=
+
+## Displaying the contours of a function
+
+<!--- plot_contour -->
+
+
+An example showing how to display the contours of a function with
+matplotlib.
+
+```{python}
+def f(x, y):
+    return (1 - x / 2 + x**5 + y**3) * np.exp(-(x**2) - y**2)
+
+n = 256
+x = np.linspace(-3, 3, n)
+y = np.linspace(-3, 3, n)
+X, Y = np.meshgrid(x, y)
+
+plt.axes((0.025, 0.025, 0.95, 0.95))
+
+plt.contourf(X, Y, f(X, Y), 8, alpha=0.75, cmap="hot")
+C = plt.contour(X, Y, f(X, Y), 8, colors="black", linewidths=0.5)
+plt.clabel(C, inline=1, fontsize=10)
+
+plt.xticks([])
+plt.yticks([]);
+```
+
+(imshow-elaborate)=
+
+## Imshow elaborate
+
+<!--- plot_imshow -->
+
+
+An example demoing Imshow and styling the figure.
+
+```{python}
+def f(x, y):
+    return (1 - x / 2 + x**5 + y**3) * np.exp(-(x**2) - y**2)
+
+n = 10
+x = np.linspace(-3, 3, int(3.5 * n))
+y = np.linspace(-3, 3, int(3.0 * n))
+X, Y = np.meshgrid(x, y)
+Z = f(X, Y)
+
+plt.imshow(Z, interpolation="nearest", cmap="bone", origin="lower")
+plt.axes((0.025, 0.025, 0.95, 0.95))
+plt.colorbar(shrink=0.92)
+
+plt.xticks([])
+plt.yticks([]);
+```
+
+(pie-chart)=
+
+## Pie chart
+
+<!--- plot_pie -->
+
+
+A simple pie chart example with matplotlib.
+
+```{python}
+n = 20
+Z = np.ones(n)
+Z[-1] *= 2
+
+plt.axes((0.025, 0.025, 0.95, 0.95))
+
+plt.pie(Z, explode=Z * 0.05, colors=[f"{i / float(n):f}" for i in range(n)])
+plt.axis("equal")
+plt.xticks([])
+plt.yticks();
+```
+
+(plotting-a-vector-field-quiver)=
+
+## Plotting a vector field: quiver
+
+<!--- plot_quiver -->
+
+
+A simple example showing how to plot a vector field (quiver) with
+matplotlib.
+
+```{python}
+n = 8
+X, Y = np.mgrid[0:n, 0:n]
+T = np.arctan2(Y - n / 2.0, X - n / 2.0)
+R = 10 + np.sqrt((Y - n / 2.0) ** 2 + (X - n / 2.0) ** 2)
+U, V = R * np.cos(T), R * np.sin(T)
+
+plt.axes((0.025, 0.025, 0.95, 0.95))
+plt.quiver(X, Y, U, V, R, alpha=0.5)
+plt.quiver(X, Y, U, V, edgecolor="k", facecolor="None", linewidth=0.5)
+
+plt.xlim(-1, n)
+plt.xticks([])
+plt.ylim(-1, n)
+plt.yticks([]);
+```
+
+(grid)=
+
+## Grid
+
+<!--- plot_grid -->
+
+
+Displaying a grid on the axes in matploblib.
+
+```{python}
+from matplotlib import ticker
+
+ax = plt.axes((0.025, 0.025, 0.95, 0.95))
+
+ax.set_xlim(0, 4)
+ax.set_ylim(0, 3)
+ax.xaxis.set_major_locator(ticker.MultipleLocator(1.0))
+ax.xaxis.set_minor_locator(ticker.MultipleLocator(0.1))
+ax.yaxis.set_major_locator(ticker.MultipleLocator(1.0))
+ax.yaxis.set_minor_locator(ticker.MultipleLocator(0.1))
+ax.grid(which="major", axis="x", linewidth=0.75, linestyle="-", color="0.75")
+ax.grid(which="minor", axis="x", linewidth=0.25, linestyle="-", color="0.75")
+ax.grid(which="major", axis="y", linewidth=0.75, linestyle="-", color="0.75")
+ax.grid(which="minor", axis="y", linewidth=0.25, linestyle="-", color="0.75")
+ax.set_xticklabels([])
+ax.set_yticklabels([]);
+```
+
+(subplots)=
+
+## Subplots
+
+<!--- plot_multiplot -->
+
+
+Show multiple subplots in matplotlib.
+
+```{python}
+fig = plt.figure()
+fig.subplots_adjust(bottom=0.025, left=0.025, top=0.975, right=0.975)
+
+plt.subplot(2, 1, 1)
+plt.xticks([]), plt.yticks([])
+
+plt.subplot(2, 3, 4)
+plt.xticks([])
+plt.yticks([])
+
+plt.subplot(2, 3, 5)
+plt.xticks([])
+plt.yticks([])
+
+plt.subplot(2, 3, 6)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(plotting-in-polar-coordinates)=
+
+## Plotting in polar coordinates
+
+<!--- plot_polar -->
+
+
+A simple example showing how to plot in polar coordinates with
+matplotlib.
+
+```{python}
+jet = matplotlib.colormaps["jet"]
+
+ax = plt.axes((0.025, 0.025, 0.95, 0.95), polar=True)
+
+N = 20
+theta = np.arange(0.0, 2 * np.pi, 2 * np.pi / N)
+rng = np.random.default_rng()
+radii = 10 * rng.random(N)
+width = np.pi / 4 * rng.random(N)
+bars = plt.bar(theta, radii, width=width, bottom=0.0)
+
+for r, bar in zip(radii, bars, strict=True):
+    bar.set_facecolor(jet(r / 10.0))
+    bar.set_alpha(0.5)
+
+ax.set_xticklabels([])
+ax.set_yticklabels([]);
+```
+
+(3d-plotting)=
+
+## 3D plotting
+
+<!--- plot_plot3d -->
+
+
+A simple example of 3D plotting.
+
+```{python}
+from mpl_toolkits.mplot3d import Axes3D
+
+ax: Axes3D = plt.figure().add_subplot(projection="3d")
+x = np.arange(-4, 4, 0.25)
+y = np.arange(-4, 4, 0.25)
+X, Y = np.meshgrid(x, y)
+R = np.sqrt(X**2 + Y**2)
+Z = np.sin(R)
+
+ax.plot_surface(X, Y, Z, rstride=1, cstride=1, cmap="hot")
+ax.contourf(X, Y, Z, zdir="z", offset=-2, cmap="hot")
+ax.set_zlim(-2, 2);
+```
+
+(demo-text-printing)=
+
+## Demo text printing
+
+<!--- plot_text -->
+
+
+A example showing off elaborate text printing with matplotlib.
+
+```{python}
+eqs = []
+eqs.append(
+    r"$W^{3\beta}_{\delta_1 \rho_1 \sigma_2} = U^{3\beta}_{\delta_1 \rho_1} + \frac{1}{8 \pi 2} \int^{\alpha_2}_{\alpha_2} d \alpha^\prime_2 \left[\frac{ U^{2\beta}_{\delta_1 \rho_1} - \alpha^\prime_2U^{1\beta}_{\rho_1 \sigma_2} }{U^{0\beta}_{\rho_1 \sigma_2}}\right]$"
+)
+eqs.append(
+    r"$\frac{d\rho}{d t} + \rho \vec{v}\cdot\nabla\vec{v} = -\nabla p + \mu\nabla^2 \vec{v} + \rho \vec{g}$"
+)
+eqs.append(r"$\int_{-\infty}^\infty e^{-x^2}dx=\sqrt{\pi}$")
+eqs.append(r"$E = mc^2 = \sqrt{{m_0}^2c^4 + p^2c^2}$")
+eqs.append(r"$F_G = G\frac{m_1m_2}{r^2}$")
+
+plt.axes((0.025, 0.025, 0.95, 0.95))
+
+rng = np.random.default_rng()
+
+for i in range(24):
+    index = rng.integers(0, len(eqs))
+    eq = eqs[index]
+    size = np.random.uniform(12, 32)
+    x, y = np.random.uniform(0, 1, 2)
+    alpha = np.random.uniform(0.25, 0.75)
+    plt.text(
+        x,
+        y,
+        eq,
+        ha="center",
+        va="center",
+        color="#11557c",
+        alpha=alpha,
+        transform=plt.gca().transAxes,
+        fontsize=size,
+        clip_on=True,
+    )
+plt.xticks([])
+plt.yticks([]);
+```
+
+(linestyles)=
+
+## Linestyles
+
+<!--- plot_linestyles -->
+
+
+Plot the different line styles.
+
+```{python}
+def linestyle(ls, i):
+    X = i * 0.5 * np.ones(11)
+    Y = np.arange(11)
+    plt.plot(
+        X,
+        Y,
+        ls,
+        color=(0.0, 0.0, 1, 1),
+        lw=3,
+        ms=8,
+        mfc=(0.75, 0.75, 1, 1),
+        mec=(0, 0, 1, 1),
+    )
+    plt.text(0.5 * i, 10.25, ls, rotation=90, fontsize=15, va="bottom")
+
+linestyles = [
+    "-",
+    "--",
+    ":",
+    "-.",
+    ".",
+    ",",
+    "o",
+    "^",
+    "v",
+    "<",
+    ">",
+    "s",
+    "+",
+    "x",
+    "d",
+    "1",
+    "2",
+    "3",
+    "4",
+    "h",
+    "p",
+    "|",
+    "_",
+    "D",
+    "H",
+]
+n_lines = len(linestyles)
+
+size = 20 * n_lines, 300
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+plt.axes((0, 0.01, 1, 0.9), frameon=False)
+
+for i, ls in enumerate(linestyles):
+    linestyle(ls, i)
+
+plt.xlim(-0.2, 0.2 + 0.5 * n_lines)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(markers)=
+
+## Markers
+
+<!--- plot_markers -->
+
+
+Show the different markers of matplotlib.
+
+```{python}
+def marker(m, i):
+    X = i * 0.5 * np.ones(11)
+    Y = np.arange(11)
+
+    plt.plot(X, Y, lw=1, marker=m, ms=10, mfc=(0.75, 0.75, 1, 1), mec=(0, 0, 1, 1))
+    plt.text(0.5 * i, 10.25, repr(m), rotation=90, fontsize=15, va="bottom")
+
+markers = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    "o",
+    "h",
+    "_",
+    "1",
+    "2",
+    "3",
+    "4",
+    "8",
+    "p",
+    "^",
+    "v",
+    "<",
+    ">",
+    "|",
+    "d",
+    ",",
+    "+",
+    "s",
+    "*",
+    "|",
+    "x",
+    "D",
+    "H",
+    ".",
+]
+
+n_markers = len(markers)
+
+size = 20 * n_markers, 300
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+plt.axes((0, 0.01, 1, 0.9), frameon=False)
+
+for i, m in enumerate(markers):
+    marker(m, i)
+
+plt.xlim(-0.2, 0.2 + 0.5 * n_markers)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(colormaps)=
+
+## Colormaps
+
+<!--- plot_colormaps -->
+
+
+An example plotting the matplotlib colormaps.
+
+```{python}
+plt.rc("text", usetex=False)
+a = np.outer(np.arange(0, 1, 0.01), np.ones(10))
+
+plt.figure(figsize=(10, 5))
+plt.subplots_adjust(top=0.8, bottom=0.05, left=0.01, right=0.99)
+maps = [m for m in matplotlib.colormaps if not m.endswith("_r")]
+maps.sort()
+l = len(maps) + 1
+
+for i, m in enumerate(maps):
+    plt.subplot(1, l, i + 1)
+    plt.axis("off")
+    plt.imshow(a, aspect="auto", cmap=plt.get_cmap(m), origin="lower")
+    plt.title(m, rotation=90, fontsize=10, va="bottom")
+```
+
+## Other examples
+
+
+(aliased-versus-anti-aliased)=
+
+### Aliased versus anti-aliased
+
+<!--- plot_aliased -->
+
+
+This example demonstrates aliased versus anti-aliased text.
+
+```{python}
+size = 128, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+
+plt.axes((0, 0, 1, 1), frameon=False)
+
+plt.rcParams["text.antialiased"] = False
+plt.text(0.5, 0.5, "Aliased", ha="center", va="center")
+
+plt.xlim(0, 1)
+plt.ylim(0, 1)
+plt.xticks([])
+plt.yticks([])
+
+# Reset rcParams back to defaults
+plt.rcdefaults()
+```
+
+(alpha-transparency)=
+
+### Alpha: transparency
+
+<!--- plot_alpha -->
+
+
+This example demonstrates using alpha for transparency.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0.1, 1, 0.8), frameon=False)
+
+for i in range(1, 11):
+    plt.axvline(i, linewidth=1, color="blue", alpha=0.25 + 0.75 * i / 10.0)
+
+plt.xlim(0, 11)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(aliased-versus-anti-aliased)=
+
+### Aliased versus anti-aliased
+
+<!--- plot_antialiased -->
+
+
+The example shows aliased versus anti-aliased text.
+
+```{python}
+size = 128, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+plt.rcParams["text.antialiased"] = True
+plt.text(0.5, 0.5, "Anti-aliased", ha="center", va="center")
+
+plt.xlim(0, 1)
+plt.ylim(0, 1)
+plt.xticks([])
+plt.yticks([])
+
+# Reset rcParams back to defaults
+plt.rcdefaults()
+```
+
+(the-colors-matplotlib-line-plots)=
+
+### The colors matplotlib line plots
+
+<!--- plot_color -->
+
+
+An example demoing the various colors taken by matplotlib's plot.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0.1, 1, 0.8), frameon=False)
+
+for i in range(1, 11):
+    plt.plot([i, i], [0, 1], lw=1.5)
+
+plt.xlim(0, 11)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(dash-capstyle)=
+
+### Dash capstyle
+
+<!--- plot_dash_capstyle -->
+
+
+An example demoing the dash capstyle.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+plt.plot(
+    np.arange(4),
+    np.ones(4),
+    color="blue",
+    dashes=[15, 15],
+    linewidth=8,
+    dash_capstyle="butt",
+)
+
+plt.plot(
+    5 + np.arange(4),
+    np.ones(4),
+    color="blue",
+    dashes=[15, 15],
+    linewidth=8,
+    dash_capstyle="round",
+)
+
+plt.plot(
+    10 + np.arange(4),
+    np.ones(4),
+    color="blue",
+    dashes=[15, 15],
+    linewidth=8,
+    dash_capstyle="projecting",
+)
+
+plt.xlim(0, 14)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(dash-join-style)=
+
+### Dash join style
+
+<!--- plot_dash_joinstyle -->
+
+
+Example demoing the dash join style.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+plt.plot(
+    np.arange(3),
+    [0, 1, 0],
+    color="blue",
+    dashes=[12, 5],
+    linewidth=8,
+    dash_joinstyle="miter",
+)
+plt.plot(
+    4 + np.arange(3),
+    [0, 1, 0],
+    color="blue",
+    dashes=[12, 5],
+    linewidth=8,
+    dash_joinstyle="bevel",
+)
+plt.plot(
+    8 + np.arange(3),
+    [0, 1, 0],
+    color="blue",
+    dashes=[12, 5],
+    linewidth=8,
+    dash_joinstyle="round",
+)
+
+plt.xlim(0, 12)
+plt.ylim(-1, 2)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(linewidth)=
+
+### Linewidth
+
+<!--- plot_linewidth -->
+
+
+Plot various linewidth with matplotlib.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0.1, 1, 0.8), frameon=False)
+
+for i in range(1, 11):
+    plt.plot([i, i], [0, 1], color="b", lw=i / 2.0)
+
+plt.xlim(0, 11)
+plt.ylim(0, 1)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(marker-edge-color)=
+
+### Marker edge color
+
+<!--- plot_mec -->
+
+
+Demo the marker edge color of matplotlib's markers.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+rng = np.random.default_rng()
+
+for i in range(1, 11):
+    r, g, b = np.random.uniform(0, 1, 3)
+    plt.plot(
+        [
+            i,
+        ],
+        [
+            1,
+        ],
+        "s",
+        markersize=5,
+        markerfacecolor="w",
+        markeredgewidth=1.5,
+        markeredgecolor=(r, g, b, 1),
+    )
+
+plt.xlim(0, 11)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(marker-edge-width)=
+
+### Marker edge width
+
+<!--- plot_mew -->
+
+
+Demo the marker edge widths of matplotlib's markers.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+for i in range(1, 11):
+    plt.plot(
+        [
+            i,
+        ],
+        [
+            1,
+        ],
+        "s",
+        markersize=5,
+        markeredgewidth=1 + i / 10.0,
+        markeredgecolor="k",
+        markerfacecolor="w",
+    )
+plt.xlim(0, 11)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(marker-face-color)=
+
+### Marker face color
+
+<!--- plot_mfc -->
+
+
+Demo the marker face color of matplotlib's markers.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+rng = np.random.default_rng()
+```
+
+```{python tags=c("hide-input")}
+for i in range(1, 11):
+    r, g, b = np.random.uniform(0, 1, 3)
+    plt.plot(
+        [
+            i,
+        ],
+        [
+            1,
+        ],
+        "s",
+        markersize=8,
+        markerfacecolor=(r, g, b, 1),
+        markeredgewidth=0.1,
+        markeredgecolor=(0, 0, 0, 0.5),
+    )
+plt.xlim(0, 11)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(marker-size)=
+
+### Marker size
+
+<!--- plot_ms -->
+
+
+Demo the marker size control in matplotlib.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+for i in range(1, 11):
+    plt.plot(
+        [
+            i,
+        ],
+        [
+            1,
+        ],
+        "s",
+        markersize=i,
+        markerfacecolor="w",
+        markeredgewidth=0.5,
+        markeredgecolor="k",
+    )
+
+plt.xlim(0, 11)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(solid-cap-style)=
+
+### Solid cap style
+
+<!--- plot_solid_capstyle -->
+
+
+An example demoing the solide cap style in matplotlib.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+plt.plot(np.arange(4), np.ones(4), color="blue", linewidth=8, solid_capstyle="butt")
+
+plt.plot(
+    5 + np.arange(4), np.ones(4), color="blue", linewidth=8, solid_capstyle="round"
+)
+
+plt.plot(
+    10 + np.arange(4),
+    np.ones(4),
+    color="blue",
+    linewidth=8,
+    solid_capstyle="projecting",
+)
+
+plt.xlim(0, 14)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(solid-joint-style)=
+
+### Solid joint style
+
+<!--- plot_solid_joinstyle -->
+
+
+An example showing the different solid joint styles in matplotlib.
+
+```{python}
+size = 256, 16
+dpi = 72.0
+figsize = size[0] / float(dpi), size[1] / float(dpi)
+fig = plt.figure(figsize=figsize, dpi=dpi)
+fig.patch.set_alpha(0)
+plt.axes((0, 0, 1, 1), frameon=False)
+
+plt.plot(np.arange(3), [0, 1, 0], color="blue", linewidth=8, solid_joinstyle="miter")
+plt.plot(
+    4 + np.arange(3), [0, 1, 0], color="blue", linewidth=8, solid_joinstyle="bevel"
+)
+plt.plot(
+    8 + np.arange(3), [0, 1, 0], color="blue", linewidth=8, solid_joinstyle="round"
+)
+
+plt.xlim(0, 12)
+plt.ylim(-1, 2)
+plt.xticks([])
+plt.yticks([]);
+```
+
+(axes)=
+
+### Axes
+
+<!--- plot_axes-2 -->
+
+
+This example shows various axes command to position matplotlib axes.
+
+```{python}
+plt.axes((0.1, 0.1, 0.5, 0.5))
+plt.xticks([])
+plt.yticks([])
+plt.text(
+    0.1, 0.1, "axes((0.1, 0.1, 0.5, 0.5))", ha="left", va="center", size=16, alpha=0.5
+)
+
+plt.axes((0.2, 0.2, 0.5, 0.5))
+plt.xticks([])
+plt.yticks([])
+plt.text(
+    0.1, 0.1, "axes((0.2, 0.2, 0.5, 0.5))", ha="left", va="center", size=16, alpha=0.5
+)
+
+plt.axes((0.3, 0.3, 0.5, 0.5))
+plt.xticks([])
+plt.yticks([])
+plt.text(
+    0.1, 0.1, "axes((0.3, 0.3, 0.5, 0.5))", ha="left", va="center", size=16, alpha=0.5
+)
+
+plt.axes((0.4, 0.4, 0.5, 0.5))
+plt.xticks([])
+plt.yticks([])
+plt.text(
+    0.1, 0.1, "axes((0.4, 0.4, 0.5, 0.5))", ha="left", va="center", size=16, alpha=0.5
+);
+```
+
+(a-simple-plotting-example)=
+
+### A simple plotting example
+
+<!--- plot_bad -->
+
+
+A plotting example with a few simple tweaks
+
+```{python tags=c("hide-input")}
+fig = plt.figure(figsize=(5, 4), dpi=72)
+axes = fig.add_axes((0.01, 0.01, 0.98, 0.98))
+x = np.linspace(0, 2, 200)
+y = np.sin(2 * np.pi * x)
+plt.plot(x, y, lw=0.25, c="k")
+plt.xticks(np.arange(0.0, 2.0, 0.1))
+plt.yticks(np.arange(-1.0, 1.0, 0.1))
+plt.grid();
+```
+
+(a-simple-good-looking-plot)=
+
+### A simple, good-looking plot
+
+<!--- plot_good -->
+
+
+Demoing some simple features of matplotlib
+
+```{python}
+fig = plt.figure(figsize=(5, 4), dpi=72)
+axes = fig.add_axes((0.01, 0.01, 0.98, 0.98))
+X = np.linspace(0, 2, 200)
+Y = np.sin(2 * np.pi * X)
+plt.plot(X, Y, lw=2)
+plt.ylim(-1.1, 1.1)
+plt.grid();
+```
+
+(3d-plotting)=
+
+### 3D plotting
+
+<!--- plot_plot3d-2 -->
+
+
+Demo 3D plotting with matplotlib and style the figure.
+
+```{python}
+from mpl_toolkits.mplot3d.axes3d import Axes3D, get_test_data
+
+ax: Axes3D = plt.figure().add_subplot(projection="3d")
+X, Y, Z = get_test_data(0.05)
+cset = ax.contourf(X, Y, Z)
+ax.clabel(cset, fontsize=9, inline=1)
+
+plt.xticks([])
+plt.yticks([])
+ax.set_zticks([]);
+```
+
+
+```{python}
+ax.text2D(
+    -0.05,
+    1.05,
+    " 3D plots             \n",
+    horizontalalignment="left",
+    verticalalignment="top",
+    bbox={"facecolor": "white", "alpha": 1.0},
+    family="DejaVu Sans",
+    size="x-large",
+    transform=plt.gca().transAxes,
+)
+
+ax.text2D(
+    -0.05,
+    0.975,
+    " Plot 2D or 3D data",
+    horizontalalignment="left",
+    verticalalignment="top",
+    family="DejaVu Sans",
+    size="medium",
+    transform=plt.gca().transAxes,
+);
+```
+
+(subplot-grid)=
+
+### Subplot grid
+
+<!--- plot_subplot-grid -->
+
+
+An example showing the subplot grid in matplotlib.
+
+```{python}
+plt.figure(figsize=(6, 4))
+plt.subplot(2, 2, 1)
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "subplot(2,2,1)", ha="center", va="center", size=20, alpha=0.5)
+
+plt.subplot(2, 2, 2)
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "subplot(2,2,2)", ha="center", va="center", size=20, alpha=0.5)
+
+plt.subplot(2, 2, 3)
+plt.xticks([])
+plt.yticks([])
+
+plt.text(0.5, 0.5, "subplot(2,2,3)", ha="center", va="center", size=20, alpha=0.5)
+
+plt.subplot(2, 2, 4)
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "subplot(2,2,4)", ha="center", va="center", size=20, alpha=0.5)
+
+plt.tight_layout()
+```
+
+(horizontal-arrangement-of-subplots)=
+
+### Horizontal arrangement of subplots
+
+<!--- plot_subplot-horizontal -->
+
+
+An example showing horizontal arrangement of subplots with matplotlib.
+
+```{python}
+plt.figure(figsize=(6, 4))
+plt.subplot(2, 1, 1)
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "subplot(2,1,1)", ha="center", va="center", size=24, alpha=0.5)
+
+plt.subplot(2, 1, 2)
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "subplot(2,1,2)", ha="center", va="center", size=24, alpha=0.5)
+
+plt.tight_layout()
+```
+
+(subplot-plot-arrangement-vertical)=
+
+### Subplot plot arrangement vertical
+
+<!--- plot_subplot-vertical -->
+
+
+An example showing vertical arrangement of subplots with matplotlib.
+
+```{python}
+plt.figure(figsize=(6, 4))
+plt.subplot(1, 2, 1)
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "subplot(1,2,1)", ha="center", va="center", size=24, alpha=0.5)
+
+plt.subplot(1, 2, 2)
+plt.xticks([])
+plt.yticks([])
+plt.text(0.5, 0.5, "subplot(1,2,2)", ha="center", va="center", size=24, alpha=0.5)
+
+plt.tight_layout()
+```
+
+(a-example-of-plotting-not-quite-right)=
+
+### A example of plotting not quite right
+
+<!--- plot_ugly -->
+
+
+An "ugly" example of plotting.
+
+```{python}
+matplotlib.rc("grid", color="black", linestyle="-", linewidth=1)
+
+fig = plt.figure(figsize=(5, 4), dpi=72)
+axes = fig.add_axes((0.01, 0.01, 0.98, 0.98), facecolor=".75")
+X = np.linspace(0, 2, 40)
+Y = np.sin(2 * np.pi * X)
+plt.plot(X, Y, lw=0.05, c="b", antialiased=False)
+
+plt.xticks([])
+plt.yticks(np.arange(-1.0, 1.0, 0.2))
+plt.grid()
+ax = plt.gca()
+
+# Reset rcParams back to defaults
+plt.rcdefaults()
+```
+
+(boxplot-with-matplotlib)=
+
+### Boxplot with matplotlib
+
+<!--- plot_boxplot_ext -->
+
+
+An example of doing box plots with matplotlib
+
+```{python}
+fig = plt.figure(figsize=(8, 5))
+axes = plt.subplot(111)
+
+n = 5
+Z = np.zeros((n, 4))
+X = np.linspace(0, 2, n)
+rng = np.random.default_rng()
+Y = rng.random((n, 4))
+plt.boxplot(Y)
+
+plt.xticks([])
+plt.yticks([])
+
+# Add a title and a box around it
+ax = plt.gca()
+ax.add_patch(
+    FancyBboxPatch(
+        (-0.05, 0.87),
+        width=0.66,
+        height=0.165,
+        clip_on=False,
+        boxstyle="square,pad=0",
+        zorder=3,
+        facecolor="white",
+        alpha=1.0,
+        transform=plt.gca().transAxes,
+    )
+)
+
+plt.text(
+    -0.05,
+    1.02,
+    " Box Plot:   plt.boxplot(...)\n ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="xx-large",
+    transform=axes.transAxes,
+)
+
+plt.text(
+    -0.04,
+    0.98,
+    "\n Make a box and whisker plot ",
+    horizontalalignment="left",
+    verticalalignment="top",
+    size="large",
+    transform=axes.transAxes,
+);
+```
