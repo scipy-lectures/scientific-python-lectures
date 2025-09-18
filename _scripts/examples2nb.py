@@ -133,7 +133,11 @@ def process_example(eg_path, import_lines=None):
     return nb, title
 
 
-def process_nb_examples(root_path, nb_path, examples_path):
+def get_example_paths(eg_dirs):
+    return sum([sorted(Path(d).glob('**/plot_*.py')) for d in eg_dirs], [])
+
+
+def process_nb_examples(root_path, nb_path, eg_paths):
     # Get all references (something)=
     ref_defs = get_ref_targets(root_path)
     # Get all examples.
@@ -141,16 +145,14 @@ def process_nb_examples(root_path, nb_path, examples_path):
     nb_imp_lines = []
     # Analyze notebook for references to examples
     eg_stems = get_eg_stems(nb_path)
-    # Work through examples in notebook order.
-    eg_in = sorted(examples_path.glob('plot_*.py'))
-    if not eg_in:
-        raise RuntimeError(f'No examples at {examples_path}')
 
     def eg_sorter(pth):
         return [eg_stems.index(pth.stem) if pth.stem in eg_stems
                 else len(eg_stems)]
 
-    eg_paths = sorted(eg_in, key=eg_sorter)  # Relies on stable sort.
+    # Sort examples in notebook order.
+    eg_paths = sorted(eg_paths, key=eg_sorter)  # Relies on stable sort.
+
     for eg_path in eg_paths:
         nb, title = process_example(eg_path, nb_imp_lines)
         eg_stem = eg_path.stem
@@ -184,7 +186,7 @@ def get_parser():
     parser = ArgumentParser(description=__doc__,  # Usage from docstring
                             formatter_class=RawDescriptionHelpFormatter)
     parser.add_argument('nb_file', help='notebook file')
-    parser.add_argument('--eg-dir', help='path to examples')
+    parser.add_argument('--eg-dir', help='path to examples', nargs='*')
     parser.add_argument('--root-dir', help='root path to book', default='.')
     parser.add_argument('--eg-nb', help='Output notebook filename')
     return parser
@@ -196,16 +198,19 @@ def main():
     nb_pth = Path(args.nb_file)
     if not nb_pth.is_file():
         raise RuntimeError(f'Notebook {nb_pth} is not a file')
-    if args.eg_dir is not None:
-        eg_pth = Path(args.eg_dir)
-    elif (eg_pth := nb_pth.parent / 'examples').is_dir():
-        pass
-    elif not (eg_pth := nb_pth.parent.parent / 'examples').is_dir():
+    if args.eg_dir:
+        eg_dirs = [Path(f) for f in args.eg_dir]
+    elif ((eg_dir:= nb_pth.parent / 'examples').is_dir() or
+          (eg_dir := nb_pth.parent.parent / 'examples').is_dir()):
+        eg_dirs = [eg_dir]
+    else:
         raise RuntimeError("Cannot find examples directory")
+    if not (eg_pths := get_example_paths(eg_dirs)):
+        raise RuntimeError(f'No examples in {eg_dirs}')
     eg_nb = Path(args.eg_nb) if args.eg_nb is not None else (
         nb_pth.parent / (nb_pth.stem + '_examples' + nb_pth.suffix))
     # Generate, write examples notebook.
-    out_nb = process_nb_examples(Path(args.root_dir), nb_pth, eg_pth)
+    out_nb = process_nb_examples(Path(args.root_dir), nb_pth, eg_pths)
     jupytext.write(out_nb, eg_nb, fmt='rmarkdown')
 
 
