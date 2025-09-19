@@ -49,8 +49,10 @@ def get_ref_targets(root_path, nb_ext='.Rmd', excludes=()):
             continue
         encoding = get_encoding(nb_path)
         print(encoding)
+        print(nb_path)
         refs += re.findall(r"^\s*\(\s*([a-zA-Z0-9-_]+)\s*\)=\s*$",
-                           nb_path.read_text(encoding=encoding),
+                           #nb_path.read_text(encoding=encoding),
+                           nb_path.read_text(encoding="utf-8"),
                            flags=re.MULTILINE)
     return refs
 

@@ -255,17 +255,7 @@ def get_subplot_n(index):
         subplot_n2 = 12
     return subplot_n0, subplot_n1, subplot_n2
 
-# Functions for gradient descent.
-"""
-Gradient descent
-==================
-
-An example demoing gradient descent by creating figures that trace the
-evolution of the optimizer.
-"""
-x_min, x_max = -1, 2
-y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
-
+# Functions for gradient descent
 
 ###############################################################################
 # A formatter to print values on contours
@@ -486,7 +476,7 @@ on which the search is performed.
 
    - **A non-convex function**
 
-```{python}
+```{python tags=c("hide-input")}
 x = np.linspace(-1, 2)
 plt.figure(figsize=(12, 4))
 plt.subplot(1, 2, 1)
@@ -565,7 +555,7 @@ piece-wise linear functions).
 
 
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(8, 4))
 x = np.linspace(-1.5, 1.5, 101)
 
@@ -597,7 +587,6 @@ plt.figtext(0.25, -0.2, caption_text_1, wrap=True,
 plt.tight_layout();
 plt.axis("off")
 plt.tight_layout()
-
 ```
 
 ### Noisy versus exact cost functions
@@ -616,7 +605,7 @@ function is not noisy, a gradient-based optimization may be a noisy
 optimization.
 :::
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(10, 4))
 plt.subplot(1, 2, 1)
 caption_text_1="""
@@ -663,7 +652,7 @@ plt.show()
 
    - |constraints|
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(10, 4))
 plt.subplot(1, 2, 1)
 caption_text_1="""
@@ -786,7 +775,7 @@ constrained to an interval using the parameter `bounds`.
 
 
 
-```{python}
+```{python tags=c("hide-input")}
 x = np.linspace(-1, 3, 100)
 x_0 = np.exp(-1)
 
@@ -891,10 +880,13 @@ gradient, that is the direction of the *steepest descent*.
 
 
 
-```{python}
+```{python tags=c("hide-input")}
+x_min, x_max = -1, 2
+y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
+
 levels = {}
 
-plt.figure(figsize=(12, 6))
+plt.figure(figsize=(10, 6))
 plt.title('Fixed step gradient descent', fontweight='bold')
 plt.axis('off')
 for index, ((f, f_prime, hessian), optimizer) in enumerate(
@@ -1036,10 +1028,13 @@ is done in gradient descent code using a
 
 
 
-```{python}
+```{python tags=c("hide-input")}
+x_min, x_max = -1, 2
+y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
+
 levels = {}
 
-plt.figure(figsize=(12, 12))
+plt.figure(figsize=(10, 10))
 plt.title('Adaptive step gradient descent', fontweight='bold')
 plt.axis('off')
 for index, ((f, f_prime, hessian), optimizer) in enumerate(
@@ -1076,22 +1071,8 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     )
     
     row = index+1
-    if row == 1:
-        subplot_n0 = 1
-        subplot_n1 = 2
-        subplot_n2 = 3
-    elif row == 2:
-        subplot_n0 = 4
-        subplot_n1 = 5
-        subplot_n2 = 6    
-    elif row == 3:
-        subplot_n0 = 7
-        subplot_n1 = 8
-        subplot_n2 = 9
-    elif row == 4:
-        subplot_n0 = 10
-        subplot_n1 = 11
-        subplot_n2 = 12
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
         
     # titles = []
     
@@ -1209,7 +1190,7 @@ SciPy provides {func}`scipy.optimize.minimize` to find the minimum of scalar
 functions of one or more variables. The simple conjugate gradient method can
 be used by setting the parameter `method` to CG
 
-```{python}
+```{python tags=c("hide-input")}
 x_min, x_max = -1, 2
 y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
 
@@ -1252,22 +1233,8 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     )
     
     row = index+1
-    if row == 1:
-        subplot_n0 = 1
-        subplot_n1 = 2
-        subplot_n2 = 3
-    elif row == 2:
-        subplot_n0 = 4
-        subplot_n1 = 5
-        subplot_n2 = 6    
-    elif row == 3:
-        subplot_n0 = 7
-        subplot_n1 = 8
-        subplot_n2 = 9
-    elif row == 4:
-        subplot_n0 = 10
-        subplot_n1 = 11
-        subplot_n2 = 12
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
         
     # titles = []
     
@@ -1410,7 +1377,7 @@ In SciPy, you can use the Newton method by setting `method` to Newton-CG in
 {func}`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
 inversion of the Hessian is performed by conjugate gradient
 
-```{python}
+```{python tags=c("hide-input")}
 levels = {}
 
 plt.figure(figsize=(10, 8))
@@ -1448,22 +1415,8 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     )
     
     row = index+1
-    if row == 1:
-        subplot_n0 = 1
-        subplot_n1 = 2
-        subplot_n2 = 3
-    elif row == 2:
-        subplot_n0 = 4
-        subplot_n1 = 5
-        subplot_n2 = 6    
-    elif row == 3:
-        subplot_n0 = 7
-        subplot_n1 = 8
-        subplot_n2 = 9
-    elif row == 4:
-        subplot_n0 = 10
-        subplot_n1 = 11
-        subplot_n2 = 12
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
         
     # titles = []
     
@@ -1620,7 +1573,7 @@ declaration
 
      - |bfgs_rosen_icond_conv|
 
-```{python}
+```{python tags=c("hide-input")}
 levels = {}
 
 plt.figure(figsize=(12, 8))
@@ -1658,29 +1611,15 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     )
     
     row = index+1
-    if row == 1:
-        subplot_n0 = 1
-        subplot_n1 = 2
-        subplot_n2 = 3
-    elif row == 2:
-        subplot_n0 = 4
-        subplot_n1 = 5
-        subplot_n2 = 6    
-    elif row == 3:
-        subplot_n0 = 7
-        subplot_n1 = 8
-        subplot_n2 = 9
-    elif row == 4:
-        subplot_n0 = 10
-        subplot_n1 = 11
-        subplot_n2 = 12
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
         
     titles = ["An ill-conditioned quadratic function:",
               "An ill-conditioned non-quadratic function:",
               "An ill-conditioned very non-quadratic function:"]
     
-    captions = ["\nAn ill-conditioned quadratic function: On an \nexactly quadratic function, BFGS is not as fast\n as Newton’s method, but still very fast.",
-                "\n\nHere BFGS does better than Newton, as its\n empirical estimate of the curvature is better than\n that given by the Hessian.",
+    captions = ["\nAn ill-conditioned quadratic function: On an \nexactly quadratic function, BFGS is not as fast\nas Newton’s method, but still very fast.",
+                "\n\nHere BFGS does better than Newton, as its\nempirical estimate of the curvature is better than\nthat given by the Hessian.",
                 ""]
         
     plt.subplot(3, 3, subplot_n0)
@@ -1804,7 +1743,7 @@ Almost a gradient approach
      - |powell_rosen_icond_conv|
 
 
-```{python}
+```{python tags=c("hide-input")}
 levels = {}
 
 plt.figure(figsize=(12, 6))
@@ -1828,8 +1767,8 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
         #(mk_gauss(0.02), bfgs),
         #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), bfgs),
         (mk_quad(0.02), powell),
-        (mk_gauss(0.02), powell),
-        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), powell),
+        #(mk_gauss(0.02), powell),
+        ((rosenbrock, rosenbrock_prime, rosenbrock_hessian), powell),
         #(mk_gauss(0.02), nelder_mead),
         #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), nelder_mead),
     )
@@ -1844,22 +1783,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     )
     
     row = index+1
-    if row == 1:
-        subplot_n0 = 1
-        subplot_n1 = 2
-        subplot_n2 = 3
-    elif row == 2:
-        subplot_n0 = 4
-        subplot_n1 = 5
-        subplot_n2 = 6    
-    elif row == 3:
-        subplot_n0 = 7
-        subplot_n1 = 8
-        subplot_n2 = 9
-    elif row == 4:
-        subplot_n0 = 10
-        subplot_n1 = 11
-        subplot_n2 = 12
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
         
     titles = ["An ill-conditioned quadratic function:",
              "An ill-conditioned very non-quadratic function:"]
@@ -1971,7 +1895,7 @@ methods on smooth, non-noisy functions.
 
 Using the Nelder-Mead solver in {func}`scipy.optimize.minimize`:
 
-```{python}
+```{python tags=c("hide-input")}
 levels = {}
 
 plt.figure(figsize=(12, 6))
@@ -2011,22 +1935,8 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     )
     
     row = index+1
-    if row == 1:
-        subplot_n0 = 1
-        subplot_n1 = 2
-        subplot_n2 = 3
-    elif row == 2:
-        subplot_n0 = 4
-        subplot_n1 = 5
-        subplot_n2 = 6    
-    elif row == 3:
-        subplot_n0 = 7
-        subplot_n1 = 8
-        subplot_n2 = 9
-    elif row == 4:
-        subplot_n0 = 10
-        subplot_n1 = 11
-        subplot_n2 = 12
+
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
         
     titles = ["An ill-conditioned non-quadratic function:",
              "An ill-conditioned very non-quadratic function:"]
@@ -2149,7 +2059,7 @@ All methods are exposed as the `method` argument of
 :width: 95%
 -->
 
-```{python}
+```{python tags=c("hide-input")}
 """
 Plotting the comparison of optimizers
 ======================================
@@ -2160,9 +2070,7 @@ Plots the results from the comparison of optimizers.
 
 import pickle
 import sys
-
 import numpy as np
-
 import matplotlib
 import matplotlib.pyplot as plt
 
@@ -2427,7 +2335,7 @@ y = f(x, 1.5, 1) + .1*rng.normal(size=50)
 sp.optimize.curve_fit(f, x, y)
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
@@ -2481,7 +2389,7 @@ def f(x):
 sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]  # type: ignore[misc]
 x = x.T
 y = y.T
@@ -2578,7 +2486,7 @@ x0 = np.array([0, 0])
 sp.optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"})
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp
