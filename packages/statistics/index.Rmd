@@ -6,25 +6,13 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
 
-```{python tags=c("hide-input")}
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas
-pandas.options.display.width = 0
-```
-```{python tags=c("hide-input")}
-# also switch current directory from the root directory (where the tests
-# are run) to be able to load the data
-import os
-os.chdir('packages/statistics')
-```
 (statistics)=
 
 # Statistics in Python
@@ -53,6 +41,12 @@ preferably, use the package manager if you are under Ubuntu or other linux.
   available as free PDF or in print and is a great introduction to
   statistics.
 :::
+
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+```
 
 ::: {note}
 :class: dropdown
@@ -91,9 +85,12 @@ columns giving the different attributes of the data, and rows the
 observations. For instance, the data contained in
 {download}`examples/brain_size.csv`:
 
-.. include:: examples/brain_size.csv
-   :literal:
-   :end-line: 6
+
+```{python tags=c("hide-input")}
+from pathlib import Path
+data_txt = (Path('examples') / 'brain_size.csv').read_text()
+print('\n'.join(data_txt.splitlines()[:5]))
+```
 
 
 ### The pandas data-frame
@@ -101,16 +98,16 @@ observations. For instance, the data contained in
 ::: {note}
 :class: dropdown
 
-We will store and manipulate this data in a
-{class}`pandas.DataFrame`, from the [pandas](https://pandas.pydata.org) module. It is the Python equivalent of
-the spreadsheet table. It is different from a 2D `numpy` array as it
-has named columns, can contain a mixture of different data types by
-column, and has elaborate selection and pivotal mechanisms.
-:::
+We will store and manipulate this data in a {class}`pd.DataFrame`, from
+the [pandas](https://pandas.pydata.org) module. It is the Python equivalent of
+the spreadsheet table. It is different from a 2D `numpy` array as it has named
+columns, can contain a mixture of different data types by column, and has
+elaborate selection and pivotal mechanisms. :::
+
 
 #### Creating dataframes: reading data files or converting arrays
 
-:::{sidebar} **Separator**
+:::{admonition} **Separator**
 It is a CSV file, but the separator is ";"
 :::
 
@@ -119,8 +116,7 @@ observations of brain size and weight and IQ (Willerman et al. 1991), the
 data are a mixture of numerical and categorical values:
 
 ```{python}
-import pandas
-data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
+data = pd.read_csv('examples/brain_size.csv', sep=';', na_values=".", index_col=0)
 data
 ```
 
@@ -132,29 +128,29 @@ don't specify the missing value (NA = not available) marker, we will
 not be able to do statistical analysis.
 :::
 
-**Creating from arrays**: A {class}`pandas.DataFrame` can also be seen
+**Creating from arrays**: A {class}`pd.DataFrame` can also be seen
 as a dictionary of 1D 'series', eg arrays or lists. If we have 3
 `numpy` arrays:
 
 ```{python}
-import numpy as np
 t = np.linspace(-6, 6, 20)
 sin_t = np.sin(t)
 cos_t = np.cos(t)
 ```
 
-We can expose them as a {class}`pandas.DataFrame`:
+We can expose them as a {class}`pd.DataFrame`:
 
 ```{python}
-pandas.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})
+pd.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})
 ```
 
 **Other inputs**: [pandas](https://pandas.pydata.org) can input data from
 SQL, excel files, or other formats. See the [pandas documentation](https://pandas.pydata.org).
 
+
 #### Manipulating data
 
-`data` is a {class}`pandas.DataFrame`, that resembles R's dataframe:
+`data` is a {class}`pd.DataFrame`, that resembles R's dataframe:
 
 ```{python}
 data.shape    # 40 rows and 8 columns
@@ -165,7 +161,7 @@ data.columns  # It has columns
 ```
 
 ```{python}
-print(data['Gender'])  # Columns can be addressed by name
+data['Gender']  # Columns can be addressed by name
 ```
 
 ```{python}
@@ -203,14 +199,18 @@ evaluation is lazy, no work is done until an aggregation function is
 applied.
 :::
 
-```{image} auto_examples/images/sphx_glr_plot_pandas_001.png
-:align: right
-:scale: 42
-:target: auto_examples/plot_pandas.html
+```{python}
+data = pd.read_csv("examples/brain_size.csv", sep=";", na_values=".")
+
+# Box plots of different columns for each gender
+groupby_gender = data.groupby("Gender")
+groupby_gender.boxplot(column=["FSIQ", "VIQ", "PIQ"]);
 ```
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: stats-brain-basic
+:class: dropdown
+:::
 
 - What is the mean value for VIQ for the full population?
 
@@ -221,12 +221,15 @@ applied.
 
 - What is the average value of MRI counts expressed in log units, for
   males and females?
-:::
 
 :::{note}
-`groupby_gender.boxplot` is used for the plots above (see [this
-example](auto_examples/plot_pandas.html)).
+`groupby_gender.boxplot` is used for the plots above (see the plot code
+above).
 :::
+
+::: {exercise-end}
+:::
+
 
 #### Plotting data
 
@@ -238,36 +241,28 @@ dataframes:
 **Scatter matrices**:
 
 ```{python}
-from pandas import plotting
-plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']])
+pd.plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']]);
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_pandas_002.png
-:align: center
-:scale: 70
-:target: auto_examples/plot_pandas.html
-```
-
-```{python}
-plotting.scatter_matrix(data[['PIQ', 'VIQ', 'FSIQ']])
-```
-
-:::{sidebar} **Two populations**
+:::{admonition} **Two populations**
 The IQ metrics are bimodal, as if there are 2 sub-populations.
 :::
 
-```{image} auto_examples/images/sphx_glr_plot_pandas_003.png
-:align: center
-:scale: 70
-:target: auto_examples/plot_pandas.html
+```{python}
+pd.plotting.scatter_matrix(data[['PIQ', 'VIQ', 'FSIQ']]);
 ```
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: stats-bimodel-ex
+:class: dropdown
+:::
 
 Plot the scatter matrix for males only, and for females only. Do you
 think that the 2 sub-populations correspond to gender?
+
+::: {exercise-end}
 :::
+
 
 ## Hypothesis testing: comparing two groups
 
@@ -283,6 +278,7 @@ import scipy as sp
 SciPy is a vast library. For a quick summary to the whole library, see
 the {ref}`scipy <scipy>` chapter.
 :::
+
 
 ### Student's t-test: the simplest statistical test
 
@@ -320,6 +316,7 @@ this assumption at the expense of test power:
 sp.stats.wilcoxon(data['VIQ'])
 ```
 
+
 #### Two-sample t-test: testing for difference across populations
 
 We have seen above that the mean VIQ in the male and female samples
@@ -337,40 +334,43 @@ The corresponding non-parametric test is the [Mann–Whitney U
 test](https://en.wikipedia.org/wiki/Mann%E2%80%93Whitney_U),
 {func}`scipy.stats.mannwhitneyu`.
 
-> ```pycon
-> >>> sp.stats.mannwhitneyu(female_viq, male_viq)
-> MannwhitneyuResult(statistic=np.float64(164.5), pvalue=np.float64(0.34228868687...))
-> ```
+```{python}
+sp.stats.mannwhitneyu(female_viq, male_viq)
+```
+
 
 ### Paired tests: repeated measurements on the same individuals
 
-```{image} auto_examples/images/sphx_glr_plot_paired_boxplots_001.png
-:align: right
-:scale: 70
-:target: auto_examples/plot_pandas.html
+
+```{python}
+# Box plot of FSIQ and PIQ (different measures of IQ)
+plt.figure(figsize=(4, 3))
+data.boxplot(column=["FSIQ", "PIQ"])
 ```
 
-PIQ, VIQ, and FSIQ give three measures of IQ. Let us test whether FISQ
-and PIQ are significantly different. We can use an "independent sample" test:
+PIQ, VIQ, and FSIQ give three measures of IQ. Let us test whether FISQ and PIQ
+are significantly different. We can use an "independent sample" test:
 
 ```{python}
 sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])
 ```
 
 The problem with this approach is that it ignores an important relationship
-between observations: FSIQ and PIQ are measured on the same individuals.
-Thus, the variance due to inter-subject variability is confounding, reducing
-the power of the test. This variability can be removed using a "paired test"
-or ["repeated measures test"](https://en.wikipedia.org/wiki/Repeated_measures_design):
+between observations: FSIQ and PIQ are measured on the same individuals. Thus,
+the variance due to inter-subject variability is confounding, reducing the
+power of the test. This variability can be removed using a "paired test" or
+["repeated measures
+test"](https://en.wikipedia.org/wiki/Repeated_measures_design):
 
 ```{python}
 sp.stats.ttest_rel(data['FSIQ'], data['PIQ'])
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_paired_boxplots_002.png
-:align: right
-:scale: 60
-:target: auto_examples/plot_pandas.html
+```{python}
+# Boxplot of the difference
+plt.figure(figsize=(4, 3))
+plt.boxplot(data["FSIQ"] - data["PIQ"])
+plt.xticks((1,), ("FSIQ - PIQ",));
 ```
 
 This is equivalent to a one-sample test on the differences between paired
@@ -383,40 +383,55 @@ sp.stats.ttest_1samp(data['FSIQ'] - data['PIQ'], 0)
 Accordingly, we can perform a nonparametric version of the test with
 `wilcoxon`.
 
-> ```pycon
-> >>> sp.stats.wilcoxon(data['FSIQ'], data['PIQ'], method="approx")
-> WilcoxonResult(statistic=np.float64(274.5), pvalue=np.float64(0.106594927135...))
-> ```
+```{python}
+sp.stats.wilcoxon(data['FSIQ'], data['PIQ'], method="approx")
+```
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: stats-weights-ex
+:class: dropdown
+:::
 
 - Test the difference between weights in males and females.
 - Use non parametric statistics to test the difference between VIQ in
   males and females.
 
+::: {exercise-end}
+:::
+
+::: {solution-start} stats-weights-ex
+:class: dropdown
+:::
+
 **Conclusion**: we find that the data does not support the hypothesis
 that males and females have different VIQ.
+
+::: {solution-end}
 :::
+
 
 ## Linear models, multiple factors, and analysis of variance
 
+
 ### "formulas" to specify statistical models in Python
+
 
 #### A simple linear regression
 
-```{image} auto_examples/images/sphx_glr_plot_regression_001.png
-:align: right
-:scale: 60
-:target: auto_examples/plot_regression.html
-```
+::: {note}
+
+From an original example by **Thomas Haslwanter**.
+
+:::
 
 Given two set of observations, `x` and `y`, we want to test the
 hypothesis that `y` is a linear function of `x`. In other terms:
 
-> $y = x * \textit{coef} + \textit{intercept} + e$
+$$
+y = x * \textit{coef} + \textit{intercept} + e
+$$
 
-where `e` is observation noise. We will use the [statsmodels](https://www.statsmodels.org/) module to:
+where $e$ is observation noise. We will use the [statsmodels](https://www.statsmodels.org/) module to:
 
 1. Fit a linear model. We will use the simplest strategy, [ordinary least
    squares](https://en.wikipedia.org/wiki/Ordinary_least_squares) (OLS).
@@ -425,30 +440,37 @@ where `e` is observation noise. We will use the [statsmodels](https://www.statsm
 First, we generate simulated data according to the model:
 
 ```{python}
-import numpy as np
 x = np.linspace(-5, 5, 20)
+
+# To get reproducible values, provide a seed value
 rng = np.random.default_rng(27446968)
+
 # normal distributed noise
-y = -5 + 3*x + 4 * rng.normal(size=x.shape)
+y = -5 + 3 * x + 4 * rng.normal(size=x.shape)
+
 # Create a data frame containing all the relevant variables
-data = pandas.DataFrame({'x': x, 'y': y})
+data = pd.DataFrame({'x': x, 'y': y})
+
+# Plot the data
+plt.figure(figsize=(5, 4))
+plt.plot(x, y, "o");
 ```
 
-:::{sidebar} **"formulas" for statistics in Python**
+:::{admonition} "formulas" for statistics in Python
 [See the statsmodels documentation](https://www.statsmodels.org/stable/example_formulas.html)
 :::
 
 Then we specify an OLS model and fit it:
 
 ```{python}
-from statsmodels.formula.api import ols
-model = ols("y ~ x", data).fit()
+import statsmodels.formula.api as smf
+model = smf.ols("y ~ x", data).fit()
 ```
 
 We can inspect the various statistics derived from the fit:
 
 ```{python}
-print(model.summary())
+model.summary()
 ```
 
 :::{admonition} Terminology:
@@ -459,39 +481,49 @@ exogenous. This is discussed in more detail [here](https://www.statsmodels.org/d
 To simplify, `y` (endogenous) is the value you are trying to predict,
 while `x` (exogenous) represents the features you are using to make
 the prediction.
+
+If the terminology is unfamiliar, you might be able to remember which way
+round these go by noticing that there is an `x` in exogenous.
 :::
 
-:::{admonition} Exercise
-:class: green
-
-Retrieve the estimated parameters from the model above. **Hint**:
-use tab-completion to find the relevant attribute.
+::: {exercise-start}
+:label: stats-estimated-params-ex
+:class: dropdown
 :::
+
+Retrieve the estimated parameters from the model above.
+
+**Hint**: use tab-completion to find the relevant attribute.
+
+::: {exercise-end}
+:::
+
 
 #### Categorical variables: comparing groups or multiple categories
 
 Let us go back the data on brain size:
 
 ```{python}
-data = pandas.read_csv('examples/brain_size.csv', sep=';', na_values=".")
+data = pd.read_csv('examples/brain_size.csv', sep=';', na_values=".")
 ```
 
 We can write a comparison between IQ of male and female using a linear
 model:
 
 ```{python}
-model = ols("VIQ ~ Gender + 1", data).fit()
-print(model.summary())
+model = smf.ols("VIQ ~ Gender + 1", data).fit()
+model.summary()
 ```
 
-::::{topic} **Tips on specifying model**
+::::{admonition} Tips on specifying models
+
 **Forcing categorical**: the 'Gender' is automatically detected as a
 categorical variable, and thus each of its different values are
 treated as different entities.
 
 An integer column can be forced to be treated as categorical using:
 
-```{python}
+```python
 model = ols('VIQ ~ C(Gender)', data).fit()
 ```
 
@@ -510,21 +542,23 @@ encodings for categorical variables
 :::
 ::::
 
-:::{admonition} Link to t-tests between different FSIQ and PIQ
+
+#### Link to t-tests between different FSIQ and PIQ
+
 To compare different types of IQ, we need to create a "long-form"
 table, listing IQs, where the type of IQ is indicated by a
 categorical variable:
 
 ```{python}
-data_fisq = pandas.DataFrame({'iq': data['FSIQ'], 'type': 'fsiq'})
-data_piq = pandas.DataFrame({'iq': data['PIQ'], 'type': 'piq'})
-data_long = pandas.concat((data_fisq, data_piq))
-print(data_long)
+data_fisq = pd.DataFrame({'iq': data['FSIQ'], 'type': 'fsiq'})
+data_piq = pd.DataFrame({'iq': data['PIQ'], 'type': 'piq'})
+data_long = pd.concat((data_fisq, data_piq))
+data_long
 ```
 
 ```{python}
-model = ols("iq ~ type", data_long).fit()
-print(model.summary())
+model = smf.ols("iq ~ type", data_long).fit()
+model.summary()
 ```
 
 We can see that we retrieve the same values for t-test and
@@ -534,23 +568,46 @@ previous t-test:
 ```{python}
 sp.stats.ttest_ind(data['FSIQ'], data['PIQ'])
 ```
-:::
 
 ### Multiple Regression: including multiple factors
 
-```{image} auto_examples/images/sphx_glr_plot_regression_3d_001.png
-:align: right
-:scale: 45
-:target: auto_examples/plot_regression_3d.html
-```
+::: {note}
+
+From an original example by *Thomas Haslwanter*
+
+:::
 
 Consider a linear model explaining a variable `z` (the dependent
 variable) with 2 variables `x` and `y`:
 
-> $z = x \, c_1 + y \, c_2 + i + e$
+$$
+z = x \, c_1 + y \, c_2 + i + e
+$$
 
-Such a model can be seen in 3D as fitting a plane to a cloud of (`x`,
-`y`, `z`) points.
+Such a model can be seen in 3D as fitting a plane to a cloud of (`x`, `y`,
+`z`) points.
+
+
+```{python}
+# Generate and show the data
+x = np.linspace(-5, 5, 21)
+# We generate a 2D grid
+X, Y = np.meshgrid(x, x)
+
+# To get reproducible values, provide a seed value
+rng = np.random.default_rng(27446968)
+
+# Z is the elevation of this 2D grid
+Z = -5 + 3 * X - 0.5 * Y + 8 * rng.normal(size=X.shape)
+
+# Plot the data
+ax = plt.figure().add_subplot(projection="3d")
+surf = ax.plot_surface(X, Y, Z, cmap="coolwarm", rstride=1, cstride=1)
+ax.view_init(20, -120)
+ax.set_xlabel("X")
+ax.set_ylabel("Y")
+ax.set_zlabel("Z");
+```
 
 **Example: the iris data** ({download}`examples/iris.csv`)
 
@@ -561,17 +618,24 @@ Sepal and petal size tend to be related: bigger flowers are bigger!
 But is there in addition a systematic effect of species?
 :::
 
-```{image} auto_examples/images/sphx_glr_plot_iris_analysis_001.png
-:align: center
-:scale: 80
-:target: auto_examples/plot_iris_analysis_1.html
+```{python}
+data = pd.read_csv('examples/iris.csv')
+# Express the names as categories
+categories = pd.Categorical(data["name"])
+# The parameter 'c' is passed to plt.scatter and will control the color
+pd.plotting.scatter_matrix(data, c=categories.codes, marker="o")
+fig = plt.gcf()
+fig.suptitle("blue: setosa, green: versicolor, red: virginica", size=13);
 ```
 
+Let us try to explain the sepal length as a function of the petal
+width and the category of iris
+
 ```{python}
-data = pandas.read_csv('examples/iris.csv')
-model = ols('sepal_width ~ name + petal_length', data).fit()
-print(model.summary())
+model = smf.ols("sepal_width ~ name + petal_length", data).fit()
+model.summary()
 ```
+
 
 ### Post-hoc hypothesis testing: analysis of variance (ANOVA)
 
@@ -589,32 +653,70 @@ print(model.f_test([0, 1, -1, 0]))
 
 Is this difference significant?
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: stats-male-female-ex
+:class: dropdown
+:::
 
 Going back to the brain size + IQ data, test if the VIQ of male and
 female are different after removing the effect of brain size, height
 and weight.
+
+::: {exercise-end}
 :::
 
-## More visualization: seaborn for statistical exploration
+
+## More visualization: Seaborn for statistical exploration
 
 [Seaborn](https://seaborn.pydata.org) combines
 simple statistical fits with plotting on pandas dataframes.
+
+```{python}
+import seaborn
+```
 
 Let us consider a data giving wages and many other personal information
 on 500 individuals ([Berndt, ER. The Practice of Econometrics. 1991. NY:
 Addison-Wesley](https://lib.stat.cmu.edu/datasets/CPS_85_Wages)).
 
-::: {note}
-:class: dropdown
+We first load and arrange the data — view the code for details:
 
-The full code loading and plotting of the wages data is found in
-[corresponding example](auto_examples/plot_wage_data.html).
-:::
+```{python tags=c("hide-input")}
+data = pd.read_csv("examples/wages.txt",
+    skiprows=27,
+    skipfooter=6,
+    sep=None,
+    header=None,
+    engine="python"  # To allow use of skipfooter.
+)
+# Give names to the columns
+names = [
+    "education: Number of years of education",
+    "south: 1=person lives in South, 0=Person lives elsewhere",
+    "sex: 1=female, 0=Male",
+    "experience: Number of years of work experience",
+    "union: 1=union member, 0=Not union member",
+    "wage: wage (dollars per hour)",
+    "age: years",
+    "race: 1=other, 2=Hispanic, 3=White",
+    "occupation: 1=Management, 2=Sales, 3=Clerical, 4=Service, 5=Professional, 6=Other",
+    "sector: 0=Other, 1=Manufacturing, 2=Construction",
+    "marr: 0=unmarried,  1=Married",
+]
+short_names = [n.split(":")[0] for n in names]
+data.columns = pd.Index(short_names)
+# Log-transform the wages, because they typically are increased with
+# multiplicative factors
+data["wage"] = np.log10(data["wage"])
+# Convert genders to strings (this is particularly useful so that the
+# statsmodels formulas detects that `sex` is a categorical variable)
+data["sex"] = np.choose(data['sex'], ["male", "female"])
+```
+
+Here are the resulting loaded data.
 
 ```{python}
-print(data)
+data
 ```
 
 ### Pairplot: scatter matrices
@@ -623,28 +725,14 @@ We can easily have an intuition on the interactions between continuous
 variables using {func}`seaborn.pairplot` to display a scatter matrix:
 
 ```{python}
-import seaborn
-seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
-                 kind='reg')
-```
-
-```{image} auto_examples/images/sphx_glr_plot_wage_data_001.png
-:align: center
-:scale: 60
-:target: auto_examples/plot_wage_data.html
+seaborn.pairplot(data, vars=['wage', 'age', 'education'], kind='reg');
 ```
 
 Categorical variables can be plotted as the hue:
 
 ```{python}
-seaborn.pairplot(data, vars=['WAGE', 'AGE', 'EDUCATION'],
-                 kind='reg', hue='SEX')
-```
-
-```{image} auto_examples/images/sphx_glr_plot_wage_data_002.png
-:align: center
-:scale: 60
-:target: auto_examples/plot_wage_data.html
+seaborn.pairplot(data, vars=['wage', 'age', 'education'],
+                 kind='reg', hue='sex');
 ```
 
 ::::{topic} **Look and feel and matplotlib settings**
@@ -652,8 +740,7 @@ Seaborn changes the default of matplotlib figures to achieve a more
 "modern", "excel-like" look. It does that upon import. You can reset
 the default using:
 
-```{python}
-import matplotlib.pyplot as plt
+```python
 plt.rcdefaults()
 ```
 
@@ -663,25 +750,16 @@ plt.rcdefaults()
 To switch back to seaborn settings, or understand better styling in
 seaborn, see the [relevant section of the seaborn documentation](https://seaborn.pydata.org/tutorial/aesthetics.html).
 :::
+
 ::::
 
 ### lmplot: plotting a univariate regression
-
-```{image} auto_examples/images/sphx_glr_plot_wage_data_005.png
-:align: right
-:scale: 60
-:target: auto_examples/plot_wage_data.html
-```
 
 A regression capturing the relation between one variable and another, eg
 wage, and education, can be plotted using {func}`seaborn.lmplot`:
 
 ```{python}
-seaborn.lmplot(y='WAGE', x='EDUCATION', data=data)
-```
-
-```{raw} html
-<div style="clear: both"></div>
+seaborn.lmplot(y='wage', x='education', data=data);
 ```
 
 ::::{topic} **Robust regression**
@@ -693,24 +771,32 @@ Given that, in the above plot, there seems to be a couple of data
 points that are outside of the main cloud to the right, they might be
 outliers, not representative of the population, but driving the
 regression.
+
 :::
 
-To compute a regression that is less sensitive to outliers, one must
-use a [robust model](https://en.wikipedia.org/wiki/Robust_statistics). This is done in
-seaborn using `robust=True` in the plotting functions, or in
-statsmodels by replacing the use of the OLS by a "Robust Linear
-Model", {func}`statsmodels.formula.api.rlm`.
-::::
+To compute a regression that is less sensitive to outliers, one must use
+a [robust model](https://en.wikipedia.org/wiki/Robust_statistics). This is
+done in seaborn using `robust=True` in the plotting functions, or in
+statsmodels by replacing the use of the OLS by a "Robust Linear Model",
+{func}`statsmodels.formula.api.rlm`. ::::
+
 
 ## Testing for interactions
 
-```{image} auto_examples/images/sphx_glr_plot_wage_education_gender_001.png
-:align: center
-:scale: 70
-:target: auto_examples/plot_wage_education_gender.html
+```{python}
+seaborn.lmplot(y="wage", x="education", hue="sex", data=data);
 ```
 
-Do wages increase more with education for males than females?
+We can first ask do `education` and `sex` separately contribute to `wage`:
+
+```{python}
+result = smf.ols(formula="wage ~ education + sex", data=data).fit()
+result.summary()
+```
+
+Our next question is — do wages *increase more* with education for males than
+females?
+
 
 ::: {note}
 :class: dropdown
@@ -721,9 +807,9 @@ populations. This is done via an ["interaction"](https://www.statsmodels.org/dev
 :::
 
 ```{python}
-result = sm.ols(formula='wage ~ education + gender + education * gender',
-                data=data).fit()
-print(result.summary())
+result = smf.ols(formula='wage ~ education + sex + education * sex',
+                 data=data).fit()
+result.summary()
 ```
 
 Can we conclude that education benefits males more than females?
@@ -739,10 +825,3 @@ Can we conclude that education benefits males more than females?
   the variation) is an important modeling aspect that changes the
   interpretation.
 :::
-
-<!---
-include the gallery. Skip the first line to avoid the "orphan"
-declaration
--->
-.. include:: auto_examples/index.rst
-    :start-line: 1
