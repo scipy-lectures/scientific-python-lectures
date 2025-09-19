@@ -153,15 +153,14 @@ You can bind a key to run pyflakes in the current buffer.
     2. extract the files in `~/.vim/ftplugin/python`
     3. make sure your vimrc has `filetype plugin indent on`
 
-    ```{image} vim_pyflakes.png
+    ![](vim_pyflakes.png)
     ```
 
   - Alternatively: use the [syntastic](https://github.com/vim-syntastic/syntastic)
     plugin. This can be configured to use `flake8` too and also handles
     on-the-fly checking for many other languages.
 
-    ```{image} vim_syntastic.png
-    ```
+    ![](vim_syntastic.png)
 
 - **In emacs**
 
@@ -326,7 +325,7 @@ Indeed the code runs, but the filtering does not work well.
 - Run the script in IPython with the debugger using `%run -d
   wiener_filtering.py` :
 
-  ```ipython
+  ```text
   In [1]: %run -d wiener_filtering.py
   *** Blank or comment
   *** Blank or comment
@@ -342,7 +341,7 @@ Indeed the code runs, but the filtering does not work well.
 
 - Set a break point at line 29 using `b 29`:
 
-  ```ipython
+  ```text
   ipdb> n
   > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(3)<module>()
         1 """Wiener filtering a noisy raccoon face: this module is buggy"""
@@ -357,7 +356,7 @@ Indeed the code runs, but the filtering does not work well.
 
 - Continue execution to next breakpoint with `c(ont(inue))`:
 
-  ```ipython
+  ```text
   ipdb> c
   > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(29)iterated_wiener()
        27     Do not use this: this is crappy code to demo bugs!
@@ -391,7 +390,7 @@ Indeed the code runs, but the filtering does not work well.
 
 - Step a few lines and explore the local variables:
 
-  ```ipython
+  ```text
   ipdb> n
   > /home/jarrod/src/scientific-python-lectures/advanced/debugging/wiener_filtering.py(32)iterated_wiener()
        30     denoised_img = local_mean(noisy_img, size=size)
