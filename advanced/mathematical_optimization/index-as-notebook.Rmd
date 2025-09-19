@@ -217,6 +217,194 @@ jupyter:
 
 ```{python tags=c("hide-input")}
 import numpy as np
+import matplotlib.pyplot as plt
+import scipy as sp
+from scipy import optimize
+import collections
+import sys
+import os
+sys.path.append(os.path.abspath("helper"))
+from cost_functions import (
+    mk_quad,
+    mk_gauss,
+    rosenbrock,
+    rosenbrock_prime,
+    rosenbrock_hessian,
+    LoggingFunction,
+    CountingFunction,
+)
+
+# A custom function for plotting.
+def get_subplot_n(index):
+    row = index+1
+    if row == 1:
+        subplot_n0 = 1
+        subplot_n1 = 2
+        subplot_n2 = 3
+    elif row == 2:
+        subplot_n0 = 4
+        subplot_n1 = 5
+        subplot_n2 = 6    
+    elif row == 3:
+        subplot_n0 = 7
+        subplot_n1 = 8
+        subplot_n2 = 9
+    elif row == 4:
+        subplot_n0 = 10
+        subplot_n1 = 11
+        subplot_n2 = 12
+    return subplot_n0, subplot_n1, subplot_n2
+
+# Functions for gradient descent
+
+###############################################################################
+# A formatter to print values on contours
+def super_fmt(value):
+    if value > 1:
+        if np.abs(int(value) - value) < 0.1:
+            out = f"$10^{{{int(value):d}}}$"
+        else:
+            out = f"$10^{{{value:.1f}}}$"
+    else:
+        value = np.exp(value - 0.01)
+        if value > 0.1:
+            out = f"{value:1.1f}"
+        elif value > 0.01:
+            out = f"{value:.2f}"
+        else:
+            out = f"{value:.2e}"
+    return out
+
+
+###############################################################################
+# A gradient descent algorithm
+# do not use: its a toy, use scipy's optimize.fmin_cg
+
+def gradient_descent(x0, f, f_prime, hessian=None, adaptative=False):
+    x_i, y_i = x0
+    all_x_i = []
+    all_y_i = []
+    all_f_i = []
+
+    for i in range(1, 100):
+        all_x_i.append(x_i)
+        all_y_i.append(y_i)
+        all_f_i.append(f([x_i, y_i]))
+        dx_i, dy_i = f_prime(np.asarray([x_i, y_i]))
+        if adaptative:
+            # Compute a step size using a line_search to satisfy the Wolf
+            # conditions
+            step = sp.optimize.line_search(
+                f,
+                f_prime,
+                np.r_[x_i, y_i],
+                -np.r_[dx_i, dy_i],
+                np.r_[dx_i, dy_i],
+                c2=0.05,
+            )
+            step = step[0]
+            if step is None:
+                step = 0
+        else:
+            step = 1
+        x_i += -step * dx_i
+        y_i += -step * dy_i
+        if np.abs(all_f_i[-1]) < 1e-16:
+            break
+    return all_x_i, all_y_i, all_f_i
+
+def gradient_descent_adaptative(x0, f, f_prime, hessian=None):
+    return gradient_descent(x0, f, f_prime, adaptative=True)
+
+def conjugate_gradient(x0, f, f_prime, hessian=None):
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+
+    sp.optimize.minimize(
+        f, x0, jac=f_prime, method="CG", callback=store, options={"gtol": 1e-12}
+    )
+    return all_x_i, all_y_i, all_f_i
+
+
+def newton_cg(x0, f, f_prime, hessian):
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+
+    sp.optimize.minimize(
+        f,
+        x0,
+        method="Newton-CG",
+        jac=f_prime,
+        hess=hessian,
+        callback=store,
+        options={"xtol": 1e-12},
+    )
+    return all_x_i, all_y_i, all_f_i
+
+
+def bfgs(x0, f, f_prime, hessian=None):
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+
+    sp.optimize.minimize(
+        f, x0, method="BFGS", jac=f_prime, callback=store, options={"gtol": 1e-12}
+    )
+    return all_x_i, all_y_i, all_f_i
+
+
+def powell(x0, f, f_prime, hessian=None):
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+
+    sp.optimize.minimize(
+        f, x0, method="Powell", callback=store, options={"ftol": 1e-12}
+    )
+    return all_x_i, all_y_i, all_f_i
+
+
+def nelder_mead(x0, f, f_prime, hessian=None):
+    all_x_i = [x0[0]]
+    all_y_i = [x0[1]]
+    all_f_i = [f(x0)]
+
+    def store(X):
+        x, y = X
+        all_x_i.append(x)
+        all_y_i.append(y)
+        all_f_i.append(f(X))
+
+    sp.optimize.minimize(
+        f, x0, method="Nelder-Mead", callback=store, options={"ftol": 1e-12}
+    )
+    return all_x_i, all_y_i, all_f_i
 ```
 
 **Authors**: *Gaël Varoquaux*
@@ -288,12 +476,8 @@ on which the search is performed.
 
    - **A non-convex function**
 
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-
+```{python tags=c("hide-input")}
 x = np.linspace(-1, 2)
-
 plt.figure(figsize=(12, 4))
 plt.subplot(1, 2, 1)
 
@@ -371,10 +555,7 @@ piece-wise linear functions).
 
 
 
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-
+```{python tags=c("hide-input")}
 plt.figure(figsize=(8, 4))
 x = np.linspace(-1.5, 1.5, 101)
 
@@ -406,7 +587,6 @@ plt.figtext(0.25, -0.2, caption_text_1, wrap=True,
 plt.tight_layout();
 plt.axis("off")
 plt.tight_layout()
-
 ```
 
 ### Noisy versus exact cost functions
@@ -425,10 +605,7 @@ function is not noisy, a gradient-based optimization may be a noisy
 optimization.
 :::
 
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-
+```{python tags=c("hide-input")}
 plt.figure(figsize=(10, 4))
 plt.subplot(1, 2, 1)
 caption_text_1="""
@@ -475,11 +652,7 @@ plt.show()
 
    - |constraints|
 
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy as sp
-
+```{python tags=c("hide-input")}
 plt.figure(figsize=(10, 4))
 plt.subplot(1, 2, 1)
 caption_text_1="""
@@ -602,11 +775,7 @@ constrained to an interval using the parameter `bounds`.
 
 
 
-```{python}
-import numpy as np
-import matplotlib.pyplot as plt
-from scipy import optimize
-
+```{python tags=c("hide-input")}
 x = np.linspace(-1, 3, 100)
 x_0 = np.exp(-1)
 
@@ -709,6 +878,115 @@ gradient, that is the direction of the *steepest descent*.
 
      - |gradient_quad_icond_conv|
 
+
+
+```{python tags=c("hide-input")}
+x_min, x_max = -1, 2
+y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
+
+levels = {}
+
+plt.figure(figsize=(10, 6))
+plt.title('Fixed step gradient descent', fontweight='bold')
+plt.axis('off')
+for index, ((f, f_prime, hessian), optimizer) in enumerate(
+    (   (mk_quad(0.7), gradient_descent),
+        (mk_quad(0.02), gradient_descent),
+    )
+):
+    # Compute a gradient-descent
+    x_i, y_i = 1.6, 1.1
+    counting_f_prime = CountingFunction(f_prime)
+    counting_hessian = CountingFunction(hessian)
+    logging_f = LoggingFunction(f, counter=counting_f_prime.counter)
+    all_x_i, all_y_i, all_f_i = optimizer(
+        np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
+    )
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
+        
+    # titles = []
+    
+    captions = ["A well-conditioned quadratic function.",
+                "An ill-conditioned quadratic function.",
+                "An ill-conditioned non-quadratic function.",
+                "An ill-conditioned very non-quadratic function."]
+        
+    plt.subplot(2, 3, subplot_n0)
+    plt.scatter([0, 1], [0, 1], c='white')
+    plt.axis('off')
+    #plt.text(-0.3, 1, titles[row], fontweight='bold', horizontalalignment='left',
+        #fontsize=12)
+    caption_text = captions[index]
+    plt.text(-0.3, 0.83, caption_text,
+        horizontalalignment='left',
+        fontsize=12,
+        wrap=True)
+
+    if not max(all_y_i) < y_max:
+        x_min *= 1.2
+        x_max *= 1.2
+        y_min *= 1.2
+        y_max *= 1.2
+    x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
+    x = x.T
+    y = y.T
+
+    X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
+    z = np.apply_along_axis(f, 0, X)
+    log_z = np.log(z + 0.01)
+    
+    plt.subplot(2, 3, subplot_n1)
+    plt.imshow(
+        log_z,
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gray_r,
+        origin="lower",
+        vmax=log_z.min() + 1.5 * np.ptp(log_z),
+    )
+    contours = plt.contour(
+        log_z,
+        levels=levels.get(f),
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gnuplot,
+        origin="lower",
+    )
+    levels[f] = contours.levels
+    plt.clabel(contours, inline=1, fmt=super_fmt, fontsize=14)
+
+    plt.plot(all_x_i, all_y_i, "b-", linewidth=2)
+    plt.plot(all_x_i, all_y_i, "k+")
+
+    plt.plot(logging_f.all_x_i, logging_f.all_y_i, "k.", markersize=2)
+
+    plt.plot([0], [0], "rx", markersize=12)
+
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+
+    plt.subplot(2, 3, subplot_n2)
+    plt.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2, label="# iterations")
+    plt.ylabel("Error on f(x)")
+    plt.semilogy(
+        logging_f.counts,
+        np.maximum(np.abs(logging_f.all_f_i), 1e-30),
+        linewidth=2,
+        color="g",
+        label="# function calls",
+    )
+    plt.legend(
+        loc="upper right",
+        frameon=True,
+        prop={"size": 11},
+        borderaxespad=0,
+        handlelength=1.5,
+        handletextpad=0.5,
+    )
+plt.tight_layout()
+```
+
 We can see that very anisotropic ([ill-conditioned](https://en.wikipedia.org/wiki/Condition_number)) functions are harder
 to optimize.
 
@@ -748,6 +1026,136 @@ is done in gradient descent code using a
 
      - |agradient_rosen_icond_conv|
 
+
+
+```{python tags=c("hide-input")}
+x_min, x_max = -1, 2
+y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
+
+levels = {}
+
+plt.figure(figsize=(10, 10))
+plt.title('Adaptive step gradient descent', fontweight='bold')
+plt.axis('off')
+for index, ((f, f_prime, hessian), optimizer) in enumerate(
+    (
+        #(mk_quad(0.7), gradient_descent),
+        (mk_quad(0.7), gradient_descent_adaptative),
+        #(mk_quad(0.02), gradient_descent),
+        (mk_quad(0.02), gradient_descent_adaptative),
+        (mk_gauss(0.02), gradient_descent_adaptative),
+        ((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+            gradient_descent_adaptative,),
+        #(mk_gauss(0.02), conjugate_gradient),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), conjugate_gradient),
+        #(mk_quad(0.02), newton_cg),
+        #(mk_gauss(0.02), newton_cg),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), newton_cg),
+        #(mk_quad(0.02), bfgs),
+        #(mk_gauss(0.02), bfgs),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), bfgs),
+        #(mk_quad(0.02), powell),
+        #(mk_gauss(0.02), powell),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), powell),
+        #(mk_gauss(0.02), nelder_mead),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), nelder_mead),
+    )
+):
+    # Compute a gradient-descent
+    x_i, y_i = 1.6, 1.1
+    counting_f_prime = CountingFunction(f_prime)
+    counting_hessian = CountingFunction(hessian)
+    logging_f = LoggingFunction(f, counter=counting_f_prime.counter)
+    all_x_i, all_y_i, all_f_i = optimizer(
+        np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
+    )
+    
+    row = index+1
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
+        
+    # titles = []
+    
+    captions = ["A well-conditioned quadratic function.",
+                "An ill-conditioned quadratic function.",
+                "An ill-conditioned non-quadratic function.",
+                "An ill-conditioned very non-quadratic function."]
+        
+    plt.subplot(4, 3, subplot_n0)
+    plt.scatter([0, 1], [0, 1], c='white')
+    plt.axis('off')
+    #plt.text(-0.3, 1, titles[row], fontweight='bold', horizontalalignment='left',
+        #fontsize=12)
+    caption_text = captions[row-1]
+    plt.text(-0.3, 0.83, caption_text,
+        horizontalalignment='left',
+        fontsize=12,
+        wrap=True)
+
+    if not max(all_y_i) < y_max:
+        x_min *= 1.2
+        x_max *= 1.2
+        y_min *= 1.2
+        y_max *= 1.2
+    x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
+    x = x.T
+    y = y.T
+
+    X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
+    z = np.apply_along_axis(f, 0, X)
+    log_z = np.log(z + 0.01)
+    
+    plt.subplot(4, 3, subplot_n1)
+    plt.imshow(
+        log_z,
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gray_r,
+        origin="lower",
+        vmax=log_z.min() + 1.5 * np.ptp(log_z),
+    )
+    contours = plt.contour(
+        log_z,
+        levels=levels.get(f),
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gnuplot,
+        origin="lower",
+    )
+    levels[f] = contours.levels
+    plt.clabel(contours, inline=1, fmt=super_fmt, fontsize=14)
+
+    plt.plot(all_x_i, all_y_i, "b-", linewidth=2)
+    plt.plot(all_x_i, all_y_i, "k+")
+
+    plt.plot(logging_f.all_x_i, logging_f.all_y_i, "k.", markersize=2)
+
+    plt.plot([0], [0], "rx", markersize=12)
+
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+
+    plt.subplot(4, 3, subplot_n2)
+    plt.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2, label="# iterations")
+    plt.ylabel("Error on f(x)")
+    plt.semilogy(
+        logging_f.counts,
+        np.maximum(np.abs(logging_f.all_f_i), 1e-30),
+        linewidth=2,
+        color="g",
+        label="# function calls",
+    )
+    plt.legend(
+        loc="upper right",
+        frameon=True,
+        prop={"size": 11},
+        borderaxespad=0,
+        handlelength=1.5,
+        handletextpad=0.5,
+    )
+plt.tight_layout()
+```
+
 The more a function looks like a quadratic function (elliptic
 iso-curves), the easier it is to optimize.
 
@@ -781,6 +1189,134 @@ gradient and sharp turns are reduced.
 SciPy provides {func}`scipy.optimize.minimize` to find the minimum of scalar
 functions of one or more variables. The simple conjugate gradient method can
 be used by setting the parameter `method` to CG
+
+```{python tags=c("hide-input")}
+x_min, x_max = -1, 2
+y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
+
+levels = {}
+
+plt.figure(figsize=(12, 6))
+plt.title('Conjugate gradient descent', fontweight='bold')
+plt.axis('off')
+for index, ((f, f_prime, hessian), optimizer) in enumerate(
+    (
+        #(mk_quad(0.7), gradient_descent),
+        #(mk_quad(0.7), gradient_descent_adaptative),
+        #(mk_quad(0.02), gradient_descent),
+        #(mk_quad(0.02), gradient_descent_adaptative),
+        #(mk_gauss(0.02), gradient_descent_adaptative),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+            #gradient_descent_adaptative,),
+        (mk_gauss(0.02), conjugate_gradient),
+        ((rosenbrock, rosenbrock_prime, rosenbrock_hessian), conjugate_gradient),
+        #(mk_quad(0.02), newton_cg),
+        #(mk_gauss(0.02), newton_cg),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), newton_cg),
+        #(mk_quad(0.02), bfgs),
+        #(mk_gauss(0.02), bfgs),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), bfgs),
+        #(mk_quad(0.02), powell),
+        #(mk_gauss(0.02), powell),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), powell),
+        #(mk_gauss(0.02), nelder_mead),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), nelder_mead),
+    )
+):
+    # Compute a gradient-descent
+    x_i, y_i = 1.6, 1.1
+    counting_f_prime = CountingFunction(f_prime)
+    counting_hessian = CountingFunction(hessian)
+    logging_f = LoggingFunction(f, counter=counting_f_prime.counter)
+    all_x_i, all_y_i, all_f_i = optimizer(
+        np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
+    )
+    
+    row = index+1
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
+        
+    # titles = []
+    
+    captions = ["A well-conditioned quadratic function.",
+                "An ill-conditioned quadratic function.",
+                "An ill-conditioned non-quadratic function.",
+                "An ill-conditioned very non-quadratic function."]
+        
+    plt.subplot(2, 3, subplot_n0)
+    plt.scatter([0, 1], [0, 1], c='white')
+    plt.axis('off')
+    #plt.text(-0.3, 1, titles[row], fontweight='bold', horizontalalignment='left',
+        #fontsize=12)
+    caption_text = captions[row-1]
+    plt.text(-0.3, 0.83, caption_text,
+        horizontalalignment='left',
+        fontsize=12,
+        wrap=True)
+
+    if not max(all_y_i) < y_max:
+        x_min *= 1.2
+        x_max *= 1.2
+        y_min *= 1.2
+        y_max *= 1.2
+    x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
+    x = x.T
+    y = y.T
+
+    X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
+    z = np.apply_along_axis(f, 0, X)
+    log_z = np.log(z + 0.01)
+    
+    plt.subplot(2, 3, subplot_n1)
+    plt.imshow(
+        log_z,
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gray_r,
+        origin="lower",
+        vmax=log_z.min() + 1.5 * np.ptp(log_z),
+    )
+    contours = plt.contour(
+        log_z,
+        levels=levels.get(f),
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gnuplot,
+        origin="lower",
+    )
+    levels[f] = contours.levels
+    plt.clabel(contours, inline=1, fmt=super_fmt, fontsize=14)
+
+    plt.plot(all_x_i, all_y_i, "b-", linewidth=2)
+    plt.plot(all_x_i, all_y_i, "k+")
+
+    plt.plot(logging_f.all_x_i, logging_f.all_y_i, "k.", markersize=2)
+
+    plt.plot([0], [0], "rx", markersize=12)
+
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+
+    plt.subplot(2, 3, subplot_n2)
+    plt.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2, label="# iterations")
+    plt.ylabel("Error on f(x)")
+    plt.semilogy(
+        logging_f.counts,
+        np.maximum(np.abs(logging_f.all_f_i), 1e-30),
+        linewidth=2,
+        color="g",
+        label="# function calls",
+    )
+    plt.legend(
+        loc="upper right",
+        frameon=True,
+        prop={"size": 11},
+        borderaxespad=0,
+        handlelength=1.5,
+        handletextpad=0.5,
+    )
+plt.tight_layout()
+```
 
 ```{python}
 def f(x):   # The rosenbrock function
@@ -840,6 +1376,129 @@ purpose, they rely on the 2 first derivative of the function: the
 In SciPy, you can use the Newton method by setting `method` to Newton-CG in
 {func}`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
 inversion of the Hessian is performed by conjugate gradient
+
+```{python tags=c("hide-input")}
+levels = {}
+
+plt.figure(figsize=(10, 8))
+for index, ((f, f_prime, hessian), optimizer) in enumerate(
+    (
+        #(mk_quad(0.7), gradient_descent),
+        #(mk_quad(0.7), gradient_descent_adaptative),
+        #(mk_quad(0.02), gradient_descent),
+        #(mk_quad(0.02), gradient_descent_adaptative),
+        #(mk_gauss(0.02), gradient_descent_adaptative),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+           # gradient_descent_adaptative,),
+        #(mk_gauss(0.02), conjugate_gradient),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), conjugate_gradient),
+        (mk_quad(0.02), newton_cg),
+        (mk_gauss(0.02), newton_cg),
+        ((rosenbrock, rosenbrock_prime, rosenbrock_hessian), newton_cg),
+        #(mk_quad(0.02), bfgs),
+        #(mk_gauss(0.02), bfgs),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), bfgs),
+        #(mk_quad(0.02), powell),
+        #(mk_gauss(0.02), powell),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), powell),
+        #(mk_gauss(0.02), nelder_mead),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), nelder_mead),
+    )
+):
+    # Compute a gradient-descent
+    x_i, y_i = 1.6, 1.1
+    counting_f_prime = CountingFunction(f_prime)
+    counting_hessian = CountingFunction(hessian)
+    logging_f = LoggingFunction(f, counter=counting_f_prime.counter)
+    all_x_i, all_y_i, all_f_i = optimizer(
+        np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
+    )
+    
+    row = index+1
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
+        
+    # titles = []
+    
+    captions = ["A well-conditioned quadratic function.",
+                "An ill-conditioned quadratic function.",
+                "An ill-conditioned non-quadratic function.",
+                "An ill-conditioned very non-quadratic function."]
+        
+    plt.subplot(3, 3, subplot_n0)
+    plt.scatter([0, 1], [0, 1], c='white')
+    plt.axis('off')
+    #plt.text(-0.3, 1, titles[row], fontweight='bold', horizontalalignment='left',
+        #fontsize=12)
+    caption_text = captions[row-1]
+    plt.text(-0.3, 0.83, caption_text,
+        horizontalalignment='left',
+        fontsize=12,
+        wrap=True)
+
+    if not max(all_y_i) < y_max:
+        x_min *= 1.2
+        x_max *= 1.2
+        y_min *= 1.2
+        y_max *= 1.2
+    x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
+    x = x.T
+    y = y.T
+
+    X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
+    z = np.apply_along_axis(f, 0, X)
+    log_z = np.log(z + 0.01)
+    
+    plt.subplot(3, 3, subplot_n1)
+    plt.imshow(
+        log_z,
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gray_r,
+        origin="lower",
+        vmax=log_z.min() + 1.5 * np.ptp(log_z),
+    )
+    contours = plt.contour(
+        log_z,
+        levels=levels.get(f),
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gnuplot,
+        origin="lower",
+    )
+    levels[f] = contours.levels
+    plt.clabel(contours, inline=1, fmt=super_fmt, fontsize=14)
+
+    plt.plot(all_x_i, all_y_i, "b-", linewidth=2)
+    plt.plot(all_x_i, all_y_i, "k+")
+
+    plt.plot(logging_f.all_x_i, logging_f.all_y_i, "k.", markersize=2)
+
+    plt.plot([0], [0], "rx", markersize=12)
+
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+
+    plt.subplot(3, 3, subplot_n2)
+    plt.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2, label="# iterations")
+    plt.ylabel("Error on f(x)")
+    plt.semilogy(
+        logging_f.counts,
+        np.maximum(np.abs(logging_f.all_f_i), 1e-30),
+        linewidth=2,
+        color="g",
+        label="# function calls",
+    )
+    plt.legend(
+        loc="upper right",
+        frameon=True,
+        prop={"size": 11},
+        borderaxespad=0,
+        handlelength=1.5,
+        handletextpad=0.5,
+    )
+plt.tight_layout()
+```
 
 ```{python}
 def f(x):   # The rosenbrock function
@@ -914,6 +1573,130 @@ declaration
 
      - |bfgs_rosen_icond_conv|
 
+```{python tags=c("hide-input")}
+levels = {}
+
+plt.figure(figsize=(12, 8))
+for index, ((f, f_prime, hessian), optimizer) in enumerate(
+    (
+        #(mk_quad(0.7), gradient_descent),
+        #(mk_quad(0.7), gradient_descent_adaptative),
+        #(mk_quad(0.02), gradient_descent),
+        #(mk_quad(0.02), gradient_descent_adaptative),
+        #(mk_gauss(0.02), gradient_descent_adaptative),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+           # gradient_descent_adaptative,),
+        #(mk_gauss(0.02), conjugate_gradient),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), conjugate_gradient),
+        #(mk_quad(0.02), newton_cg),
+        #(mk_gauss(0.02), newton_cg),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), newton_cg),
+        (mk_quad(0.02), bfgs),
+        (mk_gauss(0.02), bfgs),
+        ((rosenbrock, rosenbrock_prime, rosenbrock_hessian), bfgs),
+        #(mk_quad(0.02), powell),
+        #(mk_gauss(0.02), powell),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), powell),
+        #(mk_gauss(0.02), nelder_mead),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), nelder_mead),
+    )
+):
+    # Compute a gradient-descent
+    x_i, y_i = 1.6, 1.1
+    counting_f_prime = CountingFunction(f_prime)
+    counting_hessian = CountingFunction(hessian)
+    logging_f = LoggingFunction(f, counter=counting_f_prime.counter)
+    all_x_i, all_y_i, all_f_i = optimizer(
+        np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
+    )
+    
+    row = index+1
+    
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
+        
+    titles = ["An ill-conditioned quadratic function:",
+              "An ill-conditioned non-quadratic function:",
+              "An ill-conditioned very non-quadratic function:"]
+    
+    captions = ["\nAn ill-conditioned quadratic function: On an \nexactly quadratic function, BFGS is not as fast\nas Newton’s method, but still very fast.",
+                "\n\nHere BFGS does better than Newton, as its\nempirical estimate of the curvature is better than\nthat given by the Hessian.",
+                ""]
+        
+    plt.subplot(3, 3, subplot_n0)
+    plt.scatter([0, 1], [0, 1], c='white')
+    plt.axis('off')
+    plt.text(-0.3, 1, titles[index], fontweight='bold', horizontalalignment='left',
+        fontsize=12)
+    caption_text = captions[index]
+    plt.text(-0.3, 0.7, caption_text,
+        horizontalalignment='left',
+        fontsize=12,
+        wrap=True)
+
+    if not max(all_y_i) < y_max:
+        x_min *= 1.2
+        x_max *= 1.2
+        y_min *= 1.2
+        y_max *= 1.2
+    x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
+    x = x.T
+    y = y.T
+
+    X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
+    z = np.apply_along_axis(f, 0, X)
+    log_z = np.log(z + 0.01)
+    
+    plt.subplot(3, 3, subplot_n1)
+    plt.imshow(
+        log_z,
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gray_r,
+        origin="lower",
+        vmax=log_z.min() + 1.5 * np.ptp(log_z),
+    )
+    contours = plt.contour(
+        log_z,
+        levels=levels.get(f),
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gnuplot,
+        origin="lower",
+    )
+    levels[f] = contours.levels
+    plt.clabel(contours, inline=1, fmt=super_fmt, fontsize=14)
+
+    plt.plot(all_x_i, all_y_i, "b-", linewidth=2)
+    plt.plot(all_x_i, all_y_i, "k+")
+
+    plt.plot(logging_f.all_x_i, logging_f.all_y_i, "k.", markersize=2)
+
+    plt.plot([0], [0], "rx", markersize=12)
+
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+
+    plt.subplot(3, 3, subplot_n2)
+    plt.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2, label="# iterations")
+    plt.ylabel("Error on f(x)")
+    plt.semilogy(
+        logging_f.counts,
+        np.maximum(np.abs(logging_f.all_f_i), 1e-30),
+        linewidth=2,
+        color="g",
+        label="# function calls",
+    )
+    plt.legend(
+        loc="upper right",
+        frameon=True,
+        prop={"size": 11},
+        borderaxespad=0,
+        handlelength=1.5,
+        handletextpad=0.5,
+    )
+plt.tight_layout()
+```
+
 ```{python}
 def f(x):   # The rosenbrock function
     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
@@ -960,6 +1743,129 @@ Almost a gradient approach
      - |powell_rosen_icond_conv|
 
 
+```{python tags=c("hide-input")}
+levels = {}
+
+plt.figure(figsize=(12, 6))
+plt.title("Powell's method", fontweight='bold')
+plt.axis('off')
+for index, ((f, f_prime, hessian), optimizer) in enumerate(
+    (
+        #(mk_quad(0.7), gradient_descent),
+        #(mk_quad(0.7), gradient_descent_adaptative),
+        #(mk_quad(0.02), gradient_descent),
+        #(mk_quad(0.02), gradient_descent_adaptative),
+        #(mk_gauss(0.02), gradient_descent_adaptative),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+            #gradient_descent_adaptative,),
+        #(mk_gauss(0.02), conjugate_gradient),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), conjugate_gradient),
+        #(mk_quad(0.02), newton_cg),
+        #(mk_gauss(0.02), newton_cg),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), newton_cg),
+        #(mk_quad(0.02), bfgs),
+        #(mk_gauss(0.02), bfgs),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), bfgs),
+        (mk_quad(0.02), powell),
+        #(mk_gauss(0.02), powell),
+        ((rosenbrock, rosenbrock_prime, rosenbrock_hessian), powell),
+        #(mk_gauss(0.02), nelder_mead),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), nelder_mead),
+    )
+):
+    # Compute a gradient-descent
+    x_i, y_i = 1.6, 1.1
+    counting_f_prime = CountingFunction(f_prime)
+    counting_hessian = CountingFunction(hessian)
+    logging_f = LoggingFunction(f, counter=counting_f_prime.counter)
+    all_x_i, all_y_i, all_f_i = optimizer(
+        np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
+    )
+    
+    row = index+1
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
+        
+    titles = ["An ill-conditioned quadratic function:",
+             "An ill-conditioned very non-quadratic function:"]
+    
+    captions = ["Powell’s method isn’t too sensitive to local \nill-conditionning in low dimensions.",
+                ""]
+        
+    plt.subplot(2, 3, subplot_n0)
+    plt.scatter([0, 1], [0, 1], c='white')
+    plt.axis('off')
+    plt.text(-0.3, 1, titles[index], fontweight='bold', horizontalalignment='left',
+        fontsize=12)
+    caption_text = captions[index]
+    plt.text(-0.3, 0.83, caption_text,
+        horizontalalignment='left',
+        fontsize=12,
+        wrap=True)
+
+    if not max(all_y_i) < y_max:
+        x_min *= 1.2
+        x_max *= 1.2
+        y_min *= 1.2
+        y_max *= 1.2
+    x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
+    x = x.T
+    y = y.T
+
+    X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
+    z = np.apply_along_axis(f, 0, X)
+    log_z = np.log(z + 0.01)
+    
+    plt.subplot(2, 3, subplot_n1)
+    plt.imshow(
+        log_z,
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gray_r,
+        origin="lower",
+        vmax=log_z.min() + 1.5 * np.ptp(log_z),
+    )
+    contours = plt.contour(
+        log_z,
+        levels=levels.get(f),
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gnuplot,
+        origin="lower",
+    )
+    levels[f] = contours.levels
+    plt.clabel(contours, inline=1, fmt=super_fmt, fontsize=14)
+
+    plt.plot(all_x_i, all_y_i, "b-", linewidth=2)
+    plt.plot(all_x_i, all_y_i, "k+")
+
+    plt.plot(logging_f.all_x_i, logging_f.all_y_i, "k.", markersize=2)
+
+    plt.plot([0], [0], "rx", markersize=12)
+
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+
+    plt.subplot(2, 3, subplot_n2)
+    plt.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2, label="# iterations")
+    plt.ylabel("Error on f(x)")
+    plt.semilogy(
+        logging_f.counts,
+        np.maximum(np.abs(logging_f.all_f_i), 1e-30),
+        linewidth=2,
+        color="g",
+        label="# function calls",
+    )
+    plt.legend(
+        loc="upper right",
+        frameon=True,
+        prop={"size": 11},
+        borderaxespad=0,
+        handlelength=1.5,
+        handletextpad=0.5,
+    )
+plt.tight_layout()
+```
+
 #### Simplex method: the Nelder-Mead
 
 The Nelder-Mead algorithms is a generalization of dichotomy approaches to
@@ -988,6 +1894,130 @@ methods on smooth, non-noisy functions.
      - |nm_rosen_icond_conv|
 
 Using the Nelder-Mead solver in {func}`scipy.optimize.minimize`:
+
+```{python tags=c("hide-input")}
+levels = {}
+
+plt.figure(figsize=(12, 6))
+plt.title("Simplex method: the Nelder-Mead", fontweight='bold')
+plt.axis('off')
+for index, ((f, f_prime, hessian), optimizer) in enumerate(
+    (
+        #(mk_quad(0.7), gradient_descent),
+        #(mk_quad(0.7), gradient_descent_adaptative),
+        #(mk_quad(0.02), gradient_descent),
+        #(mk_quad(0.02), gradient_descent_adaptative),
+        #(mk_gauss(0.02), gradient_descent_adaptative),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian),
+            #gradient_descent_adaptative,),
+        #(mk_gauss(0.02), conjugate_gradient),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), conjugate_gradient),
+        #(mk_quad(0.02), newton_cg),
+        #(mk_gauss(0.02), newton_cg),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), newton_cg),
+        #(mk_quad(0.02), bfgs),
+        #(mk_gauss(0.02), bfgs),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), bfgs),
+        #(mk_quad(0.02), powell),
+        #(mk_gauss(0.02), powell),
+        #((rosenbrock, rosenbrock_prime, rosenbrock_hessian), powell),
+        (mk_gauss(0.02), nelder_mead),
+        ((rosenbrock, rosenbrock_prime, rosenbrock_hessian), nelder_mead),
+    )
+):
+    # Compute a gradient-descent
+    x_i, y_i = 1.6, 1.1
+    counting_f_prime = CountingFunction(f_prime)
+    counting_hessian = CountingFunction(hessian)
+    logging_f = LoggingFunction(f, counter=counting_f_prime.counter)
+    all_x_i, all_y_i, all_f_i = optimizer(
+        np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
+    )
+    
+    row = index+1
+
+    subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
+        
+    titles = ["An ill-conditioned non-quadratic function:",
+             "An ill-conditioned very non-quadratic function:"]
+    
+    captions = ["",
+                ""]
+        
+    plt.subplot(2, 3, subplot_n0)
+    plt.scatter([0, 1], [0, 1], c='white')
+    plt.axis('off')
+    plt.text(-0.3, 1, titles[index], fontweight='bold', horizontalalignment='left',
+        fontsize=12)
+    caption_text = captions[index]
+    plt.text(-0.3, 0.83, caption_text,
+        horizontalalignment='left',
+        fontsize=12,
+        wrap=True)
+
+    if not max(all_y_i) < y_max:
+        x_min *= 1.2
+        x_max *= 1.2
+        y_min *= 1.2
+        y_max *= 1.2
+    x, y = np.mgrid[x_min:x_max:100j, y_min:y_max:100j]
+    x = x.T
+    y = y.T
+
+    X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
+    z = np.apply_along_axis(f, 0, X)
+    log_z = np.log(z + 0.01)
+    
+    plt.subplot(2, 3, subplot_n1)
+    plt.imshow(
+        log_z,
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gray_r,
+        origin="lower",
+        vmax=log_z.min() + 1.5 * np.ptp(log_z),
+    )
+    contours = plt.contour(
+        log_z,
+        levels=levels.get(f),
+        extent=[x_min, x_max, y_min, y_max],
+        cmap=plt.cm.gnuplot,
+        origin="lower",
+    )
+    levels[f] = contours.levels
+    plt.clabel(contours, inline=1, fmt=super_fmt, fontsize=14)
+
+    plt.plot(all_x_i, all_y_i, "b-", linewidth=2)
+    plt.plot(all_x_i, all_y_i, "k+")
+
+    plt.plot(logging_f.all_x_i, logging_f.all_y_i, "k.", markersize=2)
+
+    plt.plot([0], [0], "rx", markersize=12)
+
+    plt.xticks(())
+    plt.yticks(())
+    plt.xlim(x_min, x_max)
+    plt.ylim(y_min, y_max)
+
+    plt.subplot(2, 3, subplot_n2)
+    plt.semilogy(np.maximum(np.abs(all_f_i), 1e-30), linewidth=2, label="# iterations")
+    plt.ylabel("Error on f(x)")
+    plt.semilogy(
+        logging_f.counts,
+        np.maximum(np.abs(logging_f.all_f_i), 1e-30),
+        linewidth=2,
+        color="g",
+        label="# function calls",
+    )
+    plt.legend(
+        loc="upper right",
+        frameon=True,
+        prop={"size": 11},
+        borderaxespad=0,
+        handlelength=1.5,
+        handletextpad=0.5,
+    )
+plt.tight_layout()
+```
 
 ```{python}
 def f(x):   # The rosenbrock function
@@ -1029,6 +2059,112 @@ All methods are exposed as the `method` argument of
 :width: 95%
 -->
 
+```{python tags=c("hide-input")}
+"""
+Plotting the comparison of optimizers
+======================================
+
+Plots the results from the comparison of optimizers.
+
+"""
+
+import pickle
+import sys
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+
+results = pickle.load(
+    open(f"helper/compare_optimizers_py{sys.version_info[0]}.pkl", "rb")
+)
+n_methods = len(list(results.values())[0]["Rosenbrock  "])
+n_dims = len(results)
+
+symbols = "o>*Ds"
+
+plt.figure(1, figsize=(10, 4))
+plt.clf()
+
+nipy_spectral = matplotlib.colormaps["nipy_spectral"]
+colors = nipy_spectral(np.linspace(0, 1, n_dims))[:, :3]
+
+method_names = list(list(results.values())[0]["Rosenbrock  "].keys())
+method_names.sort(key=lambda x: x[::-1], reverse=True)
+
+for n_dim_index, ((n_dim, n_dim_bench), color) in enumerate(
+    zip(sorted(results.items()), colors, strict=True)
+):
+    for (cost_name, cost_bench), symbol in zip(
+        sorted(n_dim_bench.items()), symbols, strict=True
+    ):
+        for (
+            method_index,
+            method_name,
+        ) in enumerate(method_names):
+            this_bench = cost_bench[method_name]
+            bench = np.mean(this_bench)
+            plt.semilogy(
+                [
+                    method_index + 0.1 * n_dim_index,
+                ],
+                [
+                    bench,
+                ],
+                marker=symbol,
+                color=color,
+            )
+
+# Create a legend for the problem type
+for cost_name, symbol in zip(sorted(n_dim_bench.keys()), symbols, strict=True):
+    plt.semilogy(
+        [
+            -10,
+        ],
+        [
+            0,
+        ],
+        symbol,
+        color=".5",
+        label=cost_name,
+    )
+
+plt.xticks(np.arange(n_methods), method_names, size=11)
+plt.xlim(-0.2, n_methods - 0.5)
+plt.legend(loc="best", numpoints=1, handletextpad=0, prop={"size": 12}, frameon=False)
+plt.ylabel("# function calls (a.u.)")
+
+# Create a second legend for the problem dimensionality
+plt.twinx()
+
+for n_dim, color in zip(sorted(results.keys()), colors, strict=True):
+    plt.plot(
+        [
+            -10,
+        ],
+        [
+            0,
+        ],
+        "o",
+        color=color,
+        label=f"# dim: {n_dim}",
+    )
+plt.legend(
+    loc=(0.47, 0.07),
+    numpoints=1,
+    handletextpad=0,
+    prop={"size": 12},
+    frameon=False,
+    ncol=2,
+)
+plt.xlim(-0.2, n_methods - 0.5)
+
+plt.xticks(np.arange(n_methods), method_names)
+plt.yticks(())
+
+plt.tight_layout()
+plt.show()
+
+```
 
 :With knowledge of the gradient:
 
@@ -1199,7 +2335,7 @@ y = f(x, 1.5, 1) + .1*rng.normal(size=50)
 sp.optimize.curve_fit(f, x, y)
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 import numpy as np
 import scipy as sp
 import matplotlib.pyplot as plt
@@ -1253,12 +2389,7 @@ def f(x):
 sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
 ```
 
-```{python}
-
-import numpy as np
-import matplotlib.pyplot as plt
-import scipy as sp
-
+```{python tags=c("hide-input")}
 x, y = np.mgrid[-2.9:5.8:0.05, -2.5:5:0.05]  # type: ignore[misc]
 x = x.T
 y = y.T
@@ -1355,7 +2486,7 @@ x0 = np.array([0, 0])
 sp.optimize.minimize(f, x0, constraints={"fun": constraint, "type": "ineq"})
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp
@@ -1442,98 +2573,6 @@ please also see [IPOPT] and [PyGMO].
 
 [ipopt]: https://github.com/xuy/pyipopt
 [pygmo]: https://esa.github.io/pygmo2/
-
-```{python}
-"""
-Alternating optimization
-=========================
-
-The challenge here is that Hessian of the problem is a very
-ill-conditioned matrix. This can easily be seen, as the Hessian of the
-first term in simply 2 * K.T @ K. Thus the conditioning of the
-problem can be judged from looking at the conditioning of K.
-"""
-
-import time
-
-import numpy as np
-import scipy as sp
-import matplotlib.pyplot as plt
-
-rng = np.random.default_rng(27446968)
-
-K = rng.normal(size=(100, 100))
-
-
-def f(x):
-    return np.sum((K @ (x - 1)) ** 2) + np.sum(x**2) ** 2
-
-
-def f_prime(x):
-    return 2 * K.T @ K @ (x - 1) + 4 * np.sum(x**2) * x
-
-
-def hessian(x):
-    H = 2 * K.T @ K + 4 * 2 * x * x[:, np.newaxis]
-    return H + 4 * np.eye(H.shape[0]) * np.sum(x**2)
-
-
-###############################################################################
-# Some pretty plotting
-
-plt.figure(1)
-plt.clf()
-Z = X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]  # type: ignore[misc]
-# Complete in the additional dimensions with zeros
-Z = np.reshape(Z, (2, -1)).copy()
-Z.resize((100, Z.shape[-1]))
-Z = np.apply_along_axis(f, 0, Z)
-Z = np.reshape(Z, X.shape)
-plt.imshow(Z.T, cmap="gray_r", extent=(-1.5, 1.5, -1.1, 1.1), origin="lower")
-plt.contour(X, Y, Z, cmap="gnuplot")
-
-# A reference but slow solution:
-t0 = time.time()
-x_ref = sp.optimize.minimize(f, K[0], method="Powell").x
-print(f"     Powell: time {time.time() - t0:.2f}s")
-f_ref = f(x_ref)
-
-# Compare different approaches
-t0 = time.time()
-x_bfgs = sp.optimize.minimize(f, K[0], method="BFGS").x
-print(
-    f"       BFGS: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_bfgs - x_ref) ** 2)):.2f}, f error {f(x_bfgs) - f_ref:.2f}"
-)
-
-t0 = time.time()
-x_l_bfgs = sp.optimize.minimize(f, K[0], method="L-BFGS-B").x
-print(
-    f"     L-BFGS: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_l_bfgs - x_ref) ** 2)):.2f}, f error {f(x_l_bfgs) - f_ref:.2f}"
-)
-
-
-t0 = time.time()
-x_bfgs = sp.optimize.minimize(f, K[0], jac=f_prime, method="BFGS").x
-print(
-    f"  BFGS w f': time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_bfgs - x_ref) ** 2)):.2f}, f error {f(x_bfgs) - f_ref:.2f}"
-)
-
-t0 = time.time()
-x_l_bfgs = sp.optimize.minimize(f, K[0], jac=f_prime, method="L-BFGS-B").x
-print(
-    f"L-BFGS w f': time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_l_bfgs - x_ref) ** 2)):.2f}, f error {f(x_l_bfgs) - f_ref:.2f}"
-)
-
-t0 = time.time()
-x_newton = sp.optimize.minimize(
-    f, K[0], jac=f_prime, hess=hessian, method="Newton-CG"
-).x
-print(
-    f"     Newton: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_newton - x_ref) ** 2)):.2f}, f error {f(x_newton) - f_ref:.2f}"
-)
-
-plt.show()
-```
 
 ```{python}
 
