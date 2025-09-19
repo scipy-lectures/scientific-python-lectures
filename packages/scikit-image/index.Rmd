@@ -13,18 +13,17 @@ jupyter:
     name: python3
 ---
 
-```{python tags=c("hide-input")}
-import numpy as np
-import scipy as sp
-import matplotlib.pyplot as plt
-```
 (scikit-image)=
 
 # `scikit-image`: image processing
 
-
-
 **Author**: *Emmanuelle Gouillart*
+
+```{python}
+import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+```
 
 [scikit-image](https://scikit-image.org/) is a Python package dedicated
 to image processing, using NumPy arrays as image objects.
@@ -257,10 +256,14 @@ Reading from files: {func}`skimage.io.imread`
 cat = ski.io.imread("cat.png")
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_camera_001.png
-:align: center
-:target: auto_examples/plot_camera.html
-:width: 50%
+```{python}
+camera = ski.data.camera()
+
+plt.figure(figsize=(4, 4))
+plt.imshow(camera, cmap="gray", interpolation="nearest")
+plt.axis("off")
+
+plt.tight_layout()
 ```
 
 This works with many data formats supported by the
@@ -274,12 +277,6 @@ logo = ski.io.imread('https://scikit-image.org/_static/img/logo.png')
 
 ### Data types
 
-```{image} auto_examples/images/sphx_glr_plot_camera_uint_001.png
-:align: right
-:target: auto_examples/plot_camera_uint.html
-:width: 50%
-```
-
 Image ndarrays can be represented either by integers (signed or unsigned) or
 floats.
 
@@ -291,19 +288,29 @@ camera.dtype
 camera_multiply = 3 * camera
 ```
 
+```{python}
+plt.figure(figsize=(8, 4))
+plt.subplot(121)
+plt.imshow(camera, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.subplot(122)
+plt.imshow(camera_multiply, cmap="gray", interpolation="nearest")
+plt.axis("off")
+
+plt.tight_layout()
+```
+
 Different integer sizes are possible: 8-, 16- or 32-bytes, signed or
 unsigned.
 
-:::{warning}
-An important (if questionable) `skimage` **convention**: float images
-are supposed to lie in [-1, 1] (in order to have comparable contrast for
-all float images)
+**Warning**: An important (if questionable) `skimage` **convention**: float
+images are supposed to lie in [-1, 1] (in order to have comparable contrast
+for all float images):
 
 ```{python}
 camera_float = ski.util.img_as_float(camera)
 camera.max(), camera_float.max()
 ```
-:::
 
 Some image processing routines need to work with float arrays, and may
 hence output an array with a different type and the data range from the
@@ -342,15 +349,19 @@ Check the docstring to know if a function can be used on 3D images
 (for example MRI or CT images).
 :::
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: ski-grayscale-ex
+:class: dropdown
+:::
 
-> Open a color image on your disk as a NumPy array.
->
-> Find a skimage function computing the histogram of an image and
-> plot the histogram of each color channel
->
-> Convert the image to grayscale and plot its histogram.
+Open a color image on your disk as a NumPy array.
+
+Find a skimage function computing the histogram of an image and
+plot the histogram of each color channel
+
+Convert the image to grayscale and plot its histogram.
+
+::: {exercise-end}
 :::
 
 ## Image preprocessing / enhancement
