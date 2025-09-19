@@ -1222,10 +1222,7 @@ for i in range(24):
         fontsize=size,
         clip_on=True,
     )
-```
 
-
-```{python}
 # Add a title and a box around it
 ax = plt.gca()
 ax.add_patch(
@@ -1832,7 +1829,7 @@ plt.xticks([])
 plt.yticks([]);
 ```
 
-(aliased-versus-anti-aliased)=
+(aliased-versus-anti-aliased-anti)=
 
 ### Aliased versus anti-aliased
 
@@ -2103,9 +2100,7 @@ fig.patch.set_alpha(0)
 plt.axes((0, 0, 1, 1), frameon=False)
 
 rng = np.random.default_rng()
-```
 
-```{python tags=c("hide-input")}
 for i in range(1, 11):
     r, g, b = np.random.uniform(0, 1, 3)
     plt.plot(
@@ -2308,7 +2303,7 @@ plt.ylim(-1.1, 1.1)
 plt.grid();
 ```
 
-(3d-plotting)=
+(3d-plotting-2)=
 
 ### 3D plotting
 
