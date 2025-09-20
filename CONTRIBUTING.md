@@ -38,9 +38,9 @@ Design choices:
 The directory `guide` contains instructions on how to contribute:
 
 :::{topic} **Example chapter**
-```{toctree}
-guide/index.rst
-```
+
+[Contribution guide](guide)
+
 :::
 
 ## Building instructions
