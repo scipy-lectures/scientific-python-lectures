@@ -65,24 +65,25 @@ import matplotlib.pyplot as plt
 
 ```{python}
 waveform_1 = np.load('examples/waveform_1.npy')
+
+# Times for samples.
+t = np.arange(len(waveform_1))
 ```
 
 and visualize it:
 
 ```{python}
-t = np.arange(len(waveform_1))
+fig, ax = plt.subplots(figsize=(8, 6))
 plt.plot(t, waveform_1)
+plt.xlabel("Time [ns]")
+plt.ylabel("Amplitude [bins]")
 ```
 
-As shown below, this waveform is a 80-bin-length signal with a single peak
+As shown above, this waveform is a 80-bin-length signal with a single peak
 with an amplitude of approximately 30 in the 15 nanosecond bin. Additionally,
 the base level of noise is approximately 3. These values can be used in the
 initial solution.
 
-:::{figure} auto_examples/images/sphx_glr_plot_optimize_lidar_data_001.png
-:align: center
-:target: auto_examples/plot_optimize_lidar_data.html
-:::
 
 ## Fitting a waveform with a simple Gaussian model
 

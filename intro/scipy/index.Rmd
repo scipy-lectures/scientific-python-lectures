@@ -1456,7 +1456,7 @@ plt.ylabel("Frequency band")
 plt.xlabel("Time window")
 plt.tight_layout()
 # Store the figure for the book pages.
-glue('spectogram_fig', plt.gcf())
+glue('spectrogram_fig', plt.gcf())
 
 # Compute and plot the power spectral density (PSD):
 # The power of the signal per frequency band

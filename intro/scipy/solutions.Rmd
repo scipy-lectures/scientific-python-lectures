@@ -21,8 +21,9 @@ jupyter:
 
 Compute the decimals of Pi using the Wallis formula:
 
-```{literalinclude} solutions/pi_wallis.py
-```
+:::literalinclude} solutions/pi_wallis.py
+
+:::
 
 (quick-sort)=
 
@@ -30,7 +31,7 @@ Compute the decimals of Pi using the Wallis formula:
 
 Implement the quicksort algorithm, as defined by wikipedia:
 
-```{python}
+```text
 function quicksort(array)
     var list less, greater
     if length(array) ≤ 1
@@ -42,8 +43,9 @@ function quicksort(array)
     return concatenate(quicksort(less), pivot, quicksort(greater))
 ```
 
-```{literalinclude} solutions/quick_sort.py
-```
+:::literalinclude} solutions/quick_sort.py
+
+:::
 
 (fibonacci)=
 
@@ -79,8 +81,9 @@ returns the list of '.py' files, sorted by name length.
 
 **Hint:** try to understand the docstring of list.sort
 
-```{literalinclude} solutions/dir_sort.py
-```
+:::literalinclude} solutions/dir_sort.py
+
+:::
 
 (data-file)=
 
@@ -91,13 +94,15 @@ and calculate the min, max and sum values.
 
 Data file:
 
-```{literalinclude} solutions/data.txt
-```
+:::literalinclude} solutions/data.txt
+
+:::
 
 Solution:
 
-```{literalinclude} solutions/data_file.py
-```
+:::literalinclude} solutions/data_file.py
+
+:::
 
 (path-site)=
 
@@ -105,5 +110,6 @@ Solution:
 
 Write a program to search your PYTHONPATH for the module `site.py`.
 
-```{literalinclude} solutions/path_site.py
-```
+:::literalinclude} solutions/path_site.py
+
+:::

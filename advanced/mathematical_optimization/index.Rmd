@@ -441,10 +441,6 @@ performance, it really pays to read the books:
 - [Practical Methods of Optimization](https://www.amazon.com/gp/product/0471494631/ref=ox_sc_act_title_1?ie=UTF8&smid=ATVPDKIKX0DER) by Fletcher: good at hand-waving explanations.
 :::
 
-.. include:: ../../includes/big_toc_css.rst
-   :start-line: 1
-
-
 <!---
 XXX: should I discuss root finding?
 -->
@@ -2558,8 +2554,6 @@ using a mathematical trick known as [Lagrange multipliers](https://en.wikipedia.
 include the gallery. Skip the first line to avoid the "orphan"
 declaration
 -->
-.. include:: auto_examples/index.rst
-    :start-line: 1
 
 :::{admonition} See also
 

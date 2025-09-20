@@ -40,6 +40,12 @@ parts:
         - file: advanced/scipy_sparse/other_packages
       - file: advanced/mathematical_optimization/index
       - file: advanced/interfacing_with_c/interfacing_with_c
+  - caption: Packages and applications
+    chapters:
+      - file: statistics/index
+      - file: sympy
+      - file: scikit-image/index
+      - file: scikit-learn/index
   - caption: About the Scientific Python Lectures
     chapters:
       - file: about.md
