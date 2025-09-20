@@ -344,9 +344,11 @@ etc. Check the docstring for the expected dtype (and data range) of input
 images.
 
 :::{admonition} 3D images
+
 Most functions of `skimage` can take 3D images as input arguments.
 Check the docstring to know if a function can be used on 3D images
 (for example MRI or CT images).
+
 :::
 
 ::: {exercise-start}
@@ -496,9 +498,11 @@ ski.morphology.binary_opening(a, diamond(1)).astype(np.uint8)
 Opening removes small objects and smoothes corners.
 
 :::{admonition} Grayscale mathematical morphology
+
 Mathematical morphology operations are also available for
 (non-binary) grayscale images (int or float type). Erosion and dilation
 correspond to minimum (resp. maximum) filters.
+
 :::
 
 Higher-level mathematical morphology are available: tophat,
@@ -509,11 +513,13 @@ skeletonization, etc.
 Basic mathematical morphology is also implemented in
 {mod}`scipy.ndimage.morphology`. The `scipy.ndimage` implementation
 works on arbitrary-dimensional arrays.
+
 :::
 
 ______________________________________________________________________
 
-:::{admonition} Example of filters comparison: image denoising
+### Example of filters comparison: image denoising
+
 ```{python}
 coins = ski.data.coins()
 coins_zoom = coins[10:80, 300:370]

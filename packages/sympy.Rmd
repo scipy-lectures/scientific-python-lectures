@@ -218,8 +218,8 @@ sym.limit(1 / x, x, sym.oo)
 sym.limit(x ** x, x, 0)
 ```
 
-```{index} differentiation, diff
-```
+::: {index} differentiation, diff
+:::
 
 ### Differentiation
 
@@ -290,8 +290,8 @@ sym.series(1/sym.cos(x), x)
 2. Calculate the derivative of $log(x)$ for $x$.
 :::
 
-```{index} integration
-```
+::: {index} integration
+:::
 
 ### Integration
 
@@ -346,8 +346,8 @@ sym.integrate(sym.exp(-x), (x, 0, sym.oo))
 sym.integrate(sym.exp(-x ** 2), (x, -sym.oo, sym.oo))
 ```
 
-```{index} equations; algebraic, solve
-```
+::: {index} equations; algebraic, solve
+:::
 
 ## Equation solving
 
@@ -417,8 +417,8 @@ sym.satisfiable(x & ~x)
 
 ## Linear Algebra
 
-```{index} Matrix
-```
+:::{index} Matrix
+:::
 
 ### Matrices
 
@@ -440,8 +440,8 @@ A
 A**2
 ```
 
-```{index} equations; differential, diff, dsolve
-```
+::: {index} equations; differential, diff, dsolve
+:::
 
 ### Differential Equations
 
@@ -477,14 +477,18 @@ to force dsolve to resolve it as a separable equation:
 sym.dsolve(sym.sin(x) * sym.cos(f(x)) + sym.cos(x) * sym.sin(f(x)) * f(x).diff(x), f(x), hint='separable')
 ```
 
-:::{admonition} Exercises
-:class: green
+::: {exercise-start}
+:label: sympy-solve-bernoulli
+:class: dropdown
+:::
 
 1. Solve the Bernoulli differential equation
 
-> $$
-> x \frac{d f(x)}{x} + f(x) - f(x)^2=0
-> $$
+   $$
+   x \frac{d f(x)}{x} + f(x) - f(x)^2=0
+   $$
 
 2. Solve the same equation using `hint='Bernoulli'`. What do you observe ?
+
+::: {exercise-end}
 :::
