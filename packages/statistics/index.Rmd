@@ -86,11 +86,10 @@ observations. For instance, the data contained in
 {download}`examples/brain_size.csv`:
 
 
-```{python tags=c("hide-input")}
-from pathlib import Path
-data_txt = (Path('examples') / 'brain_size.csv').read_text()
-print('\n'.join(data_txt.splitlines()[:5]))
-```
+:::{include} examples/brain_size.csv
+:literal:
+ :end-line: 6
+:::
 
 
 ### The pandas data-frame
