@@ -697,27 +697,27 @@ documentation of {mod}`scipy.optimize` and the advanced chapter
 :scale: 50
 :target: auto_examples/plot_2d_minimization.html
 ```
->
+
 The six-hump camelback function
->
+
 $$
 f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
 $$
->
+
 has multiple local minima. Find a global minimum (there is more than one,
 each with the same value of the objective function) and at least one other
 local minimum.
->
+
 Hints:
->
-> - Variables can be restricted to $-2 < x < 2$ and $-1 < y < 1$.
-> - {func}`numpy.meshgrid` and {func}`matplotlib.pyplot.imshow` can help
->   with visualization.
-> - Try minimizing with {func}`scipy.optimize.minimize` with an initial
->   guess of $(x, y) = (0, 0)$. Does it find the global minimum, or
->   converge to a local minimum? What about other initial guesses?
-> - Try minimizing with {func}`scipy.optimize.differential_evolution`.
->
+
+- Variables can be restricted to $-2 < x < 2$ and $-1 < y < 1$.
+- {func}`numpy.meshgrid` and {func}`matplotlib.pyplot.imshow` can help
+  with visualization.
+- Try minimizing with {func}`scipy.optimize.minimize` with an initial
+  guess of $(x, y) = (0, 0)$. Does it find the global minimum, or
+  converge to a local minimum? What about other initial guesses?
+- Try minimizing with {func}`scipy.optimize.differential_evolution`.
+
 {ref}`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
 :::
 
