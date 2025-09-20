@@ -123,7 +123,6 @@ We will also be using plotting for this tutorial.
 import matplotlib.pyplot as plt
 ```
 
-
 ## File input/output: {mod}`scipy.io`
 
 {mod}`scipy.io` contains functions for loading and saving data in
@@ -287,12 +286,13 @@ $\log(\exp(x) + \exp(y))$ using a numerical trick that avoids overflow.
 
 ```{python}
 res = sp.special.logsumexp([log_a, log_b],
-                           b=[1, -1])  # weights the terms of the sum
+                            b=[1, -1])  # weights the terms of the sum
 res
 ```
 
 For more information about these and many other special functions, see
 the documentation of {mod}`scipy.special`.
+
 
 (scipy-linalg)=
 
@@ -306,7 +306,6 @@ For example, the {func}`scipy.linalg.det` function computes the determinant
 of a square matrix:
 
 ```{python}
-import scipy as sp
 arr = np.array([[1, 2],
                 [3, 4]])
 sp.linalg.det(arr)
@@ -371,6 +370,7 @@ linear systems (e.g. triangular, circulant), eigenvalue problem algorithms,
 matrix functions (e.g. matrix exponential), and routines for special matrix
 creation (e.g. block diagonal, toeplitz) are available in {mod}`scipy.linalg`.
 
+
 (intro-scipy-interpolate)=
 
 ## Interpolation: {mod}`scipy.interpolate`
@@ -386,7 +386,7 @@ the following data:
 
 ```{python}
 rng = np.random.default_rng(27446968)
-measured_time = np.linspace(0, 2*np.pi, 20)
+measured_time = np.linspace(0, 2 * np.pi, 20)
 function = np.sin(measured_time)
 noise = rng.normal(loc=0, scale=0.1, size=20)
 measurements = function + noise
@@ -397,14 +397,16 @@ similar to the underlying sine function.
 
 ```{python}
 smoothing_spline = sp.interpolate.make_smoothing_spline(measured_time, measurements)
-interpolation_time = np.linspace(0, 2*np.pi, 200)
+interpolation_time = np.linspace(0, 2 * np.pi, 200)
 smooth_results = smoothing_spline(interpolation_time)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_interpolation_001.png
-:align: right
-:scale: 60
-:target: auto_examples/plot_interpolation.html
+```{python tags=c("hide-input")}
+plt.figure(figsize=(6, 4))
+plt.plot(measured_time, measurements, ".", ms=6, label="measurements")
+plt.plot(interpolation_time, smooth_results, label="smoothing spline")
+plt.plot(interpolation_time, np.sin(interpolation_time), "--", label="underlying curve")
+plt.legend();
 ```
 
 On the other hand, if the data are not noisy, it may be desirable to pass
@@ -415,10 +417,13 @@ interp_spline = sp.interpolate.make_interp_spline(measured_time, function)
 interp_results = interp_spline(interpolation_time)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_interpolation_002.png
-:align: right
-:scale: 60
-:target: auto_examples/plot_interpolation.html
+```{python tags=c("hide-input")}
+# Plot the data, the interpolant, and the original function
+plt.figure(figsize=(6, 4))
+plt.plot(measured_time, function, ".", ms=6, label="measurements")
+plt.plot(interpolation_time, interp_results, label="interpolating spline")
+plt.plot(interpolation_time, np.sin(interpolation_time), "--", label="underlying curve")
+plt.legend();
 ```
 
 The `derivative` and `antiderivative` methods of the result object can be used
@@ -433,10 +438,14 @@ i_interp_spline = lambda t: interp_spline.antiderivative()(t) - 1
 i_interp_results = i_interp_spline(interpolation_time)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_interpolation_003.png
-:align: right
-:scale: 60
-:target: auto_examples/plot_interpolation.html
+```{python tags=c("hide-input")}
+# Plot interpolant, its derivative, and its antiderivative
+plt.figure(figsize=(6, 4))
+t = interpolation_time
+plt.plot(t, interp_results, label="spline")
+plt.plot(t, d_interp_results, label="derivative")
+plt.plot(t, i_interp_results, label="antiderivative")
+plt.legend();
 ```
 
 For functions that are monotonic on an interval (e.g. $\sin$ from $\pi/2$
@@ -452,10 +461,11 @@ inverse_spline = sp.interpolate.make_interp_spline(np.flip(function[i]),
 inverse_spline(0)
 ```
 
-See the summary exercise on {ref}`summary_exercise_stat_interp` for a more
-advanced spline interpolation example, and read the
-[SciPy interpolation tutorial](https://scipy.github.io/devdocs/tutorial/interpolate.html)
-and the {mod}`scipy.interpolate` documentation for much more information.
+See the summary exercise on {ref}`summary-exercise-stat-interp` for a more
+advanced spline interpolation example, and read the [SciPy interpolation
+tutorial](https://scipy.github.io/devdocs/tutorial/interpolate.html) and the
+{mod}`scipy.interpolate` documentation for much more information.
+
 
 ## Optimization and fit: {mod}`scipy.optimize`
 
@@ -474,20 +484,24 @@ convergence.
 ```{python}
 def f(x):
     return (x-1)*(x-2)
+
 def df(x):
     return 2*x - 3
+
 x0 = 0  # guess
 res = sp.optimize.root_scalar(f, x0=x0, fprime=df)
 res
 ```
 
 :::{warning}
+
 None of the functions in {mod}`scipy.optimize` that accept a guess are
 guaranteed to converge for all possible guesses! (For example, try
 `x0=1.5` in the example above, where the derivative of the function is
 exactly zero.) If this occurs, try a different guess, adjust the options
 (like providing a `bracket` as shown below), or consider whether SciPy
 offers a more appropriate method for the problem.
+
 :::
 
 Note that only one the root at `1.0` is found. By inspection, we can tell
@@ -507,6 +521,7 @@ def f(x):
     # intersection of unit circle and line from origin
     return [x[0]**2 + x[1]**2 - 1,
             x[1] - x[0]]
+
 res = sp.optimize.root(f, x0=[0, 0])
 np.allclose(f(res.x), 0, atol=1e-10)
 ```
@@ -515,9 +530,8 @@ np.allclose(f(res.x), 0, atol=1e-10)
 np.allclose(res.x, np.sqrt(2)/2)
 ```
 
-Over-constrained problems can be solved in the least-squares
-sense using {func}`scipy.optimize.root` with `method='lm'`
-(Levenberg-Marquardt).
+Over-constrained problems can be solved in the least-squares sense using
+{func}`scipy.optimize.root` with `method='lm'` (Levenberg-Marquardt).
 
 ```{python}
 def f(x):
@@ -525,6 +539,7 @@ def f(x):
     return [x[0]**2 + x[1]**2 - 1,
             x[1] - x[0],
             x[1] - x[0]**2]
+
 res = sp.optimize.root(f, x0=[1, 1], method='lm')
 res.success
 ```
@@ -533,9 +548,10 @@ res.success
 res.x
 ```
 
-See the documentation of {func}`scipy.optimize.root_scalar`
-and {func}`scipy.optimize.root` for a variety of other solution
-algorithms and options.
+See the documentation of {func}`scipy.optimize.root_scalar` and
+{func}`scipy.optimize.root` for a variety of other solution algorithms and
+options.
+
 
 ### Curve fitting
 
@@ -548,10 +564,15 @@ algorithms and options.
 Suppose we have data that is sinusoidal but noisy:
 
 ```{python}
-x = np.linspace(-5, 5, num=50)  # 50 values between -5 and 5
-noise = 0.01 * np.cos(100 * x)
+x_data = np.linspace(-5, 5, num=50)  # 50 values between -5 and 5
+noise = 0.01 * np.cos(100 * x_data)
 a, b = 2.9, 1.5
-y = a * np.cos(b * x) + noise
+y_data = a * np.cos(b * x_data) + noise
+```
+
+```{python tags=c("hide-input")}
+plt.figure(figsize=(6, 4))
+plt.scatter(x_data, y_data);
 ```
 
 We can approximate the underlying amplitude, frequency, and phase
@@ -564,16 +585,10 @@ def f(x, a, b, c):
     return a * np.sin(b * x + c)
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_curve_fit_002.png
-:align: right
-:scale: 50
-:target: auto_examples/plot_curve_fit.html
-```
-
 We then use {func}`scipy.optimize.curve_fit` to find $a$ and $b$:
 
 ```{python}
-params, _ = sp.optimize.curve_fit(f, x, y, p0=[2, 1, 3])
+params, _ = sp.optimize.curve_fit(f, x_data, y_data, p0=[2, 1, 3])
 params
 ```
 
@@ -582,12 +597,14 @@ ref = [a, b, np.pi/2]  # what we'd expect
 np.allclose(params, ref, rtol=1e-3)
 ```
 
-```{raw} html
-<div style="clear: both"></div>
-```
+We plot the resulting curve on the data:
 
-:::{admonition} Exercise: Curve fitting of temperature data
-:class: green
+```{python tags=c("hide-input")}
+plt.figure(figsize=(6, 4))
+plt.scatter(x_data, y_data, label="Data")
+plt.plot(x_data, test_func(x_data, *params), label="Fitted function")
+plt.legend(loc="best");
+```
 
 The temperature extremes in Alaska for each month, starting in January, are
 given by (in degrees Celsius):
@@ -726,10 +743,6 @@ advanced example.
 
 ## Statistics and random numbers: {mod}`scipy.stats`
 
-```{python tags=c("hide-input")}
-# Comment to make doctest pass
-np.random.seed(0)
-```
 {mod}`scipy.stats` contains fundamental tools for statistics in Python.
 
 ### Statistical Distributions
