@@ -13,9 +13,6 @@ jupyter:
     name: python3
 ---
 
-```{python tags=c("hide-input")}
-import matplotlib.pyplot as plt
-```
 (summary-exercise-optimize)=
 
 # Non linear least squares curve fitting: application to point extraction in topographical lidar data
@@ -24,32 +21,35 @@ The goal of this exercise is to fit a model to some data. The data used in this 
 
 ## Introduction
 
-Lidars systems are optical rangefinders that analyze property of scattered light
-to measure distances. Most of them emit a short light impulsion towards a target
-and record the reflected signal. This signal is then processed to extract the
-distance between the lidar system and the target.
+Lidars systems are optical rangefinders that analyze property of scattered
+light to measure distances. Most of them emit a short light impulsion towards
+a target and record the reflected signal. This signal is then processed to
+extract the distance between the lidar system and the target.
 
-Topographical lidar systems are such systems embedded in airborne
-platforms. They measure distances between the platform and the Earth, so as to
-deliver information on the Earth's topography (see [^mallet] for more details).
+Topographical lidar systems are such systems embedded in airborne platforms.
+They measure distances between the platform and the Earth, so as to deliver
+information on the Earth's topography (see [^mallet] for more details).
 
-[^mallet]: Mallet, C. and Bretar, F. Full-Waveform Topographic Lidar: State-of-the-Art. *ISPRS Journal of Photogrammetry and Remote Sensing* 64(1), pp.1-16, January 2009 <http://dx.doi.org/10.1016/j.isprsjprs.2008.09.007>
+[^mallet]: Mallet, C. and Bretar, F. Full-Waveform Topographic Lidar:
+  State-of-the-Art. *ISPRS Journal of Photogrammetry and Remote Sensing*
+  64(1), pp.1-16, January 2009
+  <http://dx.doi.org/10.1016/j.isprsjprs.2008.09.007>
 
 In this tutorial, the goal is to analyze the waveform recorded by the lidar
-system [^data]. Such a signal contains peaks whose center and amplitude permit to
-compute the position and some characteristics of the hit target. When the
-footprint of the laser beam is around 1m on the Earth surface, the beam can hit
-multiple targets during the two-way propagation (for example the ground and the
-top of a tree or building). The sum of the contributions of each target hit by
-the laser beam then produces a complex signal with multiple peaks, each one
-containing information about one target.
+system [^data]. Such a signal contains peaks whose center and amplitude permit
+to compute the position and some characteristics of the hit target. When the
+footprint of the laser beam is around 1m on the Earth surface, the beam can
+hit multiple targets during the two-way propagation (for example the ground
+and the top of a tree or building). The sum of the contributions of each
+target hit by the laser beam then produces a complex signal with multiple
+peaks, each one containing information about one target.
 
 One state of the art method to extract information from these data is to
-decompose them in a sum of Gaussian functions where each function represents the
-contribution of a target hit by the laser beam.
+decompose them in a sum of Gaussian functions where each function represents
+the contribution of a target hit by the laser beam.
 
-Therefore, we use the {mod}`scipy.optimize` module to fit a waveform to one
-or a sum of Gaussian functions.
+Therefore, we use the {mod}`scipy.optimize` module to fit a waveform to one or
+a sum of Gaussian functions.
 
 (first-step)=
 
@@ -57,23 +57,27 @@ or a sum of Gaussian functions.
 
 Load the first waveform using:
 
-```{python}
+```{python tags=c("hide-input")}
 import numpy as np
+import scipy as sp
+import matplotlib.pyplot as plt
+```
+
+```{python}
 waveform_1 = np.load('examples/waveform_1.npy')
 ```
 
 and visualize it:
 
 ```{python}
-import matplotlib.pyplot as plt
 t = np.arange(len(waveform_1))
 plt.plot(t, waveform_1)
-plt.show()
 ```
 
 As shown below, this waveform is a 80-bin-length signal with a single peak
-with an amplitude of approximately 30 in the 15 nanosecond bin. Additionally, the
-base level of noise is approximately 3. These values can be used in the initial solution.
+with an amplitude of approximately 30 in the 15 nanosecond bin. Additionally,
+the base level of noise is approximately 3. These values can be used in the
+initial solution.
 
 :::{figure} auto_examples/images/sphx_glr_plot_optimize_lidar_data_001.png
 :align: center
@@ -102,7 +106,7 @@ can be defined in python by:
 
 ```{python}
 def model(t, coeffs):
-   return coeffs[0] + coeffs[1] * np.exp( - ((t-coeffs[2])/coeffs[3])**2 )
+    return coeffs[0] + coeffs[1] * np.exp( - ((t-coeffs[2])/coeffs[3])**2 )
 ```
 
 where
@@ -139,7 +143,6 @@ following arguments:
 - the additional arguments to pass to the function
 
 ```{python}
-import scipy as sp
 t = np.arange(len(waveform_1))
 x, flag = sp.optimize.leastsq(residuals, x0, args=(waveform_1, t))
 x
@@ -147,38 +150,101 @@ x
 
 And visualize the solution:
 
-```{literalinclude} examples/plot_optimize_lidar_data_fit.py
-:lines: 29-
+```{python tags=c("hide-input")}
+fig, ax = plt.subplots(figsize=(8, 6))
+plt.plot(t, waveform_1, t, model(t, x))
+plt.xlabel("Time [ns]")
+plt.ylabel("Amplitude [bins]")
+plt.legend(["Waveform", "Model"]);
 ```
 
-:::{figure} auto_examples/images/sphx_glr_plot_optimize_lidar_data_fit_001.png
-:align: center
-:target: auto_examples/plot_optimize_lidar_data_fit.html
-:::
+*Remark:* in fact, you should rather use {func}`scipy.optimize.curve_fit`
+which takes the model and the data as arguments, so you don't need to define
+the residuals any more.
 
-*Remark:* from scipy v0.8 and above, you should rather use {func}`scipy.optimize.curve_fit` which takes the model and the data as arguments, so you don't need to define the residuals any more.
 
 ## Going further
 
-- Try with a more complex waveform (for instance `waveform_2.npy`)
-  that contains three significant peaks. You must adapt the model which is
-  now a sum of Gaussian functions instead of only one Gaussian peak.
-
-:::{figure} auto_examples/images/sphx_glr_plot_optimize_lidar_complex_data_001.png
-:align: center
-:target: auto_examples/plot_optimize_lidar_complex_data.html
+::: {exercise-start}
+:label: opt-complex-lidar-ex
+:class: dropdown
 :::
 
-- In some cases, writing an explicit function to compute the Jacobian is faster
-  than letting `leastsq` estimate it numerically. Create a function to compute
-  the Jacobian of the residuals and use it as an input for `leastsq`.
-- When we want to detect very small peaks in the signal, or when the initial
-  guess is too far from a good solution, the result given by the algorithm is
-  often not satisfying. Adding constraints to the parameters of the model
-  enables to overcome such limitations. An example of *a priori* knowledge we can
-  add is the sign of our variables (which are all positive).
-- See the [solution](auto_examples/plot_optimize_lidar_complex_data_fit.html).
-- Further exercise: compare the result of {func}`scipy.optimize.leastsq` and what you can
-  get with {func}`scipy.optimize.fmin_slsqp` when adding boundary constraints.
+Try with a more complex waveform (for instance `waveform_2.npy`) that contains
+three significant peaks. You must adapt the model which is now a sum of
+Gaussian functions instead of only one Gaussian peak.
 
-[^data]: The data used for this tutorial are part of the demonstration data available for the [FullAnalyze software](https://fullanalyze.sourceforge.net) and were kindly provided by the GIS DRAIX.
+```{python}
+waveform_2 = np.load("examples/waveform_2.npy")
+
+t = np.arange(len(waveform_2))
+
+fig, ax = plt.subplots(figsize=(8, 6))
+plt.plot(t, waveform_2)
+plt.xlabel("Time [ns]")
+plt.ylabel("Amplitude [bins]");
+```
+
+In some cases, writing an explicit function to compute the Jacobian is faster
+than letting `leastsq` estimate it numerically. Create a function to compute
+the Jacobian of the residuals and use it as an input for `leastsq`.
+
+When we want to detect very small peaks in the signal, or when the initial
+guess is too far from a good solution, the result given by the algorithm is
+often not satisfying. Adding constraints to the parameters of the model
+enables to overcome such limitations. An example of *a priori* knowledge we can
+add is the sign of our variables (which are all positive).
+
+::: {exercise-end}
+:::
+
+::: {solution-start} opt-complex-lidar-ex
+:class: dropdown
+:::
+
+Generate a chart of the data fitted by Gaussian curve:
+
+```{python}
+def model(t, coeffs):
+    return (
+        coeffs[0]
+        + coeffs[1] * np.exp(-(((t - coeffs[2]) / coeffs[3]) ** 2))
+        + coeffs[4] * np.exp(-(((t - coeffs[5]) / coeffs[6]) ** 2))
+        + coeffs[7] * np.exp(-(((t - coeffs[8]) / coeffs[9]) ** 2))
+    )
+```
+
+```{python}
+def residuals(coeffs, y, t):
+    return y - model(t, coeffs)
+```
+
+```{python}
+waveform_2 = np.load("examples/waveform_2.npy")
+t = np.arange(len(waveform_2))
+```
+
+```{python}
+x0 = np.array([3, 30, 20, 1, 12, 25, 1, 8, 28, 1], dtype=float)
+x, flag = sp.optimize.leastsq(residuals, x0, args=(waveform_2, t))
+```
+
+```{python}
+fig, ax = plt.subplots(figsize=(8, 6))
+plt.plot(t, waveform_2, t, model(t, x))
+plt.xlabel("Time [ns]")
+plt.ylabel("Amplitude [bins]")
+plt.legend(["Waveform", "Model"]);
+```
+
+::: {solution-end}
+:::
+
+Further exercise: compare the result of {func}`scipy.optimize.leastsq` and
+what you can get with {func}`scipy.optimize.fmin_slsqp` when adding boundary
+constraints.
+
+[^data]: The data used for this tutorial are part of the demonstration data
+  available for the [FullAnalyze
+  software](https://fullanalyze.sourceforge.net) and were kindly provided by
+  the GIS DRAIX.

@@ -14,6 +14,8 @@ jupyter:
   orphan: true
 ---
 
+(scipy-image-processing)=
+
 # Geometrical transformations on images
 
 {mod}`scipy.ndimage` provides manipulation of n-dimensional arrays as
@@ -317,5 +319,5 @@ plt.axis("off")
 plt.subplots_adjust(wspace=0.05, left=0.01, bottom=0.01, right=0.99, top=0.9)
 ```
 
-See the summary exercise on {ref}`summary_exercise_image_processing` for a more
+See the summary exercise on {ref}`summary-exercise-image-processing` for a more
 advanced example.

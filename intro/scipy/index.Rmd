@@ -6,40 +6,11 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.16.6
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
----
-
----
-substitutions:
-  chirp_fig: |-
-    ```{image} auto_examples/images/sphx_glr_plot_spectrogram_001.png
-    :scale: 45
-    :target: auto_examples/plot_spectrogram.html
-    ```
-  image_blur: |-
-    ```{image} auto_examples/solutions/images/sphx_glr_plot_image_blur_002.png
-    :scale: 50
-    :target: auto_examples/solutions/plot_image_blur.html
-    ```
-  periodicity_finding: |-
-    ```{image} auto_examples/solutions/images/sphx_glr_plot_periodicity_finder_001.png
-    :scale: 50
-    :target: auto_examples/solutions/plot_periodicity_finder.html
-    ```
-  psd_fig: |-
-    ```{image} auto_examples/images/sphx_glr_plot_spectrogram_003.png
-    :scale: 45
-    :target: auto_examples/plot_spectrogram.html
-    ```
-  spectrogram_fig: |-
-    ```{image} auto_examples/images/sphx_glr_plot_spectrogram_002.png
-    :scale: 45
-    :target: auto_examples/plot_spectrogram.html
-    ```
 ---
 
 (scipy)=
@@ -750,9 +721,7 @@ This is an exercise on 2-D minimization.
 
 The six-hump camelback function
 
-$$
-f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
-$$
+$f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2$
 
 has multiple local minima. Find a global minimum (there is more than one,
 each with the same value of the objective function) and at least one other
@@ -1122,6 +1091,11 @@ or [SfePy].
 
 ## Fast Fourier transforms: {mod}`scipy.fft`
 
+|                     |                  |
+| ------------------- | ---------------- |
+| {glue:}`signal_fig` | {glue:}`fft_fig` |
+| **Signal**          |  **FFT**         |
+
 The {mod}`scipy.fft` module computes fast Fourier transforms (FFTs)
 and offers utilities to handle them. Some important functions are:
 
@@ -1131,7 +1105,6 @@ and offers utilities to handle them. Some important functions are:
   space to signal space
 
 As an illustration, a (noisy) input signal (`sig`), and its FFT:
-
 
 ```{python}
 # Seed the random number generator
@@ -1149,6 +1122,17 @@ sig_fft = sp.fft.fft(sig)
 freqs = sp.fft.fftfreq(sig.size, d=time_step)
 ```
 
+```{python tags=c("hide-input")}
+plt.figure(figsize=(6, 5))
+# Plot the signal
+plt.plot(time_vec, sig, label="Original signal");
+
+# Store the figure for use in built book pages.
+# This is housekeeping for the pages; it does not affect the display.
+from myst_nb import glue
+glue("signal_fig", plt.gcf(), display=False)
+```
+
 Compute the power:
 
 ```{python}
@@ -1162,16 +1146,7 @@ power = np.abs(sig_fft) ** 2
 sample_freq = sp.fft.fftfreq(sig.size, d=time_step)
 ```
 
-```{python tags=c("hide-input")}
-fig, axes = plt.subplots(1, 2, figsize=(6, 5))
-# Plot the signal
-axes[0].plot(time_vec, sig, label="Original signal");
-# Plot the FFT power
-axes[1].plot(sample_freq, power)
-axes[1].set_xlabel("Frequency [Hz]")
-axes[1].set_ylabel("plower");
-plt.tight_layout()
-```
+See below for a plot of power and frequency.
 
 As the signal comes from a real-valued function, the Fourier transform is
 symmetric.
@@ -1190,11 +1165,18 @@ np.allclose(peak_freq, 1.0 / period)
 ```
 
 ```{python tags=c("hide-input")}
+plt.figure(figsize=(6, 5))
+# Plot the FFT power
+plt.plot(sample_freq, power)
+plt.xlabel("Frequency [Hz]")
+plt.ylabel("plower");
 # An inner plot to show the peak frequency
 axes = plt.axes((0.55, 0.3, 0.3, 0.5))
 plt.title("Peak frequency")
 plt.plot(freqs[:8], power[pos_mask][:8])
 plt.setp(axes, yticks=[]);
+# Store figure for use in building book pages.
+glue("fft_fig", plt.gcf(), display=False)
 ```
 
 Setting the Fourier component above this frequency to zero and inverting
@@ -1224,24 +1206,27 @@ Filters should be created using the SciPy filter design code
 :::
 
 :::{admonition} `numpy.fft`
-NumPy also has an implementation of FFT ({mod}`numpy.fft`). However,
-the SciPy one
-should be preferred, as it uses more efficient underlying implementations.
+
+NumPy also has an implementation of FFT ({mod}`numpy.fft`). However, the SciPy
+one should be preferred, as it uses more efficient underlying implementations.
+
 :::
 
 **Fully worked examples:**
 
-| Crude periodicity finding ({ref}`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_periodicity_finder.py>`) | Gaussian image blur ({ref}`link <sphx_glr_intro_scipy_auto_examples_solutions_plot_image_blur.py>`) |
-| ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| {{ periodicity_finding }}                                                                                         | {{ image_blur }}                                                                                    |
+- [Crude periodicity finding](eg-perdiodicity-finder)
+- [Image blur with FFT](eg-image-blur)
 
-:::{admonition} Exercise: Denoise moon landing image
-:class: green
+
+::: {exercise-start}
+:label: scipy-image-denoise-ex
+:class: dropdown
+:::
 
 ![](data/moonlanding.png)
 
 1. Examine the provided image {download}`moonlanding.png
-   <../../data/moonlanding.png>`, which is heavily contaminated with periodic
+   <data/moonlanding.png>`, which is heavily contaminated with periodic
    noise. In this exercise, we aim to clean up the noise using the
    Fast Fourier Transform.
 2. Load the image using {func}`matplotlib.pyplot.imread`.
@@ -1253,8 +1238,111 @@ should be preferred, as it uses more efficient underlying implementations.
    those components to zero (use array slicing).
 5. Apply the inverse Fourier transform to see the resulting image.
 
-{ref}`Solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_fft_image_denoise.py>`
+::: {exercise-end}
 :::
+
+::: {solution-start} scipy-image-denoise-ex
+:class: dropdown
+:::
+
+Implementing image denoising with FFT.
+
+Denoise an image (:download:`data/moonlanding.png`) by implementing a blur
+with an FFT.
+
+Implements, via FFT, the following convolution:
+
+$$
+\begin{align}
+f_1(t) = \int dt'\, K(t-t') f_0(t') \\
+\tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
+\end{align}
+$$
+
+```{python}
+# Read and plot the image
+im = plt.imread("data/moonlanding.png").astype(float)
+
+plt.figure()
+plt.imshow(im, "gray")
+plt.title("Original image");
+```
+
+```{python}
+# Compute the 2d FFT of the input image
+im_fft = sp.fft.fft2(im)
+
+# Show the results
+from matplotlib.colors import LogNorm
+
+def plot_spectrum(im_fft):
+    # A logarithmic colormap
+    plt.imshow(np.abs(im_fft), norm=LogNorm(vmin=5))
+    plt.colorbar()
+
+plt.figure()
+plot_spectrum(im_fft)
+plt.title("Fourier transform");
+```
+
+Filter in FFT:
+
+In the lines following, we'll make a copy of the original spectrum and
+truncate coefficients.
+
+```{python}
+# Define the fraction of coefficients (in each direction) we keep
+keep_fraction = 0.1
+
+# Call ff a copy of the original transform. NumPy arrays have a copy
+# method for this purpose.
+im_fft2 = im_fft.copy()
+
+# Set r and c to be the number of rows and columns of the array.
+r, c = im_fft2.shape
+
+# Set to zero all rows with indices between r*keep_fraction and
+# r*(1-keep_fraction):
+im_fft2[int(r * keep_fraction) : int(r * (1 - keep_fraction))] = 0
+
+# Similarly with the columns:
+im_fft2[:, int(c * keep_fraction) : int(c * (1 - keep_fraction))] = 0
+```
+
+```{python}
+plt.figure()
+plot_spectrum(im_fft2)
+plt.title("Filtered Spectrum");
+```
+
+Reconstruct the final image
+
+```{python}
+# Reconstruct the denoised image from the filtered spectrum, keep only the
+# real part for display.
+im_new = sp.fft.ifft2(im_fft2).real
+
+plt.figure()
+plt.imshow(im_new, "gray")
+plt.title("Reconstructed Image");
+```
+
+Easier and better: :func:`scipy.ndimage.gaussian_filter`
+
+Implementing filtering directly with FFTs is tricky and time consuming.
+We can use the Gaussian filter from :mod:`scipy.ndimage`
+
+```{python}
+im_blur = sp.ndimage.gaussian_filter(im, 4)
+
+plt.figure()
+plt.imshow(im_blur, "gray")
+plt.title("Blurred image");
+```
+
+::: {solution-end}
+:::
+
 
 ## Signal processing: {mod}`scipy.signal`
 
@@ -1265,30 +1353,22 @@ should be preferred, as it uses more efficient underlying implementations.
 regularly-sampled signals.
 :::
 
-```{image} auto_examples/images/sphx_glr_plot_resample_001.png
-:align: right
-:scale: 65
-:target: auto_examples/plot_resample.html
-```
-
 **Resampling** {func}`scipy.signal.resample`: resample a signal to `n`
 points using FFT.
 
 ```{python}
 t = np.linspace(0, 5, 100)
 x = np.sin(t)
-```
 
-```{python}
 x_resampled = sp.signal.resample(x, 25)
 ```
 
-```{python}
-plt.plot(t, x)
-```
-
-```{python}
-plt.plot(t[::4], x_resampled, 'ko')
+```{python tags=c("hide-input")}
+# Plot
+plt.figure(figsize=(5, 4))
+plt.plot(t, x, label="Original signal")
+plt.plot(t[::4], x_resampled, "ko", label="Resampled signal")
+plt.legend(loc="best");
 ```
 
 ::: {note}
@@ -1302,37 +1382,26 @@ This resampling is different from the {ref}`interpolation
 only applies to regularly sampled data.
 :::
 
-```{image} auto_examples/images/sphx_glr_plot_detrend_001.png
-:align: right
-:scale: 65
-:target: auto_examples/plot_detrend.html
-```
-
 **Detrending** {func}`scipy.signal.detrend`: remove linear trend from signal:
 
 ```{python}
 t = np.linspace(0, 5, 100)
 rng = np.random.default_rng()
 x = t + rng.normal(size=100)
-```
 
-```{python}
 x_detrended = sp.signal.detrend(x)
 ```
 
-```{python}
-plt.plot(t, x)
-```
-
-```{python}
-plt.plot(t, x_detrended)
-```
-
-```{raw} html
-<div style="clear: both"></div>
+```{python tags=c("hide-input")}
+# Plot
+plt.figure(figsize=(5, 4))
+plt.plot(t, x, label="x")
+plt.plot(t, x_detrended, label="x_detrended")
+plt.legend(loc="best");
 ```
 
 **Filtering**:
+
 For non-linear filtering, {mod}`scipy.signal` has filtering (median
 filter {func}`scipy.signal.medfilt`, Wiener {func}`scipy.signal.wiener`),
 but we will discuss this in the image section.
@@ -1346,16 +1415,71 @@ out of the scope of this tutorial.
 :::
 
 **Spectral analysis**:
+
 {func}`scipy.signal.spectrogram` compute a spectrogram --frequency
 spectrums over consecutive time windows--, while
 {func}`scipy.signal.welch` comptes a power spectrum density (PSD).
 
-{{ chirp_fig }} {{ spectrogram_fig }} {{ psd_fig }}
+```{python tags=c("hide-input", "hide-output")}
+"""
+Plots for figures below.
+
+Spectrogram, power spectral density
+Demo spectrogram and power spectral density on a frequency chirp.
+
+Generate a chirp signal
+"""
+
+# Seed the random number generator
+np.random.seed(0)
+
+time_step = 0.01
+time_vec = np.arange(0, 70, time_step)
+
+# A signal with a small frequency chirp
+sig = np.sin(0.5 * np.pi * time_vec * (1 + 0.1 * time_vec))
+
+plt.figure(figsize=(8, 5))
+plt.plot(time_vec, sig)
+# Store the figure for the book pages.
+glue('chirp_fig', plt.gcf())
+
+# Compute and plot the spectrogram:
+# The spectrum of the signal on consecutive time windows
+
+freqs, times, spectrogram = sp.signal.spectrogram(sig)
+
+plt.figure(figsize=(5, 4))
+plt.imshow(spectrogram, aspect="auto", cmap="hot_r", origin="lower")
+plt.title("Spectrogram")
+plt.ylabel("Frequency band")
+plt.xlabel("Time window")
+plt.tight_layout()
+# Store the figure for the book pages.
+glue('spectogram_fig', plt.gcf())
+
+# Compute and plot the power spectral density (PSD):
+# The power of the signal per frequency band
+freqs, psd = sp.signal.welch(sig)
+
+plt.figure(figsize=(5, 4))
+plt.semilogx(freqs, psd)
+plt.title("PSD: power spectral density")
+plt.xlabel("Frequency")
+plt.ylabel("Power")
+plt.tight_layout()
+# Store the figure for the book pages.
+glue('psd_fig', plt.gcf())
+```
+
+|   |   |
+| - | - |
+| {glue:}`chirp_fig` | {glue:}`spectrogram_fig` | {glue:}`psd_fig` |
+
 
 ## Image manipulation: {mod}`scipy.ndimage`
 
-.. include:: image_processing/image_processing.rst
-    :start-line: 1
+See [Scipy image processing](scioy-image-processing)
 
 
 ## Summary exercises on scientific computing
@@ -1365,35 +1489,9 @@ real-life examples of scientific computing with Python. Now that the basics of
 working with NumPy and SciPy have been introduced, the interested user is
 invited to try these exercises.
 
-:::{only} html
-**Exercises:**
-:::
-
-```{toctree}
-:maxdepth: 1
-
-summary-exercises/stats-interpolate.rst
-summary-exercises/optimize-fit.rst
-summary-exercises/image-processing.rst
-```
-
-:::{only} html
-**Proposed solutions:**
-:::
-
-```{toctree language="toctree"}
-:maxdepth: 1
-
-summary-exercises/answers_image_processing.rst
-```
-
-<!---
-include the gallery. Skip the first line to avoid the "orphan"
-declaration
--->
-.. include:: auto_examples/index.rst
-    :start-line: 1
-
+* [Statistical interpolotion](summary-exercise-stat-interp)
+* [Non-linear fitting](summary-exercise-optimize)
+* [Image processing](summary-exercise-image-processing)
 
 :::{admonition} See also
 
@@ -1401,19 +1499,14 @@ declaration
 
 - Some chapters of the [advanced](advanced_topics_part) and the
   [packages and applications](applications_part) parts of the SciPy
-  lectures
+  lectures.
 - The [SciPy cookbook](https://scipy-cookbook.readthedocs.io)
+
 :::
 
-<!---
-compile solutions, but don't list them explicitly
--->
-```{toctree language="toctree"}
-:hidden: true
 
-solutions.rst
-```
+## Other useful links
 
-[fipy]: https://www.ctcms.nist.gov/fipy/
-[odepack fortran library]: https://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html
-[sfepy]: https://sfepy.org/doc/
+- [fipy](https://www.ctcms.nist.gov/fipy)
+- [odepack fortran library](https://people.sc.fsu.edu/~jburkardt/f77_src/odepack/odepack.html)
+- [sfepy](https://sfepy.org/doc)

@@ -48,168 +48,8 @@ plt.plot(x, f(x));
 print(sp.optimize.minimize(f, x0=0))
 ```
 
-
-(fftpack)=
-
-## fftpack
-
-<!--- plot_fftpack -->
-
-Plotting and manipulating FFTs for filtering
-
-Plot the power of the FFT of a signal and inverse FFT back to reconstruct
-a signal.
-
-This example demonstrate :func:`scipy.fft.fft`, :func:`scipy.fft.fftfreq` and
-:func:`scipy.fft.ifft`. It implements a basic filter that is very suboptimal,
-and should not be used.
-
-Generate the signal
-
-```{python}
-# Seed the random number generator
-rng = np.random.default_rng(27446968)
-
-time_step = 0.02
-period = 5.0
-
-time_vec = np.arange(0, 20, time_step)
-sig = np.sin(2 * np.pi / period * time_vec) + 0.5 * rng.normal(size=time_vec.size)
-```
-
-```{python}
-plt.figure(figsize=(6, 5))
-plt.plot(time_vec, sig, label="Original signal");
-```
-
-Compute and plot the power
-
-```{python}
-# The FFT of the signal
-sig_fft = sp.fft.fft(sig)
-
-# And the power (sig_fft is of complex dtype)
-power = np.abs(sig_fft) ** 2
-
-# The corresponding frequencies
-sample_freq = sp.fft.fftfreq(sig.size, d=time_step)
-```
-
-```{python}
-# Plot the FFT power
-plt.figure(figsize=(6, 5))
-plt.plot(sample_freq, power)
-plt.xlabel("Frequency [Hz]")
-plt.ylabel("plower");
-```
-
-```{python}
-# Find the peak frequency: we can focus on only the positive frequencies
-pos_mask = np.where(sample_freq > 0)
-freqs = sample_freq[pos_mask]
-peak_freq = freqs[power[pos_mask].argmax()]
-
-# Check that it does indeed correspond to the frequency that we generate
-# the signal with
-np.allclose(peak_freq, 1.0 / period)
-```
-
-```{python}
-# An inner plot to show the peak frequency
-axes = plt.axes((0.55, 0.3, 0.3, 0.5))
-plt.title("Peak frequency")
-plt.plot(freqs[:8], power[pos_mask][:8])
-plt.setp(axes, yticks=[]);
-```
-
-scipy.signal.find_peaks_cwt can also be used for more advanced
-peak detection
-
-Remove all the high frequencies
-
-We now remove all the high frequencies and transform back from
-frequencies to signal.
-
-```{python}
-high_freq_fft = sig_fft.copy()
-high_freq_fft[np.abs(sample_freq) > peak_freq] = 0
-filtered_sig = sp.fft.ifft(high_freq_fft)
-```
-
-```{python}
-plt.figure(figsize=(6, 5))
-plt.plot(time_vec, sig, label="Original signal")
-plt.plot(time_vec, filtered_sig, linewidth=3, label="Filtered signal")
-plt.xlabel("Time [s]")
-plt.ylabel("Amplitude")
-plt.legend(loc="best");
-```
-
-
-**Note** This is actually a bad way of creating a filter: such brutal
-cut-off in frequency space does not control distortion on the signal.
-
-Filters should be created using the SciPy filter design code
-
-
-(resample-a-signal-with-scipy-signal-resample)=
-
-## Resample a signal with scipy.signal.resample
-
-<!--- plot_resample -->
-
-:func:`scipy.signal.resample` uses FFT to resample a 1D signal.
-
-```{python}
-# Generate a signal with 100 data point
-t = np.linspace(0, 5, 100)
-x = np.sin(t)
-
-# Downsample it by a factor of 4
-x_resampled = sp.signal.resample(x, 25)
-```
-
-```{python}
-# Plot
-plt.figure(figsize=(5, 4))
-plt.plot(t, x, label="Original signal")
-plt.plot(t[::4], x_resampled, "ko", label="Resampled signal")
-plt.legend(loc="best");
-```
-
-(detrend)=
-
-## detrend
-
-<!--- plot_detrend -->
-
-Detrending a signal
-
-:func:`scipy.signal.detrend` removes a linear trend.
-
-```{python}
-# Generate a random signal with a trend
-t = np.linspace(0, 5, 100)
-rng = np.random.default_rng()
-x = t + rng.normal(size=100)
-
-# Detrend
-x_detrended = sp.signal.detrend(x)
-```
-
-```{python tags=c("hide-input")}
-# Plot
-plt.figure(figsize=(5, 4))
-plt.plot(t, x, label="x")
-plt.plot(t, x_detrended, label="x_detrended")
-plt.legend(loc="best");
-```
-
-
 ## Other examples
 
-
-(2d-minimization)=
 
 (connect-measurements)=
 
@@ -363,7 +203,7 @@ plt.subplots_adjust(wspace=0.05, left=0.01, bottom=0.01, right=0.99, top=0.99);
 
 (mathematical-morpho)=
 
-### mathematical_morpho
+### Mathematical morphology
 
 <!--- plot_mathematical_morpho -->
 
@@ -565,110 +405,7 @@ plt.hist(samples2, bins=bins, density=True, label="Samples 2")  # type: ignore[a
 plt.legend(loc="best");
 ```
 
-(fft-image-denoise)=
-
-### fft_image_denoise
-
-<!--- plot_fft_image_denoise -->
-
-Image denoising by FFT
-
-Denoise an image (:download:`data/moonlanding.png`) by implementing a blur with
-an FFT.
-
-Implements, via FFT, the following convolution:
-
-$$
-\begin{align}
-f_1(t) = \int dt'\, K(t-t') f_0(t') \\
-\tilde{f}_1(\omega) = \tilde{K}(\omega) \tilde{f}_0(\omega)
-\end{align}
-$$
-
-```{python}
-# Read and plot the image
-im = plt.imread("data/moonlanding.png").astype(float)
-
-plt.figure()
-plt.imshow(im, "gray")
-plt.title("Original image");
-```
-
-
-```{python}
-# Compute the 2d FFT of the input image
-im_fft = sp.fft.fft2(im)
-
-# Show the results
-from matplotlib.colors import LogNorm
-
-def plot_spectrum(im_fft):
-    # A logarithmic colormap
-    plt.imshow(np.abs(im_fft), norm=LogNorm(vmin=5))
-    plt.colorbar()
-
-plt.figure()
-plot_spectrum(im_fft)
-plt.title("Fourier transform");
-```
-
-Filter in FFT
-
-In the lines following, we'll make a copy of the original spectrum and
-truncate coefficients.
-
-```{python}
-# Define the fraction of coefficients (in each direction) we keep
-keep_fraction = 0.1
-
-# Call ff a copy of the original transform. NumPy arrays have a copy
-# method for this purpose.
-im_fft2 = im_fft.copy()
-
-# Set r and c to be the number of rows and columns of the array.
-r, c = im_fft2.shape
-
-# Set to zero all rows with indices between r*keep_fraction and
-# r*(1-keep_fraction):
-im_fft2[int(r * keep_fraction) : int(r * (1 - keep_fraction))] = 0
-
-# Similarly with the columns:
-im_fft2[:, int(c * keep_fraction) : int(c * (1 - keep_fraction))] = 0
-```
-
-```{python}
-plt.figure()
-plot_spectrum(im_fft2)
-plt.title("Filtered Spectrum");
-```
-
-Reconstruct the final image
-
-```{python}
-# Reconstruct the denoised image from the filtered spectrum, keep only the
-# real part for display.
-im_new = sp.fft.ifft2(im_fft2).real
-
-plt.figure()
-plt.imshow(im_new, "gray")
-plt.title("Reconstructed Image");
-```
-
-
-Easier and better: :func:`scipy.ndimage.gaussian_filter`
-
-Implementing filtering directly with FFTs is tricky and time consuming.
-We can use the Gaussian filter from :mod:`scipy.ndimage`
-
-```{python}
-im_blur = sp.ndimage.gaussian_filter(im, 4)
-
-plt.figure()
-plt.imshow(im_blur, "gray")
-plt.title("Blurred image");
-```
-
-(image-blur)=
+(eg-image-blur)=
 
 ### image_blur
 
@@ -754,7 +491,7 @@ Using :func:`scipy.ndimage.gaussian_filter` would get rid of this
 artifact.
 
 
-(periodicity-finder)=
+(eg-periodicity-finder)=
 
 ### periodicity_finder
 

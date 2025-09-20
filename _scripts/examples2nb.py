@@ -137,7 +137,7 @@ def get_example_paths(eg_dirs):
     return sum([sorted(Path(d).glob('**/plot_*.py')) for d in eg_dirs], [])
 
 
-def process_nb_examples(root_path, nb_path, eg_paths):
+def process_nb_examples(root_path, nb_path, eg_paths, check_refs=True):
     # Get all references (something)=
     ref_defs = get_ref_targets(root_path)
     # Get all examples.
@@ -158,7 +158,8 @@ def process_nb_examples(root_path, nb_path, eg_paths):
         eg_stem = eg_path.stem
         ref = (eg_stem if title is None else
                re.sub(r'[^a-zA-Z0-9]+', '-', title).lower().strip('-'))
-        assert ref not in ref_defs
+        if check_refs and ref in ref_defs:
+            raise ValueError(f'Reference {ref} already used in project')
         examples[eg_stem] = nb, title, ref
     # Try to detect possible titles for each reference.
     # Run through examples in notebook order
@@ -189,6 +190,8 @@ def get_parser():
     parser.add_argument('--eg-dir', help='path to examples', nargs='*')
     parser.add_argument('--root-dir', help='root path to book', default='.')
     parser.add_argument('--eg-nb', help='Output notebook filename')
+    parser.add_argument('--no-check-refs', action='store_true',
+                        help='Do not check if example refs are unique')
     return parser
 
 
@@ -210,7 +213,8 @@ def main():
     eg_nb = Path(args.eg_nb) if args.eg_nb is not None else (
         nb_pth.parent / (nb_pth.stem + '_examples' + nb_pth.suffix))
     # Generate, write examples notebook.
-    out_nb = process_nb_examples(Path(args.root_dir), nb_pth, eg_pths)
+    out_nb = process_nb_examples(Path(args.root_dir), nb_pth, eg_pths,
+                                 not args.no_check_refs)
     jupytext.write(out_nb, eg_nb, fmt='rmarkdown')
 
 
