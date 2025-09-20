@@ -52,10 +52,6 @@ substitutions:
     ```
 ---
 
-```{python tags=c("hide-input")}
-import matplotlib.pyplot as plt
-import numpy as np
-```
 (scipy)=
 
 # SciPy : high-level scientific computing
@@ -113,18 +109,20 @@ general idea of how to use `scipy` for scientific computing.
 :mod:`scipy.stats`           Statistics
 =========================== ==========================================
 
-::: {note}
-:class: dropdown
-
-They all depend on {mod}`numpy`, but are mostly independent of each
-other. The standard way of importing NumPy and these SciPy modules
-is:
+Scipy modules all depend on {mod}`numpy`, but are mostly independent of each
+other. The standard way of importing NumPy and these SciPy modules is:
 
 ```{python}
 import numpy as np
 import scipy as sp
 ```
-:::
+
+We will also be using plotting for this tutorial.
+
+```{python}
+import matplotlib.pyplot as plt
+```
+
 
 ## File input/output: {mod}`scipy.io`
 
@@ -135,15 +133,15 @@ Harwell-Boeing.
 **Matlab files**: Loading and saving:
 
 ```{python}
-import scipy as sp
 a = np.ones((3, 3))
 sp.io.savemat('file.mat', {'a': a})  # savemat expects a dictionary
 data = sp.io.loadmat('file.mat')
 data['a']
 ```
 
-:::{warning}
-**Python / Matlab mismatch**: The Matlab file format does not support 1D arrays.
+**Warning — Python / Matlab mismatch**
+
+The Matlab file format does not support 1D arrays.
 
 ```{python}
 a = np.ones(3)
@@ -163,12 +161,12 @@ a2
 ```{python}
 a2.shape
 ```
-
 Notice that the original array was a one-dimensional array, whereas the
 saved and reloaded array is a two-dimensional array with a single row.
 
 For other formats, see the {mod}`scipy.io` documentation.
-:::
+
+**End of warning**
 
 :::{admonition} See also
 
@@ -187,12 +185,12 @@ For other formats, see the {mod}`scipy.io` documentation.
 "Special" functions are functions commonly used in science and mathematics that
 are not considered to be "elementary" functions. Examples include
 
-> - the gamma function, {func}`scipy.special.gamma`,
-> - the error function, {func}`scipy.special.erf`,
-> - Bessel functions, such as {func}`scipy.special.jv`
->   (Bessel function of the first kind), and
-> - elliptic functions, such as {func}`scipy.special.ellipj`
->   (Jacobi elliptic functions).
+- the gamma function, {func}`scipy.special.gamma`,
+- the error function, {func}`scipy.special.erf`,
+- Bessel functions, such as {func}`scipy.special.jv`
+  (Bessel function of the first kind), and
+- elliptic functions, such as {func}`scipy.special.ellipj`
+  (Jacobi elliptic functions).
 
 Other special functions are combinations of familiar elementary functions,
 but they offer better accuracy or robustness than their naive implementations
@@ -203,68 +201,69 @@ NumPy broadcasting rules when the input arrays have different shapes.
 For example, {func}`scipy.special.xlog1py` is mathematically equivalent
 to $x\log(1 + y)$.
 
-> ```pycon
-> >>> import scipy as sp
-> >>> x = np.asarray([1, 2])
-> >>> y = np.asarray([[3], [4], [5]])
-> >>> res = sp.special.xlog1py(x, y)
-> >>> res.shape
-> (3, 2)
-> >>> ref = x * np.log(1 + y)
-> >>> np.allclose(res, ref)
-> True
-> ```
+```{python}
+x = np.asarray([1, 2])
+y = np.asarray([[3], [4], [5]])
+res = sp.special.xlog1py(x, y)
+res.shape
+```
+
+```{python}
+ref = x * np.log(1 + y)
+np.allclose(res, ref)
+```
 
 However, {func}`scipy.special.xlog1py` is numerically favorable for small $y$,
 when explicit addition of `1` would lead to loss of precision due to floating
 point truncation error.
 
-> ```pycon
-> >>> x = 2.5
-> >>> y = 1e-18
-> >>> x * np.log(1 + y)
-> np.float64(0.0)
-> >>> sp.special.xlog1py(x, y)
-> np.float64(2.5e-18)
-> ```
+```{python}
+x = 2.5
+y = 1e-18
+x * np.log(1 + y)
+```
+
+```{python}
+sp.special.xlog1py(x, y)
+```
 
 Many special functions also have "logarithmized" variants. For instance,
 the gamma function $\Gamma(\cdot)$ is related to the factorial
 function by $n! = \Gamma(n + 1)$, but it extends the domain from the
 positive integers to the complex plane.
 
-> ```pycon
-> >>> x = np.arange(10)
-> >>> np.allclose(sp.special.gamma(x + 1), sp.special.factorial(x))
-> True
-> >>> sp.special.gamma(5) < sp.special.gamma(5.5) < sp.special.gamma(6)
-> np.True_
-> ```
+```pycon
+>>> x = np.arange(10)
+>>> np.allclose(sp.special.gamma(x + 1), sp.special.factorial(x))
+True
+>>> sp.special.gamma(5) < sp.special.gamma(5.5) < sp.special.gamma(6)
+np.True_
+```
 
 The factorial function grows quickly, and so the gamma function overflows
 for moderate values of the argument. However, sometimes only the logarithm
 of the gamma function is needed. In such cases, we can compute the logarithm
 of the gamma function directly using {func}`scipy.special.gammaln`.
 
-> ```pycon
-> >>> x = [5, 50, 500]
-> >>> np.log(sp.special.gamma(x))
-> array([  3.17805383, 144.56574395,          inf])
-> >>> sp.special.gammaln(x)
-> array([   3.17805383,  144.56574395, 2605.11585036])
-> ```
+```pycon
+>>> x = [5, 50, 500]
+>>> np.log(sp.special.gamma(x))
+array([  3.17805383, 144.56574395,          inf])
+>>> sp.special.gammaln(x)
+array([   3.17805383,  144.56574395, 2605.11585036])
+```
 
 Such functions can often be used when the intermediate components of a
 calculation would overflow or underflow, but the final result would not.
 For example, suppose we wish to compute the ratio
 $\Gamma(500)/\Gamma(499)$.
 
-> ```pycon
-> >>> a = sp.special.gamma(500)
-> >>> b = sp.special.gamma(499)
-> >>> a, b
-> (np.float64(inf), np.float64(inf))
-> ```
+```pycon
+>>> a = sp.special.gamma(500)
+>>> b = sp.special.gamma(499)
+>>> a, b
+(np.float64(inf), np.float64(inf))
+```
 
 Both the numerator and denominator overflow, so performing $a / b$ will
 not return the result we seek. However, the magnitude of the result should
@@ -272,26 +271,26 @@ be moderate, so the use of logarithms comes to mind. Combining the identities
 $\log(a/b) = \log(a) - \log(b)$ and $\exp(\log(x)) = x$,
 we get:
 
-> ```pycon
-> >>> log_a = sp.special.gammaln(500)
-> >>> log_b = sp.special.gammaln(499)
-> >>> log_res = log_a - log_b
-> >>> res = np.exp(log_res)
-> >>> res
-> np.float64(499.0000000...)
-> ```
+```pycon
+>>> log_a = sp.special.gammaln(500)
+>>> log_b = sp.special.gammaln(499)
+>>> log_res = log_a - log_b
+>>> res = np.exp(log_res)
+>>> res
+np.float64(499.0000000...)
+```
 
 Similarly, suppose we wish to compute the difference
 $\log(\Gamma(500) - \Gamma(499))$. For this, we use
 {func}`scipy.special.logsumexp`, which computes
 $\log(\exp(x) + \exp(y))$ using a numerical trick that avoids overflow.
 
-> ```pycon
-> >>> res = sp.special.logsumexp([log_a, log_b],
-> ...                            b=[1, -1])  # weights the terms of the sum
-> >>> res
-> np.float64(2605.113844343...)
-> ```
+```pycon
+>>> res = sp.special.logsumexp([log_a, log_b],
+...                            b=[1, -1])  # weights the terms of the sum
+>>> res
+np.float64(2605.113844343...)
+```
 
 For more information about these and many other special functions, see
 the documentation of {mod}`scipy.special`.
@@ -347,13 +346,13 @@ np.allclose(sp.linalg.solve_triangular(A_upper, b, lower=False),
 {mod}`scipy.linalg` also features matrix factorizations/decompositions
 such as the singular value decomposition.
 
-> ```pycon
-> >>> A = np.array([[1, 2],
-> ...               [2, 3]])
-> >>> U, s, Vh = sp.linalg.svd(A)
-> >>> s  # singular values
-> array([4.23606798, 0.23606798])
-> ```
+```pycon
+>>> A = np.array([[1, 2],
+...               [2, 3]])
+>>> U, s, Vh = sp.linalg.svd(A)
+>>> s  # singular values
+array([4.23606798, 0.23606798])
+```
 
 The original matrix can be recovered by matrix multiplication of the
 factors:
@@ -398,11 +397,11 @@ measurements = function + noise
 {func}`scipy.interpolate.make_smoothing_spline` can be used to form a curve
 similar to the underlying sine function.
 
-> ```pycon
-> >>> smoothing_spline = sp.interpolate.make_smoothing_spline(measured_time, measurements)
-> >>> interpolation_time = np.linspace(0, 2*np.pi, 200)
-> >>> smooth_results = smoothing_spline(interpolation_time)
-> ```
+```pycon
+>>> smoothing_spline = sp.interpolate.make_smoothing_spline(measured_time, measurements)
+>>> interpolation_time = np.linspace(0, 2*np.pi, 200)
+>>> smooth_results = smoothing_spline(interpolation_time)
+```
 
 ```{image} auto_examples/images/sphx_glr_plot_interpolation_001.png
 :align: right
@@ -413,10 +412,10 @@ similar to the underlying sine function.
 On the other hand, if the data are not noisy, it may be desirable to pass
 exactly through each point.
 
-> ```pycon
-> >>> interp_spline = sp.interpolate.make_interp_spline(measured_time, function)
-> >>> interp_results = interp_spline(interpolation_time)
-> ```
+```pycon
+>>> interp_spline = sp.interpolate.make_interp_spline(measured_time, function)
+>>> interp_results = interp_spline(interpolation_time)
+```
 
 ```{image} auto_examples/images/sphx_glr_plot_interpolation_002.png
 :align: right
@@ -429,12 +428,12 @@ for differentiation and integration. For the latter, the constant of integration
 assumed to be zero, but we can "wrap" the antiderivative to include a nonzero
 constant of integration.
 
-> ```pycon
-> >>> d_interp_spline = interp_spline.derivative()
-> >>> d_interp_results = d_interp_spline(interpolation_time)
-> >>> i_interp_spline = lambda t: interp_spline.antiderivative()(t) - 1
-> >>> i_interp_results = i_interp_spline(interpolation_time)
-> ```
+```pycon
+>>> d_interp_spline = interp_spline.derivative()
+>>> d_interp_results = d_interp_spline(interpolation_time)
+>>> i_interp_spline = lambda t: interp_spline.antiderivative()(t) - 1
+>>> i_interp_results = i_interp_spline(interpolation_time)
+```
 
 ```{image} auto_examples/images/sphx_glr_plot_interpolation_003.png
 :align: right
@@ -448,13 +447,13 @@ interpolate the inverse function. Because the first argument is expected to be
 monotonically *increasing*, we also reverse the order of elements in the arrays
 with {func}`numpy.flip`.
 
-> ```pycon
-> >>> i = (measured_time > np.pi/2) & (measured_time < 3*np.pi/2)
-> >>> inverse_spline = sp.interpolate.make_interp_spline(np.flip(function[i]),
-> ...                                                    np.flip(measured_time[i]))
-> >>> inverse_spline(0)
-> array(3.14159265)
-> ```
+```pycon
+>>> i = (measured_time > np.pi/2) & (measured_time < 3*np.pi/2)
+>>> inverse_spline = sp.interpolate.make_interp_spline(np.flip(function[i]),
+...                                                    np.flip(measured_time[i]))
+>>> inverse_spline(0)
+array(3.14159265)
+```
 
 See the summary exercise on {ref}`summary_exercise_stat_interp` for a more
 advanced spline interpolation example, and read the
@@ -475,21 +474,21 @@ guess of the solution, which the algorithm will refine until it converges or
 recognizes failure. We also provide the derivative to improve the rate of
 convergence.
 
-> ```pycon
-> >>> def f(x):
-> ...     return (x-1)*(x-2)
-> >>> def df(x):
-> ...     return 2*x - 3
-> >>> x0 = 0  # guess
-> >>> res = sp.optimize.root_scalar(f, x0=x0, fprime=df)
-> >>> res
->       converged: True
->            flag: converged
->  function_calls: 12
->      iterations: 6
->            root: 1.0
->          method: newton
-> ```
+```pycon
+>>> def f(x):
+...     return (x-1)*(x-2)
+>>> def df(x):
+...     return 2*x - 3
+>>> x0 = 0  # guess
+>>> res = sp.optimize.root_scalar(f, x0=x0, fprime=df)
+>>> res
+      converged: True
+           flag: converged
+ function_calls: 12
+     iterations: 6
+           root: 1.0
+         method: newton
+```
 
 :::{warning}
 None of the functions in {mod}`scipy.optimize` that accept a guess are
@@ -505,42 +504,42 @@ that there is a second root at `2.0`. We can direct the function toward a
 particular root by changing the guess or by passing a bracket that contains
 only the root we seek.
 
-> ```pycon
-> >>> res = sp.optimize.root_scalar(f, bracket=(1.5, 10))
-> >>> res.root
-> 2.0
-> ```
+```pycon
+>>> res = sp.optimize.root_scalar(f, bracket=(1.5, 10))
+>>> res.root
+2.0
+```
 
 For multivariate problems, use {func}`scipy.optimize.root`.
 
-> ```pycon
-> >>> def f(x):
-> ...     # intersection of unit circle and line from origin
-> ...     return [x[0]**2 + x[1]**2 - 1,
-> ...             x[1] - x[0]]
-> >>> res = sp.optimize.root(f, x0=[0, 0])
-> >>> np.allclose(f(res.x), 0, atol=1e-10)
-> True
-> >>> np.allclose(res.x, np.sqrt(2)/2)
-> True
-> ```
+```pycon
+>>> def f(x):
+...     # intersection of unit circle and line from origin
+...     return [x[0]**2 + x[1]**2 - 1,
+...             x[1] - x[0]]
+>>> res = sp.optimize.root(f, x0=[0, 0])
+>>> np.allclose(f(res.x), 0, atol=1e-10)
+True
+>>> np.allclose(res.x, np.sqrt(2)/2)
+True
+```
 
 Over-constrained problems can be solved in the least-squares
 sense using {func}`scipy.optimize.root` with `method='lm'`
 (Levenberg-Marquardt).
 
-> ```pycon
-> >>> def f(x):
-> ...     # intersection of unit circle, line from origin, and parabola
-> ...     return [x[0]**2 + x[1]**2 - 1,
-> ...             x[1] - x[0],
-> ...             x[1] - x[0]**2]
-> >>> res = sp.optimize.root(f, x0=[1, 1], method='lm')
-> >>> res.success
-> True
-> >>> res.x
-> array([0.76096066, 0.66017736])
-> ```
+```pycon
+>>> def f(x):
+...     # intersection of unit circle, line from origin, and parabola
+...     return [x[0]**2 + x[1]**2 - 1,
+...             x[1] - x[0],
+...             x[1] - x[0]**2]
+>>> res = sp.optimize.root(f, x0=[1, 1], method='lm')
+>>> res.success
+True
+>>> res.x
+array([0.76096066, 0.66017736])
+```
 
 See the documentation of {func}`scipy.optimize.root_scalar`
 and {func}`scipy.optimize.root` for a variety of other solution
@@ -598,24 +597,24 @@ np.allclose(params, ref, rtol=1e-3)
 :::{admonition} Exercise: Curve fitting of temperature data
 :class: green
 
-> The temperature extremes in Alaska for each month, starting in January, are
-> given by (in degrees Celsius):
+The temperature extremes in Alaska for each month, starting in January, are
+given by (in degrees Celsius):
 >
-> ```
-> max:  17,  19,  21,  28,  33,  38, 37,  37,  31,  23,  19,  18
-> min: -62, -59, -56, -46, -32, -18, -9, -13, -25, -46, -52, -58
-> ```
+```
+max:  17,  19,  21,  28,  33,  38, 37,  37,  31,  23,  19,  18
+min: -62, -59, -56, -46, -32, -18, -9, -13, -25, -46, -52, -58
+```
 >
-> 1. Plot these temperature extremes.
-> 2. Define a function that can describe min and max temperatures.
->    Hint: this function has to have a period of 1 year.
->    Hint: include a time offset.
-> 3. Fit this function to the data with {func}`scipy.optimize.curve_fit`.
-> 4. Plot the result. Is the fit reasonable? If not, why?
-> 5. Is the time offset for min and max temperatures the same within the fit
->    accuracy?
+1. Plot these temperature extremes.
+2. Define a function that can describe min and max temperatures.
+   Hint: this function has to have a period of 1 year.
+   Hint: include a time offset.
+3. Fit this function to the data with {func}`scipy.optimize.curve_fit`.
+4. Plot the result. Is the fit reasonable? If not, why?
+5. Is the time offset for min and max temperatures the same within the fit
+   accuracy?
 >
-> {ref}`solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_curvefit_temperature_data.py>`
+{ref}`solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_curvefit_temperature_data.py>`
 :::
 
 ### Optimization
@@ -646,68 +645,68 @@ The most appropriate function for this purpose is
 Since we know the approximate locations of the minima, we will provide
 bounds that restrict the search to the vicinity of the global minimum.
 
-> ```pycon
-> >>> res = sp.optimize.minimize_scalar(f, bounds=(-2, -1))
-> >>> res
->  message: Solution found.
->  success: True
->   status: 0
->      fun: -7.9458233756...
->        x: -1.306440997...
->      nit: 8
->     nfev: 8
-> >>> res.fun == f(res.x)
-> np.True_
-> ```
+```pycon
+>>> res = sp.optimize.minimize_scalar(f, bounds=(-2, -1))
+>>> res
+ message: Solution found.
+ success: True
+  status: 0
+     fun: -7.9458233756...
+       x: -1.306440997...
+     nit: 8
+    nfev: 8
+>>> res.fun == f(res.x)
+np.True_
+```
 
 If we did not already know the approximate location of the global minimum,
 we could use one of SciPy's global minimizers, such as
 {func}`scipy.optimize.differential_evolution`. We are required to pass
 `bounds`, but they do not need to be tight.
 
-> ```pycon
-> >>> bounds=[(-5, 5)]  # list of lower, upper bound for each variable
-> >>> res = sp.optimize.differential_evolution(f, bounds=bounds)
-> >>> res
->  message: Optimization terminated successfully.
->  success: True
->      fun: -7.9458233756...
->        x: [-1.306e+00]
->      nit: 6
->     nfev: 111
->      jac: [ 9.948e-06]
-> ```
+```pycon
+>>> bounds=[(-5, 5)]  # list of lower, upper bound for each variable
+>>> res = sp.optimize.differential_evolution(f, bounds=bounds)
+>>> res
+ message: Optimization terminated successfully.
+ success: True
+     fun: -7.9458233756...
+       x: [-1.306e+00]
+     nit: 6
+    nfev: 111
+     jac: [ 9.948e-06]
+```
 
 For multivariate optimization, a good choice for many problems is
 {func}`scipy.optimize.minimize`.
 Suppose we wish to find the minimum of a quadratic function of two
 variables, $f(x_0, x_1) = (x_0-1)^2 + (x_1-2)^2$.
 
-> ```pycon
-> >>> def f(x):
-> ...     return (x[0] - 1)**2 + (x[1] - 2)**2
-> ```
+```pycon
+>>> def f(x):
+...     return (x[0] - 1)**2 + (x[1] - 2)**2
+```
 
 Like {func}`scipy.optimize.root`, {func}`scipy.optimize.minimize`
 requires a guess `x0`. (Note that this is the initial value of
 *both* variables rather than the value of the variable we happened to
 label $x_0$.)
 
-> ```pycon
-> >>> res = sp.optimize.minimize(f, x0=[0, 0])
-> >>> res
->   message: Optimization terminated successfully.
->   success: True
->    status: 0
->       fun: 1.70578...e-16
->         x: [ 1.000e+00  2.000e+00]
->       nit: 2
->       jac: [ 3.219e-09 -8.462e-09]
->  hess_inv: [[ 9.000e-01 -2.000e-01]
->             [-2.000e-01  6.000e-01]]
->      nfev: 9
->      njev: 3
-> ```
+```pycon
+>>> res = sp.optimize.minimize(f, x0=[0, 0])
+>>> res
+  message: Optimization terminated successfully.
+  success: True
+   status: 0
+      fun: 1.70578...e-16
+        x: [ 1.000e+00  2.000e+00]
+      nit: 2
+      jac: [ 3.219e-09 -8.462e-09]
+ hess_inv: [[ 9.000e-01 -2.000e-01]
+            [-2.000e-01  6.000e-01]]
+     nfev: 9
+     njev: 3
+```
 
 :::{sidebar} **Maximization?**
 Is {func}`scipy.optimize.minimize` restricted to the solution of
@@ -724,33 +723,33 @@ documentation of {mod}`scipy.optimize` and the advanced chapter
 :::{admonition} Exercise: 2-D minimization
 :class: green
 
-> ```{image} auto_examples/images/sphx_glr_plot_2d_minimization_002.png
-> :align: right
-> :scale: 50
-> :target: auto_examples/plot_2d_minimization.html
-> ```
+```{image} auto_examples/images/sphx_glr_plot_2d_minimization_002.png
+:align: right
+:scale: 50
+:target: auto_examples/plot_2d_minimization.html
+```
 >
-> The six-hump camelback function
+The six-hump camelback function
 >
-> $$
-> f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
-> $$
+$$
+f(x, y) = (4 - 2.1x^2 + \frac{x^4}{3})x^2 + xy + (4y^2 - 4)y^2
+$$
 >
-> has multiple local minima. Find a global minimum (there is more than one,
-> each with the same value of the objective function) and at least one other
-> local minimum.
+has multiple local minima. Find a global minimum (there is more than one,
+each with the same value of the objective function) and at least one other
+local minimum.
 >
-> Hints:
+Hints:
 >
-> > - Variables can be restricted to $-2 < x < 2$ and $-1 < y < 1$.
-> > - {func}`numpy.meshgrid` and {func}`matplotlib.pyplot.imshow` can help
-> >   with visualization.
-> > - Try minimizing with {func}`scipy.optimize.minimize` with an initial
-> >   guess of $(x, y) = (0, 0)$. Does it find the global minimum, or
-> >   converge to a local minimum? What about other initial guesses?
-> > - Try minimizing with {func}`scipy.optimize.differential_evolution`.
+> - Variables can be restricted to $-2 < x < 2$ and $-1 < y < 1$.
+> - {func}`numpy.meshgrid` and {func}`matplotlib.pyplot.imshow` can help
+>   with visualization.
+> - Try minimizing with {func}`scipy.optimize.minimize` with an initial
+>   guess of $(x, y) = (0, 0)$. Does it find the global minimum, or
+>   converge to a local minimum? What about other initial guesses?
+> - Try minimizing with {func}`scipy.optimize.differential_evolution`.
 >
-> {ref}`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
+{ref}`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
 :::
 
 See the summary exercise on {ref}`summary_exercise_optimize` for another, more
@@ -844,10 +843,10 @@ NumPy includes some of the most fundamental sample statistics (e.g.
 is a common measure of central tendency for data that tends to be
 distributed over many orders of magnitude.
 
-> ```pycon
-> >>> sp.stats.gmean(2**sample)
-> np.float64(1.0010934829...)
-> ```
+```pycon
+>>> sp.stats.gmean(2**sample)
+np.float64(1.0010934829...)
+```
 
 SciPy also includes a variety of hypothesis tests that produce a
 sample statistic and a p-value. For instance, suppose we wish to
@@ -916,10 +915,10 @@ $\frac{dy}{dt} = -2 y$ and the initial condition $y(t=0) = 1$ on
 the interval $t = 0 \dots 4$. We begin by defining a callable that
 computes $f(t, y(t))$ given the current time and state.
 
-> ```pycon
-> >>> def f(t, y):
-> ...     return -2 * y
-> ```
+```pycon
+>>> def f(t, y):
+...     return -2 * y
+```
 
 Then, to compute `y` as a function of time:
 
