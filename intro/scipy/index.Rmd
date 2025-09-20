@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.16.6
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -19,11 +19,6 @@ substitutions:
     ```{image} auto_examples/images/sphx_glr_plot_spectrogram_001.png
     :scale: 45
     :target: auto_examples/plot_spectrogram.html
-    ```
-  fft_fig: |-
-    ```{image} auto_examples/images/sphx_glr_plot_fftpack_002.png
-    :scale: 60
-    :target: auto_examples/plot_fftpack.html
     ```
   image_blur: |-
     ```{image} auto_examples/solutions/images/sphx_glr_plot_image_blur_002.png
@@ -39,11 +34,6 @@ substitutions:
     ```{image} auto_examples/images/sphx_glr_plot_spectrogram_003.png
     :scale: 45
     :target: auto_examples/plot_spectrogram.html
-    ```
-  signal_fig: |-
-    ```{image} auto_examples/images/sphx_glr_plot_fftpack_001.png
-    :scale: 60
-    :target: auto_examples/plot_fftpack.html
     ```
   spectrogram_fig: |-
     ```{image} auto_examples/images/sphx_glr_plot_spectrogram_002.png
@@ -555,11 +545,6 @@ options.
 
 ### Curve fitting
 
-```{image} auto_examples/images/sphx_glr_plot_curve_fit_001.png
-:align: right
-:scale: 50
-:target: auto_examples/plot_curve_fit.html
-```
 
 Suppose we have data that is sinusoidal but noisy:
 
@@ -602,7 +587,7 @@ We plot the resulting curve on the data:
 ```{python tags=c("hide-input")}
 plt.figure(figsize=(6, 4))
 plt.scatter(x_data, y_data, label="Data")
-plt.plot(x_data, test_func(x_data, *params), label="Fitted function")
+plt.plot(x_data, f(x_data, *params), label="Fitted function")
 plt.legend(loc="best");
 ```
 
@@ -676,35 +661,28 @@ plt.plot(days, yearly_temps(days, *res_min), "b-")
 plt.xlabel("Month")
 plt.ylabel(r"Temperature ($^\circ$C)");
 ```
-{ref}`solution <sphx_glr_intro_scipy_auto_examples_solutions_plot_curvefit_temperature_data.py>`
-
-
 
 ::: {solution-end}
 :::
 
+
 ### Optimization
 
-```{image} auto_examples/images/sphx_glr_plot_optimize_example1_001.png
-:align: right
-:scale: 50
-:target: auto_examples/plot_optimize_example1.html
-```
 
 Suppose we wish to minimize the scalar-valued function of a single
 variable $f(x) = x^2  + 10 \sin(x)$:
 
 ```{python}
 def f(x):
-    return x**2 + 10*np.sin(x)
+    return x**2 + 10 * np.sin(x)
+
 x = np.arange(-5, 5, 0.1)
 plt.plot(x, f(x))
-plt.show()
 ```
 
-We can see that the function has a local minimizer near $x = 3.8$
-and a global minimizer near $x = -1.3$, but
-the precise values cannot be determined from the plot.
+We can see that the function has a local minimizer near $x = 3.8$ and a global
+minimizer near $x = -1.3$, but the precise values cannot be determined from the
+plot.
 
 The most appropriate function for this purpose is
 {func}`scipy.optimize.minimize_scalar`.
@@ -751,7 +729,7 @@ res = sp.optimize.minimize(f, x0=[0, 0])
 res
 ```
 
-:::{sidebar} **Maximization?**
+:::{admonition} **Maximization?**
 Is {func}`scipy.optimize.minimize` restricted to the solution of
 minimization problems? Nope! To solve a maximization problem,
 simply minimize the *negative* of the original objective function.
@@ -763,14 +741,12 @@ and the solution of assignment problems. For much more information, see the
 documentation of {mod}`scipy.optimize` and the advanced chapter
 {ref}`mathematical_optimization`.
 
-:::{admonition} Exercise: 2-D minimization
-:class: green
+::: {exercise-start}
+:label: scipy-2d-minimization-ex
+:class: dropdown
+:::
 
-```{image} auto_examples/images/sphx_glr_plot_2d_minimization_002.png
-:align: right
-:scale: 50
-:target: auto_examples/plot_2d_minimization.html
-```
+This is an exercise on 2-D minimization.
 
 The six-hump camelback function
 
@@ -792,11 +768,91 @@ Hints:
   converge to a local minimum? What about other initial guesses?
 - Try minimizing with {func}`scipy.optimize.differential_evolution`.
 
-{ref}`solution <sphx_glr_intro_scipy_auto_examples_plot_2d_minimization.py>`
+::: {exercise-end}
 :::
 
-See the summary exercise on {ref}`summary_exercise_optimize` for another, more
+::: {solution-start} scipy-2d-minimization-ex
+:class: dropdown
+:::
+
+Optimization of a two-parameter function:
+
+```{python}
+# Define the function that we are interested in
+def sixhump(x):
+    return (
+        (4 - 2.1 * x[0] ** 2 + x[0] ** 4 / 3) * x[0] ** 2
+        + x[0] * x[1]
+        + (-4 + 4 * x[1] ** 2) * x[1] ** 2
+    )
+
+# Make a grid to evaluate the function (for plotting)
+xlim = [-2, 2]
+ylim = [-1, 1]
+x = np.linspace(*xlim)  # type: ignore[call-overload]
+y = np.linspace(*ylim)  # type: ignore[call-overload]
+xg, yg = np.meshgrid(x, y)
+```
+
+A 2D image plot of the function:
+
+```{python}
+# Simple visualization in 2D
+plt.figure()
+plt.imshow(sixhump([xg, yg]), extent=xlim + ylim, origin="lower")  # type: ignore[arg-type]
+plt.colorbar();
+```
+
+A 3D surface plot of the function:
+
+```{python}
+from mpl_toolkits.mplot3d import Axes3D
+
+fig = plt.figure()
+ax: Axes3D = fig.add_subplot(111, projection="3d")
+surf = ax.plot_surface(
+    xg,
+    yg,
+    sixhump([xg, yg]),
+    rstride=1,
+    cstride=1,
+    cmap="viridis",
+    linewidth=0,
+    antialiased=False,
+)
+
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("f(x, y)")
+ax.set_title("Six-hump Camelback function");
+```
+
+Find minima:
+
+```{python}
+# local minimization
+res_local = sp.optimize.minimize(sixhump, x0=[0, 0])
+# global minimization
+res_global = sp.optimize.differential_evolution(sixhump, bounds=[xlim, ylim])
+```
+
+```{python tags=c("hide-input")}
+plt.figure()
+# Show the function in 2D
+plt.imshow(sixhump([xg, yg]), extent=xlim + ylim, origin="lower")  # type: ignore[arg-type]
+plt.colorbar()
+# Mark the minima
+plt.scatter(res_local.x[0], res_local.x[1], label="local minimizer")
+plt.scatter(res_global.x[0], res_global.x[1], label="global minimizer")
+plt.legend();
+```
+
+::: {solution-end}
+:::
+
+See the summary exercise on {ref}`summary-exercise-optimize` for another, more
 advanced example.
+
 
 ## Statistics and random numbers: {mod}`scipy.stats`
 
@@ -815,31 +871,25 @@ sample = dist.rvs(size=100000)  # "random variate sample"
 plt.hist(sample, bins=50, density=True, label='normalized histogram')
 x = np.linspace(-5, 5)
 plt.plot(x, dist.pdf(x), label='PDF')
-```
-
-```{python}
 plt.legend()
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_normal_distribution_001.png
-:scale: 70
-:target: auto_examples/plot_normal_distribution.html
-```
+:::{admonition} Distribution objects and frozen distributions
 
-:::{sidebar} **Distribution objects and frozen distributions**
 Each of the 100+ {mod}`scipy.stats` distribution families is represented by an
 *object* with a `__call__` method. Here, we call the {class}`scipy.stats.norm`
 object to specify its location and scale, and it returns a *frozen*
 distribution: a particular element of a distribution family with all
 parameters fixed. The frozen distribution object has methods to compute
 essential functions of the particular distribution.
+
 :::
 
-Suppose we knew that the sample had been drawn from a distribution belonging
-to the family of normal distributions, but we did not know the particular
+Suppose we knew that the sample had been drawn from a distribution belonging to
+the family of normal distributions, but we did not know the particular
 distribution's location (mean) and scale (standard deviation). We perform
-maximum likelihood estimation of the unknown parameters using the
-distribution family's `fit` method:
+maximum likelihood estimation of the unknown parameters using the distribution
+family's `fit` method:
 
 ```{python}
 loc, scale = sp.stats.norm.fit(sample)
@@ -853,8 +903,10 @@ scale
 Since we know the true parameters of the distribution from which the
 sample was drawn, we are not surprised that these estimates are similar.
 
-:::{admonition} Exercise: Probability distributions
-:class: green
+::: {exercise-start}
+:label: scipy-prob-dist-ex
+:class: dropdown
+:::
 
 Generate 1000 random variates from a gamma distribution with a shape
 parameter of 1. *Hint: the shape parameter is passed as the first
@@ -865,7 +917,10 @@ from the sample using the `fit` method.
 Extra: the distributions have many useful methods. Explore them
 using tab completion. Plot the cumulative density function of the
 distribution, and compute the variance.
+
+::: {exercise-end}
 :::
+
 
 ### Sample Statistics and Hypothesis Tests
 
@@ -913,6 +968,7 @@ statistics, quasi-Monte Carlo methods, and resampling methods.
 For much more information, see the documentation of {mod}`scipy.stats`
 and the advanced chapter {ref}`statistics <statistics>`.
 
+
 ## Numerical integration: {mod}`scipy.integrate`
 
 ### Quadrature
@@ -923,7 +979,7 @@ chooses one of several adaptive techniques depending on the parameters, and
 is therefore the recommended first choice for integration of function of a single variable:
 
 ```{python}
-integral, error_estimate = sp.integrate.quad(np.sin, 0, np.pi/2)
+integral, error_estimate = sp.integrate.quad(np.sin, 0, np.pi / 2)
 np.allclose(integral, 1)  # numerical result ~ analytical result
 ```
 
@@ -935,11 +991,13 @@ Other functions for *numerical quadrature*, including integration of
 multivariate functions and approximating integrals from samples, are available
 in {mod}`scipy.integrate`.
 
+
 ### Initial Value Problems
 
 {mod}`scipy.integrate` also features routines for integrating [Ordinary
-Differential Equations (ODE)](https://en.wikipedia.org/wiki/Ordinary_differential_equation).
-For example, {func}`scipy.integrate.solve_ivp` integrates ODEs of the form:
+Differential Equations
+(ODE)](https://en.wikipedia.org/wiki/Ordinary_differential_equation). For
+example, {func}`scipy.integrate.solve_ivp` integrates ODEs of the form:
 
 $$
 \frac{dy}{dt} = f(t, y(t))
@@ -970,25 +1028,12 @@ res = sp.integrate.solve_ivp(f, t_span=t_span, y0=y0, t_eval=t_eval)
 and plot the result:
 
 ```{python}
+plt.figure(figsize=(4, 3))
 plt.plot(res.t, res.y[0])
-```
-
-```{python}
 plt.xlabel('t')
-```
-
-```{python}
 plt.ylabel('y')
-```
-
-```{python}
 plt.title('Solution of Initial Value Problem')
-```
-
-```{image} auto_examples/images/sphx_glr_plot_solve_ivp_simple_001.png
-:align: right
-:scale: 70
-:target: auto_examples/plot_solve_ivp_simple.html
+plt.tight_layout();
 ```
 
 Let us integrate a more complex ODE: a [damped
@@ -998,16 +1043,16 @@ $\ddot{y} + 2 \zeta \omega_0  \dot{y} + \omega_0^2 y = 0$ with natural frequency
 $\omega_0 = \sqrt{k/m}$, damping ratio $\zeta = c/(2 m \omega_0)$,
 spring constant $k$, mass $m$, and damping coefficient $c$.
 
-Before using {func}`scipy.integrate.solve_ivp`, the 2nd order ODE
-needs to be transformed into a system of first-order ODEs. Note that
+Before using {func}`scipy.integrate.solve_ivp`, the 2nd order ODE needs to be
+transformed into a system of first-order ODEs. Note that
 
 $$
 \frac{dy}{dt} = \dot{y}
 \frac{d\dot{y}}{dt} = \ddot{y} = -(2 \zeta \omega_0  \dot{y} + \omega_0^2 y)
 $$
 
-If we define $z = [z_0, z_1]$ where $z_0 = y$ and $z_1 = \dot{y}$,
-then the first order equation:
+If we define $z = [z_0, z_1]$ where $z_0 = y$ and $z_1 = \dot{y}$, then the
+first order equation:
 
 $$
 \frac{dz}{dt} =
@@ -1040,12 +1085,6 @@ def f(t, z, zeta, omega):
     return (z[1], -2.0 * zeta * omega * z[1] - omega**2 * z[0])
 ```
 
-```{image} auto_examples/images/sphx_glr_plot_solve_ivp_damped_spring_mass_001.png
-:align: right
-:scale: 70
-:target: auto_examples/plot_solve_ivp_damped_spring_mass.html
-```
-
 Integration of the system follows:
 
 ```{python}
@@ -1054,6 +1093,13 @@ t_eval = np.linspace(*t_span, 100)
 z0 = [1, 0]
 res = sp.integrate.solve_ivp(f, t_span, z0, t_eval=t_eval,
                              args=(zeta, omega), method='LSODA')
+```
+
+```{python tags=c("hide-input")}
+plt.figure(figsize=(4, 3))
+plt.plot(res.t, res.y[0], label="y")
+plt.plot(res.t, res.y[1], label="dy/dt")
+plt.legend(loc="best");
 ```
 
 ::: {note}
@@ -1073,6 +1119,7 @@ Some Python packages for solving PDE's are available, such as [fipy]
 or [SfePy].
 :::
 
+
 ## Fast Fourier transforms: {mod}`scipy.fft`
 
 The {mod}`scipy.fft` module computes fast Fourier transforms (FFTs)
@@ -1085,31 +1132,95 @@ and offers utilities to handle them. Some important functions are:
 
 As an illustration, a (noisy) input signal (`sig`), and its FFT:
 
+
+```{python}
+# Seed the random number generator
+rng = np.random.default_rng(27446968)
+
+time_step = 0.02
+period = 5.0
+
+time_vec = np.arange(0, 20, time_step)
+sig = np.sin(2 * np.pi / period * time_vec) + 0.5 * rng.normal(size=time_vec.size)
+```
+
 ```{python}
 sig_fft = sp.fft.fft(sig)
 freqs = sp.fft.fftfreq(sig.size, d=time_step)
 ```
 
-| {{ signal_fig }} | {{ fft_fig }} |
-| ---------------- | ------------- |
-| **Signal**       | **FFT**       |
+Compute the power:
+
+```{python}
+# The FFT of the signal
+sig_fft = sp.fft.fft(sig)
+
+# And the power (sig_fft is of complex dtype)
+power = np.abs(sig_fft) ** 2
+
+# The corresponding frequencies
+sample_freq = sp.fft.fftfreq(sig.size, d=time_step)
+```
+
+```{python tags=c("hide-input")}
+fig, axes = plt.subplots(1, 2, figsize=(6, 5))
+# Plot the signal
+axes[0].plot(time_vec, sig, label="Original signal");
+# Plot the FFT power
+axes[1].plot(sample_freq, power)
+axes[1].set_xlabel("Frequency [Hz]")
+axes[1].set_ylabel("plower");
+plt.tight_layout()
+```
 
 As the signal comes from a real-valued function, the Fourier transform is
 symmetric.
 
 The peak signal frequency can be found with `freqs[power.argmax()]`
 
-```{image} auto_examples/images/sphx_glr_plot_fftpack_003.png
-:align: right
-:scale: 60
-:target: auto_examples/plot_fftpack.html
+```{python}
+# Find the peak frequency: we can focus on only the positive frequencies
+pos_mask = np.where(sample_freq > 0)
+freqs = sample_freq[pos_mask]
+peak_freq = freqs[power[pos_mask].argmax()]
+
+# Check that it does indeed correspond to the frequency that we generate
+# the signal with
+np.allclose(peak_freq, 1.0 / period)
+```
+
+```{python tags=c("hide-input")}
+# An inner plot to show the peak frequency
+axes = plt.axes((0.55, 0.3, 0.3, 0.5))
+plt.title("Peak frequency")
+plt.plot(freqs[:8], power[pos_mask][:8])
+plt.setp(axes, yticks=[]);
 ```
 
 Setting the Fourier component above this frequency to zero and inverting
 the FFT with {func}`scipy.fft.ifft`, gives a filtered signal.
 
-:::{note}
-The code of this example can be found {ref}`here <sphx_glr_intro_scipy_auto_examples_plot_fftpack.py>`
+```{python}
+high_freq_fft = sig_fft.copy()
+high_freq_fft[np.abs(sample_freq) > peak_freq] = 0
+filtered_sig = sp.fft.ifft(high_freq_fft)
+```
+
+```{python tags=c("hide-input")}
+plt.figure(figsize=(6, 5))
+plt.plot(time_vec, sig, label="Original signal")
+plt.plot(time_vec, filtered_sig, linewidth=3, label="Filtered signal")
+plt.xlabel("Time [s]")
+plt.ylabel("Amplitude")
+plt.legend(loc="best");
+```
+
+::: {note}
+
+This is actually a bad way of creating a filter: such brutal cut-off in
+frequency space does not control distortion on the signal.
+
+Filters should be created using the SciPy filter design code
 :::
 
 :::{admonition} `numpy.fft`
@@ -1127,7 +1238,7 @@ should be preferred, as it uses more efficient underlying implementations.
 :::{admonition} Exercise: Denoise moon landing image
 :class: green
 
-![](../../data/moonlanding.png)
+![](data/moonlanding.png)
 
 1. Examine the provided image {download}`moonlanding.png
    <../../data/moonlanding.png>`, which is heavily contaminated with periodic
@@ -1270,7 +1381,7 @@ summary-exercises/image-processing.rst
 **Proposed solutions:**
 :::
 
-```{toctree}
+```{toctree language="toctree"}
 :maxdepth: 1
 
 summary-exercises/answers_image_processing.rst
@@ -1297,7 +1408,7 @@ declaration
 <!---
 compile solutions, but don't list them explicitly
 -->
-```{toctree}
+```{toctree language="toctree"}
 :hidden: true
 
 solutions.rst
