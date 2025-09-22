@@ -35,7 +35,7 @@ modules such as NumPy and SciPy.
 
 For basic image manipulation, such as image cropping or simple
 filtering, a large number of simple operations can be realized with
-NumPy and SciPy only. See {ref}`basic_image`.
+NumPy and SciPy only. See {ref}`basic-image`.
 
 Note that you should be familiar with the content of the previous
 chapter before reading the current one, as basic operations such as

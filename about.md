@@ -2,8 +2,18 @@
 
 Release: {{ release }}
 
-The lectures are archived on zenodo: <http://dx.doi.org/10.5281/zenodo.594102>
+The lectures are archived on Zenodo:
 
-All code and material is licensed under a
-Creative Commons Attribution 4.0 International License (CC-by)
-<http://creativecommons.org/licenses/by/4.0/>
+![http://dx.doi.org/10.5281/zenodo.594102](https://zenodo.org/badge/doi/10.5281/zenodo.594102.svg)
+
+::: {include} AUTHORS.md
+:::
+
+::: {include} CHANGES.md
+:::
+
+::: {include} LICENSE.md
+:::
+
+::: {include} CONTRIBUTING.md
+:::
