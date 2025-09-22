@@ -174,36 +174,32 @@ interpreter (see [PEP 3149](https://peps.python.org/pep-3149/)) and is thus
 longer. The import statement is not affected by this.
 :::
 
-```python
+```ipython
+In [1]: import cos_module
 
-
-import cos_module
-
-cos_module?
+In [2]: cos_module?
 Type:       module
 String Form:<module 'cos_module' from 'cos_module.so'>
 File:       /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/python_c_api/cos_module.so
 Docstring:  <no docstring>
 
-dir(cos_module)
+In [3]: dir(cos_module)
 Out[3]: ['__doc__', '__file__', '__name__', '__package__', 'cos_func']
 
-cos_module.cos_func(1.0)
+In [4]: cos_module.cos_func(1.0)
 Out[4]: 0.5403023058681398
 
-cos_module.cos_func(0.0)
+In [5]: cos_module.cos_func(0.0)
 Out[5]: 1.0
 
-cos_module.cos_func(3.14159265359)
+In [6]: cos_module.cos_func(3.14159265359)
 Out[7]: -1.0
 ```
 
 Now let's see how robust this is:
 
-```python
-
-
-cos_module.cos_func('foo')
+```ipython
+In [10]: cos_module.cos_func('foo')
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
 <ipython-input-10-11bee483665d> in <module>()
@@ -216,7 +212,7 @@ TypeError: a float is required
 Analog to the Python-C-API, NumPy, which is itself implemented as a
 C-extension, comes with the [NumPy-C-API](https://numpy.org/doc/stable/reference/c-api). This API can be used
 to create and manipulate NumPy arrays from C, when writing a custom
-C-extension. See also: {ref}`advanced_numpy`.
+C-extension. See also: {ref}`advanced-numpy`.
 
 :::{note}
 If you do ever need to use the NumPy C-API refer to the documentation about
@@ -287,18 +283,16 @@ As advertised, the wrapper code is in pure Python.
 
 We may now use this, as before:
 
-```python
+```ipython
+In [1]: import cos_module
 
-
-import cos_module
-
-cos_module?
+In [2]: cos_module?
 Type:       module
 String Form:<module 'cos_module' from 'cos_module.py'>
 File:       /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/ctypes/cos_module.py
 Docstring:  <no docstring>
 
-dir(cos_module)
+In [3]: dir(cos_module)
 Out[3]:
 ['__builtins__',
  '__doc__',
@@ -310,13 +304,13 @@ Out[3]:
  'find_library',
  'libm']
 
-cos_module.cos_func(1.0)
+In [4]: cos_module.cos_func(1.0)
 Out[4]: 0.5403023058681398
 
-cos_module.cos_func(0.0)
+In [5]: cos_module.cos_func(0.0)
 Out[5]: 1.0
 
-cos_module.cos_func(3.14159265359)
+In [6]: cos_module.cos_func(3.14159265359)
 Out[6]: -1.0
 ```
 
@@ -503,18 +497,16 @@ build/  cos_module.c  cos_module.h  cos_module.i  cos_module.py  _cos_module.so*
 
 We can now load and execute the `cos_module` as we have done in the previous examples:
 
-```python
+```ipython
+In [1]: import cos_module
 
-
-import cos_module
-
-cos_module?
+In [2]: cos_module?
 Type:       module
 String Form:<module 'cos_module' from 'cos_module.py'>
 File:       /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/swig/cos_module.py
 Docstring:  <no docstring>
 
-dir(cos_module)
+In [3]: dir(cos_module)
 Out[3]:
 ['__builtins__',
  '__doc__',
@@ -531,23 +523,21 @@ Out[3]:
  '_swig_setattr_nondynamic',
  'cos_func']
 
-cos_module.cos_func(1.0)
+In [4]: cos_module.cos_func(1.0)
 Out[4]: 0.5403023058681398
 
-cos_module.cos_func(0.0)
+In [5]: cos_module.cos_func(0.0)
 Out[5]: 1.0
 
-cos_module.cos_func(3.14159265359)
+In [6]: cos_module.cos_func(3.14159265359)
 Out[6]: -1.0
 ```
 
 Again we test for robustness, and we see that we get a better error message
 (although, strictly speaking in Python there is no `double` type):
 
-```python
-
-
-cos_module.cos_func('foo')
+```ipython
+In [7]: cos_module.cos_func('foo')
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
 <ipython-input-7-11bee483665d> in <module>()
@@ -708,18 +698,16 @@ build/  cos_module.c  cos_module.pyx  cos_module.so*  setup.py
 
 And running it:
 
-```python
+```ipython
+In [1]: import cos_module
 
-
-import cos_module
-
-cos_module?
+In [2]: cos_module?
 Type:       module
 String Form:<module 'cos_module' from 'cos_module.so'>
 File:       /home/esc/git-working/scientific-python-lectures/advanced/interfacing_with_c/cython/cos_module.so
 Docstring:  <no docstring>
 
-dir(cos_module)
+In [3]: dir(cos_module)
 Out[3]:
 ['__builtins__',
  '__doc__',
@@ -729,22 +717,20 @@ Out[3]:
  '__test__',
  'cos_func']
 
-cos_module.cos_func(1.0)
+In [4]: cos_module.cos_func(1.0)
 Out[4]: 0.5403023058681398
 
-cos_module.cos_func(0.0)
+In [5]: cos_module.cos_func(0.0)
 Out[5]: 1.0
 
-cos_module.cos_func(3.14159265359)
+In [6]: cos_module.cos_func(3.14159265359)
 Out[6]: -1.0
 ```
 
 And, testing a little for robustness, we can see that we get good error messages:
 
-```python
-
-
-cos_module.cos_func('foo')
+```ipython
+In [7]: cos_module.cos_func('foo')
 ---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
 <ipython-input-7-11bee483665d> in <module>()
