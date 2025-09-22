@@ -1,3 +1,7 @@
+---
+title: "About the Scientific Python Lecture notes"
+---
+
 Release: {{ release }}
 
 The lectures are archived on zenodo: <http://dx.doi.org/10.5281/zenodo.594102>
