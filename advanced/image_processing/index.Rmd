@@ -259,7 +259,7 @@ rotate_face_noreshape = sp.ndimage.rotate(face, 45, reshape=False)
 ```{python tags=c("hide-input")}
 # Plot the transformed face.
 fig, axes = plt.subplots(1, 5, figsize=(12.5, 2.5))
-for i, img_arr in enumerate([face, crop_face, flip_ud_face, 
+for i, img_arr in enumerate([face, crop_face, flip_ud_face,
                              rotate_face, rotate_face_noreshape]):
     axes[i].imshow(img_arr, cmap="gray")
     axes[i].axis('off')
@@ -606,7 +606,7 @@ for i, (name, img_arr) in enumerate([
     axes[i].imshow(img_arr, cmap='gray')
     axes[i].axis("off")
     axes[i].set_title(name, fontsize=10)
-    
+
 plt.subplots_adjust(wspace=0.02, hspace=0.02, top=1, bottom=0, left=0, right=0.9);
 ```
 
@@ -666,7 +666,7 @@ fig, axes = plt.subplots(1, 4, figsize=(12, 3))
 for i, img_arr in enumerate([binary_img, open_img, close_img, mask]):
     axes[i].imshow(img_arr[:L, :L], cmap='gray')
     axes[i].axis("off")
-    
+
 axes[-1].contour(close_img[:L, :L], [0.5], linewidths=2, colors="r")
 
 plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)

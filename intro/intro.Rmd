@@ -390,7 +390,7 @@ In [4]: %debug
 > /var/folders/hd/rfxyn9gx4bl39bvwzrgn3rtr0000gn/T/ipykernel_62633/2015602957.py(2)func()
       1 def func(a, b):
 ----> 2     return a / b
-      3 
+      3
       4 func(10, 0)
 
 ipdb>

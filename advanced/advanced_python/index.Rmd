@@ -188,7 +188,7 @@ execution of this function is suspended.
 def f():
     yield 1
     yield 2
-    
+
 f()
 ```
 
@@ -214,7 +214,7 @@ def f():
     yield 3
     print("-- finish --")
     yield 4
-    
+
 gen = f()
 next(gen)
 ```

@@ -1,5 +1,5 @@
 # Book settings
-title : "Scientific Python Lectures"
+title: "Scientific Python Lectures"
 author: Scientific Python developers
 copyright: "2025"
 logo: images/sp_lectures.png
@@ -102,5 +102,4 @@ parse:
     release: "2025.2rc0.dev0"
     clear_floats: |
 
-       <div style="clear: both"></div>
-
+      <div style="clear: both"></div>

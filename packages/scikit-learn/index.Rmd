@@ -51,7 +51,7 @@ Varoquaux, Jake Vanderplas, Olivier Grisel.
   for readers looking into machine learning.
 - The [documentation of scikit-learn](https://scikit-learn.org) is
   very complete and didactic.
-  
+
 :::
 
 ## Introduction: problem settings
@@ -1718,7 +1718,7 @@ for i, d in enumerate(degrees):
 
     model = make_pipeline(PolynomialFeatures(d), LinearRegression())
     model.fit(x[:, np.newaxis], y)
-    
+
     ax.plot(x_test, model.predict(x_test[:, np.newaxis]), "-b")
     ax.set_xticks([])
     ax.set_yticks([])

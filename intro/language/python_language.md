@@ -2,8 +2,8 @@
 
 # The Python language
 
-**Authors**: *Chris Burns, Christophe Combelles, Emmanuelle Gouillart,
-Gaël Varoquaux*
+**Authors**: _Chris Burns, Christophe Combelles, Emmanuelle Gouillart,
+Gaël Varoquaux_
 
 :::{topic} Python for scientific computing
 We introduce here the Python language. Only the bare minimum
@@ -19,7 +19,7 @@ are also available, such as [Dive into Python 3](https://diveintopython3.net/).
 Python is a **programming language**, as are C, Fortran, BASIC, PHP,
 etc. Some specific features of Python are as follows:
 
-- an *interpreted* (as opposed to *compiled*) language. Contrary to e.g.
+- an _interpreted_ (as opposed to _compiled_) language. Contrary to e.g.
   C or Fortran, one does not compile Python code before executing it. In
   addition, Python can be used **interactively**: many Python
   interpreters are available, from which commands and scripts can be

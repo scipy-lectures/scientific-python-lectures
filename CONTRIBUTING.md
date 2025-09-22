@@ -72,6 +72,7 @@ Build requirements are listed in the
 {download}`requirements file <requirements.txt>`:
 
 ```{literalinclude} requirements.txt
+
 ```
 
 Ensure that you have a [virtual environment](https://docs.python.org/3/library/venv.html) or conda environment
@@ -114,7 +115,7 @@ a Jupyter interface such as [JupyterLite](https://jupyterlite.readthedocs.io).
 Accordingly, we post-process the pages with a script
 `_scripts/process_notebooks.py` to load the pages as text notebooks, and write
 out `.ipynb` files with modified markup that looks better in a Jupyter
-interface.  Some of the authoring advice here is to allow that process to work
+interface. Some of the authoring advice here is to allow that process to work
 smoothly, because the `process_notebooks.py` file reads the input Myst-MD
 format notebooks using [Jupytext](https://jupytext.readthedocs.io) before
 converting to Jupyter `.ipynb` files.
@@ -126,17 +127,17 @@ Use `:::` for
 this](https://jupyterbook.org/en/stable/content/content-blocks.html#markdown-friendly-directives-with)):
 So, for example, prefer:
 
-~~~
+```
 ::: {note}
 
 My note
 
 :::
-~~~
+```
 
 to the more standard Myst markup of:
 
-~~~
+````
 <!-- #region -->
 ``` {note}
 
@@ -144,34 +145,33 @@ My note
 
 ```
 <!-- #endregion -->
-~~~
+````
 
 Note the `region` and `endregion` markup in the second form; this makes more
-sure that Jupytext does not confuse the `{note}` with a code block.  One of the
+sure that Jupytext does not confuse the `{note}` with a code block. One of the
 advantages of the `:::` markup is that you don't need these `#region`
 demarcations.
 
 For the same reason, prefer the `:::` form for other content blocks, such as
-warnings and admonitions.  For example, prefer:
+warnings and admonitions. For example, prefer:
 
-~~~
+```
 ::: {admonition} A custom title
 
 My admonition
 
 :::
-~~~
-
+```
 
 ## Exercises and solutions
 
 We use [sphinx-exercise](https://ebp-sphinx-exercise.readthedocs.io) for the exercises and solutions.
 
-Mark *all* exercises and solutions with [gated
+Mark _all_ exercises and solutions with [gated
 markers](https://ebp-sphinx-exercise.readthedocs.io/en/latest/syntax.html#alternative-gated-syntax),
 like this:
 
-~~~
+```
 ::: {exercise-start}
 :label: my-exercise-label
 :class: dropdown
@@ -190,7 +190,7 @@ My solution.
 
 ::: {solution-end}
 :::
-~~~
+```
 
 The gated markers (of form `solution-start` and `solution-end` etc) allow you
 to embed code cells in the exercise or solution, because this allows code cells

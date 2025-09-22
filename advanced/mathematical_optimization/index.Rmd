@@ -244,7 +244,7 @@ def get_subplot_n(index):
     elif row == 2:
         subplot_n0 = 4
         subplot_n1 = 5
-        subplot_n2 = 6    
+        subplot_n2 = 6
     elif row == 3:
         subplot_n0 = 7
         subplot_n1 = 8
@@ -509,7 +509,7 @@ plt.yticks([])
 plt.title('A Non-convex Function', fontstyle='italic')
 
 caption_text_1="""
-- $f$ is above all its tangents. 
+- $f$ is above all its tangents.
 - equivalently, for two points $A, B, f(C)$ lies below the segment
 $[f(A), f(B])], \\text{if } A < C < B $
 """
@@ -788,7 +788,7 @@ for epsilon in (0, 1):
         subplot_n0 = 4
         subplot_n1 = 5
         subplot_n2 = 6
-        
+
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -800,7 +800,7 @@ for epsilon in (0, 1):
             horizontalalignment='left',
             fontsize=12,
             wrap=True)
-    else:  
+    else:
         plt.text(-0.3, 1, "Brent’s method on a non-convex function", fontweight='bold', horizontalalignment='left',
             fontsize=12)
         caption_text = "Note that the fact that the optimizer avoided\nthe local minimum is a matter of luck."
@@ -808,7 +808,7 @@ for epsilon in (0, 1):
             horizontalalignment='left',
             fontsize=12,
             wrap=True)
-        
+
     plt.subplot(2, 3, subplot_n1)
 
     # A convex function
@@ -836,12 +836,12 @@ for epsilon in (0, 1):
     plt.plot(all_x[:10], all_y[:10], 'k+', markersize=12, markeredgewidth=2)
     plt.plot(all_x[-1], all_y[-1], 'rx', markersize=12)
     plt.ylim(ymin=-1, ymax=8)
-    
+
     plt.subplot(2, 3, subplot_n2)
     plt.semilogy(np.abs(all_y - all_y[-1]), linewidth=2)
     plt.ylabel('Error on f(x)')
     plt.xlabel('Iteration')
-    
+
 plt.tight_layout()
 ```
 
@@ -898,16 +898,16 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-    
+
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-        
+
     # titles = []
-    
+
     captions = ["A well-conditioned quadratic function.",
                 "An ill-conditioned quadratic function.",
                 "An ill-conditioned non-quadratic function.",
                 "An ill-conditioned very non-quadratic function."]
-        
+
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -931,7 +931,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-    
+
     plt.subplot(2, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1065,18 +1065,18 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-    
+
     row = index+1
-    
+
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-        
+
     # titles = []
-    
+
     captions = ["A well-conditioned quadratic function.",
                 "An ill-conditioned quadratic function.",
                 "An ill-conditioned non-quadratic function.",
                 "An ill-conditioned very non-quadratic function."]
-        
+
     plt.subplot(4, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1100,7 +1100,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-    
+
     plt.subplot(4, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1227,18 +1227,18 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-    
+
     row = index+1
-    
+
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-        
+
     # titles = []
-    
+
     captions = ["A well-conditioned quadratic function.",
                 "An ill-conditioned quadratic function.",
                 "An ill-conditioned non-quadratic function.",
                 "An ill-conditioned very non-quadratic function."]
-        
+
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1262,7 +1262,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-    
+
     plt.subplot(2, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1409,18 +1409,18 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-    
+
     row = index+1
-    
+
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-        
+
     # titles = []
-    
+
     captions = ["A well-conditioned quadratic function.",
                 "An ill-conditioned quadratic function.",
                 "An ill-conditioned non-quadratic function.",
                 "An ill-conditioned very non-quadratic function."]
-        
+
     plt.subplot(3, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1444,7 +1444,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-    
+
     plt.subplot(3, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1605,19 +1605,19 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-    
+
     row = index+1
-    
+
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-        
+
     titles = ["An ill-conditioned quadratic function:",
               "An ill-conditioned non-quadratic function:",
               "An ill-conditioned very non-quadratic function:"]
-    
+
     captions = ["\nAn ill-conditioned quadratic function: On an \nexactly quadratic function, BFGS is not as fast\nas Newton’s method, but still very fast.",
                 "\n\nHere BFGS does better than Newton, as its\nempirical estimate of the curvature is better than\nthat given by the Hessian.",
                 ""]
-        
+
     plt.subplot(3, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1641,7 +1641,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-    
+
     plt.subplot(3, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1777,16 +1777,16 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-    
+
     row = index+1
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-        
+
     titles = ["An ill-conditioned quadratic function:",
              "An ill-conditioned very non-quadratic function:"]
-    
+
     captions = ["Powell’s method isn’t too sensitive to local \nill-conditionning in low dimensions.",
                 ""]
-        
+
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1810,7 +1810,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-    
+
     plt.subplot(2, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1929,17 +1929,17 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-    
+
     row = index+1
 
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-        
+
     titles = ["An ill-conditioned non-quadratic function:",
              "An ill-conditioned very non-quadratic function:"]
-    
+
     captions = ["",
                 ""]
-        
+
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1963,7 +1963,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-    
+
     plt.subplot(2, 3, subplot_n1)
     plt.imshow(
         log_z,
