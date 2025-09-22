@@ -296,7 +296,10 @@ on your data.
 ## Writing faster numerical code
 
 A complete discussion on advanced use of NumPy is found in chapter
-{ref}`advanced_numpy`, or in the article [The NumPy array: a structure
+{ref}`advanced-numpy`, or in the article [The NumPy array: a structure
+.. note::
+
+   The code of this example can be found :ref:`here <sphx_glr_intro_scipy_auto_examples_plot_fftpack.py>`
 for efficient numerical computation](https://hal.inria.fr/inria-00564007/en)
 by van der Walt et al. Here we
 discuss only some commonly encountered tricks to make code faster.
@@ -350,7 +353,7 @@ a = np.zeros(10_000_000)
 Memory access is cheaper when it is grouped: accessing a big array in a
 continuous way is much faster than random access. This implies amongst
 other things that **smaller strides are faster** (see
-{ref}`cache_effects`):
+{ref}`cache-effects`):
 
 ```{python}
 c = np.zeros((5000, 5000), order='C')

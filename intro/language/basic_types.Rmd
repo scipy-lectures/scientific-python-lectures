@@ -322,14 +322,18 @@ s = """Hi,
 what's up?"""
 ```
 
-```{python tags=c("raises-exception")}
+However, if you try to run this code:
+
+```text
 'Hi, what's up?'
 ```
 
+— you will get a syntax error.  (Try it.)  (Why?)
+
 This syntax error can be avoided by enclosing the string in double quotes
 instead of single quotes. Alternatively, one can prepend a backslash to the
-second single quote. Other uses of the backslash are, e.g., the newline character
-`\n` and the tab character `\t`.
+second single quote. Other uses of the backslash are, e.g., the newline
+character `\n` and the tab character `\t`.
 
 ::: {note}
 :class: dropdown

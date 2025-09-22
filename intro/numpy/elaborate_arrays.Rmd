@@ -241,7 +241,7 @@ np.ma.sqrt([1, -1, 2, -2])
 ```
 
 :::{note}
-There are other useful {ref}`array siblings <array_siblings>`
+There are other useful {ref}`array siblings <array-siblings>`
 :::
 
 ______________________________________________________________________

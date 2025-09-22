@@ -188,7 +188,7 @@ The sub-module {mod}`numpy.linalg` implements basic linear algebra, such as
 solving linear systems, singular value decomposition, etc. However, it is
 not guaranteed to be compiled using efficient routines, and thus we
 recommend the use of {mod}`scipy.linalg`, as detailed in section
-{ref}`scipy_linalg`
+{ref}`scipy-linalg`
 
 ::: {exercise-start}
 :label: other-operations-exercise
@@ -640,8 +640,8 @@ CHA: constructing grids -- meshgrid using only newaxis
 -->
 :::{admonition} See also
 
-{ref}`broadcasting_advanced`: discussion of broadcasting in
-the {ref}`advanced_numpy` chapter.
+{ref}`broadcasting-advanced`: discussion of broadcasting in
+the {ref}`advanced-numpy` chapter.
 :::
 
 ## Array shape manipulation
@@ -919,5 +919,5 @@ to learn the ecosystem, you can directly skip to the next chapter:
 
 The remainder of this chapter is not necessary to follow the rest of
 the intro part. But be sure to come back and finish this chapter, as
-well as to do some more {ref}`exercises <numpy_exercises>`.
+well as to do some more {ref}`exercises <numpy-exercises>`.
 :::
