@@ -104,7 +104,7 @@ that can be combined to obtain a scientific computing environment:
 
 :::{admonition} See also
 
-{ref}`chapter on Python language <python_language_chapter>`
+{ref}`chapter on Python language <python-language-chapter>`
 :::
 
 **Core numeric libraries**
@@ -356,7 +356,7 @@ In [3]: %timeit x = 10
 ```
 
 :::{seealso}
-{ref}`Chapter on optimizing code <optimizing_code_chapter>`
+{ref}`Chapter on optimizing code <optimizing-code-chapter>`
 :::
 
 **`%debug`**
@@ -399,7 +399,7 @@ ipdb>
 (where `ipnb` is the debugger prompt).
 
 :::{seealso}
-{ref}`Chapter on debugging <debugging_chapter>`
+{ref}`Chapter on debugging <debugging-chapter>`
 :::
 
 **Aliases**

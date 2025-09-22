@@ -90,7 +90,7 @@ Useful when you have a large program to profile, for example the
 
 :::{note}
 This is a combination of two unsupervised learning techniques, principal
-component analysis ([PCA](httsp://en.wikipedia.org/wiki/Principal_component_analysis)) and
+component analysis ([PCA](https://en.wikipedia.org/wiki/Principal_component_analysis)) and
 independent component analysis
 ([ICA](https://en.wikipedia.org/wiki/Independent_component_analysis)). PCA
 is a technique for dimensionality reduction, i.e. an algorithm to explain
