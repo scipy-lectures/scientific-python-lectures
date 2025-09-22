@@ -139,8 +139,8 @@ that can be combined to obtain a scientific computing environment:
 
 - **pandas, statsmodels, seaborn** for {ref}`statistics <statistics>`
 - **sympy** for {ref}`symbolic computing <sympy>`
-- **scikit-image** for {ref}`image processing <scikit_image>`
-- **scikit-learn** for {ref}`machine learning <scikit-learn_chapter>`
+- **scikit-image** for {ref}`image processing <scikit-image>`
+- **scikit-learn** for {ref}`machine learning <scikit-learn-chapter>`
 
 and many more packages not documented in the Scientific Python Lectures.
 

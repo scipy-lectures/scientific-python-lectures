@@ -35,7 +35,7 @@ arrays.
 :::{admonition} See also
 
 For more advanced image processing and image-specific routines, see the
-tutorial {ref}`scikit_image`, dedicated to the {mod}`skimage` module.
+tutorial {ref}`scikit-image`, dedicated to the {mod}`skimage` module.
 
 :::
 
@@ -422,7 +422,7 @@ Other local non-linear filters: Wiener (`scipy.signal.wiener`), etc.
 :::{admonition} See also
 
 More denoising filters are available in {mod}`skimage.denoising`,
-see the {ref}`scikit_image` tutorial.
+see the {ref}`scikit-image` tutorial.
 :::
 
 ### Mathematical morphology
@@ -704,7 +704,7 @@ segmentation is more accurate.
 :::{admonition} See also
 
 More advanced segmentation algorithms are found in the
-`scikit-image`: see {ref}`scikit_image`.
+`scikit-image`: see {ref}`scikit-image`.
 :::
 
 
@@ -961,7 +961,7 @@ axes[1].plot(np.arange(2, 19, 4), granulo, "ok", ms=8)
 
 More on image-processing:
 
-- The chapter on {ref}`Scikit-image <scikit_image>`
+- The chapter on {ref}`Scikit-image <scikit-image>`
 - Other, more powerful and complete modules:
   [OpenCV](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html) (Python
   bindings), [CellProfiler](https://www.cellprofiler.org),
