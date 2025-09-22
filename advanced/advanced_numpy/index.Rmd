@@ -288,8 +288,10 @@ wav_header['data_id'].shape
 When accessing sub-arrays, the dimensions get added to the end!
 
 :::{note}
+
 There are existing modules such as `wavfile`, `audiolab`,
 etc. for loading sound data...
+
 :::
 
 #### Casting and re-interpretation/views
@@ -350,7 +352,9 @@ y
 ```
 
 :::{note}
+
 Exact rules: see [NumPy documentation](https://numpy.org/doc/stable/reference/ufuncs.html#casting-rules)
+
 :::
 
 ##### Re-interpretation / viewing
@@ -385,7 +389,9 @@ x
 | ``0x01``  |    ``0x02``   | │ |   ``0x03``    |    ``0x04`` |
 
 :::{note}
+
 little-endian: least significant byte is on the *left* in memory
+
 :::
 
 **Option 2: Create a new view of type `uint32`, shorthand `i4`**
@@ -560,10 +566,12 @@ simple, **flexible**
 ##### C and Fortran order
 
 :::{note}
+
 The Python built-in {py:class}`bytes` returns bytes in C-order by default
 which can cause confusion when trying to inspect memory layout. We use
 {meth}`numpy.ndarray.tobytes` with `order=A` instead, which preserves
 the C or F ordering of the bytes in memory.
+
 :::
 
 ```{python}
@@ -637,6 +645,7 @@ y.tobytes('A')
 - `.copy()` creates new arrays in the C order (by default)
 
 :::{note}
+
 **In-place operations with views**
 
 Prior to NumPy version 1.13, in-place operations with views could result in
@@ -648,6 +657,7 @@ guarantee that results are consistent with the non in-place version
 Note however that this may result in the data being copied (as if using
 `a += a.T.copy()`), ultimately resulting in more memory being used than
 might otherwise be expected for in-place operations!
+
 :::
 
 ##### Slicing with integers
@@ -977,13 +987,14 @@ x.shape, y.shape
 x.strides, y.strides
 ```
 
-::: {note} Smaller strides are faster?
+::: {note}
+
+** Are smaller strides faster**
 
 ::: {image} cpu-cacheline.png
 :::
 
 - CPU pulls data from main memory to its cache in blocks
-
 - If many array items consecutively operated on fit in a single block (small stride):
 
   - $\Rightarrow$ fewer transfers needed
@@ -1173,9 +1184,11 @@ NPY_TIMEDELTA, NPY_OBJECT, NPY_STRING, NPY_UNICODE, NPY_VOID
 :::
 
 :::{note}
+
 Most of the boilerplate could be automated by these Cython modules:
 
 <https://github.com/cython/cython/wiki/MarkLodato-CreatingUfuncs>
+
 :::
 
 **Several accepted input types**
@@ -1461,7 +1474,9 @@ x.shape
 ```
 
 :::{note}
+
 A more C-friendly variant of the array interface is also defined.
+
 :::
 
 (array-siblings)=
@@ -1564,8 +1579,10 @@ np.ma.log(np.array([1, 2, -1, -2, 3, -5]))
 ```
 
 :::{note}
+
 Streamlined and more seamless support for dealing with missing data
 in arrays is making its way into NumPy 1.7. Stay tuned!
+
 :::
 
 **Example: Masked statistics**
