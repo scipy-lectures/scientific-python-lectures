@@ -3,7 +3,7 @@ title: "Scientific Python Lectures"
 author: Scientific Python developers
 copyright: "2025"
 logo: images/sp_lectures.png
-email: jarr
+email: matthew.brett@gmail.com
 # >- starts a multiline string, where newlines replaced by spaces, and final
 # newlines are stripped.
 description: >-
@@ -26,6 +26,7 @@ exclude_patterns:
   - data/LICENSE.txt
   - .pytest_cache/*
   - .ipynb_notebooks/*
+  - todo.md
 
 html:
   favicon: images/sp_lectures.png
