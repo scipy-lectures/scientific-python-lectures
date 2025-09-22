@@ -347,6 +347,7 @@ the following data:
 
 ```{python}
 rng = np.random.default_rng(27446968)
+
 measured_time = np.linspace(0, 2 * np.pi, 20)
 function = np.sin(measured_time)
 noise = rng.normal(loc=0, scale=0.1, size=20)
@@ -1091,11 +1092,6 @@ or [SfePy].
 
 ## Fast Fourier transforms: {mod}`scipy.fft`
 
-|                     |                  |
-| ------------------- | ---------------- |
-| {glue:}`signal_fig` | {glue:}`fft_fig` |
-| **Signal**          |  **FFT**         |
-
 The {mod}`scipy.fft` module computes fast Fourier transforms (FFTs)
 and offers utilities to handle them. Some important functions are:
 
@@ -1104,105 +1100,44 @@ and offers utilities to handle them. Some important functions are:
 - {func}`scipy.fft.ifft` to compute the inverse FFT, from frequency
   space to signal space
 
-As an illustration, a (noisy) input signal (`sig`), and its FFT:
+As an illustration, a example (noisy) input signal (`sig`), and its FFT:
 
 ```{python}
-# Seed the random number generator
-rng = np.random.default_rng(27446968)
-
-time_step = 0.02
-period = 5.0
-
-time_vec = np.arange(0, 20, time_step)
-sig = np.sin(2 * np.pi / period * time_vec) + 0.5 * rng.normal(size=time_vec.size)
-```
-
-```{python}
+# Time.
+dt = 0.02  # Time step.
+t = np.arange(0, 20, dt)  # Time vector.
+# An example noisy signal over time.
+sig = np.sin(2 * np.pi / 5.0 * t) + 0.5 * rng.normal(size=t.size)
+# FFT of signal.
 sig_fft = sp.fft.fft(sig)
-freqs = sp.fft.fftfreq(sig.size, d=time_step)
+# Corresponding frequencies.
+freqs = sp.fft.fftfreq(sig.size, d=dt)
 ```
 
-```{python tags=c("hide-input")}
-plt.figure(figsize=(6, 5))
-# Plot the signal
-plt.plot(time_vec, sig, label="Original signal");
+::: {list-table}
 
-# Store the figure for use in built book pages.
-# This is housekeeping for the pages; it does not affect the display.
-from myst_nb import glue
-glue("signal_fig", plt.gcf(), display=False)
-```
+* - Signal
+  - FFT
+* - ::: {glue} original_signal_fig
+    :doc: scipy_examples.Rmd
+    :::
+  - ::: {glue} fft_of_signal_fig
+    :doc: scipy_examples.Rmd
+    :::
 
-Compute the power:
+:::
 
-```{python}
-# The FFT of the signal
-sig_fft = sp.fft.fft(sig)
+The peak signal frequency can be found with ``freqs[power.argmax()]``.
 
-# And the power (sig_fft is of complex dtype)
-power = np.abs(sig_fft) ** 2
+The code of this example and the figures above can be found in the [Scipy FFT
+example](scipy-fft-example).
 
-# The corresponding frequencies
-sample_freq = sp.fft.fftfreq(sig.size, d=time_step)
-```
+Setting the Fourier component above this frequency to zero and inverting the
+FFT with :func:`scipy.fft.ifft`, gives a filtered signal (see the
+[example](scipy-fft-example) for detail).
 
-See below for a plot of power and frequency.
-
-As the signal comes from a real-valued function, the Fourier transform is
-symmetric.
-
-The peak signal frequency can be found with `freqs[power.argmax()]`
-
-```{python}
-# Find the peak frequency: we can focus on only the positive frequencies
-pos_mask = np.where(sample_freq > 0)
-freqs = sample_freq[pos_mask]
-peak_freq = freqs[power[pos_mask].argmax()]
-
-# Check that it does indeed correspond to the frequency that we generate
-# the signal with
-np.allclose(peak_freq, 1.0 / period)
-```
-
-```{python tags=c("hide-input")}
-plt.figure(figsize=(6, 5))
-# Plot the FFT power
-plt.plot(sample_freq, power)
-plt.xlabel("Frequency [Hz]")
-plt.ylabel("plower");
-# An inner plot to show the peak frequency
-axes = plt.axes((0.55, 0.3, 0.3, 0.5))
-plt.title("Peak frequency")
-plt.plot(freqs[:8], power[pos_mask][:8])
-plt.setp(axes, yticks=[]);
-# Store figure for use in building book pages.
-glue("fft_fig", plt.gcf(), display=False)
-```
-
-Setting the Fourier component above this frequency to zero and inverting
-the FFT with {func}`scipy.fft.ifft`, gives a filtered signal.
-
-```{python}
-high_freq_fft = sig_fft.copy()
-high_freq_fft[np.abs(sample_freq) > peak_freq] = 0
-filtered_sig = sp.fft.ifft(high_freq_fft)
-```
-
-```{python tags=c("hide-input")}
-plt.figure(figsize=(6, 5))
-plt.plot(time_vec, sig, label="Original signal")
-plt.plot(time_vec, filtered_sig, linewidth=3, label="Filtered signal")
-plt.xlabel("Time [s]")
-plt.ylabel("Amplitude")
-plt.legend(loc="best");
-```
-
-::: {note}
-
-This is actually a bad way of creating a filter: such brutal cut-off in
-frequency space does not control distortion on the signal.
-
-Filters should be created using the SciPy filter design code
+::: {glue} fft_filter_fig
+:doc: scipy_examples.Rmd
 :::
 
 :::{admonition} `numpy.fft`
