@@ -36,36 +36,27 @@ take care to respect indentation rules!).
 The extension for Python files is `.py`. Write or copy-and-paste the
 following lines in a file called `test.py`
 
-```{python}
-message = "Hello how are you?"
-for word in message.split():
-    print(word)
-```
+::: {literalinclude} test.py
+:language: python
+:::
 
 ::: {note}
 :class: dropdown
 
-Let us now execute the script interactively, that is inside the
-Ipython interpreter. This is maybe the most common use of scripts in
+Let us now execute the script interactively, that is inside the Jupyter or
+IPython interpreter. This is maybe the most common use of scripts in
 scientific computing.
 :::
 
-:::{note}
-in Ipython, the syntax to execute a script is `%run script.py`. For
-example,
-:::
+In Jupyter or IPython, the syntax to execute a script is `%run script.py`. For
+example:
 
-```python
+```{python}
+# %run test.py
+```
 
-
-%run test.py
-Hello
-how
-are
-you?
-
+```{python}
 message
-Out[2]: 'Hello how are you?'
 ```
 
 The script has been executed. Moreover the variables defined in the
@@ -95,23 +86,20 @@ you?
 :::: {tip}
 Standalone scripts may also take command-line arguments
 
-In `file.py`:
-
-```{python}
-import sys
-print(sys.argv)
-```
+::: {literalinclude} my_file.py
+:language: python
+:::
 
 ```bash
-$ python file.py test arguments
+$ python my_file.py test arguments
 ['file.py', 'test', 'arguments']
 ```
 ::::
 
 ::: {warning}
 
-Don't implement option parsing yourself. Use a dedicated module such as
-{mod}`argparse`.
+Don't implement option parsing like this yourself. Use a dedicated module such
+as {mod}`argparse`.
 
 :::
 
@@ -160,18 +148,16 @@ from os import *
 
 :::
 
-::: {note}
-:class: dropdown
-
-Modules are thus a good way to organize code in a hierarchical way. Actually,
+Modules are a good way to organize code in a hierarchical way. Actually,
 all the scientific computing tools we are going to use are modules:
 
 ```{python}
-import numpy as np # data arrays
+import numpy as np # Module for data arrays
+import scipy as sp  # Module for scientific computing
+
+# Use Numpy
 np.linspace(0, 10, 6)
-import scipy as sp  # scientific computing
 ```
-:::
 
 ## Creating modules
 
@@ -186,8 +172,9 @@ to create our own *modules*.
 
 Let us create a module `demo` contained in the file `demo.py`:
 
-> ```{literalinclude} demo.py
-> ```
+::: {literalinclude} demo.py
+:language: python
+:::
 
 ::: {note}
 :class: dropdown
@@ -199,24 +186,36 @@ the function `print_a`, we are rather going to **import it as a module**.
 The syntax is as follows.
 :::
 
-```python
+```{python}
 import demo
 
 demo.print_a()
-a
+```
 
+```{python}
 demo.print_b()
-b
 ```
 
 Importing the module gives access to its objects, using the
 `module.object` syntax. Don't forget to put the module's name before the
 object's name, otherwise Python won't recognize the instruction.
 
-Introspection
+## Introspection
 
-```python
+```{python}
+help(demo)
+```
+
+You can get the same output (in Jupyter / IPython) from:
+
+```ipython
 demo?
+```
+
+An example session:
+
+```ipython
+In [4]: demo?
 Type:               module
 Base Class: <type 'module'>
 String Form:        <module 'demo' from 'demo.py'>
@@ -226,15 +225,15 @@ Docstring:
     A demo module.
 
 
-who
+In [5]: who
 demo
 
-whos
+In [6]: whos
 Variable   Type      Data/Info
 ------------------------------
 demo       module    <module 'demo' from 'demo.py'>
 
-dir(demo)
+In [7]: dir(demo)
 Out[7]:
 ['__builtins__',
 '__doc__',
@@ -246,25 +245,24 @@ Out[7]:
 'print_a',
 'print_b']
 
-
-demo.<TAB>
+In [8]: demo.<TAB>
 demo.c        demo.print_a  demo.py
 demo.d        demo.print_b  demo.pyc
 ```
 
 Importing objects from modules into the main namespace
 
-```python
-from demo import print_a, print_b
+```ipython
+In [9]: from demo import print_a, print_b
 
-whos
+In [10]: whos
 Variable   Type        Data/Info
 --------------------------------
 demo       module      <module 'demo' from 'demo.py'>
 print_a    function    <function print_a at 0xb7421534>
 print_b    function    <function print_b at 0xb74214c4>
 
-print_a()
+In [11]: print_a()
 a
 ```
 
@@ -272,14 +270,14 @@ a
 
 **Module caching**
 
-> Modules are cached: if you modify `demo.py` and re-import it in the
-> old session, you will get the old one.
+Modules are cached: if you modify `demo.py` and re-import it in the
+old session, you will get the old one.
 
-Solution:
+**Solution**
 
-> ```ipython
-> In [10]: importlib.reload(demo)
-> ```
+```ipython
+In [10]: importlib.reload(demo)
+```
 
 :::
 
@@ -296,28 +294,25 @@ module is being run directly.
 
 File `demo2.py`:
 
-> ```{literalinclude} demo2.py
-> ```
+::: {literalinclude} demo2.py
+:::
 
 Importing it:
 
-```python
-
-
+```{python}
 import demo2
-b
+```
 
+Importing it again in the same session:
+
+```{python}
 import demo2
 ```
 
 Running it:
 
-```python
-
-
-%run demo2
-b
-a
+```{python}
+# %run demo2
 ```
 
 ## Scripts or modules? How to organize your code
@@ -416,32 +411,21 @@ _fourier.py  interpolation.py   meson.build       _ni_support.py     utils/
 fourier.py   LICENSE.txt        _morphology.py    setup.py
 ```
 
-From IPython:
+From Jupyter / IPython:
 
-```python
-
-
+```{python}
 import scipy as sp
 
 sp.__file__
+```
 
+```{python}
 sp.version.version
+```
 
-sp.ndimage.morphology.binary_dilation?
-Signature:
-sp.ndimage.morphology.binary_dilation(
-    input,
-    structure=None,
-    iterations=1,
-    mask=None,
-    output=None,
-    border_value=0,
-    origin=0,
-    brute_force=False,
-)
-Docstring:
-Multidimensional binary dilation with the given structuring element.
-...
+```{python}
+# Also available as sp.ndimage.binary_dilation?
+help(sp.ndimage.binary_dilation)
 ```
 
 ## Good practices
@@ -482,23 +466,22 @@ Multidimensional binary dilation with the given structuring element.
 - **Style guidelines**
 
   **Long lines**: you should not write very long lines that span over more
-  than (e.g.) 80 characters. Long lines can be broken with the `\`
-  character
+  than (e.g.) 80 characters. Long lines can be broken with the `\` character
 
-```{python}
-long_line = "Here is a very very long line \
-that we break in two parts."
-```
+  ```python
+  long_line = "Here is a very very long line \
+  that we break in two parts."
+  ```
 
   **Spaces**
 
   Write well-spaced code: put whitespaces after commas, around arithmetic
   operators, etc.:
 
-```{python}
-a = 1 # yes
-a=1 # too cramped
-```
+  ```python
+  a = 1 # yes
+  a=1 # too cramped
+  ```
 
   A certain number of rules
   for writing "beautiful" code (and more importantly using the same

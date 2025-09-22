@@ -313,25 +313,19 @@ variable_args('one', 'two', x=1, y=2, z=3)
 Documentation about what the function does and its parameters. General
 convention:
 
-```python
-
-
+```{python}
 def funcname(params):
-   ....:     """Concise one-line sentence describing the function.
-   ....:
-   ....:     Extended summary which can contain multiple paragraphs.
-   ....:     """
-   ....:     # function body
-   ....:     pass
-   ....:
+    """Concise one-line sentence describing the function.
 
-funcname?
-Signature: funcname(params)
-Docstring:
-Concise one-line sentence describing the function.
-Extended summary which can contain multiple paragraphs.
-File:      ~/src/scientific-python-lectures/<ipython-input-13-64e466df6d64>
-Type:      function
+    Extended summary which can contain multiple paragraphs.
+    """
+    # function body
+    pass
+```
+
+```{python}
+# Also assessible in Jupyter / IPython with "funcname?"
+help(funcname)
 ```
 
 :::{Note}
