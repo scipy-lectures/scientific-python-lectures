@@ -60,8 +60,8 @@ import matplotlib.pyplot as plt
 > - how to locate an element
 > - how to interpret an element
 
-```{image} threefundamental.png
-```
+::: {image} threefundamental.png
+:::
 
 ```c
 typedef struct PyArrayObject {
@@ -979,8 +979,8 @@ x.strides, y.strides
 
 ::: {note} Smaller strides are faster?
 
-```{image} cpu-cacheline.png
-```
+::: {image} cpu-cacheline.png
+:::
 
 - CPU pulls data from main memory to its cache in blocks
 
@@ -1001,8 +1001,8 @@ x.strides, y.strides
 
 ### Findings in dissection
 
-```{image} threefundamental.png
-```
+::: {image} threefundamental.png
+:::
 
 - *memory block*: may be shared, `.base`, `.data`
 - *data type descriptor*: structured data, sub-arrays, byte order,
@@ -1169,8 +1169,8 @@ NPY_TIMEDELTA, NPY_OBJECT, NPY_STRING, NPY_UNICODE, NPY_VOID
 :language: python
 ```
 
-```{image} mandelbrot.png
-```
+::: {image} mandelbrot.png
+:::
 
 :::{note}
 Most of the boilerplate could be automated by these Cython modules:
@@ -1416,11 +1416,11 @@ x[:, :, 1] = 255
 img.save("test_recolored.png")
 ```
 
-```{image} test_red.png
-```
+::: {image} test_red.png
+:::
 
-```{image} test_recolored.png
-```
+::: {image} test_recolored.png
+:::
 
 ### Array interface protocol
 
