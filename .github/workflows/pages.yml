@@ -27,7 +27,7 @@ jobs:
       - name: Install Python dependencies
         run: |
           python -m pip install --upgrade pip wheel setuptools
-          python -m pip install -r requirements.txt
+          python -m pip install -r build_requirements.txt
 
       - name: "Build HTML"
         run: |
