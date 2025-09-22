@@ -1,5 +1,6 @@
 ---
 jupyter:
+  orphan: true
   jupytext:
     formats: ipynb,Rmd
     text_representation:

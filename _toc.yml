@@ -38,15 +38,16 @@ parts:
         - file: advanced/scipy_sparse/storage_schemes
         - file: advanced/scipy_sparse/solvers
         - file: advanced/scipy_sparse/other_packages
+      - file: advanced/image_processing/index
       - file: advanced/mathematical_optimization/index
       - file: advanced/interfacing_with_c/interfacing_with_c
   - caption: Packages and applications
     chapters:
+      - file: packages/index
       - file: packages/statistics/index
       - file: packages/sympy
       - file: packages/scikit-image/index
       - file: packages/scikit-learn/index
   - caption: About the Scientific Python Lectures
     chapters:
-      - file: about.md
-      - file: AUTHORS.md
+      - file: preface.md

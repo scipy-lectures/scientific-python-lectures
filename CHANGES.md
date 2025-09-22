@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # What's new
 
 ## Release 2024.1 (April 2024)

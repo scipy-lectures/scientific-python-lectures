@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 # Contributing
 
 The Scientific Python Lectures are a community-based effort and require
@@ -37,11 +41,7 @@ Design choices:
 
 The directory `guide` contains instructions on how to contribute:
 
-:::{topic} **Example chapter**
-
 [Contribution guide](guide)
-
-:::
 
 ## Building instructions
 

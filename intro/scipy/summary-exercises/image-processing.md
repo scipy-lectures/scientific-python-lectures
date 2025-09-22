@@ -1,3 +1,7 @@
+---
+orphan: true
+---
+
 (summary-exercise-image-processing)=
 
 # Image processing application: counting bubbles and unmolten grains

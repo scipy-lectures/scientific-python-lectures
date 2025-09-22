@@ -1,5 +1,6 @@
 ---
 jupyter:
+  orphan: true
   jupytext:
     formats: ipynb,Rmd
     text_representation:
@@ -109,7 +110,8 @@ It can also span on multiple paragraphs
 
 **We do not check figures in the repository**.
 
-Any figure must be generated with code in some notebook.
+Any figure must be generated with code in some notebook built during the book
+build.
 
 ## Using Markup
 

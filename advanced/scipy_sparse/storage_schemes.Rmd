@@ -15,15 +15,18 @@ jupyter:
 
 # Storage Schemes
 
+## Sparse Array Classes
+
 - There are seven sparse array types in scipy.sparse:
 
-  1. csr_array: Compressed Sparse Row format
-  2. csc_array: Compressed Sparse Column format
-  3. bsr_array: Block Sparse Row format
-  4. lil_array: List of Lists format
-  5. dok_array: Dictionary of Keys format
-  6. coo_array: COOrdinate format (aka IJV, triplet format)
-  7. dia_array: DIAgonal format
+  1. [csr_array](csr_array): Compressed Sparse Row format
+  2. [csc_array](csc_array): Compressed Sparse Column format
+  3. [bsr_array](csc_array): Block Sparse Row format
+  4. [lil_array](csc_array): List of Lists format
+  5. [dok_array](dok_array): Dictionary of Keys format
+  6. [coo_array](coo_array): COOrdinate format (aka IJV,
+     triplet format)
+  7. [dia_array](dia_array): DIAgonal format
 
 - each suitable for some tasks
 
@@ -63,16 +66,6 @@ import matplotlib.pyplot as plt
   - `mtx.size` - the number of nonzeros (same as self.getnnz())
   - `mtx.shape` - the number of rows and columns (tuple)
 - data and indices usually stored in 1D NumPy arrays
-
-## Sparse Array Classes
-
-* [dia](dia_array)
-* [lil](lil_array)
-* [dok](dok_array)
-* [coo](coo_array)
-* [csr](csr_array)
-* [csc](csc_array)
-* [bsr](bsr_array)
 
 ## Summary
 
