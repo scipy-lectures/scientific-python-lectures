@@ -1,6 +1,6 @@
 import numpy as np
 
-data = np.loadtxt("../../../data/populations.txt")
+data = np.loadtxt("../data/populations.txt")
 year, hares, lynxes, carrots = data.T
 populations = data[:, 1:]
 

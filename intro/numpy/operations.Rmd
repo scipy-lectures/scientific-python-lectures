@@ -6,19 +6,19 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.3
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
     name: python3
 ---
 
+# Numerical operations on arrays
+
 ```{python tags=c("hide-input")}
 import numpy as np
 import matplotlib.pyplot as plt
 ```
-
-# Numerical operations on arrays
 
 ## Elementwise operations
 
@@ -32,7 +32,7 @@ a + 1
 ```
 
 ```{python}
-2**a
+2 ** a
 ```
 
 All arithmetic operates elementwise:
@@ -189,7 +189,6 @@ solving linear systems, singular value decomposition, etc. However, it is
 not guaranteed to be compiled using efficient routines, and thus we
 recommend the use of {mod}`scipy.linalg`, as detailed in section
 {ref}`scipy_linalg`
-:::
 
 ::: {exercise-start}
 :label: other-operations-exercise
@@ -389,33 +388,99 @@ plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
 plt.tight_layout() # provide sufficient space for labels
 ```
 
-We find a well-known result in physics: the RMS distance grows as the
-square root of the time!
+We find a well-known result in physics: the Root Mean Square (RMS) distance
+grows as the square root of the time!
 
-<!---
-arithmetic: sum/prod/mean/std
--->
-<!---
-extrema: min/max
--->
-<!---
-logical: all/any
--->
-<!---
-the axis argument
--->
-<!---
-EXE: verify if all elements in an array are equal to 1
--->
-<!---
-EXE: verify if any elements in an array are equal to 1
--->
-<!---
-EXE: load data with loadtxt from a file, and compute its basic statistics
--->
-<!---
-CHA: implement mean and std using only sum()
--->
+## Interim summary and exercises
+
+| Operation type | Numpy functions              |
+| -------------- | ---------------------------- |
+| arithmetic     | `sum`, `prod`, `mean`, `std` |
+| Extrema        | `min`, `max`                 |
+| logical        | `all`, `any`                 |
+
+Also, recall the `axis` argument to select the dimension over which an operation will be applied:
+
+```{python}
+arr = np.array([[99, 12], [11, 2]])
+arr
+```
+
+```{python}
+# Without axis=, operation applied over whole (flatted, 1D) array.
+np.min(arr)
+```
+
+```{python}
+# Operate along first axis (rows).
+np.min(arr, axis=0)
+```
+
+```{python}
+# Operate along second axis (columns).
+np.min(arr, axis=1)
+```
+
+
+::: {exercise-start}
+:label: any-all-ex
+:class: dropdown
+:::
+
+We load an array from a text file:
+
+```{python}
+an_array = np.loadtxt('data/an_array.txt')
+```
+
+1. Verify if all elements in `an array` are equal to 1:
+2. Verify if any elements in an array are equal to 1
+3. Compute mean and standard deviation.
+4. Challenge: write a function `my_std` that computes the standard deviation
+   of the elements in the array, where you are only allowed to use `np.sum`
+   from Numpy in your function.  Check your function returns a value close to that from `np.std` (use `np.allclose` for that check).
+
+::: {exercise-end}
+:::
+
+::: {solution-start} any-all-ex
+:class: dropdown
+:::
+
+```{python}
+# 1. Verify if all elements in `an array` are equal to 1:
+np.all(an_array == 1)
+
+# 2. Verify if any elements in an array are equal to 1
+np.any(an_array == 1)
+
+# 3. Compute mean and standard deviation.
+print('Mean', np.mean(an_array))
+print('STD', np.std(an_array))
+```
+
+```{python}
+# 4. Challenge: write a function `my_std` that computes the standard deviation
+# of the elements in the array, where you are only allowed to use `np.sum` from
+# Numpy in your function.
+
+def my_std(a):
+    n = a.size
+    m = np.sum(a) / n
+    return np.sqrt(np.sum((a - m) ** 2) / n)
+
+# Check we get the same answers from our function as for Numpy.
+assert np.allclose(my_std(an_array), np.std(an_array))
+assert np.allclose(my_std(an_array.ravel()), np.std(an_array))
+
+rng = np.random.default_rng()
+for i in range(10):
+    another_array = rng.uniform(size=(10, 4))
+    assert np.allclose(my_std(another_array), np.std(another_array))
+```
+
+::: {solution-end}
+:::
 
 (broadcasting)=
 
@@ -802,6 +867,7 @@ XXX: need a frame for summaries
 * Fancy indexing: ``a[a > 3]``, ``a[[2, 3]]``
 * Sorting data: ``.sort()``, ``np.sort``, ``np.argsort``, ``np.argmax``
 -->
+
 ::: {exercise-start}
 :label: sorting-exercise
 :class: dropdown

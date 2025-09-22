@@ -200,7 +200,7 @@ data3 = np.load('pop.npy')
 :class: green
 
 Write a Python script that loads data from {download}`populations.txt
-<../../data/populations.txt>`:: and drop the last column and the first
+<data/populations.txt>`:: and drop the last column and the first
 5 rows. Save the smaller dataset to `pop2.txt`.
 :::
 

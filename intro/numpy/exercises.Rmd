@@ -13,22 +13,24 @@ jupyter:
     name: python3
 ---
 
-```{python tags=c("hide-input")}
-import numpy as np
-import matplotlib.pyplot as plt
-```
 (numpy-exercises)=
 
 # Some exercises
 
-## Array manipulations
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+```
 
-### Form the 2-D array (without typing it in explicitly):
+## Array manipulations
 
 ::: {exercise-start}
 :label: array-manipulation
 :class: dropdown
 :::
+
+**Form the 2-D array (without typing it in explicitly)**
+
 
 ```python
 [[1,  6, 11],
@@ -40,7 +42,7 @@ import matplotlib.pyplot as plt
 
 and generate a new array containing its 2nd and 4th rows.
 
-### Divide each column of the array:
+**Divide each column of the array**
 
 ```{python}
 import numpy as np
@@ -50,9 +52,9 @@ a = np.arange(25).reshape(5, 5)
 elementwise with the array `b = np.array([1., 5, 10, 15, 20])`.
 (Hint: `np.newaxis`).
 
-## Harder one, random numbers
+**Harder one, random numbers**
 
-Harder one: Generate a 10 x 3 array of random numbers (in range \[0,1\]). For each row, pick the number closest to 0.5.
+Generate a 10 x 3 array of random numbers (in range \[0,1\]). For each row, pick the number closest to 0.5.
 
 - Use `abs` and `argmin` to find the column `j` closest for
   each row.
@@ -94,7 +96,7 @@ face = sp.datasets.face(gray=True)  # 2D grayscale image
 Here are a few images we will be able to obtain with our manipulations:
 use different colormaps, crop the image, change some parts of the image.
 
-[](!images/faces.png)
+![](images/faces.png)
 
 Let's use the `imshow` function of matplotlib to display the image.
 
