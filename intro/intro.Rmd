@@ -146,9 +146,9 @@ and many more packages not documented in the Scientific Python Lectures.
 
 :::{admonition} See also
 
-{ref}`chapters on advanced topics <advanced_topics_part>`
+{ref}`chapters on advanced topics <advanced-topics-part>`
 
-{ref}`chapters on packages and applications <applications_part>`
+{ref}`chapters on packages and applications <applications-part>`
 :::
 
 {{ clear_floats }}

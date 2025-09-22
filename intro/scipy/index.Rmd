@@ -710,7 +710,7 @@ This barely scratches the surface of SciPy's optimization features, which
 include mixed integer linear programming, constrained nonlinear programming,
 and the solution of assignment problems. For much more information, see the
 documentation of {mod}`scipy.optimize` and the advanced chapter
-{ref}`mathematical_optimization`.
+{ref}`mathematical-optimization`.
 
 ::: {exercise-start}
 :label: scipy-2d-minimization-ex
@@ -1214,7 +1214,7 @@ one should be preferred, as it uses more efficient underlying implementations.
 
 **Fully worked examples:**
 
-- [Crude periodicity finding](eg-perdiodicity-finder)
+- [Crude periodicity finding](eg-periodicity-finder)
 - [Image blur with FFT](eg-image-blur)
 
 
@@ -1378,7 +1378,7 @@ Notice how on the side of the window the resampling is less accurate
 and has a rippling effect.
 
 This resampling is different from the {ref}`interpolation
-<intro_scipy_interpolate>` provided by {mod}`scipy.interpolate` as it
+<intro-scipy-interpolate>` provided by {mod}`scipy.interpolate` as it
 only applies to regularly sampled data.
 :::
 
@@ -1479,7 +1479,7 @@ glue('psd_fig', plt.gcf())
 
 ## Image manipulation: {mod}`scipy.ndimage`
 
-See [Scipy image processing](scioy-image-processing)
+See [Scipy image processing](scipy-image-processing)
 
 
 ## Summary exercises on scientific computing
@@ -1497,8 +1497,8 @@ invited to try these exercises.
 
 **References to go further**
 
-- Some chapters of the [advanced](advanced_topics_part) and the
-  [packages and applications](applications_part) parts of the SciPy
+- Some chapters of the [advanced](advanced-topics-part) and the
+  [packages and applications](applications-part) parts of the SciPy
   lectures.
 - The [SciPy cookbook](https://scipy-cookbook.readthedocs.io)
 

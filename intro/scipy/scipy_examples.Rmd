@@ -493,11 +493,9 @@ artifact.
 
 (eg-periodicity-finder)=
 
-### periodicity_finder
+### Crude periodicity finding
 
 <!--- plot_periodicity_finder -->
-
-Crude periodicity finding
 
 Discover the periods in evolution of animal populations
 (:download:`data/populations.txt`)

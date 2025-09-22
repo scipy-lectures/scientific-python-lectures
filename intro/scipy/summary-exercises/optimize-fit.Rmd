@@ -17,7 +17,7 @@ jupyter:
 
 # Non linear least squares curve fitting: application to point extraction in topographical lidar data
 
-The goal of this exercise is to fit a model to some data. The data used in this tutorial are lidar data and are described in details in the following introductory paragraph. If you're impatient and want to practice now, please skip it and go directly to {ref}`first_step`.
+The goal of this exercise is to fit a model to some data. The data used in this tutorial are lidar data and are described in details in the following introductory paragraph. If you're impatient and want to practice now, please skip it and go directly to {ref}`opt-fit-first-step`.
 
 ## Introduction
 
@@ -51,7 +51,7 @@ the contribution of a target hit by the laser beam.
 Therefore, we use the {mod}`scipy.optimize` module to fit a waveform to one or
 a sum of Gaussian functions.
 
-(first-step)=
+(opt-fit-first-step)=
 
 ## Loading and visualization
 
