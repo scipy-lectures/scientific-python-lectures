@@ -1,6 +1,4 @@
----
-title: "About the Scientific Python Lecture notes"
----
+# About the Scientific Python Lecture notes
 
 Release: {{ release }}
 
