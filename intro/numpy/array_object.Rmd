@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -91,11 +91,11 @@ efficiency vs. Python lists
 -->
 ### NumPy Reference documentation
 
-#### On the web
+**On the web**:
 
 <https://numpy.org/doc/>
 
-#### Interactive help:
+**Interactive help:**
 
 ```ipython
 In [5]: np.array?
@@ -355,9 +355,6 @@ f.dtype     # <--- strings containing max. 7 letters
 .. XXX: mention: astype
 -->
 
-
-Basic visualization
--------------------
 
 <!---
 XXX: mention: astype
