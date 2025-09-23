@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -105,9 +105,45 @@ for element in a:
     print(1. / element)
 ```
 
+<!-- #region -->
 ## Conditional Expressions
 
 
+
+:`if <OBJECT>`: 
+
+Evaluates to `False` for:
+
+* any number equal to zero (0, 0.0, 0+0j)
+
+* an empty container (list, tuple, set, dictionary, …)
+
+* `False`, `None`
+
+Evaluates to `True` for:
+
+* everything else
+<!-- #endregion -->
+
+```{python}
+a = 10
+
+if a:
+    print("Evaluated to `True`")
+else:
+    print('Evaluated to `False')
+```
+
+```{python}
+a = []
+
+if a:
+    print("Evaluated to `True`")
+else:
+    print('Evaluated to `False')
+```
+
+<!-- #region -->
 :``a == b``:
 
   Tests equality, with logics::
@@ -144,14 +180,6 @@ for element in a:
 
   If ``b`` is a dictionary, this tests that ``a`` is a key of ``b``.
 
-Advanced iteration
--------------------------
-
-Iterate over any *sequence*
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You can iterate over any sequence (string, list, keys in a dictionary, lines in
-a file, ...)::
 
 ## Advanced iteration
 
@@ -159,6 +187,7 @@ a file, ...)::
 
 You can iterate over any sequence (string, list, keys in a dictionary, lines in
 a file, ...):
+<!-- #endregion -->
 
 ```{python}
 vowels = 'aeiouy'
