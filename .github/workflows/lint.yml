@@ -27,7 +27,7 @@ jobs:
       - name: Install packages
         run: |
           pip install --upgrade pip wheel setuptools
-          pip install -r buid_requirements.txt
+          pip install -r build_requirements.txt
           pip list
 
       - name: Lint
