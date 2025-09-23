@@ -131,7 +131,7 @@ def get_admonition_lines(nb_text, nb_path):
         node0 = following[0] if following else None
         # There can be a system_message as next node, in which case the correct
         # line is in the 'line' attribute.
-        last_line = node0.get('line', node0.line) - 2 if node0 else n_lines - 1
+        last_line = node0.get("line", node0.line) - 2 if node0 else n_lines - 1
         for end_line in range(last_line, start_line + 1, -1):
             if _END_DIV_RE.match(lines[end_line]):
                 break
@@ -216,8 +216,9 @@ def load_process_nb(nb_path, fmt="myst", url=None):
     nbt1 = _EX_SOL_MARKER.sub(_replace_markers, nb_text)
     nbt2 = _SOL_MARKED.sub(f"\n**See the {page_link} for solution**\n\n", nbt1)
     nbt3 = process_admonitions(nbt2, nb_path)
-    nb = jupytext.reads(nbt3, fmt={"format_name": "rmarkdown", "extension":
-                                   nb_path.suffix})
+    nb = jupytext.reads(
+        nbt3, fmt={"format_name": "rmarkdown", "extension": nb_path.suffix}
+    )
     return process_labels(nb)
 
 
