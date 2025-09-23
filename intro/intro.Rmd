@@ -104,7 +104,7 @@ that can be combined to obtain a scientific computing environment:
 
 :::{admonition} See also
 
-{ref}`chapter on Python language <python-language-chapter>`
+[Chapter on Python language](python-language-chapter)
 :::
 
 **Core numeric libraries**
@@ -146,9 +146,8 @@ and many more packages not documented in the Scientific Python Lectures.
 
 :::{admonition} See also
 
-{ref}`chapters on advanced topics <advanced-topics-part>`
-
-{ref}`chapters on packages and applications <applications-part>`
+- [Chapters on advanced topics](advanced-topics-part)
+- [Chapters on packages and applications](applications-part)
 :::
 
 {{ clear_floats }}
@@ -194,7 +193,7 @@ embedded devices.
 We recommend an interactive work with the [IPython](https://ipython.org) console, or its offspring, the [Jupyter notebook](https://docs.jupyter.org/en/latest/content-quickstart.html). They
 are handy to explore and understand algorithms.
 
-:::{sidebar} Under the notebook
+:::{admonition} Under the notebook
 To execute code, press "shift enter"
 :::
 
