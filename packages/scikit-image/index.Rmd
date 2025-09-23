@@ -721,14 +721,19 @@ for some properties, functions are available as well in
 returned).
 :::
 
-:::{admonition} Exercise (continued)
-:class: green
-
-> - Use the binary image of the coins and background from the previous
->   exercise.
-> - Compute an image of labels for the different coins.
-> - Compute the size and eccentricity of all coins.
+::: {exercise-start}
+:label: ski-coin-labels-ex
+:class: dropdown
 :::
+
+- Use the binary image of the coins and background from the previous
+  exercise.
+- Compute an image of labels for the different coins.
+- Compute the size and eccentricity of all coins.
+
+::: {exercise-end}
+:::
+
 
 ## Data visualization and interaction
 

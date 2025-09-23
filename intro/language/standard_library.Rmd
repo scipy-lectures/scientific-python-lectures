@@ -178,9 +178,9 @@ os.environ['SHELL']
 
 The `shutil` provides useful file operations:
 
-> - `shutil.rmtree`: Recursively delete a directory tree.
-> - `shutil.move`: Recursively move a file or directory to another location.
-> - `shutil.copy`: Copy files or directories.
+- `shutil.rmtree`: Recursively delete a directory tree.
+- `shutil.move`: Recursively move a file or directory to another location.
+- `shutil.copy`: Copy files or directories.
 
 ## `glob`: Pattern matching on files
 

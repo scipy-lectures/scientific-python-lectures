@@ -40,11 +40,11 @@ that their use is as simple as possible.
 ### Iterators
 
 :::{sidebar} Simplicity
-Duplication of effort is wasteful, and replacing the various
-home-grown approaches with a standard feature usually ends up
-making things more readable, and interoperable as well.
 
-> *Guido van Rossum* — [Adding Optional Static Typing to Python]
+> This duplication of effort is wasteful, and replacing the various home-grown
+approaches with a standard feature usually ends up making things more readable,
+and interoperable as well. — *Guido van Rossum* in [Adding Optional Static Typing to Python](https://www.artima.com/weblogs/viewpost.jsp?thread=86641)
+
 :::
 
 An iterator is an object adhering to the [iterator protocol] — basically this
@@ -161,10 +161,11 @@ One *gotcha* should be mentioned: in old Pythons the index variable
 ### Generators
 
 :::{sidebar} Generators
-A generator is a function that produces a
-sequence of results instead of a single value.
 
-> *David Beazley* — [A Curious Course on Coroutines and Concurrency]
+> A generator is a function that produces a sequence of results instead of
+a single value. — *David Beazley* in the slides for [A Curious Course on
+Coroutines and Concurrency](https://www.dabeaz.com/coroutines)
+
 :::
 
 A third way to create iterator objects is to call a generator function.
@@ -394,10 +395,10 @@ from `some_other_generator` until it is exhausted, but also forwards
 ## Decorators
 
 :::{sidebar} Summary
-This amazing feature appeared in the language almost apologetically
-and with concern that it might not be that useful.
 
-> *Bruce Eckel* — An Introduction to Python Decorators
+> This amazing feature appeared in the language almost apologetically and with
+concern that it might not be that useful. — *Bruce Eckel* in [An Introduction to Python Decorators](https://www.artima.com/weblogs/viewpost.jsp?thread=240808)
+
 :::
 
 Since functions and classes are objects, they can be passed

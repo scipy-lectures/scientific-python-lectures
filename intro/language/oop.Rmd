@@ -17,8 +17,8 @@ jupyter:
 
 Python supports object-oriented programming (OOP). The goals of OOP are:
 
-> - to organize the code, and
-> - to reuse code in similar contexts.
+- to organize the code, and
+- to reuse code in similar contexts.
 
 Here is a small example: we create a Student *class*, which is an object
 gathering several custom functions (*methods*) and variables (*attributes*),

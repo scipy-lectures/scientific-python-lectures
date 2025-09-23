@@ -193,7 +193,7 @@ sp.ndimage.binary_opening(a).astype(int)
 :class: dropdown
 :::
 
-> Check that opening amounts to eroding, then dilating.
+Check that opening amounts to eroding, then dilating.
 
 ::: {exercise-end}
 :::

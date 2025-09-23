@@ -84,15 +84,15 @@ pip install -r requirements.txt
 
 Note that you will also need the following system packages:
 
-> - Python C development headers (the `python3-dev` package on Debian, e.g.),
-> - a C compiler like gcc,
-> - [GNU Make](https://www.gnu.org/software/make/),
-> - a full LaTeX distribution such as [TeX Live](https://www.tug.org/texlive/) (`texlive-latex-base`,
->   `texlive-latex-extra`, `texlive-fonts-extra`, and `latexmk`
->   on Debian/Ubuntu),
-> - [dvipng](http://savannah.nongnu.org/projects/dvipng/),
-> - [latexmk](https://personal.psu.edu/~jcc8/software/latexmk/),
-> - [git](https://git-scm.com/).
+- Python C development headers (the `python3-dev` package on Debian, e.g.),
+- a C compiler like gcc,
+- [GNU Make](https://www.gnu.org/software/make/),
+- a full LaTeX distribution such as [TeX Live](https://www.tug.org/texlive/) (`texlive-latex-base`,
+  `texlive-latex-extra`, `texlive-fonts-extra`, and `latexmk`
+  on Debian/Ubuntu),
+- [dvipng](http://savannah.nongnu.org/projects/dvipng/),
+- [latexmk](https://personal.psu.edu/~jcc8/software/latexmk/),
+- [git](https://git-scm.com/).
 
 ### Updating the cover
 
