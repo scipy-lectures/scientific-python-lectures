@@ -183,7 +183,7 @@ else:
 
 ## Advanced iteration
 
-### Iterate over any *sequence*
+**Iterate over any *sequence***
 
 You can iterate over any sequence (string, list, keys in a dictionary, lines in
 a file, ...):
