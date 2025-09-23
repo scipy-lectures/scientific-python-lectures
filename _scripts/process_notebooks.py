@@ -108,10 +108,11 @@ def _replace_markers(m):
     return f"\n<!-- {st_end}-solution -->\n"
 
 
-def get_admonition_lines(nb_text):
+def get_admonition_lines(nb_text, nb_path):
     parser = Parser()
     doc = duc.publish_doctree(
         source=nb_text,
+        source_path=str(nb_path),
         settings_overrides={
             "myst_enable_extensions": MYST_EXTENSIONS,
             "report_level": Reporter.SEVERE_LEVEL,
@@ -123,10 +124,14 @@ def get_admonition_lines(nb_text):
     admonition_lines = []
     for admonition in doc.findall(dun.Admonition):
         start_line = admonition.line - 1
+        # Find all following doctree.
         following = list(
             admonition.findall(include_self=False, descend=False, ascend=True)
         )
-        last_line = following[0].line - 2 if following else n_lines - 1
+        node0 = following[0] if following else None
+        # There can be a system_message as next node, in which case the correct
+        # line is in the 'line' attribute.
+        last_line = node0.get('line', node0.line) - 2 if node0 else n_lines - 1
         for end_line in range(last_line, start_line + 1, -1):
             if _END_DIV_RE.match(lines[end_line]):
                 break
@@ -149,9 +154,9 @@ _ADM_HEADER = re.compile(
 _LABEL = re.compile(r"^\s*\(\s*\S+\s*\)\=\s*\n", flags=re.MULTILINE)
 
 
-def process_admonitions(nb_text):
+def process_admonitions(nb_text, nb_path):
     lines = nb_text.splitlines()
-    for first, last in get_admonition_lines(nb_text):
+    for first, last in get_admonition_lines(nb_text, nb_path):
         m = _ADM_HEADER.match(lines[first])
         if not m:
             raise ValueError(f"Cannot get match from {lines[first]}")
@@ -210,8 +215,9 @@ def load_process_nb(nb_path, fmt="myst", url=None):
     nb_text = nb_path.read_text()
     nbt1 = _EX_SOL_MARKER.sub(_replace_markers, nb_text)
     nbt2 = _SOL_MARKED.sub(f"\n**See the {page_link} for solution**\n\n", nbt1)
-    nbt3 = process_admonitions(nbt2)
-    nb = jupytext.reads(nbt3, fmt={"format_name": "myst", "extension": nb_path.suffix})
+    nbt3 = process_admonitions(nbt2, nb_path)
+    nb = jupytext.reads(nbt3, fmt={"format_name": "rmarkdown", "extension":
+                                   nb_path.suffix})
     return process_labels(nb)
 
 
