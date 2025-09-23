@@ -34,16 +34,16 @@ jobs:
       - name: "Build HTML"
         run: |
           make html
-          echo -n 'lectures.scientific-python.org' > build/html/CNAME
-          touch build/html/.nojekyll
+          echo -n 'lectures.scientific-python.org' > _build/html/CNAME
+          touch _build/html/.nojekyll
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          external_repository: scipy-lectures/lectures.scientific-python.org
+          # external_repository: scipy-lectures/lectures.scientific-python.org
           publish_branch: gh-pages
-          publish_dir: ./build/html
+          publish_dir: ./_build/html
           force_orphan: true
           user_name: "github-actions[bot]"
           user_email: "github-actions[bot]@users.noreply.github.com"
