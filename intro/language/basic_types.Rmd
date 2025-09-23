@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -24,14 +24,14 @@ Python supports the following numerical, scalar types:
 :::
 
 
-Floats:
+**Floats:**
 
 ```{python}
 c = 2.1
 type(c)
 ```
 
-Complex:
+**Complex:**
 
 ```{python}
 a = 1.5 + 0.5j
@@ -46,7 +46,7 @@ a.imag
 type(1. + 0j)
 ```
 
-Booleans:
+**Booleans:**
 
 ```{python}
 3 > 4
@@ -268,10 +268,7 @@ rcolors + colors
 rcolors * 2
 ```
 
-::: {note}
-:class: dropdown
-
-Sort:
+**Sort:**
 
 ```{python}
 sorted(rcolors) # new object
@@ -285,7 +282,6 @@ rcolors
 rcolors.sort()  # in-place
 rcolors
 ```
-:::
 
 :::{admonition} Methods and Object-Oriented Programming
 The notation `rcolors.method()` (e.g. `rcolors.append(3)` and `colors.pop()`) is our
