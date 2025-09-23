@@ -63,10 +63,6 @@ Note the syntax to define a function:
 Mandatory parameters (positional arguments)
 
 ```{python}
-
-```
-
-```{python}
 def double_it(x):
     return x * 2
 ```
@@ -373,7 +369,7 @@ $$
 :class: green
 
 Implement the quicksort algorithm, as defined by wikipedia
-```    
+ 
     function quicksort(array)
         var list less, greater
         if length(array) < 2
@@ -383,6 +379,5 @@ Implement the quicksort algorithm, as defined by wikipedia
             if x < pivot + 1 then append x to less
             else append x to greater
         return concatenate(quicksort(less), pivot, quicksort(greater))
-```
         
 :::
