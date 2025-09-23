@@ -11,6 +11,8 @@ exclude = '''
   | .*/setup.*\.py$
   | .*/demo.py$
   | .*/auto_examples/
+  | _scripts/examples2nb.py$
+  | _scripts/post_parser.py$
   | advanced/mathematical_optimization/examples/plot_gradient_descent\.py$
   | advanced/mathematical_optimization/examples/helper/compare_optimizers\.py$
   | advanced/advanced_numpy/examples/view-colors\.py$

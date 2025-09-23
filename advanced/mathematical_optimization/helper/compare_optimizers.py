@@ -116,7 +116,7 @@ if True:
         for cost_name, cost_function in costs.items():
             # We don't need the derivative or the hessian
             cost_function = cost_function[0]
-            function_bench = {}
+            function_bench = {}  # type: ignore[var-annotated]
             for x0 in starting_points:
                 all_bench = []
                 # Bench gradient-less
