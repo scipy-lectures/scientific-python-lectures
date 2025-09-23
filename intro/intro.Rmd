@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -311,7 +311,7 @@ In [6]: x.<TAB>
           bit_length()       from_bytes()       real
 ```
 
-#### Magic functions**
+#### Magic functions
 
 The console and the notebooks support so-called *magic* functions by prefixing
 a command with the `%` character. For example, the `run` and `whos` functions
@@ -328,9 +328,7 @@ In [1]: cd /tmp
 /tmp
 ```
 
-**`%cpaste`**
-
-`%cpaste` allows you to paste code, especially code from websites which has
+**`%cpaste`** allows you to paste code, especially code from websites which has
 been prefixed with the standard Python prompt (e.g. `>>>`) or with an ipython
 prompt, (e.g. `in [3]`):
 
@@ -345,9 +343,7 @@ Pasting code; enter '--' alone on the line to stop or use Ctrl-D.
 2
 ```
 
-**`%timeit`**
-
-`%timeit` allows you to time the execution of short snippets using the
+**`%timeit`** allows you to time the execution of short snippets using the
 `timeit` module from the standard library:
 
 ```ipython
@@ -359,9 +355,7 @@ In [3]: %timeit x = 10
 {ref}`Chapter on optimizing code <optimizing-code-chapter>`
 :::
 
-**`%debug`**
-
-`%debug` allows you to enter post-mortem debugging. That is to say, if the
+**`%debug`** allows you to enter post-mortem debugging. That is to say, if the
 code you try to execute, raises an exception, using `%debug` will enter the
 debugger at the point where the exception was thrown.  For example, consider the following code.
 
