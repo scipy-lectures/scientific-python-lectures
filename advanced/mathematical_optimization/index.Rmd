@@ -1,202 +1,4 @@
 ---
-substitutions:
-  1d_optim_1: |-
-    ```{image} auto_examples/images/sphx_glr_plot_1d_optim_001.png
-    :scale: 90%
-    ```
-  1d_optim_2: |-
-    ```{image} auto_examples/images/sphx_glr_plot_1d_optim_002.png
-    :scale: 75%
-    ```
-  1d_optim_3: |-
-    ```{image} auto_examples/images/sphx_glr_plot_1d_optim_003.png
-    :scale: 90%
-    ```
-  1d_optim_4: |-
-    ```{image} auto_examples/images/sphx_glr_plot_1d_optim_004.png
-    :scale: 75%
-    ```
-  agradient_gauss_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_005.png
-    :scale: 90%
-    ```
-  agradient_gauss_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_024.png
-    :scale: 75%
-    ```
-  agradient_quad_cond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_002.png
-    :scale: 90%
-    ```
-  agradient_quad_cond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_021.png
-    :scale: 75%
-    ```
-  agradient_quad_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_004.png
-    :scale: 90%
-    ```
-  agradient_quad_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_023.png
-    :scale: 75%
-    ```
-  agradient_rosen_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_006.png
-    :scale: 90%
-    ```
-  agradient_rosen_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_025.png
-    :scale: 75%
-    ```
-  bfgs_gauss_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_013.png
-    :scale: 90%
-    ```
-  bfgs_gauss_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_032.png
-    :scale: 75%
-    ```
-  bfgs_quad_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_012.png
-    :scale: 90%
-    ```
-  bfgs_quad_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_031.png
-    :scale: 75%
-    ```
-  bfgs_rosen_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_014.png
-    :scale: 90%
-    ```
-  bfgs_rosen_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_033.png
-    :scale: 75%
-    ```
-  cg_gauss_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_007.png
-    :scale: 90%
-    ```
-  cg_gauss_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_026.png
-    :scale: 75%
-    ```
-  cg_rosen_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_008.png
-    :scale: 90%
-    ```
-  cg_rosen_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_027.png
-    :scale: 75%
-    ```
-  constraints: |-
-    ```{image} auto_examples/images/sphx_glr_plot_constraints_001.png
-    :target: auto_examples/plot_constraints.html
-    ```
-  convex_1d_1: |-
-    ```{image} auto_examples/images/sphx_glr_plot_convex_001.png
-    ```
-  convex_1d_2: |-
-    ```{image} auto_examples/images/sphx_glr_plot_convex_002.png
-    ```
-  flat_min_0: |-
-    ```{image} auto_examples/images/sphx_glr_plot_exercise_flat_minimum_001.png
-    :scale: 48%
-    :target: auto_examples/plot_exercise_flat_minimum.html
-    ```
-  flat_min_1: |-
-    ```{image} auto_examples/images/sphx_glr_plot_exercise_flat_minimum_002.png
-    :scale: 48%
-    :target: auto_examples/plot_exercise_flat_minimum.html
-    ```
-  gradient_quad_cond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_001.png
-    :scale: 90%
-    ```
-  gradient_quad_cond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_020.png
-    :scale: 75%
-    ```
-  gradient_quad_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_003.png
-    :scale: 90%
-    ```
-  gradient_quad_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_022.png
-    :scale: 75%
-    ```
-  ncg_gauss_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_010.png
-    :scale: 90%
-    ```
-  ncg_gauss_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_029.png
-    :scale: 75%
-    ```
-  ncg_quad_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_009.png
-    :scale: 90%
-    ```
-  ncg_quad_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_028.png
-    :scale: 75%
-    ```
-  ncg_rosen_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_011.png
-    :scale: 90%
-    ```
-  ncg_rosen_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_030.png
-    :scale: 75%
-    ```
-  nm_gauss_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_018.png
-    :scale: 90%
-    ```
-  nm_gauss_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_037.png
-    :scale: 75%
-    ```
-  nm_rosen_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_019.png
-    :scale: 90%
-    ```
-  nm_rosen_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_038.png
-    :scale: 75%
-    ```
-  noisy: |-
-    ```{image} auto_examples/images/sphx_glr_plot_noisy_001.png
-    ```
-  powell_gauss_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_016.png
-    :scale: 90%
-    ```
-  powell_gauss_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_035.png
-    :scale: 75%
-    ```
-  powell_quad_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_015.png
-    :scale: 90%
-    ```
-  powell_quad_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_034.png
-    :scale: 75%
-    ```
-  powell_rosen_icond: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_017.png
-    :scale: 90%
-    ```
-  powell_rosen_icond_conv: |-
-    ```{image} auto_examples/images/sphx_glr_plot_gradient_descent_036.png
-    :scale: 75%
-    ```
-  smooth_1d_1: |-
-    ```{image} auto_examples/images/sphx_glr_plot_smooth_001.png
-    ```
-  smooth_1d_2: |-
-    ```{image} auto_examples/images/sphx_glr_plot_smooth_002.png
-    ```
 jupyter:
   jupytext:
     formats: ipynb,Rmd
@@ -244,7 +46,7 @@ def get_subplot_n(index):
     elif row == 2:
         subplot_n0 = 4
         subplot_n1 = 5
-        subplot_n2 = 6
+        subplot_n2 = 6    
     elif row == 3:
         subplot_n0 = 7
         subplot_n1 = 8
@@ -458,20 +260,6 @@ on which the search is performed.
 
 ### Convex versus non-convex optimization
 
-.. list-table::
-
- * - |convex_1d_1|
-
-   - |convex_1d_2|
-
- * - **A convex function**:
-
-     - `f` is above all its tangents.
-     - equivalently, for two point A, B, f(C) lies below the segment
-       [f(A), f(B])], if A < C < B
-
-   - **A non-convex function**
-
 ```{python tags=c("hide-input")}
 x = np.linspace(-1, 2)
 plt.figure(figsize=(12, 4))
@@ -509,7 +297,7 @@ plt.yticks([])
 plt.title('A Non-convex Function', fontstyle='italic')
 
 caption_text_1="""
-- $f$ is above all its tangents.
+- $f$ is above all its tangents. 
 - equivalently, for two points $A, B, f(C)$ lies below the segment
 $[f(A), f(B])], \\text{if } A < C < B $
 """
@@ -530,26 +318,6 @@ also a global minimum. Then, in some sense, the minimum is unique.
 :::
 
 ### Smooth and non-smooth problems
-
-.. list-table::
-
- * - |smooth_1d_1|
-
-   - |smooth_1d_2|
-
- * - **A smooth function**:
-
-     The gradient is defined everywhere, and is a continuous function
-
-   - **A non-smooth function**
-
-**Optimizing smooth functions is easier**
-(true in the context of *black-box* optimization, otherwise
-[Linear Programming](https://en.wikipedia.org/wiki/Linear_programming)
-is an example of methods which deal very efficiently with
-piece-wise linear functions).
-
-
 
 ```{python tags=c("hide-input")}
 plt.figure(figsize=(8, 4))
@@ -585,21 +353,13 @@ plt.axis("off")
 plt.tight_layout()
 ```
 
+**Optimizing smooth functions is easier**
+(true in the context of *black-box* optimization, otherwise
+[Linear Programming](https://en.wikipedia.org/wiki/Linear_programming)
+is an example of methods which deal very efficiently with
+piece-wise linear functions).
+
 ### Noisy versus exact cost functions
-
-.. list-table::
-
- * - Noisy (blue) and non-noisy (green) functions
-
-   - |noisy|
-
-:::{admonition} Noisy gradients
-Many optimization methods rely on gradients of the objective function.
-If the gradient function is not given, they are computed numerically,
-which induces errors. In such situation, even if the objective
-function is not noisy, a gradient-based optimization may be a noisy
-optimization.
-:::
 
 ```{python tags=c("hide-input")}
 plt.figure(figsize=(10, 4))
@@ -634,19 +394,15 @@ plt.tight_layout()
 plt.show()
 ```
 
+:::{admonition} Noisy gradients
+Many optimization methods rely on gradients of the objective function.
+If the gradient function is not given, they are computed numerically,
+which induces errors. In such situation, even if the objective
+function is not noisy, a gradient-based optimization may be a noisy
+optimization.
+:::
+
 ### Constraints
-
-.. list-table::
-
- * - Optimizations under constraints
-
-     Here:
-
-     :math:`-1 < x_1 < 1`
-
-     :math:`-1 < x_2 < 1`
-
-   - |constraints|
 
 ```{python tags=c("hide-input")}
 plt.figure(figsize=(10, 4))
@@ -744,33 +500,6 @@ x_min
 x_min - 0.5
 ```
 
-.. list-table:: **Brent's method on a quadratic function**: it
-                converges in 3 iterations, as the quadratic
-                approximation is then exact.
-
-   * - |1d_optim_1|
-
-     - |1d_optim_2|
-
-.. list-table:: **Brent's method on a non-convex function**: note that
-                the fact that the optimizer avoided the local minimum
-                is a matter of luck.
-
-   * - |1d_optim_3|
-
-     - |1d_optim_4|
-
-:::{note}
-You can use different solvers using the parameter `method`.
-:::
-
-:::{note}
-{func}`scipy.optimize.minimize_scalar` can also be used for optimization
-constrained to an interval using the parameter `bounds`.
-:::
-
-
-
 ```{python tags=c("hide-input")}
 x = np.linspace(-1, 3, 100)
 x_0 = np.exp(-1)
@@ -788,7 +517,7 @@ for epsilon in (0, 1):
         subplot_n0 = 4
         subplot_n1 = 5
         subplot_n2 = 6
-
+        
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -800,7 +529,7 @@ for epsilon in (0, 1):
             horizontalalignment='left',
             fontsize=12,
             wrap=True)
-    else:
+    else:  
         plt.text(-0.3, 1, "Brent’s method on a non-convex function", fontweight='bold', horizontalalignment='left',
             fontsize=12)
         caption_text = "Note that the fact that the optimizer avoided\nthe local minimum is a matter of luck."
@@ -808,7 +537,7 @@ for epsilon in (0, 1):
             horizontalalignment='left',
             fontsize=12,
             wrap=True)
-
+        
     plt.subplot(2, 3, subplot_n1)
 
     # A convex function
@@ -836,14 +565,25 @@ for epsilon in (0, 1):
     plt.plot(all_x[:10], all_y[:10], 'k+', markersize=12, markeredgewidth=2)
     plt.plot(all_x[-1], all_y[-1], 'rx', markersize=12)
     plt.ylim(ymin=-1, ymax=8)
-
+    
     plt.subplot(2, 3, subplot_n2)
     plt.semilogy(np.abs(all_y - all_y[-1]), linewidth=2)
     plt.ylabel('Error on f(x)')
     plt.xlabel('Iteration')
-
+    
 plt.tight_layout()
 ```
+
+<!-- #region -->
+:::{note}
+You can use different solvers using the parameter `method`.
+:::
+
+:::{note}
+{func}`scipy.optimize.minimize_scalar` can also be used for optimization
+constrained to an interval using the parameter `bounds`.
+:::
+
 
 ### Gradient based methods
 
@@ -854,28 +594,7 @@ Here we focus on **intuitions**, not code. Code will follow.
 [Gradient descent](https://en.wikipedia.org/wiki/Gradient_descent)
 basically consists in taking small steps in the direction of the
 gradient, that is the direction of the *steepest descent*.
-
-.. list-table:: **Fixed step gradient descent**
-   :widths: 1 1 1
-
-   * - **A well-conditioned quadratic function.**
-
-     - |gradient_quad_cond|
-
-     - |gradient_quad_cond_conv|
-
-   * - **An ill-conditioned quadratic function.**
-
-       The core problem of gradient-methods on ill-conditioned problems is
-       that the gradient tends not to point in the direction of the
-       minimum.
-
-     - |gradient_quad_icond|
-
-     - |gradient_quad_icond_conv|
-
-
-
+<!-- #endregion -->
 ```{python tags=c("hide-input")}
 x_min, x_max = -1, 2
 y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
@@ -898,23 +617,23 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-
+    
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-
-    # titles = []
-
-    captions = ["A well-conditioned quadratic function.",
-                "An ill-conditioned quadratic function.",
-                "An ill-conditioned non-quadratic function.",
-                "An ill-conditioned very non-quadratic function."]
-
+        
+    titles = ["A well-conditioned quadratic function.",
+              "An ill-conditioned quadratic function."]
+    
+    captions = [ "",
+    "The core problem of gradient-methods on\n ill-conditioned problems is that the gradient\ntends not to point in the direction of the\nminimum"
+      ]
+      
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
-    #plt.text(-0.3, 1, titles[row], fontweight='bold', horizontalalignment='left',
-        #fontsize=12)
+    plt.text(-0.3, 1, titles[index], fontweight='bold', horizontalalignment='left',
+        fontsize=12)
     caption_text = captions[index]
-    plt.text(-0.3, 0.83, caption_text,
+    plt.text(-0.3, 0.6, caption_text,
         horizontalalignment='left',
         fontsize=12,
         wrap=True)
@@ -931,7 +650,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-
+    
     plt.subplot(2, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -994,36 +713,6 @@ they behave similarly. This is related to [preconditioning](https://en.wikipedia
 Also, it clearly can be advantageous to take bigger steps. This
 is done in gradient descent code using a
 [line search](https://en.wikipedia.org/wiki/Line_search).
-
-.. list-table:: **Adaptive step gradient descent**
-   :widths: 1 1 1
-
-   * - A well-conditioned quadratic function.
-
-     - |agradient_quad_cond|
-
-     - |agradient_quad_cond_conv|
-
-   * - An ill-conditioned quadratic function.
-
-     - |agradient_quad_icond|
-
-     - |agradient_quad_icond_conv|
-
-   * - An ill-conditioned non-quadratic function.
-
-     - |agradient_gauss_icond|
-
-     - |agradient_gauss_icond_conv|
-
-   * - An ill-conditioned very non-quadratic function.
-
-     - |agradient_rosen_icond|
-
-     - |agradient_rosen_icond_conv|
-
-
-
 ```{python tags=c("hide-input")}
 x_min, x_max = -1, 2
 y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
@@ -1065,18 +754,18 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-
+    
     row = index+1
-
+    
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-
+        
     # titles = []
-
+    
     captions = ["A well-conditioned quadratic function.",
                 "An ill-conditioned quadratic function.",
                 "An ill-conditioned non-quadratic function.",
                 "An ill-conditioned very non-quadratic function."]
-
+        
     plt.subplot(4, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1100,7 +789,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-
+    
     plt.subplot(4, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1167,25 +856,6 @@ it cross the valley. The conjugate gradient solves this problem by adding
 a *friction* term: each step depends on the two last values of the
 gradient and sharp turns are reduced.
 
-.. list-table:: **Conjugate gradient descent**
-   :widths: 1 1 1
-
-   * - An ill-conditioned non-quadratic function.
-
-     - |cg_gauss_icond|
-
-     - |cg_gauss_icond_conv|
-
-   * - An ill-conditioned very non-quadratic function.
-
-     - |cg_rosen_icond|
-
-     - |cg_rosen_icond_conv|
-
-SciPy provides {func}`scipy.optimize.minimize` to find the minimum of scalar
-functions of one or more variables. The simple conjugate gradient method can
-be used by setting the parameter `method` to CG
-
 ```{python tags=c("hide-input")}
 x_min, x_max = -1, 2
 y_min, y_max = 2.25 / 3 * x_min - 0.2, 2.25 / 3 * x_max - 0.2
@@ -1227,18 +897,18 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-
+    
     row = index+1
-
+    
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-
+        
     # titles = []
-
+    
     captions = ["A well-conditioned quadratic function.",
                 "An ill-conditioned quadratic function.",
                 "An ill-conditioned non-quadratic function.",
                 "An ill-conditioned very non-quadratic function."]
-
+        
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1262,7 +932,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-
+    
     plt.subplot(2, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1314,6 +984,10 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
 plt.tight_layout()
 ```
 
+SciPy provides {func}`scipy.optimize.minimize` to find the minimum of scalar
+functions of one or more variables. The simple conjugate gradient method can
+be used by setting the parameter `method` to CG
+
 ```{python}
 def f(x):   # The rosenbrock function
     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
@@ -1341,42 +1015,10 @@ local quadratic approximation to compute the jump direction. For this
 purpose, they rely on the 2 first derivative of the function: the
 *gradient* and the [Hessian](https://en.wikipedia.org/wiki/Hessian_matrix).
 
-.. list-table::
-   :widths: 1 1 1
-
-   * - **An ill-conditioned quadratic function:**
-
-       Note that, as the quadratic approximation is exact, the Newton
-       method is blazing fast
-
-     - |ncg_quad_icond|
-
-     - |ncg_quad_icond_conv|
-
-   * - **An ill-conditioned non-quadratic function:**
-
-       Here we are optimizing a Gaussian, which is always below its
-       quadratic approximation. As a result, the Newton method overshoots
-       and leads to oscillations.
-
-     - |ncg_gauss_icond|
-
-     - |ncg_gauss_icond_conv|
-
-   * - **An ill-conditioned very non-quadratic function:**
-
-     - |ncg_rosen_icond|
-
-     - |ncg_rosen_icond_conv|
-
-In SciPy, you can use the Newton method by setting `method` to Newton-CG in
-{func}`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
-inversion of the Hessian is performed by conjugate gradient
-
 ```{python tags=c("hide-input")}
 levels = {}
 
-plt.figure(figsize=(10, 8))
+plt.figure(figsize=(12, 8))
 for index, ((f, f_prime, hessian), optimizer) in enumerate(
     (
         #(mk_quad(0.7), gradient_descent),
@@ -1409,25 +1051,26 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-
+    
     row = index+1
-
+    
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-
-    # titles = []
-
-    captions = ["A well-conditioned quadratic function.",
-                "An ill-conditioned quadratic function.",
-                "An ill-conditioned non-quadratic function.",
-                "An ill-conditioned very non-quadratic function."]
-
+        
+    titles = ["An ill-conditioned quadratic function:",
+             "An ill-conditioned quadratic function:",
+              "An ill-conditioned very non-quadratic \nfunction:"]
+    
+    captions = ["Note that, as the quadratic\napproximation is exact, the Newton\nmethod is blazing fast",
+               "Here we are optimizing a\nGaussian, which is always below\nits quadratic approximation. As a\nresult, the Newton method \novershoots and leads to oscillations.",
+               ""]
+        
     plt.subplot(3, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
-    #plt.text(-0.3, 1, titles[row], fontweight='bold', horizontalalignment='left',
-        #fontsize=12)
+    plt.text(-0.3, 1, titles[row-1], fontweight='bold', horizontalalignment='left',
+        fontsize=12)
     caption_text = captions[row-1]
-    plt.text(-0.3, 0.83, caption_text,
+    plt.text(-0.3, 0.5, caption_text,
         horizontalalignment='left',
         fontsize=12,
         wrap=True)
@@ -1444,7 +1087,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-
+    
     plt.subplot(3, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1496,6 +1139,10 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
 plt.tight_layout()
 ```
 
+In SciPy, you can use the Newton method by setting `method` to Newton-CG in
+{func}`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
+inversion of the Hessian is performed by conjugate gradient.
+
 ```{python}
 def f(x):   # The rosenbrock function
     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
@@ -1534,41 +1181,6 @@ each step an approximation of the Hessian.
 
 ## Full code examples
 
-<!---
-include the gallery. Skip the first line to avoid the "orphan"
-declaration
--->
-.. include:: auto_examples/index.rst
-   :start-line: 1
-
-
-.. list-table::
-   :widths: 1 1 1
-
-   * - **An ill-conditioned quadratic function:**
-
-       On a exactly quadratic function, BFGS is not as fast as Newton's
-       method, but still very fast.
-
-     - |bfgs_quad_icond|
-
-     - |bfgs_quad_icond_conv|
-
-   * - **An ill-conditioned non-quadratic function:**
-
-       Here BFGS does better than Newton, as its empirical estimate of the
-       curvature is better than that given by the Hessian.
-
-     - |bfgs_gauss_icond|
-
-     - |bfgs_gauss_icond_conv|
-
-   * - **An ill-conditioned very non-quadratic function:**
-
-     - |bfgs_rosen_icond|
-
-     - |bfgs_rosen_icond_conv|
-
 ```{python tags=c("hide-input")}
 levels = {}
 
@@ -1605,19 +1217,19 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-
+    
     row = index+1
-
+    
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-
+        
     titles = ["An ill-conditioned quadratic function:",
               "An ill-conditioned non-quadratic function:",
               "An ill-conditioned very non-quadratic function:"]
-
+    
     captions = ["\nAn ill-conditioned quadratic function: On an \nexactly quadratic function, BFGS is not as fast\nas Newton’s method, but still very fast.",
                 "\n\nHere BFGS does better than Newton, as its\nempirical estimate of the curvature is better than\nthat given by the Hessian.",
                 ""]
-
+        
     plt.subplot(3, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1641,7 +1253,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-
+    
     plt.subplot(3, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1718,27 +1330,7 @@ sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
 
 #### A shooting method: the Powell algorithm
 
-Almost a gradient approach
-
-.. list-table::
-   :widths: 1 1 1
-
-   * - **An ill-conditioned quadratic function:**
-
-       Powell's method isn't too sensitive to local ill-conditionning in
-       low dimensions
-
-     - |powell_quad_icond|
-
-     - |powell_quad_icond_conv|
-
-   * - **An ill-conditioned very non-quadratic function:**
-
-     - |powell_rosen_icond|
-
-     - |powell_rosen_icond_conv|
-
-
+Almost a gradient approach:
 ```{python tags=c("hide-input")}
 levels = {}
 
@@ -1777,16 +1369,16 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-
+    
     row = index+1
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-
+        
     titles = ["An ill-conditioned quadratic function:",
              "An ill-conditioned very non-quadratic function:"]
-
+    
     captions = ["Powell’s method isn’t too sensitive to local \nill-conditionning in low dimensions.",
                 ""]
-
+        
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1810,7 +1402,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-
+    
     plt.subplot(2, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -1874,23 +1466,6 @@ smooth such as experimental data points, as long as they display a
 large-scale bell-shape behavior. However it is slower than gradient-based
 methods on smooth, non-noisy functions.
 
-.. list-table::
-   :widths: 1 1 1
-
-   * - **An ill-conditioned non-quadratic function:**
-
-     - |nm_gauss_icond|
-
-     - |nm_gauss_icond_conv|
-
-   * - **An ill-conditioned very non-quadratic function:**
-
-     - |nm_rosen_icond|
-
-     - |nm_rosen_icond_conv|
-
-Using the Nelder-Mead solver in {func}`scipy.optimize.minimize`:
-
 ```{python tags=c("hide-input")}
 levels = {}
 
@@ -1929,17 +1504,17 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     all_x_i, all_y_i, all_f_i = optimizer(
         np.array([x_i, y_i]), logging_f, counting_f_prime, hessian=counting_hessian
     )
-
+    
     row = index+1
 
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
-
+        
     titles = ["An ill-conditioned non-quadratic function:",
              "An ill-conditioned very non-quadratic function:"]
-
+    
     captions = ["",
                 ""]
-
+        
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
@@ -1963,7 +1538,7 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     X = np.concatenate((x[np.newaxis, ...], y[np.newaxis, ...]), axis=0)
     z = np.apply_along_axis(f, 0, X)
     log_z = np.log(z + 0.01)
-
+    
     plt.subplot(2, 3, subplot_n1)
     plt.imshow(
         log_z,
@@ -2014,6 +1589,8 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     )
 plt.tight_layout()
 ```
+
+Using the Nelder-Mead solver in {func}`scipy.optimize.minimize`:
 
 ```{python}
 def f(x):   # The rosenbrock function
@@ -2567,7 +2144,3 @@ please also see [IPOPT] and [PyGMO].
 
 [ipopt]: https://github.com/xuy/pyipopt
 [pygmo]: https://esa.github.io/pygmo2/
-
-```{python}
-
-```
