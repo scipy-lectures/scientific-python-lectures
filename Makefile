@@ -20,6 +20,9 @@ jl:
 		--output-dir $(BUILD_DIR)/interact \
 		--lite-dir $(JL_DIR)
 
+lint:
+	pre-commit run --all-files --show-diff-on-failure --color always
+
 web: html jl
 
 github: web
