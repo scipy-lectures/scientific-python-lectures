@@ -155,7 +155,7 @@ def get_hdr(tags):
 
 
 def process_doctest_block(lines, tags=()):
-    if not any([L.strip().startswith(">>> ") for L in lines]):
+    if not any(L.strip().startswith(">>> ") for L in lines):
         return process_python_block(lines, tags)
     lines = textwrap.dedent("\n".join(lines)).splitlines()
     cell_hdr = get_hdr(tags)

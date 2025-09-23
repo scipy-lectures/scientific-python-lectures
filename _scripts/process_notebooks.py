@@ -230,7 +230,7 @@ def process_notebooks(
         input_dir, exclude_patterns=config["exclude_patterns"]
     ):
         rel_path = Path(fn)
-        if not rel_path.suffix == in_nb_suffix:
+        if rel_path.suffix != in_nb_suffix:
             continue
         print(f"Processing {rel_path}")
         nb_url = (

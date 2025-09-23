@@ -4,6 +4,8 @@
 from argparse import ArgumentParser, RawDescriptionHelpFormatter
 import ast
 from copy import deepcopy
+from functools import reduce
+import operator
 import re
 from pathlib import Path
 
@@ -141,7 +143,7 @@ def process_example(eg_path, import_lines=None):
 
 
 def get_example_paths(eg_dirs):
-    return sum([sorted(Path(d).glob("**/plot_*.py")) for d in eg_dirs], [])
+    return reduce(operator.add, [sorted(Path(d).glob("**/plot_*.py")) for d in eg_dirs])
 
 
 def process_nb_examples(root_path, nb_path, eg_paths, check_refs=True):
