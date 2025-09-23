@@ -10,11 +10,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy as sp
 
-import collections
 import sys
 import os
 
-sys.path.append(os.path.abspath("helper"))
+sys.path.append(os.path.abspath("../helper"))
 from cost_functions import (
     mk_quad,
     mk_gauss,
