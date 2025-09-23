@@ -620,20 +620,20 @@ for index, ((f, f_prime, hessian), optimizer) in enumerate(
     
     subplot_n0, subplot_n1, subplot_n2 = get_subplot_n(index)
         
-    # titles = []
+    titles = ["A well-conditioned quadratic function.",
+              "An ill-conditioned quadratic function."]
     
-    captions = ["A well-conditioned quadratic function.",
-                "An ill-conditioned quadratic function.",
-                "An ill-conditioned non-quadratic function.",
-                "An ill-conditioned very non-quadratic function."]
-        
+    captions = [ "",
+    "The core problem of gradient-methods on\n ill-conditioned problems is that the gradient\ntends not to point in the direction of the\nminimum"
+      ]
+      
     plt.subplot(2, 3, subplot_n0)
     plt.scatter([0, 1], [0, 1], c='white')
     plt.axis('off')
-    #plt.text(-0.3, 1, titles[row], fontweight='bold', horizontalalignment='left',
-        #fontsize=12)
+    plt.text(-0.3, 1, titles[index], fontweight='bold', horizontalalignment='left',
+        fontsize=12)
     caption_text = captions[index]
-    plt.text(-0.3, 0.83, caption_text,
+    plt.text(-0.3, 0.6, caption_text,
         horizontalalignment='left',
         fontsize=12,
         wrap=True)
