@@ -46,7 +46,7 @@ def test_process_nbs(nb_path):
 def test_admonition_finding(nb_path):
     nb_text = nb_path.read_text()
     nb_lines = nb_text.splitlines()
-    ad_lines = pn.get_admonition_lines(nb_text)
+    ad_lines = pn.get_admonition_lines(nb_text, nb_path)
     for first, last in ad_lines:
         assert pn._ADM_HEADER.match(nb_lines[first])
         assert pn._END_DIV_RE.match(nb_lines[last])
