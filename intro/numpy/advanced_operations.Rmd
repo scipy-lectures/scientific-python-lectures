@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.3
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -213,7 +213,7 @@ the smaller dataset to `pop2.txt`.
 :::
 
 ```{python}
-data = np.loadtxt("../data/populations.txt")
+data = np.loadtxt("data/populations.txt")
 reduced_data = data[5:, :-1]
 np.savetxt("pop2.txt", reduced_data)
 ```
