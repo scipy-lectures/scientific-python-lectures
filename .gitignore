@@ -52,3 +52,4 @@ __pycache__/
 *.orig
 node_modules/
 .jupyterlite.doit.db
+advanced/advanced_numpy/test.png
