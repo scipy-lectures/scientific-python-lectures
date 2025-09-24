@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.1
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -63,9 +63,6 @@ Note the syntax to define a function:
 Mandatory parameters (positional arguments)
 
 ```{python}
-```
-
-```{python}
 def double_it(x):
     return x * 2
 ```
@@ -95,9 +92,7 @@ double_it(3)
 
 Keyword arguments allow you to specify *default values*.
 
-:::{warning}
-Default values are evaluated when the function is defined, not when
-it is called. This can be problematic when using mutable types (e.g.
+**Warning:** default values are evaluated when the function is defined, not when it is called. This can be problematic when using mutable types (e.g.
 dictionary or list) and modifying them in the function body, since the
 modifications will be persistent across invocations of the function.
 
@@ -139,11 +134,6 @@ add_to_dict()
 ```{python}
 add_to_dict()
 ```
-:::
-
-::: {note}
-:class: dropdown
-
 More involved example implementing python's slicing:
 
 ```{python}
@@ -181,7 +171,6 @@ slicer(rhyme, step=2, start=1, stop=4)
 
 but it is good practice to use the same ordering as the function's
 definition.
-:::
 
 *Keyword arguments* are a very convenient feature for defining functions
 with a variable number of arguments, especially when default values are
@@ -380,10 +369,7 @@ $$
 :class: green
 
 Implement the quicksort algorithm, as defined by wikipedia
-:::
-
-.. parsed-literal::
-
+ 
     function quicksort(array)
         var list less, greater
         if length(array) < 2
@@ -393,3 +379,5 @@ Implement the quicksort algorithm, as defined by wikipedia
             if x < pivot + 1 then append x to less
             else append x to greater
         return concatenate(quicksort(less), pivot, quicksort(greater))
+        
+:::
