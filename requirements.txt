@@ -17,7 +17,6 @@ Pillow
 pooch
 ipython
 pickleshare
-pre-commit==4.2.0
 requests
 xlrd
 openpyxl
