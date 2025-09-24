@@ -196,12 +196,29 @@ data3 = np.load('pop.npy')
 
 ... if somebody uses it, there's probably also a Python library for it.
 
-:::{admonition} Exercise: Text data files
-:class: green
+::: {exercise-start}
+:label: npa-load-proc-ex
+:class: dropdown
+:::
 
-Write a Python script that loads data from {download}`populations.txt
-<data/populations.txt>`:: and drop the last column and the first
-5 rows. Save the smaller dataset to `pop2.txt`.
+Write code that loads data from {download}`populations.txt
+<data/populations.txt>`: and drops the last column and the first 5 rows. Save
+the smaller dataset to `pop2.txt`.
+
+::: {exercise-end}
+:::
+
+::: {solution-start} npa-load-proc-ex
+:class: dropdown
+:::
+
+```{python}
+data = np.loadtxt("../data/populations.txt")
+reduced_data = data[5:, :-1]
+np.savetxt("pop2.txt", reduced_data)
+```
+
+::: {solution-end}
 :::
 
 <!---

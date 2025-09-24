@@ -653,8 +653,10 @@ the source of this file.
 
 ______________________________________________________________________
 
-::::{topic} **Wrap up exercise**
-:class: green
+::: {exercise-start}
+:label: to-debug-ex
+:class: dropdown
+:::
 
 The following script is well documented and hopefully legible. It
 seeks to answer a problem of actual interest for numerical computing,
@@ -662,8 +664,18 @@ but it does not work... Can you debug it?
 
 **Python source code:** {download}`to_debug.py <to_debug.py>`
 
-:::{only} html
-```{literalinclude} to_debug.py
-```
+:::{literalinclude} to_debug_solution.py
 :::
-::::
+
+::: {exercise-end}
+:::
+
+::: {solution-start} to-debug-ex
+:class: dropdown
+:::
+
+:::{literalinclude} to_debug_solution.py
+:::
+
+::: {solution-end}
+:::

@@ -221,8 +221,10 @@ face.max(), face.min()
 
 `np.histogram`
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: img-proc-logo-ex
+:class: dropdown
+:::
 
 - Open as an array the `scikit-image` logo
   (<https://scikit-image.org/_static/img/logo.png>), or an
@@ -240,6 +242,7 @@ face.max(), face.min()
 
 ![](scikit_image_logo.png)
 
+::: {exercise-end}
 :::
 
 ### Geometrical transformations
@@ -406,8 +409,10 @@ Other local non-linear filters: Wiener (`scipy.signal.wiener`), etc.
 
 **Non-local filters**
 
-:::{admonition} Exercise: denoising
-:class: green
+::: {exercise-start}
+:label: img-proc-denoise-ex
+:class: dropdown
+:::
 
 - Create a binary image (of 0s and 1s) with several objects (circles,
   ellipses, squares, or random shapes).
@@ -417,6 +422,8 @@ Other local non-linear filters: Wiener (`scipy.signal.wiener`), etc.
 - Compare the histograms of the two different denoised images.
   Which one is the closest to the histogram of the original (noise-free)
   image?
+
+::: {exercise-end}
 :::
 
 :::{admonition} See also
@@ -672,11 +679,25 @@ axes[-1].contour(close_img[:L, :L], [0.5], linewidths=2, colors="r")
 plt.subplots_adjust(wspace=0.02, hspace=0.3, top=1, bottom=0.1, left=0, right=1)
 ```
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: img-proc-erode-ex
+:class: dropdown
+:::
 
 Check that reconstruction operations (erosion + propagation) produce a
-better result than opening/closing:
+better result than opening/closing.  Start with:
+
+```{python}
+eroded_img = sp.ndimage.binary_erosion(binary_img)
+reconstruct_img = sp.ndimage.binary_propagation(eroded_img, mask=binary_img)
+```
+
+::: {exercise-end}
+:::
+
+::: {solution-start} img-proc-erode-ex
+:class: dropdown
+:::
 
 ```{python}
 eroded_img = sp.ndimage.binary_erosion(binary_img)
@@ -690,15 +711,20 @@ np.abs(mask - close_img).mean()
 ```{python}
 np.abs(mask - reconstruct_final).mean()
 ```
-<!-- #region -->
+
+::: {solution-end}
 :::
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: img-proc-denoise-hist-ex
+:class: dropdown
+:::
 
-Check how a first denoising step (e.g. with a median filter)
-modifies the histogram, and check that the resulting histogram-based
-segmentation is more accurate.
+Check how a first denoising step (e.g. with a median filter) modifies the
+histogram, and check that the resulting histogram-based segmentation is more
+accurate.
+
+::: {exercise-end}
 :::
 
 :::{admonition} See also

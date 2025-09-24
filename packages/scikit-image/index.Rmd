@@ -690,8 +690,10 @@ different regions). Functions names are often self-explaining:
 {func}`skimage.morphology.remove_small_objects`, etc.
 :::
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: ski-coins-otsu-ex
+:class: dropdown
+:::
 
 - Load the `coins` image from the `data` submodule.
 - Separate the coins from the background by testing several
@@ -699,7 +701,10 @@ different regions). Functions names are often self-explaining:
   watershed or random walker segmentation.
 - If necessary, use a postprocessing function to improve the coins /
   background segmentation.
+
+::: {exercise-end}
 :::
+
 
 ## Measuring regions' properties
 

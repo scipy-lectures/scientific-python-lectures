@@ -96,12 +96,17 @@ sym.oo > 99999
 sym.oo + 1
 ```
 
-:::{admonition} Exercises
-:class: green
+::: {exercise-start}
+:label: sympy-root2-rational-ex
+:class: dropdown
+:::
 
 1. Calculate $\sqrt{2}$ with 100 decimals.
 2. Calculate $1/2 + 1/3$ in rational arithmetic.
+
+::: {exercise-end}
 :::
+
 
 ### Symbols
 
@@ -185,12 +190,17 @@ alternatives to simplify exists: `powsimp` (simplification of
 exponents), `trigsimp` (for trigonometric expressions) , `logcombine`,
 `radsimp`, together.
 
-:::{admonition} Exercises
-:class: green
+::: {exercise-start}
+:label: sympy-simplify-expand-ex
+:class: dropdown
+:::
 
 1. Calculate the expanded form of $(x+y)^6$.
 2. Simplify the trigonometric expression $\sin(x) / \cos(x)$
+
+::: {exercise-end}
 :::
+
 
 ## Calculus
 
@@ -283,12 +293,17 @@ sym.series(sym.cos(x), x)
 sym.series(1/sym.cos(x), x)
 ```
 
-:::{admonition} Exercises
-:class: green
+::: {exercise-start}
+:label: sympy-lim-deriv-ex
+:class: dropdown
+:::
 
 1. Calculate $\lim_{x\rightarrow 0} \sin(x)/x$
 2. Calculate the derivative of $log(x)$ for $x$.
+
+::: {exercise-end}
 :::
+
 
 ::: {index} integration
 :::
@@ -408,12 +423,17 @@ the expression True, it will return False:
 sym.satisfiable(x & ~x)
 ```
 
-:::{admonition} Exercises
-:class: green
+::: {exercise-start}
+:label: sympy-solve-roots-ex
+:class: dropdown
+:::
 
 1. Solve the system of equations $x + y = 2$, $2\cdot x + y = 0$
 2. Are there boolean values `x`, `y` that make `(~x | y) & (~y | x)` true?
+
+::: {exercise-end}
 :::
+
 
 ## Linear Algebra
 
