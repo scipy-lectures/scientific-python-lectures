@@ -33,3 +33,6 @@ clean: rm-ipynb
 
 rm-ipynb:
 	rm -rf *.ipynb
+
+test:
+	pytest .
