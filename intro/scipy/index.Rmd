@@ -701,7 +701,7 @@ res = sp.optimize.minimize(f, x0=[0, 0])
 res
 ```
 
-:::{admonition} **Maximization?**
+:::{sidebar} Maximization?
 Is {func}`scipy.optimize.minimize` restricted to the solution of
 minimization problems? Nope! To solve a maximization problem,
 simply minimize the *negative* of the original objective function.
@@ -844,7 +844,7 @@ plt.plot(x, dist.pdf(x), label='PDF')
 plt.legend()
 ```
 
-:::{admonition} Distribution objects and frozen distributions
+:::{sidebar} Distribution objects and frozen distributions
 
 Each of the 100+ {mod}`scipy.stats` distribution families is represented by an
 *object* with a `__call__` method. Here, we call the {class}`scipy.stats.norm`

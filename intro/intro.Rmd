@@ -193,7 +193,7 @@ embedded devices.
 We recommend an interactive work with the [IPython](https://ipython.org) console, or its offspring, the [Jupyter notebook](https://docs.jupyter.org/en/latest/content-quickstart.html). They
 are handy to explore and understand algorithms.
 
-:::{admonition} Under the notebook
+:::{sidebar} Under the notebook
 To execute code, press "shift enter"
 :::
 

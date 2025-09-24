@@ -754,7 +754,7 @@ to give us clues about our data.
 One good method to keep in mind is Gaussian Naive Bayes
 ({class}`sklearn.naive_bayes.GaussianNB`).
 
-:::{admonition} Old scikit-learn versions
+:::{sidebar} Old scikit-learn versions
 {func}`~sklearn.model_selection.train_test_split` is imported from
 `sklearn.cross_validation`
 :::

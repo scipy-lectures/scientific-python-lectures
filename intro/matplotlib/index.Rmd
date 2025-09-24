@@ -18,7 +18,7 @@ jupyter:
 
 # Matplotlib: plotting
 
-:::{admonition} **Thanks**
+:::{sidebar} Thanks
 
 Many thanks to **Bill Wing** and **Christoph Deil** for review and
 corrections.

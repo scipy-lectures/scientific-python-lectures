@@ -106,7 +106,7 @@ elaborate selection and pivotal mechanisms. :::
 
 #### Creating dataframes: reading data files or converting arrays
 
-:::{admonition} **Separator**
+:::{sidebar} Separator
 It is a CSV file, but the separator is ";"
 :::
 
@@ -243,7 +243,7 @@ dataframes:
 pd.plotting.scatter_matrix(data[['Weight', 'Height', 'MRI_Count']]);
 ```
 
-:::{admonition} **Two populations**
+:::{sidebar} Two populations
 The IQ metrics are bimodal, as if there are 2 sub-populations.
 :::
 
@@ -455,7 +455,7 @@ plt.figure(figsize=(5, 4))
 plt.plot(x, y, "o");
 ```
 
-:::{admonition} "formulas" for statistics in Python
+:::{sidebar} "formulas" for statistics in Python
 [See the statsmodels documentation](https://www.statsmodels.org/stable/example_formulas.html)
 :::
 
