@@ -222,11 +222,11 @@ function that we are optimizing. Note that this expression can often be
 used for more efficient, non black-box, optimization.
 
 :::{admonition} Prerequisites
-.. rst-class:: horizontal
 
  * :ref:`NumPy <numpy>`
  * :ref:`SciPy <scipy>`
  * :ref:`Matplotlib <matplotlib>`
+
 :::
 
 :::{admonition} See also

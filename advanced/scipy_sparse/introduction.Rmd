@@ -70,14 +70,12 @@ plt.ylabel('memory [MB]')
 
 - ...
 
-## Prerequisites
-
-.. rst-class:: horizontal
-
-    * :ref:`numpy <numpy>`
-    * :ref:`scipy <scipy>`
-    * :ref:`matplotlib (optional) <matplotlib>`
-    * :ref:`ipython (the enhancements come handy) <interactive_work>`
+:::{admonition} Prerequisites
+* :ref:`numpy <numpy>`
+* :ref:`scipy <scipy>`
+* :ref:`matplotlib (optional) <matplotlib>`
+* :ref:`ipython (the enhancements come handy) <interactive_work>`
+:::
 
 ## Sparsity Structure Visualization
 

@@ -27,7 +27,6 @@ import matplotlib.pyplot as plt
 ![](images/scikit-learn-logo.png)
 
 :::{admonition} Prerequisites
-.. rst-class:: horizontal
 
  * :ref:`numpy <numpy>`
  * :ref:`scipy <scipy>`
@@ -35,7 +34,7 @@ import matplotlib.pyplot as plt
  * :ref:`ipython (the enhancements come handy) <interactive_work>`
 :::
 
-:::{admonition} **Acknowledgements**
+:::{sidebar} Acknowledgements
 
 This chapter is adapted from [a
 tutorial](https://www.youtube.com/watch?v=r4bRUvvlaBw) given by Gaël
