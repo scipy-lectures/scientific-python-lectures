@@ -16,16 +16,6 @@ jupyter:
 
 # Solutions
 
-(pi-wallis)=
-
-## The Pi Wallis Solution
-
-Compute the decimals of Pi using the Wallis formula:
-
-::: {literalinclude} solutions/pi_wallis.py
-
-:::
-
 (dir-sort)=
 
 ## The Directory Listing Solution

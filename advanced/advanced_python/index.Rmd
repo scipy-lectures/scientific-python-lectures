@@ -28,12 +28,11 @@ language itself — about features supported through special syntax
 complemented by functionality of the Python stdlib, which could not be
 implemented through clever external modules.
 
-The process of developing the Python programming language, its syntax,
-is very transparent; proposed changes are
-evaluated from various angles and discussed via *Python Enhancement
-Proposals* — [PEPs]. As a result, features described in this chapter
-were added after it was shown that they indeed solve real problems and
-that their use is as simple as possible.
+The process of developing the Python programming language, its syntax, is very
+transparent; proposed changes are evaluated from various angles and discussed
+via *Python Enhancement Proposals* — [PEPs]. As a result, features described in
+this chapter were added after it was shown that they indeed solve real problems
+and that their use is as simple as possible.
 
 ## Iterators, generator expressions and generators
 

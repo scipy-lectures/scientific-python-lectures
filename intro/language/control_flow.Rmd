@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.3
+      jupytext_version: 1.16.6
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -30,10 +30,10 @@ if 2**2 == 4:
 :class: dropdown
 
 Type the following lines in your Python interpreter, and be careful
-to **respect the indentation depth**. The Ipython shell automatically
-increases the indentation depth after a colon `:` sign; to
-decrease the indentation depth, go four spaces to the left with the
-Backspace key. Press the Enter key twice to leave the logical block.
+to **respect the indentation depth**. The Jupyter / IPython shell automatically
+increases the indentation depth after a colon `:` sign; to decrease the
+indentation depth, go four spaces to the left with the Backspace key. Press the
+Enter key twice to leave the logical block.
 :::
 
 ```{python}
@@ -51,7 +51,8 @@ else:
 
 Indentation is compulsory in scripts as well. As an exercise, re-type the
 previous lines with the same indentation in a script `condition.py`, and
-execute the script with `run condition.py` in Ipython.
+execute the script with `run condition.py` in IPython.
+
 
 ## for/range
 
@@ -68,6 +69,7 @@ But most often, it is more readable to iterate over values:
 for word in ('cool', 'powerful', 'readable'):
     print('Python is %s' % word)
 ```
+
 
 ## while/break/continue
 
@@ -105,29 +107,25 @@ for element in a:
     print(1. / element)
 ```
 
-<!-- #region -->
 ## Conditional Expressions
 
 
-
-:`if <OBJECT>`: 
+### `if <OBJECT>:`
 
 Evaluates to `False` for:
 
 * any number equal to zero (0, 0.0, 0+0j)
-
 * an empty container (list, tuple, set, dictionary, …)
-
 * `False`, `None`
 
 Evaluates to `True` for:
 
 * everything else
-<!-- #endregion -->
+
+Examples:
 
 ```{python}
 a = 10
-
 if a:
     print("Evaluated to `True`")
 else:
@@ -136,58 +134,74 @@ else:
 
 ```{python}
 a = []
-
 if a:
     print("Evaluated to `True`")
 else:
     print('Evaluated to `False')
 ```
 
-<!-- #region -->
-:``a == b``:
 
-  Tests equality, with logics::
+### `a == b:`
 
-    >>> 1 == 1.
-    True
+Tests equality, with logics::
 
-:``a is b``:
+```{python}
+1 == 1.
+```
 
-  Tests identity: both sides are the same object::
+### `a is b`
 
-    >>> a = 1
-    >>> b = 1.
-    >>> a == b
-    True
-    >>> a is b
-    False
+Tests identity: both sides **are the same object**:
 
-    >>> a = 1
-    >>> b = 1
-    >>> a is b
-    True
+```{python}
+a = 1
+b = 1.
+a == b
+```
 
-:``a in b``:
+```{python}
+a is b
+```
 
-  For any collection ``b``: ``b`` contains ``a`` ::
+```{python}
+a = 'A string'
+b = a
+a is b
+```
 
-    >>> b = [1, 2, 3]
-    >>> 2 in b
-    True
-    >>> 5 in b
-    False
+### `a in b`
 
+For any collection ``b``: ``b`` contains ``a`` :
 
-  If ``b`` is a dictionary, this tests that ``a`` is a key of ``b``.
+```{python}
+b = [1, 2, 3]
+2 in b
+```
+
+```{python}
+5 in b
+```
+
+If ``b`` is a dictionary, this tests that ``a`` is a key of ``b``.
+
+```{python}
+b = {'first': 0, 'second': 1}
+# Tests for key.
+'first' in b
+```
+
+```{python}
+# Does not test for value.
+0 in b
+```
 
 
 ## Advanced iteration
 
-**Iterate over any *sequence***
+**Iterate over any sequence**:
 
 You can iterate over any sequence (string, list, keys in a dictionary, lines in
 a file, ...):
-<!-- #endregion -->
 
 ```{python}
 vowels = 'aeiouy'
@@ -220,7 +234,7 @@ code more readable.
 :::
 
 :::{warning}
-Not safe to modify the sequence you are iterating over.
+It is not safe to modify the sequence you are iterating over.
 :::
 
 ### Keeping track of enumeration number
@@ -228,7 +242,7 @@ Not safe to modify the sequence you are iterating over.
 Common task is to iterate over a sequence while keeping track of the
 item number.
 
-- Could use while loop with a counter as above. Or a for loop:
+We could use while loop with a counter as above. Or a for loop:
 
 ```{python}
 words = ('cool', 'powerful', 'readable')
@@ -236,12 +250,13 @@ for i in range(0, len(words)):
     print((i, words[i]))
 ```
 
-- But, Python provides a built-in function - `enumerate` - for this:
+But, Python provides a built-in function - `enumerate` - for this:
 
 ```{python}
 for index, item in enumerate(words):
     print((index, item))
 ```
+
 
 ### Looping over a dictionary
 
@@ -252,14 +267,10 @@ d = {'a': 1, 'b':1.2, 'c':1j}
 ```
 
 ```{python}
-for key, val in sorted(d.items()):
+for key, val in d.items():
     print('Key: %s has value: %s' % (key, val))
 ```
 
-:::{note}
-The ordering of a dictionary is random, thus we use {func}`sorted`
-which will sort on the keys.
-:::
 
 ## List Comprehensions
 
@@ -270,14 +281,70 @@ of a list comprehension with a rather self-explaining syntax.
 [i**2 for i in range(4)]
 ```
 
-______________________________________________________________________
-
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: pi-wallis-ex
+:class: dropdown
+:::
 
 Compute the decimals of Pi using the Wallis formula:
 
 $$
 \pi = 2 \prod_{i=1}^{\infty} \frac{4i^2}{4i^2 - 1}
 $$
+
+::: {exercise-end}
+:::
+
+::: {solution-start} pi-wallis-ex
+:class: dropdown
+:::
+
+
+```{python}
+from functools import reduce
+
+pi = 3.14159265358979312
+
+my_pi = 1.0
+
+for i in range(1, 100000):
+    my_pi *= 4 * i**2 / (4 * i**2 - 1.0)
+
+my_pi *= 2
+
+print(pi)
+print(my_pi)
+print(abs(pi - my_pi))
+```
+
+```{python}
+num = 1
+den = 1
+for i in range(1, 100000):
+    tmp = 4 * i * i
+    num *= tmp
+    den *= tmp - 1
+
+better_pi = 2 * (num / den)
+
+print(pi)
+print(better_pi)
+print(abs(pi - better_pi))
+print(abs(my_pi - better_pi))
+```
+
+Solution in a single line using more advanced constructs (reduce, lambda,
+list comprehensions):
+
+```{python}
+print(
+    2
+    * reduce(
+        lambda x, y: x * y,
+        [float(4 * (i**2)) / ((4 * (i**2)) - 1) for i in range(1, 100000)],
+    )
+)
+```
+
+::: {solution-end}
 :::
