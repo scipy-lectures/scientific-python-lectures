@@ -47,41 +47,29 @@ masking and labeling are a prerequisite.
 Images are NumPy's arrays `np.ndarray`
 
 
-:pixels:
+::: {glossary}
 
+Pixels
     array values: ``a[2, 3]``
 
-:channels:
-
+Channels
     array dimensions
 
-:image encoding:
-
+Image encoding
     ``dtype`` (``np.uint8``, ``np.uint16``, ``np.float``)
 
-:filters:
-
+Filters
     functions (``numpy``, ``skimage``, ``scipy``)
 
-
-::
+:::
 
 ```{python}
-import numpy as np
+# This example show how to create a simple checkerboard.
 check = np.zeros((8, 8))
 check[::2, 1::2] = 1
 check[1::2, ::2] = 1
-import matplotlib.pyplot as plt
-plt.imshow(check, cmap='gray', interpolation='nearest')
+plt.imshow(check, cmap='gray', interpolation='nearest');
 ```
-
-<!---
-![](auto_examples/images/sphx_glr_plot_check_001.png)
-# To fix parsing of Python block.
-:align: center
-:scale: 60
-:target: auto_examples/plot_check.html
--->
 
 ### `scikit-image` and the scientific Python ecosystem
 
@@ -90,32 +78,34 @@ Python installations, as well as in most Linux distributions. Other
 Python packages for image processing & visualization that operate on
 NumPy arrays include:
 
-{mod}`scipy.ndimage`
+::: {list-table} Other packages for working with images
 
-: For N-dimensional arrays. Basic filtering,
-  mathematical morphology, regions properties
+* - {mod}`scipy.ndimage`
+  - For N-dimensional arrays. Basic filtering, mathematical morphology,
+    regions properties
+* - [Mahotas](https://mahotas.readthedocs.io)
+  - With a focus on high-speed implementations.
+* - [Napari](https://napari.org)
+  - A fast, interactive, multi-dimensional image viewer built in Qt.
 
-[Mahotas](https://mahotas.readthedocs.io)
-
-: With a focus on high-speed implementations.
-
-[Napari](https://napari.org)
-
-: A fast, interactive, multi-dimensional image viewer built in Qt.
+:::
 
 Some powerful C++ image processing libraries also have Python bindings:
 
-[OpenCV](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html)
+::: {list-table} C++ libraries with Python bindings
 
-: A highly optimized computer vision library with a focus on real-time
-  applications.
+* - [OpenCV](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html)
+  - A highly optimized computer vision library with a focus on real-time
+    applications.
+* - [ITK](https://www.itk.org)
+  - The Insight ToolKit, especially useful for registration and working with
+    3D images.
 
-[ITK](https://www.itk.org)
+:::
 
-: The Insight ToolKit, especially useful for registration and
-  working with 3D images.
+To varying degrees, these C++-based libraries tend to be less Pythonic and
+NumPy-friendly.
 
-To varying degrees, these tend to be less Pythonic and NumPy-friendly.
 
 ### What is included in scikit-image
 
@@ -127,71 +117,46 @@ The library contains predominantly image processing algorithms, but
 also utility functions to ease data handling and processing.
 It contains the following submodules:
 
-{mod}`color`
+::: {list-table} Scikit-image submodules
 
-: Color space conversion.
+* - {mod}`color`
+  - Color space conversion.
+* - {mod}`data`
+  - Test images and example data.
+* - {mod}`draw`
+  - Drawing primitives (lines, text, etc.) that operate on NumPy arrays.
+* - {mod}`exposure`
+  - Image intensity adjustment, e.g., histogram equalization, etc.
+* - {mod}`feature`
+  - Feature detection and extraction, e.g., texture analysis corners, etc.
+* - {mod}`filters`
+  - Sharpening, edge finding, rank filters, thresholding, etc.
+* - {mod}`graph`
+  - Graph-theoretic operations, e.g., shortest paths.
+* - {mod}`io`
+  - Reading, saving, and displaying images and video.
 
-{mod}`data`
-
-: Test images and example data.
-
-{mod}`draw`
-
-: Drawing primitives (lines, text, etc.) that operate on NumPy
-  arrays.
-
-{mod}`exposure`
-
-: Image intensity adjustment, e.g., histogram equalization, etc.
-
-{mod}`feature`
-
-: Feature detection and extraction, e.g., texture analysis corners, etc.
-
-{mod}`filters`
-
-: Sharpening, edge finding, rank filters, thresholding, etc.
-
-{mod}`graph`
-
-: Graph-theoretic operations, e.g., shortest paths.
-
-{mod}`io`
-
-: Reading, saving, and displaying images and video.
-
-{mod}`measure`
-
-: Measurement of image properties, e.g., region properties and contours.
-
-{mod}`metrics`
-
-: Metrics corresponding to images, e.g. distance metrics, similarity, etc.
-
-{mod}`morphology`
-
-: Morphological operations, e.g., opening or skeletonization.
-
-{mod}`restoration`
-
-: Restoration algorithms, e.g., deconvolution algorithms, denoising, etc.
-
-{mod}`segmentation`
-
-: Partitioning an image into multiple regions.
-
-{mod}`transform`
-
-: Geometric and other transforms, e.g., rotation or the Radon transform.
-
-{mod}`util`
-
-: Generic utilities.
+* - {mod}`measure`
+  - Measurement of image properties, e.g., region properties and contours.
+* - {mod}`metrics`
+  - Metrics corresponding to images, e.g. distance metrics, similarity, etc.
+* - {mod}`morphology`
+  - Morphological operations, e.g., opening or skeletonization.
+* - {mod}`restoration`
+  - Restoration algorithms, e.g., deconvolution algorithms, denoising, etc.
+* - {mod}`segmentation`
+  - Partitioning an image into multiple regions.
+* - {mod}`transform`
+  - Geometric and other transforms, e.g., rotation or the Radon transform.
+* - {mod}`util`
+  - Generic utilities.
+:::
 
 <!---
 TODO Edit this section with a more refined discussion of the various
 package features.
 -->
+
 ## Importing
 
 We import `scikit-image` using the convention:
@@ -227,6 +192,7 @@ camera.shape
 filtered_camera = ski.filters.gaussian(camera, sigma=1)
 type(filtered_camera)
 ```
+
 
 ## Example data
 
