@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.16.6
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -135,7 +135,6 @@ It contains the following submodules:
   - Graph-theoretic operations, e.g., shortest paths.
 * - {mod}`io`
   - Reading, saving, and displaying images and video.
-
 * - {mod}`measure`
   - Measurement of image properties, e.g., region properties and contours.
 * - {mod}`metrics`
@@ -206,6 +205,7 @@ image = ski.data.cat()
 image.shape
 ```
 
+
 ## Input/output, data types and colorspaces
 
 I/O: {mod}`skimage.io`
@@ -240,6 +240,7 @@ Loading also works with URLs:
 ```{python}
 logo = ski.io.imread('https://scikit-image.org/_static/img/logo.png')
 ```
+
 
 ### Data types
 
@@ -294,6 +295,7 @@ dtype and the data range, following skimage's conventions:
 See the [user guide](https://scikit-image.org/docs/stable/user_guide/data_types.html) for
 more details.
 
+
 ### Colorspaces
 
 Color images are of shape (N, M, 3) or (N, M, 4) (when an alpha channel
@@ -332,6 +334,7 @@ Convert the image to grayscale and plot its histogram.
 ::: {exercise-end}
 :::
 
+
 ## Image preprocessing / enhancement
 
 Goals: denoising, feature (edges) extraction, ...
@@ -345,11 +348,6 @@ Neighbourhood: square (choose size), disk, or more complicated
 *structuring element*.
 
 ![](../../advanced/image_processing/kernels.png)
-<!---
-# For parsing
-:align: center
-:width: 80%
--->
 
 Example : horizontal Sobel filter
 
@@ -366,13 +364,18 @@ Uses the following linear kernel for computing horizontal gradients:
 -1  -2  -1
 ```
 
-<!---
-![](auto_examples/images/sphx_glr_plot_sobel_001.png)
-# For parsing
-:align: center
-:target: auto_examples/plot_sobel.html
-:width: 70%
--->
+```{python}
+plt.figure(figsize=(12, 3))
+
+plt.subplot(121)
+plt.imshow(text, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.subplot(122)
+plt.imshow(hsobel_text, cmap="nipy_spectral", interpolation="nearest")
+plt.axis("off")
+plt.tight_layout()
+```
+
 
 ### Non-local filters
 
@@ -386,13 +389,18 @@ camera_equalized = ski.exposure.equalize_hist(camera)
 
 Enhances contrast in large almost uniform regions.
 
-<!---
-![](auto_examples/images/sphx_glr_plot_equalize_hist_001.png)
-# For parsing.
-:align: center
-:target: auto_examples/plot_equalize_hist.html
-:width: 70%
--->
+```{python}
+plt.figure(figsize=(7, 3))
+
+plt.subplot(121)
+plt.imshow(camera, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.subplot(122)
+plt.imshow(camera_equalized, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.tight_layout()
+```
+
 
 ### Mathematical morphology
 
@@ -415,10 +423,6 @@ diamond(1)
 ```
 
 ![](../../advanced/image_processing/diamond_kernel.png)
-<!---
-# For parsing.
-:align: center
--->
 
 **Erosion** = minimum filter. Replace the value of a pixel by the minimal value covered by the structuring element.:
 
@@ -495,16 +499,31 @@ median_coins = ski.filters.median(
 tv_coins = ski.restoration.denoise_tv_chambolle(
     coins_zoom, weight=0.1
 )
-gaussian_coins = ski.filters.gaussian(coins, sigma=2)
+gaussian_filter_coins = ski.filters.gaussian(coins, sigma=2)
+med_filter_coins = ski.filters.median(coins, np.ones((3, 3)))
+tv_filter_coins = ski.restoration.denoise_tv_chambolle(coins, weight=0.1)
 ```
 
-<!---
-![](auto_examples/images/sphx_glr_plot_filter_coins_001.png)
-# For parsing.
-:target: auto_examples/plot_filter_coins.html
-:width: 99%
--->
-:::
+```{python tags=c("hide-input")}
+plt.figure(figsize=(16, 4))
+plt.subplot(141)
+plt.imshow(coins[10:80, 300:370], cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.title("Image")
+plt.subplot(142)
+plt.imshow(gaussian_filter_coins[10:80, 300:370], cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.title("Gaussian filter")
+plt.subplot(143)
+plt.imshow(med_filter_coins[10:80, 300:370], cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.title("Median filter")
+plt.subplot(144)
+plt.imshow(tv_filter_coins[10:80, 300:370], cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.title("TV filter")
+```
+
 
 ## Image segmentation
 
@@ -535,13 +554,26 @@ val = ski.filters.threshold_otsu(camera)
 mask = camera < val
 ```
 
-<!---
-![](auto_examples/images/sphx_glr_plot_threshold_001.png)
-# For parsing.
-:align: center
-:target: auto_examples/plot_threshold.html
-:width: 70%
--->
+```{python}
+# The histogram from which Otsu calculated the threshold.
+hist, bins_center = ski.exposure.histogram(camera)
+```
+
+```{python tags=c("hide-input")}
+plt.figure(figsize=(9, 4))
+plt.subplot(131)
+plt.imshow(camera, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.subplot(132)
+plt.imshow(mask, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.subplot(133)
+plt.plot(bins_center, hist, lw=2)
+plt.axvline(val, color="k", ls="--")
+
+plt.tight_layout()
+```
+
 
 #### Labeling connected components of a discrete image
 
@@ -578,13 +610,20 @@ Label only foreground connected components:
 blobs_labels = ski.measure.label(blobs, background=0)
 ```
 
-<!---
-![](auto_examples/images/sphx_glr_plot_labels_001.png)
-# For parsing.
-:align: center
-:target: auto_examples/plot_labels.html
-:width: 90%
--->
+```{python tags=c("hide-input")}
+plt.figure(figsize=(9, 3.5))
+plt.subplot(131)
+plt.imshow(blobs, cmap="gray")
+plt.axis("off")
+plt.subplot(132)
+plt.imshow(all_labels, cmap="nipy_spectral")
+plt.axis("off")
+plt.subplot(133)
+plt.imshow(blobs_labels, cmap="nipy_spectral")
+plt.axis("off")
+
+plt.tight_layout()
+```
 
 :::{admonition} See also
 
@@ -592,10 +631,12 @@ blobs_labels = ski.measure.label(blobs, background=0)
 object in an image.
 :::
 
+
 ### Marker based methods
 
 If you have markers inside a set of regions, you can use these to segment
 the regions.
+
 
 #### *Watershed* segmentation
 
@@ -613,7 +654,7 @@ image = np.logical_or(mask_circle1, mask_circle2)
 # Now we want to separate the two objects in image
 # Generate the markers as local maxima of the distance
 # to the background
-import scipy as sp
+# Use scipy.ndimage.distance_transform_edt
 distance = sp.ndimage.distance_transform_edt(image)
 peak_idx = ski.feature.peak_local_max(
     distance, footprint=np.ones((3, 3)), labels=image
@@ -626,6 +667,7 @@ labels_ws = ski.segmentation.watershed(
 )
 ```
 
+
 #### *Random walker* segmentation
 
 The random walker algorithm ({func}`skimage.segmentation.random_walker`)
@@ -633,19 +675,34 @@ is similar to the Watershed, but with a more "probabilistic" approach. It
 is based on the idea of the diffusion of labels in the image:
 
 ```{python}
-# Transform markers image so that 0-valued pixels are to
-# be labelled, and -1-valued pixels represent background
+# Transform markers image so that 0-valued pixels are to
+# be labelled, and -1-valued pixels represent background
 markers[~image] = -1
 labels_rw = ski.segmentation.random_walker(image, markers)
 ```
 
-<!---
-![](auto_examples/images/sphx_glr_plot_segmentations_001.png)
-# For parsing.
-:align: center
-:target: auto_examples/plot_segmentations.html
-:width: 90%
--->
+```{python tags=c("hide-input")}
+plt.figure(figsize=(12, 3.5))
+plt.subplot(141)
+plt.imshow(image, cmap="gray", interpolation="nearest")
+plt.axis("off")
+plt.title("image")
+plt.subplot(142)
+plt.imshow(-distance, interpolation="nearest")
+plt.axis("off")
+plt.title("distance map")
+plt.subplot(143)
+plt.imshow(labels_ws, cmap="nipy_spectral", interpolation="nearest")
+plt.axis("off")
+plt.title("watershed segmentation")
+plt.subplot(144)
+plt.imshow(labels_rw, cmap="nipy_spectral", interpolation="nearest")
+plt.axis("off")
+plt.title("random walker segmentation")
+
+plt.tight_layout()
+```
+
 
 :::{admonition} Postprocessing label images
 `skimage` provides several utility functions that can be used on
@@ -723,9 +780,6 @@ Visualize binary result:
 
 ```{python}
 plt.figure()
-```
-
-```{python}
 plt.imshow(clean_border, cmap='gray')
 ```
 
@@ -733,13 +787,7 @@ Visualize contour
 
 ```{python}
 plt.figure()
-```
-
-```{python}
 plt.imshow(coins, cmap='gray')
-```
-
-```{python}
 plt.contour(clean_border, [0.5])
 ```
 
@@ -751,13 +799,18 @@ coins_edges = ski.segmentation.mark_boundaries(
 )
 ```
 
-<!---
-![](auto_examples/images/sphx_glr_plot_boundaries_001.png)
-# For parsing.
-:align: center
-:target: auto_examples/plot_boundaries.html
-:width: 90%
--->
+```{python tags=c("hide-input")}
+plt.figure(figsize=(8, 3.5))
+plt.subplot(121)
+plt.imshow(clean_border, cmap="gray")
+plt.axis("off")
+plt.subplot(122)
+plt.imshow(coins_edges)
+plt.axis("off")
+
+plt.tight_layout()
+```
+
 
 ## Feature extraction for computer vision
 
@@ -788,13 +841,13 @@ coords_subpix = ski.feature.corner_subpix(
 )
 ```
 
-<!---
-![](auto_examples/images/sphx_glr_plot_features_001.png)
-# For parsing.
-:align: center
-:target: auto_examples/plot_features.html
-:width: 90%
--->
+```{python tags=c("hide-input")}
+plt.gray()
+plt.imshow(image, interpolation="nearest")
+plt.plot(coords_subpix[:, 1], coords_subpix[:, 0], "+r", markersize=15, mew=5)
+plt.plot(coords[:, 1], coords[:, 0], ".b", markersize=7)
+plt.axis("off")
+```
 
 (this example is taken from the [plot_corner](https://scikit-image.org/docs/stable/auto_examples/features_detection/plot_corner.html)
 example in scikit-image)
