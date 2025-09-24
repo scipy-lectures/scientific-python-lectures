@@ -52,13 +52,19 @@ import matplotlib.pyplot as plt
 
 ### It's...
 
-**ndarray** is:
+::: {admonition} What is an **ndarray**
 
-> block of memory + indexing scheme + data type descriptor
->
-> - raw data
-> - how to locate an element
-> - how to interpret an element
+An **ndarray** is:
+
+- A block of memory and
+- an indexing scheme and
+- a data type descriptor.
+:::
+
+Put another way, an ndarray has **raw data**, and algorithms to:
+
+- locate an element
+- interpret an element
 
 ::: {image} threefundamental.png
 :::
@@ -298,15 +304,15 @@ etc. for loading sound data...
 
 **casting**
 
-> - on assignment
-> - on array construction
-> - on arithmetic
-> - etc.
-> - and manually: `.astype(dtype)`
+- on assignment
+- on array construction
+- on arithmetic
+- etc.
+- and manually: `.astype(dtype)`
 
 **data re-interpretation**
 
-> - manually: `.view(dtype)`
+- manually: `.view(dtype)`
 
 ##### Casting
 
@@ -545,8 +551,8 @@ x.tobytes('A')
 
 **The answer** (in NumPy)
 
-> - **strides**: the number of bytes to jump to find the next element
-> - 1 stride per dimension
+- **strides**: the number of bytes to jump to find the next element
+- 1 stride per dimension
 
 ```{python}
 x.strides
@@ -1228,9 +1234,9 @@ mandel = PyUFunc_FromFuncAndData(
 
 **ufunc**
 
-> `output = elementwise_function(input)`
->
-> Both `output` and `input` can be a single array element only.
+`output = elementwise_function(input)`
+
+Both `output` and `input` can be a single array element only.
 
 **generalized ufunc**
 
@@ -1627,7 +1633,7 @@ arr2.y
 
 ## Contributing to NumPy/SciPy
 
-> Get this tutorial: <https://www.euroscipy.org/talk/882>
+Get this tutorial: <https://www.euroscipy.org/talk/882>
 
 ### Why
 

@@ -73,8 +73,8 @@ They are several static analysis tools in Python; to name a few:
 
 Here we focus on `pyflakes`, which is the simplest tool.
 
-> - **Fast, simple**
-> - Detects syntax errors, missing imports, typos on names.
+- **Fast, simple**
+- Detects syntax errors, missing imports, typos on names.
 
 Another good recommendation is the `flake8` tool which is a combination of
 pyflakes and pep8. Thus, in addition to the types of errors that pyflakes
@@ -90,13 +90,12 @@ You can bind a key to run pyflakes in the current buffer.
 - **In kate**
   Menu: 'settings -> configure kate
 
-  > - In plugins enable 'external tools'
-  >
-  > - In external Tools', add `pyflakes`:
-  >
-  >   ```
-  >   kdialog --title "pyflakes %filename" --msgbox "$(pyflakes %filename)"
-  >   ```
+  - In plugins enable 'external tools'
+  - In external Tools', add `pyflakes`:
+
+    ```
+    kdialog --title "pyflakes %filename" --msgbox "$(pyflakes %filename)"
+    ```
 
 - **In TextMate**
 
@@ -154,7 +153,6 @@ You can bind a key to run pyflakes in the current buffer.
     3. make sure your vimrc has `filetype plugin indent on`
 
     ![](vim_pyflakes.png)
-    ```
 
   - Alternatively: use the [syntastic](https://github.com/vim-syntastic/syntastic)
     plugin. This can be configured to use `flake8` too and also handles
@@ -177,11 +175,11 @@ You can bind a key to run pyflakes in the current buffer.
 ## Debugging workflow
 
 If you do have a non trivial bug, this is when debugging strategies kick
-in. There is no silver bullet. Yet, strategies help:
+in. There is no silver bullet. Yet, strategies help.
 
-> **For debugging a given problem, the favorable situation is when the
-> problem is isolated in a small number of lines of code, outside
-> framework or application code, with short modify-run-fail cycles**
+**For debugging a given problem, the favorable situation is when the problem is
+isolated in a small number of lines of code, outside framework or application
+code, with short modify-run-fail cycles.**
 
 1. Make it fail reliably. Find a test case that makes the code fail
    every time.
@@ -207,6 +205,7 @@ code reproducing the bug and fix the bug using this piece of code, add
 the corresponding code to your test suite.
 :::
 
+
 ## Using the Python debugger
 
 The python debugger, `pdb`: <https://docs.python.org/3/library/pdb.html>,
@@ -214,11 +213,11 @@ allows you to inspect your code interactively.
 
 Specifically it allows you to:
 
-> - View the source code.
-> - Walk up and down the call stack.
-> - Inspect values of variables.
-> - Modify values of variables.
-> - Set breakpoints.
+- View the source code.
+- Walk up and down the call stack.
+- Inspect values of variables.
+- Modify values of variables.
+- Set breakpoints.
 
 :::{admonition} print
 Yes, `print` statements do work as a debugging tool. However to
