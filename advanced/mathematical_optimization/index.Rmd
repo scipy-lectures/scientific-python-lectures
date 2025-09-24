@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.3
+      jupytext_version: 1.17.2
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -391,7 +391,6 @@ plt.plot(x, f(x), linewidth=2)
 plt.ylim(ymin=-1.3)
 plt.axis("off")
 plt.tight_layout()
-plt.show()
 ```
 
 :::{admonition} Noisy gradients
@@ -1159,6 +1158,7 @@ to the algorithm:
 ```{python}
 def hessian(x): # Computed with sympy
     return np.array(((1 - 4*x[1] + 12*x[0]**2, -4*x[0]), (-4*x[0], 2)))
+
 sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)
 ```
 
@@ -1321,8 +1321,10 @@ are also supported by L-BFGS-B:
 ```{python}
 def f(x):   # The rosenbrock function
     return .5*(1 - x[0])**2 + (x[1] - x[0]**2)**2
+
 def jacobian(x):
     return np.array((-2*.5*(1 - x[0]) - 4*x[0]*(x[1] - x[0]**2), 2*(x[1] - x[0]**2)))
+
 sp.optimize.minimize(f, [2, 2], method="L-BFGS-B", jac=jacobian)
 ```
 
@@ -1735,36 +1737,25 @@ plt.xticks(np.arange(n_methods), method_names)
 plt.yticks(())
 
 plt.tight_layout()
-plt.show()
-
 ```
 
-:With knowledge of the gradient:
+**With knowledge of the gradient**
 
- * **BFGS** or **L-BFGS**.
+* **BFGS** or **L-BFGS**.
+* Computational overhead of BFGS is larger than that L-BFGS, itself
+  larger than that of conjugate gradient. On the other side, BFGS usually
+  needs less function evaluations than CG. Thus conjugate gradient method
+  is better than BFGS at optimizing computationally cheap functions.
 
- * Computational overhead of BFGS is larger than that L-BFGS, itself
-   larger than that of conjugate gradient. On the other side, BFGS usually
-   needs less function evaluations than CG. Thus conjugate gradient method
-   is better than BFGS at optimizing computationally cheap functions.
+**With the Hessian**
 
-:With the Hessian:
+* If you can compute the Hessian, prefer the Newton method
+  (**Newton-CG** or **TCG**).
 
- * If you can compute the Hessian, prefer the Newton method
-   (**Newton-CG** or **TCG**).
+**If you have noisy measurements**
 
-:If you have noisy measurements:
+* Use **Nelder-Mead** or **Powell**.
 
- * Use **Nelder-Mead** or **Powell**.
-
-Making your optimizer faster
------------------------------
-
-* Choose the right method (see above), do compute analytically the
-  gradient and Hessian, if you can.
-
-* Use `preconditionning <https://en.wikipedia.org/wiki/Preconditioner>`_
-  when possible.
 
 ### Making your optimizer faster
 
@@ -1799,16 +1790,12 @@ See also {func}`scipy.optimize.approx_fprime` to find your errors.
 
 ### Synthetic exercises
 
-<!---
-![](auto_examples/images/sphx_glr_plot_exercise_ill_conditioned_001.png)
-# For parsing.
-:align: right
-:scale: 35%
-:target: auto_examples/plot_exercise_ill_conditioned.html
--->
+**A simple (?) quadratic function**
 
-:::{admonition} Exercise: A simple (?) quadratic function
-:class: green
+::: {exercise-start}
+:label: mo-simple-quad-ex
+:class: dropdown
+:::
 
 Optimize the following function, using K[0] as a starting point:
 
@@ -1822,17 +1809,188 @@ def f(x):
 
 Time your approach. Find the fastest approach. Why is BFGS not
 working well?
+
+::: {exercise-end}
 :::
 
-:::{admonition} Exercise: A locally flat minimum
-:class: green
+::: {solution-start} mo-simple-quad-ex
+:class: dropdown
+:::
+
+**Alternating optimization**
+
+The challenge here is that Hessian of the problem is a very ill-conditioned
+matrix. This can easily be seen, as the Hessian of the first term in simply
+`2 * K.T @ K`. Thus the conditioning of the problem can be judged from looking
+at the conditioning of `K`.
+
+```{python}
+import time
+
+rng = np.random.default_rng(27446968)
+
+K = rng.normal(size=(100, 100))
+
+
+def f(x):
+    return np.sum((K @ (x - 1)) ** 2) + np.sum(x**2) ** 2
+
+
+def f_prime(x):
+    return 2 * K.T @ K @ (x - 1) + 4 * np.sum(x**2) * x
+
+
+def hessian(x):
+    H = 2 * K.T @ K + 4 * 2 * x * x[:, np.newaxis]
+    return H + 4 * np.eye(H.shape[0]) * np.sum(x**2)
+```
+
+Some pretty plotting
+
+```{python}
+plt.figure()
+Z = X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]  # type: ignore[misc]
+# Complete in the additional dimensions with zeros
+Z = np.reshape(Z, (2, -1)).copy()
+Z.resize((100, Z.shape[-1]))
+Z = np.apply_along_axis(f, 0, Z)
+Z = np.reshape(Z, X.shape)
+plt.imshow(Z.T, cmap="gray_r", extent=(-1.5, 1.5, -1.1, 1.1), origin="lower")
+plt.contour(X, Y, Z, cmap="gnuplot")
+```
+
+A reference but slow solution:
+
+```{python}
+t0 = time.time()
+x_ref = sp.optimize.minimize(f, K[0], method="Powell").x
+print(f"     Powell: time {time.time() - t0:.2f}s")
+f_ref = f(x_ref)
+```
+
+Compare different approaches
+
+```{python}
+t0 = time.time()
+x_bfgs = sp.optimize.minimize(f, K[0], method="BFGS").x
+print(
+    f"       BFGS: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_bfgs - x_ref) ** 2)):.2f}, f error {f(x_bfgs) - f_ref:.2f}"
+)
+
+t0 = time.time()
+x_l_bfgs = sp.optimize.minimize(f, K[0], method="L-BFGS-B").x
+print(
+    f"     L-BFGS: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_l_bfgs - x_ref) ** 2)):.2f}, f error {f(x_l_bfgs) - f_ref:.2f}"
+)
+```
+
+```{python}
+t0 = time.time()
+x_bfgs = sp.optimize.minimize(f, K[0], jac=f_prime, method="BFGS").x
+print(
+    f"  BFGS w f': time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_bfgs - x_ref) ** 2)):.2f}, f error {f(x_bfgs) - f_ref:.2f}"
+)
+
+t0 = time.time()
+x_l_bfgs = sp.optimize.minimize(f, K[0], jac=f_prime, method="L-BFGS-B").x
+print(
+    f"L-BFGS w f': time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_l_bfgs - x_ref) ** 2)):.2f}, f error {f(x_l_bfgs) - f_ref:.2f}"
+)
+```
+
+```{python}
+t0 = time.time()
+x_newton = sp.optimize.minimize(
+    f, K[0], jac=f_prime, hess=hessian, method="Newton-CG"
+).x
+print(
+    f"     Newton: time {time.time() - t0:.2f}s, x error {np.sqrt(np.sum((x_newton - x_ref) ** 2)):.2f}, f error {f(x_newton) - f_ref:.2f}"
+)
+```
+
+::: {solution-end}
+:::
+
+**A locally flat minimum**
+
+::: {exercise-start}
+:label: mo-flat-min-ex
+:class: dropdown
+:::
 
 Consider the function `exp(-1/(.1*x**2 + y**2)`. This function admits
 a minimum in (0, 0). Starting from an initialization at (1, 1), try
 to get within 1e-8 of this minimum point.
 
-.. centered:: |flat_min_0| |flat_min_1|
+This exercise is hard because the function is very flat around the minimum
+(all its derivatives are zero). Thus gradient information is unreliable.
+
+::: {exercise-end}
 :::
+
+::: {solution-start} mo-flat-min-ex
+:class: dropdown
+:::
+
+**Finding a minimum in a flat neighborhood**
+
+The function admits a minimum in [0, 0]. The challenge is to get within
+1e-7 of this minimum, starting at x0 = [1, 1].
+
+The solution that we adopt here is to give up on using gradient or
+information based on local differences, and to rely on the Powell
+algorithm. With 162 function evaluations, we get to 1e-8 of the
+solution.
+
+```{python}
+def f(x):
+    return np.exp(-1 / (0.01 * x[0] ** 2 + x[1] ** 2))
+```
+
+A well-conditioned version of f:
+
+```{python}
+def g(x):
+    return f([10 * x[0], x[1]])
+```
+
+The gradient of g. We won't use it here for the optimization.
+
+```{python}
+def g_prime(x):
+    r = np.sqrt(x[0] ** 2 + x[1] ** 2)
+    return 2 / r**3 * g(x) * x / r
+
+result = sp.optimize.minimize(g, [1, 1], method="Powell", tol=1e-10)
+x_min = result.x
+x_min
+```
+
+Some pretty plotting:
+
+```{python}
+t = np.linspace(-1.1, 1.1, 100)
+plt.plot(t, f([0, t]));
+```
+
+```{python}
+X, Y = np.mgrid[-1.5:1.5:100j, -1.1:1.1:100j]  # type: ignore[misc]
+plt.imshow(f([X, Y]).T, cmap="gray_r", extent=(-1.5, 1.5, -1.1, 1.1), origin="lower")
+plt.contour(X, Y, f([X, Y]), cmap="gnuplot")
+
+# Plot the gradient
+dX, dY = g_prime([0.1 * X[::5, ::5], Y[::5, ::5]])
+# Adjust for our preconditioning
+dX *= 0.1
+plt.quiver(X[::5, ::5], Y[::5, ::5], dX, dY, color=".5")
+
+# Plot our solution
+plt.plot(x_min[0], x_min[1], "r+", markersize=15);
+```
+
+::: {solution-end}
+:::
+
 
 ## Special case: non-linear least-squares
 
@@ -1877,16 +2035,8 @@ If the function is linear, this is a linear-algebra problem, and
 should be solved with {func}`scipy.linalg.lstsq`.
 :::
 
-### Curve fitting
 
-<!---
-![](auto_examples/images/sphx_glr_plot_curve_fitting_001.png)
-# These applied to image above; but {image} directive broke
-# parsing of Python block below.
-:align: right
-:scale: 48%
-:target: auto_examples/plot_curve_fitting.html
--->
+### Curve fitting
 
 Least square problems occur often when fitting a non-linear to data.
 While it is possible to construct our optimization problem ourselves,
@@ -1909,10 +2059,6 @@ sp.optimize.curve_fit(f, x, y)
 ```
 
 ```{python tags=c("hide-input")}
-import numpy as np
-import scipy as sp
-import matplotlib.pyplot as plt
-
 rng = np.random.default_rng(27446968)
 
 
@@ -1932,18 +2078,20 @@ params, params_cov = sp.optimize.curve_fit(f, x, y)
 # plot the data and the fitted curve
 t = np.linspace(0, 3, 1000)
 
-plt.figure(1)
-plt.clf()
 plt.plot(x, y, "bx")
-plt.plot(t, f(t, *params), "r-")
-plt.show()
+plt.plot(t, f(t, *params), "r-");
 ```
 
-:::{admonition} Exercise
-:class: green
+::: {exercise-start}
+:label: mo-omega3-ex
+:class: dropdown
+:::
 
 Do the same with omega = 3. What is the difficulty?
+
+::: {exercise-end}
 :::
+
 
 ## Optimization with constraints
 
@@ -2015,9 +2163,7 @@ sp.optimize.minimize(
 )
 
 accumulated = np.array(accumulator)
-plt.plot(accumulated[:, 0], accumulated[:, 1])
-
-plt.show()
+plt.plot(accumulated[:, 0], accumulated[:, 1]);
 ```
 
 <!---
@@ -2107,9 +2253,7 @@ sp.optimize.minimize(
 )
 
 accumulated = np.array(accumulator)
-plt.plot(accumulated[:, 0], accumulated[:, 1])
-
-plt.show()
+plt.plot(accumulated[:, 0], accumulated[:, 1]);
 ```
 
 :::{warning}
