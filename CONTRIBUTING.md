@@ -26,9 +26,10 @@ Objectives:
   packages, the ”Scientific Python stack“.
 - Provide tutorials for a selection of widely-used and stable computational
   libraries.
-  Currently, we cover pandas, statmodels, seaborn, scikit-image,
-  scikit-learn, and sympy.
-- Automated testing is applied to the code examples as much as possible.
+  Currently, we cover Pandas, Statmodels, some of Seaborn, Scikit-image,
+  Scikit-learn, and Sympy.
+- We would like to apply automated testing to the code examples as much as
+  possible.
 
 Design choices:
 
