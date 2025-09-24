@@ -124,11 +124,10 @@ def get_admonition_lines(nb_text, nb_path):
     admonition_lines = []
     for admonition in doc.findall(dun.Admonition):
         start_line = admonition.line - 1
-        # Find all following doctree.
-        following = list(
-            admonition.findall(include_self=False, descend=False, ascend=True)
-        )
-        node0 = following[0] if following else None
+        # Find first node of subsequent doctree.
+        node0 = next(admonition.findall(include_self=False,
+                                        descend=False,
+                                        ascend=True), None)
         # There can be a system_message as next node, in which case the correct
         # line is in the 'line' attribute.
         last_line = node0.get("line", node0.line) - 2 if node0 else n_lines - 1
