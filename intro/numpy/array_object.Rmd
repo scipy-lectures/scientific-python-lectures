@@ -179,8 +179,10 @@ c
 c.shape
 ```
 
-:::{admonition} Exercise: Simple arrays
-:class: green
+::: {exercise-start}
+:label: np-ao-first-ex
+:class: dropdown
+:::
 
 - Create a simple two dimensional array. First, redo the examples
   from above. And then create your own: how about odd numbers
@@ -188,7 +190,10 @@ c.shape
 - Use the functions {func}`len`, {func}`numpy.shape` on these arrays.
   How do they relate to each other? And to the `ndim` attribute of
   the arrays?
+
+::: {exercise-end}
 :::
+
 
 ### Functions for creating arrays
 
@@ -257,8 +262,10 @@ b = rng.standard_normal(4)      # Gaussian
 b
 ```
 
-:::{admonition} Exercise: Creating arrays using functions
-:class: green
+::: {exercise-start}
+:label: np-ao-func1-ex
+:class: dropdown
+:::
 
 - Experiment with `arange`, `linspace`, `ones`, `zeros`, `eye` and
   `diag`.
@@ -266,23 +273,46 @@ b
 - Try setting the seed before creating an array with random values.
 - Look at the function `np.empty`. What does it do? When might this be
   useful?
+
+::: {exercise-end}
 :::
 
-<!---
-EXE: construct 1 2 3 4 5
--->
-<!---
-EXE: construct -5, -4, -3, -2, -1
--->
-<!---
-EXE: construct 2 4 6 8
--->
-<!---
-EXE: look what is in an empty() array
--->
-<!---
-EXE: construct 15 equispaced numbers in range [0, 10]
--->
+::: {exercise-start}
+:label: np-ao-func2-ex
+:class: dropdown
+:::
+
+- construct an array containing: 1 2 3 4 5
+- construct an array containing: -5, -4, -3, -2, -1
+- Construct: 2 4 6 8
+- Construct 15 equispaced numbers in range [0, 10]
+
+::: {exercise-end}
+:::
+
+::: {solution-start} np-ao-func2-ex
+:class: dropdown
+:::
+
+```{python}
+np.arange(1, 6)
+```
+
+```{python}
+np.arange(-5, 0)
+```
+
+```{python}
+np.arange(2, 10, 2)
+```
+
+```{python}
+np.linspace(0, 10, 15)
+```
+
+::: {solution-end}
+:::
+
 
 ## Basic data types
 
@@ -308,8 +338,6 @@ but most of the time we simply work with floating point numbers.
 Note that, in the example above, NumPy auto-detects the data-type
 from the input.
 :::
-
-______________________________________________________________________
 
 You can explicitly specify which data-type you want:
 
@@ -433,13 +461,18 @@ plt.colorbar()
 More in the: {ref}`matplotlib chapter <matplotlib>`
 :::
 
-:::{admonition} Exercise: Simple visualizations
-:class: green
+::: {exercise-start}
+:label: np-ao-viz-ex
+:class: dropdown
+:::
 
 - Plot some simple arrays: a cosine as a function of time and a 2D
   matrix.
 - Try using the `gray` colormap on the 2D matrix.
+
+::: {exercise-end}
 :::
+
 
 ## Indexing and slicing
 
@@ -543,27 +576,35 @@ a[5:] = b[::-1]
 a
 ```
 
-:::{admonition} Exercise: Indexing and slicing
-:class: green
+::: {exercise-start}
+:label: np-ao-slicing-ex
+:class: dropdown
+:::
 
 - Try the different flavours of slicing, using `start`, `end` and
   `step`: starting from a linspace, try to obtain odd numbers
   counting backwards, and even numbers counting forwards.
-
 - Reproduce the slices in the diagram above. You may
   use the following expression to create the array:
 
-```{python}
+```python
 np.arange(6) + np.arange(0, 51, 10)[:, np.newaxis]
 ```
+
+::: {exercise-end}
 :::
 
-:::{admonition} Exercise: Array creation
-:class: green
+
+::: {exercise-start}
+:label: np-ao-creation-ex
+:class: dropdown
+:::
+
+An exercise on array creation.
 
 Create the following arrays (with correct data types):
 
-```{python}
+```python
 [[1, 1, 1, 1],
  [1, 1, 1, 1],
  [1, 1, 1, 2],
@@ -577,27 +618,69 @@ Create the following arrays (with correct data types):
  [0., 0., 0., 0., 6.]]
 ```
 
-Par on course: 3 statements for each
+Par on course: 3 statements for each.
 
 *Hint*: Individual array elements can be accessed similarly to a list,
 e.g. `a[1]` or `a[1, 2]`.
 
 *Hint*: Examine the docstring for `diag`.
+
+::: {exercise-end}
 :::
 
-:::{admonition} Exercise: Tiling for array creation
-:class: green
+::: {solution-start} np-ao-creation-ex
+:class: dropdown
+:::
+
+```{python}
+a = np.ones((4, 4), dtype=int)
+a[3, 1] = 6
+a[2, 3] = 2
+a
+```
+
+```{python}
+b = np.zeros((6, 5))
+b[1:] = np.diag(np.arange(2, 7))
+b
+```
+
+::: {solution-end}
+:::
+
+::: {exercise-start}
+:label: np-ao-tiling-ex
+:class: dropdown
+:::
+
+Exercise on tiling for array creation.
 
 Skim through the documentation for `np.tile`, and use this function
 to construct the array:
 
-```{python}
+```python
 [[4, 3, 4, 3, 4, 3],
  [2, 1, 2, 1, 2, 1],
  [4, 3, 4, 3, 4, 3],
  [2, 1, 2, 1, 2, 1]]
 ```
+
+::: {exercise-end}
 :::
+
+::: {solution-start} np-ao-tiling-ex
+:class: dropdown
+:::
+
+```{python}
+block = np.array([[4, 3], [2, 1]])
+a = np.tile(block, (2, 3))
+a
+```
+
+::: {solution-end}
+:::
+
 
 ## Copies and views
 
@@ -793,13 +876,17 @@ The image below illustrates various fancy indexing applications
 
 ![](../../pyximages/numpy_fancy_indexing.png)
 
-:::{admonition} Exercise: Fancy indexing
-:class: green
+::: {exercise-start}
+:label: np-ao-fancy-ex
+:class: dropdown
+:::
 
 - Again, reproduce the fancy indexing shown in the diagram above.
 - Use fancy indexing on the left and array creation on the right to assign
   values into an array, for instance by setting parts of the array in
   the diagram above to zero.
+
+::: {exercise-end}
 :::
 
 We can even use fancy indexing and :ref:`broadcasting <broadcasting>` at
