@@ -128,18 +128,17 @@ os.path.join(os.path.expanduser('~'), 'local', 'bin')
 ### Running an external command
 
 ```{python}
-os.system('ls')
+return_code = os.system('ls')
 ```
 
 :::{note}
 Alternative to `os.system`
 
-A noteworthy alternative to `os.system` is the [sh module](https://amoffat.github.com/sh/). Which provides much more convenient ways to
-obtain the output, error stream and exit code of the external command.
+A noteworthy alternative to `os.system` is the [sh
+module](https://amoffat.github.com/sh/). Which provides much more convenient
+ways to obtain the output, error stream and exit code of the external command.
 
 ```python
-
-
 import sh
 com = sh.ls()
 
@@ -166,13 +165,14 @@ for dirpath, dirnames, filenames in os.walk(os.curdir):
 
 ### Environment variables:
 
-```{python}
-os.environ.keys()
+```ipython
+In [2]: os.environ.keys()
+Out[2]: KeysView(environ({'SHELL': '/bin/bash', 'PWD': '/home/mb312', 'LOGNAME': 'mb312', 'HOME': '/home/mb312', 'TERM': 'xterm', 'USER': 'mb312', 'SHLVL': '1', 'PATH': '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'MAIL': '/var/mail/mb312', '_': '/usr/bin/python3', 'LC_CTYPE': 'C.UTF-8'}))
+
+In [3]: os.environ['SHELL']
+Out[3]: '/bin/bash'
 ```
 
-```{python}
-os.environ['SHELL']
-```
 
 ## `shutil`: high-level file operations
 
@@ -197,7 +197,7 @@ glob.glob('*.txt')
 
 System-specific information related to the Python interpreter.
 
-- Which version of python are you running and where is it installed:
+**Which version of Python** are you running and where is it installed:
 
 ```{python}
 import sys
@@ -212,14 +212,11 @@ sys.version
 sys.prefix
 ```
 
-- List of command line arguments passed to a Python script:
-
-```{python}
-sys.argv
-```
+`sys.argv` gives you a **list of command line arguments** passed to a Python
+script.  It is useful when you call as script with e.g. `python my_script.py some arguments`.  Inside the `my_arguments.py` script, you can get the passed arguments (here ['some', 'arguments']) with `sys.argv`.
 
 `sys.path` is a list of strings that specifies the search path for
-modules. Initialized from PYTHONPATH:
+modules. Initialized from `PYTHONPATH`:
 
 ```{python}
 sys.path
@@ -245,8 +242,99 @@ with open('test.pkl', 'rb') as file:
 out
 ```
 
-:::{admonition} Exercise
-Write a program to search your `PYTHONPATH` for the module `site.py`.
+## Exercises
+
+::: {exercise-start}
+:label: data-file-ex
+:class: dropdown
 :::
 
-{ref}`path-site`
+Write a function that will load the column of numbers in `data.txt` and
+calculate the min, max and sum values.  Use no modules except those in the
+standard library; specifically, do not use Numpy.
+
+{download}`data.txt`:
+
+::: {literalinclude} data.txt
+
+:::
+
+::: {exercise-end}
+:::
+
+::: {solution-start} data-file-ex
+:class: dropdown
+:::
+
+```{python}
+def load_data(filename):
+    fp = open(filename)
+    data_string = fp.read()
+    fp.close()
+
+    data = []
+    for x in data_string.split():
+        # Data is read in as a string. We need to convert it to floats
+        data.append(float(x))
+
+    # Could instead use the following one line with list comprehensions!
+    # data = [float(x) for x in data_string.split()]
+    return data
+```
+
+```{python}
+data = load_data("data.txt")
+# Python provides these basic math functions.
+print(f"min: {min(data):f}")
+print(f"max: {max(data):f}")
+print(f"sum: {sum(data):f}")
+```
+
+::: {solution-end}
+:::
+
+::: {exercise-start}
+:label: dir-sort-ex
+:class: dropdown
+:::
+
+Implement a *script* that takes a directory name as argument, and
+returns the list of '.py' files, sorted by name length.
+
+**Hint:** try to understand the docstring of list.sort
+
+::: {exercise-end}
+:::
+
+::: {solution-start} dir-sort-ex
+:class: dropdown
+:::
+
+::: {literalinclude} solutions/dir_sort.py
+
+:::
+
+::: {solution-end}
+:::
+
+
+::: {exercise-start}
+:label: path-site-ex
+:class: dropdown
+:::
+
+Write a program to search your `PYTHONPATH` for the module `site.py`.
+
+::: {exercise-end}
+:::
+
+::: {solution-start} path-site-ex
+:class: dropdown
+:::
+
+::: {literalinclude} solutions/path_site.py
+
+:::
+
+::: {solution-end}
+:::
