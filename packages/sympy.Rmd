@@ -31,8 +31,6 @@ TODO: bench and fit in 1:30
 5. Solve some differential equations.
 :::
 
-.. role:: input(strong)
-
 **What is SymPy?** SymPy is a Python library for symbolic mathematics. It
 aims to be an alternative to systems such as Mathematica or Maple while keeping
 the code as simple as possible and easily

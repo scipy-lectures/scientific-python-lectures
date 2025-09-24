@@ -296,13 +296,11 @@ on your data.
 ## Writing faster numerical code
 
 A complete discussion on advanced use of NumPy is found in chapter
-{ref}`advanced-numpy`, or in the article [The NumPy array: a structure
-.. note::
+{ref}`advanced-numpy`, or in the article [The NumPy array: a structure for
+efficient numerical computation](https://hal.inria.fr/inria-00564007/en).
+by van der Walt *et al.* Here we discuss only some commonly encountered tricks
+to make code faster.
 
-   The code of this example can be found :ref:`here <sphx_glr_intro_scipy_auto_examples_plot_fftpack.py>`
-for efficient numerical computation](https://hal.inria.fr/inria-00564007/en)
-by van der Walt et al. Here we
-discuss only some commonly encountered tricks to make code faster.
 
 ### Vectorizing for loops
 
