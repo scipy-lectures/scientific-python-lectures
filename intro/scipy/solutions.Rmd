@@ -22,56 +22,9 @@ jupyter:
 
 Compute the decimals of Pi using the Wallis formula:
 
-:::literalinclude} solutions/pi_wallis.py
+::: {literalinclude} solutions/pi_wallis.py
 
 :::
-
-(quick-sort)=
-
-## The Quicksort Solution
-
-Implement the quicksort algorithm, as defined by wikipedia:
-
-```text
-function quicksort(array)
-    var list less, greater
-    if length(array) ≤ 1
-        return array
-    select and remove a pivot value pivot from array
-    for each x in array
-        if x ≤ pivot then append x to less
-        else append x to greater
-    return concatenate(quicksort(less), pivot, quicksort(greater))
-```
-
-:::literalinclude} solutions/quick_sort.py
-
-:::
-
-(fibonacci)=
-
-## Fibonacci sequence
-
-Write a function that displays the `n` first terms of the Fibonacci
-sequence, defined by:
-
-- `u_0 = 1; u_1 = 1`
-- `u_(n+2) = u_(n+1) + u_n`
-
-```{python}
-def fib(n):
-    """Display the n first terms of Fibonacci sequence"""
-    a, b = 0, 1
-    i = 0
-    while i < n:
-        print(b)
-        a, b = b, a+b
-        i +=1
-```
-
-```{python}
-fib(10)
-```
 
 (dir-sort)=
 
@@ -82,7 +35,7 @@ returns the list of '.py' files, sorted by name length.
 
 **Hint:** try to understand the docstring of list.sort
 
-:::literalinclude} solutions/dir_sort.py
+::: {literalinclude} solutions/dir_sort.py
 
 :::
 
@@ -95,13 +48,13 @@ and calculate the min, max and sum values.
 
 Data file:
 
-:::literalinclude} solutions/data.txt
+::: {literalinclude} solutions/data.txt
 
 :::
 
 Solution:
 
-:::literalinclude} solutions/data_file.py
+::: {literalinclude} solutions/data_file.py
 
 :::
 
@@ -111,6 +64,6 @@ Solution:
 
 Write a program to search your PYTHONPATH for the module `site.py`.
 
-:::literalinclude} solutions/path_site.py
+::: {literalinclude} solutions/path_site.py
 
 :::
