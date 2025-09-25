@@ -30,6 +30,7 @@ github: web
 
 clean: rm-ipynb
 	rm -rf _build
+	find . -name ".ipynb_checkpoints" -exec rm -r {} \;
 
 rm-ipynb:
 	rm -rf *.ipynb
