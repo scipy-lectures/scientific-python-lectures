@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -67,12 +67,12 @@ c
 
 Integers (signed):
 
-=================== ==============================================================
-:class:`int8`        8 bits
-:class:`int16`       16 bits
-:class:`int32`       32 bits (same as :class:`int` on 32-bit platform)
-:class:`int64`       64 bits (same as :class:`int` on 64-bit platform)
-=================== ==============================================================
+| Class   | Bits                                       |
+|---------|--------------------------------------------|
+| `int8`  | 8 bits                                     |
+| `int16` | 16b its                                    |
+| `int32` | 32 bits (same as `int` on 32-bit platform) |
+| `int64` | 64 bits (same as `int` on 64-bit platform) |
 
 ```{python}
 np.array([1], dtype=int).dtype
@@ -84,12 +84,12 @@ np.iinfo(np.int32).max, 2**31 - 1
 
 Unsigned integers:
 
-=================== ==============================================================
-:class:`uint8`       8 bits
-:class:`uint16`      16 bits
-:class:`uint32`      32 bits
-:class:`uint64`      64 bits
-=================== ==============================================================
+| Class    | Bits    |
+|----------|---------|
+| `uint8`  | 8 bits  |
+| `uint16` | 16 bits |
+| `uint32` | 32 bits |
+| `uint64` | 64 bits |
 
 ```{python}
 np.iinfo(np.uint32).max, 2**32 - 1
@@ -97,13 +97,13 @@ np.iinfo(np.uint32).max, 2**32 - 1
 
 Floating-point numbers:
 
-=================== ==============================================================
-:class:`float16`     16 bits
-:class:`float32`     32 bits
-:class:`float64`     64 bits (same as :class:`float`)
-:class:`float96`     96 bits, platform-dependent (same as :class:`np.longdouble`)
-:class:`float128`    128 bits, platform-dependent (same as :class:`np.longdouble`)
-=================== ==============================================================
+| Data Type         | Size (bits)                     |
+|-------------------|---------------------------------|
+| `float16`         | 16 bits                        |
+| `float32`         | 32 bits                        |
+| `float64`         | 64 bits (same as `float`)      |
+| `float96`         | 96 bits, platform-dependent (same as `np.longdouble`) |
+| `float128`        | 128 bits, platform-dependent (same as `np.longdouble`) |
 
 ```{python}
 np.finfo(np.float32).eps
@@ -123,12 +123,12 @@ np.float64(1e-8) + np.float64(1) == 1
 
 Complex floating-point numbers:
 
-=================== ==============================================================
-:class:`complex64`   two 32-bit floats
-:class:`complex128`  two 64-bit floats
-:class:`complex192`  two 96-bit floats, platform-dependent
-:class:`complex256`  two 128-bit floats, platform-dependent
-=================== ==============================================================
+| Data Type         | Size (bits)                              |
+|-------------------|------------------------------------------|
+| `complex64`       | two 32-bit floats                       |
+| `complex128`      | two 64-bit floats                       |
+| `complex192`      | two 96-bit floats, platform-dependent    |
+| `complex256`      | two 128-bit floats, platform-dependent   |
 
 :::{admonition} Smaller data types
 If you don't know you need special data types, then you probably don't.
@@ -157,11 +157,11 @@ Comparison on using `float32` instead of `float64`:
 
 ## Structured data types
 
-=============== ====================
-``sensor_code``  (4-character string)
-``position``     (float)
-``value``        (float)
-=============== ====================
+| Data Type       | Description            |
+|-----------------|------------------------|
+| `sensor_code`   | 4-character string     |
+| `position`      | float                  |
+| `value`         | float                  |
 
 ```{python}
 samples = np.zeros((6,), dtype=[('sensor_code', 'S4'),
