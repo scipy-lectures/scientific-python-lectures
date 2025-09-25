@@ -119,35 +119,35 @@ It contains the following submodules:
 
 ::: {list-table} Scikit-image submodules
 
-* - {mod}`color`
+* - {mod}`skimage.color`
   - Color space conversion.
-* - {mod}`data`
+* - {mod}`skimage.data`
   - Test images and example data.
-* - {mod}`draw`
+* - {mod}`skimage.draw`
   - Drawing primitives (lines, text, etc.) that operate on NumPy arrays.
-* - {mod}`exposure`
+* - {mod}`skimage.exposure`
   - Image intensity adjustment, e.g., histogram equalization, etc.
-* - {mod}`feature`
+* - {mod}`skimage.feature`
   - Feature detection and extraction, e.g., texture analysis corners, etc.
-* - {mod}`filters`
+* - {mod}`skimage.filters`
   - Sharpening, edge finding, rank filters, thresholding, etc.
-* - {mod}`graph`
+* - {mod}`skimage.graph`
   - Graph-theoretic operations, e.g., shortest paths.
-* - {mod}`io`
+* - {mod}`skimage.io`
   - Reading, saving, and displaying images and video.
-* - {mod}`measure`
+* - {mod}`skimage.measure`
   - Measurement of image properties, e.g., region properties and contours.
-* - {mod}`metrics`
+* - {mod}`skimage.metrics`
   - Metrics corresponding to images, e.g. distance metrics, similarity, etc.
-* - {mod}`morphology`
+* - {mod}`skimage.morphology`
   - Morphological operations, e.g., opening or skeletonization.
-* - {mod}`restoration`
+* - {mod}`skimage.restoration`
   - Restoration algorithms, e.g., deconvolution algorithms, denoising, etc.
-* - {mod}`segmentation`
+* - {mod}`skimage.segmentation`
   - Partitioning an image into multiple regions.
-* - {mod}`transform`
+* - {mod}`skimage.transform`
   - Geometric and other transforms, e.g., rotation or the Radon transform.
-* - {mod}`util`
+* - {mod}`skimage.util`
   - Generic utilities.
 :::
 
