@@ -1472,9 +1472,9 @@ A more C-friendly variant of the array interface is also defined.
 
 (array-siblings)=
 
-## Array siblings: {class}`chararray`, {class}`maskedarray`
+## Array siblings: {class}`chararray`, {class}`MaskedArray`
 
-### {class}`chararray`: vectorized string operations
+### {class}`chararray <numpy.char.chararray>`: vectorized string operations
 
 ```{python}
 x = np.char.asarray(['a', '  bbb', '  ccc'])
@@ -1485,7 +1485,7 @@ x
 x.upper()
 ```
 
-### {class}`masked_array` missing data
+### {class}`MaskedArray <numpy.ma.MaskedArray>` missing data
 
 Masked arrays are arrays that may have missing or invalid entries.
 
@@ -1498,7 +1498,7 @@ x = np.array([1, 2, 3, -99, 5])
 One way to describe this is to create a masked array:
 
 ```{python}
-mx = np.ma.masked_array(x, mask=[0, 0, 0, 1, 0])
+mx = np.ma.MaskedArray(x, mask=[0, 0, 0, 1, 0])
 mx
 ```
 
@@ -1517,7 +1517,7 @@ Not all NumPy functions respect masks, for instance
 `np.dot`, so check the return types.
 :::
 
-The `masked_array` returns a **view** to the original array:
+The `MaskedArray` returns a **view** to the original array:
 
 ```{python}
 mx[1] = 9
@@ -1585,7 +1585,7 @@ time, ignoring the invalid numbers.
 
 ```{python}
 data = np.loadtxt('data/populations.txt')
-populations = np.ma.masked_array(data[:,1:])
+populations = np.ma.MaskedArray(data[:,1:])
 year = data[:, 0]
 ```
 

@@ -249,7 +249,7 @@ d = np.diag(np.array([1, 2, 3, 4]))
 d
 ```
 
-- {mod}`np.random`: random numbers (Mersenne Twister PRNG):
+- {mod}`numpy.random`: random numbers (Mersenne Twister PRNG):
 
 ```{python}
 rng = np.random.default_rng(27446968)

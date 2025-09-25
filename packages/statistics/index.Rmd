@@ -97,11 +97,13 @@ observations. For instance, the data contained in
 ::: {note}
 :class: dropdown
 
-We will store and manipulate this data in a {class}`pd.DataFrame`, from
+We will store and manipulate this data in a {class}`pandas.DataFrame`, from
 the [pandas](https://pandas.pydata.org) module. It is the Python equivalent of
 the spreadsheet table. It is different from a 2D `numpy` array as it has named
 columns, can contain a mixture of different data types by column, and has
-elaborate selection and pivotal mechanisms. :::
+elaborate selection and pivotal mechanisms.
+
+:::
 
 
 #### Creating dataframes: reading data files or converting arrays
@@ -127,7 +129,7 @@ don't specify the missing value (NA = not available) marker, we will
 not be able to do statistical analysis.
 :::
 
-**Creating from arrays**: A {class}`pd.DataFrame` can also be seen
+**Creating from arrays**: A {class}`pandas.DataFrame` can also be seen
 as a dictionary of 1D 'series', eg arrays or lists. If we have 3
 `numpy` arrays:
 
@@ -137,7 +139,7 @@ sin_t = np.sin(t)
 cos_t = np.cos(t)
 ```
 
-We can expose them as a {class}`pd.DataFrame`:
+We can expose them as a `pd.DataFrame`
 
 ```{python}
 pd.DataFrame({'t': t, 'sin': sin_t, 'cos': cos_t})
@@ -149,7 +151,7 @@ SQL, excel files, or other formats. See the [pandas documentation](https://panda
 
 #### Manipulating data
 
-`data` is a {class}`pd.DataFrame`, that resembles R's dataframe:
+`data` is a {class}`pandas.DataFrame`, that resembles R's dataframe:
 
 ```{python}
 data.shape    # 40 rows and 8 columns
