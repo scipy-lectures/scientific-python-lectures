@@ -339,7 +339,7 @@ support for exporting certain attributes of a NumPy array as ctypes data-types
 and there are functions to convert from C arrays to NumPy arrays and back.
 
 <!---
-XXX Should use {mod} and :class:
+XXX Should use {mod} and {class}
 -->
 For more information, consult the corresponding section in the [NumPy Cookbook](https://www.scipy.org/Cookbook/Ctypes) and the API documentation for
 [numpy.ndarray.ctypes](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.ctypes.html)

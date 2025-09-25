@@ -1646,10 +1646,10 @@ As we can see, our linear model captures and amplifies the noise in the
 data. It displays a lot of variance.
 
 We can use another linear estimator that uses regularization, the
-:class:`~sklearn.linear_model.Ridge` estimator. This estimator
-regularizes the coefficients by shrinking them to zero, under the
-assumption that very high correlations are often spurious. The alpha
-parameter controls the amount of shrinkage used.
+{class}`~sklearn.linear_model.Ridge` estimator. This estimator regularizes the
+coefficients by shrinking them to zero, under the assumption that very high
+correlations are often spurious. The alpha parameter controls the amount of
+shrinkage used.
 
 ```{python}
 regr = linear_model.Ridge(alpha=0.1)
