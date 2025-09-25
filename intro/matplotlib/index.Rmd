@@ -291,8 +291,8 @@ Documentation
 :class: dropdown
 
 Current ticks are not ideal because they do not show the interesting values
-($\pm \pi$,:math:`\pm \pi`/2) for sine and cosine. We'll change them such that they show
-only these values.
+($\pm \pi$, $\pm \frac{\pi}{2}$) for sine and cosine. We'll change them such
+that they show only these values.
 :::
 
 ```{python}
@@ -300,7 +300,7 @@ only these values.
 plt.figure(fig_to_update)
 
 # Set x and y ticks.
-plt.xticks([-np.pi, -np.pi/2, 0, np.pi/2, np.pi])
+plt.xticks([-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi])
 plt.yticks([-1, 0, +1])
 
 # Make Jupyter display updated figure.
