@@ -88,7 +88,7 @@ observations. For instance, the data contained in
 
 :::{include} examples/brain_size.csv
 :literal:
- :end-line: 6
+:end-line: 6
 :::
 
 
