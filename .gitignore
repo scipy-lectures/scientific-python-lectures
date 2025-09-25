@@ -53,3 +53,8 @@ __pycache__/
 node_modules/
 .jupyterlite.doit.db
 advanced/advanced_numpy/test.png
+packages/scikit-image/cat.png
+advanced/advanced_numpy/test_recolored.png
+advanced/advanced_numpy/test_red.png
+intro/language/junk.txt
+intro/language/test.pkl
