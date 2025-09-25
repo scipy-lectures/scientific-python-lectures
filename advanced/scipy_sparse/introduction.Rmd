@@ -74,7 +74,7 @@ plt.ylabel('memory [MB]')
 * {ref}`numpy <numpy>`
 * {ref}`scipy <scipy>`
 * {ref}`matplotlib (optional) <matplotlib>`
-* {ref}`ipython (the enhancements come handy) <interactive_work>`
+* {ref}`ipython (the enhancements come handy) <interactive-work>`
 :::
 
 ## Sparsity Structure Visualization
