@@ -6,7 +6,7 @@ jupyter:
       extension: .Rmd
       format_name: rmarkdown
       format_version: '1.2'
-      jupytext_version: 1.17.2
+      jupytext_version: 1.17.3
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -29,30 +29,20 @@ corrections.
 
 ## Introduction
 
-::: {note}
-:class: dropdown
-
 [Matplotlib](https://matplotlib.org/) is probably the most
 used Python package for 2D-graphics. It provides both a quick
 way to visualize data from Python and publication-quality figures in
 many formats. We are going to explore matplotlib in interactive mode
 covering most common cases.
 
-:::
-
 ### IPython, Jupyter, and matplotlib modes
-
-::: {note}
-:class: dropdown
 
 The [Jupyter](https://jupyter.org) notebook and the
 [IPython](https://ipython.org/) enhanced interactive Python, are
 tuned for the scientific-computing workflow in Python,
 in combination with Matplotlib:
 
-:::
-
-For interactive matplotlib sessions, turn on the **matplotlib mode**
+For interactive matplotlib sessions, turn on the **matplotlib mode**.
 
 ### IPython sessions
 
@@ -71,15 +61,10 @@ The Jupyter Notebook uses Matplotlib mode by default; that is, it inserts the fi
 
 ### pyplot
 
-::: {note}
-:class: dropdown
-
 *pyplot* provides a procedural interface to the matplotlib object-oriented
 plotting library. It is modeled closely after Matlab™. Therefore, the
 majority of plotting commands in pyplot have Matlab™ analogs with similar
 arguments. Important commands are explained with interactive examples.
-
-:::
 
 ```{python}
 import matplotlib.pyplot as plt
@@ -87,15 +72,11 @@ import matplotlib.pyplot as plt
 
 ## Simple plot
 
-::: {note}
-:class: dropdown
-
 In this section, we want to draw the cosine and sine functions on the same
 plot. Starting from the default settings, we'll enrich the figure step by
 step to make it nicer.
 
 First step is to get the data for the sine and cosine functions:
-:::
 
 ```{python}
 import numpy as np
