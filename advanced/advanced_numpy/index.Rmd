@@ -159,13 +159,25 @@ block.
 
 {class}`dtype` describes a single item in the array:
 
-| | |
-| - | - |
-| type     |  **scalar type** of the data, one of:<br><br>int8, int16, float64, *et al.* (fixed size)<br><br>str, unicode, void (flexible size) |
-| itemsize |  **size** of the data block |
-| byteorder|  **byte order**: big-endian ``>`` / little-endian ``<`` / not applicable `` |
-| fields   |  sub-dtypes, if it's a **structured data type** |
-| shape    |  shape of the array, if it's a **sub-array** |
+::: {list-table} Dtypes
+
+* - type
+  - **scalar type** of the data, one of:
+    - int8, int16, float64, *et al.* (fixed size)
+    - str, unicode, void (flexible size)
+* - itemsize
+  - **size** of the data block
+* - byteorder
+  - **byte order**:
+    - big-endian ``>``
+    - little-endian ``<``
+    - not applicable ``|``
+* - fields
+  - sub-dtypes, if it's a **structured data type**
+* - shape
+  - shape of the array, if it's a **sub-array**
+
+:::
 
 ```{python}
 np.dtype(int).type

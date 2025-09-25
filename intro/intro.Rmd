@@ -50,40 +50,75 @@ Valentin Haenel*
 
 ### How does Python compare to other solutions?
 
-#### Compiled languages: C, C++, Fortran...
+::: {list-table} Compiled languages (C, C++, Fortran ...)
+* - Pros
+  - Very fast. For heavy computations, it’s difficult to outperform these
+    languages.
+* - Cons
+  - Painful usage: no interactivity during development, mandatory compilation
+    steps, verbose syntax, manual memory management. These are **difficult
+    languages** for non programmers.
 
-|   |   |
-| :- | :- |
-| Pros | • Very fast. For heavy computations, it’s difficult to outperform these languages |
-| Cons | • Painful usage: no interactivity during development, mandatory compilation steps, verbose syntax, manual memory management. These are **difficult languages** for non programmers. |
+:::
 
-#### Matlab scripting language
+::: {list-table} Matlab scripting language
 
-|   |   |
-| :- | :- |
-| Pros | • Very rich collection of libraries with numerous algorithms, for many different domains. Fast execution because these libraries are often written in a compiled language.<br> • Pleasant development environment: comprehensive and help, integrated editor, etc.<br> • Commercial support is available. |
-| Cons | • Base language is quite poor and can become restrictive for advanced users.<br> • Not free and not everything is open sourced. |
+* - Pros
+  - * Very rich collection of libraries with numerous algorithms, for many
+      different domains. Fast execution because these libraries are often
+      written in a compiled language.
+    * Pleasant development environment: comprehensive and help, integrated
+      editor, etc.
+    * Commercial support is available.
+* - Cons
+  - * Base language is quite poor and can become restrictive for advanced
+      users.
+    * Not free and not everything is open sourced.
 
-#### Julia
+:::
 
-|   |   |
-| :- | :- |
-| Pros | • Fast code, yet interactive and simple.<br> • Easily connects to Python or C. |
-| Cons | • Ecosystem limited to numerical computing.<br> • Still young. |
+::: {list-table} Julia
 
-#### Other scripting languages: Scilab, Octave, R, IDL, etc.
+* - Pros
+  - * Fast code, yet interactive and simple to read and write.
+    * Easily connects to Python or C.
+* - Cons
+  - * Ecosystem limited to numerical computing.
+    * Still young.
 
-|   |   |
-| :- | :- |
-| Pros | • Open-source, free, or at least cheaper than Matlab.<br> • Some features can be very advanced (statistics in R, etc.) |
-| Cons | • Fewer available algorithms than in Matlab, and the language is not more advanced.<br> • Some software are dedicated to one domain. Ex: Gnuplot to draw curves. These programs are very powerful, but they are restricted to a single type of usage, such as plotting. |
+:::
 
-#### Python
+::: {list-table} Other scripting languages: Scilab, Octave, R, IDL, etc.
 
-|   |   |
-| :- | :- |
-| Pros | • Very rich scientific computing libraries<br> • Well thought out language, allowing to write very readable and well structured code: we “code what we think”.<br> • Many libraries beyond scientific computing (web server, serial port access, etc.)<br> • Free and open-source software, widely spread, with a vibrant community.<br> • A variety of powerful environments to work in, such as IPython, Spyder, Jupyter notebooks, Pycharm, Visual Studio Code |
-| Cons | • Not all the algorithms that can be found in more specialized software or toolboxes.|
+* - Pros
+  - * Open-source, free, or at least cheaper than Matlab.
+    * Some features can be very advanced (statistics in R, etc.)
+* - Cons
+  - * Fewer available algorithms than in Matlab, and the language is not more
+      advanced.
+    * Some software are dedicated to one domain. Ex: Gnuplot to draw curves.
+      These programs are very powerful, but they are restricted to a single
+      type of usage, such as plotting.
+
+:::
+
+::: {list-table} Python
+
+* - Pros
+  - * Very rich scientific computing libraries
+    * Well thought out language, allowing to write very readable and well
+      structured code: we “code what we think”.
+    * Many libraries beyond scientific computing (web server, serial port
+      access, etc.)
+    * Free and open-source software, widely spread, with a vibrant community.
+    * A variety of powerful environments to work in, such as IPython, Spyder,
+      Jupyter notebooks, Pycharm, Visual Studio Code |
+* - Cons
+  - * Not all the algorithms that can be found in more specialized software or
+      toolboxes.
+
+:::
+
 
 ### The scientific Python ecosystem
 
