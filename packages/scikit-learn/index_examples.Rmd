@@ -1313,7 +1313,7 @@ features derived from the pixel-level data, the algorithm correctly
 identifies a large number of the people in the images.
 
 Again, we can quantify this effectiveness using one of several measures
-from :mod:`sklearn.metrics`. First we can do the classification
+from {mod}`sklearn.metrics`. First we can do the classification
 report, which shows the precision, recall and other measures of the
 "goodness" of the classification:
 

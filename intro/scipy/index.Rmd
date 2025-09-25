@@ -1274,7 +1274,7 @@ plt.title("Reconstructed Image");
 Easier and better: {func}`scipy.ndimage.gaussian_filter`
 
 Implementing filtering directly with FFTs is tricky and time consuming.
-We can use the Gaussian filter from :mod:`scipy.ndimage`
+We can use the Gaussian filter from {mod}`scipy.ndimage`
 
 ```{python}
 im_blur = sp.ndimage.gaussian_filter(im, 4)
