@@ -28,10 +28,10 @@ import matplotlib.pyplot as plt
 
 :::{admonition} Prerequisites
 
- * :ref:`numpy <numpy>`
- * :ref:`scipy <scipy>`
- * :ref:`matplotlib (optional) <matplotlib>`
- * :ref:`ipython (the enhancements come handy) <interactive_work>`
+ * {ref}`numpy <numpy>`
+ * {ref}`scipy <scipy>`
+ * {ref}`matplotlib (optional) <matplotlib>`
+ * {ref}`ipython (the enhancements come handy) <interactive_work>`
 :::
 
 :::{sidebar} Acknowledgements
@@ -284,7 +284,7 @@ dimensions at a time using a scatter plot:
 ::: {note}
 
 There is a more elaborate visualization of this dataset is detailed in the
-:ref:`statistics` chapter.
+{ref}`statistics` chapter.
 
 ```{python tags=c("hide-input")}
 from matplotlib import ticker

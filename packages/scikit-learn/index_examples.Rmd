@@ -130,7 +130,7 @@ ax.axis("tight")
 Plot a simple scatter plot of 2 features of the iris dataset.
 
 Note that more elaborate visualization of this dataset is detailed
-in the :ref:`statistics` chapter.
+in the {ref}`statistics` chapter.
 
 ```{python}
 # Load the data

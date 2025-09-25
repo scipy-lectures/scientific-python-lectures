@@ -223,9 +223,9 @@ used for more efficient, non black-box, optimization.
 
 :::{admonition} Prerequisites
 
- * :ref:`NumPy <numpy>`
- * :ref:`SciPy <scipy>`
- * :ref:`Matplotlib <matplotlib>`
+ * {ref}`NumPy <numpy>`
+ * {ref}`SciPy <scipy>`
+ * {ref}`Matplotlib <matplotlib>`
 
 :::
 
