@@ -66,6 +66,40 @@ sphinx:
       .Rmd:
         - jupytext.reads
         - fmt: Rmd
+    intersphinx_mapping:
+      python:
+        - "https://docs.python.org/3/"
+        - null
+      numpy:
+        - "https://numpy.org/doc/stable/"
+        - null
+      scipy:
+        - "https://docs.scipy.org/doc/scipy/"
+        - null
+      matplotlib:
+        - "https://matplotlib.org/stable/"
+        - null
+      sklearn:
+        - "https://scikit-learn.org/stable/"
+        - null
+      sphinx:
+        - "https://www.sphinx-doc.org/en/master/"
+        - null
+      pandas:
+        - "https://pandas.pydata.org/pandas-docs/stable/"
+        - null
+      seaborn:
+        - "https://seaborn.pydata.org/"
+        - null
+      skimage:
+        - "https://scikit-image.org/docs/stable/"
+        - null
+      statsmodels:
+        - "https://www.statsmodels.org/stable/"
+        - null
+      imageio:
+        - "https://imageio.readthedocs.io/en/stable/"
+        - null
 
   extra_extensions:
     # For documenting 'click' Python CLIs
