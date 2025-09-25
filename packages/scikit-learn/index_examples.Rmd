@@ -1169,7 +1169,7 @@ idiomatic approach to pipelining in scikit-learn.
 Here we'll take a look at a simple facial recognition example. Ideally,
 we would use a dataset consisting of a subset of the [Labeled Faces in
 the Wild](http://vis-www.cs.umass.edu/lfw) data that is available with
-:func:`sklearn.datasets.fetch_lfw_people`. However, this is a relatively large
+{func}`sklearn.datasets.fetch_lfw_people`. However, this is a relatively large
 download (~200MB) so we will do the tutorial on a simpler, less rich dataset.
 Feel free to explore the LFW dataset.
 
