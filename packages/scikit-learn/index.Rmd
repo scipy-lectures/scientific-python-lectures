@@ -1877,8 +1877,7 @@ samples.
   validation score? Would you ever expect this to change?
 :::
 
-{mod}`scikit-learn` provides
-{func}`sklearn.model_selection.learning_curve`:
+Scikit-learn provides {func}`sklearn.model_selection.learning_curve`:
 
 
 Here is the pattern for using a learning curve, here with an order 1 polynomial and linear regression:
