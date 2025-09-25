@@ -255,7 +255,7 @@ camera.dtype
 camera_multiply = 3 * camera
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(8, 4))
 plt.subplot(121)
 plt.imshow(camera, cmap="gray", interpolation="nearest")
@@ -364,7 +364,7 @@ Uses the following linear kernel for computing horizontal gradients:
 -1  -2  -1
 ```
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(12, 3))
 
 plt.subplot(121)
@@ -389,7 +389,7 @@ camera_equalized = ski.exposure.equalize_hist(camera)
 
 Enhances contrast in large almost uniform regions.
 
-```{python}
+```{python tags=c("hide-input")}
 plt.figure(figsize=(7, 3))
 
 plt.subplot(121)
