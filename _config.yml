@@ -25,7 +25,7 @@ exclude_patterns:
   - _to_ignore.md
   - data/LICENSE.txt
   - .pytest_cache/*
-  - .ipynb_notebooks/*
+  - .ipynb_checkpoints/*
   - todo.md
 
 html:

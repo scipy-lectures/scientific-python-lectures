@@ -231,7 +231,7 @@ def process_notebooks(
     out_nb_suffix=".ipynb",
 ):
     input_dir = Path(config["input_dir"])
-    # Use sphinx utiliti to find not-excluded files.
+    # Use sphinx utility to find not-excluded files.
     for fn in get_matching_files(
         input_dir, exclude_patterns=config["exclude_patterns"]
     ):
