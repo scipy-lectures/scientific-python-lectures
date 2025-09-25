@@ -1191,7 +1191,7 @@ one should be preferred, as it uses more efficient underlying implementations.
 
 Implementing image denoising with FFT.
 
-Denoise an image (:download:`data/moonlanding.png`) by implementing a blur
+Denoise an image ({download}`data/moonlanding.png`) by implementing a blur
 with an FFT.
 
 Implements, via FFT, the following convolution:

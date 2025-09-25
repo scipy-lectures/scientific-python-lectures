@@ -532,7 +532,7 @@ plt.legend(loc="best");
 <!--- plot_image_blur -->
 
 
-Blur an image (:download:`data/elephant.png`) using a
+Blur an image ({download}`data/elephant.png`) using a
 Gaussian kernel.
 
 Convolution is easy to perform with FFT: convolving two signals boils
@@ -620,7 +620,7 @@ artifact.
 <!--- plot_periodicity_finder -->
 
 Discover the periods in evolution of animal populations
-(:download:`data/populations.txt`)
+({download}`data/populations.txt`)
 
 Load the data:
 
