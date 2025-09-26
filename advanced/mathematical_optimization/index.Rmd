@@ -100,6 +100,12 @@ on which the search is performed.
 
 :::
 
+::: {admonition} Plot code
+:class: dropdown
+
+See [convex, non-convex function plots](convex-function-eg).
+
+:::
 
 **Optimizing convex functions is easy. Optimizing non-convex functions can
 be very hard.**
@@ -128,6 +134,13 @@ also a global minimum. Then, in some sense, the minimum is unique.
 
 :::
 
+::: {admonition} Plot code
+:class: dropdown
+
+See [smooth, non-smooth function plots](smooth-function-eg).
+
+:::
+
 
 **Optimizing smooth functions is easier**
 (true in the context of *black-box* optimization, otherwise
@@ -143,6 +156,13 @@ piece-wise linear functions).
   - ::: {glue} noisy_non_noisy
     :doc: optimization_examples.Rmd
     :::
+
+:::
+
+::: {admonition} Plot code
+:class: dropdown
+
+See [noisy, non-noisy function plots](noisy-non-noisy-eg).
 
 :::
 
@@ -169,6 +189,13 @@ optimization.
   - ::: {glue} constraints_no_path
     :doc: optimization_examples.Rmd
     :::
+
+:::
+
+::: {admonition} Plot code
+:class: dropdown
+
+See [constraint plots](constraints-eg).
 
 :::
 
@@ -217,6 +244,13 @@ x_min - 0.5
    - ::: {glue} brent_epsilon_1_err
      :doc: optimization_examples.Rmd
      :::
+
+:::
+
+::: {admonition} Plot code
+:class: dropdown
+
+See [Brent's method figures](brents-method-eg).
 
 :::
 
@@ -271,6 +305,12 @@ gradient, that is the direction of the *steepest descent*.
 
 :::
 
+::: {admonition} Plot code
+:class: dropdown
+
+See [gradient descent plots](gradient-descent-eg).
+
+:::
 
 We can see that very anisotropic ([ill-conditioned](https://en.wikipedia.org/wiki/Condition_number)) functions are harder
 to optimize.
@@ -324,6 +364,13 @@ is done in gradient descent code using a
 
 :::
 
+::: {admonition} Plot code
+:class: dropdown
+
+See [gradient descent plots](gradient-descent-eg).
+
+:::
+
 The more a function looks like a quadratic function (elliptic
 iso-curves), the easier it is to optimize.
 
@@ -362,6 +409,12 @@ gradient and sharp turns are reduced.
 
 :::
 
+::: {admonition} Plot code
+:class: dropdown
+
+See [gradient descent plots](gradient-descent-eg).
+
+:::
 
 SciPy provides {func}`scipy.optimize.minimize` to find the minimum of scalar
 functions of one or more variables. The simple conjugate gradient method can
@@ -435,6 +488,12 @@ purpose, they rely on the 2 first derivative of the function: the
 
 :::
 
+::: {admonition} Plot code
+:class: dropdown
+
+See [gradient descent plots](gradient-descent-eg).
+
+:::
 
 In SciPy, you can use the Newton method by setting `method` to Newton-CG in
 {func}`scipy.optimize.minimize`. Here, CG refers to the fact that an internal
@@ -463,8 +522,10 @@ sp.optimize.minimize(f, [2,-1], method="Newton-CG", jac=jacobian, hess=hessian)
 ```
 
 :::{note}
+
 At very high-dimension, the inversion of the Hessian can be costly
 and unstable (large scale > 250).
+
 :::
 
 :::{note}
@@ -513,6 +574,13 @@ each step an approximation of the Hessian.
   - ::: {glue} gradient_descent_rb_bgfs_err
     :doc: optimization_examples.Rmd
     :::
+
+:::
+
+::: {admonition} Plot code
+:class: dropdown
+
+See [gradient descent plots](gradient-descent-eg).
 
 :::
 
@@ -572,6 +640,13 @@ Almost a gradient approach:
 
 :::
 
+::: {admonition} Plot code
+:class: dropdown
+
+See [gradient descent plots](gradient-descent-eg).
+
+:::
+
 
 #### Simplex method: the Nelder-Mead
 
@@ -605,6 +680,13 @@ methods on smooth, non-noisy functions.
   - ::: {glue} gradient_descent_rb_nm_err
     :doc: optimization_examples.Rmd
     :::
+
+:::
+
+::: {admonition} Plot code
+:class: dropdown
+
+See [gradient descent plots](gradient-descent-eg).
 
 :::
 
@@ -648,6 +730,13 @@ All methods are exposed as the `method` argument of
 
 ::: {glue} compare_optimizers
 :doc: optimization_examples.Rmd
+:::
+
+::: {admonition} Code for plot above
+:class: dropdown
+
+See [compare optimizers](compare-optimizers-eg).
+
 :::
 
 ::: {list-table} Rules of thumb for choosing a method
@@ -1040,6 +1129,13 @@ sp.optimize.minimize(f, np.array([0, 0]), bounds=((-1.5, 1.5), (-1.5, 1.5)))
 :doc: optimization_examples.Rmd
 :::
 
+::: {admonition} Plot code
+:class: dropdown
+
+See [constraint plots](constraints-eg).
+
+:::
+
 
 ### General constraints
 
@@ -1049,8 +1145,15 @@ and $g(x) < 0$.
 #### {func}`scipy.optimize.fmin_slsqp` Sequential least square programming:
 equality and inequality constraints:
 
-::: {glue} constraints_path
+::: {glue} constraints_non_bounds
 :doc: optimization_examples.Rmd
+:::
+
+::: {admonition} Plot code
+:class: dropdown
+
+See [constraint plots](constraints-eg).
+
 :::
 
 ```{python}
@@ -1097,8 +1200,3 @@ please also see [IPOPT] and [PyGMO].
 
 [ipopt]: https://github.com/xuy/pyipopt
 [pygmo]: https://esa.github.io/pygmo2/
-
-## Code for plots on this page
-
-See the solutions, and the [optimization examples](optimization-examples)
-page.
