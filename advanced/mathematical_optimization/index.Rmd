@@ -1152,7 +1152,7 @@ and $g(x) < 0$.
 ::: {admonition} Plot code
 :class: dropdown
 
-See [constraint plots](constraints-eg).
+See [constraint non-bounds](constraints-non-bounds-eg).
 
 :::
 

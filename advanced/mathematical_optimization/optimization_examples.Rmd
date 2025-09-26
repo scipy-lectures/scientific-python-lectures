@@ -660,8 +660,7 @@ plt.tight_layout()
 glue(f'compare_optimizers', plt.gcf(), display=False)
 ```
 
-(constraints-non-bounds)=
-
+(constraints-non-bounds-eg)=
 
 ## Optimization with constraints, SLSQP and COBYLA
 
