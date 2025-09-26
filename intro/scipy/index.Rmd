@@ -52,23 +52,23 @@ general idea of how to use `scipy` for scientific computing.
 
 {mod}`scipy` is composed of task-specific sub-modules:
 
-| Module                    | Description                                  |
-|---------------------------|----------------------------------------------|
-| `scipy.cluster`           | Vector quantization / Kmeans                 |
-| `scipy.constants`         | Physical and mathematical constants          |
-| `scipy.fft`               | Fourier transform                           |
-| `scipy.integrate`         | Integration routines                        |
-| `scipy.interpolate`       | Interpolation                               |
-| `scipy.io`                | Data input and output                       |
-| `scipy.linalg`            | Linear algebra routines                     |
-| `scipy.ndimage`           | n-dimensional image package                 |
-| `scipy.odr`               | Orthogonal distance regression              |
-| `scipy.optimize`          | Optimization                                |
-| `scipy.signal`            | Signal processing                           |
-| `scipy.sparse`            | Sparse matrices                             |
-| `scipy.spatial`           | Spatial data structures and algorithms      |
-| `scipy.special`           | Any special mathematical functions           |
-| `scipy.stats`             | Statistics                                  |
+|                           |                                         |
+| --------------------------| ----------------------------------------|
+| {mod}`scipy.cluster`      |  Vector quantization / Kmeans           |
+| {mod}`scipy.constants`    |  Physical and mathematical constants    |
+| {mod}`scipy.fft`          |  Fourier transform                      |
+| {mod}`scipy.integrate`    |  Integration routines                   |
+| {mod}`scipy.interpolate`  |  Interpolation                          |
+| {mod}`scipy.io`           |  Data input and output                  |
+| {mod}`scipy.linalg`       |  Linear algebra routines                |
+| {mod}`scipy.ndimage`      |  n-dimensional image package            |
+| {mod}`scipy.odr`          |  Orthogonal distance regression         |
+| {mod}`scipy.optimize`     |  Optimization                           |
+| {mod}`scipy.signal`       |  Signal processing                      |
+| {mod}`scipy.sparse`       |  Sparse matrices                        |
+| {mod}`scipy.spatial`      |  Spatial data structures and algorithms |
+| {mod}`scipy.special`      |  Any special mathematical functions     |
+| {mod}`scipy.stats`        |  Statistics                             |
 
 Scipy modules all depend on {mod}`numpy`, but are mostly independent of each
 other. The standard way of importing NumPy and these SciPy modules is:
