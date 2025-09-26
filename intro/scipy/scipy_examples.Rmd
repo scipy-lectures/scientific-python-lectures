@@ -27,7 +27,7 @@ import scipy as sp
 
 ```{python tags=c("hide-input")}
 # Machinery to store outputs for later use.
-# This is for rending in the Jupyter Book version of these pages.
+# This is for rendering in the Jupyter Book version of these pages.
 from myst_nb import glue
 ```
 
