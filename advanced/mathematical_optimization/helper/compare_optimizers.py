@@ -127,9 +127,7 @@ for ndim in (2, 8, 32, 128):
                     convergence = 2 * len(this_costs)
                 else:
                     convergence = (
-                        np.where(np.diff(this_costs > 0.25 * ndim**2 * 1e-9))[
-                            0
-                        ].max()
+                        np.where(np.diff(this_costs > 0.25 * ndim**2 * 1e-9))[0].max()
                         + 1
                     )
                 this_bench.append(convergence)
@@ -152,9 +150,7 @@ for ndim in (2, 8, 32, 128):
                     convergence = 2 * this_counts.max()
                 else:
                     convergence = (
-                        np.where(np.diff(this_costs > 0.25 * ndim**2 * 1e-9))[
-                            0
-                        ].max()
+                        np.where(np.diff(this_costs > 0.25 * ndim**2 * 1e-9))[0].max()
                         + 1
                     )
                     convergence = this_counts[convergence]
@@ -172,8 +168,7 @@ for ndim in (2, 8, 32, 128):
                 convergence = 2 * len(this_costs)
             else:
                 convergence = (
-                    np.where(np.diff(this_costs > 0.25 * ndim**2 * 1e-9))[0].max()
-                    + 1
+                    np.where(np.diff(this_costs > 0.25 * ndim**2 * 1e-9))[0].max() + 1
                 )
             this_bench.append(convergence)
             all_bench.append(convergence)
