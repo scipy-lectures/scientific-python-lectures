@@ -1142,8 +1142,8 @@ See [constraint plots](constraints-eg).
 Equality and inequality constraints specified as functions: $f(x) = 0$
 and $g(x) < 0$.
 
-#### {func}`scipy.optimize.fmin_slsqp` Sequential least square programming:
-equality and inequality constraints:
+
+#### {func}`scipy.optimize.fmin_slsqp` Sequential least square programming: equality and inequality constraints
 
 ::: {glue} constraints_non_bounds
 :doc: optimization_examples.Rmd
