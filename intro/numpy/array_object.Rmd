@@ -380,11 +380,6 @@ f.dtype     # <--- strings containing max. 7 letters
 * ...
 
 <!---
-.. XXX: mention: astype
--->
-
-
-<!---
 XXX: mention: astype
 -->
 
