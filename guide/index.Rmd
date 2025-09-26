@@ -43,10 +43,10 @@ Make sure to read this [Documentation style guide] as well as these
   like to cover, in order to discuss with editors and contributors about
   the scope of the future tutorial.
 
-  Then create a new directory inside one of the chapters directories
-  (`intro`, `advanced`, or `packages`) and create a file `index.rst`
-  for the new tutorial. Add the new file in the table of contents of the
-  corresponding chapter (in its `index.rst`).
+  Then create a new directory inside one of the chapters directories (`intro`,
+  `advanced`, or `packages`) and create a new notebook named `index` for the
+  new tutorial. Add the new file in the table of contents of the corresponding
+  chapter (in the `_toc.yml`).
 
 Keep in mind that tutorials are to be taught at different places and
 different parts may be combined into a course on Python for scientific

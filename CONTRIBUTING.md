@@ -64,8 +64,8 @@ make pdf
 ```
 
 The pdf builder is a bit difficult and you might have some TeX errors.
-Tweaking the layout in the `*.rst` files is usually enough to work
-around these problems.
+Tweaking the layout in the source files is usually enough to work around these
+problems.
 
 ### Requirements
 

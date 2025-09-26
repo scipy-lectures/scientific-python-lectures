@@ -143,10 +143,10 @@ import sh
 com = sh.ls()
 
 print(com)
-basic_types.rst   exceptions.rst   oop.rst              standard_library.rst
-control_flow.rst  first_steps.rst  python_language.rst
-demo2.py          functions.rst    python-logo.png
-demo.py           io.rst           reusing_code.rst
+basic_types.Rmd   exceptions.Rmd   oop.Rmd              standard_library.Rmd
+control_flow.Rmd  first_steps.Rmd  python_language.Rmd
+demo2.py          functions.Rmd    python-logo.png
+demo.py           io.Rmd           reusing_code.Rmd
 
 type(com)
 Out[33]: str

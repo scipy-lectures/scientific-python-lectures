@@ -3,7 +3,7 @@ Cumulative wind speed prediction
 ================================
 
 Generate the image cumulative-wind-speed-prediction.png
-for the interpolate section of scipy.rst.
+for the interpolate section of the Scipy tutorial page.
 """
 
 import numpy as np

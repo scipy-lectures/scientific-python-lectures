@@ -104,7 +104,7 @@ plt.ylabel("Gumbell cumulative probability")
 
 
 Generate the image cumulative-wind-speed-prediction.png
-for the interpolate section of scipy.rst.
+for the interpolate section of the Scipy tutorial page.
 
 ```{python}
 max_speeds = np.load("examples/max-speeds.npy")

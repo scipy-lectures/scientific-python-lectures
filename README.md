@@ -8,14 +8,15 @@ This repository gathers some lectures on the scientific Python
 ecosystem that can be used for a full course of scientific computing with
 Python.
 
-These documents are written with the rest markup language (`.rst`
-extension) and built using [Sphinx](https://www.sphinx-doc.org).
+These documents are written in Markdown and built using [Jupyter Book vversion
+1](https://jupyterbook.org/en/stable/intro.html), which, in turn, uses the
+[Sphinx](https://www.sphinx-doc.org) engine.
 
 You can view the online version at: <https://lectures.scientific-python.org/>
 
 ## Reusing and distributing
 
-As stated in the `LICENSE.rst` file, this material comes with no strings
+As stated in the `LICENSE.md` file, this material comes with no strings
 attached. Feel free to reuse and modify for your own teaching purposes.
 
 However, we would like this reference material to be improved over time,
@@ -24,5 +25,5 @@ reviewed and edited by the original authors and the editors.
 
 ## Building and contributing
 
-The file `CONTRIBUTING.rst` contains instructions to build from source
+The file `CONTRIBUTING.md` contains instructions to build from source
 and to contribute.
