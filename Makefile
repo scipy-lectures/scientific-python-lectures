@@ -37,3 +37,7 @@ rm-ipynb:
 
 test:
 	pytest .
+
+compare-optimizers:
+	( cd advanced/mathematical_optimization/helper && \
+		python compare_optimizers.py )
