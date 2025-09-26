@@ -21,3 +21,5 @@ requests
 xlrd
 openpyxl
 jupytext
+# For glue markup in notebooks.
+myst_nb
