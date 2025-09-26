@@ -150,21 +150,16 @@ create a link like {func}`numpy.var`.
 Try to avoid to go below paragraph granularity or your document might become
 difficult to read:
 
-```rst
-=============
-Chapter title
-=============
+```markdown
+# Chapter title
 
 Sample content.
 
-Section
-=======
+## Section
 
-Subsection
-----------
+### Subsection
 
-Paragraph
-.........
+#### Paragraph
 
 And some text.
 ```
