@@ -1,0 +1,174 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.18.0-dev
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
+# Exception handling in Python
+
+It is likely that you have raised Exceptions if you have
+typed all the previous commands of the tutorial. For example, you may
+have raised an exception if you entered a command with a typo.
+
+Exceptions are raised by different kinds of errors arising when executing
+Python code. In your own code, you may also catch errors, or define custom
+error types. You may want to look at the descriptions of the [the built-in
+Exceptions](https://docs.python.org/3/library/exceptions.html) when looking
+for the right exception type.
+
+## Exceptions
+
+Exceptions are raised by errors in Python:
+
+```{code-cell}
+:tags: [raises-exception]
+
+1/0
+```
+
+```{code-cell}
+:tags: [raises-exception]
+
+1 + 'e'
+```
+
+```{code-cell}
+:tags: [raises-exception]
+
+d = {1:1, 2:2}
+d[3]
+```
+
+```{code-cell}
+:tags: [raises-exception]
+
+l = [1, 2, 3]
+l[4]
+```
+
+```{code-cell}
+:tags: [raises-exception]
+
+l.foobar
+```
+
+As you can see, there are **different types** of exceptions for different errors.
+
+## Catching exceptions
+
+### try/except
+
+```ipython
+In [1]: while True:
+   ....:     try:
+   ....:         x = int(input('Please enter a number: '))
+   ....:         break
+   ....:     except ValueError:
+   ....:         print('That was no valid number.  Try again...')
+   ....:
+Please enter a number: a
+That was no valid number.  Try again...
+Please enter a number: 1
+
+In [2]: x
+Out[9]: 1
+```
+
+### try/finally
+
+```ipython
+In [1]: try:
+   ....:     x = int(input('Please enter a number: '))
+   ....: finally:
+   ....:     print('Thank you for your input')
+   ....:
+Please enter a number: a
+Thank you for your input
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[10], line 2
+      1 try:
+----> 2     x = int(input('Please enter a number: '))
+      3 finally:
+      4     print('Thank you for your input')
+ValueError: invalid literal for int() with base 10: 'a'
+```
+
+Important for resource management (e.g. closing a file)
+
+### Easier to ask for forgiveness than for permission
+
+```{code-cell}
+def print_sorted(collection):
+    try:
+        collection.sort()
+    except AttributeError:
+        pass # The pass statement does nothing
+    print(collection)
+```
+
+```{code-cell}
+print_sorted([1, 3, 2])
+```
+
+```{code-cell}
+print_sorted(set((1, 3, 2)))
+```
+
+```{code-cell}
+print_sorted('132')
+```
+
+## Raising exceptions
+
+### Capturing and re-raising an exception:
+
+```{code-cell}
+def filter_name(name):
+    try:
+        name = name.encode('ascii')
+    except UnicodeError as e:
+        if name == 'Gaël':
+            print('OK, Gaël')
+        else:
+            raise e
+    return name
+
+filter_name('Gaël')
+```
+
+```{code-cell}
+:tags: [raises-exception]
+
+filter_name('Stéfan')
+```
+
+### Exceptions to pass messages between parts of the code:
+
+```{code-cell}
+def achilles_arrow(x):
+    if abs(x - 1) < 1e-3:
+        raise StopIteration
+    x = 1 - (1-x)/2.
+    return x
+
+x = 0
+
+while True:
+    try:
+        x = achilles_arrow(x)
+    except StopIteration:
+        break
+
+x
+```
+
+Use exceptions to notify certain conditions are met (e.g. `StopIteration`) or
+not (e.g. custom error raising).

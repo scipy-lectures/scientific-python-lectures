@@ -64,10 +64,6 @@ launch_buttons:
 sphinx:
   recursive_update: true
   config:
-    nb_custom_formats:
-      .Rmd:
-        - jupytext.reads
-        - fmt: Rmd
     intersphinx_mapping:
       python:
         - "https://docs.python.org/3/"

@@ -24,7 +24,7 @@ def nb2rmd(nb, fmt="myst", ext=".Rmd"):
 @pytest.mark.parametrize("nb_path", (EG1_NB_PATH, EG2_NB_PATH))
 def test_process_nbs(nb_path):
     url = f"foo/{nb_path.stem}.html"
-    out_nb = pn.load_process_nb(nb_path, fmt="msyt", url=url)
+    out_nb = pn.load_process_nb(nb_path, fmt="myst", url=url)
     out_txt = nb2rmd(out_nb)
     out_lines = out_txt.splitlines()
     assert out_lines.count("**Start of exercise**") == 2

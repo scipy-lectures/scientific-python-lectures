@@ -1,0 +1,917 @@
+---
+jupytext:
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.18.0-dev
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
+# Numerical operations on arrays
+
+```{code-cell}
+:tags: [hide-input]
+
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+## Elementwise operations
+
+### Basic operations
+
+With scalars:
+
+```{code-cell}
+a = np.array([1, 2, 3, 4])
+a + 1
+```
+
+```{code-cell}
+2 ** a
+```
+
+All arithmetic operates elementwise:
+
+```{code-cell}
+b = np.ones(4) + 1
+a - b
+```
+
+```{code-cell}
+a * b
+```
+
+```{code-cell}
+j = np.arange(5)
+2**(j + 1) - j
+```
+
+These operations are of course much faster than if you did them in pure python:
+
+```{code-cell}
+a = np.arange(10000)
+%timeit a + 1
+```
+
+```{code-cell}
+l = range(10000)
+%timeit [i+1 for i in l]
+```
+
+**Warning: array multiplication is not matrix multiplication**
+
+Consider these examples:
+
+```{code-cell}
+c = np.ones((3, 3))
+c * c                   # NOT matrix multiplication!
+```
+
+**Matrix multiplication:**
+
+```{code-cell}
+c @ c
+```
+
+::: {exercise-start}
+:label: elementwise-exercise
+:class: dropdown
+:::
+
+- Try simple arithmetic elementwise operations: add even elements
+  with odd elements
+- Time them against their pure python counterparts using `%timeit`.
+- Generate:
+
+  - `[2**0, 2**1, 2**2, 2**3, 2**4]`
+  - `a_j = 2^(3*j) - j`
+
+::: {exercise-end}
+:::
+
+### Other operations
+
+#### Comparisons
+
+```{code-cell}
+a = np.array([1, 2, 3, 4])
+b = np.array([4, 2, 2, 4])
+a == b
+```
+
+```{code-cell}
+a > b
+```
+
+Array-wise comparisons:
+
+```{code-cell}
+a = np.array([1, 2, 3, 4])
+b = np.array([4, 2, 2, 4])
+c = np.array([1, 2, 3, 4])
+np.array_equal(a, b)
+```
+
+```{code-cell}
+np.array_equal(a, c)
+```
+
+#### Logical operations
+
+```{code-cell}
+a = np.array([1, 1, 0, 0], dtype=bool)
+b = np.array([1, 0, 1, 0], dtype=bool)
+np.logical_or(a, b)
+```
+
+```{code-cell}
+np.logical_and(a, b)
+```
+
+#### Transcendental functions
+
+```{code-cell}
+a = np.arange(5)
+np.sin(a)
+```
+
+```{code-cell}
+np.exp(a)
+```
+
+```{code-cell}
+np.log(np.exp(a))
+```
+
+#### Shape mismatches
+
+```{code-cell}
+:tags: [raises-exception]
+
+a = np.arange(4)
+a + np.array([1, 2])
+```
+
+_Broadcasting?_ We'll return to that {ref}`later <broadcasting>`.
+
+#### Transposition
+
+```{code-cell}
+a = np.triu(np.ones((3, 3)), 1)   # see help(np.triu)
+a
+```
+
+```{code-cell}
+a.T
+```
+
+Remember, **the transposition is a view**.
+
+The transpose returns a _view_ of the original array:
+
+```{code-cell}
+a = np.arange(9).reshape(3, 3)
+a.T[0, 2] = 999
+a.T
+```
+
+```{code-cell}
+a
+```
+
+#### Linear algebra
+
+The sub-module {mod}`numpy.linalg` implements basic linear algebra, such as
+solving linear systems, singular value decomposition, etc. However, it is
+not guaranteed to be compiled using efficient routines, and thus we
+recommend the use of {mod}`scipy.linalg`, as detailed in section
+{ref}`scipy-linalg`
+
+::: {exercise-start}
+:label: other-operations-exercise
+:class: dropdown
+:::
+
+- Look at the help for `np.allclose`. When might this be useful?
+- Look at the help for `np.triu` and `np.tril`.
+
+::: {exercise-end}
+:::
+
+## Basic reductions
+
+### Computing sums
+
+```{code-cell}
+x = np.array([1, 2, 3, 4])
+np.sum(x)
+```
+
+```{code-cell}
+x.sum()
+```
+
+![](images/reductions.png)
+
+Sum by rows and by columns:
+
+```{code-cell}
+x = np.array([[1, 1], [2, 2]])
+x
+```
+
+```{code-cell}
+x.sum(axis=0)   # columns (first dimension)
+```
+
+```{code-cell}
+x[:, 0].sum(), x[:, 1].sum()
+```
+
+```{code-cell}
+x.sum(axis=1)   # rows (second dimension)
+```
+
+```{code-cell}
+x[0, :].sum(), x[1, :].sum()
+```
+
+Here is the same idea in higher dimensions:
+
+```{code-cell}
+rng = np.random.default_rng(27446968)
+x = rng.random((2, 2, 2))
+x.sum(axis=2)[0, 1]
+```
+
+```{code-cell}
+x[0, 1, :].sum()
+```
+
+### Other reductions
+
+These work the same way (and take `axis=`)
+
+#### Extrema
+
+```{code-cell}
+x = np.array([1, 3, 2])
+x.min()
+```
+
+```{code-cell}
+x.max()
+```
+
+```{code-cell}
+x.argmin()  # index of minimum
+```
+
+```{code-cell}
+x.argmax()  # index of maximum
+```
+
+#### Logical operations
+
+```{code-cell}
+np.all([True, True, False])
+```
+
+```{code-cell}
+np.any([True, True, False])
+```
+
+This can be used for array comparisons:
+
+```{code-cell}
+a = np.zeros((100, 100))
+np.any(a != 0)
+```
+
+```{code-cell}
+np.all(a == a)
+```
+
+```{code-cell}
+a = np.array([1, 2, 3, 2])
+b = np.array([2, 2, 3, 2])
+c = np.array([6, 4, 4, 5])
+((a <= b) & (b <= c)).all()
+```
+
+**Statistics:**
+
+```{code-cell}
+x = np.array([1, 2, 3, 1])
+y = np.array([[1, 2, 3], [5, 6, 1]])
+x.mean()
+```
+
+```{code-cell}
+np.median(x)
+```
+
+```{code-cell}
+np.median(y, axis=-1) # last axis
+```
+
+```{code-cell}
+x.std()          # full population standard dev.
+```
+
+... and many more (best to learn as you go).
+
+::: {exercise-start}
+:label: reductions-exercise
+:class: dropdown
+:::
+
+Given there is a `sum`, what other function might you expect to see?
+What is the difference between `sum` and `cumsum`?
+
+::: {exercise-end}
+:::
+
+#### Worked Example: diffusion using a random walk algorithm
+
+![](random_walk.png)
+
+Let us consider a simple 1D random walk process: at each time step a
+walker jumps right or left with equal probability.
+
+We are interested in finding the typical distance from the origin of a
+random walker after `t` left or right jumps? We are going to
+simulate many "walkers" to find this law, and we are going to do so
+using array computing tricks: we are going to create a 2D array with
+the "stories" (each walker has a story) in one direction, and the
+time in the other:
+
+![](random_walk_schema.png)
+
+```{code-cell}
+n_stories = 1000 # number of walkers
+t_max = 200      # time during which we follow the walker
+```
+
+We randomly choose all the steps 1 or -1 of the walk:
+
+```{code-cell}
+t = np.arange(t_max)
+rng = np.random.default_rng()
+steps = 2 * rng.integers(0, 1 + 1, (n_stories, t_max)) - 1 # +1 because the high value is exclusive
+np.unique(steps) # Verification: all steps are 1 or -1
+```
+
+We build the walks by summing steps along the time:
+
+```{code-cell}
+positions = np.cumsum(steps, axis=1) # axis = 1: dimension of time
+sq_distance = positions**2
+```
+
+We get the mean in the axis of the stories:
+
+```{code-cell}
+mean_sq_distance = np.mean(sq_distance, axis=0)
+```
+
+Plot the results:
+
+```{code-cell}
+plt.figure(figsize=(4, 3))
+plt.plot(t, np.sqrt(mean_sq_distance), 'g.', t, np.sqrt(t), 'y-')
+plt.xlabel(r"$t$")
+plt.ylabel(r"$\sqrt{\langle (\delta x)^2 \rangle}$")
+plt.tight_layout() # provide sufficient space for labels
+```
+
+We find a well-known result in physics: the Root Mean Square (RMS) distance
+grows as the square root of the time!
+
+## Interim summary and exercises
+
+| Operation type | Numpy functions              |
+| -------------- | ---------------------------- |
+| arithmetic     | `sum`, `prod`, `mean`, `std` |
+| Extrema        | `min`, `max`                 |
+| logical        | `all`, `any`                 |
+
+Also, recall the `axis` argument to select the dimension over which an operation will be applied:
+
+```{code-cell}
+arr = np.array([[99, 12], [11, 2]])
+arr
+```
+
+```{code-cell}
+# Without axis=, operation applied over whole (flatted, 1D) array.
+np.min(arr)
+```
+
+```{code-cell}
+# Operate along first axis (rows).
+np.min(arr, axis=0)
+```
+
+```{code-cell}
+# Operate along second axis (columns).
+np.min(arr, axis=1)
+```
+
+::: {exercise-start}
+:label: any-all-ex
+:class: dropdown
+:::
+
+We load an array from a text file:
+
+```{code-cell}
+an_array = np.loadtxt('data/an_array.txt')
+```
+
+1. Verify if all elements in `an array` are equal to 1:
+2. Verify if any elements in an array are equal to 1
+3. Compute mean and standard deviation.
+4. Challenge: write a function `my_std` that computes the standard deviation
+   of the elements in the array, where you are only allowed to use `np.sum`
+   from Numpy in your function. Check your function returns a value close to that from `np.std` (use `np.allclose` for that check).
+
+::: {exercise-end}
+:::
+
+::: {solution-start} any-all-ex
+:class: dropdown
+:::
+
+```{code-cell}
+# 1. Verify if all elements in `an array` are equal to 1:
+np.all(an_array == 1)
+
+# 2. Verify if any elements in an array are equal to 1
+np.any(an_array == 1)
+
+# 3. Compute mean and standard deviation.
+print('Mean', np.mean(an_array))
+print('STD', np.std(an_array))
+```
+
+```{code-cell}
+# 4. Challenge: write a function `my_std` that computes the standard deviation
+# of the elements in the array, where you are only allowed to use `np.sum` from
+# Numpy in your function.
+
+def my_std(a):
+    n = a.size
+    m = np.sum(a) / n
+    return np.sqrt(np.sum((a - m) ** 2) / n)
+
+# Check we get the same answers from our function as for Numpy.
+assert np.allclose(my_std(an_array), np.std(an_array))
+assert np.allclose(my_std(an_array.ravel()), np.std(an_array))
+
+rng = np.random.default_rng()
+for i in range(10):
+    another_array = rng.uniform(size=(10, 4))
+    assert np.allclose(my_std(another_array), np.std(another_array))
+```
+
+::: {solution-end}
+:::
+
+(broadcasting)=
+
+## Broadcasting
+
+- Basic operations on `numpy` arrays (addition, etc.) are elementwise
+
+- This works on arrays of the same size.
+
+- **Nevertheless** , it's also possible to do
+  operations on arrays of different sizes if
+  _NumPy_ can transform these arrays so that
+  they all have the same size: this conversion
+  is called **broadcasting**.
+
+The image below gives an example of broadcasting:
+
+![](images/numpy_broadcasting.png)
+
+Let's verify:
+
+```{code-cell}
+a = np.tile(np.arange(0, 40, 10), (3, 1)).T
+a
+```
+
+```{code-cell}
+b = np.array([0, 1, 2])
+a + b
+```
+
+We have already used broadcasting without knowing it!:
+
+```{code-cell}
+a = np.ones((4, 5))
+a[0] = 2  # we assign an array of dimension 0 to an array of dimension 1
+a
+```
+
+A useful trick:
+
+```{code-cell}
+a = np.arange(0, 40, 10)
+a.shape
+```
+
+```{code-cell}
+a = a[:, np.newaxis]  # adds a new axis -> 2D array
+a.shape
+```
+
+```{code-cell}
+a
+```
+
+```{code-cell}
+a + b
+```
+
+::: {note}
+:class: dropdown
+
+Broadcasting seems a bit magical, but it is actually quite natural to
+use it when we want to solve a problem whose output data is an array
+with more dimensions than input data.
+:::
+
+### Worked Example: Broadcasting
+
+Let's construct an array of distances (in miles) between cities of
+Route 66: Chicago, Springfield, Saint-Louis, Tulsa, Oklahoma City,
+Amarillo, Santa Fe, Albuquerque, Flagstaff and Los Angeles.
+
+```{code-cell}
+mileposts = np.array([0, 198, 303, 736, 871, 1175, 1475, 1544,
+       1913, 2448])
+distance_array = np.abs(mileposts - mileposts[:, np.newaxis])
+distance_array
+```
+
+![](images/route66.png)
+
+A lot of grid-based or network-based problems can also use
+broadcasting. For instance, if we want to compute the distance from
+the origin of points on a 5x5 grid, we can do
+
+```{code-cell}
+x, y = np.arange(5), np.arange(5)[:, np.newaxis]
+distance = np.sqrt(x ** 2 + y ** 2)
+distance
+```
+
+Or in color:
+
+```{code-cell}
+plt.pcolor(distance)
+plt.colorbar()
+```
+
+**Remark** : the {func}`numpy.ogrid` function allows to directly create
+vectors x and y of the previous example, with two "significant dimensions":
+
+```{code-cell}
+x, y = np.ogrid[0:5, 0:5]
+x, y
+```
+
+```{code-cell}
+x.shape, y.shape
+distance = np.sqrt(x ** 2 + y ** 2)
+```
+
+So, `np.ogrid` is very useful as soon as we have to handle
+computations on a grid. On the other hand, `np.mgrid` directly
+provides matrices full of indices for cases where we can't (or don't
+want to) benefit from broadcasting:
+
+```{code-cell}
+x, y = np.mgrid[0:4, 0:4]
+x
+```
+
+```{code-cell}
+y
+```
+
+<!---
+rules
+-->
+<!---
+some usage examples: scalars, 1-d matrix products
+-->
+<!---
+newaxis
+-->
+<!---
+EXE: add 1-d array to a scalar
+-->
+<!---
+EXE: add 1-d array to a 2-d array
+-->
+<!---
+EXE: multiply matrix from the right with a diagonal array
+-->
+<!---
+CHA: constructing grids -- meshgrid using only newaxis
+-->
+
+:::{admonition} See also
+
+{ref}`broadcasting-advanced`: discussion of broadcasting in
+the {ref}`advanced-numpy` chapter.
+:::
+
+## Array shape manipulation
+
+### Flattening
+
+```{code-cell}
+a = np.array([[1, 2, 3], [4, 5, 6]])
+a.ravel()
+```
+
+```{code-cell}
+a.T
+```
+
+```{code-cell}
+a.T.ravel()
+```
+
+Higher dimensions: last dimensions ravel out "first".
+
+### Reshaping
+
+The inverse operation to flattening:
+
+```{code-cell}
+a.shape
+```
+
+```{code-cell}
+b = a.ravel()
+b = b.reshape((2, 3))
+b
+```
+
+Or,
+
+```{code-cell}
+a.reshape((2, -1))    # unspecified (-1) value is inferred
+```
+
+:::{warning}
+`ndarray.reshape` **may** return a view (cf `help(np.reshape)`)),
+or copy
+:::
+
+For example, consider:
+
+```{code-cell}
+b[0, 0] = 99
+a
+```
+
+Beware: reshape may also return a copy!:
+
+```{code-cell}
+a = np.zeros((3, 2))
+b = a.T.reshape(3*2)
+b[0] = 9
+a
+```
+
+To understand this you need to learn more about the memory layout of a NumPy array.
+
+### Adding a dimension
+
+Indexing with the `np.newaxis` object allows us to add an axis to an array
+(you have seen this already above in the broadcasting section):
+
+```{code-cell}
+z = np.array([1, 2, 3])
+z
+```
+
+```{code-cell}
+z[:, np.newaxis]
+```
+
+```{code-cell}
+z[np.newaxis, :]
+```
+
+### Dimension shuffling
+
+```{code-cell}
+a = np.arange(4*3*2).reshape(4, 3, 2)
+a.shape
+```
+
+```{code-cell}
+a[0, 2, 1]
+```
+
+```{code-cell}
+b = a.transpose(1, 2, 0)
+b.shape
+```
+
+```{code-cell}
+b[2, 1, 0]
+```
+
+Also creates a view:
+
+```{code-cell}
+b[2, 1, 0] = -1
+a[0, 2, 1]
+```
+
+### Resizing
+
+Size of an array can be changed with `ndarray.resize`:
+
+```{code-cell}
+a = np.arange(4)
+a.resize((8,))
+a
+```
+
+However, it must not be referred to somewhere else:
+
+```{code-cell}
+:tags: [raises-exception]
+
+b = a
+a.resize((4,))
+```
+
+<!---
+seealso: ``help(np.tensordot)``
+-->
+<!---
+resizing: how to do it, and *when* is it possible (not always!)
+-->
+<!---
+reshaping (demo using an image?)
+-->
+<!---
+dimension shuffling
+-->
+<!---
+when to use: some pre-made algorithm (e.g. in Fortran) accepts only
+1-D data, but you'd like to vectorize it
+-->
+<!---
+EXE: load data incrementally from a file, by appending to a resizing array
+-->
+<!---
+EXE: vectorize a pre-made routine that only accepts 1-D data
+-->
+<!---
+EXE: manipulating matrix direct product spaces back and forth (give an example from physics -- spin index and orbital indices)
+-->
+<!---
+EXE: shuffling dimensions when writing a general vectorized function
+-->
+<!---
+CHA: the mathematical 'vec' operation
+-->
+
+::: {exercise-start}
+:label: shape-manipulation-exercise
+:class: dropdown
+:::
+
+- Look at the docstring for `reshape`, especially the notes section which
+  has some more information about copies and views.
+- Use `flatten` as an alternative to `ravel`. What is the difference?
+  (Hint: check which one returns a view and which a copy)
+- Experiment with `transpose` for dimension shuffling.
+
+::: {exercise-end}
+:::
+
+## Sorting data
+
+Sorting along an axis:
+
+```{code-cell}
+a = np.array([[4, 3, 5], [1, 2, 1]])
+b = np.sort(a, axis=1)
+b
+```
+
+:::{note}
+Sorts each row separately!
+:::
+
+In-place sort:
+
+```{code-cell}
+a.sort(axis=1)
+a
+```
+
+Sorting with fancy indexing:
+
+```{code-cell}
+a = np.array([4, 3, 1, 2])
+j = np.argsort(a)
+j
+```
+
+```{code-cell}
+a[j]
+```
+
+Finding minima and maxima:
+
+```{code-cell}
+a = np.array([4, 3, 1, 2])
+j_max = np.argmax(a)
+j_min = np.argmin(a)
+j_max, j_min
+```
+
+<!---
+XXX: need a frame for summaries
+
+* Arithmetic etc. are elementwise operations
+* Basic linear algebra, ``@``
+* Reductions: ``sum(axis=1)``, ``std()``, ``all()``, ``any()``
+* Broadcasting: ``a = np.arange(4); a[:,np.newaxis] + a[np.newaxis,:]``
+* Shape manipulation: ``a.ravel()``, ``a.reshape(2, 2)``
+* Fancy indexing: ``a[a > 3]``, ``a[[2, 3]]``
+* Sorting data: ``.sort()``, ``np.sort``, ``np.argsort``, ``np.argmax``
+-->
+
+::: {exercise-start}
+:label: sorting-exercise
+:class: dropdown
+:::
+
+- Try both in-place and out-of-place sorting.
+- Try creating arrays with different dtypes and sorting them.
+- Use `all` or `array_equal` to check the results.
+- Look at `np.random.shuffle` for a way to create sortable input quicker.
+- Combine `ravel`, `sort` and `reshape`.
+- Look at the `axis` keyword for `sort` and rewrite the previous
+  exercise.
+
+::: {exercise-end}
+:::
+
+## Summary
+
+**What do you need to know to get started?**
+
+- Know how to create arrays : `array`, `arange`, `ones`,
+  `zeros`.
+
+- Know the shape of the array with `array.shape`, then use slicing
+  to obtain different views of the array: `array[::2]`,
+  etc. Adjust the shape of the array using `reshape` or flatten it
+  with `ravel`.
+
+- Obtain a subset of the elements of an array and/or modify their values
+  with masks, with e.g.:
+
+  ```python
+  a[a < 0] = 0
+  ```
+
+- Know miscellaneous operations on arrays, such as finding the mean or max
+  (`array.max()`, `array.mean()`). No need to retain everything, but
+  have the reflex to search in the documentation (online docs,
+  `help()`)!!
+
+- For advanced use: master the indexing with arrays of integers, as well as
+  broadcasting. Know more NumPy functions to handle various array
+  operations.
+
+:::{admonition} Quick read
+If you want to do a first quick pass through the Scientific Python Lectures
+to learn the ecosystem, you can directly skip to the next chapter:
+{ref}`matplotlib`.
+
+The remainder of this chapter is not necessary to follow the rest of
+the intro part. But be sure to come back and finish this chapter, as
+well as to do some more {ref}`exercises <numpy-exercises>`.
+:::

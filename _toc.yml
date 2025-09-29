@@ -50,4 +50,4 @@ parts:
       - file: packages/scikit-learn/index
   - caption: About the Scientific Python Lectures
     chapters:
-      - file: about.md
+      - file: about
