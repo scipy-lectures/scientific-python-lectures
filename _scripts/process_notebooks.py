@@ -104,7 +104,7 @@ MYST_EXTENSIONS = [
 DEF_JUPYTERLITE_CONFIG = {
     "in_nb_ext": ".md",
     "out_nb_ext": ".ipynb",
-    "in_nb_fmt": "md:myst",
+    "in_nb_fmt": "myst",
     "remove_remove": True,
 }
 
@@ -236,7 +236,7 @@ def process_notebooks(
 ):
     jl_config = config.get("jupyterlite", {})
     in_nb_suffix = jl_config.get("in_nb_ext", ".md")
-    in_nb_fmt = jl_config.get("in_nb_fmt", "md:myst")
+    in_nb_fmt = jl_config.get("in_nb_fmt", "myst")
     input_dir = Path(config["input_dir"])
     # Use sphinx utility to find not-excluded files.
     for fn in get_matching_files(
@@ -297,6 +297,7 @@ def main():
     args = parser.parse_args()
     config = load_config(Path(args.config_dir))
     out_path = Path(args.output_dir)
+    out_path.mkdir(parents=True, exist_ok=True)
     process_notebooks(config, out_path)
     (out_path / "jupyter-lite.json").write_text(_JL_JSON_FMT.format(language="python"))
 
