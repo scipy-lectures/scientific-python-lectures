@@ -158,9 +158,6 @@ _ADM_HEADER = re.compile(
 )
 
 
-_LABEL = re.compile(r"^\s*\(\s*\S+\s*\)\=\s*\n", flags=re.MULTILINE)
-
-
 def process_admonitions(nb_text, nb_path):
     lines = nb_text.splitlines()
     for first, last in get_admonition_lines(nb_text, nb_path):
@@ -199,6 +196,9 @@ def process_cells(nb, processors):
             out_cells.append(cell)
     out_nb["cells"] = out_cells
     return out_nb
+
+
+_LABEL = re.compile(r"^\s*\(\s*\S+\s*\)\=\s*\n", flags=re.MULTILINE)
 
 
 def label_processor(cell):
