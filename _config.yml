@@ -41,7 +41,6 @@ repository:
   # url: https://github.com/scipy-lectures/scientific-python-lectures
   url: https://github.com/matthew-brett/scipy-lecture-notes
   branch: main
-  path_to_book: scipy-lecture-notes
 
 launch_buttons:
   # The interface interactive links will activate ["classic", "jupyterlab"]
@@ -138,7 +137,7 @@ redirection:
 jupyterlite:
   in_nb_ext: .md
   out_nb_ext: .ipynb
-  in_nb_fmt: "md:myst"
+  in_nb_fmt: "myst"
   remove_remove: true
 
 parse:
