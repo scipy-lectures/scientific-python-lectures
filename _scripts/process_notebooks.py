@@ -201,6 +201,23 @@ def process_cells(nb, processors):
 
 _LABEL = re.compile(r"^\s*\(\s*\S+\s*\)\=\s*\n", flags=re.MULTILINE)
 
+_GLUE_DIR = re.compile(
+    r'''
+    (:::+|```+)\s*
+    \{\s*glue:*\s*\}\s+
+    (\w+)\n
+    (?:\s*:doc: .*?)*
+    \n\s*\1\s*\n
+    ''',
+    flags=re.MULTILINE | re.DOTALL | re.VERBOSE)
+
+
+_GLUE_ROLE = re.compile(
+    r'''
+    \{\s*glue:{0,1}\s*\}\s*`(.*)?`
+    ''',
+    flags=re.MULTILINE | re.DOTALL | re.VERBOSE)
+
 
 def label_processor(cell):
     if cell["cell_type"] == "markdown":
@@ -212,6 +229,14 @@ def remove_processor(cell):
     tags = cell.get("metadata", {}).get("tags", {})
     if "remove-cell" in tags:
         return None
+    return cell
+
+
+def glue_processor(cell):
+    if cell["cell_type"] != "markdown":
+        return cell
+    cell["source"] = _GLUE_DIR.sub(r'`\2`\n', cell["source"])
+    cell["source"] = _GLUE_ROLE.sub(r'\1`', cell["source"])
     return cell
 
 
@@ -249,7 +274,7 @@ def load_process_nb(nb_path, fmt="myst", url=None, proc_admonitions=True):
     if proc_admonitions:
         nbt2 = process_admonitions(nbt2, nb_path)
     nb = jupytext.reads(nbt2, fmt={"format_name": fmt, "extension": nb_path.suffix})
-    return process_cells(nb, [label_processor])
+    return process_cells(nb, [label_processor, glue_processor])
 
 
 def process_notebooks(
