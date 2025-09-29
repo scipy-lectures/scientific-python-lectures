@@ -41,6 +41,7 @@ repository:
   # url: https://github.com/scipy-lectures/scientific-python-lectures
   url: https://github.com/matthew-brett/scipy-lecture-notes
   branch: main
+  path_to_book: scipy-lecture-notes
 
 launch_buttons:
   # The interface interactive links will activate ["classic", "jupyterlab"]
@@ -52,7 +53,7 @@ launch_buttons:
   # The URL of the BinderHub (e.g., https://mybinder.org)
   # binderhub_url: "https://mybinder.org"
   # Jupyterlite URL
-  jupyterlite_url: "https://matthew-brett.github.io/scipy-lecture-notes/interact/lab/index.html"
+  jupyterlite_url: "/interact/lab/index.html"
   # Extension (if different from source file).
   jupyterlite_ext: ".ipynb"
   # Example jupyterlite link:
@@ -64,6 +65,10 @@ launch_buttons:
 sphinx:
   recursive_update: true
   config:
+    nb_custom_formats:
+      .md:
+        - jupytext.reads
+        - fmt: md:myst
     intersphinx_mapping:
       python:
         - "https://docs.python.org/3/"
@@ -129,6 +134,12 @@ redirection:
   builddir: _build/html
   redirects:
     # data-types/Ranges: ../arrays/Ranges
+
+jupyterlite:
+  in_nb_ext: .md
+  out_nb_ext: .ipynb
+  in_nb_fmt: "md:myst"
+  remove_remove: true
 
 parse:
   myst_substitutions:

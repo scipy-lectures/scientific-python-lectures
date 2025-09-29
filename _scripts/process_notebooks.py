@@ -101,6 +101,14 @@ MYST_EXTENSIONS = [
 ]
 
 
+DEF_JUPYTERLITE_CONFIG = {
+    "in_nb_ext": ".md",
+    "out_nb_ext": ".ipynb",
+    "in_nb_fmt": "md:myst",
+    "remove_remove": True,
+}
+
+
 def _replace_markers(m):
     st_end = m["st_end"]
     if m["ex_sol"] == "exercise":
@@ -215,21 +223,20 @@ def load_process_nb(nb_path, fmt="myst", url=None):
     nbt1 = _EX_SOL_MARKER.sub(_replace_markers, nb_text)
     nbt2 = _SOL_MARKED.sub(f"\n**See the {page_link} for solution**\n\n", nbt1)
     nbt3 = process_admonitions(nbt2, nb_path)
-    nb = jupytext.reads(
-        nbt3, fmt={"format_name": "rmarkdown", "extension": nb_path.suffix}
-    )
+    nb = jupytext.reads(nbt3, fmt={"format_name": fmt, "extension": nb_path.suffix})
     return process_labels(nb)
 
 
 def process_notebooks(
     config,
     output_dir,
-    in_nb_suffix=".Rmd",
-    nb_fmt="myst",
     kernel_name="python",
     kernel_dname="Python (Pyodide)",
     out_nb_suffix=".ipynb",
 ):
+    jl_config = config.get("jupyterlite", {})
+    in_nb_suffix = jl_config.get("in_nb_ext", ".md")
+    in_nb_fmt = jl_config.get("in_nb_fmt", "md:myst")
     input_dir = Path(config["input_dir"])
     # Use sphinx utility to find not-excluded files.
     for fn in get_matching_files(
@@ -244,7 +251,7 @@ def process_notebooks(
             + "/"
             + urlquote(rel_path.with_suffix(".html").as_posix())
         )
-        nb = load_process_nb(input_dir / rel_path, nb_fmt, nb_url)
+        nb = load_process_nb(input_dir / rel_path, in_nb_fmt, nb_url)
         nb["metadata"]["kernelspec"] = {
             "name": kernel_name,
             "display_name": kernel_dname,
@@ -279,6 +286,9 @@ def load_config(config_path):
     config["base_path"] = urlparse(config.get("html", {}).get("baseurl", "")).path
     config["exclude_patterns"] = config.get("exclude_patterns", [])
     config["exclude_patterns"].append("_build")
+    config["jupyterlite"] = dict(
+        DEF_JUPYTERLITE_CONFIG, **config.get("jupyterlite", {})
+    )
     return config
 
 
