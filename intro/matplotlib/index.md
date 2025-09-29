@@ -1581,6 +1581,9 @@ Here is a set of tables that show main properties and styles.
   - ::: {glue} plot_aliased
     :doc: quick_reference_figures.md
     :::
+    ::: {glue} plot_antialiased
+    :doc: quick_reference_figures.md
+    :::
 
 - - color (or c)
   - matplotlib color arg

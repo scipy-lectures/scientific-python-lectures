@@ -63,6 +63,8 @@ glue("plot_alpha", fig, display=False)
 
 This example demonstrates aliased versus anti-aliased text.
 
+First, aliased text (`antialiased=False`):
+
 ```{code-cell}
 size = 128, 16
 dpi = 72.0
@@ -87,12 +89,9 @@ plt.rcdefaults()
 glue("plot_aliased", fig, display=False)
 ```
 
-The example shows aliased versus anti-aliased text.
+Next, `antialiased=True`.
 
 ```{code-cell}
-size = 128, 16
-dpi = 72.0
-figsize = size[0] / float(dpi), size[1] / float(dpi)
 fig = plt.figure(figsize=figsize, dpi=dpi)
 fig.patch.set_alpha(0)
 plt.axes((0, 0, 1, 1), frameon=False)
