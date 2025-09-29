@@ -174,26 +174,47 @@ def process_admonitions(nb_text, nb_path):
     return "\n".join(lines)
 
 
-def process_labels(nb):
-    """Process labels in Markdown cells
+def process_cells(nb, processors):
+    """Process cells in notebooks.
 
     Parameters
     ----------
     nb : dict
+    processors : sequence
+        Sequences of callables, taking a cell as input, and returning a cell as
+        output.  If None returned, delete this cell.
 
     Returns
     -------
     out_nb : dict
     """
     out_nb = deepcopy(nb)
+    out_cells = []
     for cell in out_nb["cells"]:
-        if cell["cell_type"] != "markdown":
-            continue
-        cell["source"] = _LABEL.sub("", cell["source"])
+        for processor in processors:
+            cell = processor(cell)
+            if cell is None:
+                break
+        if cell:
+            out_cells.append(cell)
+    out_nb['cells'] = out_cells
     return out_nb
 
 
-def load_process_nb(nb_path, fmt="myst", url=None):
+def label_processor(cell):
+    if cell["cell_type"] == "markdown":
+        cell["source"] = _LABEL.sub("", cell["source"])
+    return cell
+
+
+def remove_processor(cell):
+    tags = cell.get('metadata', {}).get('tags', {})
+    if 'remove-cell' in tags:
+        return None
+    return cell
+
+
+def load_process_nb(nb_path, fmt="myst", url=None, remove_remove=False):
     """Load and process notebook
 
     Deal with:
@@ -224,26 +245,24 @@ def load_process_nb(nb_path, fmt="myst", url=None):
     nbt2 = _SOL_MARKED.sub(f"\n**See the {page_link} for solution**\n\n", nbt1)
     nbt3 = process_admonitions(nbt2, nb_path)
     nb = jupytext.reads(nbt3, fmt={"format_name": fmt, "extension": nb_path.suffix})
-    return process_labels(nb)
+    return process_cells(nb, [label_processor])
 
 
 def process_notebooks(
     config,
     output_dir,
     kernel_name="python",
-    kernel_dname="Python (Pyodide)",
-    out_nb_suffix=".ipynb",
+    kernel_dname="Python (Pyodide)"
 ):
-    jl_config = config.get("jupyterlite", {})
-    in_nb_suffix = jl_config.get("in_nb_ext", ".md")
-    in_nb_fmt = jl_config.get("in_nb_fmt", "myst")
+    # Get processing params from jupyterlite config section.
+    jl_config = config['jupyterlite']
     input_dir = Path(config["input_dir"])
     # Use sphinx utility to find not-excluded files.
     for fn in get_matching_files(
         input_dir, exclude_patterns=config["exclude_patterns"]
     ):
         rel_path = Path(fn)
-        if rel_path.suffix != in_nb_suffix:
+        if rel_path.suffix != jl_config['in_nb_ext']:
             continue
         print(f"Processing {rel_path}")
         nb_url = (
@@ -251,12 +270,16 @@ def process_notebooks(
             + "/"
             + urlquote(rel_path.with_suffix(".html").as_posix())
         )
-        nb = load_process_nb(input_dir / rel_path, in_nb_fmt, nb_url)
+        nb = load_process_nb(input_dir / rel_path,
+                             jl_config['in_nb_fmt'],
+                             nb_url)
+        if jl_config['remove_remove']:
+            nb = process_cells(nb, [remove_processor])
         nb["metadata"]["kernelspec"] = {
             "name": kernel_name,
             "display_name": kernel_dname,
         }
-        out_path = (output_dir / rel_path).with_suffix(out_nb_suffix)
+        out_path = (output_dir / rel_path).with_suffix(jl_config['out_nb_ext'])
         out_path.parent.mkdir(exist_ok=True, parents=True)
         jupytext.write(nb, out_path)
 
