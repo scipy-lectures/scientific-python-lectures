@@ -63,34 +63,33 @@ def test_cell_processors():
         return cell
 
     out = pn.process_cells(nb_cp, [null_processor])
-    assert out['cells'] is not nb_cp['cells']
-    assert out['cells'] == nb_cp['cells']
+    assert out["cells"] is not nb_cp["cells"]
+    assert out["cells"] == nb_cp["cells"]
 
     # Label processor.
     # There is a label in the example notebook.
-    labeled_indices = [i for i,c in enumerate(nb['cells'])
-                       if ')=\n' in c['source']]
+    labeled_indices = [i for i, c in enumerate(nb["cells"]) if ")=\n" in c["source"]]
     assert len(labeled_indices) == 1
     out = pn.process_cells(nb_cp, [pn.label_processor])
-    other_in_cell = nb_cp['cells'].pop(labeled_indices[0])
-    other_out_cell = out['cells'].pop(labeled_indices[0])
+    other_in_cell = nb_cp["cells"].pop(labeled_indices[0])
+    other_out_cell = out["cells"].pop(labeled_indices[0])
     # With these cells removed, the other cells compare equal.
-    assert out['cells'] == nb_cp['cells']
+    assert out["cells"] == nb_cp["cells"]
     # Label removed.
-    assert pn._LABEL.match(other_in_cell['source'])
-    assert not pn._LABEL.match(other_out_cell['source'])
+    assert pn._LABEL.match(other_in_cell["source"])
+    assert not pn._LABEL.match(other_out_cell["source"])
 
     # remove-cell processor.
     nb_cp = deepcopy(nb)
     # No tagged cells in original notebook.
     out = pn.process_cells(nb_cp, [pn.remove_processor])
-    assert out['cells'] == nb_cp['cells']
+    assert out["cells"] == nb_cp["cells"]
     # An example code and Markdown cel.
     eg_cells = [6, 7]
     for eg_i in eg_cells:
-        nb_cp['cells'][eg_i]['metadata']['tags'] = ['remove-cell']
+        nb_cp["cells"][eg_i]["metadata"]["tags"] = ["remove-cell"]
     out = pn.process_cells(nb_cp, [pn.remove_processor])
-    assert out['cells'] != nb_cp['cells']
-    assert len(out['cells']) == len(nb_cp['cells']) - len(eg_cells)
+    assert out["cells"] != nb_cp["cells"]
+    assert len(out["cells"]) == len(nb_cp["cells"]) - len(eg_cells)
     # The two cells have been dropped.
-    assert out['cells'][eg_cells[0]] == nb_cp['cells'][eg_cells[-1] + 1]
+    assert out["cells"][eg_cells[0]] == nb_cp["cells"][eg_cells[-1] + 1]

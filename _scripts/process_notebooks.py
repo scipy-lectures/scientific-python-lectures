@@ -197,7 +197,7 @@ def process_cells(nb, processors):
                 break
         if cell:
             out_cells.append(cell)
-    out_nb['cells'] = out_cells
+    out_nb["cells"] = out_cells
     return out_nb
 
 
@@ -208,8 +208,8 @@ def label_processor(cell):
 
 
 def remove_processor(cell):
-    tags = cell.get('metadata', {}).get('tags', {})
-    if 'remove-cell' in tags:
+    tags = cell.get("metadata", {}).get("tags", {})
+    if "remove-cell" in tags:
         return None
     return cell
 
@@ -249,20 +249,17 @@ def load_process_nb(nb_path, fmt="myst", url=None, remove_remove=False):
 
 
 def process_notebooks(
-    config,
-    output_dir,
-    kernel_name="python",
-    kernel_dname="Python (Pyodide)"
+    config, output_dir, kernel_name="python", kernel_dname="Python (Pyodide)"
 ):
     # Get processing params from jupyterlite config section.
-    jl_config = config['jupyterlite']
+    jl_config = config["jupyterlite"]
     input_dir = Path(config["input_dir"])
     # Use sphinx utility to find not-excluded files.
     for fn in get_matching_files(
         input_dir, exclude_patterns=config["exclude_patterns"]
     ):
         rel_path = Path(fn)
-        if rel_path.suffix != jl_config['in_nb_ext']:
+        if rel_path.suffix != jl_config["in_nb_ext"]:
             continue
         print(f"Processing {rel_path}")
         nb_url = (
@@ -270,16 +267,14 @@ def process_notebooks(
             + "/"
             + urlquote(rel_path.with_suffix(".html").as_posix())
         )
-        nb = load_process_nb(input_dir / rel_path,
-                             jl_config['in_nb_fmt'],
-                             nb_url)
-        if jl_config['remove_remove']:
+        nb = load_process_nb(input_dir / rel_path, jl_config["in_nb_fmt"], nb_url)
+        if jl_config["remove_remove"]:
             nb = process_cells(nb, [remove_processor])
         nb["metadata"]["kernelspec"] = {
             "name": kernel_name,
             "display_name": kernel_dname,
         }
-        out_path = (output_dir / rel_path).with_suffix(jl_config['out_nb_ext'])
+        out_path = (output_dir / rel_path).with_suffix(jl_config["out_nb_ext"])
         out_path.parent.mkdir(exist_ok=True, parents=True)
         jupytext.write(nb, out_path)
 

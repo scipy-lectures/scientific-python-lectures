@@ -33,7 +33,7 @@ clean: rm-ipynb
 	find . -name ".ipynb_checkpoints" -exec rm -rf {} \;
 
 rm-ipynb:
-	rm -rf *.ipynb
+	find . -name "*.ipynb" -exec rm {} \;
 
 test:
 	pytest .
