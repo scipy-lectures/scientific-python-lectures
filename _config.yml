@@ -53,7 +53,7 @@ launch_buttons:
   # The URL of the BinderHub (e.g., https://mybinder.org)
   # binderhub_url: "https://mybinder.org"
   # Jupyterlite URL
-  jupyterlite_url: "/interact/lab/index.html"
+  jupyterlite_url: "/scipy-lecture-notes/interact/lab/index.html"
   # Extension (if different from source file).
   jupyterlite_ext: ".ipynb"
   # Example jupyterlite link:
