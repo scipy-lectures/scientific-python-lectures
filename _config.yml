@@ -139,6 +139,7 @@ jupyterlite:
   out_nb_ext: .ipynb
   in_nb_fmt: "myst"
   remove_remove: true
+  proc_admonitions: false
 
 parse:
   myst_substitutions:

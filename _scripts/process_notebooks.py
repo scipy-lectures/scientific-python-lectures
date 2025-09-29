@@ -106,6 +106,7 @@ DEF_JUPYTERLITE_CONFIG = {
     "out_nb_ext": ".ipynb",
     "in_nb_fmt": "myst",
     "remove_remove": True,
+    "proc_admonitions": True
 }
 
 
@@ -214,7 +215,7 @@ def remove_processor(cell):
     return cell
 
 
-def load_process_nb(nb_path, fmt="myst", url=None, remove_remove=False):
+def load_process_nb(nb_path, fmt="myst", url=None, proc_admonitions=True):
     """Load and process notebook
 
     Deal with:
@@ -231,6 +232,8 @@ def load_process_nb(nb_path, fmt="myst", url=None, remove_remove=False):
         Format of notebook (for Jupytext)
     url : str, optional
         URL for output page.
+    proc_admonitions : {False, True}, optional
+        If True, process admonition blocks to plain paragraphs.
 
     Returns
     -------
@@ -243,8 +246,9 @@ def load_process_nb(nb_path, fmt="myst", url=None, remove_remove=False):
     nb_text = nb_path.read_text()
     nbt1 = _EX_SOL_MARKER.sub(_replace_markers, nb_text)
     nbt2 = _SOL_MARKED.sub(f"\n**See the {page_link} for solution**\n\n", nbt1)
-    nbt3 = process_admonitions(nbt2, nb_path)
-    nb = jupytext.reads(nbt3, fmt={"format_name": fmt, "extension": nb_path.suffix})
+    if proc_admonitions:
+        nbt2 = process_admonitions(nbt2, nb_path)
+    nb = jupytext.reads(nbt2, fmt={"format_name": fmt, "extension": nb_path.suffix})
     return process_cells(nb, [label_processor])
 
 
@@ -267,7 +271,10 @@ def process_notebooks(
             + "/"
             + urlquote(rel_path.with_suffix(".html").as_posix())
         )
-        nb = load_process_nb(input_dir / rel_path, jl_config["in_nb_fmt"], nb_url)
+        nb = load_process_nb(input_dir / rel_path,
+                             jl_config["in_nb_fmt"],
+                             nb_url,
+                             jl_config['proc_admonitions'])
         if jl_config["remove_remove"]:
             nb = process_cells(nb, [remove_processor])
         nb["metadata"]["kernelspec"] = {
