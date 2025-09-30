@@ -1,7 +1,3 @@
----
-orphan: true
----
-
 # License
 
 All code and material is licensed under a

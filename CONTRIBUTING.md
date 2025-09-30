@@ -1,7 +1,3 @@
----
-orphan: true
----
-
 # Contributing
 
 The Scientific Python Lectures are a community-based effort and require

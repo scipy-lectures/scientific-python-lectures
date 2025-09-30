@@ -17,8 +17,9 @@ execute:
 
 exclude_patterns:
   - README.md
-  - CONTRIBUTING.md
   - CHANGES.md
+  - LICENSE.md
+  - CONTRIBUTING.md
   - todo.md
   - _scripts/*
   - _notes/*
