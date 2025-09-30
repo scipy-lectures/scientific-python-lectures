@@ -13,7 +13,7 @@ kernelspec:
 
 (scikit-learn-chapter)=
 
-# scikit-learn: machine learning in Python
+# `scikit-learn`: machine learning in Python
 
 ```{code-cell}
 :tags: [hide-input]

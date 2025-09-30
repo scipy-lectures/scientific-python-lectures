@@ -1,4 +1,4 @@
-# Getting started with Python for science
+# Introduction to getting started
 
 This part of the _Scientific Python Lectures_ is a self-contained
 introduction to everything that is needed to use Python for science,

@@ -48,6 +48,6 @@ parts:
       - file: packages/sympy
       - file: packages/scikit-image/index
       - file: packages/scikit-learn/index
-  - caption: About the Scientific Python Lectures
+  - caption: About
     chapters:
       - file: about

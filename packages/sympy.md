@@ -17,7 +17,7 @@ TODO: bench and fit in 1:30
 
 (sympy)=
 
-# Sympy : Symbolic Mathematics in Python
+# `sympy` : Symbolic Mathematics in Python
 
 **Author**: _Fabian Pedregosa_
 

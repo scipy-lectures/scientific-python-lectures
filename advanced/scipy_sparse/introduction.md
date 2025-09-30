@@ -11,14 +11,7 @@ kernelspec:
   name: python3
 ---
 
-```{code-cell}
-:tags: [hide-input]
-
-import numpy as np
-import matplotlib.pyplot as plt
-```
-
-# Introduction
+# Scipy sparse arrays
 
 **Section author**: _Robert Cimrman_
 
@@ -42,6 +35,7 @@ Important features:
 ```{code-cell}
 import numpy as np
 import matplotlib.pyplot as plt
+
 x = np.linspace(0, 1e6, 10)
 plt.plot(x, 8.0 * (x**2) / 1e6, lw=5)
 plt.xlabel('size n')
