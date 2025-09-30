@@ -10,6 +10,4 @@ beginner to expert.
 Release: {{ release }}
 
 ::: {tableofcontents}
-:context: project
-:depth: 2
 :::

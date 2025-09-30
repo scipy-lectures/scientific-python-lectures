@@ -13,7 +13,7 @@ kernelspec:
 
 (scipy)=
 
-# SciPy : high-level scientific computing
+# SciPy: high-level scientific computing
 
 **Authors**: _Gaël Varoquaux, Adrien Chauve, Andre Espaze, Emmanuelle Gouillart, Ralf Gommers_
 

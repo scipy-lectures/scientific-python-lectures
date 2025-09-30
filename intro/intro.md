@@ -148,21 +148,21 @@ that can be combined to obtain a scientific computing environment:
   objects, and routines to manipulate them. <https://numpy.org/>
 
   :::{seealso}
-  {ref}`chapter on numpy <numpy>`
+  {ref}`Chapter on Numpy <numpy>`
   :::
 
 - **SciPy** : high-level numerical routines.
   Optimization, regression, interpolation, etc <https://scipy.org/>
 
   :::{seealso}
-  {ref}`chapter on SciPy <scipy>`
+  {ref}`Chapter on SciPy <scipy>`
   :::
 
 - **Matplotlib** : 2-D visualization, "publication-ready" plots
   <https://matplotlib.org/>
 
   :::{seealso}
-  {ref}`chapter on matplotlib <matplotlib>`
+  {ref}`Chapter on Matplotlib <matplotlib>`
   :::
 
 **Advanced interactive environments**:
