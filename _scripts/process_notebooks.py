@@ -232,11 +232,36 @@ def remove_processor(cell):
     return cell
 
 
+_GLUE_DIR = re.compile(
+    r'''
+    (:::+|```+)\s*
+    \{\s*glue:*\s*\}\s+
+    (?P<ref>\w+)\n
+    (\s*:doc:\s*(?P<doc>.*?)$){0,1}
+    \n\s*\1\s*\n
+    ''',
+    flags=re.MULTILINE | re.DOTALL | re.VERBOSE)
+
+
+_GLUE_ROLE = re.compile(
+    r'''
+    \{\s*glue:{0,1}\s*\}\s*`(.*?)`
+    ''',
+    flags=re.MULTILINE | re.DOTALL | re.VERBOSE)
+
+
+def _glue_replacer(m):
+    d = m.groupdict()
+    ref, doc = d['ref'], d['doc']
+    doc_msg = f" in \"{doc}\"" if doc else ""
+    return f"(Ref to `{ref}`{doc_msg})\n"
+
+
 def glue_processor(cell):
     if cell["cell_type"] != "markdown":
         return cell
-    cell["source"] = _GLUE_DIR.sub(r'`\2`\n', cell["source"])
-    cell["source"] = _GLUE_ROLE.sub(r'\1`', cell["source"])
+    cell["source"] = _GLUE_DIR.sub(_glue_replacer, cell["source"])
+    cell["source"] = _GLUE_ROLE.sub(r"(Ref to `\1`)", cell["source"])
     return cell
 
 
