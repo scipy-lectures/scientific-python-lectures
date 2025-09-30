@@ -106,7 +106,7 @@ DEF_JUPYTERLITE_CONFIG = {
     "out_nb_ext": ".ipynb",
     "in_nb_fmt": "myst",
     "remove_remove": True,
-    "proc_admonitions": True
+    "proc_admonitions": True,
 }
 
 
@@ -159,17 +159,29 @@ _ADM_HEADER = re.compile(
 )
 
 
+_DIR_OPTION = re.compile(r"^\s*:\w+:")
+
+
 def process_admonitions(nb_text, nb_path):
     lines = nb_text.splitlines()
+    out_lines = []
+    start_i = last = 0
     for first, last in get_admonition_lines(nb_text, nb_path):
         m = _ADM_HEADER.match(lines[first])
         if not m:
             raise ValueError(f"Cannot get match from {lines[first]}")
+        out_lines += lines[start_i:first]
+        start_i = last + 1
         ad_type, ad_title = m["ad_type"], m["ad_title"]
         suffix = f": {ad_title}" if ad_title else ""
-        lines[first] = f"**Start of {ad_type}{suffix}**"
-        lines[last] = f"**End of {ad_type}**"
-    return "\n".join(lines)
+        in_i = first + 1
+        while _DIR_OPTION.match(lines[in_i]):
+            in_i += 1
+        adm_txt = "\n".join(lines[in_i:last]).strip("\n")
+        out_lines.append(
+            f"**Start of {ad_type}{suffix}**\n\n{adm_txt}\n\n**End of {ad_type}**"
+        )
+    return "\n".join(out_lines + lines[start_i:])
 
 
 def process_cells(nb, processors):
@@ -202,21 +214,23 @@ def process_cells(nb, processors):
 _LABEL = re.compile(r"^\s*\(\s*\S+\s*\)\=\s*\n", flags=re.MULTILINE)
 
 _GLUE_DIR = re.compile(
-    r'''
+    r"""
     (:::+|```+)\s*
     \{\s*glue:*\s*\}\s+
     (\w+)\n
     (?:\s*:doc: .*?)*
     \n\s*\1\s*\n
-    ''',
-    flags=re.MULTILINE | re.DOTALL | re.VERBOSE)
+    """,
+    flags=re.MULTILINE | re.DOTALL | re.VERBOSE,
+)
 
 
 _GLUE_ROLE = re.compile(
-    r'''
+    r"""
     \{\s*glue:{0,1}\s*\}\s*`(.*)?`
-    ''',
-    flags=re.MULTILINE | re.DOTALL | re.VERBOSE)
+    """,
+    flags=re.MULTILINE | re.DOTALL | re.VERBOSE,
+)
 
 
 def label_processor(cell):
@@ -233,27 +247,29 @@ def remove_processor(cell):
 
 
 _GLUE_DIR = re.compile(
-    r'''
+    r"""
     (:::+|```+)\s*
     \{\s*glue:*\s*\}\s+
     (?P<ref>\w+)\n
     (\s*:doc:\s*(?P<doc>.*?)$){0,1}
     \n\s*\1\s*\n
-    ''',
-    flags=re.MULTILINE | re.DOTALL | re.VERBOSE)
+    """,
+    flags=re.MULTILINE | re.DOTALL | re.VERBOSE,
+)
 
 
 _GLUE_ROLE = re.compile(
-    r'''
+    r"""
     \{\s*glue:{0,1}\s*\}\s*`(.*?)`
-    ''',
-    flags=re.MULTILINE | re.DOTALL | re.VERBOSE)
+    """,
+    flags=re.MULTILINE | re.DOTALL | re.VERBOSE,
+)
 
 
 def _glue_replacer(m):
     d = m.groupdict()
-    ref, doc = d['ref'], d['doc']
-    doc_msg = f" in \"{doc}\"" if doc else ""
+    ref, doc = d["ref"], d["doc"]
+    doc_msg = f' in "{doc}"' if doc else ""
     return f"(Ref to `{ref}`{doc_msg})\n"
 
 
@@ -321,10 +337,12 @@ def process_notebooks(
             + "/"
             + urlquote(rel_path.with_suffix(".html").as_posix())
         )
-        nb = load_process_nb(input_dir / rel_path,
-                             jl_config["in_nb_fmt"],
-                             nb_url,
-                             jl_config['proc_admonitions'])
+        nb = load_process_nb(
+            input_dir / rel_path,
+            jl_config["in_nb_fmt"],
+            nb_url,
+            jl_config["proc_admonitions"],
+        )
         if jl_config["remove_remove"]:
             nb = process_cells(nb, [remove_processor])
         nb["metadata"]["kernelspec"] = {

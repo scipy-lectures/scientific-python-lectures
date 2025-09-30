@@ -93,3 +93,50 @@ def test_cell_processors():
     assert len(out["cells"]) == len(nb_cp["cells"]) - len(eg_cells)
     # The two cells have been dropped.
     assert out["cells"][eg_cells[0]] == nb_cp["cells"][eg_cells[-1] + 1]
+
+
+def test_admonition_processing():
+    src = """
+## Signal processing: {mod}`scipy.signal`
+
+::: {note}
+:class: dropdown
+
+{mod}`scipy.signal` is for typical signal processing: 1D,
+regularly-sampled signals.
+:::
+
+**Resampling** {func}`scipy.signal.resample`: resample a signal to `n`
+points using FFT.
+
+::: {admonition} Another thought
+
+Some text.
+
+
+:::
+
+More text.
+"""
+    out = pn.process_admonitions(src, EG1_NB_PATH)
+    exp = """
+## Signal processing: {mod}`scipy.signal`
+
+**Start of note**
+
+{mod}`scipy.signal` is for typical signal processing: 1D,
+regularly-sampled signals.
+
+**End of note**
+
+**Resampling** {func}`scipy.signal.resample`: resample a signal to `n`
+points using FFT.
+
+**Start of admonition: Another thought**
+
+Some text.
+
+**End of admonition**
+
+More text."""
+    assert exp == out
