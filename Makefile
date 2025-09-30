@@ -31,6 +31,7 @@ github: web
 clean: rm-ipynb
 	rm -rf _build
 	find . -name ".ipynb_checkpoints" -exec rm -rf {} \;
+	find . -name "joblib" -exec rm -rf {} \;
 
 rm-ipynb:
 	find . -name "*.ipynb" -exec rm {} \;
