@@ -183,7 +183,7 @@ a Jupyter interface such as [JupyterLite](https://jupyterlite.readthedocs.io).
 To deal with this in part, we install the
 [jupyterlab_myst](https://github.com/jupyter-book/jupyterlab-myst) extension by
 default, so that Myst markup (mostly) appears as it should inside JupyterLab
-when opened as a notebook.  Another difference we want to see between the HTML
+when opened as a notebook. Another difference we want to see between the HTML
 and the notebook version is that we want to avoid putting the solutions in the
 notebook version, to allow more space for thought about the exercise. Both to
 modify any ugly formatting, and to remove the exercise solutions, we
@@ -198,10 +198,10 @@ reads the input Myst-MD format notebooks using
 ## Tests
 
 There may well be cases where you will want to put cells in the rendered
-notebook that test values, as part of the exposition.  For example, from the
+notebook that test values, as part of the exposition. For example, from the
 `intro/scipy/index.md` notebook / page:
 
-~~~
+````
 
 ```{code-cell}
 A_upper = np.triu(A)
@@ -212,19 +212,19 @@ A_upper
 np.allclose(sp.linalg.solve_triangular(A_upper, b, lower=False),
             sp.linalg.solve(A_upper, b))
 ```
-~~~
+````
 
 Notice that, in this case, we do want the reader to see that test, as part of
 the exposition.
 
 However, there are cases where the test would be useful, to, for example,
-detect changes in the output over versions of the packages being used.  We want
+detect changes in the output over versions of the packages being used. We want
 to avoid the situation where the text says one thing, but the values contradict
-it.  But we may not want the reader to have to read such tests as part of the
-exposition.  Here, for example, is a test from the `intro/scipy/index.md`
+it. But we may not want the reader to have to read such tests as part of the
+exposition. Here, for example, is a test from the `intro/scipy/index.md`
 notebook:
 
-~~~
+````
 
 ```{code-cell}
 log_a = sp.special.gammaln(500)
@@ -239,11 +239,11 @@ res
 assert np.allclose(res, 499)
 ```
 
-~~~
+````
 
 Note that the test confirms that Scipy is still giving the output implied in
-the text.  Note too that we have given the testing code cell the tag
-`remove-cell`.  This drops the cell from the HTML output, and our
+the text. Note too that we have given the testing code cell the tag
+`remove-cell`. This drops the cell from the HTML output, and our
 [post-processing of the notebooks](notebook-processing) also drops these cells,
 so someone opening the notebook in e.g. JupyterLite will not see them.
 Accordingly, please make sure you are not defining anything in these test cells
