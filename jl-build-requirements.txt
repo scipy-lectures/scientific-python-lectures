@@ -3,4 +3,3 @@
 jupyterlite-core
 jupyterlite-pyodide-kernel
 jupyterlab_server
-jupyterlab_myst

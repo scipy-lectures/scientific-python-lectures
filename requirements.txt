@@ -20,5 +20,7 @@ requests
 xlrd
 openpyxl
 jupytext
+# For pretty rendering in local JupyterLab or JupyterLite.
+jupyterlab_myst
 # For glue markup in notebooks.
 myst_nb
