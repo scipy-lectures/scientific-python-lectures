@@ -225,6 +225,12 @@ b = sp.special.gamma(499)
 a, b
 ```
 
+```{code-cell}
+:tags: [remove-cell, test]
+assert a == np.inf
+assert b == np.inf
+```
+
 Both the numerator and denominator overflow, so performing $a / b$ will
 not return the result we seek. However, the magnitude of the result should
 be moderate, so the use of logarithms comes to mind. Combining the identities
@@ -237,6 +243,11 @@ log_b = sp.special.gammaln(499)
 log_res = log_a - log_b
 res = np.exp(log_res)
 res
+```
+
+```{code-cell}
+:tags: [remove-cell, test]
+assert np.allclose(res, 499)
 ```
 
 Similarly, suppose we wish to compute the difference
