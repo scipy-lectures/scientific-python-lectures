@@ -298,7 +298,7 @@ def load_process_nb(nb_path, fmt="myst", url=None, proc_admonitions=True):
         Format of notebook (for Jupytext)
     url : str, optional
         URL for output page.
-    proc_admonitions : {False, True}, optional
+    proc_admonitions : {True, False}, optional
         If True, process admonition blocks to plain paragraphs.
 
     Returns
