@@ -53,16 +53,6 @@ the generated html files can be found in `build/html`
 The first build takes a long time, but information is cached and
 subsequent builds will be faster.
 
-To generate the pdf file for printing:
-
-```
-make pdf
-```
-
-The pdf builder is a bit difficult and you might have some TeX errors.
-Tweaking the layout in the source files is usually enough to work around these
-problems.
-
 ### Requirements
 
 Build requirements are listed in the
