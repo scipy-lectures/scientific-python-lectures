@@ -755,6 +755,11 @@ has multiple local minima. Find a global minimum (there is more than one,
 each with the same value of the objective function) and at least one other
 local minimum.
 
+Here's a plot of the function (taken from the exercise solution):
+
+::: {glue} plot_camel
+:::
+
 Hints:
 
 - Variables can be restricted to $-2 < x < 2$ and $-1 < y < 1$.
@@ -822,6 +827,11 @@ ax.set_xlabel("x")
 ax.set_ylabel("y")
 ax.set_zlabel("f(x, y)")
 ax.set_title("Six-hump Camelback function");
+
+# You can ignore the code below - it's not part of the solution. It is only to
+# allow us to use the plot from the solution as a graphic in the web page.
+from myst_nb import glue
+glue("plot_camel", fig, display=False)
 ```
 
 Find minima:
