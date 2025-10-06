@@ -8,7 +8,7 @@ This repository gathers some lectures on the scientific Python
 ecosystem that can be used for a full course of scientific computing with
 Python.
 
-These documents are written in Markdown and built using [Jupyter Book vversion
+These documents are written in Markdown and built using [Jupyter Book version
 1](https://jupyterbook.org/en/stable/intro.html), which, in turn, uses the
 [Sphinx](https://www.sphinx-doc.org) engine.
 
