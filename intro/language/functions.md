@@ -24,7 +24,7 @@ def test():
 test()
 ```
 
-:::{Warning}
+:::{warning}
 Function blocks must be indented in the same way as other control-flow blocks.
 :::
 
@@ -59,7 +59,7 @@ result = another_func(10)
 result is None
 ```
 
-:::{Note}
+:::{note}
 Note the syntax to define a function:
 
 - the `def` keyword;
@@ -339,7 +339,7 @@ def funcname(params):
 help(funcname)
 ```
 
-:::{Note}
+:::{note}
 **Docstring guidelines**
 
 For the sake of standardization, the [Docstring

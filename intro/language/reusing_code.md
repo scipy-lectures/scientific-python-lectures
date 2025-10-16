@@ -316,7 +316,7 @@ Running it:
 
 ## Scripts or modules? How to organize your code
 
-:::{Note}
+:::{note}
 Rule of thumb
 
 - Sets of instructions that are called several times should be

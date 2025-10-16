@@ -139,7 +139,7 @@ colors
 colors[2:4]
 ```
 
-:::{Warning}
+:::{warning}
 Note that `colors[start:stop]` contains the elements with indices `i`
 such as `start<= i < stop` (`i` ranging from `start` to
 `stop-1`). Therefore, `colors[start:stop]` has `(stop - start)` elements.
@@ -182,7 +182,7 @@ colors[2:4] = ['gray', 'purple']
 colors
 ```
 
-::::{Note}
+::::{note}
 The elements of a list may have different types:
 
 ```{code-cell}
