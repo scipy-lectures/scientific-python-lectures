@@ -322,9 +322,10 @@ The user manuals contain a wealth of information. Here we give a quick
 introduction to four useful features: _history_, _tab completion_, _magic
 functions_, and _aliases_.
 
-**Command history** Like a UNIX shell, the IPython console supports
-command history. Type the _up_ and _down_ cursor keys to navigate previously typed
-commands:
+#### Command history
+
+Like a UNIX shell, the IPython console supports command history. Type the _up_
+and _down_ cursor keys to navigate previously typed commands:
 
 ```ipython
 In [3]: x = 10
@@ -334,10 +335,12 @@ In [4]: <UP>
 In [4]: x = 10
 ```
 
-**Tab completion** Tab completion, is a convenient way to explore the
-structure of any object you’re dealing with. Simply type object_name.\<TAB> to
-view the object’s attributes. Besides Python objects and keywords, tab
-completion also works on file and directory names.\*
+#### Tab completion
+
+Tab completion is a convenient way to explore the structure of any object
+you’re dealing with. Simply type `object_name.`\<TAB> to view the object’s
+attributes. Besides Python objects and keywords, tab completion also works on
+file and directory names.\*
 
 ```ipython
 In [5]: x = 10
@@ -435,9 +438,9 @@ ipdb>
 {ref}`Chapter on debugging <debugging-chapter>`
 :::
 
-**Aliases**
+#### Aliases
 
-Furthermore IPython ships with various _aliases_ which emulate common UNIX
+IPython and Jupyter ship with various _aliases_ which emulate common UNIX
 command line tools such as `ls` to list files, `cp` to copy files and `rm` to
 remove files (a full list of aliases is shown when typing `alias`).
 
