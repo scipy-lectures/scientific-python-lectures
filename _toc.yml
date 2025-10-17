@@ -3,7 +3,6 @@ root: index
 parts:
   - caption: Getting started with Python for Science
     chapters:
-      - file: intro/index
       - file: intro/intro
       - file: intro/language/python_language
         sections:
@@ -28,7 +27,6 @@ parts:
       - file: intro/help/help
   - caption: Advanced topics
     chapters:
-      - file: advanced/index
       - file: advanced/advanced_python/index
       - file: advanced/advanced_numpy/index
       - file: advanced/debugging/index
@@ -43,7 +41,6 @@ parts:
       - file: advanced/interfacing_with_c/interfacing_with_c
   - caption: Packages and applications
     chapters:
-      - file: packages/index
       - file: packages/statistics/index
       - file: packages/sympy
       - file: packages/scikit-image/index
