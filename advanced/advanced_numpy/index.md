@@ -158,7 +158,7 @@ block.
 
 {class}`dtype` describes a single item in the array:
 
-::: {list-table} Dtypes
+::: {list-table} **Dtypes**
 
 - - type
   - **scalar type** of the data, one of:

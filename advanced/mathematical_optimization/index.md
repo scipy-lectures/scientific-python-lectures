@@ -300,7 +300,7 @@ gradient, that is the direction of the _steepest descent_.
 
 +++
 
-::: {list-table} Fixed step gradient descent
+::: {list-table} **Fixed step gradient descent**
 
 - - **A well-conditioned quadratic function.**
 
@@ -345,7 +345,7 @@ Also, it clearly can be advantageous to take bigger steps. This
 is done in gradient descent code using a
 [line search](https://en.wikipedia.org/wiki/Line_search).
 
-::: {list-table} Adaptive step gradient descent
+::: {list-table} **Adaptive step gradient descent**
 
 - - A well-conditioned quadratic function.
 
@@ -409,7 +409,7 @@ it cross the valley. The conjugate gradient solves this problem by adding
 a _friction_ term: each step depends on the two last values of the
 gradient and sharp turns are reduced.
 
-::: {list-table} Conjugate gradient descent
+::: {list-table} **Conjugate gradient descent**
 
 - - An ill-conditioned non-quadratic function.
 
@@ -773,7 +773,7 @@ See [compare optimizers](compare-optimizers-eg).
 
 :::
 
-::: {list-table} Rules of thumb for choosing a method
+::: {list-table} **Rules of thumb for choosing a method**
 
 - - Without knowledge of the gradient
 

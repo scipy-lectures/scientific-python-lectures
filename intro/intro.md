@@ -48,7 +48,7 @@ Valentin Haenel_
 
 ### How does Python compare to other solutions?
 
-::: {list-table} Compiled languages (C, C++, Fortran ...)
+::: {list-table} **Compiled languages (C, C++, Fortran ...)**
 
 - - Pros
   - Very fast. For heavy computations, it’s difficult to outperform these
@@ -60,7 +60,7 @@ Valentin Haenel_
 
 :::
 
-::: {list-table} Matlab scripting language
+::: {list-table} **Matlab scripting language**
 
 - - Pros
   - - Very rich collection of libraries with numerous algorithms, for many
@@ -76,7 +76,7 @@ Valentin Haenel_
 
 :::
 
-::: {list-table} Julia
+::: {list-table} **Julia**
 
 - - Pros
   - - Fast code, yet interactive and simple to read and write.
@@ -87,7 +87,7 @@ Valentin Haenel_
 
 :::
 
-::: {list-table} Other scripting languages: Scilab, Octave, R, IDL, etc.
+::: {list-table} **Other scripting languages:** Scilab, Octave, R, IDL, etc.
 
 - - Pros
   - - Open-source, free, or at least cheaper than Matlab.
@@ -101,7 +101,7 @@ Valentin Haenel_
 
 :::
 
-::: {list-table} Python
+::: {list-table} **Python**
 
 - - Pros
   - - Very rich scientific computing libraries

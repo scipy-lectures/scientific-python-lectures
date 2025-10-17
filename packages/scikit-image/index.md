@@ -46,7 +46,7 @@ Images are NumPy's arrays `np.ndarray`
 
 +++
 
-::: {list-table} Terms
+::: {list-table} **Terms**
 
 - - Pixels
   - array values: `a[2, 3]`
@@ -77,7 +77,7 @@ Python installations, as well as in most Linux distributions. Other
 Python packages for image processing & visualization that operate on
 NumPy arrays include:
 
-::: {list-table} Other packages for working with images
+::: {list-table} **Other packages for working with images**
 
 - - {mod}`scipy.ndimage`
   - For N-dimensional arrays. Basic filtering, mathematical morphology,
@@ -91,7 +91,7 @@ NumPy arrays include:
 
 Some powerful C++ image processing libraries also have Python bindings:
 
-::: {list-table} C++ libraries with Python bindings
+::: {list-table} **C++ libraries with Python bindings**
 
 - - [OpenCV](https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html)
   - A highly optimized computer vision library with a focus on real-time
@@ -117,7 +117,7 @@ The library contains predominantly image processing algorithms, but
 also utility functions to ease data handling and processing.
 It contains the following submodules:
 
-::: {list-table} Scikit-image submodules
+::: {list-table} **Scikit-image submodules**
 
 - - {mod}`skimage.color`
   - Color space conversion.

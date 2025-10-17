@@ -500,7 +500,7 @@ Scikit-learn strives to have a uniform interface across all methods, and
 we’ll see examples of these below. Given a scikit-learn _estimator_
 object named `model`, the following methods are available:
 
-::: {list-table} Estimator interfaces
+::: {list-table} **Estimator interfaces**
 
 - - All Estimators
   - - `model.fit()` : fit training data. For supervised learning
