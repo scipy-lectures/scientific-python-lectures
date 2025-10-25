@@ -8,17 +8,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: Install TeX
-          command: |
-            sudo apt update
-            sudo apt install -y \
-              dvipng \
-              latexmk \
-              texlive-latex-extra \
-              texlive-fonts-extra \
-              texlive-extra-utils
-
       - restore_cache:
           keys:
             - pip-cache-v1
@@ -40,12 +29,8 @@ jobs:
           command: |
             # NOTE: bad interaction w/ blas multithreading on circleci
             export OMP_NUM_THREADS=1
-            make pdf
             make html  # FIX: check that failing examples produce failure
-            cp \
-              ScientificPythonLectures.pdf \
-              ScientificPythonLectures-simple.pdf \
-              build/html/_downloads/
+            cp build/html/_downloads/
 
       - store_artifacts:
           path: build/html
