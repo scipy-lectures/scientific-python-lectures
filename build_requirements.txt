@@ -1,5 +1,4 @@
 # Build requirements
--r requirements.txt
 # To upgrade certificates; needed for Python.org install.
 # certifi
 # Also: https://stackoverflow.com/a/79235523
@@ -7,6 +6,7 @@
 pre-commit
 sphinx-book-theme@git+https://github.com/executablebooks/sphinx-book-theme@56874cb
 sphinx_exercise
-jupyter-book
+jupyter-book>=1
+-r requirements.txt
 # To allow static build / upload
 ghp-import

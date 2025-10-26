@@ -9,7 +9,7 @@ sympy==1.14.0
 statsmodels==0.14.4
 seaborn==0.13.2
 pytest>=8.3
-sphinx>=8.2
+sphinx
 sphinx-copybutton
 coverage>=7.6
 Pillow
