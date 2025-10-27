@@ -35,10 +35,12 @@ html:
   use_edit_page_button: true
   use_repository_button: true
   use_issues_button: true
-  baseurl: https://lectures.scientific-python.org
+  # baseurl: https://lectures.scientific-python.org
+  baseurl: https://matthew-brett.github.io/scipy-lecture-notes
 
 repository:
-  url: https://github.com/scipy-lectures/scientific-python-lectures
+  # url: https://github.com/scipy-lectures/scientific-python-lectures
+  url: https://github.com/matthew-brett/scipy-lecture-notes
   branch: main
 
 launch_buttons:
