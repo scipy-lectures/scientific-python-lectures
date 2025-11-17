@@ -1,23 +1,26 @@
+# Requirements for notebooks / Binderhub
 numpy==2.2.5
 scipy==1.15.2
 matplotlib==3.10.1
 pandas==2.2.3
-patsy==1.0.1
-pyarrow==20.0.0
 scikit-learn==1.6.1
 scikit-image==0.25.2
 sympy==1.14.0
 statsmodels==0.14.4
 seaborn==0.13.2
 pytest>=8.3
-sphinx>=8.2
-sphinx-gallery>=0.19
+sphinx
 sphinx-copybutton
 coverage>=7.6
 Pillow
 pooch
 ipython
 pickleshare
-pre-commit==4.2.0
 requests
-sphinxcontrib-jquery
+xlrd
+openpyxl
+jupytext
+# For pretty rendering in local JupyterLab or JupyterLite.
+jupyterlab_myst
+# For glue markup in notebooks.
+myst_nb

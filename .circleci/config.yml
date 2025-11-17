@@ -3,21 +3,10 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: cimg/python:3.12
+      - image: cimg/python:3.13
 
     steps:
       - checkout
-
-      - run:
-          name: Install TeX
-          command: |
-            sudo apt update
-            sudo apt install -y \
-              dvipng \
-              latexmk \
-              texlive-latex-extra \
-              texlive-fonts-extra \
-              texlive-extra-utils
 
       - restore_cache:
           keys:
@@ -27,7 +16,7 @@ jobs:
           name: Install Python dependencies
           command: |
             pip install --upgrade --user pip
-            pip install --user -r requirements.txt
+            pip install --user -r build_requirements.txt
             pip list
 
       - save_cache:
@@ -40,12 +29,7 @@ jobs:
           command: |
             # NOTE: bad interaction w/ blas multithreading on circleci
             export OMP_NUM_THREADS=1
-            make pdf
-            make html  # FIX: check that failing examples produce failure
-            cp \
-              ScientificPythonLectures.pdf \
-              ScientificPythonLectures-simple.pdf \
-              build/html/_downloads/
+            make web  # FIX: check that failing examples produce failure
 
       - store_artifacts:
-          path: build/html
+          path: _build/html

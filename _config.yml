@@ -1,0 +1,148 @@
+# Book settings
+title: "Scientific Python Lectures"
+author: Scientific Python developers
+copyright: "2025"
+logo: images/sp_lectures.png
+email: matthew.brett@gmail.com
+# >- starts a multiline string, where newlines replaced by spaces, and final
+# newlines are stripped.
+description: >-
+  One document to learn numerics, science, and data with Python
+
+execute:
+  # 'cache' attempts to cache the results.
+  # 'auto' appears to be safer.
+  execute_notebooks: cache
+  timeout: 180
+
+exclude_patterns:
+  - README.md
+  - CHANGES.md
+  - LICENSE.md
+  - CONTRIBUTING.md
+  - todo.md
+  - _scripts/*
+  - _notes/*
+  - _to_ignore.md
+  - data/LICENSE.txt
+  - .pytest_cache/*
+  - .ipynb_checkpoints/*
+  - todo.md
+
+html:
+  favicon: images/sp_lectures.png
+  home_page_in_navbar: false
+  use_edit_page_button: true
+  use_repository_button: true
+  use_issues_button: true
+  baseurl: https://lectures.scientific-python.org
+
+repository:
+  url: https://github.com/scipy-lectures/scientific-python-lectures
+  branch: main
+
+launch_buttons:
+  # The interface interactive links will activate ["classic", "jupyterlab"]
+  notebook_interface: "jupyterlab"
+  # The URL of the JupyterHub (e.g., https://datahub.berkeley.edu)
+  # jupyterhub_url: "https://ds.lis.2i2c.cloud"
+  # Example jupyterhub link:
+  # https://ds.lis.2i2c.cloud/hub/user-redirect/git-pull?repo=https%3A//github.com/lisds/textbook&urlpath=lab/tree/textbook/code-basics/variables_intro.Rmd&branch=main
+  # The URL of the BinderHub (e.g., https://mybinder.org)
+  # binderhub_url: "https://mybinder.org"
+  # Jupyterlite URL
+  jupyterlite_url: "/scipy-lecture-notes/interact/lab/index.html"
+  # Extension (if different from source file).
+  jupyterlite_ext: ".ipynb"
+  # Example jupyterlite link:
+  # https://pxr687.github.io/ASPP_pandas_tutorials/interact/lab/index.html?path=variables_intro.ipynb
+  # The URL of Google Colab (e.g., https://colab.research.google.com)
+  # colab_url: "https://colab.research.google.com"
+  # thebe: true
+
+sphinx:
+  recursive_update: true
+  config:
+    nb_custom_formats:
+      .md:
+        - jupytext.reads
+        - fmt: md:myst
+    intersphinx_mapping:
+      python:
+        - "https://docs.python.org/3/"
+        - null
+      numpy:
+        - "https://numpy.org/doc/stable/"
+        - null
+      scipy:
+        - "https://docs.scipy.org/doc/scipy/"
+        - null
+      matplotlib:
+        - "https://matplotlib.org/stable/"
+        - null
+      sklearn:
+        - "https://scikit-learn.org/stable/"
+        - null
+      sphinx:
+        - "https://www.sphinx-doc.org/en/master/"
+        - null
+      pandas:
+        - "https://pandas.pydata.org/pandas-docs/stable/"
+        - null
+      seaborn:
+        - "https://seaborn.pydata.org/"
+        - null
+      skimage:
+        - "https://scikit-image.org/docs/stable/"
+        - null
+      statsmodels:
+        - "https://www.statsmodels.org/stable/"
+        - null
+      imageio:
+        - "https://imageio.readthedocs.io/en/stable/"
+        - null
+
+  extra_extensions:
+    # For documenting 'click' Python CLIs
+    # - sphinx_click.ext
+    # Directive for creating tab panels in pages.
+    # https://github.com/djungelorm/sphinx-tabs
+    # - sphinx_tabs.tabs
+    # A sphinx extension for creating panels in a grid layout or as
+    # drop-downs.
+    # - sphinx_panels
+    # Needed as of 5 Dec 2022 - release of IPython 8.7.0
+    # https://github.com/ipython/ipython/issues/13845
+    # Fix from:
+    # https://github.com/spatialaudio/nbsphinx/issues/24#issuecomment-267687633
+    # Alternative is to pin install to !=8.7.0
+    - IPython.sphinxext.ipython_console_highlighting
+    - sphinx_exercise
+
+latex:
+  latex_documents:
+    targetname: scientific_python_lectures.tex
+
+bibtex_bibfiles:
+  - sp_lectures.bib
+
+# HTML redirection
+# Pages linked, but then renamed.
+redirection:
+  builddir: _build/html
+  redirects:
+    # data-types/Ranges: ../arrays/Ranges
+
+jupyterlite:
+  in_nb_ext: .md
+  out_nb_ext: .ipynb
+  in_nb_fmt: "myst"
+  remove_remove: true
+  proc_admonitions: false
+
+parse:
+  myst_substitutions:
+    release: "2025.2rc0.dev0"
+    clear_floats: |
+
+      <div style="clear: both"></div>

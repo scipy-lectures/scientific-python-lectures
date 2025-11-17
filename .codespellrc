@@ -1,0 +1,3 @@
+[codespell]
+skip = .git,*.pdf,*.svg,*.csv
+ignore-words-list = trough,remainers,befores

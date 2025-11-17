@@ -1,0 +1,203 @@
+---
+jupytext:
+  notebook_metadata_filter: all,-language_info
+  split_at_heading: true
+  text_representation:
+    extension: .md
+    format_name: myst
+    format_version: 0.13
+    jupytext_version: 1.18.0-dev
+kernelspec:
+  display_name: Python 3 (ipykernel)
+  language: python
+  name: python3
+---
+
+# Pandas from Numpy
+
++++
+
+## What is Pandas?
+
+Pandas is an open-source python library for data manipulation and analysis.
+
++++
+
+```{note}
+
+**Why is Pandas called Pandas?**
+
+The “Pandas” name is short for “panel data”. The library was named after the
+type of econometrics panel data that it was designed to analyse. [Panel
+data](https://en.wikipedia.org/wiki/Panel_data) are longitudinal data where
+the same observational units (e.g. countries) are observed over multiple
+instances across time.
+
+```
+
++++
+
+The Pandas Data Frame is the most important feature of the Pandas library. Data Frames, as the name suggests, contain not only the data for an analysis, but a toolkit of methods for cleaning, plotting and interacting with the data in flexible ways. For more information about Pandas see [this page](https://Pandas.pydata.org/about/).
+
+The standard way to make a new Data Frame is to ask Pandas to read a data file
+(like a `.csv` file) into a Data Frame. Before we do that however, we will
+build our own Data Frame from scratch, beginning with the fundamental building
+block for Data Frames: Numpy arrays.
+
+```{code-cell}
+# import the libraries needed for this page
+import numpy as np
+import pandas as pd
+```
+
+## Numpy arrays
+
+Let's say we have some data that applies to a set of countries, and we have some countries in mind:
+
+```{code-cell}
+country_names_array = np.array(['Australia', 'Brazil', 'Canada',
+                                'China', 'Germany', 'Spain',
+                                'France', 'United Kingdom', 'India',
+                                'Italy', 'Japan', 'South Korea',
+                                'Mexico', 'Russia', 'United States'])
+country_names_array
+```
+
+For compactness, we'll also want to use the corresponding [standard
+three-letter code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for each
+country, like so:
+
+Both Data Frames contain the same data, and the same labels. In fact, we can
+use the `.equals` method of Data Frames to ask Pandas whether it agrees the
+Data Frames are equivalent:
+
+```{code-cell}
+df.equals(loaded_labeled_df)
+```
+
+They are equivalent.
+
++++
+
+```{exercise-start}
+:label: index-in-display
+:class: dropdown
+```
+
++++
+
+In fact the `df` and `loaded_labeled_df` data frames are not exactly the same.
+If you look very carefully at the notebook output for the two data frames, you
+may be able to spot the difference. Pandas `.equals` does not care about this
+difference, but let's imagine we did. Try to work out how to change the `df`
+Data Frame to give _exactly_ the same display as we see for
+`loaded_labeled_df`.
+
++++
+
+```{exercise-end}
+
+```
+
++++
+
+```{solution-start} index-in-display
+:class: dropdown
+```
+
++++
+
+You probably spotted that the `loaded_labeled_df` displays a `name` for the Index. You can also see this displaying the `.index` on its own:
+
+```{code-cell}
+loaded_labeled_df.index
+```
+
+compared to:
+
+```{code-cell}
+df.index
+```
+
+We see that the `.name` attribute differs for the two Indices; to make the Data Frame displays match, we should set the `.name` on the `df` Data Frame.
+
+The simplest way to do that is:
+
+```{code-cell}
+# Make a copy of the `df` Data Frame. This step is unnecessary to solving
+# the problem, it is just to be neat.
+df_copy = df.copy()
+```
+
+```{code-cell}
+# Set the Index name.
+df_copy.index.name = 'Code'
+df_copy
+```
+
+```{solution-end}
+
+```
+
++++
+
+```{admonition} My title
+
+Some interesting information.
+
+```
+
++++
+
+Some more text.
+
++++
+
+```{exercise-start}
+:label: differing-indices
+:class: dropdown
+```
+
+```{code-cell}
+# df5
+```
+
+After these examples, what is your final working theory about the algorithm
+Pandas uses to match the Indices of Series, when creating Data Frames?
+
++++
+
+```{exercise-end}
+
+```
+
++++
+
+```{solution-start} differing-indices
+:class: dropdown
+```
+
++++
+
+Here's our hypothesis of the algorithm:
+
+- First check if the Series Indices are the same. If so, use the Index of any
+  Series.
+- If they are not the same, first sort all Series by their Index values, and
+  use the resulting sorted Index.
+
+What was your hypothesis? If it was different from ours, why do you think yours fits the results better? What tests would you do to test your theory against our theory?
+
++++
+
+```{solution-end}
+
+```
+
++++
+
+(plot-frames)=
+
+## Convenient Plotting with Data Frames
+
+Remember earlier we imported Matplotlib to plot some of our data?

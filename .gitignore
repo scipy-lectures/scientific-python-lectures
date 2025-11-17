@@ -45,3 +45,17 @@ airfares.txt
 wages.txt
 ScientificPythonLectures-simple.pdf
 ScientificPythonLectures.pdf
+.ipynb_checkpoints/
+__pycache__/
+.ok_storage
+*.ipynb
+*.orig
+node_modules/
+.jupyterlite.doit.db
+advanced/advanced_numpy/test.png
+packages/scikit-image/cat.png
+advanced/advanced_numpy/test_recolored.png
+advanced/advanced_numpy/test_red.png
+intro/language/junk.txt
+intro/language/test.pkl
+joblib/

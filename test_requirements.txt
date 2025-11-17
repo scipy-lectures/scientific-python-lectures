@@ -1,0 +1,6 @@
+# Test requirements
+-r requirements.txt
+myst_parser
+# Needed by markdown-it-py, needed from myst_parser
+linkify-it-py
+pytest

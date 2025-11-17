@@ -1,0 +1,5 @@
+# Build requirements
+-r requirements.txt
+jupyterlite-core
+jupyterlite-pyodide-kernel
+jupyterlab_server

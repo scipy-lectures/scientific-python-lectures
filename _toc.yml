@@ -1,0 +1,50 @@
+format: jb-book
+root: index
+parts:
+  - caption: Getting started with Python for Science
+    chapters:
+      - file: intro/intro
+      - file: intro/language/python_language
+        sections:
+          - file: intro/language/first_steps
+          - file: intro/language/basic_types
+          - file: intro/language/control_flow
+          - file: intro/language/functions
+          - file: intro/language/reusing_code
+          - file: intro/language/io
+          - file: intro/language/standard_library
+          - file: intro/language/exceptions
+          - file: intro/language/oop
+      - file: intro/numpy/index
+        sections:
+          - file: intro/numpy/array_object
+          - file: intro/numpy/operations
+          - file: intro/numpy/elaborate_arrays
+          - file: intro/numpy/advanced_operations
+          - file: intro/numpy/exercises
+      - file: intro/matplotlib/index
+      - file: intro/scipy/index
+      - file: intro/help/help
+  - caption: Advanced topics
+    chapters:
+      - file: advanced/advanced_python/index
+      - file: advanced/advanced_numpy/index
+      - file: advanced/debugging/index
+      - file: advanced/optimizing/index
+      - file: advanced/scipy_sparse/introduction
+        sections:
+          - file: advanced/scipy_sparse/storage_schemes
+          - file: advanced/scipy_sparse/solvers
+          - file: advanced/scipy_sparse/other_packages
+      - file: advanced/image_processing/index
+      - file: advanced/mathematical_optimization/index
+      - file: advanced/interfacing_with_c/interfacing_with_c
+  - caption: Packages and applications
+    chapters:
+      - file: packages/statistics/index
+      - file: packages/sympy
+      - file: packages/scikit-image/index
+      - file: packages/scikit-learn/index
+  - caption: About
+    chapters:
+      - file: about
