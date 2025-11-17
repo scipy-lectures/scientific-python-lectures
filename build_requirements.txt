@@ -6,7 +6,7 @@
 pre-commit
 sphinx-book-theme@git+https://github.com/executablebooks/sphinx-book-theme@56874cb
 sphinx_exercise
-jupyter-book>=1,<2
+jupyter-book>=1,<3
 -r requirements.txt
 # To allow static build / upload
 ghp-import
