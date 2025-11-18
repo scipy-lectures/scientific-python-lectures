@@ -11,5 +11,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           api-token: ${{ secrets.CIRCLECI_TOKEN }}
-          artifact-path: 0/build/html/index.html
+          artifact-path: 0/_build/html/index.html
           circleci-jobs: build
+          job-title: "--> docs preview <--"
