@@ -2,8 +2,8 @@
 title: "Scientific Python Lectures"
 author: Scientific Python developers
 copyright: "2025"
-logo: images/sp_lectures.png
-email: matthew.brett@gmail.com
+logo: images/logo.png
+email: lectures@scientific-python.org
 # >- starts a multiline string, where newlines replaced by spaces, and final
 # newlines are stripped.
 description: >-
@@ -30,7 +30,7 @@ exclude_patterns:
   - todo.md
 
 html:
-  favicon: images/sp_lectures.png
+  favicon: images/favicon.ico
   home_page_in_navbar: false
   use_edit_page_button: true
   use_repository_button: true
