@@ -33,3 +33,11 @@ jobs:
 
       - store_artifacts:
           path: _build/html
+
+workflows:
+  build_prs:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: main
