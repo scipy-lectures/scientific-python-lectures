@@ -39,7 +39,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          # external_repository: scipy-lectures/lectures.scientific-python.org
+          external_repository: scipy-lectures/lectures.scientific-python.org
           publish_branch: gh-pages
           publish_dir: ./_build/html
           force_orphan: true
