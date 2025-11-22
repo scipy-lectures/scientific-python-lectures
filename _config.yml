@@ -21,7 +21,6 @@ exclude_patterns:
   - LICENSE.md
   - CONTRIBUTING.md
   - todo.md
-  - _scripts/*
   - _notes/*
   - _to_ignore.md
   - data/LICENSE.txt
