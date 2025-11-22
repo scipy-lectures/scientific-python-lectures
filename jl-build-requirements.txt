@@ -3,3 +3,4 @@
 jupyterlite-core
 jupyterlite-pyodide-kernel
 jupyterlab_server
+jljb
