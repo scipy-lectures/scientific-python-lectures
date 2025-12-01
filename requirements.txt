@@ -1,12 +1,12 @@
 # Requirements for notebooks / Binderhub
-numpy==2.2.5
-scipy==1.15.2
-matplotlib==3.10.1
-pandas==2.2.3
-scikit-learn==1.6.1
+numpy==2.3.5
+scipy==1.16.3
+matplotlib==3.10.7
+pandas==2.3.3
+scikit-learn==1.7.2
 scikit-image==0.25.2
 sympy==1.14.0
-statsmodels==0.14.4
+statsmodels==0.14.5
 seaborn==0.13.2
 pytest>=8.3
 sphinx
