@@ -91,7 +91,7 @@ addopts = [
 log_cli_level = "info"
 
 [tool.ruff]
-target-version = "py311"
+target-version = "py312"
 
 [tool.ruff.lint]
 select = [
