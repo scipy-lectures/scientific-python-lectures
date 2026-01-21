@@ -27,6 +27,10 @@ exclude = '''
   | advanced/advanced_numpy/examples/mandelplot\.py$
   | intro/numpy/solutions/2_5_markov_chain\.py$
   | intro/matplotlib/examples/plot_bar\.py$
+  | advanced/advanced_numpy/examples/stride-diagonals-answer\.py$
+  | packages/statistics/examples/plot_airfare\.py$
+  | advanced/image_processing/examples/plot_spectral_clustering\.py$
+  | packages/statistics/examples/plot_regression_3d\.py$
 )
 '''
 # intro/numpy/solutions/2_5_markov_chain.py -> https://github.com/numpy/numpy/issues/27957
