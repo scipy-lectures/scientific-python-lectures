@@ -1,6 +1,6 @@
 # Requirements for notebooks / Binderhub
 numpy==2.4.1
-scipy==1.17.0
+scipy==1.15.2
 matplotlib==3.10.8
 pandas==3.0
 scikit-learn==1.8.0
