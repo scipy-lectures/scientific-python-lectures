@@ -110,7 +110,7 @@ plt.subplots_adjust(wspace=0.05, left=0.01, bottom=0.01, right=0.99, top=0.9);
 
 ```{code-cell}
 # Extract the 4th connected component, and crop the array around it
-sl = sp.ndimage.find_objects(labels == 4)
+sl = sp.ndimage.find_objects((labels == 4).astype(int))
 plt.figure(figsize=(3.5, 3.5))
 plt.imshow(sig[sl[0]])
 plt.title("Cropped connected component")
