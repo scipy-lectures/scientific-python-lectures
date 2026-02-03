@@ -98,7 +98,6 @@ on which the search is performed.
     :doc: optimization_examples.md
     :::
 - - **A convex function**:
-
     - $f$ is above all its tangents.
     - Equivalently, for two points $A, B$, $f(C)$ lies below the segment
       $[f(A), f(B])]$, if $A < C < B$.

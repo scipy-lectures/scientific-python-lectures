@@ -131,12 +131,10 @@ print("Error: %s" % (mtx2 * x - rhs))
 ### Common Parameters
 
 - mandatory:
-
   - `A` : The N-by-N matrix of the linear system.
   - `b`: Right hand side of the linear system. Has shape (N,) or (N,1).
 
 - optional:
-
   - `x0`: Starting guess for the solution.
   - `tol` : Relative tolerance to achieve before terminating.
   - `maxiter` : Maximum number of iterations. Iteration will stop after maxiter
@@ -195,7 +193,6 @@ A * np.ones(2)
 - `lobpcg`: (Locally Optimal Block Preconditioned Conjugate
   Gradient Method); \* works very well in combination with
   [PyAMG](https://github.com/pyamg/pyamg)
-
   - example by Nathan Bell:
 
     {download}`examples/pyamg_with_lobpcg.py`

@@ -65,7 +65,7 @@ def bencher(cost_name, ndim, method_name, x0):
 
 # Bench with gradients
 def bencher_gradient(cost_name, ndim, method_name, x0):
-    cost_function, cost_function_prime, hessian = mk_costs(ndim)[0][cost_name]
+    cost_function, cost_function_prime, _hessian = mk_costs(ndim)[0][cost_name]
     method = methods[method_name]
     f_prime = CountingFunction(cost_function_prime)
     f = LoggingFunction(cost_function, counter=f_prime.counter)

@@ -1028,7 +1028,6 @@ the source of a program.
 - <https://pypi.org/project/decorator>
 
 - Bruce Eckel
-
   - [Decorators I]: Introduction to Python Decorators
   - [Python Decorators II]: Decorator Arguments
   - [Python Decorators III]: A Decorator-Based Build System
@@ -1118,7 +1117,6 @@ used and it is most convenient to have the support built in. With each
 release, Python provides support in more places:
 
 - all file-like objects:
-
   - `file` ➔ automatically closed
   - `fileinput`, `tempfile`
   - `bz2.BZ2File`, `gzip.GzipFile`,
@@ -1126,7 +1124,6 @@ release, Python provides support in more places:
   - `ftplib`, `nntplib` ➔ close connection
 
 - locks
-
   - `multiprocessing.RLock` ➔ lock and unlock
   - `multiprocessing.Semaphore`
   - `memoryview` ➔ automatically release
@@ -1140,7 +1137,6 @@ release, Python provides support in more places:
 - `contextlib.closing` ➔ the same as the example above, call `close`
 
 - parallel programming
-
   - `concurrent.futures.ThreadPoolExecutor` ➔ invoke in parallel then kill thread pool
   - `concurrent.futures.ProcessPoolExecutor` ➔ invoke in parallel then kill process pool
   - `nogil` ➔ solve the GIL problem temporarily (cython only :( )

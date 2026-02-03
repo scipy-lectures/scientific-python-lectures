@@ -16,7 +16,6 @@ kernelspec:
 ## Sparse Array Classes
 
 - There are seven sparse array types in scipy.sparse:
-
   1. [csr_array](csr_array): Compressed Sparse Row format
   2. [csc_array](csc_array): Compressed Sparse Column format
   3. [bsr_array](csc_array): Block Sparse Row format

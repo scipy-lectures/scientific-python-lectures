@@ -10,7 +10,7 @@ from ica import fastica
 def test():
     rng = np.random.default_rng()
     data = rng.random((5000, 100))
-    u, s, v = sp.linalg.svd(data)
+    u, _s, _v = sp.linalg.svd(data)
     pca = u[:, :10].T @ data
     results = fastica(pca.T, whiten=False)
 

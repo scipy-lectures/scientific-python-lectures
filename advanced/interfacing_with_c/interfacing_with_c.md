@@ -854,7 +854,6 @@ interesting. If you have good ideas for exercises, please let us know!
    fragile and respond badly to input errors. Look for ways to crash the
    examples, figure what the problem is and devise a potential solution.
    Here are some ideas:
-
    1. Numerical overflow.
    2. Input and output arrays that have different lengths.
    3. Multidimensional array.

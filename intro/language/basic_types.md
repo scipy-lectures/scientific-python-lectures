@@ -573,7 +573,6 @@ id(a)
 ```
 
 - the key concept here is **mutable vs. immutable**
-
   - mutable objects can be changed in place
   - immutable objects cannot be modified once created
 

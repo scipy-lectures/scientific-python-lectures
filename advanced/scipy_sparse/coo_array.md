@@ -40,7 +40,6 @@ import scipy as sp
   - manipulate data array directly (fast NumPy machinery)
 - no slicing, no arithmetic (directly, converts to CSR)
 - use:
-
   - facilitates fast conversion among sparse formats
 
   - when converting to other format (usually CSR or CSC), duplicate

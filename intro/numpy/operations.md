@@ -87,7 +87,6 @@ c @ c
   with odd elements
 - Time them against their pure python counterparts using `%timeit`.
 - Generate:
-
   - `[2**0, 2**1, 2**2, 2**3, 2**4]`
   - `a_j = 2^(3*j) - j`
 
