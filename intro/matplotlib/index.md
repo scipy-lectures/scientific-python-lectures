@@ -1462,20 +1462,17 @@ community of users and developers. Here are some links of interest:
 ### Tutorials
 
 - [Pyplot tutorial](https://matplotlib.org/users/pyplot_tutorial.html)
-
   - Introduction
   - Controlling line properties
   - Working with multiple figures and axes
   - Working with text
 
 - [Image tutorial](https://matplotlib.org/users/image_tutorial.html)
-
   - Startup commands
   - Importing image data into NumPy arrays
   - Plotting NumPy arrays as images
 
 - [Text tutorial](https://matplotlib.org/users/index_text.html)
-
   - Text introduction
   - Basic text commands
   - Text properties and layout
@@ -1484,7 +1481,6 @@ community of users and developers. Here are some links of interest:
   - Annotating text
 
 - [Artist tutorial](https://matplotlib.org/users/artists.html)
-
   - Introduction
   - Customizing your objects
   - Object containers
@@ -1494,13 +1490,11 @@ community of users and developers. Here are some links of interest:
   - Tick containers
 
 - [Path tutorial](https://matplotlib.org/users/path_tutorial.html)
-
   - Introduction
   - Bézier example
   - Compound paths
 
 - [Transforms tutorial](https://matplotlib.org/users/transforms_tutorial.html)
-
   - Introduction
   - Data coordinates
   - Axes coordinates
@@ -1515,7 +1509,6 @@ community of users and developers. Here are some links of interest:
 - [User guide](https://matplotlib.org/users/index.html)
 
 - [FAQ](https://matplotlib.org/faq/index.html)
-
   - Installation
   - Usage
   - How-To

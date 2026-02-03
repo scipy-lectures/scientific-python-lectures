@@ -53,16 +53,13 @@ plt.ylabel('memory [MB]')
 ## Typical Applications
 
 - solution of partial differential equations (PDEs)
-
   - the _finite element method_
   - mechanical engineering, electrotechnics, physics, ...
 
 - graph theory
-
   - nonzero at `(i, j)` means that node `i` is connected to node `j`
 
 - natural language processing
-
   - nonzero at `(i, j)` means that the document `i` contains the word `j`
 
 - ...

@@ -330,7 +330,6 @@ etc. for loading sound data...
 ##### Casting
 
 - Casting in arithmetic, in nutshell:
-
   - only type (not value!) of operands matters
   - largest "safe" type able to represent both is picked
   - scalars can "lose" to arrays in some situations
@@ -1007,7 +1006,6 @@ x.strides, y.strides
 
 - CPU pulls data from main memory to its cache in blocks
 - If many array items consecutively operated on fit in a single block (small stride):
-
   - $\Rightarrow$ fewer transfers needed
   - $\Rightarrow$ faster
 
@@ -1671,13 +1669,11 @@ Get this tutorial: <https://www.euroscipy.org/talk/882>
 ### Reporting bugs
 
 - Bug tracker (prefer **this**)
-
   - <https://github.com/numpy/numpy/issues>
   - <https://github.com/scipy/scipy/issues>
   - Click the "Sign up" link to get an account
 
 - Mailing lists (<https://numpy.org/community/>)
-
   - If you're unsure
   - No replies in a week or so? Just file a bug ticket.
 
@@ -1712,7 +1708,6 @@ I'm using NumPy 1.4.1, built from the official tarball, on Windows
 
 0. What are you trying to do?
 1. **Small code snippet reproducing the bug** (if possible)
-
    - What actually happens
    - What you'd expect
 
@@ -1736,17 +1731,14 @@ If unsure, try to remove existing NumPy installations, and reinstall...
 ### Contributing to documentation
 
 1. Documentation editor
-
    - <https://numpy.org/doc/stable/>
 
    - Registration
-
      - Register an account
 
      - Subscribe to `scipy-dev` mailing list (subscribers-only)
 
      - Problem with mailing lists: you get mail
-
        - But: **you can turn mail delivery off**
 
        - "change your subscription options", at the bottom of
@@ -1767,7 +1759,6 @@ If unsure, try to remove existing NumPy installations, and reinstall...
        ```
 
    - Check the style guide:
-
      - <https://numpy.org/doc/stable/>
      - Don't be intimidated; to fix a small thing, just fix it
 
@@ -1784,21 +1775,16 @@ The contribution of features is documented on <https://numpy.org/doc/stable/dev/
 ### How to help, in general
 
 - Bug fixes always welcome!
-
   - What irks you most
   - Browse the tracker
 
 - Documentation work
-
   - API docs: improvements to docstrings
-
     - Know some SciPy module well?
 
   - _User guide_
-
     - <https://numpy.org/doc/stable/user/>
 
 - Ask on communication channels:
-
   - `numpy-discussion` list
   - `scipy-dev` list

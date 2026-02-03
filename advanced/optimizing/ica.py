@@ -72,7 +72,7 @@ def _ica_par(X, tol, g, gprime, fun_args, maxit, w_init):
     Used internally by FastICA.
 
     """
-    n, p = X.shape
+    _n, p = X.shape
 
     W = _sym_decorrelation(w_init)
 

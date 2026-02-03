@@ -23,10 +23,8 @@ import scipy as sp
 
 - basically a CSR with dense sub-matrices of fixed shape instead of scalar
   items
-
   - block size `(R, C)` must evenly divide the shape of the matrix `(M, N)`
   - three NumPy arrays: `indices`, `indptr`, `data`
-
     - `indices` is array of column indices for each block
 
     - `data` is array of corresponding nonzero values of shape `(nnz, R, C)`

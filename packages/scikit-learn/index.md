@@ -220,14 +220,12 @@ Scikit-learn has a very straightforward set of data on these iris
 species. The data consist of the following:
 
 - Features in the Iris dataset:
-
   - sepal length (cm)
   - sepal width (cm)
   - petal length (cm)
   - petal width (cm)
 
 - Target classes to predict:
-
   - Setosa
   - Versicolour
   - Virginica

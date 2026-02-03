@@ -65,7 +65,6 @@ f.close()
 - Read-only: `r`
 
 - Write-only: `w`
-
   - Note: Create a new file or _overwrite_ existing file.
 
 - Append a file: `a`
@@ -73,5 +72,4 @@ f.close()
 - Read and Write: `r+`
 
 - Binary mode: `b`
-
   - Note: Use for binary files, especially on Windows.

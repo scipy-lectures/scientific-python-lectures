@@ -47,11 +47,9 @@ when you write it, how will you ever debug it?”_
 - Write your code with testing and debugging in mind.
 
 - Keep It Simple, Stupid (KISS).
-
   - What is the simplest thing that could possibly work?
 
 - Don't Repeat Yourself (DRY).
-
   - Every piece of knowledge must have a single, unambiguous,
     authoritative representation within a system.
   - Constants, algorithms, etc...
@@ -88,7 +86,6 @@ You can bind a key to run pyflakes in the current buffer.
 
 - **In kate**
   Menu: 'settings -> configure kate
-
   - In plugins enable 'external tools'
   - In external Tools', add `pyflakes`:
 
@@ -143,9 +140,7 @@ You can bind a key to run pyflakes in the current buffer.
 #### A type-as-go spell-checker like integration
 
 - **In vim**
-
   - Use the pyflakes.vim plugin:
-
     1. download the zip file from
        <https://www.vim.org/scripts/script.php?script_id=2441>
     2. extract the files in `~/.vim/ftplugin/python`
@@ -185,7 +180,6 @@ code, with short modify-run-fail cycles.**
 
 2. Divide and Conquer. Once you have a failing test case, isolate the
    failing code.
-
    - Which module.
    - Which function.
    - Which line of code.

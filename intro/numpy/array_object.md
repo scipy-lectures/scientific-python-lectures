@@ -792,7 +792,6 @@ for j in range(2, N_max + 1):
 Skim through `help(np.nonzero)`, and print the prime numbers
 
 - Follow-up:
-
   - Move the above code into a script file named `prime_sieve.py`
   - Run it to check it works
   - Use the optimization suggested in [the sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes):
