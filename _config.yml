@@ -36,6 +36,8 @@ html:
   use_repository_button: true
   use_issues_button: true
   baseurl: https://lectures.scientific-python.org
+  analytics:
+    plausible_analytics_domain: lectures.scientific-python.org
 
 repository:
   url: https://github.com/scipy-lectures/scientific-python-lectures
