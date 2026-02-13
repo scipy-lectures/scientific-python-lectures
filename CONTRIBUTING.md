@@ -187,11 +187,12 @@ when opened as a notebook. Another difference we want to see between the HTML
 and the notebook version is that we want to avoid putting the solutions in the
 notebook version, to allow more space for thought about the exercise. Both to
 modify any ugly formatting, and to remove the exercise solutions, we
-post-process the pages with a script `_scripts/process_notebooks.py` to load
-the pages as text notebooks, and write out `.ipynb` files with modified markup
-that looks better in a Jupyter interface. Some of the authoring advice here is
-to allow that process to work smoothly, because the `process_notebooks.py` file
-reads the input Myst-MD format notebooks using
+post-process the pages with a script `jljb-write-dir` from the [jljb
+package](https://github.com/matthew-brett/jljb) to load the pages as text
+notebooks, and write out `.ipynb` files with modified markup that looks better
+in a Jupyter interface. Some of the authoring advice here is to allow that
+process to work smoothly, because the `process_notebooks.py` file reads the
+input Myst-MD format notebooks using
 [Jupytext](https://jupytext.readthedocs.io) before converting to Jupyter
 `.ipynb` files.
 
