@@ -378,7 +378,7 @@ Strikingly, 80% of the countries in the Data Frame are below the replacement rat
 
 Remember, the data we have looked at on this page so far is just a fraction of the countries in the full HDI dataset. Let's import the full dataset, so we can use Boolean filtering to graphically inspect trends for countries above and below the median HDI. We will look at the data from all of the countries, but just for the year 2000, to keep the plot interpretable. 
 
-We'll also use multiple methods from the [Pandas methods](0_2_pandas_dataframes_attributes_methods.Rmd) page, to get the full data ready to generate these plots.
+We'll also use multiple methods from the [Pandas methods](0_2_pandas_dataframes_attributes_methods.md) page, to get the full data ready to generate these plots.
 
 First, let's import the data:
 

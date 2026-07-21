@@ -13,8 +13,8 @@ kernelspec:
 
 # Let There Be Data (Frames)
 
-In [the](0_0_pandas_intro.Rmd) [previous](0_1_to_loc_or_iloc.Rmd)
-[tutorials](0_2_pandas_dataframes_attributes_methods.Rmd) we showed how the
+In [the](0_0_pandas_intro.md) [previous](0_1_to_loc_or_iloc.md)
+[tutorials](0_2_pandas_dataframes_attributes_methods.md) we showed how the
 Pandas class objects (Series and Data Frames) are constructed from Numpy
 objects (arrays) and other attributes.
 
@@ -153,7 +153,7 @@ df['a_further_new_column'] = np.array([4, 5 , 6, 7])
 
 Notice the text of this error: `ValueError: Length of values (4) does not match length of index (3)`. The error is caused because all columns must share an index, to facilitate the label-based indexing (via `.loc`) that we have seen on previous pages.
 
-We want to avoid the [pitfalls](0_1_to_loc_or_iloc.Rmd) of integer indices, such as `RangeIndex` (e.g. misalignment between the integer location of data, and the numerical index label of that data). To do this, we can specify a non-integer values for the index, after we have created the Data Frame.
+We want to avoid the [pitfalls](0_1_to_loc_or_iloc.md) of integer indices, such as `RangeIndex` (e.g. misalignment between the integer location of data, and the numerical index label of that data). To do this, we can specify a non-integer values for the index, after we have created the Data Frame.
 
 ```{code-cell} ipython3
 # Set the index
@@ -374,7 +374,7 @@ The first of these two steps will involve comparing `int` to `str`, hence the er
 
 Remember each index label is a identifier for each row of the Data Frame. Pandas is trying to compare the indices of the two series in order to match corresponding rows, and failing, because it cannot compare the string index of `country_names_series` to the (newly set) integer series of `hdi_series`.
 
-[Later on](0_4_dealing_with_missing_data_in_pandas.Rmd) we will see further signs that Pandas is trying to match rows between series by using the `index`.
+[Later on](0_4_dealing_with_missing_data_in_pandas.md) we will see further signs that Pandas is trying to match rows between series by using the `index`.
 
 +++
 

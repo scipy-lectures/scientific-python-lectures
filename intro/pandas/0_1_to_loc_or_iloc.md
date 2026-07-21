@@ -313,7 +313,7 @@ the Series.
 For instance let's sort the data in our `hdi_series_no_name_no_index` Series
 in ascending order.  To do this we will use the `.sort_values()` method. We
 will cover Pandas methods in detail on [later
-pages](0_2_pandas_dataframes_attributes_methods.Rmd). For now the
+pages](0_2_pandas_dataframes_attributes_methods.md). For now the
 `.sort_values()` method sorts the values of the Series in ascending order, taking the matching labels in the index with it.
 
 ```{code-cell} ipython3

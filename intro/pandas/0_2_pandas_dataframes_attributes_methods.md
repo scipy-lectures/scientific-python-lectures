@@ -30,7 +30,7 @@ Structure of page:
 * reinforce that "DataFrame = dictionary-like collection of Series". Then show all relevant methods/attributes of DataFrames.
 -->
 
-On the [previous](0_0_pandas_intro.Rmd) [pages](0_1_to_loc_or_iloc.Rmd) we have seen how Pandas Series are constructed by combining Numpy arrays (the `.values` attribute of a Series) with other attributes (a `.name` string and and array-like `.index`). We have then examined how Pandas Data Frames are built from a collection of Series, in a dictionary-like structure.
+On the [previous](0_0_pandas_intro.md) [pages](0_1_to_loc_or_iloc.md) we have seen how Pandas Series are constructed by combining Numpy arrays (the `.values` attribute of a Series) with other attributes (a `.name` string and and array-like `.index`). We have then examined how Pandas Data Frames are built from a collection of Series, in a dictionary-like structure.
 
 This page will dive deeper into Data Frames. Once we have constructed our Data Frame, Pandas provides many useful methods for cleaning, aggregating, plotting and (subsequently) analysing our data.
 
@@ -549,7 +549,7 @@ previously, Pandas will automatically supply one:
 df.index
 ```
 
-We have [already discussed](0_1_to_loc_or_iloc.Rmd) the downsides of using the default (integer) index. As we have seen before, we can use the `.set_index()` method to choose a column containing values which we will use as index labels. We have come across Data Frame methods previously (`.sort_values()`) and will look at more in the next section. For now, just remember that *methods* differ from data *attributes* in that they are a *function attached to an object* rather than just a value attached to an object. Methods often do something to or with the data rather than just report a value or set of values, like an attribute does.
+We have [already discussed](0_1_to_loc_or_iloc.md) the downsides of using the default (integer) index. As we have seen before, we can use the `.set_index()` method to choose a column containing values which we will use as index labels. We have come across Data Frame methods previously (`.sort_values()`) and will look at more in the next section. For now, just remember that *methods* differ from data *attributes* in that they are a *function attached to an object* rather than just a value attached to an object. Methods often do something to or with the data rather than just report a value or set of values, like an attribute does.
 
 Let's set the `Code` column (containing the three-letter country codes) to be our index labels:
 
@@ -575,7 +575,7 @@ df.loc[['USA', 'ITA']]
 
 ## Pandas Data Frame methods
 
-The `.sort_values()` method we used on the [previous page](0_1_to_loc_or_iloc.Rmd) and the `set_index()` method we just used in the last section are just some of the many methods attached to Pandas Data Frames. We saw that many Numpy array methods have parallel versions that apply to Pandas Series and this principle also applies to Data Frames, built as they are from Pandas Series.
+The `.sort_values()` method we used on the [previous page](0_1_to_loc_or_iloc.md) and the `set_index()` method we just used in the last section are just some of the many methods attached to Pandas Data Frames. We saw that many Numpy array methods have parallel versions that apply to Pandas Series and this principle also applies to Data Frames, built as they are from Pandas Series.
 
 +++
 
