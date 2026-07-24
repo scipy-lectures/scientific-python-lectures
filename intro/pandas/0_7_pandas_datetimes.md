@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.17.3
+    jupytext_version: 1.19.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -45,13 +45,13 @@ are the essentials.
 First, let's look at how Pandas handles dates and times. To do this, we'll
 create a Pandas Series containing some *strings* representing dates:
 
-```{code-cell} ipython3
+```{code-cell}
 # Our usual imports.
 import numpy as np
 import pandas as pd
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Create a Series with some strings representing dates
 string_time_series = pd.Series(['2025-06-06', '2025-06-07'])
 # Show the Series
@@ -60,7 +60,7 @@ string_time_series
 
 To no one's surprise, the `type()` of these data is `str`:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the `type()` of the data
 first_val = string_time_series.iloc[0]
 type(first_val)
@@ -75,7 +75,7 @@ information.
 However, we would be sorely disappointed, when using `str` data to represent
 time:
 
-```{code-cell} ipython3
+```{code-cell}
 :tags: [raises-exception]
 
 # Not what we wanted...
@@ -87,7 +87,7 @@ This is where having a specialized representation of time comes in handy. We
 can use the `pd.to_datetime()` function to convert this data to Pandas' special
 representation of a particular point in time.
 
-::: note
+::: {note}
 
 **Different ways of representing time**
 
@@ -107,20 +107,21 @@ for more.
 
 Let's convert our string dates to Pandas `Timestamp`s:
 
-```{code-cell} ipython3
+```{code-cell}
 # Convert string to time stamps using `to_datetime()`
 timestamp_series = pd.to_datetime(string_time_series)
 timestamp_series
 ```
 
 As you see from the output of the cell above, the `dtype` of this data is no
-longer `object` as it was above. It is now `datetime64[ns]`
+longer `str` (Pandas 3) or `object` (Pandas 2) as it was above (see [Pandas
+string in versions 3 and 2](pd-2-3-strings). It is now `datetime64[ns]`
 — which we can read as "a datetime representation, in 64 bits, down to the
 nanosecond resolution". Sounds fancy!
 
 We can confirm the type of the data using the `type()` function:
 
-```{code-cell} ipython3
+```{code-cell}
 first_ts_val = timestamp_series.iloc[0]
 first_ts_val
 ```
@@ -132,10 +133,10 @@ purposes, the `Timestamp` is just a more general description of
 `datetime64[ns]` (with the latter just giving more information about the amount
 of memory used for storage and the time resolution...)
 
-We can now do "mathemstics with times" and use subtraction to calculate the
+We can now do "mathematics with times" and use subtraction to calculate the
 difference between these dates:
 
-```{code-cell} ipython3
+```{code-cell}
 # Get the difference between the two dates
 second_ts_val = timestamp_series.iloc[1]
 second_ts_val - first_ts_val
@@ -165,7 +166,7 @@ metadata/documentation associated with our dataset to be sure of the meaning of
 the date strings. However, we can control the format with which `pd.datetime()`
 will interpret the date strings, using the `format=` argument:
 
-```{code-cell} ipython3
+```{code-cell}
 # A new Series, using an alternate formatting to the standard Pandas assumes.
 other_timestamp_series = pd.to_datetime(string_time_series, format='%Y-%d-%m')
 other_timestamp_series
@@ -184,7 +185,7 @@ for the full list of date format options.
 We can see that we get a totally different `Timedelta` when subtracting the
 dates interpreted according to the new format:
 
-```{code-cell} ipython3
+```{code-cell}
 # Get the difference between the two dates with the alternate formatting
 other_timestamp_series.iloc[1] - other_timestamp_series.iloc[0]
 ```
@@ -201,7 +202,7 @@ standalone Series...
 Before we move on, it is important to note that `pd.to_datetime()` can also
 convert dates which contain words like the names of months (June, July etc.):
 
-```{code-cell} ipython3
+```{code-cell}
 # Representations of dates which contain strings for the names of months (e.g. "JUNE")
 a_series_of_str = pd.Series(['2025-JUNE-06', '2025-JUNE-07'])
 a_series_of_timestamps = pd.to_datetime(a_series_of_str)
@@ -229,7 +230,7 @@ Our variable `a_series_of_timestamps` is a Pandas Series. As such, as we know
 we can use `.iloc` indexing to retrieve single values from it. In this case, we
 retrieve a single `Timestamp`:
 
-```{code-cell} ipython3
+```{code-cell}
 # Retrieve a single Timestamp from the Series
 single_timestamp = a_series_of_timestamps.iloc[0]
 single_timestamp
@@ -237,7 +238,7 @@ single_timestamp
 
 Attached to any individual Timestamp is an attribute called `.value`:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the `.value` attribute
 single_timestamp.value
 ```
@@ -247,17 +248,17 @@ date, or time...
 
 A look through the other attributes reveals more familiarly named units of time. For instance, the `year`, `month` and `day` attributes:
 
-```{code-cell} ipython3
+```{code-cell}
 # The `.year` attribute
 single_timestamp.year
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # The `.month` attribute
 single_timestamp.month
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # The `.day` attribute
 single_timestamp.day
 ```
@@ -283,7 +284,7 @@ chose this one. If it isn't broken why fix it?
 
 Let's look again at our single `Timestamp`:
 
-```{code-cell} ipython3
+```{code-cell}
 single_timestamp
 ```
 
@@ -291,13 +292,13 @@ single_timestamp
 the number of nanoseconds between our `Timestamp` and the point where the Unix
 Epoch was equal to 0 (midnight, January 1st 1970): 
 
-```{code-cell} ipython3
+```{code-cell}
 single_timestamp.value
 ```
 
 To sanity check this, let's estimate the number of nanoseconds in an average year:
 
-```{code-cell} ipython3
+```{code-cell}
 # We've ignored various subtleties here to get an approximate number.
 # Taking leap years into account.
 average_days_in_year = 365.25
@@ -308,7 +309,7 @@ approx_ns_in_year
 
 Thus, if we divide our `.value` attribute of our `Timestamp` by `approx_ns_in_year` we should get something like number of years between the `Timestamp` and midnight January 1st 1970:
 
-```{code-cell} ipython3
+```{code-cell}
 # Calculate the number of years since midnight Jan 1st 1970:
 approx_years_since_1_1_1970 = single_timestamp.value / approx_ns_in_year
 approx_years_since_1_1_1970
@@ -316,15 +317,19 @@ approx_years_since_1_1_1970
 
 55.43 years between the `Timestamp` (6th June 2025) and January 1st 1970? That sounds about right, but let's check it by subtracting the rounded `approx_years_since_1_1_1970` from our `single_timestamp.year`, expecting 1970:
 
-```{code-cell} ipython3
+```{code-cell}
 single_timestamp.year - np.round(approx_years_since_1_1_1970)
 ```
 
-::: note
+::: {note}
 
 **Floating point years**
 
-We could have subtracted `approx_years_since_1_1_1970` from `single_timestamp.year` without rounding, and we'd get something midway through 1969, because `approx_years_since_1_1_1970` includes the time from January 1 2025 to June 6 2025, so subtracting the unrounded value will take us back to midway through 1969.
+We could have subtracted `approx_years_since_1_1_1970` from
+`single_timestamp.year` without rounding, and we'd get something midway
+through 1969, because `approx_years_since_1_1_1970` includes the time from
+January 1 2025 to June 6 2025, so subtracting the unrounded value will take us
+back to the middle of 1969.
 
 :::
 
@@ -334,7 +339,7 @@ We could have subtracted `approx_years_since_1_1_1970` from `single_timestamp.ye
 
 Let's explore Pandas Timestamps further now that we know they are fundamentally a measure of nanoseconds since midnight on 1st January 1970, a duration which can be expressed in more understandable forms like `.year`, `month`, `day` etc. We will again use the [Human Development Index](https://ourworldindata.org/grapher/children-per-woman-vs-human-development-index) dataset. However,  to keep things simple, we will just be looking at rows corresponding to Afghanistan:
 
-```{code-cell} ipython3
+```{code-cell}
 # Import the dateset
 df = pd.read_csv('data/AFG-data-children-per-woman-vs-human-development-index.csv')
 
@@ -349,7 +354,7 @@ Here we have one observational unit (in this case a country), measured over time
 
 We just call the `.plot()` method on the whole Data Frame, using the `subplots=True` argument), and we get the following neat result:
 
-```{code-cell} ipython3
+```{code-cell}
 # A useful trick to time-series data!
 df.plot(subplots=True);
 ```
@@ -358,14 +363,14 @@ As expected, the trend for `Year` increasely linearly (*duh!*), whilst `Fertilit
 
 We are undoubtedly viewing time-rleated trends here, but we are doing so based on a non-specialized representation of the times in the `Year` column:
 
-```{code-cell} ipython3
+```{code-cell}
 # What type of data is in the `Year` column?
 df['Year'].dtype
 ```
 
 Because the `Year` formats in this dataset, unlike the `str` dates we used earlier, do NOT contain anything string specific (hyphens and the like), Pandas has interpreted them as `int` data.
 
-```{code-cell} ipython3
+```{code-cell}
 # Inspect the `Year` column
 df['Year']
 ```
@@ -378,7 +383,7 @@ Let's convert the `Year` values to `Timestamp` data, to see the host of
 *NB*: we will call the column containing the Timestamps `Year_as_Timestamp`, and
 rename the original `Year` column to `Year_as_string` to avoid confusion:
 
-```{code-cell} ipython3
+```{code-cell}
 # Rename the `Year` column
 df = df.rename(columns={'Year': 'Year_as_string'})
 
@@ -411,7 +416,7 @@ Relative to representing time with `str` or `int` data, Pandas `Timestamp`s cont
 
 Let's look at just one value from the `Year_as_Timestamp` column:
 
-```{code-cell} ipython3
+```{code-cell}
 # A look at a specific time stamp.
 first_year_ts = df['Year_as_Timestamp'].iloc[0]
 first_year_ts
@@ -422,7 +427,7 @@ midnight on 1st January 1990".
 
 Let's try to index further into the `Timestamp`:
 
-```{code-cell} ipython3
+```{code-cell}
 :tags: [raises-exception]
 
 # Oh no....
@@ -448,14 +453,14 @@ As with the `.str` accessor, the `.dt.` accessor operates on all values of a Dat
 
 For instance, to grab just the year information, we can use `.dt.year`:
 
-```{code-cell} ipython3
+```{code-cell}
 # View the `year` attribute
 df['Year_as_Timestamp'].dt.year
 ```
 
 To get this information for a specific row, we can just chain on an `.iloc` indexing operation:
 
-```{code-cell} ipython3
+```{code-cell}
 df['Year_as_Timestamp'].dt.year.iloc[0]
 ```
 
@@ -463,34 +468,34 @@ We can use other clearly named attributes, accessing time-based information down
 
 We will go through these in order (`.dt.month`, `.dt.day`, `.dt.hour`, `.dt.minute`, `.dt.second`) in the cells below:
 
-```{code-cell} ipython3
+```{code-cell}
 # View the `month` attribute (which here has been automatically set to 1 by Pandas)
 df['Year_as_Timestamp'].dt.month
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # View the `day` attribute (which here has been automatically set to 1 by Pandas)
 df['Year_as_Timestamp'].dt.day
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # View the `hour` attribute (which here has been automatically set to 0 by Pandas)
 df['Year_as_Timestamp'].dt.hour
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # View the `minute` attribute (which here has been automatically set to 0 by Pandas)
 df['Year_as_Timestamp'].dt.minute
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # View the `second` attribute (which here has been automatically set to 0 by Pandas)
 df['Year_as_Timestamp'].dt.second
 ```
 
 We can see that the sequence with which we just "walked" through the `.dt.` attributes (`.dt.month`, `.dt.day`, `.dt.hour`, `.dt.minute`, `.dt.second`) corresponds to the order of the output of a single `Timestamp`:
 
-```{code-cell} ipython3
+```{code-cell}
 # View an individual Timestamp
 df['Year_as_Timestamp'].iloc[0]
 ```
@@ -505,7 +510,7 @@ We mentioned earlier than the names of months (like "June"/"July" etc, as well a
 
 Using the `.dt.` accessor, we can easily do things like filter our a specific year using these attributes:
 
-```{code-cell} ipython3
+```{code-cell}
 # Filter using a Boolean array from the `.dt` accessor
 df[df['Year_as_Timestamp'].dt.year == 1990]
 ```
@@ -520,7 +525,7 @@ Now we have our special time representations, a real strength of having them is 
 
 We can do this using the previously seen `.set_index()` method:
 
-```{code-cell} ipython3
+```{code-cell}
 # Put Timestamps in the index
 df = df.set_index('Year_as_Timestamp')
 
@@ -529,17 +534,17 @@ df
 
 If we view the `index`, Pandas will helpfully reveal that setting `Year` as the `index` - a column which contained only Timestamps - has created a `DatetimeIndex`. As the name might reveal, this is an index containing only Timestamps (aka dates / times):
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the index
 df.index
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the `type()` of the index
 type(df.index)
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Show an individual Timestamp from the `index`
 df.index[0]
 ```
@@ -549,14 +554,14 @@ indexing on our `Timestamp`s.
 
 For instance, we can `.loc` index just data from the year 1990:
 
-```{code-cell} ipython3
+```{code-cell}
 # Using `.loc` with a year
 df.loc["1990"]
 ```
 
 We can also do neat slicing operations using time information. For instance showing all rows corresponding to years between 1990 and 1995:
 
-```{code-cell} ipython3
+```{code-cell}
 # Slice the years using `.loc`
 df.loc["1990" : "1995"]
 ```
@@ -564,7 +569,7 @@ df.loc["1990" : "1995"]
 Simple calls to the `.plot()` method (using the `y=` argument only) will now
 automatically place the Timestamp information on the x-axis:
 
-```{code-cell} ipython3
+```{code-cell}
 # Plotting will automatically use the time stamp index on the x-axis
 df.plot(y='Human Development Index');
 ```

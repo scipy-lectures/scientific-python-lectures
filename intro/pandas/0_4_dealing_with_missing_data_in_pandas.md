@@ -4,7 +4,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.17.3
+    jupytext_version: 1.19.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -52,7 +52,7 @@ We will also look at how to handle NaNs safely in Pandas. First, let's remind ou
 As mentioned above, NaNs in Numpy result from invalid floating point
 operations.
 
-```{code-cell} ipython3
+```{code-cell}
 # Import libraries
 import numpy as np
 import pandas as pd
@@ -72,7 +72,7 @@ This tells us that the NaN value is a special and particular type of floating
 point value, in the same sense that Inf (infinity) or -Inf (negative
 infinity) are special floating point values:
 
-```{code-cell} ipython3
+```{code-cell}
 # Inf (np.inf) is another special floating point value.
 np.array(1) / np.array(0)
 ```
@@ -82,12 +82,12 @@ Numpy uses this special NaN (`np.nan`) value to indicate that the value is
 
 The logic of NaNs as *invalid values* means that *any* operation with a NaN should return — a NaN — because any operation with an invalid value must itself be an invalid value.  This propagation can have some superficially unexpected consequences that can trap the unwary:
 
-```{code-cell} ipython3
+```{code-cell}
 # A (potentially) unexpected False
 a_nan == np.nan
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Another strange result with the equality operator
 np.nan == np.nan
 ```
@@ -99,13 +99,13 @@ a NaN.
 
 To ask the question *is this value a NaN*, use `np.isnan()`:
 
-```{code-cell} ipython3
+```{code-cell}
 np.isnan(a_nan)
 ```
 
 The same principles apply when we are dealing with NaN values in an array:
 
-```{code-cell} ipython3
+```{code-cell}
 # A new array with NaN and non-NaN values
 arr = np.array([np.nan, np.nan, 1, 3])
 arr
@@ -113,7 +113,7 @@ arr
 
 Again, if we want to find which of these values as NaNs, we might (early in our programming careers) try something like this:
 
-```{code-cell} ipython3
+```{code-cell}
 # Probably not what you meant.
 arr == np.nan
 ```
@@ -122,19 +122,19 @@ This has failed to identify the NaN elements, because NaNs propagate, and theref
 
 You may well want `np.isnan()` here; it does ask the question — which of these values are NaNs — returning True where the value is NaN, and False otherwise.
 
-```{code-cell} ipython3
+```{code-cell}
 # Probably what you did mean.
 np.isnan(arr)
 ```
 
 Perhaps more obviously, any mathematical operation with NaN gives NaN:
 
-```{code-cell} ipython3
+```{code-cell}
 # Multiplying NaNs by something.
 arr * 2
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Adding with NaNs
 arr + 2
 ```
@@ -168,7 +168,7 @@ Index](https://ourworldindata.org/grapher/children-per-woman-vs-human-developmen
 dataset, which contains values for every year, rather than just the subset of
 data from the year 2000, which we have looked at on previous pages:
 
-```{code-cell} ipython3
+```{code-cell}
 # Import data as Data Frame.
 df = pd.read_csv("data/children-per-woman-vs-human-development-index.csv")
 # Set the index to the country codes.
@@ -185,14 +185,14 @@ a retirement village.[^also-nans]
 
 Look at the `Human Development Index` column (which we extract as a Series):
 
-```{code-cell} ipython3
+```{code-cell}
 # A column with lots of NaN values.
 df['Human Development Index']
 ```
 
 Let's take a closer look at the value in the first row of this column:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show a nan value
 df['Human Development Index'].iloc[0]
 ```
@@ -205,14 +205,14 @@ saw above.
 We can use `np.isnan()` to get a Boolean confirmation that we are in the
 presence of a standard NaN:
 
-```{code-cell} ipython3
+```{code-cell}
 # Using the `np.isnan()` function
 np.isnan(df['Human Development Index'].iloc[0])
 ```
 
 Alternatively, you could use Pandas' own `pd.isna()` function:
 
-```{code-cell} ipython3
+```{code-cell}
 # Using the `np.isnan()` function
 pd.isna(df['Human Development Index'].iloc[0])
 ```
@@ -244,7 +244,7 @@ for whatever reason, are not present for a particular row and column.
 
 Above we saw, for example, that the HDI value for Afghanistan, and 1950, is missing (not available).
 
-```{code-cell} ipython3
+```{code-cell}
 df.iloc[0]
 ```
 
@@ -262,7 +262,7 @@ We will nearly always want to know *how much* of a given dataset is missing, as 
 
 Why might we worry about missing values?  Why can't we just drop them and forget about them?  Let's load some [related data from the World Bank](data/gender_stats) with country statistics on various measures:
 
-```{code-cell} ipython3
+```{code-cell}
 gender_df = pd.read_csv('data/gender_stats.csv')
 gender_df
 ```
@@ -279,7 +279,7 @@ A) Do you think these indicate invalid floating point operations at some previou
 
 Here is a calculation of the mean Health Exp(enditure) per Cap(ita) (per person):
 
-```{code-cell} ipython3
+```{code-cell}
 gender_df['health_exp_per_cap'].mean()
 ```
 
@@ -300,7 +300,7 @@ The NaN values look very much like standard Pandas signals of missing (Not Avail
 
 To explore more, you might have considered looking specifically for rows and columns with many NaN values with something like:
 
-```{code-cell} ipython3
+```{code-cell}
 missing_hepc = pd.isna(gender_df['health_exp_per_cap'])
 gender_df[missing_hepc]
 ```
@@ -325,7 +325,7 @@ Pandas supplies us some useful methods for checking missingness.
 
 For instance, we can use `.count()` to show us the number of non-NaN elements in each column:
 
-```{code-cell} ipython3
+```{code-cell}
 # Count non-NaN (not missing) elements in the Data Frame.
 df.count()
 ```
@@ -335,7 +335,7 @@ A useful trick here is to divide the output of the `.count()` method by the
 (number of observations)](len-df).  This provides a handy summary of the
 *proportion* of NaNs in each column of the Data Frame:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the proportion of missing values, in each column.
 # The division operates elementwise, dividing all values above by the divisor.
 df.count() / len(df)
@@ -343,7 +343,7 @@ df.count() / len(df)
 
 If we want to use brute force, we can use the `.dropna()` method to remove *any rows* which have a single NaN value:
 
-```{code-cell} ipython3
+```{code-cell}
 # Remove the NaN values
 df_no_NaN = df.dropna()
 df_no_NaN
@@ -358,14 +358,14 @@ by default NaN values will be *ignored* in numerical operations**.
 
 Let's look at the `Fertility Rate` column, which contains numerical data:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the column
 df['Fertility Rate']
 ```
 
 Because we are dealing with just one column, we can safely use `.dropna()` without losing every row (because not every row of the *Series* contains a NaN value):
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the column
 df['Fertility Rate'].dropna()
 ```
@@ -376,7 +376,7 @@ Let's compare computing a statistic (the mean) when we drop the NaN values from 
 
 Let's first select all the rows relating to (indexed as) Zimbabwe (`'ZWE'`), and the corresponding `'Fertility Rate'` values:
 
-```{code-cell} ipython3
+```{code-cell}
 # Rows with index value 'ZWE', 'Fertility Rate' column.
 zwe_fert = df.loc['ZWE', 'Fertility Rate']
 zwe_fert
@@ -384,19 +384,19 @@ zwe_fert
 
 When we use the `.mean()` method on just this column, we get the following value:
 
-```{code-cell} ipython3
+```{code-cell}
 # Calculate a mean with NaN data included (NaNs will be ignored).
 zwe_fert.mean()
 ```
 
 Using `.dropna()` on this column returns *exactly the same value* - because by default Pandas will ignore NaNs in numerical operations:
 
-```{code-cell} ipython3
+```{code-cell}
 zwe_no_nans = zwe_fert.dropna()
 zwe_no_nans
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Drop NaNs gives the same mean 
 zwe_no_nans.mean()
 ```
@@ -418,13 +418,13 @@ This difference in NaN handling is a key and important difference between Numpy
 and Pandas statistical routines.  Numpy `mean`, `min`, `max` and `std` return
 NaN, by default, if there are any NaN values in the array.
 
-```{code-cell} ipython3
+```{code-cell}
 np.std(zwe_fert.values)
 ```
 
 In contrast, the matching routines in Pandas silently drop the NaN values before calculating `mean`, `min`, `max` and so on.
 
-```{code-cell} ipython3
+```{code-cell}
 zwe_fert.std()
 ```
 

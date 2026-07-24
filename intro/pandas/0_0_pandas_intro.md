@@ -6,7 +6,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.17.3
+    jupytext_version: 1.19.5
 kernelspec:
   display_name: Python 3 (ipykernel)
   language: python
@@ -42,7 +42,7 @@ The standard way to make a new Data Frame is to ask Pandas to read a data file
 build our own Data Frame from scratch, beginning with the fundamental building
 block for Data Frames: Numpy arrays.
 
-```{code-cell} ipython3
+```{code-cell}
 # Import the libraries needed for this page
 import numpy as np
 import pandas as pd
@@ -52,7 +52,7 @@ import pandas as pd
 
 Let's say we have some data that applies to a set of countries, and we have some countries in mind:
 
-```{code-cell} ipython3
+```{code-cell}
 country_names_array = np.array(['Australia', 'Brazil', 'Canada',
                                 'China', 'Germany', 'Spain',
                                 'France', 'United Kingdom', 'India',
@@ -65,7 +65,7 @@ For compactness, we'll also want to use the corresponding [standard
 three-letter code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) for each
 country, like so:
 
-```{code-cell} ipython3
+```{code-cell}
 country_codes_array = np.array(['AUS', 'BRA', 'CAN',
                                 'CHN', 'DEU', 'ESP',
                                 'FRA', 'GBR', 'IND',
@@ -83,7 +83,7 @@ Income per capita.
 
 ([Image credit](https://hdr.undp.org/data-center/human-development-index#/indices/HDI))
 
-```{code-cell} ipython3
+```{code-cell}
 # Human Development Index Scores for each country
 hdis_array = np.array([0.896, 0.668, 0.89,
                        0.586, 0.89,  0.828,
@@ -101,7 +101,7 @@ Let's say we also have the fertility rate for each country.  The fertility
 rate is the average number of children born to to each woman. In due course,
 we're interested to see whether HDI can predict the fertility rate values.
 
-```{code-cell} ipython3
+```{code-cell}
 # Fertility rate scores for each country
 fert_rates_array = np.array([1.764, 2.247, 1.51,
                              1.628, 1.386, 1.21,
@@ -117,7 +117,7 @@ library](https://matplotlib.org). Later, we will see that Pandas offers us
 some streamlined ways of plotting data, without the need to import other
 libraries.
 
-```{code-cell} ipython3
+```{code-cell}
 # Some basic plotting with Matplotlib.
 import matplotlib.pyplot as plt
 
@@ -136,7 +136,7 @@ We're going to start with the HDI values.
 
 One way of doing that is to make a new data structure that contains the HDI values, but also has *labels* for each value.  Pandas has an object for that, called a `Series`.  You can construct a Series by passing the values and the labels:
 
-```{code-cell} ipython3
+```{code-cell}
 # Make a Series from the `hdis_array`
 hdi_series =  pd.Series(hdis_array, index=country_codes_array)
 hdi_series
@@ -151,7 +151,7 @@ particular word, the Pandas Index of a Series is a way of finding the element
 We can get to the collection of labels with
 the `.index` attribute of the Series.
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the index of `hdi_series`
 hdi_series.index
 ```
@@ -159,7 +159,7 @@ hdi_series.index
 `hdi_series` also contains the HDI values, accessible with the `.values`
 attribute:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the values (data) in `hdi_series`
 hdi_series.values
 ```
@@ -170,7 +170,7 @@ Think of the Series as an object that associates an array of values
 We can access values from their corresponding label, by using the `.loc`
 accessor, an attribute of the Series object.
 
-```{code-cell} ipython3
+```{code-cell}
 # Using label based indexing to view a specific value.
 hdi_series.loc['MEX']
 ```
@@ -179,7 +179,7 @@ hdi_series.loc['MEX']
 `.index`), and that returns the corresponding value(s).  Here we ask for more
 than one value, by passing in a list of labels:
 
-```{code-cell} ipython3
+```{code-cell}
 # Using label based indexing to view two specific values.
 hdi_series.loc[['KOR', 'USA']]
 ```
@@ -193,7 +193,7 @@ position, as you would with a Numpy array.  Let's remind ourselves of basic
 indexing in Numpy; to get the thirteenth value in the *Numpy array* of HDI
 values, one could run:
 
-```{code-cell} ipython3
+```{code-cell}
 # Using integer-based indexing to retrieve a specific value from an *array*.
 hdis_array[12]
 ```
@@ -205,12 +205,12 @@ You can do the same type of indexing with a Pandas series, with the `.iloc`
 accessor.  Think of `.iloc` as *integer* indexing, or, if you like, `loc`ating
 with `i`ntegers.
 
-```{code-cell} ipython3
+```{code-cell}
 # Get the 13th element with `iloc` indexing.
 hdi_series.iloc[12]
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Get the 12th and 15th element with `.iloc` indexing.
 hdi_series.iloc[[11, 14]]
 ```
@@ -221,20 +221,20 @@ integers gives a Series.
 You can already imagine that this kind of label-based indexing could be
 useful, because it is easier to avoid mistakes with:
 
-```{code-cell} ipython3
+```{code-cell}
 hdi_series.loc['MEX']
 ```
 
 than it is to work out the position of Mexico in the array of values, and then
 do:
 
-```{code-cell} ipython3
+```{code-cell}
 hdis_array[11]  # Was Mexico really at position 11?
 ```
 
 — oh, whoops, we mean:
 
-```{code-cell} ipython3
+```{code-cell}
 hdis_array[12]  # Ouch, no, it was at position 12.
 ```
 
@@ -247,7 +247,7 @@ with corresponding labels.
 For example, we can also make a Series with the fertility rate (`fert_rate`)
 data, like this:
 
-```{code-cell} ipython3
+```{code-cell}
 # Make a series of the fertility rates
 fert_rate_series = pd.Series(fert_rates_array, index=country_codes_array)
 fert_rate_series
@@ -256,12 +256,12 @@ fert_rate_series
 But now imagine we want to look at the corresponding `HDI` and `fert_rate`
 values.  We can do this separately, for each Series, like this:
 
-```{code-cell} ipython3
+```{code-cell}
 # Label-based indexing
 fert_rate_series.loc['MEX']
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Label-based indexing
 hdi_series.loc['MEX']
 ```
@@ -277,7 +277,7 @@ have labels (just as the Series values do), and the columns have names.
 Each Series corresponds to one column in this table.  Pandas calls these
 tables *Data Frames*.
 
-```{code-cell} ipython3
+```{code-cell}
 # Creating a DataFrame from a dictionary
 df = pd.DataFrame({'Human Development Index': hdi_series,
                    'Fertility Rate': fert_rate_series})
@@ -292,7 +292,7 @@ Think of the Data Frame as being like a dictionary of Series.
 
 Notice that the Data Frame, like the Series, has an Index:
 
-```{code-cell} ipython3
+```{code-cell}
 # The Index of the Data Frame.
 df.index
 ```
@@ -318,7 +318,7 @@ different Index.  Let's say for example, that we have taken the original
 `fert_rate_series`, and sorted it in reverse alphabetical order by Index
 value.  Here is the Pandas code to do that:
 
-```{code-cell} ipython3
+```{code-cell}
 # Sort fert_rate_series in reverse alphabetical order by Code.
 fert_rate_reversed = fert_rate_series.sort_index(ascending=False)
 fert_rate_reversed
@@ -326,7 +326,7 @@ fert_rate_reversed
 
 Now imagine we create a new Data Frame with the original `hdi` Series and `fert_rate_reversed`:
 
-```{code-cell} ipython3
+```{code-cell}
 # Creating a new DataFrame from a dictionary, with one Series reversed.
 df2 = pd.DataFrame({'Human Development Index': hdi_series,
                     'Fertility Rate': fert_rate_reversed})
@@ -334,7 +334,7 @@ df2 = pd.DataFrame({'Human Development Index': hdi_series,
 
 What would you expect to see if you display `df2`?  Have a think, then uncomment the cell below to display the value of `df2`:
 
-```{code-cell} ipython3
+```{code-cell}
 # df2
 ```
 
@@ -343,7 +343,7 @@ Why do you think you see this outcome?
 To test your theory, consider a new Data Frame where we specify the reversed
 Series first in the dictionary:
 
-```{code-cell} ipython3
+```{code-cell}
 # New DataFrame from a dictionary, reversed Series first.
 df3 = pd.DataFrame({'Fertility Rate': fert_rate_reversed,
                     'Human Development Index': hdi_series})
@@ -353,7 +353,7 @@ Yes, the columns will be in the opposite order, `Fertility Rate` first, then `Hu
 
 Reflect, then try running the cell below after removing the `# `:
 
-```{code-cell} ipython3
+```{code-cell}
 # df3
 ```
 
@@ -361,39 +361,39 @@ Was your theory right?  If not, what is your new theory?
 
 Now consider this:
 
-```{code-cell} ipython3
+```{code-cell}
 # New DataFrame from a dictionary, reversed Series first.
 hdi_reversed = hdi_series.sort_index(ascending=False)
 hdi_reversed
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 df4 = pd.DataFrame({'Fertility Rate': fert_rate_reversed,
                     'Human Development Index': hdi_reversed})
 ```
 
 What does your new theory predict about the new `df4`?  Consider, then have a look.
 
-```{code-cell} ipython3
+```{code-cell}
 # df4
 ```
 
 Maybe your theory does fit, maybe it does not.  If it does not, what is your
 new theory?  To test further, consider what would happen here:
 
-```{code-cell} ipython3
+```{code-cell}
 # Scramble the row order a bit.
 row_order = [0, 1, 2] + [14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3]
 fert_scrambled = fert_rate_series.iloc[row_order]
 fert_scrambled
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 df5 = pd.DataFrame({'Fertility Rate': fert_scrambled,
                     'Human Development Index': hdi_reversed})
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # df5
 ```
 
@@ -425,7 +425,7 @@ What was your hypothesis?  If it was different from ours, why do you think yours
 
 We can get the `Human Development Index` (`hdi`) Series by name, by using *direct indexing* into the Data Frame, like this:
 
-```{code-cell} ipython3
+```{code-cell}
 # Getting the Human Development Index series by name
 hdi_from_df = df['Human Development Index']
 hdi_from_df
@@ -477,7 +477,7 @@ column name (`'Human Development Index'`) between square brackets following
 the data frame value, so `'Human Development Index'` specified what we want to
 select from the Data Frame.  We get back a new Series, extracted from the Data Frame:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the type of `hdi_from_df`
 type(hdi_from_df)
 ```
@@ -488,7 +488,7 @@ type(hdi_from_df)
 You can see in the output display that the extracted Series now has an extra
 attribute, which is the `name`.
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the extracted Series again.  Notice the Name.
 hdi_from_df
 ```
@@ -497,7 +497,7 @@ We said above that Series are the association between an array of `.values`,
 and a corresponding collection of labels, in `.index`.  Now we see that the
 Series also has a `.name`, that we had not set in our original series:
 
-```{code-cell} ipython3
+```{code-cell}
 # The `name` attribute of the Series we've extracted from the Data Frame.
 hdi_from_df.name
 ```
@@ -506,7 +506,7 @@ Above, when we first built the series of HDI values and labels with
 `pd.Series`, we not set the name of the Series, so it got the default `.name`
 of `None`.  We rebuild it here:
 
-```{code-cell} ipython3
+```{code-cell}
 # We rebuild with pd.Series.
 hdi_series =  pd.Series(hdis_array, index=country_codes_array)
 # When we don't specify the name, the default is None.
@@ -519,7 +519,7 @@ the nature of the data in the `.values` array.
 Let's make a new Series — called `hdi_series_named` — where we **do** specify
 a `.name` attribute when calling the `pd.Series()` constructor.
 
-```{code-cell} ipython3
+```{code-cell}
 # Make a series from the `hdis` array, specifying the `name` attribute.
 hdi_series_named = pd.Series(hdis_array,
                              index=country_codes_array,
@@ -530,7 +530,7 @@ hdi_series_named.name
 
 You can set the name on an existing Series using the `.name` attribute:
 
-```{code-cell} ipython3
+```{code-cell}
 hdi_series_named.name = 'Hum Dev Ind'
 hdi_series_named
 ```
@@ -540,7 +540,7 @@ hdi_series_named
 Indirect indexing occurs when we use the `.loc` and `.iloc` accessor methods
 on the Data Frame, to get rows by label (index value) or by position:
 
-```{code-cell} ipython3
+```{code-cell}
 # Using `.loc` indirect indexing on the Data Frame.
 df.loc['MEX']
 ```
@@ -557,7 +557,7 @@ strict parallel to indexing into a Series, indexing with multiple values into
 a Data Frame, returns a subset of the Data Frame, which is itself, a Data
 Frame.
 
-```{code-cell} ipython3
+```{code-cell}
 # Using `.loc` with index labels
 df.loc[['KOR', 'USA']]
 ```
@@ -587,7 +587,7 @@ a data file containing the same data.
 
 First, we make another Numpy array, containing the full name of each country.
 
-```{code-cell} ipython3
+```{code-cell}
 # Making an array containing the name of each country
 country_names_array = np.array(['Australia', 'Brazil', 'Canada',
                                 'China', 'Germany', 'Spain',
@@ -599,7 +599,7 @@ country_names_array
 
 Now, we get the population of each country, in millions.
 
-```{code-cell} ipython3
+```{code-cell}
 # The population of each country in millions, in the year 2000.
 population_array = np.array([  19.1324, 174.0182,   30.8918,
                              1269.5811,  81.7972,   41.0197,
@@ -613,7 +613,7 @@ We are about to *put* a new Series into the Data Frame.
 
 Remember that we can fetch the Series corresponding to a particular column like this:
 
-```{code-cell} ipython3
+```{code-cell}
 # Getting the Human Development Index Series by name
 hdi_from_df = df['Human Development Index']
 hdi_from_df
@@ -624,7 +624,7 @@ Here we are *indexing* (in fact *direct indexing*) into the Data Frame `df`, on 
 We can *put* data in a new or existing column in the Data Frame by using
 direct indexing on the left-hand-side of the assignment, like this:
 
-```{code-cell} ipython3
+```{code-cell}
 # Add the array as a column in the DataFrame.
 df['Population'] = population_array
 df
@@ -642,7 +642,7 @@ Frame, where the `.values` of that Series are the values from `population_array`
 We can fetch that new `'Population'` Series from the Data Frame by direct
 indexing, as we did above for the `'Human Development Index'` column / Series.
 
-```{code-cell} ipython3
+```{code-cell}
 # Fetch Series named 'Population' using direct indexing into the DataFrame.
 pop_from_df = df['Population']
 pop_from_df
@@ -650,14 +650,14 @@ pop_from_df
 
 The `.name` of the Series is the name of the column from which it was fetched:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the .name attribute of the new Series inside the Data Frame.
 pop_from_df.name
 ```
 
 The `values` of the new Series are the ones we put in in the assignment above:
 
-```{code-cell} ipython3
+```{code-cell}
 # Show the array containing the data for the new Series.
 pop_from_df.values
 ```
@@ -668,7 +668,7 @@ the same as the Index of the Data Frame.  In other words, in extracting the
 
 We could have used the `pd.Series()` constructor to build the same Series, built from its components:
 
-```{code-cell} ipython3
+```{code-cell}
 # We can build a similar Series to the one we fetched like this.
 population_series = pd.Series(population_array,
                               index=country_codes_array,
@@ -678,7 +678,7 @@ population_series
 
 Let's use the same `df['Name'] = array` syntax to add a final column to our Data Frame, containing the full country names:
 
-```{code-cell} ipython3
+```{code-cell}
 # Adding in the country names
 df['Country Name'] = country_names_array
 ```
@@ -686,7 +686,7 @@ df['Country Name'] = country_names_array
 Here is our full Data Frame - built from its component ingredients - in its
 resplendent glory:
 
-```{code-cell} ipython3
+```{code-cell}
 # View the full DataFrame.
 df
 ```
@@ -700,7 +700,7 @@ The cell below shows a more typical method of making a Data Frame, that is
 asking Pandas to create a new Data Frame by loading data from a file. We use
 the `pd.read_csv()` function to read some data from a `.csv` file:
 
-```{code-cell} ipython3
+```{code-cell}
 # Import data from a csv file
 loaded_df = pd.read_csv("data/year_2000_hdi_fert.csv")
 loaded_df
@@ -719,7 +719,7 @@ pages.
 Here we tell `.set_index()` the column name to use as the `.index`
 - in this case we use the `'Code'` column, containing the country codes:
 
-```{code-cell} ipython3
+```{code-cell}
 # Set the new Data Frame to have values from the "Code" column as labels.
 loaded_labeled_df = loaded_df.set_index('Code')
 loaded_labeled_df
@@ -728,7 +728,7 @@ loaded_labeled_df
 Let's compare this loaded Data Frame to the Data Frame we built from Numpy
 components.
 
-```{code-cell} ipython3
+```{code-cell}
 # The Data Frame we built from its component parts.
 df
 ```
@@ -742,7 +742,7 @@ Both Data Frames contain the same data, and the same labels.  In fact, we can
 use the `.equals` method of Data Frames to ask Pandas whether it agrees the
 Data Frames are equivalent:
 
-```{code-cell} ipython3
+```{code-cell}
 df.equals(loaded_labeled_df)
 ```
 
@@ -771,13 +771,13 @@ Data Frame to give *exactly* the same display as we see for
 
 You probably spotted that the `loaded_labeled_df` displays a `name` for the Index.  You can also see this displaying the `.index` on its own:
 
-```{code-cell} ipython3
+```{code-cell}
 loaded_labeled_df.index
 ```
 
 compared to:
 
-```{code-cell} ipython3
+```{code-cell}
 df.index
 ```
 
@@ -785,13 +785,13 @@ We see that the `.name` attribute differs for the two Indices; to make the Data 
 
 The simplest way to do that is:
 
-```{code-cell} ipython3
+```{code-cell}
 # Make a copy of the `df` Data Frame. This step is unnecessary to solving
 # the problem, it is just to be neat.
 df_copy = df.copy()
 ```
 
-```{code-cell} ipython3
+```{code-cell}
 # Set the Index name.
 df_copy.index.name = 'Code'
 df_copy
@@ -813,7 +813,7 @@ axis, and a name of a column to plot on the `y` axis. We use the `kind=`
 argument to tell Pandas what type of plot we want (in this case a scatter
 plot).
 
-```{code-cell} ipython3
+```{code-cell}
 # Plotting with Pandas methods.
 df.plot(x='Human Development Index',
         y='Fertility Rate',
