@@ -2,10 +2,10 @@
 jupyter:
   jupytext:
     text_representation:
-      extension: .Rmd
-      format_name: rmarkdown
-      format_version: '1.2'
-      jupytext_version: 1.17.1
+      extension: .md
+      format_name: markdown
+      format_version: "1.3"
+      jupytext_version: 1.19.5
   kernelspec:
     display_name: Python 3 (ipykernel)
     language: python
@@ -15,17 +15,17 @@ jupyter:
 
 # Create year 2000 dataset from input data
 
-```{python}
+```python
 import numpy as np
 import pandas as pd
 ```
 
-```{python}
+```python
 df = pd.read_csv('children-per-woman-vs-human-development-index.csv')
 df.head()
 ```
 
-```{python}
+```python
 y2k_df = (df[(df['Year'] == 2000) & ~df['Code'].isna()]
           .drop(columns='Region')
           .rename(columns={'Entity': 'Country Name'})
@@ -35,7 +35,7 @@ y2k_df = (df[(df['Year'] == 2000) & ~df['Code'].isna()]
 y2k_df
 ```
 
-```{python}
+```python
 # Get selected country codes.  These were from sorting the Gender Stats Data Frame by GDP.
 wealthy_codes = (pd.read_csv('gender_stats.csv')
                  .sort_values('gdp_us_billion', ascending=False)
@@ -46,20 +46,20 @@ wealthy_codes = (pd.read_csv('gender_stats.csv')
 wealthy_codes
 ```
 
-```{python}
+```python
 y2k_out = (y2k_df[y2k_df['Code'].isin(wealthy_codes)]
            .reset_index(drop=True)
            .sort_values('Code'))
 y2k_out
 ```
 
-```{python}
+```python
 # Population in millions, rounded to 4 DP.
 y2k_out['Population'] = (y2k_out['Population'] / 1_000_000).round(4)
 y2k_out
 ```
 
-```{python}
+```python
 out_fname = 'year_2000_hdi_fert.csv'
 y2k_out.to_csv(out_fname, index=None)
 pd.read_csv(out_fname)
