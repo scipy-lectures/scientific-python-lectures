@@ -68,6 +68,10 @@ ignore_missing_imports = true
 module = "pyamg.*"
 ignore_missing_imports = true
 
+[[tool.mypy.overrides]]
+module = "ipython_tb_lexer"
+disable_error_code = ["misc"]
+
 [tool.pytest.ini_options]
 minversion = "8.2"
 doctest_optionflags = "NUMBER NORMALIZE_WHITESPACE ELLIPSIS"
