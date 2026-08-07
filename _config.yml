@@ -120,7 +120,7 @@ sphinx:
     - sphinx_exercise
 
   local_extensions:
-    _extensions.ipython_tb_lexer: _extensions
+    ipython_tb_lexer: _extensions
 
 latex:
   latex_documents:
