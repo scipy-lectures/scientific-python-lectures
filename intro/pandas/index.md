@@ -1,7 +1,9 @@
-# Pandas from Numpy
+# Pandas from NumPy
 
-This is a short tutorial series teaching the Pandas data science library,
-starting from the Numpy array library, on which Pandas is based.
+**Authors**: _Peter Rush, Matthew Brett_
+
+This is a tutorial series teaching the Pandas data science library,
+starting from the NumPy array library, on which Pandas is based.
 
 ## Many sections are interactive
 

@@ -13,7 +13,7 @@ kernelspec:
   name: python3
 ---
 
-# Pandas from Numpy
+# Pandas from NumPy
 
 This tutorial will show the fundamental structure of Pandas Data Frames. We will look at the components that constitute a Data Frame - for instance, Numpy arrays - in order to gain a deeper understanding of the raw ingredients that more advanced Pandas methods and functions operate on.
 
