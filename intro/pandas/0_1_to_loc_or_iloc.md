@@ -87,14 +87,14 @@ my_name = 'Peter Rush'
 my_name[2:7]
 ```
 
-The same rule applies to indexing Python lists, or Numpy arrays:
+The same rule applies to indexing Python lists, or NumPy arrays:
 
 ```{code-cell}
 # From element at position 2, up to (not including) position 7.
 country_codes_array[2:7]
 ```
 
-`.iloc` is indexing by *position*, so it may not be surprising that it slices using the same rules as by-position indexing in Numpy:
+`.iloc` is indexing by *position*, so it may not be surprising that it slices using the same rules as by-position indexing in NumPy:
 
 ```{code-cell}
 # From element at position 2, up to (not including) position 7.
@@ -112,22 +112,22 @@ Here's what we get from slicing using `.loc`:
 hdi_series.loc['CAN':'GBR']
 ```
 
-First notice that label indexing uses values from the Index as start and stop.  Unlike Numpy or `.iloc` indexing, which by definition have integers as start and stop (because these are positions), `.loc` indexing start and stop values must match the values in the Index.  In this case, the Index has `str` values, so the start and stop values are also `str`.
+First notice that label indexing uses values from the Index as start and stop.  Unlike NumPy or `.iloc` indexing, which by definition have integers as start and stop (because these are positions), `.loc` indexing start and stop values must match the values in the Index.  In this case, the Index has `str` values, so the start and stop values are also `str`.
 
 Second, notice that we got one more value from `.loc` indexing into the
-Series, because `.loc` slicing — unlike `.iloc` or Numpy indexing — *includes*
+Series, because `.loc` slicing — unlike `.iloc` or NumPy indexing — *includes*
 the stop value.
 
 In the last cell, using `.loc`, `'GBR'` was the stop value, and we got the
 element corresponding to `'GBR'`.
 
-This is a major difference from Numpy and `.iloc` behavior.
+This is a major difference from NumPy and `.iloc` behavior.
 
 ::: {note}
 
 **Stop and `.loc`**
 
-Why does `.loc` slicing return the label corresponding to the stop value, instead of going *up to but not including* the stop value, like Numpy or `.iloc`?
+Why does `.loc` slicing return the label corresponding to the stop value, instead of going *up to but not including* the stop value, like NumPy or `.iloc`?
 
 We should say that this is absolutely the right choice.  But why?
 
@@ -259,7 +259,7 @@ type(fifth_element)
 ```
 
 For all practical purposes, you can treat this `RangeIndex` as being equivalent
-to the corresponding sequential Numpy integer array.
+to the corresponding sequential NumPy integer array.
 
 ::: {exercise-start}
 :label: range-index
@@ -686,12 +686,12 @@ time on `.loc` and `.iloc` for Data Frames.
 
 Series are like one-dimensional arrays (with and Index and a Name) - therefore
 `.loc` and `.iloc` indexing into Series looks like indexing into
-one-dimensional Numpy arrays.
+one-dimensional NumPy arrays.
 
 A Data Frame is like a two dimensional array, so `.loc` and `.iloc` indexing
-looks like indexing into two-dimensional Numpy arrays.
+looks like indexing into two-dimensional NumPy arrays.
 
-Consider the following two-dimensional Numpy array:
+Consider the following two-dimensional NumPy array:
 
 ```{code-cell}
 hdi_series[:5]
@@ -756,7 +756,7 @@ example_df = pd.DataFrame({'Human Development Index': hdi_series,
 example_df
 ```
 
-If we ask for the Data Frame `.values`, we get a two-dimensional Numpy array:
+If we ask for the Data Frame `.values`, we get a two-dimensional NumPy array:
 
 ```{code-cell}
 example_df.values
@@ -787,7 +787,7 @@ example_df.iloc[1]
 example_df.iloc[1:5]
 ```
 
-Like the Numpy two-dimension indexing case, if we want to select columns with
+Like the NumPy two-dimension indexing case, if we want to select columns with
 `.loc` or `.iloc`, we must give two indexing expressions, separated by
 a comma:
 
@@ -875,5 +875,5 @@ situations:
    page](0_5_filtering_data_with_pandas)).
 
 We can use `.loc` and `.iloc` on Data Frames, remembering that this indexing
-acts like indexing two-dimensional Numpy arrays; when selecting columns, we
+acts like indexing two-dimensional NumPy arrays; when selecting columns, we
 first need to specify a selection for rows.

@@ -31,7 +31,7 @@ Structure of page:
 -->
 
 On the [previous](0_0_pandas_intro) [pages](0_1_to_loc_or_iloc) we
-have seen how Pandas Series are constructed by combining Numpy arrays (the
+have seen how Pandas Series are constructed by combining NumPy arrays (the
 `.values` attribute of a Series) with other attributes (a `.name` string and
 array-like `.index`). We then examined how Pandas Data Frames are built from
 a collection of Series, in a dictionary-like structure.
@@ -41,19 +41,19 @@ Once we have constructed our Series or Data Frame, Pandas provides many useful
 methods for cleaning, aggregating, plotting and (subsequently) analysing our
 data.
 
-We will begin by showing that Pandas Series and Data Frames have many methods that parallel those of Numpy arrays, though the methods are adapted to work in the context of Pandas objects.
+We will begin by showing that Pandas Series and Data Frames have many methods that parallel those of NumPy arrays, though the methods are adapted to work in the context of Pandas objects.
 
 +++
 
-## More Pandas from Numpy
+## More Pandas from NumPy
 
 Let's examine some of the methods we can use on numpy arrays.
 
 Remember, a *method* is a function attached to an object. 
 
-In this case, our object is a Numpy array (later it will be a Pandas Series or Data Frame).
+In this case, our object is a NumPy array (later it will be a Pandas Series or Data Frame).
 
-We'll build a Numpy array using the `np.array([])` constructor, containing our
+We'll build a NumPy array using the `np.array([])` constructor, containing our
 familiar three-letter country codes. As before, you can see the [datasets and
 licenses page](data/data_notes) for more detail.
 
@@ -118,7 +118,7 @@ us — the user of the object — to avoid.
 
 Ignoring the all attributes and methods that begin with underscores, we can
 see a large number of attributes and methods that we can access from this or
-any other Numpy array.
+any other NumPy array.
 
 ```{code-cell}
 # Attributes and methods not starting with `_` (or `__`):
@@ -162,7 +162,7 @@ hdis_array.size
 zeros_array.size
 ```
 
-`len()` as applied to Numpy arrays gives us the number of elements of the *first dimension* (axis) only.
+`len()` as applied to NumPy arrays gives us the number of elements of the *first dimension* (axis) only.
 
 ```{code-cell}
 len(zeros_array)
@@ -179,7 +179,7 @@ len(hdis_array)
 Calling the standard Python function `len()` on an object `obj` causes Python to call the `__len__()` method of the object.  Therefore, the result of `len(obj)` is the same as that for `obj.__len__()`.
 
 Each object type can define what `len(obj)` means by implementing a `__len__`
-method.  For Numpy arrays `arr.__len__()` gives you the equivalent of
+method.  For NumPy arrays `arr.__len__()` gives you the equivalent of
 `arr.shape[0]`.
 
 Later we will see that Data Frames have their own implementation of `__len__`.
@@ -219,9 +219,9 @@ For this array, the `dtype` tells us that we are dealing with numerical data - s
 
 +++
 
-### Statistical Attributes of Numpy arrays
+### Statistical Attributes of NumPy arrays
 
-Numpy also provides a variety of what we can call "statistical attributes" which tell us statistics about the data inside the array.
+NumPy also provides a variety of what we can call "statistical attributes" which tell us statistics about the data inside the array.
 
 ::: {note}
 
@@ -273,7 +273,7 @@ Remember our answer to [What is a Series?](what-is-a-series):
 
 Because Series have arrays as their underlying model for storing values, it is
 not surprising that we can use many of the same methods we have just seen for
-Numpy arrays on Pandas Series.
+NumPy arrays on Pandas Series.
 
 Let's make a series from the HDI scores, called `hdi_series`. We do this using the now familiar `pd.Series()` constructor. Again, we will use the `country_codes` array as an index:
 
@@ -301,7 +301,7 @@ hdi_series.name is None
 hdi_series.values
 ```
 
-Let's verify that we can use methods that parallel the Numpy methods we saw above. Predictably, these methods operate on the Numpy array component of the series (e.g. the `.values` attribute). 
+Let's verify that we can use methods that parallel the NumPy methods we saw above. Predictably, these methods operate on the NumPy array component of the series (e.g. the `.values` attribute). 
 
 First, let's look at the `shape`, `size` and `dtype`:
 
@@ -320,9 +320,9 @@ hdi_series.size
 hdi_series.dtype
 ```
 
-Because a Series is a Numpy array (of `.values`) plus some additional
+Because a Series is a NumPy array (of `.values`) plus some additional
 attributes/methods, these methods work on the Series in a very similar manner
-to their equivalents on Numpy arrays.
+to their equivalents on NumPy arrays.
 
 This also applies to statistical methods. Let's get the `.min()` and `.max()` values from the `hdi_series`.
 
@@ -343,7 +343,7 @@ These operations return the same values as when we call the method directly on t
 hdis_array.max()
 ```
 
-Ok, so these methods are available with names that are familiar from Numpy.
+Ok, so these methods are available with names that are familiar from NumPy.
 However, Pandas also introduces some additional methods.  You may want to
 compare the output of `dir()` for the `hdis_array` vs the `hdi_series` to see
 the overlap/differences - as the printout is messy, we will not show it again
@@ -419,7 +419,7 @@ country_names_series.values
 
 Now, remember again our other maxim that *A *Data Frame* is a dictionary-like collection of Series.*
 
-Because of this, we can use all the methods we have seen so far on any Data Frame column. Each column is a Series, and therefore contains a Numpy array as its `.values` attribute.
+Because of this, we can use all the methods we have seen so far on any Data Frame column. Each column is a Series, and therefore contains a NumPy array as its `.values` attribute.
 
 However, Data Frames have some (useful!) extra methods (including statistical methods) not available for Series.
 
@@ -439,7 +439,7 @@ attributes and methods (that don't begin with `_`):
 [k for k in dir(df) if not k.startswith('_')]
 ```
 
-If you peruse the list you'll notice that some of the methods have the sames as methods that apply to both Numpy arrays and Series. For instance, we can retrieve the `.shape` of the entire Data Frame.  This gives us the number of rows and the number of columns.
+If you peruse the list you'll notice that some of the methods have the sames as methods that apply to both NumPy arrays and Series. For instance, we can retrieve the `.shape` of the entire Data Frame.  This gives us the number of rows and the number of columns.
 
 ```{code-cell}
 # Get the shape attribute (n_rows, n_columns)
@@ -449,7 +449,7 @@ df.shape
 (len-df)=
 
 `len(df)` (therefore, `df.__len__()`) gives the number of rows.  This
-corresponds to the Numpy behavior of giving the number of elements on the
+corresponds to the NumPy behavior of giving the number of elements on the
 first dimension of the array:
 
 ```{code-cell}
@@ -464,7 +464,7 @@ We can also pull out an individual Series/column and view the `.shape` of that s
 df['Fertility Rate'].shape
 ```
 
-When accessed for the entire Data Frame, the `size` attribute works in the same way as we have seen for Numpy arrays and Pandas Series e.g. it will tell us the total number of *elements* in the entire Data Frame (e.g. the number of elements in the rows multiplied by the number of elements in the columns):
+When accessed for the entire Data Frame, the `size` attribute works in the same way as we have seen for NumPy arrays and Pandas Series e.g. it will tell us the total number of *elements* in the entire Data Frame (e.g. the number of elements in the rows multiplied by the number of elements in the columns):
 
 ```{code-cell}
 # Show the `size` of the Data Frame
@@ -612,7 +612,7 @@ df.loc[['USA', 'ITA']]
 
 ## Pandas Data Frame methods
 
-The `.sort_values()` method we used on the [previous page](0_1_to_loc_or_iloc) and the `set_index()` method we just used in the last section are just some of the many methods attached to Pandas Data Frames. We saw that many Numpy array methods have parallel versions that apply to Pandas Series and this principle also applies to Data Frames, built as they are from Pandas Series.
+The `.sort_values()` method we used on the [previous page](0_1_to_loc_or_iloc) and the `set_index()` method we just used in the last section are just some of the many methods attached to Pandas Data Frames. We saw that many NumPy array methods have parallel versions that apply to Pandas Series and this principle also applies to Data Frames, built as they are from Pandas Series.
 
 +++
 
@@ -924,9 +924,9 @@ df.sample(frac=0.5)
 :class: dropdown
 :::
 
-There are functions within Numpy (as well as other libraries) that shuffle/permute/randomize data within an array (or an arraylike object, such as a list).
+There are functions within NumPy (as well as other libraries) that shuffle/permute/randomize data within an array (or an arraylike object, such as a list).
 
-Let's say we want to shuffle the *rows* in our Data Frame. We can do this with the `permutation()` function from the `numpy.random` submodule, but the output is very ugly. This operation brutally removes the nice Data Frame graphics (at least when run in a Jupyter notebook), and puts the rows of the Data Frame into a Numpy array, as shown below:
+Let's say we want to shuffle the *rows* in our Data Frame. We can do this with the `permutation()` function from the `numpy.random` submodule, but the output is very ugly. This operation brutally removes the nice Data Frame graphics (at least when run in a Jupyter notebook), and puts the rows of the Data Frame into a NumPy array, as shown below:
 
 ```{code-cell}
 # Effective but ugly
@@ -1245,6 +1245,6 @@ How would you explain the result?
 ## Summary
 
 On this page we have further explored the idea that Pandas Data Frames, Pandas
-Series and Numpy arrays have a nested structure.
+Series and NumPy arrays have a nested structure.
 
-Data Frames are *dictionary-like collections of Series*. Series are a combination of a Numpy array (`.values`) with other attributes (`name` and `index`). As a result, many methods we can use on a Series are similar to those available from Numpy arrays, and many Data Frame methods likewise parallel those from the Pandas Series that constitute the Data Frame.
+Data Frames are *dictionary-like collections of Series*. Series are a combination of a NumPy array (`.values`) with other attributes (`name` and `index`). As a result, many methods we can use on a Series are similar to those available from NumPy arrays, and many Data Frame methods likewise parallel those from the Pandas Series that constitute the Data Frame.

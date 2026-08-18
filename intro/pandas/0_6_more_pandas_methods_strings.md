@@ -16,7 +16,7 @@ kernelspec:
 
 String/text data is often used to represent categorical variables, and commonly appears in a variety of data analysis contexts. When dealing with string/text data we will frequently find that we need to alter the strings to correct errors, improve clarity, make formatting uniform, or for a host of other reasons.
 
-String methods are inherent to Python, and these methods or variants of them can all be used on Numpy arrays and Pandas Series/Data Frames. However, Numpy and Pandas use different interfaces for interacting with strings. To understand the differences between Numpy and Pandas with respect to strings, let's begin at the foundation, the in-built string methods of Python. The cell below contains a simple string.
+String methods are inherent to Python, and these methods or variants of them can all be used on NumPy arrays and Pandas Series/Data Frames. However, NumPy and Pandas use different interfaces for interacting with strings. To understand the differences between NumPy and Pandas with respect to strings, let's begin at the foundation, the in-built string methods of Python. The cell below contains a simple string.
 
 ```{code-cell}
 # A string
@@ -73,13 +73,13 @@ You can visit [this page](https://www.w3schools.com/python/python_ref_string.asp
 
 +++
 
-## String methods with Numpy arrays
+## String methods with NumPy arrays
 
-So, strings in base Python have a large number of in-built methods - what about strings in Numpy?
+So, strings in base Python have a large number of in-built methods - what about strings in NumPy?
 
-Numpy arrays themselves do not have specific string methods, but the in-built Python string methods can be called on individual string values in a Numpy array. Alternatively, we can use functions from the `np.char.` module to operate on all the strings in the array in one go.
+NumPy arrays themselves do not have specific string methods, but the in-built Python string methods can be called on individual string values in a NumPy array. Alternatively, we can use functions from the `np.char.` module to operate on all the strings in the array in one go.
 
-To investigate how string data is handled in Numpy, let's make some arrays containing strings from now (very) familiar [HDI dataset](data/data_notes).
+To investigate how string data is handled in NumPy, let's make some arrays containing strings from now (very) familiar [HDI dataset](data/data_notes).
 
 ```{code-cell}
 # Import libraries (no imports were needed prior to this point as string methods are part of base python)
@@ -147,7 +147,7 @@ Conversely, the `hdis_array` contains data of a numerical type:
 hdis_array.dtype
 ```
 
-Using indexing, we can use all of the in-built Python string methods on the individual values within a Numpy array:
+Using indexing, we can use all of the in-built Python string methods on the individual values within a NumPy array:
 
 ```{code-cell}
 # Methods on an individual string
@@ -181,7 +181,7 @@ Understandably, if we try to use any of these string methods on numerical data, 
 hdis_array[0].upper()
 ```
 
-All of the string methods used in this section above have been called on single string values from a Numpy array. If we try to use a string method on all values of the array simultaneously, we will also get an error:
+All of the string methods used in this section above have been called on single string values from a NumPy array. If we try to use a string method on all values of the array simultaneously, we will also get an error:
 
 ```{code-cell}
 :tags: [raises-exception]
@@ -190,9 +190,9 @@ All of the string methods used in this section above have been called on single 
 country_codes_array.lower()
 ```
 
-String methods in Numpy must be called from the single string values or using the `.char.` module.
+String methods in NumPy must be called from the single string values or using the `.char.` module.
 
-For example, we can use the `np.char.lower()` function to operate on all values of the Numpy array at once:
+For example, we can use the `np.char.lower()` function to operate on all values of the NumPy array at once:
 
 ```{code-cell}
 # This DOES work
@@ -204,7 +204,7 @@ np.char.lower(country_codes_array)
 np.char.replace(country_codes_array, 'A', '!')
 ```
 
-Pandas deals with string data slightly differently to Numpy. The elements of the `.values` component of a Pandas Series can be operated on altogether by using the `.str.` accessor, to which we will now turn our attention.
+Pandas deals with string data slightly differently to NumPy. The elements of the `.values` component of a Pandas Series can be operated on altogether by using the `.str.` accessor, to which we will now turn our attention.
 
 +++
 
@@ -280,7 +280,7 @@ names_series[names_series.str.contains("Ind")]
 
 ## String methods with Pandas DataFrames
 
-So, Pandas makes it somewhat easier than Numpy to perform operations on all the string elements at once. 
+So, Pandas makes it somewhat easier than NumPy to perform operations on all the string elements at once. 
 
 Remember that *a DataFrame is a dictionary-like collection of Series*, and so everything we have just seen of strings in Pandas Series applies to the *columns* of a Data Frame.
 
@@ -536,10 +536,10 @@ check_names(soln2_clean_series)
 
 ## Summary
 
-This page looked at string methods in base python, Numpy and Pandas.
+This page looked at string methods in base python, NumPy and Pandas.
 
-Numpy and Python inherit their string methods from base python, but apply them in different ways. 
+NumPy and Python inherit their string methods from base python, but apply them in different ways. 
 
-Numpy does not have a set of methods for applying string methods to every element of an array simultaneously. We need functions from the `np.char` module if we want this.
+NumPy does not have a set of methods for applying string methods to every element of an array simultaneously. We need functions from the `np.char` module if we want this.
 
 By contrast, Pandas Series - whether in isolation or as columns in a Data Frame - have the `.str.` accessor for easily performing string operations on every element in a Series.

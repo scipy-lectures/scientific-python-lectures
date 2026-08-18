@@ -48,13 +48,13 @@ Structure of this page:
 
 Once we have got our data into a Pandas Data Frame, no doubt we will want to filter and select specific portions of it for visualisation and analysis. 
 
-On this page we will look at different methods of filtering. As on previous pages, we will focus on how Pandas is built from Numpy, and assess the similarities and differences in how filtering works on objects from both libraries.
+On this page we will look at different methods of filtering. As on previous pages, we will focus on how Pandas is built from NumPy, and assess the similarities and differences in how filtering works on objects from both libraries.
 
 +++
 
-## Pandas from Numpy, once more
+## Pandas from NumPy, once more
 
-To explore filtering, let's create some Numpy arrays, containing the [HDI data](https://ourworldindata.org/grapher/children-per-woman-vs-human-development-index):
+To explore filtering, let's create some NumPy arrays, containing the [HDI data](https://ourworldindata.org/grapher/children-per-woman-vs-human-development-index):
 
 ```{code-cell}
 # Import libraries for this page
@@ -132,7 +132,7 @@ If we're particularly neurotic, we can use the `np.all` function that this opera
 np.all(hdis_array[hdis_array_grtr_median_bool] > np.median(hdis_array))
 ```
 
-Because Python and Numpy treat `True` values as being equal to 1 and `False` values as being equal to 0, taking the sum of a Boolean array calculates the number of True values in the array:
+Because Python and NumPy treat `True` values as being equal to 1 and `False` values as being equal to 0, taking the sum of a Boolean array calculates the number of True values in the array:
 
 ```{code-cell}
 n_trues = np.sum(hdis_array_grtr_median_bool)
@@ -177,7 +177,7 @@ hdis_array_bool_series.name = 'hdi_grtr_thn_median'
 hdis_array_bool_series
 ```
 
-This has advantages over the Numpy Boolean array in terms of interpretability: it is less easy to forget the meaning of what is in the `values` component of the Series!
+This has advantages over the NumPy Boolean array in terms of interpretability: it is less easy to forget the meaning of what is in the `values` component of the Series!
 
 We also have access to all of the Pandas Series methods:
 
@@ -209,7 +209,7 @@ Boolean Series are particularly useful for filtering Series and Data Frames.
 
 You know by now that *Data Frames are a dictionary-like collection of Series*.
 
-Because Series are built (in part) from Numpy arrays, filtering the Data Frame works very much like filtering with Boolean Numpy arrays and Pandas Series.
+Because Series are built (in part) from NumPy arrays, filtering the Data Frame works very much like filtering with Boolean NumPy arrays and Pandas Series.
 
 As with Series, the real advantage comes in having a shared index, as it keeps the filtering process highly interpretable and makes it less prone to error.
 
@@ -225,7 +225,7 @@ df
 
 Now, to view the median we can use the `.median()` Series method, rather than calling the `np.median()` function as we did earlier.
 
-*NB*: we mentioned on a [previous page](0_2_pandas_dataframes_attributes_methods) that Pandas Series *methods* have parallel behavior to Numpy *functions*, but they treat NaN values as *missing* rather than *numerically invalid*, so Pandas calculations, unlike Numpy's default calculations, typically drop NaN values.
+*NB*: we mentioned on a [previous page](0_2_pandas_dataframes_attributes_methods) that Pandas Series *methods* have parallel behavior to NumPy *functions*, but they treat NaN values as *missing* rather than *numerically invalid*, so Pandas calculations, unlike NumPy's default calculations, typically drop NaN values.
 
 ```{code-cell}
 # Get the median HDI
@@ -242,7 +242,7 @@ hdi_gt_median = df['Human Development Index'] > df['Human Development Index'].me
 hdi_gt_median
 ```
 
-As mentioned above, this is more interpretable that a Numpy array just containing Booleans, with no `index`, because the `index` provides readable labels for the values.
+As mentioned above, this is more interpretable that a NumPy array just containing Booleans, with no `index`, because the `index` provides readable labels for the values.
 
 Again, to increase interpretabiity, we can assign this Boolean Series a new `name` attribute:
 
@@ -262,7 +262,7 @@ df[hdi_gt_median]
 
 This filtering operation was done via a Boolean Series which was created using direct indexing on the Data Frame itself (`df['Human Development Index']`).
 
-Earlier, we "hand built" a Boolean Series from a Numpy array, another array for the index, and a manually specified `name` attribute. Here is that Series:
+Earlier, we "hand built" a Boolean Series from a NumPy array, another array for the index, and a manually specified `name` attribute. Here is that Series:
 
 ```{code-cell}
 # Our "handmade" Boolean Series.
@@ -636,4 +636,4 @@ We sincerely hope you never have to see another Data Frame like this one.
 
 ## Summary
 
-This page has looked at the similarities/differences in filtering data with collections of Booleans in Numpy and Pandas.
+This page has looked at the similarities/differences in filtering data with collections of Booleans in NumPy and Pandas.

@@ -15,7 +15,7 @@ kernelspec:
 
 # Pandas from NumPy
 
-This tutorial will show the fundamental structure of Pandas Data Frames. We will look at the components that constitute a Data Frame - for instance, Numpy arrays - in order to gain a deeper understanding of the raw ingredients that more advanced Pandas methods and functions operate on.
+This tutorial will show the fundamental structure of Pandas Data Frames. We will look at the components that constitute a Data Frame - for instance, NumPy arrays - in order to gain a deeper understanding of the raw ingredients that more advanced Pandas methods and functions operate on.
 
 +++
 
@@ -40,7 +40,7 @@ The Pandas Data Frame is the most important feature of the Pandas library. Data 
 The standard way to make a new Data Frame is to ask Pandas to read a data file
 (like a `.csv` file) into a Data Frame. Before we do that however, we will
 build our own Data Frame from scratch, beginning with the fundamental building
-block for Data Frames: Numpy arrays.
+block for Data Frames: NumPy arrays.
 
 ```{code-cell}
 # Import the libraries needed for this page
@@ -48,7 +48,7 @@ import numpy as np
 import pandas as pd
 ```
 
-## Numpy arrays
+## NumPy arrays
 
 Let's say we have some data that applies to a set of countries, and we have some countries in mind:
 
@@ -189,8 +189,8 @@ two or more labels to `.loc` returns a subset of the Series.   Put another
 way, one label gives a value, but more than one label gives a Series.
 
 Indexing with `.loc` is called *label-based indexing*.  You can also index by
-position, as you would with a Numpy array.  Let's remind ourselves of basic
-indexing in Numpy; to get the thirteenth value in the *Numpy array* of HDI
+position, as you would with a NumPy array.  Let's remind ourselves of basic
+indexing in NumPy; to get the thirteenth value in the *NumPy array* of HDI
 values, one could run:
 
 ```{code-cell}
@@ -198,7 +198,7 @@ values, one could run:
 hdis_array[12]
 ```
 
-Numpy indexing with integers, like the above, is always indexing *by
+NumPy indexing with integers, like the above, is always indexing *by
 position*. We count from 0, so position 12 contains the thirteenth element.
 
 You can do the same type of indexing with a Pandas series, with the `.iloc`
@@ -585,7 +585,7 @@ We have more data to add to our Data Frame. Let's add those data as new
 columns, and then compare the result with the Data Frame we get from loading
 a data file containing the same data.
 
-First, we make another Numpy array, containing the full name of each country.
+First, we make another NumPy array, containing the full name of each country.
 
 ```{code-cell}
 # Making an array containing the name of each country
@@ -693,7 +693,7 @@ df
 
 ## Comparing the built and loaded Data Frames
 
-This page built a Data Frame from scratch from Numpy components, to deepen our
+This page built a Data Frame from scratch from NumPy components, to deepen our
 understanding of what a Data Frame is made from.
 
 The cell below shows a more typical method of making a Data Frame, that is
@@ -725,7 +725,7 @@ loaded_labeled_df = loaded_df.set_index('Code')
 loaded_labeled_df
 ```
 
-Let's compare this loaded Data Frame to the Data Frame we built from Numpy
+Let's compare this loaded Data Frame to the Data Frame we built from NumPy
 components.
 
 ```{code-cell}
@@ -736,7 +736,7 @@ df
 The `loaded_labeled_df` Data Frame was built automatically by Pandas, when
 loading in a `.csv` file using `pd.read_csv()`.
 
-We built the `df` Data Frame from Numpy arrays and strings.
+We built the `df` Data Frame from NumPy arrays and strings.
 
 Both Data Frames contain the same data, and the same labels.  In fact, we can
 use the `.equals` method of Data Frames to ask Pandas whether it agrees the
