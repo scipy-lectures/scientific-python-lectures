@@ -13,7 +13,6 @@ kernelspec:
 
 # Working with strings
 
-
 String/text data is often used to represent categorical variables, and commonly appears in a variety of data analysis contexts. When dealing with string/text data we will frequently find that we need to alter the strings to correct errors, improve clarity, make formatting uniform, or for a host of other reasons.
 
 String methods are inherent to Python, and these methods or variants of them can all be used on NumPy arrays and Pandas Series/Data Frames. However, NumPy and Pandas use different interfaces for interacting with strings. To understand the differences between NumPy and Pandas with respect to strings, let's begin at the foundation, the in-built string methods of Python. The cell below contains a simple string.
@@ -31,7 +30,7 @@ Here are the not-private methods and attributes of a standard Python `str`:
 [k for k in dir(my_string) if not k.startswith('_')]
 ```
 
-Remember that *a method is a function attached to an object*. In this case our object is a string. 
+Remember that _a method is a function attached to an object_. In this case our object is a string.
 
 Let's say we like reading values in our data as if they are being spoken in a loud voice. If this is the case we can alter the format of the string to make all letters uppercase, using the `.upper()` method:
 
@@ -120,8 +119,8 @@ For comparison, let's make an array containing the numerical HDI scores:
 
 ```{code-cell}
 # Human Development Index Scores for each country
-hdis_array = np.array([0.896, 0.668, 0.89 , 0.586, 
-                       0.844, 0.89 , 0.49 , 0.842, 
+hdis_array = np.array([0.896, 0.668, 0.89 , 0.586,
+                       0.844, 0.89 , 0.49 , 0.842,
                        0.883, 0.709, 0.733, 0.824,
                        0.828, 0.863, 0.894])
 ```
@@ -133,7 +132,7 @@ The `dtype` attribute of the first two arrays begins with `<U`, indicating we ar
 country_codes_array.dtype
 ```
 
-`U3` tells us that the array stored Unicode (`U`) strings up  three Unicode characters in length.
+`U3` tells us that the array stored Unicode (`U`) strings up three Unicode characters in length.
 
 ```{code-cell}
 # Show the dtype of the country names array (e.g. string data)
@@ -240,9 +239,9 @@ The `.replace()` string method is also available here, it will operate on all th
 names_series.str.replace("United States", "USA")
 ```
 
-By default, the **string-specific** `.replace` method (accessed through the `str` accessor - `.str.replace()`) will search for expressions *within* strings, as opposed to searching for exact, whole string matches.  This matches the behavior of the corresponding `.replace` method on strings.
+By default, the **string-specific** `.replace` method (accessed through the `str` accessor - `.str.replace()`) will search for expressions _within_ strings, as opposed to searching for exact, whole string matches. This matches the behavior of the corresponding `.replace` method on strings.
 
-This is different to the behaviour of the **non-string-specific** `.replace()` method which we encountered on an [earlier page](0_2_pandas_dataframes_attributes_methods). By default the non-string-specific `.replace()` method will search for *exactly matching whole strings*. Confusion between these two methods is a [common source of error](https://stackoverflow.com/a/50614413/23148902). 
+This is different to the behaviour of the **non-string-specific** `.replace()` method which we encountered on an [earlier page](0_2_pandas_dataframes_attributes_methods). By default the non-string-specific `.replace()` method will search for _exactly matching whole strings_. Confusion between these two methods is a [common source of error](https://stackoverflow.com/a/50614413/23148902).
 
 As such, by using the string-specific `.str.replace()` method we can easily replace substrings in multiple elements in the data at once, even where the whole strings are not the same. For instance:
 
@@ -280,9 +279,9 @@ names_series[names_series.str.contains("Ind")]
 
 ## String methods with Pandas DataFrames
 
-So, Pandas makes it somewhat easier than NumPy to perform operations on all the string elements at once. 
+So, Pandas makes it somewhat easier than NumPy to perform operations on all the string elements at once.
 
-Remember that *a DataFrame is a dictionary-like collection of Series*, and so everything we have just seen of strings in Pandas Series applies to the *columns* of a Data Frame.
+Remember that _a DataFrame is a dictionary-like collection of Series_, and so everything we have just seen of strings in Pandas Series applies to the _columns_ of a Data Frame.
 
 Let's import the [HDI data](https://ourworldindata.org/grapher/children-per-woman-vs-human-development-index) in a Pandas Data Frame:
 
@@ -342,7 +341,7 @@ df['Country Name'].str.upper()
 
 ```{code-cell}
 # Using the `str.count()` method
-df['Country Name'].str.count('a') 
+df['Country Name'].str.count('a')
 ```
 
 ```{code-cell}
@@ -423,7 +422,7 @@ gender_df['country_name'] = gender_df['country_name'].str.replace('Russian Feder
 gender_df[gender_df['country_name'].str.contains('Russia')]
 ```
 
-We are now ready for a clean and stress-free data merge! (*NB*: we are grossly exaggerating here, merging datasets is almost never stress-free...)
+We are now ready for a clean and stress-free data merge! (_NB_: we are grossly exaggerating here, merging datasets is almost never stress-free...)
 
 +++
 
@@ -439,10 +438,10 @@ Entries like `'Virgin Islands (U.S.)'` and `'St. Martin (French part)'` will be 
 
 We would therefore like to create a new Series containing versions of these names that are easier to type.
 
-That is what we have done with some hidden code.   The hidden code:
+That is what we have done with some hidden code. The hidden code:
 
-* Processes the `gender_df['country_name']` Series to make a new Series where we have replaced the original names (above) with versions of these names that are easier to type.
-* Taken this new Series, and run `sorted(new_series.unique())` to show you the new names.
+- Processes the `gender_df['country_name']` Series to make a new Series where we have replaced the original names (above) with versions of these names that are easier to type.
+- Taken this new Series, and run `sorted(new_series.unique())` to show you the new names.
 
 Have a careful look at the resulting list below - and work out which Pandas string methods have been used to get from the `gender_df['country_name']` Series to the new Series, to which we have applied `sorted(new_series.unique())`
 
@@ -451,7 +450,7 @@ Have a careful look at the resulting list below - and work out which Pandas stri
 sorted(answer_clean_series.unique())
 ```
 
-Your task now is to make a Series called `my_clean_series` which gives (with `sorted(my_clean_series.unique())`) a list that is *identical* to the list shown above.
+Your task now is to make a Series called `my_clean_series` which gives (with `sorted(my_clean_series.unique())`) a list that is _identical_ to the list shown above.
 
 You can perform the relevant string transformations using Pandas string methods on the `gender_df['country_name']` Series, and then run `sorted(my_clean_names.unique())` to get the final array.
 
@@ -459,7 +458,7 @@ There is a cell at the end of the exercise to check your answer.
 
 Try to do the string transformation in as few lines of code as possible and **using ONLY Pandas string methods**.
 
-**Hint**: There are many ways to do this, but for maximum beauty, you might consider having a look at [Python's str.maketrans function](https://docs.python.org/3.3/library/stdtypes.html?highlight=maketrans#str.maketrans).  And yes, you can use `str.maketrans` as well.  Or you can use some other algorithm of your choice.
+**Hint**: There are many ways to do this, but for maximum beauty, you might consider having a look at [Python's str.maketrans function](https://docs.python.org/3.3/library/stdtypes.html?highlight=maketrans#str.maketrans). And yes, you can use `str.maketrans` as well. Or you can use some other algorithm of your choice.
 
 ```{code-cell}
 # Your code here to create a new Pandas Series with modified
@@ -488,7 +487,7 @@ def check_names(proposed_solution):
         print('Desired unmatched', answer_arr[not_matching])
         return 'Remaining unmatched values'
     return 'Success'
-    
+
 check_names(my_clean_series)
 ```
 
@@ -499,11 +498,11 @@ check_names(my_clean_series)
 :class: dropdown
 :::
 
-Our solution is below. We have used the hint above to make a *translation table* from a set of characters to another set of characters, followed by a set of characters to delete, and then applied this translation table with the Pandas `.str.translate` method.
+Our solution is below. We have used the hint above to make a _translation table_ from a set of characters to another set of characters, followed by a set of characters to delete, and then applied this translation table with the Pandas `.str.translate` method.
 
 We then use the `.lower()` method to remove the capitalization.
 
-To make the array *identical* to the one shown above (and the one used for marking this exercise), we then re-rename `russia` to `russian_federation` before using `.unique()` to show the final array:
+To make the array _identical_ to the one shown above (and the one used for marking this exercise), we then re-rename `russia` to `russian_federation` before using `.unique()` to show the final array:
 
 ```{code-cell}
 soln_clean_series = (gender_df['country_name']
@@ -538,7 +537,7 @@ check_names(soln2_clean_series)
 
 This page looked at string methods in base python, NumPy and Pandas.
 
-NumPy and Python inherit their string methods from base python, but apply them in different ways. 
+NumPy and Python inherit their string methods from base python, but apply them in different ways.
 
 NumPy does not have a set of methods for applying string methods to every element of an array simultaneously. We need functions from the `np.char` module if we want this.
 

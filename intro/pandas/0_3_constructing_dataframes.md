@@ -20,11 +20,11 @@ objects (arrays) and other attributes.
 
 We focused on the maxims:
 
-- *"a Pandas Series is a numpy array, plus a `name` attribute and an array-like `index`"*
+- _"a Pandas Series is a numpy array, plus a `name` attribute and an array-like `index`"_
 
 ...and...
 
-- "a Pandas DataFrame is just a *dictionary-like collection of Series*".
+- "a Pandas DataFrame is just a _dictionary-like collection of Series_".
 
 This page will look at several different ways of constructing Data Frames. All
 of these use the `pd.DataFrame()` constructor but supply it with different
@@ -133,7 +133,7 @@ As you saw in [The Pandas from NumPy page](0_0_pandas_intro), Series extracted f
 new_col.index
 ```
 
-If we construct Data Frames using this method ("create a blank Data Frame, add the data later"), then any new columns we add must have equal numbers of elements.  This must be so, in order that the new column can share an index with the old.
+If we construct Data Frames using this method ("create a blank Data Frame, add the data later"), then any new columns we add must have equal numbers of elements. This must be so, in order that the new column can share an index with the old.
 
 ```{code-cell}
 # Add another new column with correct number of elements.
@@ -215,7 +215,7 @@ default_df = pd.DataFrame(two_d_arr)
 default_df
 ```
 
-Notice that Pandas constructed a default Index (integer row labels), because we did not pass one, *and* a default and corresponding set of column labels.  In fact these default column labels are also integers, of which more soon.  For now, let us make this Data Frame more standard by giving string column labels using the `columns=` argument to the constructor:
+Notice that Pandas constructed a default Index (integer row labels), because we did not pass one, _and_ a default and corresponding set of column labels. In fact these default column labels are also integers, of which more soon. For now, let us make this Data Frame more standard by giving string column labels using the `columns=` argument to the constructor:
 
 ```{code-cell}
 # Naming the columns when constructing from 2D array.
@@ -279,13 +279,13 @@ As we know, the Data Frame itself is just a dictionary-like collection of Series
 df3['A']
 ```
 
-Each Series inherits its `name` attribute from its *key* in the original dictionary:
+Each Series inherits its `name` attribute from its _key_ in the original dictionary:
 
 ```{code-cell}
 df3['A'].name
 ```
 
-...and its `.values` attribute from the *values* in the original dictionary:
+...and its `.values` attribute from the _values_ in the original dictionary:
 
 ```{code-cell}
 df3['A'].values
@@ -395,7 +395,7 @@ This occurred when we passed one Series with `int`-type Index values, and
 another with `str`-type Index values.
 
 Reflect back on the [first exercise](differing-indices) in the [Pandas from
-NumPy page](0_0_pandas_intro).  Why do you think Pandas is comparing `int`s to
+NumPy page](0_0_pandas_intro). Why do you think Pandas is comparing `int`s to
 `str`s as it creates the Data Frame?
 
 ::: {exercise-end}
@@ -409,9 +409,9 @@ Working through the [indices exercise](differing-indices) should have revealed
 that Pandas follows something like the following algorithm, when dealing with
 the `.index` of different Series intended for a Data Frame:
 
-* First check if the Series Indices are the same.  If so, use the Index of any
+- First check if the Series Indices are the same. If so, use the Index of any
   Series.
-* If they are not the same, first sort all Series by their Index values, and
+- If they are not the same, first sort all Series by their Index values, and
   use the resulting sorted Index.
 
 The first of these two steps will involve comparing `int` to `str`, hence the error.
@@ -436,7 +436,7 @@ df_single = pd.DataFrame(hdi_series)
 df_single
 ```
 
-**Be careful** - as you will see below, if you pass a *sequence* of Series, then the Series become the *rows*.  Here, the single Series becomes a single column in the Data Frame.
+**Be careful** - as you will see below, if you pass a _sequence_ of Series, then the Series become the _rows_. Here, the single Series becomes a single column in the Data Frame.
 
 The column name comes from the Series name:
 
@@ -444,14 +444,14 @@ The column name comes from the Series name:
 hdi_series.name
 ```
 
-As you remember, Series have an optional `.name` (for which the default is `None`).  For example:
+As you remember, Series have an optional `.name` (for which the default is `None`). For example:
 
 ```{code-cell}
 hdi_series_no_name = pd.Series(hdis_array, index=country_codes_array)
 hdi_series_no_name.name is None
 ```
 
-If you pass a Series with no `.name` (`.name == None`) then Panda must make a default column name.  It uses the same default for column names as it does for row names, that is, a `RangeIndex` containing integers, where, in this case, it only contains the integer value `0`:
+If you pass a Series with no `.name` (`.name == None`) then Panda must make a default column name. It uses the same default for column names as it does for row names, that is, a `RangeIndex` containing integers, where, in this case, it only contains the integer value `0`:
 
 ```{code-cell}
 df_single_no_name = pd.DataFrame(hdi_series_no_name)
@@ -491,7 +491,7 @@ df_single_now_named
 
 Series have an optional `.name` (for which the default is `None`).
 
-If we specify a `.name` for each Series, then we can pass a sequence of these named Series to `pd.DataFrame`; Pandas interprets these Series as *rows* in the Data Frame.  For example:
+If we specify a `.name` for each Series, then we can pass a sequence of these named Series to `pd.DataFrame`; Pandas interprets these Series as _rows_ in the Data Frame. For example:
 
 ```{code-cell}
 # Set not-default names for the Series.
@@ -502,8 +502,8 @@ df5
 ```
 
 Notice the `.names` of the Series become the `.index` values of the Data Frame
-(the row labels).  The .`index` of the two Series become the column labels. To
-get the same effect as we have had, up until now, we can *transpose* the Data
+(the row labels). The .`index` of the two Series become the column labels. To
+get the same effect as we have had, up until now, we can _transpose_ the Data
 Frame, so that the rows become columns, and the columns become the rows:
 
 ```{code-cell}

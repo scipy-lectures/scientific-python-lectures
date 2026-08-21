@@ -31,7 +31,7 @@ parts:
           - file: intro/pandas/0_4_dealing_with_missing_data_in_pandas
           - file: intro/pandas/0_5_filtering_data_with_pandas
           - file: intro/pandas/0_6_more_pandas_methods_strings
-          - file: intro/pandas/0_7_pandas_datetimes          
+          - file: intro/pandas/0_7_pandas_datetimes
       - file: intro/matplotlib/index
       - file: intro/scipy/index
       - file: intro/help/help

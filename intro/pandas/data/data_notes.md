@@ -7,10 +7,11 @@ orphan: true
 ## `year_2000_hdi_fert.csv`
 
 This derives from the {ref}`children-per-woman-data` with row
-selection from data in the [Gender Stats data](gender_stats).  See the
+selection from data in the [Gender Stats data](gender_stats). See the
 [make_y2k_hdi_fert](make_y2k_hdi_fert) notebook for the exact derivation.
 
 (children-per-woman-data)=
+
 ## `children-per-woman-vs-human-development-index` files
 
 See [Children HDI
@@ -22,6 +23,7 @@ citation.
 See [Gender Stats README](gender_stats) for source and citation.
 
 (airline-passengers-data)=
+
 ## `airline_passengers.csv`
 
 This is classic dataset from Box and Jenkins' "Time Series Analysis,

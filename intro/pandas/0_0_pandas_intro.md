@@ -77,7 +77,7 @@ country_codes_array
 For each of these countries, we have a Human Development Index (HDI) score. The
 HDI score for a country is a summary over multiple dimensions of human
 development: life expectancy, average years of schooling and Gross National
-Income per capita. 
+Income per capita.
 
 ![](images/hdiRoadMap.png)
 
@@ -94,10 +94,9 @@ hdis_array
 ```
 
 By the way, these data are real; they come from statistics compiled by the
-United Nations. For simplicity, we are only looking at data from the year
-2000.  See the [datasets and licenses page](data/data_notes) for more detail.
+United Nations. For simplicity, we are only looking at data from the year 2000. See the [datasets and licenses page](data/data_notes) for more detail.
 
-Let's say we also have the fertility rate for each country.  The fertility
+Let's say we also have the fertility rate for each country. The fertility
 rate is the average number of children born to to each woman. In due course,
 we're interested to see whether HDI can predict the fertility rate values.
 
@@ -134,7 +133,7 @@ As"](https://writingexplained.org/aka-or-aka).)
 We want a good way to keep it clear which value corresponds to each country.
 We're going to start with the HDI values.
 
-One way of doing that is to make a new data structure that contains the HDI values, but also has *labels* for each value.  Pandas has an object for that, called a `Series`.  You can construct a Series by passing the values and the labels:
+One way of doing that is to make a new data structure that contains the HDI values, but also has _labels_ for each value. Pandas has an object for that, called a `Series`. You can construct a Series by passing the values and the labels:
 
 ```{code-cell}
 # Make a Series from the `hdis_array`
@@ -142,9 +141,9 @@ hdi_series =  pd.Series(hdis_array, index=country_codes_array)
 hdi_series
 ```
 
-Notice the `index=` named argument.  Pandas calls the collection of labels for
-each value - the *Index*.  Think of the Index as you would an index for
-a book.  As the index in a book gives you the page number corresponding to
+Notice the `index=` named argument. Pandas calls the collection of labels for
+each value - the _Index_. Think of the Index as you would an index for
+a book. As the index in a book gives you the page number corresponding to
 particular word, the Pandas Index of a Series is a way of finding the element
 (value) corresponding to a particular country code.
 
@@ -176,7 +175,7 @@ hdi_series.loc['MEX']
 ```
 
 `.loc` is an accessor that allows us to pass labels (that are present in the
-`.index`), and that returns the corresponding value(s).  Here we ask for more
+`.index`), and that returns the corresponding value(s). Here we ask for more
 than one value, by passing in a list of labels:
 
 ```{code-cell}
@@ -185,12 +184,12 @@ hdi_series.loc[['KOR', 'USA']]
 ```
 
 Notice above, that passing one label to `.loc` returns the value, but passing
-two or more labels to `.loc` returns a subset of the Series.   Put another
+two or more labels to `.loc` returns a subset of the Series. Put another
 way, one label gives a value, but more than one label gives a Series.
 
-Indexing with `.loc` is called *label-based indexing*.  You can also index by
-position, as you would with a NumPy array.  Let's remind ourselves of basic
-indexing in NumPy; to get the thirteenth value in the *NumPy array* of HDI
+Indexing with `.loc` is called _label-based indexing_. You can also index by
+position, as you would with a NumPy array. Let's remind ourselves of basic
+indexing in NumPy; to get the thirteenth value in the _NumPy array_ of HDI
 values, one could run:
 
 ```{code-cell}
@@ -198,12 +197,12 @@ values, one could run:
 hdis_array[12]
 ```
 
-NumPy indexing with integers, like the above, is always indexing *by
-position*. We count from 0, so position 12 contains the thirteenth element.
+NumPy indexing with integers, like the above, is always indexing _by
+position_. We count from 0, so position 12 contains the thirteenth element.
 
 You can do the same type of indexing with a Pandas series, with the `.iloc`
-accessor.  Think of `.iloc` as *integer* indexing, or, if you like, `loc`ating
-with `i`ntegers.
+accessor. Think of `.iloc` as _integer_ indexing, or, if you like, `loc`ating
+with `i`integers.
 
 ```{code-cell}
 # Get the 13th element with `iloc` indexing.
@@ -254,7 +253,7 @@ fert_rate_series
 ```
 
 But now imagine we want to look at the corresponding `HDI` and `fert_rate`
-values.  We can do this separately, for each Series, like this:
+values. We can do this separately, for each Series, like this:
 
 ```{code-cell}
 # Label-based indexing
@@ -267,15 +266,16 @@ hdi_series.loc['MEX']
 ```
 
 (pd-data-frame-intro)=
+
 ## Pandas Data Frames (aka dictionary-like collection of series)
 
 Imagine though, that we're going to be doing this for multiple countries, and
-that we have multiple (not just two) values per country.  We would like a way
+that we have multiple (not just two) values per country. We would like a way
 of putting these Series together into something like a table, where the rows
 have labels (just as the Series values do), and the columns have names.
 
-Each Series corresponds to one column in this table.  Pandas calls these
-tables *Data Frames*.
+Each Series corresponds to one column in this table. Pandas calls these
+tables _Data Frames_.
 
 ```{code-cell}
 # Creating a DataFrame from a dictionary
@@ -286,9 +286,9 @@ df
 
 Think of the Data Frame as being like a dictionary of Series.
 
-* The keys in this dictionary are the column names we provided: `Human
-  Development Index` and `Fertility Rate`.
-* The values are the corresponding Series.
+- The keys in this dictionary are the column names we provided: `Human
+Development Index` and `Fertility Rate`.
+- The values are the corresponding Series.
 
 Notice that the Data Frame, like the Series, has an Index:
 
@@ -314,9 +314,9 @@ Perhaps your agile mind is racing ahead, wondering what Pandas would do if the
 two Series had different Indices.
 
 As an experiment, imagine now we have another Series that has a slightly
-different Index.  Let's say for example, that we have taken the original
+different Index. Let's say for example, that we have taken the original
 `fert_rate_series`, and sorted it in reverse alphabetical order by Index
-value.  Here is the Pandas code to do that:
+value. Here is the Pandas code to do that:
 
 ```{code-cell}
 # Sort fert_rate_series in reverse alphabetical order by Code.
@@ -332,7 +332,7 @@ df2 = pd.DataFrame({'Human Development Index': hdi_series,
                     'Fertility Rate': fert_rate_reversed})
 ```
 
-What would you expect to see if you display `df2`?  Have a think, then uncomment the cell below to display the value of `df2`:
+What would you expect to see if you display `df2`? Have a think, then uncomment the cell below to display the value of `df2`:
 
 ```{code-cell}
 # df2
@@ -349,7 +349,7 @@ df3 = pd.DataFrame({'Fertility Rate': fert_rate_reversed,
                     'Human Development Index': hdi_series})
 ```
 
-Yes, the columns will be in the opposite order, `Fertility Rate` first, then `Human Development Index` second.  But what order will the rows be in (what will the Index order be)?
+Yes, the columns will be in the opposite order, `Fertility Rate` first, then `Human Development Index` second. But what order will the rows be in (what will the Index order be)?
 
 Reflect, then try running the cell below after removing the `# `:
 
@@ -357,7 +357,7 @@ Reflect, then try running the cell below after removing the `# `:
 # df3
 ```
 
-Was your theory right?  If not, what is your new theory?
+Was your theory right? If not, what is your new theory?
 
 Now consider this:
 
@@ -372,14 +372,14 @@ df4 = pd.DataFrame({'Fertility Rate': fert_rate_reversed,
                     'Human Development Index': hdi_reversed})
 ```
 
-What does your new theory predict about the new `df4`?  Consider, then have a look.
+What does your new theory predict about the new `df4`? Consider, then have a look.
 
 ```{code-cell}
 # df4
 ```
 
-Maybe your theory does fit, maybe it does not.  If it does not, what is your
-new theory?  To test further, consider what would happen here:
+Maybe your theory does fit, maybe it does not. If it does not, what is your
+new theory? To test further, consider what would happen here:
 
 ```{code-cell}
 # Scramble the row order a bit.
@@ -409,12 +409,12 @@ Pandas uses to match the Indices of Series, when creating Data Frames?
 
 Here's our hypothesis of the algorithm:
 
-* First check if the Series Indices are the same.  If so, use the Index of any
+- First check if the Series Indices are the same. If so, use the Index of any
   Series.
-* If they are not the same, first sort all Series by their Index values, and
+- If they are not the same, first sort all Series by their Index values, and
   use the resulting sorted Index.
 
-What was your hypothesis?  If it was different from ours, why do you think yours fits the results better?  What tests would you do to test your theory against our theory?
+What was your hypothesis? If it was different from ours, why do you think yours fits the results better? What tests would you do to test your theory against our theory?
 
 ::: {solution-end}
 :::
@@ -423,7 +423,7 @@ What was your hypothesis?  If it was different from ours, why do you think yours
 
 ## Selecting columns from a Data Frame
 
-We can get the `Human Development Index` (`hdi`) Series by name, by using *direct indexing* into the Data Frame, like this:
+We can get the `Human Development Index` (`hdi`) Series by name, by using _direct indexing_ into the Data Frame, like this:
 
 ```{code-cell}
 # Getting the Human Development Index series by name
@@ -436,32 +436,32 @@ hdi_from_df
 
 **Direct and indirect indexing**
 
-We use the term *direct indexing* to mean indexing without going through an
-accessor.  Direct indexing therefore, is where the opening square bracket
+We use the term _direct indexing_ to mean indexing without going through an
+accessor. Direct indexing therefore, is where the opening square bracket
 follows the Data Frame or Series value, as in: `df['Human Development
-Index']`.  There is no accessor method between the Data Frame value `df` and
-the opening square bracket.  It is a detail for our purposes, but this means
+Index']`. There is no accessor method between the Data Frame value `df` and
+the opening square bracket. It is a detail for our purposes, but this means
 it is the `df.__getitem__` method that handles the indexing request.
 
-By contrast, *indirect indexing* is where we index into the Data Frame or
-Series object via an *accessor method* such as `loc` and `iloc`.  In this
+By contrast, _indirect indexing_ is where we index into the Data Frame or
+Series object via an _accessor method_ such as `loc` and `iloc`. In this
 case, the square bracket follows the accessor method name, rather than the
-object itself.  Thus `df.iloc[0]` (see below) is indirect indexing, using the
+object itself. Thus `df.iloc[0]` (see below) is indirect indexing, using the
 `iloc` accessor. Again, this is a detail, but indirect indexing with e.g.
 `iloc` means it is the (e.g.) `df.iloc.__getitem__` method that handles the
 indexing request.
 
 In general, in Pandas, the behavior of direct indexing can differ from that of
 indirect indexing with `.loc` or `.iloc`, particularly direct indexing of Data
-Frames.  As a general rule, it is wise to prefer indirect indexing with `.loc`
+Frames. As a general rule, it is wise to prefer indirect indexing with `.loc`
 and `.iloc` unless you are confident about the behavior of direct indexing.
 
 You'll notice that we restrict ourselves to using direct indexing on Data
 Frames (not Series), and when we do use direct indexing, we use it in two
 specific situations, for which is it very easy to reason about the results:
 
-* Selection of columns by column name;
-* Selection of rows with Boolean Series.
+- Selection of columns by column name;
+- Selection of rows with Boolean Series.
 
 More on this later.
 
@@ -472,10 +472,10 @@ Remember that a Data Frame is a dictionary-like collection of Series.
 The `Human Development Index` column is now a Series contained inside the `df`
 Data Frame.
 
-We have fetched that embedded Series by using *direct indexing*.  We place the
+We have fetched that embedded Series by using _direct indexing_. We place the
 column name (`'Human Development Index'`) between square brackets following
 the data frame value, so `'Human Development Index'` specified what we want to
-select from the Data Frame.  We get back a new Series, extracted from the Data Frame:
+select from the Data Frame. We get back a new Series, extracted from the Data Frame:
 
 ```{code-cell}
 # Show the type of `hdi_from_df`
@@ -483,6 +483,7 @@ type(hdi_from_df)
 ```
 
 (series-names)=
+
 ## What's in a name?
 
 You can see in the output display that the extracted Series now has an extra
@@ -494,7 +495,7 @@ hdi_from_df
 ```
 
 We said above that Series are the association between an array of `.values`,
-and a corresponding collection of labels, in `.index`.  Now we see that the
+and a corresponding collection of labels, in `.index`. Now we see that the
 Series also has a `.name`, that we had not set in our original series:
 
 ```{code-cell}
@@ -504,7 +505,7 @@ hdi_from_df.name
 
 Above, when we first built the series of HDI values and labels with
 `pd.Series`, we not set the name of the Series, so it got the default `.name`
-of `None`.  We rebuild it here:
+of `None`. We rebuild it here:
 
 ```{code-cell}
 # We rebuild with pd.Series.
@@ -545,14 +546,14 @@ on the Data Frame, to get rows by label (index value) or by position:
 df.loc['MEX']
 ```
 
-Notice what Pandas did here.  As for `.loc` indexing into Series, `.loc`
-indexing into the Data Frame *with a single label* returns the *contents* of
-the row.   And Pandas, being a general thinker, sees that the contents of the
-row are values, that have labels, where the labels are the column names.  Thus
+Notice what Pandas did here. As for `.loc` indexing into Series, `.loc`
+indexing into the Data Frame _with a single label_ returns the _contents_ of
+the row. And Pandas, being a general thinker, sees that the contents of the
+row are values, that have labels, where the labels are the column names. Thus
 it returns the row to you as a new Series, where the Series has values from
 the row values, and labels from the column names.
 
-Indexing with more than one value returns a subset of the Data Frame.  In
+Indexing with more than one value returns a subset of the Data Frame. In
 strict parallel to indexing into a Series, indexing with multiple values into
 a Data Frame, returns a subset of the Data Frame, which is itself, a Data
 Frame.
@@ -563,19 +564,20 @@ df.loc[['KOR', 'USA']]
 ```
 
 (what-is-a-series)=
-## What is a Series?  What is a Data Frame?
 
-A *Series* is the association of:
+## What is a Series? What is a Data Frame?
 
-* An array of values (`.values`)
-* A sequence of labels for each value (`.index`)
-* A name (which can be `None`).
+A _Series_ is the association of:
 
-A *Data Frame* is a dictionary-like collection of Series.
+- An array of values (`.values`)
+- A sequence of labels for each value (`.index`)
+- A name (which can be `None`).
 
-For a Series, the `.index` has labels corresponding to the *values*.
+A _Data Frame_ is a dictionary-like collection of Series.
 
-For a Data Frame, the `.index` has labels corresponding the *rows*.
+For a Series, the `.index` has labels corresponding to the _values_.
+
+For a Data Frame, the `.index` has labels corresponding the _rows_.
 
 +++
 
@@ -609,7 +611,7 @@ population_array = np.array([  19.1324, 174.0182,   30.8918,
 population_array
 ```
 
-We are about to *put* a new Series into the Data Frame.
+We are about to _put_ a new Series into the Data Frame.
 
 Remember that we can fetch the Series corresponding to a particular column like this:
 
@@ -619,9 +621,9 @@ hdi_from_df = df['Human Development Index']
 hdi_from_df
 ```
 
-Here we are *indexing* (in fact *direct indexing*) into the Data Frame `df`, on the right-hand-side (RHS) of the ` = ` to fetch the corresponding Series.
+Here we are _indexing_ (in fact _direct indexing_) into the Data Frame `df`, on the right-hand-side (RHS) of the `=` to fetch the corresponding Series.
 
-We can *put* data in a new or existing column in the Data Frame by using
+We can _put_ data in a new or existing column in the Data Frame by using
 direct indexing on the left-hand-side of the assignment, like this:
 
 ```{code-cell}
@@ -663,7 +665,7 @@ pop_from_df.values
 ```
 
 Notice that the extracted `pop_from_df` Series has an Index, and the Index is
-the same as the Index of the Data Frame.  In other words, in extracting the
+the same as the Index of the Data Frame. In other words, in extracting the
 `'Population'` Series, the Series has inherited the Index from the Data Frame.
 
 We could have used the `pd.Series()` constructor to build the same Series, built from its components:
@@ -708,15 +710,16 @@ loaded_df
 
 You'll notice that currently, the index of the Data Frame we just loaded is
 a sequence of numbers. This is the Index that Pandas creates by default, unless
-you give it some other information on what the Index should be.  We'll look
+you give it some other information on what the Index should be. We'll look
 more at this default Index on the [next page](0_1_to_loc_or_iloc).
 
 We can use the `.set_index()` method of the Data Frame to take the column
 containing the three-letter country codes and set it to be the row labels of
-the Data Frame (the Index).  We will look more at Pandas methods in later
+the Data Frame (the Index). We will look more at Pandas methods in later
 pages.
 
 Here we tell `.set_index()` the column name to use as the `.index`
+
 - in this case we use the `'Code'` column, containing the country codes:
 
 ```{code-cell}
@@ -738,7 +741,7 @@ loading in a `.csv` file using `pd.read_csv()`.
 
 We built the `df` Data Frame from NumPy arrays and strings.
 
-Both Data Frames contain the same data, and the same labels.  In fact, we can
+Both Data Frames contain the same data, and the same labels. In fact, we can
 use the `.equals` method of Data Frames to ask Pandas whether it agrees the
 Data Frames are equivalent:
 
@@ -755,9 +758,9 @@ They are equivalent.
 
 In fact the `df` and `loaded_labeled_df` data frames are not exactly the same.
 If you look very carefully at the notebook output for the two data frames, you
-may be able to spot the difference.  Pandas `.equals` does not care about this
-difference, but let's imagine we did.  Try to work out how to change the `df`
-Data Frame to give *exactly* the same display as we see for
+may be able to spot the difference. Pandas `.equals` does not care about this
+difference, but let's imagine we did. Try to work out how to change the `df`
+Data Frame to give _exactly_ the same display as we see for
 `loaded_labeled_df`.
 
 +++
@@ -769,7 +772,7 @@ Data Frame to give *exactly* the same display as we see for
 :class: dropdown
 :::
 
-You probably spotted that the `loaded_labeled_df` displays a `name` for the Index.  You can also see this displaying the `.index` on its own:
+You probably spotted that the `loaded_labeled_df` displays a `name` for the Index. You can also see this displaying the `.index` on its own:
 
 ```{code-cell}
 loaded_labeled_df.index

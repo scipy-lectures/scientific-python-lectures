@@ -17,14 +17,14 @@ kernelspec:
 
 From the [What is a Series section](what-is-a-series), remember our maxim:
 
-> A *Series* is the association of:
+> A _Series_ is the association of:
 >
-> * An array of values (`.values`)
-> * A sequence of labels for each value (`.index`)
-> * A name (which can be `None`).
+> - An array of values (`.values`)
+> - A sequence of labels for each value (`.index`)
+> - A name (which can be `None`).
 
 On this page, we think particularly about the Index (row labels) for Series
-and Data Frames.  We also discuss the Index that Pandas creates if you do not
+and Data Frames. We also discuss the Index that Pandas creates if you do not
 specify one.
 
 The default Index that Pandas makes reminds us of the differences between
@@ -78,7 +78,7 @@ There is a fundamental difference between the behaviors of `.iloc` and `.loc`
 when slicing.
 
 Standard slicing in Python uses integers to specify positions, and gives the
-elements *starting at* the start position, *up to but not including* the stop
+elements _starting at_ the start position, _up to but not including_ the stop
 position.
 
 ```{code-cell}
@@ -94,15 +94,15 @@ The same rule applies to indexing Python lists, or NumPy arrays:
 country_codes_array[2:7]
 ```
 
-`.iloc` is indexing by *position*, so it may not be surprising that it slices using the same rules as by-position indexing in NumPy:
+`.iloc` is indexing by _position_, so it may not be surprising that it slices using the same rules as by-position indexing in NumPy:
 
 ```{code-cell}
 # From element at position 2, up to (not including) position 7.
 hdi_series.iloc[2:7]
 ```
 
-Now consider slicing by *label*.  The *start* and *stop* values are no longer
-positions, but labels.   The label at position 2 is `'CAN'`.  The label at
+Now consider slicing by _label_. The _start_ and _stop_ values are no longer
+positions, but labels. The label at position 2 is `'CAN'`. The label at
 position 7 is the until-recently-European country`'GBR'`.
 
 Here's what we get from slicing using `.loc`:
@@ -112,10 +112,10 @@ Here's what we get from slicing using `.loc`:
 hdi_series.loc['CAN':'GBR']
 ```
 
-First notice that label indexing uses values from the Index as start and stop.  Unlike NumPy or `.iloc` indexing, which by definition have integers as start and stop (because these are positions), `.loc` indexing start and stop values must match the values in the Index.  In this case, the Index has `str` values, so the start and stop values are also `str`.
+First notice that label indexing uses values from the Index as start and stop. Unlike NumPy or `.iloc` indexing, which by definition have integers as start and stop (because these are positions), `.loc` indexing start and stop values must match the values in the Index. In this case, the Index has `str` values, so the start and stop values are also `str`.
 
 Second, notice that we got one more value from `.loc` indexing into the
-Series, because `.loc` slicing — unlike `.iloc` or NumPy indexing — *includes*
+Series, because `.loc` slicing — unlike `.iloc` or NumPy indexing — _includes_
 the stop value.
 
 In the last cell, using `.loc`, `'GBR'` was the stop value, and we got the
@@ -127,9 +127,9 @@ This is a major difference from NumPy and `.iloc` behavior.
 
 **Stop and `.loc`**
 
-Why does `.loc` slicing return the label corresponding to the stop value, instead of going *up to but not including* the stop value, like NumPy or `.iloc`?
+Why does `.loc` slicing return the label corresponding to the stop value, instead of going _up to but not including_ the stop value, like NumPy or `.iloc`?
 
-We should say that this is absolutely the right choice.  But why?
+We should say that this is absolutely the right choice. But why?
 
 Please consider reflecting before reading on.
 
@@ -138,18 +138,18 @@ Please consider reflecting before reading on.
 Please click the link above to get you into a reflective mood.
 
 Back to slicing; let's consider the problem of selecting some elements that you
-want.  You can see the Index.  In your case you want all the elements from
-`CAN` through `GBR`.  When the result includes the stop label, then its obvious
+want. You can see the Index. In your case you want all the elements from
+`CAN` through `GBR`. When the result includes the stop label, then its obvious
 what to do; you do what you do above: `hdi_series.loc['CAN':'GBR']`.
 
-Now consider the alternative — where slicing gives you the elements *up to but
-not including* the stop value.  Your problem now becomes annoying and
+Now consider the alternative — where slicing gives you the elements _up to but
+not including_ the stop value. Your problem now becomes annoying and
 error-prone. You have to look at the index, identify the last label for the
 element you do want (`'GBR'`) and then go one element further, and get the
-label for the element *after* the one you want (in this case `'IND'`.  In an
-alternative world, where `.loc` was *up to and not including* the stop value,
+label for the element _after_ the one you want (in this case `'IND'`. In an
+alternative world, where `.loc` was _up to and not including_ the stop value,
 indexing to get elements `'CAN'` through `'GBR'` would be
-`hdi_series.loc['CAN':'IND']`.  Now imagine that for some reason I had deleted
+`hdi_series.loc['CAN':'IND']`. Now imagine that for some reason I had deleted
 the `'IND'` element, so the following element label is `'ITA'`. In that case,
 despite the fact nothing had changed in the elements I'm interested in, I now
 have to write `hdi_series.loc['CAN':'ITA']` to get the exact same elements.
@@ -164,7 +164,7 @@ should reveal that this was still the right choice.
 ## Index labels need not be unique
 
 We haven't specified so far, but there is no general requirement for Pandas
-Index values to be unique.  Consider the following Series:
+Index values to be unique. Consider the following Series:
 
 ```{code-cell}
 not_unique_labels = pd.Series(['France', 'Italy', 'UK', 'Great Britain'],
@@ -207,7 +207,7 @@ hdi_series_def_index = pd.Series(hdis_array)
 hdi_series_def_index
 ```
 
-Where we did not specify an Index, Pandas has automatically generated one.  As
+Where we did not specify an Index, Pandas has automatically generated one. As
 you can see, Pandas displays this default index as a sequence of integers,
 starting at 0, and going up to the number of elements minus 1.
 
@@ -222,7 +222,7 @@ hdi_series_def_index.index
 
 `RangeIndex` is similar to Python's `range`; it is a space-saving container
 that represents a sequence of integers from a start value up to, but not
-including a stop value, with an optional step size.  Here `RangeIndex`
+including a stop value, with an optional step size. Here `RangeIndex`
 represents the numbers 0 through 14, just as `range` can represent the numbers
 0 through 14:
 
@@ -279,14 +279,14 @@ As you have seen, you will have got the default `.index`, a `RangeIndex`:
 a_series.index
 ```
 
-What do you expect to see for `list(a_series)`?  Reflect, then uncomment below
+What do you expect to see for `list(a_series)`? Reflect, then uncomment below
 and try it:
 
 ```{code-cell}
 # list(a_series)
 ```
 
-What do you expect to see for `list(a_series.index)`?  Reflect, then try it:
+What do you expect to see for `list(a_series.index)`? Reflect, then try it:
 
 ```{code-cell}
 # list(a_series.index)
@@ -298,20 +298,20 @@ The Series method `.sort_values` returns a new Series sorted by the values.
 sorted_series = a_series.sort_values()
 ```
 
-Now what do you expect to see for `list(sorted_series)`?  Reflect, then
+Now what do you expect to see for `list(sorted_series)`? Reflect, then
 uncomment below and try it:
 
 ```{code-cell}
 # list(sorted_series)
 ```
 
-How about `list(sorted_series.index)`?  Reflect, try:
+How about `list(sorted_series.index)`? Reflect, try:
 
 ```{code-cell}
 # list(sorted_series.index)
 ```
 
-What kind of thing do you think the `.index` is now?  Reflect and then:
+What kind of thing do you think the `.index` is now? Reflect and then:
 
 ```{code-cell}
 # type(sorted_series.index)
@@ -326,13 +326,13 @@ Can you explain the result of the last cell?
 :class: dropdown
 :::
 
-`list` applied to the Series gives a list of the `.values`.  List applied to
-the `.index` gives a list of the values implied by the Index.  For
+`list` applied to the Series gives a list of the `.values`. List applied to
+the `.index` gives a list of the values implied by the Index. For
 a `RangeIndex`, this iterates over the Index, extracting all the implied
 values.
 
 You should have discovered that the `sorted_series` now has an Index of
-integers, and no longer has a `RangeIndex`.  The question was prompting you to
+integers, and no longer has a `RangeIndex`. The question was prompting you to
 reflect that Pandas can only use `RangeIndex` as a space-saving device if the
 integers continue to be representable as an ordered sequence with equal steps.
 Otherwise it will have to rebuild an array of integers to represent the index.
@@ -387,13 +387,13 @@ position indexing.**
 
 ## Why you should never use direct indexing on Series
 
-[Direct indexing](direct-indirect) occurs where the indexing bracket `[` directly follows the Series value.  Conversely, indirect-indexing is indexing where the indexing bracket `[` follows `.loc` or `.iloc`.
+[Direct indexing](direct-indirect) occurs where the indexing bracket `[` directly follows the Series value. Conversely, indirect-indexing is indexing where the indexing bracket `[` follows `.loc` or `.iloc`.
 
 Now consider the situation, that we encourage you never to put yourself in,
-where you use direct indexing on a Series.  You can't specify what type of
-indexing you mean with direct indexing.  Do you mean label indexing or position
-indexing?  Pandas will have to make assumptions, and these assumptions may well
-be wrong for what you intend.  Did we mention, you should never use direct
+where you use direct indexing on a Series. You can't specify what type of
+indexing you mean with direct indexing. Do you mean label indexing or position
+indexing? Pandas will have to make assumptions, and these assumptions may well
+be wrong for what you intend. Did we mention, you should never use direct
 indexing on Series?
 
 OK, let's imagine that you decided we were being too strict, and used direct
@@ -413,9 +413,9 @@ operations on the Series — such as sorting and filtering — that will mean th
 the integer labels no longer correspond to positions.
 
 For instance let's sort the data in our `hdi_series_def_index` Series in
-ascending order.  To do this we will use the `.sort_values()` method. We will
+ascending order. To do this we will use the `.sort_values()` method. We will
 cover Pandas methods in detail on [later
-pages](0_2_pandas_dataframes_attributes_methods).  The `.sort_values()` method
+pages](0_2_pandas_dataframes_attributes_methods). The `.sort_values()` method
 sorts the values of the Series in ascending order, taking the matching labels
 in the index with it.
 
@@ -426,7 +426,7 @@ hdi_series_def_index_sorted
 ```
 
 Look at the left hand side of the display from the cell above — in particular,
-look at the Index.  The numbers within the Index no longer run sequentially
+look at the Index. The numbers within the Index no longer run sequentially
 from 0 to 14. This means that the integer position of each element in the
 Series no longer matches up with the index label. This can be a potential
 source of errors.
@@ -439,7 +439,7 @@ If you haven't done the exercise above, please consider doing it.
 
 If you have, you will have found already that the sorted Series has a new
 Index, that is no longer a `RangeIndex` (because the integer labels now cannot
-be represented as a regular sequence of integers).  Thus
+be represented as a regular sequence of integers). Thus
 `type(hdi_series_def_index_sorted.index)` will be of type `Index`, rather than
 `RangeIndex`.
 
@@ -452,7 +452,7 @@ and direct indexing (`[4]`) as we did above.
 (Did we already say — you should never use direct indexing on Series?)
 
 As you remember, when we did this on the data before sorting, all these
-methods returned the same value.  Now, however:
+methods returned the same value. Now, however:
 
 ```{code-cell}
 # Integer indexing on the sorted data
@@ -527,16 +527,16 @@ hdi_series.loc['DEU']
 ```
 
 It is much harder to get confused when using integer indices as long as you
-stick with *indirect indexing* (`.loc` and `.iloc`).  You've specified what you
-mean (by label or by position) using the name of the method.  However, things
-can get dangerously confusing if you use an integer index and *direct
-indexing*.  Which is why you should not use direct indexing with Series.
+stick with _indirect indexing_ (`.loc` and `.iloc`). You've specified what you
+mean (by label or by position) using the name of the method. However, things
+can get dangerously confusing if you use an integer index and _direct
+indexing_. Which is why you should not use direct indexing with Series.
 
 Just to remind you, `hdi_series` has the country codes (strings like `'DEU'`)
 as the index.
 
-Now, consider, what would happen if we used an integer for *direct indexing*?
-As in something like `hdi_series[4]`?  Because we haven't
+Now, consider, what would happen if we used an integer for _direct indexing_?
+As in something like `hdi_series[4]`? Because we haven't
 specified that we want to index with labels (`.loc`) or positions (`.iloc`),
 Pandas has to make some decision as to how to proceed.
 
@@ -548,13 +548,13 @@ Pandas has to make some decision as to how to proceed.
 We assume you've just read the text above the exercise, where we consider what
 you would expect to happen if:
 
-* Your Series has a index of strings.
-* You use direct indexing on this Series with an integer.
+- Your Series has a index of strings.
+- You use direct indexing on this Series with an integer.
 
 As in `hdi_series[4]`. (Don't try it yet).
 
 Pause and reflect what decision you would make in this situation, if you were
-a Pandas developer, deciding what Pandas should do.  What are the options? Why
+a Pandas developer, deciding what Pandas should do. What are the options? Why
 would you chose one option over another?
 
 ::: {exercise-end}
@@ -564,21 +564,21 @@ would you chose one option over another?
 :class: dropdown
 :::
 
-Briefly you have two options we could think of as the Pandas developer.  You
+Briefly you have two options we could think of as the Pandas developer. You
 could:
 
-* Assume that the user is trying to index by label, and raise an error to say
+- Assume that the user is trying to index by label, and raise an error to say
   that the label `4` is not in the index (because your index is a set of
   strings).
-* Assume that the user is trying to index by position (Pandas' behavior in
+- Assume that the user is trying to index by position (Pandas' behavior in
   versions prior to 3).
-* Try to persuade the user not to use direct-indexing on Series.
+- Try to persuade the user not to use direct-indexing on Series.
 
 However, there's a big problem with the second option, assuming that the user
-is trying to index by position.  As you have seen above, in general Pandas
-treats direct indexing as by label.  So, if there are integer labels, it will,
+is trying to index by position. As you have seen above, in general Pandas
+treats direct indexing as by label. So, if there are integer labels, it will,
 without complaint, give you the value corresponding the integer label, not the
-position.  This means that you sometimes treat direct indexing as by label
+position. This means that you sometimes treat direct indexing as by label
 (when there is an integer index and integer value between the `[]`), and other
 times as by position (when there is a non-integer index and integer value
 between the `[]`).
@@ -586,7 +586,7 @@ between the `[]`).
 In fact, Pandas initially went for this second option, because, if you keep
 track of whether your index is an integer index or not, it can be convenient
 to avoid the `.iloc` and use direct indexing for position-based indexing (on
-a Series with a non-integer index).  But recently (and as of Pandas version
+a Series with a non-integer index). But recently (and as of Pandas version
 3), the Pandas developers [have rethought this
 decision](https://github.com/pandas-dev/pandas/issues/49612).
 
@@ -595,10 +595,10 @@ decision](https://github.com/pandas-dev/pandas/issues/49612).
 
 +++
 
-You are about to see the result direct indexing on a Series.  In older
+You are about to see the result direct indexing on a Series. In older
 versions of Pandas (before version 3) this did something frightening, which
-was to *guess* whether we meant to do `.loc` or `.iloc` indexing depending on
-whether the index values are integers.  Version 3 takes (in our view) a more
+was to _guess_ whether we meant to do `.loc` or `.iloc` indexing depending on
+whether the index values are integers. Version 3 takes (in our view) a more
 explicit view — and always assumes direct indexing is on labels (`.loc`).
 
 As you have already seen above, if the index consists of integers, and you
@@ -606,7 +606,7 @@ specify integers in your direct indexing, then Pandas will assume you mean the
 values to be labels (like `.loc`).
 
 If the index does not consist of integers, and you specify integers in your
-direct indexing, then the result depends on the version of Pandas you are running.  Current versions (version 3 or greater) will raise an error, assuming you meant to index by label (`loc` behavior).  Previous versions assumed you meant the values to be positions (like `.iloc`), but would give you a warning about the upcoming change in version 3.
+direct indexing, then the result depends on the version of Pandas you are running. Current versions (version 3 or greater) will raise an error, assuming you meant to index by label (`loc` behavior). Previous versions assumed you meant the values to be positions (like `.iloc`), but would give you a warning about the upcoming change in version 3.
 
 ```{code-cell}
 :tags: [raises-exception]
@@ -634,9 +634,9 @@ location.
 
 +++
 
-We've said it before, we say it again here — we suggest you *always* specify
+We've said it before, we say it again here — we suggest you _always_ specify
 `.loc` or `.iloc` when indexing a Series, in order not to confuse yourself and
-your readers as to whether you mean to index by label or position.   In this
+your readers as to whether you mean to index by label or position. In this
 case `.loc` means we need to use a string, preventing confusion (in Pandas 3)
 and errors (Pandas 2) where we use a number and return data we do not expect.
 
@@ -650,20 +650,20 @@ hdi_series_sorted.loc['DEU']
 **Direct indexing is consistent in older Pandas**
 
 If you're using the latest Pandas (version >= 3), then you should find
-indexing is explicit and consistent.  You need read no further in this
+indexing is explicit and consistent. You need read no further in this
 warning.
 
 However, if you're still using Pandas <3, there are more inconsistencies.
 
 As Pandas was shifting towards more explicit choice of labels over positions
-in direct indexing, there were remaining inconsistencies.  These were resolved
+in direct indexing, there were remaining inconsistencies. These were resolved
 in version, so if you want to avoid confusion, skip the rest of this note, and
-remember *never use direct indexing on a Series*.
+remember _never use direct indexing on a Series_.
 
-If you got this far, we admire your courage.  This warning is only to say that
-Pandas currently treats *slices* in direct indexing differently from
-individual positions or labels.  Specifically, at the moment, it will always
-assume integers in slices are positions and not labels.  Try some experiments
+If you got this far, we admire your courage. This warning is only to say that
+Pandas currently treats _slices_ in direct indexing differently from
+individual positions or labels. Specifically, at the moment, it will always
+assume integers in slices are positions and not labels. Try some experiments
 with `hdi_series[:5]` (string label Series) and `hdi_series_def_index[:5]`
 (integer label Series).
 
@@ -672,7 +672,7 @@ issue](https://github.com/pandas-dev/pandas/issues/49612) for discussion if
 you're interested.
 
 If you're using Pandas version 2, you may be confused after trying the
-experiments above.  Summary for new and old versions — always use `.iloc` and
+experiments above. Summary for new and old versions — always use `.iloc` and
 `.loc` to avoid ambiguity.
 
 :::
@@ -707,7 +707,7 @@ two_d_arr
 ```
 
 If we index with one expression between the indexing brackets, we select
-*rows*:
+_rows_:
 
 ```{code-cell}
 # Select the second row.
@@ -738,7 +738,7 @@ two_d_arr[:, 2]
 Because a Data Frame has rows and columns, it corresponds to a two-dimensional
 array.
 
-Let us make an example Data Frame for illustration.  In fact we'll return to the Data Frame from [the introduction to `pd.DataFrame`](pd-data-frame-intro).
+Let us make an example Data Frame for illustration. In fact we'll return to the Data Frame from [the introduction to `pd.DataFrame`](pd-data-frame-intro).
 
 ```{code-cell}
 # Fertility rate scores for each country
@@ -815,39 +815,39 @@ example_df.iloc[1, :]
 
 We are now ready for the definitive advice for your life using indexing in Pandas.
 
-1. Never use direct indexing on Series.  Always use indirect indexing (`.loc`
+1. Never use direct indexing on Series. Always use indirect indexing (`.loc`
    and `.iloc`).
-1. You *can and should* use direct indexing on Data Frames, but in two and
-   only two specific cases.  These are:
+1. You _can and should_ use direct indexing on Data Frames, but in two and
+   only two specific cases. These are:
+   1. _Direct indexing with a column name_, or sequence of column names. Here
+      the column name (label) or sequence of column names follows the Data
+      Frame value and the opening `[` — as in:
 
-    1. *Direct indexing with a column name*, or sequence of column names. Here
-       the column name (label) or sequence of column names follows the Data
-       Frame value and the opening `[` — as in:
+      ```python
+      example_df['Human Development Index']
+      ```
 
-       ```python
-       example_df['Human Development Index']
-       ```
+      and
 
-       and
+      ```python
+      example_df[['Human Development Index', 'Fertility Rate']
+      ```
 
-       ```python
-       example_df[['Human Development Index', 'Fertility Rate']
-       ```
-    1. *Direct indexing with a Boolean Series*.  See [the filtering
-       page](0_5_filtering_data_with_pandas) for much more on Boolean Series
-       and indexing.  The Boolean Series follows the data frame value and the
-       opening `[`, and selects rows for which the Boolean Series has True
-       values — as in:
+   1. _Direct indexing with a Boolean Series_. See [the filtering
+      page](0_5_filtering_data_with_pandas) for much more on Boolean Series
+      and indexing. The Boolean Series follows the data frame value and the
+      opening `[`, and selects rows for which the Boolean Series has True
+      values — as in:
 
-       ```python
-       # Make a Boolean Series.
-       have_high_hdi = example_df['Human Development Index'] > 0.6
-       # Select rows by indexing with Boolean Series.
-       high_df = example_df[have_high_hdi]
-       ```
+      ```python
+      # Make a Boolean Series.
+      have_high_hdi = example_df['Human Development Index'] > 0.6
+      # Select rows by indexing with Boolean Series.
+      high_df = example_df[have_high_hdi]
+      ```
 
 We strongly suggest that you restrict your use of direct indexing to a) Data
-Frames (not Series) and b) these specific cases.  We do the same.
+Frames (not Series) and b) these specific cases. We do the same.
 
 +++
 
@@ -859,8 +859,8 @@ indexing into Pandas Series.
 We discussed the default index that Pandas provides, of integer labels, and we
 showed how to get Series values by label (`.loc`) and by position (`.iloc`).
 
-`.loc` differs from `.iloc` and other Python indexing in that slices *include
-their stop value*.
+`.loc` differs from `.iloc` and other Python indexing in that slices _include
+their stop value_.
 
 We pressed you to completely avoid using direct indexing on Pandas Series, because of the potent confusion that can arise between label and position indexing.
 

@@ -49,7 +49,7 @@ We will begin by showing that Pandas Series and Data Frames have many methods th
 
 Let's examine some of the methods we can use on numpy arrays.
 
-Remember, a *method* is a function attached to an object. 
+Remember, a _method_ is a function attached to an object.
 
 In this case, our object is a NumPy array (later it will be a Pandas Series or Data Frame).
 
@@ -96,7 +96,7 @@ country_names_array = np.array(['Australia', 'Brazil', 'Canada',
 ```
 
 When dealing with any object in Python, it can be useful to use the in-built
-Python `dir()` function. This returns the *names* of every attribute and
+Python `dir()` function. This returns the _names_ of every attribute and
 method that we can access/call from the object:
 
 ```{code-cell}
@@ -104,16 +104,16 @@ method that we can access/call from the object:
 dir(hdis_array)
 ```
 
-For now we will ignore the elements in the printout that contain `__`.  These
+For now we will ignore the elements in the printout that contain `__`. These
 double underscores are called "dunders" (short for double underscores);
-attributes and methods starting and ending with `__` are often called *dunder
-attributes* and *dunder methods*.  Python uses the dunder naming scheme as
+attributes and methods starting and ending with `__` are often called _dunder
+attributes_ and _dunder methods_. Python uses the dunder naming scheme as
 a convention to indicate that these methods and attributes are part of the
 internal machinery of an object.
 
 Another Python naming convention uses an underscore `_` at the start of
 a method or attribute name to indicate that the method or attribute is
-*private* — that is, the attribute / method is for the object to use, but for
+_private_ — that is, the attribute / method is for the object to use, but for
 us — the user of the object — to avoid.
 
 Ignoring the all attributes and methods that begin with underscores, we can
@@ -162,7 +162,7 @@ hdis_array.size
 zeros_array.size
 ```
 
-`len()` as applied to NumPy arrays gives us the number of elements of the *first dimension* (axis) only.
+`len()` as applied to NumPy arrays gives us the number of elements of the _first dimension_ (axis) only.
 
 ```{code-cell}
 len(zeros_array)
@@ -176,10 +176,10 @@ len(hdis_array)
 
 **How does `len()` work?**
 
-Calling the standard Python function `len()` on an object `obj` causes Python to call the `__len__()` method of the object.  Therefore, the result of `len(obj)` is the same as that for `obj.__len__()`.
+Calling the standard Python function `len()` on an object `obj` causes Python to call the `__len__()` method of the object. Therefore, the result of `len(obj)` is the same as that for `obj.__len__()`.
 
 Each object type can define what `len(obj)` means by implementing a `__len__`
-method.  For NumPy arrays `arr.__len__()` gives you the equivalent of
+method. For NumPy arrays `arr.__len__()` gives you the equivalent of
 `arr.shape[0]`.
 
 Later we will see that Data Frames have their own implementation of `__len__`.
@@ -192,7 +192,7 @@ We also often want to know the type of data in our array, as it will affect
 the analyses we can perform. Are we dealing with numbers or text, for
 instance?
 
-To access this information, we can view the `dtype` attribute. 
+To access this information, we can view the `dtype` attribute.
 
 Let's look at the `dtype` for the `country_codes` array:
 
@@ -227,13 +227,13 @@ NumPy also provides a variety of what we can call "statistical attributes" which
 
 **What is a statistic?**
 
-A statistic is some number or sequence of numbers that summarizes a distribution of values.  For example, the mean or average is a measure of the center of the distribution.  Similarly the min and max are the values on the extreme left and extreme right of a distribution.
+A statistic is some number or sequence of numbers that summarizes a distribution of values. For example, the mean or average is a measure of the center of the distribution. Similarly the min and max are the values on the extreme left and extreme right of a distribution.
 
 :::
 
 As with the methods we looked at in the previous section, Pandas has its own versions of many of these methods, as we will see later in the page.
 
-Let's again look at the `hdis_array`, which contains the HDI score of each country. 
+Let's again look at the `hdis_array`, which contains the HDI score of each country.
 
 ```{code-cell}
 hdis_array
@@ -265,11 +265,11 @@ hdis_array.std()
 
 Remember our answer to [What is a Series?](what-is-a-series):
 
-> A *Series* is the association of:
+> A _Series_ is the association of:
 >
-> * An array of values (`.values`)
-> * A sequence of labels for each value (`.index`)
-> * A name (which can be `None`).
+> - An array of values (`.values`)
+> - A sequence of labels for each value (`.index`)
+> - A name (which can be `None`).
 
 Because Series have arrays as their underlying model for storing values, it is
 not surprising that we can use many of the same methods we have just seen for
@@ -301,7 +301,7 @@ hdi_series.name is None
 hdi_series.values
 ```
 
-Let's verify that we can use methods that parallel the NumPy methods we saw above. Predictably, these methods operate on the NumPy array component of the series (e.g. the `.values` attribute). 
+Let's verify that we can use methods that parallel the NumPy methods we saw above. Predictably, these methods operate on the NumPy array component of the series (e.g. the `.values` attribute).
 
 First, let's look at the `shape`, `size` and `dtype`:
 
@@ -344,7 +344,7 @@ hdis_array.max()
 ```
 
 Ok, so these methods are available with names that are familiar from NumPy.
-However, Pandas also introduces some additional methods.  You may want to
+However, Pandas also introduces some additional methods. You may want to
 compare the output of `dir()` for the `hdis_array` vs the `hdi_series` to see
 the overlap/differences - as the printout is messy, we will not show it again
 here.
@@ -359,7 +359,7 @@ hdi_series.describe()
 
 Neat, an easy summary of the number of observations, the mean, the standard deviation around the mean, and then the range/interquartile range.
 
-Conversely, the `.value_counts()` method will count the occurrence of each *unique* value in the Series:
+Conversely, the `.value_counts()` method will count the occurrence of each _unique_ value in the Series:
 
 ```{code-cell}
 # Use the `value_counts()` method
@@ -389,14 +389,14 @@ We now see summaries of the number of values, number of unique values etc,
 rather than numerical statistics like the mean and standard deviation.
 
 The `.value_counts()` method behaves the same as with numerical data, as both
-numbers and strings can be unique in an array.  For our case, the output isn't very interesting, as all the country names are unique.
+numbers and strings can be unique in an array. For our case, the output isn't very interesting, as all the country names are unique.
 
 ```{code-cell}
 country_names_series.value_counts()
 ```
 
-If we want to see the *unique* values only, regardless of the number of times
-each value occurs, we can use the `.unique()` method.  This gives us an array
+If we want to see the _unique_ values only, regardless of the number of times
+each value occurs, we can use the `.unique()` method. This gives us an array
 of the unique values.
 
 ```{code-cell}
@@ -439,7 +439,7 @@ attributes and methods (that don't begin with `_`):
 [k for k in dir(df) if not k.startswith('_')]
 ```
 
-If you peruse the list you'll notice that some of the methods have the sames as methods that apply to both NumPy arrays and Series. For instance, we can retrieve the `.shape` of the entire Data Frame.  This gives us the number of rows and the number of columns.
+If you peruse the list you'll notice that some of the methods have the sames as methods that apply to both NumPy arrays and Series. For instance, we can retrieve the `.shape` of the entire Data Frame. This gives us the number of rows and the number of columns.
 
 ```{code-cell}
 # Get the shape attribute (n_rows, n_columns)
@@ -448,7 +448,7 @@ df.shape
 
 (len-df)=
 
-`len(df)` (therefore, `df.__len__()`) gives the number of rows.  This
+`len(df)` (therefore, `df.__len__()`) gives the number of rows. This
 corresponds to the NumPy behavior of giving the number of elements on the
 first dimension of the array:
 
@@ -464,7 +464,7 @@ We can also pull out an individual Series/column and view the `.shape` of that s
 df['Fertility Rate'].shape
 ```
 
-When accessed for the entire Data Frame, the `size` attribute works in the same way as we have seen for NumPy arrays and Pandas Series e.g. it will tell us the total number of *elements* in the entire Data Frame (e.g. the number of elements in the rows multiplied by the number of elements in the columns):
+When accessed for the entire Data Frame, the `size` attribute works in the same way as we have seen for NumPy arrays and Pandas Series e.g. it will tell us the total number of _elements_ in the entire Data Frame (e.g. the number of elements in the rows multiplied by the number of elements in the columns):
 
 ```{code-cell}
 # Show the `size` of the Data Frame
@@ -491,7 +491,7 @@ index_dtype      int64
 Name: df_attributes, dtype: object
 ```
 
-Try to create this Series in as few lines of code as possible. 
+Try to create this Series in as few lines of code as possible.
 
 You may run into an error with the `shape` attribute. Try running `hint_1()` for a hint on how to solve this.
 
@@ -510,7 +510,7 @@ You can also run `hint_2()` to get a hint on how to get Pandas to report the `dt
 :class: dropdown
 :::
 
-Our solution to this is below. First, we create an array containing the attributes. We must use the `str()` function to convert the output of `df.shape` to a single dimension (a `str` with 7 characters, rather than a `(2, )` tuple). This is in order to make its shape match that of `df.size` and the `index.dtype` string. Otherwise we get a nasty error when passing the array to the `pd.Series()` constructor, because we are trying to make a `.values` array using values with incompatible dimensions. 
+Our solution to this is below. First, we create an array containing the attributes. We must use the `str()` function to convert the output of `df.shape` to a single dimension (a `str` with 7 characters, rather than a `(2, )` tuple). This is in order to make its shape match that of `df.size` and the `index.dtype` string. Otherwise we get a nasty error when passing the array to the `pd.Series()` constructor, because we are trying to make a `.values` array using values with incompatible dimensions.
 
 We got the `dtype` of the `index` labels by accessing the `dtype` attribute of the `index`, in a chained operation e.g.: `df.index.dtype`.
 
@@ -586,7 +586,7 @@ previously, Pandas will automatically supply one:
 df.index
 ```
 
-We have [already discussed](0_1_to_loc_or_iloc) the downsides of using the default (integer) index. As we have seen before, we can use the `.set_index()` method to choose a column containing values which we will use as index labels. We have come across Data Frame methods previously (`.sort_values()`) and will look at more in the next section. For now, just remember that *methods* differ from data *attributes* in that they are a *function attached to an object* rather than just a value attached to an object. Methods often do something to or with the data rather than just report a value or set of values, like an attribute does.
+We have [already discussed](0_1_to_loc_or_iloc) the downsides of using the default (integer) index. As we have seen before, we can use the `.set_index()` method to choose a column containing values which we will use as index labels. We have come across Data Frame methods previously (`.sort_values()`) and will look at more in the next section. For now, just remember that _methods_ differ from data _attributes_ in that they are a _function attached to an object_ rather than just a value attached to an object. Methods often do something to or with the data rather than just report a value or set of values, like an attribute does.
 
 Let's set the `Code` column (containing the three-letter country codes) to be our index labels:
 
@@ -616,9 +616,9 @@ The `.sort_values()` method we used on the [previous page](0_1_to_loc_or_iloc) a
 
 +++
 
-Many Data Frame methods will report information from the Data Frame *as a whole*, rather than just for a given column/Series.
+Many Data Frame methods will report information from the Data Frame _as a whole_, rather than just for a given column/Series.
 
-For instance, remember the `.describe()` method for a Series.  Here we pull out a column from the Data Frame with direct indexing, and then call `.describe()` on that Series.
+For instance, remember the `.describe()` method for a Series. Here we pull out a column from the Data Frame with direct indexing, and then call `.describe()` on that Series.
 
 ```{code-cell}
 # Pull the HDI column out of the Data Frame with direct indexing.
@@ -699,7 +699,7 @@ mean_pop = df['Population'].mean()
 means_arr = np.array([mean_hdi, mean_fert, mean_pop])
 
 # Create a Series
-means_series = pd.Series(means_arr, 
+means_series = pd.Series(means_arr,
                          name="means",
                          index= ['Human Development Index',
                                  'Fertility Rate', 'Population'])
@@ -709,7 +709,7 @@ means_series
 
 Phew! That really was inefficient. Many Pandas methods are designed to save us time in situations exactly like this...
 
-In fact, Pandas is a particularly good example of a complex library where there are many ways of achieving the same result, and where AI or careless StackOverflow searches can give you a very inefficient or inelegant solution.   We strongly advise you to keep investing the time to work out the most elegant solution to your Pandas problems, in order to keep learning, and so that you write code that others can read, including you, the maintainer.
+In fact, Pandas is a particularly good example of a complex library where there are many ways of achieving the same result, and where AI or careless StackOverflow searches can give you a very inefficient or inelegant solution. We strongly advise you to keep investing the time to work out the most elegant solution to your Pandas problems, in order to keep learning, and so that you write code that others can read, including you, the maintainer.
 
 ::: {solution-end}
 :::
@@ -723,7 +723,7 @@ df['Fertility Rate'].mean()
 
 By contrast, other methods, like `.sort_values()` take a column name as an argument, but have effects on the entire Data Frame.
 
-For instance, if we want to sort *rows of the whole Data Frame* by `Human Development Index` scores:
+For instance, if we want to sort _rows of the whole Data Frame_ by `Human Development Index` scores:
 
 ```{code-cell}
 # Sort values by HDI, lowest value first (sort ascending).
@@ -738,7 +738,7 @@ df_by_hdi_reversed = df.sort_values('Human Development Index',
 df_by_hdi_reversed
 ```
 
-We can also sort the Data Frame rows by the values in the index, using `.sort_index()`.  By default this sorts the Index values from lowest to highest.  Because the Index in our case has `str` values, this sorts the Index in alphabetical order, so `df.sort_index()` will arrange the rows of the Data Frame in alphabetical order according to the Index values:
+We can also sort the Data Frame rows by the values in the index, using `.sort_index()`. By default this sorts the Index values from lowest to highest. Because the Index in our case has `str` values, this sorts the Index in alphabetical order, so `df.sort_index()` will arrange the rows of the Data Frame in alphabetical order according to the Index values:
 
 ```{code-cell}
 # Sort index (in alphabetical order)
@@ -781,7 +781,7 @@ df['Country Name'].replace("United", "Disunited")
 ```
 
 This did not work because `.replace()` is searching for an element of the
-Series which *equals* `United`, not that *contains* `United`. (There is an
+Series which _equals_ `United`, not that _contains_ `United`. (There is an
 alternative string-specific `.replace()` method, which behaves differently as
 we will see on a [later page](0_6_more_pandas_methods_strings)).
 
@@ -792,7 +792,7 @@ We can achieve the desired result using the `regex` (standing for "regular expre
 df['Country Name'].replace("United", "Disunited", regex=True)
 ```
 
-With `regex=True`, the `.replace()` method has searched for matches *within* other strings. So, `United` has been replaced in both `United Kingdom` and `United States`, despite not matching either string in full.
+With `regex=True`, the `.replace()` method has searched for matches _within_ other strings. So, `United` has been replaced in both `United Kingdom` and `United States`, despite not matching either string in full.
 
 The `.replace` method can also be used for Series with numeric `dtype`s. For instance, some particularly patriotic data analyst might want to do the following replacement:
 
@@ -855,9 +855,9 @@ df.tail()
 df.tail(3)
 ```
 
-In addition to retrieving rows from the extremes of the Data Frame, we may also, for many different purposes, want to retrieve a *random* set of rows.
+In addition to retrieving rows from the extremes of the Data Frame, we may also, for many different purposes, want to retrieve a _random_ set of rows.
 
-We can do this using the `.sample()` method. The syntax here is just the same as for `.head()` and `.tail()`, only now we are specifying the *number of random rows* we want to grab from the Data Frame.
+We can do this using the `.sample()` method. The syntax here is just the same as for `.head()` and `.tail()`, only now we are specifying the _number of random rows_ we want to grab from the Data Frame.
 
 For instance, if let's say we want to get three random rows, without replacement (so that we can't get the same row twice):
 
@@ -884,7 +884,7 @@ Check the documentation for `.sample` by uncommenting the cell below, and runnin
 df.sample?
 ```
 
-Notice that by default the sampling is *without replacement*, so once a row has been pulled into the output sample, it cannot be selected again for the remaining values in the sample.  When we deal out hands of cards from a standard 52-card deck., we are sampling from the pack without replacement, because any one card cannot be dealt more than once.
+Notice that by default the sampling is _without replacement_, so once a row has been pulled into the output sample, it cannot be selected again for the remaining values in the sample. When we deal out hands of cards from a standard 52-card deck., we are sampling from the pack without replacement, because any one card cannot be dealt more than once.
 
 ```{code-cell}
 # The first five rows.
@@ -893,7 +893,7 @@ first_five = df.head()
 first_five.sample(n=4)
 ```
 
-Notice that no row appears twice in the sample.  Notice too that if we pass in an `n` of more than the number of rows, resampling without replacement has to fail, because it will run out of rows to sample from:
+Notice that no row appears twice in the sample. Notice too that if we pass in an `n` of more than the number of rows, resampling without replacement has to fail, because it will run out of rows to sample from:
 
 ```{code-cell}
 :tags: [raises-exception]
@@ -911,7 +911,7 @@ first_five.sample(n=10, replace=True)
 
 We have so far specified the size of our sample with `n` — the number of rows
 in the sample — but we can also specify the size as a fraction of the whole
-Data Frame.  To get a sample that is half the size the original Data Frame
+Data Frame. To get a sample that is half the size the original Data Frame
 (`np.round(15 / 2) == 8`):
 
 ```{code-cell}
@@ -926,7 +926,7 @@ df.sample(frac=0.5)
 
 There are functions within NumPy (as well as other libraries) that shuffle/permute/randomize data within an array (or an arraylike object, such as a list).
 
-Let's say we want to shuffle the *rows* in our Data Frame. We can do this with the `permutation()` function from the `numpy.random` submodule, but the output is very ugly. This operation brutally removes the nice Data Frame graphics (at least when run in a Jupyter notebook), and puts the rows of the Data Frame into a NumPy array, as shown below:
+Let's say we want to shuffle the _rows_ in our Data Frame. We can do this with the `permutation()` function from the `numpy.random` submodule, but the output is very ugly. This operation brutally removes the nice Data Frame graphics (at least when run in a Jupyter notebook), and puts the rows of the Data Frame into a NumPy array, as shown below:
 
 ```{code-cell}
 # Effective but ugly
@@ -935,7 +935,7 @@ np.random.permutation(df)
 
 Can you think of a way to perform this operation using only the Pandas methods we have seen so far on this page? In the cell below, you should write code which will:
 
-- randomize the order of the *rows* in the Data Frame. The data in each row should be the same as before shuffling (e.g. the data for Russia should still be the data for Russia etc.)
+- randomize the order of the _rows_ in the Data Frame. The data in each row should be the same as before shuffling (e.g. the data for Russia should still be the data for Russia etc.)
 
 - ensure that no rows are removed or duplicated, just shuffled
 
@@ -952,7 +952,7 @@ Try to find the solution in the cell below. Use as few lines of code as possible
 :class: dropdown
 :::
 
-The solution is to take a `.sample()` which is the same *size as the number of rows in the original dataframe*. We can do this easily by using `n = len(df)` as in the input for `df.sample()`:
+The solution is to take a `.sample()` which is the same _size as the number of rows in the original dataframe_. We can do this easily by using `n = len(df)` as in the input for `df.sample()`:
 
 ```{code-cell}
 # A trick to shuffle the rows
@@ -968,7 +968,7 @@ df.sample(frac=1)
 
 If you look at the `index` of either Data Frame in the above ceels, you'll notice that the rows are now in a random order.
 
-Because the sample is a random selection of the rows - and the default setting of `.sample()` is to sample *without replacement*  - using both `.sample(len(df))` and `df.sample(frac=1)` has the effect of randomizing the row order. All the original rows remaining in the sample, and there is no duplication of any rows.
+Because the sample is a random selection of the rows - and the default setting of `.sample()` is to sample _without replacement_ - using both `.sample(len(df))` and `df.sample(frac=1)` has the effect of randomizing the row order. All the original rows remaining in the sample, and there is no duplication of any rows.
 
 This method is often used on individual columns to (most likely) remove any statistical relationships between the data in that column and other columns. For instance, for [permutation testing](https://matthew-brett.github.io/cfd2020/permutation/permutation_and_t_test.html).
 
@@ -982,27 +982,27 @@ This method is often used on individual columns to (most likely) remove any stat
 :class: dropdown
 :::
 
-We mentioned above that the default behaviour of the `.sample()` method is to sample *without replacement*. We also mentioned that you can use the `replace=` argument to sample *with* replacement.
+We mentioned above that the default behaviour of the `.sample()` method is to sample _without replacement_. We also mentioned that you can use the `replace=` argument to sample _with_ replacement.
 
-To use a classic "drawing marbles from a bag" analogy, this means that when we randomly select a marble, we place it *back* in the bag (after recording it's identity/colour etc) before we randomly draw the next marble. This means the same marble can appear twice in the final sample. 
+To use a classic "drawing marbles from a bag" analogy, this means that when we randomly select a marble, we place it _back_ in the bag (after recording it's identity/colour etc) before we randomly draw the next marble. This means the same marble can appear twice in the final sample.
 
-As mentioned above, if we draw a sample of rows *with replacement* from our Data Frame, then individual rows can appear more than once in the resultant sample. If we draw a sample with replacement which is *larger* than the original data, it will certainly contain duplicate rows:
+As mentioned above, if we draw a sample of rows _with replacement_ from our Data Frame, then individual rows can appear more than once in the resultant sample. If we draw a sample with replacement which is _larger_ than the original data, it will certainly contain duplicate rows:
 
 ```{code-cell}
 # A sample with replacement
-df.sample(len(df) + 10, 
-          replace=True) 
+df.sample(len(df) + 10,
+          replace=True)
 ```
 
 Quickly scan the `index` for duplicates, to see that it contains duplicates (as it must, in order to generate a sample of this size).
 
 Your task is the following:
 
-- take a random sample *with replacement* of all the rows in the Data Frame (e.g. your sample should have the *same number of rows* as the original Data Frame)
+- take a random sample _with replacement_ of all the rows in the Data Frame (e.g. your sample should have the _same number of rows_ as the original Data Frame)
 
 - use an appropriate method to calculate the means of `Human Development Index`, `Fertility Rate` and `Population`, from your random sample
 
-- using Pandas methods and indexing operations, calculate the *difference* between the means of `Human Development Index`, `Fertility Rate` and `Population` in your sample vs the means for the same variables in the original data
+- using Pandas methods and indexing operations, calculate the _difference_ between the means of `Human Development Index`, `Fertility Rate` and `Population` in your sample vs the means for the same variables in the original data
 
 - store your result in a Pandas Series (note: depending what methods you use, your result may automatically be stored in a Pandas Series)
 
@@ -1028,13 +1028,13 @@ Try to do this in as few lines of code as possible.
 :class: dropdown
 :::
 
-There are several ways you can achieve this, but one way of doing it in a single line of code is to *chain Pandas methods together*.
+There are several ways you can achieve this, but one way of doing it in a single line of code is to _chain Pandas methods together_.
 
 The left hand side of the subtraction operation in the cell below uses the `.describe()` method and `.loc` indexing to calculate the means of the original data.
 
-The right hand side of the subtraction draws a sample (the same size as the number of rows in `df`) using `.sample()` with `replace=True`. It then uses `.describe()` to calculate the means of the numeric variables *in this random sample*, and then `.loc` to select just those means (as opposed to including the other information that `.describe()` reports, like standard deviations etc).
+The right hand side of the subtraction draws a sample (the same size as the number of rows in `df`) using `.sample()` with `replace=True`. It then uses `.describe()` to calculate the means of the numeric variables _in this random sample_, and then `.loc` to select just those means (as opposed to including the other information that `.describe()` reports, like standard deviations etc).
 
-The result of this subtraction shows us the difference between the original means and the means of our *resample* (e.g. our random sample, drawn with replacement):
+The result of this subtraction shows us the difference between the original means and the means of our _resample_ (e.g. our random sample, drawn with replacement):
 
 ```{code-cell}
 # Show the difference in the means (original data vs resample)
@@ -1048,7 +1048,7 @@ You can also perform the same process, less efficiently, spread over multiple li
 original_means = df.describe().loc['mean']
 
 # Generate a resample
-resample = df.sample(len(df), 
+resample = df.sample(len(df),
                      replace=True)
 
 # Calculate the resample means
@@ -1061,14 +1061,14 @@ difference_in_means = original_means - resample_means
 difference_in_means
 ```
 
-Similar kinds of *resampling procedure* are often used to generate [bootstrapped confidence intervals](https://nbviewer.org/github/pxr687/bootstrap_tutorial/blob/main/bootstrap.ipynb).
+Similar kinds of _resampling procedure_ are often used to generate [bootstrapped confidence intervals](https://nbviewer.org/github/pxr687/bootstrap_tutorial/blob/main/bootstrap.ipynb).
 
 ::: {solution-end}
 :::
 
 ## Plotting Methods
 
-The Data Frame plotting *methods* that we have seen on the previous pages also
+The Data Frame plotting _methods_ that we have seen on the previous pages also
 apply to Series.
 
 When working with a Series, it makes most sense most of the time to use the
@@ -1096,7 +1096,7 @@ df.plot(x='Human Development Index',
 
 ## A note on numerical operations
 
-Any numerical operations performed on the Data Frame *as a whole* will be default be performed on the `values` in the Series that make up each column.
+Any numerical operations performed on the Data Frame _as a whole_ will be default be performed on the `values` in the Series that make up each column.
 
 So, if we want to do something like multiplying the entire Data Frame by a single number, this operation will be performed separately on each element of each Series in the Data Frame.
 
@@ -1107,7 +1107,7 @@ This might make sense for some Data Frames, but in our case, we have string data
 df * 200
 ```
 
-More sensibly, we will most likely want to perform numerical operations on specific columns. We may want to *standardize* the values relative to a mean of 0 and standard deviation of 1, for instance.
+More sensibly, we will most likely want to perform numerical operations on specific columns. We may want to _standardize_ the values relative to a mean of 0 and standard deviation of 1, for instance.
 
 ::: {note}
 
@@ -1117,7 +1117,7 @@ If we have a sequence of values, we can calculate corresponding scores for that 
 
 The result is the [standard score](https://en.wikipedia.org/wiki/Standard_score) of each element in the sequence.
 
-The process of calculating standard scores can be called *standardization*.  Standard scores are sometimes called *z-scores*.
+The process of calculating standard scores can be called _standardization_. Standard scores are sometimes called _z-scores_.
 
 :::
 
@@ -1139,7 +1139,7 @@ df['Population_z'] = ((df['Population'] - df['Population'].mean())
 df
 ```
 
-Because this feature (numerical operations performed on each element) is shared across all Pandas Series, and we are using Pandas methods, we can write a function which will compute the z-scores for any column containing numerical data: 
+Because this feature (numerical operations performed on each element) is shared across all Pandas Series, and we are using Pandas methods, we can write a function which will compute the z-scores for any column containing numerical data:
 
 ```{code-cell}
 # Define a function to calculate standard scores for a numeric Series.
@@ -1195,13 +1195,13 @@ If you use `.plot(kind="bar")` you will generate a bar plot (that is, a chart wi
 
 Your task is to use indexing methods of your choice, restricting yourself to the Pandas methods shown on this page, to create a bar plot which has:
 
-* the name of each country on the x-axis
+- the name of each country on the x-axis
 
 ...and...
 
-* bars which show the population of the country on the y-axis. The bars should be ordered from highest population (left hand side of the graph) to lowest population (right hand side of the graph).
+- bars which show the population of the country on the y-axis. The bars should be ordered from highest population (left hand side of the graph) to lowest population (right hand side of the graph).
 
-*Unless you enjoy cheating, do not use other plotting libraries!*. Your final result should look like this:
+_Unless you enjoy cheating, do not use other plotting libraries!_. Your final result should look like this:
 
 ![](images/bar_example.png)
 
@@ -1218,7 +1218,7 @@ As ever, use as few lines as you can, while but keep your code readable.
 :class: dropdown
 :::
 
-It is possible to create this plot in one line of code, again, by *chaining* Pandas methods together. First, we use direct indexing with the column names to select just those variables. 
+It is possible to create this plot in one line of code, again, by _chaining_ Pandas methods together. First, we use direct indexing with the column names to select just those variables.
 
 Then we use `sort_values()` using the `by='Population'` and `ascending=False` arguments to ensure that the population counts are sorted in descending order.
 
@@ -1229,7 +1229,7 @@ We then chain `.plot(kind='bar')` on the end, and we get the desired plot:
 df[['Country Name', 'Population']].sort_values(by='Population', ascending=False).plot(kind='bar')
 ```
 
-*Food for thought*: what will happen if you reverse the order of `Country Name` and `Population` in the direct indexing operation? Do you think this will change the x-axis and and y-axis variables on the `.plot()`?
+_Food for thought_: what will happen if you reverse the order of `Country Name` and `Population` in the direct indexing operation? Do you think this will change the x-axis and and y-axis variables on the `.plot()`?
 
 Have a think about what you think will happen; you can check by uncommenting the code below to see if you were correct:
 
@@ -1247,4 +1247,4 @@ How would you explain the result?
 On this page we have further explored the idea that Pandas Data Frames, Pandas
 Series and NumPy arrays have a nested structure.
 
-Data Frames are *dictionary-like collections of Series*. Series are a combination of a NumPy array (`.values`) with other attributes (`name` and `index`). As a result, many methods we can use on a Series are similar to those available from NumPy arrays, and many Data Frame methods likewise parallel those from the Pandas Series that constitute the Data Frame.
+Data Frames are _dictionary-like collections of Series_. Series are a combination of a NumPy array (`.values`) with other attributes (`name` and `index`). As a result, many methods we can use on a Series are similar to those available from NumPy arrays, and many Data Frame methods likewise parallel those from the Pandas Series that constitute the Data Frame.

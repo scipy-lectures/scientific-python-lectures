@@ -46,7 +46,7 @@ Structure of this page:
 * show Boolean filtering with DataFrames
 -->
 
-Once we have got our data into a Pandas Data Frame, no doubt we will want to filter and select specific portions of it for visualisation and analysis. 
+Once we have got our data into a Pandas Data Frame, no doubt we will want to filter and select specific portions of it for visualisation and analysis.
 
 On this page we will look at different methods of filtering. As on previous pages, we will focus on how Pandas is built from NumPy, and assess the similarities and differences in how filtering works on objects from both libraries.
 
@@ -101,7 +101,7 @@ First, we can calculate the median, using the `np.median()` function:
 np.median(hdis_array)
 ```
 
-Next, we can create a *Boolean array* by using a comparison operator.
+Next, we can create a _Boolean array_ by using a comparison operator.
 
 In this case `>` is the operator we want, with the `hdis_array` on the left hand side, and the median value of the array on the right hand side:
 
@@ -145,7 +145,7 @@ If we divide by the number of elements in the Boolean array, we have proportion 
 n_trues / len(hdis_array_grtr_median_bool)
 ```
 
-We do the same calculation with `np.mean()`.  `np.mean` on a Boolean array is a good way to count the proportion of `True` values. In our case it is fairly close to 0.5, as we might expect, because we are compared to the median
+We do the same calculation with `np.mean()`. `np.mean` on a Boolean array is a good way to count the proportion of `True` values. In our case it is fairly close to 0.5, as we might expect, because we are compared to the median
 
 ```{code-cell}
 # Count the proportion of `True` values
@@ -154,7 +154,7 @@ np.mean(hdis_array_grtr_median_bool)
 
 This can be very useful when counting the proportion of participants or observations with a particular categorical feature (proportion of males/females, proportion of democratic countries etc).
 
-We can also, if we wish, turn our Boolean array into a Boolean *Series* using the `pd.Series()` constructor.
+We can also, if we wish, turn our Boolean array into a Boolean _Series_ using the `pd.Series()` constructor.
 
 The Series can benefit from an `.index`. In the present context, when we put the three-letter country codes as the `index`, we can keep track of the country that each filtered value corresponds to.
 
@@ -162,7 +162,7 @@ Let's create a Boolean Series:
 
 ```{code-cell}
 # Make a Boolean Series from the Boolean array.
-hdis_array_bool_series = pd.Series(hdis_array_grtr_median_bool, 
+hdis_array_bool_series = pd.Series(hdis_array_grtr_median_bool,
                                    index=country_codes_array)
 hdis_array_bool_series
 ```
@@ -207,7 +207,7 @@ Boolean Series are particularly useful for filtering Series and Data Frames.
 
 ## Filtering in Pandas
 
-You know by now that *Data Frames are a dictionary-like collection of Series*.
+You know by now that _Data Frames are a dictionary-like collection of Series_.
 
 Because Series are built (in part) from NumPy arrays, filtering the Data Frame works very much like filtering with Boolean NumPy arrays and Pandas Series.
 
@@ -225,7 +225,7 @@ df
 
 Now, to view the median we can use the `.median()` Series method, rather than calling the `np.median()` function as we did earlier.
 
-*NB*: we mentioned on a [previous page](0_2_pandas_dataframes_attributes_methods) that Pandas Series *methods* have parallel behavior to NumPy *functions*, but they treat NaN values as *missing* rather than *numerically invalid*, so Pandas calculations, unlike NumPy's default calculations, typically drop NaN values.
+_NB_: we mentioned on a [previous page](0_2_pandas_dataframes_attributes_methods) that Pandas Series _methods_ have parallel behavior to NumPy _functions_, but they treat NaN values as _missing_ rather than _numerically invalid_, so Pandas calculations, unlike NumPy's default calculations, typically drop NaN values.
 
 ```{code-cell}
 # Get the median HDI
@@ -234,7 +234,7 @@ df['Human Development Index'].median()
 
 Because Data Frames force all their constituent Series (columns) to share an `index`, creating a Boolean Series has the desirable characteristic of associating a row label with each Boolean.
 
-For instance, let's use direct indexing with a column name (`df['Human Development Index']`) to create a Boolean Series which is `True` where the country has a HDI score above the median HDI score: 
+For instance, let's use direct indexing with a column name (`df['Human Development Index']`) to create a Boolean Series which is `True` where the country has a HDI score above the median HDI score:
 
 ```{code-cell}
 # Create a Boolean Series
@@ -278,7 +278,7 @@ df[hdis_array_bool_series]
 
 We can use the Boolean Series to create a new Data Frame. This lets us use Pandas' statistical and plotting methods on subsets of the data.
 
-For instance, we may want to look for differences between countries *above* the median HDI, and countries *below* the median HDI.
+For instance, we may want to look for differences between countries _above_ the median HDI, and countries _below_ the median HDI.
 
 We can use our Boolean filter as follows:
 
@@ -304,12 +304,12 @@ We can reverse each `True` to a `False` and vice versa by placing the `~` symbol
 ~hdi_gt_median
 ```
 
-Let's use this operation (with `~`) to make a new Data Frame containing only the countries scoring *at or below* the median HDI:
+Let's use this operation (with `~`) to make a new Data Frame containing only the countries scoring _at or below_ the median HDI:
 
 ```{code-cell}
 # Use the `~` operator to show countries at or below median HDI
 below_median_HDI = df[~hdi_gt_median]
-below_median_HDI 
+below_median_HDI
 ```
 
 Now, on each Data Frame, we can call the `.describe()` method separately, to inspect the differences:
@@ -329,7 +329,7 @@ below_median_HDI['Fertility Rate'].describe()
 :class: dropdown
 :::
 
-For a country to be at "replacement rate" - e.g. the rate at which the population will remain constant, rather than increase or decrease - the `Fertility Rate` must be above [2.1](https://ourworldindata.org/data-insights/which-countries-have-fertility-rates-above-or-below-the-replacement-level). 
+For a country to be at "replacement rate" - e.g. the rate at which the population will remain constant, rather than increase or decrease - the `Fertility Rate` must be above [2.1](https://ourworldindata.org/data-insights/which-countries-have-fertility-rates-above-or-below-the-replacement-level).
 
 Your task is to use a Boolean Series to calculate the proportion of countries in `df` which are below the 2.1 replacement rate.
 
@@ -348,7 +348,7 @@ Try to do this in as few lines as code as possible, using Pandas methods rather 
 
 There are several ways to approach this, here are two.
 
-First, for both methods we generate a Boolean Series using `df['Fertility Rate'] < 2.1` - this will be `True` where the `Fertility Rate` is *under* 2.1, and `False` otherwise.
+First, for both methods we generate a Boolean Series using `df['Fertility Rate'] < 2.1` - this will be `True` where the `Fertility Rate` is _under_ 2.1, and `False` otherwise.
 
 In the first solution, we take the `sum()` of the `True` values, then divide that by the `len()` of the Data Frame (i.e. by the number of observations):
 
@@ -376,7 +376,7 @@ Strikingly, 80% of the countries in the Data Frame are below the replacement rat
 
 ## Cleaning, summarizing and plotting data with Boolean Indexing
 
-Remember, the data we have looked at on this page so far is just a fraction of the countries in the full HDI dataset. Let's import the full dataset, so we can use Boolean filtering to graphically inspect trends for countries above and below the median HDI. We will look at the data from all of the countries, but just for the year 2000, to keep the plot interpretable. 
+Remember, the data we have looked at on this page so far is just a fraction of the countries in the full HDI dataset. Let's import the full dataset, so we can use Boolean filtering to graphically inspect trends for countries above and below the median HDI. We will look at the data from all of the countries, but just for the year 2000, to keep the plot interpretable.
 
 We'll also use multiple methods from the [Pandas methods](0_2_pandas_dataframes_attributes_methods) page, to get the full data ready to generate these plots.
 
@@ -388,11 +388,11 @@ full_df = pd.read_csv('data/children-per-woman-vs-human-development-index.csv')
 full_df
 ```
 
-This data is in *long format* - each row is an observation of one country, but each country appears in multiple rows. So, there are repeated observations from the same countries. If you look at the last few rows, you'll see repeated observations on Zimbabwe, over multiple years.
+This data is in _long format_ - each row is an observation of one country, but each country appears in multiple rows. So, there are repeated observations from the same countries. If you look at the last few rows, you'll see repeated observations on Zimbabwe, over multiple years.
 
 You'll also notice (an unfortunate commonality of many real datasets) that the full data contains many NaN values (we'll deal with some of these shortly).
 
-As mentioned above, we will look at data from the year 2000, but using the full complement of countries. This will keep the plots interpretable. 
+As mentioned above, we will look at data from the year 2000, but using the full complement of countries. This will keep the plots interpretable.
 
 We can use Boolean filtering to strip the Data Frame down to just observations from the year 2000:
 
@@ -417,7 +417,7 @@ You might notice that now we have `NaN` values in the index. We don't want this,
 
 We can again do this via Boolean filtering:
 
-*NB:* the `~` operator, we are asking for rows with index labels that are NOT NaN...
+_NB:_ the `~` operator, we are asking for rows with index labels that are NOT NaN...
 
 ```{code-cell}
 # Create a Boolean Series from the Index using the `.isna()` method.
@@ -438,7 +438,7 @@ Let's inspect the index, to see what countries are left after removing the NaN v
 list(full_df_2000.index)
 ```
 
-If you scroll down this list, you can see that we have some rows that *maybe* do not correspond to countries (`OWID_WRL`, `OWID_KOS`, `OWID_SRM`).
+If you scroll down this list, you can see that we have some rows that _maybe_ do not correspond to countries (`OWID_WRL`, `OWID_KOS`, `OWID_SRM`).
 
 Let's inspect these rows:
 
@@ -479,7 +479,7 @@ full_df_2000_gtr_than_median_HDI = full_df_2000['Human Development Index'] > hdi
 full_df_2000_gtr_than_median_HDI
 ```
 
-We can use this filter, and the `.plot()` method, to inspect the trend either side of the median HDI - (again, to get the values from the *opposite* side of the median, we can use the `~` operator):
+We can use this filter, and the `.plot()` method, to inspect the trend either side of the median HDI - (again, to get the values from the _opposite_ side of the median, we can use the `~` operator):
 
 ```{code-cell}
 # Plot countries above median HDI.
@@ -495,7 +495,7 @@ full_df_2000[~full_df_2000_gtr_than_median_HDI].plot(x='Human Development Index'
                                                      kind='scatter');
 ```
 
-We can see graphically that the trends differ either side of the median, in a way that is clearer than looking at the full data on one plot. 
+We can see graphically that the trends differ either side of the median, in a way that is clearer than looking at the full data on one plot.
 
 We can also use the same filtering procedure to view statistics on the subsets of countries either side of the median HDI:
 
@@ -522,7 +522,7 @@ Let's say we are interested in whether `Population` is associated with `Human De
 
 The countries with huge populations are outliers which extend the x-axis far to the right, whilst most countries remain compressed near the far left of the x-axis. The pattern looks consistent with a random association, but perhaps there is a trend that is hard to see, in the presence of these extreme outliers?
 
-Your task is to use Boolean filtering to "trim" out observations *above* the [25% percentile](https://en.wikipedia.org/wiki/Percentile) of the `Population` scores. You should then create a scatter plot with `Population` on the x-axis, and `Human Development Index` on the y-axis, from the trimmed data. This will allow you to inspect the trend of the cluster of countries with smaller populations.
+Your task is to use Boolean filtering to "trim" out observations _above_ the [25% percentile](https://en.wikipedia.org/wiki/Percentile) of the `Population` scores. You should then create a scatter plot with `Population` on the x-axis, and `Human Development Index` on the y-axis, from the trimmed data. This will allow you to inspect the trend of the cluster of countries with smaller populations.
 
 You should try to do this in one or two lines of code, and using Pandas methods only.
 
@@ -537,7 +537,7 @@ You should try to do this in one or two lines of code, and using Pandas methods 
 :class: dropdown
 :::
 
-Our solution - to make it easier to read - creates this plot in two lines of code (though it is possible to do it one line, using method chaining). 
+Our solution - to make it easier to read - creates this plot in two lines of code (though it is possible to do it one line, using method chaining).
 
 First, we use the "less than" (`<`) comparison operator to create a Boolean Series. This Series is `True` where the corresponding row in `full_df_2000` has a smaller-than-the-25th-percentile value, and `False` otherwise.
 
@@ -567,9 +567,9 @@ Interesting, it looks like actually, there may be a negative linear trend in the
 :class: dropdown
 :::
 
-For this exercise, we want you to make the stuff of a data analyst's nightmares: the result of a filtering operation which contains only NaN values, and dashes (`'-'`) elsewhere. 
+For this exercise, we want you to make the stuff of a data analyst's nightmares: the result of a filtering operation which contains only NaN values, and dashes (`'-'`) elsewhere.
 
-Do you remember the `full_df` Data Frame, from before we filtered it down to just rows corresponding to the year 2000?  Here it is:
+Do you remember the `full_df` Data Frame, from before we filtered it down to just rows corresponding to the year 2000? Here it is:
 
 ```{code-cell}
 # Show the full Data Frame.
@@ -578,8 +578,8 @@ full_df
 
 This data contains many NaN values. Your task is to use Boolean filtering on this Data Frame, to return a Data Frame that contains:
 
-* *only rows where `Fertility Rate` has NaN values...*
-* ...and contains a dash character (`'-'`) for all other values *that are not NaN* (this should apply across all of the columns). 
+- _only rows where `Fertility Rate` has NaN values..._
+- ...and contains a dash character (`'-'`) for all other values _that are not NaN_ (this should apply across all of the columns).
 
 The end product should look like this (and have the same dimensionality as the pictured Data Frame):
 
@@ -607,7 +607,7 @@ First, we filter the Data Frame to contain only rows where `Fertility Rate` is N
 full_df[full_df['Fertility Rate'].isna()].isna().replace(False, '-').replace(True, np.nan)
 ```
 
-You could also use the Pandas *function* `pd.isna()` here, to get the same result...
+You could also use the Pandas _function_ `pd.isna()` here, to get the same result...
 
 ```{code-cell}
 # Solution 2
@@ -621,7 +621,7 @@ You could also use the Pandas *function* `pd.isna()` here, to get the same resul
 
 **Upcoming changes to Pandas and `.replace`**
 
-Note the cell at the top of this page with `pd.set_option('future.no_silent_downcasting', True)`.  If you did not run that cell, our solution would still work, but would give a rather confusing `FutureWarning:`, discussed in the link noted in that cell.
+Note the cell at the top of this page with `pd.set_option('future.no_silent_downcasting', True)`. If you did not run that cell, our solution would still work, but would give a rather confusing `FutureWarning:`, discussed in the link noted in that cell.
 
 :::
 

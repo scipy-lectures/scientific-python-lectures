@@ -78,9 +78,9 @@ np.array(1) / np.array(0)
 ```
 
 NumPy uses this special NaN (`np.nan`) value to indicate that the value is
-*invalid*.  We will soon see that Pandas uses `np.nan` in a different and expanded meaning.  But more of that in a little while.
+_invalid_. We will soon see that Pandas uses `np.nan` in a different and expanded meaning. But more of that in a little while.
 
-The logic of NaNs as *invalid values* means that *any* operation with a NaN should return — a NaN — because any operation with an invalid value must itself be an invalid value.  This propagation can have some superficially unexpected consequences that can trap the unwary:
+The logic of NaNs as _invalid values_ means that _any_ operation with a NaN should return — a NaN — because any operation with an invalid value must itself be an invalid value. This propagation can have some superficially unexpected consequences that can trap the unwary:
 
 ```{code-cell}
 # A (potentially) unexpected False
@@ -93,11 +93,11 @@ np.nan == np.nan
 ```
 
 The last two cells above both return a `False` value because NaN value is
-treated as an invalid value.  For a NaN, a value is *invalid*, so
+treated as an invalid value. For a NaN, a value is _invalid_, so
 comparing any value to a NaN is itself a NaN, even if the other value is
 a NaN.
 
-To ask the question *is this value a NaN*, use `np.isnan()`:
+To ask the question _is this value a NaN_, use `np.isnan()`:
 
 ```{code-cell}
 np.isnan(a_nan)
@@ -142,7 +142,7 @@ arr + 2
 OK, so the [TL;DR](https://en.wikipedia.org/wiki/TL;DR) here is that in NumPy
 NaNs signal an invalid operation has taken place.
 
-*NaNs propagate*;  any numerical operation a NaN will result in a NaN.
+_NaNs propagate_; any numerical operation a NaN will result in a NaN.
 
 Let's compare this to the way that Pandas uses NaNs.
 
@@ -155,12 +155,12 @@ invalid floating point operations.
 
 The function of NaN values in Pandas is somewhat different.
 
-NaN values in Pandas are *flags for missing data*. The NaN values themselves
+NaN values in Pandas are _flags for missing data_. The NaN values themselves
 possess the same properties and pitfalls that we showed in the last section.
-However the *cause* of NaNs in Pandas is most often that *data was missing*
+However the _cause_ of NaNs in Pandas is most often that _data was missing_
 rather than invalid numerical operations being performed on the data.
 
-We'll say more about what Pandas means by *missing* below.
+We'll say more about what Pandas means by _missing_ below.
 
 Let's explore these concepts further by importing a dataset. We will use the
 full version of the [Human Development
@@ -179,9 +179,10 @@ df
 It is immediately apparent that this dataset contains more NaNs than
 a retirement village.[^also-nans]
 
-[^also-nans]: We apologise to our readers outside the US or UK, but this was
-  a small pun, because "nan" is a fairly popular way to refer to your
-  grandmother.
+[^also-nans]:
+    We apologise to our readers outside the US or UK, but this was
+    a small pun, because "nan" is a fairly popular way to refer to your
+    grandmother.
 
 Look at the `Human Development Index` column (which we extract as a Series):
 
@@ -222,24 +223,24 @@ pd.isna(df['Human Development Index'].iloc[0])
 **Pandas NA**
 
 In fact `pd.isna()` doesn't just check for NaN values, because Pandas has some
-other, less common ways to indicate an element is missing.  You will see this
+other, less common ways to indicate an element is missing. You will see this
 hinted in the name `pd.isna()`, because Pandas thinks of missing values as
 `NA` values, where NA [seems to stand for Not-Applicable or
 Not-Available](https://stats.stackexchange.com/questions/72907/in-statistics-what-does-na-stand-for).
 See [Working with Missing
 Data](https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html)
-for the full gory details.  The summary at this stage is:
+for the full gory details. The summary at this stage is:
 
-* For readability, and to allow for the use of other NA values in Pandas, we
+- For readability, and to allow for the use of other NA values in Pandas, we
   suggest you use `pd.isna()` or Pandas `.isna()` methods to check for missing
   values.
-* That said, at the moment, Pandas nearly always indicates missing (NA) values
+- That said, at the moment, Pandas nearly always indicates missing (NA) values
   with NumPy's `np.nan`.
 
 :::
 
-Missing data - fancifully referred to as *missingness* - is common in the vast
-majority of datasets encountered in the wild. *Missing data* means data that,
+Missing data - fancifully referred to as _missingness_ - is common in the vast
+majority of datasets encountered in the wild. _Missing data_ means data that,
 for whatever reason, are not present for a particular row and column.
 
 Above we saw, for example, that the HDI value for Afghanistan, and 1950, is missing (not available).
@@ -253,14 +254,14 @@ in 1950, with which to calculate the value.
 
 +++
 
-We will nearly always want to know *how much* of a given dataset is missing, as we will need to factor this in as a limitation of our data analysis.
+We will nearly always want to know _how much_ of a given dataset is missing, as we will need to factor this in as a limitation of our data analysis.
 
 ::: {exercise-start}
 :label: missing-mysteries
 :class: dropdown
 :::
 
-Why might we worry about missing values?  Why can't we just drop them and forget about them?  Let's load some [related data from the World Bank](data/gender_stats) with country statistics on various measures:
+Why might we worry about missing values? Why can't we just drop them and forget about them? Let's load some [related data from the World Bank](data/gender_stats) with country statistics on various measures:
 
 ```{code-cell}
 gender_df = pd.read_csv('data/gender_stats.csv')
@@ -269,7 +270,7 @@ gender_df
 
 Notice that there are various NaN values here.
 
-A) Do you think these indicate invalid floating point operations at some previous step, or do they indicate missing (Not Available) data?  Why?
+A) Do you think these indicate invalid floating point operations at some previous step, or do they indicate missing (Not Available) data? Why?
 
 +++
 
@@ -283,7 +284,7 @@ Here is a calculation of the mean Health Exp(enditure) per Cap(ita) (per person)
 gender_df['health_exp_per_cap'].mean()
 ```
 
-Do you think this value is a reasonable estimate of actual worldwide health expenditure per person?   If not, why not?   Can you think of any way of improving this estimate?
+Do you think this value is a reasonable estimate of actual worldwide health expenditure per person? If not, why not? Can you think of any way of improving this estimate?
 
 +++
 
@@ -296,7 +297,7 @@ Do you think this value is a reasonable estimate of actual worldwide health expe
 :class: dropdown
 :::
 
-The NaN values look very much like standard Pandas signals of missing (Not Available) data.  First, these values arose from loading a data file directly.  It's possible that some calculation that led to this data file had invalid floating point values, but it's difficult to see what these might be, or why these could not be avoided.  On the other hand, looking at the values, it seems that they occur for smaller countries with less-developed economies (e.g. Aruba) or new countries (at time of data estimate) such as Kosovo.  It is easy to see how there might not be good data to calculate e.g. health expenditure per person for these countries.
+The NaN values look very much like standard Pandas signals of missing (Not Available) data. First, these values arose from loading a data file directly. It's possible that some calculation that led to this data file had invalid floating point values, but it's difficult to see what these might be, or why these could not be avoided. On the other hand, looking at the values, it seems that they occur for smaller countries with less-developed economies (e.g. Aruba) or new countries (at time of data estimate) such as Kosovo. It is easy to see how there might not be good data to calculate e.g. health expenditure per person for these countries.
 
 To explore more, you might have considered looking specifically for rows and columns with many NaN values with something like:
 
@@ -308,14 +309,14 @@ gender_df[missing_hepc]
 (See the [filtering page](0_5_filtering_data_with_pandas) for more on filtering Data Frames.)
 
 For the mean calculation, we notice again that the missing values seem to be
-for smaller, less-developed and newer countries.  You have already seen that
+for smaller, less-developed and newer countries. You have already seen that
 Pandas assumes that NaN means missing data, and it drops NaN values in
-calculations like `.mean()`.  Therefore, the result is the mean excluding
+calculations like `.mean()`. Therefore, the result is the mean excluding
 these smaller, poorer countries, and the resulting mean will be the mean of
-the larger, richer countries.  To get a better estimate of worldwide health
+the larger, richer countries. To get a better estimate of worldwide health
 expenditure per capita, we might try and think of ways of estimating what the
 health expenditure would have been for these smaller countries, perhaps using
-other data we do have, from this data frame or elsewhere.  At least we should
+other data we do have, from this data frame or elsewhere. At least we should
 point out the confounded nature of the `.mean()` as a true estimate.
 
 ::: {solution-end}
@@ -331,9 +332,9 @@ df.count()
 ```
 
 A useful trick here is to divide the output of the `.count()` method by the
-`len()` of the Data Frame.  Remember [`len(df)` gives you the number of rows
-(number of observations)](len-df).  This provides a handy summary of the
-*proportion* of NaNs in each column of the Data Frame:
+`len()` of the Data Frame. Remember [`len(df)` gives you the number of rows
+(number of observations)](len-df). This provides a handy summary of the
+_proportion_ of NaNs in each column of the Data Frame:
 
 ```{code-cell}
 # Show the proportion of missing values, in each column.
@@ -341,7 +342,7 @@ A useful trick here is to divide the output of the `.count()` method by the
 df.count() / len(df)
 ```
 
-If we want to use brute force, we can use the `.dropna()` method to remove *any rows* which have a single NaN value:
+If we want to use brute force, we can use the `.dropna()` method to remove _any rows_ which have a single NaN value:
 
 ```{code-cell}
 # Remove the NaN values
@@ -349,12 +350,12 @@ df_no_NaN = df.dropna()
 df_no_NaN
 ```
 
-It turns out in this dataset, every row has at least one NaN value so dropping every row with a NaN has dropped *everything*...(we did say this method was brute force)!
+It turns out in this dataset, every row has at least one NaN value so dropping every row with a NaN has dropped _everything_...(we did say this method was brute force)!
 
 +++
 
 **By far the most important thing to know about missing data in Pandas is that
-by default NaN values will be *ignored* in numerical operations**.
+by default NaN values will be _ignored_ in numerical operations**.
 
 Let's look at the `Fertility Rate` column, which contains numerical data:
 
@@ -363,7 +364,7 @@ Let's look at the `Fertility Rate` column, which contains numerical data:
 df['Fertility Rate']
 ```
 
-Because we are dealing with just one column, we can safely use `.dropna()` without losing every row (because not every row of the *Series* contains a NaN value):
+Because we are dealing with just one column, we can safely use `.dropna()` without losing every row (because not every row of the _Series_ contains a NaN value):
 
 ```{code-cell}
 # Show the column
@@ -389,7 +390,7 @@ When we use the `.mean()` method on just this column, we get the following value
 zwe_fert.mean()
 ```
 
-Using `.dropna()` on this column returns *exactly the same value* - because by default Pandas will ignore NaNs in numerical operations:
+Using `.dropna()` on this column returns _exactly the same value_ - because by default Pandas will ignore NaNs in numerical operations:
 
 ```{code-cell}
 zwe_no_nans = zwe_fert.dropna()
@@ -397,25 +398,25 @@ zwe_no_nans
 ```
 
 ```{code-cell}
-# Drop NaNs gives the same mean 
+# Drop NaNs gives the same mean
 zwe_no_nans.mean()
 ```
 
 So:
 
-* For NumPy, NaNs propagate, because they indicate an *invalid value*.
-* For Pandas, NaNs do not propagate, because they indicate a *missing value*.
+- For NumPy, NaNs propagate, because they indicate an _invalid value_.
+- For Pandas, NaNs do not propagate, because they indicate a _missing value_.
 
 Put another way:
 
-* NumPy treats NaNs as *numerical* indicators of an invalid operation.
-* Pandas treats NaNs as *statistical* indicators of missing data.
+- NumPy treats NaNs as _numerical_ indicators of an invalid operation.
+- Pandas treats NaNs as _statistical_ indicators of missing data.
 
-This fits with the package names; NumPy for *numerical Python*, Pandas for
-*Panel data* and therefore, statistics.
+This fits with the package names; NumPy for _numerical Python_, Pandas for
+_Panel data_ and therefore, statistics.
 
 This difference in NaN handling is a key and important difference between NumPy
-and Pandas statistical routines.  NumPy `mean`, `min`, `max` and `std` return
+and Pandas statistical routines. NumPy `mean`, `min`, `max` and `std` return
 NaN, by default, if there are any NaN values in the array.
 
 ```{code-cell}
@@ -433,9 +434,9 @@ zwe_fert.std()
 On this page we have seen how NaN values indicate different things in NumPy and
 Pandas.
 
-In NumPy, NaN values have a *numerical* meaning, and typically result from
+In NumPy, NaN values have a _numerical_ meaning, and typically result from
 invalid computations, such as dividing zero by zero.
 
-In Pandas, NaN values have *statistical* meaning.  They are most commonly flags for
+In Pandas, NaN values have _statistical_ meaning. They are most commonly flags for
 missing data. By default, these NaN values will be ignored when you call
 Pandas' statistical methods for Series or Data Frames.
