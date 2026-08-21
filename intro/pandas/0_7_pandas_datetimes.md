@@ -24,10 +24,10 @@ a useful module for handling dates and times, creatively named
 
 Python's Datetimes have a (deserved) reputation for being fiddly (we would
 wager anyone who has encountered them will agree...). Additionally, in contrast
-to the close relation between Numpy and Pandas shown on the other pages, the
+to the close relation between NumPy and Pandas shown on the other pages, the
 way Pandas handles dates and times is somewhat different to how they are
-handled in Numpy.  To be specific, Pandas *stores* dates and times using
-Numpy's representations, but *presents* these values to you, dear user, with
+handled in NumPy.  To be specific, Pandas *stores* dates and times using
+NumPy's representations, but *presents* these values to you, dear user, with
 various attributes that make them look like Python's Datatimes.
 
 This page will focus on using dates and times as implemented in Pandas.  This

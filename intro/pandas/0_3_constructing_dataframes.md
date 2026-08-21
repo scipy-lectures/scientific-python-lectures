@@ -15,7 +15,7 @@ kernelspec:
 
 In [the](0_0_pandas_intro) [previous](0_1_to_loc_or_iloc)
 [tutorials](0_2_pandas_dataframes_attributes_methods) we showed how the
-Pandas class objects (Series and Data Frames) are constructed from Numpy
+Pandas class objects (Series and Data Frames) are constructed from NumPy
 objects (arrays) and other attributes.
 
 We focused on the maxims:
@@ -99,7 +99,7 @@ blank_df['new_column'] = np.array([1, 2, 3])
 blank_df
 ```
 
-We used a Numpy array to construct this new column, however, as we know, Data Frames are a dictionary-like collection of Series, so Pandas can represent the data as a Pandas Series:
+We used a NumPy array to construct this new column, however, as we know, Data Frames are a dictionary-like collection of Series, so Pandas can represent the data as a Pandas Series:
 
 ```{code-cell}
 # Show the type of df['new_column'].
@@ -127,7 +127,7 @@ Pandas has also automatically created a default `RangeIndex` for the Data Frame,
 blank_df.index
 ```
 
-As you saw in [The Pandas from Numpy page](0_0_pandas_intro), Series extracted from Data Frames inherit the `.index` of the Data Frame:
+As you saw in [The Pandas from NumPy page](0_0_pandas_intro), Series extracted from Data Frames inherit the `.index` of the Data Frame:
 
 ```{code-cell}
 new_col.index
@@ -193,7 +193,7 @@ Again, the error that Pandas gives us here is informative: `ValueError: Length m
 
 Remember (from [](loc-iloc-df)) that a Pandas Data Frame can be considered a view onto a two-dimensional array.
 
-For example, the `.values` attribute of a Data Frame returns a two-dimensional Numpy array with a copy of the underlying data
+For example, the `.values` attribute of a Data Frame returns a two-dimensional NumPy array with a copy of the underlying data
 
 ```{code-cell}
 # Select the first 10 rows of the loaded Data Frame for brevity
@@ -202,7 +202,7 @@ early_passengers_df = df_from_file.head(10)
 early_passengers_df.values
 ```
 
-In a similar way, if you pass a Numpy array as the first argument to the Data Frame constructor, Pandas will assume you are passing this underlying 2D data array.
+In a similar way, if you pass a NumPy array as the first argument to the Data Frame constructor, Pandas will assume you are passing this underlying 2D data array.
 
 ```{code-cell}
 two_d_arr = np.array([[1, 2, 3], [11, 21, 31], [101, 102, 103]])
@@ -237,7 +237,7 @@ If you pass a 1D array to the constructor, it assumes you mean this as one colum
 pd.DataFrame([10, 20, 20])
 ```
 
-## Constructing a Data Frame from a dictionary of Numpy arrays
+## Constructing a Data Frame from a dictionary of NumPy arrays
 
 Another common way to construct Data Frames is to use a dictionary.
 
@@ -246,7 +246,7 @@ When we do this, the keys of the dictionary become the column names (and therefo
 First, let's make a dictionary:
 
 ```{code-cell}
-# Make a dictionary, using the keys "A" and "B" and two Numpy arrays for the values
+# Make a dictionary, using the keys "A" and "B" and two NumPy arrays for the values
 dictionary = {'A': np.array([1, 2, 3, 4]),
               'B': np.array([5, 6, 7, 8])}
 dictionary
@@ -293,8 +293,8 @@ df3['A'].values
 
 ## Constructing a Data Frame from a dictionary of Pandas series
 
-We can also use Pandas Series as the values in a dictionary (rather than Numpy
-arrays), in order to build a Data Frame. Because Pandas Series contain a Numpy
+We can also use Pandas Series as the values in a dictionary (rather than NumPy
+arrays), in order to build a Data Frame. Because Pandas Series contain a NumPy
 array plus additional attributes, like an `index`, we need to be aware of this
 when using them to create Data Frames, as conflicts between the indexes of
 different Series can lead to errors.
@@ -395,7 +395,7 @@ This occurred when we passed one Series with `int`-type Index values, and
 another with `str`-type Index values.
 
 Reflect back on the [first exercise](differing-indices) in the [Pandas from
-Numpy page](0_0_pandas_intro).  Why do you think Pandas is comparing `int`s to
+NumPy page](0_0_pandas_intro).  Why do you think Pandas is comparing `int`s to
 `str`s as it creates the Data Frame?
 
 ::: {exercise-end}

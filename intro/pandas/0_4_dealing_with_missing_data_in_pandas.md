@@ -29,27 +29,27 @@ df['Fertility Rate'].loc['ZWE'].dropna().mean()
 * NaNs are interpreted as missing data and ignored in most operations
 * Pandas uses NaN as a flag, not as an indication of a failed floating point
   operation
-* Numpy does not have a concept of a missing value, NaNs propagate.
+* NumPy does not have a concept of a missing value, NaNs propagate.
 * In Pandas NaN is an indication of missing data - Pandas will by default
   drop nans from most operations).s
 -->
 
 [NaN](https://en.wikipedia.org/wiki/IEEE_754) is short for Not-a-Number.
 
-This page will compare how NaN values differ between Numpy and Pandas.
+This page will compare how NaN values differ between NumPy and Pandas.
 
-You are probably aware that Numpy will produce NaNs from invalid floating
+You are probably aware that NumPy will produce NaNs from invalid floating
 point operations, such as dividing 0 by 0. In Pandas, NaNs are more commonly
 a flag to indicate the absence of data, for floating point and other data
 types.
 
-We will also look at how to handle NaNs safely in Pandas. First, let's remind ourselves how NaNs work in Numpy.
+We will also look at how to handle NaNs safely in Pandas. First, let's remind ourselves how NaNs work in NumPy.
 
 +++
 
-## NaNs in Numpy
+## NaNs in NumPy
 
-As mentioned above, NaNs in Numpy result from invalid floating point
+As mentioned above, NaNs in NumPy result from invalid floating point
 operations.
 
 ```{code-cell}
@@ -57,7 +57,7 @@ operations.
 import numpy as np
 import pandas as pd
 
-# NaN results from a Numpy operation dividing 0 by 0
+# NaN results from a NumPy operation dividing 0 by 0
 a_nan = np.array(0) / np.array(0)
 a_nan
 ```
@@ -67,7 +67,7 @@ now turn our attention.
 
 +++
 
-As you see above, the Numpy `dtype` of the returned NaN value is `float64`.
+As you see above, the NumPy `dtype` of the returned NaN value is `float64`.
 This tells us that the NaN value is a special and particular type of floating
 point value, in the same sense that Inf (infinity) or -Inf (negative
 infinity) are special floating point values:
@@ -77,7 +77,7 @@ infinity) are special floating point values:
 np.array(1) / np.array(0)
 ```
 
-Numpy uses this special NaN (`np.nan`) value to indicate that the value is
+NumPy uses this special NaN (`np.nan`) value to indicate that the value is
 *invalid*.  We will soon see that Pandas uses `np.nan` in a different and expanded meaning.  But more of that in a little while.
 
 The logic of NaNs as *invalid values* means that *any* operation with a NaN should return — a NaN — because any operation with an invalid value must itself be an invalid value.  This propagation can have some superficially unexpected consequences that can trap the unwary:
@@ -139,7 +139,7 @@ arr * 2
 arr + 2
 ```
 
-OK, so the [TL;DR](https://en.wikipedia.org/wiki/TL;DR) here is that in Numpy
+OK, so the [TL;DR](https://en.wikipedia.org/wiki/TL;DR) here is that in NumPy
 NaNs signal an invalid operation has taken place.
 
 *NaNs propagate*;  any numerical operation a NaN will result in a NaN.
@@ -150,7 +150,7 @@ Let's compare this to the way that Pandas uses NaNs.
 
 ## NaNs in Pandas
 
-We have seen that NaN values in Numpy are values that indicate the result of
+We have seen that NaN values in NumPy are values that indicate the result of
 invalid floating point operations.
 
 The function of NaN values in Pandas is somewhat different.
@@ -234,7 +234,7 @@ for the full gory details.  The summary at this stage is:
   suggest you use `pd.isna()` or Pandas `.isna()` methods to check for missing
   values.
 * That said, at the moment, Pandas nearly always indicates missing (NA) values
-  with Numpy's `np.nan`.
+  with NumPy's `np.nan`.
 
 :::
 
@@ -403,19 +403,19 @@ zwe_no_nans.mean()
 
 So:
 
-* For Numpy, NaNs propagate, because they indicate an *invalid value*.
+* For NumPy, NaNs propagate, because they indicate an *invalid value*.
 * For Pandas, NaNs do not propagate, because they indicate a *missing value*.
 
 Put another way:
 
-* Numpy treats NaNs as *numerical* indicators of an invalid operation.
+* NumPy treats NaNs as *numerical* indicators of an invalid operation.
 * Pandas treats NaNs as *statistical* indicators of missing data.
 
-This fits with the package names; Numpy for *numerical Python*, Pandas for
+This fits with the package names; NumPy for *numerical Python*, Pandas for
 *Panel data* and therefore, statistics.
 
-This difference in NaN handling is a key and important difference between Numpy
-and Pandas statistical routines.  Numpy `mean`, `min`, `max` and `std` return
+This difference in NaN handling is a key and important difference between NumPy
+and Pandas statistical routines.  NumPy `mean`, `min`, `max` and `std` return
 NaN, by default, if there are any NaN values in the array.
 
 ```{code-cell}
@@ -430,10 +430,10 @@ zwe_fert.std()
 
 ## Summary
 
-On this page we have seen how NaN values indicate different things in Numpy and
+On this page we have seen how NaN values indicate different things in NumPy and
 Pandas.
 
-In Numpy, NaN values have a *numerical* meaning, and typically result from
+In NumPy, NaN values have a *numerical* meaning, and typically result from
 invalid computations, such as dividing zero by zero.
 
 In Pandas, NaN values have *statistical* meaning.  They are most commonly flags for
