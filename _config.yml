@@ -119,6 +119,9 @@ sphinx:
     - IPython.sphinxext.ipython_console_highlighting
     - sphinx_exercise
 
+  local_extensions:
+    ipython_tb_lexer: _extensions
+
 latex:
   latex_documents:
     targetname: scientific_python_lectures.tex

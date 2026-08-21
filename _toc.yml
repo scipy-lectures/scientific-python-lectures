@@ -22,6 +22,16 @@ parts:
           - file: intro/numpy/elaborate_arrays
           - file: intro/numpy/advanced_operations
           - file: intro/numpy/exercises
+      - file: intro/pandas/index
+        sections:
+          - file: intro/pandas/0_0_pandas_intro
+          - file: intro/pandas/0_1_to_loc_or_iloc
+          - file: intro/pandas/0_2_pandas_dataframes_attributes_methods
+          - file: intro/pandas/0_3_constructing_dataframes
+          - file: intro/pandas/0_4_dealing_with_missing_data_in_pandas
+          - file: intro/pandas/0_5_filtering_data_with_pandas
+          - file: intro/pandas/0_6_more_pandas_methods_strings
+          - file: intro/pandas/0_7_pandas_datetimes
       - file: intro/matplotlib/index
       - file: intro/scipy/index
       - file: intro/help/help
