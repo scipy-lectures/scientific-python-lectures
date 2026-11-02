@@ -1,32 +1,41 @@
-PYTHON ?= python
-PIP_INSTALL_CMD ?= $(PYTHON) -m pip install
+# Set VENV= (empty) to use tools already on PATH instead of a uv environment.
+VENV ?= .venv
+PYTHON ?= $(BIN)python
 BUILD_DIR=_build/html
 JL_DIR=_build/jl
+REQUIREMENTS = requirements.txt build_requirements.txt test_requirements.txt jl-build-requirements.txt
 
-html:
+ifdef VENV
+export VIRTUAL_ENV := $(abspath $(VENV))
+export PATH := $(VIRTUAL_ENV)/bin:$(PATH)
+# Make 3.81 (macOS) ignores the exported PATH when it runs a command directly.
+BIN := $(VIRTUAL_ENV)/bin/
+ENV_STAMP := $(VENV)/.installed
+endif
+
+html: $(ENV_STAMP)
 	# Check for ipynb files in source (should all be text - .md or .Rmd).
 	if compgen -G "*.ipynb" 2> /dev/null; then (echo "ipynb files" && exit 1); fi
-	jupyter-book build -W .
+	$(BIN)jupyter-book build -W .
 
-jl:
+jl: $(ENV_STAMP)
 	# Jupyter-lite files for book build.
-	$(PIP_INSTALL_CMD) -r jl-build-requirements.txt
 	rm -rf $(JL_DIR)
 	mkdir $(JL_DIR)
 	cp -r data images $(JL_DIR)
 	$(PYTHON) _scripts/process_notebooks.py $(JL_DIR)
 	$(PYTHON) -m jupyter lite build \
-		--contents $(JL_DIR) \
-		--output-dir $(BUILD_DIR)/interact \
-		--lite-dir $(JL_DIR)
+		--contents $(abspath $(JL_DIR)) \
+		--output-dir $(abspath $(BUILD_DIR))/interact \
+		--lite-dir $(abspath $(JL_DIR))
 
-lint:
-	pre-commit run --all-files --show-diff-on-failure --color always
+lint: $(ENV_STAMP)
+	$(BIN)pre-commit run --all-files --show-diff-on-failure --color always
 
 web: html jl
 
 github: web
-	ghp-import -n _build/html -p -f
+	$(BIN)ghp-import -n _build/html -p -f
 
 clean: rm-ipynb
 	rm -rf _build
@@ -36,9 +45,21 @@ clean: rm-ipynb
 rm-ipynb:
 	find . -name "*.ipynb" -exec rm {} \;
 
-test:
-	pytest .
+# Avoid a Jupyter deprecation warning, which pytest treats as an error.
+test: export JUPYTER_PLATFORM_DIRS = 1
+test: $(ENV_STAMP)
+	$(BIN)pytest .
 
-compare-optimizers:
+compare-optimizers: $(ENV_STAMP)
 	( cd advanced/mathematical_optimization/helper && \
-		python compare_optimizers.py )
+		$(PYTHON) compare_optimizers.py )
+
+# Reinstall only when a requirements file is newer than the stamp.
+$(ENV_STAMP): $(REQUIREMENTS)
+	uv venv --allow-existing $(VENV)
+	uv pip install $(addprefix -r ,$(REQUIREMENTS))
+	touch $@
+
+env: $(ENV_STAMP)
+
+.PHONY: html jl lint web github clean rm-ipynb test compare-optimizers env

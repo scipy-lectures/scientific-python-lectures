@@ -59,3 +59,4 @@ advanced/advanced_numpy/test_red.png
 intro/language/junk.txt
 intro/language/test.pkl
 joblib/
+.venv/

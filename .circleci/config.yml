@@ -10,19 +10,20 @@ jobs:
 
       - restore_cache:
           keys:
-            - pip-cache-v1
+            - uv-cache-v1
+
+      - run:
+          name: Install uv
+          command: pip install --user uv
 
       - run:
           name: Install Python dependencies
-          command: |
-            pip install --upgrade --user pip
-            pip install --user -r build_requirements.txt
-            pip list
+          command: make env
 
       - save_cache:
-          key: pip-cache-v1
+          key: uv-cache-v1
           paths:
-            - ~/.cache/pip
+            - ~/.cache/uv
 
       - run:
           name: Build docs

@@ -48,7 +48,7 @@ To generate the html output for on-screen display, Type:
 make html
 ```
 
-the generated html files can be found in `build/html`
+the generated html files can be found in `_build/html`
 
 The first build takes a long time, but information is cached and
 subsequent builds will be faster.
@@ -62,11 +62,20 @@ Build requirements are listed in the
 
 ```
 
-Ensure that you have a [virtual environment](https://docs.python.org/3/library/venv.html) or conda environment
-set up, then install requirements with:
+With [uv](https://docs.astral.sh/uv/) installed, `make` creates a virtual
+environment in `.venv` and installs all requirements into it. Make reinstalls
+only when a requirements file changes.
+
+To use your own environment instead, install the requirements:
 
 ```
-pip install -r requirements.txt
+pip install -r build_requirements.txt
+```
+
+then tell `make` to use the tools on your `PATH`:
+
+```
+make html VENV=
 ```
 
 Note that you will also need the following system packages:

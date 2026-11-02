@@ -131,15 +131,27 @@ def get_admonition_lines(nb_text, nb_path):
     lines = nb_text.splitlines()
     n_lines = len(lines)
     admonition_lines = []
-    for admonition in doc.findall(dun.Admonition):
+    admonitions = (
+        node for node in doc.findall(dun.Element) if isinstance(node, dun.Admonition)
+    )
+    for admonition in admonitions:
+        assert admonition.line is not None
         start_line = admonition.line - 1
         # Find first node of subsequent doctree.
         node0 = next(
-            admonition.findall(include_self=False, descend=False, ascend=True), None
+            admonition.findall(
+                dun.Element, include_self=False, descend=False, ascend=True
+            ),
+            None,
         )
         # There can be a system_message as next node, in which case the correct
         # line is in the 'line' attribute.
-        last_line = node0.get("line", node0.line) - 2 if node0 else n_lines - 1
+        if node0:
+            next_line = node0.get("line", node0.line)
+            assert next_line is not None
+            last_line = next_line - 2
+        else:
+            last_line = n_lines - 1
         for end_line in range(last_line, start_line + 1, -1):
             if _END_DIV_RE.match(lines[end_line]):
                 break
