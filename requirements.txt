@@ -1,17 +1,17 @@
 # Requirements for notebooks / Binderhub
-numpy==2.4.2
-scipy==1.17.0
-matplotlib==3.10.8
-pandas==3.0
-scikit-learn==1.8.0
+numpy==2.5.3
+scipy==1.18.1
+matplotlib==3.11.2
+pandas==3.0.6
+scikit-learn==1.9.1
 scikit-image==0.26
 sympy==1.14.0
-statsmodels==0.14.6
+statsmodels==0.15.0
 seaborn==0.13.2
-pytest>=9.0
+pytest>=9.1.1
 sphinx
 sphinx-copybutton
-coverage>=7.13
+coverage>=7.16.2
 Pillow
 pooch
 ipython
